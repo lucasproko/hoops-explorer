@@ -30,9 +30,10 @@ import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from "./diags/LuckAdjDiagView";
 import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
 import TeamRosterDiagView from "./diags/TeamRosterDiagView";
+import TeamExtraStatsInfoView from "./diags/TeamExtraStatsInfoView";
 
 // Util imports
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from '../utils/StatModels';
 import { CbbColors } from "../utils/CbbColors";
 import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -91,6 +92,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     false : gameFilterParams.teamDiffs
   );
 
+  const [ showExtraInfo, setShowExtraInfo ] = useState(_.isNil(gameFilterParams.showExtraInfo) ?
+    false : gameFilterParams.showExtraInfo
+  );
+
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showTeamPlayTypes) ?
     ParamDefaults.defaultTeamShowPlayTypes : gameFilterParams.showTeamPlayTypes
@@ -113,13 +118,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ...gameFilterParams,
       teamDiffs: showDiffs,
       showTeamPlayTypes: showPlayTypes,
+      showExtraInfo: showExtraInfo,
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
       showRoster: showRoster
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes, showRoster ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showExtraInfo, showPlayTypes, showRoster ]);
 
   // 2] Data View
 
@@ -244,6 +250,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     (teamStats.on?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
+      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
+        name="Baseline"
+        teamStatSet={teamStats.on}
+        /></span>, "small pt-2")
+      ] : [],
       showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
             positionInfoGlobal={LineupTableUtils.getPositionalInfo(
@@ -283,6 +294,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     (teamStats.off?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
+      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
+        name="Baseline"
+        teamStatSet={teamStats.off}
+        /></span>, "small pt-2")
+      ] : [],
       showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
             positionInfoGlobal={LineupTableUtils.getPositionalInfo(
@@ -322,6 +338,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
+      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
+        name="Baseline"
+        teamStatSet={teamStats.baseline}
+        /></span>, "small pt-2")
+      ] : [],
       showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
             positionInfoGlobal={LineupTableUtils.getPositionalInfo(
@@ -417,6 +438,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   onClick: () => setShowDiffs(!showDiffs)
                 },
                 {
+                  label: "Extra",
+                  tooltip: showExtraInfo ? "Hide extra stats info" : "Show extra stats info",
+                  toggled: showExtraInfo,
+                  onClick: () => setShowExtraInfo(!showExtraInfo)
+                },
+                {
                   label: "Style",
                   tooltip: showPlayTypes ? "Hide play style breakdowns" : "Show play style breakdowns",
                   toggled: showPlayTypes,
@@ -444,6 +471,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               text="Show Stat Differences"
               truthVal={showDiffs}
               onSelect={() => setShowDiffs(!showDiffs)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Extra Team Information"
+              truthVal={showExtraInfo}
+              onSelect={() => setShowExtraInfo(!showExtraInfo)}
             />
             <GenericTogglingMenuItem
               text="Show Play Style Breakdowns"

@@ -153,6 +153,12 @@ export class CbbColors {
   public static readonly p_def_2P_rim = (val: number) => CbbColors.blueToOrange.domain(CbbColors.blkDomain)(val).toString();
   public static readonly p_fg2P_rim: CbbColorTuple = [ CbbColors.off_2P_rim, CbbColors.p_def_2P_rim ];
 
+  // Tempo
+  private static readonly tempoDomain = [ 60, 68, 76];
+  public static readonly p_tempo = (val: number) => CbbColors.blueToOrange.domain(CbbColors.tempoDomain)(val).toString();
+  private static readonly transitionDomain = [ 16, 20, 24 ];
+  public static readonly p_trans = (val: number) => CbbColors.blueToOrange.domain(CbbColors.transitionDomain)(val).toString();
+
   // RAPM diags:
   // Correlation matrix
   private static readonly rapmCorrelDomain = [ 0, 0.5, 1.0 ];

@@ -156,12 +156,15 @@ export class HistoryManager {
       _.isNil(p.showRoster) ? ParamDefaults.defaultTeamShowRoster : p.showRoster;
     const showTeamPlayTypes =
       _.isNil(p.showTeamPlayTypes) ? ParamDefaults.defaultTeamShowPlayTypes : p.showTeamPlayTypes;
+    const showExtraInfo =
+      _.isNil(p.showExtraInfo) ? false : p.showExtraInfo;
     const showTeamArray = _.flatMap([
       onOffLuck ? [ `on-off-luck`]: [],
       showOnOffLuckDiags ? [ `show-on-off-luck-diags` ] : [],
       showDiffs ? [ "show-diffs" ] : [],
       showRoster ? [ "show-roster" ] : [],
       showTeamPlayTypes ? [ "show-play-types" ] : [],
+      showExtraInfo ? [ "show-extra-info" ] : [],
     ]);
     const teamParams = (showTeamArray.length > 0) ?
       `, team:[${_.join(showTeamArray, ",")}]` : "";

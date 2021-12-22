@@ -65,6 +65,7 @@ export type GameFilterParams = {
   autoOffQuery?: boolean
   // Team view
   teamDiffs?: boolean,
+  showExtraInfo?: boolean,
   showTeamPlayTypes?: boolean,
   showRoster?: boolean,
   // Manual override:

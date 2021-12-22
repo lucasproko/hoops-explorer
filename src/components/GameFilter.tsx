@@ -42,6 +42,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
     showRoster: startShowRoster,
+    showExtraInfo: startShowExtraInfo,
     //(common visualization fields across all tables)
     //(manual overrides)
     manual: startManual,
@@ -117,6 +118,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           teamDiffs: startTeamDiffs,
           showTeamPlayTypes: startShowTeamPlayTypes,
           showRoster: startShowRoster,
+          showExtraInfo: startShowExtraInfo,
           // Common luck stats across all tables:
           //(manual overrides)
           manual: startManual,

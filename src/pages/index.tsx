@@ -112,6 +112,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
       (rawParams.teamDiffs == false) ? [ 'teamDiffs' ] : [],
       (rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes) ? [ 'showTeamPlayTypes' ] : [],
+      (rawParams.showExtraInfo == false) ? [ 'showExtraInfo' ] : [],
       (rawParams.showRoster == ParamDefaults.defaultTeamShowRoster) ? [ 'showRoster' ] : [],
       // RosterStatsTable
       (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],

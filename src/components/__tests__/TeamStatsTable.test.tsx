@@ -48,7 +48,7 @@ describe("TeamStatsTable", () => {
   });
   test("TeamStatsTable - should create snapshot, luck enabled + diagnostics shown", () => {
     const component = renderer.create(<TeamStatsTable
-      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, showTeamPlayTypes: true }}
+      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, showExtraInfo: true, showTeamPlayTypes: true }}
       dataEvent={{
         teamStats: testData,
         rosterStats: testRosterData,

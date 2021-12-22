@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 1`] = `
+<span>
+  <b>
+    Extra stats info for [
+    test
+    ]
+  </b>
+  <ul>
+    <li>
+      <b>
+        Offense
+      </b>
+    </li>
+    <ul>
+      <li>
+        [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffa500",
+            }
+          }
+        >
+          24.1
+        </b>
+        ]% transition: [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #fdfefd",
+            }
+          }
+        >
+          +
+          0.1
+        </b>
+        ] pts/100
+      </li>
+      <li>
+        [
+        <b>
+          10.8
+        </b>
+        ]% scramble: [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #329932",
+            }
+          }
+        >
+          +
+          8.0
+        </b>
+        ] pts/100
+      </li>
+    </ul>
+    <li>
+      <b>
+        Defense
+      </b>
+    </li>
+    <ul>
+      <li>
+        3P SoS: [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffffff",
+            }
+          }
+        >
+          33.0
+        </b>
+        ]%
+      </li>
+      <li>
+        [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #f7fbfd",
+            }
+          }
+        >
+          19.6
+        </b>
+        ]% transition: [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #75ba75",
+            }
+          }
+        >
+          -5.4
+        </b>
+        ] pts/100
+      </li>
+      <li>
+        [
+        <b>
+          8.5
+        </b>
+        ]% scramble: [
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ff2e2e",
+            }
+          }
+        >
+          +
+          8.2
+        </b>
+        ] pts/100
+      </li>
+    </ul>
+    <li>
+      <b>
+        Misc
+      </b>
+    </li>
+    <ul>
+      <li>
+        Raw tempo: 
+        <span>
+          <b
+            style={
+              Object {
+                "textShadow": "0px 0px 10px #ffa500",
+              }
+            }
+          >
+            [
+            83.2
+            ]
+          </b>
+           poss/g
+        </span>
+      </li>
+    </ul>
+  </ul>
+</span>
+`;

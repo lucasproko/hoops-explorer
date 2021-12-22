@@ -4829,6 +4829,159 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   colSpan={24}
                 >
                   <span>
+                    <span>
+                      <b>
+                        Extra stats info for [
+                        Baseline
+                        ]
+                      </b>
+                      <ul>
+                        <li>
+                          <b>
+                            Offense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              24.0
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffdada",
+                                }
+                              }
+                            >
+                              
+                              -1.4
+                            </b>
+                            ] pts/100
+                          </li>
+                          <li>
+                            [
+                            <b>
+                              10.4
+                            </b>
+                            ]% scramble: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #5cae5c",
+                                }
+                              }
+                            >
+                              +
+                              6.4
+                            </b>
+                            ] pts/100
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Defense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            3P SoS: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #f7fbf7",
+                                }
+                              }
+                            >
+                              33.2
+                            </b>
+                            ]%
+                          </li>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fff5e3",
+                                }
+                              }
+                            >
+                              20.4
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #3c9e3c",
+                                }
+                              }
+                            >
+                              
+                              -7.7
+                            </b>
+                            ] pts/100
+                          </li>
+                          <li>
+                            [
+                            <b>
+                              8.5
+                            </b>
+                            ]% scramble: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ff6767",
+                                }
+                              }
+                            >
+                              +
+                              5.9
+                            </b>
+                            ] pts/100
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Misc
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            Raw tempo: 
+                            <span>
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffa500",
+                                  }
+                                }
+                              >
+                                [
+                                79.8
+                                ]
+                              </b>
+                               poss/g
+                            </span>
+                          </li>
+                        </ul>
+                      </ul>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
                     <div
                       className="container"
                     >
@@ -14788,6 +14941,159 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   colSpan={24}
                 >
                   <span>
+                    <span>
+                      <b>
+                        Extra stats info for [
+                        Baseline
+                        ]
+                      </b>
+                      <ul>
+                        <li>
+                          <b>
+                            Offense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              24.3
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #7abd7a",
+                                }
+                              }
+                            >
+                              +
+                              5.2
+                            </b>
+                            ] pts/100
+                          </li>
+                          <li>
+                            [
+                            <b>
+                              11.9
+                            </b>
+                            ]% scramble: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #008000",
+                                }
+                              }
+                            >
+                              +
+                              13.5
+                            </b>
+                            ] pts/100
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Defense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            3P SoS: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffe4e4",
+                                }
+                              }
+                            >
+                              32.3
+                            </b>
+                            ]%
+                          </li>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #c0e1ec",
+                                }
+                              }
+                            >
+                              16.9
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffcdcd",
+                                }
+                              }
+                            >
+                              +
+                              2.0
+                            </b>
+                            ] pts/100
+                          </li>
+                          <li>
+                            [
+                            <b>
+                              8.5
+                            </b>
+                            ]% scramble: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ff0000",
+                                }
+                              }
+                            >
+                              +
+                              14.4
+                            </b>
+                            ] pts/100
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Misc
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            Raw tempo: 
+                            <span>
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffa500",
+                                  }
+                                }
+                              >
+                                [
+                                77.1
+                                ]
+                              </b>
+                               poss/g
+                            </span>
+                          </li>
+                        </ul>
+                      </ul>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
                     <div
                       className="container"
                     >
@@ -24739,6 +25045,159 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     97.0
                   </div>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <span>
+                      <b>
+                        Extra stats info for [
+                        Baseline
+                        ]
+                      </b>
+                      <ul>
+                        <li>
+                          <b>
+                            Offense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              24.1
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fdfefd",
+                                }
+                              }
+                            >
+                              +
+                              0.1
+                            </b>
+                            ] pts/100
+                          </li>
+                          <li>
+                            [
+                            <b>
+                              10.8
+                            </b>
+                            ]% scramble: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #329932",
+                                }
+                              }
+                            >
+                              +
+                              8.0
+                            </b>
+                            ] pts/100
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Defense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            3P SoS: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffffff",
+                                }
+                              }
+                            >
+                              33.0
+                            </b>
+                            ]%
+                          </li>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #f7fbfd",
+                                }
+                              }
+                            >
+                              19.6
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #6eb76e",
+                                }
+                              }
+                            >
+                              
+                              -5.7
+                            </b>
+                            ] pts/100
+                          </li>
+                          <li>
+                            [
+                            <b>
+                              8.5
+                            </b>
+                            ]% scramble: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ff3535",
+                                }
+                              }
+                            >
+                              +
+                              7.9
+                            </b>
+                            ] pts/100
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Misc
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            Raw tempo: 
+                            <span>
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffa500",
+                                  }
+                                }
+                              >
+                                [
+                                83.2
+                                ]
+                              </b>
+                               poss/g
+                            </span>
+                          </li>
+                        </ul>
+                      </ul>
+                    </span>
+                  </span>
                 </td>
               </tr>
               <tr>
