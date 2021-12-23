@@ -251,7 +251,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
       showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-        name="Baseline"
+        name="On"
         teamStatSet={teamStats.on}
         /></span>, "small pt-2")
       ] : [],
@@ -295,7 +295,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
       showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-        name="Baseline"
+        name="Off"
         teamStatSet={teamStats.off}
         /></span>, "small pt-2")
       ] : [],
