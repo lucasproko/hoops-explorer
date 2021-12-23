@@ -31,7 +31,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
     /** See also TableDisplayUtils.injectPlayTypeInfo */
     const postOrbInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
         const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
+        const totalOrbs = stat[`total_${offDef}_orb`]?.value || 1;
         const scramblePct = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalPoss;
+        const scrambleOrbRatio = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalOrbs;
         const totalPpp = (stat[`${offDef}_ppp`]?.value || 0); //TODO: depends on player vs team/lineup
         const scramblePpp = (stat[`${offDef}_scramble_ppp`]?.value || 0) ;
         const scramblePppDelta = scramblePpp - totalPpp;
@@ -40,7 +42,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         const effColor = offDef == "off" ? CbbColors.off_diff10_p100_redGreen : CbbColors.def_diff10_p100_redGreen;
 
         return scramblePct > 5 ? <li>
-            [<b>{scramblePct.toFixed(1)}</b>]% scramble:
+            [<b>{scramblePct.toFixed(1)}</b>]% scramble ([<b>{scrambleOrbRatio.toFixed(1)}</b>]% of ORBs):
             [<b style={CommonTableDefs.getTextShadow({ value: scramblePppDelta }, effColor)}>{scramblePm}{scramblePppDelta.toFixed(1)}</b>] pts/100
         </li> : <li>
             [<b>{scramblePct.toFixed(1)}</b>]% scramble
@@ -65,6 +67,31 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             [<b style={CommonTableDefs.getTextShadow({ value: transPct }, transColor)}>{transPct.toFixed(1)}</b>]% transition
         </li>;
     };
+
+    /** See also TableDisplayUtils.injectPlayTypeInfo */
+    const assistInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
+        const rimPct = (100*(stat[`${offDef}_ast_rim`]?.value || 0));
+        const midPct = (100*(stat[`${offDef}_ast_mid`]?.value || 0));
+        const threePct = (100*(stat[`${offDef}_ast_3p`]?.value || 0));
+        return <li>
+            Assists: [3P: <b style={CommonTableDefs.getTextShadow({ value: threePct*0.01 }, CbbColors.fgr_offDef)}>{threePct.toFixed(1)}</b>%, 
+            mid: <b style={CommonTableDefs.getTextShadow({ value: midPct*0.01 }, CbbColors.fgr_offDef)}>{midPct.toFixed(1)}</b>%, 
+            rim: <b style={CommonTableDefs.getTextShadow({ value: rimPct*0.01 }, CbbColors.fgr_offDef)}>{rimPct.toFixed(1)}</b>%] 
+        </li>;
+    };
+
+    /** See also TableDisplayUtils.injectPlayTypeInfo */
+    const assistedInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
+        const rimPct = (100*(stat[`${offDef}_2prim_ast`]?.value || 0));
+        const midPct = (100*(stat[`${offDef}_2pmid_ast`]?.value || 0));
+        const threePct = (100*(stat[`${offDef}_3p_ast`]?.value || 0));
+        return <li>
+            Assisted: [3P: <b style={CommonTableDefs.getTextShadow({ value: threePct*0.01 }, CbbColors.p_ast_breakdown)}>{threePct.toFixed(1)}</b>%, 
+            mid: <b style={CommonTableDefs.getTextShadow({ value: midPct*0.01 }, CbbColors.fgr_offDef)}>{midPct.toFixed(1)}</b>%, 
+            rim: <b style={CommonTableDefs.getTextShadow({ value: rimPct*0.01 }, CbbColors.fgr_offDef)}>{rimPct.toFixed(1)}</b>%] 
+        </li>;
+    };
+    
     /** See also TableDisplayUtils.injectPlayTypeInfo */
     const paceBuilder = (stat: TeamStatSet) => {
         const totalOffPoss = stat[`off_poss`]?.value || 0;
@@ -84,12 +111,16 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             <ul>
                 {transitionInfoBuilder(teamStatSet, "off")}
                 {postOrbInfoBuilder(teamStatSet, "off")}
+                {assistInfoBuilder(teamStatSet, "off")}
+                {assistedInfoBuilder(teamStatSet, "off")}
             </ul>
             <li><b>Defense</b></li>
             <ul>
                 <li>3P SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.off_3P)}>{def_3p_SoS.toFixed(1)}</b>]%</li>
                 {transitionInfoBuilder(teamStatSet, "def")}
                 {postOrbInfoBuilder(teamStatSet, "def")}
+                {assistInfoBuilder(teamStatSet, "def")}
+                {assistedInfoBuilder(teamStatSet, "def")}
             </ul>
             <li><b>Misc</b></li>
             <ul>

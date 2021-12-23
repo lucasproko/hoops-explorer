@@ -43,7 +43,11 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b>
           10.8
         </b>
-        ]% scramble: [
+        ]% scramble ([
+        <b>
+          64.2
+        </b>
+        ]% of ORBs): [
         <b
           style={
             Object {
@@ -55,6 +59,72 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           8.0
         </b>
         ] pts/100
+      </li>
+      <li>
+        Assists: [3P: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffa809",
+            }
+          }
+        >
+          49.4
+        </b>
+        %, mid: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #add8e6",
+            }
+          }
+        >
+          6.8
+        </b>
+        %, rim: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffc65e",
+            }
+          }
+        >
+          43.8
+        </b>
+        %]
+      </li>
+      <li>
+        Assisted: [3P: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffa500",
+            }
+          }
+        >
+          84.9
+        </b>
+        %, mid: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #e6f3f7",
+            }
+          }
+        >
+          27.5
+        </b>
+        %, rim: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffc355",
+            }
+          }
+        >
+          44.3
+        </b>
+        %]
       </li>
     </ul>
     <li>
@@ -104,7 +174,11 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b>
           8.5
         </b>
-        ]% scramble: [
+        ]% scramble ([
+        <b>
+          58.4
+        </b>
+        ]% of ORBs): [
         <b
           style={
             Object {
@@ -116,6 +190,72 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           8.2
         </b>
         ] pts/100
+      </li>
+      <li>
+        Assists: [3P: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffad17",
+            }
+          }
+        >
+          48.5
+        </b>
+        %, mid: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #add8e6",
+            }
+          }
+        >
+          13.8
+        </b>
+        %, rim: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffe6b8",
+            }
+          }
+        >
+          37.8
+        </b>
+        %]
+      </li>
+      <li>
+        Assisted: [3P: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffa500",
+            }
+          }
+        >
+          85.5
+        </b>
+        %, mid: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #fdfefe",
+            }
+          }
+        >
+          32.5
+        </b>
+        %, rim: 
+        <b
+          style={
+            Object {
+              "textShadow": "0px 0px 10px #ffbf4a",
+            }
+          }
+        >
+          45.1
+        </b>
+        %]
       </li>
     </ul>
     <li>
