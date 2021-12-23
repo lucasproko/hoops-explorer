@@ -179,7 +179,7 @@ export class LuckUtils {
 
     const player3PInfo = _.chain(samplePlayers).flatMap((player: IndivStatSet, index: number) => {
       const basePlayerStats = basePlayersMap[player.key];
-      const baseShotInfo = LuckUtils.buildBaseShotInfo(basePlayerStats || {});
+      const baseShotInfo = LuckUtils.buildBaseShotInfo(player);
       const playerInfo = (((index < 5) && playerShotInfo.hasLineupInfo && basePlayerStats) ? {
         ...buildShotLineupInfo(basePlayerStats, index, baseShotInfo)
       } : {

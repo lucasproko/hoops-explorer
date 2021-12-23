@@ -4832,7 +4832,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <b>
                         Extra stats info for [
-                        Baseline
+                        On
                         ]
                       </b>
                       <ul>
@@ -14944,7 +14944,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <b>
                         Extra stats info for [
-                        Baseline
+                        Off
                         ]
                       </b>
                       <ul>

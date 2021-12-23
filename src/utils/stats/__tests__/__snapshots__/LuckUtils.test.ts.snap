@@ -40,51 +40,51 @@ exports[`LuckUtils LuckUtils - calcOffTeamLuckAdj: Offensive Luck Adjustments 1`
    "base3PA": 765,
    "player3PInfo": {
       "Cowan, Anthony": {
-         "shot_info_ast_3pm": 35,
-         "shot_info_early_3pa": 23,
-         "shot_info_unast_3pm": 13,
-         "shot_info_unknown_3pM": 103,
-         "shot_info_total": 174,
+         "shot_info_ast_3pm": 29,
+         "shot_info_early_3pa": 19,
+         "shot_info_unast_3pm": 12,
+         "shot_info_unknown_3pM": 84,
+         "shot_info_total": 144,
          "base3P": 0.3218390804597701,
-         "unassisted3P": 0.2780890804597701,
-         "assisted3P": 0.3380890804597701,
+         "unassisted3P": 0.2794000560695262,
+         "assisted3P": 0.3394000560695262,
          "expected3P": 0.3218390804597701
       },
       "Wiggins, Aaron": {
-         "shot_info_ast_3pm": 49,
-         "shot_info_early_3pa": 47,
+         "shot_info_ast_3pm": 35,
+         "shot_info_early_3pa": 36,
          "shot_info_unast_3pm": 0,
-         "shot_info_unknown_3pM": 71,
-         "shot_info_total": 167,
+         "shot_info_unknown_3pM": 62,
+         "shot_info_total": 133,
          "base3P": 0.31736526946107785,
          "unassisted3P": 0.25736526946107785,
          "assisted3P": 0.31736526946107785,
          "expected3P": 0.31736526946107785
       }
    },
-   "sampleBase3P": 0.3196480938416422,
-   "regress3P": 0.31962196866284803,
+   "sampleBase3P": 0.3196910051427085,
+   "regress3P": 0.31964633922358715,
    "sampleOff3PRate": 0.4279411764705882,
    "sampleOffFGA": 1360,
    "sampleOffOrb": 0.30924170616113744,
    "sampleOffEfg": 0.49779411764705883,
    "sampleOffPpp": 108.3645443196005,
    "sampleDefSos": 96.33476903870161,
-   "delta3P": 0.0000343397968686765,
-   "deltaOffEfg": 0.00002204311960761366,
-   "deltaMissesPct": -0.000014695413071742441,
-   "deltaOffPppNoOrb": 0.0037426520182714832,
-   "deltaOffOrbFactor": -0.00000454441395925623,
-   "deltaPtsOffMisses": -0.0004924703560545094,
-   "deltaOffPpp": 0.003250181662216974,
-   "deltaOffAdjEff": 0.0033738407167522694
+   "delta3P": 0.000058710357607794084,
+   "deltaOffEfg": 0.00003768686925853252,
+   "deltaMissesPct": -0.00002512457950568835,
+   "deltaOffPppNoOrb": 0.006398769312310142,
+   "deltaOffOrbFactor": -0.000007769507467204917,
+   "deltaPtsOffMisses": -0.0008419888515573471,
+   "deltaOffPpp": 0.005556780460752794,
+   "deltaOffAdjEff": 0.0057681982488798095
 }
 `;
 
 exports[`LuckUtils LuckUtils - injectLuck 1`] = `
 {
    "off_adj_ppp": {
-      "value": 115.21451148983599,
+      "value": 115.21690584736811,
       "old_value": 115.21113764911924,
       "override": "Adjusted from Off 3P%"
    },
@@ -94,17 +94,17 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
       "override": "Adjusted from Def 3P%"
    },
    "off_3p": {
-      "value": 0.31962196866284803,
+      "value": 0.31964633922358715,
       "old_value": 0.31958762886597936,
       "override": "Luck adjusted"
    },
    "off_ppp": {
-      "value": 108.36779450126271,
+      "value": 108.37010110006125,
       "old_value": 108.3645443196005,
       "override": "Adjusted from Off 3P%"
    },
    "off_efg": {
-      "value": 0.49781616076666646,
+      "value": 0.49783180451631737,
       "old_value": 0.49779411764705883,
       "override": "Adjusted from Off 3P%"
    },
