@@ -57,7 +57,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         const transPppDelta = transPpp - totalPpp;
         const transPm = transPppDelta > 0 ? "+" : "";
   
-        const effColor = offDef == "off" ? CbbColors.off_diff10_p100_redGreen : CbbColors.def_diff10_p100_redGreen;
+        const offDefIndex = offDef == "off" ? 0 : 1;
+        const effColor = CbbColors.diff10_p100_redGreen[offDefIndex]!;
         const transColor = CbbColors.p_trans; //(orange/blue are the same off vs def)
 
         return transPct > 5 ? <li>
@@ -66,6 +67,35 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         </li> : <li>
             [<b style={CommonTableDefs.getTextShadow({ value: transPct }, transColor)}>{transPct.toFixed(1)}</b>]% transition
         </li>;
+    };
+
+    const furtherPlayBreakdownBuilder = (stat: TeamStatSet, offDef: "off" | "def", playType: "scramble" | "trans") => {
+        const totalPoss = stat[`total_${offDef}_${playType}_poss`]?.value || 0;
+        const toPct = 100*(stat[`total_${offDef}_${playType}_to`]?.value || 0)/(totalPoss || 1);
+        const fga = stat[`total_${offDef}_${playType}_fga`]?.value || 0;
+        const threePtA = stat[`total_${offDef}_${playType}_3p_attempts`]?.value || 0;
+        const threePtR = 100*threePtA/(fga || 1);
+        const threePct = 100*(stat[`total_${offDef}_${playType}_3p_made`]?.value || 0)/(threePtA || 1);
+        const twoPct = 100*(stat[`total_${offDef}_${playType}_2p_made`]?.value || 0)/
+            (stat[`total_${offDef}_${playType}_2p_attempts`]?.value || 1);
+        const ftr = 100*(stat[`total_${offDef}_${playType}_fta`]?.value || 0)/(fga || 1);
+
+        const offDefIndex = offDef == "off" ? 0 : 1;
+        const toColor = CbbColors.tOver[offDefIndex]!;
+        const ftrColor = CbbColors.ftr[offDefIndex]!;
+        const fgrColor = CbbColors.fgr[offDefIndex]!;
+        const threePctColor = CbbColors.fg3P[offDefIndex]!;
+        const twoPctColor = CbbColors.fg2P[offDefIndex]!;
+
+        return <ul>
+            <li>
+                TO=[<b style={CommonTableDefs.getTextShadow({ value: toPct*0.01 }, toColor)}>{toPct.toFixed(1)}</b>]%, 
+                FTR=[<b style={CommonTableDefs.getTextShadow({ value: ftr*0.01 }, ftrColor)}>{ftr.toFixed(1)}</b>]%, 
+                3PR=[<b style={CommonTableDefs.getTextShadow({ value: threePtR*0.01 }, fgrColor)}>{threePtR.toFixed(1)}</b>]%, 
+                3P=[<b style={CommonTableDefs.getTextShadow({ value: threePct*0.01 }, threePctColor)}>{threePct.toFixed(1)}</b>]%, 
+                2P=[<b style={CommonTableDefs.getTextShadow({ value: twoPct*0.01 }, twoPctColor)}>{twoPct.toFixed(1)}</b>]%
+            </li>
+        </ul>;
     };
 
     /** See also TableDisplayUtils.injectPlayTypeInfo */
@@ -110,7 +140,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             <li><b>Offense</b></li>
             <ul>
                 {transitionInfoBuilder(teamStatSet, "off")}
+                {furtherPlayBreakdownBuilder(teamStatSet, "off", "trans")}
                 {postOrbInfoBuilder(teamStatSet, "off")}
+                {furtherPlayBreakdownBuilder(teamStatSet, "off", "scramble")}
                 {assistInfoBuilder(teamStatSet, "off")}
                 {assistedInfoBuilder(teamStatSet, "off")}
             </ul>
@@ -118,7 +150,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             <ul>
                 <li>3P SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.off_3P)}>{def_3p_SoS.toFixed(1)}</b>]%</li>
                 {transitionInfoBuilder(teamStatSet, "def")}
+                {furtherPlayBreakdownBuilder(teamStatSet, "def", "trans")}
                 {postOrbInfoBuilder(teamStatSet, "def")}
+                {furtherPlayBreakdownBuilder(teamStatSet, "def", "scramble")}
                 {assistInfoBuilder(teamStatSet, "def")}
                 {assistedInfoBuilder(teamStatSet, "def")}
             </ul>

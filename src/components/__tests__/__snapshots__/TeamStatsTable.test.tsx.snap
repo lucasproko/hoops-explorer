@@ -4866,6 +4866,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffcdcd",
+                                  }
+                                }
+                              >
+                                17.2
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                68.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc864",
+                                  }
+                                }
+                              >
+                                43.3
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffaeae",
+                                  }
+                                }
+                              >
+                                30.8
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                68.4
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             [
                             <b>
@@ -4888,6 +4943,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #86c386",
+                                  }
+                                }
+                              >
+                                13.1
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                53.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d7ecf3",
+                                  }
+                                }
+                              >
+                                24.2
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                21.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #1a8d1a",
+                                  }
+                                }
+                              >
+                                59.0
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             Assists: [3P: 
                             <b
@@ -4998,6 +5108,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #cbe5cb",
+                                  }
+                                }
+                              >
+                                17.2
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff1414",
+                                  }
+                                }
+                              >
+                                39.2
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc253",
+                                  }
+                                }
+                              >
+                                44.5
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #cfe7cf",
+                                  }
+                                }
+                              >
+                                31.7
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffaeae",
+                                  }
+                                }
+                              >
+                                53.2
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             [
                             <b>
@@ -5020,6 +5185,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff8b8b",
+                                  }
+                                }
+                              >
+                                13.3
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                54.3
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d9edf4",
+                                  }
+                                }
+                              >
+                                24.8
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff3838",
+                                  }
+                                }
+                              >
+                                38.5
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #cfe7cf",
+                                  }
+                                }
+                              >
+                                48.1
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             Assists: [3P: 
                             <b
@@ -15118,6 +15338,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #c9e4c9",
+                                  }
+                                }
+                              >
+                                14.7
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                61.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffba3b",
+                                  }
+                                }
+                              >
+                                46.1
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc6c6",
+                                  }
+                                }
+                              >
+                                31.4
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                65.9
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             [
                             <b>
@@ -15140,6 +15415,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                8.8
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ebf5eb",
+                                  }
+                                }
+                              >
+                                30.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #dbeef4",
+                                  }
+                                }
+                              >
+                                25.0
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                46.2
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #9dce9d",
+                                  }
+                                }
+                              >
+                                53.8
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             Assists: [3P: 
                             <b
@@ -15250,6 +15580,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                25.4
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                55.1
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffebc7",
+                                  }
+                                }
+                              >
+                                36.7
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                55.6
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffd6d6",
+                                  }
+                                }
+                              >
+                                51.6
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             [
                             <b>
@@ -15272,6 +15657,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #deefde",
+                                  }
+                                }
+                              >
+                                16.8
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                18.9
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d7ecf3",
+                                  }
+                                }
+                              >
+                                24.3
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                55.6
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #a4d2a4",
+                                  }
+                                }
+                              >
+                                46.4
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             Assists: [3P: 
                             <b
@@ -25370,6 +25810,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffe5e5",
+                                  }
+                                }
+                              >
+                                16.6
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                67.1
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc55a",
+                                  }
+                                }
+                              >
+                                44.0
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffb4b4",
+                                  }
+                                }
+                              >
+                                30.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                67.8
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             [
                             <b>
@@ -25392,6 +25887,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #57ac57",
+                                  }
+                                }
+                              >
+                                12.1
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                47.3
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d8ecf3",
+                                  }
+                                }
+                              >
+                                24.5
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff6969",
+                                  }
+                                }
+                              >
+                                28.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #3e9f3e",
+                                  }
+                                }
+                              >
+                                57.6
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             Assists: [3P: 
                             <b
@@ -25502,6 +26052,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #85c285",
+                                  }
+                                }
+                              >
+                                18.9
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                42.0
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc967",
+                                  }
+                                }
+                              >
+                                43.1
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffabab",
+                                  }
+                                }
+                              >
+                                35.3
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffb6b6",
+                                  }
+                                }
+                              >
+                                52.9
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             [
                             <b>
@@ -25524,6 +26129,61 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </b>
                             ] pts/100
                           </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffaeae",
+                                  }
+                                }
+                              >
+                                14.1
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                45.1
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d9edf3",
+                                  }
+                                }
+                              >
+                                24.6
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                42.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #c3e1c3",
+                                  }
+                                }
+                              >
+                                47.7
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
                           <li>
                             Assists: [3P: 
                             <b
