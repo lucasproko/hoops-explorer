@@ -124,7 +124,7 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
 const testTeamFilter = undefined as Set<string> | undefined;
-//  (inYear == "2021/22") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]) : undefined;
+//const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -207,7 +207,9 @@ export async function main() {
       minRank: ParamDefaults.defaultMinRank,
       maxRank: ParamDefaults.defaultMaxRank,
       team: team,
-      year: teamYear
+      year: teamYear,
+//TODO: get the game info      
+//      getGames: true
     };
     const requestModelConfOnly = {
       ...fullRequestModel,
@@ -299,6 +301,32 @@ export async function main() {
 
       const teamBaseline =
         teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
+
+// Debugging for game info:
+// if ("all" == label) console.log("GAME = " + JSON.stringify(
+//   _.chain(teamBaseline.game_info?.buckets || [])
+//     .flatMap(l => l?.game_info?.buckets || [])
+//     .map(l => l?.end_of_game?.hits?.hits?.[0]?._source)
+//     .sortBy(g => g.date)
+//     .value(),
+//   null, 3
+// ));
+
+// GAME = [
+//   {
+//      "date": "2021-11-09T17:38:20.990-05:00",
+//      "end_min": 40,
+//      "opponent": {
+//         "team": "Quinnipiac"
+//      },
+//      "score_info": {
+//         "end": {
+//            "scored": 83,
+//            "allowed": 69
+//         }
+//      },
+//      "location_type": "Home"
+//   },
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
       const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal, rosterInfoJson);

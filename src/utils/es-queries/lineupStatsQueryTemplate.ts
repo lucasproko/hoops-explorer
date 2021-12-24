@@ -9,9 +9,49 @@ import { LineupFilterParams } from "../FilterModels";
    though the -10 TZ should mostly avoid. You could try to coalesce them, though there's a small
    chance you could combine same opponent on consecutive days (have a low bound for poss for doing?)
 */
-const buildGameInfoRequest = function(params: LineupFilterParams) {
-  return params.showGameInfo ? {
+export const buildGameInfoRequest = function(infoType: "game_aggs" | "final_scores") {
 
+  /** For lineups, some stats to display */
+  const getGameInfo = () => {
+    return {
+      "aggs": {
+        "num_off_poss": {
+          "sum": { "field": "team_stats.num_possessions" }
+        },
+        "num_def_poss": {
+          "sum": { "field": "opponent_stats.num_possessions" }
+        },
+        "num_pts_for": {
+          "sum": { "field": "team_stats.pts" }
+        },
+        "num_pts_against": {
+          "sum": { "field": "opponent_stats.pts" }
+        }
+      }
+    };
+  };
+  /** For games, just the final score */
+  const getFinalScore = () => {
+    return {
+      "aggs": {
+        "end_of_game": {
+          "top_hits": {
+            "sort": [
+              {
+                "end_min": { "order": "desc" }
+              }
+            ],
+            "size": 1,
+            "_source": {
+              "includes": [ "opponent.team", "score_info.end", "location_type", "date", "end_min" ]
+            }
+          }
+        }
+      }
+    };
+  };
+
+  return {
     "game_info": {
       "terms": {
         "size": 100,
@@ -20,29 +60,14 @@ const buildGameInfoRequest = function(params: LineupFilterParams) {
       "aggs": {
         "game_info": {
           "date_histogram": { "field": "date", "fixed_interval": "12h",  "time_zone": "-10:00" },
-          "aggs": {
-            "num_off_poss": {
-              "sum": { "field": "team_stats.num_possessions" }
-            },
-            "num_def_poss": {
-              "sum": { "field": "opponent_stats.num_possessions" }
-            },
-            "num_pts_for": {
-              "sum": { "field": "team_stats.pts" }
-            },
-            "num_pts_against": {
-              "sum": { "field": "opponent_stats.pts" }
-            }
-          }
+            ...(infoType == "game_aggs" ? getGameInfo() : getFinalScore())
         }
       }
     }
 
-  } : {};
-}
-/*          { "date": { "date_histogram": { "field": "date", "fixed_interval": "12h",  "time_zone": "-10:00" } } }
+  };
+};
 
-*/
 export const lineupStatsQuery = function(
   params: LineupFilterParams,
   lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number, hca: number
@@ -57,7 +82,7 @@ export const lineupStatsQuery = function(
      "aggregations": {
         "lineups": {
            "aggregations": {
-             ...buildGameInfoRequest(params),
+             ...(params.showGameInfo ? buildGameInfoRequest("game_aggs"): {}),
              ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca, true),
              "players_array": {
                 "top_hits": {
@@ -97,4 +122,4 @@ export const lineupStatsQuery = function(
         }
       }
   };
-}
+};

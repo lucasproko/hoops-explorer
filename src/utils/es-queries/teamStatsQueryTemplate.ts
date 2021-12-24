@@ -4,6 +4,7 @@ import { commonRuntimeMappings } from "./commonRuntimeMappings";
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonLineupAggregations, commonAggregations } from "./commonLineupAggregations";
+import { buildGameInfoRequest } from "./lineupStatsQueryTemplate";
 import { GameFilterParams } from "../FilterModels";
 
 
@@ -46,7 +47,10 @@ export const teamStatsQuery = function(
          }
        },
        "tri_filter": {
-           "aggregations": commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca),
+           "aggregations": {
+            ...(params.getGames ? buildGameInfoRequest("final_scores"): {}),
+            ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca)
+           },
            "filters": commonOnOffBaseQuery(params)
        }
      },

@@ -90,7 +90,9 @@ export type GameFilterParams = {
   possAsPct?: boolean,
   factorMins?: boolean,
   showPosDiag?: boolean,
-  calcRapm?: boolean
+  calcRapm?: boolean,
+  // For leaderboard building:
+  getGames?: boolean
 };
 
 /** Params for lineup filtering */
