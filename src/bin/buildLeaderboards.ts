@@ -15,7 +15,7 @@ import zlib from 'zlib';
 import _ from "lodash";
 
 // Models
-import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo } from "../utils/StatModels";
 
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
@@ -103,6 +103,10 @@ export const savedPlayers = [] as Array<any>;
 const savedConfOnlyPlayers = [] as Array<any>;
 const savedT100Players = [] as Array<any>;
 
+/** Exported for test only */
+export const teamInfo = [] as Array<TeamInfo>;
+export var rankInfo = [] as Array<any>;
+
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
   console.log("Start processing with args: " + _.drop(commandLine, 2));
@@ -123,8 +127,12 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
-const testTeamFilter = undefined as Set<string> | undefined;
+/**/
+//const testTeamFilter = undefined as Set<string> | undefined;
+//(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
+//(used this to build sample:)
+const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -150,6 +158,8 @@ export async function main() {
     const efficiencyYear = (parseInt(inYear.substring(0, 4)) + 1).toString(); //(+1 from the input year)
     fallbackConfMapInfo = await CommonApiUtils.buildCurrentMenEfficiency(globalGenderYearKey, efficiencyYear, lookupForQuery);
   }
+  const completedEfficiencyInfo = (efficiencyInfo?.[globalGenderYearKey]?.[0] || fallbackConfMapInfo)
+  rankInfo = _.chain(completedEfficiencyInfo || {}).values().orderBy([ "stats.adj_margin.rank" ], [ "asc" ]).value();
 
   const teamListChain = (inYear == "Extra") ?
     _.chain(AvailableTeams.extraTeamsBase) :
@@ -163,9 +173,8 @@ export async function main() {
     return team.gender == inGender &&
       ((inYear == "Extra") || (team.year == inYear));
   }).filter(team => {
-    const genderYearLookup = `${inGender}_${team.year}`;
-    const conference = (efficiencyInfo?.[genderYearLookup]?.[0] || fallbackConfMapInfo)?.[team.team]?.conf || "Unknown";
-    const rank = (efficiencyInfo?.[genderYearLookup]?.[0]|| fallbackConfMapInfo)?.[team.team]?.["stats.adj_margin.rank"] || 400;
+    const conference = completedEfficiencyInfo?.[team.team]?.conf || "Unknown";
+    const rank = completedEfficiencyInfo?.[team.team]?.["stats.adj_margin.rank"] || 400;
     // For years with lots of conferences, split into tiers:
     if (onlyHasTopConferences) {
       return true;
@@ -208,8 +217,7 @@ export async function main() {
       maxRank: ParamDefaults.defaultMaxRank,
       team: team,
       year: teamYear,
-//TODO: get the game info      
-//      getGames: true
+      getGames: true
     };
     const requestModelConfOnly = {
       ...fullRequestModel,
@@ -223,7 +231,7 @@ export async function main() {
     const teamSeasonLookup = `${fullRequestModel.gender}_${fullRequestModel.team}_${fullRequestModel.year}`;
 
     // Snag conference from D1 metadata
-    const conference = (efficiencyInfo?.[genderYearLookup]?.[0] || fallbackConfMapInfo)?.[team]?.conf || "Unknown";
+    const conference = completedEfficiencyInfo?.[team]?.conf || "Unknown";
     const buildTeamAbbr = (t: string) => {
       const candidate1 = t.replace(/[^A-Z]/g, "");
       const addU = (abb: string) => {
@@ -302,31 +310,43 @@ export async function main() {
       const teamBaseline =
         teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
 
-// Debugging for game info:
-// if ("all" == label) console.log("GAME = " + JSON.stringify(
-//   _.chain(teamBaseline.game_info?.buckets || [])
-//     .flatMap(l => l?.game_info?.buckets || [])
-//     .map(l => l?.end_of_game?.hits?.hits?.[0]?._source)
-//     .sortBy(g => g.date)
-//     .value(),
-//   null, 3
-// ));
+       // Team info, for "Build your own T25"
+       if ("all" == label) {
+         teamInfo.push({
+            team_name: fullRequestModel.team,
+            gender: fullRequestModel.gender,
+            year: fullRequestModel.year,
+            conf: conference,
 
-// GAME = [
-//   {
-//      "date": "2021-11-09T17:38:20.990-05:00",
-//      "end_min": 40,
-//      "opponent": {
-//         "team": "Quinnipiac"
-//      },
-//      "score_info": {
-//         "end": {
-//            "scored": 83,
-//            "allowed": 69
-//         }
-//      },
-//      "location_type": "Home"
-//   },
+            opponents: _.chain(teamBaseline.game_info?.buckets || [])
+                .flatMap(l => l?.game_info?.buckets || [])
+                .map(l => l?.end_of_game?.hits?.hits?.[0]?._source)
+                .sortBy(g => g.date)
+                .flatMap(g => {
+
+                  // Get efficiency
+                  const oppoEff = completedEfficiencyInfo?.[g.opponent?.team];
+                  const gameDate = Date.parse(g.date); 
+
+                  const isValid = g.score_info?.end?.scored && g.score_info?.end?.allowed && oppoEff && !Number.isNaN(gameDate);
+                  
+                  return isValid ? [{
+                    oppo_name: g.opponent?.team || "Unknown",
+                    date_str: g.date,
+                    date: gameDate/1000, //(s in locale time)
+                    team_scored: g.score_info?.end?.scored || 0,
+                    oppo_scored: g.score_info?.end?.allowed || 0,
+                    location_type: g.location_type as "Home" | "Away" | "Neutral",
+
+                    rank: oppoEff?.["stats.adj_margin.rank"] || 400,
+                    adj_off: oppoEff?.["stats.adj_off.value"] || 0.0,
+                    adj_def: oppoEff?.["stats.adj_def.value"] || 0.0,
+
+                    wae: 0, wab: 0 //TODO: calculate later
+                  }] : [];
+                }).value()
+         });
+       } 
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
       const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal, rosterInfoJson);
@@ -569,8 +589,28 @@ if (!testMode) main().then(async dummy => {
     console.log(`${kv[0]} player length: [${playersStr.length}]`);
     const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
     const playersWritePromise = fs.writeFile(`${playersFilename}`,playersStr);
+    
+    const teamFilename = `./public/leaderboards/lineups/teams_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+    console.log(`${kv[0]} team count: ${teamInfo.length}`);
 
-    return [lineupsWritePromise, playersWritePromise];
+    const teamWritePromise = (("all" == kv[0]) && (teamInfo.length > 0)) ? 
+      fs.writeFile(`${teamFilename}`, JSON.stringify({
+        //TODO: move these to the top
+        // (leave them here just for diagnostic purposes)
+        off_elite_eff: _.chain(rankInfo).drop(10).take(5).map(o => o["stats.adj_off.value"] || 0).value(),
+        def_elite_eff: _.chain(rankInfo).drop(10).take(5).map(o => o["stats.adj_def.value"] || 0).value(),
+        off_bubble_eff: _.chain(rankInfo).drop(40).take(10).map(o => o["stats.adj_off.value"] || 0).value(),
+        def_bubble_eff: _.chain(rankInfo).drop(40).take(10).map(o => o["stats.adj_def.value"] || 0).value(),
+
+        lastUpdated: lastUpdated,
+        confMap: mutableConferenceMap,
+        confs: _.keys(mutableConferenceMap),  
+
+        teams: teamInfo
+      })) :
+      Promise.resolve();
+
+    return [lineupsWritePromise, playersWritePromise, teamWritePromise];
 
    //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
    // zlib.gzip(sortedLineupsStr, (_, result) => {
