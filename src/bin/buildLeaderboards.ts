@@ -38,6 +38,7 @@ import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup'
+import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils'
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -105,7 +106,10 @@ const savedT100Players = [] as Array<any>;
 
 /** Exported for test only */
 export const teamInfo = [] as Array<TeamInfo>;
-export var rankInfo = [] as Array<any>;
+var bubbleOffenseInfo: number[] = [];
+var bubbleDefenseInfo: number[] = [];
+var eliteOffenseInfo: number[] = [];
+var eliteDefenseInfo: number[] = [];
 
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
@@ -127,12 +131,11 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
-/**/
-//const testTeamFilter = undefined as Set<string> | undefined;
+const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
+//const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -158,8 +161,15 @@ export async function main() {
     const efficiencyYear = (parseInt(inYear.substring(0, 4)) + 1).toString(); //(+1 from the input year)
     fallbackConfMapInfo = await CommonApiUtils.buildCurrentMenEfficiency(globalGenderYearKey, efficiencyYear, lookupForQuery);
   }
-  const completedEfficiencyInfo = (efficiencyInfo?.[globalGenderYearKey]?.[0] || fallbackConfMapInfo)
-  rankInfo = _.chain(completedEfficiencyInfo || {}).values().orderBy([ "stats.adj_margin.rank" ], [ "asc" ]).value();
+  const completedEfficiencyInfo = (efficiencyInfo?.[globalGenderYearKey]?.[0] || fallbackConfMapInfo);
+
+  const rankInfo = _.chain(completedEfficiencyInfo || {}).values().orderBy([ "stats.adj_margin.rank" ], [ "asc" ]).value();
+  const bubbleRankInfo = _.chain(rankInfo).drop(40).take(10).value();
+  const eliteRankInfo = _.chain(rankInfo).drop(10).take(5).value();
+  bubbleOffenseInfo = bubbleRankInfo.map(o => o["stats.adj_off.value"] || 0);
+  bubbleDefenseInfo = bubbleRankInfo.map(o => o["stats.adj_def.value"] || 0);
+  eliteOffenseInfo = eliteRankInfo.map(o => o["stats.adj_off.value"] || 0);
+  eliteDefenseInfo = eliteRankInfo.map(o => o["stats.adj_def.value"] || 0);
 
   const teamListChain = (inYear == "Extra") ?
     _.chain(AvailableTeams.extraTeamsBase) :
@@ -330,19 +340,26 @@ export async function main() {
 
                   const isValid = g.score_info?.end?.scored && g.score_info?.end?.allowed && oppoEff && !Number.isNaN(gameDate);
                   
+                  const teamOff = oppoEff?.["stats.adj_off.value"] || 0.0;
+                  const teamDef = oppoEff?.["stats.adj_def.value"] || 0.0;
+                  const locationType = g.location_type as "Home" | "Away" | "Neutral";
+                  const baseHca = CommonApiUtils.getHca(fullRequestModel);
+                  const actualHca = locationType == "Home" ? baseHca : (locationType == "Away" ? -baseHca : 0);
+
                   return isValid ? [{
                     oppo_name: g.opponent?.team || "Unknown",
                     date_str: g.date,
-                    date: gameDate/1000, //(s in locale time)
+                    date: Math.floor(gameDate/1000),
                     team_scored: g.score_info?.end?.scored || 0,
                     oppo_scored: g.score_info?.end?.allowed || 0,
-                    location_type: g.location_type as "Home" | "Away" | "Neutral",
+                    location_type: locationType,
 
                     rank: oppoEff?.["stats.adj_margin.rank"] || 400,
-                    adj_off: oppoEff?.["stats.adj_off.value"] || 0.0,
-                    adj_def: oppoEff?.["stats.adj_def.value"] || 0.0,
+                    adj_off: teamOff,
+                    adj_def: teamDef,
 
-                    wae: 0, wab: 0 //TODO: calculate later
+                    wae: TeamEvalUtils.calcWinsAbove(teamOff, teamDef, eliteOffenseInfo, eliteDefenseInfo, actualHca), 
+                    wab: TeamEvalUtils.calcWinsAbove(teamOff, teamDef, bubbleOffenseInfo, bubbleDefenseInfo, actualHca)
                   }] : [];
                 }).value()
          });
@@ -595,19 +612,12 @@ if (!testMode) main().then(async dummy => {
 
     const teamWritePromise = (("all" == kv[0]) && (teamInfo.length > 0)) ? 
       fs.writeFile(`${teamFilename}`, JSON.stringify({
-        //TODO: move these to the top
-        // (leave them here just for diagnostic purposes)
-        off_elite_eff: _.chain(rankInfo).drop(10).take(5).map(o => o["stats.adj_off.value"] || 0).value(),
-        def_elite_eff: _.chain(rankInfo).drop(10).take(5).map(o => o["stats.adj_def.value"] || 0).value(),
-        off_bubble_eff: _.chain(rankInfo).drop(40).take(10).map(o => o["stats.adj_off.value"] || 0).value(),
-        def_bubble_eff: _.chain(rankInfo).drop(40).take(10).map(o => o["stats.adj_def.value"] || 0).value(),
-
         lastUpdated: lastUpdated,
         confMap: mutableConferenceMap,
         confs: _.keys(mutableConferenceMap),  
 
         teams: teamInfo
-      })) :
+      }, reduceNumberSize)) :
       Promise.resolve();
 
     return [lineupsWritePromise, playersWritePromise, teamWritePromise];
