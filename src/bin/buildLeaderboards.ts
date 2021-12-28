@@ -131,12 +131,11 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
-//const testTeamFilter = undefined as Set<string> | undefined;
+const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
-/**/
+//const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
