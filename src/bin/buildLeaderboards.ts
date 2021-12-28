@@ -330,7 +330,7 @@ export async function main() {
 
             opponents: _.chain(teamBaseline.game_info?.buckets || [])
                 .flatMap(l => l?.game_info?.buckets || [])
-                .map(l => l?.end_of_game?.hits?.hits?.[0]?._source)
+                .map(l => l?.end_of_game?.hits?.hits?.[0]?._source || {})
                 .sortBy(g => g.date)
                 .flatMap(g => {
 
