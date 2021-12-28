@@ -131,11 +131,12 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
-const testTeamFilter = undefined as Set<string> | undefined;
+//const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
+const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
+/**/
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -330,7 +331,13 @@ export async function main() {
 
             opponents: _.chain(teamBaseline.game_info?.buckets || [])
                 .flatMap(l => l?.game_info?.buckets || [])
-                .map(l => l?.end_of_game?.hits?.hits?.[0]?._source || {})
+                .map(l => { // Let's do some marshalling:
+                  const retVal = l?.end_of_game?.hits?.hits?.[0]?._source || {};
+                  retVal.offPoss = l?.off_poss?.value || 0;
+                  retVal.defPoss = l?.def_poss?.value || 0;
+                  retVal.avgLead = (l?.avg_lead?.value || 0)/(0.5*(retVal.offPoss + retVal.defPoss) || 1);
+                  return retVal;
+                })
                 .sortBy(g => g.date)
                 .flatMap(g => {
 
@@ -348,10 +355,13 @@ export async function main() {
 
                   return isValid ? [{
                     oppo_name: g.opponent?.team || "Unknown",
-                    date_str: g.date,
+                    date_str: (g.date || "").substring(0, 16),
                     date: Math.floor(gameDate/1000),
                     team_scored: g.score_info?.end?.scored || 0,
                     oppo_scored: g.score_info?.end?.allowed || 0,
+                    off_poss: g.offPoss,
+                    def_poss: g.defPoss,
+                    avg_lead: g.avgLead,
                     location_type: locationType,
 
                     rank: oppoEff?.["stats.adj_margin.rank"] || 400,
