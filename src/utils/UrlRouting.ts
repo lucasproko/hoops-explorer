@@ -37,7 +37,7 @@ export class UrlRouting {
 
   /** The URL to use to view the "On/Off" page */
   static getGameUrl(params: GameFilterParams, lineupParams: LineupFilterParams) {
-    return `/?${UrlRouting.getUrl({
+    return `/OnOffAnalyzer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
       [UrlRouting.savedLineupSuffix]: lineupParams
     })}`;
@@ -52,6 +52,12 @@ export class UrlRouting {
   /** The URL to use to view the "Lineup Leaderboard" page */
   static getLineupLeaderboardUrl(params: LineupLeaderboardParams) {
     return `/LineupLeaderboard?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params
+    })}`;
+  }
+  /** The URL to use to view the "Player Leaderboard" page */
+  static getTeamLeaderboardUrl(params: PlayerLeaderboardParams) {
+    return `/?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
     })}`;
   }

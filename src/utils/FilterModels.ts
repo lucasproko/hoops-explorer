@@ -1,7 +1,7 @@
 
 /** Typescript limitations - also have to repeat this for ParamPrefixesType */
 export class ParamPrefixes {
-  static readonly game = "game-";
+  static readonly game = "game-"; //(this is on-off / team info)
   static readonly lineup = "lineup-";
   static readonly report = "report-"; //(not used currrently, we re-use lineup)
   static readonly roster = "roster-";
@@ -138,7 +138,7 @@ export type LineupLeaderboardParams = {
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  tier?: string,  //High, Medium, Low
+  tier?: string,  //All, High, Medium, Low
   conf?: string, //(undefined ==> all conferences)
   minPoss?: string,
   maxTableSize?: string,
@@ -156,6 +156,22 @@ export type PlayerLeaderboardParams = {
   confOnly?: boolean,
   t100?: boolean
 };
+
+export type TeamLeaderboardParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  tier?: string,  //All, High, Medium, Low
+  conf?: string, //(undefined ==> all conferences)
+  // Filtering:
+  filter?: string,
+  // Lots of settings:
+  qualityWeight?: number,
+  wabWeight?: number,
+  waeWeight?: number,
+  domWeight?: number,
+  recencyWeight?: number
+};
+
 
 export type TeamReportFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];

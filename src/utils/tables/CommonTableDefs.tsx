@@ -315,4 +315,17 @@ export class CommonTableDefs {
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
   };
 
+  static readonly teamLeaderboard = {
+    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+    "sep0": GenericTableOps.addColSeparator(),
+    "rating": GenericTableOps.addIntCol("Rating", "The weighted sum of all the different ranking metrics", GenericTableOps.defaultColorPicker),
+    "rank": GenericTableOps.addPtsCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker),
+    "sep0.5": GenericTableOps.addColSeparator(),
+    "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", GenericTableOps.defaultColorPicker),
+    "sep1": GenericTableOps.addColSeparator(),
+    "wae": GenericTableOps.addPtsCol("WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule)", GenericTableOps.defaultColorPicker),
+    "sep2": GenericTableOps.addColSeparator(),
+    "quality": GenericTableOps.addPtsCol("Quality", "TODO: figure out", GenericTableOps.defaultColorPicker),
+  }
+
 }
