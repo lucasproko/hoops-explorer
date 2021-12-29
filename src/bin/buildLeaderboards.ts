@@ -37,8 +37,8 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
-import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup'
-import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils'
+import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
+import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -624,6 +624,9 @@ if (!testMode) main().then(async dummy => {
         lastUpdated: lastUpdated,
         confMap: mutableConferenceMap,
         confs: _.keys(mutableConferenceMap),  
+
+        bubbleOffense: bubbleOffenseInfo,
+        bubbleDefense: bubbleDefenseInfo,
 
         teams: teamInfo
       }, reduceNumberSize)) :
