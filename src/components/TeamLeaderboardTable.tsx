@@ -45,6 +45,8 @@ import { TeamInfo } from '../utils/StatModels';
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { cpuUsage } from 'process';
+import { CbbColors } from '../utils/CbbColors';
+import chroma from 'chroma-js';
 
 export type TeamLeaderboardStatsModel = {
   teams?: Array<TeamInfo>,
@@ -89,9 +91,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
 
-  const [ wabWeight, setWabWeight ] = useState(0.8);
-  const [ waeWeight, setWaeWeight ] = useState(0.1);
-  const [ qualityWeight, setQualityWeight ] = useState(0.2);
+  const [ wabWeight, setWabWeight ] = useState(1.0);
+  const [ waeWeight, setWaeWeight ] = useState(0.15);
+  const [ qualityWeight, setQualityWeight ] = useState(0.3);
 
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
@@ -99,6 +101,17 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     // Calculate a commmon set of games
     const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
     const gameBasis: number = gameArray.length > 0 ? (mean(mode(gameArray)) || 1) : 1;
+
+    const mutableLimitState = {
+      maxWab: -1000,
+      minWab: 1000,
+      maxWae: -1000,
+      minWae: 1000,
+      maxQual: -1000,
+      minQual: 1000,
+      maxTotal: -1000,
+      minTotal: 1000
+    };
 
     const mutableDedupSet = new Set() as Set<string>;
     const tableDataTmp = _.chain(dataEvent.teams || []).flatMap(team => {
@@ -110,25 +123,40 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         );
         const totalWeight = (wabWeight + waeWeight + qualityWeight) || 1;
 
+        // Build cell entries
         const wab = _.sumBy(team.opponents, o => o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
         const wae = _.sumBy(team.opponents, o => o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
         const quality = (expWinPctVsBubble - 0.5)*gameBasis;
         const games = team.opponents.length;
         const factor = (games > 0.5*gameBasis) ?  (gameBasis/games) : 1;
         const total = ((wab*wabWeight + wae*waeWeight)*factor + quality*qualityWeight)/totalWeight;
-        return [ {
-          title: <div><b>{team.team_name}</b></div>,
+
+        // Update min/max:
+        if (wab > mutableLimitState.maxWab) mutableLimitState.maxWab = wab;
+        if (wab < mutableLimitState.minWab) mutableLimitState.minWab = wab;
+        if (wae > mutableLimitState.maxWae) mutableLimitState.maxWae = wae;
+        if (wae < mutableLimitState.minWae) mutableLimitState.minWae = wae;
+        if (quality > mutableLimitState.maxQual) mutableLimitState.maxQual = quality;
+        if (quality < mutableLimitState.minQual) mutableLimitState.minQual = quality;
+        if (total > mutableLimitState.maxTotal) mutableLimitState.maxTotal = total;
+        if (total < mutableLimitState.minTotal) mutableLimitState.minTotal = total;
+
+        // Build table entry
+        const cell =  [ {
+          title: team.team_name,
           conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
+          rank: null as any,
+          rating: { value: total },
           wab: { value: wab },
           wae: { value: wae },
           quality: { value: quality },
-          rating: { value: total },
-          rank: { value: 0 },
           games: { value: games }
         } ];
+        return cell;
+
       } else return [];
     }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {
-      t.rank = { value: i + 1 };
+      t.rank = <small><b>{i + 1}</b></small>;
       return t;
     }).value();
 
@@ -136,23 +164,23 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis));
 
     const tableData = [ 
-      GenericTableOps.buildTextRow(<div>Top 25 + 1</div>, "small text-center") 
+      GenericTableOps.buildTextRow(<i>Top 25 + 1</i>, "small text-center") 
     ].concat(_.take(mainTable, 26).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
-      GenericTableOps.buildTextRow(<div>Solid NCAAT teams</div>, "small text-center") 
+      GenericTableOps.buildTextRow(<i>Solid NCAAT teams</i>, "small text-center") 
     ]).concat(_.take(_.drop(mainTable, 26), 9).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
-      GenericTableOps.buildTextRow(<div>The Bubble</div>, "small text-center") 
+      GenericTableOps.buildTextRow(<i>The Bubble</i>, "small text-center") 
     ]).concat(_.take(_.drop(mainTable, 35), 20).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
-      GenericTableOps.buildTextRow(<div>Autobids / Maybe Next Year</div>, "small text-center") 
+      GenericTableOps.buildTextRow(<i>Autobids / Maybe Next Year</i>, "small text-center") 
     ]).concat(_.drop(mainTable, 55).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
-        GenericTableOps.buildTextRow(<div>Teams with too few games</div>, "small text-center") 
+        GenericTableOps.buildTextRow(<i>Teams with too few games</i>, "small text-center") 
     ]).concat(
       tooFewGames.map(t =>
         GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
@@ -161,13 +189,34 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
     //console.log(JSON.stringify(_.take(tableDataTmp, 5), null, 3));
 
+    const wabPicker = (val: { value: number }, valMeta: string) => CbbColors.getRedToGreen().domain([mutableLimitState.minWab, 0, mutableLimitState.maxWab])(val.value).toString();
+    const waePicker = (val: { value: number }, valMeta: string) => CbbColors.getRedToGreen().domain([mutableLimitState.minWae, 0, mutableLimitState.maxWae])(val.value).toString();
+    const qualPicker = (val: { value: number }, valMeta: string) => CbbColors.getRedToGreen().domain([mutableLimitState.minQual, 0, mutableLimitState.maxQual])(val.value).toString();
+    const totalPicker = (val: { value: number }, valMeta: string) => CbbColors.getRedToGreen().domain([mutableLimitState.minTotal, 0, mutableLimitState.maxTotal])(val.value).toString();
+
+    const teamLeaderboard = {
+      "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+      "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+      "sep0": GenericTableOps.addColSeparator(),
+      "rank": GenericTableOps.addDataCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+      "rating": GenericTableOps.addPtsCol("Rating", "The weighted sum of all the different ranking metrics", totalPicker),
+      "sep1": GenericTableOps.addColSeparator(),
+      "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", wabPicker),
+      "sep2": GenericTableOps.addColSeparator(),
+      "wae": GenericTableOps.addPtsCol("WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule)", waePicker),
+      "sep3": GenericTableOps.addColSeparator(),
+      "quality": GenericTableOps.addPtsCol("Quality", "The efficiency ('eye test') of a team, measured as expected W-L difference against a schedule of bubble teams", qualPicker),
+      "sep4": GenericTableOps.addColSeparator(),
+      "games": GenericTableOps.addIntCol("Games", "Number of games played", GenericTableOps.defaultColorPicker),
+    };
+  
     return <GenericTable
       tableCopyId="teamLeaderboardTable"
-      tableFields={CommonTableDefs.teamLeaderboard}
+      tableFields={teamLeaderboard}
       tableData={tableData}
-      cellTooltipMode="none"
+      cellTooltipMode="missing"
     />
-  }, [ confs, dataEvent ]);
+  }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight ]);
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
@@ -307,6 +356,59 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           {getCopyLinkButton()}
         </Col>
       </Form.Group>
+      <Row className="mt-2">
+        <Col xs={4}>
+          <Form>
+            <Form.Group controlId="formBasicRange">
+              <Form.Label>WAB {(wabWeight*100).toFixed(0)}%</Form.Label>
+              <Form.Control type="range" custom 
+                value={wabWeight}
+                onChange={(changeEvent: any) => {
+                  const newVal = parseFloat(changeEvent.target.value);
+                  setWabWeight(newVal);
+                }}
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>          
+        </Col>
+        <Col xs={4}>
+          <Form>
+            <Form.Group controlId="formBasicRange">
+              <Form.Label>WAE {(waeWeight*100).toFixed(0)}%</Form.Label>
+              <Form.Control type="range" custom 
+                value={waeWeight}
+                onChange={(changeEvent: any) => {
+                  const newVal = parseFloat(changeEvent.target.value);
+                  setWaeWeight(newVal);
+                }}
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>          
+        </Col>
+        <Col xs={4}>
+          <Form>
+            <Form.Group controlId="formBasicRange">
+              <Form.Label>Quality {(qualityWeight*100).toFixed(0)}%</Form.Label>
+              <Form.Control type="range" custom 
+                value={qualityWeight}
+                onChange={(changeEvent: any) => {
+                  const newVal = parseFloat(changeEvent.target.value);
+                  setQualityWeight(newVal);
+                }}
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>          
+        </Col>
+      </Row>
       <Row className="mt-2">
         <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
           {table}

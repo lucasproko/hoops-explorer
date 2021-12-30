@@ -27,7 +27,7 @@ export class CommonTableDefs {
   static defPrefixFn = (key: string) => "def_" + key;
   static defCellMetaFn = (key: string, val: any) => "def";
 
-  private static picker(offScale: (val: number) => string, defScale: (val: number) => string) {
+  static picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
       const num = val.value as number;
       return _.isNil(num) ?
@@ -37,7 +37,7 @@ export class CommonTableDefs {
     };
   }
 
-  private static singleLinePicker(offScale: (val: number) => string) {
+  static singleLinePicker(offScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
       if ("off" == valMeta) {
         return CommonTableDefs.picker(offScale, offScale);
@@ -47,7 +47,7 @@ export class CommonTableDefs {
     };
   }
 
-  private static rowSpanCalculator(cellMeta: string) {
+  static rowSpanCalculator(cellMeta: string) {
     switch(cellMeta) {
       case "off": return 2;
       case "def": return 0;
@@ -314,21 +314,4 @@ export class CommonTableDefs {
     "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
   };
-
-  static readonly teamLeaderboard = {
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
-    "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-    "sep0": GenericTableOps.addColSeparator(),
-    "rank": GenericTableOps.addIntCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker),
-    "rating": GenericTableOps.addPtsCol("Rating", "The weighted sum of all the different ranking metrics", GenericTableOps.defaultColorPicker),
-    "sep1": GenericTableOps.addColSeparator(),
-    "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", GenericTableOps.defaultColorPicker),
-    "sep2": GenericTableOps.addColSeparator(),
-    "wae": GenericTableOps.addPtsCol("WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule)", GenericTableOps.defaultColorPicker),
-    "sep3": GenericTableOps.addColSeparator(),
-    "quality": GenericTableOps.addPtsCol("Quality", "TODO: figure out", GenericTableOps.defaultColorPicker),
-    "sep4": GenericTableOps.addColSeparator(),
-    "games": GenericTableOps.addIntCol("Games", "Number of games played", GenericTableOps.defaultColorPicker),
-  }
-
 }
