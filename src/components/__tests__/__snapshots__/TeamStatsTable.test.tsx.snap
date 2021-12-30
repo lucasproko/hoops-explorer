@@ -17,7 +17,77 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
           <div
             className="col"
           >
-            <div />
+            <div>
+              <small>
+                Quick Select:
+              </small>
+                
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Luck
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Diffs
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Extra
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Style
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Roster
+                  </button>
+                </div>
+                  
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -26,7 +96,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
       >
         <div
           className="dropup"
-          onKeyDown={[Function]}
         >
           <div>
             <button
@@ -3417,7 +3486,77 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
           <div
             className="col"
           >
-            <div />
+            <div>
+              <small>
+                Quick Select:
+              </small>
+                
+              <span>
+                <div>
+                  <button
+                    className="btn btn-dark btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Luck
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Diffs
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-dark btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Extra
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-dark btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Style
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-dark btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Roster
+                  </button>
+                </div>
+                  
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -3426,7 +3565,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
       >
         <div
           className="dropup"
-          onKeyDown={[Function]}
         >
           <div>
             <button

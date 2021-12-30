@@ -183,14 +183,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        className="mt-1"
+      >
         <OverlayTrigger
           overlay={
             <ForwardRef
               id="copyLinkTooltip"
               placement="right"
             >
-              Copies URL to clipboard)
+              Copies URL to clipboard
             </ForwardRef>
           }
           placement="auto"
@@ -13410,14 +13412,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        className="mt-1"
+      >
         <OverlayTrigger
           overlay={
             <ForwardRef
               id="copyLinkTooltip"
               placement="right"
             >
-              Copies URL to clipboard)
+              Copies URL to clipboard
             </ForwardRef>
           }
           placement="auto"
@@ -32864,14 +32868,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        className="mt-1"
+      >
         <OverlayTrigger
           overlay={
             <ForwardRef
               id="copyLinkTooltip"
               placement="right"
             >
-              Copies URL to clipboard)
+              Copies URL to clipboard
             </ForwardRef>
           }
           placement="auto"

@@ -4158,6 +4158,21 @@ exports[`teamStatsQuery teamStatsQuery-game-info 1`] = `
                         "time_zone": "-10:00"
                      },
                      "aggs": {
+                        "off_poss": {
+                           "sum": {
+                              "field": "team_stats.num_possessions"
+                           }
+                        },
+                        "def_poss": {
+                           "sum": {
+                              "field": "opponent_stats.num_possessions"
+                           }
+                        },
+                        "avg_lead": {
+                           "sum": {
+                              "script": "\\n              def retVal = 0;\\n              if (doc[\\"score_info.end_diff\\"].size() > 0) {\\n                retVal = 0.5*(doc[\\"score_info.end_diff\\"].value + doc[\\"score_info.start_diff\\"].value)\\n              }\\n              def offPoss = (doc[\\"team_stats.num_possessions\\"].size() > 0) ? doc[\\"team_stats.num_possessions\\"].value : 0;\\n              def defPoss = (doc[\\"opponent_stats.num_possessions\\"].size() > 0) ? doc[\\"opponent_stats.num_possessions\\"].value : 0;\\n              retVal*0.5*(offPoss + defPoss)\\n            "
+                           }
+                        },
                         "end_of_game": {
                            "top_hits": {
                               "sort": [
@@ -6203,6 +6218,21 @@ exports[`teamStatsQuery teamStatsQuery-game-info 2`] = `
                         "time_zone": "-10:00"
                      },
                      "aggs": {
+                        "off_poss": {
+                           "sum": {
+                              "field": "team_stats.num_possessions"
+                           }
+                        },
+                        "def_poss": {
+                           "sum": {
+                              "field": "opponent_stats.num_possessions"
+                           }
+                        },
+                        "avg_lead": {
+                           "sum": {
+                              "script": "\\n              def retVal = 0;\\n              if (doc[\\"score_info.end_diff\\"].size() > 0) {\\n                retVal = 0.5*(doc[\\"score_info.end_diff\\"].value + doc[\\"score_info.start_diff\\"].value)\\n              }\\n              def offPoss = (doc[\\"team_stats.num_possessions\\"].size() > 0) ? doc[\\"team_stats.num_possessions\\"].value : 0;\\n              def defPoss = (doc[\\"opponent_stats.num_possessions\\"].size() > 0) ? doc[\\"opponent_stats.num_possessions\\"].value : 0;\\n              retVal*0.5*(offPoss + defPoss)\\n            "
+                           }
+                        },
                         "end_of_game": {
                            "top_hits": {
                               "sort": [

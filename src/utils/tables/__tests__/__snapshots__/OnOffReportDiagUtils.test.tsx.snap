@@ -4,7 +4,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - buildOnOffAnalysisLink 1`] 
 <span>
   <div>
     <a
-      href="/?autoOffQuery=false&baseQuery=test1&offQuery=NOT%20%22player%2C%20test1%22%20AND%20%7B%22PlOne1%22%3B%22PlTwo1%22%7D%3D4&onQuery=%22player%2C%20test1%22%20AND%20%7B%22PlOne1%22%3B%22PlTwo1%22%7D%3D4&"
+      href="/OnOffAnalyzer?autoOffQuery=false&baseQuery=test1&offQuery=NOT%20%22player%2C%20test1%22%20AND%20%7B%22PlOne1%22%3B%22PlTwo1%22%7D%3D4&onQuery=%22player%2C%20test1%22%20AND%20%7B%22PlOne1%22%3B%22PlTwo1%22%7D%3D4&"
       target="_blank"
     >
       On/Off Analysis...
@@ -12,7 +12,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - buildOnOffAnalysisLink 1`] 
   </div>
   <div>
     <a
-      href="/?autoOffQuery=false&baseQuery=test2&offQuery=NOT%20%22player%2C%20test2%22%20AND%20%7B%22PlOne2%22%3B%22PlTwo2%22%7D%3D4&onQuery=%22player%2C%20test2%22%20AND%20%7B%22PlOne2%22%3B%22PlTwo2%22%7D%3D4&"
+      href="/OnOffAnalyzer?autoOffQuery=false&baseQuery=test2&offQuery=NOT%20%22player%2C%20test2%22%20AND%20%7B%22PlOne2%22%3B%22PlTwo2%22%7D%3D4&onQuery=%22player%2C%20test2%22%20AND%20%7B%22PlOne2%22%3B%22PlTwo2%22%7D%3D4&"
       target="_blank"
     >
       test-title
@@ -2511,7 +2511,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             <br />
             <div>
               <a
-                href="/?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
+                href="/OnOffAnalyzer?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
                 target="_blank"
               >
                 On/Off Analysis...
@@ -5075,7 +5075,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             <br />
             <div>
               <a
-                href="/?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
+                href="/OnOffAnalyzer?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
                 target="_blank"
               >
                 On/Off Analysis...

@@ -2198,7 +2198,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -2631,7 +2631,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -3433,7 +3433,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -3866,7 +3866,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -4668,7 +4668,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -5101,7 +5101,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -5922,7 +5922,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -6374,7 +6374,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -7195,7 +7195,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -7647,7 +7647,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -8468,7 +8468,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -8920,7 +8920,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -11863,7 +11863,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -12296,7 +12296,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -13736,7 +13736,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -14169,7 +14169,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -15609,7 +15609,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -16042,7 +16042,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -17541,7 +17541,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -18033,7 +18033,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -19628,7 +19628,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -20120,7 +20120,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -21715,7 +21715,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -22207,7 +22207,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -25724,7 +25724,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -26157,7 +26157,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -27517,7 +27517,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -27950,7 +27950,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -29310,7 +29310,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -29743,7 +29743,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -31122,7 +31122,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -31574,7 +31574,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -32953,7 +32953,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -33405,7 +33405,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -34784,7 +34784,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -35236,7 +35236,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -38657,7 +38657,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -39090,7 +39090,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -40842,7 +40842,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -41275,7 +41275,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -43027,7 +43027,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -43460,7 +43460,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -45231,7 +45231,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -45683,7 +45683,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -47760,7 +47760,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -48212,7 +48212,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -50289,7 +50289,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -50741,7 +50741,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -54860,7 +54860,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -55293,7 +55293,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -58818,7 +58818,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -59251,7 +59251,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -60053,7 +60053,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -60486,7 +60486,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -61288,7 +61288,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -61721,7 +61721,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -62542,7 +62542,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -62994,7 +62994,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -63815,7 +63815,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -64267,7 +64267,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -65088,7 +65088,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...
@@ -65540,7 +65540,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                                            href="/OnOffAnalyzer?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
                                             target="_blank"
                                           >
                                             On/Off Analysis...

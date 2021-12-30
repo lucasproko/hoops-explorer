@@ -244,7 +244,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       tableData={tableData}
       cellTooltipMode="missing"
     />
-  }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight, pinnedRankings ]);
+  }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight, pinnedWabWeight, pinnedWaeWeight, pinnedQualityWeight ]);
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
@@ -334,7 +334,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
-      { label: `All Teams in ${tier} Tier${tier == "All" ? "s" : ""}` } :
+      { label: `All Teams` } :
       confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 

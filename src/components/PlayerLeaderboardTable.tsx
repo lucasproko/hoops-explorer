@@ -571,7 +571,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Copies URL to clipboard)</Tooltip>
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
     );
     return  <OverlayTrigger placement="auto" overlay={tooltip}>
         <Button className="float-left" id={`copyLink_playerLeaderboard`} variant="outline-secondary" size="sm">
@@ -718,7 +718,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           }}
         />
       </Col>
-      <Col lg={1}>
+      <Col lg={1} className="mt-1">
         {getCopyLinkButton()}
       </Col>
     </Form.Group>

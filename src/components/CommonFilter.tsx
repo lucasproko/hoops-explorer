@@ -639,7 +639,7 @@ const CommonFilter: CommonFilterI = ({
           }}
         />
       </Col>
-      <Col>
+      <Col className="mt-1">
         {getHistoryButton()}
         <div className="float-left">&nbsp;&nbsp;</div>
         {getCopyLinkButton()}

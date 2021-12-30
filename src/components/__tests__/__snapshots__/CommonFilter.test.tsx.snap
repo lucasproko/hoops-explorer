@@ -1640,7 +1640,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           }
         />
       </Col>
-      <Col>
+      <Col
+        className="mt-1"
+      >
         <OverlayTrigger
           key="left"
           overlay={
@@ -1866,6 +1868,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               />
             </DropdownToggle>
             <DropdownMenu
+              align="left"
               alignRight={false}
               flip={true}
             >
@@ -2714,7 +2717,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           }
         />
       </Col>
-      <Col>
+      <Col
+        className="mt-1"
+      >
         <OverlayTrigger
           key="left"
           overlay={
@@ -2940,6 +2945,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               />
             </DropdownToggle>
             <DropdownMenu
+              align="left"
               alignRight={false}
               flip={true}
             >

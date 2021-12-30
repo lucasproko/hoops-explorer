@@ -320,7 +320,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             /> : <div/> //(this construct needed to address SSR/readonly issue)
           }
         </Col>
-        <Col sm="2">
+        <Col sm="2" className="mt-1">
           <Form.Check type="switch"
             id="autoOffQuery"
             checked={autoOffQuery}
