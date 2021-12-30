@@ -26,6 +26,9 @@ import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons'
+import { faTrashRestore } from '@fortawesome/free-solid-svg-icons'
+import { faArrowAltCircleDown, faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -94,13 +97,19 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   const [ wabWeight, setWabWeight ] = useState(1.0);
   const [ waeWeight, setWaeWeight ] = useState(0.15);
   const [ qualityWeight, setQualityWeight ] = useState(0.3);
+  const [ pinnedWabWeight, setPinnedWabWeight ] = useState(wabWeight);
+  const [ pinnedWaeWeight, setPinnedWaeWeight ] = useState(waeWeight);
+  const [ pinnedQualityWeight, setPinnedQualityWeight ] = useState(qualityWeight);
+
+  const [ pinnedRankings, setPinnedRankings ] = useState({} as Record<string, number>);
+  const [ currentTable, setCurrentTable ] = useState({} as Array<any>);
 
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
 
     // Calculate a commmon set of games
     const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
-    const gameBasis: number = gameArray.length > 0 ? (mean(mode(gameArray)) || 1) : 1;
+    const gameBasis: number = gameArray.length > 0 ? Math.floor(mean(mode(gameArray)) || 1) : 1;
 
     const mutableLimitState = {
       maxWab: -1000,
@@ -143,9 +152,12 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
         // Build table entry
         const cell =  [ {
+          titleStr: team.team_name,
           title: team.team_name,
           conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
           rank: null as any,
+          rankDiff: null as any,
+          rankNum: 0,
           rating: { value: total },
           wab: { value: wab },
           wae: { value: wae },
@@ -157,8 +169,23 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       } else return [];
     }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {
       t.rank = <small><b>{i + 1}</b></small>;
+      t.rankNum = i + 1;
+      const pinnedRank = pinnedRankings[t.titleStr] || -1;
+      if (pinnedRank > 0) {
+        const delta = pinnedRank - i - 1;
+        t.rankDiff = (delta != 0) ? (
+          delta > 0 ? 
+            (<div><FontAwesomeIcon icon={faArrowAltCircleUp} style={{color:"green"}}/> {delta}</div>) :
+            (<div><FontAwesomeIcon icon={faArrowAltCircleDown} style={{color:"red"}}/> {-delta}</div>)  
+          ) : ""; //TODO: fix
+      }
       return t;
     }).value();
+
+    if (_.isEmpty(pinnedRankings)) {
+      setPinnedRankings(_.chain(tableDataTmp).map(t => [t.titleStr, t.rankNum]).fromPairs().value())
+    }
+    setCurrentTable(tableDataTmp);
 
     const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis));
     const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis));
@@ -176,7 +203,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     ]).concat(_.take(_.drop(mainTable, 35), 20).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
-      GenericTableOps.buildTextRow(<i>Autobids / Maybe Next Year</i>, "small text-center") 
+      GenericTableOps.buildTextRow(<i>Autobids / AD on Selection Committee / Maybe Next Year</i>, "small text-center") 
     ]).concat(_.drop(mainTable, 55).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
@@ -197,9 +224,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const teamLeaderboard = {
       "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
       "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+      "rankDiff": GenericTableOps.addDataCol(<b>&Delta;</b>, "The difference vs pinned rank", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
       "sep0": GenericTableOps.addColSeparator(),
       "rank": GenericTableOps.addDataCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-      "rating": GenericTableOps.addPtsCol("Rating", "The weighted sum of all the different ranking metrics", totalPicker),
+      "rating": GenericTableOps.addPtsCol("Rating", `The weighted sum of all the different ranking metrics (adjusted as if each team had played the same number of games, [${gameBasis}])`, totalPicker),
       "sep1": GenericTableOps.addColSeparator(),
       "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", wabPicker),
       "sep2": GenericTableOps.addColSeparator(),
@@ -216,7 +244,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       tableData={tableData}
       cellTooltipMode="missing"
     />
-  }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight ]);
+  }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight, pinnedRankings ]);
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
@@ -233,14 +261,56 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Copies URL to clipboard)</Tooltip>
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
     );
     return <OverlayTrigger placement="auto" overlay={tooltip}>
-      <Button className="float-left" id={`copyLink_playerLeaderboard`} variant="outline-secondary" size="sm">
+      <Button className="float-left" id={`copyLink_teamLeaderboard`} variant="outline-secondary" size="sm">
         <FontAwesomeIcon icon={faLink} />
       </Button>
     </OverlayTrigger>;
   };
+
+  const onPinWeights = (ev: any) => {
+    setPinnedWabWeight(wabWeight);
+    setPinnedWaeWeight(waeWeight);
+    setPinnedQualityWeight(qualityWeight);
+    setPinnedRankings(_.chain(currentTable).map(t => [t.titleStr as string, t.rankNum as number]).fromPairs().value());
+  };
+
+  /** Copy to clipboard button */
+  const getPinButton = () => {
+    const toPct = (s: number) => (s*100).toFixed(0) + "%";
+    const tooltip = (
+      <Tooltip id="pinTooltip">Pins rankings for selected weightings<br/>(current: WAB=[{toPct(pinnedWabWeight)}] WAE=[{toPct(pinnedWaeWeight)}] Quality=[{toPct(pinnedQualityWeight)}])</Tooltip>
+    );
+    return <OverlayTrigger placement="auto" overlay={tooltip}>
+      <Button onClick={onPinWeights} className="float-left" id={`pinWeights_teamLeaderboard`} variant="outline-secondary" size="sm">
+        <FontAwesomeIcon icon={faThumbtack} />
+      </Button>
+    </OverlayTrigger>;
+  };
+
+  const onRestoreToDefault = (ev: any) => {
+    setWabWeight(1.0);
+    setWaeWeight(0.15);
+    setQualityWeight(0.3);
+    setPinnedWabWeight(1.0);
+    setPinnedWaeWeight(0.15);
+    setPinnedQualityWeight(0.3);
+    setPinnedRankings({});
+  }
+
+  const getRestoreToDefault = () => {
+    const tooltip = (
+      <Tooltip id="pinRestoreToDefault">Return to default weights and re-pin</Tooltip>
+    );
+    return <OverlayTrigger placement="auto" overlay={tooltip}>
+      <Button onClick={onRestoreToDefault} className="float-left" id={`restoreToDefaults_teamLeaderboard`} variant="outline-secondary" size="sm">
+        <FontAwesomeIcon icon={faTrashRestore} />
+      </Button>
+    </OverlayTrigger>;
+  };
+
   /** This grovelling is needed to ensure that clipboard is only loaded client side */
   function initClipboard() {
     if (null == clipboard) {
@@ -309,7 +379,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       text={"Loading Team Leaderboard..."}
     >
       <Form.Group as={Row}>
-        <Col xs={6} sm={6} md={3} lg={2}>
+        <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 10}}>
           <Select
             value={stringToOption(gender)}
             options={["Men", "Women"].map(
@@ -319,7 +389,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
           />
         </Col>
-        <Col xs={6} sm={6} md={3} lg={2}>
+        <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 10}}>
           <Select
             value={stringToOption(year)}
             options={
@@ -333,7 +403,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           />
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-        <Col xs={12} sm={12} md={6} lg={6}>
+        <Col xs={12} sm={12} md={6} lg={6} style={{zIndex: 10}}>
           <Select
             isClearable={true}
             styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
@@ -352,21 +422,25 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             }}
           />
         </Col>
-        <Col lg={1}>
+        <Col lg={1} className="mt-1">
           {getCopyLinkButton()}
         </Col>
       </Form.Group>
-      <Row className="mt-2">
+      <Row className="mt-2 sticky-top" style={{backgroundColor: "white", opacity: "85%", zIndex: 1}}>
+        <Col xs={11}>
+        <Row>
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label>WAB {(wabWeight*100).toFixed(0)}%</Form.Label>
+              <Form.Label><small>How much you weight W-L record [<b>{(wabWeight*100).toFixed(0)}</b>%]</small></Form.Label>
               <Form.Control type="range" custom 
                 value={wabWeight}
                 onChange={(changeEvent: any) => {
                   const newVal = parseFloat(changeEvent.target.value);
                   setWabWeight(newVal);
                 }}
+                onMouseDown={(ev:any) => console.log("down?")}
+                onMouseUp={(ev:any) => console.log("up?")}
                 min={0}
                 max={1}
                 step={0.05}
@@ -377,7 +451,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label>WAE {(waeWeight*100).toFixed(0)}%</Form.Label>
+              <Form.Label><small>... W-L but compared to elite teams [<b>{(waeWeight*100).toFixed(0)}</b>%]</small></Form.Label>
               <Form.Control type="range" custom 
                 value={waeWeight}
                 onChange={(changeEvent: any) => {
@@ -394,7 +468,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label>Quality {(qualityWeight*100).toFixed(0)}%</Form.Label>
+              <Form.Label><small>How much you weight a team's efficiency [<b>{(qualityWeight*100).toFixed(0)}</b>%]</small></Form.Label>
               <Form.Control type="range" custom 
                 value={qualityWeight}
                 onChange={(changeEvent: any) => {
@@ -408,9 +482,15 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             </Form.Group>
           </Form>          
         </Col>
+        </Row>
+        </Col>
+        <Col xs={1} className="mt-4">
+          {getPinButton()}
+          {getRestoreToDefault()}
+        </Col>
       </Row>
-      <Row className="mt-2">
-        <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+      <Row className="mt-2" style={{zIndex: 0 }}>
+        <Col style={{ paddingLeft: "5px", paddingRight: "5px", zIndex: 0 }}>
           {table}
         </Col>
       </Row>
