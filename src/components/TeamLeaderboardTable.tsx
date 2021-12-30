@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react';
 // Lodash:
 import _ from "lodash";
 
+// mathjs
+// @ts-ignore
+import { mean, mode } from 'mathjs';
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -39,11 +43,15 @@ import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '.
 import { TeamInfo } from '../utils/StatModels';
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
+import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
+import { cpuUsage } from 'process';
 
 export type TeamLeaderboardStatsModel = {
   teams?: Array<TeamInfo>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
+  bubbleOffense?: Array<number>,
+  bubbleDefense?: Array<number>,
   lastUpdated?: number,
   error?: string
 };
@@ -81,30 +89,77 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
 
+  const [ wabWeight, setWabWeight ] = useState(0.8);
+  const [ waeWeight, setWaeWeight ] = useState(0.1);
+  const [ qualityWeight, setQualityWeight ] = useState(0.2);
+
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
 
-    const tableDataTmp = _.chain(dataEvent.teams || []).map(team => {
-      const wab = _.sumBy(team.opponents, o => o.wab);
-      const wae = _.sumBy(team.opponents, o => o.wae);
-      const total = wab + wae;
-      return {
-        title: team.team_name,
-        wab: { value: wab },
-        wae: { value: wae },
-        rank: { value: total },
-        rating: 0,
-      };
-    }).sortBy(t => -(t.rank?.value || 0)).map((t, i) => {
-      t.rating = { value: i + 1 };
+    // Calculate a commmon set of games
+    const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
+    const gameBasis: number = gameArray.length > 0 ? (mean(mode(gameArray)) || 1) : 1;
+
+    const mutableDedupSet = new Set() as Set<string>;
+    const tableDataTmp = _.chain(dataEvent.teams || []).flatMap(team => {
+      if (!mutableDedupSet.has(team.team_name)) {
+        mutableDedupSet.add(team.team_name);
+
+        const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
+          team.adj_off, team.adj_def, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
+        );
+        const totalWeight = (wabWeight + waeWeight + qualityWeight) || 1;
+
+        const wab = _.sumBy(team.opponents, o => o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
+        const wae = _.sumBy(team.opponents, o => o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
+        const quality = (expWinPctVsBubble - 0.5)*gameBasis;
+        const games = team.opponents.length;
+        const factor = (games > 0.5*gameBasis) ?  (gameBasis/games) : 1;
+        const total = ((wab*wabWeight + wae*waeWeight)*factor + quality*qualityWeight)/totalWeight;
+        return [ {
+          title: <div><b>{team.team_name}</b></div>,
+          conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
+          wab: { value: wab },
+          wae: { value: wae },
+          quality: { value: quality },
+          rating: { value: total },
+          rank: { value: 0 },
+          games: { value: games }
+        } ];
+      } else return [];
+    }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {
+      t.rank = { value: i + 1 };
       return t;
     }).value();
 
-    const tableData = tableDataTmp.map(t =>
+    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis));
+    const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis));
+
+    const tableData = [ 
+      GenericTableOps.buildTextRow(<div>Top 25 + 1</div>, "small text-center") 
+    ].concat(_.take(mainTable, 26).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )).concat([ 
+      GenericTableOps.buildTextRow(<div>Solid NCAAT teams</div>, "small text-center") 
+    ]).concat(_.take(_.drop(mainTable, 26), 9).map(t =>
+      GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )).concat([ 
+      GenericTableOps.buildTextRow(<div>The Bubble</div>, "small text-center") 
+    ]).concat(_.take(_.drop(mainTable, 35), 20).map(t =>
+      GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )).concat([ 
+      GenericTableOps.buildTextRow(<div>Autobids / Maybe Next Year</div>, "small text-center") 
+    ]).concat(_.drop(mainTable, 55).map(t =>
+      GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )).concat([ 
+        GenericTableOps.buildTextRow(<div>Teams with too few games</div>, "small text-center") 
+    ]).concat(
+      tooFewGames.map(t =>
+        GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+      )
     );
 
-/**/console.log(JSON.stringify(_.take(tableDataTmp, 5), null, 3));
+    //console.log(JSON.stringify(_.take(tableDataTmp, 5), null, 3));
 
     return <GenericTable
       tableCopyId="teamLeaderboardTable"

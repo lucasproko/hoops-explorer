@@ -135,6 +135,8 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
         setDataSubEvent({
           teams: _.chain(jsons).map(d => (d.teams || [])).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+          bubbleOffense: _.chain(jsons).take(1).map(d => d.bubbleOffense || []).flatten().value(),
+          bubbleDefense: _.chain(jsons).take(1).map(d => d.bubbleDefense || []).flatten().value(),
           lastUpdated: _.chain(jsons).map(d => d.lastUpdated).max().value() 
         });
       })

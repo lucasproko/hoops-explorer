@@ -317,15 +317,18 @@ export class CommonTableDefs {
 
   static readonly teamLeaderboard = {
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+    "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
     "sep0": GenericTableOps.addColSeparator(),
-    "rating": GenericTableOps.addIntCol("Rating", "The weighted sum of all the different ranking metrics", GenericTableOps.defaultColorPicker),
-    "rank": GenericTableOps.addPtsCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker),
-    "sep0.5": GenericTableOps.addColSeparator(),
-    "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", GenericTableOps.defaultColorPicker),
+    "rank": GenericTableOps.addIntCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker),
+    "rating": GenericTableOps.addPtsCol("Rating", "The weighted sum of all the different ranking metrics", GenericTableOps.defaultColorPicker),
     "sep1": GenericTableOps.addColSeparator(),
-    "wae": GenericTableOps.addPtsCol("WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule)", GenericTableOps.defaultColorPicker),
+    "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", GenericTableOps.defaultColorPicker),
     "sep2": GenericTableOps.addColSeparator(),
+    "wae": GenericTableOps.addPtsCol("WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule)", GenericTableOps.defaultColorPicker),
+    "sep3": GenericTableOps.addColSeparator(),
     "quality": GenericTableOps.addPtsCol("Quality", "TODO: figure out", GenericTableOps.defaultColorPicker),
+    "sep4": GenericTableOps.addColSeparator(),
+    "games": GenericTableOps.addIntCol("Games", "Number of games played", GenericTableOps.defaultColorPicker),
   }
 
 }

@@ -321,12 +321,17 @@ export async function main() {
         teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
 
        // Team info, for "Build your own T25"
-       if ("all" == label) {
-         teamInfo.push({
+       if (("all" == label) && (completedEfficiencyInfo?.[team])) {
+          const teamAdjOff = completedEfficiencyInfo?.[team]?.["stats.adj_off.value"] || 0.0;
+          const teamAdjDef = completedEfficiencyInfo?.[team]?.["stats.adj_def.value"] || 0.0;
+  
+           teamInfo.push({
             team_name: fullRequestModel.team,
             gender: fullRequestModel.gender,
             year: fullRequestModel.year,
             conf: conference,
+            adj_off: teamAdjOff,
+            adj_def: teamAdjDef,
 
             opponents: _.chain(teamBaseline.game_info?.buckets || [])
                 .flatMap(l => l?.game_info?.buckets || [])

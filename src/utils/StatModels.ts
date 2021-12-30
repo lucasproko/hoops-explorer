@@ -235,6 +235,8 @@ export type TeamInfo = {
   gender: string,
   year: string,
   conf: string,
+  adj_off: number,
+  adj_def: number,
 
   opponents: Array<{
     oppo_name: string,

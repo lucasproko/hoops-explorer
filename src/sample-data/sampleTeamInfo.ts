@@ -10,12 +10,38 @@ export const sampleTeamInfo = {
     "Big Ten Conference",
     "Atlantic 10 Conference"
   ],
+  "bubbleOffense": [
+    111,
+    113.7,
+    112.1,
+    112.7,
+    106.4,
+    104.8,
+    110.6,
+    105.2,
+    108,
+    109.1
+  ],
+  "bubbleDefense": [
+    94.1,
+    96.9,
+    95.7,
+    97,
+    90.9,
+    89.5,
+    95.5,
+    90.2,
+    93.1,
+    94.2
+  ],
   "teams": [
     {
       "team_name": "Maryland",
       "gender": "Men",
       "year": "2020/21",
       "conf": "Big Ten Conference",
+      "adj_off": 111.8,
+      "adj_def": 94.1,
       "opponents": [
         {
           "oppo_name": "Old Dominion",
@@ -504,6 +530,8 @@ export const sampleTeamInfo = {
       "gender": "Men",
       "year": "2020/21",
       "conf": "Atlantic 10 Conference",
+      "adj_off": 108.3,
+      "adj_def": 98.6,
       "opponents": [
         {
           "oppo_name": "Eastern Ill.",
