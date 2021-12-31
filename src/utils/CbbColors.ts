@@ -41,6 +41,7 @@ export class CbbColors {
   private static readonly whiteToOrange = chroma.scale(["#ffFFff", "orange"]);
 
   public static readonly getRedToGreen = () => chroma.scale(["red", "#ffFFff", "green"]);
+  public static readonly getBlueToOrange = () => chroma.scale(["lightblue", "#ffFFff", "orange"]);
 
   public static readonly alwaysWhite = (val: number) => CbbColors.background;
   public static readonly alwaysBlack = (val: number) => "#000000";
