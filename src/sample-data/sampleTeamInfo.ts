@@ -42,6 +42,10 @@ export const sampleTeamInfo = {
       "conf": "Big Ten Conference",
       "adj_off": 111.8,
       "adj_def": 94.1,
+      "adj_off_calc": 114.2149,
+      "adj_def_calc": 95.1213,
+      "adj_off_calc_30d": 117.8784,
+      "adj_def_calc_30d": 94.9397,
       "opponents": [
         {
           "oppo_name": "Old Dominion",
@@ -532,6 +536,10 @@ export const sampleTeamInfo = {
       "conf": "Atlantic 10 Conference",
       "adj_off": 108.3,
       "adj_def": 98.6,
+      "adj_off_calc": 108.5638,
+      "adj_def_calc": 98.6543,
+      "adj_off_calc_30d": 112.8165,
+      "adj_def_calc_30d": 100.3442,
       "opponents": [
         {
           "oppo_name": "Eastern Ill.",

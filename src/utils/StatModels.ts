@@ -237,6 +237,10 @@ export type TeamInfo = {
   conf: string,
   adj_off: number,
   adj_def: number,
+  adj_off_calc: number, // calculated from raw PPP and SoS
+  adj_def_calc: number,
+  adj_off_calc_30d: number, // calculated from raw PPP and SoS, last 30d
+  adj_def_calc_30d: number,
 
   opponents: Array<{
     oppo_name: string,
