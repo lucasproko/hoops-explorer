@@ -19,7 +19,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults } from '../../utils/FilterModels';
+import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults, TeamLeaderboardParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 
@@ -76,6 +76,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
       }
     );
   }
+  function getTeamLeaderboardUrl() {
+    return UrlRouting.getTeamLeaderboardUrl(
+      getCommonLboardFilterParams(common) as TeamLeaderboardParams
+    );
+  }
   // Last visited
   function getLastGameUrl() {
     return UrlRouting.getGameUrl(
@@ -129,6 +134,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const playerLeaderboardTooltip = (tier: "High" | "Medium" | "Low" | "All") => {
     return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard T900 page ({describeConfs(tier)})</Tooltip>
   };
+  const teamLeaderboardTooltip = (
+    <Tooltip id={"teamLeaderboardTooltip"}>Build your own team leaderboard out of various resume and quality based metrics!</Tooltip>
+  );
   const playerLeaderboardTooltipNba2021 = (
     <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
   );
@@ -242,6 +250,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Leaderboards</Dropdown.Toggle>
         {hasMidMajors ?
           <Dropdown.Menu style={dropdownStyle}>
+            <Dropdown.Item>
+              {buildNavItem("Build your own team leaderboard!", teamLeaderboardTooltip, getTeamLeaderboardUrl(), true)}
+            </Dropdown.Item>
+            <Dropdown.Divider/>
             <Dropdown.Item>
               {buildNavItem("Players - all tiers", playerLeaderboardTooltip("All"), getPlayerLeaderboardUrl("All"), true)}
             </Dropdown.Item>

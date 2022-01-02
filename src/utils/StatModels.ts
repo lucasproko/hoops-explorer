@@ -228,6 +228,41 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 //////////////////////////////////////
 
+/** For team leaderboard info */
+export type TeamInfo = {
+
+  team_name: string,
+  gender: string,
+  year: string,
+  conf: string,
+  adj_off: number,
+  adj_def: number,
+  adj_off_calc: number, // calculated from raw PPP and SoS
+  adj_def_calc: number,
+  adj_off_calc_30d: number, // calculated from raw PPP and SoS, last 30d
+  adj_def_calc_30d: number,
+
+  opponents: Array<{
+    oppo_name: string,
+    date_str: string,
+    date: number,
+    team_scored: number,
+    oppo_scored: number,
+    off_poss: number,
+    def_poss: number,
+    avg_lead: number,
+    location_type: "Home" | "Away" | "Neutral",
+    rank: number,
+    adj_off: number,
+    adj_def: number,
+    wab: number,
+    wae: number
+  }>
+
+};
+
+//////////////////////////////////////
+
 /** Useful constants */
 export class StatModels {
   static emptyIndiv: () => IndivStatSet = () => { return { key: "empty", doc_count: 0 } as IndivStatSet; }

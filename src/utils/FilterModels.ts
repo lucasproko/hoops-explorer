@@ -1,7 +1,7 @@
 
 /** Typescript limitations - also have to repeat this for ParamPrefixesType */
 export class ParamPrefixes {
-  static readonly game = "game-";
+  static readonly game = "game-"; //(this is on-off / team info)
   static readonly lineup = "lineup-";
   static readonly report = "report-"; //(not used currrently, we re-use lineup)
   static readonly roster = "roster-";
@@ -138,7 +138,7 @@ export type LineupLeaderboardParams = {
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  tier?: string,  //High, Medium, Low
+  tier?: string,  //All, High, Medium, Low
   conf?: string, //(undefined ==> all conferences)
   minPoss?: string,
   maxTableSize?: string,
@@ -156,6 +156,24 @@ export type PlayerLeaderboardParams = {
   confOnly?: boolean,
   t100?: boolean
 };
+
+export type TeamLeaderboardParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  conf?: string, //(undefined ==> all conferences)
+  // Lots of settings:
+  qualityWeight?: string,
+  pinQualityWeight?: string,
+  wabWeight?: string,
+  pinWabWeight?: string,
+  waeWeight?: string,
+  pinWaeWeight?: string,
+  domWeight?: string,
+  pinDomWeight?: string,
+  timeWeight?: string
+  pinTimeWeight?: string
+};
+
 
 export type TeamReportFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
@@ -227,11 +245,17 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardMaxTableSize = "100";
   static defaultPlayerLboardSortBy(useRapm: boolean, factorMins: boolean) {
     return useRapm ? (factorMins ? "desc:diff_adj_rapm_prod" : "desc:diff_adj_rapm") : (factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg");
-  }
+  }  
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;
   static readonly defaultPlayerLboardUseRapm = true;
+  // Team leaderboard
+  static readonly defaultTeamLboardQualityWeight = "0.3";
+  static readonly defaultTeamLboardDomWeight = "0.25";
+  static readonly defaultTeamLboardWabWeight = "1"; //(don't have decimal places for comparison with "" + 1.0)
+  static readonly defaultTeamLboardWaeWeight = "0.15";
+  static readonly defaultTeamLboardTimeWeight = "0"; //(don't have decimal places for comparison with "" + 0.0)
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

@@ -189,7 +189,7 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         <li>
           <div>
             <a
-              href="/?autoOffQuery=false&baseQuery=test&offQuery=NOT%20%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&onQuery=%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&"
+              href="/OnOffAnalyzer?autoOffQuery=false&baseQuery=test&offQuery=NOT%20%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&onQuery=%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&"
               target="_blank"
             >
               AaWiggins / AnCowan / ErAyala / JaSmith
@@ -286,7 +286,7 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         <li>
           <div>
             <a
-              href="/?autoOffQuery=false&baseQuery=test&offQuery=NOT%20%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&onQuery=%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&"
+              href="/OnOffAnalyzer?autoOffQuery=false&baseQuery=test&offQuery=NOT%20%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&onQuery=%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&"
               target="_blank"
             >
               AaWiggins / AnCowan / ErAyala / JaSmith

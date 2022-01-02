@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import HeaderBar from '../HeaderBar';
 import { shallow } from 'enzyme';

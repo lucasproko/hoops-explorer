@@ -410,7 +410,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Copies URL to clipboard)</Tooltip>
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
     );
     return  <OverlayTrigger placement="auto" overlay={tooltip}>
         <Button className="float-left" id={`copyLink_lineupLeaderboard`} variant="outline-secondary" size="sm">
@@ -548,7 +548,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           }}
         />
       </Col>
-      <Col>
+      <Col className="mt-1">
         {getCopyLinkButton()}
       </Col>
     </Form.Group>

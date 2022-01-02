@@ -3,7 +3,6 @@
 exports[`GenericTogglingMenu GenericTogglingMenu - should create snapshot 1`] = `
 <div
   className="dropup"
-  onKeyDown={[Function]}
 >
   <div>
     <button

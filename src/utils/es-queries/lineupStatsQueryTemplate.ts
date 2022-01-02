@@ -30,10 +30,29 @@ export const buildGameInfoRequest = function(infoType: "game_aggs" | "final_scor
       }
     };
   };
-  /** For games, just the final score */
+  /** For games, get the final score and some useful aggregations */
   const getFinalScore = () => {
     return {
       "aggs": {
+        "off_poss": {
+          "sum": { "field": "team_stats.num_possessions" }
+        },
+        "def_poss": {
+          "sum": { "field": "opponent_stats.num_possessions" }
+        },
+        "avg_lead": {
+          "sum": {
+            "script": `
+              def retVal = 0;
+              if (doc["score_info.end_diff"].size() > 0) {
+                retVal = 0.5*(doc["score_info.end_diff"].value + doc["score_info.start_diff"].value)
+              }
+              def offPoss = (doc["team_stats.num_possessions"].size() > 0) ? doc["team_stats.num_possessions"].value : 0;
+              def defPoss = (doc["opponent_stats.num_possessions"].size() > 0) ? doc["opponent_stats.num_possessions"].value : 0;
+              retVal*0.5*(offPoss + defPoss)
+            `
+          }
+        },
         "end_of_game": {
           "top_hits": {
             "sort": [

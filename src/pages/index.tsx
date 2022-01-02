@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 // Next imports:
 import { NextPage } from 'next';
+import fetch from 'isomorphic-unfetch';
 
 // Lodash:
 import _ from "lodash";
@@ -19,23 +20,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import GameFilter from '../components/GameFilter';
-import { ParamDefaults, ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
-import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
-import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
-import { LineupStatsModel } from '../components/LineupStatsTable';
-import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
+import { ParamPrefixes, TeamLeaderboardParams, ParamDefaults, GameFilterParams } from '../utils/FilterModels';
+import { HistoryManager } from '../utils/HistoryManager';
+import TeamLeaderboardTable, { TeamLeaderboardStatsModel } from '../components/TeamLeaderboardTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
-import { HistoryManager } from '../utils/HistoryManager';
-import { ClientRequestCache } from '../utils/ClientRequestCache';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
-const OnOffAnalyzerPage: NextPage<{}> = () => {
+const TeamLeaderboardPage: NextPage<{}> = () => {
 
   useEffect(() => { // Set up GA
     if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
@@ -47,102 +43,73 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     }
   }); //(on any change to the DOM)
 
-  // Team Stats interface
-
-  const [ gaInited, setGaInited ] = useState(false);
-  const [ dataEvent, setDataEvent ] = useState({
-    teamStats: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
-    rosterStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
-    lineupStats: [] as LineupStatsModel[]
-  });
-  const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
-
-  const injectStats = (
-    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]
-  ) => {
-    setDataEvent({teamStats, rosterStats, lineupStats});
-    setRosterCompareStats(rosterCompareStats);
-  }
-
-  // Game and Lineup filters
-
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
-  // Some cache management easter eggs, for development:
-  if (allParams.indexOf("__clear_cache__") >= 0) {
-    console.log("CLEAR CACHE");
-    ClientRequestCache.clearCache();
-  }
-  if (allParams.indexOf("__clear_history__") >= 0) {
-    console.log("CLEAR HISTORY");
-    HistoryManager.clearHistory();
+  // "/" used to be OnOffAnalyzer, but now it's team leaderboard ... handle redirecting old links
+  if ((allParams.indexOf("&team=") >= 0) || (allParams.indexOf("&team=") >= 0)) {
+    console.log(`(redirecting old link [${allParams}]`);
+    const newUrl = UrlRouting.getGameUrl(UrlRouting.removedSavedKeys(allParams) as GameFilterParams, {});
+    window.location.href = newUrl;
+    return <span>(redirecting old link)</span>;
   }
 
-  const [ gameFilterParams, setGameFilterParams ] = useState(
-    UrlRouting.removedSavedKeys(allParams) as GameFilterParams
+  // Team Stats interface
+
+  const dataEventInit = {
+    all: { players: [] as any[], confs: [] as string[], lastUpdated: 0 },
+    t100: { players: [] as any[], confs: [] as string[], lastUpdated: 0 },
+    conf: { players: [] as any[], confs: [] as string[], lastUpdated: 0 }
+  };
+
+  const [ gaInited, setGaInited ] = useState(false);
+  const [ dataEvent, setDataEvent ] = useState(dataEventInit);
+  const [ dataSubEvent, setDataSubEvent ] = useState({ teams: [], confs: [], lastUpdated: 0 } as TeamLeaderboardStatsModel);
+  const [ currYear, setCurrYear ] = useState(ParamDefaults.defaultLeaderboardYear); 
+  const [ currGender, setCurrGender ] = useState("Men");
+
+  // Game filter
+
+  function getRootUrl(params: TeamLeaderboardParams) {
+    return UrlRouting.getTeamLeaderboardUrl(params);
+  }
+
+  const [ teamLeaderboardParams, setTeamLeaderboardParams ] = useState(
+    UrlRouting.removedSavedKeys(allParams) as TeamLeaderboardParams
   )
-  const gameFilterParamsRef = useRef<GameFilterParams>();
-  gameFilterParamsRef.current = gameFilterParams;
+  const TeamLeaderboardParamsRef = useRef<TeamLeaderboardParams>();
+  TeamLeaderboardParamsRef.current = teamLeaderboardParams;
 
-  function getRootUrl(params: GameFilterParams) {
-    return UrlRouting.getGameUrl(params, {});
-  }
-  const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
-
-  const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
-    /** We're going to want to remove the manual options if the year changes */
-    const yearTeamGenderChange = (rawParams: GameFilterParams, currParams: GameFilterParams) => {
-      return (rawParams.year != currParams.year) ||
-              (rawParams.gender != currParams.gender) ||
-              (rawParams.team != currParams.team);
+  const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
+    if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
+      return `/api/getLeaderboard?src=teams&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
+    } else { //archived
+      return `/leaderboards/lineups/teams_${oppo}_${gender}_${subYear}_${inTier}.json`;
     }
+  }
 
-    // Omit all the defaults
+  const onTeamLeaderboardParamsChange = (rawParams: TeamLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      // TeamStatsTable
-      //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
-      yearTeamGenderChange(rawParams, gameFilterParamsRef.current || {}) ? [ 'manual' ] : [],
-      _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
-      !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
-      (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
-      (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
-      (rawParams.teamDiffs == false) ? [ 'teamDiffs' ] : [],
-      (rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes) ? [ 'showTeamPlayTypes' ] : [],
-      (rawParams.showExtraInfo == false) ? [ 'showExtraInfo' ] : [],
-      (rawParams.showRoster == ParamDefaults.defaultTeamShowRoster) ? [ 'showRoster' ] : [],
-      // RosterStatsTable
-      (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
-      (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
-      (rawParams.showBase == ParamDefaults.defaultPlayerShowBase) ? [ 'showBase' ] : [],
-      (rawParams.showExpanded == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
-      (rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
-      (rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
-      (rawParams.factorMins == ParamDefaults.defaultPlayerFactorMins) ? [ 'factorMins' ] : [],
-      (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
-      (rawParams.showPlayerPlayTypes == ParamDefaults.defaultPlayerShowPlayTypes) ? [ 'showPlayerPlayTypes' ] : [],
-      (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
-      (rawParams.showOnBallConfig == false) ? [ 'showOnBallConfig' ] : [],
-      (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
-      (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
-    ]));
-    if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
-      // Currently: game info requires an extra possibly expensive query component so we make it on demand only
-      if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
-        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
-      }
-      if (params.showRoster != gameFilterParamsRef.current?.showRoster) {
-        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
-      }
-      // Because changing the params in one table merges that table's params with the last set
-      // when the other table's memo was refreshed, currently we to always refresh the memo on both
-      // tables whenever any memo changes
-      // TODO: of course this can be done much more elegantly/efficiently
-      setDataEvent(d => { return  { ...d } }); //(leave data unchanged but fool the useMemo below)
+      (!rawParams.conf) ? [ 'conf' ] : [],
 
+      (rawParams.qualityWeight == ParamDefaults.defaultTeamLboardQualityWeight) ? [ `qualityWeight` ]  : [],
+      (rawParams.wabWeight == ParamDefaults.defaultTeamLboardWabWeight) ? [ `wabWeight` ]  : [],
+      (rawParams.waeWeight == ParamDefaults.defaultTeamLboardWaeWeight) ? [ `waeWeight` ]  : [],
+      (rawParams.domWeight == ParamDefaults.defaultTeamLboardDomWeight) ? [ `domWeight` ]  : [],
+      (rawParams.timeWeight == ParamDefaults.defaultTeamLboardTimeWeight) ? [ `timeWeight` ]  : [],
+
+      (rawParams.qualityWeight == rawParams.pinQualityWeight) ? [ `pinQualityWeight` ]  : [],
+      (rawParams.wabWeight == rawParams.pinWabWeight) ? [ `pinWabWeight` ]  : [],
+      (rawParams.waeWeight == rawParams.pinWaeWeight) ? [ `pinWaeWeight` ]  : [],
+      (rawParams.domWeight == rawParams.pinDomWeight) ? [ `pinDomWeight` ]  : [],
+      (rawParams.timeWeight == rawParams.pinTimeWeight) ? [ `pinTimeWeight` ]  : [],
+
+    ]));
+
+    if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -151,83 +118,96 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       // (need to figure out how to detect inter-page)
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
-      setGameFilterParams(params); //(to ensure the new params are included in links)
+      setTeamLeaderboardParams(params); // (to ensure the new params are included in links)
     }
   }
+
+  useEffect(() => { // Process data selection change
+    const paramObj = teamLeaderboardParams;
+    const dataSubEventKey = "all";
+
+    const gender = paramObj.gender || ParamDefaults.defaultGender;
+    const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
+    const year = fullYear.substring(0, 4);
+    const tier: string = "All"; //(paramObj.tier || "All"); //(in this page, tier is really a diag param)
+
+    if ((year == "All") || (tier == "All")) { //TODO: tidy this up
+      setDataEvent(dataEventInit); //(clear saved sub-events)
+
+      const years = _.filter([ "2018/9", "2019/20", "2020/21", "2021/22" ], inYear => (year == "All") || (inYear == fullYear));
+      const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
+
+      const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
+ 
+      const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
+        const subYear = inYear.substring(0, 4);
+        return fetch(getUrl(dataSubEventKey, gender, subYear, inTier))
+          .then((response: fetch.IsomorphicResponse) => {
+            return response.ok ? 
+            response.json().then((j: any) => { //(tag the tier in)
+              if (tier == "All") j.tier = inTier;
+              return j;
+            }) : 
+            Promise.resolve({ error: "No data available" });
+          });
+      }));
+      fetchAll.then((jsons: any[]) => {
+        setDataSubEvent({
+          teams: _.chain(jsons).map(d => (d.teams || [])).flatten().value(),
+          confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+          bubbleOffense: _.chain(jsons).take(1).map(d => d.bubbleOffense || []).flatten().value(),
+          bubbleDefense: _.chain(jsons).take(1).map(d => d.bubbleDefense || []).flatten().value(),
+          lastUpdated: _.chain(jsons).map(d => d.lastUpdated).max().value() 
+        });
+      })
+    } else {
+      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != fullYear) || (currGender != gender)) {
+        const oldCurrYear = currYear;
+        const oldCurrGender = currGender;
+        setCurrYear(fullYear);
+        setCurrGender(gender)
+        setDataSubEvent({ teams: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
+        fetch(getUrl(dataSubEventKey, gender, year, tier))
+          .then((response: fetch.IsomorphicResponse) => {
+            return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
+              //(if year has changed then clear saved data events)
+              setDataEvent({ ...(oldCurrYear != year ? dataEventInit : dataEvent), [dataSubEventKey]: json });
+              setDataSubEvent(json);
+            });
+          });
+      } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
+        setDataSubEvent(dataEvent[dataSubEventKey]);
+      }
+    }
+  }, [ teamLeaderboardParams ]);
 
   // View
 
-  function maybeShowDocs() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return "https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html";
-    } else {
-      return undefined;
-    }
-  }
-
-  /** Only rebuild the table if the data changes, or if luck changes (see above) */
-  const teamStatsTable = React.useMemo(() => {
-    return <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
-      <TeamStatsTable
-        gameFilterParams={gameFilterParams}
-        dataEvent={dataEvent}
-        onChangeState={onGameFilterParamsChange}
-      />
-    </GenericCollapsibleCard>
-  }, [ dataEvent ]);
-
-  /** Only rebuild the table if the data changes, or if luck changes (see above) */
-  const rosterStatsTable = React.useMemo(() => {
-    return  <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
-      <RosterStatsTable
-        gameFilterParams={gameFilterParams}
-        dataEvent={dataEvent}
-        onChangeState={onGameFilterParamsChange}
-      />
-    </GenericCollapsibleCard>
-  }, [ dataEvent ]);
+  /** Only rebuild the table if the data changes */
+  const table = React.useMemo(() => {
+    return <TeamLeaderboardTable
+      startingState={TeamLeaderboardParamsRef.current || {}}
+      dataEvent={dataSubEvent}
+      onChangeState={onTeamLeaderboardParamsChange}
+    />
+  }, [dataSubEvent]);
 
   return <Container>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+        <h3>Build Your Own T25! <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
     </Row>
-    <Row>
+    <Row className="border-bottom">
       <HeaderBar
-        common={gameFilterParams}
-        thisPage={ParamPrefixes.game}
+        common={{ gender: currGender, year: (currYear == "All") ? undefined : currYear }}
+        thisPage={`${ParamPrefixes.game}_leaderboard`}
         />
     </Row>
-    <Row>
-      <GenericCollapsibleCard
-        minimizeMargin={false}
-        title="Team and Game Filter"
-        summary={HistoryManager.gameFilterSummary(gameFilterParams)}
-      >
-        <GameFilter
-          onStats={injectStats}
-          startingState={gameFilterParams}
-          onChangeState={onGameFilterParamsChange}
-          forceReload1Up={shouldForceReload}
-        />
-      </GenericCollapsibleCard>
+    <Row className="mt-3">
+      {table}
     </Row>
-    <Row>
-      {teamStatsTable}
-    </Row>
-    <Row>
-      {rosterStatsTable}
-    </Row>
-    <Row>
-      <GenericCollapsibleCard minimizeMargin={false} title="Lineup Comparison" helpLink={maybeShowDocs()}>
-        <RosterCompareTable
-          gameFilterParams={gameFilterParams}
-          rosterCompareStats={rosterCompareStats}
-        />
-      </GenericCollapsibleCard>
-    </Row>
-    <Footer year={gameFilterParams.year} gender={gameFilterParams.gender} server={server}/>
+    <Footer dateOverride={dataEvent.all?.lastUpdated} year={teamLeaderboardParams.year} gender={teamLeaderboardParams.gender} server={server}/>
   </Container>;
 }
-export default OnOffAnalyzerPage;
+export default TeamLeaderboardPage;
