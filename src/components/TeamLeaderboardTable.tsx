@@ -260,7 +260,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             (<div><FontAwesomeIcon icon={faArrowAltCircleUp} style={{color:"green"}}/> {delta}</div>) :
             (<div><FontAwesomeIcon icon={faArrowAltCircleDown} style={{color:"red"}}/> {-delta}</div>)  
           ) : ""; 
-        anyPinDeltas ||= (delta != 0);
+        anyPinDeltas = anyPinDeltas || (delta != 0);
       }
       return t;
     }).value();
