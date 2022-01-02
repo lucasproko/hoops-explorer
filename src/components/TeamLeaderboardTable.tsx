@@ -567,6 +567,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             isSearchable={false}
             onChange={(option) => { if ((option as any)?.value) {
               setPinnedRankings({});
+              setLoadingOverride(true);
               setGender((option as any).value);
             }}}
           />
@@ -583,6 +584,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             isSearchable={false}
             onChange={(option) => { if ((option as any)?.value) {
               setPinnedRankings({});
+              setLoadingOverride(true);
               setYear((option as any).value);
             }}}
           />
@@ -631,6 +633,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                   const newVal = parseFloat(ev.target.value);
                   setWabWeight(newVal);
                   setTmpWabWeight(undefined);
+                }) }
+                onTouchEnd={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpWabWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setWabWeight(newVal);
+                    setTmpWabWeight(undefined);
+                  }
                 }) }
                 onMouseUp={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpWabWeight)) {
