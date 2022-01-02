@@ -85,7 +85,6 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
 
   const onTeamLeaderboardParamsChange = (rawParams: TeamLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [],
 
     ]));
@@ -109,7 +108,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const year = fullYear.substring(0, 4);
-    const tier = (paramObj.tier || "All"); //(in this page, tier is really a diag param)
+    const tier: string = "All"; //(paramObj.tier || "All"); //(in this page, tier is really a diag param)
 
     if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)

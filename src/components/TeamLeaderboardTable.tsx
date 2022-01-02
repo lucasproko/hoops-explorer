@@ -88,7 +88,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   const [gender, setGender] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = (year == "Extra") || (year == "All");
 
-  const [tier, setTier] = useState(startingState.tier || "All");
+  // (don't support tier changes)
+  const tier: string = "All";
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
@@ -133,6 +134,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     };
 
     const mutableDedupSet = new Set() as Set<string>;
+    var anyPinDeltas = false;
     const tableDataTmp = _.chain(dataEvent.teams || []).flatMap(team => {
       if (!mutableDedupSet.has(team.team_name)) {
         mutableDedupSet.add(team.team_name);
@@ -174,12 +176,12 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         const qualityIncDom = (expWinPctVsBubbleIncDom - 0.5)*gameBasis;
         const qualityDiff = qualityIncDom - qualityNoDom;
         const quality = qualityNoDom + dominanceWeight*qualityDiff;
-        const games = team.opponents.length || 1;
+        const games = team.opponents.length;
         const factor = (games > 0.5*gameBasis) ?  (gameBasis/games) : 1;
 
-        const recentGameBasis = 14; //(empirically chosen, i started with 7 games in 30d, then doubled it to make it look more pleasing!)
-        const recentWabDelta = recentGameBasis*(sumWab30d/(games30d || 1) - (wab/games));
-        const recentWaeDelta = recentGameBasis*(sumWae30d/(games30d || 1) - (wae/games));
+        const recentGameBasis = (games30d > 0) ? 14 : 0; //(empirically chosen, i started with 7 games in 30d, then doubled it to make it look more pleasing!)
+        const recentWabDelta = recentGameBasis*(sumWab30d/(games30d || 1) - (wab/(games || 1)));
+        const recentWaeDelta = recentGameBasis*(sumWae30d/(games30d || 1) - (wae/(games || 1)));
         const recentQualityDelta = recentGameBasis*(expWinPctVsBubbleRecentIncDom - expWinPctVsBubbleIncDom);
         const recentDelta = 
           (wabWeight*recentWabDelta + waeWeight*recentWaeDelta + qualityWeight*recentQualityDelta)/((totalWeight) || 1);
@@ -204,6 +206,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         const cell =  [ {
           titleStr: team.team_name,
           title: team.team_name,
+          confStr: ConferenceToNickname[team.conf],
           conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
           rank: null as any,
           rankDiff: null as any,
@@ -229,7 +232,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           delta > 0 ? 
             (<div><FontAwesomeIcon icon={faArrowAltCircleUp} style={{color:"green"}}/> {delta}</div>) :
             (<div><FontAwesomeIcon icon={faArrowAltCircleDown} style={{color:"red"}}/> {-delta}</div>)  
-          ) : ""; //TODO: fix
+          ) : ""; 
+        anyPinDeltas ||= (delta != 0);
       }
       return t;
     }).value();
@@ -239,10 +243,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     }
     setCurrentTable(tableDataTmp);
 
-    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis));
-    const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis));
+    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => (confs == "") || confs.indexOf(t.confStr) >= 0);
+    const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis)).filter(t => (confs == "") || confs.indexOf(t.confStr) >= 0);
 
-    const tableData = [ 
+    const tableData = (confs == "" ? [ 
       GenericTableOps.buildTextRow(<i>Top 25 + 1</i>, "small text-center") 
     ].concat(_.take(mainTable, 26).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
@@ -258,9 +262,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       GenericTableOps.buildTextRow(<i>Autobids / AD on Selection Committee / Maybe Next Year</i>, "small text-center") 
     ]).concat(_.drop(mainTable, 55).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-    )).concat([ 
-        GenericTableOps.buildTextRow(<i>Teams with too few games</i>, "small text-center") 
-    ]).concat(
+    )) : mainTable.map( // (if filtering by conf just show them all)
+      t => GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )).concat(tooFewGames.length > 0 ? [ 
+      GenericTableOps.buildTextRow(<i>Teams with too few games</i>, "small text-center") 
+    ] : []).concat(
       tooFewGames.map(t =>
         GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
       )
@@ -275,7 +281,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const domPicker = (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minDom, 0, mutableLimitState.maxDom])(val.value).toString();
     const timePicker = (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minTime, 0, mutableLimitState.maxTime])(val.value).toString();
 
-    const teamLeaderboard = {
+    const teamLeaderboard = _.omit({
       "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
       "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
       "rankDiff": GenericTableOps.addDataCol(<b>&Delta;</b>, "The difference vs pinned rank", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
@@ -293,7 +299,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias - weight last 30d more", timePicker),
       "sep5": GenericTableOps.addColSeparator(),
       "games": GenericTableOps.addIntCol("Games", "Number of games played", GenericTableOps.defaultColorPicker),
-    };
+    }, anyPinDeltas ? [] : [ "rankDiff" ]);
   
     return <GenericTable
       tableCopyId="teamLeaderboardTable"
@@ -333,6 +339,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     setPinnedWaeWeight(waeWeight);
     setPinnedQualityWeight(qualityWeight);
     setPinnedDomWeight(dominanceWeight);
+    setPinnedTimeWeight(timeWeight);
+
     setPinnedRankings(_.chain(currentTable).map(t => [t.titleStr as string, t.rankNum as number]).fromPairs().value());
   };
 
@@ -340,7 +348,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   const getPinButton = () => {
     const toPct = (s: number) => (s*100).toFixed(0) + "%";
     const tooltip = (
-      <Tooltip id="pinTooltip">Pins rankings for selected weightings<br/>(current: WAB=[{toPct(pinnedWabWeight)}] WAE=[{toPct(pinnedWaeWeight)}] Quality=[{toPct(pinnedQualityWeight)}], Dominance=[{toPct(pinnedDomWeight)}])</Tooltip>
+      <Tooltip id="pinTooltip">Pins rankings for selected weightings<br/>(current: WAB=[{toPct(pinnedWabWeight)}] WAE=[{toPct(pinnedWaeWeight)}] Quality=[{toPct(pinnedQualityWeight)}], Dominance=[{toPct(pinnedDomWeight)}], Recency=[{toPct(pinnedTimeWeight)}])</Tooltip>
     );
     return <OverlayTrigger placement="auto" overlay={tooltip}>
       <Button onClick={onPinWeights} className="float-left" id={`pinWeights_teamLeaderboard`} variant="outline-secondary" size="sm">
@@ -350,13 +358,17 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   };
 
   const onRestoreToDefault = (ev: any) => {
-    setWabWeight(1.0);
-    setWaeWeight(0.15);
-    setQualityWeight(0.3);
-    setPinnedWabWeight(1.0);
-    setPinnedWaeWeight(0.15);
-    setPinnedQualityWeight(0.3);
-    setDominanceWeight(0.25);
+    setWabWeight(ParamDefaults.defaultTeamLboardWabWeight);
+    setPinnedWabWeight(ParamDefaults.defaultTeamLboardWabWeight);
+    setWaeWeight(ParamDefaults.defaultTeamLboardWaeWeight);
+    setPinnedWaeWeight(ParamDefaults.defaultTeamLboardWaeWeight);
+    setQualityWeight(ParamDefaults.defaultTeamLboardQualityWeight);
+    setPinnedQualityWeight(ParamDefaults.defaultTeamLboardQualityWeight);
+    setDominanceWeight(ParamDefaults.defaultTeamLboardDomWeight);
+    setPinnedDomWeight(ParamDefaults.defaultTeamLboardDomWeight);
+    setTimeWeight(ParamDefaults.defaultTeamLboardTimeWeight);
+    setPinnedTimeWeight(ParamDefaults.defaultTeamLboardTimeWeight);
+
     setPinnedRankings({});
   }
 
@@ -563,9 +575,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         </Col>
         <Col xs={11}>
         <Row>
-        <Col lg={2}>
+        <Col xs={2}>
         </Col>
-        <Col lg={4}>
+        <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
               <Form.Label><small>How big a bonus to give dominant teams [<b>{(dominanceWeight*100).toFixed(0)}</b>%]</small></Form.Label>
@@ -582,7 +594,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             </Form.Group>
           </Form>          
         </Col>
-        <Col lg={4}>
+        <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
               <Form.Label><small>Recency bias (weight last 30d more) [<b>{(timeWeight*100).toFixed(0)}</b>%]</small></Form.Label>

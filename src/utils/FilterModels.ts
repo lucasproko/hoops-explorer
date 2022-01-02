@@ -160,16 +160,18 @@ export type PlayerLeaderboardParams = {
 export type TeamLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  tier?: string,  //All, High, Medium, Low
   conf?: string, //(undefined ==> all conferences)
-  // Filtering:
-  filter?: string,
   // Lots of settings:
   qualityWeight?: number,
+  pinQualityWeight?: number,
   wabWeight?: number,
+  pinWabWeight?: number,
   waeWeight?: number,
+  pinWaeWeight?: number,
   domWeight?: number,
-  recencyWeight?: number
+  pinDomWeight?: number,
+  timeWeight?: number
+  pinTimeWeight?: number
 };
 
 
@@ -243,11 +245,17 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardMaxTableSize = "100";
   static defaultPlayerLboardSortBy(useRapm: boolean, factorMins: boolean) {
     return useRapm ? (factorMins ? "desc:diff_adj_rapm_prod" : "desc:diff_adj_rapm") : (factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg");
-  }
+  }  
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;
   static readonly defaultPlayerLboardUseRapm = true;
+  // Team leaderboard
+  static readonly defaultTeamLboardQualityWeight = 0.3;
+  static readonly defaultTeamLboardDomWeight = 0.25;
+  static readonly defaultTeamLboardWabWeight = 1.0;
+  static readonly defaultTeamLboardWaeWeight = 0.15;
+  static readonly defaultTeamLboardTimeWeight = 0.0;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";
