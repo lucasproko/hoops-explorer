@@ -344,7 +344,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const qualPicker = (val: { value: number }, valMeta: string) => CbbColors.getRedToGreen().domain([mutableLimitState.minQual, 0, mutableLimitState.maxQual])(val.value).toString();
     const totalPicker = (val: { value: number }, valMeta: string) => CbbColors.getRedToGreen().domain([mutableLimitState.minTotal, 0, mutableLimitState.maxTotal])(val.value).toString();
     const domPicker = (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minDom, 0, mutableLimitState.maxDom])(val.value).toString();
-    const timePicker = (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minTime, 0, mutableLimitState.maxTime])(val.value).toString();
+    const timePicker = (mutableLimitState.maxTime == 0) ?
+      GenericTableOps.defaultColorPicker : 
+      (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minTime, 0, mutableLimitState.maxTime])(val.value).toString();
 
     const teamLeaderboard = _.omit({
       "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
@@ -523,12 +525,23 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
     }) : (dataEvent?.confs || []);
 
+  // Handle slicker slider dragging
+
+  const [ tmpWabWeight, setTmpWabWeight ] = useState(undefined as number | undefined);
+  const [ tmpWaeWeight, setTmpWaeWeight ] = useState(undefined as number | undefined);
+  const [ tmpQualityWeight, setTmpQualityWeight ] = useState(undefined as number | undefined);
+  const [ tmpDomWeight, setTmpDomWeight ] = useState(undefined as number | undefined);
+  const [ tmpTimeWeight, setTmpTimeWeight ] = useState(undefined as number | undefined);
+
+  const onMouseDown = () => {
+    setLoadingOverride(true);
+  };
+  const onMouseUp = (setter: () => void) => {
+    setLoadingOverride(false);
+    setter();
+  };
+
   return <Container>
-    <LoadingOverlay
-      active={needToLoadQuery()}
-      spinner
-      text={"Loading Team Leaderboard..."}
-    >
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 10}}>
           <Select
@@ -537,7 +550,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
               (gender) => stringToOption(gender)
             )}
             isSearchable={false}
-            onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
+            onChange={(option) => { if ((option as any)?.value) {
+              setPinnedRankings({});
+              setGender((option as any).value);
+            }}}
           />
         </Col>
         <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 10}}>
@@ -545,12 +561,15 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             value={stringToOption(year)}
             options={
               (
-                ["2020/21"]
+                ["2020/21", "2021/22"]
               ).concat(tier == "High" ? ["Extra"] : []).map(
                 (r) => stringToOption(r)
               )}
             isSearchable={false}
-            onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
+            onChange={(option) => { if ((option as any)?.value) {
+              setPinnedRankings({});
+              setYear((option as any).value);
+            }}}
           />
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
@@ -583,15 +602,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>How much you weight W-L record [<b>{(wabWeight*100).toFixed(0)}</b>%]</small></Form.Label>
+              <Form.Label><small>How much you weight W-L record [
+                {_.isNil(tmpWabWeight) ? <b>{(wabWeight*100).toFixed(0)}</b> : <i>{(tmpWabWeight*100).toFixed(0)}</i>}
+                %]</small></Form.Label>
               <Form.Control type="range" custom 
-                value={wabWeight}
-                onChange={(changeEvent: any) => {
-                  const newVal = parseFloat(changeEvent.target.value);
-                  setWabWeight(newVal);
+                value={_.isNil(tmpWabWeight) ? wabWeight : tmpWabWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpWabWeight)) onMouseDown();
+                  setTmpWabWeight(newVal);
                 }}
-                onMouseDown={(ev:any) => console.log("down?")}
-                onMouseUp={(ev:any) => console.log("up?")}
+                onClick={(ev: any) => onMouseUp(() => {
+                  const newVal = parseFloat(ev.target.value);
+                  setWabWeight(newVal);
+                  setTmpWabWeight(undefined);
+                }) }
+                onMouseUp={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpWabWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setWabWeight(newVal);
+                    setTmpWabWeight(undefined);
+                  }
+                }) }
                 min={0}
                 max={1}
                 step={0.05}
@@ -684,10 +716,15 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       </Row>
       <Row className="mt-2" style={{zIndex: 0 }}>
         <Col style={{ paddingLeft: "5px", paddingRight: "5px", zIndex: 0 }}>
+              <LoadingOverlay
+            active={needToLoadQuery()}
+            spinner
+            text={"Loading/Calculating Team Leaderboard..."}
+          >
           {table}
+          </LoadingOverlay>
         </Col>
       </Row>
-    </LoadingOverlay>
   </Container>;
 };
 export default TeamLeaderboardTable;

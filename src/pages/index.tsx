@@ -68,7 +68,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState(dataEventInit);
   const [ dataSubEvent, setDataSubEvent ] = useState({ teams: [], confs: [], lastUpdated: 0 } as TeamLeaderboardStatsModel);
-  const [ currYear, setCurrYear ] = useState("2020/21"); //TODO: remove this once ready to use current year
+  const [ currYear, setCurrYear ] = useState(ParamDefaults.defaultLeaderboardYear); 
   const [ currGender, setCurrGender ] = useState("Men");
 
   // Game filter
