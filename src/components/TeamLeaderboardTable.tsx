@@ -417,13 +417,16 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   };
 
   const onPinWeights = (ev: any) => {
-    setPinnedWabWeight(wabWeight);
-    setPinnedWaeWeight(waeWeight);
-    setPinnedQualityWeight(qualityWeight);
-    setPinnedDomWeight(dominanceWeight);
-    setPinnedTimeWeight(timeWeight);
+    friendlyChange(() => {
+      setPinnedWabWeight(wabWeight);
+      setPinnedWaeWeight(waeWeight);
+      setPinnedQualityWeight(qualityWeight);
+      setPinnedDomWeight(dominanceWeight);
+      setPinnedTimeWeight(timeWeight);
 
-    setPinnedRankings(_.chain(currentTable).map(t => [t.titleStr as string, t.rankNum as number]).fromPairs().value());
+      setPinnedRankings(_.chain(currentTable).map(t => [t.titleStr as string, t.rankNum as number]).fromPairs().value());
+      setLoadingOverride(false);
+    }, true, 50);
   };
 
   /** Copy to clipboard button */
@@ -440,18 +443,21 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   };
 
   const onRestoreToDefault = (ev: any) => {
-    setWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
-    setPinnedWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
-    setWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
-    setPinnedWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
-    setQualityWeight(parseFloat(ParamDefaults.defaultTeamLboardQualityWeight));
-    setPinnedQualityWeight(parseFloat(ParamDefaults.defaultTeamLboardQualityWeight));
-    setDominanceWeight(parseFloat(ParamDefaults.defaultTeamLboardDomWeight));
-    setPinnedDomWeight(parseFloat(ParamDefaults.defaultTeamLboardDomWeight));
-    setTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
-    setPinnedTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
+    friendlyChange(() => {
+      setWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
+      setPinnedWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
+      setWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
+      setPinnedWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
+      setQualityWeight(parseFloat(ParamDefaults.defaultTeamLboardQualityWeight));
+      setPinnedQualityWeight(parseFloat(ParamDefaults.defaultTeamLboardQualityWeight));
+      setDominanceWeight(parseFloat(ParamDefaults.defaultTeamLboardDomWeight));
+      setPinnedDomWeight(parseFloat(ParamDefaults.defaultTeamLboardDomWeight));
+      setTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
+      setPinnedTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
 
-    setPinnedRankings({});
+      setPinnedRankings({});
+      setLoadingOverride(false);
+    }, true, 50);
   }
 
   const getRestoreToDefault = () => {
@@ -673,6 +679,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                   setWaeWeight(newVal);
                   setTmpWaeWeight(undefined);
                 }) }
+                onTouchEnd={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpWaeWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setWaeWeight(newVal);
+                    setTmpWaeWeight(undefined);
+                  }
+                }) }
                 onMouseUp={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpWaeWeight)) {
                     const newVal = parseFloat(ev.target.value);
@@ -704,6 +717,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                   const newVal = parseFloat(ev.target.value);
                   setQualityWeight(newVal);
                   setTmpQualityWeight(undefined);
+                }) }
+                onTouchEnd={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpQualityWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setQualityWeight(newVal);
+                    setTmpQualityWeight(undefined);
+                  }
                 }) }
                 onMouseUp={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpQualityWeight)) {
@@ -746,6 +766,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                   setDominanceWeight(newVal);
                   setTmpDomWeight(undefined);
                 }) }
+                onTouchEnd={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpDomWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setDominanceWeight(newVal);
+                    setTmpDomWeight(undefined);
+                  }
+                }) }
                 onMouseUp={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpDomWeight)) {
                     const newVal = parseFloat(ev.target.value);
@@ -777,6 +804,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                   const newVal = parseFloat(ev.target.value);
                   setTimeWeight(newVal);
                   setTmpTimeWeight(undefined);
+                }) }
+                onTouchEnd={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpTimeWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setTimeWeight(newVal);
+                    setTmpTimeWeight(undefined);
+                  }
                 }) }
                 onMouseUp={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpTimeWeight)) {
