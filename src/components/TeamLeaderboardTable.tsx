@@ -94,11 +94,22 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
 
-  const [ wabWeight, setWabWeight ] = useState(1.0);
-  const [ waeWeight, setWaeWeight ] = useState(0.15);
-  const [ qualityWeight, setQualityWeight ] = useState(0.3);
-  const [ dominanceWeight, setDominanceWeight ] = useState(0.25);
-  const [ timeWeight, setTimeWeight ] = useState(0.0);
+  const [ wabWeight, setWabWeight ] = useState(!_.isNil(startingState.wabWeight) ? 
+    startingState.wabWeight : ParamDefaults.defaultTeamLboardWabWeight
+  );
+  const [ waeWeight, setWaeWeight ] = useState(!_.isNil(startingState.waeWeight) ? 
+    startingState.waeWeight : ParamDefaults.defaultTeamLboardWaeWeight
+  );
+  const [ qualityWeight, setQualityWeight ] = useState(!_.isNil(startingState.qualityWeight) ? 
+    startingState.qualityWeight : ParamDefaults.defaultTeamLboardQualityWeight
+  );
+  const [ dominanceWeight, setDominanceWeight ] = useState(!_.isNil(startingState.domWeight) ? 
+    startingState.domWeight : ParamDefaults.defaultTeamLboardDomWeight
+  );
+  const [ timeWeight, setTimeWeight ] = useState(!_.isNil(startingState.timeWeight) ? 
+    startingState.timeWeight : ParamDefaults.defaultTeamLboardTimeWeight
+  );
+
   const [ pinnedWabWeight, setPinnedWabWeight ] = useState(wabWeight);
   const [ pinnedWaeWeight, setPinnedWaeWeight ] = useState(waeWeight);
   const [ pinnedQualityWeight, setPinnedQualityWeight ] = useState(qualityWeight);
@@ -107,6 +118,22 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   const [ pinnedRankings, setPinnedRankings ] = useState({} as Record<string, number>);
   const [ currentTable, setCurrentTable ] = useState({} as Array<any>);
+
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
+    const newState: TeamLeaderboardParams = {
+      ...startingState,
+      wabWeight, waeWeight, qualityWeight, domWeight: dominanceWeight, timeWeight,
+      pinWabWeight: pinnedWabWeight, pinWaeWeight: pinnedWaeWeight, pinQualityWeight: pinnedQualityWeight, 
+      pinDomWeight: pinnedDomWeight, pinTimeWeight: pinnedTimeWeight,
+      conf: confs, gender: gender, year: year,
+    };
+    onChangeState(newState);
+  }, [ 
+    wabWeight, waeWeight, qualityWeight, dominanceWeight, timeWeight,
+    pinnedWabWeight, pinnedWaeWeight, pinnedQualityWeight, pinnedDomWeight,pinnedTimeWeight,
+    confs, year, gender 
+  ]);
+
 
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
