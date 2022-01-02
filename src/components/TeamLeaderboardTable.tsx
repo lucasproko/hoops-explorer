@@ -634,13 +634,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>... W-L but compared to elite teams [<b>{(waeWeight*100).toFixed(0)}</b>%]</small></Form.Label>
+              <Form.Label><small>... W-L but compared to elite teams [
+                {_.isNil(tmpWaeWeight) ? <b>{(waeWeight*100).toFixed(0)}</b> : <i>{(tmpWaeWeight*100).toFixed(0)}</i>}
+                %]</small></Form.Label>
               <Form.Control type="range" custom 
-                value={waeWeight}
-                onChange={(changeEvent: any) => {
-                  const newVal = parseFloat(changeEvent.target.value);
-                  setWaeWeight(newVal);
+                value={_.isNil(tmpWaeWeight) ? waeWeight : tmpWaeWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpWaeWeight)) onMouseDown();
+                  setTmpWaeWeight(newVal);
                 }}
+                onClick={(ev: any) => onMouseUp(() => {
+                  const newVal = parseFloat(ev.target.value);
+                  setWaeWeight(newVal);
+                  setTmpWaeWeight(undefined);
+                }) }
+                onMouseUp={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpWaeWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setWaeWeight(newVal);
+                    setTmpWaeWeight(undefined);
+                  }
+                }) }
                 min={0}
                 max={1}
                 step={0.05}
@@ -651,13 +666,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>How much you weight a team's efficiency [<b>{(qualityWeight*100).toFixed(0)}</b>%]</small></Form.Label>
+              <Form.Label><small>How much you weight a team's efficiency [
+                {_.isNil(tmpQualityWeight) ? <b>{(qualityWeight*100).toFixed(0)}</b> : <i>{(tmpQualityWeight*100).toFixed(0)}</i>}
+                %]</small></Form.Label>
               <Form.Control type="range" custom 
-                value={qualityWeight}
-                onChange={(changeEvent: any) => {
-                  const newVal = parseFloat(changeEvent.target.value);
-                  setQualityWeight(newVal);
+                value={_.isNil(tmpQualityWeight) ? qualityWeight : tmpQualityWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpQualityWeight)) onMouseDown();
+                  setTmpQualityWeight(newVal);
                 }}
+                onClick={(ev: any) => onMouseUp(() => {
+                  const newVal = parseFloat(ev.target.value);
+                  setQualityWeight(newVal);
+                  setTmpQualityWeight(undefined);
+                }) }
+                onMouseUp={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpQualityWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setQualityWeight(newVal);
+                    setTmpQualityWeight(undefined);
+                  }
+                }) }
                 min={0}
                 max={1}
                 step={0.05}
@@ -677,13 +707,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>How big a bonus to give dominant teams [<b>{(dominanceWeight*100).toFixed(0)}</b>%]</small></Form.Label>
+              <Form.Label><small>How big a bonus to give dominant teams [
+                {_.isNil(tmpDomWeight) ? <b>{(dominanceWeight*100).toFixed(0)}</b> : <i>{(tmpDomWeight*100).toFixed(0)}</i>}
+                %]</small></Form.Label>
               <Form.Control type="range" custom 
-                value={dominanceWeight}
-                onChange={(changeEvent: any) => {
-                  const newVal = parseFloat(changeEvent.target.value);
-                  setDominanceWeight(newVal);
+                value={_.isNil(tmpDomWeight) ? dominanceWeight : tmpDomWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpDomWeight)) onMouseDown();
+                  setTmpDomWeight(newVal);
                 }}
+                onClick={(ev: any) => onMouseUp(() => {
+                  const newVal = parseFloat(ev.target.value);
+                  setDominanceWeight(newVal);
+                  setTmpDomWeight(undefined);
+                }) }
+                onMouseUp={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpDomWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setDominanceWeight(newVal);
+                    setTmpDomWeight(undefined);
+                  }
+                }) }
                 min={0}
                 max={1}
                 step={0.05}
@@ -694,13 +739,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>Recency bias (weight last 30d more) [<b>{(timeWeight*100).toFixed(0)}</b>%]</small></Form.Label>
+              <Form.Label><small>Recency bias (weight last 30d more) [
+                {_.isNil(tmpTimeWeight) ? <b>{(timeWeight*100).toFixed(0)}</b> : <i>{(tmpTimeWeight*100).toFixed(0)}</i>}
+                %]</small></Form.Label>
               <Form.Control type="range" custom 
-                value={timeWeight}
-                onChange={(changeEvent: any) => {
-                  const newVal = parseFloat(changeEvent.target.value);
-                  setTimeWeight(newVal);
+                value={_.isNil(tmpTimeWeight) ? timeWeight : tmpTimeWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpTimeWeight)) onMouseDown();
+                  setTmpTimeWeight(newVal);
                 }}
+                onClick={(ev: any) => onMouseUp(() => {
+                  const newVal = parseFloat(ev.target.value);
+                  setTimeWeight(newVal);
+                  setTmpTimeWeight(undefined);
+                }) }
+                onMouseUp={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpTimeWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setTimeWeight(newVal);
+                    setTmpTimeWeight(undefined);
+                  }
+                }) }
                 min={0}
                 max={1}
                 step={0.05}
