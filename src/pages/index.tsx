@@ -20,7 +20,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, TeamLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
+import { ParamPrefixes, TeamLeaderboardParams, ParamDefaults, GameFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamLeaderboardTable, { TeamLeaderboardStatsModel } from '../components/TeamLeaderboardTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
@@ -48,6 +48,14 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
+
+  // "/" used to be OnOffAnalyzer, but now it's team leaderboard ... handle redirecting old links
+  if ((allParams.indexOf("&team=") >= 0) || (allParams.indexOf("&team=") >= 0)) {
+    console.log(`(redirecting old link [${allParams}]`);
+    const newUrl = UrlRouting.getGameUrl(UrlRouting.removedSavedKeys(allParams) as GameFilterParams, {});
+    window.location.href = newUrl;
+    return <span>(redirecting old link)</span>;
+  }
 
   // Team Stats interface
 
