@@ -29,7 +29,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       common={
         Object {
           "gender": "Men",
-          "year": "2020/21",
+          "year": "2021/22",
         }
       }
       thisPage="game-_leaderboard"

@@ -248,10 +248,25 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             if (recentDelta < mutableLimitState.minTime) mutableLimitState.minTime = recentDelta;
           }
 
+          const teamTooltip = (
+            <Tooltip id={`team_${team.team_name}`}>Open new tab with detailed team and individual stats, plus on/off analysis</Tooltip>
+          );
+    
           // Build table entry
           const cell =  [ {
             titleStr: team.team_name,
-            title: team.team_name,
+            title: <OverlayTrigger placement="auto" overlay={teamTooltip}>
+              <a target="_blank" href={UrlRouting.getGameUrl({
+                minRank: "0",
+                maxRank: "400",
+                showRoster: true,
+                calcRapm: true,
+                showExpanded: true,
+                year: year,
+                gender: gender,
+                team: team.team_name
+              }, {})}><b>{team.team_name}</b></a>
+            </OverlayTrigger>,
             confStr: ConferenceToNickname[team.conf],
             conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
             rank: null as any,
@@ -543,7 +558,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   return <Container>
       <Form.Group as={Row}>
-        <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 10}}>
+        <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 12}}>
           <Select
             value={stringToOption(gender)}
             options={["Men", "Women"].map(
@@ -556,7 +571,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             }}}
           />
         </Col>
-        <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 10}}>
+        <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
           <Select
             value={stringToOption(year)}
             options={
