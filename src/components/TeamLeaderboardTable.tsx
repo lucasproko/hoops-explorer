@@ -84,7 +84,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   // Data source
   const [confs, setConfs] = useState(startingState.conf || "");
-  const [year, setYear] = useState(startingState.year || "2020/21"); //TODO remove once year sorted out
+  const [year, setYear] = useState(startingState.year || ParamDefaults.defaultLeaderboardYear);
   const [gender, setGender] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = (year == "Extra") || (year == "All");
 
