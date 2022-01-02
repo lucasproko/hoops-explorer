@@ -183,19 +183,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         if (!mutableDedupSet.has(team.team_name)) {
           mutableDedupSet.add(team.team_name);
 
+          const mutableGreatGames: Array<React.ReactNode> = [];
+          const mutableGoodGames: Array<React.ReactNode> = [];
+          const mutableBadGames: Array<React.ReactNode> = [];
+          const mutableTerribleGames: Array<React.ReactNode> = [];
           const [ wab, wae, sumDom, totalPoss, sumWab30d, sumWae30d, games30d ] = _.transform(team.opponents, (acc, o) => {
 
-            acc[0] = acc[0] + (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
+            const wab = (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
+            acc[0] = acc[0] + wab;
             acc[1] = acc[1] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
             const poss = 0.5*(o.off_poss + o.def_poss);
             acc[2] = acc[2] + poss*o.avg_lead;
             acc[3] = acc[3] + poss;
 
             if (o.date >= last30d) {
-              acc[4] = acc[4] + (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
+              acc[4] = acc[4] + wab;
               acc[5] = acc[5] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
               acc[6] = acc[6] + 1;
             }
+            if (wab > 0.6) mutableGreatGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
+            else if (wab > 0.5) mutableGoodGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
+            else if (wab <= -0.7) mutableTerribleGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
+            else if (wab <= -0.6) mutableBadGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
 
           }, [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]);
 
@@ -273,7 +282,14 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             rankDiff: null as any,
             rankNum: 0,
             rating: { value: total },
-            wab: { value: wab },
+            wab: { value: wab, 
+              extraInfo: <div>
+                <b>Great wins</b>: {mutableGreatGames.length > 0 ? <span>{mutableGreatGames}</span> : <i>none<br/></i>}<br/>
+                <b>Good wins</b>: {mutableGoodGames.length > 0 ? <span>{mutableGoodGames}</span> : <i>none<br/></i>}<br/>
+                <b>Bad losses</b>: {mutableBadGames.length > 0 ? <span>{mutableBadGames}</span> : <i>none<br/></i>}<br/>
+                <b>Awful losses</b>: {mutableTerribleGames.length > 0 ? <span>{mutableTerribleGames}</span> : <i>none<br/></i>}<br/>
+              </div>
+            },
             wae: { value: wae },
             quality: { value: quality },
             dominance: { value: qualityDiff },
