@@ -162,16 +162,16 @@ export type TeamLeaderboardParams = {
 } & {
   conf?: string, //(undefined ==> all conferences)
   // Lots of settings:
-  qualityWeight?: number,
-  pinQualityWeight?: number,
-  wabWeight?: number,
-  pinWabWeight?: number,
-  waeWeight?: number,
-  pinWaeWeight?: number,
-  domWeight?: number,
-  pinDomWeight?: number,
-  timeWeight?: number
-  pinTimeWeight?: number
+  qualityWeight?: string,
+  pinQualityWeight?: string,
+  wabWeight?: string,
+  pinWabWeight?: string,
+  waeWeight?: string,
+  pinWaeWeight?: string,
+  domWeight?: string,
+  pinDomWeight?: string,
+  timeWeight?: string
+  pinTimeWeight?: string
 };
 
 
@@ -251,11 +251,11 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardPossAsPct = true;
   static readonly defaultPlayerLboardUseRapm = true;
   // Team leaderboard
-  static readonly defaultTeamLboardQualityWeight = 0.3;
-  static readonly defaultTeamLboardDomWeight = 0.25;
-  static readonly defaultTeamLboardWabWeight = 1.0;
-  static readonly defaultTeamLboardWaeWeight = 0.15;
-  static readonly defaultTeamLboardTimeWeight = 0.0;
+  static readonly defaultTeamLboardQualityWeight = "0.3";
+  static readonly defaultTeamLboardDomWeight = "0.25";
+  static readonly defaultTeamLboardWabWeight = "1"; //(don't have decimal places for comparison with "" + 1.0)
+  static readonly defaultTeamLboardWaeWeight = "0.15";
+  static readonly defaultTeamLboardTimeWeight = "0"; //(don't have decimal places for comparison with "" + 0.0)
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

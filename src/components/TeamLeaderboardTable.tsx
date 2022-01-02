@@ -95,26 +95,36 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   const [loadingOverride, setLoadingOverride] = useState(false);
 
   const [ wabWeight, setWabWeight ] = useState(!_.isNil(startingState.wabWeight) ? 
-    startingState.wabWeight : ParamDefaults.defaultTeamLboardWabWeight
+    parseFloat(startingState.wabWeight) : parseFloat(ParamDefaults.defaultTeamLboardWabWeight)
   );
   const [ waeWeight, setWaeWeight ] = useState(!_.isNil(startingState.waeWeight) ? 
-    startingState.waeWeight : ParamDefaults.defaultTeamLboardWaeWeight
+   parseFloat(startingState.waeWeight) : parseFloat(ParamDefaults.defaultTeamLboardWaeWeight)
   );
   const [ qualityWeight, setQualityWeight ] = useState(!_.isNil(startingState.qualityWeight) ? 
-    startingState.qualityWeight : ParamDefaults.defaultTeamLboardQualityWeight
+    parseFloat(startingState.qualityWeight) : parseFloat(ParamDefaults.defaultTeamLboardQualityWeight)
   );
   const [ dominanceWeight, setDominanceWeight ] = useState(!_.isNil(startingState.domWeight) ? 
-    startingState.domWeight : ParamDefaults.defaultTeamLboardDomWeight
+    parseFloat(startingState.domWeight) : parseFloat(ParamDefaults.defaultTeamLboardDomWeight)
   );
   const [ timeWeight, setTimeWeight ] = useState(!_.isNil(startingState.timeWeight) ? 
-    startingState.timeWeight : ParamDefaults.defaultTeamLboardTimeWeight
+    parseFloat(startingState.timeWeight) : parseFloat(ParamDefaults.defaultTeamLboardTimeWeight)
   );
 
-  const [ pinnedWabWeight, setPinnedWabWeight ] = useState(wabWeight);
-  const [ pinnedWaeWeight, setPinnedWaeWeight ] = useState(waeWeight);
-  const [ pinnedQualityWeight, setPinnedQualityWeight ] = useState(qualityWeight);
-  const [ pinnedDomWeight, setPinnedDomWeight ] = useState(dominanceWeight);
-  const [ pinnedTimeWeight, setPinnedTimeWeight ] = useState(timeWeight);
+  const [ pinnedWabWeight, setPinnedWabWeight ] = useState(!_.isNil(startingState.pinWabWeight) ?
+    parseFloat(startingState.pinWabWeight) : wabWeight
+  );
+  const [ pinnedWaeWeight, setPinnedWaeWeight ] = useState(!_.isNil(startingState.pinWaeWeight) ?
+    parseFloat(startingState.pinWaeWeight) : waeWeight
+  );
+  const [ pinnedQualityWeight, setPinnedQualityWeight ] = useState(!_.isNil(startingState.pinQualityWeight) ?
+    parseFloat(startingState.pinQualityWeight) : qualityWeight
+  );
+  const [ pinnedDomWeight, setPinnedDomWeight ] = useState(!_.isNil(startingState.pinDomWeight) ?
+   parseFloat(startingState.pinDomWeight) : dominanceWeight
+  );
+  const [ pinnedTimeWeight, setPinnedTimeWeight ] = useState(!_.isNil(startingState.pinTimeWeight) ?
+   parseFloat(startingState.pinTimeWeight) : timeWeight
+  );
 
   const [ pinnedRankings, setPinnedRankings ] = useState({} as Record<string, number>);
   const [ currentTable, setCurrentTable ] = useState({} as Array<any>);
@@ -122,9 +132,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState: TeamLeaderboardParams = {
       ...startingState,
-      wabWeight, waeWeight, qualityWeight, domWeight: dominanceWeight, timeWeight,
-      pinWabWeight: pinnedWabWeight, pinWaeWeight: pinnedWaeWeight, pinQualityWeight: pinnedQualityWeight, 
-      pinDomWeight: pinnedDomWeight, pinTimeWeight: pinnedTimeWeight,
+      wabWeight: "" + wabWeight, waeWeight: "" + waeWeight, qualityWeight: "" + qualityWeight, 
+      domWeight: "" + dominanceWeight, timeWeight: "" + timeWeight,
+      pinWabWeight: "" + pinnedWabWeight, pinWaeWeight: "" + pinnedWaeWeight, pinQualityWeight: "" + pinnedQualityWeight, 
+      pinDomWeight: "" + pinnedDomWeight, pinTimeWeight: "" + pinnedTimeWeight,
       conf: confs, gender: gender, year: year,
     };
     onChangeState(newState);
@@ -159,114 +170,141 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       maxTime: -1000,
       minTime: 1000,
     };
-
-    const mutableDedupSet = new Set() as Set<string>;
     var anyPinDeltas = false;
-    const tableDataTmp = _.chain(dataEvent.teams || []).flatMap(team => {
-      if (!mutableDedupSet.has(team.team_name)) {
-        mutableDedupSet.add(team.team_name);
 
-        const [ wab, wae, sumDom, totalPoss, sumWab30d, sumWae30d, games30d ] = _.transform(team.opponents, (acc, o) => {
+    /** If buildPin then don't do any mutable operations */
+    const buildTable = (buildPin: boolean, 
+      qualityWeightIn: number, wabWeightIn: number, waeWeightIn: number, domWeightIn: number, timeWeightIn: number,
+      pinnedRankingsIn: Record<string, number>
+    ) => {
 
-          acc[0] = acc[0] + (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
-          acc[1] = acc[1] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
-          const poss = 0.5*(o.off_poss + o.def_poss);
-          acc[2] = acc[2] + poss*o.avg_lead;
-          acc[3] = acc[3] + poss;
+      const mutableDedupSet = new Set() as Set<string>;
+      const tableDataTmp = _.chain(dataEvent.teams || []).flatMap(team => {
+        if (!mutableDedupSet.has(team.team_name)) {
+          mutableDedupSet.add(team.team_name);
 
-          if (o.date >= last30d) {
-            acc[4] = acc[4] + (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
-            acc[5] = acc[5] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
-            acc[6] = acc[6] + 1;
+          const [ wab, wae, sumDom, totalPoss, sumWab30d, sumWae30d, games30d ] = _.transform(team.opponents, (acc, o) => {
+
+            acc[0] = acc[0] + (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
+            acc[1] = acc[1] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
+            const poss = 0.5*(o.off_poss + o.def_poss);
+            acc[2] = acc[2] + poss*o.avg_lead;
+            acc[3] = acc[3] + poss;
+
+            if (o.date >= last30d) {
+              acc[4] = acc[4] + (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
+              acc[5] = acc[5] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
+              acc[6] = acc[6] + 1;
+            }
+
+          }, [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]);
+
+          const avDominance = sumDom / (totalPoss || 1);
+          const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
+            team.adj_off, team.adj_def, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
+          );
+          const effectOfDom = 1.5*0.1*avDominance; //3pts per 10pts avg lead is the NBA stat
+          const expWinPctVsBubbleIncDom = TeamEvalUtils.calcWinsAbove(
+            team.adj_off + effectOfDom, team.adj_def - effectOfDom, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
+          );
+          const totalWeight = (wabWeightIn + waeWeightIn + qualityWeightIn) || 1;
+
+          const recentOffDelta = team.adj_off_calc_30d - team.adj_off;
+          const recentDefDelta = team.adj_def_calc_30d - team.adj_def;
+          const expWinPctVsBubbleRecentIncDom = TeamEvalUtils.calcWinsAbove(
+            team.adj_off + recentOffDelta, team.adj_def + recentDefDelta, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
+          );
+
+          // Build cell entries
+          const qualityNoDom = (expWinPctVsBubble - 0.5)*gameBasis;
+          const qualityIncDom = (expWinPctVsBubbleIncDom - 0.5)*gameBasis;
+          const qualityDiff = qualityIncDom - qualityNoDom;
+          const quality = qualityNoDom + domWeightIn*qualityDiff;
+          const games = team.opponents.length;
+          const factor = (games > 0.5*gameBasis) ?  (gameBasis/games) : 1;
+
+          const recentGameBasis = (games30d > 0) ? 14 : 0; //(empirically chosen, i started with 7 games in 30d, then doubled it to make it look more pleasing!)
+          const recentWabDelta = recentGameBasis*(sumWab30d/(games30d || 1) - (wab/(games || 1)));
+          const recentWaeDelta = recentGameBasis*(sumWae30d/(games30d || 1) - (wae/(games || 1)));
+          const recentQualityDelta = recentGameBasis*(expWinPctVsBubbleRecentIncDom - expWinPctVsBubbleIncDom);
+          const recentDelta = 
+            (wabWeightIn*recentWabDelta + waeWeightIn*recentWaeDelta + qualityWeightIn*recentQualityDelta)/(totalWeight || 1);
+
+          const total = ((wab*wabWeightIn + wae*waeWeightIn)*factor + quality*qualityWeightIn)/totalWeight + timeWeightIn*recentDelta;
+
+          // Update min/max:
+          if (!buildPin) {
+            if (wab > mutableLimitState.maxWab) mutableLimitState.maxWab = wab;
+            if (wab < mutableLimitState.minWab) mutableLimitState.minWab = wab;
+            if (wae > mutableLimitState.maxWae) mutableLimitState.maxWae = wae;
+            if (wae < mutableLimitState.minWae) mutableLimitState.minWae = wae;
+            if (quality > mutableLimitState.maxQual) mutableLimitState.maxQual = quality;
+            if (quality < mutableLimitState.minQual) mutableLimitState.minQual = quality;
+            if (total > mutableLimitState.maxTotal) mutableLimitState.maxTotal = total;
+            if (total < mutableLimitState.minTotal) mutableLimitState.minTotal = total;
+            if (qualityDiff > mutableLimitState.maxDom) mutableLimitState.maxDom = qualityDiff;
+            if (qualityDiff < mutableLimitState.minDom) mutableLimitState.minDom = qualityDiff;
+            if (recentDelta > mutableLimitState.maxTime) mutableLimitState.maxTime = recentDelta;
+            if (recentDelta < mutableLimitState.minTime) mutableLimitState.minTime = recentDelta;
           }
 
-        }, [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]);
+          // Build table entry
+          const cell =  [ {
+            titleStr: team.team_name,
+            title: team.team_name,
+            confStr: ConferenceToNickname[team.conf],
+            conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
+            rank: null as any,
+            rankDiff: null as any,
+            rankNum: 0,
+            rating: { value: total },
+            wab: { value: wab },
+            wae: { value: wae },
+            quality: { value: quality },
+            dominance: { value: qualityDiff },
+            recency: { value: recentDelta },
+            games: { value: games }
+          } ];
+          return cell;
 
-        const avDominance = sumDom / (totalPoss || 1);
-        const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
-          team.adj_off, team.adj_def, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
-        );
-        const effectOfDom = 1.5*0.1*avDominance; //3pts per 10pts avg lead is the NBA stat
-        const expWinPctVsBubbleIncDom = TeamEvalUtils.calcWinsAbove(
-          team.adj_off + effectOfDom, team.adj_def - effectOfDom, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
-        );
-        const totalWeight = (wabWeight + waeWeight + qualityWeight) || 1;
+        } else return [];
+      }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {
+        t.rank = <small><b>{i + 1}</b></small>;
+        t.rankNum = i + 1;
+        const pinnedRank = pinnedRankingsIn[t.titleStr] || -1;
+        if (pinnedRank > 0) {
+          const delta = pinnedRank - i - 1;
+          t.rankDiff = (delta != 0) ? (
+            delta > 0 ? 
+              (<div><FontAwesomeIcon icon={faArrowAltCircleUp} style={{color:"green"}}/> {delta}</div>) :
+              (<div><FontAwesomeIcon icon={faArrowAltCircleDown} style={{color:"red"}}/> {-delta}</div>)  
+            ) : ""; 
+          if (!buildPin) anyPinDeltas = anyPinDeltas || (delta != 0);
+        }
+        return t;
+      }).value();
 
-        const recentOffDelta = team.adj_off_calc_30d - team.adj_off;
-        const recentDefDelta = team.adj_def_calc_30d - team.adj_def;
-        const expWinPctVsBubbleRecentIncDom = TeamEvalUtils.calcWinsAbove(
-          team.adj_off + recentOffDelta, team.adj_def + recentDefDelta, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
-        );
+      return tableDataTmp;
+    }
+    // On page load, if user has specified a pin!=actual state, pre-build the pinned rankings and use those
+    // to build the ranking diffs
+    const needToPrebuildPinnedRankings = 
+      (_.isEmpty(pinnedRankings) && (
+        (qualityWeight != pinnedQualityWeight) || (wabWeight != pinnedWabWeight) || (waeWeight != pinnedWaeWeight) ||
+        (dominanceWeight != pinnedDomWeight) || (timeWeight != pinnedTimeWeight)
+      ));
 
-        // Build cell entries
-        const qualityNoDom = (expWinPctVsBubble - 0.5)*gameBasis;
-        const qualityIncDom = (expWinPctVsBubbleIncDom - 0.5)*gameBasis;
-        const qualityDiff = qualityIncDom - qualityNoDom;
-        const quality = qualityNoDom + dominanceWeight*qualityDiff;
-        const games = team.opponents.length;
-        const factor = (games > 0.5*gameBasis) ?  (gameBasis/games) : 1;
+    const maybePrebuiltPinnedRankings = needToPrebuildPinnedRankings ? 
+      _.chain(buildTable(
+        true, pinnedQualityWeight, pinnedWabWeight, pinnedWaeWeight, pinnedDomWeight, pinnedTimeWeight, {}
+      )).map(t => [t.titleStr, t.rankNum]).fromPairs().value() : pinnedRankings;
+  
+    const tableDataTmp = buildTable(false, qualityWeight, wabWeight, waeWeight, dominanceWeight, timeWeight, maybePrebuiltPinnedRankings);
 
-        const recentGameBasis = (games30d > 0) ? 14 : 0; //(empirically chosen, i started with 7 games in 30d, then doubled it to make it look more pleasing!)
-        const recentWabDelta = recentGameBasis*(sumWab30d/(games30d || 1) - (wab/(games || 1)));
-        const recentWaeDelta = recentGameBasis*(sumWae30d/(games30d || 1) - (wae/(games || 1)));
-        const recentQualityDelta = recentGameBasis*(expWinPctVsBubbleRecentIncDom - expWinPctVsBubbleIncDom);
-        const recentDelta = 
-          (wabWeight*recentWabDelta + waeWeight*recentWaeDelta + qualityWeight*recentQualityDelta)/((totalWeight) || 1);
-
-       const total = ((wab*wabWeight + wae*waeWeight)*factor + quality*qualityWeight)/totalWeight + timeWeight*recentDelta;
-
-        // Update min/max:
-        if (wab > mutableLimitState.maxWab) mutableLimitState.maxWab = wab;
-        if (wab < mutableLimitState.minWab) mutableLimitState.minWab = wab;
-        if (wae > mutableLimitState.maxWae) mutableLimitState.maxWae = wae;
-        if (wae < mutableLimitState.minWae) mutableLimitState.minWae = wae;
-        if (quality > mutableLimitState.maxQual) mutableLimitState.maxQual = quality;
-        if (quality < mutableLimitState.minQual) mutableLimitState.minQual = quality;
-        if (total > mutableLimitState.maxTotal) mutableLimitState.maxTotal = total;
-        if (total < mutableLimitState.minTotal) mutableLimitState.minTotal = total;
-        if (qualityDiff > mutableLimitState.maxDom) mutableLimitState.maxDom = qualityDiff;
-        if (qualityDiff < mutableLimitState.minDom) mutableLimitState.minDom = qualityDiff;
-        if (recentDelta > mutableLimitState.maxTime) mutableLimitState.maxTime = recentDelta;
-        if (recentDelta < mutableLimitState.minTime) mutableLimitState.minTime = recentDelta;
-
-        // Build table entry
-        const cell =  [ {
-          titleStr: team.team_name,
-          title: team.team_name,
-          confStr: ConferenceToNickname[team.conf],
-          conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
-          rank: null as any,
-          rankDiff: null as any,
-          rankNum: 0,
-          rating: { value: total },
-          wab: { value: wab },
-          wae: { value: wae },
-          quality: { value: quality },
-          dominance: { value: qualityDiff },
-          recency: { value: recentDelta },
-          games: { value: games }
-        } ];
-        return cell;
-
-      } else return [];
-    }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {
-      t.rank = <small><b>{i + 1}</b></small>;
-      t.rankNum = i + 1;
-      const pinnedRank = pinnedRankings[t.titleStr] || -1;
-      if (pinnedRank > 0) {
-        const delta = pinnedRank - i - 1;
-        t.rankDiff = (delta != 0) ? (
-          delta > 0 ? 
-            (<div><FontAwesomeIcon icon={faArrowAltCircleUp} style={{color:"green"}}/> {delta}</div>) :
-            (<div><FontAwesomeIcon icon={faArrowAltCircleDown} style={{color:"red"}}/> {-delta}</div>)  
-          ) : ""; 
-        anyPinDeltas = anyPinDeltas || (delta != 0);
-      }
-      return t;
-    }).value();
-
-    if (_.isEmpty(pinnedRankings)) {
+    if (!needToPrebuildPinnedRankings && _.isEmpty(pinnedRankings)) {
       setPinnedRankings(_.chain(tableDataTmp).map(t => [t.titleStr, t.rankNum]).fromPairs().value())
+    } else if (needToPrebuildPinnedRankings) {
+      setPinnedRankings(maybePrebuiltPinnedRankings);
     }
     setCurrentTable(tableDataTmp);
 
@@ -385,16 +423,16 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   };
 
   const onRestoreToDefault = (ev: any) => {
-    setWabWeight(ParamDefaults.defaultTeamLboardWabWeight);
-    setPinnedWabWeight(ParamDefaults.defaultTeamLboardWabWeight);
-    setWaeWeight(ParamDefaults.defaultTeamLboardWaeWeight);
-    setPinnedWaeWeight(ParamDefaults.defaultTeamLboardWaeWeight);
-    setQualityWeight(ParamDefaults.defaultTeamLboardQualityWeight);
-    setPinnedQualityWeight(ParamDefaults.defaultTeamLboardQualityWeight);
-    setDominanceWeight(ParamDefaults.defaultTeamLboardDomWeight);
-    setPinnedDomWeight(ParamDefaults.defaultTeamLboardDomWeight);
-    setTimeWeight(ParamDefaults.defaultTeamLboardTimeWeight);
-    setPinnedTimeWeight(ParamDefaults.defaultTeamLboardTimeWeight);
+    setWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
+    setPinnedWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
+    setWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
+    setPinnedWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
+    setQualityWeight(parseFloat(ParamDefaults.defaultTeamLboardQualityWeight));
+    setPinnedQualityWeight(parseFloat(ParamDefaults.defaultTeamLboardQualityWeight));
+    setDominanceWeight(parseFloat(ParamDefaults.defaultTeamLboardDomWeight));
+    setPinnedDomWeight(parseFloat(ParamDefaults.defaultTeamLboardDomWeight));
+    setTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
+    setPinnedTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
 
     setPinnedRankings({});
   }
@@ -413,7 +451,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   /** This grovelling is needed to ensure that clipboard is only loaded client side */
   function initClipboard() {
     if (null == clipboard) {
-      var newClipboard = new ClipboardJS(`#copyLink_playerLeaderboard`, {
+      var newClipboard = new ClipboardJS(`#copyLink_teamLeaderboard`, {
         text: function (trigger) {
           return window.location.href;
         }

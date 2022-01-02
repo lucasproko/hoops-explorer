@@ -99,7 +99,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
       (rawParams.wabWeight == ParamDefaults.defaultTeamLboardWabWeight) ? [ `wabWeight` ]  : [],
       (rawParams.waeWeight == ParamDefaults.defaultTeamLboardWaeWeight) ? [ `waeWeight` ]  : [],
       (rawParams.domWeight == ParamDefaults.defaultTeamLboardDomWeight) ? [ `domWeight` ]  : [],
-      (rawParams.timeWeight == ParamDefaults.defaultTeamLboardDomWeight) ? [ `timeWeight` ]  : [],
+      (rawParams.timeWeight == ParamDefaults.defaultTeamLboardTimeWeight) ? [ `timeWeight` ]  : [],
 
       (rawParams.qualityWeight == rawParams.pinQualityWeight) ? [ `pinQualityWeight` ]  : [],
       (rawParams.wabWeight == rawParams.pinWabWeight) ? [ `pinWabWeight` ]  : [],
@@ -108,6 +108,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
       (rawParams.timeWeight == rawParams.pinTimeWeight) ? [ `pinTimeWeight` ]  : [],
 
     ]));
+
     if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
