@@ -49,6 +49,7 @@ import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
+import { temperature } from 'chroma-js';
 
 export type TeamLeaderboardStatsModel = {
   teams?: Array<TeamInfo>,
@@ -149,9 +150,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
 
+    const isSeasonFinished = getEndOfRegSeason(`${gender}_${year}`) != undefined;
     const last30d = 
-      ((getEndOfRegSeason(`${gender}_${year}`) || dataLastUpdated[`${gender}_${year}`] || new Date().getTime()) - (30*24*3600));
-
+      (getEndOfRegSeason(`${gender}_${year}`) || dataLastUpdated[`${gender}_${year}`] || ((new Date().getTime())/1000)) - 
+        (30*24*3600);
+    
     // Calculate a commmon set of games
     const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
     const gameBasis: number = gameArray.length > 0 ? Math.floor(mean(mode(gameArray.map(g => Math.floor(g)))) || 1) : 1;
@@ -187,26 +190,60 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           const mutableGoodGames: Array<React.ReactNode> = [];
           const mutableBadGames: Array<React.ReactNode> = [];
           const mutableTerribleGames: Array<React.ReactNode> = [];
-          const [ wab, wae, sumDom, totalPoss, sumWab30d, sumWae30d, games30d ] = _.transform(team.opponents, (acc, o) => {
+          const numOpponents = team.opponents.length;
+          const recencyWindow = 10;
+          type CalcState = {
+            wab: number, wae: number,
+            sumDom: number
+            sumWab10g: number, sumWae10g: number,
+            totalPoss: number, last10games: number, gamesInLast30d: number,
+            cupcakeWab: number, cupcakeWabGames: number,
+            cupcakeWae: number, cupcakeWaeGames: number,
+          }
+          const { wab, wae, 
+            sumWab10g, sumWae10g, 
+            sumDom, 
+            totalPoss, last10games, gamesInLast30d,
+            cupcakeWab, cupcakeWabGames, cupcakeWae, cupcakeWaeGames,
+          } = _.transform(team.opponents, (acc, o, ii) => {
 
             const wab = (o.team_scored > o.oppo_scored ? o.wab : o.wab - 1);
-            acc[0] = acc[0] + wab;
-            acc[1] = acc[1] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
+            acc.wab = acc.wab + wab;
+            acc.wae = acc.wae + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
             const poss = 0.5*(o.off_poss + o.def_poss);
-            acc[2] = acc[2] + poss*o.avg_lead;
-            acc[3] = acc[3] + poss;
+            acc.sumDom = acc.sumDom + poss*o.avg_lead;
+            acc.totalPoss = acc.totalPoss + poss;
 
+            if (ii >= (numOpponents - recencyWindow)) {
+              acc.sumWab10g = acc.sumWab10g + wab;
+              acc.sumWae10g = acc.sumWae10g + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
+              acc.last10games = acc.last10games + 1;
+            }
             if (o.date >= last30d) {
-              acc[4] = acc[4] + wab;
-              acc[5] = acc[5] + (o.team_scored > o.oppo_scored ? o.wae : o.wae - 1);
-              acc[6] = acc[6] + 1;
+              acc.gamesInLast30d = acc.gamesInLast30d + 1;
             }
             if (wab > 0.6) mutableGreatGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
             else if (wab > 0.5) mutableGoodGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
             else if (wab <= -0.7) mutableTerribleGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
             else if (wab <= -0.6) mutableBadGames.push(<div>{o.oppo_name}<sup>{o.location_type.substring(0, 1)}</sup></div>);
 
-          }, [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]);
+            // Find cupcakes that we can use to reduce games played to gameBasis
+            if ((numOpponents - acc.cupcakeWabGames > gameBasis) && (wab > 0) && (wab < 0.055)) {
+              acc.cupcakeWab = acc.cupcakeWab + wab;
+              acc.cupcakeWabGames = acc.cupcakeWabGames + 1;
+            }
+            if ((numOpponents - acc.cupcakeWaeGames > gameBasis) && (wae > 0) && (wae < 0.035)) {
+              acc.cupcakeWae = acc.cupcakeWae + wae;
+              acc.cupcakeWaeGames = acc.cupcakeWaeGames + 1;
+            }
+
+          }, { 
+            wab: 0, wae: 0, 
+            sumDom: 0,
+            sumWab10g: 0, sumWae10g: 0, 
+            totalPoss: 0, last10games: 0, gamesInLast30d: 0,
+            cupcakeWab: 0, cupcakeWabGames: 0, cupcakeWae: 0, cupcakeWaeGames: 0,
+          } as CalcState);
 
           const avDominance = sumDom / (totalPoss || 1);
           const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
@@ -216,37 +253,58 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           const expWinPctVsBubbleIncDom = TeamEvalUtils.calcWinsAbove(
             team.adj_off + effectOfDom, team.adj_def - effectOfDom, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
           );
-          const totalWeight = (wabWeightIn + waeWeightIn + qualityWeightIn) || 1;
 
-          const recentOffDelta = team.adj_off_calc_30d - team.adj_off;
-          const recentDefDelta = team.adj_def_calc_30d - team.adj_def;
           const expWinPctVsBubbleRecentIncDom = TeamEvalUtils.calcWinsAbove(
-            team.adj_off + recentOffDelta, team.adj_def + recentDefDelta, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
+            team.adj_off_calc_30d, team.adj_def_calc_30d, dataEvent.bubbleOffense || [], dataEvent.bubbleDefense || [], 0.0
           );
 
           // Build cell entries
-          const qualityNoDom = (expWinPctVsBubble - 0.5)*gameBasis;
+
+          // Base stats
+          const qualityNoDom = (expWinPctVsBubble - 0.5)*gameBasis; //(-0.5 to give win differential)
           const qualityIncDom = (expWinPctVsBubbleIncDom - 0.5)*gameBasis;
           const qualityDiff = qualityIncDom - qualityNoDom;
+          const baseWinPct =  expWinPctVsBubble + domWeightIn*(expWinPctVsBubbleIncDom - expWinPctVsBubble);
           const quality = qualityNoDom + domWeightIn*qualityDiff;
-          const games = team.opponents.length;
-          const factor = (games > 0.5*gameBasis) ?  (gameBasis/games) : 1;
+          const factor = (numOpponents > 0.5*gameBasis) ?  (gameBasis/numOpponents) : 1;
+          const cupcakeWabFactor = gameBasis/(numOpponents - cupcakeWabGames);
+          const cupcakeWaeFactor = gameBasis/(numOpponents - cupcakeWaeGames);
 
-          const recentGameBasis = (games30d > 0) ? 14 : 0; //(empirically chosen, i started with 7 games in 30d, then doubled it to make it look more pleasing!)
-          const recentWabDelta = recentGameBasis*(sumWab30d/(games30d || 1) - (wab/(games || 1)));
-          const recentWaeDelta = recentGameBasis*(sumWae30d/(games30d || 1) - (wae/(games || 1)));
-          const recentQualityDelta = recentGameBasis*(expWinPctVsBubbleRecentIncDom - expWinPctVsBubbleIncDom);
+          // Pro-rate to the mode number of games in D1
+          const proRatedWab = wab*factor;
+          const proRatedWae = wae*factor;
+          const proRatedCupcakeWab = (numOpponents - cupcakeWabGames) >= gameBasis ? (wab - cupcakeWab)*cupcakeWabFactor : proRatedWab;
+          const proRatedCupcakeWae = (numOpponents - cupcakeWaeGames) >= gameBasis ? (wae - cupcakeWae)*cupcakeWaeFactor : proRatedWae;
+          const gameAdjustedWab = Math.max(proRatedWab, proRatedCupcakeWab);
+          const gameAdjustedWae = Math.max(proRatedWae, proRatedCupcakeWae);
+
+          // Nightmare recency calcs
+          // At 100% we count the last 10 games double for resume (WAB/WAE) and the weight of the last 30d's effiency double
+
+          //(resume)
+          const wabWithFullRecencyBonus = gameBasis*(wab + sumWab10g)/((last10games + numOpponents) || 1);
+          const recentWabDelta = wabWithFullRecencyBonus - gameAdjustedWab;
+          const waeWithFullRecencyBonus = gameBasis*(wae + sumWae10g)/((last10games + numOpponents) || 1);
+          const recentWaeDelta = waeWithFullRecencyBonus - gameAdjustedWae;
+
+          //(quality)
+          const recentWinPctDelta = (expWinPctVsBubbleRecentIncDom - expWinPctVsBubbleIncDom);
+          const recentExpWin = baseWinPct + recentWinPctDelta;
+          const recencyQualityDenomInv = 1/((gamesInLast30d + gameBasis) || 1);
+          const qualityWithFullRecencyBonus = gameBasis*recencyQualityDenomInv*(quality + (recentExpWin - 0.5)*gamesInLast30d);
+          const recentQualityDelta = qualityWithFullRecencyBonus - quality;
+
           const recentDelta = 
-            (wabWeightIn*recentWabDelta + waeWeightIn*recentWaeDelta + qualityWeightIn*recentQualityDelta)/(totalWeight || 1);
+            (recentWabDelta + waeWeightIn*recentWaeDelta)*wabWeightIn + qualityWeightIn*recentQualityDelta;
 
-          const total = ((wab*wabWeightIn + wae*waeWeightIn)*factor + quality*qualityWeightIn)/totalWeight + timeWeightIn*recentDelta;
+          const total = ((gameAdjustedWab + gameAdjustedWae*waeWeightIn)*wabWeightIn + quality*qualityWeightIn) + timeWeightIn*recentDelta;
 
           // Update min/max:
           if (!buildPin) {
-            if (wab > mutableLimitState.maxWab) mutableLimitState.maxWab = wab;
-            if (wab < mutableLimitState.minWab) mutableLimitState.minWab = wab;
-            if (wae > mutableLimitState.maxWae) mutableLimitState.maxWae = wae;
-            if (wae < mutableLimitState.minWae) mutableLimitState.minWae = wae;
+            if (gameAdjustedWab > mutableLimitState.maxWab) mutableLimitState.maxWab = gameAdjustedWab;
+            if (gameAdjustedWab < mutableLimitState.minWab) mutableLimitState.minWab = gameAdjustedWab;
+            if (gameAdjustedWae > mutableLimitState.maxWae) mutableLimitState.maxWae = gameAdjustedWae;
+            if (gameAdjustedWae < mutableLimitState.minWae) mutableLimitState.minWae = gameAdjustedWae;
             if (quality > mutableLimitState.maxQual) mutableLimitState.maxQual = quality;
             if (quality < mutableLimitState.minQual) mutableLimitState.minQual = quality;
             if (total > mutableLimitState.maxTotal) mutableLimitState.maxTotal = total;
@@ -282,19 +340,30 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             rankDiff: null as any,
             rankNum: 0,
             rating: { value: total },
-            wab: { value: wab, 
+            wab: { value: gameAdjustedWab,  
               extraInfo: <div>
                 <b>Great wins</b>: {mutableGreatGames.length > 0 ? <span>{mutableGreatGames}</span> : <i>none<br/></i>}<br/>
                 <b>Good wins</b>: {mutableGoodGames.length > 0 ? <span>{mutableGoodGames}</span> : <i>none<br/></i>}<br/>
                 <b>Bad losses</b>: {mutableBadGames.length > 0 ? <span>{mutableBadGames}</span> : <i>none<br/></i>}<br/>
                 <b>Awful losses</b>: {mutableTerribleGames.length > 0 ? <span>{mutableTerribleGames}</span> : <i>none<br/></i>}<br/>
+                {numOpponents != gameBasis ? <i>Adjusted from [{wab.toFixed(1)}]</i>: null}
               </div>
             },
-            wae: { value: wae },
+            wae: { 
+              value: gameAdjustedWae,
+              extraInfo: numOpponents != gameBasis ? <i>Adjusted from [{wae.toFixed(1)}]</i>: undefined
+            },
             quality: { value: quality },
             dominance: { value: qualityDiff },
-            recency: { value: recentDelta },
-            games: { value: games }
+            recency: { 
+              value: recentDelta,
+              extraInfo: <div>
+                <b>WAB delta</b>: [{recentWabDelta.toFixed(1)}]<br/>
+                <b>WAE delta</b>: [{recentWaeDelta.toFixed(1)}]<br/>
+                <b>Quality delta</b>: [{recentQualityDelta.toFixed(1)}]<br/>
+              </div>
+            },
+            games: { value: numOpponents }
           } ];
           return cell;
 
@@ -385,18 +454,17 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       "rankDiff": GenericTableOps.addDataCol(<b>&Delta;</b>, "The difference vs pinned rank", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
       "sep0": GenericTableOps.addColSeparator(),
       "rank": GenericTableOps.addDataCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-      "rating": GenericTableOps.addPtsCol("Rating", `The weighted sum of all the different ranking metrics (adjusted as if each team had played the same number of games, [${gameBasis}])`, totalPicker),
+      "rating": GenericTableOps.addPtsCol("Rating", `The weighted sum of the bonus-adjusted 'resume' plus 'quality' metrics. The rating is on the same scale as WAB.`, totalPicker),
       "sep1": GenericTableOps.addColSeparator(),
       "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", wabPicker),
+      "wae": GenericTableOps.addPtsCol("+WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule), used as a bonus for WAB", waePicker),
       "sep2": GenericTableOps.addColSeparator(),
-      "wae": GenericTableOps.addPtsCol("WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule)", waePicker),
+      "quality": GenericTableOps.addPtsCol("Quality", "The efficiency ('eye test') of a team, measured as expected W-L difference against a schedule of bubble teams, includes weighted dominance", qualPicker),
+      "dominance": GenericTableOps.addPtsCol("Dom.", "Dominance delta (at 100% weight) - Bonus to efficiency due to building and maintaining leads, values shown are for 100% weight", domPicker),
       "sep3": GenericTableOps.addColSeparator(),
-      "quality": GenericTableOps.addPtsCol("Quality", "The efficiency ('eye test') of a team, measured as expected W-L difference against a schedule of bubble teams", qualPicker),
+      "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality", timePicker),
       "sep4": GenericTableOps.addColSeparator(),
-      "dominance": GenericTableOps.addPtsCol("Dom.", "Dominance - Bonus to efficiency due to building and maintaining leads (it's a real thing!!)", domPicker),
-      "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias - weight last 30d more", timePicker),
-      "sep5": GenericTableOps.addColSeparator(),
-      "games": GenericTableOps.addIntCol("Games", "Number of games played", GenericTableOps.defaultColorPicker),
+      "games": GenericTableOps.addIntCol("Games", `Number of games played (all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
     }, anyPinDeltas ? [] : [ "rankDiff" ]);
   
     return <GenericTable
@@ -578,6 +646,29 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     setter();
   };
 
+  // Slider tooltips
+
+  const elitenessBonusTooltip = (
+    <Tooltip id="elitenessBonusTooltip">
+      At 100%, adds the entire WAE(lite) rating to the WAB(bubble).<br/>
+      This bonus rewards teams more for big wins and punishes them more for losing to middling opposition.
+    </Tooltip>
+  );
+
+  const dominanceBonusTooltip = (
+    <Tooltip id="dominanceBonusTooltip">
+      There is a well-known effect in the NBA that teams with a lead perform less efficiently, around 3pts/100 per 10pts lead.
+       My research suggests the effect exists in college as well, though possibly less pronounced - in the 25%-50% range.<br/>
+      At 100%, this gives the full "NBA" dominance bonus.
+    </Tooltip>
+  );
+
+  const recencyBiasTooltip = (
+    <Tooltip id="recencyBiasTooltip">
+      At 100%, counts the WAB/WAE from the last 10 games double, and the efficiency from the last month of games double.
+    </Tooltip>
+  );
+
   return <Container>
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 12}}>
@@ -638,10 +729,12 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       <Row className="mt-2 sticky-top" style={{backgroundColor: "white", opacity: "85%", zIndex: 1}}>
         <Col xs={11}>
         <Row>
+        <Col xs={1}>
+        </Col>
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>How much you weight W-L record [
+              <Form.Label><small><b>How much you weight W-L record</b> [
                 {_.isNil(tmpWabWeight) ? <b>{(wabWeight*100).toFixed(0)}</b> : <i>{(tmpWabWeight*100).toFixed(0)}</i>}
                 %]</small></Form.Label>
               <Form.Control type="range" custom 
@@ -650,24 +743,31 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                   const newVal = parseFloat(ev.target.value);
                   if (_.isNil(tmpWabWeight)) onMouseDown();
                   setTmpWabWeight(newVal);
+                  setTmpQualityWeight(1.0 - newVal);
                 }}
                 onClick={(ev: any) => onMouseUp(() => {
                   const newVal = parseFloat(ev.target.value);
                   setWabWeight(newVal);
+                  setQualityWeight(1.0 - newVal);
                   setTmpWabWeight(undefined);
+                  setTmpQualityWeight(undefined);
                 }) }
                 onTouchEnd={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpWabWeight)) {
                     const newVal = parseFloat(ev.target.value);
                     setWabWeight(newVal);
+                    setQualityWeight(1.0 - newVal);
                     setTmpWabWeight(undefined);
+                    setTmpQualityWeight(undefined);
                   }
                 }) }
                 onMouseUp={(ev: any) => onMouseUp(() => {
                   if (!_.isNil(tmpWabWeight)) {
                     const newVal = parseFloat(ev.target.value);
                     setWabWeight(newVal);
+                    setQualityWeight(1.0 - newVal);
                     setTmpWabWeight(undefined);
+                    setTmpQualityWeight(undefined);
                   }
                 }) }
                 min={0}
@@ -677,12 +777,70 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             </Form.Group>
           </Form>          
         </Col>
+        <Col xs={2} className="mt-4 text-center">
+          <span>vs</span>
+        </Col>
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>... W-L but compared to elite teams [
-                {_.isNil(tmpWaeWeight) ? <b>{(waeWeight*100).toFixed(0)}</b> : <i>{(tmpWaeWeight*100).toFixed(0)}</i>}
+              <Form.Label><small><b>How much you weight team efficiency</b> [
+                {_.isNil(tmpQualityWeight) ? <b>{(qualityWeight*100).toFixed(0)}</b> : <i>{(tmpQualityWeight*100).toFixed(0)}</i>}
                 %]</small></Form.Label>
+              <Form.Control type="range" custom 
+                value={_.isNil(tmpQualityWeight) ? qualityWeight : tmpQualityWeight}
+                onChange={(ev: any) => {
+                  const newVal = parseFloat(ev.target.value);
+                  if (_.isNil(tmpQualityWeight)) onMouseDown();
+                  setTmpWabWeight(1.0 - newVal);
+                  setTmpQualityWeight(newVal);
+                }}
+                onClick={(ev: any) => onMouseUp(() => {
+                  const newVal = parseFloat(ev.target.value);
+                  setWabWeight(1.0 - newVal);
+                  setQualityWeight(newVal);
+                  setTmpWabWeight(undefined);
+                  setTmpQualityWeight(undefined);
+                }) }
+                onTouchEnd={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpQualityWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setWabWeight(1.0 - newVal);
+                    setQualityWeight(newVal);
+                    setTmpWabWeight(undefined);
+                    setTmpQualityWeight(undefined);
+                  }
+                }) }
+                onMouseUp={(ev: any) => onMouseUp(() => {
+                  if (!_.isNil(tmpQualityWeight)) {
+                    const newVal = parseFloat(ev.target.value);
+                    setWabWeight(1.0 - newVal);
+                    setQualityWeight(newVal);
+                    setTmpWabWeight(undefined);
+                    setTmpQualityWeight(undefined);
+                  }
+                }) }
+                min={0}
+                max={1}
+                step={0.05}
+              />
+            </Form.Group>
+          </Form>          
+        </Col>
+        </Row>
+        </Col>
+        <Col xs={1} className="mt-4">
+          {getPinButton()}
+        </Col>
+        <Col xs={11}>
+        <Row>
+        <Col xs={4}>
+          <Form>
+            <Form.Group controlId="formBasicRange">
+              <Form.Label><OverlayTrigger placement="auto" overlay={elitenessBonusTooltip}>
+                  <small>Bonus for "eliteness" of record [
+                  {_.isNil(tmpWaeWeight) ? <b>{(waeWeight*100).toFixed(0)}</b> : <i>{(tmpWaeWeight*100).toFixed(0)}</i>}
+                  %]</small>
+                </OverlayTrigger></Form.Label>
               <Form.Control type="range" custom 
                 value={_.isNil(tmpWaeWeight) ? waeWeight : tmpWaeWeight}
                 onChange={(ev: any) => {
@@ -719,57 +877,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>How much you weight a team's efficiency [
-                {_.isNil(tmpQualityWeight) ? <b>{(qualityWeight*100).toFixed(0)}</b> : <i>{(tmpQualityWeight*100).toFixed(0)}</i>}
-                %]</small></Form.Label>
-              <Form.Control type="range" custom 
-                value={_.isNil(tmpQualityWeight) ? qualityWeight : tmpQualityWeight}
-                onChange={(ev: any) => {
-                  const newVal = parseFloat(ev.target.value);
-                  if (_.isNil(tmpQualityWeight)) onMouseDown();
-                  setTmpQualityWeight(newVal);
-                }}
-                onClick={(ev: any) => onMouseUp(() => {
-                  const newVal = parseFloat(ev.target.value);
-                  setQualityWeight(newVal);
-                  setTmpQualityWeight(undefined);
-                }) }
-                onTouchEnd={(ev: any) => onMouseUp(() => {
-                  if (!_.isNil(tmpQualityWeight)) {
-                    const newVal = parseFloat(ev.target.value);
-                    setQualityWeight(newVal);
-                    setTmpQualityWeight(undefined);
-                  }
-                }) }
-                onMouseUp={(ev: any) => onMouseUp(() => {
-                  if (!_.isNil(tmpQualityWeight)) {
-                    const newVal = parseFloat(ev.target.value);
-                    setQualityWeight(newVal);
-                    setTmpQualityWeight(undefined);
-                  }
-                }) }
-                min={0}
-                max={1}
-                step={0.05}
-              />
-            </Form.Group>
-          </Form>          
-        </Col>
-        </Row>
-        </Col>
-        <Col xs={1} className="mt-4">
-          {getPinButton()}
-        </Col>
-        <Col xs={11}>
-        <Row>
-        <Col xs={2}>
-        </Col>
-        <Col xs={4}>
-          <Form>
-            <Form.Group controlId="formBasicRange">
-              <Form.Label><small>How big a bonus to give dominant teams [
-                {_.isNil(tmpDomWeight) ? <b>{(dominanceWeight*100).toFixed(0)}</b> : <i>{(tmpDomWeight*100).toFixed(0)}</i>}
-                %]</small></Form.Label>
+              <Form.Label><OverlayTrigger placement="auto" overlay={dominanceBonusTooltip}>
+                  <small>Bonus for "dominance" of scoring [
+                  {_.isNil(tmpDomWeight) ? <b>{(dominanceWeight*100).toFixed(0)}</b> : <i>{(tmpDomWeight*100).toFixed(0)}</i>}
+                  %]</small>
+                </OverlayTrigger></Form.Label>
               <Form.Control type="range" custom 
                 value={_.isNil(tmpDomWeight) ? dominanceWeight : tmpDomWeight}
                 onChange={(ev: any) => {
@@ -806,9 +918,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={4}>
           <Form>
             <Form.Group controlId="formBasicRange">
-              <Form.Label><small>Recency bias (weight last 30d more) [
-                {_.isNil(tmpTimeWeight) ? <b>{(timeWeight*100).toFixed(0)}</b> : <i>{(tmpTimeWeight*100).toFixed(0)}</i>}
-                %]</small></Form.Label>
+              <Form.Label><OverlayTrigger placement="auto" overlay={recencyBiasTooltip}>
+                  <small>"Recency bias" [
+                  {_.isNil(tmpTimeWeight) ? <b>{(timeWeight*100).toFixed(0)}</b> : <i>{(tmpTimeWeight*100).toFixed(0)}</i>}
+                  %]</small>
+                </OverlayTrigger></Form.Label>
               <Form.Control type="range" custom 
                 value={_.isNil(tmpTimeWeight) ? timeWeight : tmpTimeWeight}
                 onChange={(ev: any) => {
