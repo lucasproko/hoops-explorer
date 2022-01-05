@@ -251,10 +251,10 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardPossAsPct = true;
   static readonly defaultPlayerLboardUseRapm = true;
   // Team leaderboard
-  static readonly defaultTeamLboardQualityWeight = "0.3";
+  static readonly defaultTeamLboardQualityWeight = "0.5";
   static readonly defaultTeamLboardDomWeight = "0.25";
-  static readonly defaultTeamLboardWabWeight = "1"; //(don't have decimal places for comparison with "" + 1.0)
-  static readonly defaultTeamLboardWaeWeight = "0.15";
+  static readonly defaultTeamLboardWabWeight = "0.5"; //(don't have decimal places for comparison with "" + 1.0)
+  static readonly defaultTeamLboardWaeWeight = "0.25";
   static readonly defaultTeamLboardTimeWeight = "0"; //(don't have decimal places for comparison with "" + 0.0)
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
