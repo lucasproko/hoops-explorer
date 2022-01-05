@@ -49,7 +49,9 @@ import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
-import { temperature } from 'chroma-js';
+import { apPolls } from '../utils/public-data/apPolls';
+import chroma from 'chroma-js';
+import { GenericTableColProps } from './GenericTable';
 
 export type TeamLeaderboardStatsModel = {
   teams?: Array<TeamInfo>,
@@ -150,11 +152,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
 
+    const genderYear = `${gender}_${year}`;
     const isSeasonFinished = getEndOfRegSeason(`${gender}_${year}`) != undefined;
     const last30d = 
-      (getEndOfRegSeason(`${gender}_${year}`) || dataLastUpdated[`${gender}_${year}`] || ((new Date().getTime())/1000)) - 
+      (getEndOfRegSeason(genderYear) || dataLastUpdated[genderYear] || ((new Date().getTime())/1000)) - 
         (30*24*3600);
-    
+    const apPoll = apPolls[genderYear];
+        
     // Calculate a commmon set of games
     const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
     const gameBasis: number = gameArray.length > 0 ? Math.floor(mean(mode(gameArray.map(g => Math.floor(g)))) || 1) : 1;
@@ -174,6 +178,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       minTime: 1000,
     };
     var anyPinDeltas = false;
+
+    var varApDelta = 0;
+
+    const apColorScale = (val: number) => chroma.scale(["green", "orange", "red"])(val).toString();
 
     /** If buildPin then don't do any mutable operations */
     const buildTable = (buildPin: boolean, 
@@ -331,7 +339,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                 showExpanded: true,
                 year: year,
                 gender: gender,
-                team: team.team_name
+                team: team.team_name,
               }, {})}><b>{team.team_name}</b></a>
             </OverlayTrigger>,
             confStr: ConferenceToNickname[team.conf],
@@ -363,7 +371,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
                 <b>Quality delta</b>: [{recentQualityDelta.toFixed(1)}]<br/>
               </div>
             },
-            games: { value: numOpponents }
+            games: { value: numOpponents },
+            ap: undefined as any
           } ];
           return cell;
 
@@ -380,6 +389,21 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
               (<div><FontAwesomeIcon icon={faArrowAltCircleDown} style={{color:"red"}}/> {-delta}</div>)  
             ) : ""; 
           if (!buildPin) anyPinDeltas = anyPinDeltas || (delta != 0);
+        }
+        if (apPoll) {
+          const apPos = apPoll[t.titleStr] || 0;
+          var varDelta = 0;
+          if ((t.rankNum <= apPoll.__max__!) && !apPos) {
+            varDelta = 5 + apPoll.__max__! - t.rankNum; //(assume an error is )
+          } else if (apPos) {
+            varDelta = Math.abs(apPos - t.rankNum);
+          }
+          if (!buildPin) {
+            varApDelta = varApDelta + varDelta;
+          }
+          if (apPos || (t.rankNum <= 25)) {
+            t.ap = <small style={CommonTableDefs.getTextShadow({ value: varDelta*0.1 }, apColorScale)}>{apPos || "NR"}</small>;
+          }
         }
         return t;
       }).value();
@@ -465,7 +489,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality", timePicker),
       "sep4": GenericTableOps.addColSeparator(),
       "games": GenericTableOps.addIntCol("Games", `Number of games played (all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
-    }, anyPinDeltas ? [] : [ "rankDiff" ]);
+      "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}] (average error [${(varApDelta/25).toFixed(1)}])`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+    }, (anyPinDeltas ? [] : [ "rankDiff" ]).concat(apPoll ? [] : [ "ap" ])) as Record<string, GenericTableColProps>;
   
     return <GenericTable
       tableCopyId="teamLeaderboardTable"
