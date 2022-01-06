@@ -27,7 +27,7 @@ const apPollMen_2021_22: Record<string, number> = _.chain(`
 23,Wisconsin,24,1,Big Ten
 24,Seton Hall,15,9,Big East
 25,Texas Tech,25,-,Big 12
-`).split("\n").map(l => { const ab = l.split(","); return [ (ab[1] || "").replaceAll("State", "St."), parseInt(ab[0]) ];}).fromPairs().assign(
+`).split("\n").map(l => { const ab = l.split(","); return [ (ab[1] || "").replace(  "State", "St."), parseInt(ab[0]) ];}).fromPairs().assign(
    {
       __week__: 9,
       __max__: 25
