@@ -158,6 +158,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       (getEndOfRegSeason(genderYear) || dataLastUpdated[genderYear] || ((new Date().getTime())/1000)) - 
         (30*24*3600);
     const apPoll = apPolls[genderYear];
+    const apPollSize = apPoll?.__max__ || 25;
         
     // Calculate a commmon set of games
     const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
@@ -393,10 +394,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         if (apPoll) {
           const apPos = apPoll[t.titleStr] || 0;
           var varDelta = 0;
-          if ((t.rankNum <= apPoll.__max__!) && !apPos) {
-            varDelta = 5 + apPoll.__max__! - t.rankNum; //(assume an error is )
+          if ((t.rankNum <= apPollSize) && !apPos) {
+            varDelta = 5 + apPollSize - t.rankNum; //(assume an error is 5 more than the ranking size)
           } else if (apPos) {
-            varDelta = Math.abs(apPos - t.rankNum);
+            varDelta = Math.min(Math.abs(apPos - t.rankNum), 15);
           }
           if (!buildPin) {
             varApDelta = varApDelta + varDelta;
@@ -435,8 +436,22 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => (confs == "") || confs.indexOf(t.confStr) >= 0);
     const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis)).filter(t => (confs == "") || confs.indexOf(t.confStr) >= 0);
 
+    const apTooltip = (
+      <Tooltip id="apTooltip">The average delta between AP poll and this ranking (note there may have been games since the AP poll's release)</Tooltip>
+    );
+    const gameBasisTooltip = (
+      <Tooltip id="gameBasisTooltip">The mode (most common) number of games played in D1 (all metrics are normalized as if each team had played this many games)</Tooltip>
+    );
+    const subHeaderRow = ([
+      [<i>Top 25 + 1</i>, anyPinDeltas ? 15 : 14]
+    ].concat([
+      [<OverlayTrigger placement="auto" overlay={gameBasisTooltip}><i>{gameBasis}</i></OverlayTrigger>, 1]
+    ]).concat(apPoll ? [
+      [<OverlayTrigger placement="auto" overlay={apTooltip}><i>{(varApDelta/25).toFixed(1)}</i></OverlayTrigger>, 1]
+    ] : [])) as Array<[React.ReactNode, number ]>;
+
     const tableData = (confs == "" ? [ 
-      GenericTableOps.buildTextRow(<i>Top 25 + 1</i>, "small text-center") 
+      GenericTableOps.buildSubHeaderRow(subHeaderRow, "small text-center") 
     ].concat(_.take(mainTable, 26).map(t =>
       GenericTableOps.buildDataRow(t, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )).concat([ 
@@ -489,7 +504,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality", timePicker),
       "sep4": GenericTableOps.addColSeparator(),
       "games": GenericTableOps.addIntCol("Games", `Number of games played (all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
-      "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}] (average error [${(varApDelta/25).toFixed(1)}])`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+      "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}]`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
     }, (anyPinDeltas ? [] : [ "rankDiff" ]).concat(apPoll ? [] : [ "ap" ])) as Record<string, GenericTableColProps>;
   
     return <GenericTable

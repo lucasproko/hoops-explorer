@@ -136,7 +136,9 @@ export class AvailableTeams {
         { team: "BYU", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
         { team: "BYU", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
         { team: "BYU", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
-        { team: "BYU", year: "2021/22", gender: "Men", index_template: "wcc", category: "midhigh" },
+        { team: "BYU", year: "2021/22", gender: "Men", index_template: "wcc", category: "midhigh" },         
+        { team: "BYU", year: "2020/21", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
+        { team: "BYU", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "Ball St.": [
         { team: "Ball St.", year: "2020/21", gender: "Men", index_template: "mac", category: "mid" },
@@ -570,6 +572,8 @@ export class AvailableTeams {
         { team: "Gonzaga", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
         { team: "Gonzaga", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
         { team: "Gonzaga", year: "2021/22", gender: "Men", index_template: "wcc", category: "midhigh" },
+        { team: "Gonzaga", year: "2020/21", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
+        { team: "Gonzaga", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "Grambling": [
         { team: "Grambling", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -962,6 +966,8 @@ export class AvailableTeams {
     "Missouri St.": [
         { team: "Missouri St.", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
         { team: "Missouri St.", year: "2021/22", gender: "Men", index_template: "mvc", category: "mid" },
+        { team: "Missouri St.", year: "2020/21", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
+        { team: "Missouri St.", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "Monmouth": [
         { team: "Monmouth", year: "2020/21", gender: "Men", index_template: "maac", category: "midlow" },
@@ -1262,6 +1268,7 @@ export class AvailableTeams {
      ],
     "Princeton": [
         { team: "Princeton", year: "2021/22", gender: "Men", index_template: "ivy", category: "mid" },
+        { team: "Princeton", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "Providence": [
         { team: "Providence", year: "2018/9", gender: "Men", index_template: "bigeast", category: "high" },
@@ -1449,6 +1456,8 @@ export class AvailableTeams {
     "South Dakota": [
         { team: "South Dakota", year: "2020/21", gender: "Men", index_template: "summit", category: "mid" },
         { team: "South Dakota", year: "2021/22", gender: "Men", index_template: "summit", category: "mid" },
+        { team: "South Dakota", year: "2020/21", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
+        { team: "South Dakota", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "South Dakota St.": [
         { team: "South Dakota St.", year: "2020/21", gender: "Men", index_template: "summit", category: "mid" },
