@@ -236,11 +236,11 @@ export class LineupTableUtils {
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
       if (lineup?.doc_count) {
-        LineupUtils.buildEfficiencyMargins(lineup);
+        LineupUtils.buildEfficiencyMargins(lineup); //(just used for display in the lineup table)
 
         if (lineup.key != LineupTableUtils.totalLineupId) {
           // don't inject luck into the total lineup calcs - a) empirically it's wrong so
-          // probably I'm doing something stupid, b) it seems wrong anyway, eg aggreegating
+          // probably I'm doing something stupid, b) it seems wrong anyway, eg aggregating
           // the per-lineup players is not correct, (for team we have the actual 3PA numbers)
           // but it's better than assuming all players play in their season poss ratios, which
           // is what this appears to do...

@@ -64,8 +64,8 @@ export class LineupUtils {
     const teamInfo = _.chain(lineups || []).transform((acc, lineup) => {
       if (!lineup.rapmRemove) {
         LineupUtils.weightedAvg(acc, lineup);
-      } else {
-        LineupUtils.weightedAvg(acc.all_lineups!, lineup);
+      } else { //(the !rapmRemove lineups get incorporated below)
+        LineupUtils.weightedAvg(acc.all_lineups!, lineup); 
       }
 
     }, { ...(StatModels.emptyLineup()), all_lineups: StatModels.emptyLineup() } as LineupStatSet).value();

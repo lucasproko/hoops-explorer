@@ -206,50 +206,21 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     inLineupStats: LineupStatsModel, inTeamStats: TeamStatsModel, inRosterStats: RosterStatsModel
   ) => {
     try {
-      // Luck
+      // Enrich lineups with luck and positional info
 
-      // The luck baseline can either be the user-selecteed baseline or the entire season
-      const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
-        if (adjustForLuck) {
-          switch (luckConfig.base) {
-            case "baseline":
-              return [
-                inTeamStats.baseline, _.fromPairs((inRosterStats.baseline || []).map((p: any) => [ p.key, p ]))
-              ];
-            default: //("season")
-              return [
-                inTeamStats.global, _.fromPairs((inRosterStats.global || []).map((p: any) => [ p.key, p ]))
-              ];
-          }
-        } else return [ StatModels.emptyTeam(), {} ]; //(not used)
-      };
-      const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
-
-      // Mutate lineups:
-      _.forEach(inLineupStats?.lineups || [], (lineup) => {
-        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-
-        const perLineupPlayerLuckMap: Record<PlayerId, IndivStatSet> = _.fromPairs(
-          codesAndIds.map((cid: PlayerCodeId) => {
-            return [  cid.id, baseOrSeason3PMap[cid.id] || StatModels.emptyIndiv()];
-          })
-        );
-        const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
-          LuckUtils.calcOffTeamLuckAdj(
-            lineup, inRosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
-          ),
-          LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
-        ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
-
-        if (lineup?.doc_count) {
-          LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
-        }
-      });
+      const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
+      const baselinePlayerByKey = _.fromPairs((inRosterStats.baseline || []).map((p: any) => [ p.key, p ]));
+      const enrichedLineups = LineupTableUtils.buildEnrichedLineups(
+        inLineupStats.lineups, inTeamStats.global, rosterStats.baseline, inTeamStats.baseline,
+        adjustForLuck, luckConfig.base, avgEfficiency,
+        false, teamSeasonLookup, 
+        positionFromPlayerKey, baselinePlayerByKey
+      );
 
       // Processing
 
       const tempTeamReport = LineupUtils.lineupToTeamReport(
-        inLineupStats, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
+        { lineups: enrichedLineups }, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
       if (incRapm) {
         // Do some prep on the individual stats we'll use for the prior:
