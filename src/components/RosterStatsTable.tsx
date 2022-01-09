@@ -298,7 +298,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
           const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, adjustForLuck, onBallDefenseByCode
+            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, adjustForLuck, luckConfig.base, onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)

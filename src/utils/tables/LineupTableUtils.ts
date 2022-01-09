@@ -28,7 +28,7 @@ export class LineupTableUtils {
   static buildBaselinePlayerInfo(
     players: Array<IndivStatSet> | undefined,
     globalRosterStatsByCode: Record<PlayerCode, IndivStatSet>, teamStat: Record<string, any>,
-    avgEfficiency: number, adjustForLuck: boolean,
+    avgEfficiency: number, adjustForLuck: boolean, luckConfigBase: "baseline" | "season",
     onBallDefenseByCode: Record<PlayerCode, OnBallDefenseModel>  = {}
   ): Record<PlayerId, IndivStatSet> {
     const baselinePlayerInfo = _.fromPairs(
@@ -46,7 +46,8 @@ export class LineupTableUtils {
             / (teamStat.def_poss?.value || 1), 1 ]) };
 
         if (mutableP?.doc_count) {
-          const globalPlayerStats = globalRosterStatsByCode[mutableP.code || "??"] || mutableP;
+          const globalPlayerStats = (luckConfigBase == "season") ? 
+            (globalRosterStatsByCode[mutableP.code || "??"] || mutableP) : mutableP;
           // (No offensive luck since our "to adjust" and baseline are the same)
           const offLuckAdj = LuckUtils.calcOffPlayerLuckAdj(
             mutableP, globalPlayerStats, avgEfficiency
