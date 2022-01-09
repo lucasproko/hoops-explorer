@@ -95,10 +95,10 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         :
         <span>
           <li>Then we calculate a player's contribution to this team total - currently this is a fraction of
-          "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
+          "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>], ...
           </li>
           <li>
-          ... chosen so that a minutes-weighted average of the ratings ([<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>]) sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
+          ... chosen so that a minutes-weighted average of the ratings ([<b>{offPossPctStr}%</b>] of [<b>{totalOffPoss}</b>]) sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
           </li>
         </span>
       }
