@@ -106,6 +106,12 @@ export type DefLuckAdjustmentDiags = {
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
 
+  //TODO: there is a nasty problem with the way we're aggregating luck across lineups.
+  // Imagine you have 2 lineups, a and b (equal size say), with luck adjsted 3P(a) and 3P(b)
+  // comparing with the aggregation of a+b, 3P(a+b) is regressed by 3PA(a+b) vs 3PA(base)
+  // The weighted average of 3P(a) and 3P(b) is regressed by 0.5*(3P(a)+3(b)) vs 3PA(base)
+  // ie 0.5*3P(a+b) vs 3PA(base)
+
   static readonly lineupShotInfoFields = [
     "ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM"
   ];
@@ -168,22 +174,21 @@ export class LuckUtils {
     var varTotal3PA = 0.0;
     var varTotal3P = 0.0;
 
-    const buildShotLineupInfo = (basePlayer: IndivStatSet, index: number, baseShotInfo: OffLuckShotInfo) => {
+    const buildShotLineupInfo = (basePlayerStats: IndivStatSet, index: number, baseShotInfo: OffLuckShotInfo) => {
       return _.transform(LuckUtils.lineupAggregatedShotInfoFields, (acc, field) => {
         acc[field] = playerShotInfo?.[field]?.[index] || 0;
       }, {
         shot_info_total: playerShotInfo.total[index] || 0,
-        ...LuckUtils.buildAdjusted3P(basePlayer, baseShotInfo)
+        ...LuckUtils.buildAdjusted3P(basePlayerStats, baseShotInfo)
       } as Record<string, number>)
     };
-
     const player3PInfo = _.chain(samplePlayers).flatMap((player: IndivStatSet, index: number) => {
       const basePlayerStats = basePlayersMap[player.key];
-      const baseShotInfo = LuckUtils.buildBaseShotInfo(player);
+      const baseShotInfo = LuckUtils.buildShotInfo(basePlayersMap[player.key] || player); //(to calc buildAdjusted3P)
       const playerInfo = (((index < 5) && playerShotInfo.hasLineupInfo && basePlayerStats) ? {
         ...buildShotLineupInfo(basePlayerStats, index, baseShotInfo)
       } : {
-        ...baseShotInfo,
+        ...(LuckUtils.buildShotInfo(player)),
         ...LuckUtils.buildAdjusted3P(basePlayerStats || {}, baseShotInfo)        
       }) as OffLuckShotTypeAndAdj3P;
 
@@ -426,13 +431,15 @@ export class LuckUtils {
   }
 
   /** Builds the different shot types when you don't have the lineup info */
-  static readonly buildBaseShotInfo = (p: IndivStatSet) => {
+  static readonly buildShotInfo = (p: IndivStatSet) => {
     //"ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM"
 
+    const shot_info_ast_trans_3pm = p.total_off_trans_3p_ast?.value || 0; //(includes some early shots)
+    const shot_info_unast_trans_3pm = Math.max((p.total_off_trans_3p_made?.value || 0) - shot_info_ast_trans_3pm, 0);
     const shot_info_ast_3pm = p.total_off_3p_ast?.value || 0;
-    const shot_info_early_3pa = p.total_off_trans_3p_attempts?.value || 0;
+    const shot_info_early_3pa = Math.max((p.total_off_trans_3p_attempts?.value || 0) - shot_info_ast_trans_3pm, 0);
     const shot_info_unast_3pm = Math.max(
-      (p.total_off_3p_made?.value || 0) - shot_info_ast_3pm - (p.total_off_trans_3p_made?.value || 0), 0
+      (p.total_off_3p_made?.value || 0) - shot_info_ast_3pm - shot_info_unast_trans_3pm, 0
     );
     const shot_info_total = p.total_off_3p_attempts?.value || 0;
     const shot_info_unknown_3pM = Math.max(
@@ -446,7 +453,7 @@ export class LuckUtils {
       shot_info_total
     } as OffLuckShotInfo;
   };
-  /** Calculates approx unassisted/assisted 3P */
+  /** Calculates approx unassisted/assisted 3P (p and baseShotInfo should be based on the biggest sample available, normally NOT the sample) */
   static readonly buildAdjusted3P = (p: IndivStatSet, baseShotInfo: OffLuckShotInfo) => {
     const base3P = LuckUtils.get(p?.off_3p, 0);
     // Can't use off_3p_ast because some of the transition 3PAs are unassisted makes, so we just use non-early ast%
