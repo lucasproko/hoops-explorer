@@ -33,8 +33,11 @@ export class LineupTableUtils {
   ): Record<PlayerId, IndivStatSet> {
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: IndivStatSet) => {
-        const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)
-        const playerAdjustForLuckDef = adjustForLuck; //(make player defense a little more stable)
+        const playerAdjustForLuckOff = adjustForLuck; //(only apply luck to the lineups if we have granular lineup 3PA info, but always apply to priors)
+        const playerAdjustForLuckDef = adjustForLuck; //(never apply luck to the lineups, but always apply to priors)
+
+        // Code:
+        mutableP.code = (mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key) as PlayerCode;
 
         // Possession %
         mutableP.off_team_poss_pct = { value: _.min([(mutableP.off_team_poss.value || 0)
@@ -43,12 +46,16 @@ export class LineupTableUtils {
             / (teamStat.def_poss?.value || 1), 1 ]) };
 
         if (mutableP?.doc_count) {
+          const globalPlayerStats = globalRosterStatsByCode[mutableP.code || "??"] || mutableP;
           // (No offensive luck since our "to adjust" and baseline are the same)
+          const offLuckAdj = LuckUtils.calcOffPlayerLuckAdj(
+            mutableP, globalPlayerStats, avgEfficiency
+          );
           // Calculate luck for defense - over the baseline query, but will regress to opponent SoS
           const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
-            mutableP, mutableP, avgEfficiency
+            mutableP, globalPlayerStats, avgEfficiency
           );
-          LuckUtils.injectLuck(mutableP, undefined, defLuckAdj);
+          LuckUtils.injectLuck(mutableP, offLuckAdj, defLuckAdj);
         }
 
         // Add ORtg to lineup stats:
@@ -74,7 +81,6 @@ export class LineupTableUtils {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
           override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
-        mutableP.code = (mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key) as PlayerCode;
 
         // Apply on-ball defense if it exists for this player
         if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(mutableP.code)) {

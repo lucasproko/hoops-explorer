@@ -412,7 +412,25 @@ export class RapmUtils {
     const offsets = {
       off: offOffset,
       def: defOffset
-    }
+    };
+    /** If we're not applying luck on a per lineup basis, we need to apply the luck/non-luck delta equally */
+    const doGlobalLuckAdj = (offOrDef: "off" | "def") => {
+      if (field == "adj_ppp") {
+        const useOldVal = offOrDef == "off" ? useOldValIfPossible[0] : useOldValIfPossible[1];
+        if (useOldVal && !_.isNil(ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value)) {
+          return (ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.value || 0) - 
+            (ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value || 0);
+        } else {
+          return 0;
+        }
+      } else {
+        return 0;
+      }
+    };
+    const globalLuckAdjOffsets = {
+      off: doGlobalLuckAdj("off"),
+      def: doGlobalLuckAdj("def"),
+    };
     const calculateVector = (prefix: "off" | "def") => {
       return ctx.filteredLineups.map((lineup: any) => {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
@@ -448,7 +466,7 @@ export class RapmUtils {
           }
         }, offsets[prefix]); //(starting value is the D1 average for that stat)
 
-        return (val - priorOffset)*possCountWeight;
+        return (val + globalLuckAdjOffsets[prefix] - priorOffset)*possCountWeight;
       });
     };
     const extra = ctx.unbiasWeight > 0;
