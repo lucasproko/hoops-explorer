@@ -68,6 +68,7 @@ export type DefLuckAdjustmentDiags = {
   baseDef3P: number,
   /** Opponents' 3P% over the season */
   baseDef3PSos: number,
+  baseDef3PA: number,
   basePoss: number,
   /** The ability of the team to adjust the opponents' 3P% over the season */
   base3PSosAdj: number,
@@ -75,6 +76,7 @@ export type DefLuckAdjustmentDiags = {
   // Same stats but over the sample in question: on/off/baseline
   sampleDef3P: number,
   sampleDef3PSos: number,
+  sampleDef3PA: number,
   samplePoss: number
   sample3PSosAdj: number,
 
@@ -106,11 +108,13 @@ export type DefLuckAdjustmentDiags = {
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
 
-  //TODO: there is a nasty problem with the way we're aggregating luck across lineups.
-  // Imagine you have 2 lineups, a and b (equal size say), with luck adjsted 3P(a) and 3P(b)
-  // comparing with the aggregation of a+b, 3P(a+b) is regressed by 3PA(a+b) vs 3PA(base)
-  // The weighted average of 3P(a) and 3P(b) is regressed by 0.5*(3P(a)+3(b)) vs 3PA(base)
-  // ie 0.5*3P(a+b) vs 3PA(base)
+  //TODO(ish): LuckUtils for lineups are a bit weird. The problem is that if you regress each lineup as if you
+  // were regressing a query set, then the weighted average of the lineups' regressed 3P values are _super regressed_
+  // (eg 100x 1 3PA lineups vs 1000 3PA base set - if you regress each lineup 1 vs 1000, the weighted av is also 1 vs 1000)
+  // Therefore every lineup is regressed as if it has the sample size of the query set
+  // 
+  // (An alternative would be to use the "filtered total" instead of the query set ... that would be rather weird
+  //  because the lineup stats would change as you changed the filter on the fly)
 
   static readonly lineupShotInfoFields = [
     "ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM"
@@ -143,14 +147,16 @@ export class LuckUtils {
   static readonly calcOffTeamLuckAdj = (
     sampleTeam: TeamStatSet | LineupStatSet | IndivStatSet, samplePlayers: Array<IndivStatSet>,
     baseTeam: TeamStatSet | LineupStatSet | IndivStatSet, basePlayersMap: Record<PlayerId, IndivStatSet>,
-    avgEff: number
+    avgEff: number,
+    sample3PAOverride? : number 
+      //(when calc'ing luck on lineups, each lineup gets the total sample as its regression so its average is right over the set)
   ) => {
 
     // Number of 3P shots taken in sample
 
     const samplePoss = LuckUtils.get(sampleTeam?.off_poss, 0);
     const sample3P = LuckUtils.get(sampleTeam?.off_3p, 0);
-    const sample3PA = LuckUtils.get(sampleTeam?.total_off_3p_attempts, 0);
+    const sample3PA = !_.isNil(sample3PAOverride) ? sample3PAOverride : LuckUtils.get(sampleTeam?.total_off_3p_attempts, 0);
     const base3PA = LuckUtils.get(baseTeam?.total_off_3p_attempts, 0);
 
     // Loop over sample roster - lookup into base to get 3PA shots 3P%
@@ -201,9 +207,9 @@ export class LuckUtils {
 
         return (playerInfo.shot_info_total > 0) ? //(don't bother with any players who didn't take a 3P shot)
           [ [ player.key, playerInfo  ] ] : [];
-        } else {
-          return []; //(player not in this lineup)
-        }
+      } else {
+        return []; //(player not in this lineup)
+      }
 
     }).sortBy((pV: any[]) => -1*(pV?.[1]?.shot_info_total || 0)).fromPairs().value();
 
@@ -226,7 +232,6 @@ export class LuckUtils {
     const sampleOffPpp = LuckUtils.get(sampleTeam?.off_ppp, 0);
     const sampleDefSos = LuckUtils.get(sampleTeam?.def_adj_opp, 0);
 
-    // const threePointRate = sampleDef3PA/((sampleDef3PA + sampleDef2PA) || 1)
     const delta3P = regress3P - sample3P;
     const deltaOffEfg = 1.5*delta3P*sampleOff3PRate;
     const deltaMissesPct = -1*delta3P*sampleOff3PRate;
@@ -268,6 +273,7 @@ export class LuckUtils {
         },
         def_3p_opp: statSet.oppo_def_3p_opp,
         def_poss: statSet.oppo_total_def_poss,
+        total_def_3p_attempts: statSet.oppo_total_def_3p_attempts
       } as IndivStatSet;
     };
     // We really just want the 3P delta:
@@ -278,7 +284,9 @@ export class LuckUtils {
 
   /** Calculate the defensive luck adjustment for a team */
   static readonly calcDefTeamLuckAdj = (
-    sample: IndivStatSet | TeamStatSet | LineupStatSet, base: IndivStatSet | TeamStatSet | LineupStatSet, avgEff: number
+    sample: IndivStatSet | TeamStatSet | LineupStatSet, base: IndivStatSet | TeamStatSet | LineupStatSet, avgEff: number,
+    sampleDef3PAOverride? : number 
+      //(when calc'ing luck on lineups, each lineup gets the total sample as its regression so its average is right over the set)
   ) => {
     const get = (maybeOld: any, fallback: number) => {
       // Uses the non-adjusted luck number if present
@@ -292,6 +300,7 @@ export class LuckUtils {
     const baseDef3P = get(base?.def_3p, 0);
     const baseDef3PSos = _.isNil(base?.def_3p_opp?.value) ? baseDef3P : 0.01*get(base?.def_3p_opp, 0); //(normalize to %)
     const basePoss = get(base?.def_poss, 0);
+    const baseDef3PA = get(base?.total_def_3p_attempts, 0);
     const base3PSosAdj = (1 - luckPct)*(baseDef3P - baseDef3PSos);
 
     const sampleDef3P = get(sample?.def_3p, 0);
@@ -302,16 +311,16 @@ export class LuckUtils {
     const sampleDefEfg = get(sample?.def_efg, 0);
     const sampleDefPpp = get(sample?.def_ppp, 0);
     const sampleOffSos = get(sample?.off_adj_opp, 0);
+    const sampleDef3PA = !_.isNil(sampleDef3PAOverride) ? sampleDef3PAOverride : get(sample?.total_def_3p_attempts, 0);
 
-    const avg3PSosAdj = (samplePoss*sample3PSosAdj + basePoss*base3PSosAdj)/((samplePoss + basePoss) || 1);
+    const avg3PSosAdj = (sampleDef3PA*sample3PSosAdj + baseDef3PA*base3PSosAdj)/((sampleDef3PA + baseDef3PA) || 1);
     const adjDef3P = sampleDef3PSos + avg3PSosAdj;
 
     const sampleDef3PRate = get(sample?.def_3pr, 0);
     const sampleDefFGA = get(sample?.total_def_2p_attempts, 0) + get(sample?.total_def_3p_attempts, 0);
     const rawSampleDefOrb = get(sample?.def_orb, 0);
     const sampleDefOrb = rawSampleDefOrb > 0.66 ? 0.66 : rawSampleDefOrb;
-    //
-    // const threePointRate = sampleDef3PA/((sampleDef3PA + sampleDef2PA) || 1)
+
     const delta3P = adjDef3P - sampleDef3P;
     const deltaDefEfg = 1.5*delta3P*sampleDef3PRate;
     const deltaMissesPct = -1*delta3P*sampleDef3PRate;
@@ -325,10 +334,10 @@ export class LuckUtils {
 
     return {
       avgEff, luckPct,
-      baseDef3P, baseDef3PSos, basePoss,
+      baseDef3P, baseDef3PSos, baseDef3PA, basePoss,
       base3PSosAdj,
 
-      sampleDef3P, sampleDef3PSos, samplePoss,
+      sampleDef3P, sampleDef3PSos, sampleDef3PA, samplePoss,
       sample3PSosAdj,
 
       sampleDefEfg, sampleDefPpp, sampleOffSos,

@@ -19758,13 +19758,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             def_adj_prod: Object {
                         "old_value": -1.9073922729482804,
                         "override": "Derived from luck adjustments",
-                        "value": -1.7316752909201456,
+                        "value": -1.731659966334985,
                       }
 
             def_adj_rtg: Object {
                         "old_value": -1.9073922729482804,
                         "override": "Derived from luck adjustments",
-                        "value": -1.7316752909201456,
+                        "value": -1.731659966334985,
                       }
 
             def_luck: {
@@ -19776,7 +19776,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             def_rtg: Object {
                         "old_value": 97.93561913082087,
                         "override": "Derived from luck adjustments",
-                        "value": 98.88677839356187,
+                        "value": 98.88686134582382,
                       }
 
             def_team_poss_pct: Object {
@@ -19805,9 +19805,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       </OverlayTrigger>
 
             diag_def_rtg: {
-               "dRtg": 98.88677839356187,
-               "adjDRtg": 91.34162354539927,
-               "adjDRtgPlus": -1.7316752909201456
+               "dRtg": 98.88686134582382,
+               "adjDRtg": 91.34170016832508,
+               "adjDRtgPlus": -1.731659966334985
             }
 
             diag_off_rtg: {
@@ -19971,7 +19971,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             oppo_def_3p: Object {
                         "old_value": 0.3182711198428291,
                         "override": "Luck adjusted",
-                        "value": 0.328607390802694,
+                        "value": 0.3286082921113648,
                       }},
           {
             code: "??"
@@ -20018,13 +20018,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             def_adj_prod: Object {
                         "old_value": -0.5752894222708619,
                         "override": "Derived from luck adjustments",
-                        "value": -0.9687396754764394,
+                        "value": -0.9685169645959321,
                       }
 
             def_adj_rtg: Object {
                         "old_value": -0.5752894222708619,
                         "override": "Derived from luck adjustments",
-                        "value": -0.9687396754764394,
+                        "value": -0.9685169645959321,
                       }
 
             def_luck: {
@@ -20036,7 +20036,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             def_rtg: Object {
                         "old_value": 103.73082160102601,
                         "override": "Derived from luck adjustments",
-                        "value": 101.62973917507011,
+                        "value": 101.63092848404449,
                       }
 
             def_team_poss_pct: Object {
@@ -20065,9 +20065,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       </OverlayTrigger>
 
             diag_def_rtg: {
-               "dRtg": 101.62973917507011,
-               "adjDRtg": 95.1563016226178,
-               "adjDRtgPlus": -0.9687396754764394
+               "dRtg": 101.63092848404449,
+               "adjDRtg": 95.15741517702034,
+               "adjDRtgPlus": -0.9685169645959321
             }
 
             diag_off_rtg: {
@@ -20231,7 +20231,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             oppo_def_3p: Object {
                         "old_value": 0.34782608695652173,
                         "override": "Luck adjusted",
-                        "value": 0.3251726283750374,
+                        "value": 0.32518545203588684,
                       }},
           {
             code: "??"
@@ -20532,13 +20532,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             def_adj_prod: Object {
                         "old_value": -3.0941074793878247,
                         "override": "Derived from luck adjustments",
-                        "value": -2.5679446792519744,
+                        "value": -2.5680966662213365,
                       }
 
             def_adj_rtg: Object {
                         "old_value": -3.0941074793878247,
                         "override": "Derived from luck adjustments",
-                        "value": -2.5679446792519744,
+                        "value": -2.5680966662213365,
                       }
 
             def_luck: {
@@ -20550,7 +20550,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             def_rtg: Object {
                         "old_value": 91.2892111124598,
                         "override": "Derived from luck adjustments",
-                        "value": 94.13040904877468,
+                        "value": 94.12958834259099,
                       }
 
             def_team_poss_pct: Object {
@@ -20579,9 +20579,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       </OverlayTrigger>
 
             diag_def_rtg: {
-               "dRtg": 94.13040904877468,
-               "adjDRtg": 87.16027660374013,
-               "adjDRtgPlus": -2.5679446792519744
+               "dRtg": 94.12958834259099,
+               "adjDRtg": 87.15951666889332,
+               "adjDRtgPlus": -2.5680966662213365
             }
 
             diag_off_rtg: {
@@ -20745,7 +20745,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             oppo_def_3p: Object {
                         "old_value": 0.291044776119403,
                         "override": "Luck adjusted",
-                        "value": 0.3213607857535103,
+                        "value": 0.3213520330419174,
                       }},
           {
             code: "??"
@@ -21821,13 +21821,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_adj_prod: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_luck: {
@@ -21839,7 +21839,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Derived from luck adjustments",
-                                "value": 101.62973917507011,
+                                "value": 101.63092848404449,
                               }
 
                 def_team_poss_pct: Object {
@@ -21868,9 +21868,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 101.62973917507011,
-                   "adjDRtg": 95.1563016226178,
-                   "adjDRtgPlus": -0.9687396754764394
+                   "dRtg": 101.63092848404449,
+                   "adjDRtg": 95.15741517702034,
+                   "adjDRtgPlus": -0.9685169645959321
                 }
 
                 diag_off_rtg: {
@@ -22034,7 +22034,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 oppo_def_3p: Object {
                                 "old_value": 0.34782608695652173,
                                 "override": "Luck adjusted",
-                                "value": 0.3251726283750374,
+                                "value": 0.32518545203588684,
                               }},
               "kind": "data-row",
               "prefixFn": [Function],
@@ -22088,13 +22088,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_adj_prod: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_luck: {
@@ -22106,7 +22106,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Derived from luck adjustments",
-                                "value": 101.62973917507011,
+                                "value": 101.63092848404449,
                               }
 
                 def_team_poss_pct: Object {
@@ -22135,9 +22135,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 101.62973917507011,
-                   "adjDRtg": 95.1563016226178,
-                   "adjDRtgPlus": -0.9687396754764394
+                   "dRtg": 101.63092848404449,
+                   "adjDRtg": 95.15741517702034,
+                   "adjDRtgPlus": -0.9685169645959321
                 }
 
                 diag_off_rtg: {
@@ -22301,7 +22301,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 oppo_def_3p: Object {
                                 "old_value": 0.34782608695652173,
                                 "override": "Luck adjusted",
-                                "value": 0.3251726283750374,
+                                "value": 0.32518545203588684,
                               }},
               "kind": "data-row",
               "prefixFn": [Function],
@@ -22357,13 +22357,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_adj_prod: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_luck: {
@@ -22375,7 +22375,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Derived from luck adjustments",
-                                "value": 98.88677839356187,
+                                "value": 98.88686134582382,
                               }
 
                 def_team_poss_pct: Object {
@@ -22404,9 +22404,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 98.88677839356187,
-                   "adjDRtg": 91.34162354539927,
-                   "adjDRtgPlus": -1.7316752909201456
+                   "dRtg": 98.88686134582382,
+                   "adjDRtg": 91.34170016832508,
+                   "adjDRtgPlus": -1.731659966334985
                 }
 
                 diag_off_rtg: {
@@ -22570,7 +22570,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 oppo_def_3p: Object {
                                 "old_value": 0.3182711198428291,
                                 "override": "Luck adjusted",
-                                "value": 0.328607390802694,
+                                "value": 0.3286082921113648,
                               }},
               "kind": "data-row",
               "prefixFn": [Function],
@@ -22624,13 +22624,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_adj_prod: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_luck: {
@@ -22642,7 +22642,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Derived from luck adjustments",
-                                "value": 98.88677839356187,
+                                "value": 98.88686134582382,
                               }
 
                 def_team_poss_pct: Object {
@@ -22671,9 +22671,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 98.88677839356187,
-                   "adjDRtg": 91.34162354539927,
-                   "adjDRtgPlus": -1.7316752909201456
+                   "dRtg": 98.88686134582382,
+                   "adjDRtg": 91.34170016832508,
+                   "adjDRtgPlus": -1.731659966334985
                 }
 
                 diag_off_rtg: {
@@ -22837,7 +22837,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 oppo_def_3p: Object {
                                 "old_value": 0.3182711198428291,
                                 "override": "Luck adjusted",
-                                "value": 0.328607390802694,
+                                "value": 0.3286082921113648,
                               }},
               "kind": "data-row",
               "prefixFn": [Function],
@@ -23909,13 +23909,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_adj_prod: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_luck: {
@@ -23927,7 +23927,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Derived from luck adjustments",
-                                "value": 94.13040904877468,
+                                "value": 94.12958834259099,
                               }
 
                 def_team_poss_pct: Object {
@@ -23956,9 +23956,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 94.13040904877468,
-                   "adjDRtg": 87.16027660374013,
-                   "adjDRtgPlus": -2.5679446792519744
+                   "dRtg": 94.12958834259099,
+                   "adjDRtg": 87.15951666889332,
+                   "adjDRtgPlus": -2.5680966662213365
                 }
 
                 diag_off_rtg: {
@@ -24122,7 +24122,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 oppo_def_3p: Object {
                                 "old_value": 0.291044776119403,
                                 "override": "Luck adjusted",
-                                "value": 0.3213607857535103,
+                                "value": 0.3213520330419174,
                               }},
               "kind": "data-row",
               "prefixFn": [Function],
@@ -24176,13 +24176,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_adj_prod: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_luck: {
@@ -24194,7 +24194,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Derived from luck adjustments",
-                                "value": 94.13040904877468,
+                                "value": 94.12958834259099,
                               }
 
                 def_team_poss_pct: Object {
@@ -24223,9 +24223,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 94.13040904877468,
-                   "adjDRtg": 87.16027660374013,
-                   "adjDRtgPlus": -2.5679446792519744
+                   "dRtg": 94.12958834259099,
+                   "adjDRtg": 87.15951666889332,
+                   "adjDRtgPlus": -2.5680966662213365
                 }
 
                 diag_off_rtg: {
@@ -24389,7 +24389,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 oppo_def_3p: Object {
                                 "old_value": 0.291044776119403,
                                 "override": "Luck adjusted",
-                                "value": 0.3213607857535103,
+                                "value": 0.3213520330419174,
                               }},
               "kind": "data-row",
               "prefixFn": [Function],
@@ -25659,13 +25659,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   def_adj_prod: Object {
                                     "old_value": -1.9073922729482804,
                                     "override": "Derived from luck adjustments",
-                                    "value": -1.7316752909201456,
+                                    "value": -1.731659966334985,
                                   }
 
                   def_adj_rtg: Object {
                                     "old_value": -1.9073922729482804,
                                     "override": "Derived from luck adjustments",
-                                    "value": -1.7316752909201456,
+                                    "value": -1.731659966334985,
                                   }
 
                   def_luck: {
@@ -25677,7 +25677,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   def_rtg: Object {
                                     "old_value": 97.93561913082087,
                                     "override": "Derived from luck adjustments",
-                                    "value": 98.88677839356187,
+                                    "value": 98.88686134582382,
                                   }
 
                   def_team_poss_pct: Object {
@@ -25706,9 +25706,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                   </OverlayTrigger>
 
                   diag_def_rtg: {
-                     "dRtg": 98.88677839356187,
-                     "adjDRtg": 91.34162354539927,
-                     "adjDRtgPlus": -1.7316752909201456
+                     "dRtg": 98.88686134582382,
+                     "adjDRtg": 91.34170016832508,
+                     "adjDRtgPlus": -1.731659966334985
                   }
 
                   diag_off_rtg: {
@@ -25872,7 +25872,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   oppo_def_3p: Object {
                                     "old_value": 0.3182711198428291,
                                     "override": "Luck adjusted",
-                                    "value": 0.328607390802694,
+                                    "value": 0.3286082921113648,
                                   }},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -25884,9 +25884,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <RosterStatsDiagView
                   drtgDiags={
                     {
-   "dRtg": 98.88677839356187,
-   "adjDRtg": 91.34162354539927,
-   "adjDRtgPlus": -1.7316752909201456
+   "dRtg": 98.88686134582382,
+   "adjDRtg": 91.34170016832508,
+   "adjDRtgPlus": -1.731659966334985
 }
                   }
                   ortgDiags={
@@ -25948,13 +25948,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       def_adj_prod: Object {
                                             "old_value": -1.9073922729482804,
                                             "override": "Derived from luck adjustments",
-                                            "value": -1.7316752909201456,
+                                            "value": -1.731659966334985,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -1.9073922729482804,
                                             "override": "Derived from luck adjustments",
-                                            "value": -1.7316752909201456,
+                                            "value": -1.731659966334985,
                                           }
 
                       def_luck: {
@@ -25966,7 +25966,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       def_rtg: Object {
                                             "old_value": 97.93561913082087,
                                             "override": "Derived from luck adjustments",
-                                            "value": 98.88677839356187,
+                                            "value": 98.88686134582382,
                                           }
 
                       def_team_poss_pct: Object {
@@ -25995,9 +25995,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 98.88677839356187,
-                         "adjDRtg": 91.34162354539927,
-                         "adjDRtgPlus": -1.7316752909201456
+                         "dRtg": 98.88686134582382,
+                         "adjDRtg": 91.34170016832508,
+                         "adjDRtgPlus": -1.731659966334985
                       }
 
                       diag_off_rtg: {
@@ -26161,7 +26161,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       oppo_def_3p: Object {
                                             "old_value": 0.3182711198428291,
                                             "override": "Luck adjusted",
-                                            "value": 0.328607390802694,
+                                            "value": 0.3286082921113648,
                                           }}
                   }
                   showHelp={true}
@@ -26240,13 +26240,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   def_adj_prod: Object {
                                     "old_value": -0.5752894222708619,
                                     "override": "Derived from luck adjustments",
-                                    "value": -0.9687396754764394,
+                                    "value": -0.9685169645959321,
                                   }
 
                   def_adj_rtg: Object {
                                     "old_value": -0.5752894222708619,
                                     "override": "Derived from luck adjustments",
-                                    "value": -0.9687396754764394,
+                                    "value": -0.9685169645959321,
                                   }
 
                   def_luck: {
@@ -26258,7 +26258,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   def_rtg: Object {
                                     "old_value": 103.73082160102601,
                                     "override": "Derived from luck adjustments",
-                                    "value": 101.62973917507011,
+                                    "value": 101.63092848404449,
                                   }
 
                   def_team_poss_pct: Object {
@@ -26287,9 +26287,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                   </OverlayTrigger>
 
                   diag_def_rtg: {
-                     "dRtg": 101.62973917507011,
-                     "adjDRtg": 95.1563016226178,
-                     "adjDRtgPlus": -0.9687396754764394
+                     "dRtg": 101.63092848404449,
+                     "adjDRtg": 95.15741517702034,
+                     "adjDRtgPlus": -0.9685169645959321
                   }
 
                   diag_off_rtg: {
@@ -26453,7 +26453,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   oppo_def_3p: Object {
                                     "old_value": 0.34782608695652173,
                                     "override": "Luck adjusted",
-                                    "value": 0.3251726283750374,
+                                    "value": 0.32518545203588684,
                                   }},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -26465,9 +26465,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <RosterStatsDiagView
                   drtgDiags={
                     {
-   "dRtg": 101.62973917507011,
-   "adjDRtg": 95.1563016226178,
-   "adjDRtgPlus": -0.9687396754764394
+   "dRtg": 101.63092848404449,
+   "adjDRtg": 95.15741517702034,
+   "adjDRtgPlus": -0.9685169645959321
 }
                   }
                   ortgDiags={
@@ -26529,13 +26529,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       def_adj_prod: Object {
                                             "old_value": -0.5752894222708619,
                                             "override": "Derived from luck adjustments",
-                                            "value": -0.9687396754764394,
+                                            "value": -0.9685169645959321,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -0.5752894222708619,
                                             "override": "Derived from luck adjustments",
-                                            "value": -0.9687396754764394,
+                                            "value": -0.9685169645959321,
                                           }
 
                       def_luck: {
@@ -26547,7 +26547,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       def_rtg: Object {
                                             "old_value": 103.73082160102601,
                                             "override": "Derived from luck adjustments",
-                                            "value": 101.62973917507011,
+                                            "value": 101.63092848404449,
                                           }
 
                       def_team_poss_pct: Object {
@@ -26576,9 +26576,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 101.62973917507011,
-                         "adjDRtg": 95.1563016226178,
-                         "adjDRtgPlus": -0.9687396754764394
+                         "dRtg": 101.63092848404449,
+                         "adjDRtg": 95.15741517702034,
+                         "adjDRtgPlus": -0.9685169645959321
                       }
 
                       diag_off_rtg: {
@@ -26742,7 +26742,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       oppo_def_3p: Object {
                                             "old_value": 0.34782608695652173,
                                             "override": "Luck adjusted",
-                                            "value": 0.3251726283750374,
+                                            "value": 0.32518545203588684,
                                           }}
                   }
                   showHelp={true}
@@ -26824,13 +26824,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   def_adj_prod: Object {
                                     "old_value": -3.0941074793878247,
                                     "override": "Derived from luck adjustments",
-                                    "value": -2.5679446792519744,
+                                    "value": -2.5680966662213365,
                                   }
 
                   def_adj_rtg: Object {
                                     "old_value": -3.0941074793878247,
                                     "override": "Derived from luck adjustments",
-                                    "value": -2.5679446792519744,
+                                    "value": -2.5680966662213365,
                                   }
 
                   def_luck: {
@@ -26842,7 +26842,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   def_rtg: Object {
                                     "old_value": 91.2892111124598,
                                     "override": "Derived from luck adjustments",
-                                    "value": 94.13040904877468,
+                                    "value": 94.12958834259099,
                                   }
 
                   def_team_poss_pct: Object {
@@ -26871,9 +26871,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                   </OverlayTrigger>
 
                   diag_def_rtg: {
-                     "dRtg": 94.13040904877468,
-                     "adjDRtg": 87.16027660374013,
-                     "adjDRtgPlus": -2.5679446792519744
+                     "dRtg": 94.12958834259099,
+                     "adjDRtg": 87.15951666889332,
+                     "adjDRtgPlus": -2.5680966662213365
                   }
 
                   diag_off_rtg: {
@@ -27037,7 +27037,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   oppo_def_3p: Object {
                                     "old_value": 0.291044776119403,
                                     "override": "Luck adjusted",
-                                    "value": 0.3213607857535103,
+                                    "value": 0.3213520330419174,
                                   }},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -27049,9 +27049,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <RosterStatsDiagView
                   drtgDiags={
                     {
-   "dRtg": 94.13040904877468,
-   "adjDRtg": 87.16027660374013,
-   "adjDRtgPlus": -2.5679446792519744
+   "dRtg": 94.12958834259099,
+   "adjDRtg": 87.15951666889332,
+   "adjDRtgPlus": -2.5680966662213365
 }
                   }
                   ortgDiags={
@@ -27113,13 +27113,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       def_adj_prod: Object {
                                             "old_value": -3.0941074793878247,
                                             "override": "Derived from luck adjustments",
-                                            "value": -2.5679446792519744,
+                                            "value": -2.5680966662213365,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -3.0941074793878247,
                                             "override": "Derived from luck adjustments",
-                                            "value": -2.5679446792519744,
+                                            "value": -2.5680966662213365,
                                           }
 
                       def_luck: {
@@ -27131,7 +27131,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       def_rtg: Object {
                                             "old_value": 91.2892111124598,
                                             "override": "Derived from luck adjustments",
-                                            "value": 94.13040904877468,
+                                            "value": 94.12958834259099,
                                           }
 
                       def_team_poss_pct: Object {
@@ -27160,9 +27160,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 94.13040904877468,
-                         "adjDRtg": 87.16027660374013,
-                         "adjDRtgPlus": -2.5679446792519744
+                         "dRtg": 94.12958834259099,
+                         "adjDRtg": 87.15951666889332,
+                         "adjDRtgPlus": -2.5680966662213365
                       }
 
                       diag_off_rtg: {
@@ -27326,7 +27326,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       oppo_def_3p: Object {
                                             "old_value": 0.291044776119403,
                                             "override": "Luck adjusted",
-                                            "value": 0.3213607857535103,
+                                            "value": 0.3213520330419174,
                                           }}
                   }
                   showHelp={true}
@@ -28198,13 +28198,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             def_adj_prod: Object {
                         "old_value": -1.9073922729482804,
                         "override": "Derived from luck adjustments",
-                        "value": -1.7316752909201456,
+                        "value": -1.731659966334985,
                       }
 
             def_adj_rtg: Object {
                         "old_value": -1.9073922729482804,
                         "override": "Derived from luck adjustments",
-                        "value": -1.7316752909201456,
+                        "value": -1.731659966334985,
                       }
 
             def_luck: {
@@ -28216,7 +28216,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             def_rtg: Object {
                         "old_value": 97.93561913082087,
                         "override": "Derived from luck adjustments",
-                        "value": 98.88677839356187,
+                        "value": 98.88686134582382,
                       }
 
             def_team_poss_pct: Object {
@@ -28245,9 +28245,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </OverlayTrigger>
 
             diag_def_rtg: {
-               "dRtg": 98.88677839356187,
-               "adjDRtg": 91.34162354539927,
-               "adjDRtgPlus": -1.7316752909201456
+               "dRtg": 98.88686134582382,
+               "adjDRtg": 91.34170016832508,
+               "adjDRtgPlus": -1.731659966334985
             }
 
             diag_off_rtg: {
@@ -28411,7 +28411,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             oppo_def_3p: Object {
                         "old_value": 0.3182711198428291,
                         "override": "Luck adjusted",
-                        "value": 0.328607390802694,
+                        "value": 0.3286082921113648,
                       }
 
             role: "s-PG"},
@@ -28460,13 +28460,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             def_adj_prod: Object {
                         "old_value": -0.5752894222708619,
                         "override": "Derived from luck adjustments",
-                        "value": -0.9687396754764394,
+                        "value": -0.9685169645959321,
                       }
 
             def_adj_rtg: Object {
                         "old_value": -0.5752894222708619,
                         "override": "Derived from luck adjustments",
-                        "value": -0.9687396754764394,
+                        "value": -0.9685169645959321,
                       }
 
             def_luck: {
@@ -28478,7 +28478,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             def_rtg: Object {
                         "old_value": 103.73082160102601,
                         "override": "Derived from luck adjustments",
-                        "value": 101.62973917507011,
+                        "value": 101.63092848404449,
                       }
 
             def_team_poss_pct: Object {
@@ -28507,9 +28507,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </OverlayTrigger>
 
             diag_def_rtg: {
-               "dRtg": 101.62973917507011,
-               "adjDRtg": 95.1563016226178,
-               "adjDRtgPlus": -0.9687396754764394
+               "dRtg": 101.63092848404449,
+               "adjDRtg": 95.15741517702034,
+               "adjDRtgPlus": -0.9685169645959321
             }
 
             diag_off_rtg: {
@@ -28673,7 +28673,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             oppo_def_3p: Object {
                         "old_value": 0.34782608695652173,
                         "override": "Luck adjusted",
-                        "value": 0.3251726283750374,
+                        "value": 0.32518545203588684,
                       }
 
             role: "s-PG"},
@@ -28984,13 +28984,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             def_adj_prod: Object {
                         "old_value": -3.0941074793878247,
                         "override": "Derived from luck adjustments",
-                        "value": -2.5679446792519744,
+                        "value": -2.5680966662213365,
                       }
 
             def_adj_rtg: Object {
                         "old_value": -3.0941074793878247,
                         "override": "Derived from luck adjustments",
-                        "value": -2.5679446792519744,
+                        "value": -2.5680966662213365,
                       }
 
             def_luck: {
@@ -29002,7 +29002,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             def_rtg: Object {
                         "old_value": 91.2892111124598,
                         "override": "Derived from luck adjustments",
-                        "value": 94.13040904877468,
+                        "value": 94.12958834259099,
                       }
 
             def_team_poss_pct: Object {
@@ -29031,9 +29031,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       </OverlayTrigger>
 
             diag_def_rtg: {
-               "dRtg": 94.13040904877468,
-               "adjDRtg": 87.16027660374013,
-               "adjDRtgPlus": -2.5679446792519744
+               "dRtg": 94.12958834259099,
+               "adjDRtg": 87.15951666889332,
+               "adjDRtgPlus": -2.5680966662213365
             }
 
             diag_off_rtg: {
@@ -29197,7 +29197,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             oppo_def_3p: Object {
                         "old_value": 0.291044776119403,
                         "override": "Luck adjusted",
-                        "value": 0.3213607857535103,
+                        "value": 0.3213520330419174,
                       }
 
             role: "WG"},
@@ -30340,13 +30340,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_adj_prod: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_luck: {
@@ -30358,7 +30358,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Derived from luck adjustments",
-                                "value": 101.62973917507011,
+                                "value": 101.63092848404449,
                               }
 
                 def_team_poss_pct: Object {
@@ -30387,9 +30387,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 101.62973917507011,
-                   "adjDRtg": 95.1563016226178,
-                   "adjDRtgPlus": -0.9687396754764394
+                   "dRtg": 101.63092848404449,
+                   "adjDRtg": 95.15741517702034,
+                   "adjDRtgPlus": -0.9685169645959321
                 }
 
                 diag_off_rtg: {
@@ -30553,7 +30553,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 oppo_def_3p: Object {
                                 "old_value": 0.34782608695652173,
                                 "override": "Luck adjusted",
-                                "value": 0.3251726283750374,
+                                "value": 0.32518545203588684,
                               }
 
                 role: "s-PG"},
@@ -30609,13 +30609,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_adj_prod: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -0.5752894222708619,
                                 "override": "Derived from luck adjustments",
-                                "value": -0.9687396754764394,
+                                "value": -0.9685169645959321,
                               }
 
                 def_luck: {
@@ -30627,7 +30627,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Derived from luck adjustments",
-                                "value": 101.62973917507011,
+                                "value": 101.63092848404449,
                               }
 
                 def_team_poss_pct: Object {
@@ -30656,9 +30656,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 101.62973917507011,
-                   "adjDRtg": 95.1563016226178,
-                   "adjDRtgPlus": -0.9687396754764394
+                   "dRtg": 101.63092848404449,
+                   "adjDRtg": 95.15741517702034,
+                   "adjDRtgPlus": -0.9685169645959321
                 }
 
                 diag_off_rtg: {
@@ -30822,7 +30822,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 oppo_def_3p: Object {
                                 "old_value": 0.34782608695652173,
                                 "override": "Luck adjusted",
-                                "value": 0.3251726283750374,
+                                "value": 0.32518545203588684,
                               }
 
                 role: "s-PG"},
@@ -30880,13 +30880,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_adj_prod: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_luck: {
@@ -30898,7 +30898,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Derived from luck adjustments",
-                                "value": 98.88677839356187,
+                                "value": 98.88686134582382,
                               }
 
                 def_team_poss_pct: Object {
@@ -30927,9 +30927,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 98.88677839356187,
-                   "adjDRtg": 91.34162354539927,
-                   "adjDRtgPlus": -1.7316752909201456
+                   "dRtg": 98.88686134582382,
+                   "adjDRtg": 91.34170016832508,
+                   "adjDRtgPlus": -1.731659966334985
                 }
 
                 diag_off_rtg: {
@@ -31093,7 +31093,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 oppo_def_3p: Object {
                                 "old_value": 0.3182711198428291,
                                 "override": "Luck adjusted",
-                                "value": 0.328607390802694,
+                                "value": 0.3286082921113648,
                               }
 
                 role: "s-PG"},
@@ -31149,13 +31149,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_adj_prod: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -1.9073922729482804,
                                 "override": "Derived from luck adjustments",
-                                "value": -1.7316752909201456,
+                                "value": -1.731659966334985,
                               }
 
                 def_luck: {
@@ -31167,7 +31167,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Derived from luck adjustments",
-                                "value": 98.88677839356187,
+                                "value": 98.88686134582382,
                               }
 
                 def_team_poss_pct: Object {
@@ -31196,9 +31196,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 98.88677839356187,
-                   "adjDRtg": 91.34162354539927,
-                   "adjDRtgPlus": -1.7316752909201456
+                   "dRtg": 98.88686134582382,
+                   "adjDRtg": 91.34170016832508,
+                   "adjDRtgPlus": -1.731659966334985
                 }
 
                 diag_off_rtg: {
@@ -31362,7 +31362,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 oppo_def_3p: Object {
                                 "old_value": 0.3182711198428291,
                                 "override": "Luck adjusted",
-                                "value": 0.328607390802694,
+                                "value": 0.3286082921113648,
                               }
 
                 role: "s-PG"},
@@ -32480,13 +32480,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_adj_prod: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_luck: {
@@ -32498,7 +32498,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Derived from luck adjustments",
-                                "value": 94.13040904877468,
+                                "value": 94.12958834259099,
                               }
 
                 def_team_poss_pct: Object {
@@ -32527,9 +32527,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 94.13040904877468,
-                   "adjDRtg": 87.16027660374013,
-                   "adjDRtgPlus": -2.5679446792519744
+                   "dRtg": 94.12958834259099,
+                   "adjDRtg": 87.15951666889332,
+                   "adjDRtgPlus": -2.5680966662213365
                 }
 
                 diag_off_rtg: {
@@ -32693,7 +32693,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 oppo_def_3p: Object {
                                 "old_value": 0.291044776119403,
                                 "override": "Luck adjusted",
-                                "value": 0.3213607857535103,
+                                "value": 0.3213520330419174,
                               }
 
                 role: "WG"},
@@ -32749,13 +32749,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_adj_prod: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_adj_rtg: Object {
                                 "old_value": -3.0941074793878247,
                                 "override": "Derived from luck adjustments",
-                                "value": -2.5679446792519744,
+                                "value": -2.5680966662213365,
                               }
 
                 def_luck: {
@@ -32767,7 +32767,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Derived from luck adjustments",
-                                "value": 94.13040904877468,
+                                "value": 94.12958834259099,
                               }
 
                 def_team_poss_pct: Object {
@@ -32796,9 +32796,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               </OverlayTrigger>
 
                 diag_def_rtg: {
-                   "dRtg": 94.13040904877468,
-                   "adjDRtg": 87.16027660374013,
-                   "adjDRtgPlus": -2.5679446792519744
+                   "dRtg": 94.12958834259099,
+                   "adjDRtg": 87.15951666889332,
+                   "adjDRtgPlus": -2.5680966662213365
                 }
 
                 diag_off_rtg: {
@@ -32962,7 +32962,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 oppo_def_3p: Object {
                                 "old_value": 0.291044776119403,
                                 "override": "Luck adjusted",
-                                "value": 0.3213607857535103,
+                                "value": 0.3213520330419174,
                               }
 
                 role: "WG"},
@@ -34270,13 +34270,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   def_adj_prod: Object {
                                     "old_value": -1.9073922729482804,
                                     "override": "Derived from luck adjustments",
-                                    "value": -1.7316752909201456,
+                                    "value": -1.731659966334985,
                                   }
 
                   def_adj_rtg: Object {
                                     "old_value": -1.9073922729482804,
                                     "override": "Derived from luck adjustments",
-                                    "value": -1.7316752909201456,
+                                    "value": -1.731659966334985,
                                   }
 
                   def_luck: {
@@ -34288,7 +34288,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   def_rtg: Object {
                                     "old_value": 97.93561913082087,
                                     "override": "Derived from luck adjustments",
-                                    "value": 98.88677839356187,
+                                    "value": 98.88686134582382,
                                   }
 
                   def_team_poss_pct: Object {
@@ -34317,9 +34317,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                   </OverlayTrigger>
 
                   diag_def_rtg: {
-                     "dRtg": 98.88677839356187,
-                     "adjDRtg": 91.34162354539927,
-                     "adjDRtgPlus": -1.7316752909201456
+                     "dRtg": 98.88686134582382,
+                     "adjDRtg": 91.34170016832508,
+                     "adjDRtgPlus": -1.731659966334985
                   }
 
                   diag_off_rtg: {
@@ -34483,7 +34483,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   oppo_def_3p: Object {
                                     "old_value": 0.3182711198428291,
                                     "override": "Luck adjusted",
-                                    "value": 0.328607390802694,
+                                    "value": 0.3286082921113648,
                                   }
 
                   role: "s-PG"},
@@ -34497,9 +34497,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <RosterStatsDiagView
                   drtgDiags={
                     {
-   "dRtg": 98.88677839356187,
-   "adjDRtg": 91.34162354539927,
-   "adjDRtgPlus": -1.7316752909201456
+   "dRtg": 98.88686134582382,
+   "adjDRtg": 91.34170016832508,
+   "adjDRtgPlus": -1.731659966334985
 }
                   }
                   ortgDiags={
@@ -34561,13 +34561,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_adj_prod: Object {
                                             "old_value": -1.9073922729482804,
                                             "override": "Derived from luck adjustments",
-                                            "value": -1.7316752909201456,
+                                            "value": -1.731659966334985,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -1.9073922729482804,
                                             "override": "Derived from luck adjustments",
-                                            "value": -1.7316752909201456,
+                                            "value": -1.731659966334985,
                                           }
 
                       def_luck: {
@@ -34579,7 +34579,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_rtg: Object {
                                             "old_value": 97.93561913082087,
                                             "override": "Derived from luck adjustments",
-                                            "value": 98.88677839356187,
+                                            "value": 98.88686134582382,
                                           }
 
                       def_team_poss_pct: Object {
@@ -34608,9 +34608,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 98.88677839356187,
-                         "adjDRtg": 91.34162354539927,
-                         "adjDRtgPlus": -1.7316752909201456
+                         "dRtg": 98.88686134582382,
+                         "adjDRtg": 91.34170016832508,
+                         "adjDRtgPlus": -1.731659966334985
                       }
 
                       diag_off_rtg: {
@@ -34774,7 +34774,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       oppo_def_3p: Object {
                                             "old_value": 0.3182711198428291,
                                             "override": "Luck adjusted",
-                                            "value": 0.328607390802694,
+                                            "value": 0.3286082921113648,
                                           }
 
                       role: "s-PG"}
@@ -34857,13 +34857,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_adj_prod: Object {
                                             "old_value": -1.9073922729482804,
                                             "override": "Derived from luck adjustments",
-                                            "value": -1.7316752909201456,
+                                            "value": -1.731659966334985,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -1.9073922729482804,
                                             "override": "Derived from luck adjustments",
-                                            "value": -1.7316752909201456,
+                                            "value": -1.731659966334985,
                                           }
 
                       def_luck: {
@@ -34875,7 +34875,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_rtg: Object {
                                             "old_value": 97.93561913082087,
                                             "override": "Derived from luck adjustments",
-                                            "value": 98.88677839356187,
+                                            "value": 98.88686134582382,
                                           }
 
                       def_team_poss_pct: Object {
@@ -34904,9 +34904,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 98.88677839356187,
-                         "adjDRtg": 91.34162354539927,
-                         "adjDRtgPlus": -1.7316752909201456
+                         "dRtg": 98.88686134582382,
+                         "adjDRtg": 91.34170016832508,
+                         "adjDRtgPlus": -1.731659966334985
                       }
 
                       diag_off_rtg: {
@@ -35070,7 +35070,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       oppo_def_3p: Object {
                                             "old_value": 0.3182711198428291,
                                             "override": "Luck adjusted",
-                                            "value": 0.328607390802694,
+                                            "value": 0.3286082921113648,
                                           }
 
                       posClass: Array [
@@ -35647,13 +35647,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   def_adj_prod: Object {
                                     "old_value": -0.5752894222708619,
                                     "override": "Derived from luck adjustments",
-                                    "value": -0.9687396754764394,
+                                    "value": -0.9685169645959321,
                                   }
 
                   def_adj_rtg: Object {
                                     "old_value": -0.5752894222708619,
                                     "override": "Derived from luck adjustments",
-                                    "value": -0.9687396754764394,
+                                    "value": -0.9685169645959321,
                                   }
 
                   def_luck: {
@@ -35665,7 +35665,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   def_rtg: Object {
                                     "old_value": 103.73082160102601,
                                     "override": "Derived from luck adjustments",
-                                    "value": 101.62973917507011,
+                                    "value": 101.63092848404449,
                                   }
 
                   def_team_poss_pct: Object {
@@ -35694,9 +35694,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                   </OverlayTrigger>
 
                   diag_def_rtg: {
-                     "dRtg": 101.62973917507011,
-                     "adjDRtg": 95.1563016226178,
-                     "adjDRtgPlus": -0.9687396754764394
+                     "dRtg": 101.63092848404449,
+                     "adjDRtg": 95.15741517702034,
+                     "adjDRtgPlus": -0.9685169645959321
                   }
 
                   diag_off_rtg: {
@@ -35860,7 +35860,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   oppo_def_3p: Object {
                                     "old_value": 0.34782608695652173,
                                     "override": "Luck adjusted",
-                                    "value": 0.3251726283750374,
+                                    "value": 0.32518545203588684,
                                   }
 
                   role: "s-PG"},
@@ -35874,9 +35874,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <RosterStatsDiagView
                   drtgDiags={
                     {
-   "dRtg": 101.62973917507011,
-   "adjDRtg": 95.1563016226178,
-   "adjDRtgPlus": -0.9687396754764394
+   "dRtg": 101.63092848404449,
+   "adjDRtg": 95.15741517702034,
+   "adjDRtgPlus": -0.9685169645959321
 }
                   }
                   ortgDiags={
@@ -35938,13 +35938,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_adj_prod: Object {
                                             "old_value": -0.5752894222708619,
                                             "override": "Derived from luck adjustments",
-                                            "value": -0.9687396754764394,
+                                            "value": -0.9685169645959321,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -0.5752894222708619,
                                             "override": "Derived from luck adjustments",
-                                            "value": -0.9687396754764394,
+                                            "value": -0.9685169645959321,
                                           }
 
                       def_luck: {
@@ -35956,7 +35956,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_rtg: Object {
                                             "old_value": 103.73082160102601,
                                             "override": "Derived from luck adjustments",
-                                            "value": 101.62973917507011,
+                                            "value": 101.63092848404449,
                                           }
 
                       def_team_poss_pct: Object {
@@ -35985,9 +35985,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 101.62973917507011,
-                         "adjDRtg": 95.1563016226178,
-                         "adjDRtgPlus": -0.9687396754764394
+                         "dRtg": 101.63092848404449,
+                         "adjDRtg": 95.15741517702034,
+                         "adjDRtgPlus": -0.9685169645959321
                       }
 
                       diag_off_rtg: {
@@ -36151,7 +36151,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       oppo_def_3p: Object {
                                             "old_value": 0.34782608695652173,
                                             "override": "Luck adjusted",
-                                            "value": 0.3251726283750374,
+                                            "value": 0.32518545203588684,
                                           }
 
                       role: "s-PG"}
@@ -36234,13 +36234,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_adj_prod: Object {
                                             "old_value": -0.5752894222708619,
                                             "override": "Derived from luck adjustments",
-                                            "value": -0.9687396754764394,
+                                            "value": -0.9685169645959321,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -0.5752894222708619,
                                             "override": "Derived from luck adjustments",
-                                            "value": -0.9687396754764394,
+                                            "value": -0.9685169645959321,
                                           }
 
                       def_luck: {
@@ -36252,7 +36252,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_rtg: Object {
                                             "old_value": 103.73082160102601,
                                             "override": "Derived from luck adjustments",
-                                            "value": 101.62973917507011,
+                                            "value": 101.63092848404449,
                                           }
 
                       def_team_poss_pct: Object {
@@ -36281,9 +36281,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 101.62973917507011,
-                         "adjDRtg": 95.1563016226178,
-                         "adjDRtgPlus": -0.9687396754764394
+                         "dRtg": 101.63092848404449,
+                         "adjDRtg": 95.15741517702034,
+                         "adjDRtgPlus": -0.9685169645959321
                       }
 
                       diag_off_rtg: {
@@ -36447,7 +36447,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       oppo_def_3p: Object {
                                             "old_value": 0.34782608695652173,
                                             "override": "Luck adjusted",
-                                            "value": 0.3251726283750374,
+                                            "value": 0.32518545203588684,
                                           }
 
                       posClass: Array [
@@ -37027,13 +37027,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   def_adj_prod: Object {
                                     "old_value": -3.0941074793878247,
                                     "override": "Derived from luck adjustments",
-                                    "value": -2.5679446792519744,
+                                    "value": -2.5680966662213365,
                                   }
 
                   def_adj_rtg: Object {
                                     "old_value": -3.0941074793878247,
                                     "override": "Derived from luck adjustments",
-                                    "value": -2.5679446792519744,
+                                    "value": -2.5680966662213365,
                                   }
 
                   def_luck: {
@@ -37045,7 +37045,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   def_rtg: Object {
                                     "old_value": 91.2892111124598,
                                     "override": "Derived from luck adjustments",
-                                    "value": 94.13040904877468,
+                                    "value": 94.12958834259099,
                                   }
 
                   def_team_poss_pct: Object {
@@ -37074,9 +37074,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                   </OverlayTrigger>
 
                   diag_def_rtg: {
-                     "dRtg": 94.13040904877468,
-                     "adjDRtg": 87.16027660374013,
-                     "adjDRtgPlus": -2.5679446792519744
+                     "dRtg": 94.12958834259099,
+                     "adjDRtg": 87.15951666889332,
+                     "adjDRtgPlus": -2.5680966662213365
                   }
 
                   diag_off_rtg: {
@@ -37240,7 +37240,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   oppo_def_3p: Object {
                                     "old_value": 0.291044776119403,
                                     "override": "Luck adjusted",
-                                    "value": 0.3213607857535103,
+                                    "value": 0.3213520330419174,
                                   }
 
                   role: "WG"},
@@ -37254,9 +37254,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <RosterStatsDiagView
                   drtgDiags={
                     {
-   "dRtg": 94.13040904877468,
-   "adjDRtg": 87.16027660374013,
-   "adjDRtgPlus": -2.5679446792519744
+   "dRtg": 94.12958834259099,
+   "adjDRtg": 87.15951666889332,
+   "adjDRtgPlus": -2.5680966662213365
 }
                   }
                   ortgDiags={
@@ -37318,13 +37318,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_adj_prod: Object {
                                             "old_value": -3.0941074793878247,
                                             "override": "Derived from luck adjustments",
-                                            "value": -2.5679446792519744,
+                                            "value": -2.5680966662213365,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -3.0941074793878247,
                                             "override": "Derived from luck adjustments",
-                                            "value": -2.5679446792519744,
+                                            "value": -2.5680966662213365,
                                           }
 
                       def_luck: {
@@ -37336,7 +37336,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_rtg: Object {
                                             "old_value": 91.2892111124598,
                                             "override": "Derived from luck adjustments",
-                                            "value": 94.13040904877468,
+                                            "value": 94.12958834259099,
                                           }
 
                       def_team_poss_pct: Object {
@@ -37365,9 +37365,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 94.13040904877468,
-                         "adjDRtg": 87.16027660374013,
-                         "adjDRtgPlus": -2.5679446792519744
+                         "dRtg": 94.12958834259099,
+                         "adjDRtg": 87.15951666889332,
+                         "adjDRtgPlus": -2.5680966662213365
                       }
 
                       diag_off_rtg: {
@@ -37531,7 +37531,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       oppo_def_3p: Object {
                                             "old_value": 0.291044776119403,
                                             "override": "Luck adjusted",
-                                            "value": 0.3213607857535103,
+                                            "value": 0.3213520330419174,
                                           }
 
                       role: "WG"}
@@ -37614,13 +37614,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_adj_prod: Object {
                                             "old_value": -3.0941074793878247,
                                             "override": "Derived from luck adjustments",
-                                            "value": -2.5679446792519744,
+                                            "value": -2.5680966662213365,
                                           }
 
                       def_adj_rtg: Object {
                                             "old_value": -3.0941074793878247,
                                             "override": "Derived from luck adjustments",
-                                            "value": -2.5679446792519744,
+                                            "value": -2.5680966662213365,
                                           }
 
                       def_luck: {
@@ -37632,7 +37632,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       def_rtg: Object {
                                             "old_value": 91.2892111124598,
                                             "override": "Derived from luck adjustments",
-                                            "value": 94.13040904877468,
+                                            "value": 94.12958834259099,
                                           }
 
                       def_team_poss_pct: Object {
@@ -37661,9 +37661,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           </OverlayTrigger>
 
                       diag_def_rtg: {
-                         "dRtg": 94.13040904877468,
-                         "adjDRtg": 87.16027660374013,
-                         "adjDRtgPlus": -2.5679446792519744
+                         "dRtg": 94.12958834259099,
+                         "adjDRtg": 87.15951666889332,
+                         "adjDRtgPlus": -2.5680966662213365
                       }
 
                       diag_off_rtg: {
@@ -37827,7 +37827,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       oppo_def_3p: Object {
                                             "old_value": 0.291044776119403,
                                             "override": "Luck adjusted",
-                                            "value": 0.3213607857535103,
+                                            "value": 0.3213520330419174,
                                           }
 
                       posClass: Array [

@@ -6,10 +6,12 @@ exports[`LuckUtils LuckUtils - calcDefTeamLuckAdj: Defensive Luck Adjustments 1`
    "luckPct": 0.66,
    "baseDef3P": 0.32521489971346706,
    "baseDef3PSos": 0.3298939828080229,
+   "baseDef3PA": 698,
    "basePoss": 2081,
    "base3PSosAdj": -0.0015908882521489841,
    "sampleDef3P": 0.3614457831325301,
    "sampleDef3PSos": 0.3225421686746988,
+   "sampleDef3PA": 166,
    "samplePoss": 489,
    "sample3PSosAdj": 0.013227228915662642,
    "sampleDefEfg": 0.4733178654292343,
@@ -18,16 +20,16 @@ exports[`LuckUtils LuckUtils - calcDefTeamLuckAdj: Defensive Luck Adjustments 1`
    "sampleDef3PRate": 0.3851508120649652,
    "sampleDefFGA": 431,
    "sampleDefOrb": 0.2947761194029851,
-   "avg3PSosAdj": 0.001228590072777041,
-   "adjDef3P": 0.32377075874747585,
-   "delta3P": -0.03767502438505427,
-   "deltaDefEfg": -0.021765849354706525,
-   "deltaDefPppNoOrb": -3.836842974183441,
-   "deltaMissesPct": 0.014510566236471017,
-   "deltaDefOrbFactor": 0.004295742880401803,
-   "deltaPtsOffMisses": 0.40518592191060876,
-   "deltaDefPpp": -3.4316570522728322,
-   "deltaDefAdjEff": -3.2540359333893396
+   "avg3PSosAdj": 0.0012561111111111195,
+   "adjDef3P": 0.32379827978580994,
+   "delta3P": -0.03764750334672018,
+   "deltaDefEfg": -0.021749949729311657,
+   "deltaDefPppNoOrb": -3.834040218132239,
+   "deltaMissesPct": 0.014499966486207773,
+   "deltaDefOrbFactor": 0.004292591434828319,
+   "deltaPtsOffMisses": 0.4049007002482638,
+   "deltaDefPpp": -3.429139517883975,
+   "deltaDefAdjEff": -3.2516487055165952
 }
 `;
 
@@ -89,7 +91,7 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
       "override": "Adjusted from Off 3P%"
    },
    "def_adj_ppp": {
-      "value": 86.95817296735666,
+      "value": 86.9605601952294,
       "old_value": 90.212208900746,
       "override": "Adjusted from Def 3P%"
    },
@@ -109,17 +111,17 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
       "override": "Adjusted from Off 3P%"
    },
    "def_3p": {
-      "value": 0.32377075874747585,
+      "value": 0.32379827978580994,
       "old_value": 0.31390977443609025,
       "override": "Luck adjusted"
    },
    "def_ppp": {
-      "value": 91.98291581204879,
+      "value": 91.98543334643765,
       "old_value": 95.41457286432161,
       "override": "Adjusted from Def 3P%"
    },
    "def_efg": {
-      "value": 0.43573415064529347,
+      "value": 0.43575005027068836,
       "old_value": 0.4575,
       "override": "Adjusted from Def 3P%"
    }

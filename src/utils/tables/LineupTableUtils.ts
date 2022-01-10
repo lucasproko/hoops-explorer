@@ -237,9 +237,15 @@ export class LineupTableUtils {
         (lineup.key != LineupTableUtils.totalLineupId) && adjustForLuck && lineup?.doc_count
       ) ? [
         LuckUtils.calcOffTeamLuckAdj(
-          lineup, codesAndIds.map(cid => perLineupPlayerLuckMap[cid.id]), baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
+          lineup, codesAndIds.map(cid => perLineupPlayerLuckMap[cid.id]), baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency,
+          baselineTeamStats?.total_off_3p_attempts?.value  
+            //(ensure that the aggregation of the 3P-luck-adjusted lineups are equal to the 3P-adjusted set)
+        ),        
+        LuckUtils.calcDefTeamLuckAdj(
+          lineup, baseOrSeasonTeamStats, avgEfficiency,
+          baselineTeamStats?.total_def_3p_attempts?.value
+            //(ensure that the aggregation of the 3P-luck-adjusted lineups are equal to the 3P-adjusted set)
         ),
-        LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
       if (lineup?.doc_count) {
