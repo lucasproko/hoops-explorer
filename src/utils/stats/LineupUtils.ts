@@ -71,8 +71,6 @@ export class LineupUtils {
     }, { ...(StatModels.emptyLineup()), all_lineups: StatModels.emptyLineup() } as LineupStatSet).value();
     LineupUtils.completeWeightedAvg(teamInfo);
 
-//TODO: with luck applied, the all_lineups luck is very different
-
     if (!_.isEmpty(teamInfo.all_lineups)) {
       //(TODO: only actually need to do this for _poss and _adj_ppp, can save some CPU cycles)
       LineupUtils.weightedAvg(teamInfo.all_lineups!, teamInfo);
