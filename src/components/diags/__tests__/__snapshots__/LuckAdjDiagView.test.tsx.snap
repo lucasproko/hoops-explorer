@@ -20,7 +20,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
     <span>
        off=[
       <b>
-        0.0
+        -0.0
       </b>
       ], def=[
       <b>
@@ -28,7 +28,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
       </b>
       ], margin=[
       <b>
-        3.3
+        3.2
       </b>
       ] pts/100
     </span>
@@ -51,7 +51,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
       <span>
          adjustment [
         <b>
-          0.0
+          -0.0
         </b>
         ] pts/100
       </span>
@@ -63,17 +63,17 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
         </b>
         : 3P% [
         <b>
-          0.0
+          -0.0
         </b>
         %], eFG [
         <b>
-          0.0
+          -0.0
         </b>
         %]
         <span>
           , adjustment [
           <b>
-            0.0
+            -0.0
           </b>
           ] pts/100
         </span>
@@ -91,11 +91,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
         <li>
           Delta_eFG: [
           <b>
-            0.0
+            -0.0
           </b>
           %] = 1.5 * (Adj_3P_Off [
           <b>
-            32.0
+            31.9
           </b>
           %] - Sample_3P_Off [
           <b>
@@ -116,7 +116,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
           <li>
             Adj_3P_Off: [
             <b>
-              32.0
+              31.9
             </b>
             %] = 
             <i>
@@ -124,7 +124,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             </i>
             ( Expected_3P% [
             <b>
-              32.0
+              31.9
             </b>
             %], Base_3PA [
             <b>
@@ -143,7 +143,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
           <li>
             Expected_3P%: [
             <b>
-              32.0
+              31.9
             </b>
             %] = Calculated from 
             <i>
@@ -161,11 +161,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                144: 19 / 29 / 12 / 84
+                144: 15 / 29 / 16 / 84
               </b>
               ] Base_3P%=[
               <b>
-                32.2%: 32.2 / 33.9 / 27.9 / 32.2
+                32.2%: 32.2 / 34.2 / 28.2 / 32.2
               </b>
               ]
             </li>
@@ -178,11 +178,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                133: 36 / 35 / 0 / 62
+                133: 28 / 35 / 3 / 67
               </b>
               ] Base_3P%=[
               <b>
-                31.7%: 31.7 / 31.7 / 25.7 / 31.7
+                31.7%: 31.7 / 32.1 / 26.1 / 31.7
               </b>
               ]
             </li>
@@ -192,11 +192,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
           <li>
             Adj_Delta_Pts/100: [
             <b>
-              0.0
+              -0.0
             </b>
             ] = Delta_Pts/100 [
             <b>
-              0.0
+              -0.0
             </b>
             ] * D1_Avg_Eff [
             <b>
@@ -211,15 +211,15 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
           <li>
             Delta_Pts/100: [
             <b>
-              0.0
+              -0.0
             </b>
             ] = Delta_Pts_No_ORBs/100 [
             <b>
-              0.0
+              -0.0
             </b>
             ] + Pts_Off_Delta_Misses/100 [
             <b>
-              -0.0
+              0.0
             </b>
             ]
           </li>
@@ -232,11 +232,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <li>
               Delta_Pts_No_ORBs/100: [
               <b>
-                0.0
+                -0.0
               </b>
               ] = 2 * Delta_eFG [
               <b>
-                0.0
+                -0.0
               </b>
               %] * Sample_Off_FGA [
               <b>
@@ -251,11 +251,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <li>
               Pts_Off_Delta_Misses/100: [
               <b>
-                -0.0
+                0.0
               </b>
               ] = ORB_Factor [
               <b>
-                -0.0
+                0.0
               </b>
               %] * (Sample_Def_Pts/100 [
               <b>
@@ -263,7 +263,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ] + Delta_Pts_No_ORBs/100: [
               <b>
-                0.0
+                -0.0
               </b>
               ])
             </li>
@@ -271,11 +271,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               <li>
                 ORB_Factor: [
                 <b>
-                  -0.0
+                  0.0
                 </b>
                 %] = Delta_Misses% [
                 <b>
-                  -0.0
+                  0.0
                 </b>
                 %] * Sample_Def_ORB [
                 <b>
@@ -283,7 +283,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                 </b>
                 %] / (1 - Delta_Misses/100 [
                 <b>
-                  -0.0
+                  0.0
                 </b>
                 %] * Sample_Def_ORB [
                 <b>
@@ -402,17 +402,17 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <b>
               -0.2
             </b>
-            %], Base_Possessions [
+            %], Base_Def_3PA [
             <b>
-              2081
+              698
             </b>
             ], Sample_Delta_3PD [
             <b>
               1.3
             </b>
-            %], Sample_Possessions [
+            %], Sample_Def_3PA [
             <b>
-              489
+              166
             </b>
             ])
           </li>
@@ -543,7 +543,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               %] = Delta_Misses% [
               <b>
-                1.5
+                1.4
               </b>
               %] * Sample_Def_ORB [
               <b>
@@ -551,7 +551,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               %] / (1 - Delta_Misses/100 [
               <b>
-                1.5
+                1.4
               </b>
               %] * Sample_Def_ORB [
               <b>
@@ -613,11 +613,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
         </b>
         : 3P% [
         <b>
-          0.0
+          -0.0
         </b>
         %], eFG [
         <b>
-          0.0
+          -0.0
         </b>
         %]
          (
@@ -634,11 +634,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
         <li>
           Delta_eFG: [
           <b>
-            0.0
+            -0.0
           </b>
           %] = 1.5 * (Adj_3P_Off [
           <b>
-            32.0
+            31.9
           </b>
           %] - Sample_3P_Off [
           <b>
@@ -659,7 +659,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
           <li>
             Adj_3P_Off: [
             <b>
-              32.0
+              31.9
             </b>
             %] = 
             <i>
@@ -667,7 +667,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
             </i>
             ( Expected_3P% [
             <b>
-              32.0
+              31.9
             </b>
             %], Base_3PA [
             <b>
@@ -686,7 +686,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
           <li>
             Expected_3P%: [
             <b>
-              32.0
+              31.9
             </b>
             %] = Calculated from 
             <i>
@@ -704,11 +704,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                144: 19 / 29 / 12 / 84
+                144: 15 / 29 / 16 / 84
               </b>
               ] Base_3P%=[
               <b>
-                32.2%: 32.2 / 33.9 / 27.9 / 32.2
+                32.2%: 32.2 / 34.2 / 28.2 / 32.2
               </b>
               ]
             </li>
@@ -721,11 +721,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                133: 36 / 35 / 0 / 62
+                133: 28 / 35 / 3 / 67
               </b>
               ] Base_3P%=[
               <b>
-                31.7%: 31.7 / 31.7 / 25.7 / 31.7
+                31.7%: 31.7 / 32.1 / 26.1 / 31.7
               </b>
               ]
             </li>
@@ -817,17 +817,17 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
             <b>
               -0.2
             </b>
-            %], Base_Possessions [
+            %], Base_Def_3PA [
             <b>
-              2081
+              698
             </b>
             ], Sample_Delta_3PD [
             <b>
               1.3
             </b>
-            %], Sample_Possessions [
+            %], Sample_Def_3PA [
             <b>
-              489
+              166
             </b>
             ])
           </li>
@@ -894,7 +894,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !over
     <span>
        off=[
       <b>
-        0.0
+        -0.0
       </b>
       ], def=[
       <b>
@@ -902,7 +902,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !over
       </b>
       ], margin=[
       <b>
-        3.3
+        3.2
       </b>
       ] pts/100
     </span>
@@ -925,7 +925,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !over
       <span>
          adjustment [
         <b>
-          0.0
+          -0.0
         </b>
         ] pts/100
       </span>
@@ -937,17 +937,17 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !over
         </b>
         : 3P% [
         <b>
-          0.0
+          -0.0
         </b>
         %], eFG [
         <b>
-          0.0
+          -0.0
         </b>
         %]
         <span>
           , adjustment [
           <b>
-            0.0
+            -0.0
           </b>
           ] pts/100
         </span>

@@ -211,10 +211,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
       const baselinePlayerByKey = _.fromPairs((inRosterStats.baseline || []).map((p: any) => [ p.key, p ]));
       const enrichedLineups = LineupTableUtils.buildEnrichedLineups(
-        inLineupStats.lineups, inTeamStats.global, rosterStats.baseline, inTeamStats.baseline,
+        inLineupStats.lineups, 
+        inTeamStats.global, rosterStats.global, inTeamStats.baseline,
         adjustForLuck, luckConfig.base, avgEfficiency,
-        false, teamSeasonLookup, 
-        positionFromPlayerKey, baselinePlayerByKey
+        false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerByKey
       );
 
       // Processing
@@ -222,6 +222,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       const tempTeamReport = LineupUtils.lineupToTeamReport(
         { lineups: enrichedLineups }, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
+
       if (incRapm) {
         // Do some prep on the individual stats we'll use for the prior:
         const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
@@ -229,10 +230,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         );
         const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
           _.cloneDeep(rosterStats.baseline || []),
-          globalRosterStatsByCode, teamStats.baseline, avgEfficiency, adjustForLuck
+          globalRosterStatsByCode, teamStats.baseline, avgEfficiency, adjustForLuck, luckConfig.base
         );
         const rapmInfo = TeamReportTableUtils.buildOrInjectRapm( //(mutates tempTeamReport)
-          lineupStats.lineups || [], rapmPriorsBaseline,
+          enrichedLineups, rapmPriorsBaseline,
           adjustForLuck, avgEfficiency, genderYearLookup,
           tempTeamReport, rapmPriorMode, rapmDiagMode
         );

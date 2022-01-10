@@ -41,7 +41,8 @@ export const semiRealRapmResults = {
       useRecursiveWeakPrior: false,
       includeStrong: {},
       playersStrong: [ { off_adj_ppp: 5.0 }, { off_adj_ppp: 4.5 }, { off_adj_ppp: 4.0 }, { off_adj_ppp: 3.5 }, { off_adj_ppp: 3.0 }, {  off_adj_ppp: 2.5  }, {  off_adj_ppp: 2.0  }, {  off_adj_ppp: 2.0 }  ],
-      playersWeak: [ { off_adj_ppp: 5.0, def_adj_ppp: -5.0 }, { off_adj_ppp: 4.5, def_adj_ppp: -4.5 }, { off_adj_ppp: 4.0, def_adj_ppp: -4.0 }, { off_adj_ppp: 3.5, def_adj_ppp: -3.5 }, { off_adj_ppp: 3.0, def_adj_ppp: -3.0 }, { off_adj_ppp: 2.5, def_adj_ppp: -2.5 }, { off_adj_ppp: 2.0, def_adj_ppp: -2.0 }, { off_adj_ppp: 1.5, def_adj_ppp: -1.5 } ]
+      playersWeak: [ { off_adj_ppp: 5.0, def_adj_ppp: -5.0 }, { off_adj_ppp: 4.5, def_adj_ppp: -4.5 }, { off_adj_ppp: 4.0, def_adj_ppp: -4.0 }, { off_adj_ppp: 3.5, def_adj_ppp: -3.5 }, { off_adj_ppp: 3.0, def_adj_ppp: -3.0 }, { off_adj_ppp: 2.5, def_adj_ppp: -2.5 }, { off_adj_ppp: 2.0, def_adj_ppp: -2.0 }, { off_adj_ppp: 1.5, def_adj_ppp: -1.5 } ],
+      keyUsed: "value"
     }
     ,
     // Extra fields:
@@ -310,7 +311,8 @@ describe("RapmUtils", () => {
         useRecursiveWeakPrior: false,
         includeStrong: {},
         playersWeak: [],
-        playersStrong: []
+        playersStrong: [],
+        keyUsed: "value" as "value"
       }
     };
 

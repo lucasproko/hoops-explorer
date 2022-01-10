@@ -50,7 +50,7 @@ describe("TeamRosterDiagView", () => {
     } ];
   }).fromPairs().value();
   const rosterStatsById = LineupTableUtils.buildBaselinePlayerInfo(
-    testData.on as unknown as Array<IndivStatSet>, rosterStatsByCode, teamData.on, 100.0, true //(adjust for luck in this scenario, arbitrarily)
+    testData.on as unknown as Array<IndivStatSet>, rosterStatsByCode, teamData.on, 100.0, true, "season" //(adjust for luck in this scenario, arbitrarily)
   );
   test("TeamRosterDiagView - global only", () => {
     const wrapper = shallow(

@@ -50,6 +50,15 @@ describe("LuckUtils", () => {
       samplePlayersOn[0], basePlayers[0], 100.0
     );
     expect(offPlayerLuckAdj).toEqual(offTeamLuckAdj);
+
+    // Finally test the 3P override
+    const offTeamLuckAdjWithOverride = LuckUtils.calcOffTeamLuckAdj(
+      { ...samplePlayersOn[0], total_off_3p_attempts: { value: 0 }} as TeamStatSet, 
+      [ samplePlayersOn[0] ], basePlayers[0], { [basePlayers[0].key]: basePlayers[0] }, 100.0,
+      samplePlayersOn[0].total_off_3p_attempts.value!
+    )
+    expect(offPlayerLuckAdj.sample3PA).toEqual(offTeamLuckAdjWithOverride.sample3PA);
+      //(rest of the stats are different because of ORBs)
   });
   test("LuckUtils - calcDefTeamLuckAdj", () => {
     const defTeamLuckAdj = LuckUtils.calcDefTeamLuckAdj(
@@ -66,12 +75,14 @@ describe("LuckUtils", () => {
     const samplePlayerWithExtraStats = _.assign(_.cloneDeep(samplePlayersOn[0] as any), {
       def_3p: { value: samplePlayersOn[0].oppo_total_def_3p_made.value! /  samplePlayersOn[0].oppo_total_def_3p_attempts.value! },
       def_3p_opp: samplePlayersOn[0].oppo_def_3p_opp,
-      def_poss: samplePlayersOn[0].oppo_total_def_poss
+      def_poss: samplePlayersOn[0].oppo_total_def_poss,
+      total_def_3p_attempts: samplePlayersOn[0].oppo_total_def_3p_attempts
     });
     const basePlayerWithExtraStats = _.assign(_.cloneDeep(basePlayers[0] as any), {
       def_3p: { value: basePlayers[0].oppo_total_def_3p_made.value! /  basePlayers[0].oppo_total_def_3p_attempts.value! },
       def_3p_opp: basePlayers[0].oppo_def_3p_opp,
-      def_poss: basePlayers[0].oppo_total_def_poss
+      def_poss: basePlayers[0].oppo_total_def_poss,
+      total_def_3p_attempts: basePlayers[0].oppo_total_def_3p_attempts
     });
     const defTeamLuckAdj = _.assign(LuckUtils.calcDefTeamLuckAdj(
       samplePlayerWithExtraStats, basePlayerWithExtraStats, 100.0
@@ -83,6 +94,21 @@ describe("LuckUtils", () => {
       samplePlayersOn[0], basePlayers[0], 100.0
     );
     expect(defPlayerLuckAdj).toEqual(defTeamLuckAdj);
+
+    // Finally test the 3P override
+
+    const samplePlayerNeedingOverride = {
+      ...samplePlayerWithExtraStats,
+      total_def_3p_attempts: { value: 0 }
+    };
+    const defTeamLuckAdjWithOverride = _.assign(LuckUtils.calcDefTeamLuckAdj(
+      samplePlayerWithExtraStats, basePlayerWithExtraStats, 100.0, samplePlayersOn[0].oppo_total_def_3p_attempts.value!
+    ), {
+      sampleDefOrb: 0, //(we ignore ORBs)
+      sampleOffSos: 0 //(for individual players, don't transform it into efficiency so this isn't needed)
+    });
+    expect(defPlayerLuckAdj).toEqual(defTeamLuckAdjWithOverride);
+
   });
   test("LuckUtils - injectLuck", () => {
     const offTeamLuckAdj = LuckUtils.calcOffTeamLuckAdj(
@@ -146,7 +172,7 @@ describe("LuckUtils", () => {
     LuckUtils.injectLuck(testPlayerDef, offTeamLuckAdj, defTeamLuckAdj);
     expect(testPlayerDef).toEqual(_.assign(_.cloneDeep(samplePlayerDef), {
       oppo_def_3p: {
-        value: 0.32377075874747585,
+        value: 0.32379827978580994,
         old_value: 0.25,
         override: "Luck adjusted"
       }

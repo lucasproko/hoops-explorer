@@ -119,8 +119,8 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
               </i></li>
               <li>Adj_3P_Def: [<b>{(100*d.adjDef3P).toFixed(1)}</b>%] = Sample_3P_SoS [<b>{(100*d.sampleDef3PSos).toFixed(1)}</b>%] + Delta_3PD [<b>{(100*d.avg3PSosAdj).toFixed(1)}</b>%]</li>
               <li>Delta_3PD: [<b>{(100*d.avg3PSosAdj).toFixed(1)}</b>%] = <i>Weighted_Mean</i>(
-                Base_Delta_3PD [<b>{(100*d.base3PSosAdj).toFixed(1)}</b>%], Base_Possessions [<b>{d.basePoss.toFixed(0)}</b>],
-              Sample_Delta_3PD [<b>{(100*d.sample3PSosAdj).toFixed(1)}</b>%], Sample_Possessions [<b>{d.samplePoss.toFixed(0)}</b>])</li>
+                Base_Delta_3PD [<b>{(100*d.base3PSosAdj).toFixed(1)}</b>%], Base_Def_3PA [<b>{d.baseDef3PA.toFixed(0)}</b>],
+              Sample_Delta_3PD [<b>{(100*d.sample3PSosAdj).toFixed(1)}</b>%], Sample_Def_3PA [<b>{d.sampleDef3PA.toFixed(0)}</b>])</li>
               <ul>
                 <li>Base_Delta_3PD: [<b>{(100*d.base3PSosAdj).toFixed(1)}</b>%] = (1 - Luck_Factor [<b>{(100*d.luckPct).toFixed(1)}</b>%]) *
                 (Base_3P_Def [<b>{(100*d.baseDef3P).toFixed(1)}</b>%] - Base_3P_SoS [<b>{(100*d.baseDef3PSos).toFixed(1)}</b>%])
