@@ -52,6 +52,7 @@ export class TeamReportTableUtils {
           valueKey, //<- with or without luck adjustment, only applies to priors
           rapmPriorMode
         );
+
         const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
         const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
         const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(

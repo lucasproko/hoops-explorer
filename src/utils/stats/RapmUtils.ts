@@ -417,7 +417,7 @@ export class RapmUtils {
     const doGlobalLuckAdj = (offOrDef: "off" | "def") => {
       if (field == "adj_ppp") {
         const useOldVal = offOrDef == "off" ? useOldValIfPossible[0] : useOldValIfPossible[1];
-        if (useOldVal && !_.isNil(ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value)) {
+        if (!useOldVal && !_.isNil(ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value)) {
           return (ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.value || 0) - 
             (ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value || 0);
         } else {
@@ -779,7 +779,7 @@ export class RapmUtils {
           const debugMode = offDefDebugMode[offOrDef];
           const ridgeLambda = lambda*avgEigenVal; //(scale lambda according to the scale of the weight matrix)
 
-          if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda);
+          if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda + ` key=[${lineupValueKeys[offOrDef == "off" ? 0 : 1]}]`);
 
           const solver = RapmUtils.slowRegression(weights[offOrDef], ridgeLambda, ctx);
           const resultsPrePrePrior: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
