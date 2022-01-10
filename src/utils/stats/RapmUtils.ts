@@ -93,14 +93,17 @@ import { SVD } from 'svd-js'
 // @ts-ignore
 import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, sum, transpose, variance, zeros } from 'mathjs';
 
+type ValueKey = "value" | "old_value";
+
 /** Contains the prior info for individuals (strong priors dominate RAPM, weak priors are dominated)*/
 export type RapmPriorInfo = {
   strongWeight: number,
   noWeakPrior: boolean, //(ie allow the RAPM to diverge from the KenPom that generated it)
   useRecursiveWeakPrior: boolean, //if noWeakPrior then use the initial RAPM to make up the KP short-fall
-  includeStrong: Record<string, boolean>; //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
-  playersStrong: Array<Record<string, number>>;
-  playersWeak: Array<Record<string, number>>;
+  includeStrong: Record<string, boolean>, //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
+  playersStrong: Array<Record<string, number>>,
+  playersWeak: Array<Record<string, number>>,
+  keyUsed: ValueKey //(whether luck is being used in this prior)
 };
 /** Handy util to */
 const getStrongWeight = (prior: RapmPriorInfo, maybeAdaptiveFallback: number | undefined) => {
@@ -111,7 +114,6 @@ const getStrongWeight = (prior: RapmPriorInfo, maybeAdaptiveFallback: number | u
   }
 };
 
-type ValueKey = "value" | "old_value";
 
 /** Useful intermediate results */
 export type RapmPlayerContext = {
@@ -225,6 +227,7 @@ export class RapmUtils {
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
+      keyUsed: valueKey 
     };
     //console.log(JSON.stringify(returnVal));
     return returnVal;
@@ -413,11 +416,16 @@ export class RapmUtils {
       off: offOffset,
       def: defOffset
     };
-    /** If we're not applying luck on a per lineup basis, we need to apply the luck/non-luck delta equally */
+    /** If we're not applying luck on a per lineup basis, 
+     * BUT WE ARE APPLYING LUCK to the priors/overall efficiency (ie not the old_value/adjustForLuck case)
+     * we need to apply the luck/non-luck delta equally across all lineups
+     */
     const doGlobalLuckAdj = (offOrDef: "off" | "def") => {
       if (field == "adj_ppp") {
         const useOldVal = offOrDef == "off" ? useOldValIfPossible[0] : useOldValIfPossible[1];
-        if (!useOldVal && !_.isNil(ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value)) {
+        if (useOldVal && (ctx.priorInfo.keyUsed == "value") && 
+            !_.isNil(ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value)) 
+        {
           return (ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.value || 0) - 
             (ctx.teamInfo.all_lineups?.[`${offOrDef}_${field}`]?.old_value || 0);
         } else {

@@ -9669,6 +9669,7 @@ Object {
   },
   "priorInfo": Object {
     "includeStrong": Object {},
+    "keyUsed": "value",
     "noWeakPrior": false,
     "playersStrong": Array [
       Object {
@@ -9764,6 +9765,7 @@ Object {
   },
   "priorInfo": Object {
     "includeStrong": Object {},
+    "keyUsed": "value",
     "noWeakPrior": false,
     "playersStrong": Array [
       Object {
