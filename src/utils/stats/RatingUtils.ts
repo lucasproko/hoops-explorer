@@ -446,26 +446,48 @@ export class RatingUtils {
 
     const PProd = (PProd_FG_Part + PProd_AST_Part + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
 
-    const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
     // Legacy assist algo:
     const PProd_Classic = (PProd_FG_Part_Classic + PProd_AST_Part_Classic + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
     const TotPoss_Classic = ScPoss_Classic + FGxPoss + FTxPoss + TOV;
     const ORtg_Classic = TotPoss > 0 ? 100 * (PProd_Classic / TotPoss_Classic) : 0;
-
     // Adjusted efficiency
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
 
+/**/
+console.log(`xxx,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${1 - Team_ORB_Contrib},+,${PProd_ORB_Part},=,${PProd_Classic}`)
+
+
+    //TODO: switching from classic broke the total numbers, so moving back to classic for now
+    //const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
+    const ORtg = ORtg_Classic;
+
+    // My changes: 
+    // AR1- don't regress the ORtg (don't like "regressing upwards at high usage")
+    // AR2- apply the usage to the (ORtg-avg) delta _then_ apply the bonus (at 20% usage)
+    //    ^ this one is important because it ensures that the sum of the Adj Rtg+ is the adjusted efficiency
+    // AR3- make the bonus scale be the same for >/< average usage
+
     // Calculate actual ORtg usage and use that in all ORtg calcs
-    const usage = 100*TotPoss/(Team_Poss || 1);
+    //(TODO remove classic once done)
+    const usage = 100*TotPoss_Classic/(Team_Poss || 1);
 
     const o_adj = avgEfficiency / Def_SOS;
-    const SD_at_Usage = usage * -.144 + 13.023;
-    const SDs_Above_Mean = SD_at_Usage > 0 ? (ORtg - avgEfficiency) / SD_at_Usage : 0;
-    const SD_at_Usage_20 = 10.143;
-    const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
-    const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
-    const Adj_ORtg = (Regressed_ORtg + Usage_Bonus)*o_adj;
-    const Adj_ORtgPlus = 0.2*(Adj_ORtg - avgEfficiency);
+    // See AR1:
+    // const SD_at_Usage = usage * -.144 + 13.023;
+    // const SDs_Above_Mean = SD_at_Usage > 0 ? (ORtg - avgEfficiency) / SD_at_Usage : 0;
+    // const SD_at_Usage_20 = 10.143;
+    // const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
+    // See AR3:
+    //const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
+    const Usage_Bonus = 1.25*(usage - 20);
+    // See AR2:
+    // const Adj_ORtg = (ORtg + Usage_Bonus)*o_adj;
+    // const Adj_ORtgPlus = 0.2*(Adj_ORtg - avgEfficiency);
+    const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
+    const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
+
+    // so sum(Adj_ORtgPlus) = sum(ORtg*usage)*sos_factor + 1.25*sum(delta_usage)*sos_factor - avgEff*(sum(usage))
+    //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
 
     // If the values have been overridden then calculate the un-overridden values
     const [ rawORtg, rawAdjRating ] = overrideAdjusted ? RatingUtils.buildORtg(
@@ -565,10 +587,10 @@ export class RatingUtils {
       oRtg_Classic: ORtg_Classic,
       defSos: Def_SOS,
       avgEff: avgEfficiency,
-      SD_at_Usage: SD_at_Usage,
-      SDs_Above_Mean: SDs_Above_Mean,
-      SD_at_Usage_20: SD_at_Usage_20,
-      Regressed_ORtg: Regressed_ORtg,
+      SD_at_Usage: 0, // (these 4 aren't used any more)
+      SDs_Above_Mean: 0,
+      SD_at_Usage_20: 0,
+      Regressed_ORtg: 0,
       Usage: usage,
       Usage_Bonus: Usage_Bonus,
       adjORtg: Adj_ORtg,

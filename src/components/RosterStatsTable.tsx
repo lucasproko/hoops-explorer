@@ -524,11 +524,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const calcDiagModeOff = showDiagMode;
         const calcDiagModeDef = showDiagMode || !_.isEmpty(onBallDefenseByCode);
 
+        const useAdjUsage = true; //TODO
+
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(
             stat, globalRosterStatsByCode,
-            avgEfficiency, calcDiagModeOff, adjustForLuck || overrodeOffFields
+            avgEfficiency, calcDiagModeOff || useAdjUsage, adjustForLuck || overrodeOffFields
           );
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
@@ -545,6 +547,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           value: (adjORtg?.value || 0)*stat.off_team_poss_pct.value!,
           old_value: (rawAdjORtg?.value || 0)*stat.off_team_poss_pct.value!,
           override: adjustmentReason
+        };
+        stat.off_usage = {
+          value: !_.isNil(oRtgDiag) ? oRtgDiag!.Usage*0.01 : (stat.off_usage?.value || 0.2)
         };
         stat.diag_off_rtg = oRtgDiag;
         stat.def_rtg = {
