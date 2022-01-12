@@ -61,7 +61,13 @@ export class LineupTableUtils {
 
         // Add ORtg to lineup stats:
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-          mutableP, globalRosterStatsByCode, avgEfficiency, false, playerAdjustForLuckOff
+          mutableP, globalRosterStatsByCode, {
+              total_off_to: teamStat.total_off_to || { value: 0 },
+              sum_total_off_to: { //(sum of all players TOs, so we can calc team TOVs)
+                //(note don't luck adjust these since the team values aren't luck adjusted)
+                value: _.sumBy(players, p => p.total_off_to?.value || 0)
+              }
+          }, avgEfficiency, false, playerAdjustForLuckOff
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
           mutableP, avgEfficiency, !_.isEmpty(onBallDefenseByCode), playerAdjustForLuckDef

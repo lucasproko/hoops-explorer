@@ -524,12 +524,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const calcDiagModeOff = showDiagMode;
         const calcDiagModeDef = showDiagMode || !_.isEmpty(onBallDefenseByCode);
 
-        const useAdjUsage = true; //TODO
+//TODO make this a UI parameter, default true
+        const useAdjUsage = true; 
 
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(
-            stat, globalRosterStatsByCode,
+            stat, globalRosterStatsByCode, { //(some extra info needed to get the pts/poss as close as possible)
+              total_off_to: teamStat.total_off_to || { value: 0 },
+              sum_total_off_to: { //(sum of all players TOs, so we can calc team TOVs)
+                //(note don't luck adjust these since the team values aren't luck adjusted)
+                value: _.sumBy((rosterStats[key] || []) as IndivStatSet[], p => p.total_off_to?.value || 0)
+              }
+            },
             avgEfficiency, calcDiagModeOff || useAdjUsage, adjustForLuck || overrodeOffFields
           );
         const [

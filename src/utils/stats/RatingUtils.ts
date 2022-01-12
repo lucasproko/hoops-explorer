@@ -2,6 +2,7 @@
 // Utils:
 import _ from 'lodash'
 import { OverrideUtils } from "./OverrideUtils";
+import { IndivStatSet, Statistic, TeamStatSet } from '../StatModels';
 
 /** All the info needed to explain the ORtg calculation, see "buildORtgDiag" */
 export type ORtgDiagnostics = {
@@ -226,7 +227,7 @@ export class RatingUtils {
   // Manual override calcs:
 
   /** Builds the overrides to the raw fields based on stat overrides */
-  static buildOffOverrides(statSet: Record<string, any>) {
+  static buildOffOverrides(statSet: IndivStatSet): Record<string, Statistic> {
     const threePTries = statSet?.total_off_3p_attempts?.value || 0;
     const twoPTries = statSet?.total_off_2p_attempts?.value || 0;
     const freeThrowTries = statSet?.total_off_fta?.value || 0;
@@ -275,11 +276,12 @@ export class RatingUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(
-    statSet: Record<string, any>, rosterStatsByCode: Record<string, any>,
+    statSet: IndivStatSet, rosterStatsByCode: Record<string, IndivStatSet>,
+    extraTeamStatInfo: { total_off_to: Statistic, sum_total_off_to: Statistic },
     avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
   ): [
     { value: number } | undefined, { value: number } | undefined,
-    { value: number } | undefined, { value: number } | undefined, //< if overrridden these are the raw vals
+    { value: number } | undefined, { value: number } | undefined, //< if overridden these are the raw vals
     ORtgDiagnostics | undefined
   ] {
     if (!statSet) return [ undefined, undefined, undefined, undefined, undefined ];
@@ -289,9 +291,9 @@ export class RatingUtils {
       return _.sum(aa.map((x, ii) => f(x, ii)));
     }
 
-    const overrides = overrideAdjusted ? RatingUtils.buildOffOverrides(statSet) : ({} as Record<string, any>);
+    const overrides = overrideAdjusted ? RatingUtils.buildOffOverrides(statSet) : ({} as Record<string, Statistic>);
     const statGet = (key: string) => {
-      return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
+      return (!_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value) || 0;
     };
     // New for assist calcs:
     const [ _Rim, _Mid, _3P ] = [ 0, 1, 2 ];
@@ -302,12 +304,19 @@ export class RatingUtils {
     // The formulate references (MP / (Team_MP / 5)) a fair bit
     // All our team numbers are when the player is on the floor, so we set to 1
 
+    // There are some team TOVs, which will assign to the team based on possessions players:
+//TODO; put this is the diags    
+    const UnblamedTOVs = Math.max(
+      (extraTeamStatInfo.total_off_to?.value || 0) - (extraTeamStatInfo.sum_total_off_to?.value || 0), 0
+    );
+    const UnblamedTOVs_Player = 0.2*UnblamedTOVs*statGet("off_team_poss_pct");
+
     const FGA = statSet?.total_off_fga?.value || 0;
     const FGM = statGet("total_off_fgm");
     const FTM = statGet("total_off_ftm");
     const FTA = statSet?.total_off_fta?.value || 0;
     const AST = statSet?.total_off_assist?.value || 0;
-    const TOV = statGet("total_off_to");
+    const TOV = statGet("total_off_to") + UnblamedTOVs_Player;
     const ORB = statSet?.total_off_orb?.value || 0;
     const FG2PM = statGet("total_off_2p_made");
     const FG3PM = statGet("total_off_3p_made");
@@ -318,8 +327,10 @@ export class RatingUtils {
     const Attempts = shotLocs.map(l => statGet(`total_off_${l}_attempts`) || 1); //||1 because used as denom
     const AssistedPct = shotLocs.map(l => statGet(`off_${l}_ast`));
     const AssistsTotals = shotLocs.map(l => statGet(`total_off_ast_${shotLocToLoc[l]!}`));
-    const Assists = shotLocs.map(l => [l, statGet(`off_ast_${shotLocToLoc[l]!}_target`)]);
+    const Assists: [ string, Record<string, number> ][] = shotLocs.map(l => 
+      [l, ((statSet as any)[`off_ast_${shotLocToLoc[l]!}_target`]?.value as Record<string, number>) || {} ]
       // array of [shotLoc, map[player -> count]]
+    );
 
     const Team_AST = statSet?.team_total_off_assist?.value || 0;
     const Team_FGM = statGet("team_total_off_fgm");
@@ -354,8 +365,14 @@ export class RatingUtils {
     const Others_eFG = Others_FGA > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA) : 0;
 
     // This is much simplified because the stats are for the period the player was on the floor
+
+    // don't use qAST_Classic except for display because it is inaccurate (eg I saw an sum(error) of ~5pts on total of ~435)
     const qAST_Classic = Team_FGM > 0 ? (1.14 * (Others_AST / Team_FGM)) : 0.0; //(estimate of what % of player's FGs were assisted)
-    const Team_Assist_Contrib_Classic = (0.5 * eFG) * qAST_Classic;
+    // Even for "classic" calcs we'll just this more accurate ast%
+    const qAST = FGM > 0 ?
+      sumBy(Made, (playerMade, index) => AssistedPct[index]!*playerMade)/FGM : 0; 
+
+    const Team_Assist_Contrib_Classic = (0.5 * eFG) * qAST;
     const FG_Part_Classic = FGM * (1 - Team_Assist_Contrib_Classic); //TAC = 1 - FG_Part/FGM
     const AST_Part_Classic = Others_FGA > 0 ?
       0.5 * ((Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA)) * AST : 0.0;
@@ -366,8 +383,6 @@ export class RatingUtils {
     });
     const FG_Part = _.sum(FGM_Minus_AssistPenalty);
     // We back-calculate these equivalents to the classic calcs just for approximate diags display
-    const qAST =
-      sumBy(Made, (playerMade, index) => AssistedPct[index]!*playerMade)/FGM;
     const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part/FGM : 0;
     const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
 
@@ -408,6 +423,7 @@ export class RatingUtils {
     const Credit_To_Scorer = Team_ORB_pct * (1 - Team_Play_Pct);
     const Team_ORB_Weight_Denom = Credit_To_Rebounder + Credit_To_Scorer;
     const Team_ORB_Weight = Team_ORB_Weight_Denom > 0 ?  Credit_To_Rebounder/ Team_ORB_Weight_Denom : 0.0;
+
     const Team_Score_Rebound_Pct =
       Team_Scoring_Poss > 0 ? (Roster_ORB * Team_Play_Pct) / Team_Scoring_Poss : 0.0;
     const Team_ORB_Contrib = Team_ORB_Weight * Team_Score_Rebound_Pct;
@@ -453,9 +469,17 @@ export class RatingUtils {
     // Adjusted efficiency
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
 
-/**/
-console.log(`xxx,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${1 - Team_ORB_Contrib},+,${PProd_ORB_Part},=,${PProd_Classic}`)
-
+    // Useful diag info for debugging in Google Sheets
+    const diagInfo: string = ""; 
+    if (diagInfo.indexOf("POSS_TOT") >= 0) {
+      console.log(`POSS_TOT,${FG_Part_Classic},${AST_Part_Classic},${FT_Part},*,${1 - Team_ORB_Contrib},+,${ORB_Part},+,${FGxPoss},+,${FTxPoss},+,${TOV},=,${TotPoss_Classic}`);
+    }
+    if (diagInfo.indexOf("PTS_TOT") >= 0) {
+      console.log(`PTS_TOT,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${1 - Team_ORB_Contrib},+,${PProd_ORB_Part},=,${PProd_Classic}`);
+    }
+    if (diagInfo.indexOf("PTS_AST") >= 0) {
+      console.log(`PTS_AST,${PProd_FG_Part_Classic},=,${PTS_FROM_FG},*,${1 - Team_Assist_Contrib_Classic},...,${PProd_AST_Part_Classic},=,${(0.5*Other_eFG)},*,${AST},*,${Team_PTS_FROM_FG - PTS_FROM_FG},/,${Others_FGM}`);
+    }
 
     //TODO: switching from classic broke the total numbers, so moving back to classic for now
     //const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
@@ -478,20 +502,24 @@ console.log(`xxx,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${1
     // const SD_at_Usage_20 = 10.143;
     // const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
     // See AR3:
-    //const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
-    const Usage_Bonus = 1.25*(usage - 20);
+    // Old:
+    const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
+    // TODO:  candidate new calc:
+    //const Usage_Bonus = 1.25*(usage - 20);
     // See AR2:
-    // const Adj_ORtg = (ORtg + Usage_Bonus)*o_adj;
-    // const Adj_ORtgPlus = 0.2*(Adj_ORtg - avgEfficiency);
-    const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
-    const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
+    // Current "PPG!"-like
+    const Adj_ORtg = (ORtg + Usage_Bonus)*o_adj;
+    const Adj_ORtgPlus = 0.2*(Adj_ORtg - avgEfficiency);
+    // TODO: candidate new calc:
+    // const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
+    // const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
 
     // so sum(Adj_ORtgPlus) = sum(ORtg*usage)*sos_factor + 1.25*sum(delta_usage)*sos_factor - avgEff*(sum(usage))
     //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
 
     // If the values have been overridden then calculate the un-overridden values
     const [ rawORtg, rawAdjRating ] = overrideAdjusted ? RatingUtils.buildORtg(
-      statSet, rosterStatsByCode, avgEfficiency, false, false
+      statSet, rosterStatsByCode, extraTeamStatInfo, avgEfficiency, false, false
     ) : [ undefined, undefined ];
 
     return [
@@ -591,7 +619,7 @@ console.log(`xxx,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${1
       SDs_Above_Mean: 0,
       SD_at_Usage_20: 0,
       Regressed_ORtg: 0,
-      Usage: usage,
+      Usage: Math.max(usage, 0.0), //(this can replace off_usage, so ensure it's sane in edge cases)
       Usage_Bonus: Usage_Bonus,
       adjORtg: Adj_ORtg,
       adjORtgPlus: Adj_ORtgPlus

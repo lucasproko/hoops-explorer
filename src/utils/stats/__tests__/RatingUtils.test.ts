@@ -8,6 +8,7 @@ import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStat
 import { sampleOrtgDiagnostics } from "../../../sample-data/sampleOrtgDiagnostics";
 import { sampleDrtgDiagnostics } from "../../../sample-data/sampleDrtgDiagnostics";
 import { sampleOnBallDefenseStats } from "../../../sample-data/sampleOnBallDefenseStats";
+import { IndivStatSet } from '../../StatModels';
 
 describe("RatingUtils", () => {
 
@@ -22,7 +23,7 @@ describe("RatingUtils", () => {
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
     const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiags ] = RatingUtils.buildORtg(
-      playerInfo, {}, 100, true, false
+      playerInfo as any as IndivStatSet, {}, { total_off_to: { value: 0 }, sum_total_off_to: {} }, 100, true, false
     );
     const expORtg = {value:119.84956630535876};
     const expORtgAdj = {value:6.870978190277782};
@@ -38,10 +39,16 @@ describe("RatingUtils", () => {
       old_value: playerInfo.off_3p.value
     };
     const [ oRtg2, adjORtg2, rawORtg2, rawAdjORtg2, oRtgDiags2 ] = RatingUtils.buildORtg(
-      playerInfo, {}, 100, true, true
+      playerInfo as any as IndivStatSet, {}, { total_off_to: { value: 0 }, sum_total_off_to: {} }, 100, true, false
     );
     const expORtg2 = {value:111.95544936503978};
     const expORtgAd2 = {value:5.047749629825524};
+
+    //TODO: check with team TO
+    const [ oRtg3, adjORtg3, rawORtg3, rawAdjORtg3, oRtgDiags3 ] = RatingUtils.buildORtg(
+      playerInfo as any as IndivStatSet, {}, { total_off_to: { value: 0 }, sum_total_off_to: {} }, 100, true, false
+    );
+    const expORtg3 = {value:119.84956630535876};
 
     // Do the tests as clumped as possible
     expect({
@@ -83,7 +90,7 @@ describe("RatingUtils", () => {
       // Outputs:
       ...outputs
     };
-    expect(RatingUtils.buildOffOverrides(testStatSet)).toEqual({
+    expect(RatingUtils.buildOffOverrides(testStatSet as any as IndivStatSet)).toEqual({
       total_off_to: { value: 26.666666666666668 },
       off_poss: { value: 106.66666666666667 }, //(extra 5% TOs)
 
@@ -105,7 +112,7 @@ describe("RatingUtils", () => {
       off_ft: { value: 0.7 },
       off_to: { value: 0.2 }
     };
-    expect(RatingUtils.buildOffOverrides(testStatSet2)).toEqual({
+    expect(RatingUtils.buildOffOverrides(testStatSet2 as any as IndivStatSet)).toEqual({
       ...outputs,
       team_total_off_fgm: { value: 0 },
       total_off_to: { value: 20 },
