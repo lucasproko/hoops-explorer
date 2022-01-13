@@ -386,6 +386,7 @@ export class RatingUtils {
     const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part/FGM : 0;
     const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
 
+//TODO I think I'm incorrectly using the season eFG here but the sample eFGs for the FGProd
     const Efg_By_ShotType = Assists.map((locMap, index) => {
       const shotLoc = locMap[0];
       const playerMap = locMap[1];
@@ -470,15 +471,18 @@ export class RatingUtils {
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
 
     // Useful diag info for debugging in Google Sheets
-    const diagInfo: string = ""; 
-    if (diagInfo.indexOf("POSS_TOT") >= 0) {
+    const diagInfo: string = "PTS_AST"; 
+    if (diagInfo.indexOf("POSS_TOT_CLASSIC") >= 0) {
       console.log(`POSS_TOT,${FG_Part_Classic},${AST_Part_Classic},${FT_Part},*,${1 - Team_ORB_Contrib},+,${ORB_Part},+,${FGxPoss},+,${FTxPoss},+,${TOV},=,${TotPoss_Classic}`);
     }
-    if (diagInfo.indexOf("PTS_TOT") >= 0) {
+    if (diagInfo.indexOf("PTS_TOT_CLASSIC") >= 0) {
       console.log(`PTS_TOT,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${1 - Team_ORB_Contrib},+,${PProd_ORB_Part},=,${PProd_Classic}`);
     }
-    if (diagInfo.indexOf("PTS_AST") >= 0) {
+    if (diagInfo.indexOf("PTS_AST_CLASSIC") >= 0) {
       console.log(`PTS_AST,${PProd_FG_Part_Classic},=,${PTS_FROM_FG},*,${1 - Team_Assist_Contrib_Classic},...,${PProd_AST_Part_Classic},=,${(0.5*Other_eFG)},*,${AST},*,${Team_PTS_FROM_FG - PTS_FROM_FG},/,${Others_FGM}`);
+    }
+    if (diagInfo.indexOf("PTS_AST") >= 0) {
+      console.log(`PTS_AST,${PProd_FG_Part},=,${FGM_Minus_AssistPenalty.join(",")},*,${shotBonus.join(",")},...,${PProd_AST_Part},=,${shotBonus.join(",")},*,${AST_Part.join(",")}`);
     }
 
     //TODO: switching from classic broke the total numbers, so moving back to classic for now

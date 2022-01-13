@@ -254,7 +254,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // Needed for a few things, including RAPM and play type analysis
 
-  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  type RosterStatsByCode = {
+    [key in OnOffBaselineGlobalEnum]: Record<PlayerCode, IndivStatSet> | undefined
+  };
+
+//TODO
+
+  /** Largest sample of player stats, by player key - use for RAPM calcs and style display */
   const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
     rosterStats.global || [], teamStats.global?.roster, showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?

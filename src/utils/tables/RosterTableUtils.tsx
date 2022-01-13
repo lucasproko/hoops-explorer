@@ -7,12 +7,15 @@ import _ from "lodash";
 // Util imports
 import { PositionUtils } from "../stats/PositionUtils";
 import { GenericTableOps } from "../../components/GenericTable";
+import { PlayerCode, IndivStatSet } from '../StatModels';
 
 /** Object marshalling logic for roster tables */
 export class RosterTableUtils {
 
   /** Build a lookup map of the roster by their code, eg AaWiggins for "Wiggins, Aaron" (teamSeasonLookup only needed if includePosCat is true) */
-  static buildRosterTableByCode(players: Array<any>, rosterInfo: Record<string, any> | undefined, includePosCat?: boolean, teamSeasonLookup?: string) {
+  static buildRosterTableByCode(
+    players: Array<any>, rosterInfo: Record<string, any> | undefined, includePosCat?: boolean, teamSeasonLookup?: string
+  ): Record<PlayerCode, IndivStatSet>  {
     return _.chain(players).map(p => {
       const code = p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key;
       const rosterEntry = rosterInfo?.[code];
