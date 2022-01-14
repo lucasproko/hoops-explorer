@@ -183,7 +183,9 @@ describe("RosterStatsTable", () => {
        }}
       dataEvent={{
         teamStats: {
-          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), 
+          global: _.assign(StatModels.emptyTeam(), { doc_count: 1000 }), 
+          onOffMode: true, baseline: StatModels.emptyTeam()
         },
         rosterStats: testData,
         lineupStats: []

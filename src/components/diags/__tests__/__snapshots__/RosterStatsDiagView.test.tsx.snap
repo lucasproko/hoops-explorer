@@ -202,7 +202,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
                 <em>
                   (Classic) Team_Assist_Contrib% [
                   <b>
-                    8.9
+                    8.8
                     %
                   </b>
                   ] = Weighting ([
@@ -214,9 +214,9 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
                     46.9
                     %
                   </b>
-                  ]) * Team_Assist_Rate [
+                  ]) * Player_Assisted_Rate [
                   <b>
-                    37.9
+                    37.4
                     %
                   </b>
                   ]
@@ -224,7 +224,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
               </li>
               <li>
                 <em>
-                  (Classic) Team_Assist_Rate: [
+                  (Classic, Unused) Team_Assist_Rate: [
                   <b>
                     37.9
                     %
@@ -889,7 +889,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </b>
       : [
       <b>
-        6.9
+        6.5
       </b>
       ] = 
       <em>
@@ -897,11 +897,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </em>
        [
       <b>
-        134.4
+        132.3
       </b>
-      ] (Regressed_ORtg [
+      ] (ORtg [
       <b>
-        121.8
+        119.8
       </b>
       ] + Usage_Bonus [
       <b>
@@ -935,11 +935,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <li>
           Normalization: Rtg+ [
           <b>
-            6.9
+            6.5
           </b>
-          ] = 20% * (Rtg [
+          ] = 20% * (Normalized_ORtg [
           <b>
-            134.4
+            132.3
           </b>
           ] - Avg_Efficiency [
           <b>
@@ -947,80 +947,26 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           </b>
           ])
         </li>
-        <li>
-          Regressed_ORtg: [
-          <b>
-            121.8
-          </b>
-          ] = Avg_Efficiency [
-          <b>
-            100.0
-          </b>
-          ] + ORtg_SDs_Above_Mean [
-          <b>
-            2.2
-          </b>
-          ] * ORtg_SD_At_20%_Usage [
-          <b>
-            10.1
-          </b>
-          ]
-        </li>
         <ul>
           <li>
-            ORtg_SDs_Above_Mean: [
-            <b>
-              2.2
-            </b>
-            ] = (ORtg [
-            <b>
-              119.8
-            </b>
-            ] - Avg_Efficiency [
-            <b>
-              100.0
-            </b>
-            ]) / SD_At_Actual_Usage [
-            <b>
-              9.2
-            </b>
-            ]
-          </li>
-          <ul>
-            <li>
-              SD_At_Actual_Usage: [
+            <em>
+              (Unused, Regressed_ORtg: [
               <b>
-                9.2
+                121.8
               </b>
-              ] = [
+              ] = Avg_Efficiency [
               <b>
-                13.023
+                100.0
               </b>
-              ] - (Adj_Usage [
+              ] + ORtg_SDs_Above_Mean [
               <b>
-                26.4
+                2.2
               </b>
-              ] * [
+              ] * ORtg_SD_At_20%_Usage [
               <b>
-                0.144
+                10.1
               </b>
               ])
-            </li>
-          </ul>
-          <li>
-            ORtg_SD_At_20%_Usage [
-            <b>
-              10.1
-            </b>
-            ] = [
-            <b>
-              10.143
-            </b>
-            ]
-          </li>
-          <li>
-            <em>
-              (Various constants empirically derived)
             </em>
           </li>
         </ul>
@@ -1788,7 +1734,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
                 <em>
                   (Classic) Team_Assist_Contrib% [
                   <b>
-                    8.9
+                    8.8
                     %
                   </b>
                   ] = Weighting ([
@@ -1800,9 +1746,9 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
                     46.9
                     %
                   </b>
-                  ]) * Team_Assist_Rate [
+                  ]) * Player_Assisted_Rate [
                   <b>
-                    37.9
+                    37.4
                     %
                   </b>
                   ]
@@ -1810,7 +1756,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
               </li>
               <li>
                 <em>
-                  (Classic) Team_Assist_Rate: [
+                  (Classic, Unused) Team_Assist_Rate: [
                   <b>
                     37.9
                     %
@@ -2475,7 +2421,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </b>
       : [
       <b>
-        6.9
+        6.5
       </b>
       ] = 
       <em>
@@ -2483,11 +2429,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </em>
        [
       <b>
-        134.4
+        132.3
       </b>
-      ] (Regressed_ORtg [
+      ] (ORtg [
       <b>
-        121.8
+        119.8
       </b>
       ] + Usage_Bonus [
       <b>
@@ -2521,11 +2467,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <li>
           Normalization: Rtg+ [
           <b>
-            6.9
+            6.5
           </b>
-          ] = 20% * (Rtg [
+          ] = 20% * (Normalized_ORtg [
           <b>
-            134.4
+            132.3
           </b>
           ] - Avg_Efficiency [
           <b>
@@ -2533,80 +2479,26 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           </b>
           ])
         </li>
-        <li>
-          Regressed_ORtg: [
-          <b>
-            121.8
-          </b>
-          ] = Avg_Efficiency [
-          <b>
-            100.0
-          </b>
-          ] + ORtg_SDs_Above_Mean [
-          <b>
-            2.2
-          </b>
-          ] * ORtg_SD_At_20%_Usage [
-          <b>
-            10.1
-          </b>
-          ]
-        </li>
         <ul>
           <li>
-            ORtg_SDs_Above_Mean: [
-            <b>
-              2.2
-            </b>
-            ] = (ORtg [
-            <b>
-              119.8
-            </b>
-            ] - Avg_Efficiency [
-            <b>
-              100.0
-            </b>
-            ]) / SD_At_Actual_Usage [
-            <b>
-              9.2
-            </b>
-            ]
-          </li>
-          <ul>
-            <li>
-              SD_At_Actual_Usage: [
+            <em>
+              (Unused, Regressed_ORtg: [
               <b>
-                9.2
+                121.8
               </b>
-              ] = [
+              ] = Avg_Efficiency [
               <b>
-                13.023
+                100.0
               </b>
-              ] - (Adj_Usage [
+              ] + ORtg_SDs_Above_Mean [
               <b>
-                26.4
+                2.2
               </b>
-              ] * [
+              ] * ORtg_SD_At_20%_Usage [
               <b>
-                0.144
+                10.1
               </b>
               ])
-            </li>
-          </ul>
-          <li>
-            ORtg_SD_At_20%_Usage [
-            <b>
-              10.1
-            </b>
-            ] = [
-            <b>
-              10.143
-            </b>
-            ]
-          </li>
-          <li>
-            <em>
-              (Various constants empirically derived)
             </em>
           </li>
         </ul>
@@ -3911,7 +3803,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        6.9
+        6.5
       </b>
       ] = 
       <em>
@@ -3919,11 +3811,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        134.4
+        132.3
       </b>
-      ] (Regressed_ORtg [
+      ] (ORtg [
       <b>
-        121.8
+        119.8
       </b>
       ] + Usage_Bonus [
       <b>
@@ -4255,7 +4147,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       </b>
       : [
       <b>
-        6.9
+        6.5
       </b>
       ] = 
       <em>
@@ -4263,11 +4155,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       </em>
        [
       <b>
-        134.4
+        132.3
       </b>
-      ] (Regressed_ORtg [
+      ] (ORtg [
       <b>
-        121.8
+        119.8
       </b>
       ] + Usage_Bonus [
       <b>
