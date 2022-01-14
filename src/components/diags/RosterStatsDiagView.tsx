@@ -53,8 +53,8 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
             <li><em>(The theory behind the weighting is that easier shots are harder to assist, so the higher the eFG the more credit to the assist.)</em></li>
             <li><em>The above values are calculated using a player's assist networks vs shot type. The "classic" algorithm approximates from box scores, giving ORtg=[<b>{o.oRtg_Classic.toFixed(1)}</b>]:</em></li>
             <ul>
-              <li><em>(Classic) Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>]</em></li>
-              <li><em>(Classic) Team_Assist_Rate: [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist.toFixed(0)}</b>] / Team_FGM [<b>{o.teamFgm.toFixed(0)}</b>])</em></li>
+              <li><em>(Classic) Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Player_Assisted_Rate [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>]</em></li>
+              <li><em>(Classic, Unused) Team_Assist_Rate: [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist.toFixed(0)}</b>] / Team_FGM [<b>{o.teamFgm.toFixed(0)}</b>])</em></li>
             </ul>
           </ul>
         </ul>
@@ -134,18 +134,12 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
       </ul></span> : null }
-      <li><b>Adjusted+ ORtg</b>: [<b>{o.adjORtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{o.adjORtg.toFixed(1)}</b>] (Regressed_ORtg [<b>{o.Regressed_ORtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.Usage_Bonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
+      <li><b>Adjusted+ ORtg</b>: [<b>{o.adjORtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{o.adjORtg.toFixed(1)}</b>] (ORtg [<b>{o.oRtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.Usage_Bonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
       </li>
       { showMoreORtgAdj ? <span><li><u>Adjusted+ ORtg details</u> (<a target="_blank" href="https://www.bigtengeeks.com/new-stat-porpagatu/">?</a>)</li><ul>
-        <li>Normalization: Rtg+ [<b>{o.adjORtgPlus.toFixed(1)}</b>] = 20% * (Rtg [<b>{o.adjORtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>])</li>
-        <li>Regressed_ORtg: [<b>{o.Regressed_ORtg.toFixed(1)}</b>] = Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] + ORtg_SDs_Above_Mean [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] * ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>]</li>
-        <ul>
-          <li>ORtg_SDs_Above_Mean: [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] = (ORtg [<b>{o.oRtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>]) / SD_At_Actual_Usage [<b>{o.SD_at_Usage.toFixed(1)}</b>]</li>
-          <ul>
-            <li>SD_At_Actual_Usage: [<b>{o.SD_at_Usage.toFixed(1)}</b>] = [<b>13.023</b>] - (Adj_Usage [<b>{o.Usage.toFixed(1)}</b>] * [<b>0.144</b>])</li>
-          </ul>
-          <li>ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>] = [<b>10.143</b>]</li>
-          <li><em>(Various constants empirically derived)</em></li>
+        <li>Normalization: Rtg+ [<b>{o.adjORtgPlus.toFixed(1)}</b>] = 20% * (Normalized_ORtg [<b>{o.adjORtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>])</li>
+        <ul> 
+          <li><em>(Unused, Regressed_ORtg: [<b>{o.Regressed_ORtg.toFixed(1)}</b>] = Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] + ORtg_SDs_Above_Mean [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] * ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>])</em></li>
         </ul>
         <li>Usage_Bonus: [<b>{o.Usage_Bonus.toFixed(1)}</b>] = {o.Usage > 20 ?
         <span>((Adj_Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.25</b>])</span> : <span>((Adj_Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.5</b>])</span>

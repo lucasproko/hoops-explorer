@@ -93,10 +93,10 @@ export type ORtgDiagnostics = {
   oRtg_Classic: number,
   defSos: number,
   avgEff: number,
-  SD_at_Usage: number,
-  SDs_Above_Mean: number,
-  SD_at_Usage_20: number,
-  Regressed_ORtg: number,
+  SD_at_Usage: number, //(not used any more)
+  SDs_Above_Mean: number, //(not used any more)
+  SD_at_Usage_20: number, //(not used any more)
+  Regressed_ORtg: number, //(not used any more)
   Usage: number,
   Usage_Bonus: number,
   adjORtg: number,
@@ -386,7 +386,6 @@ export class RatingUtils {
     const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part/FGM : 0;
     const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
 
-//TODO I think I'm incorrectly using the season eFG here but the sample eFGs for the FGProd
     const Efg_By_ShotType = Assists.map((locMap, index) => {
       const shotLoc = locMap[0];
       const playerMap = locMap[1];
@@ -471,7 +470,7 @@ export class RatingUtils {
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
 
     // Useful diag info for debugging in Google Sheets
-    const diagInfo: string = "PTS_AST"; 
+    const diagInfo: string = ""; 
     if (diagInfo.indexOf("POSS_TOT_CLASSIC") >= 0) {
       console.log(`POSS_TOT,${FG_Part_Classic},${AST_Part_Classic},${FT_Part},*,${1 - Team_ORB_Contrib},+,${ORB_Part},+,${FGxPoss},+,${FTxPoss},+,${TOV},=,${TotPoss_Classic}`);
     }
@@ -486,8 +485,7 @@ export class RatingUtils {
     }
 
     //TODO: switching from classic broke the total numbers, so moving back to classic for now
-    //const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
-    const ORtg = ORtg_Classic;
+    const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
 
     // My changes: 
     // AR1- don't regress the ORtg (don't like "regressing upwards at high usage")
@@ -496,15 +494,15 @@ export class RatingUtils {
     // AR3- make the bonus scale be the same for >/< average usage
 
     // Calculate actual ORtg usage and use that in all ORtg calcs
-    //(TODO remove classic once done)
-    const usage = 100*TotPoss_Classic/(Team_Poss || 1);
+    const usage = 100*TotPoss/(Team_Poss || 1);
 
     const o_adj = avgEfficiency / Def_SOS;
     // See AR1:
-    // const SD_at_Usage = usage * -.144 + 13.023;
-    // const SDs_Above_Mean = SD_at_Usage > 0 ? (ORtg - avgEfficiency) / SD_at_Usage : 0;
-    // const SD_at_Usage_20 = 10.143;
-    // const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
+    // (we don't use this any more, but keep it for display)
+    const SD_at_Usage = usage * -.144 + 13.023;
+    const SDs_Above_Mean = SD_at_Usage > 0 ? (ORtg - avgEfficiency) / SD_at_Usage : 0;
+    const SD_at_Usage_20 = 10.143;
+    const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
     // See AR3:
     // Old:
     const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
@@ -619,10 +617,10 @@ export class RatingUtils {
       oRtg_Classic: ORtg_Classic,
       defSos: Def_SOS,
       avgEff: avgEfficiency,
-      SD_at_Usage: 0, // (these 4 aren't used any more)
-      SDs_Above_Mean: 0,
-      SD_at_Usage_20: 0,
-      Regressed_ORtg: 0,
+      SD_at_Usage: SD_at_Usage, // (these 4 aren't used any more but keep them for info)
+      SDs_Above_Mean: SDs_Above_Mean,
+      SD_at_Usage_20: SD_at_Usage_20,
+      Regressed_ORtg: Regressed_ORtg,
       Usage: Math.max(usage, 0.0), //(this can replace off_usage, so ensure it's sane in edge cases)
       Usage_Bonus: Usage_Bonus,
       adjORtg: Adj_ORtg,
