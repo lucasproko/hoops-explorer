@@ -254,11 +254,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // Needed for a few things, including RAPM and play type analysis
 
-  /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
-    rosterStats.global || [], teamStats.global?.roster, showPlayTypes, teamSeasonLookup
-  ); //TODO: which set do I actually want to use for positional calcs here?
-
+  type RosterStatsByCode = {
+    [key in OnOffBaselineGlobalEnum]: Record<PlayerCode, IndivStatSet>
+  };
+  const rosterStatsByCode: RosterStatsByCode = 
+    _.chain([ "on", "off", "global", "baseline" ] as OnOffBaselineGlobalEnum[]).transform((acc, key) => {
+      if (teamStats[key]?.doc_count) {
+        acc[key]= RosterTableUtils.buildRosterTableByCode(
+          rosterStats[key] || [], teamStats.global?.roster, (key == "global") && showPlayTypes, teamSeasonLookup
+        );
+      }
+    }, {
+      on: {}, off: {}, global: {}, baseline: {}
+    } as RosterStatsByCode).value();
+    
   // 3.0] RAPM
 
   const [ cachedRapm, setCachedRapm ] = useState({} as Record<string, any>);
@@ -298,7 +307,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
           const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, adjustForLuck, luckConfig.base, onBallDefenseByCode
+            rosterStats[key]!, rosterStatsByCode.global, teamStats[key]!, avgEfficiency, adjustForLuck, luckConfig.base, onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)
@@ -524,11 +533,21 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const calcDiagModeOff = showDiagMode;
         const calcDiagModeDef = showDiagMode || !_.isEmpty(onBallDefenseByCode);
 
+//TODO make this a UI parameter, default true
+        const useAdjUsage = true; 
+
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(
-            stat, globalRosterStatsByCode,
-            avgEfficiency, calcDiagModeOff, adjustForLuck || overrodeOffFields
+            stat, rosterStatsByCode[key], { 
+              //(some extra info needed to get the pts/poss as close as possible)
+              total_off_to: teamStat.total_off_to || { value: 0 },
+              sum_total_off_to: { //(sum of all players TOs, so we can calc team TOVs)
+                //(note don't luck adjust these since the team values aren't luck adjusted)
+                value: _.sumBy((rosterStats[key] || []) as IndivStatSet[], p => p.total_off_to?.value || 0)
+              }
+            },
+            avgEfficiency, calcDiagModeOff || useAdjUsage, adjustForLuck || overrodeOffFields
           );
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
@@ -545,6 +564,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           value: (adjORtg?.value || 0)*stat.off_team_poss_pct.value!,
           old_value: (rawAdjORtg?.value || 0)*stat.off_team_poss_pct.value!,
           override: adjustmentReason
+        };
+        stat.off_usage = {
+          value: !_.isNil(oRtgDiag) ? oRtgDiag!.Usage*0.01 : (stat.off_usage?.value || 0.2)
         };
         stat.diag_off_rtg = oRtgDiag;
         stat.def_rtg = {
@@ -675,7 +697,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
               player={{...p.on, posClass: p.global?.posClass || "??"}}
-              rosterStatsByCode={globalRosterStatsByCode}
+              rosterStatsByCode={rosterStatsByCode.global}
               teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),
@@ -700,7 +722,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
               player={{...p.off, posClass: p.global?.posClass || "??"}}
-              rosterStatsByCode={globalRosterStatsByCode}
+              rosterStatsByCode={rosterStatsByCode.global}
               teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),
@@ -725,7 +747,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
               player={{...p.baseline, posClass: p.global?.posClass || "??"}}
-              rosterStatsByCode={globalRosterStatsByCode}
+              rosterStatsByCode={rosterStatsByCode.global}
               teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),

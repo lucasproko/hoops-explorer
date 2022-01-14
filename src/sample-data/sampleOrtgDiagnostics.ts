@@ -50,7 +50,7 @@ export const sampleOrtgDiagnostics =
    "teamOrbContribPct": 0,
    "teamScoredPlayPct": 0.4215924014026815,
    "teamAssistRate_Classic": 0.3794090202177294,
-   "ppFgTeamAstPct_Classic": 0.08899059884320337,
+   "ppFgTeamAstPct_Classic": 0.08774553390995068,
    "teamAssistRate": 0.37410071942446044,
    "ppFgTeamAstPct": 0.09475178477907331,
    "teamAssistedEfg": 0.5065576186265842,
@@ -77,7 +77,7 @@ export const sampleOrtgDiagnostics =
    "fgxPoss": 143.85071138211381,
    "ftxPoss": 3.428161762309771,
    "oRtg": 119.84956630535876,
-   "oRtg_Classic": 119.47176661703918,
+   "oRtg_Classic": 119.51567418026275,
    "defSos": 96.60184357541898,
    "avgEff": 100,
    "SD_at_Usage": 9.225388241385453,
@@ -86,6 +86,6 @@ export const sampleOrtgDiagnostics =
    "Regressed_ORtg": 121.82392174370084,
    "Usage": 26.37230387926769,
    "Usage_Bonus": 7.965379849084613,
-   "adjORtg": 134.3548909513889,
-   "adjORtgPlus": 6.870978190277782
+   "adjORtg": 132.31108374723274,
+   "adjORtgPlus": 6.462216749446549
 };
