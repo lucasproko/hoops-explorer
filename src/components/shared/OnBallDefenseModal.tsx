@@ -44,11 +44,11 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
   /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
   const parseInput = (stats: OnBallDefenseModel[]) => {
     const st = stats[0]!;
-    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,-,-,-,-,TOV%,-,-,score%".replace(",", "\t");
-    const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,-,-,-,-,-,-,-,-,${st.totalScorePct}`.replace(",", "\t");
+    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
+    const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
 
     const rows = stats.map(s => {
-      return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},-,-,-,-,${s.tovPct},-,-,${s.scorePct}`.replace(",", "\t");
+      return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},${s.fgMade},-,-,-,${s.tovPct},-,${s.sfPct},${s.scorePct}`.replace(",", "\t");
     });
 
     return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
@@ -127,10 +127,18 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         tovPct: parseFloatOrMissing(row[12]),
         fgMiss: parseFloatOrMissing(row[7]),
 
+        // New algo:
+        fgMade: parseFloatOrMissing(row[8]),
+        sfPct: parseFloatOrMissing(row[14]),
+
         // Fill these in later:
         totalPts: -1, totalScorePct: -1, totalPlays: -1,
         uncatPts: -1, uncatPlays: -1,
-        uncatScorePct: -1,  uncatPtsPerScPlay: -1
+        uncatScorePct: -1,  uncatPtsPerScPlay: -1,
+
+        // New algo:
+        totalSfPlays: -1, totalTos: -1, totalFgMade: -1, totalFgMiss: -1,
+        uncatSfPlays: -1, uncatTos: -1, uncatFgMade: -1, uncatFgMiss: -1,    
       };
     };
     const matchedPlayerStats = matchedPlayers.found.map(ii => {
@@ -230,7 +238,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter),
     "sep-1": GenericTableOps.addColSeparator(),
     "delta": GenericTableOps.addPtsCol("Delta Rtg+", "Difference between the 'classic' Adj Rtg+ and the adjusted for on-ball defense (positive means on-ball stats improve the DRtg)", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    "delta_rapm": GenericTableOps.addPtsCol("RAPM comp", "Delta betwen (on-ball) Adj Rtg+ and RAPM - you'd expect 'Delta Rtg+' and 'RAPM comp' to be +vely correlated -  differences are likely to be off-ball (backcourt) or rebounding gravity (frontcourt)", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+    "delta_rapm": GenericTableOps.addPtsCol("RAPM comp", "Delta betwen (on-ball) Adj Rtg+ and RAPM - you'd expect 'Delta Rtg+' and 'RAPM comp' to be very +correlated -  differences are likely to be off-ball/help defense (backcourt) or rebounding gravity (frontcourt)", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     "sep0": GenericTableOps.addColSeparator(),
     "classic_drtg": GenericTableOps.addPtsCol("Box DRtg", "Box DRtg (no on-ball adjustments)", CbbColors.varPicker(CbbColors.def_pp100)),
     "onball_drtg": GenericTableOps.addPtsCol("new", "DRtg after on-ball adjustments", CbbColors.varPicker(CbbColors.def_pp100)),
