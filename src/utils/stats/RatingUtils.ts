@@ -794,6 +794,9 @@ export class RatingUtils {
     //console.log(JSON.stringify(totalStats, null, 3));
     //console.log(JSON.stringify(players, null, 3));
 
+    const totalSfPlays = totalStats.plays*totalStats.sfPct*0.01;
+    const totalTos = totalStats.plays*totalStats.tovPct*0.01
+
     const uncatOnBallDefense = _.transform(players, (acc, player) => {
       acc.pts -= player.pts;
       acc.plays -= player.plays;
@@ -808,8 +811,8 @@ export class RatingUtils {
       totalPlays: totalStats.plays,
       uncatPtsPerScPlay: totalStats.scorePct*totalStats.plays,
 
-      totalSfPlays: totalStats.plays*totalStats.sfPct*0.01, 
-      totalTos: totalStats.plays*totalStats.tovPct*0.01, 
+      totalSfPlays: totalSfPlays, 
+      totalTos: totalTos, 
       totalFgMade: totalStats.fgMade, 
       totalFgMiss: totalStats.fgMiss,
 
@@ -826,6 +829,10 @@ export class RatingUtils {
       player.uncatPts = uncatOnBallDefense.pts;
       player.uncatPlays = uncatOnBallDefense.plays;
 
+      player.totalSfPlays = totalSfPlays;
+      player.totalTos = totalTos;
+      player.totalFgMade = totalStats.fgMade;
+      player.totalFgMiss = totalStats.fgMiss;
       player.uncatSfPlays = uncatOnBallDefense.totalSfPlays;
       player.uncatTos = uncatOnBallDefense.totalTos;
       player.uncatFgMade = uncatOnBallDefense.totalFgMade;
@@ -976,7 +983,6 @@ export class RatingUtils {
     const comboDefRebPoss = // Regress the actual rebounding credit with 20% of the team rebounding credit
       playerVsTeamRebWeight*diags.reboundCredit + 
       0.2*(1 - playerVsTeamRebWeight)*diags.teamDrb*(1 - diags.teamDvsRebCredit);
-      //(TODO: is this the right weighting?)
       
     const weightedPts = onBallWeight*onBallPts + offBallWeight*offBallPts + (deltaPlays/(uncatPlays || 1))*uncatPts;
     const adjDefRebPoss = comboDefRebPoss;
@@ -1082,16 +1088,15 @@ export class RatingUtils {
 
         // Apply the result to the player stats:
 
-        onBallDiags.onBallRtg = onBallDiags.onBallRtg + uncategorizedAdjustment;
-        onBallDiags.offBallRtg = onBallDiags.offBallRtg + uncategorizedAdjustment;
+        onBallDiags.onBallDRtg = onBallDiags.onBallDRtg + uncategorizedAdjustment;
+        onBallDiags.offBallDRtg = onBallDiags.offBallDRtg + uncategorizedAdjustment;
 
         const Adj_DRtg = diag.offSos > 0 ? onBallDiags.dRtg*(diag.avgEff / diag.offSos) : 0;
         const Adj_DRtgPlus =  0.2*(Adj_DRtg - diag.avgEff);
         onBallDiags.adjDRtg = Adj_DRtg;
         onBallDiags.adjDRtgPlus = Adj_DRtgPlus;
 
-        const pctOfTotalPlays = (100*diag.onBallDiags.plays/(diag.onBallDiags.totalPlays || 1));
-
+        const pctOfTotalPlays = (100*diag.onBallDef.plays/(diag.onBallDef.totalPlays || 1));
         if (pctOfTotalPlays >= 0.25) { // (don't adjust if there are too few possessions, empirically 0.25% seems like a good number)
           if (stat.def_rtg) {
             stat.def_rtg.value = onBallDiags.dRtg;

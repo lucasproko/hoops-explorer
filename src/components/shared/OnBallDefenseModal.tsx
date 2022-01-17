@@ -154,6 +154,9 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       return onBallDefense;
     });
 
+    //(Use to generate unit test artefact sampleOnBallDefenseStats)
+    // console.log(JSON.stringify([ parseRow("totals", maybeTotals!),  matchedPlayerStats ], null, 3));
+
     // If there's a totals row we can now add team stats (can still do something otherwise)
     if (maybeTotals) {
       const totalStats = parseRow("totals", maybeTotals);
