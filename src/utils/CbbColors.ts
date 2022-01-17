@@ -51,6 +51,9 @@ export class CbbColors {
   public static readonly off_pp100 = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly def_pp100 = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly pp100: CbbColorTuple = [ CbbColors.off_pp100, CbbColors.def_pp100 ];
+  public static readonly off_ppp = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val*100).toString();
+  public static readonly def_ppp = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val*100).toString();
+  public static readonly ppp: CbbColorTuple = [ CbbColors.off_ppp, CbbColors.def_ppp ];
   // eFG
   private static readonly eFGDomain = [ 0.4, 0.5, 0.6 ];
   public static readonly off_eFG = (val: number) => CbbColors.redToGreen.domain(CbbColors.eFGDomain)(val).toString();

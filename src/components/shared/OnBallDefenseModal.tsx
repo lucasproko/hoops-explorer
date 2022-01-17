@@ -245,43 +245,48 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     "classic_rtg": GenericTableOps.addPtsCol("Adj Rtg+", "Adjusted Rating+ based on Box DRtg (no on-ball adjustments)", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
     "onball_rtg": GenericTableOps.addPtsCol("new", "Adjusted Rating+ after on-ball adjustments", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
     "sep1": GenericTableOps.addColSeparator(),
+    "target": GenericTableOps.addPctCol("Ball Tgt%", "% of plays where on-ball defender was targeted", CbbColors.varPicker(CbbColors.usg_offDef, 1.5)),
     "ppp": GenericTableOps.addDataCol(
-      "Man PPP", "Points/Play conceded (each possession can include multiple plays)",
+      "Ball PPP", "On-Ball Points/Play conceded (each possession can include multiple plays)",
       CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter
     ),
-    "target": GenericTableOps.addPctCol("Man Tgt%", "% of plays where defender was targeted", CbbColors.varPicker(CbbColors.usg_offDef, 1.5)),
-    "tov": GenericTableOps.addPctCol("Man TO%", "% of plays where defender forced a TO", CbbColors.varPicker(CbbColors.p_def_TO, 0.25)),
-    "score": GenericTableOps.addPctCol("Man Sc%", "% of plays where defender was scored on", CbbColors.varPicker(CbbColors.alwaysWhite)),
+    "eff_ppp": GenericTableOps.addDataCol(
+      "Eff PPP", "On-Ball Points/Play adjusted to take into account that missed field goals can be rebounded",
+      CbbColors.varPicker(CbbColors.def_ppp), GenericTableOps.twoDpFormatter
+    ),
+    "sep1.5": GenericTableOps.addColSeparator(),
+    "tov": GenericTableOps.addPctCol("Ball TO%", "% of plays where defender forced a TO", CbbColors.varPicker(CbbColors.p_def_TO, 0.25)),
+    "sf": GenericTableOps.addPctCol("Ball SF%", "% of plays where defender fouled a shooter", CbbColors.varPicker(CbbColors.p_def_TO, 0.25)),
     "sep2": GenericTableOps.addColSeparator(),
-    "man_ppp": GenericTableOps.addDataCol(
-      "Man P/Sc", "Points per scoring play in on-ball defense",
-      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter
+    "ball_drtg": GenericTableOps.addPtsCol(
+      "Ball DRtg", "The approximate Defensive Rating taking only on-ball defense (and rebounds) into account",
+      CbbColors.varPicker(CbbColors.def_pp100)
     ),
-    "man_credit": GenericTableOps.addPtsCol("Man Credit", "Stop credit%/100 targeted defensive possessions", CbbColors.varPicker(CbbColors.alwaysWhite)),
-    "off_ppp": GenericTableOps.addDataCol(
-      "Off P/Sc", "Points per scoring play in off-ball defense",
-      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter
+    "off_drtg": GenericTableOps.addPtsCol(
+      "Off DRtg", "The approximate Defensive Rating taking only off-ball defense (and rebounds) into account",
+      CbbColors.varPicker(CbbColors.def_pp100)
     ),
-    "off_credit": GenericTableOps.addPtsCol("Off Credit", "Stop credit%/100 off-ball defensive possessions (split equally amongst all 4 off-ball defenders)", CbbColors.varPicker(CbbColors.alwaysWhite)),
-    "reb_credit": GenericTableOps.addPtsCol("DRB Credit", "Stop credit%/100 possessions from rebounding", CbbColors.varPicker(CbbColors.alwaysWhite)),
+    "reb_credit": GenericTableOps.addPtsCol("DRB Bonus", "The gain/loss to Defensive Rating due to a player's rebounding", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
     "sep3": GenericTableOps.addColSeparator(),
     "plays": GenericTableOps.addIntCol("Plays", "Number of targeted plays recorded (each possession can include multiple plays)", CbbColors.varPicker(CbbColors.alwaysWhite)),
+    "poss": GenericTableOps.addPctCol("Poss%", "% of team possessions the player is on the floor", CbbColors.varPicker(CbbColors.alwaysWhite)),
   }, hasRapm ? [] : ["delta_rapm"]);
 
   const unassignedData: Record<string, any> = onBallDefense[0] ? {
     title: "Unassigned plays",
     ppp: { value: (onBallDefense[0].uncatPts)/(onBallDefense[0].uncatPlays || 1) },
     target: { value: (onBallDefense[0].uncatPlays)/(onBallDefense[0].totalPlays || 1) },
-    score: { value: 0.01*(onBallDefense[0].uncatScorePct) },
-    man_ppp: { value: onBallDefense[0].uncatPtsPerScPlay },
+    tov: { value: 0.01*onBallDefense[0].uncatTos/(onBallDefense[0].uncatPlays || 1) },
+    sf: { value: 0.01*onBallDefense[0].uncatSfPlays/(onBallDefense[0].uncatPlays || 1) },
     plays: { value: onBallDefense[0].uncatPlays }
   } : {};
 
-  const tableData = _.chain(players).filter(p => p.diag_def_rtg?.onBallDiags && p.diag_def_rtg?.onBallDef).map(p => {
+  const tableData = _.chain(players).filter(p => p.diag_def_rtg?.onBallDiags && p.diag_def_rtg?.onBallDef).flatMap(p => {
     const diag = p.diag_def_rtg!;
     const onBallDiag = diag.onBallDiags!;
     const onBallStats = diag.onBallDef!;
-    return {
+    const pctOfTotalPlays = (100*onBallStats.plays/(onBallStats.totalPlays || 1));
+    return (pctOfTotalPlays >= 0.25) ? [ {
       title: onBallStats.title,
       classic_drtg: { value: diag.dRtg },
       onball_drtg: { value: onBallDiag.dRtg },
@@ -290,17 +295,22 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       delta: { value: diag.adjDRtgPlus - onBallDiag.adjDRtgPlus },
       delta_rapm: { value: diag.adjDRtgPlus - (p.def_adj_rapm?.value || 0) },
       abs_delta: Math.abs(diag.dRtg - onBallDiag.dRtg),
+
       ppp: { value: onBallStats.pts / (onBallStats.plays || 1) },
+      eff_ppp: { value: onBallDiag.effectivePpp },
+
       target: { value: onBallDiag.targetedPct },
-      score: { value: 0.01*onBallStats.scorePct },
+      // fgMiss: { value: onBallStats.fgMiss/(onBallStats.plays||1) },
       tov: { value: 0.01*onBallStats.tovPct },
-      man_ppp: { value: onBallDiag.playerPtsPerScore },
-      man_credit: { value: 100*onBallDiag.onBallStopCredit },
-      off_ppp: { value: onBallDiag.weightedPtsPerScore },
-      off_credit: { value: 100*onBallDiag.offBallStopCredit },
-      reb_credit: { value: 100*onBallDiag.comboRebCredit/(diag.oppoPtsPerScore || 1) },
-      plays: { value: onBallStats.plays }
-    } as Record<string, any>;
+      sf: { value: 0.01*onBallStats.sfPct },
+      
+      ball_drtg: { value: onBallDiag.onBallDRtg },
+      off_drtg: { value: onBallDiag.offBallDRtg },
+      reb_credit: { value: onBallDiag.reboundDRtgBonus },
+
+      plays: { value: onBallStats.plays },
+      poss: { value: p.def_team_poss_pct?.value || 0 }
+    } as Record<string, any> ] : [];
   }).concat([ unassignedData ]).map(
     o => GenericTableOps.buildDataRow(o, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
   ).value();
