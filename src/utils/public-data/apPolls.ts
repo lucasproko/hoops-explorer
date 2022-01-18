@@ -56,35 +56,35 @@ const apPollMen_2021_22: Record<string, number> = _.chain(`
 
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
 const apPollWomen_2021_22: Record<string, number> = _.chain(`
-1	South Carolina	15-1	745	1
-2	Stanford	11-3	703	2
-3	Louisville	13-1	698	3
-4	North Carolina State	14-2	655	5
-5	Tennessee	15-1	613	7
-6	Indiana	12-2	606	6
-7	Arizona	11-1	561	4
-8	Maryland	12-4	511	10
-9	Iowa State	14-1	489	12
-10	Connecticut	7-3	476	11
-11	Michigan	13-2	455	8
-12	LSU	15-2	403	13
-13	Texas	11-2	394	9
-14	Baylor	10-3	364	14
-15	Georgia Tech	11-3	324	16
-16	Duke	11-2	275	17
-17	Georgia	13-3	243	15
-18	BYU	12-1	203	18
-19	Kentucky	8-4	156	21
-20	Notre Dame	11-3	148	20
-21	North Carolina	14-1	147	19
-22	Colorado	13-0	118	NR
-23	Oklahoma	13-2	109	23
-24	South Florida	11-4	92	24
-25	Kansas State	13-2	83	NR
+1	South Carolina	17-1	747	1
+2	Stanford	13-3	701	2
+3	Louisville	15-1	694	3
+4	NC State	16-2	661	4
+5	Tennessee	17-1	633	5
+6	Indiana	14-2	607	6
+7	Iowa State	16-1	542	9
+8	Michigan	15-2	529	11
+9	UConn	9-3	510	10
+10	Arizona	12-2	466	7
+11	LSU	17-2	464	12
+12	Maryland	12-5	406	8
+13	Georgia	13-3	310	17
+14	Oklahoma	15-2	306	23
+15	Baylor	11-4	295	14
+15	Texas	12-3	295	13
+17	BYU	14-1	275	18
+18	Georgia Tech	13-4	263	15
+19	Notre Dame	13-3	262	20
+20	North Carolina	14-2	133	21
+21	Duke	11-4	125	16
+22	Colorado	13-1	119	22
+23	Kentucky	8-5	83	19
+24	Florida Gulf Coast	15-1	80	NR
+25	Iowa	10-4	52	NR
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
    .assign(
       {
-         __week__: 10
+         __week__: 11
       }
    ).value();
 
