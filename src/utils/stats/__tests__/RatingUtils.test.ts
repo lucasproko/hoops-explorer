@@ -181,7 +181,7 @@ describe("RatingUtils", () => {
     );
 
     const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(
-      playerInfo, sampleDrtgDiagnostics, playerOnBallStats
+      playerInfo as any as IndivStatSet, sampleDrtgDiagnostics, playerOnBallStats
     );
     expect(onBallDiags).toMatchSnapshot();
 
@@ -193,7 +193,7 @@ describe("RatingUtils", () => {
 
     const playersToMutate = _.cloneDeep(
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
-    ) as Record<string, any>[];
+    ) as any[] as IndivStatSet[];
     playersToMutate.forEach((p, ii) => {
       const dRtgDiag = _.cloneDeep(sampleDrtgDiagnostics) as DRtgDiagnostics;
       const onBallStats = playerBallStats[ii % playerBallStats.length];
@@ -208,6 +208,6 @@ describe("RatingUtils", () => {
     });
     RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playersToMutate);
 
-    expect(playersToMutate[0].diag_def_rtg.onBallDiags).toMatchSnapshot();
+    expect(playersToMutate[0]?.diag_def_rtg?.onBallDiags).toMatchSnapshot();
   });
 });

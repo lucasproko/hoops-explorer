@@ -2,7 +2,7 @@
 // Utils:
 import _ from 'lodash'
 import { OverrideUtils } from "./OverrideUtils";
-import { IndivStatSet, Statistic, TeamStatSet } from '../StatModels';
+import { IndivStatSet, Statistic, TeamStatSet, PureStatSet } from '../StatModels';
 
 /** All the info needed to explain the ORtg calculation, see "buildORtgDiag" */
 export type ORtgDiagnostics = {
@@ -206,6 +206,9 @@ export type OnBallDefenseDiags = {
   reboundDRtgBonus: number,
 
   unadjDRtg: number,
+
+  // Deeper diags
+  diagInfo?: Record<string, number>
 
   weightedClassicDRtgMean: number,
   weightedUnadjDRtgMean: number,
@@ -844,7 +847,7 @@ export class RatingUtils {
 
   /** Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account)*/
   static buildOnBallDefenseAdjustmentsPhase1(
-    player: Record<string, any>, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
+    player: IndivStatSet, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
   ): OnBallDefenseDiags {
 
     const showConsoleDiag = false;
@@ -857,7 +860,7 @@ export class RatingUtils {
 
     // Team calcs
 
-    const sampleTeamDefPoss = player.oppo_total_def_poss?.value;
+    const sampleTeamDefPoss = player.oppo_total_def_poss?.value || 0;
     const teamPtsAgainstFg = diags.oppoFgm*diags.oppoPtsPerScore;
     const teamFgMadeAgainst = diags.oppoFgm;
     const teamFgMissAgainst = (diags.oppoFga - diags.oppoFgm);
@@ -865,9 +868,9 @@ export class RatingUtils {
     const teamDefTo = diags.oppoTov;
     const teamFtm = diags.oppoFtm;
     const teamPts = diags.oppoPts;
-    const defEfficiency = teamPts/sampleTeamDefPoss;
+    const defEfficiency = teamPts/(sampleTeamDefPoss || 1);
 
-    const teamOrbAllowed  = player.oppo_total_def_orb?.value;
+    const teamOrbAllowed  = player.oppo_total_def_orb?.value || 0;
     const teamAdjReb = (1 - diags.teamDvsRebCredit)*teamFgMissAgainst; 
     //(What we want is sum(players)(RebCredit*DRBs) ==  teamAdjReb - teamOrbAllowed)
     // AvRebCredit*(DRBs=FGx - ORBs) = TeamAdjReb - AvRebCredit*ORBS
@@ -920,6 +923,17 @@ export class RatingUtils {
 
     // Off-ball 
 
+    // The underlying math is (see onBallWeight below):
+    // pts = 60%*on-ball + 10%*(team - on-ball), team=(sum(on-ball) + uncat)
+    // sum(pts) = 50%*sum(on-ball) + 50%*sum(on-ball) + 50%*uncat = sum(on-ball) + 50%*uncat(=320)
+    // so the assumption is that the remaining 50% of the uncat is attributed as delta from (def_usage-20)
+    // (where def_usage does not include rebounds) - in practice this falls short by a few % (50 on 650 uncat pts), which is tidied up by injectOnBallDefenseAdjustmentsPhase2
+
+    // Shortfall could be caused by: Incorrect term somewhere, Team rebounds?
+    // (possessions seemed to be closer to correct)
+    // (would expect a small error due to team rebounds, sum(0.2*player + 0.8*(0.2*team))=0.2*sum(player)+0.8*team = 0.2*(team-team_drb)+0.8*team = team-team_drb)
+// TODO: make the sum right, but actually that would increase the poss error since empirically it was slightly too high (1960 vs 1945)?
+
     const offBallPts = teamPts - onBallPts;
     const offBallAdjFgMiss = teamAdjFgMissAgainst - onBallAdjFgMiss;
     const offBallFgMade = teamFgMadeAgainst - onBallFgMade;    
@@ -960,8 +974,7 @@ export class RatingUtils {
     // Now we can estimate the actual "defensive targeted%"
     const onBallWeight = 0.6;
     const offBallWeight = (1 -onBallWeight)*0.25; //(ie uniformly distributed across the other players)
-
-    //TODO: possibly should calc this based on the zero adjustment being the team "effective PPP"
+    //TODO: ^ possibly should calc this based on the zero adjustment being the team "effective PPP"
     // eg Maryland 21/22
     // Team = 0.877 fgMiss%=0.457 def_orb=26.3% 101.6%... 
     // Eff PPP = 0.877 + 0.457*0.264*1.016 = 0.999 (which is approx what I get .. _except_)
@@ -1020,7 +1033,7 @@ export class RatingUtils {
       offBallDRtg,
       reboundDRtgBonus,
 
-      unadjDRtg,
+      unadjDRtg, 
 
       weightedClassicDRtgMean, weightedUnadjDRtgMean,
       uncategorizedAdjustment, adjustedPossPct,
@@ -1030,7 +1043,9 @@ export class RatingUtils {
   }
 
   /** (MUTATES) Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account) */
-  static injectOnBallDefenseAdjustmentsPhase2(players: Record<string, any>[]) {
+  static injectOnBallDefenseAdjustmentsPhase2(players: IndivStatSet[]) {
+
+    const showDiags = false;
 
     // Calc the % of possessions over which I'm calculating the weighted means
     const adjustedPossPct = 0.2*_.reduce(players, (acc, stat) => {
@@ -1096,27 +1111,27 @@ export class RatingUtils {
         onBallDiags.adjDRtg = Adj_DRtg;
         onBallDiags.adjDRtgPlus = Adj_DRtgPlus;
 
-        const pctOfTotalPlays = (100*diag.onBallDef.plays/(diag.onBallDef.totalPlays || 1));
+        const pctOfTotalPlays = (100*onBallDef.plays/(onBallDef.totalPlays || 1));
         if (pctOfTotalPlays >= 0.25) { // (don't adjust if there are too few possessions, empirically 0.25% seems like a good number)
           if (stat.def_rtg) {
             stat.def_rtg.value = onBallDiags.dRtg;
-            stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.dRtg.toFixed(1)}]`;
+            stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${diag.dRtg.toFixed(1)}]`;
           }
           if (stat.def_adj_rtg) {
             stat.def_adj_rtg.value = Adj_DRtgPlus;
-            stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.adjDRtgPlus.toFixed(1)}]`;
+            stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${diag.adjDRtgPlus.toFixed(1)}]`;
           }
           if (stat.def_adj_prod) {
             stat.def_adj_prod.value = Adj_DRtgPlus*(stat.def_team_poss_pct.value || 0);
 
-            const defAdjProd = stat.diag_def_rtg.adjDRtgPlus*(stat.def_team_poss_pct.value || 0);
+            const defAdjProd = diag.adjDRtgPlus*(stat.def_team_poss_pct.value || 0);
             stat.def_adj_prod.extraInfo = `Using on-ball defense stats - classic value would be [${defAdjProd.toFixed(1)}]`;
           }
-          if (!_.isNil(stat.def_adj_rapm?.value)) {
-            stat.def_adj_rapm.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
+          if (!_.isNil((stat as PureStatSet).def_adj_rapm?.value)) {
+            (stat as PureStatSet).def_adj_rapm.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
           }
-          if (!_.isNil(stat.def_adj_rapm_prod?.value)) {
-            stat.def_adj_rapm_prod.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
+          if (!_.isNil((stat as PureStatSet).def_adj_rapm_prod?.value)) {
+            (stat as PureStatSet).def_adj_rapm_prod.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
           }
         }
       }
