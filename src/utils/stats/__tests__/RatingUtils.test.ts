@@ -206,7 +206,7 @@ describe("RatingUtils", () => {
       dRtgDiag.onBallDef = onBallStats;
       dRtgDiag.onBallDiags = onBallDiags;
     });
-    RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playersToMutate);
+    RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playersToMutate, {});
 
     expect(playersToMutate[0]?.diag_def_rtg?.onBallDiags).toMatchSnapshot();
   });

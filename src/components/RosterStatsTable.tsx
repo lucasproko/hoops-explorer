@@ -652,7 +652,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   if (!_.isEmpty(onBallDefenseByCode)) {
     _.forEach([ "on", "off", "baseline" ], (loc: OnOffBaselineEnum) => {
       const playerList = allPlayers.filter(p => !_.isNil(p[loc]?.off_title)).map(p => p[loc]!);
-      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList);
+      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList, teamStats[loc] || {});
     });
   }
 

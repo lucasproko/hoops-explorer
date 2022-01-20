@@ -688,7 +688,7 @@ export class RatingUtils {
     const FMwt = (Credit_To_Shot_Defense + Credit_To_Rebounder > 0) ?
       Credit_To_Shot_Defense / (Credit_To_Shot_Defense + Credit_To_Rebounder) : 0;
 
-    // Block/Miss weighting - team has to rebound (bonus 7%), and the credit is the chance opponent would have scored
+    // Block/Miss weighting - team has to rebound, and the credit is the chance opponent would have scored (bonus 7%)
     const TeamMissWeight = FMwt*(1 - 1.07*Team_DORpct);
     // Credit to the individual for stops
     const PFpct = Team_PF > 0 ? PF/Team_PF : 0;
@@ -861,23 +861,34 @@ export class RatingUtils {
     // Team calcs
 
     const sampleTeamDefPoss = player.oppo_total_def_poss?.value || 0;
-    const teamPtsAgainstFg = diags.oppoFgm*diags.oppoPtsPerScore;
     const teamFgMadeAgainst = diags.oppoFgm;
     const teamFgMissAgainst = (diags.oppoFga - diags.oppoFgm);
     const teamAdjFgMissAgainst = diags.teamDvsRebCredit*teamFgMissAgainst;
     const teamDefTo = diags.oppoTov;
-    const teamFtm = diags.oppoFtm;
     const teamPts = diags.oppoPts;
     const defEfficiency = teamPts/(sampleTeamDefPoss || 1);
 
     const teamOrbAllowed  = player.oppo_total_def_orb?.value || 0;
     const teamAdjReb = (1 - diags.teamDvsRebCredit)*teamFgMissAgainst; 
-    //(What we want is sum(players)(RebCredit*DRBs) ==  teamAdjReb - teamOrbAllowed)
-    // AvRebCredit*(DRBs=FGx - ORBs) = TeamAdjReb - AvRebCredit*ORBS
-    // So we'll need an adjustment of -0.2*(1 - RebCredit*ORBS)*ORBs per player.
+      //(note you get DRBs off missed 2nd FTs etc, so FGx != ORB + DRB - that will sort itself out in the phase 2 adjustment)
+
+    //(What we want is sum(players)(RebCredit*DRBs - x) ==  teamAdjReb - teamOrbAllowed)
+    // AvRebCredit*(DRBs=FGx - ORBs) - 5x = teamAdjReb - ORBs => teamAdjReb - AvRebCredit*ORBs - 5x = teamAdjReb - ORBs
+    // x = 0.2*(1 - AvRebCredit)*ORBs = 0.2*(1 - AvRebCredit)*ORBs
+    // So we'll need an adjustment of -0.2*teamDvsRebCredit*ORBs per player.
     const orbAdjustment = 0.2*diags.teamDvsRebCredit*teamOrbAllowed; //TODO: in the future this could depend on position?
 
-    const teamFtaPossEstimateDiagOnly = diags.oppoFtPoss;
+    //TODO: is teamDvsRebCredit really correct, or should I be using TeamMissWeight?
+    // (somehow ... unclear how you model the chance of your opponent scoring?)
+    // ...
+    // Some handy numbers to think about (Maryland 21/22)
+    // Team = 0.877 fgMiss%=0.457 def_orb=26.3% 101.6%... 
+    // Eff PPP = 0.877 + 0.457*0.264*1.016 = 0.999 (which is approx what I get ... _except_ ...)
+    // actually Eff PPP is just the def eff = 101.6 (would require a 1.2 bonus on plays coming off ORBs
+    // based on scramble numbers seems closer to 0.5*110)
+    // (DRtg has a 7% bonus for shots off ORB, which seems about right based on the above)
+
+    // const teamFtaPossEstimateDiagOnly = diags.oppoFtPoss; //(use teamFtaPossCalc to get the possessions closer to team numbers)
     const teamFtaPossCalc = sampleTeamDefPoss - diags.oppoFga - teamDefTo + teamOrbAllowed;
 
     const teamDefPoss = teamFgMadeAgainst + teamAdjFgMissAgainst + teamAdjReb + teamDefTo + teamFtaPossCalc - teamOrbAllowed;
@@ -931,8 +942,8 @@ export class RatingUtils {
 
     // Shortfall could be caused by: Incorrect term somewhere, Team rebounds?
     // (possessions seemed to be closer to correct)
-    // (would expect a small error due to team rebounds, sum(0.2*player + 0.8*(0.2*team))=0.2*sum(player)+0.8*team = 0.2*(team-team_drb)+0.8*team = team-team_drb)
-// TODO: make the sum right, but actually that would increase the poss error since empirically it was slightly too high (1960 vs 1945)?
+    // (would expect an error due to team rebounds, sum(0.2*player + 0.8*(0.2*team))=0.2*sum(player)+0.8*team = 0.2*(team-team_drb)+0.8*team = team-team_drb)
+    // This will sort itself out in the phase 2 adjustment
 
     const offBallPts = teamPts - onBallPts;
     const offBallAdjFgMiss = teamAdjFgMissAgainst - onBallAdjFgMiss;
@@ -973,14 +984,7 @@ export class RatingUtils {
 
     // Now we can estimate the actual "defensive targeted%"
     const onBallWeight = 0.6;
-    const offBallWeight = (1 -onBallWeight)*0.25; //(ie uniformly distributed across the other players)
-    //TODO: ^ possibly should calc this based on the zero adjustment being the team "effective PPP"
-    // eg Maryland 21/22
-    // Team = 0.877 fgMiss%=0.457 def_orb=26.3% 101.6%... 
-    // Eff PPP = 0.877 + 0.457*0.264*1.016 = 0.999 (which is approx what I get .. _except_)
-    // actually Eff PPP is just the def eff = 101.6 (would require a 1.2 bonus on plays coming off ORBs
-    // based on scramble numbers seems closer to 0.5*110)
-    // (DRtg has a 7% bonus for shots off ORB, which seems about right based on the above)
+    const offBallWeight = (1 - onBallWeight)*0.25; //(ie uniformly distributed across the other players)
 
     const totalCatAdjPlays = onBallWeight*onBallAdjPlays + offBallWeight*offBallAdjPlays;
     const deltaPlays = normalizedPlayerNonRebPoss - totalCatAdjPlays;
@@ -990,16 +994,29 @@ export class RatingUtils {
       console.log(`COMBO: ${totalCatAdjPlays.toFixed(1)} [delta: ${deltaPlays.toFixed(1)}]`);
     }
 
-    // Now finally we can calculate a DRtg
+    // Some more rebounds calcs
 
+
+    // Regress the actual rebounding credit with 20% of the team rebounding credit - more or less
+    // duplicating how the credit is regressed in the DRtg calc
+    // sum(calc) = 0.2*sum(player reb credit) + 0.8*team_credit 
+    //           = team_credit - nobody_reb_credit (this might actually be quite significant, but should get sorted out in phase 2)
     const playerVsTeamRebWeight = 0.2;
-    const comboDefRebPoss = // Regress the actual rebounding credit with 20% of the team rebounding credit
-      playerVsTeamRebWeight*diags.reboundCredit + 
-      0.2*(1 - playerVsTeamRebWeight)*diags.teamDrb*(1 - diags.teamDvsRebCredit);
-      
+    const rebsOffFts = Math.max(0, diags.teamDrb + teamOrbAllowed - teamFgMissAgainst);
+      //(we're only interesting in matching FGx, so we subtract the number of rebounded FTx ...
+      // note this somewhat overvalues frontcourt players' rebounds - because many of them are off Ftx,
+      // but the classic DRtg does the same thing. It offsets with the team rebound error term!)
+    const calcRegressedDrbCredit = (drbCredit: number) => {
+      return  playerVsTeamRebWeight*drbCredit + 
+        (1 - playerVsTeamRebWeight)*0.2*(diags.teamDrb - rebsOffFts)*(1 - diags.teamDvsRebCredit)
+        ;
+    };
+
+    // Now finally we can calculate a DRtg 
+
     const weightedPts = onBallWeight*onBallPts + offBallWeight*offBallPts + (deltaPlays/(uncatPlays || 1))*uncatPts;
-    const adjDefRebPoss = comboDefRebPoss;
-    const zeroRebPoss = comboDefRebPoss - playerVsTeamRebWeight*diags.reboundCredit; //(if the player had gotten 0 rebounds)
+    const adjDefRebPoss = calcRegressedDrbCredit(diags.reboundCredit);
+    const zeroRebPoss = calcRegressedDrbCredit(0);
     const unadjDRtg = 100*weightedPts/((normalizedPlayerNonRebPoss + adjDefRebPoss - orbAdjustment) || 1);
 
     // Some other DRtgs for display purposes:
@@ -1025,6 +1042,13 @@ export class RatingUtils {
     const adjDRtg = 0;
     const adjDRtgPlus = 0;
 
+    const includeDiags = false;
+    const diagInfo = includeDiags ? {
+      weightedPts, deltaPlays, normalizedPlayerNonRebPoss, 
+      adjDefRebPoss, orbAdjustment,
+      drbDelta: adjDefRebPoss - orbAdjustment
+    } : undefined;
+
     return {
       targetedPct,
       effectivePpp,
@@ -1033,7 +1057,7 @@ export class RatingUtils {
       offBallDRtg,
       reboundDRtgBonus,
 
-      unadjDRtg, 
+      unadjDRtg, diagInfo,
 
       weightedClassicDRtgMean, weightedUnadjDRtgMean,
       uncategorizedAdjustment, adjustedPossPct,
@@ -1042,10 +1066,10 @@ export class RatingUtils {
     };
   }
 
-  /** (MUTATES) Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account) */
-  static injectOnBallDefenseAdjustmentsPhase2(players: IndivStatSet[]) {
+  /** (MUTATES) Adjusts the defensive stats according to the aggregated individual stats (phase 2 takes the team into account) */
+  static injectOnBallDefenseAdjustmentsPhase2(players: IndivStatSet[], team: PureStatSet) {
 
-    const showDiags = false;
+    const showConsoleDiag = false;
 
     // Calc the % of possessions over which I'm calculating the weighted means
     const adjustedPossPct = 0.2*_.reduce(players, (acc, stat) => {
@@ -1056,6 +1080,35 @@ export class RatingUtils {
         return acc;
       }
     }, 0);
+  
+    //(START CONSOLE DISPLAY/DIAGS)
+    if (showConsoleDiag) {
+      const totalPoss = team.def_poss?.value || 1;
+      const avgDvsRebCredit = 0.2*_.reduce(players, (acc, stat) => {
+        const diags = stat.diag_def_rtg;
+        return diags ? (acc + diags.teamDvsRebCredit*diags.oppoPoss/totalPoss) : acc;
+      }, 0);
+
+      // Calculate the team stats
+      const sampleTeamDefPoss = totalPoss;
+      const teamFgMadeAgainst = team.total_def_fgm?.value || 0;
+      const teamFgMissAgainst = (team.total_def_fga?.value || 0) - teamFgMadeAgainst;
+      const teamAdjFgMissAgainst = avgDvsRebCredit*teamFgMissAgainst;
+      const teamDefTo = team.total_def_to?.value || 0;
+      const teamPts = team.total_def_pts?.value || 0;
+      const teamOrbAllowed  = team.total_def_orb?.value || 0;
+      const teamDrb = team.total_off_drb?.value || 0; //note that FGx != TeamDrb + teamOrbAllowed because of missed FTs
+      const teamAdjReb = (1 - avgDvsRebCredit)*teamFgMissAgainst; 
+      const teamFtaPossCalc = sampleTeamDefPoss - (team.total_def_fga?.value || 0) - teamDefTo + teamOrbAllowed;
+      const teamDefPoss = teamFgMadeAgainst + teamAdjFgMissAgainst + teamAdjReb + teamDefTo + teamFtaPossCalc - teamOrbAllowed;
+      const playerNonRebPoss = (teamFgMadeAgainst + teamAdjFgMissAgainst + teamDefTo + teamFtaPossCalc);
+
+      console.log(
+        `TEAM: [${teamPts.toFixed(1)} / ${teamDefPoss.toFixed(1)}] = (${teamFgMadeAgainst.toFixed(1)}+${teamAdjFgMissAgainst.toFixed(1)}+${teamAdjReb.toFixed(1)} [drb=${team.total_off_drb?.value}]) `
+        + ` + ${teamDefTo.toFixed(1)} + ${teamFtaPossCalc.toFixed(1)} - ${teamOrbAllowed.toFixed(1)} (${avgDvsRebCredit.toFixed(2)}, ${(teamFtaPossCalc/(team.total_def_fta?.value || 1)).toFixed(2)})`
+      );
+    }
+    //(END CONSOLE DISPLAY/DIAGS)
 
     const weightedClassicDRtgMean = 0.2*_.reduce(players, (acc, stat) => {
       //(use poss% because classic DRtg is fixed% per player possession, no concept of targeting)
