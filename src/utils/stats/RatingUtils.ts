@@ -1014,16 +1014,23 @@ export class RatingUtils {
 
     // Now finally we can calculate a DRtg 
 
-    const weightedPts = onBallWeight*onBallPts + offBallWeight*offBallPts + (deltaPlays/(uncatPlays || 1))*uncatPts;
+    const deltaPts = (deltaPlays/(uncatPlays || 1))*uncatPts;
+    const weightedPts = onBallWeight*onBallPts + offBallWeight*offBallPts + deltaPts;
     const adjDefRebPoss = calcRegressedDrbCredit(diags.reboundCredit);
     const zeroRebPoss = calcRegressedDrbCredit(0);
-    const unadjDRtg = 100*weightedPts/((normalizedPlayerNonRebPoss + adjDefRebPoss - orbAdjustment) || 1);
+    const drbVsOrbAdjustment = adjDefRebPoss - orbAdjustment;
+    const unadjDRtg = 100*weightedPts/((normalizedPlayerNonRebPoss + drbVsOrbAdjustment) || 1);
 
     // Some other DRtgs for display purposes:
-    const onBallRebPoss = (adjDefRebPoss - orbAdjustment)*(onBallAdjPlays/normalizedPlayerNonRebPoss);
-    const onBallDRtg = 100*onBallPts/(onBallAdjPlays + onBallRebPoss);
-    const offBallRebPoss = (adjDefRebPoss - orbAdjustment)*(offBallAdjPlays/normalizedPlayerNonRebPoss);
-    const offBallDRtg = 100*offBallPts/(offBallAdjPlays + offBallRebPoss);
+    // w1*Plays1 + w2*Plays2 + delta == normalizedPlayerNonRebPoss
+    // w1*(Plays1 + delta/(w1+w2)) + w2*(Plays2 + delta/(w1+w2)) == normalizedPlayerNonRebPoss ("N")
+    // so eg OnBall = w1*Pts1/(w1*X + w1*(X/N)*DRB_ORB), where X=(Plays1 + delta/(w1+w2)), can get rid of the w1
+    const deltaDividedUp = deltaPlays/(onBallWeight + offBallWeight);
+    const deltaPtsDividedUp = deltaPts/(onBallWeight + offBallWeight);
+    const onBallRebPoss = drbVsOrbAdjustment * (onBallAdjPlays + deltaDividedUp)/normalizedPlayerNonRebPoss;
+    const onBallDRtg = 100*(onBallPts + deltaPtsDividedUp)/(onBallAdjPlays + deltaDividedUp + onBallRebPoss);
+    const offBallRebPoss = drbVsOrbAdjustment * (offBallAdjPlays + deltaDividedUp)/normalizedPlayerNonRebPoss;
+    const offBallDRtg = 100*(offBallPts + deltaPtsDividedUp)/(offBallAdjPlays + deltaDividedUp + offBallRebPoss);
     const reboundDRtgBonus = unadjDRtg - 
       100*weightedPts/((normalizedPlayerNonRebPoss + zeroRebPoss - orbAdjustment) || 1);
 
