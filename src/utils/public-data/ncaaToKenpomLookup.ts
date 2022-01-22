@@ -72,6 +72,9 @@ const ncaaToKenpomLookup_2021_22: Record<string, Record<string, string>> = {
    "South Florida": {
       "NCAA_name": "South Fla."
    },
+   "Nicholls St.": {
+      "NCAA_name": "Nicholls"
+   },
    "Miami FL": {
       "NCAA_name": "Miami (FL)"
    },

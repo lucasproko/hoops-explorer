@@ -459,6 +459,7 @@ export class AvailableTeams {
     "FGCU": [
         { team: "FGCU", year: "2020/21", gender: "Men", index_template: "atlanticsun", category: "low" },
         { team: "FGCU", year: "2021/22", gender: "Men", index_template: "atlanticsun", category: "low" },
+        { team: "FGCU", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "FIU": [
         { team: "FIU", year: "2020/21", gender: "Men", index_template: "conferenceusa", category: "mid" },
@@ -488,7 +489,6 @@ export class AvailableTeams {
      ],
     "Florida A&M": [
         { team: "Florida A&M", year: "2020/21", gender: "Men", index_template: "meac", category: "low" },
-        { team: "Florida A&M", year: "2021/22", gender: "Men", index_template: "meac", category: "low" },
         { team: "Florida A&M", year: "2021/22", gender: "Men", index_template: "swac", category: "low" },
      ],
     "Florida St.": [
@@ -1060,7 +1060,9 @@ export class AvailableTeams {
      ],
     "Nicholls St.": [
         { team: "Nicholls St.", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
-        { team: "Nicholls St.", year: "2021/22", gender: "Men", index_template: "southland", category: "low" },
+     ],
+     "Nicholls": [
+        { team: "Nicholls", year: "2021/22", gender: "Men", index_template: "southland", category: "low" },
      ],
     "Norfolk St.": [
         { team: "Norfolk St.", year: "2020/21", gender: "Men", index_template: "meac", category: "low" },
