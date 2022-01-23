@@ -8,6 +8,7 @@ const weirdNameChanges: Record<string, string> = {
    "South Florida": "South Fla.",
    "Loyola (IL)": "Loyola Chicago",
    "USC": "Southern California",
+   "Florida Gulf Coast": "FGCU",
 };
 const fixName = (t: string) => weirdNameChanges[t] || t;
 
