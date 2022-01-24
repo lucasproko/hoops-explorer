@@ -27,7 +27,7 @@ export class LineupTableUtils {
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
     players: Array<IndivStatSet> | undefined,
-    globalRosterStatsByCode: Record<PlayerCode, IndivStatSet>, teamStat: Record<string, any>,
+    globalRosterStatsByCode: Record<PlayerCode, IndivStatSet>, teamStat: TeamStatSet,
     avgEfficiency: number, adjustForLuck: boolean, luckConfigBase: "baseline" | "season",
     onBallDefenseByCode: Record<PlayerCode, OnBallDefenseModel>  = {}
   ): Record<PlayerId, IndivStatSet> {
@@ -117,7 +117,7 @@ export class LineupTableUtils {
 
     // Finish off on-ball defense if there is any:
     if (!_.isEmpty(onBallDefenseByCode)) {
-      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(_.values(baselinePlayerInfo));
+      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(_.values(baselinePlayerInfo), teamStat);
     }
     return baselinePlayerInfo;
   }

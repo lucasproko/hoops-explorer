@@ -179,6 +179,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         xs={12}
       >
         <StateManager
+          components={
+            Object {
+              "MenuList": [Function],
+            }
+          }
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
@@ -549,10 +554,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Florida",
                 "value": "Florida",
-              },
-              Object {
-                "label": "Florida A&M",
-                "value": "Florida A&M",
               },
               Object {
                 "label": "Florida A&M",
@@ -975,8 +976,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Niagara",
               },
               Object {
-                "label": "Nicholls St.",
-                "value": "Nicholls St.",
+                "label": "Nicholls",
+                "value": "Nicholls",
               },
               Object {
                 "label": "Norfolk St.",
