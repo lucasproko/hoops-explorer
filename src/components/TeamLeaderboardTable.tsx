@@ -53,6 +53,37 @@ import { apPolls } from '../utils/public-data/apPolls';
 import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 
+const mdCoachingCandidates: Record<string, boolean> = {
+  // Pitino
+  "Iona": true,
+
+  // English!
+  "George Mason": true,
+
+  // ACC
+  "Wake Forest": true,
+
+  // P12
+  "Southern California": true,
+
+  // BE
+  "Providence": true,
+  "Xavier": true,
+  "Seton Hall": true,
+
+  // West coast nerds:
+  "Colorado St.": true,
+  "Washington St.": true,
+  "San Francisco": true,
+  "Wyoming": true,
+  "BYU": true,
+
+  // Low majors:
+  "N.C. Central": true,
+  "Cleveland St.": true,
+  "Coppin St.": true,
+};
+
 export type TeamLeaderboardStatsModel = {
   teams?: Array<TeamInfo>,
   confs?: Array<string>,
@@ -433,8 +464,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     }
     setCurrentTable(tableDataTmp);
 
-    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => (confs == "") || confs.indexOf(t.confStr) >= 0);
-    const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis)).filter(t => (confs == "") || confs.indexOf(t.confStr) >= 0);
+    const confFilter = (t: {titleStr: string, confStr: string}) => {
+      return (confs == "") || (confs.indexOf(t.confStr) >= 0) || ((confs == "MD Coaches??") && mdCoachingCandidates[t.titleStr]);
+    }
+    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => confFilter(t));
+    const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis)).filter(t => confFilter(t));
 
     const apTooltip = (
       <Tooltip id="apTooltip">The average delta between AP poll and this ranking (note there may have been games since the AP poll's release)</Tooltip>
@@ -750,7 +784,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             isMulti
             components={{ MultiValueContainer: ConferenceValueContainer }}
             value={getCurrentConfsOrPlaceholder()}
-            options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams)).map(
+            options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams)).concat("MD Coaches??").map(
               (r) => stringToOption(r)
             )}
             onChange={(optionsIn) => {
