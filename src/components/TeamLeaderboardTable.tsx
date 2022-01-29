@@ -54,6 +54,9 @@ import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 
 const mdCoachingCandidates: Record<string, boolean> = {
+  // Incumbant
+  "Maryland": true,
+  
   // Pitino
   "Iona": true,
 
@@ -62,6 +65,7 @@ const mdCoachingCandidates: Record<string, boolean> = {
 
   // ACC
   "Wake Forest": true,
+  "Louisville": true,
 
   // P12
   "Southern California": true,
@@ -80,6 +84,7 @@ const mdCoachingCandidates: Record<string, boolean> = {
   "Utah St.": true,
 
   // Low majors:
+  "North Texas": true,
   "N.C. Central": true,
   "Cleveland St.": true,
   "Coppin St.": true,
