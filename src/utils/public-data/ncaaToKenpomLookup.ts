@@ -123,6 +123,9 @@ const ncaaToKenpomLookup_2021_22: Record<string, Record<string, string>> = {
    "Western Michigan": {
       "NCAA_name": "Western Mich."
    },
+   "Sam Houston St.": {
+      "NCAA_name": "Sam Houston"
+   },
    "Saint Mary's": {
       "NCAA_name": "Saint Mary's (CA)"
    },
