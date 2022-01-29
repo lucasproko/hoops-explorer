@@ -77,6 +77,7 @@ const mdCoachingCandidates: Record<string, boolean> = {
   "San Francisco": true,
   "Wyoming": true,
   "BYU": true,
+  "Utah St.": true,
 
   // Low majors:
   "N.C. Central": true,
