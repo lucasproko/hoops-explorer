@@ -1,2494 +1,2494 @@
 export const publicNcaawMassey2021_22: Record<string, any> = {
    "South Carolina": {
-      "stats.adj_off.value": 110.7234349919743,
-      "stats.adj_def.value": 64.60397271268057,
-      "stats.adj_margin.value": 46.11946227929373,
+      "stats.adj_off.value": 111.19522471910112,
+      "stats.adj_def.value": 63.06520866773682,
+      "stats.adj_margin.value": 48.1300160513643,
       "stats.adj_margin.rank": 1,
       "conf": "Southeastern Conference"
    },
    "Stanford": {
-      "stats.adj_off.value": 115.30914927768858,
-      "stats.adj_def.value": 71.23254414125199,
-      "stats.adj_margin.value": 44.076605136436584,
+      "stats.adj_off.value": 116.85236757624396,
+      "stats.adj_def.value": 71.80806581059396,
+      "stats.adj_margin.value": 45.044301765650005,
       "stats.adj_margin.rank": 2,
       "conf": "Pac 12 Conference"
    },
    "NC State": {
-      "stats.adj_off.value": 118.09486356340287,
-      "stats.adj_def.value": 74.21825842696629,
-      "stats.adj_margin.value": 43.87660513643658,
+      "stats.adj_off.value": 116.9666532905297,
+      "stats.adj_def.value": 73.10806581059396,
+      "stats.adj_margin.value": 43.85858747993575,
       "stats.adj_margin.rank": 3,
       "conf": "Atlantic Coast Conference"
    },
-   "Tennessee": {
-      "stats.adj_off.value": 109.15200642054573,
-      "stats.adj_def.value": 72.04682985553771,
-      "stats.adj_margin.value": 37.10517656500802,
-      "stats.adj_margin.rank": 7,
-      "conf": "Southeastern Conference"
-   },
    "Louisville": {
-      "stats.adj_off.value": 107.15200642054573,
-      "stats.adj_def.value": 68.58968699839485,
-      "stats.adj_margin.value": 38.56231942215088,
-      "stats.adj_margin.rank": 5,
-      "conf": "Atlantic Coast Conference"
-   },
-   "Iowa St.": {
-      "stats.adj_off.value": 116.8234349919743,
-      "stats.adj_def.value": 80.86111556982344,
-      "stats.adj_margin.value": 35.962319422150856,
-      "stats.adj_margin.rank": 9,
-      "conf": "Big 12 Conference"
-   },
-   "North Carolina": {
-      "stats.adj_off.value": 112.69486356340286,
-      "stats.adj_def.value": 75.28968699839486,
-      "stats.adj_margin.value": 37.405176565008006,
+      "stats.adj_off.value": 107.16665329052968,
+      "stats.adj_def.value": 69.93663723916539,
+      "stats.adj_margin.value": 37.23001605136429,
       "stats.adj_margin.rank": 6,
       "conf": "Atlantic Coast Conference"
    },
+   "Tennessee": {
+      "stats.adj_off.value": 108.56665329052969,
+      "stats.adj_def.value": 72.75092295345111,
+      "stats.adj_margin.value": 35.81573033707858,
+      "stats.adj_margin.rank": 10,
+      "conf": "Southeastern Conference"
+   },
+   "Arizona": {
+      "stats.adj_off.value": 106.92379614767256,
+      "stats.adj_def.value": 70.1509229534511,
+      "stats.adj_margin.value": 36.77287319422146,
+      "stats.adj_margin.rank": 7,
+      "conf": "Pac 12 Conference"
+   },
    "UConn": {
-      "stats.adj_off.value": 111.25200642054574,
-      "stats.adj_def.value": 72.57540128410915,
-      "stats.adj_margin.value": 38.67660513643659,
+      "stats.adj_off.value": 109.69522471910112,
+      "stats.adj_def.value": 71.32235152487968,
+      "stats.adj_margin.value": 38.37287319422144,
       "stats.adj_margin.rank": 4,
       "conf": "Big East Conference"
    },
    "Texas": {
-      "stats.adj_off.value": 112.18057784911714,
-      "stats.adj_def.value": 75.44682985553771,
-      "stats.adj_margin.value": 36.73374799357943,
-      "stats.adj_margin.rank": 8,
+      "stats.adj_off.value": 109.90951043338683,
+      "stats.adj_def.value": 72.46520866773682,
+      "stats.adj_margin.value": 37.44430176565001,
+      "stats.adj_margin.rank": 5,
       "conf": "Big 12 Conference"
    },
-   "Arizona": {
-      "stats.adj_off.value": 105.00914927768859,
-      "stats.adj_def.value": 69.51825842696628,
-      "stats.adj_margin.value": 35.49089085072231,
-      "stats.adj_margin.rank": 10,
-      "conf": "Pac 12 Conference"
-   },
-   "Indiana": {
-      "stats.adj_off.value": 108.20914927768858,
-      "stats.adj_def.value": 74.932544141252,
-      "stats.adj_margin.value": 33.27660513643659,
-      "stats.adj_margin.rank": 13,
-      "conf": "Big Ten Conference"
-   },
-   "Oklahoma": {
-      "stats.adj_off.value": 125.09486356340287,
-      "stats.adj_def.value": 92.96111556982343,
-      "stats.adj_margin.value": 32.13374799357943,
-      "stats.adj_margin.rank": 15,
+   "Iowa St.": {
+      "stats.adj_off.value": 115.9809390048154,
+      "stats.adj_def.value": 80.99378009630824,
+      "stats.adj_margin.value": 34.987158908507155,
+      "stats.adj_margin.rank": 12,
       "conf": "Big 12 Conference"
-   },
-   "Maryland": {
-      "stats.adj_off.value": 122.0234349919743,
-      "stats.adj_def.value": 87.46111556982343,
-      "stats.adj_margin.value": 34.562319422150864,
-      "stats.adj_margin.rank": 11,
-      "conf": "Big Ten Conference"
    },
    "Michigan": {
-      "stats.adj_off.value": 107.59486356340288,
-      "stats.adj_def.value": 77.37540128410915,
-      "stats.adj_margin.value": 30.219462279293737,
-      "stats.adj_margin.rank": 20,
+      "stats.adj_off.value": 108.96665329052969,
+      "stats.adj_def.value": 76.27949438202252,
+      "stats.adj_margin.value": 32.68715890850717,
+      "stats.adj_margin.rank": 15,
       "conf": "Big Ten Conference"
    },
-   "LSU": {
-      "stats.adj_off.value": 108.93772070626002,
-      "stats.adj_def.value": 77.16111556982342,
-      "stats.adj_margin.value": 31.7766051364366,
-      "stats.adj_margin.rank": 16,
-      "conf": "Southeastern Conference"
+   "Indiana": {
+      "stats.adj_off.value": 108.25236757624398,
+      "stats.adj_def.value": 74.89378009630825,
+      "stats.adj_margin.value": 33.358587479935736,
+      "stats.adj_margin.rank": 14,
+      "conf": "Big Ten Conference"
    },
-   "Oregon": {
-      "stats.adj_off.value": 112.79486356340287,
-      "stats.adj_def.value": 78.66111556982342,
-      "stats.adj_margin.value": 34.13374799357945,
-      "stats.adj_margin.rank": 12,
-      "conf": "Pac 12 Conference"
-   },
-   "Notre Dame": {
-      "stats.adj_off.value": 111.39486356340288,
-      "stats.adj_def.value": 80.532544141252,
-      "stats.adj_margin.value": 30.862319422150875,
-      "stats.adj_margin.rank": 18,
+   "North Carolina": {
+      "stats.adj_off.value": 111.23808186195826,
+      "stats.adj_def.value": 75.39378009630826,
+      "stats.adj_margin.value": 35.84430176565,
+      "stats.adj_margin.rank": 9,
       "conf": "Atlantic Coast Conference"
    },
    "Baylor": {
-      "stats.adj_off.value": 111.16629213483145,
-      "stats.adj_def.value": 78.08968699839485,
-      "stats.adj_margin.value": 33.0766051364366,
-      "stats.adj_margin.rank": 14,
+      "stats.adj_off.value": 113.39522471910114,
+      "stats.adj_def.value": 77.4509229534511,
+      "stats.adj_margin.value": 35.94430176565004,
+      "stats.adj_margin.rank": 8,
       "conf": "Big 12 Conference"
    },
-   "BYU": {
-      "stats.adj_off.value": 108.76629213483143,
-      "stats.adj_def.value": 80.61825842696628,
-      "stats.adj_margin.value": 28.148033707865153,
-      "stats.adj_margin.rank": 25,
-      "conf": "West Coast Conference"
-   },
-   "Georgia": {
-      "stats.adj_off.value": 107.43772070626002,
-      "stats.adj_def.value": 77.84682985553772,
-      "stats.adj_margin.value": 29.590890850722303,
-      "stats.adj_margin.rank": 23,
-      "conf": "Southeastern Conference"
-   },
-   "Kansas St.": {
-      "stats.adj_off.value": 106.05200642054574,
-      "stats.adj_def.value": 76.93254414125201,
-      "stats.adj_margin.value": 29.119462279293728,
-      "stats.adj_margin.rank": 24,
-      "conf": "Big 12 Conference"
-   },
-   "Ohio St.": {
-      "stats.adj_off.value": 118.26629213483143,
-      "stats.adj_def.value": 87.14682985553772,
-      "stats.adj_margin.value": 31.119462279293714,
+   "Oklahoma": {
+      "stats.adj_off.value": 124.89522471910114,
+      "stats.adj_def.value": 92.87949438202253,
+      "stats.adj_margin.value": 32.01573033707861,
       "stats.adj_margin.rank": 17,
+      "conf": "Big 12 Conference"
+   },
+   "Maryland": {
+      "stats.adj_off.value": 122.70951043338685,
+      "stats.adj_def.value": 87.20806581059396,
+      "stats.adj_margin.value": 35.50144462279289,
+      "stats.adj_margin.rank": 11,
       "conf": "Big Ten Conference"
    },
+   "Oregon": {
+      "stats.adj_off.value": 112.33808186195826,
+      "stats.adj_def.value": 78.32235152487968,
+      "stats.adj_margin.value": 34.01573033707858,
+      "stats.adj_margin.rank": 13,
+      "conf": "Pac 12 Conference"
+   },
+   "BYU": {
+      "stats.adj_off.value": 109.52379614767256,
+      "stats.adj_def.value": 78.92235152487967,
+      "stats.adj_margin.value": 30.601444622792883,
+      "stats.adj_margin.rank": 21,
+      "conf": "West Coast Conference"
+   },
+   "Iowa": {
+      "stats.adj_off.value": 121.48093900481543,
+      "stats.adj_def.value": 88.97949438202252,
+      "stats.adj_margin.value": 32.5014446227929,
+      "stats.adj_margin.rank": 16,
+      "conf": "Big Ten Conference"
+   },
+   "Kansas St.": {
+      "stats.adj_off.value": 105.02379614767254,
+      "stats.adj_def.value": 75.23663723916539,
+      "stats.adj_margin.value": 29.787158908507152,
+      "stats.adj_margin.rank": 23,
+      "conf": "Big 12 Conference"
+   },
+   "Notre Dame": {
+      "stats.adj_off.value": 111.62379614767255,
+      "stats.adj_def.value": 80.67949438202254,
+      "stats.adj_margin.value": 30.94430176565001,
+      "stats.adj_margin.rank": 18,
+      "conf": "Atlantic Coast Conference"
+   },
+   "LSU": {
+      "stats.adj_off.value": 109.32379614767255,
+      "stats.adj_def.value": 78.59378009630825,
+      "stats.adj_margin.value": 30.730016051364302,
+      "stats.adj_margin.rank": 20,
+      "conf": "Southeastern Conference"
+   },
+   "Georgia": {
+      "stats.adj_off.value": 106.4952247191011,
+      "stats.adj_def.value": 77.15092295345109,
+      "stats.adj_margin.value": 29.344301765650016,
+      "stats.adj_margin.rank": 27,
+      "conf": "Southeastern Conference"
+   },
    "Nebraska": {
-      "stats.adj_off.value": 113.78057784911717,
-      "stats.adj_def.value": 83.17540128410914,
-      "stats.adj_margin.value": 30.605176565008023,
+      "stats.adj_off.value": 113.25236757624398,
+      "stats.adj_def.value": 82.50806581059395,
+      "stats.adj_margin.value": 30.744301765650036,
       "stats.adj_margin.rank": 19,
       "conf": "Big Ten Conference"
    },
-   "Virginia Tech": {
-      "stats.adj_off.value": 107.25200642054573,
-      "stats.adj_def.value": 77.40397271268057,
-      "stats.adj_margin.value": 29.848033707865156,
-      "stats.adj_margin.rank": 21,
+   "Georgia Tech": {
+      "stats.adj_off.value": 95.00951043338684,
+      "stats.adj_def.value": 64.96520866773682,
+      "stats.adj_margin.value": 30.04430176565002,
+      "stats.adj_margin.rank": 22,
       "conf": "Atlantic Coast Conference"
    },
-   "Iowa": {
-      "stats.adj_off.value": 120.38057784911717,
-      "stats.adj_def.value": 90.67540128410914,
-      "stats.adj_margin.value": 29.70517656500803,
-      "stats.adj_margin.rank": 22,
+   "Ohio St.": {
+      "stats.adj_off.value": 118.85236757624396,
+      "stats.adj_def.value": 89.29378009630824,
+      "stats.adj_margin.value": 29.558587479935724,
+      "stats.adj_margin.rank": 25,
       "conf": "Big Ten Conference"
    },
-   "Colorado": {
-      "stats.adj_off.value": 102.08057784911716,
-      "stats.adj_def.value": 76.032544141252,
-      "stats.adj_margin.value": 26.04803370786516,
-      "stats.adj_margin.rank": 31,
-      "conf": "Pac 12 Conference"
-   },
-   "Georgia Tech": {
-      "stats.adj_off.value": 95.16629213483145,
-      "stats.adj_def.value": 67.10397271268057,
-      "stats.adj_margin.value": 28.06231942215088,
+   "Virginia Tech": {
+      "stats.adj_off.value": 106.19522471910112,
+      "stats.adj_def.value": 76.77949438202253,
+      "stats.adj_margin.value": 29.415730337078585,
       "stats.adj_margin.rank": 26,
       "conf": "Atlantic Coast Conference"
    },
-   "Missouri St.": {
-      "stats.adj_off.value": 99.70914927768858,
-      "stats.adj_def.value": 74.132544141252,
-      "stats.adj_margin.value": 25.576605136436584,
-      "stats.adj_margin.rank": 35,
-      "conf": "Missouri Valley Conference"
-   },
-   "Duke": {
-      "stats.adj_off.value": 106.1234349919743,
-      "stats.adj_def.value": 80.96111556982343,
-      "stats.adj_margin.value": 25.162319422150873,
-      "stats.adj_margin.rank": 36,
-      "conf": "Atlantic Coast Conference"
-   },
-   "UCF": {
-      "stats.adj_off.value": 90.40914927768858,
-      "stats.adj_def.value": 66.46111556982343,
-      "stats.adj_margin.value": 23.94803370786515,
-      "stats.adj_margin.rank": 38,
-      "conf": "American Athletic Conference"
-   },
    "Ole Miss": {
-      "stats.adj_off.value": 102.42343499197429,
-      "stats.adj_def.value": 76.632544141252,
-      "stats.adj_margin.value": 25.790890850722292,
-      "stats.adj_margin.rank": 33,
-      "conf": "Southeastern Conference"
-   },
-   "Kansas": {
-      "stats.adj_off.value": 110.30914927768858,
-      "stats.adj_def.value": 85.73254414125199,
-      "stats.adj_margin.value": 24.576605136436584,
-      "stats.adj_margin.rank": 37,
-      "conf": "Big 12 Conference"
-   },
-   "Gonzaga": {
-      "stats.adj_off.value": 101.66629213483144,
-      "stats.adj_def.value": 75.37540128410915,
-      "stats.adj_margin.value": 26.290890850722292,
+      "stats.adj_off.value": 102.20951043338682,
+      "stats.adj_def.value": 75.3509229534511,
+      "stats.adj_margin.value": 26.85858747993572,
       "stats.adj_margin.rank": 30,
-      "conf": "West Coast Conference"
-   },
-   "Utah": {
-      "stats.adj_off.value": 114.56629213483143,
-      "stats.adj_def.value": 87.14682985553772,
-      "stats.adj_margin.value": 27.41946227929371,
-      "stats.adj_margin.rank": 27,
-      "conf": "Pac 12 Conference"
+      "conf": "Southeastern Conference"
    },
    "Arkansas": {
-      "stats.adj_off.value": 112.43772070626002,
-      "stats.adj_def.value": 85.17540128410914,
-      "stats.adj_margin.value": 27.26231942215088,
-      "stats.adj_margin.rank": 28,
+      "stats.adj_off.value": 114.35236757624396,
+      "stats.adj_def.value": 84.57949438202253,
+      "stats.adj_margin.value": 29.772873194221432,
+      "stats.adj_margin.rank": 24,
       "conf": "Southeastern Conference"
    },
-   "Texas A&M": {
-      "stats.adj_off.value": 108.16629213483144,
-      "stats.adj_def.value": 82.50397271268056,
-      "stats.adj_margin.value": 25.662319422150873,
-      "stats.adj_margin.rank": 34,
-      "conf": "Southeastern Conference"
-   },
-   "Oregon St.": {
-      "stats.adj_off.value": 105.56629213483144,
-      "stats.adj_def.value": 79.56111556982343,
-      "stats.adj_margin.value": 26.005176565008014,
+   "Colorado": {
+      "stats.adj_off.value": 101.7666532905297,
+      "stats.adj_def.value": 75.83663723916538,
+      "stats.adj_margin.value": 25.93001605136432,
       "stats.adj_margin.rank": 32,
       "conf": "Pac 12 Conference"
    },
-   "South Dakota": {
-      "stats.adj_off.value": 98.40914927768858,
-      "stats.adj_def.value": 74.51825842696628,
-      "stats.adj_margin.value": 23.8908908507223,
-      "stats.adj_margin.rank": 39,
-      "conf": "Summit League"
+   "Duke": {
+      "stats.adj_off.value": 104.63808186195827,
+      "stats.adj_def.value": 80.19378009630825,
+      "stats.adj_margin.value": 24.444301765650025,
+      "stats.adj_margin.rank": 37,
+      "conf": "Atlantic Coast Conference"
    },
-   "South Fla.": {
-      "stats.adj_off.value": 97.93772070626001,
-      "stats.adj_def.value": 75.38968699839485,
-      "stats.adj_margin.value": 22.54803370786516,
-      "stats.adj_margin.rank": 43,
-      "conf": "American Athletic Conference"
+   "Kansas": {
+      "stats.adj_off.value": 109.35236757624396,
+      "stats.adj_def.value": 84.20806581059396,
+      "stats.adj_margin.value": 25.14430176565,
+      "stats.adj_margin.rank": 33,
+      "conf": "Big 12 Conference"
    },
-   "Creighton": {
-      "stats.adj_off.value": 105.2091492776886,
-      "stats.adj_def.value": 81.86111556982343,
-      "stats.adj_margin.value": 23.34803370786517,
-      "stats.adj_margin.rank": 41,
-      "conf": "Big East Conference"
+   "Gonzaga": {
+      "stats.adj_off.value": 101.32379614767255,
+      "stats.adj_def.value": 74.72235152487967,
+      "stats.adj_margin.value": 26.601444622792883,
+      "stats.adj_margin.rank": 31,
+      "conf": "West Coast Conference"
    },
-   "DePaul": {
-      "stats.adj_off.value": 126.90914927768858,
-      "stats.adj_def.value": 103.13254414125201,
-      "stats.adj_margin.value": 23.776605136436572,
-      "stats.adj_margin.rank": 40,
-      "conf": "Big East Conference"
-   },
-   "FGCU": {
-      "stats.adj_off.value": 111.29486356340287,
-      "stats.adj_def.value": 89.63254414125201,
-      "stats.adj_margin.value": 21.66231942215086,
-      "stats.adj_margin.rank": 46,
-      "conf": "ASUN Conference"
-   },
-   "UCLA": {
-      "stats.adj_off.value": 107.1234349919743,
-      "stats.adj_def.value": 80.632544141252,
-      "stats.adj_margin.value": 26.49089085072231,
+   "Utah": {
+      "stats.adj_off.value": 114.10951043338684,
+      "stats.adj_def.value": 86.23663723916539,
+      "stats.adj_margin.value": 27.872873194221455,
       "stats.adj_margin.rank": 29,
       "conf": "Pac 12 Conference"
    },
-   "Kentucky": {
-      "stats.adj_off.value": 108.88057784911715,
-      "stats.adj_def.value": 85.70397271268058,
-      "stats.adj_margin.value": 23.176605136436564,
-      "stats.adj_margin.rank": 42,
-      "conf": "Southeastern Conference"
-   },
-   "Washington St.": {
-      "stats.adj_off.value": 97.85200642054572,
-      "stats.adj_def.value": 76.80397271268058,
-      "stats.adj_margin.value": 21.048033707865144,
-      "stats.adj_margin.rank": 48,
+   "UCLA": {
+      "stats.adj_off.value": 107.40951043338683,
+      "stats.adj_def.value": 79.27949438202253,
+      "stats.adj_margin.value": 28.130016051364294,
+      "stats.adj_margin.rank": 28,
       "conf": "Pac 12 Conference"
    },
-   "West Virginia": {
-      "stats.adj_off.value": 103.18057784911716,
-      "stats.adj_def.value": 80.73254414125199,
-      "stats.adj_margin.value": 22.448033707865164,
-      "stats.adj_margin.rank": 44,
-      "conf": "Big 12 Conference"
+   "Missouri St.": {
+      "stats.adj_off.value": 98.20951043338684,
+      "stats.adj_def.value": 73.27949438202253,
+      "stats.adj_margin.value": 24.930016051364305,
+      "stats.adj_margin.rank": 35,
+      "conf": "Missouri Valley Conference"
    },
-   "Missouri": {
-      "stats.adj_off.value": 108.0234349919743,
-      "stats.adj_def.value": 87.37540128410915,
-      "stats.adj_margin.value": 20.648033707865153,
-      "stats.adj_margin.rank": 50,
+   "UCF": {
+      "stats.adj_off.value": 91.29522471910111,
+      "stats.adj_def.value": 67.89378009630825,
+      "stats.adj_margin.value": 23.401444622792866,
+      "stats.adj_margin.rank": 40,
+      "conf": "American Athletic Conference"
+   },
+   "FGCU": {
+      "stats.adj_off.value": 111.98093900481541,
+      "stats.adj_def.value": 88.97949438202252,
+      "stats.adj_margin.value": 23.00144462279289,
+      "stats.adj_margin.rank": 42,
+      "conf": "ASUN Conference"
+   },
+   "DePaul": {
+      "stats.adj_off.value": 127.72379614767253,
+      "stats.adj_def.value": 103.16520866773682,
+      "stats.adj_margin.value": 24.55858747993571,
+      "stats.adj_margin.rank": 36,
+      "conf": "Big East Conference"
+   },
+   "Oregon St.": {
+      "stats.adj_off.value": 102.99522471910113,
+      "stats.adj_def.value": 77.89378009630826,
+      "stats.adj_margin.value": 25.10144462279287,
+      "stats.adj_margin.rank": 34,
+      "conf": "Pac 12 Conference"
+   },
+   "Creighton": {
+      "stats.adj_off.value": 107.40951043338683,
+      "stats.adj_def.value": 83.32235152487968,
+      "stats.adj_margin.value": 24.08715890850715,
+      "stats.adj_margin.rank": 38,
+      "conf": "Big East Conference"
+   },
+   "South Fla.": {
+      "stats.adj_off.value": 98.29522471910111,
+      "stats.adj_def.value": 76.37949438202253,
+      "stats.adj_margin.value": 21.915730337078585,
+      "stats.adj_margin.rank": 44,
+      "conf": "American Athletic Conference"
+   },
+   "South Dakota": {
+      "stats.adj_off.value": 98.83808186195824,
+      "stats.adj_def.value": 75.86520866773682,
+      "stats.adj_margin.value": 22.97287319422142,
+      "stats.adj_margin.rank": 43,
+      "conf": "Summit League"
+   },
+   "Washington St.": {
+      "stats.adj_off.value": 97.69522471910112,
+      "stats.adj_def.value": 76.40806581059397,
+      "stats.adj_margin.value": 21.287158908507152,
+      "stats.adj_margin.rank": 46,
+      "conf": "Pac 12 Conference"
+   },
+   "Texas A&M": {
+      "stats.adj_off.value": 107.65236757624398,
+      "stats.adj_def.value": 84.07949438202253,
+      "stats.adj_margin.value": 23.572873194221444,
+      "stats.adj_margin.rank": 39,
       "conf": "Southeastern Conference"
    },
-   "Northwestern": {
-      "stats.adj_off.value": 100.03772070626,
-      "stats.adj_def.value": 78.48968699839486,
-      "stats.adj_margin.value": 21.548033707865144,
-      "stats.adj_margin.rank": 47,
-      "conf": "Big Ten Conference"
+   "Missouri": {
+      "stats.adj_off.value": 107.60951043338682,
+      "stats.adj_def.value": 86.52235152487968,
+      "stats.adj_margin.value": 21.087158908507135,
+      "stats.adj_margin.rank": 48,
+      "conf": "Southeastern Conference"
+   },
+   "South Dakota St.": {
+      "stats.adj_off.value": 103.76665329052969,
+      "stats.adj_def.value": 80.59378009630825,
+      "stats.adj_margin.value": 23.172873194221438,
+      "stats.adj_margin.rank": 41,
+      "conf": "Summit League"
    },
    "Boston College": {
-      "stats.adj_off.value": 109.50914927768859,
-      "stats.adj_def.value": 89.23254414125199,
-      "stats.adj_margin.value": 20.2766051364366,
-      "stats.adj_margin.rank": 52,
+      "stats.adj_off.value": 109.60951043338683,
+      "stats.adj_def.value": 89.20806581059396,
+      "stats.adj_margin.value": 20.401444622792866,
+      "stats.adj_margin.rank": 50,
       "conf": "Atlantic Coast Conference"
    },
    "Princeton": {
-      "stats.adj_off.value": 95.98057784911715,
-      "stats.adj_def.value": 75.76111556982343,
-      "stats.adj_margin.value": 20.219462279293722,
-      "stats.adj_margin.rank": 53,
+      "stats.adj_off.value": 96.5666532905297,
+      "stats.adj_def.value": 75.26520866773681,
+      "stats.adj_margin.value": 21.301444622792886,
+      "stats.adj_margin.rank": 45,
       "conf": "Ivy League"
    },
-   "Oklahoma St.": {
-      "stats.adj_off.value": 97.15200642054573,
-      "stats.adj_def.value": 75.08968699839485,
-      "stats.adj_margin.value": 22.06231942215088,
-      "stats.adj_margin.rank": 45,
+   "West Virginia": {
+      "stats.adj_off.value": 102.68093900481541,
+      "stats.adj_def.value": 81.89378009630825,
+      "stats.adj_margin.value": 20.787158908507166,
+      "stats.adj_margin.rank": 49,
       "conf": "Big 12 Conference"
    },
    "Mississippi St.": {
-      "stats.adj_off.value": 105.79486356340287,
-      "stats.adj_def.value": 87.67540128410914,
-      "stats.adj_margin.value": 18.119462279293728,
-      "stats.adj_margin.rank": 58,
+      "stats.adj_off.value": 105.52379614767256,
+      "stats.adj_def.value": 86.0509229534511,
+      "stats.adj_margin.value": 19.47287319422145,
+      "stats.adj_margin.rank": 54,
       "conf": "Southeastern Conference"
    },
-   "Arizona St.": {
-      "stats.adj_off.value": 96.38057784911715,
-      "stats.adj_def.value": 75.61825842696628,
-      "stats.adj_margin.value": 20.762319422150867,
-      "stats.adj_margin.rank": 49,
-      "conf": "Pac 12 Conference"
+   "Kentucky": {
+      "stats.adj_off.value": 106.52379614767256,
+      "stats.adj_def.value": 85.30806581059396,
+      "stats.adj_margin.value": 21.215730337078597,
+      "stats.adj_margin.rank": 47,
+      "conf": "Southeastern Conference"
+   },
+   "Northwestern": {
+      "stats.adj_off.value": 98.49522471910112,
+      "stats.adj_def.value": 78.62235152487966,
+      "stats.adj_margin.value": 19.872873194221455,
+      "stats.adj_margin.rank": 52,
+      "conf": "Big Ten Conference"
+   },
+   "Dayton": {
+      "stats.adj_off.value": 97.26665329052969,
+      "stats.adj_def.value": 80.86520866773682,
+      "stats.adj_margin.value": 16.401444622792866,
+      "stats.adj_margin.rank": 65,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Purdue": {
+      "stats.adj_off.value": 104.80951043338683,
+      "stats.adj_def.value": 87.6366372391654,
+      "stats.adj_margin.value": 17.172873194221438,
+      "stats.adj_margin.rank": 62,
+      "conf": "Big Ten Conference"
+   },
+   "Miami (FL)": {
+      "stats.adj_off.value": 96.13808186195826,
+      "stats.adj_def.value": 78.46520866773682,
+      "stats.adj_margin.value": 17.672873194221438,
+      "stats.adj_margin.rank": 60,
+      "conf": "Atlantic Coast Conference"
    },
    "UNI": {
-      "stats.adj_off.value": 103.92343499197429,
-      "stats.adj_def.value": 85.54682985553772,
-      "stats.adj_margin.value": 18.376605136436567,
-      "stats.adj_margin.rank": 57,
+      "stats.adj_off.value": 102.39522471910112,
+      "stats.adj_def.value": 84.1509229534511,
+      "stats.adj_margin.value": 18.24430176565002,
+      "stats.adj_margin.rank": 59,
       "conf": "Missouri Valley Conference"
    },
-   "South Dakota St.": {
-      "stats.adj_off.value": 101.30914927768858,
-      "stats.adj_def.value": 81.38968699839485,
-      "stats.adj_margin.value": 19.919462279293725,
+   "Arizona St.": {
+      "stats.adj_off.value": 95.59522471910113,
+      "stats.adj_def.value": 76.16520866773682,
+      "stats.adj_margin.value": 19.430016051364305,
       "stats.adj_margin.rank": 55,
-      "conf": "Summit League"
+      "conf": "Pac 12 Conference"
+   },
+   "Florida": {
+      "stats.adj_off.value": 102.70951043338684,
+      "stats.adj_def.value": 87.36520866773682,
+      "stats.adj_margin.value": 15.344301765650016,
+      "stats.adj_margin.rank": 68,
+      "conf": "Southeastern Conference"
    },
    "Southern California": {
-      "stats.adj_off.value": 103.73772070626002,
-      "stats.adj_def.value": 84.14682985553772,
-      "stats.adj_margin.value": 19.590890850722303,
+      "stats.adj_off.value": 102.33808186195826,
+      "stats.adj_def.value": 82.99378009630824,
+      "stats.adj_margin.value": 19.344301765650016,
       "stats.adj_margin.rank": 56,
       "conf": "Pac 12 Conference"
    },
-   "Texas Tech": {
-      "stats.adj_off.value": 101.2091492776886,
-      "stats.adj_def.value": 83.88968699839485,
-      "stats.adj_margin.value": 17.319462279293745,
-      "stats.adj_margin.rank": 59,
-      "conf": "Big 12 Conference"
+   "Marquette": {
+      "stats.adj_off.value": 95.49522471910113,
+      "stats.adj_def.value": 77.17949438202254,
+      "stats.adj_margin.value": 18.31573033707859,
+      "stats.adj_margin.rank": 58,
+      "conf": "Big East Conference"
    },
    "Alabama": {
-      "stats.adj_off.value": 104.92343499197429,
-      "stats.adj_def.value": 84.56111556982343,
-      "stats.adj_margin.value": 20.36231942215086,
-      "stats.adj_margin.rank": 51,
+      "stats.adj_off.value": 105.8666532905297,
+      "stats.adj_def.value": 86.12235152487966,
+      "stats.adj_margin.value": 19.744301765650036,
+      "stats.adj_margin.rank": 53,
       "conf": "Southeastern Conference"
    },
-   "Purdue": {
-      "stats.adj_off.value": 102.80914927768858,
-      "stats.adj_def.value": 87.21825842696629,
-      "stats.adj_margin.value": 15.590890850722289,
-      "stats.adj_margin.rank": 66,
-      "conf": "Big Ten Conference"
-   },
-   "Massachusetts": {
-      "stats.adj_off.value": 104.06629213483144,
-      "stats.adj_def.value": 89.17540128410914,
-      "stats.adj_margin.value": 14.8908908507223,
-      "stats.adj_margin.rank": 69,
-      "conf": "Atlantic 10 Conference"
-   },
-   "Miami (FL)": {
-      "stats.adj_off.value": 96.23772070626002,
-      "stats.adj_def.value": 79.66111556982342,
-      "stats.adj_margin.value": 16.576605136436598,
-      "stats.adj_margin.rank": 61,
-      "conf": "Atlantic Coast Conference"
-   },
-   "Wake Forest": {
-      "stats.adj_off.value": 99.56629213483143,
-      "stats.adj_def.value": 83.06111556982343,
-      "stats.adj_margin.value": 16.505176565008,
-      "stats.adj_margin.rank": 62,
-      "conf": "Atlantic Coast Conference"
-   },
-   "Buffalo": {
-      "stats.adj_off.value": 108.65200642054572,
-      "stats.adj_def.value": 93.10397271268057,
-      "stats.adj_margin.value": 15.548033707865144,
-      "stats.adj_margin.rank": 67,
-      "conf": "Mid American Conference"
-   },
    "Florida St.": {
-      "stats.adj_off.value": 102.45200642054571,
-      "stats.adj_def.value": 82.38968699839485,
-      "stats.adj_margin.value": 20.062319422150864,
-      "stats.adj_margin.rank": 54,
+      "stats.adj_off.value": 103.53808186195826,
+      "stats.adj_def.value": 83.39378009630825,
+      "stats.adj_margin.value": 20.144301765650013,
+      "stats.adj_margin.rank": 51,
       "conf": "Atlantic Coast Conference"
    },
    "SFA": {
-      "stats.adj_off.value": 100.5234349919743,
-      "stats.adj_def.value": 84.14682985553772,
-      "stats.adj_margin.value": 16.37660513643658,
+      "stats.adj_off.value": 100.82379614767254,
+      "stats.adj_def.value": 84.23663723916539,
+      "stats.adj_margin.value": 16.58715890850715,
       "stats.adj_margin.rank": 63,
       "conf": "Southland Conference"
    },
-   "Dayton": {
-      "stats.adj_off.value": 96.90914927768858,
-      "stats.adj_def.value": 82.81825842696628,
-      "stats.adj_margin.value": 14.090890850722303,
-      "stats.adj_margin.rank": 76,
+   "Oklahoma St.": {
+      "stats.adj_off.value": 94.82379614767257,
+      "stats.adj_def.value": 76.20806581059396,
+      "stats.adj_margin.value": 18.615730337078602,
+      "stats.adj_margin.rank": 57,
+      "conf": "Big 12 Conference"
+   },
+   "Rhode Island": {
+      "stats.adj_off.value": 94.86665329052968,
+      "stats.adj_def.value": 79.06520866773683,
+      "stats.adj_margin.value": 15.801444622792857,
+      "stats.adj_margin.rank": 67,
       "conf": "Atlantic 10 Conference"
    },
-   "Marquette": {
-      "stats.adj_off.value": 96.10914927768857,
-      "stats.adj_def.value": 79.78968699839487,
-      "stats.adj_margin.value": 16.319462279293703,
-      "stats.adj_margin.rank": 64,
-      "conf": "Big East Conference"
+   "Michigan St.": {
+      "stats.adj_off.value": 107.53808186195826,
+      "stats.adj_def.value": 90.20806581059395,
+      "stats.adj_margin.value": 17.33001605136431,
+      "stats.adj_margin.rank": 61,
+      "conf": "Big Ten Conference"
    },
    "IUPUI": {
-      "stats.adj_off.value": 98.00914927768858,
-      "stats.adj_def.value": 82.64682985553773,
-      "stats.adj_margin.value": 15.362319422150847,
-      "stats.adj_margin.rank": 68,
+      "stats.adj_off.value": 98.6809390048154,
+      "stats.adj_def.value": 82.66520866773682,
+      "stats.adj_margin.value": 16.01573033707858,
+      "stats.adj_margin.rank": 66,
       "conf": "Horizon League"
    },
-   "Minnesota": {
-      "stats.adj_off.value": 104.48057784911715,
-      "stats.adj_def.value": 89.74682985553771,
-      "stats.adj_margin.value": 14.733747993579442,
-      "stats.adj_margin.rank": 71,
-      "conf": "Big Ten Conference"
+   "Massachusetts": {
+      "stats.adj_off.value": 103.13808186195827,
+      "stats.adj_def.value": 87.79378009630825,
+      "stats.adj_margin.value": 15.344301765650016,
+      "stats.adj_margin.rank": 68,
+      "conf": "Atlantic 10 Conference"
    },
-   "Florida": {
-      "stats.adj_off.value": 101.59486356340288,
-      "stats.adj_def.value": 88.70397271268057,
-      "stats.adj_margin.value": 12.890890850722315,
-      "stats.adj_margin.rank": 81,
-      "conf": "Southeastern Conference"
-   },
-   "Michigan St.": {
-      "stats.adj_off.value": 107.83772070626001,
-      "stats.adj_def.value": 91.24682985553771,
-      "stats.adj_margin.value": 16.590890850722303,
-      "stats.adj_margin.rank": 60,
-      "conf": "Big Ten Conference"
-   },
-   "Syracuse": {
-      "stats.adj_off.value": 108.90914927768858,
-      "stats.adj_def.value": 92.80397271268058,
-      "stats.adj_margin.value": 16.10517656500801,
-      "stats.adj_margin.rank": 65,
-      "conf": "Atlantic Coast Conference"
+   "Texas Tech": {
+      "stats.adj_off.value": 100.7809390048154,
+      "stats.adj_def.value": 84.32235152487969,
+      "stats.adj_margin.value": 16.4585874799357,
+      "stats.adj_margin.rank": 64,
+      "conf": "Big 12 Conference"
    },
    "Toledo": {
-      "stats.adj_off.value": 98.82343499197431,
-      "stats.adj_def.value": 84.76111556982343,
-      "stats.adj_margin.value": 14.062319422150878,
+      "stats.adj_off.value": 98.52379614767256,
+      "stats.adj_def.value": 84.37949438202253,
+      "stats.adj_margin.value": 14.144301765650027,
+      "stats.adj_margin.rank": 75,
+      "conf": "Mid American Conference"
+   },
+   "Portland": {
+      "stats.adj_off.value": 100.38093900481539,
+      "stats.adj_def.value": 87.26520866773681,
+      "stats.adj_margin.value": 13.115730337078574,
+      "stats.adj_margin.rank": 80,
+      "conf": "West Coast Conference"
+   },
+   "Fordham": {
+      "stats.adj_off.value": 93.05236757624398,
+      "stats.adj_def.value": 81.30806581059396,
+      "stats.adj_margin.value": 11.744301765650022,
+      "stats.adj_margin.rank": 84,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Wake Forest": {
+      "stats.adj_off.value": 98.552367576244,
+      "stats.adj_def.value": 83.93663723916538,
+      "stats.adj_margin.value": 14.615730337078617,
+      "stats.adj_margin.rank": 72,
+      "conf": "Atlantic Coast Conference"
+   },
+   "Villanova": {
+      "stats.adj_off.value": 95.22379614767253,
+      "stats.adj_def.value": 83.36520866773682,
+      "stats.adj_margin.value": 11.858587479935707,
+      "stats.adj_margin.rank": 83,
+      "conf": "Big East Conference"
+   },
+   "Buffalo": {
+      "stats.adj_off.value": 106.12379614767255,
+      "stats.adj_def.value": 92.00806581059396,
+      "stats.adj_margin.value": 14.115730337078588,
       "stats.adj_margin.rank": 77,
       "conf": "Mid American Conference"
    },
-   "Fordham": {
-      "stats.adj_off.value": 94.92343499197429,
-      "stats.adj_def.value": 83.07540128410915,
-      "stats.adj_margin.value": 11.848033707865142,
-      "stats.adj_margin.rank": 82,
-      "conf": "Atlantic 10 Conference"
-   },
-   "Rhode Island": {
-      "stats.adj_off.value": 94.48057784911715,
-      "stats.adj_def.value": 80.06111556982343,
-      "stats.adj_margin.value": 14.419462279293725,
-      "stats.adj_margin.rank": 74,
-      "conf": "Atlantic 10 Conference"
-   },
    "Vanderbilt": {
-      "stats.adj_off.value": 97.28057784911717,
-      "stats.adj_def.value": 82.57540128410915,
-      "stats.adj_margin.value": 14.705176565008017,
-      "stats.adj_margin.rank": 72,
+      "stats.adj_off.value": 95.83808186195826,
+      "stats.adj_def.value": 82.36520866773682,
+      "stats.adj_margin.value": 13.472873194221435,
+      "stats.adj_margin.rank": 78,
       "conf": "Southeastern Conference"
    },
-   "San Diego": {
-      "stats.adj_off.value": 97.73772070626,
-      "stats.adj_def.value": 83.94682985553771,
-      "stats.adj_margin.value": 13.790890850722292,
-      "stats.adj_margin.rank": 78,
-      "conf": "West Coast Conference"
-   },
-   "Belmont": {
-      "stats.adj_off.value": 97.45200642054571,
-      "stats.adj_def.value": 84.23254414125199,
-      "stats.adj_margin.value": 13.219462279293722,
-      "stats.adj_margin.rank": 80,
-      "conf": "Ohio Valley Conference"
-   },
-   "Houston": {
-      "stats.adj_off.value": 100.33772070626001,
-      "stats.adj_def.value": 85.632544141252,
-      "stats.adj_margin.value": 14.705176565008017,
-      "stats.adj_margin.rank": 72,
-      "conf": "American Athletic Conference"
-   },
-   "Washington": {
-      "stats.adj_off.value": 93.4234349919743,
-      "stats.adj_def.value": 79.14682985553772,
-      "stats.adj_margin.value": 14.276605136436586,
-      "stats.adj_margin.rank": 75,
-      "conf": "Pac 12 Conference"
-   },
-   "Portland": {
-      "stats.adj_off.value": 99.30914927768859,
-      "stats.adj_def.value": 87.84682985553772,
-      "stats.adj_margin.value": 11.46231942215087,
-      "stats.adj_margin.rank": 84,
-      "conf": "West Coast Conference"
-   },
-   "Liberty": {
-      "stats.adj_off.value": 92.26629213483143,
-      "stats.adj_def.value": 81.31825842696628,
-      "stats.adj_margin.value": 10.94803370786515,
-      "stats.adj_margin.rank": 86,
-      "conf": "ASUN Conference"
-   },
-   "Middle Tenn.": {
-      "stats.adj_off.value": 96.06629213483143,
-      "stats.adj_def.value": 82.81825842696628,
-      "stats.adj_margin.value": 13.248033707865147,
-      "stats.adj_margin.rank": 79,
-      "conf": "Conference USA"
-   },
-   "California": {
-      "stats.adj_off.value": 100.36629213483145,
-      "stats.adj_def.value": 88.73254414125199,
-      "stats.adj_margin.value": 11.633747993579462,
-      "stats.adj_margin.rank": 83,
-      "conf": "Pac 12 Conference"
-   },
-   "Towson": {
-      "stats.adj_off.value": 103.53772070626002,
-      "stats.adj_def.value": 93.50397271268056,
-      "stats.adj_margin.value": 10.033747993579453,
-      "stats.adj_margin.rank": 90,
-      "conf": "Colonial Athletic Association"
-   },
-   "Drake": {
-      "stats.adj_off.value": 107.79486356340287,
-      "stats.adj_def.value": 92.97540128410913,
-      "stats.adj_margin.value": 14.819462279293745,
-      "stats.adj_margin.rank": 70,
-      "conf": "Missouri Valley Conference"
-   },
-   "Villanova": {
-      "stats.adj_off.value": 94.75200642054573,
-      "stats.adj_def.value": 84.73254414125199,
-      "stats.adj_margin.value": 10.019462279293734,
-      "stats.adj_margin.rank": 91,
-      "conf": "Big East Conference"
-   },
-   "Pittsburgh": {
-      "stats.adj_off.value": 97.63772070626003,
-      "stats.adj_def.value": 87.77540128410914,
-      "stats.adj_margin.value": 9.86231942215089,
-      "stats.adj_margin.rank": 93,
+   "Syracuse": {
+      "stats.adj_off.value": 107.69522471910112,
+      "stats.adj_def.value": 93.17949438202253,
+      "stats.adj_margin.value": 14.515730337078594,
+      "stats.adj_margin.rank": 73,
       "conf": "Atlantic Coast Conference"
    },
-   "Long Beach St.": {
-      "stats.adj_off.value": 90.75200642054573,
-      "stats.adj_def.value": 81.97540128410915,
-      "stats.adj_margin.value": 8.776605136436572,
-      "stats.adj_margin.rank": 102,
-      "conf": "Big West Conference"
+   "Washington": {
+      "stats.adj_off.value": 93.15236757624399,
+      "stats.adj_def.value": 78.1366372391654,
+      "stats.adj_margin.value": 15.015730337078594,
+      "stats.adj_margin.rank": 70,
+      "conf": "Pac 12 Conference"
    },
-   "Auburn": {
-      "stats.adj_off.value": 96.5234349919743,
-      "stats.adj_def.value": 85.26111556982343,
-      "stats.adj_margin.value": 11.262319422150867,
-      "stats.adj_margin.rank": 85,
-      "conf": "Southeastern Conference"
+   "Middle Tenn.": {
+      "stats.adj_off.value": 97.72379614767253,
+      "stats.adj_def.value": 83.56520866773683,
+      "stats.adj_margin.value": 14.158587479935704,
+      "stats.adj_margin.rank": 74,
+      "conf": "Conference USA"
    },
-   "Tulane": {
-      "stats.adj_off.value": 101.89486356340286,
-      "stats.adj_def.value": 91.97540128410915,
-      "stats.adj_margin.value": 9.919462279293711,
-      "stats.adj_margin.rank": 92,
-      "conf": "American Athletic Conference"
+   "Belmont": {
+      "stats.adj_off.value": 98.86665329052971,
+      "stats.adj_def.value": 84.73663723916539,
+      "stats.adj_margin.value": 14.130016051364322,
+      "stats.adj_margin.rank": 76,
+      "conf": "Ohio Valley Conference"
    },
-   "SMU": {
-      "stats.adj_off.value": 94.13772070626003,
-      "stats.adj_def.value": 84.30397271268058,
-      "stats.adj_margin.value": 9.83374799357945,
-      "stats.adj_margin.rank": 94,
-      "conf": "American Athletic Conference"
-   },
-   "Penn St.": {
-      "stats.adj_off.value": 106.09486356340288,
-      "stats.adj_def.value": 95.34682985553772,
-      "stats.adj_margin.value": 10.748033707865162,
-      "stats.adj_margin.rank": 87,
+   "Minnesota": {
+      "stats.adj_off.value": 103.552367576244,
+      "stats.adj_def.value": 91.30806581059396,
+      "stats.adj_margin.value": 12.244301765650036,
+      "stats.adj_margin.rank": 81,
       "conf": "Big Ten Conference"
    },
+   "Drake": {
+      "stats.adj_off.value": 106.62379614767255,
+      "stats.adj_def.value": 91.67949438202254,
+      "stats.adj_margin.value": 14.94430176565001,
+      "stats.adj_margin.rank": 71,
+      "conf": "Missouri Valley Conference"
+   },
+   "California": {
+      "stats.adj_off.value": 101.32379614767255,
+      "stats.adj_def.value": 89.59378009630825,
+      "stats.adj_margin.value": 11.730016051364302,
+      "stats.adj_margin.rank": 85,
+      "conf": "Pac 12 Conference"
+   },
+   "Pittsburgh": {
+      "stats.adj_off.value": 98.85236757624398,
+      "stats.adj_def.value": 88.69378009630825,
+      "stats.adj_margin.value": 10.158587479935733,
+      "stats.adj_margin.rank": 92,
+      "conf": "Atlantic Coast Conference"
+   },
+   "Tulane": {
+      "stats.adj_off.value": 103.1809390048154,
+      "stats.adj_def.value": 91.69378009630825,
+      "stats.adj_margin.value": 11.487158908507155,
+      "stats.adj_margin.rank": 86,
+      "conf": "American Athletic Conference"
+   },
+   "Auburn": {
+      "stats.adj_off.value": 97.08093900481542,
+      "stats.adj_def.value": 84.96520866773682,
+      "stats.adj_margin.value": 12.115730337078602,
+      "stats.adj_margin.rank": 82,
+      "conf": "Southeastern Conference"
+   },
+   "Liberty": {
+      "stats.adj_off.value": 91.72379614767256,
+      "stats.adj_def.value": 82.39378009630825,
+      "stats.adj_margin.value": 9.33001605136431,
+      "stats.adj_margin.rank": 98,
+      "conf": "ASUN Conference"
+   },
+   "Houston": {
+      "stats.adj_off.value": 98.5809390048154,
+      "stats.adj_def.value": 85.46520866773682,
+      "stats.adj_margin.value": 13.115730337078588,
+      "stats.adj_margin.rank": 79,
+      "conf": "American Athletic Conference"
+   },
+   "UNLV": {
+      "stats.adj_off.value": 102.65236757624398,
+      "stats.adj_def.value": 91.99378009630823,
+      "stats.adj_margin.value": 10.658587479935747,
+      "stats.adj_margin.rank": 88,
+      "conf": "Mountain West Conference"
+   },
    "Seton Hall": {
-      "stats.adj_off.value": 103.46629213483145,
-      "stats.adj_def.value": 94.17540128410914,
-      "stats.adj_margin.value": 9.290890850722306,
-      "stats.adj_margin.rank": 100,
+      "stats.adj_off.value": 102.06665329052969,
+      "stats.adj_def.value": 93.00806581059396,
+      "stats.adj_margin.value": 9.058587479935724,
+      "stats.adj_margin.rank": 101,
       "conf": "Big East Conference"
    },
    "New Mexico": {
-      "stats.adj_off.value": 105.69486356340288,
-      "stats.adj_def.value": 97.48968699839487,
-      "stats.adj_margin.value": 8.205176565008003,
-      "stats.adj_margin.rank": 104,
+      "stats.adj_off.value": 105.93808186195825,
+      "stats.adj_def.value": 97.25092295345111,
+      "stats.adj_margin.value": 8.687158908507143,
+      "stats.adj_margin.rank": 103,
       "conf": "Mountain West Conference"
    },
-   "Old Dominion": {
-      "stats.adj_off.value": 91.53772070626,
-      "stats.adj_def.value": 82.18968699839486,
-      "stats.adj_margin.value": 9.348033707865142,
-      "stats.adj_margin.rank": 99,
-      "conf": "Conference USA"
-   },
-   "UNLV": {
-      "stats.adj_off.value": 102.19486356340288,
-      "stats.adj_def.value": 91.96111556982343,
-      "stats.adj_margin.value": 10.233747993579442,
+   "Ohio": {
+      "stats.adj_off.value": 106.00951043338685,
+      "stats.adj_def.value": 95.4366372391654,
+      "stats.adj_margin.value": 10.572873194221444,
       "stats.adj_margin.rank": 89,
-      "conf": "Mountain West Conference"
-   },
-   "VCU": {
-      "stats.adj_off.value": 93.05200642054572,
-      "stats.adj_def.value": 82.31825842696628,
-      "stats.adj_margin.value": 10.733747993579442,
-      "stats.adj_margin.rank": 88,
-      "conf": "Atlantic 10 Conference"
-   },
-   "Kent St.": {
-      "stats.adj_off.value": 96.65200642054573,
-      "stats.adj_def.value": 87.18968699839486,
-      "stats.adj_margin.value": 9.46231942215087,
-      "stats.adj_margin.rank": 98,
       "conf": "Mid American Conference"
    },
+   "Green Bay": {
+      "stats.adj_off.value": 92.59522471910114,
+      "stats.adj_def.value": 81.70806581059396,
+      "stats.adj_margin.value": 10.887158908507175,
+      "stats.adj_margin.rank": 87,
+      "conf": "Horizon League"
+   },
+   "SMU": {
+      "stats.adj_off.value": 93.93808186195827,
+      "stats.adj_def.value": 84.57949438202253,
+      "stats.adj_margin.value": 9.358587479935736,
+      "stats.adj_margin.rank": 97,
+      "conf": "American Athletic Conference"
+   },
+   "Old Dominion": {
+      "stats.adj_off.value": 91.22379614767254,
+      "stats.adj_def.value": 82.03663723916539,
+      "stats.adj_margin.value": 9.187158908507158,
+      "stats.adj_margin.rank": 100,
+      "conf": "Conference USA"
+   },
+   "San Diego": {
+      "stats.adj_off.value": 96.052367576244,
+      "stats.adj_def.value": 85.69378009630825,
+      "stats.adj_margin.value": 10.35858747993575,
+      "stats.adj_margin.rank": 90,
+      "conf": "West Coast Conference"
+   },
    "TCU": {
-      "stats.adj_off.value": 101.62343499197429,
-      "stats.adj_def.value": 91.80397271268058,
-      "stats.adj_margin.value": 9.819462279293717,
+      "stats.adj_off.value": 98.30951043338685,
+      "stats.adj_def.value": 88.77949438202252,
+      "stats.adj_margin.value": 9.530016051364328,
       "stats.adj_margin.rank": 95,
       "conf": "Big 12 Conference"
    },
-   "California Baptist": {
-      "stats.adj_off.value": 103.2234349919743,
-      "stats.adj_def.value": 97.31825842696628,
-      "stats.adj_margin.value": 5.90517656500802,
-      "stats.adj_margin.rank": 119,
-      "conf": "Western Athletic Conference"
+   "Long Beach St.": {
+      "stats.adj_off.value": 89.38093900481542,
+      "stats.adj_def.value": 81.37949438202253,
+      "stats.adj_margin.value": 8.001444622792889,
+      "stats.adj_margin.rank": 109,
+      "conf": "Big West Conference"
    },
-   "Columbia": {
-      "stats.adj_off.value": 101.35200642054572,
-      "stats.adj_def.value": 94.932544141252,
-      "stats.adj_margin.value": 6.419462279293725,
-      "stats.adj_margin.rank": 114,
-      "conf": "Ivy League"
-   },
-   "Tulsa": {
-      "stats.adj_off.value": 98.45200642054571,
-      "stats.adj_def.value": 90.77540128410914,
-      "stats.adj_margin.value": 7.676605136436578,
-      "stats.adj_margin.rank": 107,
-      "conf": "American Athletic Conference"
-   },
-   "Southern Ill.": {
-      "stats.adj_off.value": 92.08057784911716,
-      "stats.adj_def.value": 84.032544141252,
-      "stats.adj_margin.value": 8.048033707865159,
-      "stats.adj_margin.rank": 105,
-      "conf": "Missouri Valley Conference"
-   },
-   "Ohio": {
-      "stats.adj_off.value": 105.80914927768859,
-      "stats.adj_def.value": 96.17540128410914,
-      "stats.adj_margin.value": 9.633747993579448,
-      "stats.adj_margin.rank": 97,
-      "conf": "Mid American Conference"
-   },
-   "Stony Brook": {
-      "stats.adj_off.value": 92.49486356340286,
-      "stats.adj_def.value": 87.88968699839485,
-      "stats.adj_margin.value": 4.6051765650080085,
-      "stats.adj_margin.rank": 129,
-      "conf": "America East Conference"
-   },
-   "Green Bay": {
-      "stats.adj_off.value": 91.59486356340288,
-      "stats.adj_def.value": 83.132544141252,
-      "stats.adj_margin.value": 8.462319422150884,
-      "stats.adj_margin.rank": 103,
-      "conf": "Horizon League"
-   },
-   "Charlotte": {
-      "stats.adj_off.value": 93.26629213483145,
-      "stats.adj_def.value": 86.04682985553771,
-      "stats.adj_margin.value": 7.219462279293737,
-      "stats.adj_margin.rank": 111,
-      "conf": "Conference USA"
-   },
-   "Delaware": {
-      "stats.adj_off.value": 100.70914927768858,
-      "stats.adj_def.value": 92.97540128410913,
-      "stats.adj_margin.value": 7.733747993579456,
-      "stats.adj_margin.rank": 106,
-      "conf": "Colonial Athletic Association"
-   },
-   "Wichita St.": {
-      "stats.adj_off.value": 95.75200642054573,
-      "stats.adj_def.value": 88.46111556982343,
-      "stats.adj_margin.value": 7.290890850722292,
-      "stats.adj_margin.rank": 110,
-      "conf": "American Athletic Conference"
-   },
-   "Temple": {
-      "stats.adj_off.value": 93.92343499197429,
-      "stats.adj_def.value": 86.24682985553771,
-      "stats.adj_margin.value": 7.676605136436578,
-      "stats.adj_margin.rank": 107,
-      "conf": "American Athletic Conference"
-   },
-   "Clemson": {
-      "stats.adj_off.value": 97.46629213483145,
-      "stats.adj_def.value": 88.632544141252,
-      "stats.adj_margin.value": 8.83374799357945,
-      "stats.adj_margin.rank": 101,
-      "conf": "Atlantic Coast Conference"
-   },
-   "Western Mich.": {
-      "stats.adj_off.value": 95.32343499197431,
-      "stats.adj_def.value": 90.16111556982341,
-      "stats.adj_margin.value": 5.162319422150901,
-      "stats.adj_margin.rank": 123,
-      "conf": "Mid American Conference"
-   },
-   "Troy": {
-      "stats.adj_off.value": 109.58057784911716,
-      "stats.adj_def.value": 103.87540128410915,
-      "stats.adj_margin.value": 5.705176565008017,
-      "stats.adj_margin.rank": 120,
-      "conf": "Sun Belt Conference"
-   },
-   "Rutgers": {
-      "stats.adj_off.value": 87.42343499197429,
-      "stats.adj_def.value": 77.61825842696628,
-      "stats.adj_margin.value": 9.805176565008011,
-      "stats.adj_margin.rank": 96,
+   "Penn St.": {
+      "stats.adj_off.value": 104.60951043338683,
+      "stats.adj_def.value": 95.8366372391654,
+      "stats.adj_margin.value": 8.772873194221432,
+      "stats.adj_margin.rank": 102,
       "conf": "Big Ten Conference"
    },
-   "Drexel": {
-      "stats.adj_off.value": 88.66629213483145,
-      "stats.adj_def.value": 83.832544141252,
-      "stats.adj_margin.value": 4.8337479935794505,
-      "stats.adj_margin.rank": 125,
+   "Kent St.": {
+      "stats.adj_off.value": 95.8809390048154,
+      "stats.adj_def.value": 86.49378009630824,
+      "stats.adj_margin.value": 9.38715890850716,
+      "stats.adj_margin.rank": 96,
+      "conf": "Mid American Conference"
+   },
+   "Southern Ill.": {
+      "stats.adj_off.value": 90.8666532905297,
+      "stats.adj_def.value": 82.67949438202254,
+      "stats.adj_margin.value": 8.187158908507158,
+      "stats.adj_margin.rank": 106,
+      "conf": "Missouri Valley Conference"
+   },
+   "Stony Brook": {
+      "stats.adj_off.value": 93.05236757624398,
+      "stats.adj_def.value": 87.9509229534511,
+      "stats.adj_margin.value": 5.101444622792883,
+      "stats.adj_margin.rank": 122,
+      "conf": "America East Conference"
+   },
+   "Towson": {
+      "stats.adj_off.value": 102.33808186195826,
+      "stats.adj_def.value": 94.27949438202253,
+      "stats.adj_margin.value": 8.058587479935724,
+      "stats.adj_margin.rank": 108,
       "conf": "Colonial Athletic Association"
    },
+   "Drexel": {
+      "stats.adj_off.value": 89.32379614767255,
+      "stats.adj_def.value": 83.42235152487966,
+      "stats.adj_margin.value": 5.901444622792894,
+      "stats.adj_margin.rank": 120,
+      "conf": "Colonial Athletic Association"
+   },
+   "VCU": {
+      "stats.adj_off.value": 92.73808186195826,
+      "stats.adj_def.value": 82.9509229534511,
+      "stats.adj_margin.value": 9.787158908507166,
+      "stats.adj_margin.rank": 94,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Tulsa": {
+      "stats.adj_off.value": 99.45236757624397,
+      "stats.adj_def.value": 90.89378009630825,
+      "stats.adj_margin.value": 8.558587479935724,
+      "stats.adj_margin.rank": 105,
+      "conf": "American Athletic Conference"
+   },
+   "Columbia": {
+      "stats.adj_off.value": 97.88093900481539,
+      "stats.adj_def.value": 92.4509229534511,
+      "stats.adj_margin.value": 5.430016051364291,
+      "stats.adj_margin.rank": 121,
+      "conf": "Ivy League"
+   },
+   "Western Mich.": {
+      "stats.adj_off.value": 93.19522471910113,
+      "stats.adj_def.value": 87.23663723916539,
+      "stats.adj_margin.value": 5.958587479935744,
+      "stats.adj_margin.rank": 119,
+      "conf": "Mid American Conference"
+   },
+   "Clemson": {
+      "stats.adj_off.value": 99.43808186195827,
+      "stats.adj_def.value": 89.32235152487969,
+      "stats.adj_margin.value": 10.115730337078574,
+      "stats.adj_margin.rank": 93,
+      "conf": "Atlantic Coast Conference"
+   },
+   "Jackson St.": {
+      "stats.adj_off.value": 101.53808186195825,
+      "stats.adj_def.value": 92.27949438202253,
+      "stats.adj_margin.value": 9.258587479935713,
+      "stats.adj_margin.rank": 99,
+      "conf": "Southwestern Athletic Conference"
+   },
+   "Temple": {
+      "stats.adj_off.value": 94.48093900481541,
+      "stats.adj_def.value": 86.42235152487967,
+      "stats.adj_margin.value": 8.058587479935738,
+      "stats.adj_margin.rank": 107,
+      "conf": "American Athletic Conference"
+   },
+   "Charlotte": {
+      "stats.adj_off.value": 93.80951043338683,
+      "stats.adj_def.value": 86.9509229534511,
+      "stats.adj_margin.value": 6.858587479935736,
+      "stats.adj_margin.rank": 113,
+      "conf": "Conference USA"
+   },
+   "Rutgers": {
+      "stats.adj_off.value": 87.76665329052967,
+      "stats.adj_def.value": 77.57949438202253,
+      "stats.adj_margin.value": 10.187158908507143,
+      "stats.adj_margin.rank": 91,
+      "conf": "Big Ten Conference"
+   },
+   "Ball St.": {
+      "stats.adj_off.value": 100.39522471910112,
+      "stats.adj_def.value": 93.76520866773681,
+      "stats.adj_margin.value": 6.630016051364308,
+      "stats.adj_margin.rank": 115,
+      "conf": "Mid American Conference"
+   },
+   "San Francisco": {
+      "stats.adj_off.value": 99.3666532905297,
+      "stats.adj_def.value": 92.27949438202253,
+      "stats.adj_margin.value": 7.087158908507163,
+      "stats.adj_margin.rank": 112,
+      "conf": "West Coast Conference"
+   },
+   "Wichita St.": {
+      "stats.adj_off.value": 95.06665329052969,
+      "stats.adj_def.value": 88.36520866773682,
+      "stats.adj_margin.value": 6.701444622792863,
+      "stats.adj_margin.rank": 114,
+      "conf": "American Athletic Conference"
+   },
+   "Delaware": {
+      "stats.adj_off.value": 100.18093900481541,
+      "stats.adj_def.value": 93.56520866773683,
+      "stats.adj_margin.value": 6.615730337078588,
+      "stats.adj_margin.rank": 116,
+      "conf": "Colonial Athletic Association"
+   },
+   "UT Arlington": {
+      "stats.adj_off.value": 94.12379614767255,
+      "stats.adj_def.value": 90.70806581059396,
+      "stats.adj_margin.value": 3.4157303370785854,
+      "stats.adj_margin.rank": 137,
+      "conf": "Sun Belt Conference"
+   },
    "Loyola Chicago": {
-      "stats.adj_off.value": 86.40914927768858,
-      "stats.adj_def.value": 80.36111556982343,
-      "stats.adj_margin.value": 6.048033707865159,
+      "stats.adj_off.value": 86.3809390048154,
+      "stats.adj_def.value": 80.10806581059396,
+      "stats.adj_margin.value": 6.272873194221447,
       "stats.adj_margin.rank": 117,
       "conf": "Missouri Valley Conference"
    },
-   "Kansas City": {
-      "stats.adj_off.value": 99.38057784911716,
-      "stats.adj_def.value": 94.73254414125199,
-      "stats.adj_margin.value": 4.648033707865167,
-      "stats.adj_margin.rank": 127,
-      "conf": "Summit League"
-   },
-   "UT Arlington": {
-      "stats.adj_off.value": 92.42343499197429,
-      "stats.adj_def.value": 89.47540128410915,
-      "stats.adj_margin.value": 2.948033707865136,
-      "stats.adj_margin.rank": 140,
-      "conf": "Sun Belt Conference"
-   },
-   "Ball St.": {
-      "stats.adj_off.value": 102.53772070626,
-      "stats.adj_def.value": 96.832544141252,
-      "stats.adj_margin.value": 5.705176565008003,
-      "stats.adj_margin.rank": 121,
-      "conf": "Mid American Conference"
-   },
-   "Davidson": {
-      "stats.adj_off.value": 93.46629213483145,
-      "stats.adj_def.value": 89.66111556982342,
-      "stats.adj_margin.value": 3.8051765650080256,
-      "stats.adj_margin.rank": 136,
-      "conf": "Atlantic 10 Conference"
-   },
-   "Jackson St.": {
-      "stats.adj_off.value": 99.88057784911715,
-      "stats.adj_def.value": 93.33254414125199,
-      "stats.adj_margin.value": 6.548033707865159,
-      "stats.adj_margin.rank": 113,
-      "conf": "Southwestern Athletic Conference"
-   },
-   "San Francisco": {
-      "stats.adj_off.value": 98.80914927768858,
-      "stats.adj_def.value": 92.80397271268058,
-      "stats.adj_margin.value": 6.005176565008,
-      "stats.adj_margin.rank": 118,
-      "conf": "West Coast Conference"
-   },
-   "Northern Ky.": {
-      "stats.adj_off.value": 94.75200642054573,
-      "stats.adj_def.value": 91.76111556982343,
-      "stats.adj_margin.value": 2.9908908507222947,
-      "stats.adj_margin.rank": 139,
-      "conf": "Horizon League"
-   },
-   "Bowling Green": {
-      "stats.adj_off.value": 101.75200642054574,
-      "stats.adj_def.value": 94.332544141252,
-      "stats.adj_margin.value": 7.4194622792937395,
-      "stats.adj_margin.rank": 109,
-      "conf": "Mid American Conference"
-   },
-   "North Texas": {
-      "stats.adj_off.value": 98.4234349919743,
-      "stats.adj_def.value": 91.78968699839486,
-      "stats.adj_margin.value": 6.633747993579448,
-      "stats.adj_margin.rank": 112,
-      "conf": "Conference USA"
-   },
-   "Akron": {
-      "stats.adj_off.value": 93.98057784911717,
-      "stats.adj_def.value": 91.28968699839486,
-      "stats.adj_margin.value": 2.6908908507223117,
-      "stats.adj_margin.rank": 141,
-      "conf": "Mid American Conference"
-   },
-   "Bucknell": {
-      "stats.adj_off.value": 87.7234349919743,
-      "stats.adj_def.value": 83.7182584269663,
-      "stats.adj_margin.value": 4.005176565008,
-      "stats.adj_margin.rank": 135,
-      "conf": "Patriot League"
-   },
-   "Western Ky.": {
-      "stats.adj_off.value": 98.00914927768858,
-      "stats.adj_def.value": 94.9182584269663,
-      "stats.adj_margin.value": 3.0908908507222748,
-      "stats.adj_margin.rank": 137,
-      "conf": "Conference USA"
-   },
-   "Wyoming": {
-      "stats.adj_off.value": 89.16629213483144,
-      "stats.adj_def.value": 82.832544141252,
-      "stats.adj_margin.value": 6.333747993579436,
-      "stats.adj_margin.rank": 116,
-      "conf": "Mountain West Conference"
-   },
-   "Saint Mary's (CA)": {
-      "stats.adj_off.value": 95.03772070626,
-      "stats.adj_def.value": 92.36111556982343,
-      "stats.adj_margin.value": 2.676605136436578,
-      "stats.adj_margin.rank": 142,
-      "conf": "West Coast Conference"
-   },
-   "Santa Clara": {
-      "stats.adj_off.value": 96.48057784911717,
-      "stats.adj_def.value": 91.5468298555377,
-      "stats.adj_margin.value": 4.933747993579473,
-      "stats.adj_margin.rank": 124,
-      "conf": "West Coast Conference"
-   },
-   "Richmond": {
-      "stats.adj_off.value": 100.26629213483143,
-      "stats.adj_def.value": 94.77540128410914,
-      "stats.adj_margin.value": 5.490890850722295,
-      "stats.adj_margin.rank": 122,
-      "conf": "Atlantic 10 Conference"
-   },
    "Harvard": {
-      "stats.adj_off.value": 100.32343499197431,
-      "stats.adj_def.value": 95.67540128410916,
-      "stats.adj_margin.value": 4.648033707865153,
-      "stats.adj_margin.rank": 128,
+      "stats.adj_off.value": 101.9666532905297,
+      "stats.adj_def.value": 94.75092295345111,
+      "stats.adj_margin.value": 7.215730337078597,
+      "stats.adj_margin.rank": 110,
       "conf": "Ivy League"
    },
+   "Northern Ky.": {
+      "stats.adj_off.value": 95.46665329052968,
+      "stats.adj_def.value": 91.6652086677368,
+      "stats.adj_margin.value": 3.8014446227928715,
+      "stats.adj_margin.rank": 132,
+      "conf": "Horizon League"
+   },
+   "Troy": {
+      "stats.adj_off.value": 106.8666532905297,
+      "stats.adj_def.value": 102.23663723916539,
+      "stats.adj_margin.value": 4.630016051364308,
+      "stats.adj_margin.rank": 128,
+      "conf": "Sun Belt Conference"
+   },
+   "California Baptist": {
+      "stats.adj_off.value": 102.55236757624398,
+      "stats.adj_def.value": 99.29378009630824,
+      "stats.adj_margin.value": 3.2585874799357413,
+      "stats.adj_margin.rank": 138,
+      "conf": "Western Athletic Conference"
+   },
    "St. John's (NY)": {
-      "stats.adj_off.value": 103.99486356340286,
-      "stats.adj_def.value": 97.632544141252,
-      "stats.adj_margin.value": 6.362319422150861,
-      "stats.adj_margin.rank": 115,
+      "stats.adj_off.value": 105.48093900481541,
+      "stats.adj_def.value": 96.86520866773684,
+      "stats.adj_margin.value": 8.615730337078574,
+      "stats.adj_margin.rank": 104,
       "conf": "Big East Conference"
    },
+   "Bowling Green": {
+      "stats.adj_off.value": 101.23808186195826,
+      "stats.adj_def.value": 94.10806581059396,
+      "stats.adj_margin.value": 7.130016051364308,
+      "stats.adj_margin.rank": 111,
+      "conf": "Mid American Conference"
+   },
+   "Illinois St.": {
+      "stats.adj_off.value": 94.93808186195828,
+      "stats.adj_def.value": 88.96520866773683,
+      "stats.adj_margin.value": 5.9728731942214495,
+      "stats.adj_margin.rank": 118,
+      "conf": "Missouri Valley Conference"
+   },
+   "Kansas City": {
+      "stats.adj_off.value": 97.69522471910112,
+      "stats.adj_def.value": 94.22235152487967,
+      "stats.adj_margin.value": 3.4728731942214495,
+      "stats.adj_margin.rank": 136,
+      "conf": "Summit League"
+   },
+   "Western Ky.": {
+      "stats.adj_off.value": 99.09522471910113,
+      "stats.adj_def.value": 94.90806581059397,
+      "stats.adj_margin.value": 4.187158908507158,
+      "stats.adj_margin.rank": 130,
+      "conf": "Conference USA"
+   },
    "Memphis": {
-      "stats.adj_off.value": 89.4234349919743,
-      "stats.adj_def.value": 88.17540128410914,
-      "stats.adj_margin.value": 1.2480337078651615,
-      "stats.adj_margin.rank": 156,
+      "stats.adj_off.value": 90.70951043338684,
+      "stats.adj_def.value": 88.52235152487968,
+      "stats.adj_margin.value": 2.1871589085071577,
+      "stats.adj_margin.rank": 144,
       "conf": "American Athletic Conference"
    },
    "Colorado St.": {
-      "stats.adj_off.value": 94.26629213483145,
-      "stats.adj_def.value": 90.14682985553773,
-      "stats.adj_margin.value": 4.119462279293714,
-      "stats.adj_margin.rank": 134,
+      "stats.adj_off.value": 95.53808186195828,
+      "stats.adj_def.value": 90.6509229534511,
+      "stats.adj_margin.value": 4.887158908507175,
+      "stats.adj_margin.rank": 124,
       "conf": "Mountain West Conference"
    },
-   "Murray St.": {
-      "stats.adj_off.value": 94.45200642054573,
-      "stats.adj_def.value": 90.27540128410914,
-      "stats.adj_margin.value": 4.176605136436592,
-      "stats.adj_margin.rank": 133,
-      "conf": "Ohio Valley Conference"
-   },
-   "Yale": {
-      "stats.adj_off.value": 88.6234349919743,
-      "stats.adj_def.value": 85.56111556982343,
-      "stats.adj_margin.value": 3.0623194221508783,
-      "stats.adj_margin.rank": 138,
-      "conf": "Ivy League"
-   },
-   "Elon": {
-      "stats.adj_off.value": 87.65200642054572,
-      "stats.adj_def.value": 86.20397271268057,
-      "stats.adj_margin.value": 1.4480337078651502,
-      "stats.adj_margin.rank": 154,
-      "conf": "Colonial Athletic Association"
-   },
-   "UTEP": {
-      "stats.adj_off.value": 94.83772070626,
-      "stats.adj_def.value": 92.632544141252,
-      "stats.adj_margin.value": 2.205176565008003,
-      "stats.adj_margin.rank": 146,
-      "conf": "Conference USA"
-   },
-   "Nevada": {
-      "stats.adj_off.value": 91.62343499197429,
-      "stats.adj_def.value": 89.74682985553771,
-      "stats.adj_margin.value": 1.8766051364365808,
-      "stats.adj_margin.rank": 151,
-      "conf": "Mountain West Conference"
-   },
-   "Idaho St.": {
-      "stats.adj_off.value": 91.85200642054572,
-      "stats.adj_def.value": 90.40397271268057,
-      "stats.adj_margin.value": 1.4480337078651502,
-      "stats.adj_margin.rank": 154,
-      "conf": "Big Sky Conference"
-   },
-   "UC Davis": {
-      "stats.adj_off.value": 88.90914927768858,
-      "stats.adj_def.value": 86.48968699839486,
-      "stats.adj_margin.value": 2.4194622792937253,
-      "stats.adj_margin.rank": 144,
-      "conf": "Big West Conference"
-   },
-   "Illinois St.": {
-      "stats.adj_off.value": 95.28057784911715,
-      "stats.adj_def.value": 91.04682985553771,
-      "stats.adj_margin.value": 4.233747993579442,
-      "stats.adj_margin.rank": 132,
-      "conf": "Missouri Valley Conference"
-   },
-   "Fairfield": {
-      "stats.adj_off.value": 90.05200642054574,
-      "stats.adj_def.value": 88.28968699839486,
-      "stats.adj_margin.value": 1.762319422150881,
-      "stats.adj_margin.rank": 152,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "Youngstown St.": {
-      "stats.adj_off.value": 88.38057784911716,
-      "stats.adj_def.value": 90.18968699839486,
-      "stats.adj_margin.value": -1.8091091492777025,
-      "stats.adj_margin.rank": 183,
-      "conf": "Horizon League"
-   },
-   "Northern Ariz.": {
-      "stats.adj_off.value": 101.45200642054573,
-      "stats.adj_def.value": 99.36111556982341,
-      "stats.adj_margin.value": 2.0908908507223174,
-      "stats.adj_margin.rank": 147,
-      "conf": "Big Sky Conference"
-   },
-   "Saint Louis": {
-      "stats.adj_off.value": 92.35200642054573,
-      "stats.adj_def.value": 87.58968699839485,
-      "stats.adj_margin.value": 4.762319422150881,
-      "stats.adj_margin.rank": 126,
+   "Davidson": {
+      "stats.adj_off.value": 92.96665329052968,
+      "stats.adj_def.value": 89.4509229534511,
+      "stats.adj_margin.value": 3.5157303370785797,
+      "stats.adj_margin.rank": 135,
       "conf": "Atlantic 10 Conference"
    },
-   "Mercer": {
-      "stats.adj_off.value": 88.65200642054572,
-      "stats.adj_def.value": 88.132544141252,
-      "stats.adj_margin.value": 0.5194622792937196,
-      "stats.adj_margin.rank": 165,
-      "conf": "Southern Conference"
+   "Santa Clara": {
+      "stats.adj_off.value": 95.46665329052968,
+      "stats.adj_def.value": 90.82235152487968,
+      "stats.adj_margin.value": 4.644301765649999,
+      "stats.adj_margin.rank": 127,
+      "conf": "West Coast Conference"
    },
-   "Fresno St.": {
-      "stats.adj_off.value": 100.78057784911715,
-      "stats.adj_def.value": 96.332544141252,
-      "stats.adj_margin.value": 4.44803370786515,
-      "stats.adj_margin.rank": 130,
+   "Bucknell": {
+      "stats.adj_off.value": 86.80951043338682,
+      "stats.adj_def.value": 82.82235152487968,
+      "stats.adj_margin.value": 3.9871589085071406,
+      "stats.adj_margin.rank": 131,
+      "conf": "Patriot League"
+   },
+   "Akron": {
+      "stats.adj_off.value": 93.66665329052971,
+      "stats.adj_def.value": 91.60806581059396,
+      "stats.adj_margin.value": 2.0585874799357526,
+      "stats.adj_margin.rank": 145,
+      "conf": "Mid American Conference"
+   },
+   "UC Davis": {
+      "stats.adj_off.value": 88.53808186195826,
+      "stats.adj_def.value": 85.00806581059395,
+      "stats.adj_margin.value": 3.5300160513643135,
+      "stats.adj_margin.rank": 134,
+      "conf": "Big West Conference"
+   },
+   "Yale": {
+      "stats.adj_off.value": 88.1809390048154,
+      "stats.adj_def.value": 84.93663723916539,
+      "stats.adj_margin.value": 3.2443017656500075,
+      "stats.adj_margin.rank": 139,
+      "conf": "Ivy League"
+   },
+   "Youngstown St.": {
+      "stats.adj_off.value": 89.12379614767255,
+      "stats.adj_def.value": 90.05092295345109,
+      "stats.adj_margin.value": -0.927126805778542,
+      "stats.adj_margin.rank": 173,
+      "conf": "Horizon League"
+   },
+   "Saint Mary's (CA)": {
+      "stats.adj_off.value": 95.39522471910112,
+      "stats.adj_def.value": 93.17949438202253,
+      "stats.adj_margin.value": 2.215730337078597,
+      "stats.adj_margin.rank": 143,
+      "conf": "West Coast Conference"
+   },
+   "Murray St.": {
+      "stats.adj_off.value": 95.40951043338684,
+      "stats.adj_def.value": 90.99378009630824,
+      "stats.adj_margin.value": 4.4157303370786,
+      "stats.adj_margin.rank": 129,
+      "conf": "Ohio Valley Conference"
+   },
+   "Saint Louis": {
+      "stats.adj_off.value": 93.1809390048154,
+      "stats.adj_def.value": 88.36520866773682,
+      "stats.adj_margin.value": 4.815730337078577,
+      "stats.adj_margin.rank": 125,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Cincinnati": {
+      "stats.adj_off.value": 92.48093900481543,
+      "stats.adj_def.value": 90.42235152487967,
+      "stats.adj_margin.value": 2.0585874799357526,
+      "stats.adj_margin.rank": 145,
+      "conf": "American Athletic Conference"
+   },
+   "Wyoming": {
+      "stats.adj_off.value": 88.4809390048154,
+      "stats.adj_def.value": 83.73663723916539,
+      "stats.adj_margin.value": 4.7443017656500075,
+      "stats.adj_margin.rank": 126,
       "conf": "Mountain West Conference"
    },
+   "Nevada": {
+      "stats.adj_off.value": 90.10951043338682,
+      "stats.adj_def.value": 88.56520866773683,
+      "stats.adj_margin.value": 1.5443017656499904,
+      "stats.adj_margin.rank": 149,
+      "conf": "Mountain West Conference"
+   },
+   "Richmond": {
+      "stats.adj_off.value": 99.10951043338684,
+      "stats.adj_def.value": 96.00806581059396,
+      "stats.adj_margin.value": 3.101444622792883,
+      "stats.adj_margin.rank": 140,
+      "conf": "Atlantic 10 Conference"
+   },
    "Virginia": {
-      "stats.adj_off.value": 91.33772070626,
-      "stats.adj_def.value": 86.97540128410915,
-      "stats.adj_margin.value": 4.362319422150847,
-      "stats.adj_margin.rank": 131,
+      "stats.adj_off.value": 90.00951043338684,
+      "stats.adj_def.value": 85.09378009630825,
+      "stats.adj_margin.value": 4.915730337078585,
+      "stats.adj_margin.rank": 123,
       "conf": "Atlantic Coast Conference"
    },
-   "James Madison": {
-      "stats.adj_off.value": 93.92343499197429,
-      "stats.adj_def.value": 91.91825842696629,
-      "stats.adj_margin.value": 2.005176565008,
-      "stats.adj_margin.rank": 149,
-      "conf": "Colonial Athletic Association"
-   },
-   "Marshall": {
-      "stats.adj_off.value": 90.70914927768858,
-      "stats.adj_def.value": 88.64682985553772,
-      "stats.adj_margin.value": 2.062319422150864,
+   "Fairfield": {
+      "stats.adj_off.value": 90.00951043338684,
+      "stats.adj_def.value": 88.06520866773681,
+      "stats.adj_margin.value": 1.9443017656500245,
       "stats.adj_margin.rank": 148,
+      "conf": "Metro Atlantic Athletic Conference"
+   },
+   "Idaho St.": {
+      "stats.adj_off.value": 92.02379614767256,
+      "stats.adj_def.value": 91.0509229534511,
+      "stats.adj_margin.value": 0.9728731942214495,
+      "stats.adj_margin.rank": 154,
+      "conf": "Big Sky Conference"
+   },
+   "Northern Ill.": {
+      "stats.adj_off.value": 98.4809390048154,
+      "stats.adj_def.value": 96.00806581059396,
+      "stats.adj_margin.value": 2.4728731942214353,
+      "stats.adj_margin.rank": 142,
+      "conf": "Mid American Conference"
+   },
+   "North Texas": {
+      "stats.adj_off.value": 97.20951043338682,
+      "stats.adj_def.value": 93.46520866773682,
+      "stats.adj_margin.value": 3.7443017656500075,
+      "stats.adj_margin.rank": 133,
       "conf": "Conference USA"
    },
    "Providence": {
-      "stats.adj_off.value": 87.78057784911715,
-      "stats.adj_def.value": 86.58968699839484,
-      "stats.adj_margin.value": 1.1908908507223117,
-      "stats.adj_margin.rank": 157,
+      "stats.adj_off.value": 89.39522471910111,
+      "stats.adj_def.value": 87.93663723916539,
+      "stats.adj_margin.value": 1.4585874799357157,
+      "stats.adj_margin.rank": 150,
       "conf": "Big East Conference"
    },
    "Jacksonville St.": {
-      "stats.adj_off.value": 90.89486356340288,
-      "stats.adj_def.value": 90.81825842696628,
-      "stats.adj_margin.value": 0.07660513643659783,
-      "stats.adj_margin.rank": 168,
+      "stats.adj_off.value": 91.06665329052969,
+      "stats.adj_def.value": 90.25092295345111,
+      "stats.adj_margin.value": 0.8157303370785769,
+      "stats.adj_margin.rank": 157,
       "conf": "Ohio Valley Conference"
    },
-   "Louisiana": {
-      "stats.adj_off.value": 90.62343499197429,
-      "stats.adj_def.value": 91.24682985553771,
-      "stats.adj_margin.value": -0.6233948635634192,
-      "stats.adj_margin.rank": 173,
-      "conf": "Sun Belt Conference"
-   },
-   "Montana": {
-      "stats.adj_off.value": 92.58057784911715,
-      "stats.adj_def.value": 90.332544141252,
-      "stats.adj_margin.value": 2.2480337078651473,
-      "stats.adj_margin.rank": 145,
-      "conf": "Big Sky Conference"
-   },
    "La Salle": {
-      "stats.adj_off.value": 94.00914927768858,
-      "stats.adj_def.value": 93.58968699839485,
-      "stats.adj_margin.value": 0.41946227929372526,
-      "stats.adj_margin.rank": 166,
+      "stats.adj_off.value": 93.53808186195826,
+      "stats.adj_def.value": 92.20806581059396,
+      "stats.adj_margin.value": 1.3300160513642965,
+      "stats.adj_margin.rank": 151,
       "conf": "Atlantic 10 Conference"
    },
+   "Tennessee Tech": {
+      "stats.adj_off.value": 91.9666532905297,
+      "stats.adj_def.value": 91.32235152487968,
+      "stats.adj_margin.value": 0.6443017656500274,
+      "stats.adj_margin.rank": 158,
+      "conf": "Ohio Valley Conference"
+   },
+   "Montana": {
+      "stats.adj_off.value": 92.40951043338683,
+      "stats.adj_def.value": 90.3509229534511,
+      "stats.adj_margin.value": 2.058587479935724,
+      "stats.adj_margin.rank": 147,
+      "conf": "Big Sky Conference"
+   },
+   "Northern Ariz.": {
+      "stats.adj_off.value": 100.43808186195827,
+      "stats.adj_def.value": 99.29378009630824,
+      "stats.adj_margin.value": 1.1443017656500274,
+      "stats.adj_margin.rank": 152,
+      "conf": "Big Sky Conference"
+   },
+   "UTEP": {
+      "stats.adj_off.value": 93.03808186195828,
+      "stats.adj_def.value": 92.5366372391654,
+      "stats.adj_margin.value": 0.5014446227928744,
+      "stats.adj_margin.rank": 161,
+      "conf": "Conference USA"
+   },
+   "Cleveland St.": {
+      "stats.adj_off.value": 94.8809390048154,
+      "stats.adj_def.value": 94.32235152487969,
+      "stats.adj_margin.value": 0.55858747993571,
+      "stats.adj_margin.rank": 160,
+      "conf": "Horizon League"
+   },
+   "James Madison": {
+      "stats.adj_off.value": 91.19522471910112,
+      "stats.adj_def.value": 90.86520866773682,
+      "stats.adj_margin.value": 0.33001605136429646,
+      "stats.adj_margin.rank": 165,
+      "conf": "Colonial Athletic Association"
+   },
+   "Mercer": {
+      "stats.adj_off.value": 88.62379614767255,
+      "stats.adj_def.value": 89.07949438202253,
+      "stats.adj_margin.value": -0.45569823434998113,
+      "stats.adj_margin.rank": 170,
+      "conf": "Southern Conference"
+   },
    "Lehigh": {
-      "stats.adj_off.value": 96.56629213483144,
-      "stats.adj_def.value": 94.932544141252,
-      "stats.adj_margin.value": 1.6337479935794477,
+      "stats.adj_off.value": 97.60951043338682,
+      "stats.adj_def.value": 96.49378009630824,
+      "stats.adj_margin.value": 1.115730337078574,
       "stats.adj_margin.rank": 153,
       "conf": "Patriot League"
    },
-   "Illinois": {
-      "stats.adj_off.value": 94.53772070626002,
-      "stats.adj_def.value": 92.632544141252,
-      "stats.adj_margin.value": 1.90517656500802,
-      "stats.adj_margin.rank": 150,
-      "conf": "Big Ten Conference"
+   "UC Irvine": {
+      "stats.adj_off.value": 94.79522471910111,
+      "stats.adj_def.value": 94.1652086677368,
+      "stats.adj_margin.value": 0.6300160513643078,
+      "stats.adj_margin.rank": 159,
+      "conf": "Big West Conference"
    },
-   "East Carolina": {
-      "stats.adj_off.value": 89.88057784911715,
-      "stats.adj_def.value": 87.44682985553771,
-      "stats.adj_margin.value": 2.4337479935794306,
-      "stats.adj_margin.rank": 143,
-      "conf": "American Athletic Conference"
-   },
-   "San Diego St.": {
-      "stats.adj_off.value": 88.79486356340287,
-      "stats.adj_def.value": 89.57540128410915,
-      "stats.adj_margin.value": -0.7805377207062776,
-      "stats.adj_margin.rank": 174,
+   "Fresno St.": {
+      "stats.adj_off.value": 99.45236757624397,
+      "stats.adj_def.value": 96.57949438202253,
+      "stats.adj_margin.value": 2.872873194221441,
+      "stats.adj_margin.rank": 141,
       "conf": "Mountain West Conference"
    },
    "Boston U.": {
-      "stats.adj_off.value": 88.12343499197429,
-      "stats.adj_def.value": 87.44682985553771,
-      "stats.adj_margin.value": 0.6766051364365779,
-      "stats.adj_margin.rank": 163,
+      "stats.adj_off.value": 88.59522471910111,
+      "stats.adj_def.value": 87.6509229534511,
+      "stats.adj_margin.value": 0.9443017656500103,
+      "stats.adj_margin.rank": 155,
       "conf": "Patriot League"
    },
-   "UC Irvine": {
-      "stats.adj_off.value": 94.19486356340286,
-      "stats.adj_def.value": 93.632544141252,
-      "stats.adj_margin.value": 0.5623194221508641,
-      "stats.adj_margin.rank": 164,
-      "conf": "Big West Conference"
+   "Elon": {
+      "stats.adj_off.value": 87.52379614767254,
+      "stats.adj_def.value": 88.50806581059396,
+      "stats.adj_margin.value": -0.9842696629214203,
+      "stats.adj_margin.rank": 175,
+      "conf": "Colonial Athletic Association"
    },
-   "Miami (OH)": {
-      "stats.adj_off.value": 96.95200642054573,
-      "stats.adj_def.value": 96.91825842696629,
-      "stats.adj_margin.value": 0.03374799357943914,
-      "stats.adj_margin.rank": 169,
-      "conf": "Mid American Conference"
-   },
-   "Tennessee Tech": {
-      "stats.adj_off.value": 93.19486356340288,
-      "stats.adj_def.value": 93.26111556982343,
-      "stats.adj_margin.value": -0.06625200642055518,
-      "stats.adj_margin.rank": 171,
-      "conf": "Ohio Valley Conference"
-   },
-   "UC Santa Barbara": {
-      "stats.adj_off.value": 91.06629213483143,
-      "stats.adj_def.value": 93.06111556982343,
-      "stats.adj_margin.value": -1.994823434992,
-      "stats.adj_margin.rank": 186,
-      "conf": "Big West Conference"
-   },
-   "Little Rock": {
-      "stats.adj_off.value": 83.59486356340288,
-      "stats.adj_def.value": 84.96111556982343,
-      "stats.adj_margin.value": -1.3662520064205523,
-      "stats.adj_margin.rank": 178,
+   "Louisiana": {
+      "stats.adj_off.value": 89.4666532905297,
+      "stats.adj_def.value": 90.57949438202253,
+      "stats.adj_margin.value": -1.1128410914928253,
+      "stats.adj_margin.rank": 180,
       "conf": "Sun Belt Conference"
    },
-   "Northern Ill.": {
-      "stats.adj_off.value": 98.80914927768858,
-      "stats.adj_def.value": 98.80397271268059,
-      "stats.adj_margin.value": 0.0051765650079858005,
-      "stats.adj_margin.rank": 170,
-      "conf": "Mid American Conference"
-   },
-   "Cleveland St.": {
-      "stats.adj_off.value": 93.33772070626,
-      "stats.adj_def.value": 94.90397271268057,
-      "stats.adj_margin.value": -1.5662520064205694,
-      "stats.adj_margin.rank": 180,
-      "conf": "Horizon League"
-   },
-   "Quinnipiac": {
-      "stats.adj_off.value": 93.49486356340286,
-      "stats.adj_def.value": 92.64682985553773,
-      "stats.adj_margin.value": 0.8480337078651274,
-      "stats.adj_margin.rank": 161,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "Rice": {
-      "stats.adj_off.value": 94.03772070626,
-      "stats.adj_def.value": 93.26111556982343,
-      "stats.adj_margin.value": 0.7766051364365723,
-      "stats.adj_margin.rank": 162,
-      "conf": "Conference USA"
-   },
    "Air Force": {
-      "stats.adj_off.value": 86.58057784911715,
-      "stats.adj_def.value": 87.432544141252,
-      "stats.adj_margin.value": -0.851966292134847,
-      "stats.adj_margin.rank": 175,
+      "stats.adj_off.value": 84.79522471910111,
+      "stats.adj_def.value": 84.33663723916538,
+      "stats.adj_margin.value": 0.4585874799357299,
+      "stats.adj_margin.rank": 163,
       "conf": "Mountain West Conference"
    },
-   "UT Martin": {
-      "stats.adj_off.value": 82.40914927768858,
-      "stats.adj_def.value": 81.40397271268057,
-      "stats.adj_margin.value": 1.0051765650080142,
-      "stats.adj_margin.rank": 159,
+   "Illinois": {
+      "stats.adj_off.value": 94.30951043338682,
+      "stats.adj_def.value": 93.46520866773682,
+      "stats.adj_margin.value": 0.8443017656500018,
+      "stats.adj_margin.rank": 156,
+      "conf": "Big Ten Conference"
+   },
+   "Montana St.": {
+      "stats.adj_off.value": 95.72379614767254,
+      "stats.adj_def.value": 95.97949438202254,
+      "stats.adj_margin.value": -0.2556982343499925,
+      "stats.adj_margin.rank": 169,
+      "conf": "Big Sky Conference"
+   },
+   "Indiana St.": {
+      "stats.adj_off.value": 91.26665329052969,
+      "stats.adj_def.value": 91.29378009630825,
+      "stats.adj_margin.value": -0.027126805778564744,
+      "stats.adj_margin.rank": 168,
+      "conf": "Missouri Valley Conference"
+   },
+   "Northeastern": {
+      "stats.adj_off.value": 89.50951043338682,
+      "stats.adj_def.value": 90.60806581059396,
+      "stats.adj_margin.value": -1.0985553772071341,
+      "stats.adj_margin.rank": 179,
+      "conf": "Colonial Athletic Association"
+   },
+   "Marshall": {
+      "stats.adj_off.value": 89.12379614767255,
+      "stats.adj_def.value": 89.66520866773682,
+      "stats.adj_margin.value": -0.5414125200642701,
+      "stats.adj_margin.rank": 171,
+      "conf": "Conference USA"
+   },
+   "Wisconsin": {
+      "stats.adj_off.value": 90.6666532905297,
+      "stats.adj_def.value": 90.17949438202254,
+      "stats.adj_margin.value": 0.4871589085071548,
+      "stats.adj_margin.rank": 162,
+      "conf": "Big Ten Conference"
+   },
+   "Little Rock": {
+      "stats.adj_off.value": 84.30951043338682,
+      "stats.adj_def.value": 85.32235152487968,
+      "stats.adj_margin.value": -1.0128410914928594,
+      "stats.adj_margin.rank": 176,
+      "conf": "Sun Belt Conference"
+   },
+   "Quinnipiac": {
+      "stats.adj_off.value": 93.552367576244,
+      "stats.adj_def.value": 93.22235152487967,
+      "stats.adj_margin.value": 0.3300160513643249,
+      "stats.adj_margin.rank": 164,
+      "conf": "Metro Atlantic Athletic Conference"
+   },
+   "Milwaukee": {
+      "stats.adj_off.value": 86.60951043338684,
+      "stats.adj_def.value": 86.63663723916538,
+      "stats.adj_margin.value": -0.027126805778536323,
+      "stats.adj_margin.rank": 167,
+      "conf": "Horizon League"
+   },
+   "Louisiana Tech": {
+      "stats.adj_off.value": 87.05236757624397,
+      "stats.adj_def.value": 88.29378009630825,
+      "stats.adj_margin.value": -1.2414125200642872,
+      "stats.adj_margin.rank": 181,
+      "conf": "Conference USA"
+   },
+   "Austin Peay": {
+      "stats.adj_off.value": 88.70951043338685,
+      "stats.adj_def.value": 90.39378009630826,
+      "stats.adj_margin.value": -1.684269662921409,
+      "stats.adj_margin.rank": 187,
       "conf": "Ohio Valley Conference"
    },
-   "Oral Roberts": {
-      "stats.adj_off.value": 92.62343499197429,
-      "stats.adj_def.value": 94.47540128410915,
-      "stats.adj_margin.value": -1.8519662921348612,
+   "Saint Joseph's": {
+      "stats.adj_off.value": 88.78093900481541,
+      "stats.adj_def.value": 89.82235152487968,
+      "stats.adj_margin.value": -1.04141252006427,
+      "stats.adj_margin.rank": 178,
+      "conf": "Atlantic 10 Conference"
+   },
+   "UAB": {
+      "stats.adj_off.value": 93.46665329052969,
+      "stats.adj_def.value": 94.92235152487966,
+      "stats.adj_margin.value": -1.455698234349967,
+      "stats.adj_margin.rank": 184,
+      "conf": "Conference USA"
+   },
+   "UC Santa Barbara": {
+      "stats.adj_off.value": 88.15236757624399,
+      "stats.adj_def.value": 91.39378009630825,
+      "stats.adj_margin.value": -3.2414125200642587,
+      "stats.adj_margin.rank": 195,
+      "conf": "Big West Conference"
+   },
+   "East Carolina": {
+      "stats.adj_off.value": 87.65236757624398,
+      "stats.adj_def.value": 87.57949438202253,
+      "stats.adj_margin.value": 0.07287319422144378,
+      "stats.adj_margin.rank": 166,
+      "conf": "American Athletic Conference"
+   },
+   "Eastern Ill.": {
+      "stats.adj_off.value": 94.95236757624397,
+      "stats.adj_def.value": 97.33663723916538,
+      "stats.adj_margin.value": -2.3842696629214117,
+      "stats.adj_margin.rank": 191,
+      "conf": "Ohio Valley Conference"
+   },
+   "Duquesne": {
+      "stats.adj_off.value": 91.40951043338684,
+      "stats.adj_def.value": 93.07949438202253,
+      "stats.adj_margin.value": -1.6699839486356893,
+      "stats.adj_margin.rank": 186,
+      "conf": "Atlantic 10 Conference"
+   },
+   "San Diego St.": {
+      "stats.adj_off.value": 86.30951043338683,
+      "stats.adj_def.value": 88.6509229534511,
+      "stats.adj_margin.value": -2.3414125200642673,
+      "stats.adj_margin.rank": 190,
+      "conf": "Mountain West Conference"
+   },
+   "North Dakota St.": {
+      "stats.adj_off.value": 92.3809390048154,
+      "stats.adj_def.value": 93.85092295345109,
+      "stats.adj_margin.value": -1.4699839486356865,
       "stats.adj_margin.rank": 185,
       "conf": "Summit League"
    },
-   "Wisconsin": {
-      "stats.adj_off.value": 91.7234349919743,
-      "stats.adj_def.value": 90.68968699839486,
-      "stats.adj_margin.value": 1.0337479935794391,
-      "stats.adj_margin.rank": 158,
-      "conf": "Big Ten Conference"
-   },
-   "Saint Joseph's": {
-      "stats.adj_off.value": 89.39486356340286,
-      "stats.adj_def.value": 89.21825842696629,
-      "stats.adj_margin.value": 0.17660513643657794,
-      "stats.adj_margin.rank": 167,
-      "conf": "Atlantic 10 Conference"
-   },
    "Xavier": {
-      "stats.adj_off.value": 94.16629213483144,
-      "stats.adj_def.value": 95.10397271268057,
-      "stats.adj_margin.value": -0.9376805778491359,
-      "stats.adj_margin.rank": 176,
+      "stats.adj_off.value": 93.49522471910112,
+      "stats.adj_def.value": 95.62235152487968,
+      "stats.adj_margin.value": -2.127126805778559,
+      "stats.adj_margin.rank": 189,
       "conf": "Big East Conference"
    },
-   "North Dakota St.": {
-      "stats.adj_off.value": 91.58057784911715,
-      "stats.adj_def.value": 92.71825842696629,
-      "stats.adj_margin.value": -1.1376805778491388,
-      "stats.adj_margin.rank": 177,
-      "conf": "Summit League"
-   },
-   "George Washington": {
-      "stats.adj_off.value": 78.95200642054573,
-      "stats.adj_def.value": 82.26111556982343,
-      "stats.adj_margin.value": -3.3091091492777025,
+   "Holy Cross": {
+      "stats.adj_off.value": 84.1809390048154,
+      "stats.adj_def.value": 87.93663723916539,
+      "stats.adj_margin.value": -3.7556982343499925,
       "stats.adj_margin.rank": 198,
-      "conf": "Atlantic 10 Conference"
+      "conf": "Patriot League"
    },
-   "Northeastern": {
-      "stats.adj_off.value": 87.13772070626001,
-      "stats.adj_def.value": 89.80397271268056,
-      "stats.adj_margin.value": -2.6662520064205495,
-      "stats.adj_margin.rank": 193,
-      "conf": "Colonial Athletic Association"
+   "Rice": {
+      "stats.adj_off.value": 95.28093900481541,
+      "stats.adj_def.value": 96.20806581059396,
+      "stats.adj_margin.value": -0.9271268057785562,
+      "stats.adj_margin.rank": 174,
+      "conf": "Conference USA"
+   },
+   "Southern Utah": {
+      "stats.adj_off.value": 95.25236757624398,
+      "stats.adj_def.value": 100.29378009630825,
+      "stats.adj_margin.value": -5.04141252006427,
+      "stats.adj_margin.rank": 208,
+      "conf": "Big Sky Conference"
    },
    "Penn": {
-      "stats.adj_off.value": 89.65200642054573,
-      "stats.adj_def.value": 89.97540128410914,
-      "stats.adj_margin.value": -0.32339486356340785,
+      "stats.adj_off.value": 88.6809390048154,
+      "stats.adj_def.value": 89.59378009630825,
+      "stats.adj_margin.value": -0.9128410914928509,
       "stats.adj_margin.rank": 172,
       "conf": "Ivy League"
    },
-   "Cincinnati": {
-      "stats.adj_off.value": 89.92343499197429,
-      "stats.adj_def.value": 92.23254414125199,
-      "stats.adj_margin.value": -2.3091091492777025,
-      "stats.adj_margin.rank": 190,
-      "conf": "American Athletic Conference"
-   },
-   "Austin Peay": {
-      "stats.adj_off.value": 88.38057784911716,
-      "stats.adj_def.value": 89.90397271268057,
-      "stats.adj_margin.value": -1.5233948635634107,
-      "stats.adj_margin.rank": 179,
-      "conf": "Ohio Valley Conference"
-   },
-   "Indiana St.": {
-      "stats.adj_off.value": 89.82343499197431,
-      "stats.adj_def.value": 92.23254414125199,
-      "stats.adj_margin.value": -2.4091091492776826,
-      "stats.adj_margin.rank": 191,
-      "conf": "Missouri Valley Conference"
-   },
-   "Montana St.": {
-      "stats.adj_off.value": 95.29486356340287,
-      "stats.adj_def.value": 97.76111556982343,
-      "stats.adj_margin.value": -2.466252006420561,
-      "stats.adj_margin.rank": 192,
-      "conf": "Big Sky Conference"
-   },
-   "UAB": {
-      "stats.adj_off.value": 92.73772070626,
-      "stats.adj_def.value": 94.74682985553771,
-      "stats.adj_margin.value": -2.0091091492777053,
-      "stats.adj_margin.rank": 188,
-      "conf": "Conference USA"
-   },
-   "Valparaiso": {
-      "stats.adj_off.value": 87.55200642054574,
-      "stats.adj_def.value": 89.56111556982343,
-      "stats.adj_margin.value": -2.009109149277691,
-      "stats.adj_margin.rank": 187,
-      "conf": "Missouri Valley Conference"
-   },
-   "Milwaukee": {
-      "stats.adj_off.value": 86.09486356340288,
-      "stats.adj_def.value": 87.88968699839485,
-      "stats.adj_margin.value": -1.7948234349919687,
-      "stats.adj_margin.rank": 182,
-      "conf": "Horizon League"
-   },
-   "Georgetown": {
-      "stats.adj_off.value": 84.46629213483145,
-      "stats.adj_def.value": 88.36111556982344,
-      "stats.adj_margin.value": -3.8948234349919915,
-      "stats.adj_margin.rank": 200,
-      "conf": "Big East Conference"
-   },
-   "American": {
-      "stats.adj_off.value": 84.6234349919743,
-      "stats.adj_def.value": 90.58968699839485,
-      "stats.adj_margin.value": -5.966252006420547,
-      "stats.adj_margin.rank": 216,
-      "conf": "Patriot League"
-   },
-   "Pacific": {
-      "stats.adj_off.value": 101.99486356340287,
-      "stats.adj_def.value": 101.132544141252,
-      "stats.adj_margin.value": 0.8623194221508754,
-      "stats.adj_margin.rank": 160,
-      "conf": "West Coast Conference"
-   },
-   "Southern Utah": {
-      "stats.adj_off.value": 95.39486356340286,
-      "stats.adj_def.value": 99.9182584269663,
-      "stats.adj_margin.value": -4.523394863563439,
-      "stats.adj_margin.rank": 205,
-      "conf": "Big Sky Conference"
-   },
-   "Oakland": {
-      "stats.adj_off.value": 93.20914927768858,
-      "stats.adj_def.value": 97.67540128410914,
-      "stats.adj_margin.value": -4.466252006420561,
-      "stats.adj_margin.rank": 203,
-      "conf": "Horizon League"
-   },
-   "Grand Canyon": {
-      "stats.adj_off.value": 90.36629213483145,
-      "stats.adj_def.value": 94.83254414125201,
-      "stats.adj_margin.value": -4.466252006420561,
-      "stats.adj_margin.rank": 203,
-      "conf": "Western Athletic Conference"
-   },
-   "Ga. Southern": {
-      "stats.adj_off.value": 100.80914927768859,
-      "stats.adj_def.value": 104.332544141252,
-      "stats.adj_margin.value": -3.5233948635634107,
-      "stats.adj_margin.rank": 199,
-      "conf": "Sun Belt Conference"
-   },
-   "CSUN": {
-      "stats.adj_off.value": 87.35200642054573,
-      "stats.adj_def.value": 94.032544141252,
-      "stats.adj_margin.value": -6.680537720706269,
-      "stats.adj_margin.rank": 223,
-      "conf": "Big West Conference"
-   },
    "Hawaii": {
-      "stats.adj_off.value": 90.12343499197429,
-      "stats.adj_def.value": 96.20397271268057,
-      "stats.adj_margin.value": -6.080537720706275,
-      "stats.adj_margin.rank": 218,
-      "conf": "Big West Conference"
-   },
-   "Duquesne": {
-      "stats.adj_off.value": 91.19486356340286,
-      "stats.adj_def.value": 94.40397271268056,
-      "stats.adj_margin.value": -3.209109149277694,
-      "stats.adj_margin.rank": 197,
-      "conf": "Atlantic 10 Conference"
-   },
-   "Louisiana Tech": {
-      "stats.adj_off.value": 86.39486356340288,
-      "stats.adj_def.value": 89.10397271268057,
-      "stats.adj_margin.value": -2.709109149277694,
-      "stats.adj_margin.rank": 194,
-      "conf": "Conference USA"
-   },
-   "Pepperdine": {
-      "stats.adj_off.value": 88.85200642054572,
-      "stats.adj_def.value": 90.87540128410913,
-      "stats.adj_margin.value": -2.0233948635634107,
-      "stats.adj_margin.rank": 189,
-      "conf": "West Coast Conference"
-   },
-   "Holy Cross": {
-      "stats.adj_off.value": 83.36629213483144,
-      "stats.adj_def.value": 88.132544141252,
-      "stats.adj_margin.value": -4.766252006420558,
-      "stats.adj_margin.rank": 208,
-      "conf": "Patriot League"
-   },
-   "Western Ill.": {
-      "stats.adj_off.value": 98.46629213483145,
-      "stats.adj_def.value": 102.37540128410916,
-      "stats.adj_margin.value": -3.909109149277711,
-      "stats.adj_margin.rank": 201,
-      "conf": "Summit League"
-   },
-   "Northern Colo.": {
-      "stats.adj_off.value": 83.63772070626001,
-      "stats.adj_def.value": 88.31825842696628,
-      "stats.adj_margin.value": -4.680537720706269,
-      "stats.adj_margin.rank": 206,
-      "conf": "Big Sky Conference"
-   },
-   "Abilene Christian": {
-      "stats.adj_off.value": 93.89486356340288,
-      "stats.adj_def.value": 98.94682985553771,
-      "stats.adj_margin.value": -5.051966292134836,
-      "stats.adj_margin.rank": 210,
-      "conf": "Southland Conference"
-   },
-   "Boise St.": {
-      "stats.adj_off.value": 89.96629213483145,
-      "stats.adj_def.value": 91.81825842696627,
-      "stats.adj_margin.value": -1.8519662921348186,
-      "stats.adj_margin.rank": 184,
-      "conf": "Mountain West Conference"
-   },
-   "Cal St. Fullerton": {
-      "stats.adj_off.value": 85.85200642054573,
-      "stats.adj_def.value": 92.732544141252,
-      "stats.adj_margin.value": -6.880537720706272,
-      "stats.adj_margin.rank": 228,
-      "conf": "Big West Conference"
-   },
-   "Wright St.": {
-      "stats.adj_off.value": 91.05200642054574,
-      "stats.adj_def.value": 92.832544141252,
-      "stats.adj_margin.value": -1.7805377207062634,
-      "stats.adj_margin.rank": 181,
-      "conf": "Horizon League"
-   },
-   "Eastern Ill.": {
-      "stats.adj_off.value": 93.65200642054572,
-      "stats.adj_def.value": 98.38968699839485,
-      "stats.adj_margin.value": -4.737680577849133,
-      "stats.adj_margin.rank": 207,
-      "conf": "Ohio Valley Conference"
-   },
-   "Weber St.": {
-      "stats.adj_off.value": 87.29486356340287,
-      "stats.adj_def.value": 92.90397271268057,
-      "stats.adj_margin.value": -5.6091091492777,
-      "stats.adj_margin.rank": 213,
-      "conf": "Big Sky Conference"
-   },
-   "Idaho": {
-      "stats.adj_off.value": 90.89486356340288,
-      "stats.adj_def.value": 93.90397271268057,
-      "stats.adj_margin.value": -3.009109149277691,
-      "stats.adj_margin.rank": 195,
-      "conf": "Big Sky Conference"
-   },
-   "Stetson": {
-      "stats.adj_off.value": 83.4234349919743,
-      "stats.adj_def.value": 89.132544141252,
-      "stats.adj_margin.value": -5.709109149277694,
-      "stats.adj_margin.rank": 214,
-      "conf": "ASUN Conference"
-   },
-   "Central Mich.": {
-      "stats.adj_off.value": 90.30914927768858,
-      "stats.adj_def.value": 95.30397271268058,
-      "stats.adj_margin.value": -4.994823434992,
+      "stats.adj_off.value": 90.92379614767255,
+      "stats.adj_def.value": 96.07949438202252,
+      "stats.adj_margin.value": -5.15569823434997,
       "stats.adj_margin.rank": 209,
+      "conf": "Big West Conference"
+   },
+   "Miami (OH)": {
+      "stats.adj_off.value": 93.1809390048154,
+      "stats.adj_def.value": 95.79378009630825,
+      "stats.adj_margin.value": -2.6128410914928537,
+      "stats.adj_margin.rank": 192,
       "conf": "Mid American Conference"
    },
-   "LMU (CA)": {
-      "stats.adj_off.value": 88.08057784911716,
-      "stats.adj_def.value": 94.21825842696629,
-      "stats.adj_margin.value": -6.137680577849125,
-      "stats.adj_margin.rank": 219,
+   "Oral Roberts": {
+      "stats.adj_off.value": 90.58093900481539,
+      "stats.adj_def.value": 93.52235152487968,
+      "stats.adj_margin.value": -2.94141252006429,
+      "stats.adj_margin.rank": 194,
+      "conf": "Summit League"
+   },
+   "UT Martin": {
+      "stats.adj_off.value": 82.59522471910114,
+      "stats.adj_def.value": 84.37949438202253,
+      "stats.adj_margin.value": -1.784269662921389,
+      "stats.adj_margin.rank": 188,
+      "conf": "Ohio Valley Conference"
+   },
+   "Grand Canyon": {
+      "stats.adj_off.value": 89.50951043338682,
+      "stats.adj_def.value": 94.22235152487967,
+      "stats.adj_margin.value": -4.712841091492848,
+      "stats.adj_margin.rank": 205,
+      "conf": "Western Athletic Conference"
+   },
+   "Pepperdine": {
+      "stats.adj_off.value": 88.08093900481539,
+      "stats.adj_def.value": 89.3509229534511,
+      "stats.adj_margin.value": -1.269983948635712,
+      "stats.adj_margin.rank": 182,
       "conf": "West Coast Conference"
    },
    "Southern Miss.": {
-      "stats.adj_off.value": 89.16629213483144,
-      "stats.adj_def.value": 97.632544141252,
-      "stats.adj_margin.value": -8.46625200642056,
-      "stats.adj_margin.rank": 234,
+      "stats.adj_off.value": 91.09522471910111,
+      "stats.adj_def.value": 96.76520866773681,
+      "stats.adj_margin.value": -5.6699839486357035,
+      "stats.adj_margin.rank": 213,
       "conf": "Conference USA"
    },
-   "Omaha": {
-      "stats.adj_off.value": 84.40914927768858,
-      "stats.adj_def.value": 90.37540128410915,
-      "stats.adj_margin.value": -5.966252006420561,
-      "stats.adj_margin.rank": 217,
-      "conf": "Summit League"
+   "Boise St.": {
+      "stats.adj_off.value": 89.85236757624398,
+      "stats.adj_def.value": 91.22235152487967,
+      "stats.adj_margin.value": -1.3699839486356922,
+      "stats.adj_margin.rank": 183,
+      "conf": "Mountain West Conference"
    },
-   "Eastern Mich.": {
-      "stats.adj_off.value": 94.59486356340287,
-      "stats.adj_def.value": 99.00397271268055,
-      "stats.adj_margin.value": -4.409109149277683,
-      "stats.adj_margin.rank": 202,
-      "conf": "Mid American Conference"
+   "LMU (CA)": {
+      "stats.adj_off.value": 87.08093900481542,
+      "stats.adj_def.value": 91.57949438202253,
+      "stats.adj_margin.value": -4.498555377207111,
+      "stats.adj_margin.rank": 201,
+      "conf": "West Coast Conference"
    },
-   "UC San Diego": {
-      "stats.adj_off.value": 84.35200642054572,
-      "stats.adj_def.value": 91.132544141252,
-      "stats.adj_margin.value": -6.780537720706278,
-      "stats.adj_margin.rank": 226,
-      "conf": "Big West Conference"
+   "Oakland": {
+      "stats.adj_off.value": 93.63808186195826,
+      "stats.adj_def.value": 97.87949438202253,
+      "stats.adj_margin.value": -4.241412520064273,
+      "stats.adj_margin.rank": 199,
+      "conf": "Horizon League"
    },
-   "North Dakota": {
-      "stats.adj_off.value": 93.36629213483144,
-      "stats.adj_def.value": 101.31825842696628,
-      "stats.adj_margin.value": -7.951966292134841,
-      "stats.adj_margin.rank": 233,
-      "conf": "Summit League"
-   },
-   "Bradley": {
-      "stats.adj_off.value": 91.05200642054574,
-      "stats.adj_def.value": 94.08968699839484,
-      "stats.adj_margin.value": -3.037680577849102,
-      "stats.adj_margin.rank": 196,
-      "conf": "Missouri Valley Conference"
-   },
-   "Tennessee St.": {
-      "stats.adj_off.value": 90.58057784911716,
-      "stats.adj_def.value": 99.332544141252,
-      "stats.adj_margin.value": -8.751966292134838,
-      "stats.adj_margin.rank": 235,
-      "conf": "Ohio Valley Conference"
-   },
-   "New Mexico St.": {
-      "stats.adj_off.value": 88.7091492776886,
-      "stats.adj_def.value": 93.9182584269663,
-      "stats.adj_margin.value": -5.209109149277708,
-      "stats.adj_margin.rank": 211,
-      "conf": "Western Athletic Conference"
-   },
-   "Manhattan": {
-      "stats.adj_off.value": 85.79486356340287,
-      "stats.adj_def.value": 91.18968699839486,
-      "stats.adj_margin.value": -5.3948234349919915,
-      "stats.adj_margin.rank": 212,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "Utah Valley": {
-      "stats.adj_off.value": 83.80914927768858,
-      "stats.adj_def.value": 90.67540128410914,
-      "stats.adj_margin.value": -6.8662520064205665,
-      "stats.adj_margin.rank": 227,
-      "conf": "Western Athletic Conference"
-   },
-   "Monmouth": {
-      "stats.adj_off.value": 80.06629213483143,
-      "stats.adj_def.value": 90.74682985553771,
-      "stats.adj_margin.value": -10.680537720706283,
-      "stats.adj_margin.rank": 251,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "App State": {
-      "stats.adj_off.value": 91.73772070626,
-      "stats.adj_def.value": 97.68968699839486,
-      "stats.adj_margin.value": -5.9519662921348555,
-      "stats.adj_margin.rank": 215,
-      "conf": "Sun Belt Conference"
-   },
-   "Army West Point": {
-      "stats.adj_off.value": 88.53772070626002,
-      "stats.adj_def.value": 97.96111556982343,
-      "stats.adj_margin.value": -9.423394863563416,
-      "stats.adj_margin.rank": 240,
+   "American": {
+      "stats.adj_off.value": 84.30951043338682,
+      "stats.adj_def.value": 91.25092295345111,
+      "stats.adj_margin.value": -6.94141252006429,
+      "stats.adj_margin.rank": 232,
       "conf": "Patriot League"
    },
-   "Lamar University": {
-      "stats.adj_off.value": 83.53772070626002,
-      "stats.adj_def.value": 90.21825842696629,
-      "stats.adj_margin.value": -6.680537720706269,
-      "stats.adj_margin.rank": 223,
-      "conf": "Southland Conference"
+   "Valparaiso": {
+      "stats.adj_off.value": 87.80951043338683,
+      "stats.adj_def.value": 91.26520866773681,
+      "stats.adj_margin.value": -3.455698234349981,
+      "stats.adj_margin.rank": 197,
+      "conf": "Missouri Valley Conference"
    },
-   "North Florida": {
-      "stats.adj_off.value": 90.09486356340288,
-      "stats.adj_def.value": 96.51825842696628,
-      "stats.adj_margin.value": -6.423394863563402,
+   "North Dakota": {
+      "stats.adj_off.value": 93.26665329052969,
+      "stats.adj_def.value": 99.33663723916538,
+      "stats.adj_margin.value": -6.069983948635695,
       "stats.adj_margin.rank": 222,
+      "conf": "Summit League"
+   },
+   "UC San Diego": {
+      "stats.adj_off.value": 85.60951043338683,
+      "stats.adj_def.value": 91.37949438202253,
+      "stats.adj_margin.value": -5.769983948635698,
+      "stats.adj_margin.rank": 215,
+      "conf": "Big West Conference"
+   },
+   "Stetson": {
+      "stats.adj_off.value": 82.89522471910112,
+      "stats.adj_def.value": 87.83663723916538,
+      "stats.adj_margin.value": -4.941412520064262,
+      "stats.adj_margin.rank": 207,
       "conf": "ASUN Conference"
    },
+   "Cal St. Fullerton": {
+      "stats.adj_off.value": 87.32379614767257,
+      "stats.adj_def.value": 94.06520866773683,
+      "stats.adj_margin.value": -6.741412520064259,
+      "stats.adj_margin.rank": 229,
+      "conf": "Big West Conference"
+   },
+   "Pacific": {
+      "stats.adj_off.value": 100.03808186195826,
+      "stats.adj_def.value": 101.06520866773683,
+      "stats.adj_margin.value": -1.0271268057785647,
+      "stats.adj_margin.rank": 177,
+      "conf": "West Coast Conference"
+   },
+   "Idaho": {
+      "stats.adj_off.value": 91.98093900481541,
+      "stats.adj_def.value": 94.75092295345111,
+      "stats.adj_margin.value": -2.769983948635698,
+      "stats.adj_margin.rank": 193,
+      "conf": "Big Sky Conference"
+   },
+   "Eastern Mich.": {
+      "stats.adj_off.value": 94.52379614767256,
+      "stats.adj_def.value": 97.87949438202253,
+      "stats.adj_margin.value": -3.3556982343499726,
+      "stats.adj_margin.rank": 196,
+      "conf": "Mid American Conference"
+   },
+   "Abilene Christian": {
+      "stats.adj_off.value": 94.29522471910111,
+      "stats.adj_def.value": 99.46520866773682,
+      "stats.adj_margin.value": -5.1699839486357035,
+      "stats.adj_margin.rank": 210,
+      "conf": "Southland Conference"
+   },
+   "George Washington": {
+      "stats.adj_off.value": 76.9666532905297,
+      "stats.adj_def.value": 83.25092295345112,
+      "stats.adj_margin.value": -6.284269662921417,
+      "stats.adj_margin.rank": 224,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Central Mich.": {
+      "stats.adj_off.value": 89.98093900481543,
+      "stats.adj_def.value": 94.72235152487968,
+      "stats.adj_margin.value": -4.741412520064259,
+      "stats.adj_margin.rank": 206,
+      "conf": "Mid American Conference"
+   },
+   "Ga. Southern": {
+      "stats.adj_off.value": 98.90951043338684,
+      "stats.adj_def.value": 103.62235152487966,
+      "stats.adj_margin.value": -4.71284109149282,
+      "stats.adj_margin.rank": 204,
+      "conf": "Sun Belt Conference"
+   },
+   "Western Ill.": {
+      "stats.adj_off.value": 97.70951043338684,
+      "stats.adj_def.value": 103.56520866773683,
+      "stats.adj_margin.value": -5.855698234349987,
+      "stats.adj_margin.rank": 216,
+      "conf": "Summit League"
+   },
+   "FIU": {
+      "stats.adj_off.value": 86.6952247191011,
+      "stats.adj_def.value": 92.73663723916538,
+      "stats.adj_margin.value": -6.04141252006427,
+      "stats.adj_margin.rank": 221,
+      "conf": "Conference USA"
+   },
    "Texas St.": {
-      "stats.adj_off.value": 89.98057784911717,
-      "stats.adj_def.value": 97.04682985553771,
-      "stats.adj_margin.value": -7.066252006420541,
+      "stats.adj_off.value": 91.40951043338684,
+      "stats.adj_def.value": 97.16520866773682,
+      "stats.adj_margin.value": -5.755698234349978,
+      "stats.adj_margin.rank": 214,
+      "conf": "Sun Belt Conference"
+   },
+   "Manhattan": {
+      "stats.adj_off.value": 87.22379614767254,
+      "stats.adj_def.value": 92.40806581059397,
+      "stats.adj_margin.value": -5.184269662921423,
+      "stats.adj_margin.rank": 211,
+      "conf": "Metro Atlantic Athletic Conference"
+   },
+   "UC Riverside": {
+      "stats.adj_off.value": 82.40951043338683,
+      "stats.adj_def.value": 87.00806581059396,
+      "stats.adj_margin.value": -4.598555377207134,
+      "stats.adj_margin.rank": 202,
+      "conf": "Big West Conference"
+   },
+   "St. Bonaventure": {
+      "stats.adj_off.value": 84.63808186195827,
+      "stats.adj_def.value": 91.90806581059398,
+      "stats.adj_margin.value": -7.269983948635712,
+      "stats.adj_margin.rank": 234,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Georgetown": {
+      "stats.adj_off.value": 84.75236757624397,
+      "stats.adj_def.value": 91.07949438202252,
+      "stats.adj_margin.value": -6.327126805778548,
+      "stats.adj_margin.rank": 226,
+      "conf": "Big East Conference"
+   },
+   "App State": {
+      "stats.adj_off.value": 90.03808186195826,
+      "stats.adj_def.value": 96.80806581059396,
+      "stats.adj_margin.value": -6.769983948635698,
       "stats.adj_margin.rank": 230,
       "conf": "Sun Belt Conference"
    },
-   "Col. of Charleston": {
-      "stats.adj_off.value": 96.62343499197429,
-      "stats.adj_def.value": 103.58968699839485,
-      "stats.adj_margin.value": -6.966252006420561,
-      "stats.adj_margin.rank": 229,
-      "conf": "Colonial Athletic Association"
-   },
-   "George Mason": {
-      "stats.adj_off.value": 88.19486356340288,
-      "stats.adj_def.value": 97.64682985553773,
-      "stats.adj_margin.value": -9.451966292134856,
-      "stats.adj_margin.rank": 241,
-      "conf": "Atlantic 10 Conference"
-   },
-   "UC Riverside": {
-      "stats.adj_off.value": 84.60914927768859,
-      "stats.adj_def.value": 90.90397271268058,
-      "stats.adj_margin.value": -6.294823434991997,
-      "stats.adj_margin.rank": 220,
-      "conf": "Big West Conference"
-   },
-   "Coastal Carolina": {
-      "stats.adj_off.value": 88.86629213483145,
-      "stats.adj_def.value": 97.97540128410913,
-      "stats.adj_margin.value": -9.109109149277671,
-      "stats.adj_margin.rank": 237,
-      "conf": "Sun Belt Conference"
-   },
-   "Maine": {
-      "stats.adj_off.value": 84.23772070626,
-      "stats.adj_def.value": 93.11825842696628,
-      "stats.adj_margin.value": -8.880537720706272,
-      "stats.adj_margin.rank": 236,
-      "conf": "America East Conference"
-   },
-   "St. Bonaventure": {
-      "stats.adj_off.value": 80.80914927768859,
-      "stats.adj_def.value": 90.31825842696628,
-      "stats.adj_margin.value": -9.509109149277691,
-      "stats.adj_margin.rank": 242,
-      "conf": "Atlantic 10 Conference"
-   },
-   "Albany (NY)": {
-      "stats.adj_off.value": 77.83772070626001,
-      "stats.adj_def.value": 84.57540128410915,
-      "stats.adj_margin.value": -6.737680577849133,
-      "stats.adj_margin.rank": 225,
-      "conf": "America East Conference"
-   },
-   "Wagner": {
-      "stats.adj_off.value": 81.66629213483144,
-      "stats.adj_def.value": 92.24682985553771,
-      "stats.adj_margin.value": -10.580537720706275,
-      "stats.adj_margin.rank": 249,
-      "conf": "Northeast Conference"
-   },
-   "Vermont": {
-      "stats.adj_off.value": 84.26629213483145,
-      "stats.adj_def.value": 90.67540128410914,
-      "stats.adj_margin.value": -6.409109149277697,
-      "stats.adj_margin.rank": 221,
-      "conf": "America East Conference"
-   },
-   "SIUE": {
-      "stats.adj_off.value": 89.82343499197431,
-      "stats.adj_def.value": 101.46111556982343,
-      "stats.adj_margin.value": -11.637680577849125,
-      "stats.adj_margin.rank": 259,
-      "conf": "Ohio Valley Conference"
-   },
-   "FIU": {
-      "stats.adj_off.value": 84.59486356340287,
-      "stats.adj_def.value": 93.94682985553771,
-      "stats.adj_margin.value": -9.351966292134847,
-      "stats.adj_margin.rank": 239,
-      "conf": "Conference USA"
-   },
-   "St. Francis Brooklyn": {
-      "stats.adj_off.value": 86.0234349919743,
-      "stats.adj_def.value": 96.07540128410915,
-      "stats.adj_margin.value": -10.05196629213485,
-      "stats.adj_margin.rank": 247,
-      "conf": "Northeast Conference"
-   },
-   "Jacksonville": {
-      "stats.adj_off.value": 81.16629213483145,
-      "stats.adj_def.value": 92.10397271268059,
-      "stats.adj_margin.value": -10.937680577849136,
-      "stats.adj_margin.rank": 255,
-      "conf": "ASUN Conference"
-   },
-   "Evansville": {
-      "stats.adj_off.value": 93.72343499197429,
-      "stats.adj_def.value": 104.18968699839486,
-      "stats.adj_margin.value": -10.466252006420575,
-      "stats.adj_margin.rank": 248,
-      "conf": "Missouri Valley Conference"
+   "Utah Valley": {
+      "stats.adj_off.value": 84.15236757624396,
+      "stats.adj_def.value": 90.59378009630825,
+      "stats.adj_margin.value": -6.44141252006429,
+      "stats.adj_margin.rank": 227,
+      "conf": "Western Athletic Conference"
    },
    "Southeastern La.": {
-      "stats.adj_off.value": 82.30914927768859,
-      "stats.adj_def.value": 90.21825842696629,
-      "stats.adj_margin.value": -7.909109149277697,
-      "stats.adj_margin.rank": 232,
+      "stats.adj_off.value": 83.98093900481541,
+      "stats.adj_def.value": 89.37949438202253,
+      "stats.adj_margin.value": -5.398555377207117,
+      "stats.adj_margin.rank": 212,
       "conf": "Southland Conference"
    },
-   "Samford": {
-      "stats.adj_off.value": 87.13772070626001,
-      "stats.adj_def.value": 96.71825842696629,
-      "stats.adj_margin.value": -9.580537720706275,
-      "stats.adj_margin.rank": 243,
-      "conf": "Southern Conference"
+   "Lamar University": {
+      "stats.adj_off.value": 82.90951043338684,
+      "stats.adj_def.value": 89.56520866773683,
+      "stats.adj_margin.value": -6.655698234349984,
+      "stats.adj_margin.rank": 228,
+      "conf": "Southland Conference"
    },
-   "Arkansas St.": {
-      "stats.adj_off.value": 96.9234349919743,
-      "stats.adj_def.value": 106.23254414125199,
-      "stats.adj_margin.value": -9.309109149277688,
+   "CSUN": {
+      "stats.adj_off.value": 85.40951043338684,
+      "stats.adj_def.value": 93.13663723916538,
+      "stats.adj_margin.value": -7.727126805778539,
+      "stats.adj_margin.rank": 235,
+      "conf": "Big West Conference"
+   },
+   "Col. of Charleston": {
+      "stats.adj_off.value": 96.99522471910112,
+      "stats.adj_def.value": 103.1509229534511,
+      "stats.adj_margin.value": -6.155698234349984,
+      "stats.adj_margin.rank": 223,
+      "conf": "Colonial Athletic Association"
+   },
+   "Vermont": {
+      "stats.adj_off.value": 85.75236757624398,
+      "stats.adj_def.value": 90.43663723916539,
+      "stats.adj_margin.value": -4.684269662921409,
+      "stats.adj_margin.rank": 203,
+      "conf": "America East Conference"
+   },
+   "Albany (NY)": {
+      "stats.adj_off.value": 77.45236757624397,
+      "stats.adj_def.value": 83.32235152487968,
+      "stats.adj_margin.value": -5.869983948635706,
+      "stats.adj_margin.rank": 217,
+      "conf": "America East Conference"
+   },
+   "North Florida": {
+      "stats.adj_off.value": 90.58093900481539,
+      "stats.adj_def.value": 96.59378009630827,
+      "stats.adj_margin.value": -6.012841091492874,
+      "stats.adj_margin.rank": 220,
+      "conf": "ASUN Conference"
+   },
+   "Northern Colo.": {
+      "stats.adj_off.value": 83.03808186195828,
+      "stats.adj_def.value": 89.33663723916538,
+      "stats.adj_margin.value": -6.298555377207109,
+      "stats.adj_margin.rank": 225,
+      "conf": "Big Sky Conference"
+   },
+   "Weber St.": {
+      "stats.adj_off.value": 88.26665329052969,
+      "stats.adj_def.value": 95.29378009630825,
+      "stats.adj_margin.value": -7.027126805778565,
+      "stats.adj_margin.rank": 233,
+      "conf": "Big Sky Conference"
+   },
+   "Sacramento St.": {
+      "stats.adj_off.value": 90.69522471910113,
+      "stats.adj_def.value": 99.19378009630825,
+      "stats.adj_margin.value": -8.498555377207111,
       "stats.adj_margin.rank": 238,
-      "conf": "Sun Belt Conference"
+      "conf": "Big Sky Conference"
    },
-   "Campbell": {
-      "stats.adj_off.value": 78.46629213483145,
-      "stats.adj_def.value": 89.36111556982343,
-      "stats.adj_margin.value": -10.894823434991977,
-      "stats.adj_margin.rank": 254,
-      "conf": "Big South Conference"
+   "Bradley": {
+      "stats.adj_off.value": 87.79522471910113,
+      "stats.adj_def.value": 92.19378009630823,
+      "stats.adj_margin.value": -4.398555377207103,
+      "stats.adj_margin.rank": 200,
+      "conf": "Missouri Valley Conference"
    },
-   "Fla. Atlantic": {
-      "stats.adj_off.value": 89.28057784911715,
-      "stats.adj_def.value": 96.61825842696629,
-      "stats.adj_margin.value": -7.337680577849142,
-      "stats.adj_margin.rank": 231,
-      "conf": "Conference USA"
-   },
-   "Kennesaw St.": {
-      "stats.adj_off.value": 88.18057784911716,
-      "stats.adj_def.value": 97.80397271268058,
-      "stats.adj_margin.value": -9.62339486356342,
+   "Jacksonville": {
+      "stats.adj_off.value": 80.05236757624398,
+      "stats.adj_def.value": 89.67949438202254,
+      "stats.adj_margin.value": -9.627126805778559,
       "stats.adj_margin.rank": 244,
       "conf": "ASUN Conference"
    },
-   "Robert Morris": {
-      "stats.adj_off.value": 77.78057784911715,
-      "stats.adj_def.value": 88.38968699839485,
-      "stats.adj_margin.value": -10.6091091492777,
+   "Monmouth": {
+      "stats.adj_off.value": 79.23808186195826,
+      "stats.adj_def.value": 89.80806581059396,
+      "stats.adj_margin.value": -10.569983948635695,
       "stats.adj_margin.rank": 250,
-      "conf": "Horizon League"
-   },
-   "NJIT": {
-      "stats.adj_off.value": 84.20914927768858,
-      "stats.adj_def.value": 96.97540128410915,
-      "stats.adj_margin.value": -12.766252006420572,
-      "stats.adj_margin.rank": 271,
-      "conf": "America East Conference"
-   },
-   "Sacramento St.": {
-      "stats.adj_off.value": 88.5234349919743,
-      "stats.adj_def.value": 99.37540128410915,
-      "stats.adj_margin.value": -10.851966292134847,
-      "stats.adj_margin.rank": 252,
-      "conf": "Big Sky Conference"
-   },
-   "Longwood": {
-      "stats.adj_off.value": 92.00914927768859,
-      "stats.adj_def.value": 105.24682985553771,
-      "stats.adj_margin.value": -13.237680577849119,
-      "stats.adj_margin.rank": 278,
-      "conf": "Big South Conference"
-   },
-   "Marist": {
-      "stats.adj_off.value": 81.19486356340286,
-      "stats.adj_def.value": 91.08968699839485,
-      "stats.adj_margin.value": -9.894823434991991,
-      "stats.adj_margin.rank": 245,
       "conf": "Metro Atlantic Athletic Conference"
    },
-   "UTRGV": {
-      "stats.adj_off.value": 83.08057784911716,
-      "stats.adj_def.value": 94.50397271268056,
-      "stats.adj_margin.value": -11.423394863563402,
-      "stats.adj_margin.rank": 257,
-      "conf": "Western Athletic Conference"
-   },
-   "Wofford": {
-      "stats.adj_off.value": 86.03772070626002,
-      "stats.adj_def.value": 96.91825842696629,
-      "stats.adj_margin.value": -10.880537720706272,
-      "stats.adj_margin.rank": 253,
-      "conf": "Southern Conference"
-   },
-   "Lipscomb": {
-      "stats.adj_off.value": 84.99486356340286,
-      "stats.adj_def.value": 97.0182584269663,
-      "stats.adj_margin.value": -12.02339486356344,
-      "stats.adj_margin.rank": 266,
-      "conf": "ASUN Conference"
-   },
-   "Lafayette": {
-      "stats.adj_off.value": 77.93772070626001,
-      "stats.adj_def.value": 90.37540128410915,
-      "stats.adj_margin.value": -12.437680577849136,
-      "stats.adj_margin.rank": 269,
+   "Army West Point": {
+      "stats.adj_off.value": 87.82379614767255,
+      "stats.adj_def.value": 97.30806581059394,
+      "stats.adj_margin.value": -9.484269662921392,
+      "stats.adj_margin.rank": 243,
       "conf": "Patriot League"
    },
-   "Utah St.": {
-      "stats.adj_off.value": 92.22343499197429,
-      "stats.adj_def.value": 105.00397271268056,
-      "stats.adj_margin.value": -12.780537720706278,
-      "stats.adj_margin.rank": 272,
-      "conf": "Mountain West Conference"
-   },
-   "UMass Lowell": {
-      "stats.adj_off.value": 81.45200642054573,
-      "stats.adj_def.value": 93.20397271268058,
-      "stats.adj_margin.value": -11.751966292134853,
-      "stats.adj_margin.rank": 261,
-      "conf": "America East Conference"
-   },
-   "Seattle U": {
-      "stats.adj_off.value": 86.89486356340286,
-      "stats.adj_def.value": 98.54682985553771,
-      "stats.adj_margin.value": -11.651966292134844,
-      "stats.adj_margin.rank": 260,
-      "conf": "Western Athletic Conference"
-   },
-   "A&M-Corpus Christi": {
-      "stats.adj_off.value": 82.58057784911715,
-      "stats.adj_def.value": 95.71825842696629,
-      "stats.adj_margin.value": -13.137680577849139,
-      "stats.adj_margin.rank": 276,
-      "conf": "Southland Conference"
-   },
-   "Rider": {
-      "stats.adj_off.value": 82.35200642054573,
-      "stats.adj_def.value": 93.40397271268058,
-      "stats.adj_margin.value": -11.05196629213485,
-      "stats.adj_margin.rank": 256,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "Eastern Ky.": {
-      "stats.adj_off.value": 86.95200642054573,
-      "stats.adj_def.value": 99.07540128410915,
-      "stats.adj_margin.value": -12.12339486356342,
-      "stats.adj_margin.rank": 267,
+   "Tennessee St.": {
+      "stats.adj_off.value": 91.35236757624398,
+      "stats.adj_def.value": 100.3509229534511,
+      "stats.adj_margin.value": -8.998555377207126,
+      "stats.adj_margin.rank": 240,
       "conf": "Ohio Valley Conference"
    },
-   "Coppin St.": {
-      "stats.adj_off.value": 81.08057784911716,
-      "stats.adj_def.value": 98.08968699839487,
-      "stats.adj_margin.value": -17.009109149277705,
-      "stats.adj_margin.rank": 306,
-      "conf": "Mid-Eastern Athletic Conference"
-   },
-   "USC Upstate": {
-      "stats.adj_off.value": 81.39486356340288,
-      "stats.adj_def.value": 94.50397271268056,
-      "stats.adj_margin.value": -13.109109149277685,
-      "stats.adj_margin.rank": 275,
-      "conf": "Big South Conference"
-   },
-   "Morgan St.": {
-      "stats.adj_off.value": 81.38057784911715,
-      "stats.adj_def.value": 95.06111556982343,
-      "stats.adj_margin.value": -13.680537720706283,
-      "stats.adj_margin.rank": 280,
-      "conf": "Mid-Eastern Athletic Conference"
-   },
-   "Southern U.": {
-      "stats.adj_off.value": 81.09486356340288,
-      "stats.adj_def.value": 92.94682985553771,
-      "stats.adj_margin.value": -11.851966292134833,
-      "stats.adj_margin.rank": 264,
-      "conf": "Southwestern Athletic Conference"
-   },
-   "Tarleton St.": {
-      "stats.adj_off.value": 75.28057784911715,
-      "stats.adj_def.value": 90.66111556982342,
-      "stats.adj_margin.value": -15.380537720706272,
-      "stats.adj_margin.rank": 289,
-      "conf": "Western Athletic Conference"
-   },
-   "Denver": {
-      "stats.adj_off.value": 93.79486356340287,
-      "stats.adj_def.value": 106.20397271268057,
-      "stats.adj_margin.value": -12.409109149277697,
-      "stats.adj_margin.rank": 268,
+   "Omaha": {
+      "stats.adj_off.value": 83.65236757624398,
+      "stats.adj_def.value": 90.59378009630825,
+      "stats.adj_margin.value": -6.941412520064276,
+      "stats.adj_margin.rank": 231,
       "conf": "Summit League"
    },
-   "Howard": {
-      "stats.adj_off.value": 83.33772070626,
-      "stats.adj_def.value": 99.00397271268055,
-      "stats.adj_margin.value": -15.66625200642055,
-      "stats.adj_margin.rank": 292,
-      "conf": "Mid-Eastern Athletic Conference"
+   "New Mexico St.": {
+      "stats.adj_off.value": 88.33808186195826,
+      "stats.adj_def.value": 94.26520866773681,
+      "stats.adj_margin.value": -5.927126805778556,
+      "stats.adj_margin.rank": 218,
+      "conf": "Western Athletic Conference"
    },
-   "Norfolk St.": {
-      "stats.adj_off.value": 80.2091492776886,
-      "stats.adj_def.value": 93.50397271268056,
-      "stats.adj_margin.value": -13.294823434991969,
-      "stats.adj_margin.rank": 279,
+   "SIUE": {
+      "stats.adj_off.value": 91.19522471910112,
+      "stats.adj_def.value": 101.86520866773684,
+      "stats.adj_margin.value": -10.669983948635718,
+      "stats.adj_margin.rank": 252,
+      "conf": "Ohio Valley Conference"
+   },
+   "Wofford": {
+      "stats.adj_off.value": 87.93808186195827,
+      "stats.adj_def.value": 96.20806581059396,
+      "stats.adj_margin.value": -8.269983948635698,
+      "stats.adj_margin.rank": 237,
+      "conf": "Southern Conference"
+   },
+   "Maine": {
+      "stats.adj_off.value": 83.13808186195827,
+      "stats.adj_def.value": 92.17949438202254,
+      "stats.adj_margin.value": -9.04141252006427,
+      "stats.adj_margin.rank": 241,
+      "conf": "America East Conference"
+   },
+   "Wright St.": {
+      "stats.adj_off.value": 90.52379614767256,
+      "stats.adj_def.value": 96.53663723916539,
+      "stats.adj_margin.value": -6.012841091492831,
+      "stats.adj_margin.rank": 219,
+      "conf": "Horizon League"
+   },
+   "Coastal Carolina": {
+      "stats.adj_off.value": 88.83808186195824,
+      "stats.adj_def.value": 98.53663723916537,
+      "stats.adj_margin.value": -9.698555377207128,
+      "stats.adj_margin.rank": 245,
+      "conf": "Sun Belt Conference"
+   },
+   "Campbell": {
+      "stats.adj_off.value": 79.75236757624397,
+      "stats.adj_def.value": 90.07949438202253,
+      "stats.adj_margin.value": -10.327126805778562,
+      "stats.adj_margin.rank": 249,
+      "conf": "Big South Conference"
+   },
+   "George Mason": {
+      "stats.adj_off.value": 87.15236757624398,
+      "stats.adj_def.value": 97.7366372391654,
+      "stats.adj_margin.value": -10.584269662921429,
+      "stats.adj_margin.rank": 251,
+      "conf": "Atlantic 10 Conference"
+   },
+   "Utah St.": {
+      "stats.adj_off.value": 92.62379614767255,
+      "stats.adj_def.value": 104.10806581059396,
+      "stats.adj_margin.value": -11.484269662921406,
+      "stats.adj_margin.rank": 260,
+      "conf": "Mountain West Conference"
+   },
+   "Robert Morris": {
+      "stats.adj_off.value": 78.06665329052969,
+      "stats.adj_def.value": 88.27949438202253,
+      "stats.adj_margin.value": -10.212841091492848,
+      "stats.adj_margin.rank": 247,
+      "conf": "Horizon League"
+   },
+   "Samford": {
+      "stats.adj_off.value": 89.0809390048154,
+      "stats.adj_def.value": 98.42235152487966,
+      "stats.adj_margin.value": -9.341412520064253,
+      "stats.adj_margin.rank": 242,
+      "conf": "Southern Conference"
+   },
+   "Longwood": {
+      "stats.adj_off.value": 93.63808186195826,
+      "stats.adj_def.value": 104.99378009630824,
+      "stats.adj_margin.value": -11.355698234349987,
+      "stats.adj_margin.rank": 258,
+      "conf": "Big South Conference"
+   },
+   "N.C. A&T": {
+      "stats.adj_off.value": 93.02379614767256,
+      "stats.adj_def.value": 101.7509229534511,
+      "stats.adj_margin.value": -8.72712680577854,
+      "stats.adj_margin.rank": 239,
       "conf": "Mid-Eastern Athletic Conference"
    },
    "Fairleigh Dickinson": {
-      "stats.adj_off.value": 83.56629213483143,
-      "stats.adj_def.value": 96.07540128410915,
-      "stats.adj_margin.value": -12.50910914927772,
-      "stats.adj_margin.rank": 270,
+      "stats.adj_off.value": 83.70951043338685,
+      "stats.adj_def.value": 93.99378009630824,
+      "stats.adj_margin.value": -10.284269662921389,
+      "stats.adj_margin.rank": 248,
       "conf": "Northeast Conference"
    },
-   "Ark.-Pine Bluff": {
-      "stats.adj_off.value": 89.69486356340288,
-      "stats.adj_def.value": 102.87540128410915,
-      "stats.adj_margin.value": -13.180537720706269,
-      "stats.adj_margin.rank": 277,
-      "conf": "Southwestern Athletic Conference"
+   "St. Francis Brooklyn": {
+      "stats.adj_off.value": 85.23808186195826,
+      "stats.adj_def.value": 96.00806581059396,
+      "stats.adj_margin.value": -10.769983948635698,
+      "stats.adj_margin.rank": 254,
+      "conf": "Northeast Conference"
    },
-   "CSU Bakersfield": {
-      "stats.adj_off.value": 82.28057784911717,
-      "stats.adj_def.value": 92.24682985553771,
-      "stats.adj_margin.value": -9.966252006420547,
-      "stats.adj_margin.rank": 246,
-      "conf": "Big West Conference"
+   "Denver": {
+      "stats.adj_off.value": 93.73808186195826,
+      "stats.adj_def.value": 104.66520866773682,
+      "stats.adj_margin.value": -10.927126805778556,
+      "stats.adj_margin.rank": 256,
+      "conf": "Summit League"
    },
-   "N.C. A&T": {
-      "stats.adj_off.value": 89.03772070626,
-      "stats.adj_def.value": 100.60397271268057,
-      "stats.adj_margin.value": -11.56625200642057,
-      "stats.adj_margin.rank": 258,
-      "conf": "Mid-Eastern Athletic Conference"
+   "Wagner": {
+      "stats.adj_off.value": 80.59522471910113,
+      "stats.adj_def.value": 92.03663723916539,
+      "stats.adj_margin.value": -11.441412520064262,
+      "stats.adj_margin.rank": 259,
+      "conf": "Northeast Conference"
    },
-   "Cornell": {
-      "stats.adj_off.value": 77.95200642054573,
-      "stats.adj_def.value": 90.932544141252,
-      "stats.adj_margin.value": -12.980537720706266,
-      "stats.adj_margin.rank": 274,
-      "conf": "Ivy League"
-   },
-   "Eastern Wash.": {
-      "stats.adj_off.value": 84.95200642054571,
-      "stats.adj_def.value": 96.76111556982343,
-      "stats.adj_margin.value": -11.809109149277717,
-      "stats.adj_margin.rank": 263,
-      "conf": "Big Sky Conference"
-   },
-   "UTSA": {
-      "stats.adj_off.value": 81.16629213483145,
-      "stats.adj_def.value": 96.20397271268057,
-      "stats.adj_margin.value": -15.037680577849116,
-      "stats.adj_margin.rank": 287,
+   "Fla. Atlantic": {
+      "stats.adj_off.value": 85.92379614767255,
+      "stats.adj_def.value": 94.07949438202253,
+      "stats.adj_margin.value": -8.155698234349984,
+      "stats.adj_margin.rank": 236,
       "conf": "Conference USA"
    },
-   "Hampton": {
-      "stats.adj_off.value": 80.09486356340288,
-      "stats.adj_def.value": 96.44682985553771,
-      "stats.adj_margin.value": -16.351966292134833,
-      "stats.adj_margin.rank": 300,
-      "conf": "Big South Conference"
+   "UMass Lowell": {
+      "stats.adj_off.value": 80.99522471910112,
+      "stats.adj_def.value": 92.56520866773683,
+      "stats.adj_margin.value": -11.56998394863571,
+      "stats.adj_margin.rank": 261,
+      "conf": "America East Conference"
    },
-   "Alabama St.": {
-      "stats.adj_off.value": 83.58057784911716,
-      "stats.adj_def.value": 99.38968699839485,
-      "stats.adj_margin.value": -15.809109149277688,
-      "stats.adj_margin.rank": 294,
+   "Arkansas St.": {
+      "stats.adj_off.value": 96.93808186195827,
+      "stats.adj_def.value": 106.8509229534511,
+      "stats.adj_margin.value": -9.912841091492837,
+      "stats.adj_margin.rank": 246,
+      "conf": "Sun Belt Conference"
+   },
+   "Southern U.": {
+      "stats.adj_off.value": 81.26665329052969,
+      "stats.adj_def.value": 92.35092295345109,
+      "stats.adj_margin.value": -11.0842696629214,
+      "stats.adj_margin.rank": 257,
       "conf": "Southwestern Athletic Conference"
    },
-   "San Jose St.": {
-      "stats.adj_off.value": 89.93772070626002,
-      "stats.adj_def.value": 105.58968699839487,
-      "stats.adj_margin.value": -15.651966292134844,
-      "stats.adj_margin.rank": 291,
-      "conf": "Mountain West Conference"
+   "NJIT": {
+      "stats.adj_off.value": 83.3809390048154,
+      "stats.adj_def.value": 96.79378009630824,
+      "stats.adj_margin.value": -13.412841091492837,
+      "stats.adj_margin.rank": 277,
+      "conf": "America East Conference"
    },
-   "Mount St. Mary's": {
-      "stats.adj_off.value": 87.25200642054573,
-      "stats.adj_def.value": 100.132544141252,
-      "stats.adj_margin.value": -12.880537720706272,
-      "stats.adj_margin.rank": 273,
-      "conf": "Northeast Conference"
+   "A&M-Corpus Christi": {
+      "stats.adj_off.value": 81.42379614767255,
+      "stats.adj_def.value": 93.7366372391654,
+      "stats.adj_margin.value": -12.312841091492857,
+      "stats.adj_margin.rank": 264,
+      "conf": "Southland Conference"
    },
-   "Chattanooga": {
-      "stats.adj_off.value": 84.29486356340287,
-      "stats.adj_def.value": 98.77540128410914,
-      "stats.adj_margin.value": -14.480537720706266,
-      "stats.adj_margin.rank": 282,
-      "conf": "Southern Conference"
+   "Kennesaw St.": {
+      "stats.adj_off.value": 86.26665329052969,
+      "stats.adj_def.value": 96.96520866773682,
+      "stats.adj_margin.value": -10.698555377207128,
+      "stats.adj_margin.rank": 253,
+      "conf": "ASUN Conference"
    },
-   "High Point": {
-      "stats.adj_off.value": 85.18057784911716,
-      "stats.adj_def.value": 100.132544141252,
-      "stats.adj_margin.value": -14.951966292134841,
-      "stats.adj_margin.rank": 286,
+   "Norfolk St.": {
+      "stats.adj_off.value": 80.6666532905297,
+      "stats.adj_def.value": 92.82235152487966,
+      "stats.adj_margin.value": -12.15569823434997,
+      "stats.adj_margin.rank": 262,
+      "conf": "Mid-Eastern Athletic Conference"
+   },
+   "Marist": {
+      "stats.adj_off.value": 78.82379614767255,
+      "stats.adj_def.value": 89.67949438202254,
+      "stats.adj_margin.value": -10.855698234349987,
+      "stats.adj_margin.rank": 255,
+      "conf": "Metro Atlantic Athletic Conference"
+   },
+   "Evansville": {
+      "stats.adj_off.value": 91.43808186195827,
+      "stats.adj_def.value": 104.59378009630825,
+      "stats.adj_margin.value": -13.155698234349984,
+      "stats.adj_margin.rank": 271,
+      "conf": "Missouri Valley Conference"
+   },
+   "USC Upstate": {
+      "stats.adj_off.value": 82.35236757624398,
+      "stats.adj_def.value": 95.5223515248797,
+      "stats.adj_margin.value": -13.169983948635718,
+      "stats.adj_margin.rank": 272,
       "conf": "Big South Conference"
    },
+   "Eastern Ky.": {
+      "stats.adj_off.value": 87.50951043338684,
+      "stats.adj_def.value": 99.85092295345109,
+      "stats.adj_margin.value": -12.341412520064253,
+      "stats.adj_margin.rank": 265,
+      "conf": "Ohio Valley Conference"
+   },
+   "Morgan St.": {
+      "stats.adj_off.value": 81.33808186195824,
+      "stats.adj_def.value": 95.69378009630825,
+      "stats.adj_margin.value": -14.355698234350001,
+      "stats.adj_margin.rank": 281,
+      "conf": "Mid-Eastern Athletic Conference"
+   },
+   "Lipscomb": {
+      "stats.adj_off.value": 83.69522471910112,
+      "stats.adj_def.value": 97.0509229534511,
+      "stats.adj_margin.value": -13.355698234349987,
+      "stats.adj_margin.rank": 274,
+      "conf": "ASUN Conference"
+   },
+   "Howard": {
+      "stats.adj_off.value": 83.4809390048154,
+      "stats.adj_def.value": 99.22235152487967,
+      "stats.adj_margin.value": -15.741412520064273,
+      "stats.adj_margin.rank": 294,
+      "conf": "Mid-Eastern Athletic Conference"
+   },
    "Furman": {
-      "stats.adj_off.value": 84.00914927768858,
-      "stats.adj_def.value": 98.66111556982342,
-      "stats.adj_margin.value": -14.651966292134844,
-      "stats.adj_margin.rank": 285,
+      "stats.adj_off.value": 85.79522471910111,
+      "stats.adj_def.value": 98.69378009630826,
+      "stats.adj_margin.value": -12.898555377207146,
+      "stats.adj_margin.rank": 269,
       "conf": "Southern Conference"
    },
-   "Sacred Heart": {
-      "stats.adj_off.value": 83.06629213483144,
-      "stats.adj_def.value": 98.73254414125199,
-      "stats.adj_margin.value": -15.66625200642055,
-      "stats.adj_margin.rank": 292,
-      "conf": "Northeast Conference"
+   "Seattle U": {
+      "stats.adj_off.value": 85.63808186195827,
+      "stats.adj_def.value": 98.25092295345112,
+      "stats.adj_margin.value": -12.612841091492854,
+      "stats.adj_margin.rank": 266,
+      "conf": "Western Athletic Conference"
+   },
+   "Sam Houston St.": {
+      "stats.adj_off.value": 88.15236757624399,
+      "stats.adj_def.value": 101.55092295345112,
+      "stats.adj_margin.value": -13.398555377207131,
+      "stats.adj_margin.rank": 276,
+      "conf": "Southland Conference"
+   },
+   "Coppin St.": {
+      "stats.adj_off.value": 81.7666532905297,
+      "stats.adj_def.value": 98.20806581059396,
+      "stats.adj_margin.value": -16.44141252006426,
+      "stats.adj_margin.rank": 300,
+      "conf": "Mid-Eastern Athletic Conference"
+   },
+   "UTRGV": {
+      "stats.adj_off.value": 83.43808186195825,
+      "stats.adj_def.value": 96.79378009630824,
+      "stats.adj_margin.value": -13.355698234349987,
+      "stats.adj_margin.rank": 274,
+      "conf": "Western Athletic Conference"
+   },
+   "Lafayette": {
+      "stats.adj_off.value": 77.65236757624398,
+      "stats.adj_def.value": 90.50806581059396,
+      "stats.adj_margin.value": -12.855698234349987,
+      "stats.adj_margin.rank": 268,
+      "conf": "Patriot League"
+   },
+   "Tarleton St.": {
+      "stats.adj_off.value": 75.65236757624399,
+      "stats.adj_def.value": 91.03663723916539,
+      "stats.adj_margin.value": -15.384269662921398,
+      "stats.adj_margin.rank": 291,
+      "conf": "Western Athletic Conference"
+   },
+   "Ark.-Pine Bluff": {
+      "stats.adj_off.value": 90.10951043338682,
+      "stats.adj_def.value": 103.92235152487967,
+      "stats.adj_margin.value": -13.812841091492857,
+      "stats.adj_margin.rank": 280,
+      "conf": "Southwestern Athletic Conference"
+   },
+   "Iona": {
+      "stats.adj_off.value": 77.85236757624398,
+      "stats.adj_def.value": 91.16520866773682,
+      "stats.adj_margin.value": -13.312841091492842,
+      "stats.adj_margin.rank": 273,
+      "conf": "Metro Atlantic Athletic Conference"
+   },
+   "Georgia St.": {
+      "stats.adj_off.value": 84.13808186195827,
+      "stats.adj_def.value": 98.57949438202252,
+      "stats.adj_margin.value": -14.441412520064247,
+      "stats.adj_margin.rank": 282,
+      "conf": "Sun Belt Conference"
+   },
+   "Cornell": {
+      "stats.adj_off.value": 76.6809390048154,
+      "stats.adj_def.value": 91.39378009630825,
+      "stats.adj_margin.value": -14.712841091492848,
+      "stats.adj_margin.rank": 284,
+      "conf": "Ivy League"
+   },
+   "Alabama A&M": {
+      "stats.adj_off.value": 80.62379614767254,
+      "stats.adj_def.value": 95.99378009630823,
+      "stats.adj_margin.value": -15.369983948635692,
+      "stats.adj_margin.rank": 290,
+      "conf": "Southwestern Athletic Conference"
+   },
+   "High Point": {
+      "stats.adj_off.value": 83.73808186195826,
+      "stats.adj_def.value": 98.6366372391654,
+      "stats.adj_margin.value": -14.898555377207131,
+      "stats.adj_margin.rank": 287,
+      "conf": "Big South Conference"
+   },
+   "UTSA": {
+      "stats.adj_off.value": 79.79522471910111,
+      "stats.adj_def.value": 96.39378009630823,
+      "stats.adj_margin.value": -16.59855537720712,
+      "stats.adj_margin.rank": 302,
+      "conf": "Conference USA"
    },
    "Saint Peter's": {
-      "stats.adj_off.value": 83.95200642054573,
-      "stats.adj_def.value": 98.58968699839485,
-      "stats.adj_margin.value": -14.637680577849125,
-      "stats.adj_margin.rank": 284,
+      "stats.adj_off.value": 83.43808186195825,
+      "stats.adj_def.value": 97.92235152487967,
+      "stats.adj_margin.value": -14.48426966292142,
+      "stats.adj_margin.rank": 283,
       "conf": "Metro Atlantic Athletic Conference"
    },
    "William & Mary": {
-      "stats.adj_off.value": 79.90914927768858,
-      "stats.adj_def.value": 94.96111556982343,
-      "stats.adj_margin.value": -15.05196629213485,
-      "stats.adj_margin.rank": 288,
+      "stats.adj_off.value": 79.70951043338682,
+      "stats.adj_def.value": 94.60806581059394,
+      "stats.adj_margin.value": -14.898555377207117,
+      "stats.adj_margin.rank": 286,
       "conf": "Colonial Athletic Association"
    },
-   "Georgia St.": {
-      "stats.adj_off.value": 85.7234349919743,
-      "stats.adj_def.value": 100.28968699839486,
-      "stats.adj_margin.value": -14.566252006420555,
-      "stats.adj_margin.rank": 283,
-      "conf": "Sun Belt Conference"
+   "San Jose St.": {
+      "stats.adj_off.value": 86.82379614767255,
+      "stats.adj_def.value": 103.16520866773682,
+      "stats.adj_margin.value": -16.341412520064267,
+      "stats.adj_margin.rank": 298,
+      "conf": "Mountain West Conference"
    },
-   "Butler": {
-      "stats.adj_off.value": 89.88057784911715,
-      "stats.adj_def.value": 101.76111556982343,
-      "stats.adj_margin.value": -11.880537720706286,
-      "stats.adj_margin.rank": 265,
-      "conf": "Big East Conference"
+   "Eastern Wash.": {
+      "stats.adj_off.value": 82.73808186195826,
+      "stats.adj_def.value": 95.37949438202253,
+      "stats.adj_margin.value": -12.641412520064264,
+      "stats.adj_margin.rank": 267,
+      "conf": "Big Sky Conference"
    },
-   "Hofstra": {
-      "stats.adj_off.value": 77.56629213483143,
-      "stats.adj_def.value": 93.48968699839487,
-      "stats.adj_margin.value": -15.923394863563445,
-      "stats.adj_margin.rank": 295,
-      "conf": "Colonial Athletic Association"
-   },
-   "Alabama A&M": {
-      "stats.adj_off.value": 79.23772070626,
-      "stats.adj_def.value": 95.21825842696629,
-      "stats.adj_margin.value": -15.98053772070628,
+   "Niagara": {
+      "stats.adj_off.value": 95.6809390048154,
+      "stats.adj_def.value": 111.92235152487967,
+      "stats.adj_margin.value": -16.241412520064273,
       "stats.adj_margin.rank": 297,
+      "conf": "Metro Atlantic Athletic Conference"
+   },
+   "Chattanooga": {
+      "stats.adj_off.value": 83.82379614767255,
+      "stats.adj_def.value": 98.93663723916538,
+      "stats.adj_margin.value": -15.112841091492825,
+      "stats.adj_margin.rank": 288,
+      "conf": "Southern Conference"
+   },
+   "Mount St. Mary's": {
+      "stats.adj_off.value": 85.8666532905297,
+      "stats.adj_def.value": 99.6366372391654,
+      "stats.adj_margin.value": -13.769983948635698,
+      "stats.adj_margin.rank": 279,
+      "conf": "Northeast Conference"
+   },
+   "Alabama St.": {
+      "stats.adj_off.value": 83.00951043338684,
+      "stats.adj_def.value": 99.07949438202253,
+      "stats.adj_margin.value": -16.069983948635695,
+      "stats.adj_margin.rank": 296,
       "conf": "Southwestern Athletic Conference"
    },
-   "Gardner-Webb": {
-      "stats.adj_off.value": 90.38057784911716,
-      "stats.adj_def.value": 107.31825842696628,
-      "stats.adj_margin.value": -16.93768057784912,
-      "stats.adj_margin.rank": 305,
-      "conf": "Big South Conference"
-   },
-   "Cal Poly": {
-      "stats.adj_off.value": 83.55200642054574,
-      "stats.adj_def.value": 95.332544141252,
-      "stats.adj_margin.value": -11.780537720706263,
+   "CSU Bakersfield": {
+      "stats.adj_off.value": 83.1666532905297,
+      "stats.adj_def.value": 95.32235152487966,
+      "stats.adj_margin.value": -12.15569823434997,
       "stats.adj_margin.rank": 262,
       "conf": "Big West Conference"
    },
    "Navy": {
-      "stats.adj_off.value": 81.73772070626,
-      "stats.adj_def.value": 97.77540128410915,
-      "stats.adj_margin.value": -16.037680577849144,
-      "stats.adj_margin.rank": 298,
-      "conf": "Patriot League"
-   },
-   "Niagara": {
-      "stats.adj_off.value": 94.15200642054573,
-      "stats.adj_def.value": 111.24682985553771,
-      "stats.adj_margin.value": -17.09482343499198,
-      "stats.adj_margin.rank": 307,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "North Ala.": {
-      "stats.adj_off.value": 93.60914927768857,
-      "stats.adj_def.value": 109.2468298555377,
-      "stats.adj_margin.value": -15.637680577849125,
-      "stats.adj_margin.rank": 290,
-      "conf": "ASUN Conference"
-   },
-   "Iona": {
-      "stats.adj_off.value": 77.49486356340286,
-      "stats.adj_def.value": 93.53254414125202,
-      "stats.adj_margin.value": -16.03768057784916,
-      "stats.adj_margin.rank": 299,
-      "conf": "Metro Atlantic Athletic Conference"
-   },
-   "Sam Houston St.": {
-      "stats.adj_off.value": 88.38057784911716,
-      "stats.adj_def.value": 104.3468298555377,
-      "stats.adj_margin.value": -15.966252006420547,
-      "stats.adj_margin.rank": 296,
-      "conf": "Southland Conference"
-   },
-   "Presbyterian": {
-      "stats.adj_off.value": 81.89486356340286,
-      "stats.adj_def.value": 99.61825842696628,
-      "stats.adj_margin.value": -17.723394863563414,
-      "stats.adj_margin.rank": 308,
-      "conf": "Big South Conference"
-   },
-   "UIC": {
-      "stats.adj_off.value": 82.13772070626001,
-      "stats.adj_def.value": 100.17540128410914,
-      "stats.adj_margin.value": -18.03768057784913,
-      "stats.adj_margin.rank": 309,
-      "conf": "Horizon League"
-   },
-   "UNC Greensboro": {
-      "stats.adj_off.value": 74.75200642054573,
-      "stats.adj_def.value": 88.80397271268058,
-      "stats.adj_margin.value": -14.05196629213485,
-      "stats.adj_margin.rank": 281,
-      "conf": "Southern Conference"
-   },
-   "Southeast Mo. St.": {
-      "stats.adj_off.value": 87.62343499197429,
-      "stats.adj_def.value": 104.132544141252,
-      "stats.adj_margin.value": -16.509109149277705,
-      "stats.adj_margin.rank": 302,
-      "conf": "Ohio Valley Conference"
-   },
-   "Purdue Fort Wayne": {
-      "stats.adj_off.value": 80.35200642054572,
-      "stats.adj_def.value": 96.73254414125199,
-      "stats.adj_margin.value": -16.380537720706272,
-      "stats.adj_margin.rank": 301,
-      "conf": "Horizon League"
-   },
-   "Portland St.": {
-      "stats.adj_off.value": 83.3234349919743,
-      "stats.adj_def.value": 101.5468298555377,
-      "stats.adj_margin.value": -18.2233948635634,
-      "stats.adj_margin.rank": 310,
-      "conf": "Big Sky Conference"
-   },
-   "St. Thomas (MN)": {
-      "stats.adj_off.value": 77.89486356340286,
-      "stats.adj_def.value": 99.27540128410915,
-      "stats.adj_margin.value": -21.380537720706286,
-      "stats.adj_margin.rank": 321,
-      "conf": "Summit League"
-   },
-   "Binghamton": {
-      "stats.adj_off.value": 82.10914927768859,
-      "stats.adj_def.value": 98.77540128410914,
-      "stats.adj_margin.value": -16.66625200642055,
+      "stats.adj_off.value": 81.59522471910113,
+      "stats.adj_def.value": 98.3366372391654,
+      "stats.adj_margin.value": -16.741412520064273,
       "stats.adj_margin.rank": 303,
-      "conf": "America East Conference"
-   },
-   "Loyola Maryland": {
-      "stats.adj_off.value": 77.80914927768858,
-      "stats.adj_def.value": 94.73254414125199,
-      "stats.adj_margin.value": -16.923394863563416,
-      "stats.adj_margin.rank": 304,
       "conf": "Patriot League"
    },
-   "South Alabama": {
-      "stats.adj_off.value": 81.98057784911715,
-      "stats.adj_def.value": 100.58968699839487,
-      "stats.adj_margin.value": -18.609109149277714,
-      "stats.adj_margin.rank": 312,
-      "conf": "Sun Belt Conference"
-   },
-   "Texas Southern": {
-      "stats.adj_off.value": 87.13772070626001,
-      "stats.adj_def.value": 106.50397271268055,
-      "stats.adj_margin.value": -19.366252006420538,
-      "stats.adj_margin.rank": 316,
-      "conf": "Southwestern Athletic Conference"
-   },
-   "Brown": {
-      "stats.adj_off.value": 79.75200642054573,
-      "stats.adj_def.value": 100.04682985553771,
-      "stats.adj_margin.value": -20.294823434991983,
-      "stats.adj_margin.rank": 318,
-      "conf": "Ivy League"
-   },
-   "UNCW": {
-      "stats.adj_off.value": 82.10914927768859,
-      "stats.adj_def.value": 100.51825842696627,
-      "stats.adj_margin.value": -18.409109149277683,
-      "stats.adj_margin.rank": 311,
-      "conf": "Colonial Athletic Association"
+   "Rider": {
+      "stats.adj_off.value": 80.69522471910113,
+      "stats.adj_def.value": 95.56520866773681,
+      "stats.adj_margin.value": -14.869983948635678,
+      "stats.adj_margin.rank": 285,
+      "conf": "Metro Atlantic Athletic Conference"
    },
    "Siena": {
-      "stats.adj_off.value": 74.5234349919743,
-      "stats.adj_def.value": 93.40397271268058,
-      "stats.adj_margin.value": -18.880537720706286,
-      "stats.adj_margin.rank": 313,
+      "stats.adj_off.value": 78.93808186195827,
+      "stats.adj_def.value": 94.09378009630827,
+      "stats.adj_margin.value": -15.155698234349998,
+      "stats.adj_margin.rank": 289,
       "conf": "Metro Atlantic Athletic Conference"
    },
-   "Radford": {
-      "stats.adj_off.value": 83.90914927768858,
-      "stats.adj_def.value": 102.80397271268058,
-      "stats.adj_margin.value": -18.89482343499199,
+   "UNC Greensboro": {
+      "stats.adj_off.value": 75.03808186195826,
+      "stats.adj_def.value": 88.07949438202253,
+      "stats.adj_margin.value": -13.04141252006427,
+      "stats.adj_margin.rank": 270,
+      "conf": "Southern Conference"
+   },
+   "Gardner-Webb": {
+      "stats.adj_off.value": 91.29522471910111,
+      "stats.adj_def.value": 108.2652086677368,
+      "stats.adj_margin.value": -16.969983948635686,
+      "stats.adj_margin.rank": 304,
+      "conf": "Big South Conference"
+   },
+   "Hampton": {
+      "stats.adj_off.value": 79.82379614767257,
+      "stats.adj_def.value": 99.17949438202254,
+      "stats.adj_margin.value": -19.355698234349973,
       "stats.adj_margin.rank": 314,
       "conf": "Big South Conference"
    },
-   "Houston Baptist": {
-      "stats.adj_off.value": 78.28057784911715,
-      "stats.adj_def.value": 98.032544141252,
-      "stats.adj_margin.value": -19.751966292134853,
-      "stats.adj_margin.rank": 317,
-      "conf": "Southland Conference"
+   "Hofstra": {
+      "stats.adj_off.value": 77.49522471910112,
+      "stats.adj_def.value": 93.4509229534511,
+      "stats.adj_margin.value": -15.955698234349981,
+      "stats.adj_margin.rank": 295,
+      "conf": "Colonial Athletic Association"
    },
-   "Chicago St.": {
-      "stats.adj_off.value": 76.95200642054573,
-      "stats.adj_def.value": 97.24682985553771,
-      "stats.adj_margin.value": -20.294823434991983,
-      "stats.adj_margin.rank": 318,
-      "conf": "Western Athletic Conference"
+   "Purdue Fort Wayne": {
+      "stats.adj_off.value": 82.49522471910112,
+      "stats.adj_def.value": 98.02235152487967,
+      "stats.adj_margin.value": -15.52712680577855,
+      "stats.adj_margin.rank": 293,
+      "conf": "Horizon League"
+   },
+   "North Ala.": {
+      "stats.adj_off.value": 90.59522471910113,
+      "stats.adj_def.value": 107.0223515248797,
+      "stats.adj_margin.value": -16.42712680577857,
+      "stats.adj_margin.rank": 299,
+      "conf": "ASUN Conference"
+   },
+   "Cal Poly": {
+      "stats.adj_off.value": 82.23808186195828,
+      "stats.adj_def.value": 95.8366372391654,
+      "stats.adj_margin.value": -13.59855537720712,
+      "stats.adj_margin.rank": 278,
+      "conf": "Big West Conference"
    },
    "Central Ark.": {
-      "stats.adj_off.value": 72.49486356340286,
-      "stats.adj_def.value": 92.832544141252,
-      "stats.adj_margin.value": -20.33768057784914,
-      "stats.adj_margin.rank": 320,
+      "stats.adj_off.value": 73.1666532905297,
+      "stats.adj_def.value": 91.70806581059395,
+      "stats.adj_margin.value": -18.541412520064256,
+      "stats.adj_margin.rank": 312,
       "conf": "Southland Conference"
    },
-   "UNC Asheville": {
-      "stats.adj_off.value": 78.53772070626002,
-      "stats.adj_def.value": 100.24682985553771,
-      "stats.adj_margin.value": -21.709109149277694,
-      "stats.adj_margin.rank": 322,
+   "Butler": {
+      "stats.adj_off.value": 87.23808186195828,
+      "stats.adj_def.value": 102.6652086677368,
+      "stats.adj_margin.value": -15.427126805778528,
+      "stats.adj_margin.rank": 292,
+      "conf": "Big East Conference"
+   },
+   "South Alabama": {
+      "stats.adj_off.value": 82.85236757624398,
+      "stats.adj_def.value": 100.92235152487966,
+      "stats.adj_margin.value": -18.06998394863568,
+      "stats.adj_margin.rank": 310,
+      "conf": "Sun Belt Conference"
+   },
+   "Portland St.": {
+      "stats.adj_off.value": 83.3666532905297,
+      "stats.adj_def.value": 101.56520866773683,
+      "stats.adj_margin.value": -18.19855537720713,
+      "stats.adj_margin.rank": 311,
+      "conf": "Big Sky Conference"
+   },
+   "Presbyterian": {
+      "stats.adj_off.value": 80.52379614767256,
+      "stats.adj_def.value": 98.25092295345112,
+      "stats.adj_margin.value": -17.727126805778568,
+      "stats.adj_margin.rank": 308,
       "conf": "Big South Conference"
    },
-   "UIW": {
-      "stats.adj_off.value": 74.53772070626002,
-      "stats.adj_def.value": 96.58968699839484,
-      "stats.adj_margin.value": -22.05196629213482,
-      "stats.adj_margin.rank": 326,
-      "conf": "Southland Conference"
+   "Texas Southern": {
+      "stats.adj_off.value": 88.32379614767254,
+      "stats.adj_def.value": 107.06520866773681,
+      "stats.adj_margin.value": -18.741412520064273,
+      "stats.adj_margin.rank": 313,
+      "conf": "Southwestern Athletic Conference"
    },
-   "Merrimack": {
-      "stats.adj_off.value": 85.88057784911716,
-      "stats.adj_def.value": 110.34682985553772,
-      "stats.adj_margin.value": -24.46625200642056,
-      "stats.adj_margin.rank": 335,
+   "Sacred Heart": {
+      "stats.adj_off.value": 80.90951043338684,
+      "stats.adj_def.value": 98.66520866773682,
+      "stats.adj_margin.value": -17.75569823434998,
+      "stats.adj_margin.rank": 309,
       "conf": "Northeast Conference"
+   },
+   "Binghamton": {
+      "stats.adj_off.value": 79.90951043338683,
+      "stats.adj_def.value": 96.43663723916538,
+      "stats.adj_margin.value": -16.52712680577855,
+      "stats.adj_margin.rank": 301,
+      "conf": "America East Conference"
+   },
+   "Loyola Maryland": {
+      "stats.adj_off.value": 76.6809390048154,
+      "stats.adj_def.value": 94.26520866773681,
+      "stats.adj_margin.value": -17.584269662921415,
+      "stats.adj_margin.rank": 307,
+      "conf": "Patriot League"
+   },
+   "UNCW": {
+      "stats.adj_off.value": 81.5666532905297,
+      "stats.adj_def.value": 99.1509229534511,
+      "stats.adj_margin.value": -17.5842696629214,
+      "stats.adj_margin.rank": 306,
+      "conf": "Colonial Athletic Association"
+   },
+   "Southeast Mo. St.": {
+      "stats.adj_off.value": 85.03808186195826,
+      "stats.adj_def.value": 102.52235152487968,
+      "stats.adj_margin.value": -17.48426966292142,
+      "stats.adj_margin.rank": 305,
+      "conf": "Ohio Valley Conference"
    },
    "Saint Francis (PA)": {
-      "stats.adj_off.value": 76.78057784911715,
-      "stats.adj_def.value": 99.01825842696628,
-      "stats.adj_margin.value": -22.237680577849133,
-      "stats.adj_margin.rank": 328,
+      "stats.adj_off.value": 78.23808186195825,
+      "stats.adj_def.value": 98.65092295345111,
+      "stats.adj_margin.value": -20.412841091492865,
+      "stats.adj_margin.rank": 320,
       "conf": "Northeast Conference"
    },
-   "Central Conn. St.": {
-      "stats.adj_off.value": 80.35200642054572,
-      "stats.adj_def.value": 102.81825842696627,
-      "stats.adj_margin.value": -22.466252006420547,
-      "stats.adj_margin.rank": 329,
+   "St. Thomas (MN)": {
+      "stats.adj_off.value": 78.4809390048154,
+      "stats.adj_def.value": 100.36520866773681,
+      "stats.adj_margin.value": -21.88426966292141,
+      "stats.adj_margin.rank": 325,
+      "conf": "Summit League"
+   },
+   "Houston Baptist": {
+      "stats.adj_off.value": 77.30951043338683,
+      "stats.adj_def.value": 96.96520866773682,
+      "stats.adj_margin.value": -19.655698234349984,
+      "stats.adj_margin.rank": 315,
+      "conf": "Southland Conference"
+   },
+   "Brown": {
+      "stats.adj_off.value": 79.43808186195827,
+      "stats.adj_def.value": 99.17949438202254,
+      "stats.adj_margin.value": -19.741412520064273,
+      "stats.adj_margin.rank": 316,
+      "conf": "Ivy League"
+   },
+   "UIC": {
+      "stats.adj_off.value": 79.95236757624397,
+      "stats.adj_def.value": 99.87949438202254,
+      "stats.adj_margin.value": -19.92712680577857,
+      "stats.adj_margin.rank": 317,
+      "conf": "Horizon League"
+   },
+   "Chicago St.": {
+      "stats.adj_off.value": 78.92379614767255,
+      "stats.adj_def.value": 99.07949438202253,
+      "stats.adj_margin.value": -20.155698234349984,
+      "stats.adj_margin.rank": 319,
+      "conf": "Western Athletic Conference"
+   },
+   "Merrimack": {
+      "stats.adj_off.value": 87.63808186195827,
+      "stats.adj_def.value": 109.02235152487968,
+      "stats.adj_margin.value": -21.38426966292141,
+      "stats.adj_margin.rank": 322,
       "conf": "Northeast Conference"
    },
    "LIU": {
-      "stats.adj_off.value": 77.18057784911714,
-      "stats.adj_def.value": 98.90397271268057,
-      "stats.adj_margin.value": -21.723394863563428,
-      "stats.adj_margin.rank": 323,
+      "stats.adj_off.value": 76.72379614767256,
+      "stats.adj_def.value": 97.70806581059395,
+      "stats.adj_margin.value": -20.984269662921392,
+      "stats.adj_margin.rank": 321,
       "conf": "Northeast Conference"
    },
    "Grambling": {
-      "stats.adj_off.value": 79.43772070626001,
-      "stats.adj_def.value": 103.13254414125201,
-      "stats.adj_margin.value": -23.694823434992003,
-      "stats.adj_margin.rank": 332,
+      "stats.adj_off.value": 81.46665329052969,
+      "stats.adj_def.value": 102.99378009630824,
+      "stats.adj_margin.value": -21.52712680577855,
+      "stats.adj_margin.rank": 324,
       "conf": "Southwestern Athletic Conference"
    },
-   "Bellarmine": {
-      "stats.adj_off.value": 84.05200642054572,
-      "stats.adj_def.value": 106.26111556982345,
-      "stats.adj_margin.value": -22.209109149277722,
-      "stats.adj_margin.rank": 327,
-      "conf": "ASUN Conference"
-   },
-   "UMES": {
-      "stats.adj_off.value": 81.63772070626003,
-      "stats.adj_def.value": 105.37540128410915,
-      "stats.adj_margin.value": -23.73768057784912,
-      "stats.adj_margin.rank": 333,
-      "conf": "Mid-Eastern Athletic Conference"
-   },
-   "ETSU": {
-      "stats.adj_off.value": 79.82343499197431,
-      "stats.adj_def.value": 101.67540128410914,
-      "stats.adj_margin.value": -21.851966292134833,
-      "stats.adj_margin.rank": 324,
-      "conf": "Southern Conference"
-   },
-   "Dartmouth": {
-      "stats.adj_off.value": 72.45200642054571,
-      "stats.adj_def.value": 95.04682985553771,
-      "stats.adj_margin.value": -22.594823434991994,
-      "stats.adj_margin.rank": 330,
-      "conf": "Ivy League"
-   },
-   "Colgate": {
-      "stats.adj_off.value": 76.5234349919743,
-      "stats.adj_def.value": 98.432544141252,
-      "stats.adj_margin.value": -21.909109149277697,
-      "stats.adj_margin.rank": 325,
-      "conf": "Patriot League"
+   "McNeese": {
+      "stats.adj_off.value": 87.52379614767254,
+      "stats.adj_def.value": 111.07949438202252,
+      "stats.adj_margin.value": -23.555698234349975,
+      "stats.adj_margin.rank": 329,
+      "conf": "Southland Conference"
    },
    "Dixie St.": {
-      "stats.adj_off.value": 81.45200642054573,
-      "stats.adj_def.value": 107.732544141252,
-      "stats.adj_margin.value": -26.280537720706278,
-      "stats.adj_margin.rank": 339,
+      "stats.adj_off.value": 84.15236757624396,
+      "stats.adj_def.value": 108.79378009630825,
+      "stats.adj_margin.value": -24.641412520064293,
+      "stats.adj_margin.rank": 334,
       "conf": "Western Athletic Conference"
    },
-   "Detroit Mercy": {
-      "stats.adj_off.value": 80.2091492776886,
-      "stats.adj_def.value": 99.30397271268058,
-      "stats.adj_margin.value": -19.09482343499198,
-      "stats.adj_margin.rank": 315,
-      "conf": "Horizon League"
+   "Colgate": {
+      "stats.adj_off.value": 75.59522471910113,
+      "stats.adj_def.value": 97.00806581059396,
+      "stats.adj_margin.value": -21.412841091492837,
+      "stats.adj_margin.rank": 323,
+      "conf": "Patriot League"
    },
-   "McNeese": {
-      "stats.adj_off.value": 86.70914927768858,
-      "stats.adj_def.value": 112.50397271268056,
-      "stats.adj_margin.value": -25.794823434991983,
-      "stats.adj_margin.rank": 337,
-      "conf": "Southland Conference"
-   },
-   "Northwestern St.": {
-      "stats.adj_off.value": 79.08057784911715,
-      "stats.adj_def.value": 106.08968699839485,
-      "stats.adj_margin.value": -27.009109149277705,
-      "stats.adj_margin.rank": 342,
-      "conf": "Southland Conference"
+   "Radford": {
+      "stats.adj_off.value": 79.62379614767256,
+      "stats.adj_def.value": 103.27949438202253,
+      "stats.adj_margin.value": -23.65569823434997,
+      "stats.adj_margin.rank": 330,
+      "conf": "Big South Conference"
    },
    "New Hampshire": {
-      "stats.adj_off.value": 73.72343499197429,
-      "stats.adj_def.value": 97.90397271268057,
-      "stats.adj_margin.value": -24.180537720706283,
-      "stats.adj_margin.rank": 334,
+      "stats.adj_off.value": 74.58093900481542,
+      "stats.adj_def.value": 97.20806581059396,
+      "stats.adj_margin.value": -22.627126805778545,
+      "stats.adj_margin.rank": 327,
       "conf": "America East Conference"
    },
+   "UIW": {
+      "stats.adj_off.value": 73.39522471910114,
+      "stats.adj_def.value": 97.52235152487968,
+      "stats.adj_margin.value": -24.127126805778545,
+      "stats.adj_margin.rank": 332,
+      "conf": "Southland Conference"
+   },
+   "UNC Asheville": {
+      "stats.adj_off.value": 77.1809390048154,
+      "stats.adj_def.value": 101.83663723916538,
+      "stats.adj_margin.value": -24.655698234349984,
+      "stats.adj_margin.rank": 335,
+      "conf": "Big South Conference"
+   },
+   "Dartmouth": {
+      "stats.adj_off.value": 71.50951043338684,
+      "stats.adj_def.value": 94.00806581059398,
+      "stats.adj_margin.value": -22.49855537720714,
+      "stats.adj_margin.rank": 326,
+      "conf": "Ivy League"
+   },
+   "ETSU": {
+      "stats.adj_off.value": 78.22379614767254,
+      "stats.adj_def.value": 100.99378009630823,
+      "stats.adj_margin.value": -22.769983948635684,
+      "stats.adj_margin.rank": 328,
+      "conf": "Southern Conference"
+   },
    "Canisius": {
-      "stats.adj_off.value": 78.66629213483145,
-      "stats.adj_def.value": 104.0468298555377,
-      "stats.adj_margin.value": -25.380537720706243,
+      "stats.adj_off.value": 78.19522471910113,
+      "stats.adj_def.value": 103.23663723916539,
+      "stats.adj_margin.value": -25.041412520064256,
       "stats.adj_margin.rank": 336,
       "conf": "Metro Atlantic Athletic Conference"
    },
-   "UMBC": {
-      "stats.adj_off.value": 78.58057784911716,
-      "stats.adj_def.value": 101.432544141252,
-      "stats.adj_margin.value": -22.851966292134833,
-      "stats.adj_margin.rank": 331,
-      "conf": "America East Conference"
-   },
-   "Bryant": {
-      "stats.adj_off.value": 76.56629213483144,
-      "stats.adj_def.value": 103.56111556982344,
-      "stats.adj_margin.value": -26.994823434992,
-      "stats.adj_margin.rank": 341,
-      "conf": "Northeast Conference"
-   },
-   "Western Caro.": {
-      "stats.adj_off.value": 71.65200642054573,
-      "stats.adj_def.value": 97.66111556982341,
-      "stats.adj_margin.value": -26.009109149277677,
-      "stats.adj_margin.rank": 338,
-      "conf": "Southern Conference"
-   },
-   "Nicholls St.": {
-      "stats.adj_off.value": 80.33772070626001,
-      "stats.adj_def.value": 107.71825842696629,
-      "stats.adj_margin.value": -27.380537720706272,
-      "stats.adj_margin.rank": 344,
+   "Northwestern St.": {
+      "stats.adj_off.value": 78.32379614767254,
+      "stats.adj_def.value": 105.29378009630825,
+      "stats.adj_margin.value": -26.969983948635715,
+      "stats.adj_margin.rank": 339,
       "conf": "Southland Conference"
    },
+   "Detroit Mercy": {
+      "stats.adj_off.value": 80.00951043338684,
+      "stats.adj_def.value": 99.97949438202254,
+      "stats.adj_margin.value": -19.9699839486357,
+      "stats.adj_margin.rank": 318,
+      "conf": "Horizon League"
+   },
+   "Central Conn. St.": {
+      "stats.adj_off.value": 80.3666532905297,
+      "stats.adj_def.value": 104.67949438202254,
+      "stats.adj_margin.value": -24.312841091492842,
+      "stats.adj_margin.rank": 333,
+      "conf": "Northeast Conference"
+   },
+   "Bellarmine": {
+      "stats.adj_off.value": 82.29522471910111,
+      "stats.adj_def.value": 106.27949438202252,
+      "stats.adj_margin.value": -23.984269662921406,
+      "stats.adj_margin.rank": 331,
+      "conf": "ASUN Conference"
+   },
+   "Bryant": {
+      "stats.adj_off.value": 76.85236757624396,
+      "stats.adj_def.value": 104.1509229534511,
+      "stats.adj_margin.value": -27.298555377207137,
+      "stats.adj_margin.rank": 340,
+      "conf": "Northeast Conference"
+   },
+   "UMES": {
+      "stats.adj_off.value": 80.90951043338684,
+      "stats.adj_def.value": 105.99378009630823,
+      "stats.adj_margin.value": -25.084269662921386,
+      "stats.adj_margin.rank": 337,
+      "conf": "Mid-Eastern Athletic Conference"
+   },
    "Prairie View": {
-      "stats.adj_off.value": 80.03772070626,
-      "stats.adj_def.value": 109.14682985553772,
-      "stats.adj_margin.value": -29.109109149277714,
-      "stats.adj_margin.rank": 345,
+      "stats.adj_off.value": 80.69522471910113,
+      "stats.adj_def.value": 109.33663723916538,
+      "stats.adj_margin.value": -28.64141252006425,
+      "stats.adj_margin.rank": 342,
       "conf": "Southwestern Athletic Conference"
    },
-   "Morehead St.": {
-      "stats.adj_off.value": 73.59486356340288,
-      "stats.adj_def.value": 100.10397271268057,
-      "stats.adj_margin.value": -26.50910914927769,
-      "stats.adj_margin.rank": 340,
-      "conf": "Ohio Valley Conference"
+   "UMBC": {
+      "stats.adj_off.value": 76.79522471910111,
+      "stats.adj_def.value": 102.49378009630824,
+      "stats.adj_margin.value": -25.69855537720713,
+      "stats.adj_margin.rank": 338,
+      "conf": "America East Conference"
+   },
+   "Western Caro.": {
+      "stats.adj_off.value": 69.93808186195828,
+      "stats.adj_def.value": 97.92235152487967,
+      "stats.adj_margin.value": -27.984269662921392,
+      "stats.adj_margin.rank": 341,
+      "conf": "Southern Conference"
+   },
+   "Hartford": {
+      "stats.adj_off.value": 78.00951043338684,
+      "stats.adj_def.value": 108.76520866773681,
+      "stats.adj_margin.value": -30.75569823434998,
+      "stats.adj_margin.rank": 349,
+      "conf": "America East Conference"
+   },
+   "Nicholls St.": {
+      "stats.adj_off.value": 79.66665329052968,
+      "stats.adj_def.value": 108.67949438202254,
+      "stats.adj_margin.value": -29.01284109149286,
+      "stats.adj_margin.rank": 343,
+      "conf": "Southland Conference"
    },
    "Bethune-Cookman": {
-      "stats.adj_off.value": 76.99486356340287,
-      "stats.adj_def.value": 106.36111556982343,
-      "stats.adj_margin.value": -29.366252006420552,
+      "stats.adj_off.value": 77.29522471910111,
+      "stats.adj_def.value": 106.96520866773682,
+      "stats.adj_margin.value": -29.669983948635704,
       "stats.adj_margin.rank": 346,
       "conf": "Southwestern Athletic Conference"
    },
-   "N.C. Central": {
-      "stats.adj_off.value": 79.86629213483145,
-      "stats.adj_def.value": 107.08968699839485,
-      "stats.adj_margin.value": -27.2233948635634,
-      "stats.adj_margin.rank": 343,
-      "conf": "Mid-Eastern Athletic Conference"
+   "Morehead St.": {
+      "stats.adj_off.value": 72.69522471910112,
+      "stats.adj_def.value": 101.96520866773682,
+      "stats.adj_margin.value": -29.269983948635698,
+      "stats.adj_margin.rank": 344,
+      "conf": "Ohio Valley Conference"
    },
    "Florida A&M": {
-      "stats.adj_off.value": 74.56629213483143,
-      "stats.adj_def.value": 106.06111556982344,
-      "stats.adj_margin.value": -31.494823434992014,
-      "stats.adj_margin.rank": 349,
+      "stats.adj_off.value": 74.2666532905297,
+      "stats.adj_def.value": 106.42235152487967,
+      "stats.adj_margin.value": -32.15569823434997,
+      "stats.adj_margin.rank": 350,
       "conf": "Mid-Eastern Athletic Conference"
    },
-   "Hartford": {
-      "stats.adj_off.value": 76.85200642054572,
-      "stats.adj_def.value": 109.27540128410915,
-      "stats.adj_margin.value": -32.42339486356343,
-      "stats.adj_margin.rank": 350,
-      "conf": "America East Conference"
-   },
    "Mississippi Val.": {
-      "stats.adj_off.value": 82.28057784911717,
-      "stats.adj_def.value": 112.26111556982342,
-      "stats.adj_margin.value": -29.980537720706252,
+      "stats.adj_off.value": 81.80951043338682,
+      "stats.adj_def.value": 111.53663723916539,
+      "stats.adj_margin.value": -29.727126805778568,
       "stats.adj_margin.rank": 347,
       "conf": "Southwestern Athletic Conference"
    },
-   "New Orleans": {
-      "stats.adj_off.value": 73.88057784911715,
-      "stats.adj_def.value": 104.9182584269663,
-      "stats.adj_margin.value": -31.03768057784916,
-      "stats.adj_margin.rank": 348,
-      "conf": "Southland Conference"
-   },
-   "Alcorn": {
-      "stats.adj_off.value": 74.68057784911714,
-      "stats.adj_def.value": 107.60397271268057,
-      "stats.adj_margin.value": -32.92339486356343,
-      "stats.adj_margin.rank": 352,
-      "conf": "Southwestern Athletic Conference"
-   },
-   "ULM": {
-      "stats.adj_off.value": 73.49486356340286,
-      "stats.adj_def.value": 106.36111556982343,
-      "stats.adj_margin.value": -32.86625200642057,
-      "stats.adj_margin.rank": 351,
-      "conf": "Sun Belt Conference"
-   },
-   "Delaware St.": {
-      "stats.adj_off.value": 70.06629213483143,
-      "stats.adj_def.value": 107.38968699839485,
-      "stats.adj_margin.value": -37.32339486356342,
-      "stats.adj_margin.rank": 353,
+   "N.C. Central": {
+      "stats.adj_off.value": 78.03808186195828,
+      "stats.adj_def.value": 107.57949438202255,
+      "stats.adj_margin.value": -29.54141252006427,
+      "stats.adj_margin.rank": 345,
       "conf": "Mid-Eastern Athletic Conference"
    },
-   "Charleston So.": {
-      "stats.adj_off.value": 69.5234349919743,
-      "stats.adj_def.value": 107.23254414125199,
-      "stats.adj_margin.value": -37.709109149277694,
-      "stats.adj_margin.rank": 354,
-      "conf": "Big South Conference"
+   "ULM": {
+      "stats.adj_off.value": 74.79522471910111,
+      "stats.adj_def.value": 105.4366372391654,
+      "stats.adj_margin.value": -30.641412520064293,
+      "stats.adj_margin.rank": 348,
+      "conf": "Sun Belt Conference"
+   },
+   "Alcorn": {
+      "stats.adj_off.value": 74.09522471910113,
+      "stats.adj_def.value": 106.77949438202253,
+      "stats.adj_margin.value": -32.68426966292141,
+      "stats.adj_margin.rank": 351,
+      "conf": "Southwestern Athletic Conference"
    },
    "South Carolina St.": {
-      "stats.adj_off.value": 68.15200642054573,
-      "stats.adj_def.value": 108.97540128410914,
-      "stats.adj_margin.value": -40.82339486356341,
+      "stats.adj_off.value": 66.73808186195826,
+      "stats.adj_def.value": 106.42235152487967,
+      "stats.adj_margin.value": -39.68426966292141,
       "stats.adj_margin.rank": 356,
       "conf": "Mid-Eastern Athletic Conference"
    },
-   "Winthrop": {
-      "stats.adj_off.value": 66.40914927768858,
-      "stats.adj_def.value": 106.68968699839486,
-      "stats.adj_margin.value": -40.28053772070628,
-      "stats.adj_margin.rank": 355,
+   "New Orleans": {
+      "stats.adj_off.value": 71.80951043338682,
+      "stats.adj_def.value": 105.3509229534511,
+      "stats.adj_margin.value": -33.541412520064284,
+      "stats.adj_margin.rank": 352,
+      "conf": "Southland Conference"
+   },
+   "Charleston So.": {
+      "stats.adj_off.value": 68.85236757624398,
+      "stats.adj_def.value": 106.22235152487967,
+      "stats.adj_margin.value": -37.36998394863569,
+      "stats.adj_margin.rank": 353,
       "conf": "Big South Conference"
+   },
+   "Winthrop": {
+      "stats.adj_off.value": 69.85236757624398,
+      "stats.adj_def.value": 108.69378009630826,
+      "stats.adj_margin.value": -38.84141252006428,
+      "stats.adj_margin.rank": 354,
+      "conf": "Big South Conference"
+   },
+   "Delaware St.": {
+      "stats.adj_off.value": 68.05236757624398,
+      "stats.adj_def.value": 107.6366372391654,
+      "stats.adj_margin.value": -39.584269662921415,
+      "stats.adj_margin.rank": 355,
+      "conf": "Mid-Eastern Athletic Conference"
    }
 };

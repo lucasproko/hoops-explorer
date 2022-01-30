@@ -56,7 +56,7 @@ import { GenericTableColProps } from './GenericTable';
 const mdCoachingCandidates: Record<string, boolean> = {
   // Incumbant
   "Maryland": true,
-  
+
   // Pitino
   "Iona": true,
 
@@ -543,7 +543,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       "sep3": GenericTableOps.addColSeparator(),
       "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality", timePicker),
       "sep4": GenericTableOps.addColSeparator(),
-      "games": GenericTableOps.addIntCol("Games", `Number of games played (all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
+      "games": GenericTableOps.addIntCol("Games", `Number of games played (D1-D1 only; all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
       "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}]`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
     }, (anyPinDeltas ? [] : [ "rankDiff" ]).concat(apPoll ? [] : [ "ap" ])) as Record<string, GenericTableColProps>;
   
