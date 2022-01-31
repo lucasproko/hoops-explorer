@@ -88,6 +88,9 @@ const mdCoachingCandidates: Record<string, boolean> = {
   "N.C. Central": true,
   "Cleveland St.": true,
   "Coppin St.": true,
+
+  // Do't tell SEC Twitter
+  "Arkansas": true,
 };
 const mdCoachingCandidatesName = "MD Coaches??";
 const nonHighMajorConfsName = "Outside The P6";
