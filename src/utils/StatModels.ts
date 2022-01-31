@@ -4,6 +4,17 @@ import React from 'react';
 import { OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "./stats/LuckUtils";
 import { ORtgDiagnostics, DRtgDiagnostics } from "./stats/RatingUtils";
 
+export type DivisionStatistics = {
+  /** The number of teams in the tier (includes teams in multiple tiers) */
+  tier_sample_size: number,
+  /** The number of teams in the tier (only teams in their "natural" tier) */
+  dedup_sample_size: number,
+  /* Sorted list of samples by field name (includes teams in multiple tiers) */
+  tier_samples: Record<string, Array<number>>,
+  /* Sorted list of samples by field name (only teams in their "natural" tier) */
+  dedup_samples: Record<string, Array<number>>,
+};
+
 /** Represents a player, lineup, or team statistic */
 export type Statistic = {
   /** The current most relevant number */

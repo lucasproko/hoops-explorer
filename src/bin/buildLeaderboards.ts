@@ -15,7 +15,7 @@ import zlib from 'zlib';
 import _ from "lodash";
 
 // Models
-import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo } from "../utils/StatModels";
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics } from "../utils/StatModels";
 
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
@@ -110,6 +110,14 @@ var bubbleOffenseInfo: number[] = [];
 var bubbleDefenseInfo: number[] = [];
 var eliteOffenseInfo: number[] = [];
 var eliteDefenseInfo: number[] = [];
+
+/** Exported for test only */
+export const mutableDivisionStats: DivisionStatistics = { 
+  tier_sample_size: 0,
+  dedup_sample_size: 0,
+  tier_samples: {},
+  dedup_samples: {}
+ };
 
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
@@ -214,9 +222,9 @@ export async function main() {
     }
   }).value();
 
-//Test code:
-//console.log("Number of teams = " + teams.length);
-//throw "done";
+  //Test code:
+  //console.log("Number of teams = " + teams.length);
+  //throw "done";
 
   for (const teamObj of teams) {
     const team = teamObj.team;
@@ -224,6 +232,10 @@ export async function main() {
     const genderYearLookup = `${inGender}_${teamYear}`;
     const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
     const statsAverages = averageStatsInfo[genderYearLookup] || {};
+
+    const naturalTier = (onlyHasTopConferences || (teamObj.category == "high")) ? "High" : 
+      (teamObj.category == "low" ? "Low" : "Medium");
+    const inNaturalTier = naturalTier == inTier;
 
     if (!testMode) console.log(`Processing ${inGender} ${team} ${teamYear}`);
 
@@ -343,10 +355,45 @@ export async function main() {
           const teamAdjOff = completedEfficiencyInfo?.[team]?.["stats.adj_off.value"] || 0.0;
           const teamAdjDef = completedEfficiencyInfo?.[team]?.["stats.adj_def.value"] || 0.0;
   
-          const teamCalcAdjEffOff = teamBaseline?.off_adj_ppp?.value || teamAdjOff;
-          const teamCalcAdjEffDef = teamBaseline?.def_adj_ppp?.value || teamAdjDef;
-          const teamCalcAdjEffOffRecent = teamRecent?.off_adj_ppp?.value || teamCalcAdjEffOff;
-          const teamCalcAdjEffDefRecent = teamRecent?.def_adj_ppp?.value || teamCalcAdjEffDef;
+          const teamCalcAdjEffOff = teamBaseline.off_adj_ppp?.value || teamAdjOff;
+          const teamCalcAdjEffDef = teamBaseline.def_adj_ppp?.value || teamAdjDef;
+          const teamCalcAdjEffOffRecent = teamRecent.off_adj_ppp?.value || teamCalcAdjEffOff;
+          const teamCalcAdjEffDefRecent = teamRecent.def_adj_ppp?.value || teamCalcAdjEffDef;
+
+          // Add net if the data is available:
+          if (teamBaseline.off_adj_ppp && teamBaseline.def_adj_ppp) {
+            teamBaseline.off_net = { value: teamCalcAdjEffOff -  teamCalcAdjEffDef };
+          }
+          if (teamBaseline.off_ppp && teamBaseline.def_ppp) {
+            teamBaseline.def_net = { value: (teamBaseline.off_ppp?.value || 100) - (teamBaseline.def_ppp?.value || 100) };
+          }
+
+          // Build all the samples ready for percentils:
+          mutableDivisionStats.tier_sample_size += 1;
+          if (inNaturalTier) {
+            mutableDivisionStats.dedup_sample_size += 1;
+          }
+          const fieldsToRecord = [ 
+            "net", "ppp", "adj_ppp", 
+            "efg", "to", "orb", "ftr", "assist", "3pr", "2pmidr", "2primr", 
+            "3p", "2p", "2pmid", "2prim", "adj_opp"
+          ];
+          _.chain(fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ]).forEach(field => {
+            const maybeStat = teamBaseline[field]?.value;
+            if (!_.isNil(maybeStat)) {
+              if (!mutableDivisionStats.tier_samples[field]) {
+                mutableDivisionStats.tier_samples[field] = [];
+              }
+              mutableDivisionStats.tier_samples[field]!.push(maybeStat);
+              if (inNaturalTier) {
+                if (!mutableDivisionStats.dedup_samples[field]) {
+                  mutableDivisionStats.dedup_samples[field] = [];
+                }
+                mutableDivisionStats.dedup_samples[field]!.push(maybeStat);
+              }
+            }
+          }).value();
+          //TODO: more complex: also derived fields (scoring %s, transition + scramble play)
 
           teamInfo.push({
             team_name: fullRequestModel.team,
