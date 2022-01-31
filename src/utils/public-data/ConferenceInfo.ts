@@ -45,4 +45,5 @@ export const HighMajorConfs: Set<String> = new Set(
 export const NicknameToConference: Record<string, string> =
   _.chain(ConferenceToNickname).toPairs().map(kv => [ kv[1], kv[0] ]).fromPairs().value();
 
-export const Power6Conferences = [ "B1G", "ACC", "BE", "B12", "P12", "SEC" ].map(c => NicknameToConference[c] || c);
+  export const Power6ConferencesNicks = [ "B1G", "ACC", "BE", "B12", "P12", "SEC" ];
+  export const Power6Conferences = Power6ConferencesNicks.map(c => NicknameToConference[c] || c);

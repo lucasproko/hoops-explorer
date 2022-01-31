@@ -42,7 +42,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { TeamLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks } from '../utils/public-data/ConferenceInfo';
 import { TeamInfo } from '../utils/StatModels';
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
@@ -89,6 +89,9 @@ const mdCoachingCandidates: Record<string, boolean> = {
   "Cleveland St.": true,
   "Coppin St.": true,
 };
+const mdCoachingCandidatesName = "MD Coaches??";
+const nonHighMajorConfsName = "Outside The P6";
+const powerSixConfsStr = Power6ConferencesNicks.join(",");
 
 export type TeamLeaderboardStatsModel = {
   teams?: Array<TeamInfo>,
@@ -471,7 +474,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     setCurrentTable(tableDataTmp);
 
     const confFilter = (t: {titleStr: string, confStr: string}) => {
-      return (confs == "") || (confs.indexOf(t.confStr) >= 0) || ((confs == "MD Coaches??") && mdCoachingCandidates[t.titleStr]);
+      return (confs == "") || (confs.indexOf(t.confStr) >= 0) 
+        || ((confs == mdCoachingCandidatesName) && mdCoachingCandidates[t.titleStr])
+        || ((confs == nonHighMajorConfsName) && (powerSixConfsStr.indexOf(t.confStr) < 0))
+        ;
     }
     const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => confFilter(t));
     const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis)).filter(t => confFilter(t));
@@ -790,7 +796,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             isMulti
             components={{ MultiValueContainer: ConferenceValueContainer }}
             value={getCurrentConfsOrPlaceholder()}
-            options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams)).concat("MD Coaches??").map(
+            options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams))
+              .concat([ nonHighMajorConfsName, mdCoachingCandidatesName ]).map(
               (r) => stringToOption(r)
             )}
             onChange={(optionsIn) => {

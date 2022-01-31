@@ -23,35 +23,35 @@ const apPollWomen_2020_21: Record<string, number> = {"UConn":1,"Stanford":2,"NC 
 
 /** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
 const apPollMen_2021_22: Record<string, number> = _.chain(`
-1	Auburn	18-1	1,504	2
-2	Gonzaga	15-2	1,475	1
-3	Arizona	16-1	1,381	3
-4	Baylor	17-2	1,335	5
-5	Kansas	16-2	1,281	7
-6	Purdue	16-3	1,119	4
-7	UCLA	13-2	1,116	9
-7	Houston	17-2	1,116	10
-9	Duke	15-3	1,017	6
-10	Michigan State	15-3	979	14
-11	Wisconsin	15-3	894	8
-12	Kentucky	15-4	822	12
-13	Texas Tech	15-4	766	18
-14	Villanova	14-5	713	11
-15	Southern California	16-2	711	16
-16	Ohio State	12-4	584	19
-17	Providence	16-2	542	21
-18	Tennessee	13-5	419	24
-19	LSU	15-4	399	13
-20	UConn	13-4	284	25
-21	Xavier	14-4	269	20
-22	Marquette	14-6	177	NR
-23	Iowa State	14-5	167	15
-24	Illinois	13-5	155	17
-25	Davidson	16-2	132	NR
+1	Auburn	20-1	1,508	1
+2	Gonzaga	17-2	1,475	2
+3	UCLA	1,338	7
+4	Purdue	18-3	1,282	6
+5	Kentucky	17-4	1,195	12
+6	Houston	18-2	1,164	7
+7	Arizona	17-2	1,159	3
+8	Baylor	18-3	1,141	4
+9	Duke	17-3	1,107	9
+10	Kansas	17-3	1,014	5
+11	Wisconsin	17-3	938	11
+12	Villanova	16-5	807	14
+13	Michigan State	16-4	751	10
+14	Texas Tech	16-5	741	13
+15	Providence	18-2	709	17
+16	Ohio State	13-5	548	16
+17	UConn	15-4	483	20
+18	Illinois	15-5	445	24
+19	Southern California	18-3	337	15
+20	Iowa State	16-5	324	23
+21	Xavier	15-5	255	21
+22	Tennessee	14-6	234	18
+23	Texas	16-5	203	NR
+24	Marquette	15-7	188	22
+25	LSU	16-5	180	19
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
    .assign(
       {
-         __week__: 12
+         __week__: 13
       }
    ).value();
 
