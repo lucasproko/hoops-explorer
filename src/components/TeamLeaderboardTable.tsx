@@ -49,7 +49,7 @@ import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
-import { apPolls } from '../utils/public-data/apPolls';
+import { apPolls } from '../utils/public-data/rankingInfo';
 import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 
@@ -173,7 +173,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   );
 
   const [ pinnedRankings, setPinnedRankings ] = useState({} as Record<string, number>);
-  const [ currentTable, setCurrentTable ] = useState({} as Array<any>);
+  const [ currentTable, setCurrentTable ] = useState([] as Array<any>);
+
+  const  [ netRankings, setNetRankings ] = useState({} as Record<string, number>);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState: TeamLeaderboardParams = {
@@ -191,6 +193,14 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     confs, year, gender 
   ]);
 
+  useEffect(() => {
+
+    // Get NET rankings for this year, if available
+    fetch(`/api/getRankings?name=NET&year=${year}&gender=${gender}`).then(resp => resp.json()).then(respJson => {
+      setNetRankings(respJson);
+    });
+
+  }, [ year, gender ]);
 
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
@@ -202,6 +212,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         (30*24*3600);
     const apPoll = apPolls[genderYear];
     const apPollSize = apPoll?.__max__ || 25;
+
+    const netRankingSize = 100; // (only calculate the delta on the first 100 NET)
         
     // Calculate a commmon set of games
     const gameArray = (dataEvent.teams || []).map(t => t.opponents.length);
@@ -223,9 +235,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     };
     var anyPinDeltas = false;
 
-    var varApDelta = 0;
+    var varApDelta = 0; //(calculate total error of NET vs h-e ranking)
+    var varNetDelta = 0; //(calculate total error of NET vs h-e ranking)
 
-    const apColorScale = (val: number) => chroma.scale(["green", "orange", "red"])(val).toString();
+    const rankingDeltaColorScale = (val: number) => chroma.scale(["green", "orange", "red"])(val).toString();
 
     /** If buildPin then don't do any mutable operations */
     const buildTable = (buildPin: boolean, 
@@ -416,7 +429,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
               </div>
             },
             games: { value: numOpponents },
-            ap: undefined as any
+            ap: undefined as any,
+            NET: undefined as any
           } ];
           return cell;
 
@@ -446,7 +460,22 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             varApDelta = varApDelta + varDelta;
           }
           if (apPos || (t.rankNum <= 25)) {
-            t.ap = <small style={CommonTableDefs.getTextShadow({ value: varDelta*0.1 }, apColorScale)}>{apPos || "NR"}</small>;
+            t.ap = <small style={CommonTableDefs.getTextShadow({ value: varDelta*0.1 }, rankingDeltaColorScale)}>{apPos || "NR"}</small>;
+          }
+        }
+        if (!_.isEmpty(netRankings)) {
+          const netPos: number = netRankings[t.titleStr] || 0;
+          var varDelta = 0;
+          if ((t.rankNum <= netRankingSize) && !netPos) {
+            varDelta = 5 + apPollSize - t.rankNum; //(assume an error is 5 more than the ranking size)
+          } else if (netPos <= 100) {
+            varDelta = Math.min(Math.abs(netPos - t.rankNum), 15);
+          }
+          if (!buildPin) {
+            varNetDelta = varNetDelta + varDelta;
+          }
+          if (netPos) {
+            t.NET = <small style={CommonTableDefs.getTextShadow({ value: varDelta*0.1 }, rankingDeltaColorScale)}>{netPos || "NR"}</small>;
           }
         }
         return t;
@@ -488,16 +517,22 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const apTooltip = (
       <Tooltip id="apTooltip">The average delta between AP poll and this ranking (note there may have been games since the AP poll's release)</Tooltip>
     );
+    const netTooltip = (
+      <Tooltip id="apTooltip">The average delta between daily NET and this ranking</Tooltip>
+    );
     const gameBasisTooltip = (
       <Tooltip id="gameBasisTooltip">The mode (most common) number of games played in D1 (all metrics are normalized as if each team had played this many games)</Tooltip>
     );
     const subHeaderRow = ([
-      [<i>Top 25 + 1</i>, anyPinDeltas ? 15 : 14]
-    ].concat([
-      [<OverlayTrigger placement="auto" overlay={gameBasisTooltip}><i>{gameBasis}</i></OverlayTrigger>, 1]
-    ]).concat(apPoll ? [
-      [<OverlayTrigger placement="auto" overlay={apTooltip}><i>{(varApDelta/25).toFixed(1)}</i></OverlayTrigger>, 1]
-    ] : [])) as Array<[React.ReactNode, number ]>;
+        [<i>Top 25 + 1</i>, anyPinDeltas ? 15 : 14]
+      ].concat([
+        [<OverlayTrigger placement="auto" overlay={gameBasisTooltip}><i>{gameBasis}</i></OverlayTrigger>, 1]
+      ]).concat(apPoll ? [
+        [<OverlayTrigger placement="auto" overlay={apTooltip}><i>{(varApDelta/apPollSize).toFixed(1)}</i></OverlayTrigger>, 1]
+      ] : []).concat(!_.isEmpty(netRankings) ? [
+        [<OverlayTrigger placement="auto" overlay={netTooltip}><i>{(varNetDelta/netRankingSize).toFixed(1)}</i></OverlayTrigger>, 1]
+      ] : [])
+    ) as Array<[React.ReactNode, number ]>;
 
     const tableData = (confs == "" ? [ 
       GenericTableOps.buildSubHeaderRow(subHeaderRow, "small text-center") 
@@ -537,24 +572,29 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minTime, 0, mutableLimitState.maxTime])(val.value).toString();
 
     const teamLeaderboard = _.omit({
-      "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
-      "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-      "rankDiff": GenericTableOps.addDataCol(<b>&Delta;</b>, "The difference vs pinned rank", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-      "sep0": GenericTableOps.addColSeparator(),
-      "rank": GenericTableOps.addDataCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-      "rating": GenericTableOps.addPtsCol("Rating", `The weighted sum of the bonus-adjusted 'resume' plus 'quality' metrics. The rating is on the same scale as WAB.`, totalPicker),
-      "sep1": GenericTableOps.addColSeparator(),
-      "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", wabPicker),
-      "wae": GenericTableOps.addPtsCol("+WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule), used as a bonus for WAB", waePicker),
-      "sep2": GenericTableOps.addColSeparator(),
-      "quality": GenericTableOps.addPtsCol("Quality", "The efficiency ('eye test') of a team, measured as expected W-L difference against a schedule of bubble teams, includes weighted dominance", qualPicker),
-      "dominance": GenericTableOps.addPtsCol("Dom.", "Dominance delta (at 100% weight) - Bonus to efficiency due to building and maintaining leads, values shown are for 100% weight", domPicker),
-      "sep3": GenericTableOps.addColSeparator(),
-      "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality", timePicker),
-      "sep4": GenericTableOps.addColSeparator(),
-      "games": GenericTableOps.addIntCol("Games", `Number of games played (D1-D1 only; all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
-      "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}]`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-    }, (anyPinDeltas ? [] : [ "rankDiff" ]).concat(apPoll ? [] : [ "ap" ])) as Record<string, GenericTableColProps>;
+        "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+        "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+        "rankDiff": GenericTableOps.addDataCol(<b>&Delta;</b>, "The difference vs pinned rank", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+        "sep0": GenericTableOps.addColSeparator(),
+        "rank": GenericTableOps.addDataCol("Rank", "The overall team ranking", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+        "rating": GenericTableOps.addPtsCol("Rating", `The weighted sum of the bonus-adjusted 'resume' plus 'quality' metrics. The rating is on the same scale as WAB.`, totalPicker),
+        "sep1": GenericTableOps.addColSeparator(),
+        "wab": GenericTableOps.addPtsCol("WAB", "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)", wabPicker),
+        "wae": GenericTableOps.addPtsCol("+WAE", "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule), used as a bonus for WAB", waePicker),
+        "sep2": GenericTableOps.addColSeparator(),
+        "quality": GenericTableOps.addPtsCol("Quality", "The efficiency ('eye test') of a team, measured as expected W-L difference against a schedule of bubble teams, includes weighted dominance", qualPicker),
+        "dominance": GenericTableOps.addPtsCol("Dom.", "Dominance delta (at 100% weight) - Bonus to efficiency due to building and maintaining leads, values shown are for 100% weight", domPicker),
+        "sep3": GenericTableOps.addColSeparator(),
+        "recency": GenericTableOps.addPtsCol("Rec.", "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality", timePicker),
+        "sep4": GenericTableOps.addColSeparator(),
+        "games": GenericTableOps.addIntCol("Games", `Number of games played (D1-D1 only; all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
+        "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}]`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+        "NET": GenericTableOps.addDataCol(`NET`, `The team's NET ranking`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter)
+      }, 
+      (anyPinDeltas ? [] : [ "rankDiff" ])
+        .concat(apPoll ? [] : [ "ap" ])
+        .concat(_.isEmpty(netRankings) ? [ "NET" ] : [  ])
+    ) as Record<string, GenericTableColProps>;
   
     return <GenericTable
       tableCopyId="teamLeaderboardTable"

@@ -1869,7 +1869,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               />
             </DropdownToggle>
             <DropdownMenu
-              align="left"
               alignRight={false}
               flip={true}
             >
@@ -2946,7 +2945,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               />
             </DropdownToggle>
             <DropdownMenu
-              align="left"
               alignRight={false}
               flip={true}
             >

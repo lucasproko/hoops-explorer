@@ -96,6 +96,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
       >
         <div
           className="dropup"
+          onKeyDown={[Function]}
         >
           <div>
             <button
@@ -3565,6 +3566,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
       >
         <div
           className="dropup"
+          onKeyDown={[Function]}
         >
           <div>
             <button
