@@ -59,6 +59,7 @@
     "reshake": "^1.2.1",
     "styled-components": "^4.4.1",
     "svd-js": "^1.1.1",
+    "tabletojson": "^2.0.7",
     "use-mouse-leave": "^1.0.0"
   },
   "devDependencies": {
