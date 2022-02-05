@@ -11,6 +11,15 @@ export type DivisionStatistics = {
   dedup_sample_size: number,
   /* Sorted list of samples by field name (includes teams in multiple tiers) */
   tier_samples: Record<string, Array<number>>,
+
+  /** Lets you do faster search of what percentile you are in by first looking up with .toFixed(0), or (100*).toFixed*/
+  tier_lut: Record<string, {
+    isPct: boolean, //(whether you need to *100 before applying .toFixed(0))
+    size: number, //(total number of samples in the LUT)
+    min: number, //(don't need max, if value missed LUT and is >max then %ile==100, else 1)
+    lut: Record<string, Array<number>> //([0] of the entry is the offset)
+  }>,
+
   /* Sorted list of samples by field name (only teams in their "natural" tier) */
   dedup_samples: Record<string, Array<number>>,
 };

@@ -518,7 +518,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       <Tooltip id="apTooltip">The average delta between AP poll and this ranking (note there may have been games since the AP poll's release)</Tooltip>
     );
     const netTooltip = (
-      <Tooltip id="apTooltip">The average delta between daily NET and this ranking</Tooltip>
+      <Tooltip id="apTooltip">The average delta between daily NET and this ranking (T100 only)</Tooltip>
     );
     const gameBasisTooltip = (
       <Tooltip id="gameBasisTooltip">The mode (most common) number of games played in D1 (all metrics are normalized as if each team had played this many games)</Tooltip>

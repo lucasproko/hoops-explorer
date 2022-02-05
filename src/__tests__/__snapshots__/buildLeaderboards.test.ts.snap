@@ -3220,105 +3220,362 @@ Object {
       0.16947520462205104,
     ],
   },
-  "tier_sample_size": 151,
-  "tier_samples": Object {
-    "def_2p": Array [
-      0.44483671668137686,
-    ],
-    "def_2pmid": Array [
-      0.30671506352087113,
-    ],
-    "def_2pmidr": Array [
-      0.3009284543965046,
-    ],
-    "def_2prim": Array [
-      0.5756013745704467,
-    ],
-    "def_2primr": Array [
-      0.3178590933915893,
-    ],
-    "def_3p": Array [
-      0.32521489971346706,
-    ],
-    "def_3pr": Array [
-      0.3812124522119061,
-    ],
-    "def_adj_opp": Array [
-      96.96167549350024,
-    ],
-    "def_adj_ppp": Array [
-      91.58495122584529,
-    ],
-    "def_assist": Array [
-      0.5471956224350205,
-    ],
-    "def_efg": Array [
-      0.4612233752048061,
-    ],
-    "def_ftr": Array [
-      0.24249044238121245,
-    ],
-    "def_net": Array [
-      11.114221640321887,
-    ],
-    "def_orb": Array [
-      0.26252158894645944,
-    ],
-    "def_ppp": Array [
-      96.05958673714561,
-    ],
-    "def_to": Array [
-      0.17443536761172512,
-    ],
-    "off_2p": Array [
-      0.5014866204162537,
-    ],
-    "off_2pmid": Array [
-      0.28895184135977336,
-    ],
-    "off_2pmidr": Array [
-      0.19898534385569336,
-    ],
-    "off_2prim": Array [
-      0.6158536585365854,
-    ],
-    "off_2primr": Array [
-      0.3697857948139797,
-    ],
-    "off_3p": Array [
-      0.3111111111111111,
-    ],
-    "off_3pr": Array [
-      0.43122886133032695,
-    ],
-    "off_adj_opp": Array [
-      107.58303700144161,
-    ],
-    "off_adj_ppp": Array [
-      113.24062028551026,
-    ],
-    "off_assist": Array [
-      0.5497311827956989,
-    ],
-    "off_efg": Array [
-      0.48647125140924463,
-    ],
-    "off_ftr": Array [
-      0.37711386696730553,
-    ],
-    "off_net": Array [
-      21.655669059664973,
-    ],
-    "off_orb": Array [
-      0.31216457960644006,
-    ],
-    "off_ppp": Array [
-      107.1738083774675,
-    ],
-    "off_to": Array [
-      0.16947520462205104,
-    ],
+  "tier_lut": Object {
+    "def_2p": Object {
+      "isPct": true,
+      "lut": Object {
+        "44": Array [
+          0,
+          0.44483671668137686,
+        ],
+      },
+      "min": 0.44483671668137686,
+      "size": 1,
+    },
+    "def_2pmid": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.30671506352087113,
+        ],
+      },
+      "min": 0.30671506352087113,
+      "size": 1,
+    },
+    "def_2pmidr": Object {
+      "isPct": true,
+      "lut": Object {
+        "30": Array [
+          0,
+          0.3009284543965046,
+        ],
+      },
+      "min": 0.3009284543965046,
+      "size": 1,
+    },
+    "def_2prim": Object {
+      "isPct": true,
+      "lut": Object {
+        "58": Array [
+          0,
+          0.5756013745704467,
+        ],
+      },
+      "min": 0.5756013745704467,
+      "size": 1,
+    },
+    "def_2primr": Object {
+      "isPct": true,
+      "lut": Object {
+        "32": Array [
+          0,
+          0.3178590933915893,
+        ],
+      },
+      "min": 0.3178590933915893,
+      "size": 1,
+    },
+    "def_3p": Object {
+      "isPct": true,
+      "lut": Object {
+        "33": Array [
+          0,
+          0.32521489971346706,
+        ],
+      },
+      "min": 0.32521489971346706,
+      "size": 1,
+    },
+    "def_3pr": Object {
+      "isPct": true,
+      "lut": Object {
+        "38": Array [
+          0,
+          0.3812124522119061,
+        ],
+      },
+      "min": 0.3812124522119061,
+      "size": 1,
+    },
+    "def_adj_opp": Object {
+      "isPct": false,
+      "lut": Object {
+        "97": Array [
+          0,
+          96.96167549350024,
+        ],
+      },
+      "min": 96.96167549350024,
+      "size": 1,
+    },
+    "def_adj_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "92": Array [
+          0,
+          91.58495122584529,
+        ],
+      },
+      "min": 91.58495122584529,
+      "size": 1,
+    },
+    "def_assist": Object {
+      "isPct": true,
+      "lut": Object {
+        "55": Array [
+          0,
+          0.5471956224350205,
+        ],
+      },
+      "min": 0.5471956224350205,
+      "size": 1,
+    },
+    "def_efg": Object {
+      "isPct": true,
+      "lut": Object {
+        "46": Array [
+          0,
+          0.4612233752048061,
+        ],
+      },
+      "min": 0.4612233752048061,
+      "size": 1,
+    },
+    "def_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "24": Array [
+          0,
+          0.24249044238121245,
+        ],
+      },
+      "min": 0.24249044238121245,
+      "size": 1,
+    },
+    "def_net": Object {
+      "isPct": false,
+      "lut": Object {
+        "11": Array [
+          0,
+          11.114221640321887,
+        ],
+      },
+      "min": 11.114221640321887,
+      "size": 1,
+    },
+    "def_orb": Object {
+      "isPct": true,
+      "lut": Object {
+        "26": Array [
+          0,
+          0.26252158894645944,
+        ],
+      },
+      "min": 0.26252158894645944,
+      "size": 1,
+    },
+    "def_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "96": Array [
+          0,
+          96.05958673714561,
+        ],
+      },
+      "min": 96.05958673714561,
+      "size": 1,
+    },
+    "def_to": Object {
+      "isPct": true,
+      "lut": Object {
+        "17": Array [
+          0,
+          0.17443536761172512,
+        ],
+      },
+      "min": 0.17443536761172512,
+      "size": 1,
+    },
+    "off_2p": Object {
+      "isPct": true,
+      "lut": Object {
+        "50": Array [
+          0,
+          0.5014866204162537,
+        ],
+      },
+      "min": 0.5014866204162537,
+      "size": 1,
+    },
+    "off_2pmid": Object {
+      "isPct": true,
+      "lut": Object {
+        "29": Array [
+          0,
+          0.28895184135977336,
+        ],
+      },
+      "min": 0.28895184135977336,
+      "size": 1,
+    },
+    "off_2pmidr": Object {
+      "isPct": true,
+      "lut": Object {
+        "20": Array [
+          0,
+          0.19898534385569336,
+        ],
+      },
+      "min": 0.19898534385569336,
+      "size": 1,
+    },
+    "off_2prim": Object {
+      "isPct": true,
+      "lut": Object {
+        "62": Array [
+          0,
+          0.6158536585365854,
+        ],
+      },
+      "min": 0.6158536585365854,
+      "size": 1,
+    },
+    "off_2primr": Object {
+      "isPct": true,
+      "lut": Object {
+        "37": Array [
+          0,
+          0.3697857948139797,
+        ],
+      },
+      "min": 0.3697857948139797,
+      "size": 1,
+    },
+    "off_3p": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.3111111111111111,
+        ],
+      },
+      "min": 0.3111111111111111,
+      "size": 1,
+    },
+    "off_3pr": Object {
+      "isPct": true,
+      "lut": Object {
+        "43": Array [
+          0,
+          0.43122886133032695,
+        ],
+      },
+      "min": 0.43122886133032695,
+      "size": 1,
+    },
+    "off_adj_opp": Object {
+      "isPct": false,
+      "lut": Object {
+        "108": Array [
+          0,
+          107.58303700144161,
+        ],
+      },
+      "min": 107.58303700144161,
+      "size": 1,
+    },
+    "off_adj_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "113": Array [
+          0,
+          113.24062028551026,
+        ],
+      },
+      "min": 113.24062028551026,
+      "size": 1,
+    },
+    "off_assist": Object {
+      "isPct": true,
+      "lut": Object {
+        "55": Array [
+          0,
+          0.5497311827956989,
+        ],
+      },
+      "min": 0.5497311827956989,
+      "size": 1,
+    },
+    "off_efg": Object {
+      "isPct": true,
+      "lut": Object {
+        "49": Array [
+          0,
+          0.48647125140924463,
+        ],
+      },
+      "min": 0.48647125140924463,
+      "size": 1,
+    },
+    "off_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "38": Array [
+          0,
+          0.37711386696730553,
+        ],
+      },
+      "min": 0.37711386696730553,
+      "size": 1,
+    },
+    "off_net": Object {
+      "isPct": false,
+      "lut": Object {
+        "22": Array [
+          0,
+          21.655669059664973,
+        ],
+      },
+      "min": 21.655669059664973,
+      "size": 1,
+    },
+    "off_orb": Object {
+      "isPct": true,
+      "lut": Object {
+        "31": Array [
+          0,
+          0.31216457960644006,
+        ],
+      },
+      "min": 0.31216457960644006,
+      "size": 1,
+    },
+    "off_ppp": Object {
+      "isPct": false,
+      "lut": Object {
+        "107": Array [
+          0,
+          107.1738083774675,
+        ],
+      },
+      "min": 107.1738083774675,
+      "size": 1,
+    },
+    "off_to": Object {
+      "isPct": true,
+      "lut": Object {
+        "17": Array [
+          0,
+          0.16947520462205104,
+        ],
+      },
+      "min": 0.16947520462205104,
+      "size": 1,
+    },
   },
+  "tier_sample_size": 151,
+  "tier_samples": Object {},
 }
 `;
 

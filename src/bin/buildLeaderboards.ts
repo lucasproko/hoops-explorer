@@ -116,6 +116,7 @@ export const mutableDivisionStats: DivisionStatistics = {
   tier_sample_size: 0,
   dedup_sample_size: 0,
   tier_samples: {},
+  tier_lut: {},
   dedup_samples: {}
  };
 
@@ -385,6 +386,7 @@ export async function main() {
                 mutableDivisionStats.tier_samples[field] = [];
               }
               mutableDivisionStats.tier_samples[field]!.push(maybeStat);
+
               if (inNaturalTier) {
                 if (!mutableDivisionStats.dedup_samples[field]) {
                   mutableDivisionStats.dedup_samples[field] = [];
@@ -655,69 +657,185 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
   return rankedLineups;
 }
 
-if (!testMode) main().then(async dummy => {
-  const topLineupSize = onlyHasTopConferences ? 300 : 400;
-  const topPlayersSize = onlyHasTopConferences ? 700 : 1000;
-
-  console.log("Processing Complete!");
-
-  const outputCases: Array<[string, Array<any>, Array<any>]> =
-    [ [ "all", savedLineups, savedPlayers ],
-      [ "conf", savedConfOnlyLineups, savedConfOnlyPlayers ],
-      [ "t100", savedT100Lineups, savedT100Players ] ];
-
-  await Promise.all(_.flatMap(outputCases, kv => {
-    const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
-    const sortedLineupsStr = JSON.stringify({
-      lastUpdated: lastUpdated,
-      confMap: mutableConferenceMap,
-      confs: _.keys(mutableConferenceMap),
-      lineups: sortedLineups
-    }, reduceNumberSize);
-    const players = completePlayerLeaderboard(kv[0], kv[2], topPlayersSize);
-    const playersStr = JSON.stringify({
-      lastUpdated: lastUpdated,
-      confMap: mutableConferenceMap,
-      confs: _.keys(mutableConferenceMap),
-      players: players
-    }, reduceNumberSize);
-
-    // Write to file
-    console.log(`${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`);
-    console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
-    const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-    const lineupsWritePromise = fs.writeFile(`${lineupFilename}`,sortedLineupsStr);
-    console.log(`${kv[0]} player count: [${players.length}] ([${kv[2].length}])`);
-    console.log(`${kv[0]} player length: [${playersStr.length}]`);
-    const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-    const playersWritePromise = fs.writeFile(`${playersFilename}`,playersStr);
-    
-    const teamFilename = `./public/leaderboards/lineups/teams_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-    console.log(`${kv[0]} team count: ${teamInfo.length}`);
-
-    const teamWritePromise = (("all" == kv[0]) && (teamInfo.length > 0)) ? 
-      fs.writeFile(`${teamFilename}`, JSON.stringify({
-        lastUpdated: lastUpdated,
-        confMap: mutableConferenceMap,
-        confs: _.keys(mutableConferenceMap),  
-
-        bubbleOffense: bubbleOffenseInfo,
-        bubbleDefense: bubbleDefenseInfo,
-
-        teams: teamInfo
-      }, reduceNumberSize)) :
-      Promise.resolve();
-
-    return [lineupsWritePromise, playersWritePromise, teamWritePromise];
-
-   //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
-   // zlib.gzip(sortedLineupsStr, (_, result) => {
-   //   fs.writeFile(`${filename}.gz`,result, err => {});
-   // });
-  }));
-  console.log("File creation Complete!");
-  if (!testMode) {
-    console.log("(exiting process)");
-    process.exit(0);
+/** Optimizes the data format from D1 stats (export for test only) */
+export function completeDivisionStats(mutableUnsortedDivisionStats: DivisionStatistics) {
+  const sort = (samples: Record<string, Array<number>>) => {
+    return _.transform(samples, (acc, value, key) => {
+      acc[key] = _.sortBy(value);
+    }, {} as Record<string, Array<number>>);  
   }
-});
+  mutableUnsortedDivisionStats.dedup_samples = sort(mutableUnsortedDivisionStats.dedup_samples);
+  //(this is a waste of cycles since will sort again in "Combo", but useful for debugging and not on performance critical path)
+
+  const tier_samples = sort(mutableUnsortedDivisionStats.tier_samples);
+
+  // Build LUT  
+  mutableUnsortedDivisionStats.tier_lut = _.transform(tier_samples, (acc, sample_set, field) => {
+    const last_val = sample_set[sample_set.length - 1];
+    acc[field] = _.transform(sample_set, (lutObj, val) => {
+
+      const lutKey = (lutObj.isPct ? 100*val : val).toFixed(0);
+      const currLutVal = lutObj.lut[lutKey];
+      if (_.isNil(currLutVal)) { // New entry
+        lutObj.lut[lutKey] = [ lutObj.size , val ];
+      } else { // Existing entry, append
+        currLutVal.push(val);
+      }
+      lutObj.size = lutObj.size + 1;
+
+    }, {
+      isPct: (sample_set[0] >= -1) && (sample_set[0] <= 1) && (last_val >= -1) && (last_val <= 1),
+      min: sample_set[0],
+      size: 0, //(will mutate this to size during the loop)
+      lut: {} as Record<string, Array<number>>
+    })
+  }, {} as Record<string, any>);
+
+  mutableUnsortedDivisionStats.tier_samples = {}; //(replace this by LUT)  
+
+  return mutableUnsortedDivisionStats; //(for chaining purposes)
+};
+
+/** If all 3 exist, combines stats for High/Medium/Low tiers */
+export async function combineDivisionStatsFiles() {
+  const tiers = [ "High", "Medium", "Low"];
+  const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(tier => {
+    const divisionStatsInFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+    const statsPromise: Promise<[String, DivisionStatistics[]]> = fs.readFile(divisionStatsInFilename).then(buffer => {
+      return [
+        tier,
+        [ JSON.parse(buffer.toString()) as DivisionStatistics ]
+      ] as [ string, DivisionStatistics[] ];
+    }).catch(err => [ tier,  [] as DivisionStatistics[] ]);
+    return statsPromise;
+  });
+  const resolvedFilesAwait = await Promise.all(filesToCombine);
+  const resolvedFiles: Record<string, DivisionStatistics> = 
+    _.chain(resolvedFilesAwait)
+      .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(makes this method idempotent)
+      .fromPairs().mapValues(array => array[0]!).value();
+
+  const combineDivisionStats = (toCombine: DivisionStatistics[]) => {
+    const allKeys = _.chain(toCombine).flatMap(stats => _.keys(stats.dedup_samples)).value();
+    const combinedSamples = _.transform(allKeys, (acc, key) => {
+
+      acc[key] = _.flatMap(toCombine, stat => stat.dedup_samples[key] || []);//(gets re-sorted below)
+
+    }, {} as Record<string, Array<number>>);
+
+    // Build LUT from presorted samples
+    return completeDivisionStats({
+      tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
+      tier_samples: combinedSamples,
+      tier_lut: {},
+      dedup_sample_size: 0,
+      dedup_samples: {}
+    });
+  };
+
+  const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
+  const combinedFilesPromise = (_.keys(resolvedFiles).length == 3) ? 
+    fs.writeFile(
+      divisionStatsComboFilename,
+      JSON.stringify(combineDivisionStats(_.values(resolvedFiles)), reduceNumberSize)
+    ) : Promise.resolve();
+    
+  await combinedFilesPromise; //(so we'll error out if this step fails - otherwise could lose dedup_samples before using them)
+
+  const filesToOutput =  _.map(resolvedFiles, (stats, tier) => {
+    const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+    // Remove the dedup_samples since it's now been calculated
+    return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ stats, dedup_samples: {} }, reduceNumberSize));
+  });
+
+  await Promise.all(filesToOutput);
+
+  console.log(`Completed combining stats for [${_.keys(resolvedFiles)}]`);
+}
+
+if (!testMode) {
+
+  if (inTier == "Combo") {
+    combineDivisionStatsFiles().then(async dummy => {
+      console.log("File creation Complete!");
+      if (!testMode) { //(ie always)
+        console.log("(exiting process)");
+        process.exit(0);
+      }
+    })
+  } else {
+    main().then(async dummy => {
+      const topLineupSize = onlyHasTopConferences ? 300 : 400;
+      const topPlayersSize = onlyHasTopConferences ? 700 : 1000;
+
+      console.log("Processing Complete!");
+
+      const outputCases: Array<[string, Array<any>, Array<any>]> =
+        [ [ "all", savedLineups, savedPlayers ],
+          [ "conf", savedConfOnlyLineups, savedConfOnlyPlayers ],
+          [ "t100", savedT100Lineups, savedT100Players ] ];
+
+      await Promise.all(_.flatMap(outputCases, kv => {
+        const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
+        const sortedLineupsStr = JSON.stringify({
+          lastUpdated: lastUpdated,
+          confMap: mutableConferenceMap,
+          confs: _.keys(mutableConferenceMap),
+          lineups: sortedLineups
+        }, reduceNumberSize);
+        const players = completePlayerLeaderboard(kv[0], kv[2], topPlayersSize);
+        const playersStr = JSON.stringify({
+          lastUpdated: lastUpdated,
+          confMap: mutableConferenceMap,
+          confs: _.keys(mutableConferenceMap),
+          players: players
+        }, reduceNumberSize);
+
+        // Write to file
+        console.log(`${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`);
+        console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
+        const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        const lineupsWritePromise = fs.writeFile(`${lineupFilename}`,sortedLineupsStr);
+        console.log(`${kv[0]} player count: [${players.length}] ([${kv[2].length}])`);
+        console.log(`${kv[0]} player length: [${playersStr.length}]`);
+        const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        const playersWritePromise = fs.writeFile(`${playersFilename}`,playersStr);
+        
+        const teamFilename = `./public/leaderboards/lineups/teams_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        console.log(`${kv[0]} team count: ${teamInfo.length}`);
+
+        const teamWritePromise = (("all" == kv[0]) && (teamInfo.length > 0)) ? 
+          fs.writeFile(`${teamFilename}`, JSON.stringify({
+            lastUpdated: lastUpdated,
+            confMap: mutableConferenceMap,
+            confs: _.keys(mutableConferenceMap),  
+
+            bubbleOffense: bubbleOffenseInfo,
+            bubbleDefense: bubbleDefenseInfo,
+
+            teams: teamInfo
+          }, reduceNumberSize)) 
+          :
+          Promise.resolve();
+
+        // Division stats:
+        if ("all" == kv[0]) completeDivisionStats(mutableDivisionStats);
+        const divisionStatsFilename = `./public/leaderboards/lineups/stats_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        const divisionStatsWritePromise = ("all" == kv[0]) ? 
+          fs.writeFile(divisionStatsFilename, JSON.stringify(mutableDivisionStats, reduceNumberSize)) : Promise.resolve();
+
+        return [lineupsWritePromise, playersWritePromise, teamWritePromise, divisionStatsWritePromise];
+
+      //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
+      // zlib.gzip(sortedLineupsStr, (_, result) => {
+      //   fs.writeFile(`${filename}.gz`,result, err => {});
+      // });
+      }));
+      console.log("File creation Complete!");
+      if (!testMode) { //(ie always)
+        console.log("(exiting process)");
+        process.exit(0);
+      }
+    });
+  }
+}

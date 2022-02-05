@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import _ from "lodash";
 
-import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, teamInfo, mutableDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
+import { main, completeLineupLeaderboard, completePlayerLeaderboard, completeDivisionStats, savedLineups, savedPlayers, teamInfo, mutableDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
 
 import { sampleLineupStatsResponse } from "../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../sample-data/sampleTeamStatsResponse";
@@ -72,7 +72,7 @@ describe("buildLeaderboards", () => {
 
     // (only works if run after test above)
 
-    expect(mutableDivisionStats).toMatchSnapshot();
+    expect(completeDivisionStats(mutableDivisionStats)).toMatchSnapshot();
   });
 
 });
