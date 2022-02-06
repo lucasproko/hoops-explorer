@@ -2,8 +2,9 @@
 //
 // NOTE: to compile this run "npm run dev" (then ctrl+c once "event - compiled successfully")
 // ("npm run build" also works but takes longer)
-// npm run build_leaderboards -- --year=<<eg 2021/22>> --tier=<<High|Low|Medium>> --gender=<<Men|Women>
+// npm run build_leaderboards -- --year=<<eg 2021/22>> --tier=<<High|Low|Medium|Combo>> --gender=<<Men|Women>
 //
+// (Combo tier just combines the division stats from the other 3 tiers idempotently to buikd a combined stats file - no DB queries)
 
 // NOTE: test code is under src/__tests__
 
@@ -39,6 +40,7 @@ import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
 import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
+import { GradeUtils } from '../utils/stats/GradeUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -370,32 +372,7 @@ export async function main() {
           }
 
           // Build all the samples ready for percentils:
-          mutableDivisionStats.tier_sample_size += 1;
-          if (inNaturalTier) {
-            mutableDivisionStats.dedup_sample_size += 1;
-          }
-          const fieldsToRecord = [ 
-            "net", "ppp", "adj_ppp", 
-            "efg", "to", "orb", "ftr", "assist", "3pr", "2pmidr", "2primr", 
-            "3p", "2p", "2pmid", "2prim", "adj_opp"
-          ];
-          _.chain(fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ]).forEach(field => {
-            const maybeStat = teamBaseline[field]?.value;
-            if (!_.isNil(maybeStat)) {
-              if (!mutableDivisionStats.tier_samples[field]) {
-                mutableDivisionStats.tier_samples[field] = [];
-              }
-              mutableDivisionStats.tier_samples[field]!.push(maybeStat);
-
-              if (inNaturalTier) {
-                if (!mutableDivisionStats.dedup_samples[field]) {
-                  mutableDivisionStats.dedup_samples[field] = [];
-                }
-                mutableDivisionStats.dedup_samples[field]!.push(maybeStat);
-              }
-            }
-          }).value();
-          //TODO: more complex: also derived fields (scoring %s, transition + scramble play)
+          GradeUtils.buildAndInjectDivisionStats(teamBaseline, mutableDivisionStats, inNaturalTier);
 
           teamInfo.push({
             team_name: fullRequestModel.team,
@@ -659,39 +636,8 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
 
 /** Optimizes the data format from D1 stats (export for test only) */
 export function completeDivisionStats(mutableUnsortedDivisionStats: DivisionStatistics) {
-  const sort = (samples: Record<string, Array<number>>) => {
-    return _.transform(samples, (acc, value, key) => {
-      acc[key] = _.sortBy(value);
-    }, {} as Record<string, Array<number>>);  
-  }
-  mutableUnsortedDivisionStats.dedup_samples = sort(mutableUnsortedDivisionStats.dedup_samples);
-  //(this is a waste of cycles since will sort again in "Combo", but useful for debugging and not on performance critical path)
-
-  const tier_samples = sort(mutableUnsortedDivisionStats.tier_samples);
-
   // Build LUT  
-  mutableUnsortedDivisionStats.tier_lut = _.transform(tier_samples, (acc, sample_set, field) => {
-    const last_val = sample_set[sample_set.length - 1];
-    acc[field] = _.transform(sample_set, (lutObj, val) => {
-
-      const lutKey = (lutObj.isPct ? 100*val : val).toFixed(0);
-      const currLutVal = lutObj.lut[lutKey];
-      if (_.isNil(currLutVal)) { // New entry
-        lutObj.lut[lutKey] = [ lutObj.size , val ];
-      } else { // Existing entry, append
-        currLutVal.push(val);
-      }
-      lutObj.size = lutObj.size + 1;
-
-    }, {
-      isPct: (sample_set[0] >= -1) && (sample_set[0] <= 1) && (last_val >= -1) && (last_val <= 1),
-      min: sample_set[0],
-      size: 0, //(will mutate this to size during the loop)
-      lut: {} as Record<string, Array<number>>
-    })
-  }, {} as Record<string, any>);
-
-  mutableUnsortedDivisionStats.tier_samples = {}; //(replace this by LUT)  
+  GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats);
 
   return mutableUnsortedDivisionStats; //(for chaining purposes)
 };

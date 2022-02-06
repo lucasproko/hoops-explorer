@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
+import fetch from 'isomorphic-unfetch';
 
 // Lodash:
 import _ from "lodash";
@@ -33,7 +34,7 @@ import TeamRosterDiagView from "./diags/TeamRosterDiagView";
 import TeamExtraStatsInfoView from "./diags/TeamExtraStatsInfoView";
 
 // Util imports
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from '../utils/StatModels';
+import { StatModels, DivisionStatistics, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from '../utils/StatModels';
 import { CbbColors } from "../utils/CbbColors";
 import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -63,6 +64,14 @@ type Props = {
   },
   onChangeState: (newParams: GameFilterParams) => void;
 }
+type DivisionStatsCache = {
+  year?: string,
+  gender?: string,
+  Combo?: DivisionStatistics,
+  High?: DivisionStatistics,
+  Medium?: DivisionStatistics
+  Low?: DivisionStatistics
+};
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
   const { teamStats, rosterStats, lineupStats } = dataEvent;
@@ -96,6 +105,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     false : gameFilterParams.showExtraInfo
   );
 
+  const [ showGrades, setShowGrades ] = useState("");
+
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showTeamPlayTypes) ?
     ParamDefaults.defaultTeamShowPlayTypes : gameFilterParams.showTeamPlayTypes
@@ -113,6 +124,53 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     );
   }, [ gameFilterParams ]);
 
+  // Team Grade and Division Stats logic
+  //TODO: have stats logic separate from grade cache?
+
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  
+  /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
+  const populateDivisionStatsCache = () => {
+    const getUrl = (inGender: string, inYear: string, inTier: string) => {
+      const subYear = inYear.substring(0, 4);
+      if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
+//TODO: handle current year
+        return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}`;
+      } else { //archived
+        return `/leaderboards/lineups/stats_all_${inGender}_${subYear}_${inTier}.json`;
+      }
+    }
+
+    const inGender = gameFilterParams.gender || ParamDefaults.defaultGender;
+    const inYear = gameFilterParams.year || ParamDefaults.defaultYear;
+    const fetchAll = [ "Combo", "High", "Medium", "Low" ].map((tier) => {
+      return fetch(getUrl(inGender, inYear, tier)).then((response: fetch.IsomorphicResponse) => {
+          return response.ok ? response.json() : Promise.resolve({});
+        });
+    });
+    Promise.all(fetchAll).then((jsons: any[]) => {
+      setDivisionStatsCache({
+        year: inYear, gender: inGender, //(so know when to refresh cache)
+        Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0],
+        High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
+        Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
+        Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
+      });
+    });
+  };
+
+  // Events that trigger building or rebuilding the division stats cache
+  useEffect(() => {
+    if ((gameFilterParams.year != divisionStatsCache.year) ||
+      (gameFilterParams.gender != divisionStatsCache.gender) ||
+      (_.isEmpty(divisionStatsCache) && (showGrades != ""))) {
+        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+        populateDivisionStatsCache();
+      }
+  }, [ gameFilterParams, showGrades ]);
+
+  // Generic page builder plumbing
+  
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...gameFilterParams,
@@ -444,6 +502,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   onClick: () => setShowExtraInfo(!showExtraInfo)
                 },
                 {
+                  label: "Grades",
+                  tooltip: showGrades ? "Hide team grades/percentiles" : "Show team grades/percentiles",
+                  toggled: (showGrades != ""),
+                  onClick: () => setShowGrades(showGrades ? "" : ParamDefaults.defaultTeamEnabledGrade)
+                },
+                {
                   label: "Style",
                   tooltip: showPlayTypes ? "Hide play style breakdowns" : "Show play style breakdowns",
                   toggled: showPlayTypes,
@@ -476,6 +540,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               text="Show Extra Team Information"
               truthVal={showExtraInfo}
               onSelect={() => setShowExtraInfo(!showExtraInfo)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Team Grades/Percentiles"
+              truthVal={showGrades != ""}
+              onSelect={() => setShowGrades(showGrades ? "" : ParamDefaults.defaultTeamEnabledGrade)}
             />
             <GenericTogglingMenuItem
               text="Show Play Style Breakdowns"

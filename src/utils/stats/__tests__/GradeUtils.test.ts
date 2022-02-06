@@ -2,6 +2,10 @@ import { GradeUtils } from '../GradeUtils';
 import { DivisionStatistics } from '../../StatModels';
 
 describe("GradeUtils", () => {
+   //TODO: add unit tests anyway:
+   //GradeUtils.buildAndInjectDivisionStats tested by src/__tests__/buildLeaderboards.test.ts
+   //GradeUtils.buildAndInjectDivisionStatsLUT tested by src/__tests__/buildLeaderboards.test.ts
+
    test("GradeUtils.binaryChop", () => {
       const test1 = [ 129, 0, 10, 20, 30, 40, 50 ]; //(eg 0-10 is 129, 40-50 is 133)
 
