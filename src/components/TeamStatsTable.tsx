@@ -161,11 +161,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
-    if ((gameFilterParams.year != divisionStatsCache.year) ||
-      (gameFilterParams.gender != divisionStatsCache.gender) ||
-      (_.isEmpty(divisionStatsCache) && (showGrades != ""))) {
-        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-        populateDivisionStatsCache();
+    if (showGrades) {
+      if ((gameFilterParams.year != divisionStatsCache.year) ||
+        (gameFilterParams.gender != divisionStatsCache.gender) ||
+        _.isEmpty(divisionStatsCache)) {
+          if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+          populateDivisionStatsCache();
+        }
       }
   }, [ gameFilterParams, showGrades ]);
 
@@ -416,7 +418,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
-      showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
+      (showGrades != "") && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+        {divisionStatsCache ? `${divisionStatsCache.year}/${divisionStatsCache.gender}: ${divisionStatsCache.Combo?.tier_sample_size}` : `(no data)`}
+        </span>, "small pt-2"
+    )] : [],
+    showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Baseline"
           offLuck={luckAdjustment.baseline[0]}
