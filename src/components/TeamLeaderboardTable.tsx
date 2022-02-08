@@ -88,8 +88,9 @@ const mdCoachingCandidates: Record<string, boolean> = {
   "N.C. Central": true,
   "Cleveland St.": true,
   "Coppin St.": true,
+  "Murray St.": true,
 
-  // Do't tell SEC Twitter
+  // Don't tell SEC Twitter
   "Arkansas": true,
 };
 const mdCoachingCandidatesName = "MD Coaches??";
