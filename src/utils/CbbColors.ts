@@ -46,6 +46,13 @@ export class CbbColors {
   public static readonly alwaysWhite = (val: number) => CbbColors.background;
   public static readonly alwaysBlack = (val: number) => "#000000";
 
+  // %iles
+  private static readonly pctileDomain = [ 0, 0.5, 1 ];
+  public static readonly off_pctile_qual = (val: number) => CbbColors.redToGreen.domain(CbbColors.pctileDomain)(val).toString();
+  public static readonly def_pctile_qual = (val: number) => CbbColors.greenToRed.domain(CbbColors.pctileDomain)(val).toString();
+  public static readonly pctile_qual: CbbColorTuple = [ CbbColors.off_pctile_qual, CbbColors.def_pctile_qual ];
+  public static readonly all_pctile_freq = (val: number) => CbbColors.blueToOrange.domain(CbbColors.pctileDomain)(val).toString();
+  public static readonly pctile_freq: CbbColorTuple = [ CbbColors.all_pctile_freq, CbbColors.all_pctile_freq ];
   // Pts/100
   private static readonly pp100Domain = [ 80, 100, 120 ];
   public static readonly off_pp100 = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val).toString();

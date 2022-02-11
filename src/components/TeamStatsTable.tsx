@@ -44,6 +44,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import TeamGradesDiagView from './diags/TeamGradesDiagView';
 
 export type TeamStatsModel = {
   on: TeamStatSet,
@@ -105,7 +106,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     false : gameFilterParams.showExtraInfo
   );
 
-  const [ showGrades, setShowGrades ] = useState("");
+  const [ showGrades, setShowGrades ] = useState(ParamDefaults.defaultTeamEnabledGrade);
 
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showTeamPlayTypes) ?
@@ -418,9 +419,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
-      (showGrades != "") && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
-        {divisionStatsCache ? `${divisionStatsCache.year}/${divisionStatsCache.gender}: ${divisionStatsCache.Combo?.tier_sample_size}` : `(no data)`}
-        </span>, "small pt-2"
+      (showGrades != "") && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(
+        <TeamGradesDiagView
+          comboTier={divisionStatsCache.Combo} 
+          highTier={divisionStatsCache.High} 
+          mediumTier={divisionStatsCache.Medium}
+          lowTier={divisionStatsCache.Low}
+          team={teamStats.baseline}
+        />
+      , ""
     )] : [],
     showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView

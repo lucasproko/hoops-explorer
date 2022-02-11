@@ -1,7 +1,7 @@
 // Lodash
 import _ from "lodash";
 
-import { DivisionStatistics, Statistic, TeamStatSet } from '../StatModels';
+import { DivisionStatistics, Statistic, TeamStatSet, PureStatSet } from '../StatModels';
 
 /** Utility functions for calculating percentile/grade related statistics */
 export class GradeUtils {
@@ -113,17 +113,41 @@ export class GradeUtils {
       if (divStatsField) {
          const lookupKey = (divStatsField.isPct ? (val*100) : val).toFixed(0);
          const lutArray = divStatsField.lut[lookupKey];
+
          if (!lutArray && (val <= (divStatsField.min + 0.001))) {
             return { value: 0.01 } as Statistic; //1st percentile
          } else if (!lutArray) {
             return { value: 1.00 } as Statistic; //100% percentile
          } else { //lutArray
             const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1);
-            return { value: offsetIndex/(divStatsField.size || 1) };
+            return { value: Math.max(0.01, offsetIndex/(divStatsField.size || 1)) };
          }
       } else {
          return {} as Statistic;
       }
    };
+
+   static readonly fieldsToInvert = {
+      off_to: true, def_to: true,
+      // Frequency:
+      def_net: true, def_assist: true, def_3pr: true, def_2pmidr: true, def_2primr: true
+   } as Record<string, boolean>;
+
+   /** Calculate the percentile of all fields within a stat set */
+   static buildTeamPercentiles = (divStats: DivisionStatistics, team: TeamStatSet): PureStatSet => {
+      const maybeInvert = (f: string, s: Statistic | undefined) => {
+         const isDef = f.startsWith("def_");
+         const isInverted = GradeUtils.fieldsToInvert[f] || false;
+         const invert = (!isDef && isInverted) || (isDef && !isInverted);
+         if (invert) {
+            return s && _.isNumber(s.value) ? { value: 1.01 - s.value } : s;
+         } else return s;
+      }
+      return _.chain(divStats.tier_lut).mapValues((val, key) => {
+         const adjustedKey = (key == "def_net" ? "off_raw_net" : key);
+         const teamVal = team[adjustedKey]?.value;
+         return _.isNumber(teamVal) ? maybeInvert(key, GradeUtils.getPercentile(divStats, key, teamVal)) : undefined;
+      }).omitBy(_.isNil).value() as PureStatSet;
+   }
 
 }
