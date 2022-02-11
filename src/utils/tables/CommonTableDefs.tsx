@@ -100,7 +100,7 @@ export class CommonTableDefs {
   /** Utility to put a faint colored backing to text */
   static readonly getTextShadow = (stat: { value?: number }, colorMapper: (val: number) => string) => {
     return {
-      textShadow: `0px 0px 10px ${colorMapper(stat?.value || 0)}`
+      textShadow: `0px 0px 10px ${colorMapper(stat?.value || 0)},0px 0px 10px ${colorMapper(stat?.value || 0)}`
     };
   };
 

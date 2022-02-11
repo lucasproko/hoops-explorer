@@ -32,7 +32,7 @@ const onOffTable = { //accessors vs column metadata
    "title": GenericTableOps.addTitle("", ""),
    "sep0": GenericTableOps.addColSeparator(),
    "net": GenericTableOps.addDataCol("Net Rtg", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-     CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.percentOrHtmlFormatter),
+     CbbColors.offOnlyPicker(...CbbColors.pctile_qual), GenericTableOps.percentOrHtmlFormatter),
    "ppp": GenericTableOps.addDataCol("P/100", "Points per 100 possessions", 
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.percentOrHtmlFormatter),
    "adj_ppp": GenericTableOps.addDataCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", 
@@ -41,7 +41,7 @@ const onOffTable = { //accessors vs column metadata
    "efg": GenericTableOps.addDataCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", 
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.percentOrHtmlFormatter),
    "to": GenericTableOps.addDataCol("TO%", "Turnover % for selected lineups", 
-      CommonTableDefs.picker(...CbbColors.pctile_qual), GenericTableOps.percentOrHtmlFormatter),
+      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.percentOrHtmlFormatter),
    "orb": GenericTableOps.addDataCol("OR%", "Offensive rebounding % for selected lineups", 
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.percentOrHtmlFormatter),
    "ftr": GenericTableOps.addDataCol("FTR", "Free throw rate for selected lineups", 
@@ -80,6 +80,10 @@ const TeamGradesDiagView: React.FunctionComponent<Props> = ({
    const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team)  : {};
    (teamPercentiles as any).off_title = "Off %iles";
    (teamPercentiles as any).def_title = "Def %iles";
+   (teamPercentiles as any).def_net = _.isNumber(teamPercentiles.def_net?.value) 
+      ?  <small style={CommonTableDefs.getTextShadow(teamPercentiles.def_net, CbbColors.off_pctile_qual)}>
+            <i>{(100*teamPercentiles.def_net!.value!).toFixed(1)}</i>
+         </small> : undefined;
 
    const offPrefixFn = (key: string) => "off_" + key;
    const offCellMetaFn = (key: string, val: any) => "off";
