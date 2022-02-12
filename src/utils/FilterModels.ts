@@ -213,7 +213,7 @@ export class ParamDefaults {
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultTeamShowPlayTypes = false;
   static readonly defaultTeamShowRoster = false;
-  static readonly defaultTeamEnabledGrade = "pct:Combo";
+  static readonly defaultTeamEnabledGrade = "rank:Combo";
   static readonly defaultPlayerShowPlayTypes = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;

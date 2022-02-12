@@ -108,22 +108,22 @@ export class GradeUtils {
    }
 
    /** Calculate the percentile of a given field */
-   static getPercentile = (divStats: DivisionStatistics, field: string, val: number) => {
+   static getPercentile(divStats: DivisionStatistics, field: string, val: number): Statistic | undefined {
       const divStatsField = divStats.tier_lut[field];
       if (divStatsField) {
          const lookupKey = (divStatsField.isPct ? (val*100) : val).toFixed(0);
          const lutArray = divStatsField.lut[lookupKey];
 
          if (!lutArray && (val <= (divStatsField.min + 0.001))) {
-            return { value: 0.01 } as Statistic; //1st percentile
+            return { value: 0.01, samples: divStatsField.size } as Statistic; //1st percentile
          } else if (!lutArray) {
-            return { value: 1.00 } as Statistic; //100% percentile
+            return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
          } else { //lutArray
             const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1);
-            return { value: Math.max(0.01, offsetIndex/(divStatsField.size || 1)) };
+            return { value: Math.max(0.01, offsetIndex/(divStatsField.size || 1)), samples: divStatsField.size };
          }
       } else {
-         return {} as Statistic;
+         return {};
       }
    };
 
@@ -134,20 +134,28 @@ export class GradeUtils {
    } as Record<string, boolean>;
 
    /** Calculate the percentile of all fields within a stat set */
-   static buildTeamPercentiles = (divStats: DivisionStatistics, team: TeamStatSet): PureStatSet => {
-      const maybeInvert = (f: string, s: Statistic | undefined) => {
+   static buildTeamPercentiles = (divStats: DivisionStatistics, team: TeamStatSet, supportRank: boolean): PureStatSet => {
+      const format = (f: string, s: Statistic | undefined) => {
          const isDef = f.startsWith("def_");
          const isInverted = GradeUtils.fieldsToInvert[f] || false;
          const invert = (!isDef && isInverted) || (isDef && !isInverted);
-         if (invert) {
-            return s && _.isNumber(s.value) ? { value: 1.01 - s.value } : s;
-         } else return s;
+         const maybeInvert = (invert) ?
+            (s && _.isNumber(s.value) ? { value: 1.01 - s.value, samples: supportRank ? s.samples : 0 } : s)
+            : { value: s?.value, samples: supportRank ? s?.samples : 0 };
+         return maybeInvert;
       }
       return _.chain(divStats.tier_lut).mapValues((val, key) => {
          const adjustedKey = (key == "def_net" ? "off_raw_net" : key);
          const teamVal = team[adjustedKey]?.value;
-         return _.isNumber(teamVal) ? maybeInvert(key, GradeUtils.getPercentile(divStats, key, teamVal)) : undefined;
+         return _.isNumber(teamVal) ? 
+            format(key, GradeUtils.getPercentile(divStats, key, teamVal)) 
+            : undefined;
       }).omitBy(_.isNil).value() as PureStatSet;
    }
+
+   /** (some older versions of this file were nested under "stats" - we'll just handle these for now until I have time to fix the data) */
+   static handleLegacyFormat = (inStats: DivisionStatistics | undefined) => {
+      return (inStats as any)?.stats ? ((inStats as any)?.stats as DivisionStatistics | undefined) : inStats;
+   };
 
 }

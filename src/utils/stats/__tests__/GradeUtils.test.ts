@@ -49,14 +49,14 @@ describe("GradeUtils", () => {
       };
       expect(GradeUtils.getPercentile(testDivStats, "no_field", -1)).toEqual({});
 
-      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.1)).toEqual({ value: 0.01 });
-      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.3)).toEqual({ value: 1.00 });
-      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.1995)).toEqual({ value: 0.25 });
-      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.2035)).toEqual({ value: 0.3 });
-      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.20485)).toEqual({ value: 0.4 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.1)).toEqual({ value: 0.01, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.3)).toEqual({ value: 1.00, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.1995)).toEqual({ value: 0.25, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.2035)).toEqual({ value: 0.3, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.20485)).toEqual({ value: 0.4, samples: 20 });
 
-      expect(GradeUtils.getPercentile(testDivStats, "test_field", -10)).toEqual({ value: 0.01 });
-      expect(GradeUtils.getPercentile(testDivStats, "test_field", 0.5)).toEqual({ value: 0.5 });
-      expect(GradeUtils.getPercentile(testDivStats, "test_field", 0.539)).toEqual({ value: 0.55 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field", -10)).toEqual({ value: 0.01, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field", 0.5)).toEqual({ value: 0.5, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field", 0.539)).toEqual({ value: 0.55, samples: 20 });
    });
 });
