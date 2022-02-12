@@ -331,6 +331,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
+      (showGrades != "") && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(
+        <TeamGradesDiagView
+          config={showGrades}
+          setConfig={(newConfig:string) => { setShowGrades(newConfig) }}
+          comboTier={divisionStatsCache.Combo} 
+          highTier={divisionStatsCache.High} 
+          mediumTier={divisionStatsCache.Medium}
+          lowTier={divisionStatsCache.Low}
+          team={teamStats.on}
+        />
+      , ""
+    )] : [],
       showLuckAdjDiags && luckAdjustment.on ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="On"
@@ -375,6 +387,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
+      (showGrades != "") && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(
+        <TeamGradesDiagView
+          config={showGrades}
+          setConfig={(newConfig:string) => { setShowGrades(newConfig) }}
+          comboTier={divisionStatsCache.Combo} 
+          highTier={divisionStatsCache.High} 
+          mediumTier={divisionStatsCache.Medium}
+          lowTier={divisionStatsCache.Low}
+          team={teamStats.off}
+        />
+      , ""
+    )] : [],
       showLuckAdjDiags && luckAdjustment.off ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Off"
@@ -421,6 +445,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       )] : [],
       (showGrades != "") && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(
         <TeamGradesDiagView
+          config={showGrades}
+          setConfig={(newConfig:string) => { setShowGrades(newConfig) }}
           comboTier={divisionStatsCache.Combo} 
           highTier={divisionStatsCache.High} 
           mediumTier={divisionStatsCache.Medium}

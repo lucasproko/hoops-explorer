@@ -19,6 +19,8 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericT
 import { DivisionStatistics, TeamStatSet } from '../../utils/StatModels';
 
 type Props = {
+   config: string,
+   setConfig: (newConfig: string) => void,
    comboTier?: DivisionStatistics,
    highTier?: DivisionStatistics,
    mediumTier?: DivisionStatistics,
@@ -74,9 +76,34 @@ const onOffTable = { //accessors vs column metadata
 
 
 const TeamGradesDiagView: React.FunctionComponent<Props> = ({
-   comboTier, highTier, mediumTier, lowTier, team
+   config, setConfig, comboTier, highTier, mediumTier, lowTier, team
  }) => {
-   const tierToUse = comboTier || highTier;
+
+   const tiers = { //(handy LUT)
+      High: highTier,
+      Medium: mediumTier,
+      Low: lowTier,
+      Combo: comboTier
+   } as Record<string, DivisionStatistics | undefined>;
+
+   const gradeOrPcile = config.split(":")[0];
+   const tierStrTmp = config.split(":")?.[1] || "Combo";
+   const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp))
+   const tierToUseTmp = tiers[tierStr]; //(if set tier doesn't exist just fallback)
+   // (some older versions of this file were nested under "stats" - we'll just handle these for now until I have time to fix the data)
+   const tierToUse = (tierToUseTmp as any)?.stats ? ((tierToUseTmp as any)?.stats as DivisionStatistics | undefined) : tierToUseTmp;
+
+   const linkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
+      onClick={(event) => { event.preventDefault(); setConfig(`${gradeOrPcile}:${tier}`); }}
+   >
+      {tier == "Combo" ? "D1" : tier}
+   </a>;
+   //TODO: add a tooltip
+
+   const link = (tier: string) => (tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier);
+   const topLine = <span className="small">{link("Combo")} | {link("High")} | {link("Medium")} | {link("Low")}</span>;
+   const bottomLine = <span className="small"><b><a href="#" onClick={(event) => { event.preventDefault() }}>%iles</a></b> | Grades</span>
+
    const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team)  : {};
    (teamPercentiles as any).off_title = "Off %iles";
    (teamPercentiles as any).def_title = "Def %iles";
@@ -95,12 +122,14 @@ const TeamGradesDiagView: React.FunctionComponent<Props> = ({
    ];
 
    return <div>
+      Team Grades: {topLine}<br/>
       <GenericTable
          tableCopyId="teamStatsTable"
          tableFields={onOffTable}
          tableData={tableData}
          cellTooltipMode="none"
       />
+      {bottomLine}<br/><br/>
    </div>;
 };
 
