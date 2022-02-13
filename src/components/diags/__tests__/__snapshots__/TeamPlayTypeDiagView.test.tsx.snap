@@ -256,7 +256,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_3p_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ffbfbf",
+                      "textShadow": "0px 0px 10px #ffbfbf,0px 0px 10px #ffbfbf",
                     }
                   }
                 >
@@ -285,7 +285,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_mid_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -307,7 +307,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_rim_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #008000",
+                      "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
                     }
                   }
                 >
@@ -389,7 +389,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_3p_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -421,7 +421,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_mid_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -443,7 +443,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_rim_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -775,7 +775,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_3p_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ffe4e4",
+                      "textShadow": "0px 0px 10px #ffe4e4,0px 0px 10px #ffe4e4",
                     }
                   }
                 >
@@ -801,7 +801,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 "target_rim_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #60b060",
+                      "textShadow": "0px 0px 10px #60b060,0px 0px 10px #60b060",
                     }
                   }
                 >
@@ -1657,7 +1657,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_3p_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ffbfbf",
+                      "textShadow": "0px 0px 10px #ffbfbf,0px 0px 10px #ffbfbf",
                     }
                   }
                 >
@@ -1686,7 +1686,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_mid_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -1708,7 +1708,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_rim_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #008000",
+                      "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
                     }
                   }
                 >
@@ -1790,7 +1790,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_3p_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -1822,7 +1822,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_mid_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -1844,7 +1844,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_rim_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ff0000",
+                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
                     }
                   }
                 >
@@ -2176,7 +2176,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_3p_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #ffe4e4",
+                      "textShadow": "0px 0px 10px #ffe4e4,0px 0px 10px #ffe4e4",
                     }
                   }
                 >
@@ -2202,7 +2202,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 "target_rim_efg": <span
                   style={
                     Object {
-                      "textShadow": "0px 0px 10px #60b060",
+                      "textShadow": "0px 0px 10px #60b060,0px 0px 10px #60b060",
                     }
                   }
                 >

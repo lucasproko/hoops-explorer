@@ -19,7 +19,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffa500",
+              "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
             }
           }
         >
@@ -29,7 +29,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #fdfefd",
+              "textShadow": "0px 0px 10px #fdfefd,0px 0px 10px #fdfefd",
             }
           }
         >
@@ -44,7 +44,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffe5e5",
+                "textShadow": "0px 0px 10px #ffe5e5,0px 0px 10px #ffe5e5",
               }
             }
           >
@@ -54,7 +54,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #008000",
+                "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
               }
             }
           >
@@ -64,7 +64,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffc55a",
+                "textShadow": "0px 0px 10px #ffc55a,0px 0px 10px #ffc55a",
               }
             }
           >
@@ -74,7 +74,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffb4b4",
+                "textShadow": "0px 0px 10px #ffb4b4,0px 0px 10px #ffb4b4",
               }
             }
           >
@@ -84,7 +84,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #008000",
+                "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
               }
             }
           >
@@ -106,7 +106,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #329932",
+              "textShadow": "0px 0px 10px #329932,0px 0px 10px #329932",
             }
           }
         >
@@ -121,7 +121,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #57ac57",
+                "textShadow": "0px 0px 10px #57ac57,0px 0px 10px #57ac57",
               }
             }
           >
@@ -131,7 +131,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #008000",
+                "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
               }
             }
           >
@@ -141,7 +141,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #d8ecf3",
+                "textShadow": "0px 0px 10px #d8ecf3,0px 0px 10px #d8ecf3",
               }
             }
           >
@@ -151,7 +151,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ff6969",
+                "textShadow": "0px 0px 10px #ff6969,0px 0px 10px #ff6969",
               }
             }
           >
@@ -161,7 +161,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #3e9f3e",
+                "textShadow": "0px 0px 10px #3e9f3e,0px 0px 10px #3e9f3e",
               }
             }
           >
@@ -175,7 +175,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffa809",
+              "textShadow": "0px 0px 10px #ffa809,0px 0px 10px #ffa809",
             }
           }
         >
@@ -185,7 +185,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #add8e6",
+              "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
             }
           }
         >
@@ -195,7 +195,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffc65e",
+              "textShadow": "0px 0px 10px #ffc65e,0px 0px 10px #ffc65e",
             }
           }
         >
@@ -208,7 +208,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffa500",
+              "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
             }
           }
         >
@@ -218,7 +218,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #e6f3f7",
+              "textShadow": "0px 0px 10px #e6f3f7,0px 0px 10px #e6f3f7",
             }
           }
         >
@@ -228,7 +228,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffc355",
+              "textShadow": "0px 0px 10px #ffc355,0px 0px 10px #ffc355",
             }
           }
         >
@@ -248,7 +248,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffffff",
+              "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
             }
           }
         >
@@ -261,7 +261,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #f7fbfd",
+              "textShadow": "0px 0px 10px #f7fbfd,0px 0px 10px #f7fbfd",
             }
           }
         >
@@ -271,7 +271,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #75ba75",
+              "textShadow": "0px 0px 10px #75ba75,0px 0px 10px #75ba75",
             }
           }
         >
@@ -285,7 +285,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #85c285",
+                "textShadow": "0px 0px 10px #85c285,0px 0px 10px #85c285",
               }
             }
           >
@@ -295,7 +295,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ff0000",
+                "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
               }
             }
           >
@@ -305,7 +305,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffc967",
+                "textShadow": "0px 0px 10px #ffc967,0px 0px 10px #ffc967",
               }
             }
           >
@@ -315,7 +315,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffabab",
+                "textShadow": "0px 0px 10px #ffabab,0px 0px 10px #ffabab",
               }
             }
           >
@@ -325,7 +325,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffb6b6",
+                "textShadow": "0px 0px 10px #ffb6b6,0px 0px 10px #ffb6b6",
               }
             }
           >
@@ -347,7 +347,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ff2e2e",
+              "textShadow": "0px 0px 10px #ff2e2e,0px 0px 10px #ff2e2e",
             }
           }
         >
@@ -362,7 +362,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffaeae",
+                "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
               }
             }
           >
@@ -372,7 +372,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ff0000",
+                "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
               }
             }
           >
@@ -382,7 +382,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #d9edf3",
+                "textShadow": "0px 0px 10px #d9edf3,0px 0px 10px #d9edf3",
               }
             }
           >
@@ -392,7 +392,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ff0000",
+                "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
               }
             }
           >
@@ -402,7 +402,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #c3e1c3",
+                "textShadow": "0px 0px 10px #c3e1c3,0px 0px 10px #c3e1c3",
               }
             }
           >
@@ -416,7 +416,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffad17",
+              "textShadow": "0px 0px 10px #ffad17,0px 0px 10px #ffad17",
             }
           }
         >
@@ -426,7 +426,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #add8e6",
+              "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
             }
           }
         >
@@ -436,7 +436,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffe6b8",
+              "textShadow": "0px 0px 10px #ffe6b8,0px 0px 10px #ffe6b8",
             }
           }
         >
@@ -449,7 +449,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffa500",
+              "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
             }
           }
         >
@@ -459,7 +459,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #fdfefe",
+              "textShadow": "0px 0px 10px #fdfefe,0px 0px 10px #fdfefe",
             }
           }
         >
@@ -469,7 +469,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         <b
           style={
             Object {
-              "textShadow": "0px 0px 10px #ffbf4a",
+              "textShadow": "0px 0px 10px #ffbf4a,0px 0px 10px #ffbf4a",
             }
           }
         >
@@ -490,7 +490,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffa500",
+                "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
               }
             }
           >
