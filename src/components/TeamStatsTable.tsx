@@ -65,7 +65,7 @@ type Props = {
     lineupStats: LineupStatsModel[]
   },
   onChangeState: (newParams: GameFilterParams) => void;
-}
+};
 type DivisionStatsCache = {
   year?: string,
   gender?: string,
