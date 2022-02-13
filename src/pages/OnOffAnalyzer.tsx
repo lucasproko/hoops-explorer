@@ -114,6 +114,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes) ? [ 'showTeamPlayTypes' ] : [],
       (rawParams.showExtraInfo == false) ? [ 'showExtraInfo' ] : [],
       (rawParams.showRoster == ParamDefaults.defaultTeamShowRoster) ? [ 'showRoster' ] : [],
+      (rawParams.showGrades == "") ? [ 'showGrades' ] : [],
       // RosterStatsTable
       (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],

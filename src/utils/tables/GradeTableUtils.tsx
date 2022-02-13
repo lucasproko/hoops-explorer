@@ -81,7 +81,6 @@ export class GradeTableUtils {
    static readonly buildGradeTableRows: (p: Props) => GenericTableRow[] = ({
       config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
-
       const tiers = { //(handy LUT)
          High: GradeUtils.handleLegacyFormat(highTier),
          Medium: GradeUtils.handleLegacyFormat(mediumTier),

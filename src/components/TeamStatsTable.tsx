@@ -107,7 +107,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     false : gameFilterParams.showExtraInfo
   );
 
-  const [ showGrades, setShowGrades ] = useState(ParamDefaults.defaultTeamEnabledGrade);
+  const [ showGrades, setShowGrades ] = useState(_.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades);
 
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showTeamPlayTypes) ?
@@ -183,10 +183,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
-      showRoster: showRoster
+      showRoster: showRoster,
+      showGrades: showGrades
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showExtraInfo, showPlayTypes, showRoster ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showExtraInfo, showPlayTypes, showRoster, showGrades ]);
 
   // 2] Data View
 

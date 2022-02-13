@@ -68,6 +68,7 @@ export type GameFilterParams = {
   showExtraInfo?: boolean,
   showTeamPlayTypes?: boolean,
   showRoster?: boolean,
+  showGrades?: string,
   // Manual override:
   manual?: ManualOverride[],
   showPlayerManual?: boolean,
