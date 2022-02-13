@@ -136,7 +136,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     const getUrl = (inGender: string, inYear: string, inTier: string) => {
       const subYear = inYear.substring(0, 4);
       if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-//TODO: handle current year
         return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}`;
       } else { //archived
         return `/leaderboards/lineups/stats_all_${inGender}_${subYear}_${inTier}.json`;
