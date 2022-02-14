@@ -604,7 +604,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       cellTooltipMode="missing"
     />
   }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight, dominanceWeight, 
-      pinnedWabWeight, pinnedWaeWeight, pinnedQualityWeight, pinnedDomWeight, timeWeight, pinnedTimeWeight ]);
+      pinnedWabWeight, pinnedWaeWeight, pinnedQualityWeight, pinnedDomWeight, timeWeight, pinnedTimeWeight, netRankings ]);
 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
