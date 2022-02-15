@@ -82,10 +82,10 @@ export class GradeTableUtils {
       config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
       const tiers = { //(handy LUT)
-         High: GradeUtils.handleLegacyFormat(highTier),
-         Medium: GradeUtils.handleLegacyFormat(mediumTier),
-         Low: GradeUtils.handleLegacyFormat(lowTier),
-         Combo: GradeUtils.handleLegacyFormat(comboTier)
+         High: highTier,
+         Medium: mediumTier,
+         Low: lowTier,
+         Combo: comboTier
       } as Record<string, DivisionStatistics | undefined>;
 
       const gradeFormat = config.split(":")[0];

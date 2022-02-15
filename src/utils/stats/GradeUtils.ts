@@ -152,10 +152,4 @@ export class GradeUtils {
             : undefined;
       }).omitBy(_.isNil).value() as PureStatSet;
    }
-
-   /** (some older versions of this file were nested under "stats" - we'll just handle these for now until I have time to fix the data) */
-   static handleLegacyFormat = (inStats: DivisionStatistics | undefined) => {
-      return (inStats as any)?.stats ? ((inStats as any)?.stats as DivisionStatistics | undefined) : inStats;
-   };
-
 }

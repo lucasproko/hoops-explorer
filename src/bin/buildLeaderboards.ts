@@ -67,7 +67,6 @@ const reduceNumberSize = (k: string, v: any) => {
   }
 }
 
-
 export class MutableAsyncResponse {
   statusCode: number;
   resultJson: any;
@@ -206,7 +205,7 @@ export async function main() {
     if (onlyHasTopConferences) {
       return true;
     } else {
-      const isSupported = () => {
+      const isSupported = () => { // Note that this method has to be consistent with naturalTier defintion below
         if (inTier == "High") {
           return team.category == "high" || (rank <= 150) || effectivelyHighMajor.has(team.team);
         } else if (inTier == "Medium") {
@@ -234,10 +233,16 @@ export async function main() {
     const teamYear = teamObj.year;
     const genderYearLookup = `${inGender}_${teamYear}`;
     const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+    const rank = completedEfficiencyInfo?.[team]?.["stats.adj_margin.rank"] || 400;
     const statsAverages = averageStatsInfo[genderYearLookup] || {};
 
-    const naturalTier = (onlyHasTopConferences || (teamObj.category == "high")) ? "High" : 
-      (teamObj.category == "low" ? "Low" : "Medium");
+    // Note that this definition has to be consistent with isSupported defintion above
+    const naturalTier = 
+      (onlyHasTopConferences || (teamObj.category == "high") || excludeFromMidMajor.has(team)) ? "High" : (
+        ((teamObj.category == "low") || (teamObj.category == "midlow") || (rank >= 275)) ? "Low" : 
+          "Medium"
+      );
+
     const inNaturalTier = naturalTier == inTier;
 
     if (!testMode) console.log(`Processing ${inGender} ${team} ${teamYear}`);
@@ -691,7 +696,7 @@ export async function combineDivisionStatsFiles() {
   const filesToOutput =  _.map(resolvedFiles, (stats, tier) => {
     const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
     // Remove the dedup_samples since it's now been calculated
-    return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ stats, dedup_samples: {} }, reduceNumberSize));
+    return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ ...stats, dedup_samples: {} }, reduceNumberSize));
   });
 
   await Promise.all(filesToOutput);
