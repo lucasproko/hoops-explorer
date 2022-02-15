@@ -52,10 +52,11 @@ describe("HistoryManager", () => {
       showPlayerPlayTypes: true,
       showExpanded: true,
       showBase: true,
+      showGrades: "pct:Combo",
       possAsPct: false
     };
     expect(HistoryManager.gameFilterSummary(game1b)).toBe(
-      `On/Off: ${ParamDefaults.defaultYear} test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags,show-diffs], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,show-play-types,poss-#]`
+      `On/Off: ${ParamDefaults.defaultYear} test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags,show-diffs], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,show-play-types,poss-#,show-grades:pct:D1]`
     );
     const game2: GameFilterParams = {
       team: "test",
