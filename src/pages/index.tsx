@@ -153,6 +153,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
       }));
       fetchAll.then((jsons: any[]) => {
         setDataSubEvent({
+          year: fullYear, gender: gender,
           teams: _.chain(jsons).map(d => (d.teams || [])).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           bubbleOffense: _.chain(jsons).take(1).map(d => d.bubbleOffense || []).flatten().value(),

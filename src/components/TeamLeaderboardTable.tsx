@@ -98,6 +98,8 @@ const nonHighMajorConfsName = "Outside The P6";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
 
 export type TeamLeaderboardStatsModel = {
+  year?: string,
+  gender?: string,
   teams?: Array<TeamInfo>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
@@ -204,6 +206,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
   }, [ year, gender ]);
 
   const table = React.useMemo(() => {
+    if ((year != dataEvent.year) || (gender != dataEvent.gender)) {
+      //(else we're about get pinged again)
+      return <div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>;
+    }
     setLoadingOverride(false); //(rendering)
 
     const genderYear = `${gender}_${year}`;
@@ -246,7 +252,6 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       qualityWeightIn: number, wabWeightIn: number, waeWeightIn: number, domWeightIn: number, timeWeightIn: number,
       pinnedRankingsIn: Record<string, number>
     ) => {
-
       const mutableDedupSet = new Set() as Set<string>;
       const tableDataTmp = _.chain(dataEvent.teams || []).flatMap(team => {
         if (!mutableDedupSet.has(team.team_name)) {
