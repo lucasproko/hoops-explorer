@@ -59,6 +59,8 @@ import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 import fetchBuilder from 'fetch-retry-ts';
+import QueryFilterDropdown from './shared/QueryFilterDropdown';
+import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -537,38 +539,6 @@ const CommonFilter: CommonFilterI = ({
     <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
   );
 
-  const filterMenuItem = (item: CommonFilterType, text: String) => {
-    return <GenericTogglingMenuItem
-      text={text}
-      truthVal={QueryUtils.filterHas(queryFilters, item)}
-      onSelect={() => setQueryFilters(QueryUtils.toggleFilter(queryFilters, item))}
-    />;
-  };
-
-  const showQueryFilter = (t: String) => {
-    const toolTip = () => { switch(t) {
-      case "Conf":
-        return <Tooltip id={`qf${t}`}>Conference games only. Use <b>in_conf:true</b> directly in query fields(s).</Tooltip>
-      case "Home":
-        return <Tooltip id={`qf${t}`}>Home games only. Use <b>location_type:Home</b> or <b>opponent.Home:*</b> directly in query fields(s).</Tooltip>
-      case "Away":
-        return <Tooltip id={`qf${t}`}>Away games only. Use <b>location_type:Away</b> or <b>opponent.Away:*</b> directly in query fields(s).</Tooltip>
-      case "Not-Home":
-        return <Tooltip id={`qf${t}`}>Away/Neutral games only. Use <b>location_type:(Away Neutral)</b> or <b>(opponent.Away:* opponent.Neutral:*)</b> directly in query fields(s).</Tooltip>
-      case "Nov-Dec":
-        return <Tooltip id={`qf${t}`}>Nov/Dec games only. Use eg <b>date:[* TO {_.take(year, 4)}-12-31]</b> directly in query fields(s).</Tooltip>
-      case "Jan-Apr":
-        return <Tooltip id={`qf${t}`}>Jan-Apr games only. Use eg <b>date:{`{`}{_.take(year, 4)}-12-31 TO *]</b> directly in query fields(s).</Tooltip>
-      case "Last-30d":
-        return <Tooltip id={`qf${t}`}>Games in the last 30 days (from now/end-of-season). Use <b>date:[yyyy-mm-dd TO yyyy-mm-dd]</b> directly in query fields(s) for different date queries.</Tooltip>
-      default:
-        return <Tooltip id={`qf${t}`}>(unknown)</Tooltip>
-    }}
-    return <OverlayTrigger placement="auto" overlay={toolTip()}>
-      <span className="badge badge-pill badge-secondary">{t}</span>
-    </OverlayTrigger>;
-  };
-
   return <LoadingOverlay
     active={queryIsLoading}
     spinner
@@ -664,34 +634,16 @@ const CommonFilter: CommonFilterI = ({
               onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
               onKeyDown={submitListenerFactory(true)}
             />
-            </div>
-          <Dropdown as={InputGroup.Append} variant="outline-secondary" alignRight>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              <FontAwesomeIcon icon={faFilter} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {filterMenuItem("Conf", "Conference games only")}
-              <Dropdown.Divider />
-              {filterMenuItem("Home", "Home games only")}
-              {filterMenuItem("Away", "Away games only")}
-              {filterMenuItem("Not-Home", "Away/Neutral games only")}
-              <Dropdown.Divider />
-              {filterMenuItem("Nov-Dec", "Nov/Dec only")}
-              {filterMenuItem("Jan-Apr", "Jan-Apr only")}
-              {filterMenuItem("Last-30d", "Last 30 days only")}
-              <Dropdown.Divider />
-              <Dropdown.Item as={Button}>
-                <div onClick={() => {setQueryFilters([])}}>
-                  <span>Clear all query filters</span>
-                </div>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          </div>
+          <QueryFilterDropdown
+            queryFilters={queryFilters}
+            setQueryFilters={setQueryFilters}
+          />
         </InputGroup>
       </Col>
       { queryFilters.length > 0
         ? <Form.Label column sm="2">{queryFilters.map(
-            (p, i) => <span key={`conf${i}`}>{showQueryFilter(p)}&nbsp;</span>)
+            (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, year)}&nbsp;</span>)
           }</Form.Label>
         : null
       }
