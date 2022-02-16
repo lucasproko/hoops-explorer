@@ -442,7 +442,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           return cell;
 
         } else return [];
-      }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {
+      }).sortBy(t => (t.games.value > 0.5*gameBasis) ? -(t.rating?.value || 0) : (100 - (t.rating?.value || 0))).map((t, i) => {        
         t.rank = <small><b>{i + 1}</b></small>;
         t.rankNum = i + 1;
         const pinnedRank = pinnedRankingsIn[t.titleStr] || -1;
@@ -519,7 +519,12 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.titleStr};`) >= 0))
         ;
     }
-    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => confFilter(t));
+    const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => confFilter(t)).map((t, ii) => {
+      if (confs != "") {
+        t.title = <span><sup><small>{1 + ii}</small>&nbsp;</sup>{t.title}</span>
+      }
+      return t;
+    });
     const tooFewGames = tableDataTmp.filter(t => (t.games.value <= 0.5*gameBasis)).filter(t => confFilter(t));
 
     const apTooltip = (
