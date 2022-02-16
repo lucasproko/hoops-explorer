@@ -50,7 +50,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
     "server" : window.location.hostname
 
   // "/" used to be OnOffAnalyzer, but now it's team leaderboard ... handle redirecting old links
-  if ((allParams.indexOf("&team=") >= 0) || (allParams.indexOf("&team=") >= 0)) {
+  if (allParams.indexOf("&team=") >= 0) {
     console.log(`(redirecting old link [${allParams}]`);
     const newUrl = UrlRouting.getGameUrl(UrlRouting.removedSavedKeys(allParams) as GameFilterParams, {});
     window.location.href = newUrl;

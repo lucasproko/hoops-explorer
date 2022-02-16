@@ -95,6 +95,7 @@ const mdCoachingCandidates: Record<string, boolean> = {
 };
 const mdCoachingCandidatesName = "MD Coaches??";
 const nonHighMajorConfsName = "Outside The P6";
+const queryFiltersName = "From URL";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
 
 export type TeamLeaderboardStatsModel = {
@@ -513,8 +514,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
     const confFilter = (t: {titleStr: string, confStr: string}) => {
       return (confs == "") || (confs.indexOf(t.confStr) >= 0) 
-        || ((confs == mdCoachingCandidatesName) && mdCoachingCandidates[t.titleStr])
-        || ((confs == nonHighMajorConfsName) && (powerSixConfsStr.indexOf(t.confStr) < 0))
+        || ((confs.indexOf(mdCoachingCandidatesName) >= 0) && mdCoachingCandidates[t.titleStr])
+        || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.confStr) < 0))
+        || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.titleStr};`) >= 0))
         ;
     }
     const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => confFilter(t));
@@ -846,7 +848,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             components={{ MultiValueContainer: ConferenceValueContainer }}
             value={getCurrentConfsOrPlaceholder()}
             options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams))
-              .concat([ nonHighMajorConfsName, mdCoachingCandidatesName ]).map(
+              .concat([ nonHighMajorConfsName, queryFiltersName, mdCoachingCandidatesName ]).map(
               (r) => stringToOption(r)
             )}
             onChange={(optionsIn) => {
