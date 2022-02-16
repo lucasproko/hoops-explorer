@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import renderer from 'react-test-renderer';
+import renderer, { act, ReactTestRenderer } from 'react-test-renderer';
 import React from 'react';
 import _ from 'lodash';
 import TeamStatsTable from '../TeamStatsTable';
@@ -10,10 +10,19 @@ import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
-import { GameFilterParams } from '../../utils/FilterModels';
+import { GameFilterParams, ParamDefaults } from '../../utils/FilterModels';
 import { StatModels, TeamStatSet, IndivStatSet } from '../../utils/StatModels';
+import fs from 'fs';
+
+//@ts-nocheck
+import fetchMock from 'isomorphic-unfetch';
 
 describe("TeamStatsTable", () => {
+
+  afterEach(() => {
+    (fetchMock as any).restore();
+    (fetchMock as any).reset();
+  });
 
   // Tidy up snapshot rendering:
   expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
@@ -50,17 +59,37 @@ describe("TeamStatsTable", () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-  test("TeamStatsTable - should create snapshot, luck enabled + diagnostics shown", () => {
-    const component = renderer.create(<TeamStatsTable
-      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, showExtraInfo: true, showTeamPlayTypes: true }}
-      dataEvent={{
-        teamStats: testData,
-        rosterStats: testRosterData,
-        lineupStats: [ ] //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
-      }}
-      onChangeState={(newParams: GameFilterParams) => {}}
+  test("TeamStatsTable - should create snapshot, luck enabled + diagnostics + grades shown", async () => {
+
+    const sampleData = JSON.parse(
+      fs.readFileSync("./public/leaderboards/lineups/stats_all_Men_2020_High.json", { encoding: "UTF-8"})
+    );  
+
+    // Mock the URL calls needed to get the stats
+    [ "Combo", "High", "Medium", "Low"].forEach(tier => 
+      (fetchMock as any).mock(`/api/getStats?&gender=Men&year=${ParamDefaults.defaultYear.substring(0, 4)}&tier=${tier}`, {
+        status: 200,
+        body: tier == "High" ? sampleData : { }
+      })
+    );
+
+    var component: ReactTestRenderer;
+    await act(async () => {
+      component = renderer.create(<TeamStatsTable
+        gameFilterParams={{ 
+          year: ParamDefaults.defaultYear,
+          onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, 
+          showExtraInfo: true, showTeamPlayTypes: true, showGrades: ParamDefaults.defaultTeamEnabledGrade }}
+        dataEvent={{
+          teamStats: testData,
+          rosterStats: testRosterData,
+          lineupStats: [ ] //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
+        }}
+        onChangeState={(newParams: GameFilterParams) => {}}
       />);
-    const tree = component.toJSON();
+      return new Promise((resolve) => setTimeout(resolve, 50));
+    });
+    const tree = component!.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

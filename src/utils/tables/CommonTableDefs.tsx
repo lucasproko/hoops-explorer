@@ -77,7 +77,7 @@ export class CommonTableDefs {
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", CommonTableDefs.picker(...CbbColors.eFG)),
     "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", CommonTableDefs.picker(...CbbColors.tOver)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
+    "orb": GenericTableOps.addPctCol("OR%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
     "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", CommonTableDefs.picker(...CbbColors.ftr)),
     "sep2a": GenericTableOps.addColSeparator(),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for selected lineups", CommonTableDefs.picker(...CbbColors.ast)),
@@ -100,7 +100,7 @@ export class CommonTableDefs {
   /** Utility to put a faint colored backing to text */
   static readonly getTextShadow = (stat: { value?: number }, colorMapper: (val: number) => string) => {
     return {
-      textShadow: `0px 0px 10px ${colorMapper(stat?.value || 0)}`
+      textShadow: `0px 0px 10px ${colorMapper(stat?.value || 0)},0px 0px 10px ${colorMapper(stat?.value || 0)}`
     };
   };
 
@@ -297,7 +297,7 @@ export class CommonTableDefs {
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", CommonTableDefs.picker(...CbbColors.diff10_redGreen)),
     "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", CommonTableDefs.picker(...CbbColors.diff10_greenRed)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.diff10_redGreen)),
+    "orb": GenericTableOps.addPctCol("OR%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.diff10_redGreen)),
     "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", CommonTableDefs.picker(...CbbColors.diff10_redGreen)),
     "sep2-1": GenericTableOps.addColSeparator(),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for selected lineups", CommonTableDefs.picker(...CbbColors.diff10_blueOrange)),

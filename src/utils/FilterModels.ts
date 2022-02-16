@@ -68,6 +68,7 @@ export type GameFilterParams = {
   showExtraInfo?: boolean,
   showTeamPlayTypes?: boolean,
   showRoster?: boolean,
+  showGrades?: string,
   // Manual override:
   manual?: ManualOverride[],
   showPlayerManual?: boolean,
@@ -213,6 +214,7 @@ export class ParamDefaults {
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultTeamShowPlayTypes = false;
   static readonly defaultTeamShowRoster = false;
+  static readonly defaultTeamEnabledGrade = "rank:Combo";
   static readonly defaultPlayerShowPlayTypes = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;

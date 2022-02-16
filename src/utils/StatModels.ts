@@ -34,6 +34,9 @@ export type Statistic = {
   extraInfo?: string | React.ReactNode
   /** Gives some details about how value was derived from old_value */
   override?: string | React.ReactNode
+
+  /** The number of samples that generated this statistic, if available (assume not) */
+  samples?: number
 };
 /** Like statistic, but can take an HTML val in its value */
 export type StatisticOrRender = {
@@ -45,6 +48,9 @@ export type StatisticOrRender = {
   extraInfo?: string | React.ReactNode
   /** Gives some details about how value was derived from old_value */
   override?: string | React.ReactNode
+
+  /** The number of samples that generated this statistic, if available (assume not) */
+  samples?: number
 };
 
 /** TODO: consider coming up with a list of all possible fields from ES and using a mapped type? */

@@ -3121,7 +3121,7 @@ Array [
 
 exports[`buildLeaderboards buildLeaderboards - main / division team stats 1`] = `
 Object {
-  "dedup_sample_size": 76,
+  "dedup_sample_size": 80,
   "dedup_samples": Object {
     "def_2p": Array [
       0.44483671668137686,

@@ -114,6 +114,10 @@ export class GenericTableOps {
   static readonly htmlFormatter = (val: React.ReactNode) => val;
   static readonly intFormatter = (val: any) => "" + (val.value as number).toFixed(0);
   static readonly twoDpFormatter = (val: any) => "" + (val.value as number).toFixed(2);
+  static readonly rankSuffix = (n: number) => ["st" ,"nd" ,"rd"][((n+90)%100-10)%10-1] || "th";
+  static readonly rankFormatter = (val: any) => {
+    return <small>{(val.value as number).toFixed(0)}<sup>{GenericTableOps.rankSuffix(val.value as number)}</sup></small>;
+  };
   static readonly percentFormatter = (val: any) => {
     return (val.value >= 1) ?
         ((val.value as number)*100.0).toFixed(0) //(remove the .0 in the 100% case)
@@ -122,6 +126,18 @@ export class GenericTableOps {
   static readonly percentOrHtmlFormatter = (val: any) => {
     if (React.isValidElement(val)) {
       return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else {
+      return GenericTableOps.percentFormatter(val);
+    }
+  }
+  static readonly gradeOrHtmlFormatter = (val: any) => {
+    if (React.isValidElement(val)) {
+      return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else if (val.samples) {
+      const numSamples = val.samples || 0;
+      const pcile = val.value || 0;
+      const rank = (1 + Math.floor((1 - pcile)*numSamples));
+      return GenericTableOps.rankFormatter({ value: rank });
     } else {
       return GenericTableOps.percentFormatter(val);
     }

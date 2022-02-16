@@ -187,6 +187,7 @@ export class HistoryManager {
       _.isNil(p.showPlayerPlayTypes) ? ParamDefaults.defaultPlayerShowPlayTypes : p.showPlayerPlayTypes;
     const possAsPct =
       _.isNil(p.possAsPct) ? ParamDefaults.defaultPlayerPossAsPct : p.possAsPct;
+    const showGrades = p.showGrades || "";
 
     const showPlayerArray = _.flatMap([
       (sortBy != ParamDefaults.defaultPlayerSortBy) ? [ `sort:${sortBy}` ] : [],
@@ -197,6 +198,7 @@ export class HistoryManager {
       showPosDiag ? [ "show-pos-diags" ] : [],
       showPlayerPlayTypes ? [ "show-play-types" ] : [],
       possAsPct ? [ ] : [ "poss-#" ],
+      (showGrades != "") ? [ `show-grades:${showGrades.replace("Combo", "D1")}` ] : [],
     ]);
     const playerParams = (showPlayerArray.length > 0) ?
       `, players:[${_.join(showPlayerArray, ",")}]` : "";
