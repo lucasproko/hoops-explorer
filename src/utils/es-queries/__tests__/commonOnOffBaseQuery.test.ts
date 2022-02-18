@@ -12,7 +12,9 @@ describe("commonOnOffBaseQuery", () => {
       baseQuery: "query1c"
     };
 
-    expect(commonOnOffBaseQuery(query1)).toEqual({
+    //TODO: test with queryFilters (includng the auto-off case)
+
+    expect(commonOnOffBaseQuery(query1, 0)).toEqual({
       filters: {
         off: {
           query_string: {
@@ -32,7 +34,7 @@ describe("commonOnOffBaseQuery", () => {
       }
     });
 
-    expect(commonOnOffBaseQuery(query2)).toEqual({
+    expect(commonOnOffBaseQuery(query2, 0)).toEqual({
       filters: {
         off: {
           query_string: {

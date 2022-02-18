@@ -84,20 +84,21 @@ describe("commonTeamQuery", () => {
 
     // TEST3: Not-Home, Last-30d / Conf / Filter Garbage
 
-    expect(test3.bool.must_not).toEqual([{
-      "term": {
-        "location_type.keyword": "Home"
-      }
-    }]);
+    expect(test3.bool.must_not).toEqual([]);
     expect(test3.bool.should.length).toEqual(3);
     expect(test3.bool.minimum_should_match).toEqual(1);
-    expect(test3.bool.must.length).toEqual(4);
-    expect(test1.bool?.must?.[2]).toEqual({
+    expect(test3.bool.must.length).toEqual(5);
+    expect(test3.bool?.must?.[2]).toEqual({
       "query_string": {
          "query": `in_conf:true`
        }
     });
     expect(test3.bool?.must?.[3]).toEqual({
+      "query_string": {
+        "query": `location_type.keyword:(Away OR Neutral)`
+      }
+    });
+    expect(test3.bool?.must?.[4]).toEqual({
       "range": {
         "date": {
           "gt": "333000||-30d/d"
@@ -108,6 +109,6 @@ describe("commonTeamQuery", () => {
     // Like test3 but no efficiency
     expect(test4.bool.should.length).toEqual(3);
     expect(test4.bool.minimum_should_match).toEqual(1);
-    expect(test4.bool.must.length).toEqual(3); //(vs_rank disappeared)
+    expect(test4.bool.must.length).toEqual(4); //(vs_rank disappeared)
   });
 });

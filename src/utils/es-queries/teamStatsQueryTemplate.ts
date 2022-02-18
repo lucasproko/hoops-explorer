@@ -51,7 +51,7 @@ export const teamStatsQuery = function(
             ...(params.getGames ? buildGameInfoRequest("final_scores"): {}),
             ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca)
            },
-           "filters": commonOnOffBaseQuery(params)
+           "filters": commonOnOffBaseQuery(params, lastDate)
        }
      },
      "query": commonTeamQuery(params, lastDate, publicEfficiency, lookup)

@@ -36,10 +36,16 @@ const garbageTimeFilter = [
   }
 ];
 
-const homeOrAwayFilter = (homeOrAway: "Home" | "Away") => {
-  return { "term": {
+const homeOrAwayFilter = (homeOrAway: "Home" | "Away" | "Not-Home") => {
+  return homeOrAway == "Not-Home" ? [     
+    { "query_string": {
+      "query": `location_type.keyword:(Away OR Neutral)`
+    }}
+  ] : [ 
+    { "term": {
     "location_type.keyword": `${homeOrAway}`
-  }};
+    }}
+  ];
 };
 
 const dateFilter = (date: "Nov-Dec" | "Jan-Apr" | "Last-30d", year: string, lastDate: number) => {
@@ -55,15 +61,32 @@ const dateFilter = (date: "Nov-Dec" | "Jan-Apr" | "Last-30d", year: string, last
   }};
 };
 
+/** Common util for here + commonOnOffBaseQuery to handle pre-built filters */
+export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, yearStr: string | undefined, lastDate: number) => {
+  const queryFilters = QueryUtils.parseFilter(queryFiltersStr || "");
+  return _.flatten([
+    QueryUtils.filterHas(queryFilters, "Conf") ? [{
+      "query_string": {
+         "query": `in_conf:true`
+       }
+    }] : [],
+    _.flatMap([ "Home", "Away", "Not-Home" ], (homeOrAway: "Home" | "Away" | "Not-Home") => {
+      return QueryUtils.filterHas(queryFilters, homeOrAway) ? homeOrAwayFilter(homeOrAway) : [];
+    }),
+    _.flatMap([ "Nov-Dec", "Jan-Apr", "Last-30d"], (date: "Nov-Dec" | "Jan-Apr" | "Last-30d") => {
+      return QueryUtils.filterHas(queryFilters, date) ? [ dateFilter(date, yearStr || "2000", lastDate) ] : [];
+    })
+  ] as any[]);
+}
+
 export const commonTeamQuery = function(
   params: CommonFilterParams,
   lastDate: number, publicEfficiency: any, lookup: any
 ) {
-  const queryFilters = QueryUtils.parseFilter(params.queryFilters || "");
   return {
-     "bool": {
+     "bool": { //(see also commonOnOffBaseQuery - changes here are likely also required there
         "filter": [],
-        "must_not": QueryUtils.filterHas(queryFilters, "Not-Home") ? [ homeOrAwayFilter("Home") ] : [],
+        "must_not": [],
         "should": params.filterGarbage ? garbageTimeFilter : [], //(has OR components so should not must)
         "minimum_should_match": params.filterGarbage ? 1 : 0,
         "must": _.flatten([
@@ -77,17 +100,7 @@ export const commonTeamQuery = function(
                "query": `vs_rank:[${Number(params.minRank)} TO ${Number(params.maxRank)}]`
              }
           }],
-          QueryUtils.filterHas(queryFilters, "Conf") ? [{
-            "query_string": {
-               "query": `in_conf:true`
-             }
-          }] : [],
-          _.flatMap([ "Home", "Away" ], (homeOrAway: "Home" | "Away") => {
-            return QueryUtils.filterHas(queryFilters, homeOrAway) ? [ homeOrAwayFilter(homeOrAway) ] : [];
-          }),
-          _.flatMap([ "Nov-Dec", "Jan-Apr", "Last-30d"], (date: "Nov-Dec" | "Jan-Apr" | "Last-30d") => {
-            return QueryUtils.filterHas(queryFilters, date) ? [ dateFilter(date, params.year || "2000", lastDate) ] : [];
-          })
+          buildQueryFiltersBoolArray(params.queryFilters, params.year, lastDate)
         ] as Array<Record<string, any>>)
      }
   };
