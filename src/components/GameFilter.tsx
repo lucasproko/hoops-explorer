@@ -168,10 +168,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           showInfoSubHeader: startShowInfoSubHeader
       }) : {
         ...commonParams,
+        autoOffQuery: autoOffQuery,
         onQuery: onQuery,
         onQueryFilters: _.join(onQueryFilters || [], ","),
         offQuery: offQuery,
-        offQueryFilters: _.join(offQueryFilters || [], ","),
+        offQueryFilters: autoOffQuery ? "" : _.join(offQueryFilters || [], ","), //(not possible to specify if auto-off)
       };
 
     //(another ugly hack to be fixed - remove default optional fields)
@@ -396,6 +397,13 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
               }
             </Row> 
             : null}
+            { ((onQueryFilters.length > 0) && autoOffQuery) ?
+            <Row>&nbsp;
+              {onQueryFilters.map(
+                (p, i) => <span key={`conf${i}`}>{i > 0 ? <span>/ </span> : null}{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "", true)}&nbsp;</span>)
+              }
+            </Row> 
+            : null}
           </Container>
           : <div/> //(this construct needed to address SSR/readonly issue)
           }
@@ -408,7 +416,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
               setOffQueryFilters([]);
               if (!autoOffQuery) {
                 setAutoOffQuery(onQuery);
-              }
+              } //(TODO: note clearing offQuery in the else doesn't work due to limitations of AutoSuggestText)
               toggleAutoOffQuery(!autoOffQuery);
             }}
             label="Auto"

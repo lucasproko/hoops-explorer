@@ -84,7 +84,7 @@ export const commonTeamQuery = function(
   lastDate: number, publicEfficiency: any, lookup: any
 ) {
   return {
-     "bool": { //(see also commonOnOffBaseQuery - changes here are likely also required there
+     "bool": { 
         "filter": [],
         "must_not": [],
         "should": params.filterGarbage ? garbageTimeFilter : [], //(has OR components so should not must)

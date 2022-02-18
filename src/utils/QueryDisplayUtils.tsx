@@ -7,7 +7,12 @@ import Tooltip from 'react-bootstrap/Tooltip';
 export class QueryDisplayUtils {
 
    /** Display the badge corresponding to the filter type */
-   public static showQueryFilter = (t: String, year: string) => {
+   public static showQueryFilter = (t: String, year: string, inverted: boolean = false) => {
+      const maybeInvert = (s: String) => {
+        if (inverted) {
+          return s == "Not-Home" ? "Home" : `NOT ${s}`;
+        } else return s;
+      };
       const toolTip = () => { switch(t) {
         case "Conf":
           return <Tooltip id={`qf${t}`}>Conference games only. Use <b>in_conf:true</b> directly in query fields(s).</Tooltip>
@@ -27,7 +32,7 @@ export class QueryDisplayUtils {
           return <Tooltip id={`qf${t}`}>(unknown)</Tooltip>
       }}
       return <OverlayTrigger placement="auto" overlay={toolTip()}>
-        <span className="badge badge-pill badge-secondary">{t}</span>
+        <span className="badge badge-pill badge-secondary">{maybeInvert(t)}</span>
       </OverlayTrigger>;
     };
   
