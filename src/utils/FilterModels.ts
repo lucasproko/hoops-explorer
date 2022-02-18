@@ -62,6 +62,8 @@ export type GameFilterParams = {
 } & {
   onQuery?: string,
   offQuery?: string,
+  onQueryFilters?: string, //(missing iff empty)
+  offQueryFilters?: string, //(missing iff empty)
   autoOffQuery?: boolean
   // Team view
   teamDiffs?: boolean,

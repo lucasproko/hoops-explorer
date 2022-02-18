@@ -10,6 +10,7 @@ import _ from "lodash";
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -69,6 +70,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //these fields affect the query
     autoOffQuery: startAutoOffQuery,
     onQuery: startOnQuery, offQuery: startOffQuery,
+    onQueryFilters: startOnQueryFilters, offQueryFilters: startOffQueryFilters,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -86,6 +88,16 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       // (could build that intermediate pair,. but we'll stick with this limitation for now)
       setOnQuery(startOnQuery || "");
       setOffQuery(startOffQuery || "");
+      setOnQueryFilters(
+        QueryUtils.parseFilter(
+          _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters
+        )    
+      );
+      setOffQueryFilters(
+        QueryUtils.parseFilter(
+          _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters
+        )    
+      );
       //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
       // which I don't have time to investigate):
       //toggleAutoOffQuery(startAutoOffQuery);
@@ -101,8 +113,16 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ offQuery, setOffQuery ] = useState(startOffQuery || "");
 
   //TODO: need to plumb
-  const [ onQueryFilters, setOnQueryFilters ] = useState([] as CommonFilterType[]);
-  const [ offQueryFilters, setOffQueryFilters ] = useState([] as CommonFilterType[]);
+  const [ onQueryFilters, setOnQueryFilters ] = useState(
+    QueryUtils.parseFilter(
+      _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters
+    )    
+  );
+  const [ offQueryFilters, setOffQueryFilters ] = useState(
+    QueryUtils.parseFilter(
+      _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters
+    )    
+  );
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -149,7 +169,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       }) : {
         ...commonParams,
         onQuery: onQuery,
-        offQuery: offQuery
+        onQueryFilters: _.join(onQueryFilters || [], ","),
+        offQuery: offQuery,
+        offQueryFilters: _.join(offQueryFilters || [], ","),
       };
 
     //(another ugly hack to be fixed - remove default optional fields)
@@ -179,11 +201,21 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       ...commonParams
     }) ].concat((onQuery != "") ? [ QueryUtils.cleanseQuery({
         ...commonParams,
-        baseQuery: getLineupQuery(onQuery)
+        baseQuery: getLineupQuery(onQuery),
+        queryFilters: _.join(
+          _.uniq((onQueryFilters || []).concat(
+            QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
+         )), ","
+        ),
       }) ] : []
     ).concat((offQuery != "") ? [ QueryUtils.cleanseQuery({
         ...commonParams,
-        baseQuery: getLineupQuery(offQuery)
+        baseQuery: getLineupQuery(offQuery),
+        queryFilters: _.join(
+          _.uniq((offQueryFilters || []).concat(
+            QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
+         )), ","
+        ),
       }) ] : []
     ) : [];
 
@@ -299,69 +331,81 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOn} Query</Form.Label>
         <Col sm="8">
-          <InputGroup>
-            <div className="flex-fill">
-              <AutoSuggestText
-                readOnly={false}
-                placeholder="eg 'Player1 AND (Player2 OR Player3)'"
-                initValue={onQuery}
-                year={commonParams.year}
-                gender={commonParams.gender}
-                team={commonParams.team}
-                onKeyUp={handleOnQueryChange}
-                onChange={handleOnQueryChange}
-                onKeyDown={globalKeypressHandler}
-              />
-            </div>
-            <QueryFilterDropdown
-              queryFilters={onQueryFilters}
-              setQueryFilters={setOnQueryFilters}
-            />
-          </InputGroup>
+          <Container>
+            <Row>
+              <InputGroup>
+                <div className="flex-fill">
+                  <AutoSuggestText
+                    readOnly={false}
+                    placeholder="eg 'Player1 AND (Player2 OR Player3)'"
+                    initValue={onQuery}
+                    year={commonParams.year}
+                    gender={commonParams.gender}
+                    team={commonParams.team}
+                    onKeyUp={handleOnQueryChange}
+                    onChange={handleOnQueryChange}
+                    onKeyDown={globalKeypressHandler}
+                  />
+                </div>
+                <QueryFilterDropdown
+                  queryFilters={onQueryFilters}
+                  setQueryFilters={setOnQueryFilters}
+                />
+              </InputGroup>
+            </Row>
+            { onQueryFilters.length > 0 ?
+            <Row>&nbsp;
+              {onQueryFilters.map(
+                (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
+              }
+            </Row> 
+            : null}
+          </Container>
         </Col>
-        { onQueryFilters.length > 0
-          ? <Form.Label column sm="2">{onQueryFilters.map(
-              (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
-            }</Form.Label>
-          : null
-        }
       </Form.Group>
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOff} Query</Form.Label>
         <Col sm="8">
           { (typeof window !== `undefined`) ?
-            <InputGroup>
-              <div className="flex-fill">
-                <AutoSuggestText
-                    readOnly={autoOffQuery}
-                    placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
-                    initValue={offQuery}
-                    year={commonParams.year}
-                    gender={commonParams.gender}
-                    team={commonParams.team}
-                    onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
-                    onChange={(ev: any) => setOffQuery(ev.target.value)}
-                    onKeyDown={globalKeypressHandler}
-                  /> 
-              </div>
-              {autoOffQuery ? null : <QueryFilterDropdown
-                queryFilters={offQueryFilters}
-                setQueryFilters={setOffQueryFilters}
-              />}
-            </InputGroup>
-            : <div/> //(this construct needed to address SSR/readonly issue)
+          <Container>
+            <Row>
+              <InputGroup>
+                <div className="flex-fill">
+                  <AutoSuggestText
+                      readOnly={autoOffQuery}
+                      placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
+                      initValue={offQuery}
+                      year={commonParams.year}
+                      gender={commonParams.gender}
+                      team={commonParams.team}
+                      onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
+                      onChange={(ev: any) => setOffQuery(ev.target.value)}
+                      onKeyDown={globalKeypressHandler}
+                    /> 
+                </div>
+                {autoOffQuery ? null : <QueryFilterDropdown
+                  queryFilters={offQueryFilters}
+                  setQueryFilters={setOffQueryFilters}
+                />}
+              </InputGroup>
+            </Row>
+            { ((offQueryFilters.length > 0) && !autoOffQuery) ?
+            <Row>&nbsp;
+              {offQueryFilters.map(
+                (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
+              }
+            </Row> 
+            : null}
+          </Container>
+          : <div/> //(this construct needed to address SSR/readonly issue)
           }
         </Col>
-        {offQueryFilters.length > 0 ?
-        <Form.Label column sm="2">{offQueryFilters.map(
-          (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
-        }</Form.Label>
-        :
         <Col sm="2" className="mt-1">
           <Form.Check type="switch"
             id="autoOffQuery"
             checked={autoOffQuery}
             onChange={() => {
+              setOffQueryFilters([]);
               if (!autoOffQuery) {
                 setAutoOffQuery(onQuery);
               }
@@ -370,7 +414,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             label="Auto"
           />
         </Col>
-      }
       </Form.Group>
     </div>}</GlobalKeypressManager.Consumer></CommonFilter>
     ;

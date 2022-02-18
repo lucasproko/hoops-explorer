@@ -12,6 +12,7 @@ import _ from "lodash";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
@@ -621,32 +622,37 @@ const CommonFilter: CommonFilterI = ({
     <Form.Group as={Row}>
       <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
       <Col sm="8">
-        <InputGroup>
-          <div className="flex-fill">
-            <AutoSuggestText
-              readOnly={false}
-              placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-              initValue={baseQuery}
-              year={year}
-              gender={gender}
-              team={team}
-              onChange={(ev: any) => setBaseQuery(ev.target.value)}
-              onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-              onKeyDown={submitListenerFactory(true)}
-            />
-          </div>
-          <QueryFilterDropdown
-            queryFilters={queryFilters}
-            setQueryFilters={setQueryFilters}
-          />
-        </InputGroup>
+        <Container>
+          <Row>
+            <InputGroup>
+              <div className="flex-fill">
+                <AutoSuggestText
+                  readOnly={false}
+                  placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                  initValue={baseQuery}
+                  year={year}
+                  gender={gender}
+                  team={team}
+                  onChange={(ev: any) => setBaseQuery(ev.target.value)}
+                  onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+                  onKeyDown={submitListenerFactory(true)}
+                />
+              </div>
+              <QueryFilterDropdown
+                queryFilters={queryFilters}
+                setQueryFilters={setQueryFilters}
+              />
+            </InputGroup>
+          </Row>
+          { queryFilters.length > 0 ?
+          <Row>&nbsp;
+            {queryFilters.map(
+              (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, year)}&nbsp;&nbsp;</span>)
+            }
+          </Row> 
+          : null}
+        </Container>
       </Col>
-      { queryFilters.length > 0
-        ? <Form.Label column sm="2">{queryFilters.map(
-            (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, year)}&nbsp;</span>)
-          }</Form.Label>
-        : null
-      }
     </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
