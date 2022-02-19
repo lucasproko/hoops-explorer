@@ -16,7 +16,7 @@ export const rosterCompareQuery = function(
      "size": 0,
      "aggregations": {
         "tri_filter": {
-          "filters": commonOnOffBaseQuery(params),
+          "filters": commonOnOffBaseQuery(params, lastDate),
            "aggregations": {
               "global_poss_count": {
                  "sum": {

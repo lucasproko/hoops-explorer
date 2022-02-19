@@ -1,6 +1,5 @@
 import { commonRuntimeMappings } from "./commonRuntimeMappings";
-import { commonTeamQuery } from "./commonTeamQuery";
-import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
+import { commonTeamQuery, buildQueryFiltersBoolArray } from "./commonTeamQuery";
 import { commonLineupAggregations } from "./commonLineupAggregations";
 import { QueryUtils } from "../QueryUtils";
 import { LineupFilterParams } from "../FilterModels";
@@ -128,8 +127,24 @@ export const lineupStatsQuery = function(
      "query": {
        "bool": {
           "filter": [],
+          "minimum_should_match": QueryUtils.invertedQueryMode(params) ? 1 : 0,
+          "should": //(special internal invert mode for getting linueps for on/off)
+            QueryUtils.invertedQueryMode(params) ? 
+              buildQueryFiltersBoolArray(params.invertBaseQueryFilters, params.year, lastDate).map(clause => {
+                return {
+                  "bool": {
+                     "must_not": [
+                        clause
+                     ]
+                  }
+               };
+              }).concat([{
+                "query_string": {
+                    "query": `NOT (${QueryUtils.basicOrAdvancedQuery(params.invertBase, 'NOT *')})`
+                }
+              }] as any[])
+            : [],
           "must_not": [],
-          "should": [],
           "must": [
              commonTeamQuery(params, lastDate, publicEfficiency, lookup),
              {

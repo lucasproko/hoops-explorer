@@ -131,9 +131,24 @@ export class HistoryManager {
   static gameFilterSummary(p: GameFilterParams) {
     const isAutoOff =
       _.isNil(p.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : p.autoOffQuery;
+
+    const getOnQueryFilters = () => {
+      if (p.onQueryFilters) {
+        return `/[+${p.onQueryFilters}]`;
+      } else {
+        return "";
+      }
+    }
+    const getOffQueryFilters = () => {
+      if (p.offQueryFilters && !isAutoOff) {
+        return `/[+${p.offQueryFilters}]`;
+      } else {
+        return "";
+      }
+    }
     const base = `base:'${tidyQuery(p.baseQuery)}'`;
-    const on = `on:'${tidyQuery(p.onQuery)}'`;
-    const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'`;
+    const on = `on:'${tidyQuery(p.onQuery)}'${getOnQueryFilters()}`;
+    const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'${getOffQueryFilters()}`;
 
     // Luck config is not tied to on-off / players
 

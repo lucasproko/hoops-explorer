@@ -30,7 +30,11 @@ export type CommonFilterParams = {
   maxRank?: string,
   baseQuery?: string,
   filterGarbage?: boolean, //(missing iff "false")
-  queryFilters?: string //(missing iff empty)
+  queryFilters?: string, //(missing iff empty)
+
+  // FOR INTERNAL USE ONLY
+  invertBase?: string //special case - the inverse of these two are used in combination with the usual queryFilters/baseQuery
+  invertBaseQueryFilters?: string
 };
 
 /** Extracts the common params from a superset */
@@ -62,6 +66,8 @@ export type GameFilterParams = {
 } & {
   onQuery?: string,
   offQuery?: string,
+  onQueryFilters?: string, //(missing iff empty)
+  offQueryFilters?: string, //(missing iff empty)
   autoOffQuery?: boolean
   // Team view
   teamDiffs?: boolean,

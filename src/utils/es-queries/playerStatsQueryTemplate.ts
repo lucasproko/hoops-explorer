@@ -18,7 +18,7 @@ export const playerStatsQuery = function(
      "size": 0,
      "aggregations": {
         "tri_filter": {
-           "filters": commonOnOffBaseQuery(params),
+           "filters": commonOnOffBaseQuery(params, lastDate),
            "aggregations": {
              "player": {
                 "terms": {

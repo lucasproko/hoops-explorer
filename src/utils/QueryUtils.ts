@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import queryString from "query-string";
 
-import { CommonFilterParams, ParamDefaults } from "./FilterModels";
+import { CommonFilterParams, ParamDefaults, GameFilterParams } from './FilterModels';
 
 /** All the different supported filters */
 export type CommonFilterType =
@@ -209,5 +209,37 @@ export class QueryUtils {
     } else {
       return `(${newQueryEl}) AND (${currQuery[0]})`;
     }
+  }
+
+  // A bunch of utils to handle some of the logic surrounding combined query strings and filters
+
+  /** One of some overloaded checks for whether a query type is doing anything */
+  static nonEmptyQueryObj(params: GameFilterParams, queryType: "on" | "off") {
+    if (queryType == "on") {
+      return (params.onQuery != "") || (params.onQueryFilters != "");
+    } else { //off
+      return (params.offQuery != "") || (params.offQueryFilters != "");
+    }
+  }
+  /** One of some overloaded checks for whether a query type is doing anything */
+  static nonEmptyQueryStr(queryStr: string | undefined, queryFiltersStr: string | undefined) {
+    return (queryStr != "") || (queryFiltersStr != "");
+  }
+  /** One of some overloaded checks for whether a query type is doing anything */
+  static nonEmptyQuery(queryStr: string | undefined, queryFilter: CommonFilterType[]) {
+    return (queryStr != "") || (queryFilter.length > 0);
+  }
+
+  /** Auto off query with on query filters set - this is a special case because can't represent the query with a single query/filter pair */
+  static autoOffAndFilters(autoOff: boolean, onQueryFilter: CommonFilterType[]) {
+    return autoOff && onQueryFilter.length > 0;
+  }
+  /** Auto off query with on query filters set - this is a special case because can't represent the query with a single query/filter pair */
+  static autoOffAndFiltersObj(params: GameFilterParams) {
+    return params.autoOffQuery && (params.onQueryFilters != "");
+  }
+  /** To handle the "autoOffAndFilters" case described above, we have a special internal search mode for lineups */
+  static invertedQueryMode(params: CommonFilterParams) {
+    return params.invertBase || params.invertBaseQueryFilters;
   }
 }
