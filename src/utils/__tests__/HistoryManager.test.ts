@@ -67,13 +67,32 @@ describe("HistoryManager", () => {
       year: "2019/20", gender: "Men",
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
+      onQueryFilters: "Home", offQueryFilters: "Conf",
       offQuery: "testOff", autoOffQuery: false,
       luck: { base: "baseline" },
       onOffLuck: true,
       filterGarbage: true, queryFilters: "Conf"
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
-      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', luck:[baseline], [overrides], team:[on-off-luck,show-roster,show-play-types,show-extra-info]`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn'/[+Home], off:'testOff'/[+Conf], base:'testBase', luck:[baseline], [overrides], team:[on-off-luck,show-roster,show-play-types,show-extra-info]`
+    );
+    const game3: GameFilterParams = {
+      team: "test",
+      manual: [{ newVal: 1, rowId: "test", use: true, statName: "test" }],
+      showTeamPlayTypes: true,
+      showExtraInfo: true,
+      showRoster: true,
+      year: "2019/20", gender: "Men",
+      minRank: "1", maxRank: "150",
+      onQuery: "testOn", baseQuery: "testBase",
+      onQueryFilters: "Home", offQueryFilters: "Conf",
+      offQuery: "testOff", autoOffQuery: true,
+      luck: { base: "baseline" },
+      onOffLuck: true,
+      filterGarbage: true, queryFilters: "Conf"
+    };
+    expect(HistoryManager.filterSummary("game-", game3)).toBe(
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn'/[+Home], auto-off, base:'testBase', luck:[baseline], [overrides], team:[on-off-luck,show-roster,show-play-types,show-extra-info]`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => { //(need to change this every season)
