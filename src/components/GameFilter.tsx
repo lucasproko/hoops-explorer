@@ -192,15 +192,17 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];
 
     // RAPM calculations:
-    const getLineupQuery = (onOrOffQuery: string) => {
+    //TODO: should tidy this up so can just make get lineups back from on/off query
+    //      but for now we'll just hack a workaround
+    const getLineupQuery = (onOrOffQuery: string, ignoreBase: boolean = false) => {
       const [ onOrOff, maybeAdvOnOrOff ] = QueryUtils.extractAdvancedQuery(onOrOffQuery);
-      const baseToUse = maybeAdvBaseQuery || baseQuery || "";
+      const baseToUse = ignoreBase ? "*" : maybeAdvBaseQuery || baseQuery || "";
       const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
       return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
     };
     const lineupRequests = alsoPullLineups ? [ QueryUtils.cleanseQuery({
       ...commonParams
-    }) ].concat((onQuery != "") ? [ QueryUtils.cleanseQuery({
+    }) ].concat(((onQuery != "") || (onQueryFilters.length > 0)) ? [ QueryUtils.cleanseQuery({
         ...commonParams,
         baseQuery: getLineupQuery(onQuery),
         queryFilters: _.join(
@@ -209,7 +211,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
          )), ","
         ),
       }) ] : []
-    ).concat((offQuery != "") ? [ QueryUtils.cleanseQuery({
+    ).concat(
+      ((!autoOffQuery || onQueryFilters.length == 0) && ((offQuery != "") || (offQueryFilters.length > 0))
+        // (if autoOffQuery is specified AND using filters then goto special mode below)
+      ) ? [ QueryUtils.cleanseQuery({ 
         ...commonParams,
         baseQuery: getLineupQuery(offQuery),
         queryFilters: _.join(
@@ -218,7 +223,13 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
          )), ","
         ),
       }) ] : []
-    ) : [];
+    ).concat((autoOffQuery && (onQueryFilters.length > 0)) ? [ QueryUtils.cleanseQuery({
+      ...commonParams,
+      invertBase: getLineupQuery(onQuery || "NOT *", true),
+      invertBaseQueryFilters: _.join(onQueryFilters || [], ",")
+        //(ie will be * once inverted, ie ignore this clause if missing)
+    }) ] : []) : [];
+    // (note only one of the last 2 clauses can be present at once)
 
     const makeGlobalRequest = !_.isEqual(entireSeasonRequest, primaryRequest);
 

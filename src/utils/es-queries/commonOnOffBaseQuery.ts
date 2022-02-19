@@ -35,23 +35,14 @@ export const commonOnOffBaseQuery = function(params: GameFilterParams, lastDate:
                      "query": `${baselineQuery}`
                    }         
                }],
-               "should": _.flatten([
+               "must_not": _.flatten([
                   [{
                      "query_string": {
                         "query": `${QueryUtils.basicOrAdvancedQuery(queryStr, fallbackQuery)}`
                       }
                   }],
-                  buildQueryFiltersBoolArray(params.onQueryFilters, params.year, lastDate).map(clause => {
-                     return {
-                        "bool": {
-                           "must_not": [
-                              clause
-                           ]
-                        }
-                     };
-                  })
-               ] as any[]),
-               "minimum_should_match": 1
+                  buildQueryFiltersBoolArray(params.onQueryFilters, params.year, lastDate)
+               ] as any[])
             }
          }
       } else {

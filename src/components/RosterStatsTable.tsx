@@ -301,8 +301,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const buildAllRapm = () => {
     if (calcRapm && _.isEmpty(cachedRapm)) {
-      const onIndex = (gameFilterParams.onQuery != "") ? 1 : 3;
-      const offIndex = (gameFilterParams.onQuery != "") ? 2 : 1;
+      const hasOnIndex = ((gameFilterParams.onQuery != "") || (gameFilterParams.onQueryFilters != ""));
+      const onIndex = hasOnIndex ? 1 : 3;
+      const offIndex = hasOnIndex ? 2 : 1;
       const rapmInfos = (lineupStats || []).map((lineupStat, i) => {
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";

@@ -120,7 +120,6 @@ describe("commonOnOffBaseQuery", () => {
       filters: {
         off: {
           bool: {
-            minimum_should_match: 1,
             must: [
               {
                 query_string: {
@@ -128,21 +127,15 @@ describe("commonOnOffBaseQuery", () => {
                 }      
               },
             ],
-            should: [
+            must_not: [
               {
                 query_string: {
                   query: `players.id:(NOT *)`
                 }      
               },
               {
-                bool: {
-                  must_not: [
-                    {
-                      query_string: {
-                        query: `location_type.keyword:(Away OR Neutral)`
-                      }
-                    }
-                  ]
+                query_string: {
+                  query: `location_type.keyword:(Away OR Neutral)`
                 }
               }
             ],

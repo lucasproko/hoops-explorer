@@ -1,6 +1,5 @@
 import { commonRuntimeMappings } from "./commonRuntimeMappings";
-import { commonTeamQuery } from "./commonTeamQuery";
-import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
+import { commonTeamQuery, buildQueryFiltersBoolArray } from "./commonTeamQuery";
 import { commonLineupAggregations } from "./commonLineupAggregations";
 import { QueryUtils } from "../QueryUtils";
 import { LineupFilterParams } from "../FilterModels";
@@ -128,7 +127,14 @@ export const lineupStatsQuery = function(
      "query": {
        "bool": {
           "filter": [],
-          "must_not": [],
+          "must_not": //(special internal invert mode for getting linueps for on/off)
+            (params.invertBase || params.invertBaseQueryFilters) ? 
+              buildQueryFiltersBoolArray(params.invertBaseQueryFilters, params.year, lastDate).concat([{
+                "query_string": {
+                    "query": `${QueryUtils.basicOrAdvancedQuery(params.invertBase, '*')}`
+                }
+              }])
+            : [],
           "should": [],
           "must": [
              commonTeamQuery(params, lastDate, publicEfficiency, lookup),
