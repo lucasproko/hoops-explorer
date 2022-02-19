@@ -15,16 +15,14 @@ export const commonOnOffBaseQuery = function(params: GameFilterParams, lastDate:
             "query": `(${QueryUtils.basicOrAdvancedQuery(queryStr, fallbackQuery)}) AND (${baselineQuery})`
           }
       };
-      if (queryFilterStr) {
+      if (queryFilterStr) { //(note this means offAndAutoOff - if so this is always undefined)
          return {
             "bool": { 
                "must": _.flatten([
                   [ query ],
                   buildQueryFiltersBoolArray(queryFilterStr, params.year, lastDate)
                ] as any[]),
-               "must_not": offAndAutoOff 
-                  ?  buildQueryFiltersBoolArray(params.onQueryFilters, params.year, lastDate)
-                  : []
+               "must_not": []
             }
          };
       } else if (offAndAutoOff && params.onQueryFilters) {
