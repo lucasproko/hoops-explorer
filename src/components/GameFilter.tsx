@@ -138,6 +138,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
    * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
   */
   function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
+    // Only include these if they aren't defaults:
+    const onQueryFiltersObj = !_.isEmpty(onQueryFilters) ? { onQueryFilters: _.join(onQueryFilters || [], ",") } : {};
+    const offQueryFiltersObj = (autoOffQuery || _.isEmpty(offQueryFilters)) ? 
+      {} : { offQueryFilters: _.join(offQueryFilters || [], ",") };
+
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.assign(
         buildParamsFromState(false)[0], {
@@ -170,11 +175,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         ...commonParams,
         autoOffQuery: autoOffQuery,
         onQuery: onQuery,
-        onQueryFilters: _.join(onQueryFilters || [], ","),
+        ...onQueryFiltersObj,
         offQuery: offQuery,
-        offQueryFilters: autoOffQuery ? "" : _.join(offQueryFilters || [], ","), //(not possible to specify if auto-off)
+        ...offQueryFiltersObj, //(not possible to specify if auto-off)
       };
-
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
 
