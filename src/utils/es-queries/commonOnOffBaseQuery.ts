@@ -9,7 +9,7 @@ export const commonOnOffBaseQuery = function(params: GameFilterParams, lastDate:
    const baselineQuery = QueryUtils.basicOrAdvancedQuery(params.baseQuery, '*');
 
    const buildQueryAndFilter = (queryStr: string | undefined, queryFilterStr: string | undefined, offAndAutoOff: boolean) => {
-      const fallbackQuery = queryFilterStr ? "*" : "NOT *"; //(in autoOff case fallback to NOT *)
+      const fallbackQuery = queryFilterStr ? "*" : "NOT *"; //(if any filters are specified need fallbackQuery to always be true inside the AND)
       const query = { //(note: ignored in the autoOff case)
          "query_string": {
             "query": `(${QueryUtils.basicOrAdvancedQuery(queryStr, fallbackQuery)}) AND (${baselineQuery})`
@@ -26,7 +26,7 @@ export const commonOnOffBaseQuery = function(params: GameFilterParams, lastDate:
                "should": _.flatten([
                   [{
                      "query_string": {
-                        "query": `${QueryUtils.basicOrAdvancedQuery(queryStr, fallbackQuery)}`
+                        "query": `${QueryUtils.basicOrAdvancedQuery(queryStr, "NOT *")}` //(the clause is an OR, so an empty query needs to return false)
                       }
                   }],
                   buildQueryFiltersBoolArray(params.onQueryFilters, params.year, lastDate).map(clause => {

@@ -202,7 +202,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     };
     const lineupRequests = alsoPullLineups ? [ QueryUtils.cleanseQuery({
       ...commonParams
-    }) ].concat(((onQuery != "") || (onQueryFilters.length > 0)) ? [ QueryUtils.cleanseQuery({
+    }) ].concat(QueryUtils.nonEmptyQuery(onQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
         ...commonParams,
         baseQuery: getLineupQuery(onQuery || "*"),
         queryFilters: _.join(
@@ -212,7 +212,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         ),
       }) ] : []
     ).concat(
-      ((!autoOffQuery || onQueryFilters.length == 0) && ((offQuery != "") || (offQueryFilters.length > 0))
+      (!QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) && QueryUtils.nonEmptyQuery(offQuery, offQueryFilters)
         // (if autoOffQuery is specified AND using filters then goto special mode below)
       ) ? [ QueryUtils.cleanseQuery({ 
         ...commonParams,
@@ -223,7 +223,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
          )), ","
         ),
       }) ] : []
-    ).concat((autoOffQuery && (onQueryFilters.length > 0)) ? [ QueryUtils.cleanseQuery({
+    ).concat(QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
       ...commonParams,
       invertBase: getLineupQuery(onQuery || "*", true),
       invertBaseQueryFilters: _.join(onQueryFilters || [], ",")
