@@ -204,7 +204,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       ...commonParams
     }) ].concat(((onQuery != "") || (onQueryFilters.length > 0)) ? [ QueryUtils.cleanseQuery({
         ...commonParams,
-        baseQuery: getLineupQuery(onQuery),
+        baseQuery: getLineupQuery(onQuery || "*"),
         queryFilters: _.join(
           _.uniq((onQueryFilters || []).concat(
             QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
@@ -216,7 +216,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         // (if autoOffQuery is specified AND using filters then goto special mode below)
       ) ? [ QueryUtils.cleanseQuery({ 
         ...commonParams,
-        baseQuery: getLineupQuery(offQuery),
+        baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
         queryFilters: _.join(
           _.uniq((offQueryFilters || []).concat(
             QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
@@ -225,7 +225,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       }) ] : []
     ).concat((autoOffQuery && (onQueryFilters.length > 0)) ? [ QueryUtils.cleanseQuery({
       ...commonParams,
-      invertBase: getLineupQuery(onQuery || "NOT *", true),
+      invertBase: getLineupQuery(onQuery || "*", true),
       invertBaseQueryFilters: _.join(onQueryFilters || [], ",")
         //(ie will be * once inverted, ie ignore this clause if missing)
     }) ] : []) : [];
@@ -368,7 +368,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             { onQueryFilters.length > 0 ?
             <Row>&nbsp;
               {onQueryFilters.map(
-                (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
+                (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
               }
             </Row> 
             : null}
@@ -404,14 +404,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             { ((offQueryFilters.length > 0) && !autoOffQuery) ?
             <Row>&nbsp;
               {offQueryFilters.map(
-                (p, i) => <span key={`conf${i}`}>{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
+                (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "")}&nbsp;</span>)
               }
             </Row> 
             : null}
             { ((onQueryFilters.length > 0) && autoOffQuery) ?
             <Row>&nbsp;
               {onQueryFilters.map(
-                (p, i) => <span key={`conf${i}`}>{i > 0 ? <span>/ </span> : null}{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "", true)}&nbsp;</span>)
+                (p, i) => <span key={`conf${i}`}>{i > 0 ? <span>/ </span> : <small>OR </small>}{QueryDisplayUtils.showQueryFilter(p, commonParams.year || "", true)}&nbsp;</span>)
               }
             </Row> 
             : null}

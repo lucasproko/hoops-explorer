@@ -1946,8 +1946,9 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
    "query": {
       "bool": {
          "filter": [],
-         "must_not": [],
+         "minimum_should_match": 0,
          "should": [],
+         "must_not": [],
          "must": [
             {
                "bool": {
@@ -3963,8 +3964,9 @@ exports[`lineupStatsQuery lineupStatsQuery-game-info 1`] = `
    "query": {
       "bool": {
          "filter": [],
-         "must_not": [],
+         "minimum_should_match": 0,
          "should": [],
+         "must_not": [],
          "must": [
             {
                "bool": {
@@ -5980,19 +5982,26 @@ exports[`lineupStatsQuery lineupStatsQuery-game-info-invertMode 1`] = `
    "query": {
       "bool": {
          "filter": [],
-         "must_not": [
+         "minimum_should_match": 1,
+         "should": [
             {
-               "term": {
-                  "location_type.keyword": "Home"
+               "bool": {
+                  "must_not": [
+                     {
+                        "term": {
+                           "location_type.keyword": "Home"
+                        }
+                     }
+                  ]
                }
             },
             {
                "query_string": {
-                  "query": "players.id:(invert1)"
+                  "query": "NOT (players.id:(invert1))"
                }
             }
          ],
-         "should": [],
+         "must_not": [],
          "must": [
             {
                "bool": {

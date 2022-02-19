@@ -127,15 +127,24 @@ export const lineupStatsQuery = function(
      "query": {
        "bool": {
           "filter": [],
-          "must_not": //(special internal invert mode for getting linueps for on/off)
+          "minimum_should_match": (params.invertBase || params.invertBaseQueryFilters) ? 1 : 0,
+          "should": //(special internal invert mode for getting linueps for on/off)
             (params.invertBase || params.invertBaseQueryFilters) ? 
-              buildQueryFiltersBoolArray(params.invertBaseQueryFilters, params.year, lastDate).concat([{
+              buildQueryFiltersBoolArray(params.invertBaseQueryFilters, params.year, lastDate).map(clause => {
+                return {
+                  "bool": {
+                     "must_not": [
+                        clause
+                     ]
+                  }
+               };
+              }).concat([{
                 "query_string": {
-                    "query": `${QueryUtils.basicOrAdvancedQuery(params.invertBase, '*')}`
+                    "query": `NOT (${QueryUtils.basicOrAdvancedQuery(params.invertBase, 'NOT *')})`
                 }
-              }])
+              }] as any[])
             : [],
-          "should": [],
+          "must_not": [],
           "must": [
              commonTeamQuery(params, lastDate, publicEfficiency, lookup),
              {
