@@ -90,12 +90,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       setOffQuery(startOffQuery || "");
       setOnQueryFilters(
         QueryUtils.parseFilter(
-          _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters
+          _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters, 
+          startingState.year || ParamDefaults.defaultYear
         )    
       );
       setOffQueryFilters(
         QueryUtils.parseFilter(
-          _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters
+          _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters,
+          startingState.year || ParamDefaults.defaultYear
         )    
       );
       //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
@@ -115,12 +117,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   //TODO: need to plumb
   const [ onQueryFilters, setOnQueryFilters ] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters
+      _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters,
+      startingState.year || ParamDefaults.defaultYear
     )    
   );
   const [ offQueryFilters, setOffQueryFilters ] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters
+      _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters,
+      startingState.year || ParamDefaults.defaultYear
     )    
   );
 
@@ -210,7 +214,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         ...commonParams,
         baseQuery: getLineupQuery(onQuery || "*"),
         queryFilters: QueryUtils.buildFilterStr(onQueryFilters.concat(
-            QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
+            QueryUtils.parseFilter(
+              commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
+              primaryRequest.year || ParamDefaults.defaultYear
+            )
           )),
       }) ] : []
     ).concat(
@@ -220,7 +227,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         ...commonParams,
         baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
         queryFilters: QueryUtils.buildFilterStr(offQueryFilters.concat(
-          QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
+          QueryUtils.parseFilter(
+            commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
+            primaryRequest.year || ParamDefaults.defaultYear
+           )
         )),
       }) ] : []
     ).concat(QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({

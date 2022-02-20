@@ -15,7 +15,7 @@ import Button from 'react-bootstrap/Button';
 
 // App imports
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
-import { CommonFilterType, QueryUtils } from "../../utils/QueryUtils";
+import { CommonFilterType, CommonFilterTypeSimple, QueryUtils } from "../../utils/QueryUtils";
 
 type Props = {
    queryFilters: CommonFilterType[],
@@ -25,7 +25,7 @@ type Props = {
 
 const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQueryFilters, showCustomRangeFilter}) => {
 
-   const filterMenuItem = (item: CommonFilterType, text: String) => {
+   const filterMenuItem = (item: CommonFilterTypeSimple, text: String) => {
       return <GenericTogglingMenuItem
         text={text}
         truthVal={QueryUtils.filterHas(queryFilters, item)}

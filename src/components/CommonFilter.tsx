@@ -128,7 +128,7 @@ const CommonFilter: CommonFilterI = ({
 
   const [ queryFilters, setQueryFilters ] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
+      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters, year
     )
   );
 

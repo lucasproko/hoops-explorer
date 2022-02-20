@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import { CommonFilterType, QueryUtils } from "../QueryUtils";
+import { CommonFilterType, CommonFilterTypeSimple, QueryUtils } from "../QueryUtils";
 import { CommonFilterParams } from "../FilterModels";
 
 describe("QueryUtils", () => {
@@ -117,35 +117,6 @@ describe("QueryUtils", () => {
     expect(QueryUtils.basicOrAdvancedQuery(query9d, "")).toBe('(location_type:Neutral AND (opponent.team:Michigan)) AND "blah"');
     expect(QueryUtils.basicOrAdvancedQuery(query9e, "")).toBe('(location_type:Neutral AND (opponent.team:(Michigan AND "blah")))');
   });
-  test("QueryUtils - parseFilter", () => {
-    expect(QueryUtils.parseFilter("Conf ,Home, Nov-Dec")).toEqual([
-      "Conf", "Home", "Nov-Dec"
-    ]);
-  });
-  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilter", () => {
-    [
-      [ "Conf" ] as CommonFilterType[],
-      [ "Home", "Away", "Not-Home"] as CommonFilterType[],
-      [ "Nov-Dec", "Jan-Apr", "Last-30d"] as CommonFilterType[],
-    ].forEach((testSet) => {
-      testSet.forEach((test) => {
-        // Basic testing:
-        expect(QueryUtils.toggleFilter([test], test)).toEqual([]);
-        expect(QueryUtils.toggleFilter([], test)).toEqual([test]);
-        // Check other options from same set are unset by toggle
-        expect(QueryUtils.toggleFilter(_.filter(testSet, (nT) => nT != test), test)).toEqual([test]);
-        testSet.forEach((nonTest) => {
-          if (nonTest != test) {
-            expect(QueryUtils.toggleFilter([nonTest], test)).toEqual([test]);
-          }
-        });
-      });
-    });
-    // Just check works with multiple
-    expect(QueryUtils.toggleFilter(["Conf", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
-    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
-    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home")).toEqual(["Conf","Nov-Dec"]);
-  });
   test("QueryUtils - getConference", () => {
     const lookup = {
       "A&M-Corpus Christi": {
@@ -174,5 +145,49 @@ describe("QueryUtils", () => {
     expect(QueryUtils.getConference("Texas A&M Corpus Chris", efficiency, lookup)).toEqual("Southland Conference");
     //(miss)
     expect(QueryUtils.getConference("Pretend Team", efficiency, lookup)).toEqual("");
+  });
+  test("QueryUtils - parseFilter", () => {
+    expect(QueryUtils.parseFilter("Conf ,Home, Nov-Dec", "2020")).toEqual([
+      "Conf", "Home", "Nov-Dec"
+    ]);
+  });
+  test("QueryUtils - parseFilter, custom dates", () => {
+    //TODO
+  });
+  test("QueryUtils - setCustomDate", () => {
+    //TODO
+  });
+  test("QueryUtils - buildFilterStr", () => {
+    //TODO
+  });
+  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilter", () => {
+    [
+      [ "Conf" ] as CommonFilterTypeSimple[],
+      [ "Home", "Away", "Not-Home"] as CommonFilterTypeSimple[],
+      [ "Nov-Dec", "Jan-Apr", "Last-30d"] as CommonFilterTypeSimple[],
+    ].forEach((testSet) => {
+      testSet.forEach((test) => {
+        // Basic testing:
+        expect(QueryUtils.toggleFilter([test], test)).toEqual([]);
+        expect(QueryUtils.toggleFilter([], test)).toEqual([test]);
+        // Check other options from same set are unset by toggle
+        expect(QueryUtils.toggleFilter(_.filter(testSet, (nT) => nT != test), test)).toEqual([test]);
+        testSet.forEach((nonTest) => {
+          if (nonTest != test) {
+            expect(QueryUtils.toggleFilter([nonTest], test)).toEqual([test]);
+          }
+        });
+      });
+    });
+    // Just check works with multiple
+    expect(QueryUtils.toggleFilter(["Conf", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home")).toEqual(["Conf","Nov-Dec"]);
+  });
+  test("QueryUtils - autoOffAndFilters/autoOffAndFiltersObj", () => {
+    //TODO
+  });
+  test("invertedQueryMode", () => {
+    //TODO
   });
 });

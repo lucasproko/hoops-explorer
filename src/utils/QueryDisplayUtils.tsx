@@ -3,12 +3,14 @@ import _ from "lodash";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
+import { QueryUtils, CommonFilterType } from './QueryUtils';
+
 /** For shared display logic between the different filter types for displaying query info */
 export class QueryDisplayUtils {
 
    /** Display the badge corresponding to the filter type */
-   public static showQueryFilter = (t: String, year: string, inverted: boolean = false) => {
-      const maybeInvert = (s: String) => {
+   public static showQueryFilter = (t: CommonFilterType, year: string, inverted: boolean = false) => {
+      const maybeInvert = (s: CommonFilterType) => {
         if (inverted) {
           return s == "Not-Home" ? "Home" : `NOT ${s}`;
         } else return s;
@@ -28,11 +30,11 @@ export class QueryDisplayUtils {
           return <Tooltip id={`qf${t}`}>Jan-Apr games only. Use eg <b>date:{`{`}{_.take(year, 4)}-12-31 TO *]</b> directly in query fields(s).</Tooltip>
         case "Last-30d":
           return <Tooltip id={`qf${t}`}>Games in the last 30 days (from now/end-of-season). Use <b>date:[yyyy-mm-dd TO yyyy-mm-dd]</b> directly in query fields(s) for different date queries.</Tooltip>
-        default:
-          return <Tooltip id={`qf${t}`}>(unknown)</Tooltip>
+        default: // all the object types, currently just CommonFilterCustomDate
+          return <Tooltip id={`qf${QueryUtils.asString(t)}`}>TODO: custom date</Tooltip>
       }}
       return <OverlayTrigger placement="auto" overlay={toolTip()}>
-        <span className="badge badge-pill badge-secondary">{maybeInvert(t)}</span>
+        <span className="badge badge-pill badge-secondary">{QueryUtils.asString(t)}</span>
       </OverlayTrigger>;
     };
   

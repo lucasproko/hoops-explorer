@@ -7,11 +7,20 @@ import queryString from "query-string";
 
 import { CommonFilterParams, ParamDefaults, GameFilterParams } from './FilterModels';
 
-/** All the different supported filters */
-export type CommonFilterType = CommonFilterTypeSimple;
+import { format, parse } from "date-fns";
 
 export type CommonFilterTypeSimple =
   "Conf" | "Home" | "Away" | "Not-Home" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
+
+export type CommonFilterCustomDate = {
+  kind: CustomDateAlias,
+  start: Date,
+  end: Date
+};
+
+/** All the different supported filters */
+export type CommonFilterType = CommonFilterTypeSimple | CommonFilterCustomDate; 
+  //(NOTE: currently only one non-string type supported, need to start using kind)
 
 // Note name has to match customDateAliasName below
 type CustomDateAlias = "Custom-Date";
@@ -25,6 +34,8 @@ export class QueryUtils {
 
   // Note name has to match CustomDateAlias above
   static readonly customDateAliasName = "Custom-Date";
+  private static readonly customDateFormat = "MM.dd";
+  static readonly customDatePrefix = "Date:";
 
   /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
   static parse(str: string): any {
@@ -184,9 +195,20 @@ export class QueryUtils {
 
   // Lots of query filter handling
 
-  /** Allows having types as commo filters also */
+  /** Allows having objects (eg custom dates) as common filters also - all (eg) custom dates have the same name */
   private static byName(filter: CommonFilterType | CustomDateAlias): CommonFilterKeyType {
-    return filter as CommonFilterKeyType; //TODO: byName is "Custom-Date"
+    return (typeof filter == "string") ?
+     filter as CommonFilterKeyType : QueryUtils.customDateAliasName; 
+      //(NOTE: currently only one non-string type supported, need to start using kind) 
+  }
+
+  static asString(filter: CommonFilterType) {
+    if (typeof filter == "string") {
+      return filter as string;
+    } else { // must be a custom date
+      //(NOTE: currently only one non-string type supported, need to start using kind) 
+      return `${QueryUtils.customDatePrefix}${format(filter.start, QueryUtils.customDateFormat)}-${format(filter.end, QueryUtils.customDateFormat)}`; 
+    }
   }
 
   /** Handles a set of new filters (which can cause existing filters to be removed) */
@@ -218,16 +240,40 @@ export class QueryUtils {
     return _.filter(curr, (filter) => !toRemoveSet.hasOwnProperty(QueryUtils.byName(filter) as string));
   }
 
+  /** Returns a custom date filter from the string Date:MM.dd-MM.dd  */
+  static parseCustomDate(dateStr: string, year: string): CommonFilterCustomDate | undefined { 
+    const yearStr = year.substring(0, 4);
+    const dateStrs = dateStr.split("-");
+    try {
+      const contextDate = parse(`${yearStr}-12-30`, "YYYY-MM-dd", new Date()); //(mid point of the season)
+      const dateStart = parse(dateStrs[0], QueryUtils.customDateFormat, contextDate);
+      const dateEnd = parse(dateStrs[1] || "", QueryUtils.customDateFormat, contextDate);
+      return {
+        kind: QueryUtils.customDateAliasName,
+        start: dateStart,
+        end: dateEnd
+      };
+    } catch (e) {
+      return undefined; //(invalid state)
+    }
+  }
+
   /** Switches between string and array formulation */
-  static parseFilter(queryFilters: string): CommonFilterType[] {
-//TODO: handle date    
-    return queryFilters.split(",").filter((s: string) => s != "").map((s: string) => s.trim() as CommonFilterType)
+  static parseFilter(queryFilters: string, year: string): CommonFilterType[] {
+    return queryFilters.split(",").filter((s: string) => s != "").flatMap((s: string) => {
+      const trimmed = s.trim();
+      if (trimmed.startsWith(QueryUtils.customDatePrefix)) {
+        const parsedDataObj = QueryUtils.parseCustomDate(trimmed.substring(QueryUtils.customDatePrefix.length), year);
+        return parsedDataObj ? [ parsedDataObj ] : [];
+      } else {
+        return [ trimmed ] as CommonFilterType[];
+      }
+    })
   }
 
   /** Converts the CommonFilterTypr into a string, deduplicating if necessary */
   static buildFilterStr(curr: CommonFilterType[]) {
-    const asString = (filter: CommonFilterType) => filter as string; //TODO
-    const currByName = curr.map(asString);
+    const currByName = curr.map(QueryUtils.asString);
     return _.join(_.uniq(currByName), ",");
   }
 
@@ -236,11 +282,17 @@ export class QueryUtils {
     return Boolean(_.find(curr, (f) => QueryUtils.byName(f) == QueryUtils.byName((item))));
   }
   
-  /** Toggles a filter item */
-  static toggleFilter(curr: CommonFilterType[], item: CommonFilterType) {
-    //TODO OR if it's a date?
+  /** Toggles a filter item (not custom dates) */
+  static toggleFilter(curr: CommonFilterType[], item: CommonFilterTypeSimple) {
     return QueryUtils.filterHas(curr, item) ?
       QueryUtils.filterWithout(curr, [ item ]) : QueryUtils.filterWith(curr, [ item ]);
+  }
+
+  /** Adds a new custom date (overwrite the current one if it exists), or removes the custom date */
+  static setCustomDate(curr: CommonFilterType[], setOrUnset: CommonFilterCustomDate | undefined) {
+    return QueryUtils.filterWithout(curr, [ QueryUtils.customDateAliasName ]).concat(
+      setOrUnset ? [ setOrUnset ] : []
+    );
   }
 
   // A bunch of utils to handle some of the logic surrounding combined query strings and filters
