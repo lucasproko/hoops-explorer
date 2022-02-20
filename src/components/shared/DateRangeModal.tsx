@@ -66,9 +66,8 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
       },
    ];
 
-   const minDate = Date.parse(`01 October ${(year || ParamDefaults.defaultYear).substring(0, 4)}`);
-    //(for some reason this gives me 1 Nov)
-   const maxDate = minDate == NaN ? NaN : addDays(minDate, 210);
+   const minDate = Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-11-01`);
+   const maxDate = Number.isNaN(minDate) ? NaN : addDays(minDate, 210);
    return <Modal size="lg" {...props}>
       <Modal.Header closeButton>
          <Modal.Title>Select Date Range Filter for {queryType}</Modal.Title>
@@ -81,8 +80,8 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
                   <DateRangePicker
                      onChange={(item: any) => setState([item.selection])}
                      months={1}
-                     minDate={minDate == NaN ? addDays(new Date(), -1) : new Date(minDate)}
-                     maxDate={maxDate == NaN ? addDays(new Date(), 1) : maxDate}
+                     minDate={Number.isNaN(minDate) ? addDays(new Date(), -1) : new Date(minDate)}
+                     maxDate={Number.isNaN(maxDate) ? addDays(new Date(), 1) : maxDate}
                      direction="vertical"
                      scroll={{ enabled: true }}
                      ranges={state}

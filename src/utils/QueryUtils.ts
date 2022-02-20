@@ -7,7 +7,7 @@ import queryString from "query-string";
 
 import { CommonFilterParams, ParamDefaults, GameFilterParams } from './FilterModels';
 
-import { format, parse } from "date-fns";
+import { format, parse, addYears } from "date-fns";
 
 export type CommonFilterTypeSimple =
   "Conf" | "Home" | "Away" | "Not-Home" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
@@ -245,14 +245,17 @@ export class QueryUtils {
     const yearStr = year.substring(0, 4);
     const dateStrs = dateStr.split("-");
     try {
-      const contextDate = parse(`${yearStr}-12-30`, "YYYY-MM-dd", new Date()); //(mid point of the season)
-      const dateStart = parse(dateStrs[0], QueryUtils.customDateFormat, contextDate);
-      const dateEnd = parse(dateStrs[1] || "", QueryUtils.customDateFormat, contextDate);
-      return {
+      const contextDate = parse(`${yearStr}-12-30`, "yyyy-MM-dd", new Date()); //(mid point of the season)
+      const getCorrectYear = (d: Date) => {
+        return d.getMonth() < 6 ? addYears(d, 1) : d;
+      };
+      const dateStart = getCorrectYear(parse(dateStrs[0], QueryUtils.customDateFormat, contextDate));
+      const dateEnd = getCorrectYear(parse(dateStrs[1] || "", QueryUtils.customDateFormat, contextDate));
+      return (!Number.isNaN(dateStart.getTime()) && !Number.isNaN((dateEnd.getTime()))) ? {
         kind: QueryUtils.customDateAliasName,
         start: dateStart,
         end: dateEnd
-      };
+      } : undefined;
     } catch (e) {
       return undefined; //(invalid state)
     }
@@ -300,18 +303,18 @@ export class QueryUtils {
   /** One of some overloaded checks for whether a query type is doing anything */
   static nonEmptyQueryObj(params: GameFilterParams, queryType: "on" | "off") {
     if (queryType == "on") {
-      return (params.onQuery != "") || (params.onQueryFilters != "");
+      return QueryUtils.nonEmptyQueryStr(params.onQuery, params.onQueryFilters);
     } else { //off
-      return (params.offQuery != "") || (params.offQueryFilters != "");
+      return QueryUtils.nonEmptyQueryStr(params.offQuery, params.offQueryFilters);
     }
   }
   /** One of some overloaded checks for whether a query type is doing anything */
   static nonEmptyQueryStr(queryStr: string | undefined, queryFiltersStr: string | undefined) {
-    return (queryStr != "") || (queryFiltersStr != "");
+    return ((queryStr || "") != "") || ((queryFiltersStr || "") != "");
   }
   /** One of some overloaded checks for whether a query type is doing anything */
   static nonEmptyQuery(queryStr: string | undefined, queryFilter: CommonFilterType[]) {
-    return (queryStr != "") || (queryFilter.length > 0);
+    return ((queryStr || "") != "") || (queryFilter.length > 0);
   }
 
   /** Auto off query with on query filters set - this is a special case because can't represent the query with a single query/filter pair */
@@ -320,10 +323,10 @@ export class QueryUtils {
   }
   /** Auto off query with on query filters set - this is a special case because can't represent the query with a single query/filter pair */
   static autoOffAndFiltersObj(params: GameFilterParams) {
-    return params.autoOffQuery && (params.onQueryFilters != "");
+    return (params.autoOffQuery || false) && ((params.onQueryFilters || "") != "");
   }
   /** To handle the "autoOffAndFilters" case described above, we have a special internal search mode for lineups */
   static invertedQueryMode(params: CommonFilterParams) {
-    return params.invertBase || params.invertBaseQueryFilters;
+    return ((params.invertBase || "") != "") || ((params.invertBaseQueryFilters || "") != "");
   }
 }
