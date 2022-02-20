@@ -366,6 +366,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
                 <QueryFilterDropdown
                   queryFilters={onQueryFilters}
                   setQueryFilters={setOnQueryFilters}
+                  showCustomRangeFilter={() => ""}
                 />
               </InputGroup>
             </Row>
@@ -402,6 +403,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
                 {autoOffQuery ? null : <QueryFilterDropdown
                   queryFilters={offQueryFilters}
                   setQueryFilters={setOffQueryFilters}
+                  showCustomRangeFilter={() => ""}
                 />}
               </InputGroup>
             </Row>

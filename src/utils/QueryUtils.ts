@@ -187,6 +187,11 @@ export class QueryUtils {
     return Boolean(_.find(curr, (f) => f == item));
   }
 
+  /** Checks if a filter item is enabled */
+  static filterHasCustomDate(curr: CommonFilterType[]) {
+    return Boolean(_.find(curr, (f) => f.startsWith("Date:")));
+  }
+  
   /** Toggles a filter item */
   static toggleFilter(curr: CommonFilterType[], item: CommonFilterType) {
     return QueryUtils.filterHas(curr, item) ?

@@ -62,6 +62,7 @@ import fetch from 'isomorphic-unfetch';
 import fetchBuilder from 'fetch-retry-ts';
 import QueryFilterDropdown from './shared/QueryFilterDropdown';
 import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
+import DateRangeModal from './shared/DateRangeModal';
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -130,6 +131,8 @@ const CommonFilter: CommonFilterI = ({
       _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
     )
   );
+
+  const [ showDateRangeModal, setShowDateRangeModal ] = useState(false);
 
   // Validation, this currently only supports once case:
   const [ showInvalidQuery, setShowInvalidQuery ] = useState(false as boolean);
@@ -559,6 +562,13 @@ const CommonFilter: CommonFilterI = ({
         </Button>
       </Modal.Footer>
     </Modal>
+    <DateRangeModal
+      show={showDateRangeModal}
+      queryType="Baseline Query"
+      onSave={() => ""}
+      onHide={() => setShowDateRangeModal(false)}
+      year={startingState.year}
+    />
   <Form>
     <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
@@ -641,6 +651,7 @@ const CommonFilter: CommonFilterI = ({
               <QueryFilterDropdown
                 queryFilters={queryFilters}
                 setQueryFilters={setQueryFilters}
+                showCustomRangeFilter={() => setShowDateRangeModal(true)}
               />
             </InputGroup>
           </Row>

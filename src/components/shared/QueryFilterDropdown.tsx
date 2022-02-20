@@ -1,6 +1,8 @@
 // React imports:
 import React, { useState } from 'react';
 
+import _ from "lodash";
+
 // Icons:
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
@@ -17,10 +19,11 @@ import { CommonFilterType, QueryUtils } from "../../utils/QueryUtils";
 
 type Props = {
    queryFilters: CommonFilterType[],
-   setQueryFilters: (newQueryFilter: CommonFilterType[]) => void
+   setQueryFilters: (newQueryFilter: CommonFilterType[]) => void,
+   showCustomRangeFilter: () => void,
 };
 
-const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQueryFilters}) => {
+const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQueryFilters, showCustomRangeFilter}) => {
 
    const filterMenuItem = (item: CommonFilterType, text: String) => {
       return <GenericTogglingMenuItem
@@ -44,6 +47,11 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQ
      {filterMenuItem("Nov-Dec", "Nov/Dec only")}
      {filterMenuItem("Jan-Apr", "Jan-Apr only")}
      {filterMenuItem("Last-30d", "Last 30 days only")}
+     <GenericTogglingMenuItem
+        text="Custom Date Range..."
+        truthVal={QueryUtils.filterHasCustomDate(queryFilters)}
+        onSelect={() => showCustomRangeFilter()}
+      />
      <Dropdown.Divider />
      <Dropdown.Item as={Button}>
        <div onClick={() => {setQueryFilters([])}}>
