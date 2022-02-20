@@ -77,6 +77,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
       </Button>
     </ModalFooter>
   </Modal>
+  <DateRangeModal
+    onHide={[Function]}
+    onSave={[Function]}
+    queryType="Baseline Query"
+    show={false}
+  />
   <Form
     inline={false}
   >
@@ -1828,6 +1834,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               <QueryFilterDropdown
                 queryFilters={Array []}
                 setQueryFilters={[Function]}
+                showCustomRangeFilter={[Function]}
               />
             </InputGroup>
           </Row>
@@ -2054,6 +2061,13 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       </Button>
     </ModalFooter>
   </Modal>
+  <DateRangeModal
+    onHide={[Function]}
+    onSave={[Function]}
+    queryType="Baseline Query"
+    show={false}
+    year="2018/9"
+  />
   <Form
     inline={false}
   >
@@ -2794,6 +2808,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               <QueryFilterDropdown
                 queryFilters={Array []}
                 setQueryFilters={[Function]}
+                showCustomRangeFilter={[Function]}
               />
             </InputGroup>
           </Row>

@@ -49,7 +49,7 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQ
      {filterMenuItem("Last-30d", "Last 30 days only")}
      <GenericTogglingMenuItem
         text="Custom Date Range..."
-        truthVal={QueryUtils.filterHasCustomDate(queryFilters)}
+        truthVal={QueryUtils.filterHas(queryFilters, QueryUtils.customDateAliasName)}
         onSelect={() => showCustomRangeFilter()}
       />
      <Dropdown.Divider />

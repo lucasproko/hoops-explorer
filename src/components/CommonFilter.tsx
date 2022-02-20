@@ -144,7 +144,7 @@ const CommonFilter: CommonFilterI = ({
     onChangeCommonState({
       team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
       baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
-      queryFilters: _.join(queryFilters || [], ",")
+      queryFilters: QueryUtils.buildFilterStr(queryFilters)
     });
   }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered, queryFilters ]);
 
@@ -260,7 +260,7 @@ const CommonFilter: CommonFilterI = ({
       onChangeCommonState({ // THIS TAKE PLACE AFTER THE SUBMIT SO WILL RESET EVERYTHING BACK AGAIN, UGH
         team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
         baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
-        queryFilters: _.join(queryFilters || [], ",")
+        queryFilters: QueryUtils.buildFilterStr(queryFilters)
       });
       onSubmit();
     }

@@ -8,13 +8,23 @@ import queryString from "query-string";
 import { CommonFilterParams, ParamDefaults, GameFilterParams } from './FilterModels';
 
 /** All the different supported filters */
-export type CommonFilterType =
+export type CommonFilterType = CommonFilterTypeSimple;
+
+export type CommonFilterTypeSimple =
   "Conf" | "Home" | "Away" | "Not-Home" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
+
+// Note name has to match customDateAliasName below
+type CustomDateAlias = "Custom-Date";
+
+type CommonFilterKeyType = CommonFilterTypeSimple | CustomDateAlias;
 
 export class QueryUtils {
 
   private static readonly legacyQueryField = "lineupQuery";
   private static readonly newQueryField = "baseQuery";
+
+  // Note name has to match CustomDateAlias above
+  static readonly customDateAliasName = "Custom-Date";
 
   /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
   static parse(str: string): any {
@@ -152,52 +162,6 @@ export class QueryUtils {
     }).value();
   }
 
-  /** Handles a set of new filters (which can cause existing filters to be removed) */
-  private static filterWith(curr: CommonFilterType[], toAdd: CommonFilterType[]): CommonFilterType[] {
-    const toRemove = (_.flatMap(toAdd, (add) => {
-      switch(add) {
-        case "Home": return [ "Away", "Not-Home" ];
-        case "Away": return [ "Home", "Not-Home" ];
-        case "Not-Home": return [ "Home", "Away" ];
-        case "Last-30d": return [ "Nov-Dec", "Jan-Apr" ];
-        case "Nov-Dec":
-          return [ "Last-30d", "Jan-Apr" ];
-        case "Jan-Apr":
-          return [ "Last-30d", "Nov-Dec" ];
-        default: return [];
-      }
-      return [];
-    }) as CommonFilterType[]).concat(toAdd); //(we'll add them back again, but this ensures uniqueness)
-    return _.sortBy(QueryUtils.filterWithout(curr, toRemove).concat(toAdd));
-  }
-
-  /** Returns the composite filter without the specified filter elements */
-  private static filterWithout(curr: CommonFilterType[], toRemove: CommonFilterType[]): CommonFilterType[] {
-    const toRemoveSet = _.chain(toRemove).map((filter) => [filter, true]).fromPairs().value();
-    return _.filter(curr, (filter) => !toRemoveSet.hasOwnProperty(filter as string));
-  }
-
-  /** Switches between string and array formulation */
-  static parseFilter(queryFilters: string): CommonFilterType[] {
-    return queryFilters.split(",").filter((s: string) => s != "").map((s: string) => s.trim() as CommonFilterType)
-  }
-
-  /** Checks if a filter item is enabled */
-  static filterHas(curr: CommonFilterType[], item: CommonFilterType) {
-    return Boolean(_.find(curr, (f) => f == item));
-  }
-
-  /** Checks if a filter item is enabled */
-  static filterHasCustomDate(curr: CommonFilterType[]) {
-    return Boolean(_.find(curr, (f) => f.startsWith("Date:")));
-  }
-  
-  /** Toggles a filter item */
-  static toggleFilter(curr: CommonFilterType[], item: CommonFilterType) {
-    return QueryUtils.filterHas(curr, item) ?
-      QueryUtils.filterWithout(curr, [ item ]) : QueryUtils.filterWith(curr, [ item ]);
-  }
-
   /** Lookups into the public efficiency records to get a team's conference */
   static getConference(team: string, efficiency: Record<string, any>, lookup: Record<string, any>) {
     const efficiencyName = lookup[team]?.pbp_kp_team || team;
@@ -214,6 +178,69 @@ export class QueryUtils {
     } else {
       return `(${newQueryEl}) AND (${currQuery[0]})`;
     }
+  }
+  
+  ///////////////////////////
+
+  // Lots of query filter handling
+
+  /** Allows having types as commo filters also */
+  private static byName(filter: CommonFilterType | CustomDateAlias): CommonFilterKeyType {
+    return filter as CommonFilterKeyType; //TODO: byName is "Custom-Date"
+  }
+
+  /** Handles a set of new filters (which can cause existing filters to be removed) */
+  private static filterWith(curr: CommonFilterType[], toAdd: CommonFilterType[]): CommonFilterType[] {
+    const typed = (s: CommonFilterKeyType) => s; //(give ts compiler a bit of help with its arrays!)
+    const toRemove: CommonFilterKeyType[] = (_.flatMap(toAdd, (add) => {
+      switch(QueryUtils.byName(add)) {
+        case "Home": return [ typed("Away"), typed("Not-Home") ];
+        case "Away": return [ typed("Home"), typed("Not-Home") ];
+        case "Not-Home": return [ typed("Home"), typed("Away") ];
+
+        case "Last-30d": return [ typed("Nov-Dec"), typed("Jan-Apr"), typed("Custom-Date") ];
+        case "Nov-Dec":
+          return [ typed("Last-30d"), typed("Jan-Apr"), typed("Custom-Date") ];
+        case "Jan-Apr":
+          return [ typed("Last-30d"), typed("Nov-Dec"), typed("Custom-Date") ];
+        case "Custom-Date":
+          return [ typed("Last-30d"), typed("Nov-Dec"), typed("Jan-Apr") ];
+
+        default: return [];
+      }
+    })).concat(toAdd.map(QueryUtils.byName)); //(we'll add them back again, but this ensures uniqueness)
+    return _.sortBy(QueryUtils.filterWithout(curr, toRemove).concat(toAdd));
+  }
+
+  /** Returns the composite filter without the specified filter elements */
+  private static filterWithout(curr: CommonFilterType[], toRemoveByName: CommonFilterKeyType[]): CommonFilterType[] {
+    const toRemoveSet = _.chain(toRemoveByName).map((filter) => [filter, true]).fromPairs().value();
+    return _.filter(curr, (filter) => !toRemoveSet.hasOwnProperty(QueryUtils.byName(filter) as string));
+  }
+
+  /** Switches between string and array formulation */
+  static parseFilter(queryFilters: string): CommonFilterType[] {
+//TODO: handle date    
+    return queryFilters.split(",").filter((s: string) => s != "").map((s: string) => s.trim() as CommonFilterType)
+  }
+
+  /** Converts the CommonFilterTypr into a string, deduplicating if necessary */
+  static buildFilterStr(curr: CommonFilterType[]) {
+    const asString = (filter: CommonFilterType) => filter as string; //TODO
+    const currByName = curr.map(asString);
+    return _.join(_.uniq(currByName), ",");
+  }
+
+  /** Checks if a filter item is enabled */
+  static filterHas(curr: CommonFilterType[], item: CommonFilterType | CustomDateAlias) {
+    return Boolean(_.find(curr, (f) => QueryUtils.byName(f) == QueryUtils.byName((item))));
+  }
+  
+  /** Toggles a filter item */
+  static toggleFilter(curr: CommonFilterType[], item: CommonFilterType) {
+    //TODO OR if it's a date?
+    return QueryUtils.filterHas(curr, item) ?
+      QueryUtils.filterWithout(curr, [ item ]) : QueryUtils.filterWith(curr, [ item ]);
   }
 
   // A bunch of utils to handle some of the logic surrounding combined query strings and filters

@@ -139,9 +139,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   */
   function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
     // Only include these if they aren't defaults:
-    const onQueryFiltersObj = !_.isEmpty(onQueryFilters) ? { onQueryFilters: _.join(onQueryFilters || [], ",") } : {};
+    const onQueryFiltersObj = !_.isEmpty(onQueryFilters) ? { onQueryFilters: QueryUtils.buildFilterStr(onQueryFilters) } : {};
     const offQueryFiltersObj = (autoOffQuery || _.isEmpty(offQueryFilters)) ? 
-      {} : { offQueryFilters: _.join(offQueryFilters || [], ",") };
+      {} : { offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters) };
 
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.assign(
@@ -209,11 +209,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }) ].concat(QueryUtils.nonEmptyQuery(onQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
         ...commonParams,
         baseQuery: getLineupQuery(onQuery || "*"),
-        queryFilters: _.join(
-          _.uniq((onQueryFilters || []).concat(
+        queryFilters: QueryUtils.buildFilterStr(onQueryFilters.concat(
             QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
-         )), ","
-        ),
+          )),
       }) ] : []
     ).concat(
       (!QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) && QueryUtils.nonEmptyQuery(offQuery, offQueryFilters)
@@ -221,16 +219,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       ) ? [ QueryUtils.cleanseQuery({ 
         ...commonParams,
         baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
-        queryFilters: _.join(
-          _.uniq((offQueryFilters || []).concat(
-            QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
-         )), ","
-        ),
+        queryFilters: QueryUtils.buildFilterStr(offQueryFilters.concat(
+          QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
+        )),
       }) ] : []
     ).concat(QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
       ...commonParams,
       invertBase: getLineupQuery(onQuery || "*", true),
-      invertBaseQueryFilters: _.join(onQueryFilters || [], ",")
+      invertBaseQueryFilters: QueryUtils.buildFilterStr(onQueryFilters)
         //(ie will be * once inverted, ie ignore this clause if missing)
     }) ] : []) : [];
     // (note only one of the last 2 clauses can be present at once)
