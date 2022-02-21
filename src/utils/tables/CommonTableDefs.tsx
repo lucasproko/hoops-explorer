@@ -66,6 +66,16 @@ export class CommonTableDefs {
 
   // ON/OFF - TEAM
 
+  /** To build a less wordy set of headers */
+  static repeatingOnOffHeaderFields: Record<string, string> = {
+    "Net Rtg": "Net",
+    "Adj P/100": "Adj",
+    "2PR mid": "MidR",
+    "2PR rim": "RimR",
+    "2P% mid": "Mid%",
+    "2P% rim": "Rim%",
+  };
+
   static readonly onOffTable = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", ""),
     "sep0": GenericTableOps.addColSeparator(),

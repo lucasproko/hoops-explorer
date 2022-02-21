@@ -308,16 +308,26 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   };
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
+  /** If true, then repeat the table headers */
+  const showingSomeDiags = showExtraInfo || showGrades || showRoster || showPlayTypes || showLuckAdjDiags;
+
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
-      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-        name="On"
-        teamStatSet={teamStats.on}
-        /></span>, "small pt-2")
-      ] : [],
-      showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+      (showGrades != "") && teamStats.on?.doc_count ? 
+        GradeTableUtils.buildGradeTableRows({
+          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+          team:teamStats.on
+        }) : [],
+        showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
+          name="On"
+          teamStatSet={teamStats.on}
+          /></span>, "small pt-2")
+        ] : [],
+        showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
             positionInfoGlobal={LineupTableUtils.getPositionalInfo(
               lineupStats[1]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
@@ -332,13 +342,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
-      (showGrades != "") && teamStats.on?.doc_count ? 
-        GradeTableUtils.buildGradeTableRows({
-          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team:teamStats.on
-        }) : [],
       showLuckAdjDiags && luckAdjustment.on ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="On"
@@ -361,14 +364,22 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     (teamStats.off?.doc_count) ? _.flatten([
+      (showingSomeDiags) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
-      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-        name="Off"
-        teamStatSet={teamStats.off}
-        /></span>, "small pt-2")
-      ] : [],
-      showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+      (showGrades != "") && teamStats.off?.doc_count ? 
+        GradeTableUtils.buildGradeTableRows({
+          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+          team:teamStats.off
+        }) : [],
+        showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
+          name="Off"
+          teamStatSet={teamStats.off}
+          /></span>, "small pt-2")
+        ] : [],
+        showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
             positionInfoGlobal={LineupTableUtils.getPositionalInfo(
               lineupStats[2]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
@@ -383,13 +394,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
-      (showGrades != "") && teamStats.off?.doc_count ? 
-        GradeTableUtils.buildGradeTableRows({
-          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team:teamStats.off
-        }) : [],
       showLuckAdjDiags && luckAdjustment.off ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Off"
@@ -412,14 +416,22 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     _.flatten([
+      (showingSomeDiags) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
-      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-        name="Baseline"
-        teamStatSet={teamStats.baseline}
-        /></span>, "small pt-2")
-      ] : [],
-      showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+      (showGrades != "") && teamStats.baseline?.doc_count ? 
+        GradeTableUtils.buildGradeTableRows({
+          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+          team:teamStats.baseline
+        }) : [],
+        showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
+          name="Baseline"
+          teamStatSet={teamStats.baseline}
+          /></span>, "small pt-2")
+        ] : [],
+        showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
             positionInfoGlobal={LineupTableUtils.getPositionalInfo(
               lineupStats[0]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
@@ -434,13 +446,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           />
         </span>, "small pt-2"
       )] : [],
-      (showGrades != "") && teamStats.baseline?.doc_count ? 
-        GradeTableUtils.buildGradeTableRows({
-          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team:teamStats.baseline
-        }) : [],
       showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Baseline"

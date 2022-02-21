@@ -107,6 +107,18 @@ class GenericTableSubHeaderRow {
   readonly spans: number[];
   readonly className: string;
 }
+class GenericTableRepeatHeaderRow {
+  constructor(
+    colRename: Record<string, string>,
+    className: string
+  ) {
+    this.colRename = colRename;
+    this.className = className;
+  }  
+  readonly kind: string = "text-row";
+  readonly colRename: Record<string, string>;
+  readonly className: string;
+}
 export type GenericTableRow = GenericTableDataRow | GenericTableSeparator | GenericTableTextRow | GenericTableSubHeaderRow;
 export class GenericTableOps {
 
@@ -175,6 +187,9 @@ export class GenericTableOps {
   }
   static buildSubHeaderRow(cols: [React.ReactNode, number][], className: string = ""): GenericTableRow {
     return new GenericTableSubHeaderRow(cols, className);
+  }
+  static buildHeaderRepeatRow(colRename: Record<string, string>, className: string = ""): GenericTableRow {
+    return new GenericTableRepeatHeaderRow(colRename, className);
   }
 
   // Cols:
@@ -248,9 +263,10 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
   const totalWidthUnits =
     Object.values(tableFields).map((col) => col.widthUnits).reduce((acc, v) => acc + v);
 
-  function renderTableHeaders() {
+  function renderTableHeaders(maybeRepeatingHeader?: GenericTableRepeatHeaderRow) {
+    const isRepeatingHeaderRow = maybeRepeatingHeader != undefined;
     function insertCopyButton(insert: boolean) {
-      if (tableCopyId && insert) {
+      if (!isRepeatingHeaderRow && tableCopyId && insert) {
         const tooltip = (
           <Tooltip id={`${toolTipId}-copy`}>Copies formatted table to clipboard</Tooltip>
         );
@@ -271,7 +287,7 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         }
       }
       const lockIcon = getTooltipLockModeIcon();
-      if (lockIcon) {
+      if (!isRepeatingHeaderRow && lockIcon) {
         const tooltip = (
           <Tooltip id={`${toolTipId}-lock`}>Cell tooltip locking mode ({lockMode})</Tooltip>
         );
@@ -288,14 +304,22 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>;
       }
     }
+    const maybeFormatColName = (s: React.ReactNode | string) => {
+      if (isRepeatingHeaderRow && (typeof s === "string")) {
+        const maybeRename = (maybeRepeatingHeader?.colRename || {})[s];
+        return maybeRename || s;
+      } else {
+        return s;
+      }
+    }
     return Object.values(tableFields).map((colProp, index) => {
         const style = getColStyle(colProp);
         const tooltip = (
           <Tooltip id={`${toolTipId}-${index}`}>{colProp.toolTip}</Tooltip>
         );
         const header = (
-          <th key={"" + index} style={style}>
-              {colProp.colName}
+          <th key={"" + index} style={style} className={maybeRepeatingHeader?.className}>
+              {maybeFormatColName(colProp.colName)}
               {insertCopyButton(index == 0)}
               {index == 0 ? insertTooltipLockMode() : null}
           </th>
@@ -419,6 +443,8 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
             return <td key={"col" + index + colIndex} colSpan={row.spans?.[colIndex] || 1} className={row.className}>{col}</td>
           })
         }</tr>
+      } else if (row instanceof GenericTableRepeatHeaderRow) {
+        return <tr>{ renderTableHeaders(row) }</tr>
       } else { //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)
         return <tr className="divider" key={"" + index}>{_.range(totalTableCols).map((i, j) => <td key={"" + j}></td>)}</tr>;
       }

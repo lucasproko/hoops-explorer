@@ -4991,648 +4991,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className="small pt-2"
-                  colSpan={24}
-                >
-                  <span>
-                    <span>
-                      <b>
-                        Extra stats info for [
-                        On
-                        ]
-                      </b>
-                      <ul>
-                        <li>
-                          <b>
-                            Offense
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              24.0
-                            </b>
-                            ]% transition: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffdada,0px 0px 10px #ffdada",
-                                }
-                              }
-                            >
-                              
-                              -1.4
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffcdcd,0px 0px 10px #ffcdcd",
-                                  }
-                                }
-                              >
-                                17.2
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                68.8
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffc864,0px 0px 10px #ffc864",
-                                  }
-                                }
-                              >
-                                43.3
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
-                                  }
-                                }
-                              >
-                                30.8
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                68.4
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            [
-                            <b>
-                              10.4
-                            </b>
-                            ]% scramble ([
-                            <b>
-                              64.1
-                            </b>
-                            ]% of ORBs): [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #5cae5c,0px 0px 10px #5cae5c",
-                                }
-                              }
-                            >
-                              +
-                              6.4
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #86c386,0px 0px 10px #86c386",
-                                  }
-                                }
-                              >
-                                13.1
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                53.8
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #d7ecf3,0px 0px 10px #d7ecf3",
-                                  }
-                                }
-                              >
-                                24.2
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                21.9
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #1a8d1a,0px 0px 10px #1a8d1a",
-                                  }
-                                }
-                              >
-                                59.0
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            Assists: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffaf1c,0px 0px 10px #ffaf1c",
-                                }
-                              }
-                            >
-                              48.1
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-                                }
-                              }
-                            >
-                              6.9
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffbf4b,0px 0px 10px #ffbf4b",
-                                }
-                              }
-                            >
-                              45.0
-                            </b>
-                            %]
-                          </li>
-                          <li>
-                            Assisted: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              82.8
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #e3f2f6,0px 0px 10px #e3f2f6",
-                                }
-                              }
-                            >
-                              26.8
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffbc42,0px 0px 10px #ffbc42",
-                                }
-                              }
-                            >
-                              45.6
-                            </b>
-                            %]
-                          </li>
-                        </ul>
-                        <li>
-                          <b>
-                            Defense
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            3P SoS: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #f7fbf7,0px 0px 10px #f7fbf7",
-                                }
-                              }
-                            >
-                              33.2
-                            </b>
-                            ]%
-                          </li>
-                          <li>
-                            [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #fff5e3,0px 0px 10px #fff5e3",
-                                }
-                              }
-                            >
-                              20.4
-                            </b>
-                            ]% transition: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
-                                }
-                              }
-                            >
-                              
-                              -7.7
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #cbe5cb,0px 0px 10px #cbe5cb",
-                                  }
-                                }
-                              >
-                                17.2
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff1414,0px 0px 10px #ff1414",
-                                  }
-                                }
-                              >
-                                39.2
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffc253,0px 0px 10px #ffc253",
-                                  }
-                                }
-                              >
-                                44.5
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #cfe7cf,0px 0px 10px #cfe7cf",
-                                  }
-                                }
-                              >
-                                31.7
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
-                                  }
-                                }
-                              >
-                                53.2
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            [
-                            <b>
-                              8.5
-                            </b>
-                            ]% scramble ([
-                            <b>
-                              60.3
-                            </b>
-                            ]% of ORBs): [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ff6767,0px 0px 10px #ff6767",
-                                }
-                              }
-                            >
-                              +
-                              5.9
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff8b8b,0px 0px 10px #ff8b8b",
-                                  }
-                                }
-                              >
-                                13.3
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                54.3
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #d9edf4,0px 0px 10px #d9edf4",
-                                  }
-                                }
-                              >
-                                24.8
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff3838,0px 0px 10px #ff3838",
-                                  }
-                                }
-                              >
-                                38.5
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #cfe7cf,0px 0px 10px #cfe7cf",
-                                  }
-                                }
-                              >
-                                48.1
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            Assists: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffaf1b,0px 0px 10px #ffaf1b",
-                                }
-                              }
-                            >
-                              48.2
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-                                }
-                              }
-                            >
-                              14.6
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffe9c0,0px 0px 10px #ffe9c0",
-                                }
-                              }
-                            >
-                              37.2
-                            </b>
-                            %]
-                          </li>
-                          <li>
-                            Assisted: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              86.8
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #fdfefe,0px 0px 10px #fdfefe",
-                                }
-                              }
-                            >
-                              32.6
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffc55b,0px 0px 10px #ffc55b",
-                                }
-                              }
-                            >
-                              43.9
-                            </b>
-                            %]
-                          </li>
-                        </ul>
-                        <li>
-                          <b>
-                            Misc
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            Raw tempo: 
-                            <span>
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                  }
-                                }
-                              >
-                                [
-                                79.8
-                                ]
-                              </b>
-                               poss/g
-                            </span>
-                          </li>
-                        </ul>
-                      </ul>
-                    </span>
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className="small pt-2"
-                  colSpan={24}
-                >
-                  <span>
-                    <div
-                      className="container"
-                    >
-                      <div
-                        className="col-12"
-                      >
-                        <table
-                          className="table table-sm"
-                          id="rosterView"
-                        >
-                          <thead>
-                            <tr>
-                              <th
-                                style={
-                                  Object {
-                                    "fontWeight": "bold",
-                                    "textAlign": "right",
-                                    "width": "0.0%",
-                                  }
-                                }
-                              >
-                                
-                                <div>
-                                  <button
-                                    className="float-left btn btn-outline-secondary btn-sm"
-                                    disabled={false}
-                                    id="rosterView_copy"
-                                    type="button"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      className="svg-inline--fa fa-clipboard fa-w-12 "
-                                      data-icon="clipboard"
-                                      data-prefix="fas"
-                                      focusable="false"
-                                      role="img"
-                                      style={Object {}}
-                                      viewBox="0 0 384 512"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                                        fill="currentColor"
-                                        style={Object {}}
-                                      />
-                                    </svg>
-                                  </button>
-                                </div>
-                              </th>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  PG
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  SG
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  SF
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  PF
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  C
-                                </th>
-                              </div>
-                            </tr>
-                          </thead>
-                          <tbody />
-                        </table>
-                      </div>
-                    </div>
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td
                   className=""
                   colSpan={24}
                 >
@@ -6721,6 +6079,648 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <td />
                 <td />
                 <td />
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <span>
+                      <b>
+                        Extra stats info for [
+                        On
+                        ]
+                      </b>
+                      <ul>
+                        <li>
+                          <b>
+                            Offense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              24.0
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffdada,0px 0px 10px #ffdada",
+                                }
+                              }
+                            >
+                              
+                              -1.4
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffcdcd,0px 0px 10px #ffcdcd",
+                                  }
+                                }
+                              >
+                                17.2
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                68.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc864,0px 0px 10px #ffc864",
+                                  }
+                                }
+                              >
+                                43.3
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
+                                  }
+                                }
+                              >
+                                30.8
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                68.4
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            [
+                            <b>
+                              10.4
+                            </b>
+                            ]% scramble ([
+                            <b>
+                              64.1
+                            </b>
+                            ]% of ORBs): [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #5cae5c,0px 0px 10px #5cae5c",
+                                }
+                              }
+                            >
+                              +
+                              6.4
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #86c386,0px 0px 10px #86c386",
+                                  }
+                                }
+                              >
+                                13.1
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                53.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d7ecf3,0px 0px 10px #d7ecf3",
+                                  }
+                                }
+                              >
+                                24.2
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                21.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #1a8d1a,0px 0px 10px #1a8d1a",
+                                  }
+                                }
+                              >
+                                59.0
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            Assists: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffaf1c,0px 0px 10px #ffaf1c",
+                                }
+                              }
+                            >
+                              48.1
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+                                }
+                              }
+                            >
+                              6.9
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffbf4b,0px 0px 10px #ffbf4b",
+                                }
+                              }
+                            >
+                              45.0
+                            </b>
+                            %]
+                          </li>
+                          <li>
+                            Assisted: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              82.8
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #e3f2f6,0px 0px 10px #e3f2f6",
+                                }
+                              }
+                            >
+                              26.8
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffbc42,0px 0px 10px #ffbc42",
+                                }
+                              }
+                            >
+                              45.6
+                            </b>
+                            %]
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Defense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            3P SoS: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #f7fbf7,0px 0px 10px #f7fbf7",
+                                }
+                              }
+                            >
+                              33.2
+                            </b>
+                            ]%
+                          </li>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fff5e3,0px 0px 10px #fff5e3",
+                                }
+                              }
+                            >
+                              20.4
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                }
+                              }
+                            >
+                              
+                              -7.7
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #cbe5cb,0px 0px 10px #cbe5cb",
+                                  }
+                                }
+                              >
+                                17.2
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff1414,0px 0px 10px #ff1414",
+                                  }
+                                }
+                              >
+                                39.2
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc253,0px 0px 10px #ffc253",
+                                  }
+                                }
+                              >
+                                44.5
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #cfe7cf,0px 0px 10px #cfe7cf",
+                                  }
+                                }
+                              >
+                                31.7
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
+                                  }
+                                }
+                              >
+                                53.2
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            [
+                            <b>
+                              8.5
+                            </b>
+                            ]% scramble ([
+                            <b>
+                              60.3
+                            </b>
+                            ]% of ORBs): [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ff6767,0px 0px 10px #ff6767",
+                                }
+                              }
+                            >
+                              +
+                              5.9
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff8b8b,0px 0px 10px #ff8b8b",
+                                  }
+                                }
+                              >
+                                13.3
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                54.3
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d9edf4,0px 0px 10px #d9edf4",
+                                  }
+                                }
+                              >
+                                24.8
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff3838,0px 0px 10px #ff3838",
+                                  }
+                                }
+                              >
+                                38.5
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #cfe7cf,0px 0px 10px #cfe7cf",
+                                  }
+                                }
+                              >
+                                48.1
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            Assists: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffaf1b,0px 0px 10px #ffaf1b",
+                                }
+                              }
+                            >
+                              48.2
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+                                }
+                              }
+                            >
+                              14.6
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffe9c0,0px 0px 10px #ffe9c0",
+                                }
+                              }
+                            >
+                              37.2
+                            </b>
+                            %]
+                          </li>
+                          <li>
+                            Assisted: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              86.8
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fdfefe,0px 0px 10px #fdfefe",
+                                }
+                              }
+                            >
+                              32.6
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffc55b,0px 0px 10px #ffc55b",
+                                }
+                              }
+                            >
+                              43.9
+                            </b>
+                            %]
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Misc
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            Raw tempo: 
+                            <span>
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                  }
+                                }
+                              >
+                                [
+                                79.8
+                                ]
+                              </b>
+                               poss/g
+                            </span>
+                          </li>
+                        </ul>
+                      </ul>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <table
+                          className="table table-sm"
+                          id="rosterView"
+                        >
+                          <thead>
+                            <tr>
+                              <th
+                                style={
+                                  Object {
+                                    "fontWeight": "bold",
+                                    "textAlign": "right",
+                                    "width": "0.0%",
+                                  }
+                                }
+                              >
+                                
+                                <div>
+                                  <button
+                                    className="float-left btn btn-outline-secondary btn-sm"
+                                    disabled={false}
+                                    id="rosterView_copy"
+                                    type="button"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="svg-inline--fa fa-clipboard fa-w-12 "
+                                      data-icon="clipboard"
+                                      data-prefix="fas"
+                                      focusable="false"
+                                      role="img"
+                                      style={Object {}}
+                                      viewBox="0 0 384 512"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                                        fill="currentColor"
+                                        style={Object {}}
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </th>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  PG
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  SG
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  SF
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  PF
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  C
+                                </th>
+                              </div>
+                            </tr>
+                          </thead>
+                          <tbody />
+                        </table>
+                      </div>
+                    </div>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td
@@ -15564,6 +15564,330 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <td />
               </tr>
               <tr>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "18.0%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Net
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    P/100
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Adj
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    eFG%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    TO%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    OR%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    FTR
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    A%
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "0.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    3PR
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    MidR
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    RimR
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    3P%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    2P%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Mid%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Rim%
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Poss
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    SoS
+                  </th>
+                </div>
+              </tr>
+              <tr>
                 <td
                   className=""
                   colSpan={1}
@@ -16550,648 +16874,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     99.1
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className="small pt-2"
-                  colSpan={24}
-                >
-                  <span>
-                    <span>
-                      <b>
-                        Extra stats info for [
-                        Off
-                        ]
-                      </b>
-                      <ul>
-                        <li>
-                          <b>
-                            Offense
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              24.3
-                            </b>
-                            ]% transition: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #7abd7a,0px 0px 10px #7abd7a",
-                                }
-                              }
-                            >
-                              +
-                              5.2
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #c9e4c9,0px 0px 10px #c9e4c9",
-                                  }
-                                }
-                              >
-                                14.7
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                61.8
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffba3b,0px 0px 10px #ffba3b",
-                                  }
-                                }
-                              >
-                                46.1
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffc6c6,0px 0px 10px #ffc6c6",
-                                  }
-                                }
-                              >
-                                31.4
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                65.9
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            [
-                            <b>
-                              11.9
-                            </b>
-                            ]% scramble ([
-                            <b>
-                              64.3
-                            </b>
-                            ]% of ORBs): [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                }
-                              }
-                            >
-                              +
-                              13.5
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                8.8
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ebf5eb,0px 0px 10px #ebf5eb",
-                                  }
-                                }
-                              >
-                                30.8
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #dbeef4,0px 0px 10px #dbeef4",
-                                  }
-                                }
-                              >
-                                25.0
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                46.2
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #9dce9d,0px 0px 10px #9dce9d",
-                                  }
-                                }
-                              >
-                                53.8
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            Assists: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              53.9
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-                                }
-                              }
-                            >
-                              6.7
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffdea0,0px 0px 10px #ffdea0",
-                                }
-                              }
-                            >
-                              39.3
-                            </b>
-                            %]
-                          </li>
-                          <li>
-                            Assisted: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              92.3
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #f1f9fb,0px 0px 10px #f1f9fb",
-                                }
-                              }
-                            >
-                              30.0
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffdb99,0px 0px 10px #ffdb99",
-                                }
-                              }
-                            >
-                              39.8
-                            </b>
-                            %]
-                          </li>
-                        </ul>
-                        <li>
-                          <b>
-                            Defense
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            3P SoS: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffe4e4,0px 0px 10px #ffe4e4",
-                                }
-                              }
-                            >
-                              32.3
-                            </b>
-                            ]%
-                          </li>
-                          <li>
-                            [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #c0e1ec,0px 0px 10px #c0e1ec",
-                                }
-                              }
-                            >
-                              16.9
-                            </b>
-                            ]% transition: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffcdcd,0px 0px 10px #ffcdcd",
-                                }
-                              }
-                            >
-                              +
-                              2.0
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                25.4
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                55.1
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffebc7,0px 0px 10px #ffebc7",
-                                  }
-                                }
-                              >
-                                36.7
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                55.6
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffd6d6,0px 0px 10px #ffd6d6",
-                                  }
-                                }
-                              >
-                                51.6
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            [
-                            <b>
-                              8.5
-                            </b>
-                            ]% scramble ([
-                            <b>
-                              52.8
-                            </b>
-                            ]% of ORBs): [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                }
-                              }
-                            >
-                              +
-                              14.4
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #deefde,0px 0px 10px #deefde",
-                                  }
-                                }
-                              >
-                                16.8
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                18.9
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #d7ecf3,0px 0px 10px #d7ecf3",
-                                  }
-                                }
-                              >
-                                24.3
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                55.6
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #a4d2a4,0px 0px 10px #a4d2a4",
-                                  }
-                                }
-                              >
-                                46.4
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            Assists: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa808,0px 0px 10px #ffa808",
-                                }
-                              }
-                            >
-                              49.5
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-                                }
-                              }
-                            >
-                              11.1
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffdd9f,0px 0px 10px #ffdd9f",
-                                }
-                              }
-                            >
-                              39.4
-                            </b>
-                            %]
-                          </li>
-                          <li>
-                            Assisted: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              81.7
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #fcfefe,0px 0px 10px #fcfefe",
-                                }
-                              }
-                            >
-                              32.4
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffac13,0px 0px 10px #ffac13",
-                                }
-                              }
-                            >
-                              48.8
-                            </b>
-                            %]
-                          </li>
-                        </ul>
-                        <li>
-                          <b>
-                            Misc
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            Raw tempo: 
-                            <span>
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                  }
-                                }
-                              >
-                                [
-                                77.1
-                                ]
-                              </b>
-                               poss/g
-                            </span>
-                          </li>
-                        </ul>
-                      </ul>
-                    </span>
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className="small pt-2"
-                  colSpan={24}
-                >
-                  <span>
-                    <div
-                      className="container"
-                    >
-                      <div
-                        className="col-12"
-                      >
-                        <table
-                          className="table table-sm"
-                          id="rosterView"
-                        >
-                          <thead>
-                            <tr>
-                              <th
-                                style={
-                                  Object {
-                                    "fontWeight": "bold",
-                                    "textAlign": "right",
-                                    "width": "0.0%",
-                                  }
-                                }
-                              >
-                                
-                                <div>
-                                  <button
-                                    className="float-left btn btn-outline-secondary btn-sm"
-                                    disabled={false}
-                                    id="rosterView_copy"
-                                    type="button"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      className="svg-inline--fa fa-clipboard fa-w-12 "
-                                      data-icon="clipboard"
-                                      data-prefix="fas"
-                                      focusable="false"
-                                      role="img"
-                                      style={Object {}}
-                                      viewBox="0 0 384 512"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                                        fill="currentColor"
-                                        style={Object {}}
-                                      />
-                                    </svg>
-                                  </button>
-                                </div>
-                              </th>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  PG
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  SG
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  SF
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  PF
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  C
-                                </th>
-                              </div>
-                            </tr>
-                          </thead>
-                          <tbody />
-                        </table>
-                      </div>
-                    </div>
-                  </span>
                 </td>
               </tr>
               <tr>
@@ -18284,6 +17966,648 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <td />
                 <td />
                 <td />
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <span>
+                      <b>
+                        Extra stats info for [
+                        Off
+                        ]
+                      </b>
+                      <ul>
+                        <li>
+                          <b>
+                            Offense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              24.3
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #7abd7a,0px 0px 10px #7abd7a",
+                                }
+                              }
+                            >
+                              +
+                              5.2
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #c9e4c9,0px 0px 10px #c9e4c9",
+                                  }
+                                }
+                              >
+                                14.7
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                61.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffba3b,0px 0px 10px #ffba3b",
+                                  }
+                                }
+                              >
+                                46.1
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc6c6,0px 0px 10px #ffc6c6",
+                                  }
+                                }
+                              >
+                                31.4
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                65.9
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            [
+                            <b>
+                              11.9
+                            </b>
+                            ]% scramble ([
+                            <b>
+                              64.3
+                            </b>
+                            ]% of ORBs): [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                }
+                              }
+                            >
+                              +
+                              13.5
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                8.8
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ebf5eb,0px 0px 10px #ebf5eb",
+                                  }
+                                }
+                              >
+                                30.8
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #dbeef4,0px 0px 10px #dbeef4",
+                                  }
+                                }
+                              >
+                                25.0
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                46.2
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #9dce9d,0px 0px 10px #9dce9d",
+                                  }
+                                }
+                              >
+                                53.8
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            Assists: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              53.9
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+                                }
+                              }
+                            >
+                              6.7
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffdea0,0px 0px 10px #ffdea0",
+                                }
+                              }
+                            >
+                              39.3
+                            </b>
+                            %]
+                          </li>
+                          <li>
+                            Assisted: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              92.3
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #f1f9fb,0px 0px 10px #f1f9fb",
+                                }
+                              }
+                            >
+                              30.0
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffdb99,0px 0px 10px #ffdb99",
+                                }
+                              }
+                            >
+                              39.8
+                            </b>
+                            %]
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Defense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            3P SoS: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffe4e4,0px 0px 10px #ffe4e4",
+                                }
+                              }
+                            >
+                              32.3
+                            </b>
+                            ]%
+                          </li>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #c0e1ec,0px 0px 10px #c0e1ec",
+                                }
+                              }
+                            >
+                              16.9
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffcdcd,0px 0px 10px #ffcdcd",
+                                }
+                              }
+                            >
+                              +
+                              2.0
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                25.4
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                55.1
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffebc7,0px 0px 10px #ffebc7",
+                                  }
+                                }
+                              >
+                                36.7
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                55.6
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffd6d6,0px 0px 10px #ffd6d6",
+                                  }
+                                }
+                              >
+                                51.6
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            [
+                            <b>
+                              8.5
+                            </b>
+                            ]% scramble ([
+                            <b>
+                              52.8
+                            </b>
+                            ]% of ORBs): [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                }
+                              }
+                            >
+                              +
+                              14.4
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #deefde,0px 0px 10px #deefde",
+                                  }
+                                }
+                              >
+                                16.8
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                18.9
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d7ecf3,0px 0px 10px #d7ecf3",
+                                  }
+                                }
+                              >
+                                24.3
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                55.6
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #a4d2a4,0px 0px 10px #a4d2a4",
+                                  }
+                                }
+                              >
+                                46.4
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            Assists: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa808,0px 0px 10px #ffa808",
+                                }
+                              }
+                            >
+                              49.5
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+                                }
+                              }
+                            >
+                              11.1
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffdd9f,0px 0px 10px #ffdd9f",
+                                }
+                              }
+                            >
+                              39.4
+                            </b>
+                            %]
+                          </li>
+                          <li>
+                            Assisted: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              81.7
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fcfefe,0px 0px 10px #fcfefe",
+                                }
+                              }
+                            >
+                              32.4
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffac13,0px 0px 10px #ffac13",
+                                }
+                              }
+                            >
+                              48.8
+                            </b>
+                            %]
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Misc
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            Raw tempo: 
+                            <span>
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                  }
+                                }
+                              >
+                                [
+                                77.1
+                                ]
+                              </b>
+                               poss/g
+                            </span>
+                          </li>
+                        </ul>
+                      </ul>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <table
+                          className="table table-sm"
+                          id="rosterView"
+                        >
+                          <thead>
+                            <tr>
+                              <th
+                                style={
+                                  Object {
+                                    "fontWeight": "bold",
+                                    "textAlign": "right",
+                                    "width": "0.0%",
+                                  }
+                                }
+                              >
+                                
+                                <div>
+                                  <button
+                                    className="float-left btn btn-outline-secondary btn-sm"
+                                    disabled={false}
+                                    id="rosterView_copy"
+                                    type="button"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="svg-inline--fa fa-clipboard fa-w-12 "
+                                      data-icon="clipboard"
+                                      data-prefix="fas"
+                                      focusable="false"
+                                      role="img"
+                                      style={Object {}}
+                                      viewBox="0 0 384 512"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                                        fill="currentColor"
+                                        style={Object {}}
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </th>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  PG
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  SG
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  SF
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  PF
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  C
+                                </th>
+                              </div>
+                            </tr>
+                          </thead>
+                          <tbody />
+                        </table>
+                      </div>
+                    </div>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td
@@ -27127,6 +27451,330 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <td />
               </tr>
               <tr>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "18.0%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Net
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    P/100
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Adj
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    eFG%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    TO%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    OR%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    FTR
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    A%
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "0.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    3PR
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    MidR
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    RimR
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    3P%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    2P%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Mid%
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Rim%
+                  </th>
+                </div>
+                <th
+                  className="small"
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "1.1%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    Poss
+                  </th>
+                </div>
+                <div>
+                  <th
+                    className="small"
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "4.5%",
+                      }
+                    }
+                  >
+                    SoS
+                  </th>
+                </div>
+              </tr>
+              <tr>
                 <td
                   className=""
                   colSpan={1}
@@ -28113,648 +28761,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     97.0
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className="small pt-2"
-                  colSpan={24}
-                >
-                  <span>
-                    <span>
-                      <b>
-                        Extra stats info for [
-                        Baseline
-                        ]
-                      </b>
-                      <ul>
-                        <li>
-                          <b>
-                            Offense
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              24.1
-                            </b>
-                            ]% transition: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #fdfefd,0px 0px 10px #fdfefd",
-                                }
-                              }
-                            >
-                              +
-                              0.1
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffe5e5,0px 0px 10px #ffe5e5",
-                                  }
-                                }
-                              >
-                                16.6
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                67.1
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffc55a,0px 0px 10px #ffc55a",
-                                  }
-                                }
-                              >
-                                44.0
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffb4b4,0px 0px 10px #ffb4b4",
-                                  }
-                                }
-                              >
-                                30.9
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                67.8
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            [
-                            <b>
-                              10.8
-                            </b>
-                            ]% scramble ([
-                            <b>
-                              64.2
-                            </b>
-                            ]% of ORBs): [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #329932,0px 0px 10px #329932",
-                                }
-                              }
-                            >
-                              +
-                              8.0
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #57ac57,0px 0px 10px #57ac57",
-                                  }
-                                }
-                              >
-                                12.1
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-                                  }
-                                }
-                              >
-                                47.3
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #d8ecf3,0px 0px 10px #d8ecf3",
-                                  }
-                                }
-                              >
-                                24.5
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff6969,0px 0px 10px #ff6969",
-                                  }
-                                }
-                              >
-                                28.9
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #3e9f3e,0px 0px 10px #3e9f3e",
-                                  }
-                                }
-                              >
-                                57.6
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            Assists: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa809,0px 0px 10px #ffa809",
-                                }
-                              }
-                            >
-                              49.4
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-                                }
-                              }
-                            >
-                              6.8
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffc65e,0px 0px 10px #ffc65e",
-                                }
-                              }
-                            >
-                              43.8
-                            </b>
-                            %]
-                          </li>
-                          <li>
-                            Assisted: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              84.9
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #e6f3f7,0px 0px 10px #e6f3f7",
-                                }
-                              }
-                            >
-                              27.5
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffc355,0px 0px 10px #ffc355",
-                                }
-                              }
-                            >
-                              44.3
-                            </b>
-                            %]
-                          </li>
-                        </ul>
-                        <li>
-                          <b>
-                            Defense
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            3P SoS: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
-                                }
-                              }
-                            >
-                              33.0
-                            </b>
-                            ]%
-                          </li>
-                          <li>
-                            [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #f7fbfd,0px 0px 10px #f7fbfd",
-                                }
-                              }
-                            >
-                              19.6
-                            </b>
-                            ]% transition: [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #6eb76e,0px 0px 10px #6eb76e",
-                                }
-                              }
-                            >
-                              
-                              -5.7
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #85c285,0px 0px 10px #85c285",
-                                  }
-                                }
-                              >
-                                18.9
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                42.0
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffc967,0px 0px 10px #ffc967",
-                                  }
-                                }
-                              >
-                                43.1
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffabab,0px 0px 10px #ffabab",
-                                  }
-                                }
-                              >
-                                35.3
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffb6b6,0px 0px 10px #ffb6b6",
-                                  }
-                                }
-                              >
-                                52.9
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            [
-                            <b>
-                              8.5
-                            </b>
-                            ]% scramble ([
-                            <b>
-                              58.4
-                            </b>
-                            ]% of ORBs): [
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ff3535,0px 0px 10px #ff3535",
-                                }
-                              }
-                            >
-                              +
-                              7.9
-                            </b>
-                            ] pts/100
-                          </li>
-                          <ul>
-                            <li>
-                              TO=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
-                                  }
-                                }
-                              >
-                                14.1
-                              </b>
-                              ]%, FTR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                45.1
-                              </b>
-                              ]%, 3PR=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #d9edf3,0px 0px 10px #d9edf3",
-                                  }
-                                }
-                              >
-                                24.6
-                              </b>
-                              ]%, 3P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-                                  }
-                                }
-                              >
-                                42.9
-                              </b>
-                              ]%, 2P=[
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #c3e1c3,0px 0px 10px #c3e1c3",
-                                  }
-                                }
-                              >
-                                47.7
-                              </b>
-                              ]%
-                            </li>
-                          </ul>
-                          <li>
-                            Assists: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffad17,0px 0px 10px #ffad17",
-                                }
-                              }
-                            >
-                              48.5
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-                                }
-                              }
-                            >
-                              13.8
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffe6b8,0px 0px 10px #ffe6b8",
-                                }
-                              }
-                            >
-                              37.8
-                            </b>
-                            %]
-                          </li>
-                          <li>
-                            Assisted: [3P: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                }
-                              }
-                            >
-                              85.5
-                            </b>
-                            %, mid: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #fdfefe,0px 0px 10px #fdfefe",
-                                }
-                              }
-                            >
-                              32.5
-                            </b>
-                            %, rim: 
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffbf4a,0px 0px 10px #ffbf4a",
-                                }
-                              }
-                            >
-                              45.1
-                            </b>
-                            %]
-                          </li>
-                        </ul>
-                        <li>
-                          <b>
-                            Misc
-                          </b>
-                        </li>
-                        <ul>
-                          <li>
-                            Raw tempo: 
-                            <span>
-                              <b
-                                style={
-                                  Object {
-                                    "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-                                  }
-                                }
-                              >
-                                [
-                                83.2
-                                ]
-                              </b>
-                               poss/g
-                            </span>
-                          </li>
-                        </ul>
-                      </ul>
-                    </span>
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className="small pt-2"
-                  colSpan={24}
-                >
-                  <span>
-                    <div
-                      className="container"
-                    >
-                      <div
-                        className="col-12"
-                      >
-                        <table
-                          className="table table-sm"
-                          id="rosterView"
-                        >
-                          <thead>
-                            <tr>
-                              <th
-                                style={
-                                  Object {
-                                    "fontWeight": "bold",
-                                    "textAlign": "right",
-                                    "width": "0.0%",
-                                  }
-                                }
-                              >
-                                
-                                <div>
-                                  <button
-                                    className="float-left btn btn-outline-secondary btn-sm"
-                                    disabled={false}
-                                    id="rosterView_copy"
-                                    type="button"
-                                  >
-                                    <svg
-                                      aria-hidden="true"
-                                      className="svg-inline--fa fa-clipboard fa-w-12 "
-                                      data-icon="clipboard"
-                                      data-prefix="fas"
-                                      focusable="false"
-                                      role="img"
-                                      style={Object {}}
-                                      viewBox="0 0 384 512"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                                        fill="currentColor"
-                                        style={Object {}}
-                                      />
-                                    </svg>
-                                  </button>
-                                </div>
-                              </th>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  PG
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  SG
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  SF
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  PF
-                                </th>
-                              </div>
-                              <div>
-                                <th
-                                  style={
-                                    Object {
-                                      "fontWeight": "bold",
-                                      "textAlign": "center",
-                                      "width": "20.0%",
-                                    }
-                                  }
-                                >
-                                  C
-                                </th>
-                              </div>
-                            </tr>
-                          </thead>
-                          <tbody />
-                        </table>
-                      </div>
-                    </div>
-                  </span>
                 </td>
               </tr>
               <tr>
@@ -29847,6 +29853,648 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 <td />
                 <td />
                 <td />
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <span>
+                      <b>
+                        Extra stats info for [
+                        Baseline
+                        ]
+                      </b>
+                      <ul>
+                        <li>
+                          <b>
+                            Offense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              24.1
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fdfefd,0px 0px 10px #fdfefd",
+                                }
+                              }
+                            >
+                              +
+                              0.1
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffe5e5,0px 0px 10px #ffe5e5",
+                                  }
+                                }
+                              >
+                                16.6
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                67.1
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc55a,0px 0px 10px #ffc55a",
+                                  }
+                                }
+                              >
+                                44.0
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffb4b4,0px 0px 10px #ffb4b4",
+                                  }
+                                }
+                              >
+                                30.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                67.8
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            [
+                            <b>
+                              10.8
+                            </b>
+                            ]% scramble ([
+                            <b>
+                              64.2
+                            </b>
+                            ]% of ORBs): [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #329932,0px 0px 10px #329932",
+                                }
+                              }
+                            >
+                              +
+                              8.0
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #57ac57,0px 0px 10px #57ac57",
+                                  }
+                                }
+                              >
+                                12.1
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                  }
+                                }
+                              >
+                                47.3
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d8ecf3,0px 0px 10px #d8ecf3",
+                                  }
+                                }
+                              >
+                                24.5
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff6969,0px 0px 10px #ff6969",
+                                  }
+                                }
+                              >
+                                28.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #3e9f3e,0px 0px 10px #3e9f3e",
+                                  }
+                                }
+                              >
+                                57.6
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            Assists: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa809,0px 0px 10px #ffa809",
+                                }
+                              }
+                            >
+                              49.4
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+                                }
+                              }
+                            >
+                              6.8
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffc65e,0px 0px 10px #ffc65e",
+                                }
+                              }
+                            >
+                              43.8
+                            </b>
+                            %]
+                          </li>
+                          <li>
+                            Assisted: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              84.9
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #e6f3f7,0px 0px 10px #e6f3f7",
+                                }
+                              }
+                            >
+                              27.5
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffc355,0px 0px 10px #ffc355",
+                                }
+                              }
+                            >
+                              44.3
+                            </b>
+                            %]
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Defense
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            3P SoS: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
+                                }
+                              }
+                            >
+                              33.0
+                            </b>
+                            ]%
+                          </li>
+                          <li>
+                            [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #f7fbfd,0px 0px 10px #f7fbfd",
+                                }
+                              }
+                            >
+                              19.6
+                            </b>
+                            ]% transition: [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #6eb76e,0px 0px 10px #6eb76e",
+                                }
+                              }
+                            >
+                              
+                              -5.7
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #85c285,0px 0px 10px #85c285",
+                                  }
+                                }
+                              >
+                                18.9
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                42.0
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffc967,0px 0px 10px #ffc967",
+                                  }
+                                }
+                              >
+                                43.1
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffabab,0px 0px 10px #ffabab",
+                                  }
+                                }
+                              >
+                                35.3
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffb6b6,0px 0px 10px #ffb6b6",
+                                  }
+                                }
+                              >
+                                52.9
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            [
+                            <b>
+                              8.5
+                            </b>
+                            ]% scramble ([
+                            <b>
+                              58.4
+                            </b>
+                            ]% of ORBs): [
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ff3535,0px 0px 10px #ff3535",
+                                }
+                              }
+                            >
+                              +
+                              7.9
+                            </b>
+                            ] pts/100
+                          </li>
+                          <ul>
+                            <li>
+                              TO=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
+                                  }
+                                }
+                              >
+                                14.1
+                              </b>
+                              ]%, FTR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                45.1
+                              </b>
+                              ]%, 3PR=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #d9edf3,0px 0px 10px #d9edf3",
+                                  }
+                                }
+                              >
+                                24.6
+                              </b>
+                              ]%, 3P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                  }
+                                }
+                              >
+                                42.9
+                              </b>
+                              ]%, 2P=[
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #c3e1c3,0px 0px 10px #c3e1c3",
+                                  }
+                                }
+                              >
+                                47.7
+                              </b>
+                              ]%
+                            </li>
+                          </ul>
+                          <li>
+                            Assists: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffad17,0px 0px 10px #ffad17",
+                                }
+                              }
+                            >
+                              48.5
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+                                }
+                              }
+                            >
+                              13.8
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffe6b8,0px 0px 10px #ffe6b8",
+                                }
+                              }
+                            >
+                              37.8
+                            </b>
+                            %]
+                          </li>
+                          <li>
+                            Assisted: [3P: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                }
+                              }
+                            >
+                              85.5
+                            </b>
+                            %, mid: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #fdfefe,0px 0px 10px #fdfefe",
+                                }
+                              }
+                            >
+                              32.5
+                            </b>
+                            %, rim: 
+                            <b
+                              style={
+                                Object {
+                                  "textShadow": "0px 0px 10px #ffbf4a,0px 0px 10px #ffbf4a",
+                                }
+                              }
+                            >
+                              45.1
+                            </b>
+                            %]
+                          </li>
+                        </ul>
+                        <li>
+                          <b>
+                            Misc
+                          </b>
+                        </li>
+                        <ul>
+                          <li>
+                            Raw tempo: 
+                            <span>
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                  }
+                                }
+                              >
+                                [
+                                83.2
+                                ]
+                              </b>
+                               poss/g
+                            </span>
+                          </li>
+                        </ul>
+                      </ul>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  className="small pt-2"
+                  colSpan={24}
+                >
+                  <span>
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <table
+                          className="table table-sm"
+                          id="rosterView"
+                        >
+                          <thead>
+                            <tr>
+                              <th
+                                style={
+                                  Object {
+                                    "fontWeight": "bold",
+                                    "textAlign": "right",
+                                    "width": "0.0%",
+                                  }
+                                }
+                              >
+                                
+                                <div>
+                                  <button
+                                    className="float-left btn btn-outline-secondary btn-sm"
+                                    disabled={false}
+                                    id="rosterView_copy"
+                                    type="button"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="svg-inline--fa fa-clipboard fa-w-12 "
+                                      data-icon="clipboard"
+                                      data-prefix="fas"
+                                      focusable="false"
+                                      role="img"
+                                      style={Object {}}
+                                      viewBox="0 0 384 512"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                                        fill="currentColor"
+                                        style={Object {}}
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </th>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  PG
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  SG
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  SF
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  PF
+                                </th>
+                              </div>
+                              <div>
+                                <th
+                                  style={
+                                    Object {
+                                      "fontWeight": "bold",
+                                      "textAlign": "center",
+                                      "width": "20.0%",
+                                    }
+                                  }
+                                >
+                                  C
+                                </th>
+                              </div>
+                            </tr>
+                          </thead>
+                          <tbody />
+                        </table>
+                      </div>
+                    </div>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td
