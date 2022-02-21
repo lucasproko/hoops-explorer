@@ -26,9 +26,10 @@ import AutoSuggestText from './shared/AutoSuggestText';
 
 // Utils
 import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
-import { QueryUtils, CommonFilterType } from '../utils/QueryUtils';
+import { QueryUtils, CommonFilterType, CommonFilterCustomDate } from '../utils/QueryUtils';
 import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
 import QueryFilterDropdown from './shared/QueryFilterDropdown';
+import DateRangeModal from './shared/DateRangeModal';
 
 type Props = {
   onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]) => void;
@@ -127,6 +128,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       startingState.year || ParamDefaults.defaultYear
     )    
   );
+  const [ showOnDateRangeModal, setOnShowDateRangeModal ] = useState(false);
+  const [ showOffDateRangeModal, setOffShowDateRangeModal ] = useState(false);
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -350,6 +353,20 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
+      <DateRangeModal
+        show={showOnDateRangeModal}
+        queryType="On/'A' Query"
+        onSave={(filter: CommonFilterCustomDate|undefined) => setOnQueryFilters(QueryUtils.setCustomDate(onQueryFilters, filter))}
+        onHide={() => setOnShowDateRangeModal(false)}
+        year={startingState.year || ParamDefaults.defaultYear}
+      />
+      <DateRangeModal
+        show={showOffDateRangeModal}
+        queryType="Off/'B' Query"
+        onSave={(filter: CommonFilterCustomDate|undefined) => setOffQueryFilters(QueryUtils.setCustomDate(offQueryFilters, filter))}
+        onHide={() => setOffShowDateRangeModal(false)}
+        year={startingState.year || ParamDefaults.defaultYear}
+      />
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOn} Query</Form.Label>
         <Col sm="8">
@@ -372,7 +389,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
                 <QueryFilterDropdown
                   queryFilters={onQueryFilters}
                   setQueryFilters={setOnQueryFilters}
-                  showCustomRangeFilter={() => ""}
+                  showCustomRangeFilter={() => setOnShowDateRangeModal(true)}
                 />
               </InputGroup>
             </Row>
@@ -409,7 +426,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
                 {autoOffQuery ? null : <QueryFilterDropdown
                   queryFilters={offQueryFilters}
                   setQueryFilters={setOffQueryFilters}
-                  showCustomRangeFilter={() => ""}
+                  showCustomRangeFilter={() => setOffShowDateRangeModal(true)}
                 />}
               </InputGroup>
             </Row>

@@ -55,7 +55,7 @@ import { RequestUtils } from '../utils/RequestUtils';
 import { FilterParamsType, FilterRequestInfo, ParamPrefixes, ParamPrefixesType, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
-import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
+import { CommonFilterType, QueryUtils, CommonFilterCustomDate } from '../utils/QueryUtils';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -565,7 +565,7 @@ const CommonFilter: CommonFilterI = ({
     <DateRangeModal
       show={showDateRangeModal}
       queryType="Baseline Query"
-      onSave={() => ""}
+      onSave={(filter: CommonFilterCustomDate|undefined) => setQueryFilters(QueryUtils.setCustomDate(queryFilters, filter))}
       onHide={() => setShowDateRangeModal(false)}
       year={startingState.year}
     />

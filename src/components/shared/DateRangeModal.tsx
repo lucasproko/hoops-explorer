@@ -17,12 +17,13 @@ import { DateRangePicker, defaultStaticRanges } from 'react-date-range';
 //@ts-ignore
 import { addDays, isSameDay } from 'date-fns';
 import { ParamDefaults } from '../../utils/FilterModels';
+import { QueryUtils, CommonFilterCustomDate } from '../../utils/QueryUtils';
 
 type Props = {
    show: boolean
    queryType: string,
    year: string,
-   onSave: () => void
+   onSave: (filter: CommonFilterCustomDate | undefined) => void
    onHide: () => void
 };
 
@@ -92,8 +93,12 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
          </Container>
       </Modal.Body>
       <Modal.Footer>
-         <Button variant="warning" onClick={() => props.onHide()}>Clear</Button>
-         <Button variant="primary" onClick={() => props.onHide()}>Save</Button>
+         <Button variant="warning" onClick={() => { onSave(undefined); props.onHide() }}>Clear</Button>
+         <Button variant="primary" onClick={() => { onSave({
+            kind: QueryUtils.customDateAliasName,
+            start: state[0].startDate, 
+            end: state[0].endDate
+         }); props.onHide() }}>Save</Button>
     </Modal.Footer>
    </Modal>
 };
