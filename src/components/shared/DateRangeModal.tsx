@@ -69,15 +69,14 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
 
    const minDate = Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-11-01`);
    const maxDate = Number.isNaN(minDate) ? NaN : addDays(minDate, 210);
-   return <Modal size="lg" {...props}>
+   return <Modal size="lg" scrollable={true} {...props}>
       <Modal.Header closeButton>
          <Modal.Title>Select Date Range Filter for {queryType}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
          <Container>
-            <Row>
-               <Col xs={1}></Col>
-               <Col xs={6}>
+            <Row className='justify-content-center'>
+               <Col xs={"auto"}>
                   <DateRangePicker
                      onChange={(item: any) => setState([item.selection])}
                      months={1}
