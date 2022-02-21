@@ -55,13 +55,14 @@ import { RequestUtils } from '../utils/RequestUtils';
 import { FilterParamsType, FilterRequestInfo, ParamPrefixes, ParamPrefixesType, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
-import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
+import { CommonFilterType, QueryUtils, CommonFilterCustomDate } from '../utils/QueryUtils';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 import fetchBuilder from 'fetch-retry-ts';
 import QueryFilterDropdown from './shared/QueryFilterDropdown';
 import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
+import DateRangeModal from './shared/DateRangeModal';
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -127,9 +128,11 @@ const CommonFilter: CommonFilterI = ({
 
   const [ queryFilters, setQueryFilters ] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
+      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters, year
     )
   );
+
+  const [ showDateRangeModal, setShowDateRangeModal ] = useState(false);
 
   // Validation, this currently only supports once case:
   const [ showInvalidQuery, setShowInvalidQuery ] = useState(false as boolean);
@@ -141,7 +144,7 @@ const CommonFilter: CommonFilterI = ({
     onChangeCommonState({
       team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
       baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
-      queryFilters: _.join(queryFilters || [], ",")
+      queryFilters: QueryUtils.buildFilterStr(queryFilters)
     });
   }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered, queryFilters ]);
 
@@ -257,7 +260,7 @@ const CommonFilter: CommonFilterI = ({
       onChangeCommonState({ // THIS TAKE PLACE AFTER THE SUBMIT SO WILL RESET EVERYTHING BACK AGAIN, UGH
         team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
         baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
-        queryFilters: _.join(queryFilters || [], ",")
+        queryFilters: QueryUtils.buildFilterStr(queryFilters)
       });
       onSubmit();
     }
@@ -559,6 +562,13 @@ const CommonFilter: CommonFilterI = ({
         </Button>
       </Modal.Footer>
     </Modal>
+    <DateRangeModal
+      show={showDateRangeModal}
+      queryType="Baseline Query"
+      onSave={(filter: CommonFilterCustomDate|undefined) => setQueryFilters(QueryUtils.setCustomDate(queryFilters, filter))}
+      onHide={() => setShowDateRangeModal(false)}
+      year={startingState.year}
+    />
   <Form>
     <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
@@ -641,6 +651,7 @@ const CommonFilter: CommonFilterI = ({
               <QueryFilterDropdown
                 queryFilters={queryFilters}
                 setQueryFilters={setQueryFilters}
+                showCustomRangeFilter={() => setShowDateRangeModal(true)}
               />
             </InputGroup>
           </Row>

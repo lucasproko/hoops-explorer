@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import { CommonFilterType, QueryUtils } from "../QueryUtils";
+import { CommonFilterType, CommonFilterTypeSimple, QueryUtils, CommonFilterCustomDate } from '../QueryUtils';
 import { CommonFilterParams } from "../FilterModels";
 
 describe("QueryUtils", () => {
@@ -117,35 +117,6 @@ describe("QueryUtils", () => {
     expect(QueryUtils.basicOrAdvancedQuery(query9d, "")).toBe('(location_type:Neutral AND (opponent.team:Michigan)) AND "blah"');
     expect(QueryUtils.basicOrAdvancedQuery(query9e, "")).toBe('(location_type:Neutral AND (opponent.team:(Michigan AND "blah")))');
   });
-  test("QueryUtils - parseFilter", () => {
-    expect(QueryUtils.parseFilter("Conf ,Home, Nov-Dec")).toEqual([
-      "Conf", "Home", "Nov-Dec"
-    ]);
-  });
-  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilter", () => {
-    [
-      [ "Conf" ] as CommonFilterType[],
-      [ "Home", "Away", "Not-Home"] as CommonFilterType[],
-      [ "Nov-Dec", "Jan-Apr", "Last-30d"] as CommonFilterType[],
-    ].forEach((testSet) => {
-      testSet.forEach((test) => {
-        // Basic testing:
-        expect(QueryUtils.toggleFilter([test], test)).toEqual([]);
-        expect(QueryUtils.toggleFilter([], test)).toEqual([test]);
-        // Check other options from same set are unset by toggle
-        expect(QueryUtils.toggleFilter(_.filter(testSet, (nT) => nT != test), test)).toEqual([test]);
-        testSet.forEach((nonTest) => {
-          if (nonTest != test) {
-            expect(QueryUtils.toggleFilter([nonTest], test)).toEqual([test]);
-          }
-        });
-      });
-    });
-    // Just check works with multiple
-    expect(QueryUtils.toggleFilter(["Conf", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
-    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
-    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home")).toEqual(["Conf","Nov-Dec"]);
-  });
   test("QueryUtils - getConference", () => {
     const lookup = {
       "A&M-Corpus Christi": {
@@ -174,5 +145,133 @@ describe("QueryUtils", () => {
     expect(QueryUtils.getConference("Texas A&M Corpus Chris", efficiency, lookup)).toEqual("Southland Conference");
     //(miss)
     expect(QueryUtils.getConference("Pretend Team", efficiency, lookup)).toEqual("");
+  });
+  test("QueryUtils - parseFilter", () => {
+    expect(QueryUtils.parseFilter("Conf ,Home, Nov-Dec", "2020")).toEqual([
+      "Conf", "Home", "Nov-Dec"
+    ]);
+  });
+  test("QueryUtils - parseFilter, custom dates", () => {
+    expect(QueryUtils.parseFilter("Date:rabbit", "2020")).toEqual([]);
+    expect(QueryUtils.parseFilter("Not-Home,Date:11.11-03.15", "2020")).toEqual([
+      "Not-Home", {
+        kind: "Custom-Date",
+        start: new Date("2020-11-11T05:00:00.000Z"),
+        end: new Date("2021-03-15T04:00:00.000Z")
+      }
+    ]);
+    expect(QueryUtils.parseFilter("Date:11.11-12.01", "2020")).toEqual([
+      {
+        kind: "Custom-Date",
+        start: new Date("2020-11-11T05:00:00.000Z"),
+        end: new Date("2020-12-01T05:00:00.000Z")
+      }
+    ]);
+    expect(QueryUtils.parseFilter("Date:01.09-04.30", "2018")).toEqual([
+      {
+        kind: "Custom-Date",
+        start: new Date("2019-01-09T05:00:00.000Z"),
+        end: new Date("2019-04-30T04:00:00.000Z")
+      }
+    ]);
+  });
+  test("QueryUtils - extractCustomDate", () => {
+    const dateFilter = {
+      kind: "Custom-Date",
+      start: new Date("2019-01-09T05:00:00.000Z"),
+      end: new Date("2019-04-30T04:00:00.000Z")
+    } as CommonFilterCustomDate;
+
+    expect(QueryUtils.extractCustomDate([ "Home", dateFilter ])).toEqual(dateFilter);
+    expect(QueryUtils.extractCustomDate([ "Home", "Conf" ])).toEqual(undefined);
+  });
+  test("QueryUtils - setCustomDate", () => {
+    const test1 = [ "Home", "Conf" ] as CommonFilterType[];
+    const toSet1 = {
+      kind: "Custom-Date",
+      start: new Date("2019-01-09T05:00:00.000Z"),
+      end: new Date("2019-04-30T04:00:00.000Z")
+    } as CommonFilterCustomDate;
+    expect(QueryUtils.setCustomDate(test1, undefined)).toEqual(test1);
+    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test1, toSet1))).toEqual("Home,Conf,Date:01.09-04.30");
+
+    const test2 = QueryUtils.parseFilter("Home,Conf,Date:11.11-12.01", "2020");
+    expect(QueryUtils.setCustomDate(test1, undefined)).toEqual(test1);
+    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test2, toSet1))).toEqual("Home,Conf,Date:01.09-04.30");
+  });
+  test("QueryUtils - buildFilterStr", () => {
+    expect(QueryUtils.buildFilterStr([ "Home" ])).toEqual("Home");
+    expect(QueryUtils.buildFilterStr([ "Home", {
+      kind: "Custom-Date",
+      start: new Date("2020-11-11T05:00:00.000Z"),
+      end: new Date("2020-12-01T05:00:00.000Z")
+    } ])).toEqual("Home,Date:11.11-12.01");
+  });
+  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilter", () => {
+    [
+      [ "Conf" ] as CommonFilterTypeSimple[],
+      [ "Home", "Away", "Not-Home"] as CommonFilterTypeSimple[],
+      [ "Nov-Dec", "Jan-Apr", "Last-30d"] as CommonFilterTypeSimple[],
+    ].forEach((testSet) => {
+      testSet.forEach((test) => {
+        // Basic testing:
+        expect(QueryUtils.toggleFilter([test], test)).toEqual([]);
+        expect(QueryUtils.toggleFilter([], test)).toEqual([test]);
+        // Check other options from same set are unset by toggle
+        expect(QueryUtils.toggleFilter(_.filter(testSet, (nT) => nT != test), test)).toEqual([test]);
+        testSet.forEach((nonTest) => {
+          if (nonTest != test) {
+            expect(QueryUtils.toggleFilter([nonTest], test)).toEqual([test]);
+          }
+        });
+      });
+    });
+    // Just check works with multiple
+    expect(QueryUtils.toggleFilter(["Conf", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home")).toEqual(["Conf","Nov-Dec"]);
+  });
+  test("QueryUtils - nonEmptyQueryObj/nonEmptyQueryStr", () => {
+    // also tests nonEmptyQueryStr
+    const emptyOnEmptyOff = {};
+    const emptyOff1 = { onQuery: "test" };
+    const emptyOff2 = { onQueryFilters: "test", offQuery: "" };
+    const emptyOn1 = { offQuery: "test", onQueryFilters: "" };
+    const emptyOn2 = { offQueryFilters: "test" };
+    expect(QueryUtils.nonEmptyQueryObj(emptyOnEmptyOff, "on")).toBe(false);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOnEmptyOff, "off")).toBe(false);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOff1, "on")).toBe(true);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOff2, "on")).toBe(true);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOff1, "off")).toBe(false);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOff2, "off")).toBe(false);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOn1, "on")).toBe(false);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOn2, "on")).toBe(false);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOn1, "off")).toBe(true);
+    expect(QueryUtils.nonEmptyQueryObj(emptyOn2, "off")).toBe(true);
+
+    expect(QueryUtils.nonEmptyQuery("", [ "Home" ])).toBe(true);
+    expect(QueryUtils.nonEmptyQuery(undefined, [ "Home" ])).toBe(true);
+    expect(QueryUtils.nonEmptyQuery("Test", [])).toBe(true);
+    expect(QueryUtils.nonEmptyQuery("Test", ["Conf"])).toBe(true);
+    expect(QueryUtils.nonEmptyQuery("", [])).toBe(false);
+    expect(QueryUtils.nonEmptyQuery(undefined, [])).toBe(false);
+  });
+  test("QueryUtils - autoOffAndFilters/autoOffAndFiltersObj", () => {
+    expect(QueryUtils.autoOffAndFilters(true, [])).toEqual(false);
+    expect(QueryUtils.autoOffAndFilters(false, [ "Conf" ])).toEqual(false);
+    expect(QueryUtils.autoOffAndFilters(true, [ "Conf" ])).toEqual(true);
+
+    expect(QueryUtils.autoOffAndFiltersObj({autoOffQuery: true, onQueryFilters: ""})).toEqual(false);
+    expect(QueryUtils.autoOffAndFiltersObj({autoOffQuery: true})).toEqual(false);
+    expect(QueryUtils.autoOffAndFiltersObj({autoOffQuery: false, onQueryFilters: "Conf"})).toEqual(false);
+    expect(QueryUtils.autoOffAndFiltersObj({onQueryFilters: "Conf"})).toEqual(false);
+    expect(QueryUtils.autoOffAndFiltersObj({autoOffQuery: true, onQueryFilters: "Conf"})).toEqual(true);
+  });
+  test("invertedQueryMode", () => {
+    expect(QueryUtils.invertedQueryMode({})).toEqual(false);
+    expect(QueryUtils.invertedQueryMode({invertBase: "", invertBaseQueryFilters: ""})).toEqual(false);
+    expect(QueryUtils.invertedQueryMode({invertBase: "test", invertBaseQueryFilters: "test"})).toEqual(true);
+    expect(QueryUtils.invertedQueryMode({invertBase: "test"})).toEqual(true);
+    expect(QueryUtils.invertedQueryMode({invertBaseQueryFilters: "test"})).toEqual(true);
   });
 });

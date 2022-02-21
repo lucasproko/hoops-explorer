@@ -1,6 +1,8 @@
 // React imports:
 import React, { useState } from 'react';
 
+import _ from "lodash";
+
 // Icons:
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
@@ -13,16 +15,17 @@ import Button from 'react-bootstrap/Button';
 
 // App imports
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
-import { CommonFilterType, QueryUtils } from "../../utils/QueryUtils";
+import { CommonFilterType, CommonFilterTypeSimple, QueryUtils } from "../../utils/QueryUtils";
 
 type Props = {
    queryFilters: CommonFilterType[],
-   setQueryFilters: (newQueryFilter: CommonFilterType[]) => void
+   setQueryFilters: (newQueryFilter: CommonFilterType[]) => void,
+   showCustomRangeFilter: () => void,
 };
 
-const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQueryFilters}) => {
+const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQueryFilters, showCustomRangeFilter}) => {
 
-   const filterMenuItem = (item: CommonFilterType, text: String) => {
+   const filterMenuItem = (item: CommonFilterTypeSimple, text: String) => {
       return <GenericTogglingMenuItem
         text={text}
         truthVal={QueryUtils.filterHas(queryFilters, item)}
@@ -41,6 +44,11 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQ
      {filterMenuItem("Away", "Away games only")}
      {filterMenuItem("Not-Home", "Away/Neutral games only")}
      <Dropdown.Divider />
+     <GenericTogglingMenuItem
+        text="Custom Date Range..."
+        truthVal={QueryUtils.filterHas(queryFilters, QueryUtils.customDateAliasName)}
+        onSelect={() => showCustomRangeFilter()}
+      />
      {filterMenuItem("Nov-Dec", "Nov/Dec only")}
      {filterMenuItem("Jan-Apr", "Jan-Apr only")}
      {filterMenuItem("Last-30d", "Last 30 days only")}

@@ -1,6 +1,7 @@
 
-import { CommonFilterParams } from "../FilterModels";
+import { CommonFilterParams, ParamDefaults } from '../FilterModels';
 import { CommonFilterType, QueryUtils } from "../QueryUtils";
+import { format } from "date-fns";
 import _ from 'lodash';
 
 const garbageTimeFilter = [
@@ -63,7 +64,8 @@ const dateFilter = (date: "Nov-Dec" | "Jan-Apr" | "Last-30d", year: string, last
 
 /** Common util for here + commonOnOffBaseQuery to handle pre-built filters */
 export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, yearStr: string | undefined, lastDate: number) => {
-  const queryFilters = QueryUtils.parseFilter(queryFiltersStr || "");
+  const queryFilters = QueryUtils.parseFilter(queryFiltersStr || "", yearStr || ParamDefaults.defaultYear);
+  const customDate = QueryUtils.extractCustomDate(queryFilters);
   return _.flatten([
     QueryUtils.filterHas(queryFilters, "Conf") ? [{
       "query_string": {
@@ -75,7 +77,12 @@ export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, 
     }),
     _.flatMap([ "Nov-Dec", "Jan-Apr", "Last-30d"], (date: "Nov-Dec" | "Jan-Apr" | "Last-30d") => {
       return QueryUtils.filterHas(queryFilters, date) ? [ dateFilter(date, yearStr || "2000", lastDate) ] : [];
-    })
+    }),
+    customDate ? [{
+      "query_string": {
+        "query": `date:[${format(customDate.start, "yyyy-MM-dd")} TO ${format(customDate.end, "yyyy-MM-dd")}]`
+      }
+    }] : []
   ] as any[]);
 }
 

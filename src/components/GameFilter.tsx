@@ -26,9 +26,10 @@ import AutoSuggestText from './shared/AutoSuggestText';
 
 // Utils
 import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
-import { QueryUtils, CommonFilterType } from '../utils/QueryUtils';
+import { QueryUtils, CommonFilterType, CommonFilterCustomDate } from '../utils/QueryUtils';
 import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
 import QueryFilterDropdown from './shared/QueryFilterDropdown';
+import DateRangeModal from './shared/DateRangeModal';
 
 type Props = {
   onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]) => void;
@@ -90,12 +91,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       setOffQuery(startOffQuery || "");
       setOnQueryFilters(
         QueryUtils.parseFilter(
-          _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters
+          _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters, 
+          startingState.year || ParamDefaults.defaultYear
         )    
       );
       setOffQueryFilters(
         QueryUtils.parseFilter(
-          _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters
+          _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters,
+          startingState.year || ParamDefaults.defaultYear
         )    
       );
       //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
@@ -115,14 +118,18 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   //TODO: need to plumb
   const [ onQueryFilters, setOnQueryFilters ] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters
+      _.isNil(startOnQueryFilters) ? ParamDefaults.defaultQueryFilters : startOnQueryFilters,
+      startingState.year || ParamDefaults.defaultYear
     )    
   );
   const [ offQueryFilters, setOffQueryFilters ] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters
+      _.isNil(startOffQueryFilters) ? ParamDefaults.defaultQueryFilters : startOffQueryFilters,
+      startingState.year || ParamDefaults.defaultYear
     )    
   );
+  const [ showOnDateRangeModal, setOnShowDateRangeModal ] = useState(false);
+  const [ showOffDateRangeModal, setOffShowDateRangeModal ] = useState(false);
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -139,9 +146,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   */
   function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
     // Only include these if they aren't defaults:
-    const onQueryFiltersObj = !_.isEmpty(onQueryFilters) ? { onQueryFilters: _.join(onQueryFilters || [], ",") } : {};
+    const onQueryFiltersObj = !_.isEmpty(onQueryFilters) ? { onQueryFilters: QueryUtils.buildFilterStr(onQueryFilters) } : {};
     const offQueryFiltersObj = (autoOffQuery || _.isEmpty(offQueryFilters)) ? 
-      {} : { offQueryFilters: _.join(offQueryFilters || [], ",") };
+      {} : { offQueryFilters: QueryUtils.buildFilterStr(offQueryFilters) };
 
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.assign(
@@ -209,11 +216,12 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }) ].concat(QueryUtils.nonEmptyQuery(onQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
         ...commonParams,
         baseQuery: getLineupQuery(onQuery || "*"),
-        queryFilters: _.join(
-          _.uniq((onQueryFilters || []).concat(
-            QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
-         )), ","
-        ),
+        queryFilters: QueryUtils.buildFilterStr(onQueryFilters.concat(
+            QueryUtils.parseFilter(
+              commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
+              primaryRequest.year || ParamDefaults.defaultYear
+            )
+          )),
       }) ] : []
     ).concat(
       (!QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) && QueryUtils.nonEmptyQuery(offQuery, offQueryFilters)
@@ -221,16 +229,17 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       ) ? [ QueryUtils.cleanseQuery({ 
         ...commonParams,
         baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
-        queryFilters: _.join(
-          _.uniq((offQueryFilters || []).concat(
-            QueryUtils.parseFilter(commonParams.queryFilters || ParamDefaults.defaultQueryFilters)
-         )), ","
-        ),
+        queryFilters: QueryUtils.buildFilterStr(offQueryFilters.concat(
+          QueryUtils.parseFilter(
+            commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
+            primaryRequest.year || ParamDefaults.defaultYear
+           )
+        )),
       }) ] : []
     ).concat(QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
       ...commonParams,
       invertBase: getLineupQuery(onQuery || "*", true),
-      invertBaseQueryFilters: _.join(onQueryFilters || [], ",")
+      invertBaseQueryFilters: QueryUtils.buildFilterStr(onQueryFilters)
         //(ie will be * once inverted, ie ignore this clause if missing)
     }) ] : []) : [];
     // (note only one of the last 2 clauses can be present at once)
@@ -344,6 +353,20 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
+      <DateRangeModal
+        show={showOnDateRangeModal}
+        queryType="On/'A' Query"
+        onSave={(filter: CommonFilterCustomDate|undefined) => setOnQueryFilters(QueryUtils.setCustomDate(onQueryFilters, filter))}
+        onHide={() => setOnShowDateRangeModal(false)}
+        year={startingState.year || ParamDefaults.defaultYear}
+      />
+      <DateRangeModal
+        show={showOffDateRangeModal}
+        queryType="Off/'B' Query"
+        onSave={(filter: CommonFilterCustomDate|undefined) => setOffQueryFilters(QueryUtils.setCustomDate(offQueryFilters, filter))}
+        onHide={() => setOffShowDateRangeModal(false)}
+        year={startingState.year || ParamDefaults.defaultYear}
+      />
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOn} Query</Form.Label>
         <Col sm="8">
@@ -366,6 +389,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
                 <QueryFilterDropdown
                   queryFilters={onQueryFilters}
                   setQueryFilters={setOnQueryFilters}
+                  showCustomRangeFilter={() => setOnShowDateRangeModal(true)}
                 />
               </InputGroup>
             </Row>
@@ -402,6 +426,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
                 {autoOffQuery ? null : <QueryFilterDropdown
                   queryFilters={offQueryFilters}
                   setQueryFilters={setOffQueryFilters}
+                  showCustomRangeFilter={() => setOffShowDateRangeModal(true)}
                 />}
               </InputGroup>
             </Row>
