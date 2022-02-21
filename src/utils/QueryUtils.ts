@@ -240,8 +240,8 @@ export class QueryUtils {
     return _.filter(curr, (filter) => !toRemoveSet.hasOwnProperty(QueryUtils.byName(filter) as string));
   }
 
-  /** Returns a custom date filter from the string Date:MM.dd-MM.dd  */
-  private static parseCustomDate(dateStr: string, year: string): CommonFilterCustomDate | undefined { 
+  /** Returns a custom date filter from the string MM.dd-MM.dd (note: without "Date:" prefix) */
+  static parseCustomDate(dateStr: string, year: string): CommonFilterCustomDate | undefined { 
     const yearStr = year.substring(0, 4);
     const dateStrs = dateStr.split("-");
     try {

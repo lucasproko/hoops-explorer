@@ -15,7 +15,7 @@ describe("commonTeamQuery", () => {
         baseQuery: "base"
       }, {
         filterGarbage: filterGarbage,
-        queryFilters: _.join(filters, ",")
+        queryFilters: QueryUtils.buildFilterStr(filters)  
       });
     };
 
@@ -34,6 +34,11 @@ describe("commonTeamQuery", () => {
     const test4 = commonTeamQuery(queryWithFilters([
       "Not-Home", "Last-30d", "Conf"
     ], true), 333, {}, {}); //(ensure ignores the vs_rank clause)
+
+    const test5CustomDate = QueryUtils.parseCustomDate("12.15-03.01", "2019")!;
+    const test5 = commonTeamQuery(queryWithFilters([
+      "Not-Home", test5CustomDate, "Conf" 
+    ], true), 333, efficiencyInfo, lookup);
 
 
     // For testing:
@@ -106,9 +111,20 @@ describe("commonTeamQuery", () => {
       }
     });
 
-    // Like test3 but no efficiency
+    // TEST4: Like test3 but no efficiency
     expect(test4.bool.should.length).toEqual(3);
     expect(test4.bool.minimum_should_match).toEqual(1);
     expect(test4.bool.must.length).toEqual(4); //(vs_rank disappeared)
+
+    // TEST5: custom date
+    expect(test5.bool.must_not).toEqual([]);
+    expect(test5.bool.should.length).toEqual(3);
+    expect(test5.bool.minimum_should_match).toEqual(1);
+    expect(test5.bool.must.length).toEqual(5);
+    expect(test5.bool?.must?.[4]).toEqual({
+      "query_string": {
+        "query": `date:[2019-12-15 TO 2020-03-01]`
+      }
+    });
   });
 });
