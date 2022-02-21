@@ -175,6 +175,16 @@ describe("QueryUtils", () => {
       }
     ]);
   });
+  test("QueryUtils - extractCustomDate", () => {
+    const dateFilter = {
+      kind: "Custom-Date",
+      start: new Date("2019-01-09T05:00:00.000Z"),
+      end: new Date("2019-04-30T04:00:00.000Z")
+    } as CommonFilterCustomDate;
+
+    expect(QueryUtils.extractCustomDate([ "Home", dateFilter ])).toEqual(dateFilter);
+    expect(QueryUtils.extractCustomDate([ "Home", "Conf" ])).toEqual(undefined);
+  });
   test("QueryUtils - setCustomDate", () => {
     const test1 = [ "Home", "Conf" ] as CommonFilterType[];
     const toSet1 = {

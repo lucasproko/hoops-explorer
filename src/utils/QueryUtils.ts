@@ -241,7 +241,7 @@ export class QueryUtils {
   }
 
   /** Returns a custom date filter from the string Date:MM.dd-MM.dd  */
-  static parseCustomDate(dateStr: string, year: string): CommonFilterCustomDate | undefined { 
+  private static parseCustomDate(dateStr: string, year: string): CommonFilterCustomDate | undefined { 
     const yearStr = year.substring(0, 4);
     const dateStrs = dateStr.split("-");
     try {
@@ -259,6 +259,12 @@ export class QueryUtils {
     } catch (e) {
       return undefined; //(invalid state)
     }
+  }
+
+  /** Returns the custom date filter if it exists in the current filter set */
+  static extractCustomDate(queryFilters: CommonFilterType[]): CommonFilterCustomDate | undefined {
+    const maybeItem = _.find(queryFilters, (f) => QueryUtils.byName(f) == QueryUtils.customDateAliasName);
+    return maybeItem ? maybeItem as CommonFilterCustomDate : undefined;
   }
 
   /** Switches between string and array formulation */
