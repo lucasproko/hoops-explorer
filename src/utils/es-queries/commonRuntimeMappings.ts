@@ -1,14 +1,14 @@
 
 import _ from "lodash";
 
-import { CommonFilterParams } from "../FilterModels";
+import { CommonFilterParams, ParamDefaults } from '../FilterModels';
 import { CommonFilterType, QueryUtils } from "../QueryUtils";
 
 export const commonRuntimeMappings = function(
   params: CommonFilterParams,
   lastDate: number, publicEfficiency: any, lookup: any
 ) {
-  const queryFilters = QueryUtils.parseFilter(params.queryFilters || "");
+  const queryFilters = QueryUtils.parseFilter(params.queryFilters || "", params.year || ParamDefaults.defaultYear);
   return {
     runtime_mappings: {
       vs_high_major: {

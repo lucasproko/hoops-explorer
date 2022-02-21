@@ -1,5 +1,5 @@
 
-import { CommonFilterParams } from "../FilterModels";
+import { CommonFilterParams, ParamDefaults } from '../FilterModels';
 import { CommonFilterType, QueryUtils } from "../QueryUtils";
 import _ from 'lodash';
 
@@ -63,7 +63,7 @@ const dateFilter = (date: "Nov-Dec" | "Jan-Apr" | "Last-30d", year: string, last
 
 /** Common util for here + commonOnOffBaseQuery to handle pre-built filters */
 export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, yearStr: string | undefined, lastDate: number) => {
-  const queryFilters = QueryUtils.parseFilter(queryFiltersStr || "");
+  const queryFilters = QueryUtils.parseFilter(queryFiltersStr || "", yearStr || ParamDefaults.defaultYear);
   return _.flatten([
     QueryUtils.filterHas(queryFilters, "Conf") ? [{
       "query_string": {
