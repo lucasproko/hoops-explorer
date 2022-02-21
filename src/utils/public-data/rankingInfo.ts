@@ -52,7 +52,7 @@ const apPollMen_2021_22: Record<string, number> = _.chain(`
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
    .assign(
       {
-         __week__: 15
+         __week__: 16
       }
    ).value();
 
