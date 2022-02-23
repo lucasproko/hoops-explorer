@@ -5,16 +5,14 @@ import _ from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
-import { TeamStatSet } from '../../utils/StatModels';
+import { TeamStatSet, PureStatSet } from '../../utils/StatModels';
+import { DerivedStatsUtils } from '../../utils/stats/DerivedStatsUtils';
 
 type Props = {
     name: string,
@@ -22,21 +20,21 @@ type Props = {
 };
 const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatSet}) => {
 
-    //TODO things I can display:
+    const extraStats = {} as PureStatSet;
+    DerivedStatsUtils.injectDerivedStats(teamStatSet, extraStats);
+
+    // Things I can display:
     // Off and Def:
     // - ORB related info ... scramble vs recycle, on scramble: 3PA%, FTR%, TO% -> raw efficiency (delta)
     // - transition related info ... 3PA%, FTR%, TO% -> raw efficiency (delta)
     // - assist related info ... usual
 
     /** See also TableDisplayUtils.injectPlayTypeInfo */
-    const postOrbInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
-        const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
-        const totalOrbs = stat[`total_${offDef}_orb`]?.value || 1;
-        const scramblePct = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalPoss;
-        const scrambleOrbRatio = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalOrbs;
-        const totalPpp = (stat[`${offDef}_ppp`]?.value || 0); //TODO: depends on player vs team/lineup
-        const scramblePpp = (stat[`${offDef}_scramble_ppp`]?.value || 0) ;
-        const scramblePppDelta = scramblePpp - totalPpp;
+    const postOrbInfoBuilder = (offDef: "off" | "def") => {
+        const scramblePct = 100*(extraStats[`${offDef}_scramble`]?.value || 0);
+        const scrambleOrbRatio = 100*(extraStats[`${offDef}_scramble_per_orb`]?.value || 0);
+        const scramblePpp = extraStats[`${offDef}_scramble_ppp`]?.value || 0; //TODO: include this?
+        const scramblePppDelta = extraStats[`${offDef}_scramble_delta_ppp`]?.value || 0;
         const scramblePm = scramblePppDelta > 0 ? "+" : "";
   
         const effColor = offDef == "off" ? CbbColors.off_diff10_p100_redGreen : CbbColors.def_diff10_p100_redGreen;
@@ -49,12 +47,10 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         </li>;
     };
     /** See also TableDisplayUtils.injectPlayTypeInfo */
-    const transitionInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
-        const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
-        const transPct = 100*(stat[`total_${offDef}_trans_poss`]?.value || 0)/totalPoss;
-        const totalPpp = (stat[`${offDef}_ppp`]?.value || 0); 
-        const transPpp = (stat[`${offDef}_trans_ppp`]?.value || 0);
-        const transPppDelta = transPpp - totalPpp;
+    const transitionInfoBuilder = (offDef: "off" | "def") => {
+        const transPct = 100*(extraStats[`${offDef}_trans`]?.value || 0);
+        const transPpp = extraStats[`${offDef}_trans_ppp`]?.value || 0; //TODO: include this?
+        const transPppDelta = extraStats[`${offDef}_trans_delta_ppp`]?.value || 0;
         const transPm = transPppDelta > 0 ? "+" : "";
   
         const offDefIndex = offDef == "off" ? 0 : 1;
@@ -69,16 +65,12 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         </li>;
     };
 
-    const furtherPlayBreakdownBuilder = (stat: TeamStatSet, offDef: "off" | "def", playType: "scramble" | "trans") => {
-        const totalPoss = stat[`total_${offDef}_${playType}_poss`]?.value || 0;
-        const toPct = 100*(stat[`total_${offDef}_${playType}_to`]?.value || 0)/(totalPoss || 1);
-        const fga = stat[`total_${offDef}_${playType}_fga`]?.value || 0;
-        const threePtA = stat[`total_${offDef}_${playType}_3p_attempts`]?.value || 0;
-        const threePtR = 100*threePtA/(fga || 1);
-        const threePct = 100*(stat[`total_${offDef}_${playType}_3p_made`]?.value || 0)/(threePtA || 1);
-        const twoPct = 100*(stat[`total_${offDef}_${playType}_2p_made`]?.value || 0)/
-            (stat[`total_${offDef}_${playType}_2p_attempts`]?.value || 1);
-        const ftr = 100*(stat[`total_${offDef}_${playType}_fta`]?.value || 0)/(fga || 1);
+    const furtherPlayBreakdownBuilder = (offDef: "off" | "def", playType: "scramble" | "trans") => {
+        const toPct = 100*(extraStats[`${offDef}_${playType}_to`]?.value || 0);
+        const ftr = 100*(extraStats[`${offDef}_${playType}_ftr`]?.value || 0);
+        const threePtR = 100*(extraStats[`${offDef}_${playType}_3pr`]?.value || 0);
+        const threePct = 100*(extraStats[`${offDef}_${playType}_3p`]?.value || 0);
+        const twoPct = 100*(extraStats[`${offDef}_${playType}_2p`]?.value || 0);
 
         const offDefIndex = offDef == "off" ? 0 : 1;
         const toColor = CbbColors.tOver[offDefIndex]!;
@@ -123,15 +115,12 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
     };
     
     /** See also TableDisplayUtils.injectPlayTypeInfo */
-    const paceBuilder = (stat: TeamStatSet) => {
-        const totalOffPoss = stat[`off_poss`]?.value || 0;
-        const totalDefPoss = stat[`def_poss`]?.value || 0;
-        const totalTime = stat[`duration_mins`]?.value || 0;
-        const possPer40 = 0.5*(totalOffPoss + totalDefPoss) / (totalTime/40);
-        return totalTime > 0 ? 
+    const paceBuilder = () => {
+        const possPer40 = extraStats[`tempo`]?.value || 0;
+        return possPer40 > 0 ? 
             <span><b style={CommonTableDefs.getTextShadow({ value: possPer40 }, CbbColors.p_tempo)}>[{possPer40.toFixed(1)}]</b> poss/g</span> : undefined;
     }
-    const tempoHtml = paceBuilder(teamStatSet);
+    const tempoHtml = paceBuilder();
     const def_3p_SoS = teamStatSet[`def_3p_opp`]?.value || 0;
 
     return <span>
@@ -139,20 +128,20 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         <ul>
             <li><b>Offense</b></li>
             <ul>
-                {transitionInfoBuilder(teamStatSet, "off")}
-                {furtherPlayBreakdownBuilder(teamStatSet, "off", "trans")}
-                {postOrbInfoBuilder(teamStatSet, "off")}
-                {furtherPlayBreakdownBuilder(teamStatSet, "off", "scramble")}
+                {transitionInfoBuilder("off")}
+                {furtherPlayBreakdownBuilder("off", "trans")}
+                {postOrbInfoBuilder("off")}
+                {furtherPlayBreakdownBuilder("off", "scramble")}
                 {assistInfoBuilder(teamStatSet, "off")}
                 {assistedInfoBuilder(teamStatSet, "off")}
             </ul>
             <li><b>Defense</b></li>
             <ul>
                 <li>3P SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.off_3P)}>{def_3p_SoS.toFixed(1)}</b>]%</li>
-                {transitionInfoBuilder(teamStatSet, "def")}
-                {furtherPlayBreakdownBuilder(teamStatSet, "def", "trans")}
-                {postOrbInfoBuilder(teamStatSet, "def")}
-                {furtherPlayBreakdownBuilder(teamStatSet, "def", "scramble")}
+                {transitionInfoBuilder("def")}
+                {furtherPlayBreakdownBuilder("def", "trans")}
+                {postOrbInfoBuilder("def")}
+                {furtherPlayBreakdownBuilder("def", "scramble")}
                 {assistInfoBuilder(teamStatSet, "def")}
                 {assistedInfoBuilder(teamStatSet, "def")}
             </ul>

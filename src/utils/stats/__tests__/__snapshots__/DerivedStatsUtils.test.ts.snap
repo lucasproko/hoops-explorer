@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DerivedStatsUtils DerivedStatsUtils.injectDerivedStats 1`] = `
+Object {
+  "def_scramble": Object {
+    "value": 0.08527071563674632,
+  },
+  "def_scramble_2p": Object {
+    "value": 0.4766355140186916,
+  },
+  "def_scramble_3p": Object {
+    "value": 0.42857142857142855,
+  },
+  "def_scramble_3pr": Object {
+    "value": 0.24647887323943662,
+  },
+  "def_scramble_delta_ppp": Object {
+    "value": 8.196096883864556,
+  },
+  "def_scramble_ftr": Object {
+    "value": 0.4507042253521127,
+  },
+  "def_scramble_per_orb": Object {
+    "value": 0.583711708026543,
+  },
+  "def_scramble_ppp": Object {
+    "value": 0.08527071563674632,
+  },
+  "def_scramble_to": Object {
+    "value": 0.14088605894731104,
+  },
+  "def_trans": Object {
+    "value": 0.19610764055742433,
+  },
+  "def_trans_2p": Object {
+    "value": 0.5286624203821656,
+  },
+  "def_trans_3p": Object {
+    "value": 0.35294117647058826,
+  },
+  "def_trans_3pr": Object {
+    "value": 0.4311594202898551,
+  },
+  "def_trans_delta_ppp": Object {
+    "value": -5.395533808941735,
+  },
+  "def_trans_ftr": Object {
+    "value": 0.42028985507246375,
+  },
+  "def_trans_ppp": Object {
+    "value": 90.66405292820387,
+  },
+  "def_trans_to": Object {
+    "value": 0.18867924528301885,
+  },
+  "off_scramble": Object {
+    "value": 0.10780838866433026,
+  },
+  "off_scramble_2p": Object {
+    "value": 0.5755395683453237,
+  },
+  "off_scramble_3p": Object {
+    "value": 0.28888888888888886,
+  },
+  "off_scramble_3pr": Object {
+    "value": 0.24456521739130435,
+  },
+  "off_scramble_delta_ppp": Object {
+    "value": 8.046930109156818,
+  },
+  "off_scramble_ftr": Object {
+    "value": 0.47282608695652173,
+  },
+  "off_scramble_per_orb": Object {
+    "value": 0.6415989205037649,
+  },
+  "off_scramble_ppp": Object {
+    "value": 0.10780838866433026,
+  },
+  "off_scramble_to": Object {
+    "value": 0.12057984260228126,
+  },
+  "off_trans": Object {
+    "value": 0.24058738565238325,
+  },
+  "off_trans_2p": Object {
+    "value": 0.6779661016949152,
+  },
+  "off_trans_3p": Object {
+    "value": 0.30935251798561153,
+  },
+  "off_trans_3pr": Object {
+    "value": 0.439873417721519,
+  },
+  "off_trans_delta_ppp": Object {
+    "value": 0.0905502377016063,
+  },
+  "off_trans_ftr": Object {
+    "value": 0.6708860759493671,
+  },
+  "off_trans_ppp": Object {
+    "value": 107.2643586151691,
+  },
+  "off_trans_to": Object {
+    "value": 0.16609965979587754,
+  },
+  "tempo": Object {
+    "value": 83.16,
+  },
+}
+`;
