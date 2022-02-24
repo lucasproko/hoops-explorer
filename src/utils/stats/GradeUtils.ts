@@ -16,12 +16,15 @@ export class GradeUtils {
       "3p_opp"
     ];
 
-    /* Fields derived in DerivedStatsUtils */
-    static readonly derivedFields = [
+   /* Fields derived in DerivedStatsUtils */
+   static readonly derivedFields = [
        "scramble", "scramble_per_orb", "scramble_ppp", "scramble_delta_ppp",
        "trans", "trans_ppp", "trans_delta_ppp",
        "scramble_to", "scramble_ftr", "scramble_3pr", "scramble_3p", "scramble_2p",
        "trans_to", "trans_ftr", "trans_3pr", "trans_3p", "trans_2p",
+
+      // Not in dataset but used here in extra dialog, so include for convenience (ignored if not present anyway)
+      "3p_opp"
     ];
 
    /** Add a team's stats to the divison stats collection  */
@@ -149,7 +152,7 @@ export class GradeUtils {
    } as Record<string, boolean>;
 
    /** Calculate the percentile of all fields within a stat set */
-   static buildTeamPercentiles = (divStats: DivisionStatistics, team: TeamStatSet, supportRank: boolean): PureStatSet => {
+   static buildTeamPercentiles = (divStats: DivisionStatistics, team: PureStatSet, fieldList: string[], supportRank: boolean): PureStatSet => {
       const format = (f: string, s: Statistic | undefined) => {
          const isDef = f.startsWith("def_");
          const isInverted = GradeUtils.fieldsToInvert[f] || false;
@@ -159,12 +162,13 @@ export class GradeUtils {
             : { value: s?.value, samples: supportRank ? s?.samples : 0 };
          return maybeInvert;
       }
-      return _.chain(divStats.tier_lut).mapValues((val, key) => {
+      const offDefFieldList = _.flatMap(fieldList, field => [ `off_${field}`, `def_${field}` ]);
+      return _.chain(offDefFieldList).map(key => {
          const adjustedKey = (key == "def_net" ? "off_raw_net" : key);
          const teamVal = team[adjustedKey]?.value;
-         return _.isNumber(teamVal) ? 
+         return [ key, _.isNumber(teamVal) ? 
             format(key, GradeUtils.getPercentile(divStats, key, teamVal)) 
-            : undefined;
-      }).omitBy(_.isNil).value() as PureStatSet;
+            : undefined ];
+      }).fromPairs().omitBy(_.isNil).value() as PureStatSet;
    }
 }

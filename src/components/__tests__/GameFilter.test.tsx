@@ -1,6 +1,6 @@
 import React from 'react';
 import GameFilter from '../GameFilter';
-import { GameFilterParams } from "../utils/FilterModels";
+import { GameFilterParams } from "../../utils/FilterModels";
 import { TeamStatsModel } from '../TeamStatsTable';
 import { RosterCompareModel } from '../RosterCompareTable';
 import { shallow } from 'enzyme'

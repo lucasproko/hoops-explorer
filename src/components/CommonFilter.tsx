@@ -280,8 +280,10 @@ const CommonFilter: CommonFilterI = ({
   /** If the params match the last request, disable submit */
   function shouldSubmitBeDisabled() {
     const newParams = buildParamsFromState(false)[0];
-
-    const paramsUnchanged = Object.keys(newParams).filter((key) => {
+    const moreSpecialCaseKeys = ["onQueryFilters", "offQueryFilters"];
+      //(we remove these GameFilterParams from the query if they are null, handle that here)
+      //TODO: really need to tidy up all these "missing if empty" special case clauses...
+    const paramsUnchanged = _.keys(newParams).concat(moreSpecialCaseKeys).filter((key) => {
       return (key != "filterGarbage") && (key != "queryFilters");
     }).every(
       (key: string) => (newParams as any)[key] == (currState as any)[key]

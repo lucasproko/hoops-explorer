@@ -310,6 +310,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   /** If true, then repeat the table headers */
   const showingSomeDiags = showExtraInfo || showGrades || showRoster || showPlayTypes || showLuckAdjDiags;
+  const showingOn = teamStats.on?.doc_count ? true : false;
+  const showingOnOrOff = showingOn || (teamStats.off?.doc_count ? true : false);
 
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? _.flatten([
@@ -323,8 +325,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           team:teamStats.on
         }) : [],
         showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-          name="On"
-          teamStatSet={teamStats.on}
+            name="On"
+            teamStatSet={teamStats.on}
+            showGrades={showGrades}
+            grades={showGrades ? {
+              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,  
+            } : undefined}
           /></span>, "small pt-2")
         ] : [],
         showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
@@ -364,7 +371,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     (teamStats.off?.doc_count) ? _.flatten([
-      (showingSomeDiags) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
+      (showingSomeDiags && showingOn) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.off?.doc_count ? 
@@ -375,8 +382,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           team:teamStats.off
         }) : [],
         showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-          name="Off"
-          teamStatSet={teamStats.off}
+            name="Off"
+            teamStatSet={teamStats.off}
+            showGrades={showGrades}
+            grades={showGrades ? {
+              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,  
+            } : undefined}
           /></span>, "small pt-2")
         ] : [],
         showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
@@ -416,7 +428,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     _.flatten([
-      (showingSomeDiags) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
+      (showingSomeDiags && showingOnOrOff) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.baseline?.doc_count ? 
@@ -427,8 +439,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           team:teamStats.baseline
         }) : [],
         showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-          name="Baseline"
-          teamStatSet={teamStats.baseline}
+            name="Baseline"
+            teamStatSet={teamStats.baseline}
+            showGrades={showGrades}
+            grades={showGrades ? {
+              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,  
+            } : undefined}
           /></span>, "small pt-2")
         ] : [],
         showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>

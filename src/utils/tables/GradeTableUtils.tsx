@@ -128,7 +128,7 @@ export class GradeTableUtils {
             </OverlayTrigger>)}
       </span>;
 
-      const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team, gradeFormat == "rank")  : {};
+      const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team, GradeUtils.fieldsToRecord, gradeFormat == "rank")  : {};
 
       // Special field formatting:
       const eqRankTooltip = <Tooltip id={`eqRankTooltip`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;

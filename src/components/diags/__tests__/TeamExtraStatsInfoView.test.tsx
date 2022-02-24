@@ -16,6 +16,7 @@ describe("TeamExtraStatsInfoView", () => {
       <TeamExtraStatsInfoView
         name="test"
         teamStatSet={teamData.baseline}
+        showGrades=""
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
