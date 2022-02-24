@@ -41,6 +41,7 @@ import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataL
 import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { GradeUtils } from '../utils/stats/GradeUtils';
+import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -376,8 +377,11 @@ export async function main() {
             teamBaseline.def_net = { value: (teamBaseline.off_ppp?.value || 100) - (teamBaseline.def_ppp?.value || 100) };
           }
 
-          // Build all the samples ready for percentils:
-          GradeUtils.buildAndInjectDivisionStats(teamBaseline, mutableDivisionStats, inNaturalTier);
+          // Add other derived stats:
+          const extraFields = DerivedStatsUtils.injectDerivedStats(teamBaseline, {});
+
+          // Build all the samples ready for percentiles:
+          GradeUtils.buildAndInjectDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
 
           teamInfo.push({
             team_name: fullRequestModel.team,

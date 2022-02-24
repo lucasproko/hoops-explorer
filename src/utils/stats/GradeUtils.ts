@@ -10,18 +10,29 @@ export class GradeUtils {
    static readonly fieldsToRecord = [ 
       "net", "ppp", "adj_ppp", 
       "efg", "to", "orb", "ftr", "assist", "3pr", "2pmidr", "2primr", 
-      "3p", "2p", "2pmid", "2prim", "adj_opp"
+      "3p", "2p", "2pmid", "2prim", "adj_opp",
+
+      // Not in table
+      "3p_opp"
+    ];
+
+    /* Fields derived in DerivedStatsUtils */
+    static readonly derivedFields = [
+       "scramble", "scramble_per_orb", "scramble_ppp", "scramble_delta_ppp",
+       "trans", "trans_ppp", "trans_delta_ppp",
+       "scramble_to", "scramble_ftr", "scramble_3pr", "scramble_3p", "scramble_2p",
+       "trans_to", "trans_ftr", "trans_3pr", "trans_3p", "trans_2p",
     ];
 
    /** Add a team's stats to the divison stats collection  */
-   static buildAndInjectDivisionStats = (teamBaseline: TeamStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean) => {
-      //TODO: more complex: also derived fields (scoring %s, transition + scramble play)
+   static buildAndInjectDivisionStats = (teamBaseline: TeamStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean) => {
+      //TODO: more complex: also style-based fields
       mutableDivisionStats.tier_sample_size += 1;
       if (inNaturalTier) {
         mutableDivisionStats.dedup_sample_size += 1;
       }
-      _.chain(GradeUtils.fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ]).forEach(field => {
-         const maybeStat = teamBaseline[field]?.value;
+      const updateForField = (field: string, dataSet: PureStatSet) => {
+         const maybeStat = dataSet[field]?.value;
          if (!_.isNil(maybeStat)) {
            if (!mutableDivisionStats.tier_samples[field]) {
              mutableDivisionStats.tier_samples[field] = [];
@@ -35,7 +46,11 @@ export class GradeUtils {
              mutableDivisionStats.dedup_samples[field]!.push(maybeStat);
            }
          }
-      }).value();
+      }
+      _.chain(GradeUtils.fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ])
+         .forEach(f => updateForField(f, teamBaseline)).value();
+      _.chain(GradeUtils.derivedFields).flatMap(field => [ `off_${field}`, `def_${field}` ]).concat([ "tempo" ])
+         .forEach(f => updateForField(f, derivedStats)).value();
    };
 
    /** Convert an unsorted list of samples into an LUT for Divison Stats */
