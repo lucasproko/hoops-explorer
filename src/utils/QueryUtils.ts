@@ -299,7 +299,8 @@ export class QueryUtils {
 
   /** Adds a new custom date (overwrite the current one if it exists), or removes the custom date */
   static setCustomDate(curr: CommonFilterType[], setOrUnset: CommonFilterCustomDate | undefined) {
-    return QueryUtils.filterWithout(curr, [ QueryUtils.customDateAliasName ]).concat(
+    return QueryUtils.filterWith(
+      QueryUtils.filterWithout(curr, [ QueryUtils.customDateAliasName ]), 
       setOrUnset ? [ setOrUnset ] : []
     );
   }
