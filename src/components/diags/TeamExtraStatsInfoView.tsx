@@ -21,7 +21,7 @@ type Props = {
 const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatSet}) => {
 
     const extraStats = {} as PureStatSet;
-    DerivedStatsUtils.injectDerivedStats(teamStatSet, extraStats);
+    DerivedStatsUtils.injectTeamDerivedStats(teamStatSet, extraStats);
 
     // Things I can display:
     // Off and Def:

@@ -378,7 +378,7 @@ export async function main() {
           }
 
           // Add other derived stats:
-          const extraFields = DerivedStatsUtils.injectDerivedStats(teamBaseline, {});
+          const extraFields = DerivedStatsUtils.injectTeamDerivedStats(teamBaseline, {});
 
           // Build all the samples ready for percentiles:
           GradeUtils.buildAndInjectDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);

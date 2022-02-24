@@ -12,7 +12,7 @@ describe("DerivedStatsUtils", () => {
 
    /** Tests all the methods in one go */
    test("DerivedStatsUtils.injectDerivedStats", () => {
-      const derivedStats = DerivedStatsUtils.injectDerivedStats(teamData.baseline, {} as PureStatSet);
+      const derivedStats = DerivedStatsUtils.injectTeamDerivedStats(teamData.baseline, {} as PureStatSet);
       expect(derivedStats).toMatchSnapshot();
    });
 });

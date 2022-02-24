@@ -15,6 +15,7 @@ import { PositionUtils } from "../stats/PositionUtils";
 import { CommonTableDefs } from "../tables/CommonTableDefs";
 import "./TableDisplayUtils.css";
 import { TeamStatSet, LineupStatSet, PureStatSet, Statistic, IndivStatSet, LineupEnrichment, TeamEnrichment } from '../StatModels';
+import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
@@ -215,17 +216,17 @@ export class TableDisplayUtils {
         <li>{rimPct}% at the rim</li>
       </span>;
     }
-    /** See also TeamExtraStatsInfoView */
     const playCategoryBuilder = (stat: PureStatSet, offDef: "off" | "def") => {
-      const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
-      const scramblePct = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalPoss;
-      const transPct = 100*(stat[`total_${offDef}_trans_poss`]?.value || 0)/totalPoss;
-      const totalPpp = (stat[`${offDef}_ppp`]?.value || 0); //TODO: depends on player vs team/lineup
-      const scramblePpp = (stat[`${offDef}_scramble_ppp`]?.value || 0) ;
-      const scramblePppDelta = scramblePpp - totalPpp;
+      const mutableExtraStats = {} as PureStatSet;
+      DerivedStatsUtils.injectScrambleStats(stat, offDef, mutableExtraStats);
+      DerivedStatsUtils.injectTransitionStats(stat, offDef, mutableExtraStats);
+
+      const scramblePct = 100*(mutableExtraStats[`${offDef}_scramble`]?.value || 0);
+      const scramblePppDelta = mutableExtraStats[`${offDef}_scramble_delta_ppp`]?.value || 0;
       const scramblePm = scramblePppDelta > 0 ? "+" : "";
-      const transPpp = (stat[`${offDef}_trans_ppp`]?.value || 0);
-      const transPppDelta = transPpp - totalPpp;
+
+      const transPct = 100*(mutableExtraStats[`${offDef}_trans`]?.value || 0);
+      const transPppDelta = mutableExtraStats[`${offDef}_trans_delta_ppp`]?.value || 0;
       const transPm = transPppDelta > 0 ? "+" : "";
 
       return <span>
@@ -240,13 +241,11 @@ export class TableDisplayUtils {
         }
       </span>;
     };
-    /** See also TeamExtraStatsInfoView */
     const paceBuilder = (stat: PureStatSet, isPlayer: boolean) => {
-      const totalOffPoss = (isPlayer ? stat[`off_team_poss`]?.value : stat[`off_poss`]?.value) || 0;
-      const totalDefPoss = (isPlayer ? totalOffPoss : stat[`def_poss`]?.value) || 0;
-      const totalTime = stat[`duration_mins`]?.value || 0;
-      const possPer40 = 0.5*(totalOffPoss + totalDefPoss) / (totalTime/40);
-      return totalTime > 0 ? <span>{possPer40.toFixed(1)} poss/g</span> : undefined;
+      const mutableExtraStats = {} as PureStatSet;
+      DerivedStatsUtils.injectPaceStats(stat, mutableExtraStats, isPlayer);
+      const possPer40 = mutableExtraStats[`tempo`]?.value || 0;
+      return possPer40 > 0 ? <span>{possPer40.toFixed(1)} poss/g</span> : undefined;
     }
 
     if (statSet.off_assist) {
