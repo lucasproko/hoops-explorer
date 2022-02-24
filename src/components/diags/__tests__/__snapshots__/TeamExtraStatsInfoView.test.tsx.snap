@@ -7,445 +7,550 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
     test
     ]
   </b>
+  <br />
+  <br />
+  <a>
+    Play type stats:
+  </a>
+  <Container
+    fluid={false}
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        lg={8}
+        xs={12}
+      >
+        <GenericTable
+          tableCopyId="playTypeStats_test"
+          tableData={
+            Array [
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "off_2p": Object {
+                    "value": 0.6779661016949152,
+                  },
+                  "off_3p": Object {
+                    "value": 0.30935251798561153,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.439873417721519,
+                  },
+                  "off_delta_ppp": Object {
+                    "value": 0.0905502377016063,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.6708860759493671,
+                  },
+                  "off_pct": Object {
+                    "value": 0.24058738565238325,
+                  },
+                  "off_pct_orbs": undefined,
+                  "off_title": "Transition Offense",
+                  "off_to": Object {
+                    "value": 0.16609965979587754,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "off_2p": Object {
+                    "value": 0.5755395683453237,
+                  },
+                  "off_3p": Object {
+                    "value": 0.28888888888888886,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.24456521739130435,
+                  },
+                  "off_delta_ppp": Object {
+                    "value": 8.046930109156818,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.47282608695652173,
+                  },
+                  "off_pct": Object {
+                    "value": 0.10780838866433026,
+                  },
+                  "off_pct_orbs": Object {
+                    "value": 0.6415989205037649,
+                  },
+                  "off_title": "Scramble Offense",
+                  "off_to": Object {
+                    "value": 0.12057984260228126,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": Object {
+                  "pct": GenericTableColProps {
+                    "className": "",
+                    "colName": "%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Percentage of possessions this play type occurs",
+                    "widthUnits": 2,
+                  },
+                },
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.5286624203821656,
+                  },
+                  "def_3p": Object {
+                    "value": 0.35294117647058826,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.4311594202898551,
+                  },
+                  "def_delta_ppp": Object {
+                    "value": -5.395533808941735,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.42028985507246375,
+                  },
+                  "def_pct": Object {
+                    "value": 0.19610764055742433,
+                  },
+                  "def_pct_orbs": undefined,
+                  "def_title": "Transition Defense",
+                  "def_to": Object {
+                    "value": 0.18867924528301885,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.4766355140186916,
+                  },
+                  "def_3p": Object {
+                    "value": 0.42857142857142855,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.24647887323943662,
+                  },
+                  "def_delta_ppp": Object {
+                    "value": 8.196096883864556,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.4507042253521127,
+                  },
+                  "def_pct": Object {
+                    "value": 0.08527071563674632,
+                  },
+                  "def_pct_orbs": Object {
+                    "value": 0.583711708026543,
+                  },
+                  "def_title": "Scramble Defense",
+                  "def_to": Object {
+                    "value": 0.14088605894731104,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": Object {
+                  "pct": GenericTableColProps {
+                    "className": "",
+                    "colName": "%",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "Percentage of possessions this play type occurs",
+                    "widthUnits": 2,
+                  },
+                },
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "2p": GenericTableColProps {
+                "className": "",
+                "colName": "2P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage for this play type",
+                "widthUnits": 2,
+              },
+              "3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "3 point field goal percentage for this play type",
+                "widthUnits": 2,
+              },
+              "3pr": GenericTableColProps {
+                "className": "",
+                "colName": "3PR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of 3 pointers taken against all field goals for this play type",
+                "widthUnits": 2,
+              },
+              "delta_ppp": GenericTableColProps {
+                "className": "",
+                "colName": <span>
+                  Δ/100
+                </span>,
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Delta points per 100 possessions between overall play and this play type",
+                "widthUnits": 2,
+              },
+              "ftr": GenericTableColProps {
+                "className": "",
+                "colName": "FTR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Free throw rate  for this play type",
+                "widthUnits": 2,
+              },
+              "pct": GenericTableColProps {
+                "className": "",
+                "colName": "%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of possessions this play type occurs",
+                "widthUnits": 2,
+              },
+              "pct_orbs": GenericTableColProps {
+                "className": "",
+                "colName": "%ORB",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of Off rebounds resulting in a scramble play type",
+                "widthUnits": 2,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "title": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 8,
+              },
+              "to": GenericTableColProps {
+                "className": "",
+                "colName": "TO%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Turnover % for this play type",
+                "widthUnits": 2,
+              },
+            }
+          }
+        />
+      </Col>
+    </Row>
+  </Container>
+  <a>
+    More assist stats:
+  </a>
+  <Container
+    fluid={false}
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        lg={8}
+        xs={12}
+      >
+        <GenericTable
+          tableCopyId="assistStats_test"
+          tableData={
+            Array [
+              GenericTableSubHeaderRow {
+                "className": "text-center",
+                "cols": Array [
+                  "",
+                  <i>
+                    Assist distribution
+                  </i>,
+                  "",
+                  <i>
+                    % of these shots assisted
+                  </i>,
+                ],
+                "kind": "subheader-row",
+                "spans": Array [
+                  2,
+                  3,
+                  1,
+                  3,
+                ],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "off_3p_ast": Object {
+                    "value": 0.4938875305623472,
+                  },
+                  "off_ast_3p": Object {
+                    "value": 0.8487394957983193,
+                  },
+                  "off_ast_mid": Object {
+                    "value": 0.27450980392156865,
+                  },
+                  "off_ast_rim": Object {
+                    "value": 0.4430693069306931,
+                  },
+                  "off_mid_ast": Object {
+                    "value": 0.06845965770171149,
+                  },
+                  "off_rim_ast": Object {
+                    "value": 0.43765281173594134,
+                  },
+                  "off_title": "Offensive assist details",
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "def_3p_ast": Object {
+                    "value": 0.485,
+                  },
+                  "def_ast_3p": Object {
+                    "value": 0.8546255506607929,
+                  },
+                  "def_ast_mid": Object {
+                    "value": 0.3254437869822485,
+                  },
+                  "def_ast_rim": Object {
+                    "value": 0.4507462686567164,
+                  },
+                  "def_mid_ast": Object {
+                    "value": 0.1375,
+                  },
+                  "def_rim_ast": Object {
+                    "value": 0.3775,
+                  },
+                  "def_title": "Defensive assist details",
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "3p_ast": GenericTableColProps {
+                "className": "",
+                "colName": "3P",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of assists for 3P",
+                "widthUnits": 2,
+              },
+              "ast_3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of assists for 3P",
+                "widthUnits": 2,
+              },
+              "ast_mid": GenericTableColProps {
+                "className": "",
+                "colName": "Mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of assists for mid-range 2P",
+                "widthUnits": 2,
+              },
+              "ast_rim": GenericTableColProps {
+                "className": "",
+                "colName": "Mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of assists for 2PAs at the rim",
+                "widthUnits": 2,
+              },
+              "mid_ast": GenericTableColProps {
+                "className": "",
+                "colName": "Mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of assists for mid-range 2P",
+                "widthUnits": 2,
+              },
+              "rim_ast": GenericTableColProps {
+                "className": "",
+                "colName": "Mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of assists for 2PAs at the rim",
+                "widthUnits": 2,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "title": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 8,
+              },
+            }
+          }
+        />
+      </Col>
+    </Row>
+  </Container>
+  <a>
+    Misc other stats:
+  </a>
   <ul>
     <li>
-      <b>
-        Offense
+      3P Defensive SoS: [
+      <b
+        style={
+          Object {
+            "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
+          }
+        }
+      >
+        33.0
       </b>
+      ]%
     </li>
-    <ul>
-      <li>
-        [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-            }
-          }
-        >
-          24.1
-        </b>
-        ]% transition: [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #fdfefd,0px 0px 10px #fdfefd",
-            }
-          }
-        >
-          +
-          0.1
-        </b>
-        ] pts/100
-      </li>
-      <ul>
-        <li>
-          TO=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffe5e5,0px 0px 10px #ffe5e5",
-              }
-            }
-          >
-            16.6
-          </b>
-          ]%, FTR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-              }
-            }
-          >
-            67.1
-          </b>
-          ]%, 3PR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffc55a,0px 0px 10px #ffc55a",
-              }
-            }
-          >
-            44.0
-          </b>
-          ]%, 3P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffb4b4,0px 0px 10px #ffb4b4",
-              }
-            }
-          >
-            30.9
-          </b>
-          ]%, 2P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-              }
-            }
-          >
-            67.8
-          </b>
-          ]%
-        </li>
-      </ul>
-      <li>
-        [
-        <b>
-          10.8
-        </b>
-        ]% scramble ([
-        <b>
-          64.2
-        </b>
-        ]% of ORBs): [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #329932,0px 0px 10px #329932",
-            }
-          }
-        >
-          +
-          8.0
-        </b>
-        ] pts/100
-      </li>
-      <ul>
-        <li>
-          TO=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #57ac57,0px 0px 10px #57ac57",
-              }
-            }
-          >
-            12.1
-          </b>
-          ]%, FTR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
-              }
-            }
-          >
-            47.3
-          </b>
-          ]%, 3PR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #d8ecf3,0px 0px 10px #d8ecf3",
-              }
-            }
-          >
-            24.5
-          </b>
-          ]%, 3P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ff6969,0px 0px 10px #ff6969",
-              }
-            }
-          >
-            28.9
-          </b>
-          ]%, 2P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #3e9f3e,0px 0px 10px #3e9f3e",
-              }
-            }
-          >
-            57.6
-          </b>
-          ]%
-        </li>
-      </ul>
-      <li>
-        Assists: [3P: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffa809,0px 0px 10px #ffa809",
-            }
-          }
-        >
-          49.4
-        </b>
-        %, mid: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-            }
-          }
-        >
-          6.8
-        </b>
-        %, rim: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffc65e,0px 0px 10px #ffc65e",
-            }
-          }
-        >
-          43.8
-        </b>
-        %]
-      </li>
-      <li>
-        Assisted: [3P: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-            }
-          }
-        >
-          84.9
-        </b>
-        %, mid: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #e6f3f7,0px 0px 10px #e6f3f7",
-            }
-          }
-        >
-          27.5
-        </b>
-        %, rim: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffc355,0px 0px 10px #ffc355",
-            }
-          }
-        >
-          44.3
-        </b>
-        %]
-      </li>
-    </ul>
     <li>
-      <b>
-        Defense
-      </b>
-    </li>
-    <ul>
-      <li>
-        3P SoS: [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
-            }
-          }
-        >
-          33.0
-        </b>
-        ]%
-      </li>
-      <li>
-        [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #f7fbfd,0px 0px 10px #f7fbfd",
-            }
-          }
-        >
-          19.6
-        </b>
-        ]% transition: [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #75ba75,0px 0px 10px #75ba75",
-            }
-          }
-        >
-          -5.4
-        </b>
-        ] pts/100
-      </li>
-      <ul>
-        <li>
-          TO=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #85c285,0px 0px 10px #85c285",
-              }
-            }
-          >
-            18.9
-          </b>
-          ]%, FTR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-              }
-            }
-          >
-            42.0
-          </b>
-          ]%, 3PR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffc967,0px 0px 10px #ffc967",
-              }
-            }
-          >
-            43.1
-          </b>
-          ]%, 3P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffabab,0px 0px 10px #ffabab",
-              }
-            }
-          >
-            35.3
-          </b>
-          ]%, 2P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffb6b6,0px 0px 10px #ffb6b6",
-              }
-            }
-          >
-            52.9
-          </b>
-          ]%
-        </li>
-      </ul>
-      <li>
-        [
-        <b>
-          8.5
-        </b>
-        ]% scramble ([
-        <b>
-          58.4
-        </b>
-        ]% of ORBs): [
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ff2e2e,0px 0px 10px #ff2e2e",
-            }
-          }
-        >
-          +
-          8.2
-        </b>
-        ] pts/100
-      </li>
-      <ul>
-        <li>
-          TO=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffaeae,0px 0px 10px #ffaeae",
-              }
-            }
-          >
-            14.1
-          </b>
-          ]%, FTR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-              }
-            }
-          >
-            45.1
-          </b>
-          ]%, 3PR=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #d9edf3,0px 0px 10px #d9edf3",
-              }
-            }
-          >
-            24.6
-          </b>
-          ]%, 3P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
-              }
-            }
-          >
-            42.9
-          </b>
-          ]%, 2P=[
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #c3e1c3,0px 0px 10px #c3e1c3",
-              }
-            }
-          >
-            47.7
-          </b>
-          ]%
-        </li>
-      </ul>
-      <li>
-        Assists: [3P: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffad17,0px 0px 10px #ffad17",
-            }
-          }
-        >
-          48.5
-        </b>
-        %, mid: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
-            }
-          }
-        >
-          13.8
-        </b>
-        %, rim: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffe6b8,0px 0px 10px #ffe6b8",
-            }
-          }
-        >
-          37.8
-        </b>
-        %]
-      </li>
-      <li>
-        Assisted: [3P: 
+      Raw tempo: 
+      <span>
         <b
           style={
             Object {
@@ -453,55 +558,13 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
             }
           }
         >
-          85.5
+          [
+          83.2
+          ]
         </b>
-        %, mid: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #fdfefe,0px 0px 10px #fdfefe",
-            }
-          }
-        >
-          32.5
-        </b>
-        %, rim: 
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffbf4a,0px 0px 10px #ffbf4a",
-            }
-          }
-        >
-          45.1
-        </b>
-        %]
-      </li>
-    </ul>
-    <li>
-      <b>
-        Misc
-      </b>
+         poss/g
+      </span>
     </li>
-    <ul>
-      <li>
-        Raw tempo: 
-        <span>
-          <b
-            style={
-              Object {
-                "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
-              }
-            }
-          >
-            [
-            83.2
-            ]
-          </b>
-           poss/g
-        </span>
-      </li>
-    </ul>
   </ul>
 </span>
 `;

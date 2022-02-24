@@ -8,12 +8,43 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";
+import GenericTable, { GenericTableOps, GenericTableRow, GenericTableColProps } from "../../components/GenericTable";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // Component imports
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { TeamStatSet, PureStatSet, DivisionStatistics } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../../utils/stats/DerivedStatsUtils';
 import { GradeUtils } from '../../utils/stats/GradeUtils';
+
+const playTypeTable = { //accessors vs column metadata
+    "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
+    "sep1": GenericTableOps.addColSeparator(),
+    "pct": GenericTableOps.addPctCol("%", "Percentage of possessions this play type occurs", CommonTableDefs.picker(CbbColors.trans_offDef, CbbColors.trans_offDef)),
+    "pct_orbs": GenericTableOps.addPctCol("%ORB", "Percentage of Off rebounds resulting in a scramble play type", CbbColors.alwaysWhite),
+    "delta_ppp": GenericTableOps.addPtsCol(<span>&Delta;/100</span>, "Delta points per 100 possessions between overall play and this play type", CommonTableDefs.picker(...CbbColors.diff35_p100_redGreen)),
+    "sep2": GenericTableOps.addColSeparator(),
+    "to": GenericTableOps.addPctCol("TO%", "Turnover % for this play type", CommonTableDefs.picker(...CbbColors.tOver)),
+    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate  for this play type", CommonTableDefs.picker(...CbbColors.ftr)),
+    "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals for this play type", CommonTableDefs.picker(...CbbColors.fgr)),
+    "sep3": GenericTableOps.addColSeparator(),
+    "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage for this play type", CommonTableDefs.picker(...CbbColors.fg3P)),
+    "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage for this play type", CommonTableDefs.picker(...CbbColors.fg2P)),
+};
+
+const assistDetailsTable = {
+    "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
+    "sep1": GenericTableOps.addColSeparator(), 
+    "3p_ast": GenericTableOps.addPctCol("3P", "% of assists for 3P", CommonTableDefs.picker(...CbbColors.fgr)),
+    "mid_ast": GenericTableOps.addPctCol("Mid", "% of assists for mid-range 2P", CommonTableDefs.picker(...CbbColors.fgr)),
+    "rim_ast": GenericTableOps.addPctCol("Mid", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
+    "sep2": GenericTableOps.addColSeparator(), 
+    "ast_3p": GenericTableOps.addPctCol("3P", "% of assists for 3P", CommonTableDefs.picker(...CbbColors.fgr)),
+    "ast_mid": GenericTableOps.addPctCol("Mid", "% of assists for mid-range 2P", CommonTableDefs.picker(...CbbColors.fgr)),
+    "ast_rim": GenericTableOps.addPctCol("Mid", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
+};
 
 type GradeProps = {
     comboTier?: DivisionStatistics,
@@ -51,143 +82,109 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
          tierToUse, extraStats, GradeUtils.derivedFields, gradeFormat == "rank"
     )  : {};
 
-    // Things I can display:
-    // Off and Def:
-    // - ORB related info ... scramble vs recycle, on scramble: 3PA%, FTR%, TO% -> raw efficiency (delta)
-    // - transition related info ... 3PA%, FTR%, TO% -> raw efficiency (delta)
-    // - assist related info ... usual
+    const offPrefixFn = (key: string) => "off_" + key;
+    const offCellMetaFn = (key: string, val: any) => "off";
+    const defPrefixFn = (key: string) => "def_" + key;
+    const defCellMetaFn = (key: string, val: any) => "def";
+    const offDef = "off";
+    const buildPlayTypeDataRow = (offDef: "off" | "def", playType: "trans" | "scramble") => {
+        const offNotDef = offDef == "off";
+        const isTrans = playType == "trans";
+        const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
+        return GenericTableOps.buildDataRow({
+            [`${offDef}_title`]: `${isTrans ? "Transition" : "Scramble"} ${offNotDef ? "Offense" : "Defense"}`,
+            [`${offDef}_pct`]: extraStats[`${offDef}_${playType}`],
+            [`${offDef}_pct_orbs`]: isTrans ? undefined : extraStats[`${offDef}_scramble_per_orb`],
+            [`${offDef}_delta_ppp`]: (pct > 0) ? extraStats[`${offDef}_${playType}_delta_ppp`] : undefined,
 
-    const transitionInfoBuilder = (offDef: "off" | "def") => {
-        const transPct = 100*(extraStats[`${offDef}_trans`]?.value || 0);
-        const transPpp = extraStats[`${offDef}_trans_ppp`]?.value || 0; //TODO: include this?
-        const transPppDelta = extraStats[`${offDef}_trans_delta_ppp`]?.value || 0;
-        const transPm = transPppDelta > 0 ? "+" : "";
-  
-        const offDefIndex = offDef == "off" ? 0 : 1;
-        const effColor = CbbColors.diff10_p100_redGreen[offDefIndex]!;
-        const transColor = CbbColors.p_trans; //(orange/blue are the same off vs def)
+            [`${offDef}_to`]: extraStats[`${offDef}_${playType}_to`],
+            [`${offDef}_ftr`]: extraStats[`${offDef}_${playType}_ftr`],
+            [`${offDef}_3pr`]: extraStats[`${offDef}_${playType}_3pr`],
 
-        return transPct > 5 ? <li>
-            [<b style={CommonTableDefs.getTextShadow({ value: transPct }, transColor)}>{transPct.toFixed(1)}</b>]% transition:
-            [<b style={CommonTableDefs.getTextShadow({ value: transPppDelta }, effColor)}>{transPm}{transPppDelta.toFixed(1)}</b>] pts/100
-        </li> : <li>
-            [<b style={CommonTableDefs.getTextShadow({ value: transPct }, transColor)}>{transPct.toFixed(1)}</b>]% transition
-        </li>;
+            [`${offDef}_3p`]: extraStats[`${offDef}_${playType}_3p`],
+            [`${offDef}_2p`]: extraStats[`${offDef}_${playType}_2p`],
+
+        }, offNotDef ? offPrefixFn : defPrefixFn, offNotDef ? offCellMetaFn : defCellMetaFn, 
+            isTrans ? undefined : {
+                pct: GenericTableOps.addPctCol("%", "Percentage of possessions this play type occurs", CbbColors.alwaysWhite)
+            });
     };
-    const transitionInfoRankBuilder = (offDef: "off" | "def") => {
-        const transPct = 100*(extraStats[`${offDef}_trans`]?.value || 0);
+    const playTypeTableData = [
+        buildPlayTypeDataRow("off", "trans"),
+        buildPlayTypeDataRow("off", "scramble"),
+        GenericTableOps.buildRowSeparator(),
+        buildPlayTypeDataRow("def", "trans"),
+        buildPlayTypeDataRow("def", "scramble"),
+    ];
 
-        return transPct > 5 ? <ul>
-            <li><i><b>Ranks</b>: transition%: [{teamPercentiles.off_trans?.value?.toFixed(2)}]
-            , raw pts/100: [{teamPercentiles.off_trans_ppp?.value?.toFixed(2)}]
-            , delta pts/100: [{teamPercentiles.off_trans_delta_ppp?.value?.toFixed(2)}]</i></li>
-        </ul> : <ul>
+    const buildAssistDataRow = (offDef: "off" | "def") => {
+        const offNotDef = offDef == "off";
+        return GenericTableOps.buildDataRow({
+            [`${offDef}_title`]: `${offNotDef ? "Offensive" : "Defensive"} assist details`,
 
-        </ul>;
-    };
-    const postOrbInfoBuilder = (offDef: "off" | "def") => {
-        const scramblePct = 100*(extraStats[`${offDef}_scramble`]?.value || 0);
-        const scrambleOrbRatio = 100*(extraStats[`${offDef}_scramble_per_orb`]?.value || 0);
-        const scramblePpp = extraStats[`${offDef}_scramble_ppp`]?.value || 0; //TODO: include this?
-        const scramblePppDelta = extraStats[`${offDef}_scramble_delta_ppp`]?.value || 0;
-        const scramblePm = scramblePppDelta > 0 ? "+" : "";
-  
-        const effColor = offDef == "off" ? CbbColors.off_diff10_p100_redGreen : CbbColors.def_diff10_p100_redGreen;
-
-        return scramblePct > 5 ? <li>
-            [<b>{scramblePct.toFixed(1)}</b>]% scramble ([<b>{scrambleOrbRatio.toFixed(1)}</b>]% of ORBs):
-            [<b style={CommonTableDefs.getTextShadow({ value: scramblePppDelta }, effColor)}>{scramblePm}{scramblePppDelta.toFixed(1)}</b>] pts/100
-        </li> : <li>
-            [<b>{scramblePct.toFixed(1)}</b>]% scramble
-        </li>;
-    };
-
-    const furtherPlayBreakdownBuilder = (offDef: "off" | "def", playType: "scramble" | "trans") => {
-        const toPct = 100*(extraStats[`${offDef}_${playType}_to`]?.value || 0);
-        const ftr = 100*(extraStats[`${offDef}_${playType}_ftr`]?.value || 0);
-        const threePtR = 100*(extraStats[`${offDef}_${playType}_3pr`]?.value || 0);
-        const threePct = 100*(extraStats[`${offDef}_${playType}_3p`]?.value || 0);
-        const twoPct = 100*(extraStats[`${offDef}_${playType}_2p`]?.value || 0);
-
-        const offDefIndex = offDef == "off" ? 0 : 1;
-        const toColor = CbbColors.tOver[offDefIndex]!;
-        const ftrColor = CbbColors.ftr[offDefIndex]!;
-        const fgrColor = CbbColors.fgr[offDefIndex]!;
-        const threePctColor = CbbColors.fg3P[offDefIndex]!;
-        const twoPctColor = CbbColors.fg2P[offDefIndex]!;
-
-        return <ul>
-            <li>
-                TO=[<b style={CommonTableDefs.getTextShadow({ value: toPct*0.01 }, toColor)}>{toPct.toFixed(1)}</b>]%, 
-                FTR=[<b style={CommonTableDefs.getTextShadow({ value: ftr*0.01 }, ftrColor)}>{ftr.toFixed(1)}</b>]%, 
-                3PR=[<b style={CommonTableDefs.getTextShadow({ value: threePtR*0.01 }, fgrColor)}>{threePtR.toFixed(1)}</b>]%, 
-                3P=[<b style={CommonTableDefs.getTextShadow({ value: threePct*0.01 }, threePctColor)}>{threePct.toFixed(1)}</b>]%, 
-                2P=[<b style={CommonTableDefs.getTextShadow({ value: twoPct*0.01 }, twoPctColor)}>{twoPct.toFixed(1)}</b>]%
-            </li>
-        </ul>;
+            ...(
+                _.chain([ "3p", "mid", "rim" ]).flatMap(field => {
+                    return [
+                        [ `${offDef}_${field}_ast`, teamStatSet[`${offDef}_ast_${field}`] ],
+                        [ `${offDef}_ast_${field}`, teamStatSet[`${offDef}_${field == "3p" ? field : `2p${field}`}_ast`] ],
+                    ];
+                }).fromPairs().value()
+            )
+            
+        }, offNotDef ? offPrefixFn : defPrefixFn, offNotDef ? offCellMetaFn : defCellMetaFn);
     };
 
-    const assistInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
-        const rimPct = (100*(stat[`${offDef}_ast_rim`]?.value || 0));
-        const midPct = (100*(stat[`${offDef}_ast_mid`]?.value || 0));
-        const threePct = (100*(stat[`${offDef}_ast_3p`]?.value || 0));
-        return <li>
-            Assists: [3P: <b style={CommonTableDefs.getTextShadow({ value: threePct*0.01 }, CbbColors.fgr_offDef)}>{threePct.toFixed(1)}</b>%, 
-            mid: <b style={CommonTableDefs.getTextShadow({ value: midPct*0.01 }, CbbColors.fgr_offDef)}>{midPct.toFixed(1)}</b>%, 
-            rim: <b style={CommonTableDefs.getTextShadow({ value: rimPct*0.01 }, CbbColors.fgr_offDef)}>{rimPct.toFixed(1)}</b>%] 
-        </li>;
-    };
+    const assistTableData = [
+        GenericTableOps.buildSubHeaderRow([
+            ["", 2],
+            [<i>Assist distribution</i>, 3],
+            ["", 1],
+            [<i>% of these shots assisted</i>, 3]
+        ] as [string, number][], "text-center"),
+        buildAssistDataRow("off"),
+        buildAssistDataRow("def")
+    ];
 
-    /** See also TableDisplayUtils.injectPlayTypeInfo */
-    const assistedInfoBuilder = (stat: TeamStatSet, offDef: "off" | "def") => {
-        const rimPct = (100*(stat[`${offDef}_2prim_ast`]?.value || 0));
-        const midPct = (100*(stat[`${offDef}_2pmid_ast`]?.value || 0));
-        const threePct = (100*(stat[`${offDef}_3p_ast`]?.value || 0));
-        return <li>
-            Assisted: [3P: <b style={CommonTableDefs.getTextShadow({ value: threePct*0.01 }, CbbColors.p_ast_breakdown)}>{threePct.toFixed(1)}</b>%, 
-            mid: <b style={CommonTableDefs.getTextShadow({ value: midPct*0.01 }, CbbColors.fgr_offDef)}>{midPct.toFixed(1)}</b>%, 
-            rim: <b style={CommonTableDefs.getTextShadow({ value: rimPct*0.01 }, CbbColors.fgr_offDef)}>{rimPct.toFixed(1)}</b>%] 
-        </li>;
-    };
-    
-    /** See also TableDisplayUtils.injectPlayTypeInfo */
-    const paceBuilder = () => {
-        const possPer40 = extraStats[`tempo`]?.value || 0;
-        return possPer40 > 0 ? 
-            <span><b style={CommonTableDefs.getTextShadow({ value: possPer40 }, CbbColors.p_tempo)}>[{possPer40.toFixed(1)}]</b> poss/g</span> : undefined;
-    }
-    const tempoHtml = paceBuilder();
+    const possPer40 = extraStats[`tempo`]?.value || 0;
+    const tempoHtml = possPer40 > 0 ? 
+        <span>
+            <b style={CommonTableDefs.getTextShadow({ value: possPer40 }, CbbColors.p_tempo)}>[{possPer40.toFixed(1)}]</b> poss/g
+        </span> : undefined;
     const def_3p_SoS = teamStatSet[`def_3p_opp`]?.value || 0;
 
     return <span>
         <b>Extra stats info for [{name}]</b>
+        <br/><br/>
+        <a>Play type stats:</a>
+        <Container>
+            <Row>
+                <Col xs={12} lg={8}>
+                    <GenericTable
+                        tableCopyId={`playTypeStats_${name}`}
+                        tableFields={playTypeTable} 
+                        tableData={playTypeTableData}
+                    />
+                </Col>
+            </Row>
+        </Container>
+        <a>More assist stats:</a>
+        <Container>
+            <Row>
+                <Col xs={12} lg={8}>
+                    <GenericTable
+                        tableCopyId={`assistStats_${name}`}
+                        tableFields={assistDetailsTable} 
+                        tableData={assistTableData}
+                    />
+                </Col>
+            </Row>
+        </Container>
+        <a>Misc other stats:</a>
         <ul>
-            <li><b>Offense</b></li>
-            <ul>
-                {transitionInfoBuilder("off")}
-                {false ? transitionInfoRankBuilder("off") : null}
-                {furtherPlayBreakdownBuilder("off", "trans")}
-                {postOrbInfoBuilder("off")}
-                {furtherPlayBreakdownBuilder("off", "scramble")}
-                {assistInfoBuilder(teamStatSet, "off")}
-                {assistedInfoBuilder(teamStatSet, "off")}
-            </ul>
-            <li><b>Defense</b></li>
-            <ul>
-                <li>3P SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.off_3P)}>{def_3p_SoS.toFixed(1)}</b>]%
-                </li>
-                {transitionInfoBuilder("def")}
-                {furtherPlayBreakdownBuilder("def", "trans")}
-                {postOrbInfoBuilder("def")}
-                {furtherPlayBreakdownBuilder("def", "scramble")}
-                {assistInfoBuilder(teamStatSet, "def")}
-                {assistedInfoBuilder(teamStatSet, "def")}
-            </ul>
-            <li><b>Misc</b></li>
-            <ul>
-                <li>Raw tempo: {tempoHtml}</li>
-            </ul>
-        </ul>
+            <li>3P Defensive SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.off_3P)}>{def_3p_SoS.toFixed(1)}</b>]%
+            </li>
+            <li>Raw tempo: {tempoHtml}</li>
+        </ul>                
     </span>;
 };
 export default TeamExtraStatsInfoView;

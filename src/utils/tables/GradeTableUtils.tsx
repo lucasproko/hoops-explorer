@@ -5,9 +5,6 @@ import _ from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
@@ -17,9 +14,9 @@ import { CbbColors } from "../../utils/CbbColors";
 import { GradeUtils } from "../../utils/stats/GradeUtils";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "../../components/GenericTable";
+import { GenericTableOps, GenericTableRow } from "../../components/GenericTable";
 import { DivisionStatistics, TeamStatSet } from '../../utils/StatModels';
-import { GenericTableRow } from '../../components/GenericTable';
+import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 
 type Props = {
    config: string,
@@ -70,8 +67,8 @@ const onOffTable = { //accessors vs column metadata
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
    "2prim": GenericTableOps.addDataCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", 
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "poss": GenericTableOps.addDataCol("Poss", "Unadjusted possessions/game", 
-      CommonTableDefs.picker(...CbbColors.pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+   "poss": GenericTableOps.addDataCol("Tempo", "Unadjusted possessions/game", 
+      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
    "sep4": GenericTableOps.addColSeparator(),
    "adj_opp": GenericTableOps.addDataCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", 
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
@@ -130,23 +127,30 @@ export class GradeTableUtils {
 
       const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team, GradeUtils.fieldsToRecord, gradeFormat == "rank")  : {};
 
+      const tempoObj = DerivedStatsUtils.injectPaceStats(team, {}, false);
+      const tempoGrade = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, tempoObj, [ "tempo" ], gradeFormat == "rank")  : {};
+      if (tempoGrade.tempo) {
+         tempoGrade.tempo.extraInfo = "(Grade for unadjusted poss/g)";
+      }
+      teamPercentiles.off_poss = tempoGrade.tempo;
+
       // Special field formatting:
       const eqRankTooltip = <Tooltip id={`eqRankTooltip`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
       const percentileTooltip = <Tooltip id={`percentileTooltip`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
       (teamPercentiles as any).off_title = gradeFormat == "pct" ? 
          <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-            <b>Off Pctiles</b>
+            <small><b>Off Pctiles</b></small>
          </OverlayTrigger> :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <b>Off Equiv Ranks</b>
+            <small><b>Off Equiv Ranks</b></small>
          </OverlayTrigger>;
       (teamPercentiles as any).def_title = gradeFormat == "pct" ? 
          <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-            <b>Def Pctiles</b>
+            <small><b>Def Pctiles</b></small>
          </OverlayTrigger> :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <b>Def Equiv Ranks</b>
+            <small><b>Def Equiv Ranks</b></small>
          </OverlayTrigger>;
 
       if (gradeFormat == "pct") {
