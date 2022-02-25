@@ -243,7 +243,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
                     <li>Raw tempo: {tempoHtml}</li>
                 </ul>                
             </Row>
-        </Container>;
+        </Container>
     </span>;
 };
 export default TeamExtraStatsInfoView;

@@ -598,6 +598,5 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
       </ul>
     </Row>
   </Container>
-  ;
 </span>
 `;

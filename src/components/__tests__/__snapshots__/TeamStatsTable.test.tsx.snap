@@ -4996,74 +4996,67 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 >
                   <span>
                     <small>
-                      Team Grades
+                      Team Grades 
+                      <div>
+                        <b>
+                          (?)
+                        </b>
+                      </div>
                     </small>
                     : 
                     <span
                       className="small"
                     >
-                      <div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        D1
+                        
+                      </a>
+                       | 
+                      <b>
                         <a
+                          href="#"
                           onClick={[Function]}
                         >
-                          D1
-                          
+                          High
+                           (151)
                         </a>
-                      </div>
+                      </b>
                        | 
-                      <div>
-                        <b>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            High
-                             (151)
-                          </a>
-                        </b>
-                      </div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        Medium
+                        
+                      </a>
                        | 
-                      <div>
-                        <a
-                          onClick={[Function]}
-                        >
-                          Medium
-                          
-                        </a>
-                      </div>
-                       | 
-                      <div>
-                        <a
-                          onClick={[Function]}
-                        >
-                          Low
-                          
-                        </a>
-                      </div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        Low
+                        
+                      </a>
                     </span>
                      // 
                     <span
                       className="small"
                     >
                       <b>
-                        <div>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            Ranks
-                          </a>
-                        </div>
-                      </b>
-                        | 
-                      <div>
                         <a
                           href="#"
                           onClick={[Function]}
                         >
-                          Pctiles
+                          Ranks
                         </a>
-                      </div>
+                      </b>
+                       | 
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Pctiles
+                      </a>
                     </span>
                   </span>
                 </td>
@@ -8981,7 +8974,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           </ul>
                         </div>
                       </div>
-                      ;
                     </span>
                   </span>
                 </td>
@@ -19276,74 +19268,67 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 >
                   <span>
                     <small>
-                      Team Grades
+                      Team Grades 
+                      <div>
+                        <b>
+                          (?)
+                        </b>
+                      </div>
                     </small>
                     : 
                     <span
                       className="small"
                     >
-                      <div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        D1
+                        
+                      </a>
+                       | 
+                      <b>
                         <a
+                          href="#"
                           onClick={[Function]}
                         >
-                          D1
-                          
+                          High
+                           (151)
                         </a>
-                      </div>
+                      </b>
                        | 
-                      <div>
-                        <b>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            High
-                             (151)
-                          </a>
-                        </b>
-                      </div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        Medium
+                        
+                      </a>
                        | 
-                      <div>
-                        <a
-                          onClick={[Function]}
-                        >
-                          Medium
-                          
-                        </a>
-                      </div>
-                       | 
-                      <div>
-                        <a
-                          onClick={[Function]}
-                        >
-                          Low
-                          
-                        </a>
-                      </div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        Low
+                        
+                      </a>
                     </span>
                      // 
                     <span
                       className="small"
                     >
                       <b>
-                        <div>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            Ranks
-                          </a>
-                        </div>
-                      </b>
-                        | 
-                      <div>
                         <a
                           href="#"
                           onClick={[Function]}
                         >
-                          Pctiles
+                          Ranks
                         </a>
-                      </div>
+                      </b>
+                       | 
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Pctiles
+                      </a>
                     </span>
                   </span>
                 </td>
@@ -23261,7 +23246,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           </ul>
                         </div>
                       </div>
-                      ;
                     </span>
                   </span>
                 </td>
@@ -33556,74 +33540,67 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 >
                   <span>
                     <small>
-                      Team Grades
+                      Team Grades 
+                      <div>
+                        <b>
+                          (?)
+                        </b>
+                      </div>
                     </small>
                     : 
                     <span
                       className="small"
                     >
-                      <div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        D1
+                        
+                      </a>
+                       | 
+                      <b>
                         <a
+                          href="#"
                           onClick={[Function]}
                         >
-                          D1
-                          
+                          High
+                           (151)
                         </a>
-                      </div>
+                      </b>
                        | 
-                      <div>
-                        <b>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            High
-                             (151)
-                          </a>
-                        </b>
-                      </div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        Medium
+                        
+                      </a>
                        | 
-                      <div>
-                        <a
-                          onClick={[Function]}
-                        >
-                          Medium
-                          
-                        </a>
-                      </div>
-                       | 
-                      <div>
-                        <a
-                          onClick={[Function]}
-                        >
-                          Low
-                          
-                        </a>
-                      </div>
+                      <a
+                        onClick={[Function]}
+                      >
+                        Low
+                        
+                      </a>
                     </span>
                      // 
                     <span
                       className="small"
                     >
                       <b>
-                        <div>
-                          <a
-                            href="#"
-                            onClick={[Function]}
-                          >
-                            Ranks
-                          </a>
-                        </div>
-                      </b>
-                        | 
-                      <div>
                         <a
                           href="#"
                           onClick={[Function]}
                         >
-                          Pctiles
+                          Ranks
                         </a>
-                      </div>
+                      </b>
+                       | 
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Pctiles
+                      </a>
                     </span>
                   </span>
                 </td>
@@ -37541,7 +37518,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           </ul>
                         </div>
                       </div>
-                      ;
                     </span>
                   </span>
                 </td>

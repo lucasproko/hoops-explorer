@@ -105,26 +105,39 @@ export class GradeTableUtils {
          Low: <Tooltip id={`lowTooltip${setName}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
       } as Record<string, any>;
 
-      const link = (tier: string) => <OverlayTrigger placement="auto" overlay={tooltipMap[tier]!}>
-         {(tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier)}
-      </OverlayTrigger>;      
+//TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now      
+      const link = (tier: string) => (tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier);
+//      <OverlayTrigger placement="auto" overlay={tooltipMap[tier]!}>
+//         {(tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier)}
+//      </OverlayTrigger>;    
+      
 
       const topLine = <span className="small">{link("Combo")} | {link("High")} | {link("Medium")} | {link("Low")}</span>;
 
-      const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
-      const percentileShowTooltip = <Tooltip id={`percentileShowTooltip`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+      const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${setName}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
+      const percentileShowTooltip = <Tooltip id={`percentileShowTooltip${setName}`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
+//TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now      
       const maybeBold = (bold: boolean, html: React.ReactNode) => bold ? <b>{html}</b> : html;
       const bottomLine = <span className="small">
          {maybeBold(gradeFormat == "rank", 
-            <OverlayTrigger rootClose placement="auto" overlay={eqRankShowTooltip}>
-               <a href="#" onClick={(event) => { event.preventDefault(); setConfig(`rank:${tierStrTmp}`); }}>Ranks</a>
-            </OverlayTrigger>)}&nbsp;
-         | {maybeBold(gradeFormat == "pct", 
-            <OverlayTrigger rootClose placement="auto" overlay={percentileShowTooltip}>
+//            <OverlayTrigger placement="auto" overlay={eqRankShowTooltip}>
+               <a href={"#"} onClick={(event) => { event.preventDefault(); setConfig(`rank:${tierStrTmp}`); }}>Ranks</a>
+//            </OverlayTrigger>
+            )}
+         &nbsp;| {maybeBold(gradeFormat == "pct", 
+//           <OverlayTrigger placement="auto" overlay={percentileShowTooltip}>
                <a href="#" onClick={(event) => { event.preventDefault(); setConfig(`pct:${tierStrTmp}`); }}>Pctiles</a>
-            </OverlayTrigger>)}
+//           </OverlayTrigger>
+         )}
       </span>;
+
+      const helpTooltip = <Tooltip id={`helpTooltip${setName}`}>
+         High Tier: high majors, mid-high majors, plus any team in the T150<br/>
+         Medium Tier: mid/mid-high/mid-low majors, if in the T275<br/>
+         Low Tier: low/mid-low majors, or if outside the T250
+      </Tooltip>;
+      const helpOverlay = <OverlayTrigger placement="auto" overlay={helpTooltip}><b>(?)</b></OverlayTrigger>;
 
       const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team, GradeUtils.fieldsToRecord, gradeFormat == "rank")  : {};
 
@@ -140,19 +153,23 @@ export class GradeTableUtils {
       const percentileTooltip = <Tooltip id={`percentileTooltip${setName}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
       (teamPercentiles as any).off_title = gradeFormat == "pct" ? 
-         <OverlayTrigger rootClose placement="auto" overlay={percentileTooltip}>
+         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
             <small><b>Off Pctiles</b></small>
-         </OverlayTrigger> :
-         <OverlayTrigger rootClose placement="auto" overlay={eqRankTooltip}>
+         </OverlayTrigger> 
+         :
+         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
             <small><b>Off Equiv Ranks</b></small>
-         </OverlayTrigger>;
+         </OverlayTrigger>
+         ;
       (teamPercentiles as any).def_title = gradeFormat == "pct" ? 
-         <OverlayTrigger rootClose placement="auto" overlay={percentileTooltip}>
+         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
             <small><b>Def Pctiles</b></small>
-         </OverlayTrigger> :
-         <OverlayTrigger rootClose placement="auto" overlay={eqRankTooltip}>
+         </OverlayTrigger> 
+         :
+         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
             <small><b>Def Equiv Ranks</b></small>
-         </OverlayTrigger>;
+         </OverlayTrigger>
+         ;
 
       if (gradeFormat == "pct") {
          (teamPercentiles as any).def_net = _.isNumber(teamPercentiles.def_net?.value) 
@@ -171,7 +188,7 @@ export class GradeTableUtils {
       const defPrefixFn = (key: string) => "def_" + key;
       const defCellMetaFn = (key: string, val: any) => "def";
       const tableData = [
-         GenericTableOps.buildTextRow(<span><small>Team Grades</small>: {topLine} // {bottomLine}</span>, ""),
+         GenericTableOps.buildTextRow(<span><small>Team Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
          GenericTableOps.buildDataRow(teamPercentiles, offPrefixFn, offCellMetaFn, onOffTable),
          GenericTableOps.buildDataRow(teamPercentiles, defPrefixFn, defCellMetaFn, onOffTable),
          GenericTableOps.buildRowSeparator()
