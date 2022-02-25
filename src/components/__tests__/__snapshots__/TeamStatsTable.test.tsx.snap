@@ -6605,7 +6605,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#1e8f1e",
+                                          "backgroundColor": "#ffb01e",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -7119,7 +7119,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#76bb76",
+                                          "backgroundColor": "#ffcf76",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -7140,7 +7140,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#dfefdf",
+                                          "backgroundColor": "#fff4df",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -7653,7 +7653,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff3434",
+                                          "backgroundColor": "#bee0eb",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8167,7 +8167,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#daecda",
+                                          "backgroundColor": "#fff2da",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8188,7 +8188,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#89c489",
+                                          "backgroundColor": "#ffd589",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8401,7 +8401,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           className="row"
                         >
                           <div
-                            className="col-lg-8"
+                            className="col-lg-8 col-sm-12 col-8"
                           >
                             <div
                               className="table-responsive"
@@ -8496,7 +8496,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           }
                                         }
                                       >
-                                        Mid
+                                        Rim
                                       </th>
                                     </div>
                                     <th
@@ -8546,7 +8546,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           }
                                         }
                                       >
-                                        Mid
+                                        Rim
                                       </th>
                                     </div>
                                   </tr>
@@ -20885,7 +20885,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#1b8d1b",
+                                          "backgroundColor": "#ffaf1b",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -21399,7 +21399,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#1e8f1e",
+                                          "backgroundColor": "#ffb01e",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -21420,7 +21420,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#cbe5cb",
+                                          "backgroundColor": "#ffedcb",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -21933,7 +21933,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#b8dcb8",
+                                          "backgroundColor": "#ffe6b8",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -22447,7 +22447,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#daecda",
+                                          "backgroundColor": "#fff2da",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -22468,7 +22468,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#afd9e7",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -22681,7 +22681,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           className="row"
                         >
                           <div
-                            className="col-lg-8"
+                            className="col-lg-8 col-sm-12 col-8"
                           >
                             <div
                               className="table-responsive"
@@ -22776,7 +22776,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           }
                                         }
                                       >
-                                        Mid
+                                        Rim
                                       </th>
                                     </div>
                                     <th
@@ -22826,7 +22826,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           }
                                         }
                                       >
-                                        Mid
+                                        Rim
                                       </th>
                                     </div>
                                   </tr>
@@ -35165,7 +35165,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#1b8d1b",
+                                          "backgroundColor": "#ffaf1b",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -35679,7 +35679,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#58ac58",
+                                          "backgroundColor": "#ffc458",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -35700,7 +35700,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#d8ecd8",
+                                          "backgroundColor": "#fff1d8",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36213,7 +36213,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff5d5d",
+                                          "backgroundColor": "#cbe6ef",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36727,7 +36727,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#daecda",
+                                          "backgroundColor": "#fff2da",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36748,7 +36748,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#3e9f3e",
+                                          "backgroundColor": "#ffbb3e",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36961,7 +36961,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           className="row"
                         >
                           <div
-                            className="col-lg-8"
+                            className="col-lg-8 col-sm-12 col-8"
                           >
                             <div
                               className="table-responsive"
@@ -37056,7 +37056,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           }
                                         }
                                       >
-                                        Mid
+                                        Rim
                                       </th>
                                     </div>
                                     <th
@@ -37106,7 +37106,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                           }
                                         }
                                       >
-                                        Mid
+                                        Rim
                                       </th>
                                     </div>
                                   </tr>

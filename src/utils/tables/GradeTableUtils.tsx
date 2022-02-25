@@ -19,6 +19,7 @@ import { DivisionStatistics, TeamStatSet } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 
 type Props = {
+   setName: "on" | "off" | "baseline",
    config: string,
    setConfig: (newConfig: string) => void,
    comboTier?: DivisionStatistics,
@@ -76,7 +77,7 @@ const onOffTable = { //accessors vs column metadata
 
 export class GradeTableUtils {
    static readonly buildGradeTableRows: (p: Props) => GenericTableRow[] = ({
-      config, setConfig, comboTier, highTier, mediumTier, lowTier, team
+      setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
       const tiers = { //(handy LUT)
          High: highTier,
@@ -98,10 +99,10 @@ export class GradeTableUtils {
       </a>;
 
       const tooltipMap = {
-         Combo: <Tooltip id={`comboTooltip`}>Compare each stat against the set of all available D1 teams</Tooltip>,
-         High: <Tooltip id={`comboTooltip`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
-         Medium: <Tooltip id={`mediumTooltip`}>Compare each stat against the "medium tier" of D1 (mid/mid-high/mid-low majors, if in the T275)</Tooltip>,
-         Low: <Tooltip id={`mediumTooltip`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
+         Combo: <Tooltip id={`comboTooltip${setName}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
+         High: <Tooltip id={`highTooltip${setName}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
+         Medium: <Tooltip id={`mediumTooltip${setName}`}>Compare each stat against the "medium tier" of D1 (mid/mid-high/mid-low majors, if in the T275)</Tooltip>,
+         Low: <Tooltip id={`lowTooltip${setName}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
       } as Record<string, any>;
 
       const link = (tier: string) => <OverlayTrigger placement="auto" overlay={tooltipMap[tier]!}>
@@ -116,11 +117,11 @@ export class GradeTableUtils {
       const maybeBold = (bold: boolean, html: React.ReactNode) => bold ? <b>{html}</b> : html;
       const bottomLine = <span className="small">
          {maybeBold(gradeFormat == "rank", 
-            <OverlayTrigger placement="auto" overlay={eqRankShowTooltip}>
+            <OverlayTrigger rootClose placement="auto" overlay={eqRankShowTooltip}>
                <a href="#" onClick={(event) => { event.preventDefault(); setConfig(`rank:${tierStrTmp}`); }}>Ranks</a>
             </OverlayTrigger>)}&nbsp;
          | {maybeBold(gradeFormat == "pct", 
-            <OverlayTrigger placement="auto" overlay={percentileShowTooltip}>
+            <OverlayTrigger rootClose placement="auto" overlay={percentileShowTooltip}>
                <a href="#" onClick={(event) => { event.preventDefault(); setConfig(`pct:${tierStrTmp}`); }}>Pctiles</a>
             </OverlayTrigger>)}
       </span>;
@@ -135,21 +136,21 @@ export class GradeTableUtils {
       teamPercentiles.off_poss = tempoGrade.tempo;
 
       // Special field formatting:
-      const eqRankTooltip = <Tooltip id={`eqRankTooltip`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
-      const percentileTooltip = <Tooltip id={`percentileTooltip`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+      const eqRankTooltip = <Tooltip id={`eqRankTooltip${setName}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
+      const percentileTooltip = <Tooltip id={`percentileTooltip${setName}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
       (teamPercentiles as any).off_title = gradeFormat == "pct" ? 
-         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
+         <OverlayTrigger rootClose placement="auto" overlay={percentileTooltip}>
             <small><b>Off Pctiles</b></small>
          </OverlayTrigger> :
-         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
+         <OverlayTrigger rootClose placement="auto" overlay={eqRankTooltip}>
             <small><b>Off Equiv Ranks</b></small>
          </OverlayTrigger>;
       (teamPercentiles as any).def_title = gradeFormat == "pct" ? 
-         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
+         <OverlayTrigger rootClose placement="auto" overlay={percentileTooltip}>
             <small><b>Def Pctiles</b></small>
          </OverlayTrigger> :
-         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
+         <OverlayTrigger rootClose placement="auto" overlay={eqRankTooltip}>
             <small><b>Def Equiv Ranks</b></small>
          </OverlayTrigger>;
 

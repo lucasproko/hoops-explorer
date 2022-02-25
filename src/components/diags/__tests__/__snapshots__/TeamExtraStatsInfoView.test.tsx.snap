@@ -365,6 +365,8 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
     >
       <Col
         lg={8}
+        sm={12}
+        xs={8}
       >
         <GenericTable
           tableCopyId="assistStats_test"
@@ -485,7 +487,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
               },
               "ast_rim": GenericTableColProps {
                 "className": "",
-                "colName": "Mid",
+                "colName": "Rim",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -507,7 +509,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
               },
               "rim_ast": GenericTableColProps {
                 "className": "",
-                "colName": "Mid",
+                "colName": "Rim",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,

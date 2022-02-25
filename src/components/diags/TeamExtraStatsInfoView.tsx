@@ -39,9 +39,9 @@ const playTypeTableGrades = {
     "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
     "sep1": GenericTableOps.addColSeparator(),
     "pct": GenericTableOps.addDataCol("%", "Percentage of possessions this play type occurs", 
-        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+        CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
     "pct_orbs": GenericTableOps.addDataCol("%ORB", "Percentage of Off rebounds resulting in a scramble play type", 
-        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+        CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
     "ppp": GenericTableOps.addDataCol("P/100", "Points per 100 possessions ending in this play type", 
         CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
     "delta_ppp": GenericTableOps.addDataCol(<span>&Delta;/100</span>, "Delta points per 100 possessions between overall play and this play type", 
@@ -65,11 +65,11 @@ const assistDetailsTable = {
     "sep1": GenericTableOps.addColSeparator(), 
     "3p_ast": GenericTableOps.addPctCol("3P", "% of assists for 3P", CommonTableDefs.picker(...CbbColors.fgr)),
     "mid_ast": GenericTableOps.addPctCol("Mid", "% of assists for mid-range 2P", CommonTableDefs.picker(...CbbColors.fgr)),
-    "rim_ast": GenericTableOps.addPctCol("Mid", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
+    "rim_ast": GenericTableOps.addPctCol("Rim", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
     "sep2": GenericTableOps.addColSeparator(), 
     "ast_3p": GenericTableOps.addPctCol("3P", "% of assists for 3P", CommonTableDefs.picker(...CbbColors.fgr)),
     "ast_mid": GenericTableOps.addPctCol("Mid", "% of assists for mid-range 2P", CommonTableDefs.picker(...CbbColors.fgr)),
-    "ast_rim": GenericTableOps.addPctCol("Mid", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
+    "ast_rim": GenericTableOps.addPctCol("Rim", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
 };
 
 type GradeProps = {
@@ -226,7 +226,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             </Row>
             <Row>More assist stats:</Row>
             <Row>
-                <Col lg={8}>
+                <Col xs={8} sm={12} lg={8}>
                     <GenericTable
                         tableCopyId={`assistStats_${name}`}
                         tableFields={assistDetailsTable} 
