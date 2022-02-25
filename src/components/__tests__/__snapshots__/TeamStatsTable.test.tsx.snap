@@ -6098,7 +6098,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <b>
                         Extra stats info for [
-                        On
+                        On ('A')
                         ]
                       </b>
                       <br />
@@ -6122,7 +6122,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="playTypeStats_On"
+                                id="playTypeStats_On ('A')"
                               >
                                 <thead>
                                   <tr>
@@ -6140,7 +6140,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="playTypeStats_On_copy"
+                                          id="playTypeStats_On ('A')_copy"
                                           type="button"
                                         >
                                           <svg
@@ -8401,7 +8401,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="assistStats_On"
+                                id="assistStats_On ('A')"
                               >
                                 <thead>
                                   <tr>
@@ -8419,7 +8419,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="assistStats_On_copy"
+                                          id="assistStats_On ('A')_copy"
                                           type="button"
                                         >
                                           <svg
@@ -9116,7 +9116,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <b>
                         Luck Adjustment diagnostics [
-                        On
+                        On ('A')
                         ]
                       </b>
                       <span>
@@ -20370,7 +20370,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <b>
                         Extra stats info for [
-                        Off
+                        Off ('B')
                         ]
                       </b>
                       <br />
@@ -20394,7 +20394,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="playTypeStats_Off"
+                                id="playTypeStats_Off ('B')"
                               >
                                 <thead>
                                   <tr>
@@ -20412,7 +20412,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="playTypeStats_Off_copy"
+                                          id="playTypeStats_Off ('B')_copy"
                                           type="button"
                                         >
                                           <svg
@@ -22673,7 +22673,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="assistStats_Off"
+                                id="assistStats_Off ('B')"
                               >
                                 <thead>
                                   <tr>
@@ -22691,7 +22691,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="assistStats_Off_copy"
+                                          id="assistStats_Off ('B')_copy"
                                           type="button"
                                         >
                                           <svg
@@ -23388,7 +23388,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                       <b>
                         Luck Adjustment diagnostics [
-                        Off
+                        Off ('B')
                         ]
                       </b>
                       <span>

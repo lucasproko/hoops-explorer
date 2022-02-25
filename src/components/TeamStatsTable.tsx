@@ -326,7 +326,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           team:teamStats.on
         }) : [],
         showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-            name="On"
+            name="On ('A')"
             teamStatSet={teamStats.on}
             showGrades={showGrades}
             grades={showGrades ? {
@@ -352,7 +352,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       )] : [],
       showLuckAdjDiags && luckAdjustment.on ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
-          name="On"
+          name="On ('A')"
           offLuck={luckAdjustment.on[0]}
           defLuck={luckAdjustment.on[1]}
           baseline={luckConfig.base}
@@ -384,7 +384,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           team:teamStats.off
         }) : [],
         showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-            name="Off"
+            name="Off ('B')"
             teamStatSet={teamStats.off}
             showGrades={showGrades}
             grades={showGrades ? {
@@ -410,7 +410,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       )] : [],
       showLuckAdjDiags && luckAdjustment.off ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
-          name="Off"
+          name="Off ('B')"
           offLuck={luckAdjustment.off[0]}
           defLuck={luckAdjustment.off[1]}
           baseline={luckConfig.base}

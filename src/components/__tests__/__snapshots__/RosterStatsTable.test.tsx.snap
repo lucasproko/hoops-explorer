@@ -26477,7 +26477,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="Player On"
+                  name="A Lineups"
                   offLuck={
                     {
    "deltaOffPpp": -0.3069232120644802,
@@ -27058,7 +27058,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="Player Off"
+                  name="B Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 2.287906575063127,
@@ -27642,7 +27642,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 }
                   }
                   individualMode={true}
-                  name="Player On"
+                  name="A Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 2.030680877993925,
@@ -35092,7 +35092,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="Player On"
+                  name="A Lineups"
                   offLuck={
                     {
    "deltaOffPpp": -0.3069232120644802,
@@ -36469,7 +36469,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="Player Off"
+                  name="B Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 2.287906575063127,
@@ -37849,7 +37849,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 }
                   }
                   individualMode={true}
-                  name="Player On"
+                  name="A Lineups"
                   offLuck={
                     {
    "deltaOffPpp": 2.030680877993925,

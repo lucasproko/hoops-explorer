@@ -686,7 +686,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on!} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
         showLuckAdjDiags && p.on?.off_luck && p.on?.def_luck ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
-            name="Player On"
+            name="A Lineups"
             offLuck={p.on?.off_luck}
             defLuck={p.on?.def_luck}
             baseline={luckConfig.base}
@@ -711,7 +711,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off!} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
         showLuckAdjDiags && p.off?.off_luck && p.off?.def_luck ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
-            name="Player Off"
+            name="B Lineups"
             offLuck={p.off?.off_luck}
             defLuck={p.off?.def_luck}
             baseline={luckConfig.base}
