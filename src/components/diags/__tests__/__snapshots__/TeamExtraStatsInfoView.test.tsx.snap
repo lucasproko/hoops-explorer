@@ -9,18 +9,22 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
   </b>
   <br />
   <br />
-  <a>
-    Play type stats:
-  </a>
   <Container
+    className="float-left"
     fluid={false}
   >
     <Row
       noGutters={false}
     >
+      Play type stats:
+    </Row>
+    <Row
+      noGutters={false}
+    >
       <Col
         lg={8}
-        xs={12}
+        sm={12}
+        xs={8}
       >
         <GenericTable
           tableCopyId="playTypeStats_test"
@@ -351,19 +355,16 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         />
       </Col>
     </Row>
-  </Container>
-  <a>
-    More assist stats:
-  </a>
-  <Container
-    fluid={false}
-  >
+    <Row
+      noGutters={false}
+    >
+      More assist stats:
+    </Row>
     <Row
       noGutters={false}
     >
       <Col
         lg={8}
-        xs={12}
       >
         <GenericTable
           tableCopyId="assistStats_test"
@@ -553,41 +554,48 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
         />
       </Col>
     </Row>
-  </Container>
-  <a>
-    Misc other stats:
-  </a>
-  <ul>
-    <li>
-      3P Defensive SoS: [
-      <b
-        style={
-          Object {
-            "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
-          }
-        }
-      >
-        33.0
-      </b>
-      ]%
-    </li>
-    <li>
-      Raw tempo: 
-      <span>
-        <b
-          style={
-            Object {
-              "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+    <Row
+      noGutters={false}
+    >
+      Misc other stats:
+    </Row>
+    <Row
+      noGutters={false}
+    >
+      <ul>
+        <li>
+          3P Defensive SoS: [
+          <b
+            style={
+              Object {
+                "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
+              }
             }
-          }
-        >
-          [
-          83.2
-          ]
-        </b>
-         poss/g
-      </span>
-    </li>
-  </ul>
+          >
+            33.0
+          </b>
+          ]%
+        </li>
+        <li>
+          Raw tempo: 
+          <span>
+            <b
+              style={
+                Object {
+                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                }
+              }
+            >
+              [
+              83.2
+              ]
+            </b>
+             poss/g
+          </span>
+        </li>
+      </ul>
+    </Row>
+  </Container>
+  ;
 </span>
 `;

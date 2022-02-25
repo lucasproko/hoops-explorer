@@ -203,13 +203,20 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         </span> : undefined;
     const def_3p_SoS = teamStatSet[`def_3p_opp`]?.value || 0;
 
+    const def3pRankHtml = (tierToUse && teamPercentiles.def_3p_opp) ? 
+        <span> (<b>{gradeFormat == "rank" ? "Rank": "Pctile"}</b>: [
+            <span style={CommonTableDefs.getTextShadow(teamPercentiles.def_3p_opp, CbbColors.def_pctile_qual)}>
+            {GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_3p_opp)}
+        </span>]{gradeFormat == "rank" ? "" : "%"})</span>
+            : null;
+
     return <span>
         <b>Extra stats info for [{name}]</b>
         <br/><br/>
-        <a>Play type stats:</a>
-        <Container>
+        <Container className="float-left">
+            <Row>Play type stats:</Row>
             <Row>
-                <Col xs={12} lg={8}>
+                <Col xs={8} sm={12} lg={8}>
                     <GenericTable
                         tableCopyId={`playTypeStats_${name}`}
                         tableFields={playTypeTable} 
@@ -217,11 +224,9 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
                     />
                 </Col>
             </Row>
-        </Container>
-        <a>More assist stats:</a>
-        <Container>
+            <Row>More assist stats:</Row>
             <Row>
-                <Col xs={12} lg={8}>
+                <Col lg={8}>
                     <GenericTable
                         tableCopyId={`assistStats_${name}`}
                         tableFields={assistDetailsTable} 
@@ -229,13 +234,16 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
                     />
                 </Col>
             </Row>
-        </Container>
-        <a>Misc other stats:</a>
-        <ul>
-            <li>3P Defensive SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.off_3P)}>{def_3p_SoS.toFixed(1)}</b>]%
-            </li>
-            <li>Raw tempo: {tempoHtml}</li>
-        </ul>                
+            <Row>Misc other stats:</Row>
+            <Row>
+                <ul>
+                    <li>3P Defensive SoS: [<b style={CommonTableDefs.getTextShadow({ value: 0.01*def_3p_SoS }, CbbColors.def_3P)}>{def_3p_SoS.toFixed(1)}</b>]%
+                    {def3pRankHtml}
+                    </li>
+                    <li>Raw tempo: {tempoHtml}</li>
+                </ul>                
+            </Row>
+        </Container>;
     </span>;
 };
 export default TeamExtraStatsInfoView;

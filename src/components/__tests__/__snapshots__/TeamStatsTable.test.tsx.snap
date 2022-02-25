@@ -6110,17 +6110,19 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       </b>
                       <br />
                       <br />
-                      <a>
-                        Play type stats:
-                      </a>
                       <div
-                        className="container"
+                        className="float-left container"
                       >
                         <div
                           className="row"
                         >
+                          Play type stats:
+                        </div>
+                        <div
+                          className="row"
+                        >
                           <div
-                            className="col-lg-8 col-12"
+                            className="col-lg-8 col-sm-12 col-8"
                           >
                             <div
                               className="table-responsive"
@@ -7159,7 +7161,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#008000",
+                                          "backgroundColor": "#ffcece",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -7168,9 +7170,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        1
+                                        90
                                         <sup>
-                                          st
+                                          th
                                         </sup>
                                       </small>
                                     </td>
@@ -8207,7 +8209,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#42a142",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8216,7 +8218,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        20
                                         <sup>
                                           th
                                         </sup>
@@ -8390,18 +8392,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <a>
-                        More assist stats:
-                      </a>
-                      <div
-                        className="container"
-                      >
+                        <div
+                          className="row"
+                        >
+                          More assist stats:
+                        </div>
                         <div
                           className="row"
                         >
                           <div
-                            className="col-lg-8 col-12"
+                            className="col-lg-8"
                           >
                             <div
                               className="table-responsive"
@@ -8915,42 +8915,73 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <a>
-                        Misc other stats:
-                      </a>
-                      <ul>
-                        <li>
-                          3P Defensive SoS: [
-                          <b
-                            style={
-                              Object {
-                                "textShadow": "0px 0px 10px #f7fbf7,0px 0px 10px #f7fbf7",
-                              }
-                            }
-                          >
-                            33.2
-                          </b>
-                          ]%
-                        </li>
-                        <li>
-                          Raw tempo: 
-                          <span>
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                        <div
+                          className="row"
+                        >
+                          Misc other stats:
+                        </div>
+                        <div
+                          className="row"
+                        >
+                          <ul>
+                            <li>
+                              3P Defensive SoS: [
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #fff7f7,0px 0px 10px #fff7f7",
+                                  }
                                 }
-                              }
-                            >
-                              [
-                              79.8
-                              ]
-                            </b>
-                             poss/g
-                          </span>
-                        </li>
-                      </ul>
+                              >
+                                33.2
+                              </b>
+                              ]%
+                              <span>
+                                 (
+                                <b>
+                                  Rank
+                                </b>
+                                : [
+                                <span
+                                  style={
+                                    Object {
+                                      "textShadow": "0px 0px 10px #47a447,0px 0px 10px #47a447",
+                                    }
+                                  }
+                                >
+                                  <small>
+                                    130
+                                    <sup>
+                                      th
+                                    </sup>
+                                  </small>
+                                </span>
+                                ]
+                                
+                                )
+                              </span>
+                            </li>
+                            <li>
+                              Raw tempo: 
+                              <span>
+                                <b
+                                  style={
+                                    Object {
+                                      "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                    }
+                                  }
+                                >
+                                  [
+                                  79.8
+                                  ]
+                                </b>
+                                 poss/g
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      ;
                     </span>
                   </span>
                 </td>
@@ -20359,17 +20390,19 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       </b>
                       <br />
                       <br />
-                      <a>
-                        Play type stats:
-                      </a>
                       <div
-                        className="container"
+                        className="float-left container"
                       >
                         <div
                           className="row"
                         >
+                          Play type stats:
+                        </div>
+                        <div
+                          className="row"
+                        >
                           <div
-                            className="col-lg-8 col-12"
+                            className="col-lg-8 col-sm-12 col-8"
                           >
                             <div
                               className="table-responsive"
@@ -21408,7 +21441,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#008000",
+                                          "backgroundColor": "#fffdfd",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -21417,9 +21450,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        1
+                                        77
                                         <sup>
-                                          st
+                                          th
                                         </sup>
                                       </small>
                                     </td>
@@ -22456,7 +22489,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#e4f2e4",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -22465,7 +22498,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        68
                                         <sup>
                                           th
                                         </sup>
@@ -22639,18 +22672,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <a>
-                        More assist stats:
-                      </a>
-                      <div
-                        className="container"
-                      >
+                        <div
+                          className="row"
+                        >
+                          More assist stats:
+                        </div>
                         <div
                           className="row"
                         >
                           <div
-                            className="col-lg-8 col-12"
+                            className="col-lg-8"
                           >
                             <div
                               className="table-responsive"
@@ -23164,42 +23195,73 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <a>
-                        Misc other stats:
-                      </a>
-                      <ul>
-                        <li>
-                          3P Defensive SoS: [
-                          <b
-                            style={
-                              Object {
-                                "textShadow": "0px 0px 10px #ffe4e4,0px 0px 10px #ffe4e4",
-                              }
-                            }
-                          >
-                            32.3
-                          </b>
-                          ]%
-                        </li>
-                        <li>
-                          Raw tempo: 
-                          <span>
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                        <div
+                          className="row"
+                        >
+                          Misc other stats:
+                        </div>
+                        <div
+                          className="row"
+                        >
+                          <ul>
+                            <li>
+                              3P Defensive SoS: [
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #e4f1e4,0px 0px 10px #e4f1e4",
+                                  }
                                 }
-                              }
-                            >
-                              [
-                              77.1
-                              ]
-                            </b>
-                             poss/g
-                          </span>
-                        </li>
-                      </ul>
+                              >
+                                32.3
+                              </b>
+                              ]%
+                              <span>
+                                 (
+                                <b>
+                                  Rank
+                                </b>
+                                : [
+                                <span
+                                  style={
+                                    Object {
+                                      "textShadow": "0px 0px 10px #058305,0px 0px 10px #058305",
+                                    }
+                                  }
+                                >
+                                  <small>
+                                    149
+                                    <sup>
+                                      th
+                                    </sup>
+                                  </small>
+                                </span>
+                                ]
+                                
+                                )
+                              </span>
+                            </li>
+                            <li>
+                              Raw tempo: 
+                              <span>
+                                <b
+                                  style={
+                                    Object {
+                                      "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                    }
+                                  }
+                                >
+                                  [
+                                  77.1
+                                  ]
+                                </b>
+                                 poss/g
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      ;
                     </span>
                   </span>
                 </td>
@@ -34608,17 +34670,19 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       </b>
                       <br />
                       <br />
-                      <a>
-                        Play type stats:
-                      </a>
                       <div
-                        className="container"
+                        className="float-left container"
                       >
                         <div
                           className="row"
                         >
+                          Play type stats:
+                        </div>
+                        <div
+                          className="row"
+                        >
                           <div
-                            className="col-lg-8 col-12"
+                            className="col-lg-8 col-sm-12 col-8"
                           >
                             <div
                               className="table-responsive"
@@ -35657,7 +35721,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#008000",
+                                          "backgroundColor": "#ffd1d1",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -35666,9 +35730,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        1
+                                        90
                                         <sup>
-                                          st
+                                          th
                                         </sup>
                                       </small>
                                     </td>
@@ -36705,7 +36769,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#6ab56a",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36714,9 +36778,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        32
                                         <sup>
-                                          th
+                                          nd
                                         </sup>
                                       </small>
                                     </td>
@@ -36888,18 +36952,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <a>
-                        More assist stats:
-                      </a>
-                      <div
-                        className="container"
-                      >
+                        <div
+                          className="row"
+                        >
+                          More assist stats:
+                        </div>
                         <div
                           className="row"
                         >
                           <div
-                            className="col-lg-8 col-12"
+                            className="col-lg-8"
                           >
                             <div
                               className="table-responsive"
@@ -37413,42 +37475,73 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <a>
-                        Misc other stats:
-                      </a>
-                      <ul>
-                        <li>
-                          3P Defensive SoS: [
-                          <b
-                            style={
-                              Object {
-                                "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
-                              }
-                            }
-                          >
-                            33.0
-                          </b>
-                          ]%
-                        </li>
-                        <li>
-                          Raw tempo: 
-                          <span>
-                            <b
-                              style={
-                                Object {
-                                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                        <div
+                          className="row"
+                        >
+                          Misc other stats:
+                        </div>
+                        <div
+                          className="row"
+                        >
+                          <ul>
+                            <li>
+                              3P Defensive SoS: [
+                              <b
+                                style={
+                                  Object {
+                                    "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
+                                  }
                                 }
-                              }
-                            >
-                              [
-                              83.2
-                              ]
-                            </b>
-                             poss/g
-                          </span>
-                        </li>
-                      </ul>
+                              >
+                                33.0
+                              </b>
+                              ]%
+                              <span>
+                                 (
+                                <b>
+                                  Rank
+                                </b>
+                                : [
+                                <span
+                                  style={
+                                    Object {
+                                      "textShadow": "0px 0px 10px #229122,0px 0px 10px #229122",
+                                    }
+                                  }
+                                >
+                                  <small>
+                                    141
+                                    <sup>
+                                      st
+                                    </sup>
+                                  </small>
+                                </span>
+                                ]
+                                
+                                )
+                              </span>
+                            </li>
+                            <li>
+                              Raw tempo: 
+                              <span>
+                                <b
+                                  style={
+                                    Object {
+                                      "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                    }
+                                  }
+                                >
+                                  [
+                                  83.2
+                                  ]
+                                </b>
+                                 poss/g
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      ;
                     </span>
                   </span>
                 </td>
