@@ -287,6 +287,17 @@ export type TeamInfo = {
 
 };
 
+/** For team stats leaderboard info */
+export type TeamStatInfo = {
+  team_name: string,
+  gender: string,
+  year: string,
+  conf: string,
+
+  stats: PureStatSet
+};
+
+
 //////////////////////////////////////
 
 /** Useful constants */

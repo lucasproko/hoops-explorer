@@ -16,7 +16,7 @@ import zlib from 'zlib';
 import _ from "lodash";
 
 // Models
-import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics } from "../utils/StatModels";
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics, TeamStatInfo } from "../utils/StatModels";
 
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
@@ -112,6 +112,9 @@ var bubbleOffenseInfo: number[] = [];
 var bubbleDefenseInfo: number[] = [];
 var eliteOffenseInfo: number[] = [];
 var eliteDefenseInfo: number[] = [];
+
+/** Exported for test only */
+export const teamStatInfo = [] as Array<TeamStatInfo>;
 
 /** Exported for test only */
 export const mutableDivisionStats: DivisionStatistics = { 
@@ -382,6 +385,24 @@ export async function main() {
 
           // Build all the samples ready for percentiles:
           GradeUtils.buildAndInjectDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
+
+          teamStatInfo.push({
+            team_name: fullRequestModel.team,
+            gender: fullRequestModel.gender,
+            year: fullRequestModel.year,
+            conf: conference,
+
+            stats: {
+              // Subset of baseline team stats
+              ...(_.pick(teamBaseline, _.flatMap(["off", "def"], prefix => {
+                const fields = [ "adj_ppp", "ppp", "to", "3p", "2p", "3pr", "ftr", "sos" ];
+                return fields.map(field => `${prefix}_${field}`);
+              }).concat(["tempo"]))),
+
+              // Derived stats
+              ...extraFields
+            }
+          });
 
           teamInfo.push({
             team_name: fullRequestModel.team,
@@ -773,13 +794,28 @@ if (!testMode) {
           :
           Promise.resolve();
 
+        const teamStatFilename = `./public/leaderboards/lineups/team_stats_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        console.log(`${kv[0]} team stats count: ${teamStatInfo.length}`);
+  
+        const teamWriteStatPromise = (("all" == kv[0]) && (teamInfo.length > 0)) ? 
+          fs.writeFile(`${teamStatFilename}`, JSON.stringify({
+            lastUpdated: lastUpdated,
+            confMap: mutableConferenceMap,
+            confs: _.keys(mutableConferenceMap),  
+
+            teams: teamStatInfo
+          }, reduceNumberSize)) 
+          :
+          Promise.resolve();
+
+
         // Division stats:
         if ("all" == kv[0]) completeDivisionStats(mutableDivisionStats);
         const divisionStatsFilename = `./public/leaderboards/lineups/stats_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
         const divisionStatsWritePromise = ("all" == kv[0]) ? 
           fs.writeFile(divisionStatsFilename, JSON.stringify(mutableDivisionStats, reduceNumberSize)) : Promise.resolve();
 
-        return [lineupsWritePromise, playersWritePromise, teamWritePromise, divisionStatsWritePromise];
+        return [lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise];
 
       //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
       // zlib.gzip(sortedLineupsStr, (_, result) => {

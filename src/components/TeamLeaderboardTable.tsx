@@ -734,7 +734,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
-      { label: `All Teams` } :
+      { label: year < "2020/21" ? `All High Tier Teams` : `All Teams` } :
       confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 
@@ -832,7 +832,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             value={stringToOption(year)}
             options={
               (
-                ["2020/21", "2021/22"]
+                ["2018/9", "2019/20", "2020/21", "2021/22"]
               ).concat(tier == "High" ? ["Extra"] : []).map(
                 (r) => stringToOption(r)
               )}
