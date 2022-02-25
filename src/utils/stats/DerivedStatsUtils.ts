@@ -18,7 +18,7 @@ export class DerivedStatsUtils {
       if (totalPoss > 0) {
          toMutate[`${offDef}_scramble`] = { value: scramblePct };
          toMutate[`${offDef}_scramble_per_orb`] = { value: scrambleOrbRatio };
-         toMutate[`${offDef}_scramble_ppp`] = { value: scramblePct };
+         toMutate[`${offDef}_scramble_ppp`] = { value: scramblePpp };
          toMutate[`${offDef}_scramble_delta_ppp`] = { value: scramblePppDelta };
       }
       return toMutate;

@@ -109,6 +109,9 @@ export class CbbColors {
   private static readonly fgrDomain = [ 0.15, 0.33, 0.5 ];
   public static readonly fgr_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.fgrDomain)(val).toString();
   public static readonly fgr: CbbColorTuple = [ CbbColors.fgr_offDef, CbbColors.fgr_offDef ];
+  // Transition
+  private static readonly transDomain = [ 0.13, 0.18, 0.23 ];
+  public static readonly trans_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.transDomain)(val).toString();
 
   // Around 0, % (red/green):
   private static readonly diff10DomainRedGreen = [ -0.10, 0, 0.10 ];

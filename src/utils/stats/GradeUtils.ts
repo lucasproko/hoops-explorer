@@ -146,9 +146,17 @@ export class GradeUtils {
    };
 
    static readonly fieldsToInvert = {
-      off_to: true, def_to: true,
+      off_to: true, def_to: true, 
+      off_scramble_to: true, def_scramble_to: true, off_trans_to: true, def_trans_to: true, 
+      // The higher the defensive SoS the higher the rank should be:
+      def_3p_opp: true,
       // Frequency:
-      def_net: true, def_assist: true, def_3pr: true, def_2pmidr: true, def_2primr: true
+      def_net: true, def_assist: true, def_3pr: true, def_2pmidr: true, def_2primr: true,
+      def_trans_3pr: true, def_scramble_3pr: true, 
+   } as Record<string, boolean>;
+
+   static readonly combinedStat = { //(no off/def)
+      tempo: true
    } as Record<string, boolean>;
 
    /** Calculate the percentile of all fields within a stat set */
@@ -162,7 +170,9 @@ export class GradeUtils {
             : { value: s?.value, samples: supportRank ? s?.samples : 0 };
          return maybeInvert;
       }
-      const offDefFieldList = _.flatMap(fieldList, field => [ `off_${field}`, `def_${field}` ]);
+      const offDefFieldList = _.flatMap(
+         fieldList, field => GradeUtils.combinedStat[field] ? [ field ] : [`off_${field}`, `def_${field}` ]
+      );
       return _.chain(offDefFieldList).map(key => {
          const adjustedKey = (key == "def_net" ? "off_raw_net" : key);
          const teamVal = team[adjustedKey]?.value;

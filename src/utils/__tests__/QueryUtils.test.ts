@@ -186,18 +186,22 @@ describe("QueryUtils", () => {
     expect(QueryUtils.extractCustomDate([ "Home", "Conf" ])).toEqual(undefined);
   });
   test("QueryUtils - setCustomDate", () => {
-    const test1 = [ "Home", "Conf" ] as CommonFilterType[];
+    const test1 = [ "Conf", "Home" ] as CommonFilterType[];
     const toSet1 = {
       kind: "Custom-Date",
       start: new Date("2019-01-09T05:00:00.000Z"),
       end: new Date("2019-04-30T04:00:00.000Z")
     } as CommonFilterCustomDate;
     expect(QueryUtils.setCustomDate(test1, undefined)).toEqual(test1);
-    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test1, toSet1))).toEqual("Home,Conf,Date:01.09-04.30");
+    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test1, toSet1))).toEqual("Conf,Home,Date:01.09-04.30");
 
     const test2 = QueryUtils.parseFilter("Home,Conf,Date:11.11-12.01", "2020");
-    expect(QueryUtils.setCustomDate(test1, undefined)).toEqual(test1);
-    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test2, toSet1))).toEqual("Home,Conf,Date:01.09-04.30");
+    expect(QueryUtils.setCustomDate(test2, undefined)).toEqual(test1);
+    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test2, toSet1))).toEqual("Conf,Home,Date:01.09-04.30");
+
+    const test3 = QueryUtils.parseFilter("Conf,Last-30d", "2020");
+    expect(QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test3, toSet1))).toEqual("Conf,Date:01.09-04.30");
+
   });
   test("QueryUtils - buildFilterStr", () => {
     expect(QueryUtils.buildFilterStr([ "Home" ])).toEqual("Home");
