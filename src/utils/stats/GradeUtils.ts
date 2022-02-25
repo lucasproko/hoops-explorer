@@ -90,6 +90,9 @@ export class GradeUtils {
        mutableUnsortedDivisionStats.tier_samples = {}; //(replace this by LUT)       
    };
 
+   private static readonly MIN = -10000;
+   private static readonly MAX = 10000;
+
    /** Note first entry is the offset of the LUT entry */
    static binaryChop(array: Array<number>, val: number, index1: number, index2: number): number {
       //TODO: not my finest code, written while I wasn't feeling great in a stream-of-consciousness. Maybe rewrite sometime?
@@ -99,8 +102,8 @@ export class GradeUtils {
       } else {
          const nextIndex = Math.floor(0.5*(index1 + index2)); 
          const nextVal = array[nextIndex]!;
-         const nextNextVal = (nextIndex < index2) ? array[nextIndex + 1]! : 10000; //(always match in latter case)
-         const nextPrevVal = (nextIndex > index1) ? array[nextIndex - 1]! : -10000; //(always match in latter case)
+         const nextNextVal = (nextIndex < index2) ? array[nextIndex + 1]! : GradeUtils.MAX; //(always match in latter case)
+         const nextPrevVal = (nextIndex > index1) ? array[nextIndex - 1]! : GradeUtils.MIN; //(always match in latter case)
 
          //(for debugging:)
          //console.log(`${val.toFixed(5)} VS ${index1} ... ${nextPrevVal.toFixed(5)} - ${nextIndex}:${nextVal.toFixed(5)}  - ${index2} ... ${nextNextVal.toFixed(5)}`)
@@ -135,7 +138,16 @@ export class GradeUtils {
          if (!lutArray && (val <= (divStatsField.min + 0.001))) {
             return { value: 0.01, samples: divStatsField.size } as Statistic; //1st percentile
          } else if (!lutArray) {
-            return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
+            // Either it's a split stat so doesn't appear in the LUT, or it's off the end of the chart
+            // (slow may need/want to speed this up)
+            const closestLutArray = _.find(divStatsField.lut, (arr, key) => {
+               return (arr.length > 1) && arr[1]! > val;
+            });
+            if (closestLutArray) {
+               return { value: Math.max(0.01, closestLutArray[0]!/(divStatsField.size || 1)), samples: divStatsField.size };
+            } else {
+               return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
+            }
          } else { //lutArray
             const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1);
             return { value: Math.max(0.01, offsetIndex/(divStatsField.size || 1)), samples: divStatsField.size };

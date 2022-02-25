@@ -31,7 +31,8 @@ describe("GradeUtils", () => {
             size: 20, //(total number of samples in the LUT)
             min: 0.199, //(don't need max, if value missed LUT and is >max then %ile==100, else 1)
             lut: {
-               "20": [ 5, 0.199, 0.203, 0.204, 0.2048 ]
+               "20": [ 5, 0.199, 0.203, 0.204, 0.2048 ],
+               "22": [ 9, 0.22]
             }        
          },
          "test_field": {
@@ -53,6 +54,9 @@ describe("GradeUtils", () => {
       expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.3)).toEqual({ value: 1.00, samples: 20 });
       expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.1995)).toEqual({ value: 0.25, samples: 20 });
       expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.2035)).toEqual({ value: 0.3, samples: 20 });
+      expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.211)).toEqual({ value: 0.45, samples: 20 });
+
+      // Check if it doesn't hit a hash entry
       expect(GradeUtils.getPercentile(testDivStats, "test_field_pct", 0.20485)).toEqual({ value: 0.4, samples: 20 });
 
       expect(GradeUtils.getPercentile(testDivStats, "test_field", -10)).toEqual({ value: 0.01, samples: 20 });

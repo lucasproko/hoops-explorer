@@ -20,6 +20,9 @@ export type DivisionStatistics = {
     lut: Record<string, Array<number>> //([0] of the entry is the offset)
   }>,
 
+  /** Adds a sorted array of lookup keys */
+  mutable_secondary_lookup?: Record<string, number[]>,
+
   /* Sorted list of samples by field name (only teams in their "natural" tier) */
   dedup_samples: Record<string, Array<number>>,
 };
