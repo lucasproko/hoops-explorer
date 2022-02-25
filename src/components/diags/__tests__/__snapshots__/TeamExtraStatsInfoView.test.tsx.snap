@@ -49,6 +49,9 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "value": 0.24058738565238325,
                   },
                   "off_pct_orbs": undefined,
+                  "off_ppp": Object {
+                    "value": 107.2643586151691,
+                  },
                   "off_title": "Transition Offense",
                   "off_to": Object {
                     "value": 0.16609965979587754,
@@ -82,6 +85,9 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                   },
                   "off_pct_orbs": Object {
                     "value": 0.6415989205037649,
+                  },
+                  "off_ppp": Object {
+                    "value": 115.22073848662431,
                   },
                   "off_title": "Scramble Offense",
                   "off_to": Object {
@@ -130,6 +136,9 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                     "value": 0.19610764055742433,
                   },
                   "def_pct_orbs": undefined,
+                  "def_ppp": Object {
+                    "value": 90.66405292820387,
+                  },
                   "def_title": "Transition Defense",
                   "def_to": Object {
                     "value": 0.18867924528301885,
@@ -163,6 +172,9 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                   },
                   "def_pct_orbs": Object {
                     "value": 0.583711708026543,
+                  },
+                  "def_ppp": Object {
+                    "value": 104.25568362101016,
                   },
                   "def_title": "Scramble Defense",
                   "def_to": Object {
@@ -254,7 +266,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Percentage of possessions this play type occurs",
+                "toolTip": "Percentage of possessions ending in this play type",
                 "widthUnits": 2,
               },
               "pct_orbs": GenericTableColProps {
@@ -266,6 +278,17 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "Percentage of Off rebounds resulting in a scramble play type",
+                "widthUnits": 2,
+              },
+              "ppp": GenericTableColProps {
+                "className": "",
+                "colName": "P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Points per 100 possessions ending in this play type",
                 "widthUnits": 2,
               },
               "sep1": GenericTableColProps {

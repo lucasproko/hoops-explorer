@@ -19,11 +19,12 @@ import { TeamStatSet, PureStatSet, DivisionStatistics } from '../../utils/StatMo
 import { DerivedStatsUtils } from '../../utils/stats/DerivedStatsUtils';
 import { GradeUtils } from '../../utils/stats/GradeUtils';
 
-const playTypeTable = { //accessors vs column metadata
+const playTypeTable = {
     "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
     "sep1": GenericTableOps.addColSeparator(),
-    "pct": GenericTableOps.addPctCol("%", "Percentage of possessions this play type occurs", CommonTableDefs.picker(CbbColors.trans_offDef, CbbColors.trans_offDef)),
+    "pct": GenericTableOps.addPctCol("%", "Percentage of possessions ending in this play type", CommonTableDefs.picker(CbbColors.trans_offDef, CbbColors.trans_offDef)),
     "pct_orbs": GenericTableOps.addPctCol("%ORB", "Percentage of Off rebounds resulting in a scramble play type", CbbColors.alwaysWhite),
+    "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions ending in this play type", CommonTableDefs.picker(...CbbColors.pp100)),
     "delta_ppp": GenericTableOps.addPtsCol(<span>&Delta;/100</span>, "Delta points per 100 possessions between overall play and this play type", CommonTableDefs.picker(...CbbColors.diff35_p100_redGreen)),
     "sep2": GenericTableOps.addColSeparator(),
     "to": GenericTableOps.addPctCol("TO%", "Turnover % for this play type", CommonTableDefs.picker(...CbbColors.tOver)),
@@ -32,6 +33,31 @@ const playTypeTable = { //accessors vs column metadata
     "sep3": GenericTableOps.addColSeparator(),
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage for this play type", CommonTableDefs.picker(...CbbColors.fg3P)),
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage for this play type", CommonTableDefs.picker(...CbbColors.fg2P)),
+};
+
+const playTypeTableGrades = { 
+    "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
+    "sep1": GenericTableOps.addColSeparator(),
+    "pct": GenericTableOps.addDataCol("%", "Percentage of possessions this play type occurs", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "pct_orbs": GenericTableOps.addDataCol("%ORB", "Percentage of Off rebounds resulting in a scramble play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "ppp": GenericTableOps.addDataCol("P/100", "Points per 100 possessions ending in this play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "delta_ppp": GenericTableOps.addDataCol(<span>&Delta;/100</span>, "Delta points per 100 possessions between overall play and this play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "sep2": GenericTableOps.addColSeparator(),
+    "to": GenericTableOps.addDataCol("TO%", "Turnover % for this play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "ftr": GenericTableOps.addDataCol("FTR", "Free throw rate  for this play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "3pr": GenericTableOps.addDataCol("3PR", "Percentage of 3 pointers taken against all field goals for this play type", 
+        CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
+    "sep3": GenericTableOps.addColSeparator(),
+    "3p": GenericTableOps.addDataCol("3P%", "3 point field goal percentage for this play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+    "2p": GenericTableOps.addDataCol("2P%", "2 point field goal percentage for this play type", 
+        CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
 };
 
 const assistDetailsTable = {
@@ -86,7 +112,6 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
     const offCellMetaFn = (key: string, val: any) => "off";
     const defPrefixFn = (key: string) => "def_" + key;
     const defCellMetaFn = (key: string, val: any) => "def";
-    const offDef = "off";
     const buildPlayTypeDataRow = (offDef: "off" | "def", playType: "trans" | "scramble") => {
         const offNotDef = offDef == "off";
         const isTrans = playType == "trans";
@@ -95,6 +120,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             [`${offDef}_title`]: `${isTrans ? "Transition" : "Scramble"} ${offNotDef ? "Offense" : "Defense"}`,
             [`${offDef}_pct`]: extraStats[`${offDef}_${playType}`],
             [`${offDef}_pct_orbs`]: isTrans ? undefined : extraStats[`${offDef}_scramble_per_orb`],
+            [`${offDef}_ppp`]: (pct > 0) ? extraStats[`${offDef}_${playType}_ppp`] : undefined,
             [`${offDef}_delta_ppp`]: (pct > 0) ? extraStats[`${offDef}_${playType}_delta_ppp`] : undefined,
 
             [`${offDef}_to`]: extraStats[`${offDef}_${playType}_to`],
@@ -109,13 +135,38 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
                 pct: GenericTableOps.addPctCol("%", "Percentage of possessions this play type occurs", CbbColors.alwaysWhite)
             });
     };
-    const playTypeTableData = [
-        buildPlayTypeDataRow("off", "trans"),
-        buildPlayTypeDataRow("off", "scramble"),
-        GenericTableOps.buildRowSeparator(),
-        buildPlayTypeDataRow("def", "trans"),
-        buildPlayTypeDataRow("def", "scramble"),
-    ];
+    const buildPlayTypeGrade = (offDef: "off" | "def", playType: "trans" | "scramble") => {
+        const offNotDef = offDef == "off";
+        const isTrans = playType == "trans";
+        const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
+
+        return GenericTableOps.buildDataRow({
+            [`${offDef}_title`]: <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>,
+            [`${offDef}_pct`]: teamPercentiles[`${offDef}_${playType}`],
+            [`${offDef}_pct_orbs`]: isTrans ? undefined : teamPercentiles[`${offDef}_scramble_per_orb`],
+            [`${offDef}_ppp`]: (pct > 0) ? teamPercentiles[`${offDef}_${playType}_ppp`] : undefined,
+            [`${offDef}_delta_ppp`]: (pct > 0) ? teamPercentiles[`${offDef}_${playType}_delta_ppp`] : undefined,
+
+            [`${offDef}_to`]: teamPercentiles[`${offDef}_${playType}_to`],
+            [`${offDef}_ftr`]: teamPercentiles[`${offDef}_${playType}_ftr`],
+            [`${offDef}_3pr`]: teamPercentiles[`${offDef}_${playType}_3pr`],
+
+            [`${offDef}_3p`]: teamPercentiles[`${offDef}_${playType}_3p`],
+            [`${offDef}_2p`]: teamPercentiles[`${offDef}_${playType}_2p`],
+
+        }, offNotDef ? offPrefixFn : defPrefixFn, offNotDef ? offCellMetaFn : defCellMetaFn, playTypeTableGrades);        
+    };
+    const playTypeTableData = _.flatten([
+        [ buildPlayTypeDataRow("off", "trans") ],
+        tierToUse ? [ buildPlayTypeGrade("off", "trans"), GenericTableOps.buildRowSeparator() ] : [],
+        [ buildPlayTypeDataRow("off", "scramble") ],
+        tierToUse ? [ buildPlayTypeGrade("off", "scramble"), GenericTableOps.buildRowSeparator() ] : [],
+        [ GenericTableOps.buildRowSeparator() ],
+        [ buildPlayTypeDataRow("def", "trans") ],
+        tierToUse ? [ buildPlayTypeGrade("def", "trans"), GenericTableOps.buildRowSeparator() ] : [],
+        [ buildPlayTypeDataRow("def", "scramble") ],
+        tierToUse ? [ buildPlayTypeGrade("def", "scramble") ] : [],
+    ]);
 
     const buildAssistDataRow = (offDef: "off" | "def") => {
         const offNotDef = offDef == "off";

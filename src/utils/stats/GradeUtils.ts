@@ -146,9 +146,11 @@ export class GradeUtils {
    };
 
    static readonly fieldsToInvert = {
-      off_to: true, def_to: true,
+      off_to: true, def_to: true, 
+      off_scramble_to: true, def_scramble_to: true, off_trans_to: true, def_trans_to: true, 
       // Frequency:
-      def_net: true, def_assist: true, def_3pr: true, def_2pmidr: true, def_2primr: true
+      def_net: true, def_assist: true, def_3pr: true, def_2pmidr: true, def_2primr: true,
+      def_trans_3pr: true, def_scramble_3pr: true, 
    } as Record<string, boolean>;
 
    static readonly combinedStat = { //(no off/def)

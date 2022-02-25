@@ -3509,7 +3509,7 @@ Object {
       0,
       0,
       0,
-      0.08527071563674632,
+      104.25568362101016,
     ],
     "def_scramble_to": Array [
       0.14088605894731104,
@@ -4161,7 +4161,7 @@ Object {
       0,
       0,
       0,
-      0.10780838866433026,
+      115.22073848662431,
     ],
     "off_scramble_to": Array [
       0.12057984260228126,
@@ -5148,7 +5148,7 @@ Object {
       "size": 151,
     },
     "def_scramble_ppp": Object {
-      "isPct": true,
+      "isPct": false,
       "lut": Object {
         "0": Array [
           0,
@@ -5303,9 +5303,9 @@ Object {
           0,
           0,
         ],
-        "9": Array [
+        "104": Array [
           150,
-          0.08527071563674632,
+          104.25568362101016,
         ],
       },
       "min": 0,
@@ -6582,7 +6582,7 @@ Object {
       "size": 151,
     },
     "off_scramble_ppp": Object {
-      "isPct": true,
+      "isPct": false,
       "lut": Object {
         "0": Array [
           0,
@@ -6737,9 +6737,9 @@ Object {
           0,
           0,
         ],
-        "11": Array [
+        "115": Array [
           150,
-          0.10780838866433026,
+          115.22073848662431,
         ],
       },
       "min": 0,
