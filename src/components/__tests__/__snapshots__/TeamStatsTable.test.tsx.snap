@@ -7685,7 +7685,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#088408",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -7694,9 +7694,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        3
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -7706,7 +7706,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#389c38",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -7715,7 +7715,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        17
                                         <sup>
                                           th
                                         </sup>
@@ -22453,7 +22453,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#afd9e7",
+                                          "backgroundColor": "#ffa705",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -22462,9 +22462,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        2
                                         <sup>
-                                          th
+                                          nd
                                         </sup>
                                       </small>
                                     </td>
@@ -33997,7 +33997,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#008000",
+                      "backgroundColor": "#ff0707",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -34006,9 +34006,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    1
+                    149
                     <sup>
-                      st
+                      th
                     </sup>
                   </small>
                 </td>
@@ -34511,7 +34511,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#ff0505",
+                      "backgroundColor": "#0f880f",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -34520,7 +34520,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    149
+                    5
                     <sup>
                       th
                     </sup>
@@ -36229,7 +36229,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#088408",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36238,9 +36238,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        3
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -36250,7 +36250,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": "#ff0505",
+                                          "backgroundColor": "#389c38",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -36259,7 +36259,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        150
+                                        17
                                         <sup>
                                           th
                                         </sup>

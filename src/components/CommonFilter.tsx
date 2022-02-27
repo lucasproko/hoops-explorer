@@ -589,6 +589,7 @@ const CommonFilter: CommonFilterI = ({
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           isDisabled={majorParamsDisabled}
+          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
           value={ stringToOption(year) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
             (r) => r.year

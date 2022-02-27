@@ -166,6 +166,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "2021/22",
@@ -2150,6 +2155,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
