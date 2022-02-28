@@ -79,6 +79,7 @@ export class GradeTableUtils {
    static readonly buildGradeTableRows: (p: Props) => GenericTableRow[] = ({
       setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
+      const nameAsId = setName.replace(/[^A-Za-z0-9_]/g, '');
       const tiers = { //(handy LUT)
          High: highTier,
          Medium: mediumTier,
@@ -99,10 +100,10 @@ export class GradeTableUtils {
       </a>;
 
       const tooltipMap = {
-         Combo: <Tooltip id={`comboTooltip${setName}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
-         High: <Tooltip id={`highTooltip${setName}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
-         Medium: <Tooltip id={`mediumTooltip${setName}`}>Compare each stat against the "medium tier" of D1 (mid/mid-high/mid-low majors, if in the T275)</Tooltip>,
-         Low: <Tooltip id={`lowTooltip${setName}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
+         Combo: <Tooltip id={`comboTooltip${nameAsId}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
+         High: <Tooltip id={`highTooltip${nameAsId}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
+         Medium: <Tooltip id={`mediumTooltip${nameAsId}`}>Compare each stat against the "medium tier" of D1 (mid/mid-high/mid-low majors, if in the T275)</Tooltip>,
+         Low: <Tooltip id={`lowTooltip${nameAsId}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
       } as Record<string, any>;
 
 //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now      
@@ -114,8 +115,8 @@ export class GradeTableUtils {
 
       const topLine = <span className="small">{link("Combo")} | {link("High")} | {link("Medium")} | {link("Low")}</span>;
 
-      const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${setName}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
-      const percentileShowTooltip = <Tooltip id={`percentileShowTooltip${setName}`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+      const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${nameAsId}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
+      const percentileShowTooltip = <Tooltip id={`percentileShowTooltip${nameAsId}`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
 //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now      
       const maybeBold = (bold: boolean, html: React.ReactNode) => bold ? <b>{html}</b> : html;
@@ -132,7 +133,7 @@ export class GradeTableUtils {
          )}
       </span>;
 
-      const helpTooltip = <Tooltip id={`helpTooltip${setName}`}>
+      const helpTooltip = <Tooltip id={`helpTooltip${nameAsId}`}>
          High Tier: high majors, mid-high majors, plus any team in the T150<br/>
          Medium Tier: mid/mid-high/mid-low majors, if in the T275<br/>
          Low Tier: low/mid-low majors, or if outside the T250
@@ -149,8 +150,8 @@ export class GradeTableUtils {
       teamPercentiles.off_poss = tempoGrade.tempo;
 
       // Special field formatting:
-      const eqRankTooltip = <Tooltip id={`eqRankTooltip${setName}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
-      const percentileTooltip = <Tooltip id={`percentileTooltip${setName}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+      const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
+      const percentileTooltip = <Tooltip id={`percentileTooltip${nameAsId}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
       (teamPercentiles as any).off_title = gradeFormat == "pct" ? 
          <OverlayTrigger placement="auto" overlay={percentileTooltip}>
