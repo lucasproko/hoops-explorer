@@ -10,17 +10,22 @@ describe("commonTeamQuery", () => {
 
     const queryWithFilters = (filters: CommonFilterType[], filterGarbage: boolean) => {
       return _.assign({
-        team: "TestTeam", year: "2019",
+        team: "TestTeam", year: "2019/20",
         minRank: "10", maxRank: "100",
-        baseQuery: "base"
+        baseQuery: "base", gender: "Men"
       }, {
         filterGarbage: filterGarbage,
         queryFilters: QueryUtils.buildFilterStr(filters)  
       });
     };
+    const womenQueryWithFilters = (filters: CommonFilterType[], filterGarbage: boolean) => { return {
+        ...(queryWithFilters(filters, filterGarbage)),
+        gender: "Women"
+      };
+    };
 
     const test1 = commonTeamQuery(queryWithFilters([
-      "Home", "Nov-Dec", "Conf"
+      "Home", "Nov-Dec", "Conf", "Good-Off"
     ], false), 333, efficiencyInfo, lookup);
 
     const test2 = commonTeamQuery(queryWithFilters([
@@ -31,8 +36,8 @@ describe("commonTeamQuery", () => {
       "Not-Home", "Last-30d", "Conf"
     ], true), 333, efficiencyInfo, lookup);
 
-    const test4 = commonTeamQuery(queryWithFilters([
-      "Not-Home", "Last-30d", "Conf"
+    const test4 = commonTeamQuery(womenQueryWithFilters([
+      "Not-Home", "Last-30d", "Conf", "Good-Def"
     ], true), 333, {}, {}); //(ensure ignores the vs_rank clause)
 
     const test5CustomDate = QueryUtils.parseCustomDate("12.15-03.01", "2019")!;
@@ -44,12 +49,12 @@ describe("commonTeamQuery", () => {
     // For testing:
     //console.log(JSON.stringify(test2, null, 3));
 
-    // TEST1: Home / 2018 / Conf only
+    // TEST1: Home / 2018 / Conf only / Good-Off
 
     expect(test1.bool.must_not).toEqual([]);
     expect(test1.bool.should).toEqual([]);
     expect(test1.bool.minimum_should_match).toEqual(0);
-    expect(test1.bool.must.length).toEqual(5);
+    expect(test1.bool.must.length).toEqual(6);
     expect(test1.bool?.must?.[2]).toEqual({
       "query_string": {
          "query": `in_conf:true`
@@ -66,6 +71,11 @@ describe("commonTeamQuery", () => {
           "lte": "2019-12-31"
         }
       }
+    });
+    expect(test1.bool?.must?.[5]).toEqual({
+      "query_string": {
+         "query": `vs_adj_off:>106.9`
+       }
     });
 
     // TEST2: Away / 2019 / Filter Garbage
@@ -111,10 +121,15 @@ describe("commonTeamQuery", () => {
       }
     });
 
-    // TEST4: Like test3 but no efficiency
+    // TEST4: Like test3 but no efficiency (+women's gender + adj def query)
     expect(test4.bool.should.length).toEqual(3);
     expect(test4.bool.minimum_should_match).toEqual(1);
-    expect(test4.bool.must.length).toEqual(4); //(vs_rank disappeared)
+    expect(test4.bool.must.length).toEqual(5); //(vs_rank disappeared)
+    expect(test4.bool?.must?.[4]).toEqual({
+      "query_string": {
+         "query": `vs_adj_def:<85.93`
+       }
+    });
 
     // TEST5: custom date
     expect(test5.bool.must_not).toEqual([]);

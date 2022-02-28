@@ -6,11 +6,17 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import { QueryUtils, CommonFilterType } from './QueryUtils';
 import { format } from 'date-fns';
 
+import { efficiencyAverages } from "./public-data/efficiencyAverages";
+
 /** For shared display logic between the different filter types for displaying query info */
 export class QueryDisplayUtils {
 
    /** Display the badge corresponding to the filter type */
-   public static showQueryFilter = (t: CommonFilterType, year: string, inverted: boolean = false) => {
+   public static showQueryFilter = (t: CommonFilterType, gender: string, year: string, inverted: boolean = false) => {
+      const genderYear = `${gender}_${year}`;
+      const avgEff = efficiencyAverages[genderYear] || efficiencyAverages.fallback!;
+      const deltaEff = gender == "Women" ? 6 : 4.5;
+
       const maybeInvert = (s: string) => {
         if (inverted) {
           return s == "Not-Home" ? "Home" : `NOT ${s}`;
@@ -25,6 +31,12 @@ export class QueryDisplayUtils {
           return <Tooltip id={`qf${t}`}>Away games only. Use <b>location_type:Away</b> or <b>opponent.Away:*</b> directly in query fields(s).</Tooltip>
         case "Not-Home":
           return <Tooltip id={`qf${t}`}>Away/Neutral games only. Use <b>location_type:(Away Neutral)</b> or <b>(opponent.Away:* opponent.Neutral:*)</b> directly in query fields(s).</Tooltip>
+
+        case "Good-Off":
+          return <Tooltip id={`qf${t}`}>Playing against teams with good (T100ish) offense. Use <b>vs_adj_off:{`>`}{(avgEff + deltaEff).toFixed(1)}</b> directly in query fields(s).</Tooltip>
+        case "Good-Def":
+          return <Tooltip id={`qf${t}`}>Playing against teams with good (T100ish) defense. Use <b>vs_adj_def:{`<`}{(avgEff - deltaEff).toFixed(1)}</b> directly in query fields(s).</Tooltip>
+  
         case "Nov-Dec":
           return <Tooltip id={`qf${t}`}>Nov/Dec games only. Use eg <b>date:[* TO {_.take(year, 4)}-12-31]</b> directly in query fields(s).</Tooltip>
         case "Jan-Apr":

@@ -661,7 +661,7 @@ const CommonFilter: CommonFilterI = ({
           { queryFilters.length > 0 ?
           <Row>&nbsp;
             {queryFilters.map(
-              (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, year)}&nbsp;&nbsp;</span>)
+              (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, gender, year)}&nbsp;&nbsp;</span>)
             }
           </Row> 
           : null}

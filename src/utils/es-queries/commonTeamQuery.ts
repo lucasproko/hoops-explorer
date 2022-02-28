@@ -1,6 +1,7 @@
 
 import { CommonFilterParams, ParamDefaults } from '../FilterModels';
 import { CommonFilterType, QueryUtils } from "../QueryUtils";
+import { efficiencyAverages } from '../public-data/efficiencyAverages';
 import { format } from "date-fns";
 import _ from 'lodash';
 
@@ -49,6 +50,18 @@ const homeOrAwayFilter = (homeOrAway: "Home" | "Away" | "Not-Home") => {
   ];
 };
 
+const goodOffOrDfense = (offOrDef: "Good-Off" | "Good-Def", avgEff: number, deltaEff: number) => {
+  return offOrDef == "Good-Off" ? [
+    { "query_string": {
+      "query": `vs_adj_off:>${avgEff + deltaEff}`
+    }}
+  ] : [
+    { "query_string": {
+      "query": `vs_adj_def:<${avgEff - deltaEff}`
+    }}
+  ]
+}
+
 const dateFilter = (date: "Nov-Dec" | "Jan-Apr" | "Last-30d", year: string, lastDate: number) => {
   const operator = (date == "Nov-Dec") ? "lte" : "gt";
   const dateStr = (date == "Last-30d") ?
@@ -63,9 +76,14 @@ const dateFilter = (date: "Nov-Dec" | "Jan-Apr" | "Last-30d", year: string, last
 };
 
 /** Common util for here + commonOnOffBaseQuery to handle pre-built filters */
-export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, yearStr: string | undefined, lastDate: number) => {
+export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, genderStr: string | undefined, yearStr: string | undefined, lastDate: number) => {
   const queryFilters = QueryUtils.parseFilter(queryFiltersStr || "", yearStr || ParamDefaults.defaultYear);
   const customDate = QueryUtils.extractCustomDate(queryFilters);
+
+  const genderYear = `${genderStr || ""}_${yearStr || ""}`;
+  const avgEff = efficiencyAverages[genderYear] || efficiencyAverages.fallback!;
+  const deltaEff = genderStr == "Women" ? 6 : 4.5;
+
   return _.flatten([
     QueryUtils.filterHas(queryFilters, "Conf") ? [{
       "query_string": {
@@ -77,6 +95,9 @@ export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, 
     }),
     _.flatMap([ "Nov-Dec", "Jan-Apr", "Last-30d"], (date: "Nov-Dec" | "Jan-Apr" | "Last-30d") => {
       return QueryUtils.filterHas(queryFilters, date) ? [ dateFilter(date, yearStr || "2000", lastDate) ] : [];
+    }),
+    _.flatMap([ "Good-Off", "Good-Def"], (offOrDef: "Good-Off" | "Good-Def") => {
+      return QueryUtils.filterHas(queryFilters, offOrDef) ? goodOffOrDfense(offOrDef, avgEff, deltaEff) : [];
     }),
     customDate ? [{
       "query_string": {
@@ -107,7 +128,7 @@ export const commonTeamQuery = function(
                "query": `vs_rank:[${Number(params.minRank)} TO ${Number(params.maxRank)}]`
              }
           }],
-          buildQueryFiltersBoolArray(params.queryFilters, params.year, lastDate)
+          buildQueryFiltersBoolArray(params.queryFilters, params.gender, params.year, lastDate)
         ] as Array<Record<string, any>>)
      }
   };

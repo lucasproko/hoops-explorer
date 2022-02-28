@@ -29,7 +29,7 @@ export const commonOnOffBaseQuery = function(params: GameFilterParams, lastDate:
                         "query": `${QueryUtils.basicOrAdvancedQuery(queryStr, "NOT *")}` //(the clause is an OR, so an empty query needs to return false)
                       }
                   }],
-                  buildQueryFiltersBoolArray(params.onQueryFilters, params.year, lastDate).map(clause => {
+                  buildQueryFiltersBoolArray(params.onQueryFilters, params.gender, params.year, lastDate).map(clause => {
                      return {
                         "bool": {
                            "must_not": [
@@ -47,7 +47,7 @@ export const commonOnOffBaseQuery = function(params: GameFilterParams, lastDate:
             "bool": { 
                "must": _.flatten([
                   [ query ],
-                  buildQueryFiltersBoolArray(queryFilterStr, params.year, lastDate)
+                  buildQueryFiltersBoolArray(queryFilterStr, params.gender, params.year, lastDate)
                ] as any[]),
                "must_not": []
             }

@@ -130,7 +130,7 @@ export const lineupStatsQuery = function(
           "minimum_should_match": QueryUtils.invertedQueryMode(params) ? 1 : 0,
           "should": //(special internal invert mode for getting linueps for on/off)
             QueryUtils.invertedQueryMode(params) ? 
-              buildQueryFiltersBoolArray(params.invertBaseQueryFilters, params.year, lastDate).map(clause => {
+              buildQueryFiltersBoolArray(params.invertBaseQueryFilters, params.gender, params.year, lastDate).map(clause => {
                 return {
                   "bool": {
                      "must_not": [
