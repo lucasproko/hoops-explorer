@@ -15,7 +15,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 //@ts-ignore
 import { DateRangePicker, defaultStaticRanges } from 'react-date-range';
 //@ts-ignore
-import { addDays, isSameDay } from 'date-fns';
+import { addDays, addMonths, isSameDay } from 'date-fns';
 import { ParamDefaults } from '../../utils/FilterModels';
 import { QueryUtils, CommonFilterCustomDate } from '../../utils/QueryUtils';
 
@@ -27,11 +27,19 @@ type Props = {
    onHide: () => void
 };
 
-const staticRangeLabels: Record<string, boolean> = {
-   "This Week": true, "Last Week": true, "This Month": true, "Last Month": true
-};
-
 const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave, ...props}) => {
+   const isActiveYear = (year || ParamDefaults.defaultYear) == ParamDefaults.defaultYear;
+   const staticRangeLabels: Record<string, boolean> = {
+      "This Month": isActiveYear, "Last Month": isActiveYear
+   };
+
+   const startNov = addDays(Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-11-01`), 1);
+   const minDate = startNov;
+   const endDec = addDays(Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-12-31`), 1);
+   const startJan = addDays(endDec, 1);
+   const endApril = addMonths(endDec, 4);
+   const maxDate = endApril;
+
    const [state, setState] = useState([
       {
         startDate: addDays(new Date(), -14),
@@ -45,6 +53,27 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
    const tenDaysAgo = addDays(new Date(), -9);
    const today = new Date();
    const moreOptions = [
+      {
+         label: "Nov/Dec",
+         range: () => ({
+            startDate: startNov,
+            endDate: endDec
+         }),
+         isSelected: (range: any) => {
+            return isSameDay(range.startDate as Date, startNov) && isSameDay(range.endDate as Date, endDec)
+         }
+      },
+      {
+         label: "Jan/Apr",
+         range: () => ({
+            startDate: startJan,
+            endDate: endApril
+         }),
+         isSelected: (range: any) => {
+            return isSameDay(range.startDate as Date, startJan) && isSameDay(range.endDate as Date, endApril)
+         }
+      }
+   ].concat(isActiveYear ? [
       {
          label: "Last 30 days",
          range: () => ({
@@ -65,10 +94,8 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
             return isSameDay(range.startDate as Date, tenDaysAgo) && isSameDay(range.endDate as Date, today)
          }
       },
-   ];
+   ] : []);
 
-   const minDate = Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-11-01`);
-   const maxDate = Number.isNaN(minDate) ? NaN : addDays(minDate, 210);
    return <Modal size="lg" scrollable={true} {...props}>
       <Modal.Header closeButton>
          <Modal.Title>Select Date Range Filter for {queryType}</Modal.Title>

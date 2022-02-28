@@ -49,8 +49,6 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQ
         truthVal={QueryUtils.filterHas(queryFilters, QueryUtils.customDateAliasName)}
         onSelect={() => showCustomRangeFilter()}
       />
-     {filterMenuItem("Nov-Dec", "Nov/Dec only")}
-     {filterMenuItem("Jan-Apr", "Jan-Apr only")}
      {filterMenuItem("Last-30d", "Last 30 days only")}
      <Dropdown.Divider />
      <Dropdown.Item as={Button}>
