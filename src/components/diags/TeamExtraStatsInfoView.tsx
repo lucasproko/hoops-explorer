@@ -18,6 +18,7 @@ import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { TeamStatSet, PureStatSet, DivisionStatistics } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../../utils/stats/DerivedStatsUtils';
 import { GradeUtils } from '../../utils/stats/GradeUtils';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const playTypeTable = {
     "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
@@ -108,6 +109,8 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
          tierToUse, extraStats, GradeUtils.derivedFields, gradeFormat == "rank"
     )  : {};
 
+    const scrambleTooltip = <Tooltip id={`scrambleDef${name}`}>Possessions finishing after an ORB, but not counting plays where the offense resets</Tooltip>;
+
     const offPrefixFn = (key: string) => "off_" + key;
     const offCellMetaFn = (key: string, val: any) => "off";
     const defPrefixFn = (key: string) => "def_" + key;
@@ -117,7 +120,12 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
         const isTrans = playType == "trans";
         const pct = extraStats[`${offDef}_${playType}`]?.value || 0;
         return GenericTableOps.buildDataRow({
-            [`${offDef}_title`]: `${isTrans ? "Transition" : "Scramble"} ${offNotDef ? "Offense" : "Defense"}`,
+            [`${offDef}_title`]: isTrans 
+                ? `Transition ${offNotDef ? "Offense" : "Defense"}`
+                : <OverlayTrigger placement="auto" overlay={scrambleTooltip}>
+                    <b>Scramble {offNotDef ? "Offense" : "Defense"}<sup>*</sup></b>
+                </OverlayTrigger>
+            ,
             [`${offDef}_pct`]: extraStats[`${offDef}_${playType}`],
             [`${offDef}_pct_orbs`]: isTrans ? undefined : extraStats[`${offDef}_scramble_per_orb`],
             [`${offDef}_ppp`]: (pct > 0) ? extraStats[`${offDef}_${playType}_ppp`] : undefined,

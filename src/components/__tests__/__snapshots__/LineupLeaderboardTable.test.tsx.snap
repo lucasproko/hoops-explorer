@@ -1029,19 +1029,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         29.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -1137,19 +1137,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        37.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.4
                                         % transition:
                                         <br />
                                         +
                                         5.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        37.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -1635,19 +1635,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         29.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -1743,19 +1743,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        37.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.4
                                         % transition:
                                         <br />
                                         +
                                         5.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        37.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -2244,19 +2244,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         +
                                         44.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -2352,19 +2352,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        13.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.7
                                         % transition:
                                         <br />
                                         +
                                         10.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        13.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -2840,19 +2840,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         +
                                         44.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -2948,19 +2948,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        13.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.7
                                         % transition:
                                         <br />
                                         +
                                         10.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        13.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -3439,19 +3439,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        20.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.6
                                         % transition:
                                         <br />
                                         +
                                         20.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        20.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -3547,19 +3547,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.7
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.4
                                         % transition:
                                         <br />
                                         +
                                         31.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.7
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -4035,19 +4035,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        20.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.6
                                         % transition:
                                         <br />
                                         +
                                         20.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        20.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -4143,19 +4143,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.7
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.4
                                         % transition:
                                         <br />
                                         +
                                         31.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.7
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -4634,16 +4634,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.0
-                                        % scramble
-                                      </li>
-                                      <li>
                                         20.5
                                         % transition:
                                         <br />
                                         +
                                         10.0
                                          pts/100
+                                      </li>
+                                      <li>
+                                        5.0
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 84.8101,
@@ -4738,19 +4738,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        14.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        12.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.3
                                         % transition:
                                         <br />
                                         +
                                         14.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        14.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        12.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -5236,16 +5236,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.0
-                                        % scramble
-                                      </li>
-                                      <li>
                                         20.5
                                         % transition:
                                         <br />
                                         +
                                         10.0
                                          pts/100
+                                      </li>
+                                      <li>
+                                        5.0
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 84.8101,
@@ -5340,19 +5340,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        14.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        12.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.3
                                         % transition:
                                         <br />
                                         +
                                         14.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        14.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        12.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -5841,19 +5841,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         20.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -5949,19 +5949,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.0
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -6437,19 +6437,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         20.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -6545,19 +6545,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.0
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -7036,19 +7036,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        23.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         
                                         -21.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        23.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -7144,19 +7144,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -14.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.6
                                         % transition:
                                         <br />
                                         
                                         -17.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -14.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -7639,19 +7639,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        23.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         
                                         -21.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        23.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -7747,19 +7747,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -14.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.6
                                         % transition:
                                         <br />
                                         
                                         -17.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -14.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -8245,19 +8245,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        38.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.8
                                         % transition:
                                         <br />
                                         +
                                         19.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        38.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -8353,19 +8353,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        12.6
-                                        % scramble:
-                                        <br />
-                                        
-                                        -23.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.5
                                         % transition:
                                         <br />
                                         +
                                         31.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        12.6
+                                        % scramble:
+                                        <br />
+                                        
+                                        -23.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -8843,19 +8843,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        38.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.8
                                         % transition:
                                         <br />
                                         +
                                         19.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        38.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -8951,19 +8951,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        12.6
-                                        % scramble:
-                                        <br />
-                                        
-                                        -23.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.5
                                         % transition:
                                         <br />
                                         +
                                         31.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        12.6
+                                        % scramble:
+                                        <br />
+                                        
+                                        -23.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -9444,19 +9444,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        7.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         
                                         -12.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -9552,19 +9552,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -11.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.1
                                         % transition:
                                         <br />
                                         +
                                         15.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -11.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -10050,19 +10050,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        7.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         
                                         -12.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -10158,19 +10158,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -11.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.1
                                         % transition:
                                         <br />
                                         +
                                         15.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -11.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -10659,19 +10659,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -28.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         10.1
                                         % transition:
                                         <br />
                                         +
                                         25.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -28.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -10767,19 +10767,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.5
                                         % transition:
                                         <br />
                                         +
                                         28.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -11252,19 +11252,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -28.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         10.1
                                         % transition:
                                         <br />
                                         +
                                         25.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -28.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -11360,19 +11360,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.5
                                         % transition:
                                         <br />
                                         +
                                         28.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -11848,19 +11848,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        10.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         6.7
                                         % transition:
                                         <br />
                                         +
                                         31.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        10.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -11956,19 +11956,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.8
-                                        % scramble:
-                                        <br />
-                                        +
-                                        18.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.0
                                         % transition:
                                         <br />
                                         +
                                         17.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.8
+                                        % scramble:
+                                        <br />
+                                        +
+                                        18.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -12444,19 +12444,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        10.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         6.7
                                         % transition:
                                         <br />
                                         +
                                         31.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        10.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -12552,19 +12552,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.8
-                                        % scramble:
-                                        <br />
-                                        +
-                                        18.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.0
                                         % transition:
                                         <br />
                                         +
                                         17.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.8
+                                        % scramble:
+                                        <br />
+                                        +
+                                        18.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -14258,19 +14258,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         29.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -14366,19 +14366,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        37.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.4
                                         % transition:
                                         <br />
                                         +
                                         5.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        37.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -14873,19 +14873,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         29.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -14981,19 +14981,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        37.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.4
                                         % transition:
                                         <br />
                                         +
                                         5.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        37.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -15491,19 +15491,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        14.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.6
                                         % transition:
                                         <br />
                                         
                                         -19.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        14.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -15599,19 +15599,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.5
-                                        % scramble:
-                                        <br />
-                                        +
-                                        25.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         7.2
                                         % transition:
                                         <br />
                                         +
                                         28.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.5
+                                        % scramble:
+                                        <br />
+                                        +
+                                        25.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -16100,19 +16100,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        14.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.6
                                         % transition:
                                         <br />
                                         
                                         -19.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        14.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -16208,19 +16208,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.5
-                                        % scramble:
-                                        <br />
-                                        +
-                                        25.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         7.2
                                         % transition:
                                         <br />
                                         +
                                         28.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.5
+                                        % scramble:
+                                        <br />
+                                        +
+                                        25.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -16712,19 +16712,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -30.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         15.2
                                         % transition:
                                         <br />
                                         +
                                         14.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -30.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -16820,19 +16820,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.5
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         22.2
                                         % transition:
                                         <br />
                                         
                                         -11.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.5
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -17314,19 +17314,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -30.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         15.2
                                         % transition:
                                         <br />
                                         +
                                         14.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -30.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -17422,19 +17422,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.5
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         22.2
                                         % transition:
                                         <br />
                                         
                                         -11.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.5
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -17919,19 +17919,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         +
                                         44.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -18027,19 +18027,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        13.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.7
                                         % transition:
                                         <br />
                                         +
                                         10.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        13.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -18524,19 +18524,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         +
                                         44.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -18632,19 +18632,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        13.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.7
                                         % transition:
                                         <br />
                                         +
                                         10.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        13.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -19132,19 +19132,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        20.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.6
                                         % transition:
                                         <br />
                                         +
                                         20.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        20.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -19240,19 +19240,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.7
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.4
                                         % transition:
                                         <br />
                                         +
                                         31.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.7
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -19737,19 +19737,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        20.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.6
                                         % transition:
                                         <br />
                                         +
                                         20.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        20.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -19845,19 +19845,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.7
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.4
                                         % transition:
                                         <br />
                                         +
                                         31.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.7
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -20345,16 +20345,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.0
-                                        % scramble
-                                      </li>
-                                      <li>
                                         20.5
                                         % transition:
                                         <br />
                                         +
                                         10.0
                                          pts/100
+                                      </li>
+                                      <li>
+                                        5.0
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 84.8101,
@@ -20449,19 +20449,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        14.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        12.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.3
                                         % transition:
                                         <br />
                                         +
                                         14.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        14.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        12.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -20956,16 +20956,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.0
-                                        % scramble
-                                      </li>
-                                      <li>
                                         20.5
                                         % transition:
                                         <br />
                                         +
                                         10.0
                                          pts/100
+                                      </li>
+                                      <li>
+                                        5.0
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 84.8101,
@@ -21060,19 +21060,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        14.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        12.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.3
                                         % transition:
                                         <br />
                                         +
                                         14.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        14.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        12.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -21570,19 +21570,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.0
-                                        % scramble:
-                                        <br />
-                                        +
-                                        2.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.2
                                         % transition:
                                         <br />
                                         
                                         -23.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.0
+                                        % scramble:
+                                        <br />
+                                        +
+                                        2.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -21678,19 +21678,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         15.2
                                         % transition:
                                         <br />
                                         
                                         -2.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -22178,19 +22178,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.0
-                                        % scramble:
-                                        <br />
-                                        +
-                                        2.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.2
                                         % transition:
                                         <br />
                                         
                                         -23.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.0
+                                        % scramble:
+                                        <br />
+                                        +
+                                        2.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -22286,19 +22286,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         15.2
                                         % transition:
                                         <br />
                                         
                                         -2.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -22789,19 +22789,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         20.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -22897,19 +22897,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.0
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -23394,19 +23394,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         20.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -23502,19 +23502,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.0
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -24002,19 +24002,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        26.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         14.2
                                         % transition:
                                         <br />
                                         +
                                         3.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        26.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -24110,19 +24110,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        6.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.3
                                         % transition:
                                         <br />
                                         +
                                         2.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        6.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -24614,19 +24614,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        26.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         14.2
                                         % transition:
                                         <br />
                                         +
                                         3.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        26.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -24722,19 +24722,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        6.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.3
                                         % transition:
                                         <br />
                                         +
                                         2.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        6.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -25229,19 +25229,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.1
                                         % transition:
                                         <br />
                                         +
                                         2.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -25337,19 +25337,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -12.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.9
                                         % transition:
                                         <br />
                                         
                                         -16.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -12.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -25844,19 +25844,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.1
                                         % transition:
                                         <br />
                                         +
                                         2.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -25952,19 +25952,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -12.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.9
                                         % transition:
                                         <br />
                                         
                                         -16.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -12.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -26462,19 +26462,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -25.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         13.4
                                         % transition:
                                         <br />
                                         +
                                         8.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -25.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -26570,19 +26570,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -25.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.7
                                         % transition:
                                         <br />
                                         +
                                         12.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -25.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -27064,19 +27064,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -25.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         13.4
                                         % transition:
                                         <br />
                                         +
                                         8.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -25.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -27172,19 +27172,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -25.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.7
                                         % transition:
                                         <br />
                                         +
                                         12.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -25.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -27669,19 +27669,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.3
-                                        % scramble:
-                                        <br />
-                                        
-                                        -31.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         26.2
                                         % transition:
                                         <br />
                                         
                                         -38.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.3
+                                        % scramble:
+                                        <br />
+                                        
+                                        -31.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -27777,19 +27777,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -28.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.7
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -28.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -28275,19 +28275,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.3
-                                        % scramble:
-                                        <br />
-                                        
-                                        -31.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         26.2
                                         % transition:
                                         <br />
                                         
                                         -38.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.3
+                                        % scramble:
+                                        <br />
+                                        
+                                        -31.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -28383,19 +28383,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -28.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.7
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -28.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -28884,19 +28884,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         13.2
                                         % transition:
                                         <br />
                                         
                                         -14.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -28992,19 +28992,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         26.9
                                         % transition:
                                         <br />
                                         +
                                         46.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -29486,19 +29486,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         13.2
                                         % transition:
                                         <br />
                                         
                                         -14.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -29594,19 +29594,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         26.9
                                         % transition:
                                         <br />
                                         +
                                         46.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -30091,19 +30091,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        52.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.3
                                         % transition:
                                         <br />
                                         +
                                         22.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        52.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -30199,16 +30199,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        4.7
-                                        % scramble
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         
                                         -3.5
                                          pts/100
+                                      </li>
+                                      <li>
+                                        4.7
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 127.381,
@@ -30690,19 +30690,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        52.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.3
                                         % transition:
                                         <br />
                                         +
                                         22.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        52.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -30798,16 +30798,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        4.7
-                                        % scramble
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         
                                         -3.5
                                          pts/100
+                                      </li>
+                                      <li>
+                                        4.7
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 127.381,
@@ -31292,19 +31292,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.5
-                                        % scramble:
-                                        <br />
-                                        +
-                                        6.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.6
                                         % transition:
                                         <br />
                                         +
                                         19.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.5
+                                        % scramble:
+                                        <br />
+                                        +
+                                        6.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -31400,19 +31400,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         
                                         -0.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -31894,19 +31894,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.5
-                                        % scramble:
-                                        <br />
-                                        +
-                                        6.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.6
                                         % transition:
                                         <br />
                                         +
                                         19.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.5
+                                        % scramble:
+                                        <br />
+                                        +
+                                        6.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -32002,19 +32002,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         
                                         -0.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -33714,19 +33714,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         29.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -33822,19 +33822,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        37.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.4
                                         % transition:
                                         <br />
                                         +
                                         5.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        37.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -34320,19 +34320,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         29.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -34428,19 +34428,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        37.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.4
                                         % transition:
                                         <br />
                                         +
                                         5.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        37.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -34952,19 +34952,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         +
                                         44.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -35060,19 +35060,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        13.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.7
                                         % transition:
                                         <br />
                                         +
                                         10.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        13.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -35548,19 +35548,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.2
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         +
                                         44.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.2
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -35656,19 +35656,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        13.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -20.7
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.7
                                         % transition:
                                         <br />
                                         +
                                         10.2
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        13.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -20.7
                                          pts/100
                                       </li>
                                     </span>,
@@ -36170,19 +36170,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        20.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.6
                                         % transition:
                                         <br />
                                         +
                                         20.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        20.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -36278,19 +36278,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.7
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.4
                                         % transition:
                                         <br />
                                         +
                                         31.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.7
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -36766,19 +36766,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        20.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.6
                                         % transition:
                                         <br />
                                         +
                                         20.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        20.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -36874,19 +36874,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        6.7
-                                        % scramble:
-                                        <br />
-                                        +
-                                        13.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.4
                                         % transition:
                                         <br />
                                         +
                                         31.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        6.7
+                                        % scramble:
+                                        <br />
+                                        +
+                                        13.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -37388,16 +37388,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.0
-                                        % scramble
-                                      </li>
-                                      <li>
                                         20.5
                                         % transition:
                                         <br />
                                         +
                                         10.0
                                          pts/100
+                                      </li>
+                                      <li>
+                                        5.0
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 84.8101,
@@ -37492,19 +37492,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        14.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        12.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.3
                                         % transition:
                                         <br />
                                         +
                                         14.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        14.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        12.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -37990,16 +37990,16 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.0
-                                        % scramble
-                                      </li>
-                                      <li>
                                         20.5
                                         % transition:
                                         <br />
                                         +
                                         10.0
                                          pts/100
+                                      </li>
+                                      <li>
+                                        5.0
+                                        % scramble
                                       </li>
                                     </span>,
                                     "old_value": 84.8101,
@@ -38094,19 +38094,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        14.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        12.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.3
                                         % transition:
                                         <br />
                                         +
                                         14.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        14.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        12.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -38618,19 +38618,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         20.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -38726,19 +38726,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.0
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -39214,19 +39214,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        5.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        35.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         12.8
                                         % transition:
                                         <br />
                                         +
                                         20.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        5.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        35.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -39322,19 +39322,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.7
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.0
                                         % transition:
                                         <br />
                                         +
                                         4.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.7
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -39836,19 +39836,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        23.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         
                                         -21.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        23.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -39944,19 +39944,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -14.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.6
                                         % transition:
                                         <br />
                                         
                                         -17.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -14.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -40439,19 +40439,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        23.0
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.1
                                         % transition:
                                         <br />
                                         
                                         -21.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        23.0
                                          pts/100
                                       </li>
                                     </span>,
@@ -40547,19 +40547,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -14.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.6
                                         % transition:
                                         <br />
                                         
                                         -17.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -14.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -41068,19 +41068,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        38.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.8
                                         % transition:
                                         <br />
                                         +
                                         19.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        38.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -41176,19 +41176,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        12.6
-                                        % scramble:
-                                        <br />
-                                        
-                                        -23.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.5
                                         % transition:
                                         <br />
                                         +
                                         31.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        12.6
+                                        % scramble:
+                                        <br />
+                                        
+                                        -23.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -41666,19 +41666,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        38.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.8
                                         % transition:
                                         <br />
                                         +
                                         19.1
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        38.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -41774,19 +41774,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        12.6
-                                        % scramble:
-                                        <br />
-                                        
-                                        -23.9
-                                         pts/100
-                                      </li>
-                                      <li>
                                         23.5
                                         % transition:
                                         <br />
                                         +
                                         31.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        12.6
+                                        % scramble:
+                                        <br />
+                                        
+                                        -23.9
                                          pts/100
                                       </li>
                                     </span>,
@@ -42290,19 +42290,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        7.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         
                                         -12.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -42398,19 +42398,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -11.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.1
                                         % transition:
                                         <br />
                                         +
                                         15.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -11.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -42896,19 +42896,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.9
-                                        % scramble:
-                                        <br />
-                                        +
-                                        7.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         
                                         -12.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.9
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -43004,19 +43004,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.9
-                                        % scramble:
-                                        <br />
-                                        
-                                        -11.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         16.1
                                         % transition:
                                         <br />
                                         +
                                         15.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.9
+                                        % scramble:
+                                        <br />
+                                        
+                                        -11.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -43528,19 +43528,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -28.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         10.1
                                         % transition:
                                         <br />
                                         +
                                         25.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -28.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -43636,19 +43636,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.5
                                         % transition:
                                         <br />
                                         +
                                         28.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -44121,19 +44121,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        7.5
-                                        % scramble:
-                                        <br />
-                                        
-                                        -28.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         10.1
                                         % transition:
                                         <br />
                                         +
                                         25.3
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        7.5
+                                        % scramble:
+                                        <br />
+                                        
+                                        -28.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -44229,19 +44229,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.1
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         17.5
                                         % transition:
                                         <br />
                                         +
                                         28.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.1
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -44740,19 +44740,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        10.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         6.7
                                         % transition:
                                         <br />
                                         +
                                         31.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        10.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -44848,19 +44848,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.8
-                                        % scramble:
-                                        <br />
-                                        +
-                                        18.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.0
                                         % transition:
                                         <br />
                                         +
                                         17.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.8
+                                        % scramble:
+                                        <br />
+                                        +
+                                        18.8
                                          pts/100
                                       </li>
                                     </span>,
@@ -45336,19 +45336,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        10.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         6.7
                                         % transition:
                                         <br />
                                         +
                                         31.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        10.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -45444,19 +45444,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.8
-                                        % scramble:
-                                        <br />
-                                        +
-                                        18.8
-                                         pts/100
-                                      </li>
-                                      <li>
                                         21.0
                                         % transition:
                                         <br />
                                         +
                                         17.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.8
+                                        % scramble:
+                                        <br />
+                                        +
+                                        18.8
                                          pts/100
                                       </li>
                                     </span>,

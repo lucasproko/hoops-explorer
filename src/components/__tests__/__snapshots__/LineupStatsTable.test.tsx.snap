@@ -782,19 +782,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -870,19 +870,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -1244,19 +1244,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -1332,19 +1332,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -1709,19 +1709,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        75.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -1797,19 +1797,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -2171,19 +2171,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        75.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -2259,19 +2259,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -2636,19 +2636,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -2724,19 +2724,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -3098,19 +3098,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -3186,19 +3186,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -4573,19 +4573,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        7.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         4.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -4687,19 +4687,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -4891,19 +4891,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        7.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         4.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        7.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -5005,19 +5005,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -5235,19 +5235,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        72.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -29.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        72.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -5349,19 +5349,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -5553,19 +5553,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        72.4
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -29.0
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        72.4
                                          pts/100
                                       </li>
                                     </span>,
@@ -5667,19 +5667,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -5897,19 +5897,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         3.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -6011,19 +6011,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -6215,19 +6215,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        
-                                        -0.2
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         3.4
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        
+                                        -0.2
                                          pts/100
                                       </li>
                                     </span>,
@@ -6329,19 +6329,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -7521,19 +7521,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -7609,19 +7609,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -7997,19 +7997,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -8085,19 +8085,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -8476,19 +8476,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        75.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -8564,19 +8564,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -8952,19 +8952,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        75.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -9040,19 +9040,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -9431,19 +9431,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -9519,19 +9519,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -9907,19 +9907,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -9995,19 +9995,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -11372,19 +11372,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -11460,19 +11460,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -11848,19 +11848,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.3
-                                        % scramble:
-                                        <br />
-                                        +
-                                        9.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         20.6
                                         % transition:
                                         <br />
                                         +
                                         6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -11936,19 +11936,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        9.6
-                                        % scramble:
-                                        <br />
-                                        +
-                                        8.1
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.3
                                         % transition:
                                         <br />
                                         +
                                         16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
                                          pts/100
                                       </li>
                                     </span>,
@@ -12327,19 +12327,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        75.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -12415,19 +12415,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -12803,19 +12803,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.2
-                                        % scramble:
-                                        <br />
-                                        +
-                                        75.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         11.3
                                         % transition:
                                         <br />
                                         
                                         -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -12891,19 +12891,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        11.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        30.6
-                                         pts/100
-                                      </li>
-                                      <li>
                                         25.7
                                         % transition:
                                         <br />
                                         +
                                         14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
                                          pts/100
                                       </li>
                                     </span>,
@@ -13282,19 +13282,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -13370,19 +13370,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,
@@ -13758,19 +13758,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        8.4
-                                        % scramble:
-                                        <br />
-                                        +
-                                        5.3
-                                         pts/100
-                                      </li>
-                                      <li>
                                         19.4
                                         % transition:
                                         <br />
                                         +
                                         8.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        5.3
                                          pts/100
                                       </li>
                                     </span>,
@@ -13846,19 +13846,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
-                                        10.1
-                                        % scramble:
-                                        <br />
-                                        
-                                        -21.5
-                                         pts/100
-                                      </li>
-                                      <li>
                                         18.4
                                         % transition:
                                         <br />
                                         +
                                         6.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.1
+                                        % scramble:
+                                        <br />
+                                        
+                                        -21.5
                                          pts/100
                                       </li>
                                     </span>,

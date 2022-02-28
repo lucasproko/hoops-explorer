@@ -6840,16 +6840,25 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
-                                          "fontWeight": "bold",
+                                          "fontWeight": "normal",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
                                           "width": "29.1%",
                                         }
                                       }
                                     >
-                                      <div>
-                                        Scramble Offense
-                                      </div>
+                                      <b
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseOut={[Function]}
+                                        onMouseOver={[Function]}
+                                      >
+                                        Scramble 
+                                        Offense
+                                        <sup>
+                                          *
+                                        </sup>
+                                      </b>
                                     </td>
                                     <td
                                       className=""
@@ -7888,16 +7897,25 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
-                                          "fontWeight": "bold",
+                                          "fontWeight": "normal",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
                                           "width": "29.1%",
                                         }
                                       }
                                     >
-                                      <div>
-                                        Scramble Defense
-                                      </div>
+                                      <b
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseOut={[Function]}
+                                        onMouseOver={[Function]}
+                                      >
+                                        Scramble 
+                                        Defense
+                                        <sup>
+                                          *
+                                        </sup>
+                                      </b>
                                     </td>
                                     <td
                                       className=""
@@ -21112,16 +21130,25 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
-                                          "fontWeight": "bold",
+                                          "fontWeight": "normal",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
                                           "width": "29.1%",
                                         }
                                       }
                                     >
-                                      <div>
-                                        Scramble Offense
-                                      </div>
+                                      <b
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseOut={[Function]}
+                                        onMouseOver={[Function]}
+                                      >
+                                        Scramble 
+                                        Offense
+                                        <sup>
+                                          *
+                                        </sup>
+                                      </b>
                                     </td>
                                     <td
                                       className=""
@@ -22160,16 +22187,25 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
-                                          "fontWeight": "bold",
+                                          "fontWeight": "normal",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
                                           "width": "29.1%",
                                         }
                                       }
                                     >
-                                      <div>
-                                        Scramble Defense
-                                      </div>
+                                      <b
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseOut={[Function]}
+                                        onMouseOver={[Function]}
+                                      >
+                                        Scramble 
+                                        Defense
+                                        <sup>
+                                          *
+                                        </sup>
+                                      </b>
                                     </td>
                                     <td
                                       className=""
@@ -35384,16 +35420,25 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
-                                          "fontWeight": "bold",
+                                          "fontWeight": "normal",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
                                           "width": "29.1%",
                                         }
                                       }
                                     >
-                                      <div>
-                                        Scramble Offense
-                                      </div>
+                                      <b
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseOut={[Function]}
+                                        onMouseOver={[Function]}
+                                      >
+                                        Scramble 
+                                        Offense
+                                        <sup>
+                                          *
+                                        </sup>
+                                      </b>
                                     </td>
                                     <td
                                       className=""
@@ -36432,16 +36477,25 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
-                                          "fontWeight": "bold",
+                                          "fontWeight": "normal",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
                                           "width": "29.1%",
                                         }
                                       }
                                     >
-                                      <div>
-                                        Scramble Defense
-                                      </div>
+                                      <b
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseOut={[Function]}
+                                        onMouseOver={[Function]}
+                                      >
+                                        Scramble 
+                                        Defense
+                                        <sup>
+                                          *
+                                        </sup>
+                                      </b>
                                     </td>
                                     <td
                                       className=""

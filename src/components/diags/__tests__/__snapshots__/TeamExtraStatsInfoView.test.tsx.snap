@@ -93,7 +93,32 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                   "off_ppp": Object {
                     "value": 115.22073848662431,
                   },
-                  "off_title": "Scramble Offense",
+                  "off_title": <OverlayTrigger
+                    defaultShow={false}
+                    overlay={
+                      <ForwardRef
+                        id="scrambleDeftest"
+                        placement="right"
+                      >
+                        Possessions finishing after an ORB, but not counting plays where the offense resets
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                    trigger={
+                      Array [
+                        "hover",
+                        "focus",
+                      ]
+                    }
+                  >
+                    <b>
+                      Scramble 
+                      Offense
+                      <sup>
+                        *
+                      </sup>
+                    </b>
+                  </OverlayTrigger>,
                   "off_to": Object {
                     "value": 0.12057984260228126,
                   },
@@ -180,7 +205,32 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                   "def_ppp": Object {
                     "value": 104.25568362101016,
                   },
-                  "def_title": "Scramble Defense",
+                  "def_title": <OverlayTrigger
+                    defaultShow={false}
+                    overlay={
+                      <ForwardRef
+                        id="scrambleDeftest"
+                        placement="right"
+                      >
+                        Possessions finishing after an ORB, but not counting plays where the offense resets
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                    trigger={
+                      Array [
+                        "hover",
+                        "focus",
+                      ]
+                    }
+                  >
+                    <b>
+                      Scramble 
+                      Defense
+                      <sup>
+                        *
+                      </sup>
+                    </b>
+                  </OverlayTrigger>,
                   "def_to": Object {
                     "value": 0.14088605894731104,
                   },

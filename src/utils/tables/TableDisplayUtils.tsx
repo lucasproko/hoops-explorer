@@ -231,13 +231,13 @@ export class TableDisplayUtils {
 
       return <span>
         Play category breakdown:
-        { scramblePct > 5 ?
-          <li>{scramblePct.toFixed(1)}% scramble:<br/>{scramblePm}{scramblePppDelta.toFixed(1)} pts/100</li> :
-          <li>{scramblePct.toFixed(1)}% scramble</li>
-        }
         { transPct > 5 ?
           <li>{transPct.toFixed(1)}% transition:<br/>{transPm}{transPppDelta.toFixed(1)} pts/100</li> :
           <li>{transPct.toFixed(1)}% transition</li>
+        }
+        { scramblePct > 5 ?
+          <li>{scramblePct.toFixed(1)}% scramble:<br/>{scramblePm}{scramblePppDelta.toFixed(1)} pts/100</li> :
+          <li>{scramblePct.toFixed(1)}% scramble</li>
         }
       </span>;
     };
