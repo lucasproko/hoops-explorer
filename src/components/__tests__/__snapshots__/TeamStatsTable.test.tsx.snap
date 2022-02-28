@@ -6122,7 +6122,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="playTypeStats_On ('A')"
+                                id="playTypeStats_OnA"
                               >
                                 <thead>
                                   <tr>
@@ -6140,7 +6140,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="playTypeStats_On ('A')_copy"
+                                          id="playTypeStats_OnA_copy"
                                           type="button"
                                         >
                                           <svg
@@ -8419,7 +8419,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="assistStats_On ('A')"
+                                id="assistStats_OnA"
                               >
                                 <thead>
                                   <tr>
@@ -8437,7 +8437,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="assistStats_On ('A')_copy"
+                                          id="assistStats_OnA_copy"
                                           type="button"
                                         >
                                           <svg
@@ -20412,7 +20412,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="playTypeStats_Off ('B')"
+                                id="playTypeStats_OffB"
                               >
                                 <thead>
                                   <tr>
@@ -20430,7 +20430,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="playTypeStats_Off ('B')_copy"
+                                          id="playTypeStats_OffB_copy"
                                           type="button"
                                         >
                                           <svg
@@ -22709,7 +22709,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             >
                               <table
                                 className="table table-sm"
-                                id="assistStats_Off ('B')"
+                                id="assistStats_OffB"
                               >
                                 <thead>
                                   <tr>
@@ -22727,7 +22727,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         <button
                                           className="float-left btn btn-outline-secondary btn-sm"
                                           disabled={false}
-                                          id="assistStats_Off ('B')_copy"
+                                          id="assistStats_OffB_copy"
                                           type="button"
                                         >
                                           <svg

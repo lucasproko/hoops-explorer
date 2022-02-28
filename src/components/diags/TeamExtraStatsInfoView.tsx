@@ -86,6 +86,8 @@ type Props = {
     grades?: GradeProps
 };
 const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatSet, showGrades, grades}) => {
+    const nameAsId = name.replace(/[^A-Za-z0-9_]/g, '');
+
     const tiers = { //(handy LUT)
         High: grades?.highTier,
         Medium: grades?.mediumTier,
@@ -109,7 +111,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
          tierToUse, extraStats, GradeUtils.derivedFields, gradeFormat == "rank"
     )  : {};
 
-    const scrambleTooltip = <Tooltip id={`scrambleDef${name}`}>Possessions finishing after an ORB, but not counting plays where the offense resets</Tooltip>;
+    const scrambleTooltip = <Tooltip id={`scrambleDef${nameAsId}`}>Possessions finishing after an ORB, but not counting plays where the offense resets</Tooltip>;
 
     const offPrefixFn = (key: string) => "off_" + key;
     const offCellMetaFn = (key: string, val: any) => "off";
@@ -226,7 +228,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             <Row>
                 <Col xs={8} sm={12} lg={8}>
                     <GenericTable
-                        tableCopyId={`playTypeStats_${name}`}
+                        tableCopyId={`playTypeStats_${nameAsId}`}
                         tableFields={playTypeTable} 
                         tableData={playTypeTableData}
                     />
@@ -236,7 +238,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             <Row>
                 <Col xs={8} sm={12} lg={8}>
                     <GenericTable
-                        tableCopyId={`assistStats_${name}`}
+                        tableCopyId={`assistStats_${nameAsId}`}
                         tableFields={assistDetailsTable} 
                         tableData={assistTableData}
                     />
