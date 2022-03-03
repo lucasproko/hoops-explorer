@@ -99,6 +99,11 @@ export const buildQueryFiltersBoolArray = (queryFiltersStr: string | undefined, 
     _.flatMap([ "Good-Off", "Good-Def"], (offOrDef: "Good-Off" | "Good-Def") => {
       return QueryUtils.filterHas(queryFilters, offOrDef) ? goodOffOrDfense(offOrDef, avgEff, deltaEff) : [];
     }),
+    QueryUtils.filterHas(queryFilters, "Vs-Good") ? [{
+      "query_string": {
+        "query": `vs_rank:<=80`
+      }
+    }] : [],
     customDate ? [{
       "query_string": {
         "query": `date:[${format(customDate.start, "yyyy-MM-dd")} TO ${format(customDate.end, "yyyy-MM-dd")}]`

@@ -32,10 +32,12 @@ export class QueryDisplayUtils {
         case "Not-Home":
           return <Tooltip id={`qf${t}`}>Away/Neutral games only. Use <b>location_type:(Away Neutral)</b> or <b>(opponent.Away:* opponent.Neutral:*)</b> directly in query fields(s).</Tooltip>
 
+        case "Vs-Good":
+          return <Tooltip id={`qf${t}`}>Playing against T80 teams. Use <b>vs_rank:{`<`}=80</b> directly in query fields(s).</Tooltip>
         case "Good-Off":
-          return <Tooltip id={`qf${t}`}>Playing against teams with good (T100ish) offense. Use <b>vs_adj_off:{`>`}{(avgEff + deltaEff).toFixed(1)}</b> directly in query fields(s).</Tooltip>
+          return <Tooltip id={`qf${t}`}>Playing against teams with good (T80-100ish) offense. Use <b>vs_adj_off:{`>`}{(avgEff + deltaEff).toFixed(1)}</b> directly in query fields(s).</Tooltip>
         case "Good-Def":
-          return <Tooltip id={`qf${t}`}>Playing against teams with good (T100ish) defense. Use <b>vs_adj_def:{`<`}{(avgEff - deltaEff).toFixed(1)}</b> directly in query fields(s).</Tooltip>
+          return <Tooltip id={`qf${t}`}>Playing against teams with good (T80-100ish) defense. Use <b>vs_adj_def:{`<`}{(avgEff - deltaEff).toFixed(1)}</b> directly in query fields(s).</Tooltip>
   
         case "Nov-Dec":
           return <Tooltip id={`qf${t}`}>Nov/Dec games only. Use eg <b>date:[* TO {_.take(year, 4)}-12-31]</b> directly in query fields(s).</Tooltip>

@@ -10,7 +10,7 @@ import { CommonFilterParams, ParamDefaults, GameFilterParams } from './FilterMod
 import { format, parse, addYears } from "date-fns";
 
 export type CommonFilterTypeSimple =
-  "Conf" | "Home" | "Away" | "Not-Home" | "Good-Off" | "Good-Def" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
+  "Conf" | "Home" | "Away" | "Not-Home" | "Good-Off" | "Good-Def" | "Vs-Good" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
 
 export type CommonFilterCustomDate = {
   kind: CustomDateAlias,
@@ -220,8 +220,9 @@ export class QueryUtils {
         case "Away": return [ typed("Home"), typed("Not-Home") ];
         case "Not-Home": return [ typed("Home"), typed("Away") ];
 
-        case "Good-Off": return [ ];
-        case "Good-Def": return [ ];
+        case "Vs-Good": return [ typed("Good-Off"), typed("Good-Def") ];
+        case "Good-Off": return [ typed("Vs-Good") ];
+        case "Good-Def": return [ typed("Vs-Good") ];
 
         case "Last-30d": return [ typed("Nov-Dec"), typed("Jan-Apr"), typed("Custom-Date") ];
         case "Nov-Dec":

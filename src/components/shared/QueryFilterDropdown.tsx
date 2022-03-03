@@ -44,6 +44,7 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQ
      {filterMenuItem("Away", "Away games only")}
      {filterMenuItem("Not-Home", "Away/Neutral games only")}
      <Dropdown.Divider />
+     {filterMenuItem("Vs-Good", "Vs T80 teams")}
      {filterMenuItem("Good-Off", "Vs Good Offense")}
      {filterMenuItem("Good-Def", "Vs Good Defense")}
      <Dropdown.Divider />
