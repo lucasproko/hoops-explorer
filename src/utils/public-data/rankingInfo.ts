@@ -25,69 +25,69 @@ const apPollWomen_2020_21: Record<string, number> = {"UConn":1,"Stanford":2,"NC 
 
 /** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
 const apPollMen_2021_22: Record<string, number> = _.chain(`
-1	Gonzaga	24-3	1,504	1
-2	Arizona	25-3	1,360	2
-3	Baylor	24-5	1,342	10
-4	Duke	25-4	1,306	7
-5	Auburn	25-4	1,268	3
-6	Kansas	23-5	1,224	5
-7	Kentucky	23-6	1,215	6
-8	Purdue	24-5	1,129	4
-9	Providence	24-3	1,021	11
-10	Wisconsin	23-5	865	13
-11	Villanova	21-7	861	8
-12	Texas Tech	22-7	850	9
-13	Tennessee	21-7	770	17
-14	Arkansas	23-6	759	18
-14	Houston	24-4	759	14
-16	Southern Cal	25-4	557	16
-17	UCLA	21-6	498	12
-18	UConn	21-7	480	21
-19	Saint Mary's	24-6	449	23
-20	Illinois	20-8	383	15
-21	Texas	21-8	364	20
-22	Murray State	28-2	333	19
-23	Ohio State	18-8	191	22
-24	Iowa	20-8	99	25
-25	Alabama	19-10	90	24
+1	Gonzaga	24-3	1,514	1
+2	Arizona	28-3	1,435	2
+3	Baylor	26-5	1,402	3
+4	Auburn	27-4	1,331	5
+5	Kentucky	25-6	1,306	7
+6	Kansas	25-6	1,170	6
+7	Duke	26-5	1,100	4
+8	Villanova	23-7	1,096	11
+9	Purdue	25-6	967	8
+9	Tennessee	23-7	967	13
+11	Providence	24-4	951	9
+12	Wisconsin	24-6	857	10
+13	UCLA	23-6	737	17
+14	Texas Tech	23-8	730	12
+15	Arkansas	24-7	687	14
+16	Illinois	22-8	612	20
+17	Saint Mary's	24-6	506	19
+18	Houston	26-5	502	14
+19	Murray State	30-2	424	22
+20	UConn	22-8	370	18
+21	Southern Cal	25-6	279	16
+22	Texas	21-10	216	21
+23	Colorado State	24-4	194	NR
+24	Iowa	22-9	189	24
+25	North Carolina	23-8	56	NR
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
    .assign(
       {
-         __week__: 17
+         __week__: 18
       }
    ).value();
 
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
 const apPollWomen_2021_22: Record<string, number> = _.chain(`
-1	South Carolina	27-1	750	1
-2	Stanford	25-3	719	2
-3	NC State	26-3	687	3
-4	Louisville	25-3	659	4
-5	Baylor	23-5	626	5
-6	LSU	25-4	567	8
-7	UConn	22-5	555	7
-8	Iowa State	24-4	527	9
-9	Texas	21-6	510	11
-10	Michigan	22-5	492	6
-11	Maryland	21-7	460	13
-12	Iowa	20-7	395	21
-13	Ohio State	22-5	329	17
-14	Indiana	19-7	327	10
-14	Arizona	20-6	327	12
-16	North Carolina	23-5	300	18
-17	BYU	25-2	258	19
-18	Tennessee	22-7	245	16
-19	Oklahoma	22-6	244	20
-20	Notre Dame	21-7	224	14
-21	Virginia Tech	21-8	113	23
-22	Florida Gulf Coast	26-2	103	24
-23	Florida	20-9	89	15
-24	Georgia	20-8	51	25
-25	Georgia Tech	20-9	50	22
+1	South Carolina	29-2	735	1
+2	Stanford	8-3	729	2
+3	NC State	29-3	696	3
+4	Baylor	25-5	654	5
+5	Louisville	25-4	608	4
+6	UConn	24-5	601	7
+7	Texas	23-6	540	9
+8	Iowa	23-7	537	12
+9	LSU	25-5	512	6
+10	Iowa State	25-5	484	8
+11	Indiana	22-8	457	14
+12	Michigan	22-6	405	10
+13	Maryland	21-8	379	11
+14	Ohio State	23-6	335	13
+15	BYU	25-2	282	17
+16	Kentucky	19-11	231	NR
+17	Virginia Tech	23-9	229	21
+18	North Carolina	23-6	227	16
+19	Tennessee	23-8	215	18
+20	Arizona	20-7	214	14
+21	Oklahoma	23-7	167	19
+22	Notre Dame	22-8	164	20
+23	Florida Gulf Coast	27-2	130	22
+24	Princeton	22-4	44	NR
+25	UCF	22-3	42	NR
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
    .assign(
       {
-         __week__: 16
+         __week__: 18
       }
    ).value();
 
