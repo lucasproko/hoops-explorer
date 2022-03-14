@@ -49,7 +49,7 @@ import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
-import { apPolls } from '../utils/public-data/rankingInfo';
+import { apPolls, sCurves } from '../utils/public-data/rankingInfo';
 import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 
@@ -218,8 +218,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     const last30d = 
       (getEndOfRegSeason(genderYear) || dataLastUpdated[genderYear] || ((new Date().getTime())/1000)) - 
         (30*24*3600);
-    const apPoll = apPolls[genderYear];
+    const apPoll: Record<string, number> | undefined = apPolls[genderYear]?.();
     const apPollSize = apPoll?.__max__ || 25;
+
+    const sCurve: Record<string, number> | undefined = sCurves[genderYear]?.();
+    const sCurveSize = _.size(sCurve || {});
 
     const netRankingSize = 100; // (only calculate the delta on the first 100 NET)
         
@@ -243,8 +246,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     };
     var anyPinDeltas = false;
 
-    var varApDelta = 0; //(calculate total error of NET vs h-e ranking)
+    var varApDelta = 0; //(calculate total error of AP poll vs h-e ranking)
     var varNetDelta = 0; //(calculate total error of NET vs h-e ranking)
+    var varSDelta = 0; //(calculate total error of S-Curve vs h-e ranking)
 
     const rankingDeltaColorScale = (val: number) => chroma.scale(["green", "orange", "red"])(val).toString();
 
@@ -437,7 +441,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             },
             games: { value: numOpponents },
             ap: undefined as any,
-            NET: undefined as any
+            NET: undefined as any,
+            S: undefined as any,
           } ];
           return cell;
 
@@ -456,10 +461,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           if (!buildPin) anyPinDeltas = anyPinDeltas || (delta != 0);
         }
         if (apPoll) {
-          const apPos = apPoll[t.titleStr] || 0;
+          const apPos = apPoll?.[t.titleStr] || 0;
           var varDelta = 0;
           if ((t.rankNum <= apPollSize) && !apPos) {
-            varDelta = 5 + apPollSize - t.rankNum; //(assume an error is 5 more than the ranking size)
+            varDelta = 5 + (apPollSize - t.rankNum); //(assume an error is 5 more than the ranking size)
           } else if (apPos) {
             varDelta = Math.min(Math.abs(apPos - t.rankNum), 15);
           }
@@ -470,12 +475,27 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             t.ap = <small style={CommonTableDefs.getTextShadow({ value: varDelta*0.1 }, rankingDeltaColorScale)}>{apPos || "NR"}</small>;
           }
         }
+        if (sCurve) {
+          const sCurvePos: number = sCurve?.[t.titleStr] || 0;
+          var varDelta = 0;
+          if ((t.rankNum <= sCurveSize) && !sCurvePos) {
+            varDelta = 5 + (sCurveSize - t.rankNum); //(assume an error is 5 more than the ranking size)
+          } else if (sCurvePos) {
+            varDelta = Math.min(Math.abs(sCurvePos - t.rankNum), 15);
+          }
+          if (!buildPin) {
+            varSDelta = varSDelta + varDelta;
+          }
+          if (sCurvePos) {
+            t.S = <small style={CommonTableDefs.getTextShadow({ value: varDelta*0.1 }, rankingDeltaColorScale)}>{sCurvePos || "-"}</small>;
+          }
+        }
         if (!_.isEmpty(netRankings)) {
           const netPos: number = netRankings[t.titleStr] || 0;
           var varDelta = 0;
           if ((t.rankNum <= netRankingSize) && !netPos) {
-            varDelta = 5 + apPollSize - t.rankNum; //(assume an error is 5 more than the ranking size)
-          } else if (netPos <= 100) {
+            varDelta = 0; //(for NET this means there was a name lookup error)
+          } else if (netPos <= netRankingSize) {
             varDelta = Math.min(Math.abs(netPos - t.rankNum), 15);
           }
           if (!buildPin) {
@@ -531,7 +551,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       <Tooltip id="apTooltip">The average delta between AP poll and this ranking (note there may have been games since the AP poll's release)</Tooltip>
     );
     const netTooltip = (
-      <Tooltip id="apTooltip">The average delta between daily NET and this ranking (T100 only)</Tooltip>
+      <Tooltip id="netTooltip">The average delta between daily NET and this ranking (T100 only)</Tooltip>
+    );
+    const sCurveTooltip = (
+      <Tooltip id="sCurveTooltip">The average delta between the NCAA S-Curve and this ranking (top-seeds / at-large / last-4-out only)</Tooltip>
     );
     const gameBasisTooltip = (
       <Tooltip id="gameBasisTooltip">The mode (most common) number of games played in D1 (all metrics are normalized as if each team had played this many games)</Tooltip>
@@ -544,6 +567,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         [<OverlayTrigger placement="auto" overlay={apTooltip}><i>{(varApDelta/apPollSize).toFixed(1)}</i></OverlayTrigger>, 1]
       ] : []).concat(!_.isEmpty(netRankings) ? [
         [<OverlayTrigger placement="auto" overlay={netTooltip}><i>{(varNetDelta/netRankingSize).toFixed(1)}</i></OverlayTrigger>, 1]
+      ] : []).concat(sCurve ? [
+        [<OverlayTrigger placement="auto" overlay={sCurveTooltip}><i>{(varSDelta/sCurveSize).toFixed(1)}</i></OverlayTrigger>, 1]
       ] : [])
     ) as Array<[React.ReactNode, number ]>;
 
@@ -602,10 +627,12 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         "sep4": GenericTableOps.addColSeparator(),
         "games": GenericTableOps.addIntCol("Games", `Number of games played (D1-D1 only; all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
         "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}]`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-        "NET": GenericTableOps.addDataCol(`NET`, `The team's NET ranking`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter)
+        "NET": GenericTableOps.addDataCol(`NET`, `The team's NET ranking`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+        "S": GenericTableOps.addDataCol(`S`, `The S-Curve for the top seeds, at-larges, and first 4 out`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter)
       }, 
       (anyPinDeltas ? [] : [ "rankDiff" ])
-        .concat(apPoll ? [] : [ "ap" ])
+        .concat((apPoll) ? [] : [ "ap" ])
+        .concat((sCurve) ? [] : [ "S" ])
         .concat(_.isEmpty(netRankings) ? [ "NET" ] : [  ])
     ) as Record<string, GenericTableColProps>;
   
