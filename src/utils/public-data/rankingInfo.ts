@@ -4,12 +4,14 @@ import _ from 'lodash';
 const weirdNameChanges: Record<string, string> = {
    "North Carolina St.": "NC State",
    "NC St.": "NC State",
+   "UNC": "North Carolina",
    "Connecticut": "UConn",
    "South Florida": "South Fla.",
    "Loyola (IL)": "Loyola Chicago",
    "USC": "Southern California",
    "Southern Cal": "Southern California",
    "Florida Gulf Coast": "FGCU",
+   "USF": "South Fla.",
    "Saint Mary's": "Saint Mary's (CA)",
 };
 const fixName = (t: string) => weirdNameChanges[t] || t;
@@ -163,6 +165,65 @@ const sCurveMen_2021_22: () => Record<string, number> = () => _.chain(`
    return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}
 ).fromPairs().value();
 
+const sCurveWomen_2021_22: () => Record<string, number> = () => _.chain(`
+South Carolina
+Stanford
+NC State
+Louisville
+Baylor
+UConn
+Texas
+Iowa
+Iowa State
+LSU
+Indiana
+Michigan
+Tennessee
+Oklahoma
+Maryland
+Arizona
+UNC
+Virginia Tech
+Notre Dame
+Oregon
+BYU
+Kentucky
+Ohio State
+Georgia
+Colorado
+Utah
+UCF
+Ole Miss
+Nebraska
+Washington State
+Kansas
+Miami (FL)
+USF
+Georgia Tech
+Kansas State
+Gonzaga
+South Dakota
+Florida
+Arkansas
+Creighton
+Princeton
+Villanova
+Dayton
+DePaul
+Florida State
+Missouri State
+FGCU
+Belmont
+Oregon State
+Boston College
+South Dakota State
+Marquette
+`).split("\n").map((l, rank) => { 
+   return [ fixName(l.replace("State", "St.")), rank ];}
+).fromPairs().value();
+
+
 export const sCurves: Record<string, () => Record<string, number>> = {
-   "Men_2021/22": _.memoize(sCurveMen_2021_22)
+   "Men_2021/22": _.memoize(sCurveMen_2021_22),
+   "Women_2021/22": _.memoize(sCurveWomen_2021_22)
 };
