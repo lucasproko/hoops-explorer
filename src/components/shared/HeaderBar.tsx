@@ -132,7 +132,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     return <Tooltip id={"lineupLeaderboardTooltip" + tier}>Go to the (luck adjusted) Lineup T400 Leaderboard page ({describeConfs(tier)})</Tooltip>
   };
   const playerLeaderboardTooltip = (tier: "High" | "Medium" | "Low" | "All") => {
-    return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard T900 page ({describeConfs(tier)})</Tooltip>
+    return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard page ({describeConfs(tier)})</Tooltip>
+  };
+  const playerLeaderboardTransferTooltip = (tier: "High" | "Medium" | "Low" | "All") => {
+    return <Tooltip id={"playerLeaderboardTransferTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard page, transfers only ({describeConfs(tier)})</Tooltip>
   };
   const teamLeaderboardTooltip = (
     <Tooltip id={"teamLeaderboardTooltip"}>Build your own team leaderboard out of various resume and quality based metrics!</Tooltip>
@@ -256,6 +259,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             <Dropdown.Divider/>
             <Dropdown.Item>
               {buildNavItem("Players - all tiers", playerLeaderboardTooltip("All"), getPlayerLeaderboardUrl("All"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Players - 2022 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true", true)}
             </Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item>

@@ -50,6 +50,7 @@ export type PlayerLeaderboardStatsModel = {
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
+  transfers?: Record<string, Array<string>>,
   error?: string
 }
 type Props = {
@@ -353,11 +354,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const strToTest = `${(player.key || "")} ${usefulFormatBuilder(`${player.code || ""}+${firstName}`)} ${usefulFormatBuilder(player.code)}`;
 
       return(
-        (filterFragmentsPve.length == 0) ||
+        (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => comp == player.team))
+        &&
+        ((filterFragmentsPve.length == 0) ||
           (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
         &&
         ((filterFragmentsNve.length == 0) ||
           (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
+        )
         ;
     }).sortBy(
       (year != "All") && (tier != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
@@ -601,9 +605,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // Conference filter
 
   function getCurrentConfsOrPlaceholder() {
+    const onlyTransfers = !_.isNil(dataEvent?.transfers);
     return (confs == "") ?
-      { label: `All Teams in ${tier} Tier${tier == "All" ? "s" : ""}` } :
-      confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
+      { label: `All ${onlyTransfers ? "Transfers" : "Teams"} in ${tier} Tier${tier == "All" ? "s" : ""}` } 
+      :
+      confs.split(",").map((conf: string) => stringToOption(`${NicknameToConference[conf] || conf}${onlyTransfers ? " Txfers" : ""}`));
   }
 
   /** Slightly hacky code to render the conference nick names */

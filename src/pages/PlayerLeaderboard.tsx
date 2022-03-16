@@ -45,15 +45,18 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
 
+  const transferMode = allParams.indexOf("transferMode=true") >= 0; //Note only supported for "All" tiers
+  const transferInit = transferMode ? {} as Record<string, Array<string>> : undefined; //(start as empty list)
+
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
   // Team Stats interface
 
   const dataEventInit = {
-    all: { players: [] as any[], confs: [] as string[], lastUpdated: 0 },
-    t100: { players: [] as any[], confs: [] as string[], lastUpdated: 0 },
-    conf: { players: [] as any[], confs: [] as string[], lastUpdated: 0 }
+    all: { players: [] as any[], confs: [] as string[], transfers: transferInit, lastUpdated: 0 },
+    t100: { players: [] as any[], confs: [] as string[], transfers: transferInit, lastUpdated: 0 },
+    conf: { players: [] as any[], confs: [] as string[], transfers: transferInit, lastUpdated: 0 }
   };
 
   const [ gaInited, setGaInited ] = useState(false);
@@ -145,11 +148,19 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
             }) : 
             Promise.resolve({ error: "No data available" });
           });
-      }));
-      fetchAll.then((jsons: any[]) => {
+      }).concat(
+        transferMode ? [
+           fetch("/api/getTransfers").then((response: fetch.IsomorphicResponse) => {
+            return response.ok ? response.json() : Promise.resolve({})
+           })
+        ] : []
+      ));
+      fetchAll.then((jsonsIn: any[]) => {
+        const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<string>>,
           lastUpdated: 0 //TODO use max?
         });
       })
