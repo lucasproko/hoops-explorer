@@ -382,6 +382,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const isGeneralSortOrFilter = (
       usefulSortCombo
       ||
+      !_.isNil(dataEvent.transfers)
+      ||
       ((confDataEventPlayers.length < dataEventPlayers.length) || ((filterStr || "") != ""))
       ||
       (year == "All")
