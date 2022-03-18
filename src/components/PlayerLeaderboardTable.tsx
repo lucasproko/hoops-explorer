@@ -382,7 +382,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     });
 
     // Filter, sort, and limit players part 2/2
-    const players = _.chain(confDataEventPlayers).filter(player => {
+    const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
       const names = (player.key || "").split(" ");
       const firstName = names ? names[names.length - 1] : ""; //(allows eg MiMitchell+Makhi)
       const usefulFormatBuilder = (s: string) => {
@@ -407,8 +407,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         [ LineupTableUtils.sorter(sortBy) , (p) => p.baseline?.off_team_poss?.value || 0, (p) => p.key ]
     ).value();
 
-    const [ maybeAdvancedFilteredPlayers, tmpAvancedFilterError ] = advancedFilterStr.length > 0 ?
-        AdvancedFilterUtils.applyFilter(players, advancedFilterStr) : [ players, undefined ];
+    const [ players, tmpAvancedFilterError ] = advancedFilterStr.length > 0 ?
+        AdvancedFilterUtils.applyFilter(playersPhase1, advancedFilterStr) : [ playersPhase1, undefined ];
 
     if (advancedFilterStr.length > 0) setAdvancedFilterError(tmpAvancedFilterError);
 
@@ -435,7 +435,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
 
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
-    const tableData = _.take(maybeAdvancedFilteredPlayers, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
+    const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
       const isDup = (tier == "All") && (playerIndex > 0) && 
         (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
 
