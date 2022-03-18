@@ -21,7 +21,7 @@ import Button from 'react-bootstrap/Button';
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -30,6 +30,7 @@ import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from './shared/AsyncFormControl';
+import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './shared/AdvancedFilterAutoSuggestText';
 
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
@@ -44,6 +45,7 @@ import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '.
 import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTrackingLists';
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
+import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -206,6 +208,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     PlayerLeaderboardTracking[startingState.filter || ""] || startingState.filter || ParamDefaults.defaultPlayerLboardFilter
   );
 
+  const [ advancedFilterStr, setAdvancedFilterStr ] = useState(""); //TODO query filter....
+  const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
+  const [ showAdvancedFilter, setShowAdvancedFilter ] = useState(false); //(|| with advancedFilterStr.length > 0)
+  const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
+
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
 
@@ -262,8 +269,37 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }
   ];
 
+  /** Keyboard listener - handles global page overrides while supporting individual components */
+  const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
+    const allowKeypress = () => {
+      //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
+      return inAutoSuggest || notFromFilterAutoSuggest(event);
+    };
+    if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
+      if (allowKeypress()) {
+        setAdvancedFilterStr(tmpAdvancedFilterStr); //(will reclc the filter)
+      }
+    } else if (event.code == "Escape" || event.keyCode == 27) {
+      if (allowKeypress()) {
+        document.body.click(); //closes any overlays (like history) that have rootClick
+      }
+    }
+  };
+
+
   useEffect(() => { // Add and remove clipboard listener
     initClipboard();
+
+    const submitListener = submitListenerFactory(false);
+
+    // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
+    if (typeof document !== `undefined`) {
+      //(TODO: this actually causes mass complications with AutoSuggestText - see the useContext grovelling
+      // 'cos for some reason preventDefault from AutoSuggestText gets ignored ... needs more investigation
+      // but the grovelling works fine for now!)
+      document.addEventListener("keydown", submitListener);
+    }
+
     if (typeof document !== `undefined`) {
       //(if we added a clipboard listener, then remove it on page close)
       //(if we added a submitListener, then remove it on page close)
@@ -272,6 +308,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           clipboard.destroy();
           setClipboard(null);
         }
+        document.removeEventListener("keydown", submitListener);
       };
     }
   });
@@ -368,7 +405,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
       )) ? [] : //(can save on a sort if using the generated sort-order)
         [ LineupTableUtils.sorter(sortBy) , (p) => p.baseline?.off_team_poss?.value || 0, (p) => p.key ]
-    ).take(parseInt(maxTableSize)).value();
+    ).value();
+
+    const [ maybeAdvancedFilteredPlayers, tmpAvancedFilterError ] = advancedFilterStr.length > 0 ?
+        AdvancedFilterUtils.applyFilter(players, advancedFilterStr) : [ players, undefined ];
+
+    if (advancedFilterStr.length > 0) setAdvancedFilterError(tmpAvancedFilterError);
 
     const usefulSortCombo =  useRapm ?
       (factorMins ?
@@ -393,7 +435,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
 
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
-    const tableData = players.flatMap((player, playerIndex) => {
+    const tableData = _.take(maybeAdvancedFilteredPlayers, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
       const isDup = (tier == "All") && (playerIndex > 0) && 
         (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
 
@@ -547,6 +589,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       possAsPct, factorMins,
       useRapm,
       confs, posClasses, showInfoSubHeader,
+      advancedFilterStr,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -631,6 +674,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }
     return <components.MultiValueContainer {...newProps} />
   };
+
+  // Advanced filter text
+
+  const editingAdvFilterTooltip = (
+    <Tooltip id="editingAdvFilterTooltip">Press enter to apply this Linq filter</Tooltip>
+  );
+  const doneAdvFilterTooltip = (
+    <Tooltip id="doneAdvFilterTooltip">Filter successfully applied</Tooltip>
+  );
+  const errorAdvFilterTooltip = (
+    <Tooltip id="errorAdvFilterTooltip">Malformed Linq query: [{advancedFilterError || ""}]</Tooltip>
+  );
+  const linqEnableTooltip = (
+    <Tooltip id="linqEnableTooltip">Enable the Linq filter editor, click on "?" for a guide on using Linq</Tooltip>
+  );
+  const editingAdvFilterText = <OverlayTrigger placement="auto" overlay={editingAdvFilterTooltip}><div>...</div></OverlayTrigger>;
+  const doneAdvFilterText = advancedFilterError ?
+    <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}><FontAwesomeIcon icon={faExclamation} /></OverlayTrigger> :
+    <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
+  const linqEnableText = 
+    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}><span>Linq<sup><a href="#">?</a></sup></span></OverlayTrigger>;
 
   // Position filter
 
@@ -778,20 +842,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             />
           </InputGroup>
         </Form.Group>
-        {false ? <Form.Group as={Col} sm="3">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
-            </InputGroup.Prepend>
-            <AsyncFormControl
-              startingVal={startingMinPoss}
-              validate={(t: string) => t.match("^[0-9]*$") != null}
-              onChange={(t: string) => friendlyChange(() => setMinPoss(t), t != minPoss)}
-              timeout={400}
-              placeholder = "eg 20"
-            />
-          </InputGroup>
-        </Form.Group> : null}
         <Form.Group as={Col} sm="6">
           <InputGroup>
             <InputGroup.Prepend>
@@ -809,7 +859,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             />
           </InputGroup>
         </Form.Group>
-        <Col sm="2"/>
+        <Form.Group as={Col} sm="1" className="mt-2">
+          <Form.Check type="switch"
+              id="linq"
+              checked={showAdvancedFilter || advancedFilterStr.length > 0}
+              onChange={() => {
+                if (showAdvancedFilter) { //(clear the text)
+                  setAdvancedFilterStr("");
+                }
+                setShowAdvancedFilter(!showAdvancedFilter);
+              }}
+              label={linqEnableText}
+            />
+        </Form.Group>
+        <Form.Group as={Col} sm="1"/>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
@@ -840,6 +903,25 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
+      {showAdvancedFilter ? <Form.Row>
+        <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
+          <InputGroup>
+            <InputGroup.Text>{
+              advancedFilterStr != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
+            }</InputGroup.Text>
+            <div className="flex-fill">
+              <AdvancedFilterAutoSuggestText
+                readOnly={false}
+                placeholder="eg 'def_rapm > 2 && off_3p > 35% && off_3pr >= 45% SORT_BY off_rapm'"
+                initValue={tmpAdvancedFilterStr}
+                onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
+                onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
+                onKeyDown={submitListenerFactory(true)}
+              />
+            </div>
+          </InputGroup>
+        </Col>
+      </Form.Row> : null}
       <Form.Row>
         <Col xs={12} sm={12} md={12} lg={8}>
           <ToggleButtonGroup items={([
