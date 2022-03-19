@@ -41,6 +41,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jquery": "^1.12.4",
     "js-base64": "^2.6.4",
+    "linq": "^3.2.4",
     "local-storage": "^2.0.0",
     "lodash": "^4.17.20",
     "lodash.combinations": "^18.10.0",
