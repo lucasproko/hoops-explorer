@@ -11,7 +11,7 @@ type EnumToEnum = (e: Enumerable.IEnumerable<any>) => Enumerable.IEnumerable<any
 export class AdvancedFilterUtils {
 
    static readonly playerLeaderBoardAutocomplete = [
-      "&&", "||", "SORT_BY", "ASC", "DESC",
+      "&&", "||", "SORT_BY", "ASC", "DESC", "AND", "OR",
 
       // Basic metadata:
       "conf", "team", "year",
@@ -64,24 +64,30 @@ export class AdvancedFilterUtils {
 
       // These need to be created by substitution:
       "def_stl", "def_blk", // (these don't exist: def_stl is def_2prim, def_blk is def_to)
-      "def_fc50", //(doesn't exist: def_ftr)
+      "def_fc", //(doesn't exist: def_ftr)
    ];
 
-   private static fieldReplacements(s: string) { return s.replace("def_blk", "def_2prim").replace("def_stl", "def_to").replace("def_fc50", "def_ftr"); }
-   private static fixObjectFormat(s: string) { 
+   static fixBoolOps(s: String) { return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ") };
+   static fieldReplacements(s: string) { return s.replace("def_blk", "def_2prim").replace("def_stl", "def_to").replace("def_fc", "def_ftr"); }
+   static fixObjectFormat(s: string) { 
       return s
-         .replace(/((?:off|def|adj)_[0-9a-zA-Z_]+)/g, "$.$1.value")
-         .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.$1")
+         .replace(/((?:off|def|adj)_[0-9a-zA-Z_]+)/g, "$.p.$1.value")
+         .replace(/roster[.]height/g, "$.normht")
+         .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.p.$1")
       ; 
    }
-   private static avoidAssigmentOperator(s: String) {
+   static avoidAssigmentOperator(s: String) {
       return s.replace(/([^!<>])=[=]*/g, "$1==");
    }
+   static normHeightInQuotes(s: String) { return s.replace(/['"]([567])-([0-9])['"]/, "'$1-0$2'"); }
+   static normHeightString(s: String) { return s.replace(/^([567])-([0-9])$/, "$1-0$2"); }
 
    static readonly tidyClauses: (s: string) => string = _.flow([
+      AdvancedFilterUtils.fixBoolOps,
       AdvancedFilterUtils.avoidAssigmentOperator,
       AdvancedFilterUtils.fieldReplacements,
       AdvancedFilterUtils.fixObjectFormat,
+      AdvancedFilterUtils.normHeightInQuotes,
       _.trim,
    ]);
 
@@ -114,17 +120,19 @@ export class AdvancedFilterUtils {
       });
       
       try {
-         const enumData = Enumerable.from(inData);
+         const enumData = Enumerable.from(inData.map(p => { 
+            return { p: p, normht: AdvancedFilterUtils.normHeightString(p.roster?.height || "")  } 
+         }));
          const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
          const sortedData = sortByFns.length > 0 ?
             _.flow(sortByFns)(filteredData)
-               .thenBy((p: any) => p.baseline?.off_team_poss?.value || 0)
-               .thenBy((p: any) => p.key) //(ensure player duplicates follow each other)
+               .thenBy((p: any) => p.p?.baseline?.off_team_poss?.value || 0)
+               .thenBy((p: any) => p.p?.key) //(ensure player duplicates follow each other)
             :
             filteredData
             ;
 
-         return [ sortedData.toArray(), undefined ];
+         return [ sortedData.toArray().map((p: any) => p.p), undefined ];
       } catch (e) {
          return [ inData, e.message ];
       }
