@@ -208,7 +208,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     PlayerLeaderboardTracking[startingState.filter || ""] || startingState.filter || ParamDefaults.defaultPlayerLboardFilter
   );
 
-  const [ advancedFilterStr, setAdvancedFilterStr ] = useState(""); //TODO query filter....
+  const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
   const [ showAdvancedFilter, setShowAdvancedFilter ] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
@@ -276,8 +276,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       return inAutoSuggest || notFromFilterAutoSuggest(event);
     };
     if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
-      if (allowKeypress()) {
-        setAdvancedFilterStr(tmpAdvancedFilterStr); //(will reclc the filter)
+      if (allowKeypress() && (tmpAdvancedFilterStr != advancedFilterStr)) {
+          friendlyChange(() => setAdvancedFilterStr(tmpAdvancedFilterStr), true); //(will reclc the filter)
       }
     } else if (event.code == "Escape" || event.keyCode == 27) {
       if (allowKeypress()) {
@@ -328,11 +328,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr,
+      advancedFilter: advancedFilterStr,
       // Misc display
       showInfoSubHeader: showInfoSubHeader
     };
     onChangeState(newState);
-  }, [ minPoss, maxTableSize, sortBy, filterStr,
+  }, [ minPoss, maxTableSize, sortBy, filterStr, advancedFilterStr,
       isT100, isConfOnly, possAsPct, factorMins,
       showInfoSubHeader,
       useRapm,
@@ -693,8 +694,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const doneAdvFilterText = advancedFilterError ?
     <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}><FontAwesomeIcon icon={faExclamation} /></OverlayTrigger> :
     <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
-  const linqEnableText = 
-    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}><span>Linq<sup><a href="#">?</a></sup></span></OverlayTrigger>;
+  const linqEnableText = showHelp ?
+    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}><span>Linq<sup><a href="#">?</a></sup></span></OverlayTrigger> :
+    <span>Linq</span>
+    ;
 
   // Position filter
 
@@ -864,10 +867,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               id="linq"
               checked={showAdvancedFilter || advancedFilterStr.length > 0}
               onChange={() => {
-                if (showAdvancedFilter) { //(clear the text)
-                  setAdvancedFilterStr("");
-                }
-                setShowAdvancedFilter(!showAdvancedFilter);
+                const isCurrentlySet = showAdvancedFilter || advancedFilterStr.length > 0;
+                friendlyChange(() => {
+                  if (isCurrentlySet) { //(clear the text)
+                    setAdvancedFilterStr("");
+                  }
+                    setShowAdvancedFilter(!isCurrentlySet)
+                }, true);
               }}
               label={linqEnableText}
             />
@@ -903,7 +909,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
-      {showAdvancedFilter ? <Form.Row>
+      {(showAdvancedFilter || (advancedFilterStr.length > 0)) ? <Form.Row>
         <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
           <InputGroup>
             <InputGroup.Text>{
@@ -922,7 +928,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           </InputGroup>
         </Col>
       </Form.Row> : null}
-      <Form.Row>
+      <div></div>{/*(for some reason this div is needed to avoid the Row classnames getting confused)*/}<Row>
         <Col xs={12} sm={12} md={12} lg={8}>
           <ToggleButtonGroup items={([
             {
@@ -981,7 +987,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Col xs={12} sm={12} md={12} lg={4}>
           <div className="float-right"><small>(Qualifying players in tier: <b>{dataEvent?.players?.length || 0}</b>)</small></div>
         </Col>
-      </Form.Row>
+      </Row>
       <Row className="mt-2">
         <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
           {table}

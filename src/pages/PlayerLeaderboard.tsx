@@ -90,6 +90,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       (!rawParams.t100) ? [ 't100' ] : [],
       (!rawParams.confOnly) ? [ 'confOnly' ] : [],
       (!rawParams.filter) ? [ 'filter' ] : [],
+      (!rawParams.advancedFilter) ? [ 'advancedFilter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [],
       (!rawParams.posClasses) ? [ 'posClasses' ] : [],
 
