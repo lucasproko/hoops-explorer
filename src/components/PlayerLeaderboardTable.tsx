@@ -590,7 +590,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       possAsPct, factorMins,
       useRapm,
       confs, posClasses, showInfoSubHeader,
-      advancedFilterStr,
+      advancedFilterStr, showAdvancedFilter,
       dataEvent ]);
 
   // 3.2] Sorting utils
