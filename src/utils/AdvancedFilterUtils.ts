@@ -72,6 +72,7 @@ export class AdvancedFilterUtils {
    static fixObjectFormat(s: string) { 
       return s
          .replace(/((?:off|def|adj)_[0-9a-zA-Z_]+)/g, "$.p.$1.value")
+         .replace(/_rank[.]value/g, "_rank") //(switch ranks back again!)
          .replace(/roster[.]height/g, "$.normht")
          .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.p.$1")
       ; 

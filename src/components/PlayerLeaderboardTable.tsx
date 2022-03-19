@@ -918,7 +918,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             <div className="flex-fill">
               <AdvancedFilterAutoSuggestText
                 readOnly={false}
-                placeholder="eg 'def_rapm > 2 && off_3p > 35% && off_3pr >= 45% SORT_BY off_rapm'"
+                placeholder="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
                 initValue={tmpAdvancedFilterStr}
                 onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
                 onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
