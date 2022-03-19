@@ -5,6 +5,7 @@ import Enumerable from 'linq';
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
 type TypeScriptWorkaround2 = (element: any) => unknown;
+type EnumToEnum = (e: Enumerable.IEnumerable<any>) => Enumerable.IEnumerable<any>;
 
 /** Utils to build LINQ filter/sort capabilities */
 export class AdvancedFilterUtils {
@@ -66,37 +67,62 @@ export class AdvancedFilterUtils {
       "def_fc50", //(doesn't exist: def_ftr)
    ];
 
-   static fieldReplacements(s: string) { return s.replace("def_blk", "def_2prim").replace("def_stl", "def_to").replace("def_fc50", "def_ftr"); }
-   static fixObjectFormat(s: string) { return s.replace(/((?:off|def|adj)_[0-9a-zA-Z_]+)/g, "$.$1.value"); }
+   private static fieldReplacements(s: string) { return s.replace("def_blk", "def_2prim").replace("def_stl", "def_to").replace("def_fc50", "def_ftr"); }
+   private static fixObjectFormat(s: string) { 
+      return s
+         .replace(/((?:off|def|adj)_[0-9a-zA-Z_]+)/g, "$.$1.value")
+         .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.$1")
+      ; 
+   }
+   private static avoidAssigmentOperator(s: String) {
+      return s.replace(/([^!<>])=[=]*/g, "$1==");
+   }
+
+   static readonly tidyClauses: (s: string) => string = _.flow([
+      AdvancedFilterUtils.avoidAssigmentOperator,
+      AdvancedFilterUtils.fieldReplacements,
+      AdvancedFilterUtils.fixObjectFormat,
+      _.trim,
+   ]);
 
    /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
    static applyFilter(inData: any[], filterStr: string): [any[], string | undefined] {
       const filterFrags = filterStr.split("SORT_BY");
 
-      const where = _.flow([
-         _.trim,
-         AdvancedFilterUtils.fieldReplacements,
-         AdvancedFilterUtils.fixObjectFormat
-      ])(filterFrags[0]);
+      const where = AdvancedFilterUtils.tidyClauses(filterFrags[0]);
       
-      const sortBy = _.flow([
-         _.trim,
-         AdvancedFilterUtils.fieldReplacements,
-         AdvancedFilterUtils.fixObjectFormat,
-         s => s.replace("ASC", "").replace("DESC", "")
-      ])(filterFrags?.[1] || "")
-      
-      const isAsc = (filterFrags?.[1] || "").indexOf("ASC") >= 0;
+      const sortingFrags = _.drop(filterFrags, 1);
 
+      const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
+         const sortBy = AdvancedFilterUtils.tidyClauses(sortingFrag);   
+
+         const isAsc = sortingFrag.indexOf("ASC") >= 0;
+
+         if (index == 0) {
+            return (enumerable: Enumerable.IEnumerable<any>) => {
+               return isAsc ? 
+                  enumerable.orderBy(sortBy as unknown as TypeScriptWorkaround2) :
+                  enumerable.orderByDescending(sortBy as unknown as TypeScriptWorkaround2)
+            };
+         } else {
+            return (enumerable: Enumerable.IEnumerable<any>) => {
+               return isAsc ? 
+                  (enumerable as Enumerable.IOrderedEnumerable<any>).thenBy(sortBy as unknown as TypeScriptWorkaround2) :
+                  (enumerable as Enumerable.IOrderedEnumerable<any>).thenByDescending(sortBy as unknown as TypeScriptWorkaround2)
+            };
+         }
+      });
+      
       try {
          const enumData = Enumerable.from(inData);
          const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
-         const sortedData = sortBy.length > 0 ? 
-            (isAsc ? 
-               filteredData.orderBy(sortBy as unknown as TypeScriptWorkaround2) :
-               filteredData.orderByDescending(sortBy as unknown as TypeScriptWorkaround2)
-            ).thenBy(p => p.baseline?.off_team_poss?.value || 0).thenBy(p => p.key) //(ensure player duplicates follow each other)
-         : filteredData;
+         const sortedData = sortByFns.length > 0 ?
+            _.flow(sortByFns)(filteredData)
+               .thenBy((p: any) => p.baseline?.off_team_poss?.value || 0)
+               .thenBy((p: any) => p.key) //(ensure player duplicates follow each other)
+            :
+            filteredData
+            ;
 
          return [ sortedData.toArray(), undefined ];
       } catch (e) {
