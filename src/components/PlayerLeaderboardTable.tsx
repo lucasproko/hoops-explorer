@@ -695,7 +695,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}><FontAwesomeIcon icon={faExclamation} /></OverlayTrigger> :
     <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
   const linqEnableText = showHelp ?
-    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}><span>Linq<sup><a href="#">?</a></sup></span></OverlayTrigger> :
+    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}><span>Linq<sup><a target="_blank" href="https://hoop-explorer.blogspot.com/2022/03/">?</a></sup></span></OverlayTrigger> :
     <span>Linq</span>
     ;
 
