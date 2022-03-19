@@ -71,17 +71,18 @@ export class AdvancedFilterUtils {
    static fieldReplacements(s: string) { return s.replace("def_blk", "def_2prim").replace("def_stl", "def_to").replace("def_fc", "def_ftr"); }
    static fixObjectFormat(s: string) { 
       return s
-         .replace(/((?:off|def|adj)_[0-9a-zA-Z_]+)/g, "$.p.$1.value")
-         .replace(/_rank[.]value/g, "_rank") //(switch ranks back again!)
+         .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1.value")
+         .replace(/((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.p.$1")
       ; 
    }
-   static avoidAssigmentOperator(s: String) {
+   static avoidAssigmentOperator(s: string) {
       return s.replace(/([^!<>])=[=]*/g, "$1==");
    }
-   static normHeightInQuotes(s: String) { return s.replace(/['"]([567])-([0-9])['"]/, "'$1-0$2'"); }
-   static normHeightString(s: String) { return s.replace(/^([567])-([0-9])$/, "$1-0$2"); }
+   static normHeightInQuotes(s: string) { return s.replace(/['"]([567])-([0-9])['"]/, "'$1-0$2'"); }
+   static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/, "$1-0$2"); }
+   static removeAscDesc(s: string) { return s.replace(/(ASC|DESC)/g, ""); }
 
    static readonly tidyClauses: (s: string) => string = _.flow([
       AdvancedFilterUtils.fixBoolOps,
@@ -89,21 +90,20 @@ export class AdvancedFilterUtils {
       AdvancedFilterUtils.fieldReplacements,
       AdvancedFilterUtils.fixObjectFormat,
       AdvancedFilterUtils.normHeightInQuotes,
+      AdvancedFilterUtils.removeAscDesc,
       _.trim,
    ]);
 
    /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
    static applyFilter(inData: any[], filterStr: string): [any[], string | undefined] {
       const filterFrags = filterStr.split("SORT_BY");
-
       const where = AdvancedFilterUtils.tidyClauses(filterFrags[0]);
       
       const sortingFrags = _.drop(filterFrags, 1);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
-         const sortBy = AdvancedFilterUtils.tidyClauses(sortingFrag);   
-
          const isAsc = sortingFrag.indexOf("ASC") >= 0;
+         const sortBy = AdvancedFilterUtils.tidyClauses(sortingFrag);   
 
          if (index == 0) {
             return (enumerable: Enumerable.IEnumerable<any>) => {
@@ -122,7 +122,23 @@ export class AdvancedFilterUtils {
       
       try {
          const enumData = Enumerable.from(inData.map(p => { 
-            return { p: p, normht: AdvancedFilterUtils.normHeightString(p.roster?.height || "")  } 
+            return { 
+               p: p,
+               // Normalize so can do height comparisons 
+               normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
+               // These need to be derived
+               adj_rapm_margin: (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
+               adj_rtg_margin: (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
+               adj_rapm_prod_margin: (p.off_adj_rapm?.value || 0)*(p.off_team_poss_pct?.value || 0) - 
+                                       (p.def_adj_rapm?.value || 0)*(p.def_team_poss_pct?.value || 0),
+               adj_prod_margin: (p.off_adj_rtg?.value || 0)*(p.off_team_poss_pct?.value || 0) - 
+                                       (p.def_adj_rtg?.value || 0)*(p.def_team_poss_pct?.value || 0),
+               // Already have these but makes the query formatting simpler
+               adj_rapm_margin_rank: p.adj_rapm_margin_rank,
+               adj_rtg_margin_rank: p.adj_rtg_margin_rank,
+               adj_rapm_prod_margin_rank: p.adj_rapm_prod_margin_rank,
+               adj_prod_margin_rank: p.adj_prod_margin_rank,
+            }; 
          }));
          const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
          const sortedData = sortByFns.length > 0 ?
