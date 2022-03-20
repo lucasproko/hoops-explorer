@@ -912,7 +912,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       {(showAdvancedFilter || (advancedFilterStr.length > 0)) ? <Form.Row>
         <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
           <InputGroup>
-            <InputGroup.Text>{
+            <InputGroup.Text style={{ maxHeight: "2.5rem" }}>{
               advancedFilterStr != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
             }</InputGroup.Text>
             <div className="flex-fill">
