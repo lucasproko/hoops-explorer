@@ -819,8 +819,58 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="2"
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        className="mt-2"
+        sm="1"
+      >
+        <FormCheck
+          checked={false}
+          id="linq"
+          label={
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="linqEnableTooltip"
+                  placement="right"
+                >
+                  Enable the Linq filter editor, click on "?" for a guide on using Linq
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <span>
+                Linq
+                <sup>
+                  <a
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                    target="_blank"
+                  >
+                    ?
+                  </a>
+                </sup>
+              </span>
+            </OverlayTrigger>
+          }
+          onChange={[Function]}
+          type="switch"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
       />
       <FormGroup
         as={
@@ -879,7 +929,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
-    <FormRow>
+    <div />
+    <Row
+      noGutters={false}
+    >
       <Col
         lg={8}
         md={12}
@@ -953,7 +1006,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </small>
         </div>
       </Col>
-    </FormRow>
+    </Row>
     <Row
       className="mt-2"
       noGutters={false}
@@ -7514,8 +7567,58 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="2"
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        className="mt-2"
+        sm="1"
+      >
+        <FormCheck
+          checked={false}
+          id="linq"
+          label={
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="linqEnableTooltip"
+                  placement="right"
+                >
+                  Enable the Linq filter editor, click on "?" for a guide on using Linq
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <span>
+                Linq
+                <sup>
+                  <a
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                    target="_blank"
+                  >
+                    ?
+                  </a>
+                </sup>
+              </span>
+            </OverlayTrigger>
+          }
+          onChange={[Function]}
+          type="switch"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
       />
       <FormGroup
         as={
@@ -7574,7 +7677,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
-    <FormRow>
+    <div />
+    <Row
+      noGutters={false}
+    >
       <Col
         lg={8}
         md={12}
@@ -7648,7 +7754,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </small>
         </div>
       </Col>
-    </FormRow>
+    </Row>
     <Row
       className="mt-2"
       noGutters={false}
@@ -14209,8 +14315,58 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="2"
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        className="mt-2"
+        sm="1"
+      >
+        <FormCheck
+          checked={false}
+          id="linq"
+          label={
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="linqEnableTooltip"
+                  placement="right"
+                >
+                  Enable the Linq filter editor, click on "?" for a guide on using Linq
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <span>
+                Linq
+                <sup>
+                  <a
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                    target="_blank"
+                  >
+                    ?
+                  </a>
+                </sup>
+              </span>
+            </OverlayTrigger>
+          }
+          onChange={[Function]}
+          type="switch"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
       />
       <FormGroup
         as={
@@ -14269,7 +14425,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
-    <FormRow>
+    <div />
+    <Row
+      noGutters={false}
+    >
       <Col
         lg={8}
         md={12}
@@ -14343,7 +14502,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </small>
         </div>
       </Col>
-    </FormRow>
+    </Row>
     <Row
       className="mt-2"
       noGutters={false}
@@ -23729,8 +23888,58 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="2"
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        className="mt-2"
+        sm="1"
+      >
+        <FormCheck
+          checked={false}
+          id="linq"
+          label={
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="linqEnableTooltip"
+                  placement="right"
+                >
+                  Enable the Linq filter editor, click on "?" for a guide on using Linq
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <span>
+                Linq
+                <sup>
+                  <a
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                    target="_blank"
+                  >
+                    ?
+                  </a>
+                </sup>
+              </span>
+            </OverlayTrigger>
+          }
+          onChange={[Function]}
+          type="switch"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
       />
       <FormGroup
         as={
@@ -23789,7 +23998,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
-    <FormRow>
+    <div />
+    <Row
+      noGutters={false}
+    >
       <Col
         lg={8}
         md={12}
@@ -23863,7 +24075,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </small>
         </div>
       </Col>
-    </FormRow>
+    </Row>
     <Row
       className="mt-2"
       noGutters={false}
@@ -30404,8 +30616,58 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-      <Col
-        sm="2"
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        className="mt-2"
+        sm="1"
+      >
+        <FormCheck
+          checked={false}
+          id="linq"
+          label={
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="linqEnableTooltip"
+                  placement="right"
+                >
+                  Enable the Linq filter editor, click on "?" for a guide on using Linq
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <span>
+                Linq
+                <sup>
+                  <a
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                    target="_blank"
+                  >
+                    ?
+                  </a>
+                </sup>
+              </span>
+            </OverlayTrigger>
+          }
+          onChange={[Function]}
+          type="switch"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
       />
       <FormGroup
         as={
@@ -30464,7 +30726,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
-    <FormRow>
+    <div />
+    <Row
+      noGutters={false}
+    >
       <Col
         lg={8}
         md={12}
@@ -30538,7 +30803,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </small>
         </div>
       </Col>
-    </FormRow>
+    </Row>
     <Row
       className="mt-2"
       noGutters={false}

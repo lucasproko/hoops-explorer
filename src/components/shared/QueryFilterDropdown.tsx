@@ -33,7 +33,7 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({queryFilters, setQ
       />;
     };
   
-   return  <Dropdown as={InputGroup.Append} variant="outline-secondary" alignRight>
+   return  <Dropdown as={InputGroup.Append} variant="outline-secondary" alignRight style={{maxHeight: "2.4rem"}}>
    <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
      <FontAwesomeIcon icon={faFilter} />
    </Dropdown.Toggle>
