@@ -53,6 +53,7 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = (
     ref={textRef}
     Component={"textarea"}
     rows={1}
+    style={{minHeight: "2.4rem"}}
     defaultValue={initValue}
     readOnly={readOnly}
     className="form-control auto-suggest"
