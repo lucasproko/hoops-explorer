@@ -27,8 +27,8 @@ export class AdvancedFilterUtils {
       "def_adj_opp",
 
       // Possessions
-      "off_poss", "off_team_poss", "off_team_poss_pct",
-      "def_poss", "def_team_poss", "def_team_poss_pct",
+      "off_poss", "off_team_poss_pct",
+      "def_poss", "def_team_poss_pct",
 
       // Four factors
       "off_efg", "off_to", "off_ftr",
@@ -68,13 +68,17 @@ export class AdvancedFilterUtils {
    ];
 
    static fixBoolOps(s: String) { return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ") };
-   static fieldReplacements(s: string) { return s.replace("def_blk", "def_2prim").replace("def_stl", "def_to").replace("def_fc", "def_ftr"); }
+   static fieldReplacements(s: string) { 
+      return s.replace(/def_blk/g, "def_2prim").replace(/def_stl/g, "def_to").replace(/def_fc/g, "def_ftr")
+         .replace(/(off|def)_poss/g, "$1_team_poss"); 
+   }
    static fixObjectFormat(s: string) { 
       return s
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1.value")
          .replace(/((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.p.$1")
+         .replace(/[$][.]p[.]def_ftr[.]value/g, "(100*$.p.def_ftr.value)")
       ; 
    }
    static avoidAssigmentOperator(s: string) {
