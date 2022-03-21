@@ -304,9 +304,18 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>;
       }
     }
+    const getNodeText: (node: any) => any = (node: any) => {
+      if (['string', 'number'].includes(typeof node)) return node
+      if (node instanceof Array) return node.map(getNodeText).join('')
+      if (typeof node === 'object' && node) return getNodeText(node.props.children)
+    };
     const maybeFormatColName = (s: React.ReactNode | string) => {
       if (isRepeatingHeaderRow && (typeof s === "string")) {
         const maybeRename = (maybeRepeatingHeader?.colRename || {})[s];
+        return maybeRename || s;
+      } else if (isRepeatingHeaderRow) { 
+        const textOfNode = getNodeText(s);
+        const maybeRename = (maybeRepeatingHeader?.colRename || {})[textOfNode];
         return maybeRename || s;
       } else {
         return s;

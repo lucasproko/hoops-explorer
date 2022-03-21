@@ -149,6 +149,24 @@ export class CommonTableDefs {
     "def_drb": (o: string) => undefined
   } as Record<string, (o: string) => (string | undefined)>
 
+  /** To build a less wordy set of headers */
+  static repeatingOnOffIndivHeaderFields: Record<string, string> = {
+    "Box Rtg": "Box",
+    "Adj+ Rtg": "Adj+",
+    "Adj+ Prod": "Adj+",
+    "RAPM diff": "RAPM",
+
+    "Usg Pos": "Usg",
+    "TO% Stl%": "TO%",
+    "FTR F/50": "FTR",
+    "Rim% Blk%": "Rim%",
+
+    "2PR mid": "MidR",
+    "2PR rim": "RimR",
+    "2P% mid": "Mid%",
+    "2P% rim": "Rim%",
+  };
+
   /** All stats that could possibly be used in the roster stats table */
   static onOffIndividualTableAllFields = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?

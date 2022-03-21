@@ -187,6 +187,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   /** Whether to show sub-header with extra info */
   const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(startingState.showInfoSubHeader || false);
 
+  const [ showRepeatingHeader, setShowRepeatingHeader ] = useState(true as boolean); //(always defaults to on)
+
   /** Show the number of possessions as a % of total team count */
   const [ factorMins, setFactorMins ] = useState(_.isNil(startingState.factorMins) ?
     ParamDefaults.defaultPlayerLboardFactorMins : startingState.factorMins
@@ -453,7 +455,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const confNickname = ConferenceToNickname[player.conf] || "???";
       const teamSeasonLookup = `${startingState.gender}_${player.team}_${startingState.year}`;
 
-      const generalRank = isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1 - playerDuplicates})</i>&nbsp;</span> : null;
+      const generalRank = !isDup && isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1 - playerDuplicates})</i>&nbsp;</span> : null;
       const rankingsTooltip = (
         <Tooltip id={`rankings_${playerIndex}`}>
           {factorMins ? "Production " : "Rating "}Ranks:<br/>
@@ -569,11 +571,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
+      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % 10))
+
       return isDup ? _.flatten([
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
       ])
       : _.flatten([
         playerIndex > 0 ? [ GenericTableOps.buildRowSeparator() ] : [],
+        (shouldInjectSubheader && showRepeatingHeader) ? [ 
+          GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small"),
+          GenericTableOps.buildRowSeparator()
+        ] : [],
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
       ]);
@@ -593,8 +601,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       possAsPct, factorMins,
       useRapm,
-      confs, posClasses, showInfoSubHeader,
-      advancedFilterStr, showAdvancedFilter,
+      confs, posClasses, showInfoSubHeader, showRepeatingHeader,
+      advancedFilterStr, 
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -882,12 +890,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               checked={showAdvancedFilter || advancedFilterStr.length > 0}
               onChange={() => {
                 const isCurrentlySet = showAdvancedFilter || advancedFilterStr.length > 0;
-                friendlyChange(() => {
-                  if (isCurrentlySet) { //(clear the text)
+                if (!showAdvancedFilter || (0 == advancedFilterStr.length)) { 
+                  // Just enabling/disabling the LINQ query with no implications on filter, so don't need a UX friendly change
+                  setShowAdvancedFilter(!isCurrentlySet);
+                } else {
+                  friendlyChange(() => {
                     setAdvancedFilterStr("");
-                  }
                     setShowAdvancedFilter(!isCurrentlySet)
-                }, true);
+                  }, true);
+                }
               }}
               label={linqEnableText}
             />
@@ -919,6 +930,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               }</span>}
               truthVal={false}
               onSelect={() => friendlyChange(() => setPossAsPct(!possAsPct), true)}
+            />
+            <GenericTogglingMenuItem
+              text={"Show repeating header every 10 players"}
+              truthVal={showRepeatingHeader}
+              onSelect={() => friendlyChange(() => setShowRepeatingHeader(!showRepeatingHeader), true)}
             />
           </GenericTogglingMenu>
         </Form.Group>
