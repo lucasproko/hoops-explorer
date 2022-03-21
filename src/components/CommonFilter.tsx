@@ -170,6 +170,8 @@ const CommonFilter: CommonFilterI = ({
     if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
       if (!submitDisabled && allowKeypress()) {
         onSubmit();
+      } else if (event && event.preventDefault) {
+        event.preventDefault();
       }
     } else if (event.code == "Escape" || event.keyCode == 27) {
       if (!submitDisabled && allowKeypress()) {

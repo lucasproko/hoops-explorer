@@ -278,6 +278,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
       if (allowKeypress() && (tmpAdvancedFilterStr != advancedFilterStr)) {
           friendlyChange(() => setAdvancedFilterStr(tmpAdvancedFilterStr), true); //(will reclc the filter)
+      } else if (event && event.preventDefault) {
+        event.preventDefault();
       }
     } else if (event.code == "Escape" || event.keyCode == 27) {
       if (allowKeypress()) {
@@ -733,7 +735,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       setLoadingOverride(true);
       setTimeout(() => {
         change()
-      }, timeout)
+      }, timeout);
     }
   };
 
@@ -757,7 +759,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             (gender) => stringToOption(gender)
           )}
           isSearchable={false}
-          onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
+          onChange={(option) => { 
+            if ((option as any)?.value) {
+              const newGender = (option as any).value;
+              friendlyChange(() => setGender(newGender), newGender != gender);
+            }
+          }}
         />
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
@@ -772,7 +779,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             (r) => stringToOption(r)
           )}
           isSearchable={false}
-          onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
+          onChange={(option) => { 
+            if ((option as any)?.value) {
+              const newYear = (option as any).value;
+              friendlyChange(() => setYear(newYear), newYear != year);
+            }
+          }}
         />
       </Col>
       <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>

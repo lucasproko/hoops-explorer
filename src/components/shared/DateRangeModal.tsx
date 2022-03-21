@@ -34,7 +34,7 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
    };
 
    const startNov = addDays(Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-11-01`), 1);
-   const minDate = startNov;
+   const minDate = addDays(startNov, -1); //(for some reason this is needed to make the selection work, else it always says it's Dec)
    const endDec = addDays(Date.parse(`${(year || ParamDefaults.defaultYear).substring(0, 4)}-12-31`), 1);
    const startJan = addDays(endDec, 1);
    const endApril = addMonths(endDec, 4);
@@ -42,8 +42,8 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
 
    const [state, setState] = useState([
       {
-        startDate: addDays(new Date(), -14),
-        endDate: new Date(),
+        startDate: startNov,
+        endDate: endApril,
         key: 'selection'
       }
     ]);
@@ -105,10 +105,12 @@ const DateRangeModal: React.FunctionComponent<Props> = ({queryType, year, onSave
             <Row className='justify-content-center'>
                <Col xs={"auto"}>
                   <DateRangePicker
-                     onChange={(item: any) => setState([item.selection])}
+                     onChange={(item: any) => {
+                        setState([item.selection])
+                     }}
                      months={1}
-                     minDate={Number.isNaN(minDate) ? addDays(new Date(), -1) : new Date(minDate)}
-                     maxDate={Number.isNaN(maxDate) ? addDays(new Date(), 1) : maxDate}
+                     minDate={minDate}
+                     maxDate={maxDate}
                      direction="vertical"
                      scroll={{ enabled: true }}
                      ranges={state}
