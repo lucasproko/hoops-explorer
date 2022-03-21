@@ -36,7 +36,7 @@ import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
-import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
+import { AvailableTeams, AvailableTeamMeta } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
 import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
@@ -48,10 +48,6 @@ import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 const sleep = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
-
-/** For completed years, filter based on possessions */
-const ongoingYear = "2021/22";
-const averagePossInCompletedYear = 1600;
 
 /** Handy util for reducing  */
 const reduceNumberSize = (k: string, v: any) => {
@@ -170,6 +166,10 @@ const lastUpdated =  //(will be new now for curr year + "Extra")
 /** ~20d before end of full season */
 const approxEndofRegSeason = getEndOfRegSeason(`${inGender}_${inYear}`) || lastUpdated;
 
+/** For completed years, filter based on possessions */
+const ongoingYear = "2021/22";
+const averagePossInCompletedYear = (inYear == "2020/21") ? 1000 : 1600; //(reduce min allowed for Covid year)
+
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
   const globalGenderYearKey = `${inGender}_${inYear}`;
@@ -232,7 +232,7 @@ export async function main() {
   //console.log("Number of teams = " + teams.length);
   //throw "done";
 
-  for (const teamObj of teams) {
+  async function handleTeam(teamObj: AvailableTeamMeta, retry: number) {
     const team = teamObj.team;
     const teamYear = teamObj.year;
     const genderYearLookup = `${inGender}_${teamYear}`;
@@ -334,8 +334,15 @@ export async function main() {
 
       // Check for errors:
 
-      if ((lineupResponse.statusCode >= 400) || (teamResponse.statusCode >= 400) || (playerResponse.statusCode >= 400)) {
-        console.log(`ERROR [${team} ${label}]: ${JSON.stringify(lineupResponse)} ${JSON.stringify(teamResponse)} ${JSON.stringify(playerResponse)}`);
+      if ((retry < 10) && ((lineupResponse.statusCode >= 500) || (teamResponse.statusCode >= 500) || (playerResponse.statusCode >= 500))) {
+        console.log(`RETRYABLE ERROR [${team} ${label}]: ${JSON.stringify(lineupResponse)} ${JSON.stringify(teamResponse)} ${JSON.stringify(playerResponse)}`);
+
+        await sleep(10000); //(wait 10s and try again)
+        handleTeam(teamObj, retry + 1);
+
+      } else if ((lineupResponse.statusCode >= 400) || (teamResponse.statusCode >= 400) || (playerResponse.statusCode >= 400)) {
+        // Not retry-able, or run out of attempts
+        console.log(`ERROR #[${retry}] [${team} ${label}]: ${JSON.stringify(lineupResponse)} ${JSON.stringify(teamResponse)} ${JSON.stringify(playerResponse)}`);
         process.exit(-1);
       }
 
@@ -472,25 +479,34 @@ export async function main() {
 
       const sortedLineups = LineupTableUtils.buildFilteredLineups(
         lineups,
-        "", "desc:off_poss", "0", "500", //take all lineuos (sorted by off_pos) with no min poss - will filter later
+        "", "desc:off_poss", "0", "500", //take all players (sorted by off_pos) with no min poss - will filter later
         teamSeasonLookup, positionFromPlayerKey
       );
 
       // Merge ratings and position, and filter based on offensive possessions played
       const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
+        const minThreshold = 0.25;
+        const player = kv[1];
 
-        const globalTeamPoss = teamGlobal?.def_poss?.value || 0; //(global has def_poss but not off_poss)
-        const playerPossPct = kv[1].off_team_poss_pct?.value || 0;
+        const playerPossPct = player.off_team_poss_pct?.value || 0;
+        const playerPoss = player.off_team_poss?.value || 0; //(despite it's name this is the player possessions, not team possessions)
 
-        // Basically: for teams that have played fewer possessions, but a decent number overall relative to their team
-        // we'll allow it!
-        const teamFactor = Math.min(globalTeamPoss/averagePossInCompletedYear, 1.0);
+        // For teams that have played fewer possessions than others we still have a lower limit
+        //TODO: fix the secondary filter _during_ the year
         const secondaryFilter =
-          (fullRequestModel.year == ongoingYear) || (teamFactor*playerPossPct > 0.25);
+          (fullRequestModel.year == ongoingYear) || (playerPoss > minThreshold*averagePossInCompletedYear);
 
-        return secondaryFilter && (playerPossPct > 0.37); //(~15mpg min)
+        return secondaryFilter && (playerPossPct > minThreshold); //(>10mpg)
       }).map((kv: [PlayerId, IndivStatSet]) => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
+        const player = kv[1];
+
+        // Remove offensive luck apart from RAPM (everything else is normalized to data set)
+        [ "off_rtg", "off_adj_rtg", "off_efg", "off_3p" ].forEach(field => {
+          if (!_.isNil(player[field]?.old_value)) delete player[field]?.old_value; 
+          if (!_.isNil(player[field]?.override)) delete player[field]?.override;  
+        });
+
         return {
           key: kv[0],
           conf: conference,
@@ -617,6 +633,9 @@ export async function main() {
 
     await getAllDataPromise;
   }
+  for (const teamObj of teams) {
+    await handleTeam(teamObj, 0);
+  }
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 /** Adds some handy default sortings */
@@ -742,7 +761,7 @@ if (!testMode) {
   } else {
     main().then(async dummy => {
       const topLineupSize = onlyHasTopConferences ? 300 : 400;
-      const topPlayersSize = onlyHasTopConferences ? 700 : 1000;
+      const topPlayersSize = 1500; //(essentially just means the 10mpg is only qualifier)
 
       console.log("Processing Complete!");
 
