@@ -427,6 +427,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ||
       !_.isNil(dataEvent.transfers)
       ||
+      ((advancedFilterStr.length > 0) && !advancedFilterError)
+      ||
       ((confDataEventPlayers.length < dataEventPlayers.length) || ((filterStr || "") != ""))
       ||
       (year == "All")
