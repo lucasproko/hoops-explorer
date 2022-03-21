@@ -74,11 +74,11 @@ export class AdvancedFilterUtils {
    }
    static fixObjectFormat(s: string) { 
       return s
-         .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1.value")
-         .replace(/((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
+         .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
+         .replace(/(?:^| )((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.p.$1")
-         .replace(/[$][.]p[.]def_ftr[.]value/g, "(100*$.p.def_ftr.value)")
+         .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)")
       ; 
    }
    static avoidAssigmentOperator(s: string) {
