@@ -79,8 +79,6 @@ Array [
       "value": 0.32865168539325845,
     },
     "off_3p": Object {
-      "old_value": 0.3218390804597701,
-      "override": "Luck adjusted",
       "value": 0.3218390804597701,
     },
     "off_3p_ast": Object {
@@ -99,8 +97,6 @@ Array [
     "off_adj_rapm_prod_rank": 1,
     "off_adj_rapm_rank": 1,
     "off_adj_rtg": Object {
-      "old_value": 4.579914443257079,
-      "override": "Luck adjusted",
       "value": 4.579914443257079,
     },
     "off_adj_rtg_rank": 1,
@@ -117,8 +113,6 @@ Array [
       "value": 0.4557823129251701,
     },
     "off_efg": Object {
-      "old_value": 0.4691011235955056,
-      "override": "Adjusted from Off 3P%",
       "value": 0.4691011235955056,
     },
     "off_ft": Object {
@@ -134,8 +128,6 @@ Array [
       "value": 451.4845238095238,
     },
     "off_rtg": Object {
-      "old_value": 108.19151654069215,
-      "override": "Luck adjusted",
       "value": 108.19151654069215,
     },
     "off_scramble_2p": Object {
@@ -329,8 +321,6 @@ Array [
       "value": 0.19666666666666666,
     },
     "off_3p": Object {
-      "old_value": 0.31736526946107785,
-      "override": "Luck adjusted",
       "value": 0.31736526946107785,
     },
     "off_3p_ast": Object {
@@ -349,8 +339,6 @@ Array [
     "off_adj_rapm_prod_rank": 2,
     "off_adj_rapm_rank": 2,
     "off_adj_rtg": Object {
-      "old_value": -0.697381502829424,
-      "override": "Luck adjusted",
       "value": -0.697381502829424,
     },
     "off_adj_rtg_rank": 2,
@@ -367,8 +355,6 @@ Array [
       "value": 0.4090909090909091,
     },
     "off_efg": Object {
-      "old_value": 0.465,
-      "override": "Adjusted from Off 3P%",
       "value": 0.465,
     },
     "off_ft": Object {
@@ -384,8 +370,6 @@ Array [
       "value": 312.7630952380952,
     },
     "off_rtg": Object {
-      "old_value": 89.9518234710886,
-      "override": "Luck adjusted",
       "value": 89.9518234710886,
     },
     "off_scramble_2p": Object {
@@ -589,8 +573,6 @@ Array [
       "value": 0.32865168539325845,
     },
     "off_3p": Object {
-      "old_value": 0.3218390804597701,
-      "override": "Luck adjusted",
       "value": 0.3218390804597701,
     },
     "off_3p_ast": Object {
@@ -609,8 +591,6 @@ Array [
     "off_adj_rapm_prod_rank": 1,
     "off_adj_rapm_rank": 1,
     "off_adj_rtg": Object {
-      "old_value": 4.579914443257079,
-      "override": "Luck adjusted",
       "value": 4.579914443257079,
     },
     "off_adj_rtg_rank": 1,
@@ -627,8 +607,6 @@ Array [
       "value": 0.4557823129251701,
     },
     "off_efg": Object {
-      "old_value": 0.4691011235955056,
-      "override": "Adjusted from Off 3P%",
       "value": 0.4691011235955056,
     },
     "off_ft": Object {
@@ -644,8 +622,6 @@ Array [
       "value": 451.4845238095238,
     },
     "off_rtg": Object {
-      "old_value": 108.19151654069215,
-      "override": "Luck adjusted",
       "value": 108.19151654069215,
     },
     "off_scramble_2p": Object {
@@ -1247,8 +1223,6 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "old_value": 4.579914443257079,
-          "override": "Luck adjusted",
           "value": 4.579914443257079,
         },
         "off_assist": Object {
@@ -1258,8 +1232,6 @@ Array [
           "value": 0.5955056179775281,
         },
         "off_rtg": Object {
-          "old_value": 108.19151654069215,
-          "override": "Luck adjusted",
           "value": 108.19151654069215,
         },
         "off_usage": Object {
@@ -1304,8 +1276,6 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "old_value": -0.697381502829424,
-          "override": "Luck adjusted",
           "value": -0.697381502829424,
         },
         "off_assist": Object {
@@ -1315,8 +1285,6 @@ Array [
           "value": 0.2,
         },
         "off_rtg": Object {
-          "old_value": 89.9518234710886,
-          "override": "Luck adjusted",
           "value": 89.9518234710886,
         },
         "off_usage": Object {
@@ -1838,8 +1806,6 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "old_value": 4.579914443257079,
-          "override": "Luck adjusted",
           "value": 4.579914443257079,
         },
         "off_assist": Object {
@@ -1849,8 +1815,6 @@ Array [
           "value": 0.5955056179775281,
         },
         "off_rtg": Object {
-          "old_value": 108.19151654069215,
-          "override": "Luck adjusted",
           "value": 108.19151654069215,
         },
         "off_usage": Object {
@@ -1890,8 +1854,6 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "old_value": -0.697381502829424,
-          "override": "Luck adjusted",
           "value": -0.697381502829424,
         },
         "off_assist": Object {
@@ -1901,8 +1863,6 @@ Array [
           "value": 0.2,
         },
         "off_rtg": Object {
-          "old_value": 89.9518234710886,
-          "override": "Luck adjusted",
           "value": 89.9518234710886,
         },
         "off_usage": Object {
@@ -2424,8 +2384,6 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "old_value": 4.579914443257079,
-          "override": "Luck adjusted",
           "value": 4.579914443257079,
         },
         "off_assist": Object {
@@ -2435,8 +2393,6 @@ Array [
           "value": 0.5955056179775281,
         },
         "off_rtg": Object {
-          "old_value": 108.19151654069215,
-          "override": "Luck adjusted",
           "value": 108.19151654069215,
         },
         "off_usage": Object {
@@ -2476,8 +2432,6 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "old_value": -0.697381502829424,
-          "override": "Luck adjusted",
           "value": -0.697381502829424,
         },
         "off_assist": Object {
@@ -2487,8 +2441,6 @@ Array [
           "value": 0.2,
         },
         "off_rtg": Object {
-          "old_value": 89.9518234710886,
-          "override": "Luck adjusted",
           "value": 89.9518234710886,
         },
         "off_usage": Object {
@@ -3015,8 +2967,6 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "old_value": 4.579914443257079,
-          "override": "Luck adjusted",
           "value": 4.579914443257079,
         },
         "off_assist": Object {
@@ -3026,8 +2976,6 @@ Array [
           "value": 0.5955056179775281,
         },
         "off_rtg": Object {
-          "old_value": 108.19151654069215,
-          "override": "Luck adjusted",
           "value": 108.19151654069215,
         },
         "off_usage": Object {
@@ -3067,8 +3015,6 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "old_value": -0.697381502829424,
-          "override": "Luck adjusted",
           "value": -0.697381502829424,
         },
         "off_assist": Object {
@@ -3078,8 +3024,6 @@ Array [
           "value": 0.2,
         },
         "off_rtg": Object {
-          "old_value": 89.9518234710886,
-          "override": "Luck adjusted",
           "value": 89.9518234710886,
         },
         "off_usage": Object {

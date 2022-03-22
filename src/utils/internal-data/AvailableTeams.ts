@@ -2000,6 +2000,9 @@ export class AvailableTeams {
     { team: "Maryland", year: "2015/6", gender: "Men", index_template: "misc_conf", category: "high" },
     { team: "Maryland", year: "2016/7", gender: "Men", index_template: "misc_conf", category: "high" },
     { team: "Maryland", year: "2017/8", gender: "Men", index_template: "misc_conf", category: "high" },
+    { team: "Seton Hall", year: "2015/6", gender: "Men", index_template: "misc_conf", category: "high" },
+    { team: "Seton Hall", year: "2016/7", gender: "Men", index_template: "misc_conf", category: "high" },
+    { team: "Seton Hall", year: "2017/8", gender: "Men", index_template: "misc_conf", category: "high" },
   ];
   static readonly extraTeams = AvailableTeams.extraTeamsBase.map((t: AvailableTeamMeta) => {
     return { ...t, team: t.team + ` ${t.year}`};
