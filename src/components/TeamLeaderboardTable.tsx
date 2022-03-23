@@ -53,47 +53,6 @@ import { apPolls, sCurves } from '../utils/public-data/rankingInfo';
 import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 
-const mdCoachingCandidates: Record<string, boolean> = {
-  // Incumbant
-  "Maryland": true,
-
-  // Pitino
-  "Iona": true,
-
-  // English!
-  "George Mason": true,
-
-  // ACC
-  "Wake Forest": true,
-  "Louisville": true,
-
-  // P12
-  "Southern California": true,
-
-  // BE
-  "Providence": true,
-  "Xavier": true,
-  "Seton Hall": true,
-
-  // West coast nerds:
-  "Colorado St.": true,
-  "Washington St.": true,
-  "San Francisco": true,
-  "Wyoming": true,
-  "BYU": true,
-  "Utah St.": true,
-
-  // Low majors:
-  "North Texas": true,
-  "N.C. Central": true,
-  "Cleveland St.": true,
-  "Coppin St.": true,
-  "Murray St.": true,
-
-  // Don't tell SEC Twitter
-  "Arkansas": true,
-};
-const mdCoachingCandidatesName = "MD Coaches??";
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
@@ -534,7 +493,6 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
     const confFilter = (t: {titleStr: string, confStr: string}) => {
       return (confs == "") || (confs.indexOf(t.confStr) >= 0) 
-        || ((confs.indexOf(mdCoachingCandidatesName) >= 0) && mdCoachingCandidates[t.titleStr])
         || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.confStr) < 0))
         || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.titleStr};`) >= 0))
         ;
@@ -880,7 +838,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             components={{ MultiValueContainer: ConferenceValueContainer }}
             value={getCurrentConfsOrPlaceholder()}
             options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams))
-              .concat([ nonHighMajorConfsName, queryFiltersName, mdCoachingCandidatesName ]).map(
+              .concat([ nonHighMajorConfsName, queryFiltersName ]).map(
               (r) => stringToOption(r)
             )}
             onChange={(optionsIn) => {
