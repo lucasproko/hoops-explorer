@@ -246,7 +246,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     setUseRapm(!useRapm);
   };
   /** Put these options at the front */
-  const mostUsefulSubset = factorMins ? [
+  const mostUsefulSubset = (factorMins ? [
     "desc:diff_adj_prod",
     "desc:diff_adj_rapm_prod",
     "desc:off_adj_prod",
@@ -260,12 +260,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     "desc:off_adj_rapm",
     "asc:def_adj_rtg",
     "asc:def_adj_rapm"
-  ];
+  ]).concat(
+    year == "All" ? [ "desc:year" ] : []
+  );
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
     {
       label: "Most useful",
-      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value().concat(startingState.year == "All" ? [{
+        label: "Year",
+        value: "desc:year"
+      }] : [])
     },
     {
       label: "Other",
@@ -494,6 +499,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       };
       const rankings = getRankings();
 
+      const playerLboardTooltip = (
+        <Tooltip id={`lboard_${playerIndex}`}>Open new tab showing all the player's seasons, in the multi-year version of the leaderboard</Tooltip>
+      );
+      const playerLeaderboardParams = {
+        tier: "All",
+        year: "All",
+        filter: `${player.code};`,
+        sortBy: "desc:year",
+        showInfoSubHeader: true
+      };
+      const playerEl = <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
+        <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>{player.key}</a>
+      </OverlayTrigger>;
+
       const teamTooltip = (
         <Tooltip id={`team_${playerIndex}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
       );
@@ -506,7 +525,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         onQuery: `"${player.key}"`, offQuery: `NOT "${player.key}"`, autoOffQuery: true,
       };
       const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
-        <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>{player.team}</b></a>
+        <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>{player.team}</a>
       </OverlayTrigger>;
 
       const playerAnalysisParams = {
@@ -569,7 +588,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       player.off_title = <div>
         <span className="float-left">
           {rankings}
-        </span>&nbsp;<b>{player.key}{maybeYrStr}</b>
+        </span>&nbsp;<b>{playerEl}{maybeYrStr}</b>
           <br/>
           <span className="float-left">
             <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]</span>

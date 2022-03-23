@@ -7,6 +7,7 @@ import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../stats/LuckUtils";
+import { ParamDefaults } from '../FilterModels';
 
 export type PositionInfo = PlayerCodeId & { numPoss: number };
 
@@ -123,17 +124,22 @@ export class LineupTableUtils {
   }
 
   /** Handy util for sorting JSON blobs of fields */
-  static sorter(sortStr: string) { // format: (asc|desc):(off_|def_|diff_)<field>
+  static sorter(sortStr: string) { // format: (asc|desc):(off_|def_|diff_)<field>|year
     const sortComps = sortStr.split(":"); //asc/desc
     const dir = (sortComps[0] == "desc") ? -1 : 1;
     const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
-    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
+    const fieldName = (fieldComps[0] != "year")
+      ? sortComps[1].substring(fieldComps[0].length + 1) //+1 for _
+      : sortComps[1];
     const field = (stat: any) => {
       switch(fieldComps[0]) {
         case "diff": //(off-def)
           return (stat["off_" + fieldName]?.value || 0.0)
                 - (stat["def_" + fieldName]?.value || 0.0);
-        default: return stat[sortComps[1]]?.value; //(off or def)
+        case "year": //metadata
+          return parseInt((stat?.year || ParamDefaults.defaultLeaderboardYear).substring(0, 4));
+        default:
+          return stat[sortComps[1]]?.value; //(off or def)
       }
     };
     return (stat: any) => {
