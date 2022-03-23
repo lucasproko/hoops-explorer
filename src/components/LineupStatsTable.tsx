@@ -133,6 +133,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     ParamDefaults.defaultLineupShowGameInfo : startingState.showGameInfo
   );
 
+  const [ showRepeatingHeader, setShowRepeatingHeader ] = useState(true as boolean); //(always start as true) 
+
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
@@ -249,8 +251,19 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
         const stats = { off_title: title, def_title: "", ...lineup };
 
+        const isUsingLuckAndShowingDiags = showLuckAdjDiags && lineup.off_luck_diags && lineup.def_luck_diags && sortedCodesAndIds;
+        const showRepeatingHeaderThisLine = showRepeatingHeader && !showGameInfo && !isUsingLuckAndShowingDiags &&
+          (lineupIndex > 0) && (0 == (lineupIndex % 5));
+
         return _.flatten([
-          [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
+          ((showGameInfo || isUsingLuckAndShowingDiags) && showRepeatingHeader && (lineupIndex > 0)) ? [ 
+            GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingLineupHeaderFields, "small"),
+          ] : [ ],
+          showRepeatingHeaderThisLine ? [
+            GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingLineupHeaderFields, "small"),
+            GenericTableOps.buildRowSeparator()
+          ] : [ ],
+            [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
@@ -264,12 +277,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
                  -1 : globalMaxPoss}
             />, "small"
           )] : [],
-          (showLuckAdjDiags && lineup.off_luck_diags && lineup.def_luck_diags && sortedCodesAndIds) ?
+          isUsingLuckAndShowingDiags ?
             [ GenericTableOps.buildTextRow(
               <LuckAdjDiagView
                 name="lineup"
-                offLuck={lineup.off_luck_diags}
-                defLuck={lineup.def_luck_diags}
+                offLuck={lineup.off_luck_diags!}
+                defLuck={lineup.def_luck_diags!}
                 baseline={luckConfig.base}
                 showHelp={showHelp}
               />, "small pt-2"
@@ -366,18 +379,28 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         .reduce((acc, offPoss) => offPoss > acc ? offPoss : acc)
         .value();
 
-      const tableData = refilteredLineups.flatMap(stats => {
+      const tableData = refilteredLineups.flatMap((stats, index) => {
         // Re-enrich if not total
         if (stats.posKey != LineupTableUtils.totalLineupId) {
           TableDisplayUtils.injectPlayTypeInfo(stats, false, false, teamSeasonLookup); //(inject assist numbers)
         }
 
+        const showRepeatingHeaderThisLine = showRepeatingHeader && !showGameInfo &&
+          (index > 0) && (0 == (index % 5));
+
         return _.flatten([
+          (showGameInfo && showRepeatingHeader) ? [ 
+            GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingLineupHeaderFields, "small"),
+          ] : [ ],
+          showRepeatingHeaderThisLine ? [
+            GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingLineupHeaderFields, "small"),
+            GenericTableOps.buildRowSeparator()
+          ] : [ ],
           [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={stats.game_info || {}}
+              oppoList={stats.game_info || []}
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
               maxOffPoss={comboGlobalMaxPoss}
@@ -396,7 +419,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     }
 
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-      luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos, showGameInfo,
+      luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos, showGameInfo, showRepeatingHeader,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -539,6 +562,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}
               onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+            />
+            <GenericTogglingMenuItem
+              text={"Show repeating header every 10 players"}
+              truthVal={showRepeatingHeader}
+              onSelect={() => friendlyChange(() => setShowRepeatingHeader(!showRepeatingHeader), true)}
             />
           </GenericTogglingMenu>
         </Form.Group>

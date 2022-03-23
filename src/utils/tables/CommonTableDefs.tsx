@@ -66,7 +66,7 @@ export class CommonTableDefs {
 
   // ON/OFF - TEAM
 
-  /** To build a less wordy set of headers */
+  /** To build a less wordy set of header text for the repeating headers (team on/off) */
   static repeatingOnOffHeaderFields: Record<string, string> = {
     "Net Rtg": "Net",
     "Adj P/100": "Adj",
@@ -149,7 +149,7 @@ export class CommonTableDefs {
     "def_drb": (o: string) => undefined
   } as Record<string, (o: string) => (string | undefined)>
 
-  /** To build a less wordy set of headers */
+  /** To build a less wordy set of header text for the repeating headers (roster view) */
   static repeatingOnOffIndivHeaderFields: Record<string, string> = {
     "Box Rtg": "Box",
     "Adj+ Rtg": "Adj+",
@@ -248,6 +248,16 @@ export class CommonTableDefs {
   };
 
   // LINEUP:
+
+  /** To build a less wordy set of header text for the repeating headers (team on/off) */
+  static repeatingLineupHeaderFields: Record<string, string> = {
+    "Net Rtg": "Net",
+    "Adj P/100": "Adj",
+    "2PR mid": "MidR",
+    "2PR rim": "RimR",
+    "2P% mid": "Mid%",
+    "2P% rim": "Rim%",
+  };
 
   static readonly lineupTable = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),

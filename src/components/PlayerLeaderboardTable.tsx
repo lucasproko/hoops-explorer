@@ -571,7 +571,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
-      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % 10))
+      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % 5))
 
       return isDup ? _.flatten([
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
