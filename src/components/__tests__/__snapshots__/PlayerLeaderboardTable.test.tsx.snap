@@ -257,7 +257,30 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             <InputGroupText
               id="filter"
             >
-              Filter
+              <OverlayTrigger
+                overlay={
+                  <ForwardRef
+                    id="basicFilterTooltip"
+                    placement="right"
+                  >
+                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    <br />
+                    <br />
+                    Tillman, Xavier Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
+                    <br />
+                    <br />
+                     For more complex filtering enable Linq below.
+                  </ForwardRef>
+                }
+                placement="auto"
+              >
+                <div>
+                  Filter
+                  <sup>
+                    *
+                  </sup>
+                </div>
+              </OverlayTrigger>
             </InputGroupText>
           </InputGroupPrepend>
           <AsyncFormControl
@@ -7031,7 +7054,30 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             <InputGroupText
               id="filter"
             >
-              Filter
+              <OverlayTrigger
+                overlay={
+                  <ForwardRef
+                    id="basicFilterTooltip"
+                    placement="right"
+                  >
+                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    <br />
+                    <br />
+                    Tillman, Xavier Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
+                    <br />
+                    <br />
+                     For more complex filtering enable Linq below.
+                  </ForwardRef>
+                }
+                placement="auto"
+              >
+                <div>
+                  Filter
+                  <sup>
+                    *
+                  </sup>
+                </div>
+              </OverlayTrigger>
             </InputGroupText>
           </InputGroupPrepend>
           <AsyncFormControl
@@ -13805,7 +13851,30 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             <InputGroupText
               id="filter"
             >
-              Filter
+              <OverlayTrigger
+                overlay={
+                  <ForwardRef
+                    id="basicFilterTooltip"
+                    placement="right"
+                  >
+                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    <br />
+                    <br />
+                    Williamson, Zion Fr_ZiWilliamson+Zion:Duke_2018/9 Fr_ZiWilliamson:Duke_2018/9
+                    <br />
+                    <br />
+                     For more complex filtering enable Linq below.
+                  </ForwardRef>
+                }
+                placement="auto"
+              >
+                <div>
+                  Filter
+                  <sup>
+                    *
+                  </sup>
+                </div>
+              </OverlayTrigger>
             </InputGroupText>
           </InputGroupPrepend>
           <AsyncFormControl
@@ -23377,7 +23446,30 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             <InputGroupText
               id="filter"
             >
-              Filter
+              <OverlayTrigger
+                overlay={
+                  <ForwardRef
+                    id="basicFilterTooltip"
+                    placement="right"
+                  >
+                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    <br />
+                    <br />
+                    Pritchard, Payton Sr_PaPritchard+Payton:Oregon_2019/20 Sr_PaPritchard:Oregon_2019/20
+                    <br />
+                    <br />
+                     For more complex filtering enable Linq below.
+                  </ForwardRef>
+                }
+                placement="auto"
+              >
+                <div>
+                  Filter
+                  <sup>
+                    *
+                  </sup>
+                </div>
+              </OverlayTrigger>
             </InputGroupText>
           </InputGroupPrepend>
           <AsyncFormControl
@@ -30131,7 +30223,30 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             <InputGroupText
               id="filter"
             >
-              Filter
+              <OverlayTrigger
+                overlay={
+                  <ForwardRef
+                    id="basicFilterTooltip"
+                    placement="right"
+                  >
+                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    <br />
+                    <br />
+                    Garza, Luka Jr_LuGarza+Luka:Iowa_2019/20 Jr_LuGarza:Iowa_2019/20
+                    <br />
+                    <br />
+                     For more complex filtering enable Linq below.
+                  </ForwardRef>
+                }
+                placement="auto"
+              >
+                <div>
+                  Filter
+                  <sup>
+                    *
+                  </sup>
+                </div>
+              </OverlayTrigger>
             </InputGroupText>
           </InputGroupPrepend>
           <AsyncFormControl

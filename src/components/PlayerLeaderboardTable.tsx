@@ -46,6 +46,7 @@ import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTra
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
+import { StatModels, IndivStatSet } from '../utils/StatModels';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -214,6 +215,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
   const [ showAdvancedFilter, setShowAdvancedFilter ] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
+  const [ exampleForFilterStr, setExampleForFilterStr ] = useState(undefined as undefined | IndivStatSet);
 
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
@@ -363,6 +365,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
+  /** Used in table building below but also to display example in tooltip */
+  const buildFilterStringTest = (player: IndivStatSet) => {
+    const names = (player.key || "").split(" ");
+    const firstName = names ? names[names.length - 1] : ""; //(allows eg MiMitchell+Makhi)
+    const usefulFormatBuilder = (s: string) => {
+      return `${player.roster?.year_class || ""}_${s || ""}:${player.team || ""}_${player.year || ""}`;
+    };
+    return `${(player.key || "")} ${usefulFormatBuilder(`${player.code || ""}+${firstName}`)} ${usefulFormatBuilder(player.code || "")}`
+  };
+
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
@@ -388,13 +400,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     // Filter, sort, and limit players part 2/2
     const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
-      const names = (player.key || "").split(" ");
-      const firstName = names ? names[names.length - 1] : ""; //(allows eg MiMitchell+Makhi)
-      const usefulFormatBuilder = (s: string) => {
-        return `${player.roster?.year_class || ""}_${s || ""}:${player.team || ""}_${player.year || ""}`;
-      };
-      const strToTest = `${(player.key || "")} ${usefulFormatBuilder(`${player.code || ""}+${firstName}`)} ${usefulFormatBuilder(player.code)}`;
-
+      const strToTest = buildFilterStringTest(player);
       return(
         (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => comp == player.team))
         &&
@@ -443,6 +449,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
     const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
+      if (playerIndex == 0) setExampleForFilterStr(player);
+
       const isDup = (tier == "All") && (playerIndex > 0) && 
         (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
 
@@ -711,6 +719,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     <span>Linq</span>
     ;
 
+  const basicFilterTooltip = (
+    <Tooltip id="basicFilterTooltip">Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like <br/><br/>{
+      exampleForFilterStr ? buildFilterStringTest(exampleForFilterStr) 
+      : (dataEvent?.players?.[0] ? 
+          buildFilterStringTest(dataEvent?.players[0]) :
+          "Honor, Nick Sr_NiHonor+Nick:Clemson_2021/22 Sr_NiHonor:Clemson_2021/22"
+        )
+    }<br/><br/> For more complex filtering enable Linq below.</Tooltip>
+  );
+  const basicFilterText = <OverlayTrigger placement="auto" overlay={basicFilterTooltip}><div>Filter<sup>*</sup></div></OverlayTrigger>
+
   // Position filter
 
   function getCurrentPositionsOrPlaceholder() {
@@ -823,7 +842,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Form.Group as={Col} sm="7">
           <InputGroup>
             <InputGroup.Prepend>
-              <InputGroup.Text id="filter">Filter</InputGroup.Text>
+              <InputGroup.Text id="filter">{basicFilterText}</InputGroup.Text>
             </InputGroup.Prepend>
             <AsyncFormControl
               startingVal={filterStr}
