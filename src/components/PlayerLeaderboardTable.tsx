@@ -1015,7 +1015,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           }/>
         </Col>
         <Col xs={12} sm={12} md={12} lg={4}>
-          <div className="float-right"><small>(Qualifying players in tier: <b>{dataEvent?.players?.length || 0}</b>)</small></div>
+          { (_.size(dataEvent?.transfers || {}) > 0)
+          ? <div className="float-right"><small>(Available transfers: <b>{_.size(dataEvent?.transfers || {})}</b>)</small></div>
+          : <div className="float-right"><small>(Qualifying players in tier: <b>{dataEvent?.players?.length || 0}</b>)</small></div>
+          }
         </Col>
       </Row>
       <Row className="mt-2">
