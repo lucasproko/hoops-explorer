@@ -24,7 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/stats_all_${parsed.gender}_${parsed.year}_${parsed.tier}.json`, {
                 method: 'get'
             });
-            const respJson = await resp.json()
+            const respJson = await resp.json();
+            res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
             res.status(200).json(respJson);
         } catch (e) {
             //console.log(e);

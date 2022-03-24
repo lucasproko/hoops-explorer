@@ -22,7 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/current_transfers.json`, {
                 method: 'get'
             });
-            const respJson = await resp.json()
+            const respJson = await resp.json();
+            res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
             res.status(200).json(respJson);
         } catch (e) {
             res.status(500).json({ error: "Unknown error"});

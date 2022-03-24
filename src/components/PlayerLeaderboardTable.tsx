@@ -64,6 +64,10 @@ type Props = {
 
 // Some static methods
 
+const yearOpt = {
+  label: "Year",
+  value: "desc:year"
+};
 const sortOptions: Array<any> = _.flatten(
   _.toPairs(CommonTableDefs.onOffIndividualTableAllFields(true))
     .filter(keycol => keycol[1].colName && keycol[1].colName != "")
@@ -98,7 +102,7 @@ const sortOptions: Array<any> = _.flatten(
     })
 );
 const sortOptionsByValue = _.fromPairs(
-  sortOptions.map(opt => [opt.value, opt])
+  sortOptions.map(opt => [opt.value, opt]).concat([ [ yearOpt.value, yearOpt] ])
 );
 
 // Info required for the positional filter
@@ -260,17 +264,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     "desc:off_adj_rapm",
     "asc:def_adj_rtg",
     "asc:def_adj_rapm"
-  ]).concat(
-    year == "All" ? [ "desc:year" ] : []
-  );
+  ]);
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
     {
       label: "Most useful",
-      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value().concat(startingState.year == "All" ? [{
-        label: "Year",
-        value: "desc:year"
-      }] : [])
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value().concat(startingState.year == "All" ? [ yearOpt ] : [])
     },
     {
       label: "Other",
@@ -377,7 +376,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const usefulFormatBuilder = (s: string) => {
       return `${player.roster?.year_class || ""}_${s || ""}:${player.team || ""}_${player.year || ""}`;
     };
-    return `${(player.key || "")} ${usefulFormatBuilder(`${player.code || ""}+${firstName}`)} ${usefulFormatBuilder(player.code || "")}`
+    return `${(player.key || "")}:${usefulFormatBuilder(`${player.code || ""}+${firstName}`)} ${usefulFormatBuilder(player.code || "")}`
   };
 
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
@@ -505,7 +504,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const playerLeaderboardParams = {
         tier: "All",
         year: "All",
-        filter: `${player.code}:;`,
+        filter: `${player.key}:;`,
         sortBy: "desc:year",
         showInfoSubHeader: true
       };

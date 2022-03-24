@@ -266,7 +266,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
-                    Tillman, Xavier Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
+                    Tillman, Xavier:Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
                     <br />
                     <br />
                      For more complex filtering enable Linq below.
@@ -829,6 +829,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "SoS (Asc. / Off-Def)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Year",
+                      "value": "desc:year",
+                    },
                   ],
                 },
               ]
@@ -1269,7 +1273,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -1552,7 +1556,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -1838,7 +1842,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -2121,7 +2125,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -2407,7 +2411,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -2690,7 +2694,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -2976,7 +2980,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -3259,7 +3263,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -3545,7 +3549,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -3828,7 +3832,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -4135,7 +4139,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -4418,7 +4422,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -4704,7 +4708,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -4987,7 +4991,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -5273,7 +5277,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -5556,7 +5560,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -5842,7 +5846,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -6125,7 +6129,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -6411,7 +6415,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -6694,7 +6698,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -7363,7 +7367,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
-                    Tillman, Xavier Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
+                    Tillman, Xavier:Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
                     <br />
                     <br />
                      For more complex filtering enable Linq below.
@@ -7926,6 +7930,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "SoS (Asc. / Off-Def)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Year",
+                      "value": "desc:year",
+                    },
                   ],
                 },
               ]
@@ -8366,7 +8374,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -8649,7 +8657,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -8935,7 +8943,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -9218,7 +9226,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -9504,7 +9512,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -9787,7 +9795,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -10073,7 +10081,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -10356,7 +10364,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -10642,7 +10650,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -10925,7 +10933,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -11232,7 +11240,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -11515,7 +11523,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -11801,7 +11809,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -12084,7 +12092,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -12370,7 +12378,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -12653,7 +12661,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -12939,7 +12947,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -13222,7 +13230,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -13508,7 +13516,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -13791,7 +13799,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -14460,7 +14468,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
-                    Williamson, Zion Fr_ZiWilliamson+Zion:Duke_2018/9 Fr_ZiWilliamson:Duke_2018/9
+                    Williamson, Zion:Fr_ZiWilliamson+Zion:Duke_2018/9 Fr_ZiWilliamson:Duke_2018/9
                     <br />
                     <br />
                      For more complex filtering enable Linq below.
@@ -15027,6 +15035,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "SoS (Asc. / Off-Def)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Year",
+                      "value": "desc:year",
+                    },
                   ],
                 },
               ]
@@ -15476,7 +15488,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=ZiWilliamson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Williamson%2C%20Zion%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Williamson, Zion
@@ -15767,7 +15779,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=ZiWilliamson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Williamson%2C%20Zion%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Williamson, Zion
@@ -16061,7 +16073,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -16352,7 +16364,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -16646,7 +16658,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=BrClarke%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Clarke%2C%20Brandon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Clarke, Brandon
@@ -16937,7 +16949,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=BrClarke%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Clarke%2C%20Brandon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Clarke, Brandon
@@ -17231,7 +17243,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -17522,7 +17534,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -17816,7 +17828,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaJohnson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Johnson%2C%20Cameron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Johnson, Cameron
@@ -18107,7 +18119,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaJohnson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Johnson%2C%20Cameron%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Johnson, Cameron
@@ -18422,7 +18434,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeHunter%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Hunter%2C%20De%27Andre%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Hunter, De'Andre
@@ -18713,7 +18725,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeHunter%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Hunter%2C%20De%27Andre%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Hunter, De'Andre
@@ -19007,7 +19019,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -19298,7 +19310,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -19592,7 +19604,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -19883,7 +19895,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -20177,7 +20189,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -20468,7 +20480,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -20751,7 +20763,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MeTrimble%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Trimble%2C%20Melo%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Trimble, Melo
@@ -21031,7 +21043,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MeTrimble%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Trimble%2C%20Melo%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Trimble, Melo
@@ -21335,7 +21347,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=AnCowan%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Cowan%2C%20Anthony%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Cowan, Anthony
@@ -21615,7 +21627,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=AnCowan%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Cowan%2C%20Anthony%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Cowan, Anthony
@@ -21909,7 +21921,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -22200,7 +22212,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -22475,7 +22487,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=AnDelgado%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Delgado%2C%20Angel%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Delgado, Angel
@@ -22747,7 +22759,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=AnDelgado%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Delgado%2C%20Angel%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Delgado, Angel
@@ -23022,7 +23034,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=IsWhitehead%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Whitehead%2C%20Isaiah%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Whitehead, Isaiah
@@ -23294,7 +23306,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=IsWhitehead%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Whitehead%2C%20Isaiah%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Whitehead, Isaiah
@@ -23569,7 +23581,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MyPowell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Powell%2C%20Myles%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Powell, Myles
@@ -23841,7 +23853,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MyPowell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Powell%2C%20Myles%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Powell, Myles
@@ -24509,7 +24521,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
-                    Pritchard, Payton Sr_PaPritchard+Payton:Oregon_2019/20 Sr_PaPritchard:Oregon_2019/20
+                    Pritchard, Payton:Sr_PaPritchard+Payton:Oregon_2019/20 Sr_PaPritchard:Oregon_2019/20
                     <br />
                     <br />
                      For more complex filtering enable Linq below.
@@ -25072,6 +25084,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "SoS (Asc. / Off-Def)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Year",
+                      "value": "desc:year",
+                    },
                   ],
                 },
               ]
@@ -25512,7 +25528,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -25794,7 +25810,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -26079,7 +26095,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -26361,7 +26377,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -26646,7 +26662,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -26928,7 +26944,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -27213,7 +27229,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -27495,7 +27511,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -27780,7 +27796,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -28062,7 +28078,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -28368,7 +28384,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -28650,7 +28666,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -28935,7 +28951,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -29217,7 +29233,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -29502,7 +29518,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -29784,7 +29800,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -30069,7 +30085,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -30351,7 +30367,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -30636,7 +30652,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -30918,7 +30934,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -31586,7 +31602,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
-                    Garza, Luka Jr_LuGarza+Luka:Iowa_2019/20 Jr_LuGarza:Iowa_2019/20
+                    Garza, Luka:Jr_LuGarza+Luka:Iowa_2019/20 Jr_LuGarza:Iowa_2019/20
                     <br />
                     <br />
                      For more complex filtering enable Linq below.
@@ -32149,6 +32165,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "SoS (Asc. / Off-Def)",
                       "value": "asc:diff_adj_opp",
                     },
+                    Object {
+                      "label": "Year",
+                      "value": "desc:year",
+                    },
                   ],
                 },
               ]
@@ -32589,7 +32609,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -32871,7 +32891,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=LuGarza%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Garza%2C%20Luka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Garza, Luka
@@ -33156,7 +33176,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -33438,7 +33458,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=PaPritchard%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Pritchard%2C%20Payton%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Pritchard, Payton
@@ -33723,7 +33743,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -34005,7 +34025,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeDotson%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Dotson%2C%20Devon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Dotson, Devon
@@ -34290,7 +34310,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -34572,7 +34592,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=VeCarey%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Carey%2C%20Vernon%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Carey, Vernon
@@ -34857,7 +34877,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -35139,7 +35159,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=MaFlynn%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Flynn%2C%20Malachi%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Flynn, Malachi
@@ -35445,7 +35465,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -35727,7 +35747,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=CaWinston%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Winston%2C%20Cassius%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Winston, Cassius
@@ -36012,7 +36032,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -36294,7 +36314,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=UdAzubuike%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Azubuike%2C%20Udoka%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Azubuike, Udoka
@@ -36579,7 +36599,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -36861,7 +36881,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=DeVassell%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Vassell%2C%20Devin%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Vassell, Devin
@@ -37146,7 +37166,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -37428,7 +37448,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=XaTillman%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Tillman%2C%20Xavier%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Tillman, Xavier
@@ -37713,7 +37733,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
@@ -37995,7 +38015,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         placement="auto"
                                       >
                                         <a
-                                          href="/PlayerLeaderboard?filter=McWright%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
+                                          href="/PlayerLeaderboard?filter=Wright%2C%20McKinley%3A%3B&showInfoSubHeader=true&sortBy=desc%3Ayear&tier=All&year=All&"
                                           target="_blank"
                                         >
                                           Wright, McKinley
