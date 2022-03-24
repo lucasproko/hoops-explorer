@@ -457,7 +457,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       if (playerIndex == 0) setExampleForFilterStr(player);
 
       const isDup = (tier == "All") && (playerIndex > 0) && 
-        (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
+        (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].team == player.team) && (players[playerIndex - 1].year == player.year);
 
       if (isDup) playerDuplicates++;
 
@@ -505,7 +505,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const playerLeaderboardParams = {
         tier: "All",
         year: "All",
-        filter: `${player.code};`,
+        filter: `${player.code}:;`,
         sortBy: "desc:year",
         showInfoSubHeader: true
       };
