@@ -47,6 +47,7 @@ import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTra
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import { StatModels, IndivStatSet } from '../utils/StatModels';
+import { O_SYMLINK } from 'constants';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -233,6 +234,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ filterStr, setFilterStr ] = useState(
     PlayerLeaderboardTracking[startingState.filter || ""] || startingState.filter || ParamDefaults.defaultPlayerLboardFilter
   );
+  const [ numFilteredStr, setNumFilteredStr ] = useState("" as string);
 
   const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
@@ -453,21 +455,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         (sortBy != "desc:diff_adj_prod") && (sortBy != "desc:off_adj_prod") && (sortBy != "asc:def_adj_prod") :
         (sortBy != "desc:diff_adj_rtg") && (sortBy != "desc:off_adj_rtg") && (sortBy != "asc:def_adj_rtg"));
 
-    /** Either the sort is not one of the 3 pre-calced, or there is a filter */
-    const isGeneralSortOrFilter = (
-      usefulSortCombo
-      ||
-      !_.isNil(dataEvent.transfers)
-      ||
+    const isFiltered = 
       ((advancedFilterStr.length > 0) && !advancedFilterError)
       ||
       ((confDataEventPlayers.length < dataEventPlayers.length) || ((filterStr || "") != ""))
       ||
-      (year == "All")
-    );
+      (posClasses != "");        
+  
+    /** Either the sort is not one of the 3 pre-calced, or there is a filter */
+    const isGeneralSortOrFilter =
+      usefulSortCombo
+      ||
+      !_.isNil(dataEvent.transfers)
+      ||
+      isFiltered
+      ||
+      (year == "All");
 
     /** Compresses number/height/year into 1 double-width column */
     const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
+
+    const numFiltered = _.size(players);
 
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
     const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
@@ -631,6 +639,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ]);
     });
 
+    setNumFilteredStr(isFiltered ? 
+      `, filtered: ${(tier == "All") && (numFiltered > parseInt(maxTableSize)) ? `<${numFiltered - playerDuplicates}` : (numFiltered - playerDuplicates)}` 
+      : "");
+
     /** The sub-header builder - Can show some handy context in between the header and data rows: */
     const maybeSubheaderRow = 
       showInfoSubHeader ? RosterTableUtils.buildInformationalSubheader(true, true): [];
@@ -756,7 +768,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ;
 
   const basicFilterTooltip = (
-    <Tooltip id="basicFilterTooltip">Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like <br/><br/>{
+    <Tooltip id="basicFilterTooltip">Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like <br/><br/>{
       exampleForFilterStr ? buildFilterStringTest(exampleForFilterStr) 
       : (dataEvent?.players?.[0] ? 
           buildFilterStringTest(dataEvent?.players[0]) :
@@ -902,7 +914,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               startingVal={filterStr}
               onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
               timeout={500}
-              placeholder = "eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
+              placeholder = "See 'Filter' tooltip for details"
             />
           </InputGroup>
         </Form.Group>
@@ -1109,8 +1121,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </Col>
         <Col xs={12} sm={12} md={12} lg={4}>
           { (_.size(dataEvent?.transfers || {}) > 0)
-          ? <div className="float-right"><small>(Available transfers: <b>{_.size(dataEvent?.transfers || {})}</b>)</small></div>
-          : <div className="float-right"><small>(Qualifying players in tier: <b>{dataEvent?.players?.length || 0}</b>)</small></div>
+          ? <div className="float-right"><small>(Available transfers: <b>{_.size(dataEvent?.transfers || {})}</b>{numFilteredStr})</small></div>
+          : <div className="float-right"><small>(Qualifying players in tier: <b>{dataEvent?.players?.length || 0}</b>{numFilteredStr})</small></div>
           }
         </Col>
       </Row>

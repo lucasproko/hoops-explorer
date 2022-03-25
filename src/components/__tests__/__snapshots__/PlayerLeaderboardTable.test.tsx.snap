@@ -263,7 +263,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     id="basicFilterTooltip"
                     placement="right"
                   >
-                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
                     Tillman, Xavier:Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
@@ -285,7 +285,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
+            placeholder="See 'Filter' tooltip for details"
             startingVal=""
             timeout={500}
           />
@@ -7486,7 +7486,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     id="basicFilterTooltip"
                     placement="right"
                   >
-                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
                     Tillman, Xavier:Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
@@ -7508,7 +7508,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
+            placeholder="See 'Filter' tooltip for details"
             startingVal=""
             timeout={500}
           />
@@ -14709,7 +14709,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     id="basicFilterTooltip"
                     placement="right"
                   >
-                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
                     Williamson, Zion:Fr_ZiWilliamson+Zion:Duke_2018/9 Fr_ZiWilliamson:Duke_2018/9
@@ -14731,7 +14731,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
+            placeholder="See 'Filter' tooltip for details"
             startingVal=""
             timeout={500}
           />
@@ -24884,7 +24884,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     id="basicFilterTooltip"
                     placement="right"
                   >
-                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
                     Pritchard, Payton:Sr_PaPritchard+Payton:Oregon_2019/20 Sr_PaPritchard:Oregon_2019/20
@@ -24906,7 +24906,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
+            placeholder="See 'Filter' tooltip for details"
             startingVal=""
             timeout={500}
           />
@@ -32087,7 +32087,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     id="basicFilterTooltip"
                     placement="right"
                   >
-                    Simple string match each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
                     <br />
                     <br />
                     Garza, Luka:Jr_LuGarza+Luka:Iowa_2019/20 Jr_LuGarza:Iowa_2019/20
@@ -32109,7 +32109,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
+            placeholder="See 'Filter' tooltip for details"
             startingVal=""
             timeout={500}
           />
