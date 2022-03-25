@@ -6927,6 +6927,21 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -20278,6 +20293,21 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -26347,6 +26377,21 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
               },
               GenericTableSeparator {
                 "kind": "separator",
@@ -34861,6 +34906,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -36078,6 +36135,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -37297,6 +37366,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -38515,6 +38596,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -39726,6 +39819,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -40956,6 +41061,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -42188,6 +42305,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -43451,6 +43580,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -44672,6 +44813,18 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj P/100": "Adj",
+                  "Net Rtg": "Net",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],

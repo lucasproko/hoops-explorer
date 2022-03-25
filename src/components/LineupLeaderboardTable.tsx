@@ -160,6 +160,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ) as Set<"0-PG" | "2-PG" | "4-G" | "5-Out" | "2-Big">
   );
 
+  const [ showRepeatingHeader, setShowRepeatingHeader ] = useState(true as boolean); //(always start as true) 
+
   // Luck:
 
   /** Whether to show the luck diagnostics */
@@ -356,7 +358,18 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       const stats = { off_title: title, def_title: "", ...lineup };
 
+      const isUsingLuckAndShowingDiags = showLuckAdjDiags && lineup.off_luck_diags;
+      const showRepeatingHeaderThisLine = showRepeatingHeader && !isUsingLuckAndShowingDiags &&
+        (lineupIndex > 0) && (0 == (lineupIndex % 5));
+
       return _.flatten([
+        (isUsingLuckAndShowingDiags && showRepeatingHeader && (lineupIndex > 0)) ? [ 
+          GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingLineupHeaderFields, "small"),
+        ] : [ ],
+        showRepeatingHeaderThisLine ? [
+          GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingLineupHeaderFields, "small"),
+          GenericTableOps.buildRowSeparator()
+        ] : [ ],
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
         showLuckAdjDiags && lineup.off_luck_diags ? [ GenericTableOps.buildTextRow(
