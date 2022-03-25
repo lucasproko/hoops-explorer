@@ -77,14 +77,14 @@ export class AdvancedFilterUtils {
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
          .replace(/(?:^| )((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
          .replace(/roster[.]height/g, "$.normht")
-         .replace(/(?:^| )(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, " $.p.$1")
+         .replace(/(^| |[(])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)")
       ; 
    }
    static avoidAssigmentOperator(s: string) {
       return s.replace(/([^!<>])=[=]*/g, "$1==");
    }
-   static normHeightInQuotes(s: string) { return s.replace(/['"]([567])-([0-9])['"]/, "'$1-0$2'"); }
+   static normHeightInQuotes(s: string) { return s.replace(/['"]([567])[-']([0-9])['"]/, "'$1-0$2'"); }
    static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/, "$1-0$2"); }
    static removeAscDesc(s: string) { return s.replace(/(ASC|DESC)/g, ""); }
 
@@ -104,6 +104,9 @@ export class AdvancedFilterUtils {
       const where = AdvancedFilterUtils.tidyClauses(filterFrags[0]);
       
       const sortingFrags = _.drop(filterFrags, 1);
+
+      //DIAG:
+      //console.log(`?Q = ${where}`);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
          const isAsc = sortingFrag.indexOf("ASC") >= 0;
@@ -125,8 +128,8 @@ export class AdvancedFilterUtils {
       });
       
       try {
-         const enumData = Enumerable.from(inData.map(p => { 
-            return { 
+         const enumData = Enumerable.from(inData.map((p, index) => { 
+            const retVal = { 
                p: p,
                // Normalize so can do height comparisons 
                normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
@@ -143,6 +146,9 @@ export class AdvancedFilterUtils {
                adj_rapm_prod_margin_rank: p.adj_rapm_prod_margin_rank,
                adj_prod_margin_rank: p.adj_prod_margin_rank,
             }; 
+            //DIAG:
+            //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
+            return retVal;
          }));
          const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
          const sortedData = sortByFns.length > 0 ?
@@ -155,7 +161,7 @@ export class AdvancedFilterUtils {
 
          return [ sortedData.toArray().map((p: any) => p.p), undefined ];
       } catch (e) {
-         return [ inData, e.message ];
+         return [ inData, `${e.message} in ${where}` ];
       }
    }
 

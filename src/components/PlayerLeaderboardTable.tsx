@@ -21,7 +21,7 @@ import Button from 'react-bootstrap/Button';
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink, faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faCheck, faExclamation, faFilter } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -159,6 +159,23 @@ const expandedPosClasses = {
   "4/5": [ "WF", "S-PF", "PF/C", "C" ],
 } as Record<string, string[]>;
 
+const advancedFilterPresets = [
+
+  [ "Pass-first ball handlers", "off_usage <= 0.20 && off_assist >= 0.25", "BH*" ],
+  [ "Dribble-driving guards", "(1-off_2prim_ast)*off_2primr + 0.33*off_ftr > 0.4 SORT_BY (1-off_2prim_ast)*off_2primr + 0.33*off_ftr", "*G,WF" ],
+  [ "Off-the-dribble 3P-shooting guards", "off_3p_ast < 0.60 && off_3pr > 0.40 SORT_BY off_3p", "*G" ],
+
+  [ "3+D wings" , "def_adj_rapm < -1.5 && off_3p > 0.35 && off_3pr >= 0.50", "WG,WF" ],
+  [ "Safe-pair-of-hands wings", "off_to < 0.14", "WG,WF" ],
+
+  [ "Floor-stretching centers", "off_3pr > 0.25 || (off_3pr >= 0.05 && off_2pmidr > 0.35 && off_2pmid > 0.40)", "PF/C,C" ],
+  [ "Elite passing centers", "off_assist > 0.10 && ((posClass == \"C\") || (posClass == \"PF/C\" && roster.height >= \"6-10\")) SORT_BY off_assist", "PF/C,C" ],
+  [ "Defensive-minded centers", "off_usage <= 0.15 && off_rtg > 105 && def_adj_rapm < -1", "C" ],
+
+  [ "Tall ball-handlers", "roster.height >= \"6-6\"", "BH*" ],
+  [ "Tall wings", "(roster.height >= \"6-9\") || (roster.height >= \"6-8\" && posClass == \"WG\")", "WG,WF" ],
+] as Array<[ string, string, string ]>;
+
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
 const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
 
@@ -170,6 +187,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
+  const showPresetsOnLoad = (typeof window === `undefined`) ? false : (window.location.search.indexOf("&showPresets") >= 0);
 
   // 1] Data Model
 
@@ -295,7 +314,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       }
     }
   };
-
 
   useEffect(() => { // Add and remove clipboard listener
     initClipboard();
@@ -748,6 +766,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   );
   const basicFilterText = <OverlayTrigger placement="auto" overlay={basicFilterTooltip}><div>Filter<sup>*</sup></div></OverlayTrigger>
 
+  const tooltipForFilterPresets = (
+    <Tooltip id="advancedFilterPresets">Preset player type advanced filters</Tooltip>
+  );
+
+  const buildFilterPresetMenuItem = (name: string, advancedFilter: string, possFilter: string) => {
+    return <GenericTogglingMenuItem
+      text={name}
+      truthVal={(advancedFilter == advancedFilterStr) && (posClasses == possFilter)}
+      onSelect={() => {
+        friendlyChange(() => {
+          setTmpAdvancedFilterStr(advancedFilter);
+          setAdvancedFilterStr(advancedFilter);
+          setPosClasses(possFilter);
+        }, (advancedFilter != advancedFilterStr) || (posClasses != possFilter));
+      }}
+    />;
+  }
+
   // Position filter
 
   function getCurrentPositionsOrPlaceholder() {
@@ -940,7 +976,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               label={linqEnableText}
             />
         </Form.Group>
-        <Form.Group as={Col} sm="1"/>
+        <Form.Group as={Col} sm="1">
+          <Dropdown alignRight style={{maxHeight: "2.4rem"}}>
+            <Dropdown.Toggle variant="outline-secondary">
+              <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}><FontAwesomeIcon icon={faFilter}/></OverlayTrigger>            
+            </Dropdown.Toggle>
+            <Dropdown.Menu show={showPresetsOnLoad ? true : undefined}>
+              <GenericTogglingMenuItem
+                text={<i>Clear filter</i>}
+                truthVal={false}
+                onSelect={() => {
+                  friendlyChange(() => {
+                    setTmpAdvancedFilterStr("");
+                    setAdvancedFilterStr("");  
+                    setPosClasses("");
+                  }, posClasses != "" || advancedFilterStr != "");
+                }}
+              />
+              {advancedFilterPresets.map(preset => buildFilterPresetMenuItem(...preset))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Form.Group>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
