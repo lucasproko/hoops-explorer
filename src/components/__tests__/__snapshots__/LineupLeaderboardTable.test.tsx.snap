@@ -301,6 +301,11 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             text="Show Luck Adjustment diagnostics"
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 5 lineups"
+            truthVal={true}
+          />
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
@@ -13568,6 +13573,11 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
             truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 5 lineups"
+            truthVal={true}
           />
         </GenericTogglingMenu>
       </FormGroup>
@@ -33029,6 +33039,11 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 5 lineups"
             truthVal={true}
           />
         </GenericTogglingMenu>

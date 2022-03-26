@@ -189,6 +189,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
+  /** Just for posting a link that loads the page with the presets open for publicity :) */
   const showPresetsOnLoad = (typeof window === `undefined`) ? false : (window.location.search.indexOf("&showPresets") >= 0);
 
   // 1] Data Model
@@ -1037,7 +1038,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               onSelect={() => friendlyChange(() => setPossAsPct(!possAsPct), true)}
             />
             <GenericTogglingMenuItem
-              text={"Show repeating header every 10 players"}
+              text={"Show repeating header every 5 players"}
               truthVal={showRepeatingHeader}
               onSelect={() => friendlyChange(() => setShowRepeatingHeader(!showRepeatingHeader), true)}
             />

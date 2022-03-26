@@ -392,7 +392,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     />
 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
-      showLuckAdjDiags, confs, lineupFilters,
+      showLuckAdjDiags, confs, lineupFilters, showRepeatingHeader,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -593,6 +593,11 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}
               onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+            />
+            <GenericTogglingMenuItem
+              text={"Show repeating header every 5 lineups"}
+              truthVal={showRepeatingHeader}
+              onSelect={() => friendlyChange(() => setShowRepeatingHeader(!showRepeatingHeader), true)}
             />
           </GenericTogglingMenu>
         </Form.Group>
