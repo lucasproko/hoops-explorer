@@ -1038,7 +1038,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               onSelect={() => friendlyChange(() => setPossAsPct(!possAsPct), true)}
             />
             <GenericTogglingMenuItem
-              text={"Show repeating header every 5 players"}
+              text={"Show extra info sub-header"}
+              truthVal={showInfoSubHeader}
+              onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
+            />
+            <GenericTogglingMenuItem
+              text={"Show repeating header every 10 rows"}
               truthVal={showRepeatingHeader}
               onSelect={() => friendlyChange(() => setShowRepeatingHeader(!showRepeatingHeader), true)}
             />

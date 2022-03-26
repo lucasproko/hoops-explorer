@@ -5422,6 +5422,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             text="Show Luck Adjustment diagnostics"
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
@@ -9236,6 +9246,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             text="Show Luck Adjustment diagnostics"
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
@@ -12222,6 +12242,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
             truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
           />
         </GenericTogglingMenu>
       </FormGroup>
@@ -17989,6 +18019,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
             truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
           />
         </GenericTogglingMenu>
       </FormGroup>
@@ -25824,6 +25864,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -34427,6 +34477,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -45762,6 +45822,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>

@@ -108,7 +108,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 lineups"
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -3880,7 +3880,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 lineups"
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -6881,7 +6881,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 lineups"
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -10737,7 +10737,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 lineups"
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>

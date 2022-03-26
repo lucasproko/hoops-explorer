@@ -1077,7 +1077,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 players"
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -8300,7 +8305,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 players"
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -15527,7 +15537,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 players"
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -25698,7 +25713,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 players"
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>
@@ -32901,7 +32921,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show repeating header every 5 players"
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
             truthVal={true}
           />
         </GenericTogglingMenu>

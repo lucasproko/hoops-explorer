@@ -135,6 +135,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Whether to show sub-header with extra info */
   const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(gameFilterParams.showInfoSubHeader || false);
 
+  const [ showRepeatingHeader, setShowRepeatingHeader ] = useState(true as boolean); //(always defaults to on)
+
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
 
@@ -675,7 +677,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const tableData = _.chain(filteredPlayers).sortBy(
     [ sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
-  ).flatMap((p) => {
+  ).flatMap((p, index) => {
+
+    // If showing sub-headers at all, then the plan is:
+    // If no other visualization and not expanded, then don't show
+    // If expanded, show every 5
+    // If any visualization used, show every player
+    // showRepeatingHeader
+
     return _.flatten([
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
@@ -1013,6 +1022,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}
               onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+            />
+            <GenericTogglingMenuItem
+              text={"Show extra info sub-header"}
+              truthVal={showInfoSubHeader}
+              onSelect={() => setShowInfoSubHeader(!showInfoSubHeader)}
+            />
+            <GenericTogglingMenuItem
+              text={"Show repeating header every 10 rows"}
+              truthVal={showRepeatingHeader}
+              onSelect={() => setShowRepeatingHeader(!showRepeatingHeader)}
             />
           </GenericTogglingMenu>
         </Form.Group>

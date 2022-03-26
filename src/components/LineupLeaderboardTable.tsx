@@ -595,7 +595,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
             />
             <GenericTogglingMenuItem
-              text={"Show repeating header every 5 lineups"}
+              text={"Show repeating header every 10 rows"}
               truthVal={showRepeatingHeader}
               onSelect={() => friendlyChange(() => setShowRepeatingHeader(!showRepeatingHeader), true)}
             />
