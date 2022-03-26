@@ -11,6 +11,9 @@ import { NextPage } from 'next';
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
 
+// Need this for FA to work with favicons
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 // Lodash:
 import _ from "lodash";
 
@@ -197,6 +200,12 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
   const thumbnailUrl = `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/thumbnails/team_leaderboard_thumbnail.png`;
   return <Container>
     <Head>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"/>
+          <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"/>
+
+
       <meta property="og:image" content={thumbnailUrl} />
       <meta name="twitter:image" content={thumbnailUrl} />
     </Head>
