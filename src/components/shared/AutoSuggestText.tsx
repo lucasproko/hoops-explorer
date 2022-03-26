@@ -150,8 +150,7 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
   return <TextInput
     ref={textRef}
     Component={"textarea"}
-    rows={1}
-    style={{minHeight: "2.4rem"}}
+    style={{minHeight: "2.4rem", height: "2.4rem"}}
     defaultValue={initValue}
     readOnly={readOnly}
     className="form-control auto-suggest"
