@@ -23,13 +23,15 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 // Utils:
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
-import { OnBallDefenseModel, RatingUtils } from "../../utils/stats/RatingUtils";
+import { OnBallDefenseModel } from "../../utils/stats/RatingUtils";
+import { OnBallDefenseUtils } from "../../utils/stats/OnBallDefenseUtils";
+import { IndivStatSet, PureStatSet } from '../../utils/StatModels';
 
 // External Data Model
 
 type Props = {
   show: boolean,
-  players: Record<string, any>[],
+  players: IndivStatSet[],
   onHide: () => void,
   onSave: (onBallDefense: OnBallDefenseModel[]) => void,
   onBallDefense: OnBallDefenseModel[],
@@ -41,20 +43,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
 
   // State:
 
-  /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
-  const parseInput = (stats: OnBallDefenseModel[]) => {
-    const st = stats[0]!;
-    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
-    const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
-
-    const rows = stats.map(s => {
-      return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},${s.fgMade},-,-,-,${s.tovPct},-,${s.sfPct},${s.scorePct}`.replace(",", "\t");
-    });
-
-    return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
-  };
-
-  const [ inputContents, setInputContents ] = useState(_.isEmpty(onBallDefense) ? "" : parseInput(onBallDefense));
+  const [ inputContents, setInputContents ] = useState(_.isEmpty(onBallDefense) ? "" : OnBallDefenseUtils.parseInput(onBallDefense));
   const [ inputChanged, setInputChanged ] = useState(false);
 
   const [ parseStatus, setParseStatus ] = useState(<span>
@@ -65,146 +54,49 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     const contents = !_.isNil(clipboard) ? clipboard : inputContents;
     // Analyze incoming data:
 
-    const rowsCols: string[][] =
-      contents
-        .split("\n").filter(line => _.endsWith(line, "%"))
-        .map(line => line.split("\t")).filter(cols => cols.length > 5);
-
-    const maybeTotals = _.startsWith(rowsCols?.[0]?.[0] || "", "#") ? undefined : rowsCols[0];
-
-    const playerNumberToColAndDups = _.transform(rowsCols, (acc, cols) => {
-      const playerId = cols[0]!;
-      const playerIdComps = playerId.split(" ");
-      if (_.startsWith(playerId, "#")) {
-        if (acc.unique.hasOwnProperty(playerIdComps[0])) {
-          acc.dups.push(playerId);
-          acc.dups.push(acc.unique[playerIdComps[0]][0]);
-        } else {
-          acc.unique[playerIdComps[0]] = cols;
-        }
-      }
-    }, { unique: {} as Record<string, string[]>, dups: [] as string[] });
-
-    const playerNumberToCol = playerNumberToColAndDups.unique;
-    const dupColMatches = playerNumberToColAndDups.dups;
-
-    const getMatchingRosterId = (roster: Record<string, string>) => {
-      const rosterNumber = (roster?.number || "??")
-      const rosterNumberNoZero = rosterNumber.replace(/0([0-9])/, "$1");
-      const rosterId = "#" + rosterNumberNoZero;
-      const rosterIdWithLeadingZero = "#0" + (roster?.number || "??");
-      const backupRosterId = "#" + (roster?.alt_number || "??");
-      return playerNumberToCol.hasOwnProperty(rosterId) ? rosterId :
-              (playerNumberToCol.hasOwnProperty(rosterIdWithLeadingZero) ? rosterIdWithLeadingZero :
-                (playerNumberToCol.hasOwnProperty(backupRosterId) ? backupRosterId : undefined));
-    };
-    const matchedPlayers = _.transform(players, (acc, player, ii) => {
-      const matchingRosterId = getMatchingRosterId(player.roster || {});
-      if (matchingRosterId) {
-        acc.found.push(ii);
-        acc.matchedCols.push(matchingRosterId)
-      } else {
-        acc.notFound.push(ii);
-      }
-    }, { found: [] as number[], notFound: [] as number[], matchedCols: [] as string[] });
-
-    const colsNotMatched = _.chain(playerNumberToCol).omit(matchedPlayers.matchedCols).keys().value();
-
-    // Convert TSV to data structures
-
-    const parseFloatOrMissing = (s: string | undefined) => {
-      const tmp = parseFloat(s || "-");
-      return _.isNaN(tmp) ? 0 : tmp;
-    };
-    const parseRow = (code: string, row: string[]) => {
-      return {
-        code: code,
-        title: row[0],
-
-        pts: parseFloatOrMissing(row[3]),
-        plays: parseFloatOrMissing(row[2]),
-        scorePct: parseFloatOrMissing(row[15]),
-        tovPct: parseFloatOrMissing(row[12]),
-        fgMiss: parseFloatOrMissing(row[7]),
-
-        // New algo:
-        fgMade: parseFloatOrMissing(row[8]),
-        sfPct: parseFloatOrMissing(row[14]),
-
-        // Fill these in later:
-        totalPts: -1, totalScorePct: -1, totalPlays: -1,
-        uncatPts: -1, uncatPlays: -1,
-        uncatScorePct: -1,  uncatPtsPerScPlay: -1,
-
-        // New algo:
-        totalSfPlays: -1, totalTos: -1, totalFgMade: -1, totalFgMiss: -1,
-        uncatSfPlays: -1, uncatTos: -1, uncatFgMade: -1, uncatFgMiss: -1,    
-      };
-    };
-    const matchedPlayerStats = matchedPlayers.found.map(ii => {
-      const player = players[ii]!;
-      const matchingRosterId = getMatchingRosterId(player.roster || {});
-      const row = playerNumberToCol[matchingRosterId || "??"] || [];
-      const onBallDefense = parseRow(player.code || matchingRosterId, row);
-      return onBallDefense;
-    });
-    const unmatchedPlayerStats = colsNotMatched.map(rosterId => {
-      const row = playerNumberToCol[rosterId] || [];
-      const onBallDefense = parseRow(rosterId, row);
-      return onBallDefense;
-    });
-
-    //(Use to generate unit test artefact sampleOnBallDefenseStats)
-    // console.log(JSON.stringify([ parseRow("totals", maybeTotals!),  matchedPlayerStats ], null, 3));
-
-    // If there's a totals row we can now add team stats (can still do something otherwise)
-    if (maybeTotals) {
-      const totalStats = parseRow("totals", maybeTotals);
-      RatingUtils.injectUncatOnBallDefenseStats(totalStats, _.concat(matchedPlayerStats, unmatchedPlayerStats));
-        //(mutates the objects in these array)
-    }
+    const res = OnBallDefenseUtils.parseContents(players, contents);
 
     // Finally, update status
     //TODO: might be nice to collect and report stats errors?
 
-    if (_.isEmpty(matchedPlayers.notFound) && _.isEmpty(colsNotMatched) && maybeTotals && _.isEmpty(dupColMatches)) {
+    if (_.isEmpty(res.matchedPlayers.notFound) && _.isEmpty(res.colsNotMatched) && res.maybeTotals && _.isEmpty(res.dupColMatches)) {
       setParseStatus(
         <span>
           <li>Import succeeded</li>
         </span>
       );
-    } else if (!_.isEmpty(matchedPlayers.found)){
+    } else if (!_.isEmpty(res.matchedPlayers.found)){
       setParseStatus(
         <span>
           <li>Import succeeded, with possible issues: </li>
           <ul>
-            {_.isEmpty(dupColMatches) ? null
+            {_.isEmpty(res.dupColMatches) ? null
               :
-              <li>Duplicate player numbers in roster. This will likely mess up the stats, so remove one of each pair: [{dupColMatches.join(", ")}].</li>
+              <li>Duplicate player numbers in roster. This will likely mess up the stats, so remove one of each pair: [{res.dupColMatches.join(", ")}].</li>
             }
-            {maybeTotals ? null
+            {res.maybeTotals ? null
               :
-              <li>Couldn't find team stats, first row was [{rowsCols[0]?.join("|")}] - <b>team stats are needed so ignoring everything else</b></li>
+              <li>Couldn't find team stats, first row was [{res.rowsCols[0]?.join("|")}] - <b>team stats are needed so ignoring everything else</b></li>
             }
-            {_.isEmpty(matchedPlayers.notFound) ?
+            {_.isEmpty(res.matchedPlayers.notFound) ?
               <li>Matched all players with recorded stats</li>
               :
-              <li>Didn't match these players: {matchedPlayers.notFound.map(index => {
+              <li>Didn't match these players: {res.matchedPlayers.notFound.map(index => {
                 const player = players[index];
                 return `[#${player.roster?.number || "??"} / ${player.code}]`;
               }).join(", ")}</li>
             }
-            {_.isEmpty(matchedPlayers.notFound) ?
+            {_.isEmpty(res.matchedPlayers.notFound) ?
               null :
               <ul>
                 <li><i>Try changing the number to match - if that works, contact me and I'll update my database.</i></li>
               </ul>
             }
-            <li>Didn't match these entries from the input: {colsNotMatched.map(key => {
-              const col = playerNumberToCol[key];
+            <li>Didn't match these entries from the input: {res.colsNotMatched.map(key => {
+              const col = res.playerNumberToCol[key];
               return `[${col[0]}]`;
             }).join(", ")}</li>
-            {_.isEmpty(matchedPlayers.notFound) ?
+            {_.isEmpty(res.matchedPlayers.notFound) ?
               <ul>
                 <li><i>(Likely just walk-ons, you can ignore them)</i></li>
               </ul>
@@ -228,14 +120,14 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       );
     }
 
-    onSave(maybeTotals ? matchedPlayerStats : []);
+    onSave(res.maybeTotals ? res.matchedPlayerStats : []);
     setInputContents(contents);
 
     //(handy debug)
     //console.log(JSON.stringify(matchedPlayers) + " / " + colsNotMatched);
   };
 
-  const hasRapm = players[0]?.def_adj_rapm?.value;
+  const hasRapm = (players[0] as PureStatSet)?.def_adj_rapm?.value;
 
   const tableLayout = _.omit({
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter),
@@ -284,36 +176,38 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     plays: { value: onBallDefense[0].uncatPlays }
   } : {};
 
-  const tableData = _.chain(players).filter(p => p.diag_def_rtg?.onBallDiags && p.diag_def_rtg?.onBallDef).flatMap(p => {
-    const diag = p.diag_def_rtg!;
-    const onBallDiag = diag.onBallDiags!;
-    const onBallStats = diag.onBallDef!;
-    const pctOfTotalPlays = (100*onBallStats.plays/(onBallStats.totalPlays || 1));
-    return (pctOfTotalPlays >= 0.25) ? [ {
-      title: onBallStats.title,
-      classic_drtg: { value: diag.dRtg },
-      onball_drtg: { value: onBallDiag.dRtg },
-      classic_rtg: { value: diag.adjDRtgPlus },
-      onball_rtg: { value: onBallDiag.adjDRtgPlus },
-      delta: { value: diag.adjDRtgPlus - onBallDiag.adjDRtgPlus },
-      delta_rapm: { value: diag.adjDRtgPlus - (p.def_adj_rapm?.value || 0) },
-      abs_delta: Math.abs(diag.dRtg - onBallDiag.dRtg),
+  const tableData = _.chain(players)
+    .filter(p => !_.isNil(p.diag_def_rtg?.onBallDiags) && _.isNil(p.diag_def_rtg?.onBallDef))
+    .flatMap(p => {
+      const diag = p.diag_def_rtg!;
+      const onBallDiag = diag.onBallDiags!;
+      const onBallStats = diag.onBallDef!;
+      const pctOfTotalPlays = (100*onBallStats.plays/(onBallStats.totalPlays || 1));
+      return (pctOfTotalPlays >= 0.25) ? [ {
+        title: onBallStats.title,
+        classic_drtg: { value: diag.dRtg },
+        onball_drtg: { value: onBallDiag.dRtg },
+        classic_rtg: { value: diag.adjDRtgPlus },
+        onball_rtg: { value: onBallDiag.adjDRtgPlus },
+        delta: { value: diag.adjDRtgPlus - onBallDiag.adjDRtgPlus },
+        delta_rapm: { value: diag.adjDRtgPlus - ((p as PureStatSet).def_adj_rapm?.value || 0) },
+        abs_delta: Math.abs(diag.dRtg - onBallDiag.dRtg),
 
-      ppp: { value: onBallStats.pts / (onBallStats.plays || 1) },
-      eff_ppp: { value: onBallDiag.effectivePpp },
+        ppp: { value: onBallStats.pts / (onBallStats.plays || 1) },
+        eff_ppp: { value: onBallDiag.effectivePpp },
 
-      target: { value: onBallDiag.targetedPct },
-      // fgMiss: { value: onBallStats.fgMiss/(onBallStats.plays||1) },
-      tov: { value: 0.01*onBallStats.tovPct },
-      sf: { value: 0.01*onBallStats.sfPct },
-      
-      ball_drtg: { value: onBallDiag.onBallDRtg },
-      off_drtg: { value: onBallDiag.offBallDRtg },
-      reb_credit: { value: onBallDiag.reboundDRtgBonus },
+        target: { value: onBallDiag.targetedPct },
+        // fgMiss: { value: onBallStats.fgMiss/(onBallStats.plays||1) },
+        tov: { value: 0.01*onBallStats.tovPct },
+        sf: { value: 0.01*onBallStats.sfPct },
+        
+        ball_drtg: { value: onBallDiag.onBallDRtg },
+        off_drtg: { value: onBallDiag.offBallDRtg },
+        reb_credit: { value: onBallDiag.reboundDRtgBonus },
 
-      plays: { value: onBallStats.plays },
-      poss: { value: p.def_team_poss_pct?.value || 0 }
-    } as Record<string, any> ] : [];
+        plays: { value: onBallStats.plays },
+        poss: { value: p.def_team_poss_pct?.value || 0 }
+      } as Record<string, any> ] : [];
   }).concat([ unassignedData ]).map(
     o => GenericTableOps.buildDataRow(o, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
   ).value();
