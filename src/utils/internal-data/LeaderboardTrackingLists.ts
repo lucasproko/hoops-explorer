@@ -46,7 +46,14 @@ export const PlayerLeaderboardTracking = {
       // By hand from eg CanBallReport twitter (12/12):
       "AdEleeda+Adham,MiNuga+Mich"
     ]
-  ]).join(",")
+  ]).join(","),
+
+  "__MD_TXFER_2022__":
+  _.flatten([
+    [ 
+      "BrGolden;SaSessoms;FaAimaq;BrMurray;CaSpencer;EtWright;ShGivance"
+    ]
+  ]).join(";"),
 
   // Archived:
 
