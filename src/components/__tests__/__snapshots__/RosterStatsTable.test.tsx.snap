@@ -26538,6 +26538,24 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   showHelp={true}
                 />,
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -27122,6 +27140,24 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -27705,6 +27741,24 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -35955,6 +36009,24 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   teamSeasonLookup="undefined_undefined_undefined"
                 />,
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -37335,6 +37407,24 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -38714,6 +38804,24 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -46436,6 +46544,24 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   teamSeason="undefined_undefined_undefined"
                 />,
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -46952,6 +47078,24 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableSeparator {
                 "kind": "separator",
               },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
+              },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
@@ -47467,6 +47611,24 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               },
               GenericTableSeparator {
                 "kind": "separator",
+              },
+              GenericTableRepeatHeaderRow {
+                "className": "small",
+                "colRename": Object {
+                  "2P% mid": "Mid%",
+                  "2P% rim": "Rim%",
+                  "2PR mid": "MidR",
+                  "2PR rim": "RimR",
+                  "Adj+ Prod": "Adj+",
+                  "Adj+ Rtg": "Adj+",
+                  "Box Rtg": "Box",
+                  "FTR F/50": "FTR",
+                  "RAPM diff": "RAPM",
+                  "Rim% Blk%": "Rim%",
+                  "TO% Stl%": "TO%",
+                  "Usg Pos": "Usg",
+                },
+                "kind": "text-row",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],

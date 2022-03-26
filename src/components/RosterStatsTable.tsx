@@ -675,18 +675,50 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Compresses number/height/year into 1 double-width column */
   const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
 
+  var currentRowCount = 0;
   const tableData = _.chain(filteredPlayers).sortBy(
     [ sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
-  ).flatMap((p, index) => {
+  ).flatMap((p) => {
 
     // If showing sub-headers at all, then the plan is:
     // If no other visualization and not expanded, then don't show
     // If expanded, show every 5
     // If any visualization used, show every player
-    // showRepeatingHeader
+    const showEveryLine = showRepeatingHeader && (
+      showPlayTypes || showPositionDiags || showLuckAdjDiags || showDiagMode
+    );
+
+    // First line could be on/off/baseline
+    const firstRowIsOn = (currentRowCount == 0);
+    const firstRowIsOff = firstRowIsOn && _.isNil(p.on?.off_title);
+    const firstRowIsBaseline = firstRowIsOff && _.isNil(p.off?.off_title);
+
+    // Locking repeating sub-headers to start of player entry, which could be on/off/baseline
+    const every10thRow = showRepeatingHeader && !showEveryLine && (currentRowCount > 0) && 
+      ((currentRowCount % 10) == 0);
+    const tenthRowIsOn = every10thRow;
+    const tenthRowIsOff = tenthRowIsOn && _.isNil(p.on?.off_title);
+    const tenthRowIsBaseline = tenthRowIsOff && _.isNil(p.off?.off_title);
+
+    // Update "state" (how many rows since the last sub-header)
+    if (currentRowCount == 10) currentRowCount = 0;
+    const entriesPerPlayer = // the number of rows/pairs-of-rows per player
+      (_.isNil(p.on?.off_title) ? 0 : 1) +
+      (_.isNil(p.off?.off_title) ? 0 : 1) +
+      ((skipBaseline || _.isNil(p.baseline?.off_title)) ? 0 : 1);
+    const currentRowInc = entriesPerPlayer*(expandedView ? 2 : 1); //(row or pair-of-rows)
+    if ((currentRowCount < 10) && (currentRowCount + currentRowInc >= 10)) {
+      currentRowCount = 10; // always lock to start of new player
+    } else {
+      currentRowCount = currentRowCount + currentRowInc;
+    }
 
     return _.flatten([
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
+        (!firstRowIsOn && showEveryLine) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small") ] : [],
+        tenthRowIsOn ? [ 
+          GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small"), GenericTableOps.buildRowSeparator()
+        ] : [],
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showDiagMode && p.on?.diag_off_rtg && p.on?.diag_def_rtg ?
@@ -712,6 +744,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           ) ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
+        (!firstRowIsOff && showEveryLine) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small") ] : [],
+        tenthRowIsOff ? [ 
+          GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small"), GenericTableOps.buildRowSeparator()
+        ] : [],
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showDiagMode && p.off?.diag_off_rtg && p.off?.diag_def_rtg ?
@@ -737,6 +773,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           ) ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
+        (!firstRowIsBaseline && showEveryLine) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small") ] : [],
+        tenthRowIsBaseline ? [ 
+          GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small"), GenericTableOps.buildRowSeparator()
+        ] : [],
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showDiagMode && p.baseline?.diag_off_rtg && p.baseline?.diag_def_rtg ?
