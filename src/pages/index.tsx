@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 // Next imports:
 import { NextPage } from 'next';
+import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
 
 // Lodash:
@@ -193,7 +194,12 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
     />
   }, [dataSubEvent]);
 
+  const thumbnailUrl = `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/thumbnails/team_leaderboard_thumbnail.png`;
   return <Container>
+    <Head>
+      <meta property="og:image" content={thumbnailUrl} />
+      <meta name="twitter:image" content={thumbnailUrl} />
+    </Head>
     <Row>
       <Col xs={12} className="text-center">
         <h3>Build Your Own T25! <span className="badge badge-pill badge-info">BETA!</span></h3>

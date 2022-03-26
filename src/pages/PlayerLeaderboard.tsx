@@ -29,6 +29,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
+import Head from 'next/head';
 
 const PlayLeaderboardPage: NextPage<{}> = () => {
 
@@ -197,7 +198,12 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
     />
   }, [dataSubEvent]);
 
+  const thumbnailUrl = `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
   return <Container>
+    <Head>
+      <meta property="og:image" content={thumbnailUrl} />
+      <meta name="twitter:image" content={thumbnailUrl} />
+    </Head>
     <Row>
       <Col xs={12} className="text-center">
         <h3>CBB Player Leaderboard <span className="badge badge-pill badge-info">BETA!</span></h3>

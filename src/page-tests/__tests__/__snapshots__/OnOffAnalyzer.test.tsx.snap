@@ -4,6 +4,16 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
+  <Head>
+    <meta
+      content="http://localhost:3000/thumbnails/team_leaderboard_thumbnail.png"
+      property="og:image"
+    />
+    <meta
+      content="http://localhost:3000/thumbnails/team_leaderboard_thumbnail.png"
+      name="twitter:image"
+    />
+  </Head>
   <Row
     noGutters={false}
   >
