@@ -124,7 +124,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     setInputContents(contents);
 
     //(handy debug)
-    //console.log(JSON.stringify(matchedPlayers) + " / " + colsNotMatched);
+    //console.log(JSON.stringify(res.matchedPlayers) + " / " + res.colsNotMatched);
   };
 
   const hasRapm = (players[0] as PureStatSet)?.def_adj_rapm?.value;
@@ -177,7 +177,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
   } : {};
 
   const tableData = _.chain(players)
-    .filter(p => !_.isNil(p.diag_def_rtg?.onBallDiags) && _.isNil(p.diag_def_rtg?.onBallDef))
+    .filter(p => !_.isNil(p.diag_def_rtg?.onBallDiags) && !_.isNil(p.diag_def_rtg?.onBallDef))
     .flatMap(p => {
       const diag = p.diag_def_rtg!;
       const onBallDiag = diag.onBallDiags!;
