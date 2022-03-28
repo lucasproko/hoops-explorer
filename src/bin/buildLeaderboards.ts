@@ -804,7 +804,8 @@ if (!testMode) {
   } else {
     main().then(async dummy => {
       const topLineupSize = onlyHasTopConferences ? 300 : 400;
-      const topPlayersSize = 1500; //(essentially just means the 10mpg is only qualifier)
+      const topPlayersSize = 1250; //(at 1500 essentially just means the 10mpg is only qualifier)
+//TODO: got >5MB body with low tier for 1500 (picked up 1400)      
 
       console.log("Processing Complete!");
 
