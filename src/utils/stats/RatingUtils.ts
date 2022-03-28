@@ -1142,10 +1142,10 @@ export class RatingUtils {
       adjustedPossPct*(weightedClassicDRtgMean - weightedUnadjDRtgMean);
 
     _.forEach(players, stat => {
-      const diag = stat.diag_def_rtg!;
-      const onBallDef = diag.onBallDef;
-      const onBallDiags = diag.onBallDiags;
-      if (onBallDef && onBallDiags) {
+      const diag = stat.diag_def_rtg;
+      const onBallDef = diag?.onBallDef;
+      const onBallDiags = diag?.onBallDiags;
+      if (diag && onBallDef && onBallDiags) {
         // (Add some working results to diag:)
         onBallDiags.weightedClassicDRtgMean = weightedClassicDRtgMean;
         onBallDiags.weightedUnadjDRtgMean = weightedUnadjDRtgMean;

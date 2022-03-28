@@ -42,6 +42,8 @@ import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
+import { OnBallDefenseUtils } from '../utils/stats/OnBallDefenseUtils';
+import { OnBallDefenseModel } from '../utils/stats/RatingUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -145,7 +147,7 @@ const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "Maryland", "Dayton", "Fordham" ]);
+//const testTeamFilter = new Set([ "Maryland" ]) //, "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -472,8 +474,37 @@ export async function main() {
       /** Largest sample of player stats, by player key - use for ORtg calcs */
       const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal, rosterInfoJson);
 
+      // Ready in on-ball defense if it exists
+      var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
+      if (("all" == label) && (inGender == "Men")) {
+        const onBallDefenseLoc = `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.txt`;
+        const onBallDefenseText = await fs.readFile(
+          onBallDefenseLoc
+        ).then((s: any) => s.toString()).catch((err: any) => {
+          console.log(`Couldn't load [${onBallDefenseLoc}]: [${err}]`);
+          return undefined;
+        });
+        if (onBallDefenseText) {
+          // Players need code added first, normally happens in buildBaselinePlayerInfo but is needed for "OnBallDefenseUtils.parseContents":
+          (rosterBaseline || []).forEach((mutableP: IndivStatSet) => {
+            // Code:
+            mutableP.code = (mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key) as PlayerCode;
+          })
+    
+          //Full diag
+          //console.log(`Loaded on-ball defense [${onBallDefenseLoc}]: [${onBallDefenseText}]`)
+
+          onBallDefenseByCode = 
+            _.chain(OnBallDefenseUtils.parseContents(rosterBaseline, onBallDefenseText).matchedPlayerStats)
+              .groupBy(p => p.code).mapValues(l => l[0]!).value();
+
+          console.log(`Incorporated on-ball defense from [${onBallDefenseLoc}] into [${_.size(onBallDefenseByCode)}] players`);
+        }
+      }
+      //(end on ball defense logic)
+
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency, true, "baseline" //(always adjust for luck)
+        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency, true, "baseline", onBallDefenseByCode //(always adjust for luck)
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
@@ -506,6 +537,13 @@ export async function main() {
           if (!_.isNil(player[field]?.old_value)) delete player[field]?.old_value; 
           if (!_.isNil(player[field]?.override)) delete player[field]?.override;  
         });
+        // Improving wording of explanation of def rtg improvements
+        if (player.diag_def_rtg?.onBallDef) {
+          [ "def_rtg", "def_adj_rtg", "def_adj_prod", "def_adj_rapm", "def_adj_rapm_prod"  ].forEach(field => {
+            if (!_.isNil(player[field])) player[field].extraInfo = 
+              "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages";
+          });
+        }
 
         return {
           key: kv[0],
@@ -527,6 +565,7 @@ export async function main() {
                 (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||
                 (t2[0] == "def_team_poss") || (t2[0] == "def_team_poss_pct")
               ) || (
+                (t2[0] != "diag_def_rtg") &&
                 !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
                 !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
@@ -565,10 +604,14 @@ export async function main() {
               value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
             };
             player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
+            if (player.def_adj_rapm && player.def_adj_rtg?.extraInfo) {
+              player.def_adj_rapm.extraInfo = player.def_adj_rtg?.extraInfo; //(since it's used as a prior)
+            }
             player.def_adj_rapm_prod = {
               value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
               old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
-              override: rapmP.rapm?.def_adj_ppp?.override
+              override: rapmP.rapm?.def_adj_ppp?.override,
+              extraInfo: player.def_adj_prod?.extraInfo //(since it's used as a prior)
             };
           }
         });

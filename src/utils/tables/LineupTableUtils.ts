@@ -104,6 +104,8 @@ export class LineupTableUtils {
           const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(mutableP, dRtgDiag, onBallDefense);
           dRtgDiag.onBallDef = onBallDefense;
           dRtgDiag.onBallDiags = onBallDiags;
+        
+          mutableP.diag_def_rtg = dRtgDiag;
         }
 
         // If roster info is available then add:
