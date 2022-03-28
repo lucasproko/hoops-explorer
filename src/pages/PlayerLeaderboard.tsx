@@ -66,6 +66,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as PlayerLeaderboardStatsModel);
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
+  const [ currTier, setCurrTier ] = useState("");
 
   // Game filter
 
@@ -168,11 +169,12 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         });
       })
     } else {
-      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != fullYear) || (currGender != gender)) {
+      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != fullYear) || (currGender != gender) || (currTier != tier)) {
         const oldCurrYear = currYear;
         const oldCurrGender = currGender;
         setCurrYear(fullYear);
         setCurrGender(gender)
+        setCurrTier(tier);
         setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
         fetch(getUrl(dataSubEventKey, gender, year, tier))
           .then((response: fetch.IsomorphicResponse) => {

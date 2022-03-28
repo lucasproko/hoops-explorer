@@ -120,54 +120,77 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
           options={
             Array [
               Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
+                "label": "Tiers",
+                "options": Array [
+                  Object {
+                    "label": "All Tiers",
+                    "value": "All Tiers",
+                  },
+                  Object {
+                    "label": "Medium Tier",
+                    "value": "Medium Tier",
+                  },
+                  Object {
+                    "label": "Low Tier",
+                    "value": "Low Tier",
+                  },
+                  Object {
+                    "label": "Power 6 Conferences",
+                    "value": "Power 6 Conferences",
+                  },
+                ],
               },
               Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
+                "label": "Confs",
+                "options": Array [
+                  Object {
+                    "label": "American Athletic Conference",
+                    "value": "American Athletic Conference",
+                  },
+                  Object {
+                    "label": "Atlantic 10 Conference",
+                    "value": "Atlantic 10 Conference",
+                  },
+                  Object {
+                    "label": "Atlantic Coast Conference",
+                    "value": "Atlantic Coast Conference",
+                  },
+                  Object {
+                    "label": "Big 12 Conference",
+                    "value": "Big 12 Conference",
+                  },
+                  Object {
+                    "label": "Big East Conference",
+                    "value": "Big East Conference",
+                  },
+                  Object {
+                    "label": "Big Ten Conference",
+                    "value": "Big Ten Conference",
+                  },
+                  Object {
+                    "label": "Mountain West Conference",
+                    "value": "Mountain West Conference",
+                  },
+                  Object {
+                    "label": "Pac 12 Conference",
+                    "value": "Pac 12 Conference",
+                  },
+                  Object {
+                    "label": "Southeastern Conference",
+                    "value": "Southeastern Conference",
+                  },
+                  Object {
+                    "label": "West Coast Conference",
+                    "value": "West Coast Conference",
+                  },
+                ],
               },
             ]
           }
@@ -7348,54 +7371,77 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
           options={
             Array [
               Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
+                "label": "Tiers",
+                "options": Array [
+                  Object {
+                    "label": "All Tiers",
+                    "value": "All Tiers",
+                  },
+                  Object {
+                    "label": "Medium Tier",
+                    "value": "Medium Tier",
+                  },
+                  Object {
+                    "label": "Low Tier",
+                    "value": "Low Tier",
+                  },
+                  Object {
+                    "label": "Power 6 Conferences",
+                    "value": "Power 6 Conferences",
+                  },
+                ],
               },
               Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
+                "label": "Confs",
+                "options": Array [
+                  Object {
+                    "label": "American Athletic Conference",
+                    "value": "American Athletic Conference",
+                  },
+                  Object {
+                    "label": "Atlantic 10 Conference",
+                    "value": "Atlantic 10 Conference",
+                  },
+                  Object {
+                    "label": "Atlantic Coast Conference",
+                    "value": "Atlantic Coast Conference",
+                  },
+                  Object {
+                    "label": "Big 12 Conference",
+                    "value": "Big 12 Conference",
+                  },
+                  Object {
+                    "label": "Big East Conference",
+                    "value": "Big East Conference",
+                  },
+                  Object {
+                    "label": "Big Ten Conference",
+                    "value": "Big Ten Conference",
+                  },
+                  Object {
+                    "label": "Mountain West Conference",
+                    "value": "Mountain West Conference",
+                  },
+                  Object {
+                    "label": "Pac 12 Conference",
+                    "value": "Pac 12 Conference",
+                  },
+                  Object {
+                    "label": "Southeastern Conference",
+                    "value": "Southeastern Conference",
+                  },
+                  Object {
+                    "label": "West Coast Conference",
+                    "value": "West Coast Conference",
+                  },
+                ],
               },
             ]
           }
@@ -14576,54 +14622,77 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
           options={
             Array [
               Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
+                "label": "Tiers",
+                "options": Array [
+                  Object {
+                    "label": "All Tiers",
+                    "value": "All Tiers",
+                  },
+                  Object {
+                    "label": "Medium Tier",
+                    "value": "Medium Tier",
+                  },
+                  Object {
+                    "label": "Low Tier",
+                    "value": "Low Tier",
+                  },
+                  Object {
+                    "label": "Power 6 Conferences",
+                    "value": "Power 6 Conferences",
+                  },
+                ],
               },
               Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
+                "label": "Confs",
+                "options": Array [
+                  Object {
+                    "label": "American Athletic Conference",
+                    "value": "American Athletic Conference",
+                  },
+                  Object {
+                    "label": "Atlantic 10 Conference",
+                    "value": "Atlantic 10 Conference",
+                  },
+                  Object {
+                    "label": "Atlantic Coast Conference",
+                    "value": "Atlantic Coast Conference",
+                  },
+                  Object {
+                    "label": "Big 12 Conference",
+                    "value": "Big 12 Conference",
+                  },
+                  Object {
+                    "label": "Big East Conference",
+                    "value": "Big East Conference",
+                  },
+                  Object {
+                    "label": "Big Ten Conference",
+                    "value": "Big Ten Conference",
+                  },
+                  Object {
+                    "label": "Mountain West Conference",
+                    "value": "Mountain West Conference",
+                  },
+                  Object {
+                    "label": "Pac 12 Conference",
+                    "value": "Pac 12 Conference",
+                  },
+                  Object {
+                    "label": "Southeastern Conference",
+                    "value": "Southeastern Conference",
+                  },
+                  Object {
+                    "label": "West Coast Conference",
+                    "value": "West Coast Conference",
+                  },
+                ],
               },
             ]
           }
@@ -24756,54 +24825,77 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
           options={
             Array [
               Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
+                "label": "Tiers",
+                "options": Array [
+                  Object {
+                    "label": "All Tiers",
+                    "value": "All Tiers",
+                  },
+                  Object {
+                    "label": "Medium Tier",
+                    "value": "Medium Tier",
+                  },
+                  Object {
+                    "label": "Low Tier",
+                    "value": "Low Tier",
+                  },
+                  Object {
+                    "label": "Power 6 Conferences",
+                    "value": "Power 6 Conferences",
+                  },
+                ],
               },
               Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
+                "label": "Confs",
+                "options": Array [
+                  Object {
+                    "label": "American Athletic Conference",
+                    "value": "American Athletic Conference",
+                  },
+                  Object {
+                    "label": "Atlantic 10 Conference",
+                    "value": "Atlantic 10 Conference",
+                  },
+                  Object {
+                    "label": "Atlantic Coast Conference",
+                    "value": "Atlantic Coast Conference",
+                  },
+                  Object {
+                    "label": "Big 12 Conference",
+                    "value": "Big 12 Conference",
+                  },
+                  Object {
+                    "label": "Big East Conference",
+                    "value": "Big East Conference",
+                  },
+                  Object {
+                    "label": "Big Ten Conference",
+                    "value": "Big Ten Conference",
+                  },
+                  Object {
+                    "label": "Mountain West Conference",
+                    "value": "Mountain West Conference",
+                  },
+                  Object {
+                    "label": "Pac 12 Conference",
+                    "value": "Pac 12 Conference",
+                  },
+                  Object {
+                    "label": "Southeastern Conference",
+                    "value": "Southeastern Conference",
+                  },
+                  Object {
+                    "label": "West Coast Conference",
+                    "value": "West Coast Conference",
+                  },
+                ],
               },
             ]
           }
@@ -31964,54 +32056,77 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
           options={
             Array [
               Object {
-                "label": "Power 6 Conferences",
-                "value": "Power 6 Conferences",
+                "label": "Tiers",
+                "options": Array [
+                  Object {
+                    "label": "All Tiers",
+                    "value": "All Tiers",
+                  },
+                  Object {
+                    "label": "Medium Tier",
+                    "value": "Medium Tier",
+                  },
+                  Object {
+                    "label": "Low Tier",
+                    "value": "Low Tier",
+                  },
+                  Object {
+                    "label": "Power 6 Conferences",
+                    "value": "Power 6 Conferences",
+                  },
+                ],
               },
               Object {
-                "label": "American Athletic Conference",
-                "value": "American Athletic Conference",
-              },
-              Object {
-                "label": "Atlantic 10 Conference",
-                "value": "Atlantic 10 Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
-                "label": "Big 12 Conference",
-                "value": "Big 12 Conference",
-              },
-              Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
-              },
-              Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
-              Object {
-                "label": "Pac 12 Conference",
-                "value": "Pac 12 Conference",
-              },
-              Object {
-                "label": "Southeastern Conference",
-                "value": "Southeastern Conference",
-              },
-              Object {
-                "label": "West Coast Conference",
-                "value": "West Coast Conference",
+                "label": "Confs",
+                "options": Array [
+                  Object {
+                    "label": "American Athletic Conference",
+                    "value": "American Athletic Conference",
+                  },
+                  Object {
+                    "label": "Atlantic 10 Conference",
+                    "value": "Atlantic 10 Conference",
+                  },
+                  Object {
+                    "label": "Atlantic Coast Conference",
+                    "value": "Atlantic Coast Conference",
+                  },
+                  Object {
+                    "label": "Big 12 Conference",
+                    "value": "Big 12 Conference",
+                  },
+                  Object {
+                    "label": "Big East Conference",
+                    "value": "Big East Conference",
+                  },
+                  Object {
+                    "label": "Big Ten Conference",
+                    "value": "Big Ten Conference",
+                  },
+                  Object {
+                    "label": "Mountain West Conference",
+                    "value": "Mountain West Conference",
+                  },
+                  Object {
+                    "label": "Pac 12 Conference",
+                    "value": "Pac 12 Conference",
+                  },
+                  Object {
+                    "label": "Southeastern Conference",
+                    "value": "Southeastern Conference",
+                  },
+                  Object {
+                    "label": "West Coast Conference",
+                    "value": "West Coast Conference",
+                  },
+                ],
               },
             ]
           }

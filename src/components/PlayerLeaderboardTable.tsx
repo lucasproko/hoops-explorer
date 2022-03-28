@@ -347,7 +347,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
-      conf: confs, gender: gender, year: year,
+      conf: confs, gender: gender, year: year, tier: tier,
       t100: isT100, confOnly: isConfOnly,
       // Player filters/settings:
       posClasses: posClasses,
@@ -369,7 +369,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       showInfoSubHeader,
       useRapm,
       posClasses,
-      confs, year, gender ]);
+      confs, year, gender, tier ]);
 
   // 3] Utils
 
@@ -658,7 +658,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       possAsPct, factorMins,
       useRapm,
-      confs, posClasses, showInfoSubHeader, showRepeatingHeader,
+      confs, posClasses, showInfoSubHeader, showRepeatingHeader, tier,
       advancedFilterStr, 
       dataEvent ]);
 
@@ -725,6 +725,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       { label: `All ${onlyTransfers ? "Transfers" : "Teams"} in ${tier} Tier${tier == "All" ? "s" : ""}` } 
       :
       confs.split(",").map((conf: string) => stringToOption(`${NicknameToConference[conf] || conf}${onlyTransfers ? " Txfers" : ""}`));
+  }
+  function getExtraConfsByTier() {
+    if (tier == "All") {
+      return [ "High Tier", "Medium Tier", "Low Tier", "Power 6 Conferences" ];
+    } else if (tier == "High") {
+      return [ "All Tiers", "Medium Tier", "Low Tier", "Power 6 Conferences" ];
+    } else if (tier == "Medium") {
+      return [ "All Tiers", "High Tier", "Low Tier" ];
+    } else if (tier == "Low") {
+      return [ "All Tiers", "High Tier", "Medium Tier" ];
+    } else {
+      return [];
+    }
   }
 
   /** Slightly hacky code to render the conference nick names */
@@ -889,15 +902,26 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           isMulti
           components={{ MultiValueContainer: ConferenceValueContainer }}
           value={ getCurrentConfsOrPlaceholder() }
-          options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams)).map(
-            (r) => stringToOption(r)
-          )}
+          options={[
+            { label: "Tiers", options: getExtraConfsByTier().map(stringToOption) },
+            { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
+          ]}
+          formatGroupLabel={formatGroupLabel}
           onChange={(optionsIn) => {
             const options = optionsIn as Array<any>;
             const selection = (options || [])
               .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
-            const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-            friendlyChange(() => setConfs(confStr), confs != confStr);
+            const maybeTier = _.find(selection, sel => sel.indexOf("Tier") >= 0);
+            if (maybeTier) {
+              const newTier = maybeTier.split(" ")[0];
+              friendlyChange(() => {
+                setTier(newTier);
+                setConfs("");
+              }, (confs != "") || (tier != newTier));              
+            } else {
+              const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
+              friendlyChange(() => setConfs(confStr), confs != confStr);
+            }
           }}
         />
       </Col>
