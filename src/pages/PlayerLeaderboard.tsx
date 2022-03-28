@@ -46,7 +46,8 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
 
-  const transferMode = allParams.indexOf("transferMode=true") >= 0; //Note only supported for "All" tiers
+  const transferMode = (allParams.indexOf("transferMode=true") >= 0) || (allParams.indexOf("transferMode=20") >= 0); 
+    //^ Note only supported for "All" tiers
   const transferInit = transferMode ? {} as Record<string, Array<string>> : undefined; //(start as empty list)
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
@@ -152,7 +153,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
           });
       }).concat(
         transferMode ? [
-           fetch("/api/getTransfers").then((response: fetch.IsomorphicResponse) => {
+           fetch(`/api/getTransfers?${allParams.match(/transferMode=[0-9]+/) || ""}`).then((response: fetch.IsomorphicResponse) => {
             return response.ok ? response.json() : Promise.resolve({})
            })
         ] : []

@@ -8,6 +8,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const url = require('url').parse(req.url);
     const parsed: Record<string, any> = queryString.parse(url.query, {parseBooleans: true}) as any;
 
+    const getFilename = () => {
+        const transferMode = parsed["transferMode"] || "";
+        if ((transferMode == "") || (transferMode == "true")) { //(available transfers only)
+            return "current_transfers.json";
+        } else { //(all transfers from previous year)
+            return `transfers_${transferMode}.json`;
+        }
+    };
+
     // Check the request is cacheable: ie GET, no Authorization header, no Range header, no _vercel_no_cache
     // and no _vercel_no_cache cookie
     if (req.headers?.cookie?.includes("_vercel_no_cache") || 
@@ -19,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return undefined;
     } else {
         try {
-            const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/current_transfers.json`, {
+            const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${getFilename()}`, {
                 method: 'get'
             });
             const respJson = await resp.json();
