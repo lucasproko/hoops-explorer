@@ -67,6 +67,12 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params
     })}`;
   }
+  /** The URL to use to view the "Tem Editor" page */
+  static getTeamEditorUrl(params: PlayerLeaderboardParams) {
+    return `/TeamEditor?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params
+    })}`;
+  }
   /** The URL to use to view the "Team Report" page */
   static getTeamReportUrl(params: TeamReportFilterParams) {
     return `/TeamReport?${UrlRouting.getUrl({
