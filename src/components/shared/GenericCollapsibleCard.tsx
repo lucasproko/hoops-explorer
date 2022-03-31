@@ -13,13 +13,14 @@ import Container from 'react-bootstrap/Container';
 type Props = {
   /** Much smaller margin => looks good for table-oriented displays */
   readonly minimizeMargin: boolean,
-  readonly title: string
-  readonly summary?: string
-  readonly helpLink?: string
+  readonly title: string,
+  readonly summary?: string,
+  readonly helpLink?: string,
+  readonly startClosed?: boolean
 }
 
-const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, minimizeMargin, title, summary, helpLink}) => {
-  const [ showTable, toggleShowTable ] = useState(true)
+const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, minimizeMargin, title, summary, helpLink, startClosed}) => {
+  const [ showTable, toggleShowTable ] = useState((undefined == startClosed) || !startClosed);
 
   const showSummaryIfHidden = () => {
     if (!showTable && summary) {

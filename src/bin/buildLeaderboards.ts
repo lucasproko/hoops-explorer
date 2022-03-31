@@ -484,7 +484,7 @@ export async function main() {
           console.log(`Couldn't load [${onBallDefenseLoc}]: [${err}]`);
           return undefined;
         });
-        if (onBallDefenseText) {
+        if (onBallDefenseText && !testMode) {
           // Players need code added first, normally happens in buildBaselinePlayerInfo but is needed for "OnBallDefenseUtils.parseContents":
           (rosterBaseline || []).forEach((mutableP: IndivStatSet) => {
             // Code:

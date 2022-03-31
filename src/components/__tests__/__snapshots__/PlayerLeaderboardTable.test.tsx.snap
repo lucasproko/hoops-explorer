@@ -1448,7 +1448,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -1731,7 +1731,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -2017,7 +2017,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -2300,7 +2300,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -2586,7 +2586,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -2869,7 +2869,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -3155,7 +3155,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -3438,7 +3438,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -3724,7 +3724,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -4007,7 +4007,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -4314,7 +4314,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -4597,7 +4597,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -4883,7 +4883,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -5166,7 +5166,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -5452,7 +5452,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -5735,7 +5735,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -6021,7 +6021,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -6304,7 +6304,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -6590,7 +6590,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -6873,7 +6873,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -8699,7 +8699,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -8982,7 +8982,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -9268,7 +9268,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -9551,7 +9551,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -9837,7 +9837,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -10120,7 +10120,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -10406,7 +10406,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -10689,7 +10689,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -10975,7 +10975,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -11258,7 +11258,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -11565,7 +11565,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -11848,7 +11848,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -12134,7 +12134,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -12417,7 +12417,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -12703,7 +12703,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -12986,7 +12986,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -13272,7 +13272,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -13555,7 +13555,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -13841,7 +13841,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -14124,7 +14124,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -15963,7 +15963,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Williamson%2C%20Zion%22&onQuery=%22Williamson%2C%20Zion%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Duke
@@ -16254,7 +16254,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Williamson%2C%20Zion%22&onQuery=%22Williamson%2C%20Zion%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Duke
@@ -16548,7 +16548,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -16839,7 +16839,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -17133,7 +17133,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Clarke%2C%20Brandon%22&onQuery=%22Clarke%2C%20Brandon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Gonzaga&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Gonzaga&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Gonzaga
@@ -17424,7 +17424,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Clarke%2C%20Brandon%22&onQuery=%22Clarke%2C%20Brandon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Gonzaga&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Gonzaga&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Gonzaga
@@ -17718,7 +17718,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -18009,7 +18009,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -18303,7 +18303,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Johnson%2C%20Cameron%22&onQuery=%22Johnson%2C%20Cameron%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=North%20Carolina&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=North%20Carolina&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             North Carolina
@@ -18594,7 +18594,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Johnson%2C%20Cameron%22&onQuery=%22Johnson%2C%20Cameron%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=North%20Carolina&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=North%20Carolina&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             North Carolina
@@ -18909,7 +18909,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Hunter%2C%20De%27Andre%22&onQuery=%22Hunter%2C%20De%27Andre%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Virginia&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Virginia&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Virginia
@@ -19200,7 +19200,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Hunter%2C%20De%27Andre%22&onQuery=%22Hunter%2C%20De%27Andre%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Virginia&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Virginia&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Virginia
@@ -19494,7 +19494,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -19785,7 +19785,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -20079,7 +20079,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -20370,7 +20370,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -20664,7 +20664,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -20955,7 +20955,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -21238,7 +21238,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Trimble%2C%20Melo%22&onQuery=%22Trimble%2C%20Melo%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Maryland&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -21518,7 +21518,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Trimble%2C%20Melo%22&onQuery=%22Trimble%2C%20Melo%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Maryland&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -21822,7 +21822,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Maryland&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -22102,7 +22102,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Maryland&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -22396,7 +22396,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -22687,7 +22687,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -22962,7 +22962,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Delgado%2C%20Angel%22&onQuery=%22Delgado%2C%20Angel%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Seton%20Hall&year=2016%2F7&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2016%2F7&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -23234,7 +23234,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Delgado%2C%20Angel%22&onQuery=%22Delgado%2C%20Angel%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Seton%20Hall&year=2016%2F7&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2016%2F7&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -23509,7 +23509,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Whitehead%2C%20Isaiah%22&onQuery=%22Whitehead%2C%20Isaiah%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Seton%20Hall&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -23781,7 +23781,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Whitehead%2C%20Isaiah%22&onQuery=%22Whitehead%2C%20Isaiah%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Seton%20Hall&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -24056,7 +24056,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Powell%2C%20Myles%22&onQuery=%22Powell%2C%20Myles%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Seton%20Hall&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -24328,7 +24328,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Powell%2C%20Myles%22&onQuery=%22Powell%2C%20Myles%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Seton%20Hall&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -26153,7 +26153,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -26435,7 +26435,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -26720,7 +26720,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -27002,7 +27002,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -27287,7 +27287,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -27569,7 +27569,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -27854,7 +27854,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -28136,7 +28136,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -28421,7 +28421,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -28703,7 +28703,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -29009,7 +29009,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -29291,7 +29291,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -29576,7 +29576,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -29858,7 +29858,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -30143,7 +30143,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -30425,7 +30425,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -30710,7 +30710,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -30992,7 +30992,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -31277,7 +31277,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -31559,7 +31559,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -33384,7 +33384,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -33666,7 +33666,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -33951,7 +33951,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -34233,7 +34233,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -34518,7 +34518,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -34800,7 +34800,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -35085,7 +35085,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -35367,7 +35367,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -35652,7 +35652,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -35934,7 +35934,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -36240,7 +36240,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -36522,7 +36522,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -36807,7 +36807,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -37089,7 +37089,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -37374,7 +37374,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -37656,7 +37656,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -37941,7 +37941,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -38223,7 +38223,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -38508,7 +38508,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -38790,7 +38790,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado

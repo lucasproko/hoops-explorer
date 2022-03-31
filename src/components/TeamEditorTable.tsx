@@ -318,86 +318,87 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   }
 
   return <Container>
-    <LoadingOverlay
-      active={needToLoadQuery()}
-      spinner
-      text={"Loading Player Leaderboard..."}
-    >
-      <Form.Group as={Row}>
-        <Col xs={6} sm={6} md={3} lg={2}>
-          <Select
-            value={ stringToOption(gender) }
-            options={[ "Men", "Women" ].map(
-              (gender) => stringToOption(gender)
-            )}
-            isSearchable={false}
-            onChange={(option) => { 
-              if ((option as any)?.value) {
-                const newGender = (option as any).value;
-                friendlyChange(() => setGender(newGender), newGender != gender);
-              }
-            }}
-          />
-        </Col>
-        <Col xs={6} sm={6} md={3} lg={2}>
-          <Select
-            value={ stringToOption(year) }
-            options={[ "2018/9", "2019/20", "2020/21", "2021/22" ].map(
-                (r) => stringToOption(r)
-            )}
-            isSearchable={false}
-            onChange={(option) => { 
-              if ((option as any)?.value) {
-                const newYear = (option as any).value;
-                friendlyChange(() => setYear(newYear), newYear != year);
-              }
-            }}
-          />
-        </Col>
-        <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
-        <Col xs={12} sm={12} md={6} lg={6}>
-          <Select
-            isDisabled={false}
-            components = { maybeMenuList() }
-            isClearable={false}
-            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-            value={ getCurrentTeamOrPlaceholder() }
-            options={teamList.map(
-              (r) => stringToOption(r.team)
-            )}
-            onChange={(option) => {
-              const selection = (option as any)?.value || "";
-              if (year == AvailableTeams.extraTeamName) {
-                const teamYear = selection.split(/ (?=[^ ]+$)/);
-                setTeam(teamYear[0]);
-                setYear(teamYear[1]);
-              } else {
-                setTeam(selection);
-              }
-            }}
-          />
-        </Col>
-        <Col lg={1} className="mt-1">
-          {getCopyLinkButton()}
-        </Col>
-      </Form.Group>
-      <Row className="mt-2">
-        <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
+    <Form.Group as={Row}>
+      <Col xs={6} sm={6} md={3} lg={2}>
+        <Select
+          value={ stringToOption(gender) }
+          options={[ "Men", "Women" ].map(
+            (gender) => stringToOption(gender)
+          )}
+          isSearchable={false}
+          onChange={(option) => { 
+            if ((option as any)?.value) {
+              const newGender = (option as any).value;
+              friendlyChange(() => setGender(newGender), newGender != gender);
+            }
+          }}
+        />
+      </Col>
+      <Col xs={6} sm={6} md={3} lg={2}>
+        <Select
+          value={ stringToOption(year) }
+          options={[ "2018/9", "2019/20", "2020/21", "2021/22" ].map(
+              (r) => stringToOption(r)
+          )}
+          isSearchable={false}
+          onChange={(option) => { 
+            if ((option as any)?.value) {
+              const newYear = (option as any).value;
+              friendlyChange(() => setYear(newYear), newYear != year);
+            }
+          }}
+        />
+      </Col>
+      <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
+      <Col xs={12} sm={12} md={6} lg={6}>
+        <Select
+          isDisabled={false}
+          components = { maybeMenuList() }
+          isClearable={false}
+          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+          value={ getCurrentTeamOrPlaceholder() }
+          options={teamList.map(
+            (r) => stringToOption(r.team)
+          )}
+          onChange={(option) => {
+            const selection = (option as any)?.value || "";
+            if (year == AvailableTeams.extraTeamName) {
+              const teamYear = selection.split(/ (?=[^ ]+$)/);
+              setTeam(teamYear[0]);
+              setYear(teamYear[1]);
+            } else {
+              setTeam(selection);
+            }
+          }}
+        />
+      </Col>
+      <Col lg={1} className="mt-1">
+        {getCopyLinkButton()}
+      </Col>
+    </Form.Group>
+    <Row className="mt-2">
+      <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
+        <LoadingOverlay
+          active={needToLoadQuery()}
+          spinner
+          text={"Loading Team Editor..."}
+        >
           {rosterTable}
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-          <GenericCollapsibleCard minimizeMargin={true} title="Add New Player" helpLink={undefined}>
-            <PlayerLeaderboardTable
-                startingState={startingState}
-                dataEvent={dataEvent}
-                onChangeState={() => null}
-              />
-          </GenericCollapsibleCard>
-        </Col>
-      </Row>
-    </LoadingOverlay>
+        </LoadingOverlay>
+      </Col>
+    </Row>
+    <Row className="mt-2">
+      <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
+        <GenericCollapsibleCard minimizeMargin={true} title="Add New Player" helpLink={undefined} startClosed={true}>
+          <PlayerLeaderboardTable
+              startingState={startingState}
+              dataEvent={dataEvent}
+              onChangeState={() => null}
+              teamEditorMode={(p: IndivStatSet) => null}
+            />
+        </GenericCollapsibleCard>
+      </Col>
+    </Row>
   </Container>;
 };
 

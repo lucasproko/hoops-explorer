@@ -55,12 +55,13 @@ export type PlayerLeaderboardStatsModel = {
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
   transfers?: Record<string, Array<string>>,
-  error?: string
+  error?: string,
 }
 type Props = {
   startingState: PlayerLeaderboardParams,
   dataEvent: PlayerLeaderboardStatsModel,
-  onChangeState: (newParams: PlayerLeaderboardParams) => void
+  onChangeState: (newParams: PlayerLeaderboardParams) => void,
+  teamEditorMode?: (p: IndivStatSet) => void
 }
 
 // Some static methods
@@ -182,7 +183,7 @@ const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
 
 // Functional component
 
-const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, teamEditorMode}) => {
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
@@ -528,6 +529,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const playerLboardTooltip = (
         <Tooltip id={`lboard_${playerIndex}`}>Open new tab showing all the player's seasons, in the multi-year version of the leaderboard</Tooltip>
       );
+      const playerTeamEditorTooltip = (
+        <Tooltip id={`lboard_teamEditor_${playerIndex}`}>Add this player to the Team Builder table</Tooltip>
+      );
       const playerLeaderboardParams = {
         tier: "All",
         year: "All",
@@ -535,9 +539,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         sortBy: "desc:year",
         showInfoSubHeader: true
       };
-      const playerEl = <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
-        <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>{player.key}</a>
-      </OverlayTrigger>;
+      const playerEl = teamEditorMode ?
+        <OverlayTrigger placement="auto" overlay={playerTeamEditorTooltip}>
+          <a target="_blank" href="#"
+            onClick={(ev) => {
+              teamEditorMode(player);
+              ev.preventDefault();
+            }}
+          >{player.key}</a>
+        </OverlayTrigger>
+        :
+        <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
+          <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>{player.key}</a>
+        </OverlayTrigger>;
 
       const teamTooltip = (
         <Tooltip id={`team_${playerIndex}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
@@ -547,10 +561,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         minRank: "0", maxRank: isT100 ? "100" : "400",
         queryFilters: isConfOnly ? "Conf" : undefined,
         factorMins: factorMins, possAsPct: possAsPct,
-        showExpanded: true, sortBy: "desc:off_team_poss_pct:on",
-        onQuery: `"${player.key}"`, offQuery: `NOT "${player.key}"`, autoOffQuery: true,
+        showExpanded: true, calcRapm: true
       };
-      const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
+      const teamEl = teamEditorMode ? <span>{player.team}</span> : <OverlayTrigger placement="auto" overlay={teamTooltip}>
         <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>{player.team}</a>
       </OverlayTrigger>;
 
@@ -588,15 +601,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           (player.off_adj_prod?.value || 0) - (player.def_adj_prod?.value || 0) :
           (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0))
           ;
-      const adjMarginStr = <OverlayTrigger placement="auto" overlay={useRapm ? rapmTooltip : playerTooltip}>
-        <a target="_blank" href={
-          useRapm ?
-            UrlRouting.getTeamReportUrl(rapmAnalysisParams) :
-            UrlRouting.getGameUrl(playerAnalysisParams, {})
-        }><b>
-          {`${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`}
-        </b></a>
-        </OverlayTrigger>;
+      const adjMarginStr = teamEditorMode ? <b>{`${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`}</b> :
+        <OverlayTrigger placement="auto" overlay={useRapm ? rapmTooltip : playerTooltip}>
+            <a target="_blank" href={
+              useRapm ?
+                UrlRouting.getTeamReportUrl(rapmAnalysisParams) :
+                UrlRouting.getGameUrl(playerAnalysisParams, {})
+            }><b>
+              {`${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`}
+            </b></a>
+          </OverlayTrigger>;
 
       const maybeYrStr = isMultiYr ? ` '${player.year.substring(2, 4)}+` : ``;
 
@@ -858,77 +872,79 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       spinner
       text={"Loading Player Leaderboard..."}
     >
-    <Form.Group as={Row}>
-      <Col xs={6} sm={6} md={3} lg={2}>
-        <Select
-          value={ stringToOption(gender) }
-          options={[ "Men", "Women" ].map(
-            (gender) => stringToOption(gender)
-          )}
-          isSearchable={false}
-          onChange={(option) => { 
-            if ((option as any)?.value) {
-              const newGender = (option as any).value;
-              friendlyChange(() => setGender(newGender), newGender != gender);
-            }
-          }}
-        />
-      </Col>
-      <Col xs={6} sm={6} md={3} lg={2}>
-        <Select
-          value={ stringToOption(year) }
-          options={            
-            (
-              (tier == "High" || tier == "All") ?
-                [ "2018/9", "2019/20", "2020/21", "2021/22", "All" ] :
-                [ "2020/21", "All" ] 
-            ).concat(tier == "High" ? [ "Extra" ] : []).map(
-            (r) => stringToOption(r)
-          )}
-          isSearchable={false}
-          onChange={(option) => { 
-            if ((option as any)?.value) {
-              const newYear = (option as any).value;
-              friendlyChange(() => setYear(newYear), newYear != year);
-            }
-          }}
-        />
-      </Col>
-      <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
-      <Col xs={12} sm={12} md={6} lg={6}>
-        <Select
-          isClearable={true}
-          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-          isMulti
-          components={{ MultiValueContainer: ConferenceValueContainer }}
-          value={ getCurrentConfsOrPlaceholder() }
-          options={[
-            { label: "Tiers", options: getExtraConfsByTier().map(stringToOption) },
-            { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
-          ]}
-          formatGroupLabel={formatGroupLabel}
-          onChange={(optionsIn) => {
-            const options = optionsIn as Array<any>;
-            const selection = (options || [])
-              .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
-            const maybeTier = _.find(selection, sel => sel.indexOf("Tier") >= 0);
-            if (maybeTier) {
-              const newTier = maybeTier.split(" ")[0];
-              friendlyChange(() => {
-                setTier(newTier);
-                setConfs("");
-              }, (confs != "") || (tier != newTier));              
-            } else {
-              const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-              friendlyChange(() => setConfs(confStr), confs != confStr);
-            }
-          }}
-        />
-      </Col>
-      <Col lg={1} className="mt-1">
-        {getCopyLinkButton()}
-      </Col>
-    </Form.Group>
+      { teamEditorMode ? null :
+      <Form.Group as={Row}>
+        <Col xs={6} sm={6} md={3} lg={2}>
+          <Select
+            value={ stringToOption(gender) }
+            options={[ "Men", "Women" ].map(
+              (gender) => stringToOption(gender)
+            )}
+            isSearchable={false}
+            onChange={(option) => { 
+              if ((option as any)?.value) {
+                const newGender = (option as any).value;
+                friendlyChange(() => setGender(newGender), newGender != gender);
+              }
+            }}
+          />
+        </Col>
+        <Col xs={6} sm={6} md={3} lg={2}>
+          <Select
+            value={ stringToOption(year) }
+            options={            
+              (
+                (tier == "High" || tier == "All") ?
+                  [ "2018/9", "2019/20", "2020/21", "2021/22", "All" ] :
+                  [ "2020/21", "All" ] 
+              ).concat(tier == "High" ? [ "Extra" ] : []).map(
+              (r) => stringToOption(r)
+            )}
+            isSearchable={false}
+            onChange={(option) => { 
+              if ((option as any)?.value) {
+                const newYear = (option as any).value;
+                friendlyChange(() => setYear(newYear), newYear != year);
+              }
+            }}
+          />
+        </Col>
+        <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
+        <Col xs={12} sm={12} md={6} lg={6}>
+          <Select
+            isClearable={true}
+            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+            isMulti
+            components={{ MultiValueContainer: ConferenceValueContainer }}
+            value={ getCurrentConfsOrPlaceholder() }
+            options={[
+              { label: "Tiers", options: getExtraConfsByTier().map(stringToOption) },
+              { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
+            ]}
+            formatGroupLabel={formatGroupLabel}
+            onChange={(optionsIn) => {
+              const options = optionsIn as Array<any>;
+              const selection = (options || [])
+                .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
+              const maybeTier = _.find(selection, sel => sel.indexOf("Tier") >= 0);
+              if (maybeTier) {
+                const newTier = maybeTier.split(" ")[0];
+                friendlyChange(() => {
+                  setTier(newTier);
+                  setConfs("");
+                }, (confs != "") || (tier != newTier));              
+              } else {
+                const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
+                friendlyChange(() => setConfs(confStr), confs != confStr);
+              }
+            }}
+          />
+        </Col>
+        <Col lg={1} className="mt-1">
+          {getCopyLinkButton()}
+        </Col>
+      </Form.Group>
+      }
       <Form.Row>
         <Form.Group as={Col} sm="7">
           <InputGroup>
