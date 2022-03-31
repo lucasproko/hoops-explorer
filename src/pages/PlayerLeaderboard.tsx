@@ -48,7 +48,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
 
   const transferMode = (allParams.indexOf("transferMode=true") >= 0) || (allParams.indexOf("transferMode=20") >= 0); 
     //^ Note only supported for "All" tiers
-  const transferInit = transferMode ? {} as Record<string, Array<string>> : undefined; //(start as empty list)
+  const transferInit = transferMode ? {} as Record<string, Array<{f: string, t?:string}>> : undefined; //(start as empty list)
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -164,7 +164,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<string>>,
+          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<{f: string, t?: string}>>,
           lastUpdated: 0 //TODO use max?
         });
       })

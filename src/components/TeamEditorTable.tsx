@@ -59,7 +59,7 @@ export type PlayerLeaderboardStatsModel = {
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
-  transfers?: Record<string, Array<string>>,
+  transfers?: Record<string, Array<{f: string, t?: string}>>,
   error?: string
 }
 type Props = {

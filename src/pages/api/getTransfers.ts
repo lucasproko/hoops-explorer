@@ -10,9 +10,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const getFilename = () => {
         const transferMode = parsed["transferMode"] || "";
-        if ((transferMode == "") || (transferMode == "true")) { //(available transfers only)
-            return "current_transfers.json";
-        } else { //(all transfers from previous year)
+        if ((transferMode == "") || (transferMode == "true")) { //(shortcut for current year)
+            return "transfers_2022.json";
+        } else { //(all transfers from previous years)
             return `transfers_${transferMode}.json`;
         }
     };

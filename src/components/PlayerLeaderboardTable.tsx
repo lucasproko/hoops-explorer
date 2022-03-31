@@ -54,7 +54,7 @@ export type PlayerLeaderboardStatsModel = {
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
-  transfers?: Record<string, Array<string>>,
+  transfers?: Record<string, Array<{f: string, t?: string}>>,
   error?: string,
 }
 type Props = {
@@ -427,8 +427,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     // Filter, sort, and limit players part 2/2
     const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
       const strToTest = buildFilterStringTest(player);
-      return(
-        (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => comp == player.team))
+      return (
+        (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => {
+          //(current year show only available, previous years show all transfers)
+          return (comp.f == player.team) && (!comp.t || (year != ParamDefaults.defaultLeaderboardYear));
+        }))
         &&
         ((filterFragmentsPve.length == 0) ||
           (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
