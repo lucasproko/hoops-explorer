@@ -91,6 +91,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
 
+  // Handling various ways of uploading data
+  const [ onlyTransfers, setOnlyTransfers ] = useState(true);
+  const [ reloadData, setReloadData ] = useState(false);
+
   // Misc display
 
   /** Set this to be true on expensive operations */
@@ -144,6 +148,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     pos: GenericTableOps.addDataCol("Pos", "Positional class of player (algorithmically generated)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
     min_pct: GenericTableOps.addPctCol("Min%", "% of minutes played", CbbColors.alwaysWhite),
+    "sep0.6": GenericTableOps.addColSeparator(0.05), 
+    ortg: GenericTableOps.addPtsCol("ORtg", "Offensive Rating, for 'Balacned' projections", CbbColors.varPicker(CbbColors.off_pp100)),
     usage: GenericTableOps.addPctCol("Usg", "Usage for `Balanced` projections", CbbColors.varPicker(CbbColors.usg_offDef)),
     rebound: GenericTableOps.addPctCol("RB%", "% of available defensive rebounds made by this player ('Balanced' projection)", CbbColors.varPicker(CbbColors.p_def_OR)),
     "sep1": GenericTableOps.addColSeparator(2),
@@ -152,100 +158,133 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     "sep1.5": GenericTableOps.addColSeparator(0.05),
     good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
-    "sep1.6": GenericTableOps.addColSeparator(0.05), 
-    good_ortg: GenericTableOps.addPtsCol("Rtg", "Offensive Rating, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_pp100)),
     "sep2": GenericTableOps.addColSeparator(3),
 
     ok_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     "sep2.5": GenericTableOps.addColSeparator(0.05),
     ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
-    "sep2.6": GenericTableOps.addColSeparator(0.05), 
-    ok_ortg: GenericTableOps.addPtsCol("Rtg", "Offensive Rating, for 'Balacned' projections", CbbColors.varPicker(CbbColors.off_pp100)),
     "sep3": GenericTableOps.addColSeparator(3),
 
     bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     "sep3.5": GenericTableOps.addColSeparator(0.05),
     bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
-    "sep3.6": GenericTableOps.addColSeparator(0.05), 
-    bad_ortg: GenericTableOps.addPtsCol("Rtg", "Offensive Rating, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_pp100)),
     "sep4": GenericTableOps.addColSeparator(2),
 
     edit: GenericTableOps.addDataCol("", "Edit the Optimistic/Balanced/Pessmistic projections for the player", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
     disable: GenericTableOps.addDataCol("", "Disable/re-enabled this player from the roster", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
   };
 
-  const otherPlayers: GoodBadOkTriple[] = [];
-  const basePlayerCache: Record<string, GoodBadOkTriple> = {};
-  const removedBasePlayerCodes: Record<string, boolean> = {};
+  const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
 
-  const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-    team, (dataEvent.players || []), basePlayerCache, false, removedBasePlayerCodes
-  );
+  const rosterTable = React.useMemo(() => {
+    setLoadingOverride(false);
 
-  const playerSet = basePlayers.concat(otherPlayers); //TODO: process this and also get team line 
-  const rosterTableData = playerSet.map(triple => {
-    const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
-    const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
-    const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
-    const tableEl = {
-      title: triple.ok.key,
-      min_pct: { value: triple.ok.off_team_poss_pct?.value },
-      usage: triple.ok.off_usage,
-      pos: triple.good.posClass,
-      good_net: { value: getNet(triple.good) },
-      good_off: { value: getOff(triple.good) },
-      good_def: { value: getDef(triple.good) },
-      good_ortg: triple.good.off_rtg,
-      ok_net: { value: getNet(triple.ok) },
-      ok_off: { value: getOff(triple.ok) },
-      ok_def: { value: getDef(triple.ok) },
-      ok_ortg: triple.ok.off_rtg,
-      bad_net: { value: getNet(triple.bad) },
-      bad_off: { value: getOff(triple.bad) },
-      bad_def: { value: getDef(triple.bad) },
-      bad_ortg: triple.bad.off_rtg,
-      rebound: { value: triple.ok.def_orb?.value },
-      edit: <Button variant="outline-secondary" size="sm"><FontAwesomeIcon icon={faPen} /></Button>,
-      disable: <Button variant="outline-secondary" size="sm"><FontAwesomeIcon icon={faFilter} /></Button>,
-    };
-    return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
-  }).concat(GenericTableOps.buildRowSeparator());
+    const basePlayerCache: Record<string, GoodBadOkTriple> = {};
+    const removedBasePlayerCodes: Record<string, boolean> = {};
 
-  const subHeaders = [ 
-    GenericTableOps.buildSubHeaderRow(
-      [ 
-        [ <div/>, 7 ], 
-        [ <i>Optimistic</i>, 6 ], [ <div/>, 1 ], [ <i>Balanced</i>, 6 ], [ <div/>, 1 ], [ <i>Pessimistic</i>, 6 ], [ <div/>, 1 ],
-        [ <div/>, 4 ]
-      ], "small text-center"
-    ),
-    GenericTableOps.buildDataRow({
-      title: <b>Team Totals</b>
-    }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
-    GenericTableOps.buildDataRow({
-      title: <b>Team Grades</b>
-    }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
-    GenericTableOps.buildSubHeaderRow(
-      [ 
-        [ <div/>, 7 ], 
-        [ <div/>, 6 ], [ <div/>, 1 ], [ <div><b>Guards</b> (0%)</div>, 6 ], [ <div/>, 6 ], [ <div/>, 1 ], [ <div/>, 4 ], 
-      ], "small text-center"
-    ),
-  ];
-  //TODO: Add: Transfer | Generic | D1
+    const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
+      team, (dataEvent.players || []), basePlayerCache, false, removedBasePlayerCodes
+    );
 
-  const trailers = [ 
+    const playerSet = basePlayers.concat(_.values(otherPlayerCache)); //TODO process this + get team results
+    const rosterTableData = playerSet.map(triple => {
+      const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
+      const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
+      const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
+      const tableEl = {
+        title: triple.ok.key,
+        min_pct: { value: triple.ok.off_team_poss_pct?.value },
+        ortg: triple.ok.off_rtg,
+        usage: triple.ok.off_usage,
+        pos: <span style={{whiteSpace: "nowrap"}}>{triple.good.posClass}</span>,
+        good_net: { value: getNet(triple.good) },
+        good_off: { value: getOff(triple.good) },
+        good_def: { value: getDef(triple.good) },
+        ok_net: { value: getNet(triple.ok) },
+        ok_off: { value: getOff(triple.ok) },
+        ok_def: { value: getDef(triple.ok) },
+        bad_net: { value: getNet(triple.bad) },
+        bad_off: { value: getOff(triple.bad) },
+        bad_def: { value: getDef(triple.bad) },
+        rebound: { value: triple.ok.def_orb?.value },
+        edit: <Button variant="outline-secondary" size="sm" onClick={(ev: any) => {
+          const key = `${triple.ok.team}:${triple.ok.code}`;
+          if (otherPlayerCache[key]) {
+            const newOtherPlayerCache = _.clone(otherPlayerCache);
+            delete newOtherPlayerCache[key];
+            friendlyChange(() => {
+              setOtherPlayerCache(newOtherPlayerCache);
+            }, true);
+          } else {
+            //TODO: remove player from roster
+          }
+        }}><FontAwesomeIcon icon={faPen} /></Button>,
+        disable: <Button variant="outline-secondary" size="sm"><FontAwesomeIcon icon={faFilter} /></Button>,
+      };
+      return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
+    }).concat(GenericTableOps.buildRowSeparator());
 
-  ];
+    const subHeaders = [ 
+      GenericTableOps.buildSubHeaderRow(
+        [ 
+          [ <div/>, 9 ], 
+          [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], [ <i>Balanced</i>, 4 ], [ <div/>, 1 ], [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
+          [ <div/>, 4 ]
+        ], "small text-center"
+      ),
+      GenericTableOps.buildDataRow({
+        title: <b>Team Totals</b>
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildDataRow({
+        title: <b>Team Grades</b>
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildSubHeaderRow(
+        [ 
+          [ <div/>, 9 ], 
+          [ <div/>, 4 ], [ <div/>, 1 ], [ <div><b>Guards</b> (0%)</div>, 4 ], [ <div/>, 1 ], [ <div/>, 1 ], [ <div/>, 1 ], 
+        ], "small text-center"
+      ),
+    ];
+    //TODO: Add: Transfer | Generic | D1
 
-  const rosterTable = <GenericTable
-    tableCopyId="rosterEditorTable"
-    tableFields={tableDef}
-    tableData={subHeaders.concat(rosterTableData)}
-    cellTooltipMode={undefined}
-  />;
+    const trailers = [ 
+
+    ];
+
+    return <GenericTable
+      tableCopyId="rosterEditorTable"
+      tableFields={tableDef}
+      tableData={subHeaders.concat(rosterTableData)}
+      cellTooltipMode={undefined}
+    />;
+  }, [ dataEvent, year, team, otherPlayerCache ]);
+
+  const playerLeaderboard = React.useMemo(() => {
+    return <PlayerLeaderboardTable
+      startingState={startingState}
+      dataEvent={reloadData ?
+        {} : {
+          ...dataEvent, 
+          transfers: (onlyTransfers && (year == ParamDefaults.defaultLeaderboardYear)) ? dataEvent.transfers : undefined 
+        }
+      }
+      onChangeState={() => null}
+      teamEditorMode={(p: IndivStatSet) => {
+        const newOtherPlayerCache = _.clone(otherPlayerCache);
+        const key = `${p.team}:${p.code}`;
+        newOtherPlayerCache[key] = {
+          good: _.clone(p),
+          bad: _.clone(p),
+          ok: _.clone(p)
+        };
+        friendlyChange(() => {
+          setOtherPlayerCache(newOtherPlayerCache);
+        }, otherPlayerCache[key] == undefined);
+      }}
+    />;
+  }, [ dataEvent, reloadData, year, otherPlayerCache ]);
 
   /////////////////////////////////////
 
@@ -329,7 +368,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           onChange={(option) => { 
             if ((option as any)?.value) {
               const newGender = (option as any).value;
-              friendlyChange(() => setGender(newGender), newGender != gender);
+              friendlyChange(() => {
+                setGender(newGender);
+                setOtherPlayerCache({});
+              }, newGender != gender);
             }
           }}
         />
@@ -344,7 +386,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           onChange={(option) => { 
             if ((option as any)?.value) {
               const newYear = (option as any).value;
-              friendlyChange(() => setYear(newYear), newYear != year);
+              friendlyChange(() => {
+                setYear(newYear);
+                setOtherPlayerCache({});
+              }, newYear != year);
             }
           }}
         />
@@ -364,10 +409,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             const selection = (option as any)?.value || "";
             if (year == AvailableTeams.extraTeamName) {
               const teamYear = selection.split(/ (?=[^ ]+$)/);
-              setTeam(teamYear[0]);
-              setYear(teamYear[1]);
+              friendlyChange(() => {
+                setTeam(teamYear[0]);
+                setYear(teamYear[1]);
+                setOtherPlayerCache({});
+              }, (teamYear[0] != team) && (teamYear[1] != year));
             } else {
-              setTeam(selection);
+               friendlyChange(() => {
+                setTeam(selection);
+                setOtherPlayerCache({});
+               }, team != selection);
             }
           }}
         />
@@ -387,15 +438,35 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         </LoadingOverlay>
       </Col>
     </Row>
-    <Row className="mt-2">
+    <Row>
       <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
         <GenericCollapsibleCard minimizeMargin={true} title="Add New Player" helpLink={undefined} startClosed={true}>
-          <PlayerLeaderboardTable
-              startingState={startingState}
-              dataEvent={dataEvent}
-              onChangeState={() => null}
-              teamEditorMode={(p: IndivStatSet) => null}
-            />
+          <Container>
+            <Row>
+              <Form.Group as={Col} xs="4" className="mt-2">
+                <Form.Check type="switch" disabled={year != ParamDefaults.defaultLeaderboardYear}
+                  id="onlyTransfers"
+                  checked={onlyTransfers && (year == ParamDefaults.defaultLeaderboardYear)}
+                  onChange={() => {
+                    setTimeout(() => {
+                      setReloadData(true);
+                      setOnlyTransfers(!onlyTransfers);
+                      setTimeout(() => {
+                        setReloadData(false);
+                      }, 100);
+                    }, 250);
+                  }}
+                  label="Only show transfers"
+                />
+              </Form.Group>
+              <Form.Group as={Col} xs="1" className="mt-2"/>
+              <Form.Group as={Col} xs="4" className="mt-2">
+              </Form.Group>
+            </Row>
+            <Row>
+              {playerLeaderboard}
+            </Row>
+          </Container>
         </GenericCollapsibleCard>
       </Col>
     </Row>
