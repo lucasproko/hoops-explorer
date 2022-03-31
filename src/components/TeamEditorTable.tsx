@@ -178,6 +178,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
 
+  const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
+
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
 
@@ -193,27 +195,30 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
       const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
       const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
+      const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const tableEl = {
-        title: triple.ok.key,
-        min_pct: { value: triple.ok.off_team_poss_pct?.value },
+        title: triple.orig.key,
+        min_pct: isFiltered ? undefined : { value: triple.ok.off_team_poss_pct?.value },
         ortg: triple.ok.off_rtg,
         usage: triple.ok.off_usage,
-        pos: <span style={{whiteSpace: "nowrap"}}>{triple.good.posClass}</span>,
-        good_net: { value: getNet(triple.good) },
-        good_off: { value: getOff(triple.good) },
-        good_def: { value: getDef(triple.good) },
-        ok_net: { value: getNet(triple.ok) },
-        ok_off: { value: getOff(triple.ok) },
-        ok_def: { value: getDef(triple.ok) },
-        bad_net: { value: getNet(triple.bad) },
-        bad_off: { value: getOff(triple.bad) },
-        bad_def: { value: getDef(triple.bad) },
-        rebound: { value: triple.ok.def_orb?.value },
+        rebound: isFiltered ? undefined : { value: triple.ok.def_orb?.value },
+
+        pos: <span style={{whiteSpace: "nowrap"}}>{triple.orig.posClass}</span>,
+        good_net: isFiltered ? undefined : { value: getNet(triple.good) },
+        good_off: isFiltered ? undefined : { value: getOff(triple.good) },
+        good_def: isFiltered ? undefined : { value: getDef(triple.good) },
+        ok_net: isFiltered ? undefined : { value: getNet(triple.ok) },
+        ok_off: isFiltered ? undefined : { value: getOff(triple.ok) },
+        ok_def: isFiltered ? undefined : { value: getDef(triple.ok) },
+        bad_net: isFiltered ? undefined : { value: getNet(triple.bad) },
+        bad_off: isFiltered ? undefined : { value: getOff(triple.bad) },
+        bad_def: isFiltered ? undefined : { value: getDef(triple.bad) },
+
+        //TODO: tooltips and make disable button latch
         edit: <Button variant="outline-secondary" size="sm" onClick={(ev: any) => {
-          const key = `${triple.ok.team}:${triple.ok.code}`;
-          if (otherPlayerCache[key]) {
+          if (otherPlayerCache[triple.key]) {
             const newOtherPlayerCache = _.clone(otherPlayerCache);
-            delete newOtherPlayerCache[key];
+            delete newOtherPlayerCache[triple.key];
             friendlyChange(() => {
               setOtherPlayerCache(newOtherPlayerCache);
             }, true);
@@ -221,7 +226,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             //TODO: remove player from roster
           }
         }}><FontAwesomeIcon icon={faPen} /></Button>,
-        disable: <Button variant="outline-secondary" size="sm"><FontAwesomeIcon icon={faFilter} /></Button>,
+        disable: <Button variant="outline-secondary" size="sm" onClick={(ev:any) => {
+          //(insta do this - the visual clue should be sufficient)
+          const newDisabledPlayers = _.clone(disabledPlayers);
+          if (disabledPlayers[triple.key]) {
+            delete newDisabledPlayers[triple.key];
+          } else {
+            newDisabledPlayers[triple.key] = true;
+          }
+          setDisabledPlayers(newDisabledPlayers);
+        }}><FontAwesomeIcon icon={faFilter} /></Button>,
       };
       return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
     }).concat(GenericTableOps.buildRowSeparator());
@@ -259,7 +273,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       tableData={subHeaders.concat(rosterTableData)}
       cellTooltipMode={undefined}
     />;
-  }, [ dataEvent, year, team, otherPlayerCache ]);
+  }, [ dataEvent, year, team, otherPlayerCache, disabledPlayers ]);
 
   const playerLeaderboard = React.useMemo(() => {
     return <PlayerLeaderboardTable
@@ -273,18 +287,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       onChangeState={() => null}
       teamEditorMode={(p: IndivStatSet) => {
         const newOtherPlayerCache = _.clone(otherPlayerCache);
-        const key = `${p.team}:${p.code}`;
+        const key = TeamEditorUtils.getKey(p, team, year);
         newOtherPlayerCache[key] = {
+          key,
           good: _.clone(p),
           bad: _.clone(p),
-          ok: _.clone(p)
+          ok: _.clone(p),
+          orig: p
         };
         friendlyChange(() => {
           setOtherPlayerCache(newOtherPlayerCache);
         }, otherPlayerCache[key] == undefined);
       }}
     />;
-  }, [ dataEvent, reloadData, year, otherPlayerCache ]);
+  }, [ dataEvent, reloadData, team, year, otherPlayerCache ]);
 
   /////////////////////////////////////
 
