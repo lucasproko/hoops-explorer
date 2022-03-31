@@ -953,7 +953,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             </InputGroup.Prepend>
             <AsyncFormControl
               startingVal={filterStr}
-              onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
+              onChange={(t: string) => {
+                const newStr = PlayerLeaderboardTracking[t] || t;
+                friendlyChange(() => setFilterStr(newStr), newStr != filterStr);
+              }}
               timeout={500}
               placeholder = "See 'Filter' tooltip for details"
             />
