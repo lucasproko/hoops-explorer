@@ -246,24 +246,24 @@ export class TeamEditorUtils {
                key: key,
                off_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
                def_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
-               off_adj_rapm: { value: 0 },
-               def_adj_rapm: { value: 0 },
+               off_adj_rapm: { value: benchLevel },
+               def_adj_rapm: { value: -benchLevel },
                posClass: posClass
             };
             return {
                key: key,
                good: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel},
-                  def_adj_rapm: { value: -benchLevel }
+                  off_adj_rapm: { value: benchLevel + 0.5 },
+                  def_adj_rapm: { value: -benchLevel - 0.5 }
                },
                ok: {
                   ...baseBench,
                },
                bad: {
                   ...baseBench,
-                  off_adj_rapm: { value: -benchLevel },
-                  def_adj_rapm: { value: benchLevel }
+                  off_adj_rapm: { value: benchLevel - 1 }, //(bench scoring can be really bad)
+                  def_adj_rapm: { value: -benchLevel + 1 }
                },
                orig: baseBench
             } as GoodBadOkTriple;
