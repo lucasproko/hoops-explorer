@@ -403,7 +403,7 @@ export class PositionUtils {
   }
 
   /** We usee the positional class of the player as the most important */
-  private static posClassToScore(posClass: string) {
+  static posClassToScore(posClass: string) {
     switch (posClass) {
       case "PG": return 1000;
       case "s-PG": return 2000;

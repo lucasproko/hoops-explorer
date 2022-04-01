@@ -1,5 +1,6 @@
 
 import _ from "lodash";
+import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 
 export type GoodBadOkTriple = {
@@ -35,24 +36,29 @@ export class TeamEditorUtils {
       includeSeniors: boolean, excludeSet: Record<string, boolean>, 
       transfers: Record<string, Array<{f: string, t?: string}>>
    ): GoodBadOkTriple[] {
-      return players.filter(
-         p => (_.some(transfers[p.code || ""] || [], p => p.t == team)  //transferring in
-            || 
-            ((p.team == team)                
-               && (includeSeniors || (p.roster?.year_class != "Sr"))
-                  && !_.some(transfers[p.code || ""] || [], p => p.f == team) //(transferring out...)
-            ))
-            && !cache[p.code || ""] && !excludeSet[p.code || ""] //(not in exclude lists)
-      ).map(p => {
+      const fromBaseRoster = _.transform(players, (acc, p) => {
+         const code = p.code || "";
          const isTransfer = p.team != team;
-         return {
-            key: isTransfer ? `${p.code}:${p.team}:` : `${p.code}::`,
-            good: _.clone(p),
-            ok: _.clone(p),
-            bad: _.clone(p),
-            orig: p
-         };
-      }).concat(_.values(cache));
+         const key = isTransfer ? `${p.code}:${p.team}:` : `${p.code}::`;
+         const transferringIn = _.some(transfers[code] || [], p => p.t == team);
+         const notTransferringOut = ((p.team == team)                
+                                       && (includeSeniors || (p.roster?.year_class != "Sr"))
+                                          && !_.some(transfers[code] || [], p => p.f == team));
+         const notOnExcludeList = !cache[code] && !excludeSet[key] && !acc.dups[code];
+
+         if ((transferringIn || notTransferringOut) && notOnExcludeList) {
+            acc.retVal = acc.retVal.concat([{
+               key: key,
+               good: _.clone(p),
+               ok: _.clone(p),
+               bad: _.clone(p),
+               orig: p
+            }]);
+            acc.dups[code] = true; //(use key not code because of possibility that player with same code has transferred in)
+         }
+      }, { retVal: [] as GoodBadOkTriple[], dups:  {} as Record<string, boolean> });
+
+      return fromBaseRoster.retVal.concat(_.values(cache));
    }
 
    /** Give players their year-on-year improvement */
@@ -164,48 +170,125 @@ export class TeamEditorUtils {
          });
       }
 
-      // First pass - calc minutes purely based on tier:
-      filteredRoster.forEach(p => {
-         //(TODO: calc mins differently per tier?)
-         const baseMins = TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ]);
-         const minMins = minMinsPerKey[p.key] || baseMins;
-         const maxMins = maxMinsPerKey[p.key] || baseMins;
-         const adjBaseMins: Statistic = { value: Math.max(Math.min(baseMins, maxMins), minMins) };
+      const assignMins = (newMins: number, p: GoodBadOkTriple) => {
+         const minMins = minMinsPerKey[p.key] || newMins;
+         const maxMins = maxMinsPerKey[p.key] || newMins;
+         const adjBaseMins: Statistic = { value: Math.max(Math.min(newMins, maxMins), minMins) };
          p.good.off_team_poss_pct = adjBaseMins;
          p.good.def_team_poss_pct = adjBaseMins;
          p.ok.off_team_poss_pct = adjBaseMins;
          p.ok.def_team_poss_pct = adjBaseMins;
          p.bad.off_team_poss_pct = adjBaseMins;
          p.bad.def_team_poss_pct = adjBaseMins;
+      };
+
+      // First pass - calc minutes purely based on tier:
+      filteredRoster.forEach(p => {
+         //(TODO: calc mins differently per tier?)
+         const baseMins = TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ]);
+         assignMins(baseMins, p);
+      });
+
+      // We want the total to try to hit the range: 5*(35-39mpg), goal 37.5 if high, 36.5 if low and the rest will be picked up as bench minutes
+
+      const steps = [ 0, 1, 2, 3, 4, 5 ];
+      _.transform(steps, (acc, step) => {
+         const sumMins = _.sumBy(filteredRoster, p => p.ok.off_team_poss_pct.value || 0);
+
+         const highLevel = 5*(39.0/40.0);
+         const lowLevel = 5*(35.0/40.0);
+         const highGoal = 5*(37.5/40.0);
+         const lowGoal = 5*(36.5/40.0);
+         const goal = sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1);
+
+         //console.log(`Step ${step}: ${sumMins.toFixed(3)}`);
+
+         if (goal > 0) {
+            const factor = goal/sumMins;
+            filteredRoster.forEach(p => {
+               const prevMins = p.good.off_team_poss_pct?.value || 0;
+               assignMins(prevMins*factor, p);
+            });
+         } else { // done, stop
+            return false;
+         }
       });
 
       //TODO: generic fr need to be handled as special cases
-
-      // const pass1MinsPerKey = _.chain(filteredRoster).map(p => {
-
-      //    const pNet = getNet(p.ok);
-      //    if (pNet < avgLowerTierNet)
-
-
-      // }).fromPairs().value();
-
-      //TODO: special cases at PG and C?
-
-      //TODO: have target 10-20 mpg if in tier1, 21-29 mpg in tier2, 30-35 mpg if in tier3
    }
 
-   /** Assign a fairly abitrary minute total based on where you sit in the team pecking order... */
-   static netTierToBaseMins(playerNet: number, tiers: [number, number, number]) {
-      // expand to 7 numbers by introducing the gaps
-      const expandedTiers = [ tiers[0] - 1, tiers[0], 0.5*(tiers[0] + tiers[1]), tiers[1], 0.5*(tiers[1] + tiers[2]), tiers[2], tiers[2] + 1.0 ];
-      const expandedTierToMins = [ 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85 ];
+   static getBenchMinutes(
+      team: string, year: string, guardPct: number, wingPct: number, bigPct: number
+   ): [ GoodBadOkTriple | undefined, GoodBadOkTriple | undefined, GoodBadOkTriple | undefined ] {
+      const deltaMins = 1.0 - (guardPct + wingPct + bigPct);
+      if (deltaMins > 0.0) {
 
-      const closestExpandedTier = _.sortBy(
-         expandedTiers.map((t, i) => [i, Math.abs(playerNet - t) ] as [number, number]), vi => vi[1]
-      )[0]![0];
+         const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
+         const getBenchLevel = () => {
+            if (level.category == "high") {
+               return 0.5;            
+            } else if (level.category == "midhigh") {
+               return -0.5;
+            } else if (level.category == "mid") {
+               return -1.5;
+            } else if (level.category == "midlow") {
+               return -2.5;
+            } else if (level.category == "midlow") {
+               return -4;
+            } else { //unknown
+               return 0;
+            } 
+         }
+         const benchLevel = getBenchLevel();
 
-      return expandedTierToMins?.[closestExpandedTier] || 0.9;
+         const buildBench = (key: string, posClass: string, minsPct: number) => {
+            const baseBench = {
+               key: key,
+               off_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
+               def_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
+               off_adj_rapm: { value: 0 },
+               def_adj_rapm: { value: 0 },
+               posClass: posClass
+            };
+            return {
+               key: key,
+               good: {
+                  ...baseBench,
+                  off_adj_rapm: { value: benchLevel},
+                  def_adj_rapm: { value: -benchLevel }
+               },
+               ok: {
+                  ...baseBench,
+               },
+               bad: {
+                  ...baseBench,
+                  off_adj_rapm: { value: -benchLevel },
+                  def_adj_rapm: { value: benchLevel }
+               },
+               orig: baseBench
+            } as GoodBadOkTriple;
+         };
+
+         const benchGuardMins = Math.min(Math.max(0, (0.30 - guardPct)), deltaMins); // wings can play 50% of SG minutes
+         const benchBigMins = Math.min(Math.max(0, (0.30 - bigPct)), deltaMins); // wings can play 50% of PF minutes
+         const benchWingMins = Math.max(0, deltaMins - benchGuardMins - benchBigMins);
+
+         return [ 
+            benchGuardMins > 0 ? buildBench("Bench Guard Minutes", "G?", benchGuardMins) : undefined, 
+            benchWingMins > 0 ? buildBench("Bench Wing Minutes", "W?", benchWingMins) : undefined, 
+            benchBigMins > 0 ? buildBench("Bench Big Minutes", "PF/C", benchBigMins) : undefined, 
+         ];
+
+      } else {
+         return [ undefined, undefined, undefined ]
+      }
    }
+
+   //TODO: bench spots
+
+   //TODO: position adjustments ... if playing WF or S-PF at center then add/subtract -1
+   // if have non-PG minutes then mark down offense if there is a traditional center
+   // if have a WF playing the 3 then mark down offense
 
    //TODO: two ways to reduce usage (and vice versa)
    // 1] based on def SoS .. normally reduce it 50:50 but if >25 then reduce by more
@@ -321,5 +404,19 @@ export class TeamEditorUtils {
       else return "So?";
    }
 
+   /** Assign a fairly abitrary minute total based on where you sit in the team pecking order... */
+   static netTierToBaseMins(playerNet: number, tiers: [number, number, number]) {
+      // expand to 7 numbers by introducing the gaps
+      const expandedTiers = [ tiers[0] - 1, tiers[0], 0.5*(tiers[0] + tiers[1]), tiers[1], 0.5*(tiers[1] + tiers[2]), tiers[2], tiers[2] + 1.0 ];
+      const expandedTierToMins = [ 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85 ];
+
+      const closestExpandedTier = _.sortBy(
+         expandedTiers.map((t, i) => [i, Math.abs(playerNet - t) ] as [number, number]), vi => vi[1]
+      )[0]![0];
+
+      return expandedTierToMins?.[closestExpandedTier] || 0.9;
+   }
+   
+   
    //TODO: also need to handle in-season mins (ie for "what if player goes down" type questions)
 }

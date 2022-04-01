@@ -131,7 +131,7 @@ const TeamEditorPage: NextPage<{}> = () => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const year = fullYear.substring(0, 4);
-    const tier = (paramObj.tier || ParamDefaults.defaultTier);
+    const tier = (paramObj.tier || "All");
 
     if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
