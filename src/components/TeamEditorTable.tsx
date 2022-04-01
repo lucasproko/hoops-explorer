@@ -270,7 +270,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
     TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff);
-    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, disabledPlayers, teamSosNet, avgEff);
+    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, teamSosNet, avgEff);
 
     const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
     const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
@@ -534,7 +534,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   const playerLeaderboard = React.useMemo(() => {
     return <PlayerLeaderboardTable
-      startingState={startingState}
+      startingState={{
+        ...startingState,
+        tier: "All"
+      }}
       dataEvent={reloadData ?
         {} : {
           ...dataEvent, 

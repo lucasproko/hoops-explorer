@@ -133,7 +133,7 @@ export class TeamEditorUtils {
    /** Calculate minutes assignment, mutates roster */
    static calcAndInjectMinsAssignment(
       roster: GoodBadOkTriple[], 
-      team: string, disabledPlayers: Record<string, boolean>,
+      team: string, year: string, disabledPlayers: Record<string, boolean>,
       teamSosNet: number, avgEff: number
    ) {
       const getOffRapm = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
@@ -145,13 +145,17 @@ export class TeamEditorUtils {
       
       const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
 
-      const netRatings = _.sortBy(filteredRoster.map(p => getNet(p.ok)));
-      const tierSize = Math.ceil(_.size(netRatings)/3) || 1;
-      const avgLowerTierNet = _.sum(_.take(netRatings, tierSize))/tierSize;
+      const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
+      const netRatings = _.sortBy(filteredRoster.map(p => getNet(p.ok)).concat(
+         [benchLevel, benchLevel, benchLevel]) //(add one bench player per pos group)
+      );
+      const tierSize = (Math.ceil(_.size(netRatings)/3) || 1);
+      const avgLowerTierNetTmp = _.sum(_.take(netRatings, tierSize))/tierSize;
       const avgUpperTierNet = _.sum(_.take(_.reverse(netRatings), tierSize))/tierSize;
       // middle tier is unreliable if the team size is small, but we don't really care about that so just do something vaguely sane:
       const avgMidTierNetTmp = _.sum(_.take(_.drop(netRatings, tierSize - 1), tierSize + 1))/(tierSize + 2);
-      const avgMidTierNet = (avgMidTierNetTmp < avgLowerTierNet) ? (2*avgLowerTierNet + avgUpperTierNet)/3 : avgMidTierNetTmp;
+      const avgMidTierNet = (avgMidTierNetTmp < avgLowerTierNetTmp) ? (2*avgLowerTierNetTmp + avgUpperTierNet)/3 : avgMidTierNetTmp;
+      const avgLowerTierNet = Math.min(avgMidTierNet - 1.5, avgLowerTierNetTmp); //(can't really determine pecking order with less granularity than that...)
 
       const maxMinsPerKey = _.chain(filteredRoster).map(p => {
          return [ p.key, TeamEditorUtils.calcMaxMins(p) ];
@@ -186,6 +190,10 @@ export class TeamEditorUtils {
       filteredRoster.forEach(p => {
          //(TODO: calc mins differently per tier?)
          const baseMins = TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ]);
+
+         if (debugMode) { // Diagnostics
+            console.log(`[${p.key}]: base mins [${baseMins}] from ${getNet(p.ok).toFixed(1)}`);
+         }
          assignMins(baseMins, p);
       });
 
@@ -223,23 +231,7 @@ export class TeamEditorUtils {
       const deltaMins = 1.0 - (guardPct + wingPct + bigPct);
       if (deltaMins > 0.0) {
 
-         const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
-         const getBenchLevel = () => {
-            if (level.category == "high") {
-               return 0.5;            
-            } else if (level.category == "midhigh") {
-               return -0.5;
-            } else if (level.category == "mid") {
-               return -1.5;
-            } else if (level.category == "midlow") {
-               return -2.5;
-            } else if (level.category == "midlow") {
-               return -4;
-            } else { //unknown
-               return 0;
-            } 
-         }
-         const benchLevel = getBenchLevel();
+         const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
 
          const buildBench = (key: string, posClass: string, minsPct: number) => {
             const baseBench = {
@@ -283,8 +275,6 @@ export class TeamEditorUtils {
          return [ undefined, undefined, undefined ]
       }
    }
-
-   //TODO: bench spots
 
    //TODO: position adjustments ... if playing WF or S-PF at center then add/subtract -1
    // if have non-PG minutes then mark down offense if there is a traditional center
@@ -417,6 +407,26 @@ export class TeamEditorUtils {
       return expandedTierToMins?.[closestExpandedTier] || 0.9;
    }
    
+   /** Gets the bench level scoring depending on the quality of the team */
+   static getBenchLevelScoring(team: string, year: string) {
+      const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
+      const getBenchLevel = () => {
+         if (level.category == "high") {
+            return 0.5;            
+         } else if (level.category == "midhigh") {
+            return -0.5;
+         } else if (level.category == "mid") {
+            return -1.5;
+         } else if (level.category == "midlow") {
+            return -2.5;
+         } else if (level.category == "midlow") {
+            return -4;
+         } else { //unknown
+            return 0;
+         } 
+      }
+      return getBenchLevel();
+   }
    
    //TODO: also need to handle in-season mins (ie for "what if player goes down" type questions)
 }
