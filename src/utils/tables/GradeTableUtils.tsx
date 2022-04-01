@@ -1,6 +1,9 @@
 // React imports:
 import React, { useState } from 'react';
 
+// Next imports
+import fetch from 'isomorphic-unfetch';
+
 import _ from "lodash";
 
 // Bootstrap imports:
@@ -17,6 +20,7 @@ import { GradeUtils } from "../../utils/stats/GradeUtils";
 import { GenericTableOps, GenericTableRow } from "../../components/GenericTable";
 import { DivisionStatistics, TeamStatSet } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
+import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 
 type Props = {
    setName: "on" | "off" | "baseline",
@@ -75,7 +79,51 @@ const onOffTable = { //accessors vs column metadata
       CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
 };
 
+export type DivisionStatsCache = {
+   year?: string,
+   gender?: string,
+   Combo?: DivisionStatistics,
+   High?: DivisionStatistics,
+   Medium?: DivisionStatistics
+   Low?: DivisionStatistics
+ };
+ 
 export class GradeTableUtils {
+
+  /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
+  static readonly populateDivisionStatsCache = (
+     filterParams: CommonFilterParams,
+     setCache: (s: DivisionStatsCache) => void
+   ) => {
+      const getUrl = (inGender: string, inYear: string, inTier: string) => {
+         const subYear = inYear.substring(0, 4);
+         if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
+            return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}`;
+         } else { //archived
+            return `/leaderboards/lineups/stats_all_${inGender}_${subYear}_${inTier}.json`;
+         }
+      }
+
+      const inGender = filterParams.gender || ParamDefaults.defaultGender;
+      const inYear = filterParams.year || ParamDefaults.defaultYear;
+      const fetchAll = [ "Combo", "High", "Medium", "Low" ].map((tier) => {
+      return fetch(getUrl(inGender, inYear, tier)).then((response: fetch.IsomorphicResponse) => {
+            return response.ok ? response.json() : Promise.resolve({});
+         });
+      });
+      Promise.all(fetchAll).then((jsons: any[]) => {
+      setCache({
+         year: inYear, gender: inGender, //(so know when to refresh cache)
+         Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0],
+         High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
+         Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
+         Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
+      });
+      });
+   };
+
+
+   /** Build the rows containing the grade information for a team */
    static readonly buildGradeTableRows: (p: Props) => GenericTableRow[] = ({
       setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {

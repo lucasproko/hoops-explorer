@@ -22,8 +22,7 @@ import Col from 'react-bootstrap/Col';
 // App components:
 import { ParamPrefixes, PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
-import { PlayerLeaderboardStatsModel } from '../components/PlayerLeaderboardTable';
-import TeamEditorTable from '../components/TeamEditorTable';
+import TeamEditorTable, { TeamEditorStatsModel } from '../components/TeamEditorTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
@@ -64,7 +63,7 @@ const TeamEditorPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState(dataEventInit);
-  const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as PlayerLeaderboardStatsModel);
+  const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as TeamEditorStatsModel);
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
   const [ currTier, setCurrTier ] = useState("");
@@ -210,7 +209,7 @@ const TeamEditorPage: NextPage<{}> = () => {
     </Head>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>Team Builder <span className="badge badge-pill badge-info">BETA!</span></h3>
+        <h3>Team Builder <span className="badge badge-pill badge-info">IN DEV!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">

@@ -45,7 +45,7 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
-import { GradeTableUtils } from "../utils/tables/GradeTableUtils";
+import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
 
 export type TeamStatsModel = {
   on: TeamStatSet,
@@ -65,14 +65,6 @@ type Props = {
     lineupStats: LineupStatsModel[]
   },
   onChangeState: (newParams: GameFilterParams) => void;
-};
-type DivisionStatsCache = {
-  year?: string,
-  gender?: string,
-  Combo?: DivisionStatistics,
-  High?: DivisionStatistics,
-  Medium?: DivisionStatistics
-  Low?: DivisionStatistics
 };
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
@@ -131,35 +123,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
   
-  /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
-  const populateDivisionStatsCache = () => {
-    const getUrl = (inGender: string, inYear: string, inTier: string) => {
-      const subYear = inYear.substring(0, 4);
-      if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-        return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}`;
-      } else { //archived
-        return `/leaderboards/lineups/stats_all_${inGender}_${subYear}_${inTier}.json`;
-      }
-    }
-
-    const inGender = gameFilterParams.gender || ParamDefaults.defaultGender;
-    const inYear = gameFilterParams.year || ParamDefaults.defaultYear;
-    const fetchAll = [ "Combo", "High", "Medium", "Low" ].map((tier) => {
-      return fetch(getUrl(inGender, inYear, tier)).then((response: fetch.IsomorphicResponse) => {
-          return response.ok ? response.json() : Promise.resolve({});
-        });
-    });
-    Promise.all(fetchAll).then((jsons: any[]) => {
-      setDivisionStatsCache({
-        year: inYear, gender: inGender, //(so know when to refresh cache)
-        Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0],
-        High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
-        Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
-        Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
-      });
-    });
-  };
-
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
     if (showGrades) {
@@ -167,7 +130,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
         (gameFilterParams.gender != divisionStatsCache.gender) ||
         _.isEmpty(divisionStatsCache)) {
           if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-          populateDivisionStatsCache();
+          GradeTableUtils.populateDivisionStatsCache(gameFilterParams, setDivisionStatsCache);
         }
       }
   }, [ gameFilterParams, showGrades ]);

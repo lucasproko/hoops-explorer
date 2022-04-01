@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Lodash:
-import _ from "lodash";
+import _, { concat } from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,7 +21,7 @@ import Button from 'react-bootstrap/Button';
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink, faCheck, faPen, faFilter } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faCheck, faPen, faFilter, faTrash } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -36,25 +36,21 @@ import PlayerLeaderboardTable from "./PlayerLeaderboardTable";
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
 
 // Util imports
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
-import { PositionUtils } from "../utils/stats/PositionUtils";
 import { PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
-import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTrackingLists';
 import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
-import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
-import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
-import { StatModels, IndivStatSet, PureStatSet } from '../utils/StatModels';
-import { O_SYMLINK } from 'constants';
+import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { CbbColors } from '../utils/CbbColors';
 import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
+import { GradeUtils } from '../utils/stats/GradeUtils';
 
-export type PlayerLeaderboardStatsModel = {
+export type TeamEditorStatsModel = {
   players?: Array<any>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
@@ -64,7 +60,7 @@ export type PlayerLeaderboardStatsModel = {
 }
 type Props = {
   startingState: PlayerLeaderboardParams,
-  dataEvent: PlayerLeaderboardStatsModel,
+  dataEvent: TeamEditorStatsModel,
   onChangeState: (newParams: PlayerLeaderboardParams) => void
 }
 
@@ -142,12 +138,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   //TODO: put team editor specific things in here:
 
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  
+  // Events that trigger building or rebuilding the division stats cache
+  useEffect(() => {
+    const params = {
+      ...startingState,
+      year, gender
+    };
+
+    if ((params.year != divisionStatsCache.year) ||
+      (params.gender != divisionStatsCache.gender) ||
+      _.isEmpty(divisionStatsCache)) {
+        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+        GradeTableUtils.populateDivisionStatsCache(params, statsCache => {
+          setDivisionStatsCache(statsCache);
+        });
+      }
+  }, [ year, gender ]);
+
   const tableDef = {
     title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
     "sep0": GenericTableOps.addColSeparator(0.5),
 
     pos: GenericTableOps.addDataCol("Pos", "Positional class of player (algorithmically generated)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-    min_pct: GenericTableOps.addPctCol("Min%", "% of minutes played", CbbColors.alwaysWhite),
+    mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
     "sep0.6": GenericTableOps.addColSeparator(0.05), 
     ortg: GenericTableOps.addPtsCol("ORtg", "Offensive Rating, for 'Balacned' projections", CbbColors.varPicker(CbbColors.off_pp100)),
     usage: GenericTableOps.addPctCol("Usg", "Usage for `Balanced` projections", CbbColors.varPicker(CbbColors.usg_offDef)),
@@ -175,6 +190,44 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     edit: GenericTableOps.addDataCol("", "Edit the Optimistic/Balanced/Pessmistic projections for the player", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
     disable: GenericTableOps.addDataCol("", "Disable/re-enabled this player from the roster", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
   };
+  const gradeTableDef = {
+    title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
+    "sep0": GenericTableOps.addColSeparator(0.5),
+
+    pos: GenericTableOps.addDataCol("Pos", "Positional class of player (algorithmically generated)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+    mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
+    "sep0.6": GenericTableOps.addColSeparator(0.05), 
+    ortg: GenericTableOps.addPtsCol("ORtg", "Offensive Rating, for 'Balacned' projections", CbbColors.varPicker(CbbColors.off_pp100)),
+    usage: GenericTableOps.addPctCol("Usg", "Usage for `Balanced` projections", CbbColors.varPicker(CbbColors.usg_offDef)),
+    rebound: GenericTableOps.addPctCol("RB%", "% of available defensive rebounds made by this player ('Balanced' projection)", CbbColors.varPicker(CbbColors.p_def_OR)),
+    "sep1": GenericTableOps.addColSeparator(2),
+
+    good_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+    "sep1.5": GenericTableOps.addColSeparator(0.05),
+    good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+    good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
+    "sep2": GenericTableOps.addColSeparator(3),
+
+    ok_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
+      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+    "sep2.5": GenericTableOps.addColSeparator(0.05),
+    ok_off: GenericTableOps.addDataCol(
+      "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
+      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+    ok_def: GenericTableOps.addDataCol(
+      "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
+      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+    "sep3": GenericTableOps.addColSeparator(3),
+
+    bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+    "sep3.5": GenericTableOps.addColSeparator(0.05),
+    bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+    bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
+    "sep4": GenericTableOps.addColSeparator(2),
+
+    edit: GenericTableOps.addDataCol("", "Edit the Optimistic/Balanced/Pessmistic projections for the player", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+    disable: GenericTableOps.addDataCol("", "Disable/re-enabled this player from the roster", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+  };
 
   const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
 
@@ -187,18 +240,29 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const removedBasePlayerCodes: Record<string, boolean> = {};
 
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, (dataEvent.players || []), basePlayerCache, false, removedBasePlayerCodes
+      team, (dataEvent.players || []), basePlayerCache, false, removedBasePlayerCodes, dataEvent.transfers || {}
     );
 
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)); //TODO process this + get team results
-    const rosterTableData = playerSet.map(triple => {
-      const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
-      const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
-      const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
+
+    //TODO: get avgEff
+    const avgEff = 100.0;
+    const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
+
+    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff);
+    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, disabledPlayers, teamSosNet, avgEff);
+
+    const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
+    const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
+    const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
+
+    const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
+      const rosterInfo = triple.orig?.roster ?
+        `${triple.orig.roster?.height || "?-?"} ${TeamEditorUtils.getNextClass(triple.orig.roster?.year_class)}` : undefined;
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const tableEl = {
-        title: triple.orig.key,
-        min_pct: isFiltered ? undefined : { value: triple.ok.off_team_poss_pct?.value },
+        title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}<b>{triple.orig.key}</b></span>,
+        mpg: isFiltered ? undefined : { value: (triple.ok.off_team_poss_pct?.value || 0)*40 },
         ortg: triple.ok.off_rtg,
         usage: triple.ok.off_usage,
         rebound: isFiltered ? undefined : { value: triple.ok.def_orb?.value },
@@ -225,7 +289,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           } else {
             //TODO: remove player from roster
           }
-        }}><FontAwesomeIcon icon={faPen} /></Button>,
+        }}><FontAwesomeIcon icon={faTrash} /></Button>,
         disable: <Button variant="outline-secondary" size="sm" onClick={(ev:any) => {
           //(insta do this - the visual clue should be sufficient)
           const newDisabledPlayers = _.clone(disabledPlayers);
@@ -237,29 +301,99 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           setDisabledPlayers(newDisabledPlayers);
         }}><FontAwesomeIcon icon={faFilter} /></Button>,
       };
-      return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
-    }).concat(GenericTableOps.buildRowSeparator());
+      return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    };
+
+    const buildPosHeaderRow = (posName: string, pct: number) => GenericTableOps.buildSubHeaderRow(
+      [ 
+        [ <div/>, 9 ], 
+        [ <div/>, 4 ], [ <div/>, 1 ], [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], [ <div/>, 4 ], [ <div/>, 1 ], 
+        [ <div/>, 2 ]
+      ], "small text-center"
+    );
+
+    const rosterGuards = _.sortBy(playerSet.filter(triple => {
+      return (triple.orig.posClass == "PG") || (triple.orig.posClass == "s-PG") || (triple.orig.posClass == "CG");
+    }), triple => -1*(triple.ok.off_team_poss_pct?.value || 0));
+    const filteredRosterGuards = rosterGuards.filter(triple => !disabledPlayers[triple.key]);
+    const rosterGuardMins = _.sumBy(filteredRosterGuards, p => p.ok.off_team_poss_pct.value!)*0.2;
+    const rosterTableDataGuards = [ buildPosHeaderRow("Guards", rosterGuardMins) ].concat(rosterGuards.map(triple => {
+      return buildDataRowFromTriple(triple);
+    })).concat(GenericTableOps.buildRowSeparator());
+
+    const rosterWings = _.sortBy(playerSet.filter(triple => {
+      return (triple.orig.posClass == "WG") || (triple.orig.posClass == "WF") || (triple.orig.posClass == "G?");
+    }), triple =>  -1*(triple.ok.off_team_poss_pct?.value || 0));
+    const filteredRosterWings = rosterWings.filter(triple => !disabledPlayers[triple.key]);
+    const rosterWingMins = _.sumBy(filteredRosterWings, p => p.ok.off_team_poss_pct.value!)*0.2;
+    const rosterTableDataWings = [ buildPosHeaderRow("Wings", rosterWingMins) ].concat(rosterWings.map(triple => {
+      return buildDataRowFromTriple(triple);
+    })).concat(GenericTableOps.buildRowSeparator());
+
+    const rosterBigs = _.sortBy(playerSet.filter(triple => {
+      return (triple.orig.posClass == "S-PF") || (triple.orig.posClass == "PF/C") || (triple.orig.posClass == "C")
+              || (triple.orig.posClass == "F/C?");
+    }), triple =>  -1*(triple.ok.off_team_poss_pct?.value || 0));
+    const filteredRosterBigs = rosterBigs.filter(triple => !disabledPlayers[triple.key]);
+    const rosterBigMins = _.sumBy(filteredRosterBigs, p => p.ok.off_team_poss_pct.value!)*0.2;
+    const rosterTableDataBigs = [ buildPosHeaderRow("Bigs", rosterBigMins) ].concat(rosterBigs.map(triple => {
+      return buildDataRowFromTriple(triple);
+    })).concat(GenericTableOps.buildRowSeparator());
+
+    const rosterTableData = _.flatten([
+      rosterTableDataGuards,
+      rosterTableDataWings,
+      rosterTableDataBigs
+    ]);
+
+    const filteredPlayerSet = playerSet.filter(triple => !disabledPlayers[triple.key]);
+
+    const totalMins = _.sumBy(playerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
+    const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok") => {
+      const off = _.sumBy(triples, triple => {
+        return (triple[range].off_team_poss_pct.value || 0)*getOff(triple[range]);
+      });
+      const def = _.sumBy(triples, triple => {
+        return (triple[range].off_team_poss_pct.value || 0)*getDef(triple[range]);
+      });
+      const net = _.sumBy(triples, triple => {
+        return (triple[range].off_team_poss_pct.value || 0)*getNet(triple[range]);
+      });
+      return { off, def, net };
+    };
+    const teamTotals = buildTotals(filteredPlayerSet, "ok");
+    const buildRanges = (triples: GoodBadOkTriple[]) => {
+      //TODO: for good/bad, divide range by sqrt(5) to get a StdDev
+    };
+    const dummyTeamOk = {
+      off_net: { value: teamTotals.net },
+      off_adj_ppp: { value: teamTotals.off + avgEff },
+      def_adj_ppp: { value: teamTotals.def + avgEff },
+    };
+    const teamGradesOk = divisionStatsCache.Combo ?
+      GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamOk, [  "net", "adj_ppp" ], true) : {};
 
     const subHeaders = [ 
       GenericTableOps.buildSubHeaderRow(
         [ 
           [ <div/>, 9 ], 
           [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], [ <i>Balanced</i>, 4 ], [ <div/>, 1 ], [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
-          [ <div/>, 4 ]
+          [ <div/>, 2 ]
         ], "small text-center"
       ),
       GenericTableOps.buildDataRow({
-        title: <b>Team Totals</b>
+        title: <b>Team Totals</b>,
+        mpg: { value: totalMins*40 },
+        ok_net: { value: teamTotals.net },
+        ok_off: { value: teamTotals.off },
+        ok_def: { value: teamTotals.def },
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({
-        title: <b>Team Grades</b>
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
-      GenericTableOps.buildSubHeaderRow(
-        [ 
-          [ <div/>, 9 ], 
-          [ <div/>, 4 ], [ <div/>, 1 ], [ <div><b>Guards</b> (0%)</div>, 4 ], [ <div/>, 1 ], [ <div/>, 1 ], [ <div/>, 1 ], 
-        ], "small text-center"
-      ),
+        title: <b>Team Grades</b>,
+        ok_net: teamGradesOk.off_net,
+        ok_off: teamGradesOk.off_adj_ppp,
+        ok_def: teamGradesOk.def_adj_ppp,
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, gradeTableDef),
     ];
     //TODO: Add: Transfer | Generic | D1
 
@@ -273,7 +407,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       tableData={subHeaders.concat(rosterTableData)}
       cellTooltipMode={undefined}
     />;
-  }, [ dataEvent, year, team, otherPlayerCache, disabledPlayers ]);
+  }, [ dataEvent, year, team, otherPlayerCache, disabledPlayers, divisionStatsCache ]);
 
   const playerLeaderboard = React.useMemo(() => {
     return <PlayerLeaderboardTable
@@ -456,7 +590,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     </Row>
     <Row>
       <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-        <GenericCollapsibleCard minimizeMargin={true} title="Add New Player" helpLink={undefined} startClosed={true}>
+        <GenericCollapsibleCard minimizeMargin={true} title="Add New Player" helpLink={undefined} startClosed={false}>
           <Container>
             <Row>
               <Form.Group as={Col} xs="4" className="mt-2">
