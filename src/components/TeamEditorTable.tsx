@@ -91,7 +91,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ offSeasonMode, setOffSeasonMode ] = useState(_.isNil(startingState.offSeason) ? true : startingState.offSeason);
 
   /** Pre-calculate this */
-  const teamList = AvailableTeams.getTeams(null, year, gender);
+  const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : year, gender);
 
   // Handling various ways of uploading data
   const [ onlyTransfers, setOnlyTransfers ] = useState(true);
