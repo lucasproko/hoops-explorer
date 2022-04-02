@@ -698,11 +698,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 setTeam(teamYear[0]);
                 setYear(teamYear[1]);
                 setOtherPlayerCache({});
+                setDeletedPlayers({});
+                setDisabledPlayers({})
               }, (teamYear[0] != team) && (teamYear[1] != year));
             } else {
                friendlyChange(() => {
                 setTeam(selection);
                 setOtherPlayerCache({});
+                setOtherPlayerCache({});
+                setDeletedPlayers({});
+                setDisabledPlayers({})
                }, team != selection);
             }
           }}
