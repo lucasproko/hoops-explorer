@@ -61,6 +61,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
       position: "WF"
     },
   },
+  "Men_Maryland_2021/22": {
+    "Hart, Hakim": {
+      position: "WG"
+    },
+  },
   "Men_Michigan St._2020/21": {
     "Hauser, Joey": {
       position: "S-PF"

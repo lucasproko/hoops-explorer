@@ -251,7 +251,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
 
-  const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, boolean>);
+  const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
 
   const genderYearLookup = `${gender}_${year}`;
   const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
@@ -294,8 +294,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const rosterInfo = triple.orig?.roster ?
         `${triple.orig.roster?.height || "?-?"} ${TeamEditorUtils.getNextClass(triple.orig.roster?.year_class)}` : undefined;
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
+      const name = <b>{triple.orig.key}</b>;
+      const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
       const tableEl = {
-        title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}<b>{triple.orig.key}</b></span>,
+        title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{maybeTransferName}</span>,
         mpg: isFiltered ? undefined : { value: (triple.ok.off_team_poss_pct?.value || 0)*40 },
         ortg: triple.ok.off_rtg,
         usage: triple.ok.off_usage,
@@ -327,7 +329,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             }, true);
           } else {
             const newDeletedPlayers = _.clone(deletedPlayers);
-            newDeletedPlayers[triple.key] = true;
+            newDeletedPlayers[triple.key] = triple.orig.key;
             friendlyChange(() => {
               setDeletedPlayers(newDeletedPlayers);
               // Tidy up activity: remove from disabled players set
@@ -421,11 +423,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       return buildDataRowFromTriple(triple);
     })).concat(maybeBenchBig ? [ buildBenchDataRowFromTriple(maybeBenchBig) ] : []);
 
+    const addedTxfersStr = _.values(otherPlayerCache).map(p => p.orig.key).join(" / ");
+    const removedPlayerStr = _.values(deletedPlayers).join(" / ");
+
     const rosterTableData = _.flatten([
       rosterTableDataGuards,
       rosterTableDataWings,
       rosterTableDataBigs,
-      [ GenericTableOps.buildRowSeparator() ]
+      [ GenericTableOps.buildRowSeparator() ],
+      [ GenericTableOps.buildTextRow(
+        <i>Hypotheticals: <b>added</b> [{addedTxfersStr}], <b>removed</b> [{removedPlayerStr}]</i>
+        , "small"
+      ) ]
     ]);
 
     const filteredPlayerSet = playerSet.filter(triple => !disabledPlayers[triple.key])

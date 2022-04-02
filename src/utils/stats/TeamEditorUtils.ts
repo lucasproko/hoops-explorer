@@ -33,7 +33,7 @@ export class TeamEditorUtils {
    /** Pulls out the players from the designated team */
    static getBasePlayers(
       team: string, players: IndivStatSet[], cache: Record<string, GoodBadOkTriple>, 
-      includeSeniors: boolean, excludeSet: Record<string, boolean>, 
+      includeSeniors: boolean, excludeSet: Record<string, string>, 
       transfers: Record<string, Array<{f: string, t?: string}>>
    ): GoodBadOkTriple[] {
       const fromBaseRoster = _.transform(players, (acc, p) => {
