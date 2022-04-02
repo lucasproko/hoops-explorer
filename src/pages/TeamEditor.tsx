@@ -20,7 +20,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
+import { ParamPrefixes, PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamEditorTable, { TeamEditorStatsModel } from '../components/TeamEditorTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
@@ -70,7 +70,7 @@ const TeamEditorPage: NextPage<{}> = () => {
 
   // Game filter
 
-  function getRootUrl(params: PlayerLeaderboardParams) {
+  function getRootUrl(params: TeamEditorParams) {
     return UrlRouting.getTeamEditorUrl(params);
   }
 

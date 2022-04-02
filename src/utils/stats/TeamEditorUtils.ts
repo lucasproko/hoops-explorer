@@ -32,14 +32,15 @@ export class TeamEditorUtils {
 
    /** Pulls out the players from the designated team */
    static getBasePlayers(
-      team: string, players: IndivStatSet[], cache: Record<string, GoodBadOkTriple>, 
+      team: string, year: string, players: IndivStatSet[], cache: Record<string, GoodBadOkTriple>, 
       includeSeniors: boolean, excludeSet: Record<string, string>, 
       transfers: Record<string, Array<{f: string, t?: string}>>
    ): GoodBadOkTriple[] {
       const fromBaseRoster = _.transform(players, (acc, p) => {
-         const code = p.code || "";
+         const yearAdj = year == "All" ? p.year : ""; //(for building all star teams)
+         const code = (p.code || "") + yearAdj;
          const isTransfer = p.team != team;
-         const key = isTransfer ? `${p.code}:${p.team}:` : `${p.code}::`;
+         const key = isTransfer ? `${p.code}:${p.team}:${yearAdj}` : `${p.code}::${yearAdj}`;
          const transferringIn = _.some(transfers[code] || [], p => p.t == team);
          const notTransferringOut = ((p.team == team)                
                                        && (includeSeniors || (p.roster?.year_class != "Sr"))
@@ -64,7 +65,8 @@ export class TeamEditorUtils {
    /** Give players their year-on-year improvement */
    static calcAndInjectYearlyImprovement(
       roster: GoodBadOkTriple[], 
-      team: string, teamSosOff: number, teamSosDef: number, avgEff: number
+      team: string, teamSosOff: number, teamSosDef: number, avgEff: number,
+      offSeasonMode: boolean
    ) {
       const addToVal = (s: Statistic | undefined, toAdd: number): Statistic | undefined => {
          if (s && s.value) {
@@ -74,7 +76,7 @@ export class TeamEditorUtils {
          }
       }
       roster.forEach(p => {
-         const avgOffBump = 0.6; //(1.5 ORtg + 1 usage)
+         const avgOffBump = offSeasonMode ? 0.6 : 0; //(1.5 ORtg + 1 usage)
          const offClassMulti = (p.orig.roster?.year_class == "Fr") ? 2 : 1;
          const defSosDeltaForTxfers = teamSosDef - (p.orig.def_adj_opp?.value || (avgEff - 4));
          const isTransferringUpOff = ((p.orig.team != team) && (defSosDeltaForTxfers < -4));
@@ -98,7 +100,7 @@ export class TeamEditorUtils {
          p.bad.off_adj_rapm = addToVal((p.orig as PureStatSet).off_adj_rapm, -offTxferPenalty);
          p.bad.off_adj_rtg = addToVal((p.orig as PureStatSet).off_adj_rtg, -offTxferPenalty) || p.bad.off_adj_rtg;
 
-         const avgDefBump = -0.6; //(just make the same as the offensive bump, I don't believe there is any data)
+         const avgDefBump = offSeasonMode ? -0.6 : 0; //(just make the same as the offensive bump, I don't believe there is any data)
          const defClassMulti = (p.orig.roster?.year_class == "Fr") ? 2 : 0.5; //(I'm going to assert without evidence the Fr bump for defense is relatively bigger)
          const offSosDeltaForTxfers = teamSosOff - (p.orig.off_adj_opp?.value || (avgEff + 4));
          const isTransferringUpDef = ((p.orig.team != team) && (offSosDeltaForTxfers > 4));

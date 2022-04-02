@@ -41,7 +41,7 @@ import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableU
 // Util imports
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
-import { PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
+import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
@@ -61,9 +61,9 @@ export type TeamEditorStatsModel = {
   error?: string
 }
 type Props = {
-  startingState: PlayerLeaderboardParams,
+  startingState: TeamEditorParams,
   dataEvent: TeamEditorStatsModel,
-  onChangeState: (newParams: PlayerLeaderboardParams) => void
+  onChangeState: (newParams: TeamEditorParams) => void
 }
 
 // Functional component
@@ -86,12 +86,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
+
+  // Data source
+  const [ offSeasonMode, setOffSeasonMode ] = useState(_.isNil(startingState.offSeason) ? true : startingState.offSeason);
+
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
 
   // Handling various ways of uploading data
   const [ onlyTransfers, setOnlyTransfers ] = useState(true);
   const [ reloadData, setReloadData ] = useState(false);
+
+
 
   // Misc display
 
@@ -153,7 +159,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       (params.gender != divisionStatsCache.gender) ||
       _.isEmpty(divisionStatsCache)) {
         if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-        GradeTableUtils.populateDivisionStatsCache(params, statsCache => {
+        const updatedParams = (params.year == "All") ? {
+          ...params,
+          year: ParamDefaults.defaultLeaderboardYear
+        } : params;
+        GradeTableUtils.populateDivisionStatsCache(updatedParams, statsCache => {
           setDivisionStatsCache(statsCache);
         });
       }
@@ -262,14 +272,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const basePlayerCache: Record<string, GoodBadOkTriple> = {}; //TODO: currently unused
 
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, (dataEvent.players || []), basePlayerCache, false, deletedPlayers, dataEvent.transfers || {}
+      team, year, (dataEvent.players || []), basePlayerCache, !offSeasonMode, deletedPlayers, dataEvent.transfers || {}
     );
 
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)); //TODO process this + get team results
 
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
-    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff);
+    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, offSeasonMode);
     TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, teamSosNet, avgEff);
 
     const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
@@ -292,7 +302,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const rosterInfo = triple.orig?.roster ?
-        `${triple.orig.roster?.height || "?-?"} ${TeamEditorUtils.getNextClass(triple.orig.roster?.year_class)}` : undefined;
+        `${triple.orig.roster?.height || "?-?"} ${
+          offSeasonMode ? TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
+        }` : undefined;
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const name = <b>{triple.orig.key}</b>;
       const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;

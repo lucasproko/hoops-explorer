@@ -142,6 +142,16 @@ export type LineupLeaderboardParams = {
   t100?: boolean
 };
 
+export type TeamEditorParams = {
+  [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
+} & {
+  // Player editor settings:
+  deletedPlayers?: string, //;-separated list
+  disabledPlayers?: string,//;-separated list
+  addedPlayers?: string //;-seperated list
+  offSeason?: boolean //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
+};
+
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
