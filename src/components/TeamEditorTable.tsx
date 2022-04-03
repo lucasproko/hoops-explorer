@@ -52,6 +52,8 @@ import { GradeUtils } from '../utils/stats/GradeUtils';
 import { PositionUtils } from '../utils/stats/PositionUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
+// Input params/models
+
 export type TeamEditorStatsModel = {
   players?: Array<any>,
   confs?: Array<string>,
@@ -65,6 +67,96 @@ type Props = {
   dataEvent: TeamEditorStatsModel,
   onChangeState: (newParams: TeamEditorParams) => void
 }
+
+// Table definitions
+
+const tableDef = {
+  title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
+  "sep0": GenericTableOps.addColSeparator(0.5),
+
+  pos: GenericTableOps.addDataCol("Pos", "Positional class of player (algorithmically generated)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+  mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
+  "sep0.6": GenericTableOps.addColSeparator(0.05), 
+  ortg: GenericTableOps.addPtsCol("ORtg", 
+    "Offensive Rating, for 'Balanced' projections" + " (CURRENTLY: last season's numbers)", 
+    CbbColors.varPicker(CbbColors.off_pp100)),
+  usage: GenericTableOps.addPctCol("Usg", 
+    "Usage for `Balanced` projections" + " (CURRENTLY: last season's numbers)", 
+    CbbColors.varPicker(CbbColors.usg_offDef)),
+  rebound: GenericTableOps.addPctCol("RB%", 
+    "% of available defensive rebounds made by this player ('Balanced' projection)" + " (CURRENTLY: last season's numbers)", 
+    CbbColors.varPicker(CbbColors.p_def_OR)),
+
+  "sep1": GenericTableOps.addColSeparator(2),
+
+  good_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+  "sep1.5": GenericTableOps.addColSeparator(0.05),
+  good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+  good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
+  "sep2": GenericTableOps.addColSeparator(3),
+
+  ok_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+  "sep2.5": GenericTableOps.addColSeparator(0.05),
+  ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+  ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
+  "sep3": GenericTableOps.addColSeparator(3),
+
+  bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+  "sep3.5": GenericTableOps.addColSeparator(0.05),
+  bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+  bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
+  "sep4": GenericTableOps.addColSeparator(2),
+
+  edit: GenericTableOps.addDataCol("", "Edit the Optimistic/Balanced/Pessmistic projections for the player", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+  disable: GenericTableOps.addDataCol("", "Disable/re-enabled this player from the roster", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+};
+const teamTableDef = {
+  title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
+  mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
+
+  good_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+  good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+  good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
+
+  ok_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+  ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+  ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
+
+  bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+  bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+  bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
+}
+const gradeTableDef = {
+  title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
+
+  ok_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+  ok_off: GenericTableOps.addDataCol(
+    "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+  ok_def: GenericTableOps.addDataCol(
+    "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+
+  good_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+  good_off: GenericTableOps.addDataCol(
+    "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", 
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+  good_def: GenericTableOps.addDataCol(
+    "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", 
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+
+  bad_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+  bad_off: GenericTableOps.addDataCol(
+    "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", 
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+  bad_def: GenericTableOps.addDataCol(
+    "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", 
+    CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+
+};
 
 // Functional component
 
@@ -94,11 +186,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : year, gender);
 
   // Handling various ways of uploading data
-  const [ onlyTransfers, setOnlyTransfers ] = useState(true);
+  const [ onlyTransfers, setOnlyTransfers ] = useState(_.isNil(startingState.showOnlyTransfers) ? true : startingState.showOnlyTransfers);
+  const [ onlyThisYear, setOnlyThisYear ] = useState(_.isNil(startingState.showOnlyCurrentYear) ? true : startingState.showOnlyCurrentYear);
   const [ reloadData, setReloadData ] = useState(false);
 
+  // Core team editor state
 
+  //(the values passed in by URL pre-transform)
+  const [ otherPlayerCacheIn, setOtherPlayerCacheIn ] = useState((startingState.addedPlayers || "") as string | undefined);
+  const [ disabledPlayersIn, setDisabledPlayersIn ] = useState((startingState.disabledPlayers || "") as string | undefined);
+  const [ deletedPlayersIn, setDeletedPlayersIn ] = useState((startingState.deletedPlayers || "") as string | undefined);
 
+  const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
+  const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
+  const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
+
+  // (Grade builder)
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  
   // Misc display
 
   /** Set this to be true on expensive operations */
@@ -120,15 +225,25 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   });
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
+
     const newState = {
       ...startingState,
       gender: gender, year: year, team: team,
-      // Player filters/settings:
-      // Misc filters
-      // Misc display
+      // Editor specific settings for team editor itself
+      // there's some complexity here because we can't update this until we've used them to build the caches
+      addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
+      deletedPlayers: _.isNil(deletedPlayersIn) ? _.keys(deletedPlayers).join(";") : deletedPlayersIn,
+      disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
+      // Editor specific settings for transfer view
+      showOnlyTransfers: onlyTransfers,
+      showOnlyCurrentYear: onlyThisYear
     };
     onChangeState(newState);
-  }, [ year, gender, team ]);
+  }, [ 
+    year, gender, team,
+    onlyTransfers, onlyThisYear,
+    otherPlayerCache, disabledPlayers, deletedPlayers
+  ]);
 
   // 3] Utils
 
@@ -144,10 +259,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   /////////////////////////////////////
 
-  //TODO: put team editor specific things in here:
+  // Team Editor specifc logic
 
-  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
-  
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
     const params = {
@@ -169,111 +282,73 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
   }, [ year, gender ]);
 
-  const tableDef = {
-    title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
-    "sep0": GenericTableOps.addColSeparator(0.5),
-
-    pos: GenericTableOps.addDataCol("Pos", "Positional class of player (algorithmically generated)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-    mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
-    "sep0.6": GenericTableOps.addColSeparator(0.05), 
-    ortg: GenericTableOps.addPtsCol("ORtg", 
-      "Offensive Rating, for 'Balanced' projections" + " (CURRENTLY: last season's numbers)", 
-      CbbColors.varPicker(CbbColors.off_pp100)),
-    usage: GenericTableOps.addPctCol("Usg", 
-      "Usage for `Balanced` projections" + " (CURRENTLY: last season's numbers)", 
-      CbbColors.varPicker(CbbColors.usg_offDef)),
-    rebound: GenericTableOps.addPctCol("RB%", 
-      "% of available defensive rebounds made by this player ('Balanced' projection)" + " (CURRENTLY: last season's numbers)", 
-      CbbColors.varPicker(CbbColors.p_def_OR)),
-
-    "sep1": GenericTableOps.addColSeparator(2),
-
-    good_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    "sep1.5": GenericTableOps.addColSeparator(0.05),
-    good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
-    "sep2": GenericTableOps.addColSeparator(3),
-
-    ok_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    "sep2.5": GenericTableOps.addColSeparator(0.05),
-    ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
-    "sep3": GenericTableOps.addColSeparator(3),
-
-    bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    "sep3.5": GenericTableOps.addColSeparator(0.05),
-    bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),
-    "sep4": GenericTableOps.addColSeparator(2),
-
-    edit: GenericTableOps.addDataCol("", "Edit the Optimistic/Balanced/Pessmistic projections for the player", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-    disable: GenericTableOps.addDataCol("", "Disable/re-enabled this player from the roster", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-  };
-  const teamTableDef = {
-    title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
-    mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
-
-    good_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-    good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-    good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
-
-    ok_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-    ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-    ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
-
-    bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-    bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-    bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
-  }
-  const gradeTableDef = {
-    title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
-
-    ok_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-    ok_off: GenericTableOps.addDataCol(
-      "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-    ok_def: GenericTableOps.addDataCol(
-      "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-
-    good_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-    good_off: GenericTableOps.addDataCol(
-      "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", 
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-    good_def: GenericTableOps.addDataCol(
-      "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", 
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-
-    bad_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-    bad_off: GenericTableOps.addDataCol(
-      "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", 
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-    bad_def: GenericTableOps.addDataCol(
-      "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", 
-      CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
-
-  };
-
-  const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
-
-  const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
-
-  const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
+  // Processing
 
   const genderYearLookup = `${gender}_${year}`;
   const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
+  const buildPlayerToAdd = (p: IndivStatSet, key: string) => {
+    return {
+      key,
+      good: _.clone(p),
+      bad: _.clone(p),
+      ok: _.clone(p),
+      orig: p
+    };
+  };
+
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
-
-    const basePlayerCache: Record<string, GoodBadOkTriple> = {}; //TODO: currently unused
-
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), basePlayerCache, !offSeasonMode, deletedPlayers, dataEvent.transfers || {}
+      team, year, (dataEvent.players || []), {}, !offSeasonMode, deletedPlayers, dataEvent.transfers || {}
     );
+
+    // First time through ... Rebuild the state from the input params
+    if ((!_.isEmpty(dataEvent.players || [])) && (
+      //(first time only)
+      !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn)
+    )) {
+
+      const needToRebuildBasePlayers = 
+        (((startingState.deletedPlayers || "") != "") && _.isEmpty(deletedPlayers)) ||
+        (((startingState.addedPlayers || "") != "")  && _.isEmpty(otherPlayerCache)) ||
+        (((startingState.disabledPlayers || "") != "")  && _.isEmpty(disabledPlayers));
+
+      if (startingState.deletedPlayers && _.isEmpty(deletedPlayers)) {
+        const deletedPlayersSet = new Set(startingState.deletedPlayers.split(";"));
+        const firstDeletedPlayers = _.chain(basePlayers).filter(triple => deletedPlayersSet.has(triple.key)).map(triple => {
+          return [ triple.key, triple.orig.key ];
+        }).fromPairs().value();
+        setDeletedPlayers(firstDeletedPlayers); 
+      }
+      if (startingState.disabledPlayers && _.isEmpty(disabledPlayers)) {
+        const firstDisabledPlayers = _.chain(startingState.disabledPlayers.split(";")).map(key => {
+          return [ key, true];
+        }).fromPairs().value();
+        setDisabledPlayers(firstDisabledPlayers);
+      }
+      // This is the tricky one:
+      if (startingState.addedPlayers && _.isEmpty(otherPlayerCache)) {
+        const addedPlayersSet = new Set((startingState.addedPlayers || "").split(";"));
+        //TODO need to handle x-year players, eg what if someone adds a player from 2018/9 then unchecks "show all years"
+        //(maybe _always_ go 2 years back, just filter the dataset based on the slider)
+        // For now just handle this year:
+        const firstAddedPlayers = _.chain(dataEvent.players || []).flatMap(pl => {
+          const key = TeamEditorUtils.getKey(pl, team, year);
+          return addedPlayersSet.has(key) ? [ buildPlayerToAdd(pl, key) ] : [];
+        }).map(triple => [ triple.key, triple ]).fromPairs().value();
+        setOtherPlayerCache(firstAddedPlayers);
+      }
+
+      // Clear the startingState since we've now done this once per load
+      setDeletedPlayersIn(undefined);
+      setDisabledPlayersIn(undefined);
+      setOtherPlayerCacheIn(undefined);
+
+      if (needToRebuildBasePlayers) { //(will get called again with the right state because of the setXxx calls)
+        return <div></div>;
+      }
+    }
 
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)); //TODO process this + get team results
 
@@ -541,10 +616,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     ]);
     //TODO: Add: Transfer | Generic | D1
 
-    const trailers = [ 
-
-    ];
-
     return <GenericTable
       tableCopyId="rosterEditorTable"
       tableFields={tableDef}
@@ -569,13 +640,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       teamEditorMode={(p: IndivStatSet) => {
         const newOtherPlayerCache = _.clone(otherPlayerCache);
         const key = TeamEditorUtils.getKey(p, team, year);
-        newOtherPlayerCache[key] = {
-          key,
-          good: _.clone(p),
-          bad: _.clone(p),
-          ok: _.clone(p),
-          orig: p
-        };
+        newOtherPlayerCache[key] = buildPlayerToAdd(p, key);
         friendlyChange(() => {
           setOtherPlayerCache(newOtherPlayerCache);
         }, otherPlayerCache[key] == undefined);

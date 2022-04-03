@@ -41,13 +41,14 @@ export class TeamEditorUtils {
          const code = (p.code || "") + yearAdj;
          const isTransfer = p.team != team;
          const key = isTransfer ? `${p.code}:${p.team}:${yearAdj}` : `${p.code}::${yearAdj}`;
+         const isRightYear = year == "All" || (p.year == year);
          const transferringIn = _.some(transfers[code] || [], p => p.t == team);
          const notTransferringOut = ((p.team == team)                
                                        && (includeSeniors || (p.roster?.year_class != "Sr"))
                                           && !_.some(transfers[code] || [], p => p.f == team));
          const notOnExcludeList = !cache[code] && !excludeSet[key] && !acc.dups[code];
 
-         if ((transferringIn || notTransferringOut) && notOnExcludeList) {
+         if ((transferringIn || notTransferringOut) && notOnExcludeList && isRightYear) {
             acc.retVal = acc.retVal.concat([{
                key: key,
                good: _.clone(p),

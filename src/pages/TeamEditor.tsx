@@ -20,7 +20,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
+import { ParamPrefixes, TeamEditorParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamEditorTable, { TeamEditorStatsModel } from '../components/TeamEditorTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
@@ -74,11 +74,11 @@ const TeamEditorPage: NextPage<{}> = () => {
     return UrlRouting.getTeamEditorUrl(params);
   }
 
-  const [ playerLeaderboardParams, setPlayerLeaderboardParams ] = useState(
-    UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams
+  const [ teamEditorParams, setTeamEditorParams ] = useState(
+    UrlRouting.removedSavedKeys(allParams) as TeamEditorParams
   )
-  const playerLeaderboardParamsRef = useRef<PlayerLeaderboardParams>();
-  playerLeaderboardParamsRef.current = playerLeaderboardParams;
+  const teamEditorParamsRef = useRef<TeamEditorParams>();
+  teamEditorParamsRef.current = teamEditorParams;
 
   const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
     if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
@@ -88,13 +88,26 @@ const TeamEditorPage: NextPage<{}> = () => {
     }
   }
 
-  const onPlayerLeaderboardParamsChange = (rawParams: PlayerLeaderboardParams) => {
+  const onTeamEditorParamsChange = (rawParams: TeamEditorParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      (!rawParams.t100) ? [ 't100' ] : [],
+
+      // Team Editor params
+
+      (_.isNil(rawParams.showOnlyCurrentYear) || rawParams.showOnlyCurrentYear) ? [ 'showOnlyCurrentYear' ] : [],
+      (_.isNil(rawParams.showOnlyTransfers) || rawParams.showOnlyTransfers) ? [ 'showOnlyTransfers' ] : [],
+
+      (!rawParams.deletedPlayers) ? [ 'deletedPlayers' ] : [],
+      (!rawParams.disabledPlayers) ? [ 'disabledPlayers' ] : [],
+      (!rawParams.addedPlayers) ? [ 'addedPlayers' ] : [],
+
+      // "Add players from leaderboard" params
+      //TODO: these aren't plumbed in
+
+      (!rawParams.t100) ? [ 't100' ] : [], //(TODO these 2 don't work)
       (!rawParams.confOnly) ? [ 'confOnly' ] : [],
       (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.advancedFilter) ? [ 'advancedFilter' ] : [],
-      (!rawParams.conf) ? [ 'conf' ] : [],
+      (!rawParams.conf) ? [ 'conf' ] : [], //(unused now)
       (!rawParams.posClasses) ? [ 'posClasses' ] : [],
 
       (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],
@@ -110,7 +123,7 @@ const TeamEditorPage: NextPage<{}> = () => {
         _.isNil(rawParams.factorMins) ? ParamDefaults.defaultPlayerLboardFactorMins : rawParams.factorMins
       )) ? [ 'sortBy' ] : []
     ]));
-    if (!_.isEqual(params, playerLeaderboardParamsRef.current)) { //(to avoid recursion)
+    if (!_.isEqual(params, teamEditorParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -119,12 +132,12 @@ const TeamEditorPage: NextPage<{}> = () => {
       // (need to figure out how to detect inter-page)
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
-      setPlayerLeaderboardParams(params); // (to ensure the new params are included in links)
+      setTeamEditorParams(params); // (to ensure the new params are included in links)
     }
   }
 
   useEffect(() => { // Process data selection change
-    const paramObj = playerLeaderboardParams;
+    const paramObj = teamEditorParams;
     const dataSubEventKey = paramObj.t100 ?
       "t100" : (paramObj.confOnly ? "conf" : "all");
 
@@ -188,16 +201,16 @@ const TeamEditorPage: NextPage<{}> = () => {
         setDataSubEvent(dataEvent[dataSubEventKey]);
       }
     }
-  }, [ playerLeaderboardParams ]);
+  }, [ teamEditorParams ]);
 
   // View
 
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <TeamEditorTable
-      startingState={playerLeaderboardParamsRef.current || {}}
+      startingState={teamEditorParamsRef.current || {}}
       dataEvent={dataSubEvent}
-      onChangeState={onPlayerLeaderboardParamsChange}
+      onChangeState={onTeamEditorParamsChange}
     />
   }, [dataSubEvent]);
 
@@ -221,7 +234,7 @@ const TeamEditorPage: NextPage<{}> = () => {
     <Row className="mt-3">
       {table}
     </Row>
-    <Footer dateOverride={dataEvent.all?.lastUpdated} year={playerLeaderboardParams.year} gender={playerLeaderboardParams.gender} server={server}/>
+    <Footer dateOverride={dataEvent.all?.lastUpdated} year={teamEditorParams.year} gender={teamEditorParams.gender} server={server}/>
   </Container>;
 }
 export default TeamEditorPage;

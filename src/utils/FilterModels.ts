@@ -149,7 +149,10 @@ export type TeamEditorParams = {
   deletedPlayers?: string, //;-separated list
   disabledPlayers?: string,//;-separated list
   addedPlayers?: string //;-seperated list
-  offSeason?: boolean //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
+  offSeason?: boolean, //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
+    //^current not settable, just reads from URL
+  showOnlyTransfers?: boolean, //(defaults to true)
+  showOnlyCurrentYear?: boolean //(defaults to true)
 };
 
 export type PlayerLeaderboardParams = {
