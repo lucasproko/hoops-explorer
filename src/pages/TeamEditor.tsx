@@ -30,6 +30,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
+import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
 const TeamEditorPage: NextPage<{}> = () => {
 
@@ -80,14 +81,6 @@ const TeamEditorPage: NextPage<{}> = () => {
   const teamEditorParamsRef = useRef<TeamEditorParams>();
   teamEditorParamsRef.current = teamEditorParams;
 
-  const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-    if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-      return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
-    } else { //archived
-      return `/leaderboards/lineups/players_${oppo}_${gender}_${subYear}_${inTier}.json`;
-    }
-  }
-
   const onTeamEditorParamsChange = (rawParams: TeamEditorParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
 
@@ -136,102 +129,35 @@ const TeamEditorPage: NextPage<{}> = () => {
     }
   }
 
-  /** TODO: make this more extensible, but it somewhere nicer */
-  const getPrevYear = (y: string) => {
-    if (y == "2021/22") {
-      return "2020/21";
-    } else if (y == "2020/21") {
-      return "2019/20";
-    } else if (y == "2019/20") {
-      return "2018/9";
-    } else {
-      return undefined;
-    }
-  }
-  const getOffseasonOfYear = (y: string) => {
-    if (y == "2021/22") {
-      return "2022";
-    } else if (y == "2020/21") {
-      return "2021";
-    } else if (y == "2019/20") {
-      return "2020";
-    } else {
-      return undefined;
-    }
-  }
-
   useEffect(() => { // Process data selection change
     const paramObj = teamEditorParams;
-    const dataSubEventKey = paramObj.t100 ?
-      "t100" : (paramObj.confOnly ? "conf" : "all");
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const year = fullYear.substring(0, 4);
     const tier = (paramObj.tier || "All");
 
-    const lastYear = getPrevYear(fullYear); //always get last year if available TODO not for lboard page
-    const transferMode = `transferMode=${(getOffseasonOfYear(fullYear) || "").substring(0, 4)}`; //TODO (should be transferMode=true in PlayerLboard)
+    const transferModeStr = `transferMode=${(LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4)}`;
 
     if ((fullYear != currYear) || (gender != currGender) || (tier == currTier)) { // Only need to do this if the data source has changed
-      if ((year == "All") || (tier == "All") || lastYear) { //TODO: tidy this up
-        setDataEvent(dataEventInit); //(clear saved sub-events)
-        setCurrYear(fullYear);
-        setCurrGender(gender)
-        setCurrTier(tier);
+      setDataEvent(dataEventInit); //(clear saved sub-events)
+      setCurrYear(fullYear);
+      setCurrGender(gender)
+      setCurrTier(tier);
 
-        const years = _.filter([ "2018/9", "2019/20", "2020/21", "2021/22", "Extra" ], inYear => (year == "All") || (inYear == fullYear) || (inYear == lastYear));
-        const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
+      const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
+        "all", gender, fullYear, tier, transferModeStr, true
+      );
 
-        const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
-  
-        const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
-          const subYear = inYear.substring(0, 4);
-          return fetch(getUrl(dataSubEventKey, gender, subYear, inTier))
-            .then((response: fetch.IsomorphicResponse) => {
-              return response.ok ? 
-              response.json().then((j: any) => { //(tag the tier in)
-                if (tier == "All") j.tier = inTier;
-                return j;
-              }) : 
-              Promise.resolve({ error: "No data available" });
-            });
-        }).concat(
-          transferMode ? [
-            fetch(`/api/getTransfers?${transferMode.match(/transferMode=[0-9]+/) || ""}`).then((response: fetch.IsomorphicResponse) => {
-              return response.ok ? response.json() : Promise.resolve({})
-            })
-          ] : []
-        ));
-        fetchAll.then((jsonsIn: any[]) => {
-          const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
-          setDataSubEvent({
-            players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
-            confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-            transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<{f: string, t?: string}>>,
-            lastUpdated: 0 //TODO use max?
-          });
-        })
-      } else {
-        if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != fullYear) || (currGender != gender) || (currTier != tier)) {
-          const oldCurrYear = currYear;
-          const oldCurrGender = currGender;
-          setCurrYear(fullYear);
-          setCurrGender(gender);
-          setCurrTier(tier);
-          setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-          fetch(getUrl(dataSubEventKey, gender, year, tier))
-            .then((response: fetch.IsomorphicResponse) => {
-              return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
-                //(if year has changed then clear saved data events)
-                setDataEvent({ ...(oldCurrYear != year ? dataEventInit : dataEvent), [dataSubEventKey]: json });
-                setDataSubEvent(json);
-              });
-            });
-        } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
-          setDataSubEvent(dataEvent[dataSubEventKey]);
-        }
-      }
+      fetchAll.then((jsonsIn: any[]) => {
+        const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
+        setDataSubEvent({
+          players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
+          confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<{f: string, t?: string}>>,
+          lastUpdated: 0 //TODO use max?
+        });
+      });
     }
   }, [ teamEditorParams ]);
 

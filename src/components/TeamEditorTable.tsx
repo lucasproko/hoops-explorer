@@ -31,7 +31,7 @@ import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from './shared/AsyncFormControl';
 import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './shared/AdvancedFilterAutoSuggestText';
-import PlayerLeaderboardTable from "./PlayerLeaderboardTable";
+import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from "./PlayerLeaderboardTable";
 
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
@@ -51,6 +51,7 @@ import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { PositionUtils } from '../utils/stats/PositionUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
 // Input params/models
 
@@ -202,6 +203,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
   const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
 
+  // Controlling the player leaderboard table
+  const [ lboardAltDataSource, setLboardAltDataSource ] = useState(
+    undefined as PlayerLeaderboardStatsModel | undefined
+  );
+  const [ lboardParams, setLboardParams ] = useState(startingState as PlayerLeaderboardParams);
+
   // (Grade builder)
   const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
   
@@ -229,6 +236,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const newState = {
       ...startingState,
+      ...lboardParams,
       gender: gender, year: year, team: team,
       // Editor specific settings for team editor itself
       // there's some complexity here because we can't update this until we've used them to build the caches
@@ -243,7 +251,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear,
-    otherPlayerCache, disabledPlayers, deletedPlayers
+    otherPlayerCache, disabledPlayers, deletedPlayers,
+    lboardParams
   ]);
 
   // 3] Utils
@@ -626,6 +635,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   }, [ dataEvent, year, team, otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache ]);
 
   const playerLeaderboard = React.useMemo(() => {
+    setLboardParams(startingState);
     return <PlayerLeaderboardTable
       startingState={{
         ...startingState,
@@ -633,13 +643,39 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         tier: "All"
       }}
       dataEvent={reloadData ?
-        {} : {
-          ...dataEvent, 
-          players: onlyThisYear ? (dataEvent.players || []).filter(p => p.year == year) : dataEvent.players, 
-          transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers : undefined 
-        }
+        {} : 
+        (lboardAltDataSource ?
+          lboardAltDataSource :
+          {
+            ...dataEvent, 
+            players: onlyThisYear ? (dataEvent.players || []).filter(p => p.year == year) : dataEvent.players, 
+            transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers : undefined 
+          }
+        )
       }
-      onChangeState={() => null}
+      onChangeState={(newParams: PlayerLeaderboardParams) => {
+        const dataSubEventKey = newParams.t100 ?
+          "t100" : (newParams.confOnly ? "conf" : "all");
+
+        if (dataSubEventKey != "all") {
+          const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
+            dataSubEventKey, gender, year, "All", `transferMode=${LeaderboardUtils.getOffseasonOfYear(year)}`, true
+          );
+    
+          fetchAll.then((jsonsIn: any[]) => {
+            const jsons = _.dropRight(jsonsIn, 1);
+            setLboardAltDataSource({
+              players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
+              confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+              transfers: _.last(jsonsIn) as Record<string, Array<{f: string, t?: string}>>,
+              lastUpdated: 0 //TODO use max?
+            });
+          });
+        } else {
+          setLboardAltDataSource(undefined); //(use default)
+        }
+        setLboardParams(newParams);
+      }}
       teamEditorMode={(p: IndivStatSet) => {
         const newOtherPlayerCache = _.clone(otherPlayerCache);
         const key = TeamEditorUtils.getKey(p, team, year);
@@ -649,7 +685,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         }, otherPlayerCache[key] == undefined);
       }}
     />;
-  }, [ dataEvent, reloadData, team, year, otherPlayerCache, onlyTransfers, onlyThisYear ]);
+  }, [ dataEvent, reloadData, team, year, otherPlayerCache, onlyTransfers, onlyThisYear, setLboardAltDataSource ]);
 
   /////////////////////////////////////
 
@@ -736,6 +772,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               friendlyChange(() => {
                 setGender(newGender);
                 setOtherPlayerCache({});
+                setLboardAltDataSource(undefined);
               }, newGender != gender);
             }
           }}
@@ -754,6 +791,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               friendlyChange(() => {
                 setYear(newYear);
                 setOtherPlayerCache({});
+                setLboardAltDataSource(undefined);
               }, newYear != year);
             }
           }}
