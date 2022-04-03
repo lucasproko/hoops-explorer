@@ -427,7 +427,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             friendlyChange(() => {
               setOtherPlayerCache(newOtherPlayerCache);
               // Tidy up activity: remove from disabled players set
-              const newDisabledPlayers = togglePlayer(triple, disabledPlayers, false);
+              const newDisabledPlayers = togglePlayer(triple, disabledPlayers, true);
               if (newDisabledPlayers) {
                 setDisabledPlayers(newDisabledPlayers);
               }
@@ -438,7 +438,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             friendlyChange(() => {
               setDeletedPlayers(newDeletedPlayers);
               // Tidy up activity: remove from disabled players set
-              const newDisabledPlayers = togglePlayer(triple, disabledPlayers, false);
+              const newDisabledPlayers = togglePlayer(triple, disabledPlayers, true);
               if (newDisabledPlayers) {
                 setDisabledPlayers(newDisabledPlayers);
               }
