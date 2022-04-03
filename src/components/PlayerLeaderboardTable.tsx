@@ -203,7 +203,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ confs, setConfs ] = useState(startingState.conf || "");
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
-  const isMultiYr = (year == "Extra") || (year == "All");
+  const isMultiYr = teamEditorMode
+    ? (startingState.year == "All")
+    : (year == "Extra") || (year == "All");
 
   const [ tier, setTier ] = useState(startingState.tier || ParamDefaults.defaultTier);
 

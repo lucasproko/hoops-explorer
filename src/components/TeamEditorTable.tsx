@@ -189,6 +189,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ onlyTransfers, setOnlyTransfers ] = useState(_.isNil(startingState.showOnlyTransfers) ? true : startingState.showOnlyTransfers);
   const [ onlyThisYear, setOnlyThisYear ] = useState(_.isNil(startingState.showOnlyCurrentYear) ? true : startingState.showOnlyCurrentYear);
   const [ reloadData, setReloadData ] = useState(false);
+  const hasTransfers  = (gender == "Men") && (year >= "2019");
 
   // Core team editor state
 
@@ -628,12 +629,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return <PlayerLeaderboardTable
       startingState={{
         ...startingState,
+        year: onlyThisYear ? startingState.year : "All",
         tier: "All"
       }}
       dataEvent={reloadData ?
         {} : {
           ...dataEvent, 
-          transfers: (onlyTransfers && (year == ParamDefaults.defaultLeaderboardYear)) ? dataEvent.transfers : undefined 
+          players: onlyThisYear ? (dataEvent.players || []).filter(p => p.year == year) : dataEvent.players, 
+          transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers : undefined 
         }
       }
       onChangeState={() => null}
@@ -646,7 +649,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         }, otherPlayerCache[key] == undefined);
       }}
     />;
-  }, [ dataEvent, reloadData, team, year, otherPlayerCache ]);
+  }, [ dataEvent, reloadData, team, year, otherPlayerCache, onlyTransfers, onlyThisYear ]);
 
   /////////////////////////////////////
 
@@ -811,9 +814,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           <Container>
             <Row>
               <Form.Group as={Col} xs="4" className="mt-2">
-                <Form.Check type="switch" disabled={year != ParamDefaults.defaultLeaderboardYear}
+                <Form.Check type="switch" disabled={!hasTransfers}
                   id="onlyTransfers"
-                  checked={onlyTransfers && (year == ParamDefaults.defaultLeaderboardYear)}
+                  checked={onlyTransfers && hasTransfers}
                   onChange={() => {
                     setTimeout(() => {
                       setReloadData(true);
@@ -828,6 +831,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               </Form.Group>
               <Form.Group as={Col} xs="1" className="mt-2"/>
               <Form.Group as={Col} xs="4" className="mt-2">
+                <Form.Check type="switch" disabled={false}
+                  id="onlyThisYear"
+                  checked={onlyThisYear}
+                  onChange={() => {
+                    setTimeout(() => {
+                      setReloadData(true);
+                      setOnlyThisYear(!onlyThisYear);
+                      setTimeout(() => {
+                        setReloadData(false);
+                      }, 100);
+                    }, 250);
+                  }}
+                  label="Only show this season"
+                />
               </Form.Group>
             </Row>
             <Row>
