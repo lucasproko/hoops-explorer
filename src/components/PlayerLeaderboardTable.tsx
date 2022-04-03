@@ -1125,7 +1125,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Statistics always adjusted for luck",
               toggled: true,
               onClick: () => {}
-            },
+            }].concat(teamEditorMode ? [] : [ //TODO - for now block T100/conf because unclear how to store the state
             {
               label: "T100",
               tooltip: "Leaderboard of players vs T100 opposition",
@@ -1137,7 +1137,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Leaderboard of players vs conference opposition",
               toggled: isConfOnly,
               onClick: () => friendlyChange(() => { setIsT100(false); setIsConfOnly(!isConfOnly); }, true)
-            },
+            }]).concat([
             {
               label: "Poss%",
               tooltip: possAsPct ? "Show possessions as count" : "Show possessions as percentage",
@@ -1162,7 +1162,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               toggled: showInfoSubHeader,
               onClick: () => setShowInfoSubHeader(!showInfoSubHeader)
             },
-          ] as Array<any>).concat(showHelp ? [
+          ]) as Array<any>).concat(showHelp ? [
             //TODO: what to show here?
             // {
             //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,

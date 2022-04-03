@@ -319,6 +319,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn)
     )) {
 
+      //TODO: there is a bug here in that if I go fetch the T100 or CONF versions of a player
+      // then on page reload it will go get the original versions
+      // (note converse is not true because my dataset is always the old one)
+      // Options:
+      // 1] mark T100/conf players in the key and then go fetch the data from those :(
+      // 2] I guess store the stats in the URL :( :(
+      // Block use of T100/conf for now <-- this is what I've gone with
+
       const needToRebuildBasePlayers = 
         (((startingState.deletedPlayers || "") != "") && _.isEmpty(deletedPlayers)) ||
         (((startingState.addedPlayers || "") != "")  && _.isEmpty(otherPlayerCache)) ||
