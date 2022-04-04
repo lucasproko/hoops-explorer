@@ -405,6 +405,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, offSeasonMode);
     TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, teamSosNet, avgEff);
 
+    //TODO:
+    //TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
+
     const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
     const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
     const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
