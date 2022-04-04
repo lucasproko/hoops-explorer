@@ -1,5 +1,6 @@
 
 import _ from "lodash";
+import TeamReportFilter from "../../components/TeamReportFilter";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 
@@ -8,7 +9,12 @@ export type GoodBadOkTriple = {
    good: IndivStatSet,
    ok: IndivStatSet,
    bad: IndivStatSet,
-   orig: IndivStatSet
+   orig: IndivStatSet,
+   prevYear?: IndivStatSet,
+   diag?: {
+      off: { good: Record<string, number>, ok: Record<string, number>, bad: Record<string, number>, }
+      def: { good: Record<string, number>, ok: Record<string, number>, bad: Record<string, number>, }
+   }
 };
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -17,13 +23,13 @@ export class TeamEditorUtils {
    /** Key for storing enough info to rebuild roster from source */
    static getKey(p: IndivStatSet, currTeam: string, currYear: string): string {
       if ((currTeam == p.team) && (currYear == p.year)) {
-      return `${p.code}::`;
+         return `${p.code}::`;
       } else if (currTeam == p.team) {
-      return `${p.code}::${p.year}`;
+         return `${p.code}::${p.year}`;
       } else if (currYear == p.year) {
-      return `${p.code}:${p.team}:`;
+         return `${p.code}:${p.team}:`;
       } else {
-      return `${p.code}:${p.team}:${p.year}`;
+         return `${p.code}:${p.team}:${p.year}`;
       }
    };
 
@@ -32,7 +38,7 @@ export class TeamEditorUtils {
 
    /** Pulls out the players from the designated team */
    static getBasePlayers(
-      team: string, year: string, players: IndivStatSet[], cache: Record<string, GoodBadOkTriple>, 
+      team: string, year: string, players: IndivStatSet[], 
       includeSeniors: boolean, excludeSet: Record<string, string>, 
       transfers: Record<string, Array<{f: string, t?: string}>>
    ): GoodBadOkTriple[] {
@@ -46,21 +52,27 @@ export class TeamEditorUtils {
          const notTransferringOut = ((p.team == team)                
                                        && (includeSeniors || (p.roster?.year_class != "Sr"))
                                           && !_.some(transfers[code] || [], p => p.f == team));
-         const notOnExcludeList = !cache[code] && !excludeSet[key] && !acc.dups[code];
+         const notOnExcludeList = !excludeSet[key];
 
-         if ((transferringIn || notTransferringOut) && notOnExcludeList && isRightYear) {
-            acc.retVal = acc.retVal.concat([{
-               key: key,
-               good: _.clone(p),
-               ok: _.clone(p),
-               bad: _.clone(p),
-               orig: p
-            }]);
-            acc.dups[code] = true; //(use key not code because of possibility that player with same code has transferred in)
+         if ((transferringIn || notTransferringOut) && notOnExcludeList) {
+            if (isRightYear && !acc.dups[code]) {
+               acc.retVal = acc.retVal.concat([{
+                  key: key,
+                  good: _.clone(p),
+                  ok: _.clone(p),
+                  bad: _.clone(p),
+                  orig: p
+               }]);
+               acc.dups[code] = true; //(use key not code because of possibility that player with same code has transferred in)
+            } else if (!isRightYear) { //(must be previous year)     
+               acc.prevYears[key] = p;
+            }
          }
-      }, { retVal: [] as GoodBadOkTriple[], dups:  {} as Record<string, boolean> });
+      }, { retVal: [] as GoodBadOkTriple[], dups:  {} as Record<string, boolean>, prevYears: {} as Record<string, IndivStatSet> });
 
-      return fromBaseRoster.retVal.concat(_.values(cache));
+      return fromBaseRoster.retVal.map(triple => {
+         return { ...triple, prevYear: fromBaseRoster.prevYears[triple.key]};
+      });
    }
 
    /** Give players their year-on-year improvement */
@@ -71,30 +83,35 @@ export class TeamEditorUtils {
    ) {
       const addToVal = (s: Statistic | undefined, toAdd: number): Statistic | undefined => {
          if (s && !_.isNil(s.value)) {
-            return { value: s.value + toAdd };
+            return { 
+               value: s.value + toAdd,
+               old_value: _.isNil(s.old_value) ? undefined : s.old_value + toAdd
+            };
          } else {
             return undefined;
          }
       };
       roster.forEach(p => {
+         const isFr = (p.orig.roster?.year_class == "Fr") && _.isNil(p.prevYear); //(filter out "fake Freshmen")
+
          const avgOffBump = offSeasonMode ? 0.6 : 0; //(1.5 ORtg + 1 usage - the bump for staying in the same team)
-         const offClassMulti = (p.orig.roster?.year_class == "Fr") ? 2 : 1;
+         const offClassMulti = isFr ? 2 : 1;
 
          const defSosDeltaForTxfers = teamSosDef - (p.orig.def_adj_opp?.value || (avgEff - 4));
          const isTransferringUpOff = ((p.orig.team != team) && (defSosDeltaForTxfers < -4));
          const offTxferUpPenalty = //(specific to transferring up as a shorter player)
-            isTransferringUpOff ? TeamEditorUtils.calcTxferUpHeightEffDrop(p) : 0;
+            isTransferringUpOff ? -TeamEditorUtils.calcTxferUpHeightEffDrop(p) : 0;
 
          const generalTxferOffPenalty = (p.orig.team != team) ? avgOffBump : 0; //(just the fact that you might not get quite the same off-season bump as a transfer)
 
          // Adj delta assumes the usage goes to good use, then RAPM adjusts off that. But maybe with a new team, the RAPM will
          const rapmVsAdjOffDelta = 0.5*(((p.orig as PureStatSet).off_adj_rapm?.value || 0) - (p.orig.off_adj_rtg?.value || 0));
-         const rapmVsAdjOffDeltaGood = rapmVsAdjOffDelta < 0 ? Math.abs(rapmVsAdjOffDelta) : 0; 
+         const rapmVsAdjOffDeltaGoodBonus = rapmVsAdjOffDelta < 0 ? Math.abs(rapmVsAdjOffDelta) : 0; 
             //if they under-performed their rating then optimistically maybe on this team they will under-perform less
-         const rapmVsAdjOffDeltaBad = rapmVsAdjOffDelta > 0 ? -Math.abs(rapmVsAdjOffDelta) : 0;
+         const rapmVsAdjOffDeltaBadPenalty = rapmVsAdjOffDelta > 0 ? Math.abs(rapmVsAdjOffDelta) : 0;
             //if they over-performed their rating then optimistically maybe on this team they will out-perform less
 
-         const goodOffAdj = 2*offClassMulti*avgOffBump - 0.5*offTxferUpPenalty + rapmVsAdjOffDeltaGood;
+         const goodOffAdj = 2*offClassMulti*avgOffBump - 0.5*offTxferUpPenalty + rapmVsAdjOffDeltaGoodBonus;
          p.good.off_adj_rtg = addToVal((p.orig as PureStatSet).off_adj_rtg, goodOffAdj)!;
          p.good.off_adj_rapm = addToVal((p.orig as PureStatSet).off_adj_rapm, goodOffAdj);
 
@@ -102,12 +119,12 @@ export class TeamEditorUtils {
          p.ok.off_adj_rtg = addToVal((p.orig as PureStatSet).off_adj_rtg, okOffAdj)!;
          p.ok.off_adj_rapm = addToVal((p.orig as PureStatSet).off_adj_rapm, okOffAdj);
 
-         const badOffAdj = -offTxferUpPenalty - generalTxferOffPenalty + rapmVsAdjOffDeltaBad;
+         const badOffAdj = -offTxferUpPenalty - generalTxferOffPenalty - rapmVsAdjOffDeltaBadPenalty;
          p.bad.off_adj_rtg = addToVal((p.orig as PureStatSet).off_adj_rtg, badOffAdj)!;
          p.bad.off_adj_rapm = addToVal((p.orig as PureStatSet).off_adj_rapm, badOffAdj);
 
          const avgDefBump = offSeasonMode ? -0.6 : 0; //(just make the same as the offensive bump, I don't believe there is any data)
-         const defClassMulti = (p.orig.roster?.year_class == "Fr") ? 2 : 0.5; //(I'm going to assert without evidence the Fr bump for defense is relatively bigger)
+         const defClassMulti = isFr ? 2 : 0.5; //(I'm going to assert without evidence the Fr bump for defense is relatively bigger)
 
          const offSosDeltaForTxfers = teamSosOff - (p.orig.off_adj_opp?.value || (avgEff + 4));
          const isTransferringUpDef = ((p.orig.team != team) && (offSosDeltaForTxfers > 4));
@@ -118,7 +135,7 @@ export class TeamEditorUtils {
          const defTxferUpPenalty =
             isTransferringUpDef ? TeamEditorUtils.calcTxferUpHeightEffDrop(p) : 0;
 
-         const defTxferMulti = (p.orig.roster?.year_class == "Fr") ? 1 : 0.5; //(you get a bigger jump as a Fr, see defClassMulti)
+         const defTxferMulti = isFr ? 1 : 0.5; //(you get a bigger jump as a Fr, see defClassMulti)
          const generalTxferDefPenalty = (p.orig.team != team) ? defTxferMulti*avgDefBump : 0; //(just the fact that you might not get quite the same off-season bump as a transfer)
 
          const goodDefAdj = 2*defClassMulti*avgDefBump + defTxferUpBetterHelpBump - 0.5*defTxferUpPenalty;
@@ -132,9 +149,106 @@ export class TeamEditorUtils {
          const badDefAdj = -defTxferUpPenalty - generalTxferDefPenalty;
          p.bad.def_adj_rtg = addToVal((p.orig as PureStatSet).def_adj_rtg, badDefAdj)!;
          p.bad.def_adj_rapm = addToVal((p.orig as PureStatSet).def_adj_rapm, badDefAdj);
+
+         const tidy = (inJson: Record<string, number>) => {
+            const keys = _.keys(inJson);
+            keys.forEach(key => {
+               if (!inJson[key]) delete inJson[key];
+            });
+            return inJson;
+         };
+         p.diag = {
+            off: {
+               good: tidy({
+                  [isFr ? "Fr->Soph bonus" : "Small year-on-year bonus" ]: 2*offClassMulti*avgOffBump,
+                  "Undersized transfer penalty": -0.5*offTxferUpPenalty,
+                  "Player gravity bonus": rapmVsAdjOffDeltaGoodBonus
+               }), 
+               ok: tidy({
+                  [isFr ? "Fr->Soph bonus" : "Small year-on-year bonus" ]: offClassMulti*avgOffBump,
+                  "Undersized transfer penalty": -0.75*offTxferUpPenalty,
+                  "General transfer penalty": -0.5*generalTxferOffPenalty,
+               }),
+               bad: tidy({
+                  "Undersized transfer penalty": -offTxferUpPenalty,
+                  "General transfer penalty": -generalTxferOffPenalty,
+                  "Player gravity penalty": -rapmVsAdjOffDeltaBadPenalty
+               })
+            },
+            def: {
+               good: tidy({
+                  [isFr ? "Fr->Soph bonus" : "Small year-on-year bonus" ]: 2*defClassMulti*avgDefBump,
+                  "Better help defense bonus": defTxferUpBetterHelpBump,
+                  "Undersized transfer penalty": -0.5*defTxferUpPenalty,
+               }),
+               ok: tidy({
+                  [isFr ? "Fr->Soph bonus" : "Small year-on-year bonus" ]: defClassMulti*avgDefBump,
+                  "Better help defense bonus": 0.5*defTxferUpBetterHelpBump,
+                  "Undersized transfer penalty": -0.75*defTxferUpPenalty,
+                  "General transfer penalty": -0.5*generalTxferDefPenalty,
+               }),
+               bad: tidy({
+                  "Undersized transfer penalty": -defTxferUpPenalty,
+                  "General transfer penalty": -generalTxferDefPenalty,
+               })
+            }
+         };
       });
+      //TODO: regress player toward 4/3 + 1 vs prev year if Jr or Sr
 
       //TODO: turn the adjustment into an ORtg/usage delta for "OK" tier
+   }
+
+   /** More advanced calculations that require the minutes adjustments */
+   static calcAdvancedAdjustments(
+      roster: GoodBadOkTriple[], 
+      team: string, year: string, disabledPlayers: Record<string, boolean>,
+   ) {
+      const addToVal = (s: Statistic | undefined, toAdd: number): Statistic | undefined => {
+         if (s && !_.isNil(s.value)) {
+            return { 
+               value: s.value + toAdd,
+               old_value: _.isNil(s.old_value) ? undefined : s.old_value + toAdd
+            };
+         } else {
+            return undefined;
+         }
+      };
+      // Team defense adjustments ... approx 3/10ths of defense is help defense not involving the player
+      // so we'll average that out, but allow players to keep their individual impact, which we'll define as the delta
+      // between def_rapm and def_adj_rtg.old_value (very approximate!)
+   
+      const adjustProjection = (proj: "good" | "bad" | "ok") => {
+         const avDefense = 0.2*_.sumBy(roster, p => {
+            const defToUse = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
+               p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
+            );
+            return defToUse*(p[proj].def_team_poss_pct?.value || 0);
+         });
+         roster.forEach(p => {
+            const defense = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
+               p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
+            );
+            const indivAdj = defense - ((_.isNil(p[proj].def_adj_rtg?.old_value) ? 
+               p[proj].def_adj_rtg?.old_value : p[proj].def_adj_rtg?.value) || 0
+            );
+            const adjDefense = 0.7*(defense - indivAdj) + 0.3*avDefense + indivAdj;
+            const defAdjustment = adjDefense - defense;
+            p[proj].def_adj_rtg = addToVal((p[proj] as PureStatSet).def_adj_rtg, defAdjustment)!;
+            p[proj].def_adj_rapm = addToVal((p[proj] as PureStatSet).def_adj_rapm, defAdjustment); 
+
+            if (p.diag) {
+               p.diag.def[proj]["Share team defense"] = defAdjustment;
+            }
+         });
+      };
+      adjustProjection("good");
+      adjustProjection("ok");
+      adjustProjection("bad");
+
+      //TODO: more advanced
+      // 1] if >0.90 of transfer minutes then have a penatly of 0.5/0.5 -> 1.0/1.0 divided across all the players
+      // 2] need playmaking (some % of usage>25 or assist>22) else reduce secondary playmakers' offense
    }
 
    /** Calculate minutes assignment, mutates roster */
@@ -438,5 +552,26 @@ export class TeamEditorUtils {
       return getBenchLevel();
    }
    
+   /** To regress Fr players we'll move them in this direction */
+   static getAvgProduction(team: string, year: string) {
+      const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
+      const getAvgLevel = () => {
+         if (level.category == "high") {
+            return 2.5;            
+         } else if (level.category == "midhigh") {
+            return 1.5;
+         } else if (level.category == "mid") {
+            return 0;
+         } else if (level.category == "midlow") {
+            return -1;
+         } else if (level.category == "midlow") {
+            return -2.5;
+         } else { //unknown
+            return 0;
+         } 
+      }
+      return getAvgLevel();
+   }
+
    //TODO: also need to handle in-season mins (ie for "what if player goes down" type questions)
 }

@@ -159,6 +159,21 @@ const gradeTableDef = {
 
 };
 
+/** Handy util for reducing  */
+const reduceNumberSize = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const rawNumStr = "" + v;
+    const numStr = v.toFixed(2);
+    if (numStr.length >= rawNumStr.length) { //made it worse
+      return v;
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
+
 // Functional component
 
 const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
@@ -173,6 +188,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
 
   // 2] State
+  const [ debugMode, setDebugMode ] = useState(false);
 
   // Data source
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
@@ -297,20 +313,25 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const genderYearLookup = `${gender}_${year}`;
   const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  const buildPlayerToAdd = (p: IndivStatSet, key: string) => {
-    return {
+  const buildPlayerToAdd = (p: IndivStatSet, key: string, prevYearPlayers: IndivStatSet[]) => {
+    const retVal: GoodBadOkTriple = {
       key,
       good: _.clone(p),
       bad: _.clone(p),
       ok: _.clone(p),
-      orig: p
+      orig: p,
+      prevYear: (year == "All") ? 
+        undefined : 
+        _.find(prevYearPlayers, p => (year != p.year) && (TeamEditorUtils.getKey(p, team, p.year || year) == key))
+          //(basically if the year isn't the right year I'm assuming it's the previous year - using "p.year" means no year wil be in key)
     };
+    return retVal;
   };
 
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), {}, !offSeasonMode, deletedPlayers, dataEvent.transfers || {}
+      team, year, (dataEvent.players || []), !offSeasonMode, deletedPlayers, dataEvent.transfers || {}
     );
 
     // First time through ... Rebuild the state from the input params
@@ -347,14 +368,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
       // This is the tricky one:
       if (startingState.addedPlayers && _.isEmpty(otherPlayerCache)) {
+
         const addedPlayersSet = new Set((startingState.addedPlayers || "").split(";"));
         //TODO need to handle x-year players, eg what if someone adds a player from 2018/9 then unchecks "show all years"
         //(maybe _always_ go 2 years back, just filter the dataset based on the slider)
         // For now just handle this year:
-        const firstAddedPlayers = _.chain(dataEvent.players || []).flatMap(pl => {
-          const key = TeamEditorUtils.getKey(pl, team, year);
-          return addedPlayersSet.has(key) ? [ buildPlayerToAdd(pl, key) ] : [];
+        const maybeMatchingPlayers = (dataEvent.players || []).filter(p => {
+          //(first pass just get a subset for all seasons)
+          const key1 = TeamEditorUtils.getKey(p, team, year); //(ie check possibly 2 years' worth of data)
+          const key2 = TeamEditorUtils.getKey(p, team, p.year); //(this one is guaranteed to have no year in code)
+          return addedPlayersSet.has(key1) || addedPlayersSet.has(key2);
+        });
+        const firstAddedPlayers = _.chain(maybeMatchingPlayers).flatMap(p => {
+          const key = TeamEditorUtils.getKey(p, team, year);
+          return addedPlayersSet.has(key) ? [ buildPlayerToAdd(p, key, maybeMatchingPlayers) ] : [];
+            //(passing in maybeMatchingPlayers also gives the prev year)
         }).map(triple => [ triple.key, triple ]).fromPairs().value();
+
         setOtherPlayerCache(firstAddedPlayers);
       }
 
@@ -453,7 +483,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           }
         }}><FontAwesomeIcon icon={faFilter} /></Button>,
       };
-      return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+      return [ GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ].concat(
+        debugMode ? [ 
+          GenericTableOps.buildTextRow(
+            JSON.stringify(triple.diag, reduceNumberSize), "small"
+          )
+        ] : []
+      )
     };
     const buildBenchDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const isFiltered = false; //(never possible to filter bench minutes)
@@ -518,13 +554,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Now, finally, can build display:
 
-    const rosterTableDataGuards = [ buildPosHeaderRow("Guards", rosterGuardMins) ].concat(rosterGuards.map(triple => {
+    const rosterTableDataGuards = [ buildPosHeaderRow("Guards", rosterGuardMins) ].concat(_.flatMap(rosterGuards, triple => {
       return buildDataRowFromTriple(triple);
     })).concat(maybeBenchGuard ? [ buildBenchDataRowFromTriple(maybeBenchGuard) ] : []);
-    const rosterTableDataWings = [ buildPosHeaderRow("Wings", rosterWingMins) ].concat(rosterWings.map(triple => {
+    const rosterTableDataWings = [ buildPosHeaderRow("Wings", rosterWingMins) ].concat(_.flatMap(rosterWings, triple => {
       return buildDataRowFromTriple(triple);
     })).concat(maybeBenchWing ? [ buildBenchDataRowFromTriple(maybeBenchWing) ] : []);
-    const rosterTableDataBigs = [ buildPosHeaderRow("Bigs", rosterBigMins) ].concat(rosterBigs.map(triple => {
+    const rosterTableDataBigs = [ buildPosHeaderRow("Bigs", rosterBigMins) ].concat(_.flatMap(rosterBigs, triple => {
       return buildDataRowFromTriple(triple);
     })).concat(maybeBenchBig ? [ buildBenchDataRowFromTriple(maybeBenchBig) ] : []);
 
@@ -640,7 +676,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       tableData={subHeaders.concat(rosterTableData)}
       cellTooltipMode={undefined}
     />;
-  }, [ dataEvent, year, team, otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache ]);
+  }, [ dataEvent, year, team, otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache, debugMode ]);
 
   const playerLeaderboard = React.useMemo(() => {
     setLboardParams(startingState);
@@ -666,6 +702,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           "t100" : (newParams.confOnly ? "conf" : "all");
 
         if (dataSubEventKey != "all") {
+          //TODO: not supporting this correctly right now because not guaranteed to have players in memory
+          //so might not be able to reconstruct fro the keys
           const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
             dataSubEventKey, gender, year, "All", `transferMode=${LeaderboardUtils.getOffseasonOfYear(year)}`, true
           );
@@ -687,7 +725,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       teamEditorMode={(p: IndivStatSet) => {
         const newOtherPlayerCache = _.clone(otherPlayerCache);
         const key = TeamEditorUtils.getKey(p, team, year);
-        newOtherPlayerCache[key] = buildPlayerToAdd(p, key);
+        newOtherPlayerCache[key] = buildPlayerToAdd(p, key, dataEvent.players || []);
         friendlyChange(() => {
           setOtherPlayerCache(newOtherPlayerCache);
         }, otherPlayerCache[key] == undefined);
@@ -842,6 +880,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       <Col lg={1} className="mt-1">
         {getCopyLinkButton()}
       </Col>
+      <Form.Group as={Col} sm="1">
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+              text={"Debug/Diagnostic mode"}
+              truthVal={debugMode}
+              onSelect={() => friendlyChange(() => setDebugMode(!debugMode), true)}
+            />
+        </GenericTogglingMenu>
+      </Form.Group>
     </Form.Group>
     <Row className="mt-2">
       <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
