@@ -88,6 +88,7 @@ const TeamEditorPage: NextPage<{}> = () => {
 
       (_.isNil(rawParams.showOnlyCurrentYear) || rawParams.showOnlyCurrentYear) ? [ 'showOnlyCurrentYear' ] : [],
       (_.isNil(rawParams.showOnlyTransfers) || rawParams.showOnlyTransfers) ? [ 'showOnlyTransfers' ] : [],
+      (!rawParams.showPrevSeasons) ? [ 'showPrevSeasons' ] : [],
 
       (!rawParams.deletedPlayers) ? [ 'deletedPlayers' ] : [],
       (!rawParams.disabledPlayers) ? [ 'disabledPlayers' ] : [],

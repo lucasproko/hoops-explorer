@@ -8,10 +8,13 @@ type DiagCodes =
    "fr_yearly_bonus" | "yearly_bonus" |
    "undersized_txfer_pen" | "general_txfer_pen" |
    "player_gravity_bonus" | "player_gravity_penalty" | 
-   "better_help_txfer_bonus" | "share_team_defense"
+   "better_help_txfer_bonus" | "share_team_defense" |
+   "incorp_prev_season"
    ;
 
 type TeamEditorDiags = {
+   off_rtg: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
+   off_usage: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
    off: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
    def: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
 };
@@ -37,7 +40,8 @@ export class TeamEditorUtils {
       player_gravity_bonus: "Player gravity bonus",
       player_gravity_penalty: "Player gravity penalty",
       better_help_txfer_bonus: "Better help defense bonus",
-      share_team_defense: "Shared team defense"
+      share_team_defense: "Shared team defense",
+      incorp_prev_season: "Incorporate previous seasons' stats"
    };
       
 
@@ -103,6 +107,14 @@ export class TeamEditorUtils {
       team: string, teamSosOff: number, teamSosDef: number, avgEff: number,
       offSeasonMode: boolean
    ) {
+      /** TODO: remove this once moving away from JSON */
+      const tidy = (inJson: Record<string, number>) => {
+         const keys = _.keys(inJson);
+         keys.forEach(key => {
+            if (!inJson[key]) delete inJson[key];
+         });
+         return inJson;
+      };
       const calcBasicAdjustments = (
          basePlayer: IndivStatSet, basePlayerPrevYear: IndivStatSet | undefined
       ) => {
@@ -144,23 +156,36 @@ export class TeamEditorUtils {
          const defTxferMulti = isFr ? 1 : 0.5; //(you get a bigger jump as a Fr, see defClassMulti)
          const generalTxferDefPenalty = (basePlayer.team != team) ? defTxferMulti*avgDefBump : 0; //(just the fact that you might not get quite the same off-season bump as a transfer)
 
-         /** TODO: remove this once moving away from JSON */
-         const tidy = (inJson: Record<string, number>) => {
-            const keys = _.keys(inJson);
-            keys.forEach(key => {
-               if (!inJson[key]) delete inJson[key];
-            });
-            return inJson;
-         };
+         const yearlyBonusField = isFr ? "fr_yearly_bonus" : "yearly_bonus";
          const diags: TeamEditorDiags = {
+            // These are just for display
+            off_rtg: {
+               good: tidy({
+               }),
+               ok: tidy({
+                  [yearlyBonusField]: offClassMulti*1.5 //(TODO calc these better)
+               }),
+               bad: tidy({
+               }),
+            },
+            off_usage: {
+               good: tidy({
+               }),
+               ok: tidy({
+                  [yearlyBonusField]: offClassMulti*1
+               }),
+               bad: tidy({
+               }),
+            },
+            // These are the main fields
             off: {
                good: tidy({
-                  [isFr ? "fr_yearly_bonus" : "yearly_bonus" ]: 2*offClassMulti*avgOffBump,
+                  [yearlyBonusField]: 2*offClassMulti*avgOffBump,
                   "undersized_txfer_pen": -0.5*offTxferUpPenalty,
                   "player_gravity_bonus": rapmVsAdjOffDeltaGoodBonus
                }), 
                ok: tidy({
-                  [isFr ? "fr_yearly_bonus" : "yearly_bonus" ]: offClassMulti*avgOffBump,
+                  [yearlyBonusField]: offClassMulti*avgOffBump,
                   "undersized_txfer_pen": -0.75*offTxferUpPenalty,
                   "general_txfer_pen": -0.5*generalTxferOffPenalty,
                }),
@@ -172,12 +197,12 @@ export class TeamEditorUtils {
             },
             def: {
                good: tidy({
-                  [isFr ? "fr_yearly_bonus" : "yearly_bonus" ]: 2*defClassMulti*avgDefBump,
+                  [yearlyBonusField]: 2*defClassMulti*avgDefBump,
                   "better_help_txfer_bonus": defTxferUpBetterHelpBump,
                   "undersized_txfer_pen": -0.5*defTxferUpPenalty,
                }),
                ok: tidy({
-                  [isFr ? "fr_yearly_bonus" : "yearly_bonus" ]: defClassMulti*avgDefBump,
+                  [yearlyBonusField]: defClassMulti*avgDefBump,
                   "better_help_txfer_bonuss": 0.5*defTxferUpBetterHelpBump,
                   "undersized_txfer_pen": -0.75*defTxferUpPenalty,
                   "general_txfer_pen": -0.5*generalTxferDefPenalty,
@@ -194,6 +219,12 @@ export class TeamEditorUtils {
          diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet,
          filter: Set<DiagCodes> | undefined
       ) => {
+         // (These 2 are just for display)
+         const sumOffRtg = _.chain(diags.off_rtg[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg)!;
+         const sumOffUsage = 0.01*_.chain(diags.off_usage[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         mutableTarget.off_usage = TeamEditorUtils.addToVal(basePlayer.off_usage, sumOffUsage)!;
+
          const sumOffAdj = _.chain(diags.off[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
          mutableTarget.off_adj_rtg = TeamEditorUtils.addToVal(basePlayer.off_adj_rtg, sumOffAdj)!;
          mutableTarget.off_adj_rapm = TeamEditorUtils.addToVal(basePlayer.off_adj_rapm, sumOffAdj)!;
@@ -201,20 +232,105 @@ export class TeamEditorUtils {
          mutableTarget.def_adj_rtg = TeamEditorUtils.addToVal(basePlayer.def_adj_rtg, sumDefAdj)!;
          mutableTarget.def_adj_rapm = TeamEditorUtils.addToVal(basePlayer.def_adj_rapm, sumDefAdj)!;
       }
+
+
+      const applyRegression = (
+         player: PureStatSet, prevYear: IndivStatSet, adjPrevYear: PureStatSet
+      ) => {
+         const thisYearPossWeighted = (player.off_poss?.value || 0)*3; // 3:1
+         const lastYearPossWeightedTmp = (prevYear.off_poss?.value || 0);
+
+         const lastYearPossWeighted = Math.min(lastYearPossWeightedTmp, 0.40*thisYearPossWeighted); 
+            //(as much weight as we'll allow last season)
+
+         const totalWeightInv = 1.0/((thisYearPossWeighted + lastYearPossWeighted) || 1);
+         const thisYearWeight = thisYearPossWeighted*totalWeightInv;
+         const lastYearWeight = lastYearPossWeighted*totalWeightInv;
+
+         const regressedORtg = thisYearWeight*(player.off_rtg?.value || 0) + lastYearWeight*(adjPrevYear.off_rtg?.value || 0);
+         const regressedUsage = thisYearWeight*(player.off_usage?.value || 0) + lastYearWeight*(adjPrevYear.off_usage?.value || 0);
+
+         const regressedOffRapm = thisYearWeight*(player.off_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.off_adj_rapm?.value || 0);
+         const regressedDefRapm = thisYearWeight*(player.def_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.def_adj_rapm?.value || 0);
+
+         //TODO: actually use total offense here I think?
+         const deltaORtg = regressedORtg - (player.off_rtg?.value || 0); //(only incorporate the 2 if they were better)
+         const deltaUsg = regressedUsage - (player.off_usage?.value || 0);
+         const deltaOffRapm = regressedOffRapm - (player.off_adj_rapm?.value || 0);
+         const deltaDefRapm = regressedDefRapm - (player.def_adj_rapm?.value || 0);
+         const lastYearWasFr = (prevYear.roster?.year_class == "Fr");
+
+         // Diagnostics
+         //console.log(`[${player.key}]: ([${player.off_rtg?.value}]*[${thisYearWeight}] + [${adjPrevYear.off_rtg?.value}]*[${lastYearWeight}])`);
+
+
+         return {
+            off_rtg: {
+               good: tidy({
+                  incorp_prev_season: (deltaOffRapm > 0) ? deltaORtg : 0 //if it's good
+               }),
+               ok: tidy({
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaORtg : 0 //(for Fr - only if it's good)
+               }),
+               bad: tidy({
+                  incorp_prev_season: !lastYearWasFr && (deltaOffRapm < 0) ? deltaORtg : 0 //(only if it's bad, not Fr)
+               }),
+            },
+            off_usage: {
+               good: tidy({
+                  incorp_prev_season: (deltaOffRapm > 0) ? deltaUsg : 0 //if it's good
+               }),
+               ok: tidy({
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaUsg : 0 //(for Fr - only if it's good)
+               }),
+               bad: tidy({
+                  incorp_prev_season: !lastYearWasFr && (deltaOffRapm < 0) ? deltaUsg : 0 //(only if it's bad, not Fr)
+               }),
+            },
+            off: {
+               good: tidy({
+                  incorp_prev_season: (deltaOffRapm > 0) ? deltaOffRapm : 0 //if it's good
+               }),
+               ok: tidy({
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaOffRapm : 0 //(for Fr - only if it's good)
+               }),
+               bad: tidy({
+                  incorp_prev_season: !lastYearWasFr && (deltaOffRapm < 0) ? deltaOffRapm : 0 //(only if it's bad, not Fr)
+               }),
+            },
+            def: {
+               good: tidy({
+                  incorp_prev_season: (deltaDefRapm > 0) ? deltaDefRapm : 0 //if it's good
+               }),
+               ok: tidy({
+                  incorp_prev_season: (!lastYearWasFr || (deltaDefRapm > 0)) ? deltaDefRapm : 0 //(for Fr - only if it's good)
+               }),
+               bad: tidy({
+                  incorp_prev_season: !lastYearWasFr && (deltaDefRapm < 0) ? deltaDefRapm : 0 //(only if it's bad, not Fr)
+               }),
+            },
+         }
+      };
+
       roster.forEach(triple => {
          // Calculate previous player improvement for regression
          const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined) : undefined;
          const prevPlayerYearlyAdjustment = {};
          if (prevPlayerDiags && triple.prevYear) {
-            applyDiagsToBase("ok", prevPlayerDiags, {}, triple.prevYear, new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[]))
+            applyDiagsToBase("ok", 
+               prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[])
+            );
          };
+         const regressionDeltas = triple.prevYear ? 
+            applyRegression(triple.orig, triple.prevYear, prevPlayerYearlyAdjustment) : undefined;
 
-         //TODO: apply regression 4:1 (only regress upwards if So, different regression for Fr)
+         // Diagnostics
+         //console.log(`[${triple.key}] ? [${triple.prevYear}]:  ${JSON.stringify(regressionDeltas)} AND ${regressionDeltas}`);
 
          // Calculate other adjustments on top of the regressed data
 
          const playerDiags = calcBasicAdjustments(triple.orig, triple.prevYear);
-         triple.diag = playerDiags;
+         triple.diag = regressionDeltas ? _.merge(playerDiags, regressionDeltas) : playerDiags;
          ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
             applyDiagsToBase(proj, playerDiags, triple[proj], triple.orig, undefined)
          });
@@ -240,19 +356,24 @@ export class TeamEditorUtils {
             );
             return defToUse*(p[proj].def_team_poss_pct?.value || 0);
          });
+
          roster.filter(p => !disabledPlayers[p.key]).forEach(p => {
             const defense = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
                p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
             );
-            const indivAdj = defense - ((_.isNil(p[proj].def_adj_rtg?.old_value) ? 
+            const indivAdj = defense - ((!_.isNil(p[proj].def_adj_rtg?.old_value) ? 
                p[proj].def_adj_rtg?.old_value : p[proj].def_adj_rtg?.value) || 0
             );
             const adjDefense = 0.7*(defense - indivAdj) + 0.3*avDefense + indivAdj;
             const defAdjustment = adjDefense - defense;
+
             p[proj].def_adj_rtg = TeamEditorUtils.addToVal((p[proj] as PureStatSet).def_adj_rtg, defAdjustment)!;
             p[proj].def_adj_rapm = TeamEditorUtils.addToVal((p[proj] as PureStatSet).def_adj_rapm, defAdjustment); 
 
             if (p.diag) {
+               // More debugging:
+               //console.log(`[${p.key}][${proj}]: def=[${defense.toFixed(3)}] indiv=[${indivAdj.toFixed(3)}] approx_team=[${(defense - indivAdj).toFixed(3)}] adjDef=[${adjDefense.toFixed(3)}]: delta=[${defAdjustment.toFixed(3)}] (av=[${avDefense.toFixed(3)}])`);
+
                p.diag.def[proj]["share_team_defense"] = defAdjustment;
             }
          });

@@ -79,10 +79,10 @@ const tableDef = {
   mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
   "sep0.6": GenericTableOps.addColSeparator(0.05), 
   ortg: GenericTableOps.addPtsCol("ORtg", 
-    "Offensive Rating, for 'Balanced' projections" + " (CURRENTLY: last season's numbers)", 
+    "Offensive Rating, for 'Balanced' projections", 
     CbbColors.varPicker(CbbColors.off_pp100)),
   usage: GenericTableOps.addPctCol("Usg", 
-    "Usage for `Balanced` projections" + " (CURRENTLY: last season's numbers)", 
+    "Usage for `Balanced` projections", 
     CbbColors.varPicker(CbbColors.usg_offDef)),
   rebound: GenericTableOps.addPctCol("RB%", 
     "% of available defensive rebounds made by this player ('Balanced' projection)" + " (CURRENTLY: last season's numbers)", 
@@ -189,6 +189,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   // 2] State
   const [ debugMode, setDebugMode ] = useState(false);
+  const [ showPrevSeasons, setShowPrevSeasons ] = useState(_.isNil(startingState.showPrevSeasons) ? false : startingState.showPrevSeasons);
 
   // Data source
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
@@ -261,14 +262,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
       // Editor specific settings for transfer view
       showOnlyTransfers: onlyTransfers,
-      showOnlyCurrentYear: onlyThisYear
+      showOnlyCurrentYear: onlyThisYear,
+      showPrevSeasons: showPrevSeasons
     };
     onChangeState(newState);
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear,
     otherPlayerCache, disabledPlayers, deletedPlayers,
-    lboardParams
+    lboardParams, showPrevSeasons
   ]);
 
   // 3] Utils
@@ -404,9 +406,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, offSeasonMode);
     TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, teamSosNet, avgEff);
-
-    //TODO:
-    //TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
+    TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
 
     const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
     const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
@@ -434,6 +434,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const name = <b>{triple.orig.key}</b>;
       const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
+
+      const prevSeasonEl = showPrevSeasons ? {
+        title: <small><i>Previous season</i></small>,
+        mpg: { value: (triple.orig.off_team_poss_pct?.value || 0)*40 },
+        ortg: triple.orig.off_rtg,
+        usage: triple.orig.off_usage,
+        rebound: { value: triple.orig.def_orb?.value },
+        ok_net: { value: getNet(triple.orig) },
+        ok_off: { value: getOff(triple.orig) },
+        ok_def: { value: getDef(triple.orig) },
+
+      } : undefined;
+
+      const prevPrevSeasonEl = showPrevSeasons && triple.prevYear ? {
+        title: <small><i>Season before</i></small>,
+        mpg: { value: (triple.prevYear.off_team_poss_pct?.value || 0)*40 },
+        ortg: triple.prevYear.off_rtg,
+        usage: triple.prevYear.off_usage,
+        rebound: { value: triple.prevYear.def_orb?.value },
+        ok_net: { value: getNet(triple.prevYear) },
+        ok_off: { value: getOff(triple.prevYear) },
+        ok_def: { value: getDef(triple.prevYear) },
+
+      } : undefined;
+
       const tableEl = {
         title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{maybeTransferName}</span>,
         mpg: isFiltered ? undefined : { value: (triple.ok.off_team_poss_pct?.value || 0)*40 },
@@ -487,9 +512,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         }}><FontAwesomeIcon icon={faFilter} /></Button>,
       };
       return [ GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ].concat(
+        showPrevSeasons ? 
+        [ GenericTableOps.buildDataRow(prevSeasonEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ] : []
+      ).concat(
+        showPrevSeasons && prevPrevSeasonEl ? 
+        [ GenericTableOps.buildDataRow(prevPrevSeasonEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ] : []
+      ).concat(
         debugMode ? [ 
           GenericTableOps.buildTextRow(
-            JSON.stringify(triple.diag, reduceNumberSize), "small"
+            JSON.stringify(_.omit(triple.diag, [ "off_rtg", "off_usage" ]), reduceNumberSize), "small"
           )
         ] : []
       )
@@ -679,7 +710,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       tableData={subHeaders.concat(rosterTableData)}
       cellTooltipMode={undefined}
     />;
-  }, [ dataEvent, year, team, otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache, debugMode ]);
+  }, [ dataEvent, year, team, otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache, debugMode, showPrevSeasons ]);
 
   const playerLeaderboard = React.useMemo(() => {
     setLboardParams(startingState);
@@ -885,6 +916,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </Col>
       <Form.Group as={Col} sm="1">
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+                text={"Show players' previous seasons"}
+                truthVal={showPrevSeasons}
+                onSelect={() => friendlyChange(() => setShowPrevSeasons(!showPrevSeasons), true)}
+              />
           <GenericTogglingMenuItem
               text={"Debug/Diagnostic mode"}
               truthVal={debugMode}

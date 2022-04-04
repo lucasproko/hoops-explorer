@@ -146,6 +146,7 @@ export type TeamEditorParams = {
   [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
 } & {
   // Player editor settings:
+  showPrevSeasons?: boolean, //(defaults to false)
   deletedPlayers?: string, //;-separated list
   disabledPlayers?: string,//;-separated list
   addedPlayers?: string //;-seperated list
