@@ -520,7 +520,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       ).concat(
         debugMode ? [ 
           GenericTableOps.buildTextRow(
-            JSON.stringify(_.omit(triple.diag, [ "off_rtg", "off_usage" ]), reduceNumberSize), "small"
+            JSON.stringify(_.omit(triple.diag, [ "off_usage" ]), reduceNumberSize), "small"
           )
         ] : []
       )

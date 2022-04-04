@@ -9,7 +9,7 @@ type DiagCodes =
    "undersized_txfer_pen" | "general_txfer_pen" |
    "player_gravity_bonus" | "player_gravity_penalty" | 
    "better_help_txfer_bonus" | "share_team_defense" |
-   "incorp_prev_season"
+   "incorp_prev_season" | "fr_regression"
    ;
 
 type TeamEditorDiags = {
@@ -41,7 +41,8 @@ export class TeamEditorUtils {
       player_gravity_penalty: "Player gravity penalty",
       better_help_txfer_bonus: "Better help defense bonus",
       share_team_defense: "Shared team defense",
-      incorp_prev_season: "Incorporate previous seasons' stats"
+      incorp_prev_season: "Incorporate previous seasons' stats",
+      fr_regression: "Freshmen stats are prone to regression"
    };
       
 
@@ -161,6 +162,7 @@ export class TeamEditorUtils {
             // These are just for display
             off_rtg: {
                good: tidy({
+                  [yearlyBonusField]: 2*offClassMulti*1.5 //(TODO calc these better)
                }),
                ok: tidy({
                   [yearlyBonusField]: offClassMulti*1.5 //(TODO calc these better)
@@ -170,6 +172,7 @@ export class TeamEditorUtils {
             },
             off_usage: {
                good: tidy({
+                  [yearlyBonusField]: 2*offClassMulti*1
                }),
                ok: tidy({
                   [yearlyBonusField]: offClassMulti*1
@@ -219,9 +222,10 @@ export class TeamEditorUtils {
          diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet,
          filter: Set<DiagCodes> | undefined
       ) => {
-         // (These 2 are just for display)
+         // (These 2 are just for display) 
+         const thisYearDefSos = (basePlayer.def_adj_opp?.value || 100); //(For ORtg, need to take SoS into account)
          const sumOffRtg = _.chain(diags.off_rtg[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
-         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg)!;
+         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, (teamSosDef/thisYearDefSos))!;
          const sumOffUsage = 0.01*_.chain(diags.off_usage[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
          mutableTarget.off_usage = TeamEditorUtils.addToVal(basePlayer.off_usage, sumOffUsage)!;
 
@@ -233,6 +237,45 @@ export class TeamEditorUtils {
          mutableTarget.def_adj_rapm = TeamEditorUtils.addToVal(basePlayer.def_adj_rapm, sumDefAdj)!;
       }
 
+      const applyFrRegression = (
+         player: IndivStatSet, 
+      ) => {
+         const netRegressTo = TeamEditorUtils.getAvgProduction(team, player.year || "");
+
+         const regressedOffRapm = 0.75*((player as PureStatSet).off_adj_rapm?.value || 0) + 0.25*(netRegressTo*0.5)
+         const regressedDefRapm = 0.75*((player as PureStatSet).def_adj_rapm?.value || 0) + 0.25*(netRegressTo*0.5)
+
+         // Only apply if negative, and not to optimistic result
+         const deltaOffRapm = regressedOffRapm - ((player as PureStatSet).off_adj_rapm?.value || 0);
+         const deltaDefRapm = regressedDefRapm - ((player as PureStatSet).def_adj_rapm?.value || 0);
+
+         // Diagnostic
+         // console.log(`[${player.key}]: reg=[${regressedOffRapm.toFixed(1)},${regressedDefRapm.toFixed(1)}], ` +
+         //    `act=[${((player as PureStatSet).off_adj_rapm?.value || 0)},${((player as PureStatSet).def_adj_rapm?.value || 0)}] (${netRegressTo})`);
+
+         return {
+            off_rtg: { good: {}, bad: {}, ok: {} },
+            off_usage: { good: {}, bad: {}, ok: {} },
+            off: { 
+               good: {},
+               ok: tidy({
+                  fr_regression: deltaOffRapm < 0 ? 0.5*deltaOffRapm : 0
+               }),
+               bad: tidy({
+                  fr_regression: deltaOffRapm < 0 ? deltaOffRapm : 0
+               }),
+            },
+            def: { 
+               good: {},
+               ok: tidy({
+                  fr_regression: deltaDefRapm > 0 ? 0.5*deltaDefRapm : 0
+               }),
+               bad: tidy({
+                  fr_regression: deltaDefRapm > 0 ? deltaDefRapm : 0
+               }),
+            }      
+         };
+      };
 
       const applyRegression = (
          player: PureStatSet, prevYear: IndivStatSet, adjPrevYear: PureStatSet
@@ -243,17 +286,21 @@ export class TeamEditorUtils {
          const lastYearPossWeighted = Math.min(lastYearPossWeightedTmp, 0.40*thisYearPossWeighted); 
             //(as much weight as we'll allow last season)
 
+         const thisYearDefSos = (player.def_adj_opp?.value || 100);
+         const lastYearDefSos = (player.prevYear?.value || 100);
+         const thisYearNormalizer = teamSosDef/thisYearDefSos;
+         const lastYearNormalizer = teamSosDef/lastYearDefSos;
+
          const totalWeightInv = 1.0/((thisYearPossWeighted + lastYearPossWeighted) || 1);
          const thisYearWeight = thisYearPossWeighted*totalWeightInv;
          const lastYearWeight = lastYearPossWeighted*totalWeightInv;
 
-         const regressedORtg = thisYearWeight*(player.off_rtg?.value || 0) + lastYearWeight*(adjPrevYear.off_rtg?.value || 0);
+         const regressedORtg = thisYearWeight*(player.off_rtg?.value || 0)*thisYearNormalizer + lastYearWeight*(adjPrevYear.off_rtg?.value || 0)*lastYearNormalizer;
          const regressedUsage = thisYearWeight*(player.off_usage?.value || 0) + lastYearWeight*(adjPrevYear.off_usage?.value || 0);
 
          const regressedOffRapm = thisYearWeight*(player.off_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.off_adj_rapm?.value || 0);
          const regressedDefRapm = thisYearWeight*(player.def_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.def_adj_rapm?.value || 0);
 
-         //TODO: actually use total offense here I think?
          const deltaORtg = regressedORtg - (player.off_rtg?.value || 0); //(only incorporate the 2 if they were better)
          const deltaUsg = regressedUsage - (player.off_usage?.value || 0);
          const deltaOffRapm = regressedOffRapm - (player.off_adj_rapm?.value || 0);
@@ -321,11 +368,13 @@ export class TeamEditorUtils {
                prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[])
             );
          };
+         const isFr = (triple.orig.roster?.year_class == "Fr"); //("fake Freshmen" already handled by 1st clause)
          const regressionDeltas = triple.prevYear ? 
-            applyRegression(triple.orig, triple.prevYear, prevPlayerYearlyAdjustment) : undefined;
+            applyRegression(triple.orig, triple.prevYear, prevPlayerYearlyAdjustment) : 
+               (isFr ? applyFrRegression(triple.orig) : undefined);
 
          // Diagnostics
-         //console.log(`[${triple.key}] ? [${triple.prevYear}]:  ${JSON.stringify(regressionDeltas)} AND ${regressionDeltas}`);
+         //console.log(`[${triple.key}] ? [${triple.prevYear}]:  ${JSON.stringify(regressionDeltas)} AND ${JSON.stringify(prevPlayerYearlyAdjustment)}`);
 
          // Calculate other adjustments on top of the regressed data
 
@@ -546,11 +595,11 @@ export class TeamEditorUtils {
    // Lower level utils in handy testable chunks
 
    /** Statistic manipulation */
-   private static addToVal = (s: Statistic | undefined, toAdd: number): Statistic | undefined => {
+   private static addToVal = (s: Statistic | undefined, toAdd: number, scaler: number = 1): Statistic | undefined => {
       if (s && !_.isNil(s.value)) {
          return { 
-            value: s.value + toAdd,
-            old_value: _.isNil(s.old_value) ? undefined : s.old_value + toAdd
+            value: scaler*s.value + toAdd,
+            old_value: _.isNil(s.old_value) ? undefined : scaler*s.old_value + toAdd
          };
       } else {
          return undefined;
