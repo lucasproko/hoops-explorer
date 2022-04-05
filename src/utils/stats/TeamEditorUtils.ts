@@ -173,9 +173,10 @@ export class TeamEditorUtils {
          const offClassMulti = isFr ? 2 : 1;
 
          // Calculate ORtg adjustment from delta projection: 0.2*((ORtg*(avgEff/teamSosDef) - avgEff)
-         const offAdj = override?.global_off_adj || 0;
-         const offRtgAdj = (5*offAdj)*(teamSosDef/avgEff);
-
+         const offAdjToORtg = (offAdj: number) => {
+            return (5*offAdj)*(teamSosDef/avgEff);
+         };
+         
          // Offensive bonuses and penalties (+ == good)
 
          const defSosDeltaForTxfers = teamSosDef - (basePlayer.def_adj_opp?.value || (avgEff - 4));
@@ -215,14 +216,19 @@ export class TeamEditorUtils {
             off_rtg: {
                good: tidy({
                   [yearlyBonusField]: 2*offClassMulti*1.5, //(TODO calc these better)
-                  user_adjustment: offRtgAdj,
+                  user_adjustment: offAdjToORtg(override?.global_off_adj || 0),
+                  undersized_txfer_pen: offAdjToORtg(-0.5*offTxferUpPenalty),
                }),
                ok: tidy({
                   [yearlyBonusField]: offClassMulti*1.5, //(TODO calc these better)
-                  user_adjustment: offRtgAdj,
+                  user_adjustment: offAdjToORtg(override?.global_off_adj || 0),
+                  undersized_txfer_pen: offAdjToORtg(-0.75*offTxferUpPenalty),
+                  general_txfer_pen: offAdjToORtg(-0.5*generalTxferOffPenalty),
                }),
                bad: tidy({
-                  user_adjustment: offRtgAdj,
+                  user_adjustment: offAdjToORtg(override?.global_off_adj || 0),
+                  undersized_txfer_pen: offAdjToORtg(-offTxferUpPenalty),
+                  general_txfer_pen: offAdjToORtg(-generalTxferOffPenalty),
                }),
             },
             off_usage: {
@@ -820,9 +826,10 @@ export class TeamEditorUtils {
          } else return undefined;
       };
       const heightIn = p.roster?.height_in || heightStrToIn(p.roster?.height);
+
       if (heightIn) {
          // Arbitrarily escalating scale (the idea is that the more you rely on physicality, the harder it is to get a shot off)
-         if ((p.posClass == "PG") || (p.posClass == "s-PG") && (heightIn <= 70)) { //5'10-
+         if (((p.posClass == "PG") || (p.posClass == "s-PG")) && (heightIn <= 70)) { //5'10-
             return -0.3;
          } else if ((p.posClass == "CG") && (heightIn <= 72)) { // 6'0-
             return -0.4;
