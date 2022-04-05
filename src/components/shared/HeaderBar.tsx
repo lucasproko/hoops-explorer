@@ -19,7 +19,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults, TeamLeaderboardParams } from '../../utils/FilterModels';
+import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults, TeamLeaderboardParams, TeamEditorParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 
@@ -81,6 +81,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
       getCommonLboardFilterParams(common) as TeamLeaderboardParams
     );
   }
+  function getTeamBuilderUrl() {
+    return UrlRouting.getTeamEditorUrl({} as TeamEditorParams);
+  }
   // Last visited
   function getLastGameUrl() {
     return UrlRouting.getGameUrl(
@@ -139,6 +142,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   };
   const teamLeaderboardTooltip = (
     <Tooltip id={"teamLeaderboardTooltip"}>Build your own team leaderboard out of various resume and quality based metrics!</Tooltip>
+  );
+  const teamBuilderTooltip = (
+    <Tooltip id={"teamBuilderTooltip"}>Build your own roster out of returning players, transfers (or steals!), and the bench!</Tooltip>
   );
   const playerLeaderboardTooltipNba2021 = (
     <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
@@ -255,6 +261,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
           <Dropdown.Menu style={dropdownStyle}>
             <Dropdown.Item>
               {buildNavItem("Build your own team leaderboard!", teamLeaderboardTooltip, getTeamLeaderboardUrl(), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Build your own roster!", teamBuilderTooltip, getTeamBuilderUrl(), true)}
             </Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item>
