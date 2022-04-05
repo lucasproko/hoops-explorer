@@ -119,16 +119,16 @@ const teamTableDef = {
   mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game", CbbColors.alwaysWhite),
 
   good_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-  good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-  good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
+  good_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.off_pp100)),
+  good_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", CbbColors.varPicker(CbbColors.def_pp100)),
 
   ok_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-  ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-  ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
+  ok_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_pp100)),
+  ok_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_pp100)),
 
   bad_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-  bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-  bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_diff35_p100_redGreen)),
+  bad_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.off_pp100)),
+  bad_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", CbbColors.varPicker(CbbColors.def_pp100)),
 }
 const gradeTableDef = {
   title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
@@ -758,14 +758,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         //(for diag only)
         //mpg: { value: totalMins*40 },
         ok_net: { value: okTotals.net },
-        ok_off: { value: okTotals.off },
-        ok_def: { value: okTotals.def },
+        ok_off: { value: okTotals.off + avgEff },
+        ok_def: { value: okTotals.def + avgEff },
         good_net: { value: okTotals.net + goodDeltaNet },
-        good_off: { value: okTotals.off + goodDeltaOff },
-        good_def: { value: okTotals.def + goodDeltaDef },
+        good_off: { value: okTotals.off + goodDeltaOff + avgEff },
+        good_def: { value: okTotals.def + goodDeltaDef + avgEff },
         bad_net: { value: okTotals.net + badDeltaNet },
-        bad_off: { value: okTotals.off + badDeltaOff },
-        bad_def: { value: okTotals.def + badDeltaDef },
+        bad_off: { value: okTotals.off + badDeltaOff + avgEff },
+        bad_def: { value: okTotals.def + badDeltaDef + avgEff },
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, teamTableDef)
       ,
       GenericTableOps.buildDataRow({
