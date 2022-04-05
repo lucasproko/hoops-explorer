@@ -153,6 +153,7 @@ export class TeamEditorUtils {
    static calcAndInjectYearlyImprovement(
       roster: GoodBadOkTriple[], 
       team: string, teamSosOff: number, teamSosDef: number, avgEff: number,
+      overrides: Record<string, PlayerEditModel>, 
       offSeasonMode: boolean
    ) {
       /** TODO: remove this once moving away from JSON */
@@ -164,12 +165,16 @@ export class TeamEditorUtils {
          return inJson;
       };
       const calcBasicAdjustments = (
-         basePlayer: IndivStatSet, basePlayerPrevYear: IndivStatSet | undefined
+         basePlayer: IndivStatSet, basePlayerPrevYear: IndivStatSet | undefined, override: PlayerEditModel | undefined
       ) => {
          const isFr = (basePlayer.roster?.year_class == "Fr") && _.isNil(basePlayerPrevYear); //(filter out "fake Freshmen")
 
          const avgOffBump = offSeasonMode ? 0.6 : 0; //(1.5 ORtg + 1 usage - the bump for staying in the same team)
          const offClassMulti = isFr ? 2 : 1;
+
+         // Calculate ORtg adjustment from delta projection: 0.2*((ORtg*(avgEff/teamSosDef) - avgEff)
+         const offAdj = override?.global_off_adj || 0;
+         const offRtgAdj = (5*offAdj)*(teamSosDef/avgEff);
 
          // Offensive bonuses and penalties (+ == good)
 
@@ -209,12 +214,15 @@ export class TeamEditorUtils {
             // These are just for display
             off_rtg: {
                good: tidy({
-                  [yearlyBonusField]: 2*offClassMulti*1.5 //(TODO calc these better)
+                  [yearlyBonusField]: 2*offClassMulti*1.5, //(TODO calc these better)
+                  user_adjustment: offRtgAdj,
                }),
                ok: tidy({
-                  [yearlyBonusField]: offClassMulti*1.5 //(TODO calc these better)
+                  [yearlyBonusField]: offClassMulti*1.5, //(TODO calc these better)
+                  user_adjustment: offRtgAdj,
                }),
                bad: tidy({
+                  user_adjustment: offRtgAdj,
                }),
             },
             off_usage: {
@@ -232,17 +240,20 @@ export class TeamEditorUtils {
                good: tidy({
                   [yearlyBonusField]: 2*offClassMulti*avgOffBump,
                   "undersized_txfer_pen": -0.5*offTxferUpPenalty,
-                  "player_gravity_bonus": rapmVsAdjOffDeltaGoodBonus
+                  "player_gravity_bonus": rapmVsAdjOffDeltaGoodBonus,
+                  "user_adjustment": override?.global_off_adj || 0,
                }), 
                ok: tidy({
                   [yearlyBonusField]: offClassMulti*avgOffBump,
                   "undersized_txfer_pen": -0.75*offTxferUpPenalty,
                   "general_txfer_pen": -0.5*generalTxferOffPenalty,
+                  "user_adjustment": override?.global_off_adj || 0,
                }),
                bad: tidy({
                   "undersized_txfer_pen": -offTxferUpPenalty,
                   "general_txfer_pen": -generalTxferOffPenalty,
-                  "player_gravity_penalty": -rapmVsAdjOffDeltaBadPenalty
+                  "player_gravity_penalty": -rapmVsAdjOffDeltaBadPenalty,
+                  "user_adjustment": override?.global_off_adj || 0,
                })
             },
             def: {
@@ -250,16 +261,19 @@ export class TeamEditorUtils {
                   [yearlyBonusField]: 2*defClassMulti*avgDefBump,
                   "better_help_txfer_bonus": defTxferUpBetterHelpBump,
                   "undersized_txfer_pen": -0.5*defTxferUpPenalty,
+                  "user_adjustment": override?.global_def_adj || 0,
                }),
                ok: tidy({
                   [yearlyBonusField]: defClassMulti*avgDefBump,
                   "better_help_txfer_bonuss": 0.5*defTxferUpBetterHelpBump,
                   "undersized_txfer_pen": -0.75*defTxferUpPenalty,
                   "general_txfer_pen": -0.5*generalTxferDefPenalty,
+                  "user_adjustment": override?.global_def_adj || 0,
                }),
                bad: tidy({
                   "undersized_txfer_pen": -defTxferUpPenalty,
                   "general_txfer_pen": -generalTxferDefPenalty,
+                  "user_adjustment": override?.global_def_adj || 0,
                })
             }
          };
@@ -471,7 +485,7 @@ export class TeamEditorUtils {
 
       roster.forEach(triple => {
          // Calculate previous player improvement for regression
-         const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined) : undefined;
+         const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined, undefined) : undefined;
          const prevPlayerYearlyAdjustment = {};
          if (prevPlayerDiags && triple.prevYear) {
             applyDiagsToBase("ok", 
@@ -489,7 +503,8 @@ export class TeamEditorUtils {
 
          // Calculate other adjustments on top of the regressed data
 
-         const playerDiags = calcBasicAdjustments(triple.orig, triple.prevYear);
+         const maybeOverride = overrides[triple.key];
+         const playerDiags = calcBasicAdjustments(triple.orig, triple.prevYear, maybeOverride);
          triple.diag = regressionDeltas ? _.merge(playerDiags, regressionDeltas) : playerDiags;
          ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
             applyDiagsToBase(proj, playerDiags, triple[proj], triple.orig, true, undefined)
@@ -508,7 +523,7 @@ export class TeamEditorUtils {
    /** More advanced calculations that require the minutes adjustments */
    static calcAdvancedAdjustments(
       roster: GoodBadOkTriple[], 
-      team: string, year: string, disabledPlayers: Record<string, boolean>,
+      team: string, year: string, disabledPlayers: Record<string, boolean>
    ) {
       // Team defense adjustments ... approx 3/10ths of defense is help defense not involving the player
       // so we'll average that out, but allow players to keep their individual impact, which we'll define as the delta
@@ -557,7 +572,8 @@ export class TeamEditorUtils {
    /** Calculate minutes assignment, mutates roster */
    static calcAndInjectMinsAssignment(
       roster: GoodBadOkTriple[], 
-      team: string, year: string, disabledPlayers: Record<string, boolean>,
+      team: string, year: string, disabledPlayers: Record<string, boolean>, overrides: Record<string, PlayerEditModel>,
+
       teamSosNet: number, avgEff: number
    ) {
       const getOffRapm = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
@@ -582,11 +598,13 @@ export class TeamEditorUtils {
       const avgLowerTierNet = Math.min(avgMidTierNet - 1.5, avgLowerTierNetTmp); //(can't really determine pecking order with less granularity than that...)
 
       const maxMinsPerKey = _.chain(filteredRoster).map(p => {
-         return [ p.key, TeamEditorUtils.calcMaxMins(p) ];
+         const maybeOverride = overrides[p.key]?.mins;
+         return [ p.key, maybeOverride ? maybeOverride/40.0 : TeamEditorUtils.calcMaxMins(p) ];
       }).fromPairs().value();
 
       const minMinsPerKey = _.chain(filteredRoster).map(p => {
-         const minMins = TeamEditorUtils.calcMinMins(p, team, teamSosNet, avgEff);
+         const maybeOverride = overrides[p.key]?.mins;
+         const minMins = maybeOverride ? maybeOverride/40.0 : TeamEditorUtils.calcMinMins(p, team, teamSosNet, avgEff);
          return [ p.key, Math.min(minMins, maxMinsPerKey[p.key] || minMins) ]; //(prevent min>max)
       }).fromPairs().value();
 
@@ -651,7 +669,7 @@ export class TeamEditorUtils {
 
    /** Inserts unused minutes */
    static getBenchMinutes(
-      team: string, year: string, guardPct: number, wingPct: number, bigPct: number
+      team: string, year: string, guardPct: number, wingPct: number, bigPct: number, overrides: Record<string, PlayerEditModel>
    ): [ GoodBadOkTriple | undefined, GoodBadOkTriple | undefined, GoodBadOkTriple | undefined ] {
       const deltaMins = 1.0 - (guardPct + wingPct + bigPct);
       if (deltaMins > 0.0) {
@@ -659,28 +677,32 @@ export class TeamEditorUtils {
          const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
 
          const buildBench = (key: string, posClass: string, minsPct: number) => {
+            const maybeOverrides = overrides[key];
+            const offAdj = maybeOverrides?.global_off_adj || 0;
+            const defAdj = maybeOverrides?.global_def_adj || 0;
+
             const baseBench = {
                key: key,
                off_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
                def_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
-               off_adj_rapm: { value: benchLevel },
-               def_adj_rapm: { value: -benchLevel },
+               off_adj_rapm: { value: benchLevel + offAdj },
+               def_adj_rapm: { value: -benchLevel + defAdj },
                posClass: posClass
             };
             return {
                key: key,
                good: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel + 0.5 },
-                  def_adj_rapm: { value: -benchLevel - 0.5 }
+                  off_adj_rapm: { value: benchLevel + 0.5 + offAdj },
+                  def_adj_rapm: { value: -benchLevel - 0.5 + defAdj }
                },
                ok: {
                   ...baseBench,
                },
                bad: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel - 1 }, //(bench scoring can be really bad)
-                  def_adj_rapm: { value: -benchLevel + 1 }
+                  off_adj_rapm: { value: benchLevel - 1 + offAdj }, //(bench scoring can be really bad)
+                  def_adj_rapm: { value: -benchLevel + 1 + defAdj }
                },
                orig: baseBench
             } as GoodBadOkTriple;

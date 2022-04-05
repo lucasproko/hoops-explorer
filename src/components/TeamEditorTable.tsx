@@ -434,8 +434,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
-    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, offSeasonMode);
-    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, teamSosNet, avgEff);
+    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, overrides, offSeasonMode);
+    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, overrides, teamSosNet, avgEff);
     TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
 
     const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
@@ -478,11 +478,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       return newOverrides;
     }
 
+    const editTooltip = <Tooltip id="editTooltip">Show/hide the Player Editor tab</Tooltip>;
+    const filterTooltip = <Tooltip id="filterTooltip">
+      Filter the player out from the team temporarily. You can delete them permanently from the Player Editor tab tab.
+    </Tooltip>
+
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const rosterInfo = triple.orig?.roster ?
         `${triple.orig.roster?.height || "?-?"} ${
           offSeasonMode ? TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
         }` : undefined;
+
+      const override = overrides[triple.key];
+
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const name = <b>{triple.orig.key}</b>;
       const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
@@ -513,38 +521,47 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       } : undefined;
 
+      const extraInfoOffObj = 
+        _.isNil(override?.global_off_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
+      const extraInfoDefObj = 
+        _.isNil(override?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
+
       const tableEl = {
         title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{maybeTransferName}</span>,
-        mpg: isFiltered ? undefined : { value: (triple.ok.off_team_poss_pct?.value || 0)*40 },
+        mpg: isFiltered ? undefined : { 
+          value: (triple.ok.off_team_poss_pct?.value || 0)*40,
+          extraInfo: _.isNil(override?.mins) ? undefined : "Overridden, see Player Editor tab"
+        },
         ortg: triple.ok.off_rtg,
         usage: triple.ok.off_usage,
         rebound: isFiltered ? undefined : { value: triple.ok.def_orb?.value },
 
         pos: <span style={{whiteSpace: "nowrap"}}>{triple.orig.posClass}</span>,
         good_net: isFiltered ? undefined : { value: getNet(triple.good) },
-        good_off: isFiltered ? undefined : { value: getOff(triple.good) },
-        good_def: isFiltered ? undefined : { value: getDef(triple.good) },
+        good_off: isFiltered ? undefined : { value: getOff(triple.good), ...extraInfoOffObj },
+        good_def: isFiltered ? undefined : { value: getDef(triple.good), ...extraInfoDefObj },
         ok_net: isFiltered ? undefined : { value: getNet(triple.ok) },
-        ok_off: isFiltered ? undefined : { value: getOff(triple.ok) },
-        ok_def: isFiltered ? undefined : { value: getDef(triple.ok) },
+        ok_off: isFiltered ? undefined : { value: getOff(triple.ok), ...extraInfoOffObj },
+        ok_def: isFiltered ? undefined : { value: getDef(triple.ok), ...extraInfoDefObj  },
         bad_net: isFiltered ? undefined : { value: getNet(triple.bad) },
-        bad_off: isFiltered ? undefined : { value: getOff(triple.bad) },
-        bad_def: isFiltered ? undefined : { value: getDef(triple.bad) },
+        bad_off: isFiltered ? undefined : { value: getOff(triple.bad), ...extraInfoOffObj },
+        bad_def: isFiltered ? undefined : { value: getDef(triple.bad), ...extraInfoDefObj  },
 
-        //TODO: tooltips
-        edit: <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
-          const newEditOpen = togglePlayerEdited(triple, editOpen, false);
-          if (newEditOpen) {
-            setEditOpen(newEditOpen);
-          }
-        }}><FontAwesomeIcon icon={faPen} /></Button>,
-        disable: <Button variant={disabledPlayers[triple.key] ? "secondary" : "outline-secondary"} size="sm" onClick={(ev:any) => {
-          //(insta do this - the visual clue should be sufficient)
-          const newDisabledPlayers = togglePlayerDisabled(triple, disabledPlayers, false);
-          if (newDisabledPlayers) {
-            setDisabledPlayers(newDisabledPlayers);
-          }
-        }}><FontAwesomeIcon icon={faFilter} /></Button>,
+        edit: <OverlayTrigger overlay={editTooltip} placement="auto">
+          <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
+            const newEditOpen = togglePlayerEdited(triple, editOpen, false);
+            if (newEditOpen) {
+              setEditOpen(newEditOpen);
+            }
+        }}><FontAwesomeIcon icon={faPen} /></Button></OverlayTrigger>,
+        disable: <OverlayTrigger overlay={filterTooltip} placement="auto">
+          <Button variant={disabledPlayers[triple.key] ? "secondary" : "outline-secondary"} size="sm" onClick={(ev:any) => {
+            //(insta do this - the visual clue should be sufficient)
+            const newDisabledPlayers = togglePlayerDisabled(triple, disabledPlayers, false);
+            if (newDisabledPlayers) {
+              setDisabledPlayers(newDisabledPlayers);
+            }
+          }}><FontAwesomeIcon icon={faFilter} /></Button></OverlayTrigger>,
       };
 
       return (allEditOpen ? [ GenericTableOps.buildHeaderRepeatRow({}, "small") ] : []).concat([ 
@@ -558,10 +575,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       ).concat(hasEditPage ? 
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
-              triple={triple}
-              overrides={overrides[triple.key]}
+              isBench={false}
+              overrides={override}
               onUpdate={(edit: PlayerEditModel | undefined) => {
-                setOverrides(editPlayerOverrides(triple, overrides, edit));
+                friendlyChange(() => {
+                  setOverrides(editPlayerOverrides(triple, overrides, edit));
+                 }, true
+                );
               }}
               onDelete={() => {
                 const tidyUp = (
@@ -606,6 +626,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     };
     const buildBenchDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const isFiltered = false; //(never possible to filter bench minutes)
+      const hasEditPage = allEditOpen || editOpen[triple.key];
+      const override = overrides[triple.key];
+
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
         mpg: isFiltered ? undefined : { value: (triple.ok.off_team_poss_pct?.value || 0)*40 },
@@ -619,8 +642,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_net: isFiltered ? undefined : { value: getNet(triple.bad) },
         bad_off: isFiltered ? undefined : { value: getOff(triple.bad) },
         bad_def: isFiltered ? undefined : { value: getDef(triple.bad) },
+        edit: <OverlayTrigger overlay={editTooltip} placement="auto">
+          <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
+            const newEditOpen = togglePlayerEdited(triple, editOpen, false);
+            if (newEditOpen) {
+              setEditOpen(newEditOpen);
+            }
+        }}><FontAwesomeIcon icon={faPen} /></Button></OverlayTrigger>,
       };
-      return GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+      return [ 
+        GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+      ].concat(hasEditPage ? 
+        [ GenericTableOps.buildTextRow(
+            <TeamRosterEditor
+              isBench={true}
+              overrides={override}
+              onUpdate={(edit: PlayerEditModel | undefined) => {
+                friendlyChange(() => {
+                  setOverrides(editPlayerOverrides(triple, overrides, edit));
+                 }, true
+                );
+              }}
+              onDelete={() => null}
+            />, "small"
+          ), GenericTableOps.buildRowSeparator() ] : []
+      )
     };
 
     const buildPosHeaderRow = (posName: string, pct: number) => GenericTableOps.buildSubHeaderRow(
@@ -662,20 +708,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       : 
       TeamEditorUtils.getBenchMinutes(
         team, year,
-        rosterGuardMins, rosterWingMins, rosterBigMins
+        rosterGuardMins, rosterWingMins, rosterBigMins, overrides
       );
 
     // Now, finally, can build display:
 
     const rosterTableDataGuards = [ buildPosHeaderRow("Guards", rosterGuardMins) ].concat(_.flatMap(rosterGuards, triple => {
       return buildDataRowFromTriple(triple);
-    })).concat(maybeBenchGuard ? [ buildBenchDataRowFromTriple(maybeBenchGuard) ] : []);
+    })).concat(maybeBenchGuard ? buildBenchDataRowFromTriple(maybeBenchGuard) : []);
     const rosterTableDataWings = [ buildPosHeaderRow("Wings", rosterWingMins) ].concat(_.flatMap(rosterWings, triple => {
       return buildDataRowFromTriple(triple);
-    })).concat(maybeBenchWing ? [ buildBenchDataRowFromTriple(maybeBenchWing) ] : []);
+    })).concat(maybeBenchWing ? buildBenchDataRowFromTriple(maybeBenchWing) : []);
     const rosterTableDataBigs = [ buildPosHeaderRow("Bigs", rosterBigMins) ].concat(_.flatMap(rosterBigs, triple => {
       return buildDataRowFromTriple(triple);
-    })).concat(maybeBenchBig ? [ buildBenchDataRowFromTriple(maybeBenchBig) ] : []);
+    })).concat(maybeBenchBig ? buildBenchDataRowFromTriple(maybeBenchBig) : []);
 
     const addedTxfersStr = _.values(otherPlayerCache).map(p => p.orig.key).join(" / ");
     const removedPlayerStr = _.values(deletedPlayers).join(" / ");
@@ -933,6 +979,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               friendlyChange(() => {
                 setGender(newGender);
                 setOtherPlayerCache({});
+                setDisabledPlayers({});
+                setDeletedPlayers({});
+                setEditOpen({});
+                setOverrides({})
                 setLboardAltDataSource(undefined);
               }, newGender != gender);
             }
@@ -952,6 +1002,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               friendlyChange(() => {
                 setYear(newYear);
                 setOtherPlayerCache({});
+                setDisabledPlayers({});
+                setDeletedPlayers({});
+                setEditOpen({});
+                setOverrides({})
                 setLboardAltDataSource(undefined);
               }, newYear != year);
             }
