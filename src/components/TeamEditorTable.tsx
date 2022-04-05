@@ -12,6 +12,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
@@ -52,6 +54,7 @@ import { GradeUtils } from '../utils/stats/GradeUtils';
 import { PositionUtils } from '../utils/stats/PositionUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import TeamRosterEditor from './shared/TeamRosterEditor';
 
 // Input params/models
 
@@ -215,10 +218,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ otherPlayerCacheIn, setOtherPlayerCacheIn ] = useState((startingState.addedPlayers || "") as string | undefined);
   const [ disabledPlayersIn, setDisabledPlayersIn ] = useState((startingState.disabledPlayers || "") as string | undefined);
   const [ deletedPlayersIn, setDeletedPlayersIn ] = useState((startingState.deletedPlayers || "") as string | undefined);
+  const [ editOpenIn, setEditOpenIn ] = useState((startingState.editOpen || "") as string | undefined);
 
   const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
   const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
   const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
+
+  // Indiv editor
+  const [ allEditOpen, setAllEditOpen ] = useState(startingState.allEditOpen as string | undefined);
+  const [ editOpen, setEditOpen ] = useState({} as Record<string, string>);
 
   // Controlling the player leaderboard table
   const [ lboardAltDataSource, setLboardAltDataSource ] = useState(
@@ -260,16 +268,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
       deletedPlayers: _.isNil(deletedPlayersIn) ? _.keys(deletedPlayers).join(";") : deletedPlayersIn,
       disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
+      editOpen: _.isNil(editOpenIn) ? _.map(editOpen, (value, key) => `${key}|${value}`).join(";") : editOpenIn,
       // Editor specific settings for transfer view
       showOnlyTransfers: onlyTransfers,
       showOnlyCurrentYear: onlyThisYear,
-      showPrevSeasons: showPrevSeasons
+      showPrevSeasons: showPrevSeasons,
+      allEditOpen: allEditOpen
     };
     onChangeState(newState);
   }, [ 
     year, gender, team,
-    onlyTransfers, onlyThisYear,
-    otherPlayerCache, disabledPlayers, deletedPlayers,
+    onlyTransfers, onlyThisYear, allEditOpen,
+    otherPlayerCache, disabledPlayers, deletedPlayers, editOpen,
     lboardParams, showPrevSeasons
   ]);
 
@@ -339,7 +349,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     // First time through ... Rebuild the state from the input params
     if ((!_.isEmpty(dataEvent.players || [])) && (
       //(first time only)
-      !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn)
+      !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn) && !_.isNil(editOpenIn)
     )) {
 
       //TODO: there is a bug here in that if I go fetch the T100 or CONF versions of a player
@@ -353,6 +363,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const needToRebuildBasePlayers = 
         (((startingState.deletedPlayers || "") != "") && _.isEmpty(deletedPlayers)) ||
         (((startingState.addedPlayers || "") != "")  && _.isEmpty(otherPlayerCache)) ||
+        (((startingState.editOpen || "") != "")  && _.isEmpty(editOpen)) ||
         (((startingState.disabledPlayers || "") != "")  && _.isEmpty(disabledPlayers));
 
       if (startingState.deletedPlayers && _.isEmpty(deletedPlayers)) {
@@ -367,6 +378,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           return [ key, true];
         }).fromPairs().value();
         setDisabledPlayers(firstDisabledPlayers);
+      }
+      if (startingState.editOpen && _.isEmpty(editOpen)) {
+        const firstEditOpen = _.chain(startingState.editOpen.split(";")).map(key => {
+          const keyVal = key.split("|");
+          return [ keyVal[0], keyVal?.[1] ];
+        }).fromPairs().value();
+        setEditOpen(firstEditOpen);
       }
       // This is the tricky one:
       if (startingState.addedPlayers && _.isEmpty(otherPlayerCache)) {
@@ -394,6 +412,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       setDeletedPlayersIn(undefined);
       setDisabledPlayersIn(undefined);
       setOtherPlayerCacheIn(undefined);
+      setEditOpenIn(undefined);
 
       if (needToRebuildBasePlayers) { //(will get called again with the right state because of the setXxx calls)
         return <div></div>;
@@ -413,7 +432,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
 
     // Filter player in/out (onlyDisable==true if undisabled as part of deleting that player)
-    const togglePlayer = (triple: GoodBadOkTriple, currDisabled: Record<string, boolean>, onlyDisable: boolean) => {
+    const togglePlayerDisabled = (triple: GoodBadOkTriple, currDisabled: Record<string, boolean>, onlyDisable: boolean) => {
       const newDisabledPlayers = _.clone(currDisabled);
       if (currDisabled[triple.key]) {
         delete newDisabledPlayers[triple.key];
@@ -421,6 +440,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       } else if (!onlyDisable) {
         newDisabledPlayers[triple.key] = true;
         return newDisabledPlayers;
+      } else { //(by request, only do something if it's a disable)
+        return undefined;
+      }
+    };
+    // Filter player in/out (onlyDisable==true if undisabled as part of deleting that player)
+    const togglePlayerEdited = (triple: GoodBadOkTriple, currEdited: Record<string, string>, onlyDisable: boolean) => {
+      const newEditedPlayers = _.clone(currEdited);
+      if (currEdited[triple.key]) {
+        delete newEditedPlayers[triple.key];
+        return newEditedPlayers;
+      } else if (!onlyDisable) {
+        newEditedPlayers[triple.key] = "General";
+        return newEditedPlayers;
       } else { //(by request, only do something if it's a disable)
         return undefined;
       }
@@ -434,6 +466,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const name = <b>{triple.orig.key}</b>;
       const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
+
+      const hasEditPage = allEditOpen || editOpen[triple.key];
 
       const prevSeasonEl = showPrevSeasons ? {
         title: <small><i>Previous season</i></small>,
@@ -477,46 +511,64 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_off: isFiltered ? undefined : { value: getOff(triple.bad) },
         bad_def: isFiltered ? undefined : { value: getDef(triple.bad) },
 
-        //TODO: tooltips and make disable button latch
-        edit: <Button variant="outline-danger" size="sm" onClick={(ev: any) => {
-          if (otherPlayerCache[triple.key]) {
-            const newOtherPlayerCache = _.clone(otherPlayerCache);
-            delete newOtherPlayerCache[triple.key];
-            friendlyChange(() => {
-              setOtherPlayerCache(newOtherPlayerCache);
-              // Tidy up activity: remove from disabled players set
-              const newDisabledPlayers = togglePlayer(triple, disabledPlayers, true);
-              if (newDisabledPlayers) {
-                setDisabledPlayers(newDisabledPlayers);
-              }
-            }, true);
-          } else {
-            const newDeletedPlayers = _.clone(deletedPlayers);
-            newDeletedPlayers[triple.key] = triple.orig.key;
-            friendlyChange(() => {
-              setDeletedPlayers(newDeletedPlayers);
-              // Tidy up activity: remove from disabled players set
-              const newDisabledPlayers = togglePlayer(triple, disabledPlayers, true);
-              if (newDisabledPlayers) {
-                setDisabledPlayers(newDisabledPlayers);
-              }
-            }, true);
+        //TODO: tooltips
+        edit: <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
+          const newEditOpen = togglePlayerEdited(triple, editOpen, false);
+          if (newEditOpen) {
+            setEditOpen(newEditOpen);
           }
-        }}><FontAwesomeIcon icon={faTrash} /></Button>,
+        }}><FontAwesomeIcon icon={faPen} /></Button>,
         disable: <Button variant={disabledPlayers[triple.key] ? "secondary" : "outline-secondary"} size="sm" onClick={(ev:any) => {
           //(insta do this - the visual clue should be sufficient)
-          const newDisabledPlayers = togglePlayer(triple, disabledPlayers, false);
+          const newDisabledPlayers = togglePlayerDisabled(triple, disabledPlayers, false);
           if (newDisabledPlayers) {
             setDisabledPlayers(newDisabledPlayers);
           }
         }}><FontAwesomeIcon icon={faFilter} /></Button>,
       };
-      return [ GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ].concat(
+
+      return (allEditOpen ? [ GenericTableOps.buildHeaderRepeatRow({}, "small") ] : []).concat([ 
+        GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) 
+      ]).concat(
         showPrevSeasons ? 
         [ GenericTableOps.buildDataRow(prevSeasonEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ] : []
       ).concat(
         showPrevSeasons && prevPrevSeasonEl ? 
         [ GenericTableOps.buildDataRow(prevPrevSeasonEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ] : []
+      ).concat(hasEditPage ? 
+        [ GenericTableOps.buildTextRow(
+            <TeamRosterEditor
+              onDelete={() => {
+                const tidyUp = (currDisabledPlayers: Record<string, boolean>, currEditedPlayers: Record<string, string>) => {
+                  // Tidy up activity: remove from disabled/edited players set
+                  const newDisabledPlayers = togglePlayerDisabled(triple, currDisabledPlayers, true);
+                  if (newDisabledPlayers) {
+                    setDisabledPlayers(newDisabledPlayers);
+                  }
+                  const newEditOpen = togglePlayerEdited(triple, currEditedPlayers, false);
+                  if (newEditOpen) {
+                    setEditOpen(newEditOpen);
+                  }
+                };
+                if (otherPlayerCache[triple.key]) {
+                  const newOtherPlayerCache = _.clone(otherPlayerCache);
+                  delete newOtherPlayerCache[triple.key];
+                  friendlyChange(() => {
+                    setOtherPlayerCache(newOtherPlayerCache);
+                    tidyUp(disabledPlayers, editOpen);
+                  }, true);
+                } else {
+                  const newDeletedPlayers = _.clone(deletedPlayers);
+                  newDeletedPlayers[triple.key] = triple.orig.key;
+                  friendlyChange(() => {
+                    setDeletedPlayers(newDeletedPlayers);
+                    tidyUp(disabledPlayers, editOpen);
+                  }, true);
+                }      
+              }}
+              triple={triple}
+            />, "small"
+          ), GenericTableOps.buildRowSeparator() ] : []
       ).concat(
         debugMode ? [ 
           GenericTableOps.buildTextRow(
@@ -710,7 +762,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       tableData={subHeaders.concat(rosterTableData)}
       cellTooltipMode={undefined}
     />;
-  }, [ dataEvent, year, team, otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache, debugMode, showPrevSeasons ]);
+  }, [ dataEvent, year, team, 
+      otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache, debugMode, showPrevSeasons,
+      allEditOpen, editOpen ]);
 
   const playerLeaderboard = React.useMemo(() => {
     setLboardParams(startingState);

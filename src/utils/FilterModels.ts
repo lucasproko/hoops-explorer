@@ -149,7 +149,9 @@ export type TeamEditorParams = {
   showPrevSeasons?: boolean, //(defaults to false)
   deletedPlayers?: string, //;-separated list
   disabledPlayers?: string,//;-separated list
-  addedPlayers?: string //;-seperated list
+  addedPlayers?: string, //;-separated list
+  editOpen?: string, //;-separated list, <key>|<open-tab>
+  allEditOpen?: string, //(defaults to undefined, all edit pages open to the tab if true)
   offSeason?: boolean, //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
     //^current not settable, just reads from URL
   showOnlyTransfers?: boolean, //(defaults to true)
