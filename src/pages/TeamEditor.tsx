@@ -94,6 +94,7 @@ const TeamEditorPage: NextPage<{}> = () => {
       (!rawParams.disabledPlayers) ? [ 'disabledPlayers' ] : [],
       (!rawParams.addedPlayers) ? [ 'addedPlayers' ] : [],
       (!rawParams.editOpen) ? [ 'editOpen' ] : [],
+      (!rawParams.overrides) ? [ 'overrides' ] : [],
       (!rawParams.allEditOpen) ? [ 'allEditOpen' ] : [],
 
       // "Add players from leaderboard" params

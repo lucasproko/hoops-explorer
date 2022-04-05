@@ -17,16 +17,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Container from 'react-bootstrap/Container';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { GoodBadOkTriple } from '../../utils/stats/TeamEditorUtils';
+import { GoodBadOkTriple, PlayerEditModel } from '../../utils/stats/TeamEditorUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
    triple: GoodBadOkTriple,
-   onDelete: () => void
+   overrides?: PlayerEditModel,
+   onDelete: () => void,
+   onUpdate: (edit: PlayerEditModel | undefined) => void
 };
 
-const TeamRosterEditor: React.FunctionComponent<Props> = ({triple, onDelete}) => {
+const TeamRosterEditor: React.FunctionComponent<Props> = ({triple, overrides, onDelete, onUpdate}) => {
 
    return <Container><Row>
       <Col xs={1}/>

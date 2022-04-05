@@ -44,7 +44,7 @@ import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableU
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
-import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
+import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
@@ -219,10 +219,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ disabledPlayersIn, setDisabledPlayersIn ] = useState((startingState.disabledPlayers || "") as string | undefined);
   const [ deletedPlayersIn, setDeletedPlayersIn ] = useState((startingState.deletedPlayers || "") as string | undefined);
   const [ editOpenIn, setEditOpenIn ] = useState((startingState.editOpen || "") as string | undefined);
+  const [ overridesIn, setOverridesIn ] = useState((startingState.overrides || "") as string | undefined);
 
   const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
   const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
   const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
+  const [ overrides, setOverrides ] = useState({} as Record<string, PlayerEditModel>);
 
   // Indiv editor
   const [ allEditOpen, setAllEditOpen ] = useState(startingState.allEditOpen as string | undefined);
@@ -268,6 +270,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
       deletedPlayers: _.isNil(deletedPlayersIn) ? _.keys(deletedPlayers).join(";") : deletedPlayersIn,
       disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
+      overrides: _.isNil(overridesIn) ? 
+        _.map(overrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : overridesIn,
       editOpen: _.isNil(editOpenIn) ? _.map(editOpen, (value, key) => `${key}|${value}`).join(";") : editOpenIn,
       // Editor specific settings for transfer view
       showOnlyTransfers: onlyTransfers,
@@ -279,7 +283,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
-    otherPlayerCache, disabledPlayers, deletedPlayers, editOpen,
+    otherPlayerCache, disabledPlayers, deletedPlayers, overrides, editOpen,
     lboardParams, showPrevSeasons
   ]);
 
@@ -349,7 +353,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     // First time through ... Rebuild the state from the input params
     if ((!_.isEmpty(dataEvent.players || [])) && (
       //(first time only)
-      !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn) && !_.isNil(editOpenIn)
+      !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn) && 
+      !_.isNil(overrides) && !_.isNil(editOpenIn) 
     )) {
 
       //TODO: there is a bug here in that if I go fetch the T100 or CONF versions of a player
@@ -363,8 +368,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const needToRebuildBasePlayers = 
         (((startingState.deletedPlayers || "") != "") && _.isEmpty(deletedPlayers)) ||
         (((startingState.addedPlayers || "") != "")  && _.isEmpty(otherPlayerCache)) ||
-        (((startingState.editOpen || "") != "")  && _.isEmpty(editOpen)) ||
-        (((startingState.disabledPlayers || "") != "")  && _.isEmpty(disabledPlayers));
+        (((startingState.disabledPlayers || "") != "")  && _.isEmpty(disabledPlayers)) ||
+        (((startingState.overrides || "") != "")  && _.isEmpty(overrides)) ||
+        (((startingState.editOpen || "") != "")  && _.isEmpty(editOpen));
 
       if (startingState.deletedPlayers && _.isEmpty(deletedPlayers)) {
         const deletedPlayersSet = new Set(startingState.deletedPlayers.split(";"));
@@ -378,6 +384,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           return [ key, true];
         }).fromPairs().value();
         setDisabledPlayers(firstDisabledPlayers);
+      }
+      if (startingState.overrides && _.isEmpty(overrides)) {
+        const firstOverrides = TeamEditorUtils.urlParamstoPlayerEditModels(startingState.overrides);
+        setOverrides(firstOverrides);
       }
       if (startingState.editOpen && _.isEmpty(editOpen)) {
         const firstEditOpen = _.chain(startingState.editOpen.split(";")).map(key => {
@@ -412,6 +422,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       setDeletedPlayersIn(undefined);
       setDisabledPlayersIn(undefined);
       setOtherPlayerCacheIn(undefined);
+      setOverridesIn(undefined);
       setEditOpenIn(undefined);
 
       if (needToRebuildBasePlayers) { //(will get called again with the right state because of the setXxx calls)
@@ -457,6 +468,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         return undefined;
       }
     };
+    const editPlayerOverrides = (triple: GoodBadOkTriple, currOverrides: Record<string, PlayerEditModel>, newOverride: PlayerEditModel | undefined) => {
+      const newOverrides = _.clone(overrides);
+      if (!newOverride) {
+        delete newOverrides[triple.key];
+      } else {
+        newOverrides[triple.key] = newOverride;
+      }
+      return newOverrides;
+    }
 
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const rosterInfo = triple.orig?.roster ?
@@ -538,8 +558,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       ).concat(hasEditPage ? 
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
+              triple={triple}
+              overrides={overrides[triple.key]}
+              onUpdate={(edit: PlayerEditModel | undefined) => {
+                setOverrides(editPlayerOverrides(triple, overrides, edit));
+              }}
               onDelete={() => {
-                const tidyUp = (currDisabledPlayers: Record<string, boolean>, currEditedPlayers: Record<string, string>) => {
+                const tidyUp = (
+                  currDisabledPlayers: Record<string, boolean>, currEditedPlayers: Record<string, string>, currOverrides: Record<string, PlayerEditModel>
+                ) => {
                   // Tidy up activity: remove from disabled/edited players set
                   const newDisabledPlayers = togglePlayerDisabled(triple, currDisabledPlayers, true);
                   if (newDisabledPlayers) {
@@ -549,24 +576,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   if (newEditOpen) {
                     setEditOpen(newEditOpen);
                   }
+                  setOverrides(editPlayerOverrides(triple, currOverrides, undefined))
                 };
                 if (otherPlayerCache[triple.key]) {
                   const newOtherPlayerCache = _.clone(otherPlayerCache);
                   delete newOtherPlayerCache[triple.key];
                   friendlyChange(() => {
                     setOtherPlayerCache(newOtherPlayerCache);
-                    tidyUp(disabledPlayers, editOpen);
+                    tidyUp(disabledPlayers, editOpen, overrides);
                   }, true);
                 } else {
                   const newDeletedPlayers = _.clone(deletedPlayers);
                   newDeletedPlayers[triple.key] = triple.orig.key;
                   friendlyChange(() => {
                     setDeletedPlayers(newDeletedPlayers);
-                    tidyUp(disabledPlayers, editOpen);
+                    tidyUp(disabledPlayers, editOpen, overrides);
                   }, true);
                 }      
               }}
-              triple={triple}
             />, "small"
           ), GenericTableOps.buildRowSeparator() ] : []
       ).concat(
@@ -763,7 +790,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       cellTooltipMode={undefined}
     />;
   }, [ dataEvent, year, team, 
-      otherPlayerCache, deletedPlayers, disabledPlayers, divisionStatsCache, debugMode, showPrevSeasons,
+      otherPlayerCache, deletedPlayers, disabledPlayers, overrides, divisionStatsCache, debugMode, showPrevSeasons,
       allEditOpen, editOpen ]);
 
   const playerLeaderboard = React.useMemo(() => {

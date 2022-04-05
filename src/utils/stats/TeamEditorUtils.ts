@@ -11,7 +11,8 @@ type DiagCodes =
    "player_gravity_bonus" | "player_gravity_penalty" | 
    "better_help_txfer_bonus" | "share_team_defense" |
    "incorp_prev_season" | "fr_regression" |
-   "switch_usage_ortg"
+   "switch_usage_ortg" |
+   "user_adjustment"
    ;
 
 type TeamEditorDiags = {
@@ -19,6 +20,12 @@ type TeamEditorDiags = {
    off_usage: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
    off: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
    def: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
+};
+
+export type PlayerEditModel = {
+   mins?: number,
+   global_off_adj?: number,
+   global_def_adj?: number
 };
 
 export type GoodBadOkTriple = {
@@ -34,6 +41,40 @@ export type GoodBadOkTriple = {
 /** Data manipulation functions for the TeamEditorTable */
 export class TeamEditorUtils {
 
+   // Model Parsing
+
+   /** Has the user applied any overrides */
+   static anyUserOverrides(model: PlayerEditModel) {
+      return !_.isNil(model.mins) || !_.isNil(model.global_off_adj) || !_.isNil(model.global_def_adj);
+   }
+
+   /** Convert user overrides to a param string */
+   static playerEditModelToUrlParams(key: string, model: PlayerEditModel): string {
+      const maybeMins = _.isNil(model.mins) ? undefined : `m@${model.mins.toFixed(1)}`;
+      const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(1)}`;
+      const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(1)}`;
+      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj ].filter(s => !_.isNil(s));
+      return `${key}|${toWrite.join("|")}`;
+   }
+
+   /** Convert the stringified param into a map of player edit modes */
+   static urlParamstoPlayerEditModels(urlParamFrag: string): Record<string, PlayerEditModel> {
+      return _.chain(urlParamFrag).split(";").map(frag => {
+         const fragFrags = frag.split("|");
+         const key = fragFrags[0];
+         return [ key, _.transform(_.drop(fragFrags, 1), (acc, v) => {
+            const vFrags = v.split("@");
+            if (vFrags[0] == "m") {
+               acc.mins = parseInt(vFrags?.[1] || "");
+            } else if (vFrags[0] == "go") {
+               acc.global_off_adj = parseInt(vFrags?.[1] || "");
+            } else if (vFrags[0] == "gd") {
+               acc.global_def_adj = parseInt(vFrags?.[1] || "");
+            }   
+         }, {} as PlayerEditModel) ];
+      }).fromPairs().value();
+   }
+
    static readonly diagCodeToString: Record<DiagCodes, string> = {
       fr_yearly_bonus: "Fr->Soph bonus",
       yearly_bonus: "Small year-on-year bonus",
@@ -45,7 +86,8 @@ export class TeamEditorUtils {
       share_team_defense: "Shared team defense",
       incorp_prev_season: "Incorporate previous seasons' stats",
       fr_regression: "Freshmen stats are prone to regression",
-      switch_usage_ortg: "Trade usage for efficiency"
+      switch_usage_ortg: "Trade usage for efficiency",
+      user_adjustment: "User adjustment"
    };
       
 
@@ -61,6 +103,8 @@ export class TeamEditorUtils {
          return `${p.code}:${p.team}:${p.year}`;
       }
    };
+
+   // Data processing
 
    //TODO: is there some way I can take walk-ons out the equation but use the roster info to list "guys that don't play much"
    // (ignoring anyone who isn't a Fr, will get rid of some of them, but not Fr walk-ons.... really need the *s)
