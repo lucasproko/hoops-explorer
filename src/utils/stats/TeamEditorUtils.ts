@@ -3,13 +3,15 @@ import _ from "lodash";
 import TeamReportFilter from "../../components/TeamReportFilter";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
+import { RatingUtils } from './RatingUtils';
 
 type DiagCodes = 
    "fr_yearly_bonus" | "yearly_bonus" |
    "undersized_txfer_pen" | "general_txfer_pen" |
    "player_gravity_bonus" | "player_gravity_penalty" | 
    "better_help_txfer_bonus" | "share_team_defense" |
-   "incorp_prev_season" | "fr_regression"
+   "incorp_prev_season" | "fr_regression" |
+   "switch_usage_ortg"
    ;
 
 type TeamEditorDiags = {
@@ -42,7 +44,8 @@ export class TeamEditorUtils {
       better_help_txfer_bonus: "Better help defense bonus",
       share_team_defense: "Shared team defense",
       incorp_prev_season: "Incorporate previous seasons' stats",
-      fr_regression: "Freshmen stats are prone to regression"
+      fr_regression: "Freshmen stats are prone to regression",
+      switch_usage_ortg: "Trade usage for efficiency"
    };
       
 
@@ -218,25 +221,6 @@ export class TeamEditorUtils {
          };
          return diags;
       };
-      const applyDiagsToBase = (proj: "good" | "bad" | "ok", 
-         diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet,
-         filter: Set<DiagCodes> | undefined
-      ) => {
-         // (These 2 are just for display) 
-         const thisYearDefSos = (basePlayer.def_adj_opp?.value || 100); //(For ORtg, need to take SoS into account)
-         const sumOffRtg = _.chain(diags.off_rtg[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
-         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, (teamSosDef/thisYearDefSos))!;
-         const sumOffUsage = 0.01*_.chain(diags.off_usage[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
-         mutableTarget.off_usage = TeamEditorUtils.addToVal(basePlayer.off_usage, sumOffUsage)!;
-
-         const sumOffAdj = _.chain(diags.off[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
-         mutableTarget.off_adj_rtg = TeamEditorUtils.addToVal(basePlayer.off_adj_rtg, sumOffAdj)!;
-         mutableTarget.off_adj_rapm = TeamEditorUtils.addToVal(basePlayer.off_adj_rapm, sumOffAdj)!;
-         const sumDefAdj = _.chain(diags.def[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
-         mutableTarget.def_adj_rtg = TeamEditorUtils.addToVal(basePlayer.def_adj_rtg, sumDefAdj)!;
-         mutableTarget.def_adj_rapm = TeamEditorUtils.addToVal(basePlayer.def_adj_rapm, sumDefAdj)!;
-      }
-
       const applyFrRegression = (
          player: IndivStatSet, 
       ) => {
@@ -359,13 +343,96 @@ export class TeamEditorUtils {
          }
       };
 
+      /** Balance ORtg and usage somewhat - this is really just for display */
+      const balanceORtgAndUsage = (triple: GoodBadOkTriple) => {
+         const handleScenario = (proj: "good" | "bad" | "ok", dataSource: PureStatSet) => {
+            const usage = dataSource.off_usage?.value || 0.20;
+            const ortg = dataSource.off_rtg?.value || 0.20;
+            // Diagnostics
+            //console.log(`?? [${triple.key}][${proj}] - usg=${usage} rtg=${ortg}`);            
+
+            if ((usage > 0.25) && (ortg < 110)) {
+               // Scenario 1: Heavy usage (>25%), not superstar efficiency (ORtg < 110), try shot selection
+               // aim for 24, assume we'll get 2/3rds of the way there
+               const deltaUsage = -(usage - 0.24)*0.66;
+               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;
+               // Diagnostics
+               //console.log(`?? [${triple.key}][${proj}] - Delta usg=${deltaUsage} rtg=${deltaORtg}`);            
+               return [ deltaORtg, deltaUsage ];
+            } else if ((ortg < 90) && (usage > 0.10)) {
+               // Scenario 2: Your ORtg is so bad that you'll lower your usage as low as it will go to get back to 90
+               const deltaUsage = -(usage - 0.10)*0.66;
+               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;
+               return [ deltaORtg, deltaUsage ];
+            } else if ((usage > 0.21) && (usage < 0.25) && (ortg < 98)) {
+               // Scenario 3: the search for 100!
+               const deltaUsage = -(usage - 0.19)*0.80; //(will go all the way down to 19)
+               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;            
+               return [ deltaORtg, deltaUsage ];
+            } 
+            return [ 0, 0 ];
+         }
+         const [ goodDeltaORtg, goodDeltaUsg ] = handleScenario("good", triple.good);
+         const [ okDeltaORtg, okDeltaUsg ] = handleScenario("ok", triple.ok);
+         const [ badDeltaORtg, badDeltaUsg ] = handleScenario("bad", triple.bad);
+         return {
+            off_rtg: {
+               good: tidy({
+                  switch_usage_ortg: goodDeltaORtg
+               }),
+               ok: tidy({
+                  switch_usage_ortg: okDeltaORtg
+               }),
+               bad: tidy({
+                  switch_usage_ortg: badDeltaORtg
+               }),
+            },
+            off_usage: {
+               good: tidy({
+                  switch_usage_ortg: goodDeltaUsg*100
+               }),
+               ok: tidy({
+                  switch_usage_ortg: okDeltaUsg*100
+               }),
+               bad: tidy({
+                  switch_usage_ortg: badDeltaUsg*100
+               }),
+            },
+            off: { good: {}, ok: {}, bad: {} },
+            def: { good: {}, ok: {}, bad: {} },
+         };
+      }
+
+      // Now apply the above rules
+
+      const applyDiagsToBase = (proj: "good" | "bad" | "ok", 
+         diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet, applySos: boolean,
+         filter: Set<DiagCodes> | undefined
+      ) => {
+         // (These 2 are just for display) 
+         const thisYearDefSos = applySos ? (basePlayer.def_adj_opp?.value || 100) : teamSosDef; //(For ORtg, need to take SoS into account)
+         const sumOffRtg = _.chain(diags.off_rtg[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, applySos ? (teamSosDef/thisYearDefSos) : 1.0)!;
+         const sumOffUsage = 0.01*_.chain(diags.off_usage[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         mutableTarget.off_usage = TeamEditorUtils.addToVal(basePlayer.off_usage, sumOffUsage)!;
+
+         const sumOffAdj = _.chain(diags.off[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         mutableTarget.off_adj_rtg = TeamEditorUtils.addToVal(basePlayer.off_adj_rtg, sumOffAdj)!;
+         mutableTarget.off_adj_rapm = TeamEditorUtils.addToVal(basePlayer.off_adj_rapm, sumOffAdj)!;
+         const sumDefAdj = _.chain(diags.def[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         mutableTarget.def_adj_rtg = TeamEditorUtils.addToVal(basePlayer.def_adj_rtg, sumDefAdj)!;
+         mutableTarget.def_adj_rapm = TeamEditorUtils.addToVal(basePlayer.def_adj_rapm, sumDefAdj)!;
+      }
+
+
       roster.forEach(triple => {
          // Calculate previous player improvement for regression
          const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined) : undefined;
          const prevPlayerYearlyAdjustment = {};
          if (prevPlayerDiags && triple.prevYear) {
             applyDiagsToBase("ok", 
-               prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[])
+               prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, true,
+               new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[])
             );
          };
          const isFr = (triple.orig.roster?.year_class == "Fr"); //("fake Freshmen" already handled by 1st clause)
@@ -381,8 +448,15 @@ export class TeamEditorUtils {
          const playerDiags = calcBasicAdjustments(triple.orig, triple.prevYear);
          triple.diag = regressionDeltas ? _.merge(playerDiags, regressionDeltas) : playerDiags;
          ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
-            applyDiagsToBase(proj, playerDiags, triple[proj], triple.orig, undefined)
+            applyDiagsToBase(proj, playerDiags, triple[proj], triple.orig, true, undefined)
          });
+         // Now we have calculated the ORtg/usage corresponding to the RAPM, balance it to look better
+         const balanceORtgDiag = balanceORtgAndUsage(triple) as TeamEditorDiags;
+         ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
+            applyDiagsToBase(proj, balanceORtgDiag, triple[proj], triple[proj], false, // <- already applied it
+               new Set<DiagCodes>([ "switch_usage_ortg" ]))
+         });
+         triple.diag = _.merge(triple.diag, balanceORtgDiag);
       });
       //TODO: turn the adjustment into an ORtg/usage delta for "OK" tier (add off_ortg and off_usg)
    }

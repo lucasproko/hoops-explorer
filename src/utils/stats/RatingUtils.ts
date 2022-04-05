@@ -1198,4 +1198,25 @@ export class RatingUtils {
     });
   }
 
+  /** Calculates the approx new ORtg due to an increase/decreate in usage */
+  static adjustORtgForUsageDelta(ortg: number, usagePct: number, usageDeltaPct: number) {
+    //Based on
+    //    const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
+    const usage = 100*usagePct;
+    const usageDelta = 100*usageDeltaPct;
+    if ((usage >= 20) && (usageDelta > 0)) {
+      return ortg - 1.25*usageDelta;
+    } else if ((usage < 20) && (usageDelta < 0)) {
+      return ortg - 1.5*usageDelta;
+    } else if (usage < 20) { //(usageDelta > 0)
+      const part1 = Math.min(20 - usage, usageDelta);
+      const part2 = Math.max(0, usageDelta - part1);
+      return ortg - 1.5*part1 - 1.25*part2;
+    } else { // usage >= 20, usageDelta < 0
+      const part1 = Math.min(usage - 20, Math.abs(usageDelta));
+      const part2 = Math.max(0, Math.abs(usageDelta) - part1);
+      return ortg + 1.25*part1 + 1.5*part2;
+    }
+  }
+
 }
