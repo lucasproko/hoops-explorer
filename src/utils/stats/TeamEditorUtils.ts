@@ -26,7 +26,8 @@ type TeamEditorDiags = {
 export type PlayerEditModel = {
    mins?: number,
    global_off_adj?: number,
-   global_def_adj?: number
+   global_def_adj?: number,
+   pause?: boolean
 };
 
 export type GoodBadOkTriple = {
@@ -58,7 +59,8 @@ export class TeamEditorUtils {
       const maybeMins = _.isNil(model.mins) ? undefined : `m@${model.mins.toFixed(1)}`;
       const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(1)}`;
       const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(1)}`;
-      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj ].filter(s => !_.isNil(s));
+      const maybePaused = _.isNil(model.pause) ? undefined : `p@${model.pause ? 1 : 0}`;
+      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused ].filter(s => !_.isNil(s));
       return `${key}|${toWrite.join("|")}`;
    }
 
@@ -75,7 +77,9 @@ export class TeamEditorUtils {
                acc.global_off_adj = parseInt(vFrags?.[1] || "");
             } else if (vFrags[0] == "gd") {
                acc.global_def_adj = parseInt(vFrags?.[1] || "");
-            }   
+            } else if (vFrags[0] == "p") {
+               acc.pause = vFrags?.[1] == "1";
+            }  
          }, {} as PlayerEditModel) ];
       }).fromPairs().value();
    }

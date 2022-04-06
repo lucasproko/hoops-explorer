@@ -19,7 +19,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { GoodBadOkTriple, PlayerEditModel } from '../../utils/stats/TeamEditorUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPause, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 type Props = {
@@ -43,6 +43,14 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    const deleteTooltip = <Tooltip id="deleteTooltip">
       WARNING! Deletes the player from the table. You can add them back from the "Add New Player" section.&nbsp;
       Use the filter option to remove the player temporarily.
+   </Tooltip>;
+
+   const pauseTooltip = <Tooltip id="pauseTooltip">
+      Temporarily disables the overrides, so you can easily see the difference with them turned on/off.
+   </Tooltip>;
+
+   const resetTooltip = <Tooltip id="resetTooltip">
+      Removes all overrides.
    </Tooltip>;
 
    const minsApplyTooltip = <Tooltip id="minsApplyTooltip">
@@ -75,7 +83,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   <InputGroup.Prepend>
                      <InputGroup.Text id="minPct">Fix MPG</InputGroup.Text>
                   </InputGroup.Prepend>
-                  <Form.Control
+                  <Form.Control disabled={overrides?.pause}
                      onChange={(ev: any) => {
                         if (/^[0-9.]*$/.exec(ev.target.value || "")) {
                            setCurrMins(ev.target.value || "")
@@ -88,7 +96,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                </Col>
                <Col xs={2} className="pt-1">
                   <OverlayTrigger overlay={minsApplyTooltip} placement="auto">
-                     <Button size="sm" variant="outline-secondary"
+                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
                         onClick={() => {
                            if (!((parseInt(currMins || "-1") == overrides?.mins) || (!currMins && _.isNil(overrides?.mins)))) {
                               const currOverrides = overrides ? _.clone(overrides) : {};
@@ -103,7 +111,36 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                      >+</Button>
                   </OverlayTrigger>
                </Col>
-               <Col xs={5}/>
+               <Col xs={3}/>
+               <Col xs={1} className="pt-1">
+                  <OverlayTrigger overlay={resetTooltip} placement="auto">
+                     <Button size="sm" variant="outline-secondary" onClick={((ev:any) => {
+                        setCurrMins("");
+                        setCurrOffAdj(0);
+                        setCurrDefAdj(0);
+                        onUpdate(undefined);
+                     })}
+                        ><FontAwesomeIcon icon={faTimes} />
+                     </Button>
+                  </OverlayTrigger>
+               </Col>
+               <Col xs={1} className="pt-1">
+                  <OverlayTrigger overlay={pauseTooltip} placement="auto">
+                     <Button size="sm" variant={overrides?.pause ? "secondary" : "outline-secondary"} onClick={((ev:any) => {
+                        if (overrides) { //(else nothing to pause)
+                           const currOverrides = overrides ? _.clone(overrides) : {};
+                           if (currOverrides.pause) {
+                              delete currOverrides.pause;
+                           } else {
+                              currOverrides.pause = true;
+                           }
+                           onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
+                        }
+                     })}
+                        ><FontAwesomeIcon icon={faPause} />
+                     </Button>
+                  </OverlayTrigger>
+               </Col>
                <Col xs={1} className="pt-1">
                   {isBench ? null :
                   <OverlayTrigger overlay={deleteTooltip} placement="auto">
@@ -120,7 +157,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   <Form inline>
                      <Form.Label className="pull-left">Bearish&nbsp;&nbsp;&nbsp;</Form.Label>
                      <Form className="flex-fill">
-                     <Form.Control type="range" custom 
+                     <Form.Control type="range" custom disabled={overrides?.pause}
                         value={currOffAdj}
                         onChange={(ev: any) => {
                            const newVal = parseFloat(ev.target.value);
@@ -133,8 +170,8 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </Form>
                </Col>
                <Col xs={2} className="pt-4">
-                  <OverlayTrigger overlay={minsApplyTooltip} placement="auto">
-                     <Button size="sm" variant="outline-secondary"
+                  <OverlayTrigger overlay={globalAdjTooltip} placement="auto">
+                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
                         onClick={() => {
                            const currOverrides = overrides ? _.clone(overrides) : {};
                            if (currOffAdj == 0) {
@@ -156,7 +193,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   <Form inline>
                      <Form.Label className="pull-left">Bearish&nbsp;&nbsp;&nbsp;</Form.Label>
                      <Form className="flex-fill">
-                     <Form.Control type="range" custom 
+                     <Form.Control type="range" custom disabled={overrides?.pause}
                         value={currDefAdj}
                         onChange={(ev: any) => {
                            const newVal = parseFloat(ev.target.value);
@@ -169,8 +206,8 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </Form>
                </Col>
                <Col xs={2} className="pt-4">
-                  <OverlayTrigger overlay={minsApplyTooltip} placement="auto">
-                     <Button size="sm" variant="outline-secondary"
+                  <OverlayTrigger overlay={globalAdjTooltip} placement="auto">
+                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
                         onClick={() => {
                            const currOverrides = overrides ? _.clone(overrides) : {};
                            if (currDefAdj == 0) {
@@ -187,13 +224,13 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
             </Row>
             </Container>
          </Tab>
-         <Tab eventKey="Optimistic" title="Optimistic">
+         <Tab eventKey="Optimistic" title="Optimistic" disabled={overrides?.pause}> 
             {comingSoon}
          </Tab>
-         <Tab eventKey="Balanced" title="Balanced">
+         <Tab eventKey="Balanced" title="Balanced" disabled={overrides?.pause}>
             {comingSoon}
          </Tab>
-         <Tab eventKey="Pessimistic" title="Pessimistic">
+         <Tab eventKey="Pessimistic" title="Pessimistic" disabled={overrides?.pause}>
             {comingSoon}
          </Tab>
       </Tabs>

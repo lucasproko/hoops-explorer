@@ -435,12 +435,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
     }
 
+    const filteredOverrides = _.chain(overrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
+
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)); //TODO process this + get team results
 
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
-    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, overrides, offSeasonMode);
-    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, overrides, teamSosNet, avgEff, offSeasonMode);
+    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, filteredOverrides, offSeasonMode);
+    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, filteredOverrides, teamSosNet, avgEff, offSeasonMode);
     if (offSeasonMode) { //(else not projecting, just describing)
       TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
     }
@@ -496,7 +498,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           offSeasonMode ? TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
         }` : undefined;
 
-      const override = overrides[triple.key];
+      const override = filteredOverrides[triple.key];
 
       const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
       const name = <b>{triple.orig.key}</b>;
@@ -505,7 +507,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
       const inSeasonModeStillShow = offSeasonMode || (
-        !_.isEmpty(override) || (triple.orig.off_team_poss_pct?.value != triple.ok.off_team_poss_pct?.value)
+        !_.isNil(override) || (triple.orig.off_team_poss_pct?.value != triple.ok.off_team_poss_pct?.value)
           //(ie there are overrides, OR another players override has adjusted my minutes)
       );
       const prevSeasonEl = showPrevSeasons && inSeasonModeStillShow && !isFiltered? {
@@ -587,7 +589,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={false}
-              overrides={override}
+              overrides={overrides[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
                   setOverrides(editPlayerOverrides(triple, overrides, edit));
@@ -639,7 +641,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const mpg =  (triple.ok.off_team_poss_pct?.value || 0)*40;
       const isFiltered = mpg == 0;
       const hasEditPage = allEditOpen || editOpen[triple.key];
-      const override = overrides[triple.key];
+      const override = filteredOverrides[triple.key];
 
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
@@ -668,7 +670,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={true}
-              overrides={override}
+              overrides={overrides[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
                   setOverrides(editPlayerOverrides(triple, overrides, edit));
@@ -720,7 +722,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       : 
       TeamEditorUtils.getBenchMinutes(
         team, year,
-        rosterGuardMins, rosterWingMins, rosterBigMins, overrides, alwaysShowBench
+        rosterGuardMins, rosterWingMins, rosterBigMins, filteredOverrides, alwaysShowBench
       );
 
     // Now, finally, can build display:
