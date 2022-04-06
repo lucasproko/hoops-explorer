@@ -625,13 +625,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       )
     };
     const buildBenchDataRowFromTriple = (triple: GoodBadOkTriple) => {
-      const isFiltered = false; //(never possible to filter bench minutes)
+      const mpg =  (triple.ok.off_team_poss_pct?.value || 0)*40;
+      const isFiltered = mpg == 0;
       const hasEditPage = allEditOpen || editOpen[triple.key];
       const override = overrides[triple.key];
 
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
-        mpg: isFiltered ? undefined : { value: (triple.ok.off_team_poss_pct?.value || 0)*40 },
+        mpg: { value: mpg },
 
         good_net: isFiltered ? undefined : { value: getNet(triple.good) },
         good_off: isFiltered ? undefined : { value: getOff(triple.good) },

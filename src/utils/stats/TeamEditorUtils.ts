@@ -15,11 +15,12 @@ type DiagCodes =
    "user_adjustment"
    ;
 
+type TeamEditorDiagObject = { [K in DiagCodes]?: number }
 type TeamEditorDiags = {
-   off_rtg: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
-   off_usage: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
-   off: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
-   def: { good: Record<DiagCodes, number>, ok: Record<DiagCodes, number>, bad: Record<DiagCodes, number>, }
+   off_rtg: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
+   off_usage: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
+   off: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
+   def: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
 };
 
 export type PlayerEditModel = {
@@ -40,6 +41,10 @@ export type GoodBadOkTriple = {
 
 /** Data manipulation functions for the TeamEditorTable */
 export class TeamEditorUtils {
+
+   static readonly benchGuardKey = "benchG";
+   static readonly benchWingKey = "benchW";
+   static readonly benchBigKey = "benchB";
 
    // Model Parsing
 
@@ -157,8 +162,8 @@ export class TeamEditorUtils {
       offSeasonMode: boolean
    ) {
       /** TODO: remove this once moving away from JSON */
-      const tidy = (inJson: Record<string, number>) => {
-         const keys = _.keys(inJson);
+      const tidy = (inJson: TeamEditorDiagObject) => {
+         const keys = _.keys(inJson) as DiagCodes[];
          keys.forEach(key => {
             if (!inJson[key]) delete inJson[key];
          });
@@ -210,7 +215,7 @@ export class TeamEditorUtils {
          const defTxferMulti = isFr ? 1 : 0.5; //(you get a bigger jump as a Fr, see defClassMulti)
          const generalTxferDefPenalty = (basePlayer.team != team) ? defTxferMulti*avgDefBump : 0; //(just the fact that you might not get quite the same off-season bump as a transfer)
 
-         const yearlyBonusField = isFr ? "fr_yearly_bonus" : "yearly_bonus";
+         const yearlyBonusField: DiagCodes = isFr ? "fr_yearly_bonus" : "yearly_bonus";
          const diags: TeamEditorDiags = {
             // These are just for display
             off_rtg: {
@@ -245,41 +250,41 @@ export class TeamEditorUtils {
             off: {
                good: tidy({
                   [yearlyBonusField]: 2*offClassMulti*avgOffBump,
-                  "undersized_txfer_pen": -0.5*offTxferUpPenalty,
-                  "player_gravity_bonus": rapmVsAdjOffDeltaGoodBonus,
-                  "user_adjustment": override?.global_off_adj || 0,
+                  undersized_txfer_pen: -0.5*offTxferUpPenalty,
+                  player_gravity_bonus: rapmVsAdjOffDeltaGoodBonus,
+                  user_adjustment: override?.global_off_adj || 0,
                }), 
                ok: tidy({
                   [yearlyBonusField]: offClassMulti*avgOffBump,
-                  "undersized_txfer_pen": -0.75*offTxferUpPenalty,
-                  "general_txfer_pen": -0.5*generalTxferOffPenalty,
-                  "user_adjustment": override?.global_off_adj || 0,
+                  undersized_txfer_pen: -0.75*offTxferUpPenalty,
+                  general_txfer_pen: -0.5*generalTxferOffPenalty,
+                  user_adjustment: override?.global_off_adj || 0,
                }),
                bad: tidy({
-                  "undersized_txfer_pen": -offTxferUpPenalty,
-                  "general_txfer_pen": -generalTxferOffPenalty,
-                  "player_gravity_penalty": -rapmVsAdjOffDeltaBadPenalty,
-                  "user_adjustment": override?.global_off_adj || 0,
+                  undersized_txfer_pen: -offTxferUpPenalty,
+                  general_txfer_pen: -generalTxferOffPenalty,
+                  player_gravity_penalty: -rapmVsAdjOffDeltaBadPenalty,
+                  user_adjustment: override?.global_off_adj || 0,
                })
             },
             def: {
                good: tidy({
                   [yearlyBonusField]: 2*defClassMulti*avgDefBump,
-                  "better_help_txfer_bonus": defTxferUpBetterHelpBump,
-                  "undersized_txfer_pen": -0.5*defTxferUpPenalty,
-                  "user_adjustment": override?.global_def_adj || 0,
+                  better_help_txfer_bonus: defTxferUpBetterHelpBump,
+                  undersized_txfer_pen: -0.5*defTxferUpPenalty,
+                  user_adjustment: override?.global_def_adj || 0,
                }),
                ok: tidy({
                   [yearlyBonusField]: defClassMulti*avgDefBump,
-                  "better_help_txfer_bonuss": 0.5*defTxferUpBetterHelpBump,
-                  "undersized_txfer_pen": -0.75*defTxferUpPenalty,
-                  "general_txfer_pen": -0.5*generalTxferDefPenalty,
-                  "user_adjustment": override?.global_def_adj || 0,
+                  better_help_txfer_bonus: 0.5*defTxferUpBetterHelpBump,
+                  undersized_txfer_pen: -0.75*defTxferUpPenalty,
+                  general_txfer_pen: -0.5*generalTxferDefPenalty,
+                  user_adjustment: override?.global_def_adj || 0,
                }),
                bad: tidy({
-                  "undersized_txfer_pen": -defTxferUpPenalty,
-                  "general_txfer_pen": -generalTxferDefPenalty,
-                  "user_adjustment": override?.global_def_adj || 0,
+                  undersized_txfer_pen: -defTxferUpPenalty,
+                  general_txfer_pen: -generalTxferDefPenalty,
+                  user_adjustment: override?.global_def_adj || 0,
                })
             }
          };
@@ -647,6 +652,11 @@ export class TeamEditorUtils {
 
       // We want the total to try to hit the range: 5*(35-39mpg), goal 37.5 if high, 36.5 if low and the rest will be picked up as bench minutes
 
+      const allThreeBenchPosHaveOverriddenMins =
+         _.chain(overrides).pick(
+            [ TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ]
+         ).filter(o => !_.isNil(o.mins)).size().value() == 3;
+
       const steps = [ 0, 1, 2, 3, 4, 5 ];
       _.transform(steps, (acc, step) => {
          const sumMins = _.sumBy(filteredRoster, p => p.ok.off_team_poss_pct.value || 0);
@@ -655,7 +665,9 @@ export class TeamEditorUtils {
          const lowLevel = 5*(35.0/40.0);
          const highGoal = 5*(37.5/40.0);
          const lowGoal = 5*(36.5/40.0);
-         const goal = sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1);
+         const goal = 
+            allThreeBenchPosHaveOverriddenMins ? 5.0 //(if bench specified then try to exactly hit 40mpg)
+            : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1));
 
          //console.log(`Step ${step}: ${sumMins.toFixed(3)}`);
 
@@ -675,22 +687,39 @@ export class TeamEditorUtils {
 
    /** Inserts unused minutes */
    static getBenchMinutes(
-      team: string, year: string, guardPct: number, wingPct: number, bigPct: number, overrides: Record<string, PlayerEditModel>
+      team: string, year: string, guardPctIn: number, wingPctIn: number, bigPctIn: number, overrides: Record<string, PlayerEditModel>
    ): [ GoodBadOkTriple | undefined, GoodBadOkTriple | undefined, GoodBadOkTriple | undefined ] {
-      const deltaMins = 1.0 - (guardPct + wingPct + bigPct);
-      if (deltaMins > 0.0) {
+
+      const hasGuardOverride = !_.isNil(overrides[TeamEditorUtils.benchGuardKey]?.mins);
+      const guardPctOverride = 0.2*(overrides[TeamEditorUtils.benchGuardKey]?.mins || 0)/40;
+      const guardPct = guardPctIn + guardPctOverride;
+      const hasWingOverride = !_.isNil(overrides[TeamEditorUtils.benchWingKey]?.mins);
+      const wingPctOverride = 0.2*(overrides[TeamEditorUtils.benchWingKey]?.mins || 0)/40;
+      const wingPct = wingPctIn + wingPctOverride;
+      const hasBigOverride = !_.isNil(overrides[TeamEditorUtils.benchBigKey]?.mins);
+      const bigPctOverride = 0.2*(overrides[TeamEditorUtils.benchBigKey]?.mins || 0)/40;
+      const bigPct = bigPctIn + bigPctOverride;
+
+      const hasBenchOverrides = hasGuardOverride || hasWingOverride || hasBigOverride;
+      const deltaMins = Math.max(0, 1.0 - (guardPct + wingPct + bigPct));
+
+      //(if auto-calc need for bench minutes, or if any minutes overrides are in place)
+      if ((deltaMins > 0.0) || hasBenchOverrides) {
 
          const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
 
-         const buildBench = (key: string, posClass: string, minsPct: number) => {
+         const buildBench = (key: string, name: string, posClass: string, minsPctIn: number) => {
             const maybeOverrides = overrides[key];
+
+            const minsPct = 
+               !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
             const offAdj = maybeOverrides?.global_off_adj || 0;
             const defAdj = maybeOverrides?.global_def_adj || 0;
 
             const baseBench = {
-               key: key,
-               off_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
-               def_team_poss_pct: { value: Math.min(minsPct*5, 1.0) },
+               key: name,
+               off_team_poss_pct: { value: minsPct },
+               def_team_poss_pct: { value: minsPct },
                off_adj_rapm: { value: benchLevel + offAdj },
                def_adj_rapm: { value: -benchLevel + defAdj },
                posClass: posClass
@@ -714,14 +743,26 @@ export class TeamEditorUtils {
             } as GoodBadOkTriple;
          };
 
-         const benchGuardMins = Math.min(Math.max(0, (0.30 - guardPct)), deltaMins); // wings can play 50% of SG minutes
-         const benchBigMins = Math.min(Math.max(0, (0.30 - bigPct)), deltaMins); // wings can play 50% of PF minutes
-         const benchWingMins = Math.max(0, deltaMins - benchGuardMins - benchBigMins);
+         const benchGuardMins = hasGuardOverride ? (guardPct - guardPctIn) :
+            Math.min(Math.max(0, (0.30 - guardPct)), deltaMins); // wings can play 50% of SG minutes
+         const benchBigMins = hasBigOverride ? (bigPct - bigPctIn) :
+            Math.min(Math.max(0, (0.30 - bigPct)), deltaMins); // wings can play 50% of PF minutes
+         const benchWingMins = hasWingOverride ? (wingPct - wingPctIn) :
+            Math.max(0, deltaMins - benchGuardMins - benchBigMins); //(wings get the leftover)
+
+         // Diagnostics
+         //console.log(`Bench ${deltaMins} = ${guardPct}/${benchGuardMins} ${wingPct}/${benchWingMins} ${bigPct}/${benchBigMins}`)
 
          return [ 
-            benchGuardMins > 0 ? buildBench("Bench Guard Minutes", "G?", benchGuardMins) : undefined, 
-            benchWingMins > 0 ? buildBench("Bench Wing Minutes", "W?", benchWingMins) : undefined, 
-            benchBigMins > 0 ? buildBench("Bench Big Minutes", "PF/C", benchBigMins) : undefined, 
+            (benchGuardMins > 0) || hasBenchOverrides ? buildBench(
+               TeamEditorUtils.benchGuardKey, "Bench Guard Minutes", "G?", benchGuardMins
+            ) : undefined, 
+            (benchWingMins > 0) || hasBenchOverrides ? buildBench(
+               TeamEditorUtils.benchWingKey, "Bench Wing Minutes", "W?", benchWingMins
+            ) : undefined, 
+            (benchBigMins > 0) || hasBenchOverrides ? buildBench(
+               TeamEditorUtils.benchBigKey, "Bench Big Minutes", "PF/C", benchBigMins
+            ) : undefined, 
          ];
 
       } else {

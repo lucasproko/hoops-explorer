@@ -62,15 +62,12 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
          </Row>
       </Container>;
 
-
    return <Container><Row>
       <Col xs={1}/>
       <Col xs={10}>
       <Tabs>
          <Tab eventKey="General" title="General">
             <Container>
-            {isBench ? undefined
-            :            
             <Row className="mt-2">
                <Col xs={1}/>               
                <Col xs={3}>
@@ -93,7 +90,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   <OverlayTrigger overlay={minsApplyTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary"
                         onClick={() => {
-                           if (!((parseInt(currMins || "0") == overrides?.mins) || (!currMins && !overrides?.mins))) {
+                           if (!((parseInt(currMins || "-1") == overrides?.mins) || (!currMins && _.isNil(overrides?.mins)))) {
                               const currOverrides = overrides ? _.clone(overrides) : {};
                               if (currMins == "") {
                                  delete currOverrides.mins
@@ -114,7 +111,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                      </Button>
                   </OverlayTrigger>
                </Col>
-            </Row>}
+            </Row>
             <Row className="mt-3">
                <Col xs={1}/>
                <Col xs={8}>
