@@ -352,7 +352,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), !offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || {}
+      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || {}
     );
 
     // First time through ... Rebuild the state from the input params

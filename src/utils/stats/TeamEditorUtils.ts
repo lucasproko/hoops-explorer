@@ -121,7 +121,7 @@ export class TeamEditorUtils {
    /** Pulls out the players from the designated team */
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
-      includeAllPlayers: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
+      offSeasonMode: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
       transfers: Record<string, Array<{f: string, t?: string}>>
    ): GoodBadOkTriple[] {
       const fromBaseRoster = _.transform(players, (acc, p) => {
@@ -130,8 +130,8 @@ export class TeamEditorUtils {
          const isTransfer = p.team != team;
          const key = isTransfer ? `${p.code}:${p.team}:${yearAdj}` : `${p.code}::${yearAdj}`;
          const isRightYear = year == "All" || (p.year == year);
-         const transferringIn = _.some(transfers[code] || [], p => p.t == team);
-         const notTransferringOut = ((p.team == team) && (includeAllPlayers ||    
+         const transferringIn = offSeasonMode && _.some(transfers[code] || [], p => p.t == team);
+         const notTransferringOut = ((p.team == team) && (!offSeasonMode ||    
                                        (           
                                           (includeSuperSeniors || (p.roster?.year_class != "Sr"))
                                           && !_.some(transfers[code] || [], p => p.f == team))
