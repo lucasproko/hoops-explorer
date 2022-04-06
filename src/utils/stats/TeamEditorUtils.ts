@@ -117,7 +117,7 @@ export class TeamEditorUtils {
    /** Pulls out the players from the designated team */
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
-      includeSeniors: boolean, excludeSet: Record<string, string>, 
+      includeAllPlayers: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
       transfers: Record<string, Array<{f: string, t?: string}>>
    ): GoodBadOkTriple[] {
       const fromBaseRoster = _.transform(players, (acc, p) => {
@@ -127,9 +127,11 @@ export class TeamEditorUtils {
          const key = isTransfer ? `${p.code}:${p.team}:${yearAdj}` : `${p.code}::${yearAdj}`;
          const isRightYear = year == "All" || (p.year == year);
          const transferringIn = _.some(transfers[code] || [], p => p.t == team);
-         const notTransferringOut = ((p.team == team)                
-                                       && (includeSeniors || (p.roster?.year_class != "Sr"))
-                                          && !_.some(transfers[code] || [], p => p.f == team));
+         const notTransferringOut = ((p.team == team) && (includeAllPlayers ||    
+                                       (           
+                                          (includeSuperSeniors || (p.roster?.year_class != "Sr"))
+                                          && !_.some(transfers[code] || [], p => p.f == team))
+                                       ));
          const notOnExcludeList = !excludeSet[key];
 
          if ((transferringIn || notTransferringOut) && notOnExcludeList) {
@@ -148,7 +150,9 @@ export class TeamEditorUtils {
          }
       }, { retVal: [] as GoodBadOkTriple[], dups:  {} as Record<string, boolean>, prevYears: {} as Record<string, IndivStatSet> });
 
-      return fromBaseRoster.retVal.map(triple => {
+      return fromBaseRoster.retVal.filter(triple => { // Filter out players who were already super seniors
+         return !triple.prevYear || (triple.prevYear.roster?.year_class != "Sr");
+      }).map(triple => {
          return { ...triple, prevYear: fromBaseRoster.prevYears[triple.key]};
       });
    }
@@ -174,7 +178,7 @@ export class TeamEditorUtils {
       ) => {
          const isFr = (basePlayer.roster?.year_class == "Fr") && _.isNil(basePlayerPrevYear); //(filter out "fake Freshmen")
 
-         const avgOffBump = offSeasonMode ? 0.6 : 0; //(1.5 ORtg + 1 usage - the bump for staying in the same team)
+         const avgOffBump = 0.6; //(1.5 ORtg + 1 usage - the bump for staying in the same team)
          const offClassMulti = isFr ? 2 : 1;
 
          // Calculate ORtg adjustment from delta projection: 0.2*((ORtg*(avgEff/teamSosDef) - avgEff)
@@ -200,7 +204,7 @@ export class TeamEditorUtils {
 
          // Defensive bonuses and penalties (- == good)
 
-         const avgDefBump = offSeasonMode ? -0.6 : 0; //(just make the same as the offensive bump, I don't believe there is any data)
+         const avgDefBump = -0.6; //(just make the same as the offensive bump, I don't believe there is any data)
          const defClassMulti = isFr ? 2 : 0.5; //(I'm going to assert without evidence the Fr bump for defense is relatively bigger)
 
          const offSosDeltaForTxfers = teamSosOff - (basePlayer.off_adj_opp?.value || (avgEff + 4));
@@ -498,7 +502,7 @@ export class TeamEditorUtils {
          // Calculate previous player improvement for regression
          const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined, undefined) : undefined;
          const prevPlayerYearlyAdjustment = {};
-         if (prevPlayerDiags && triple.prevYear) {
+         if (prevPlayerDiags && triple.prevYear && offSeasonMode) {
             applyDiagsToBase("ok", 
                prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, true,
                new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[])
@@ -516,17 +520,22 @@ export class TeamEditorUtils {
 
          const maybeOverride = overrides[triple.key];
          const playerDiags = calcBasicAdjustments(triple.orig, triple.prevYear, maybeOverride);
-         triple.diag = regressionDeltas ? _.merge(playerDiags, regressionDeltas) : playerDiags;
+         triple.diag = (regressionDeltas && offSeasonMode) ? _.merge(playerDiags, regressionDeltas) : playerDiags;
          ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
-            applyDiagsToBase(proj, playerDiags, triple[proj], triple.orig, true, undefined)
+            applyDiagsToBase(
+               proj, playerDiags, triple[proj], triple.orig, true, 
+               offSeasonMode ? undefined : new Set<DiagCodes>([ "user_adjustment" ])
+            )
          });
          // Now we have calculated the ORtg/usage corresponding to the RAPM, balance it to look better
-         const balanceORtgDiag = balanceORtgAndUsage(triple) as TeamEditorDiags;
-         ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
-            applyDiagsToBase(proj, balanceORtgDiag, triple[proj], triple[proj], false, // <- already applied it
-               new Set<DiagCodes>([ "switch_usage_ortg" ]))
-         });
-         triple.diag = _.merge(triple.diag, balanceORtgDiag);
+         if (offSeasonMode) {
+            const balanceORtgDiag = balanceORtgAndUsage(triple) as TeamEditorDiags;
+            ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
+               applyDiagsToBase(proj, balanceORtgDiag, triple[proj], triple[proj], false, // <- already applied it
+                  new Set<DiagCodes>([ "switch_usage_ortg" ]))
+            });
+            triple.diag = _.merge(triple.diag, balanceORtgDiag);
+         }
       });
       //TODO: turn the adjustment into an ORtg/usage delta for "OK" tier (add off_ortg and off_usg)
    }
@@ -584,8 +593,7 @@ export class TeamEditorUtils {
    static calcAndInjectMinsAssignment(
       roster: GoodBadOkTriple[], 
       team: string, year: string, disabledPlayers: Record<string, boolean>, overrides: Record<string, PlayerEditModel>,
-
-      teamSosNet: number, avgEff: number
+      teamSosNet: number, avgEff: number, offSeasonMode: boolean
    ) {
       const getOffRapm = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
       const getDefRapm = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
@@ -627,10 +635,10 @@ export class TeamEditorUtils {
          });
       }
 
-      const assignMins = (newMins: number, p: GoodBadOkTriple) => {
+      const assignMins = (newMins: number, p: GoodBadOkTriple, force: boolean = false) => {
          const minMins = minMinsPerKey[p.key] || newMins;
          const maxMins = maxMinsPerKey[p.key] || newMins;
-         const adjBaseMins: Statistic = { value: Math.max(Math.min(newMins, maxMins), minMins) };
+         const adjBaseMins: Statistic = { value: force ? newMins : Math.max(Math.min(newMins, maxMins), minMins) };
          p.good.off_team_poss_pct = adjBaseMins;
          p.good.def_team_poss_pct = adjBaseMins;
          p.ok.off_team_poss_pct = adjBaseMins;
@@ -642,52 +650,68 @@ export class TeamEditorUtils {
       // First pass - calc minutes purely based on tier:
       filteredRoster.forEach(p => {
          //(TODO: calc mins differently per tier?)
-         const baseMins = TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ]);
+         const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
+         const calcMins = (offSeasonMode || hasMinsOverride); //(since overrides are enforced using min/max)
+         const baseMins = calcMins ?
+            TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ])
+            :
+            (p.ok.off_team_poss_pct?.value || 0) //(in-season mode, just described minutes played)
+            ;
 
          if (debugMode) { // Diagnostics
             console.log(`[${p.key}]: base mins [${baseMins}] from ${getNet(p.ok).toFixed(1)}`);
          }
-         assignMins(baseMins, p);
+         assignMins(baseMins, p, !calcMins);
       });
 
       // We want the total to try to hit the range: 5*(35-39mpg), goal 37.5 if high, 36.5 if low and the rest will be picked up as bench minutes
+      // (lower range is 25mpg of bench, upper range is 5mpg)
+      // (for in-season, we bump a little further since we don't have the concept of "Fr ready to take their minutes")
 
       const allThreeBenchPosHaveOverriddenMins =
          _.chain(overrides).pick(
             [ TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ]
          ).filter(o => !_.isNil(o.mins)).size().value() == 3;
 
-      const steps = [ 0, 1, 2, 3, 4, 5 ];
+      const needToAdjBaseMinutes = 
+            offSeasonMode || (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins)))
+      const steps = needToAdjBaseMinutes ? [ 0, 1, 2, 3, 4, 5 ] : [];
       _.transform(steps, (acc, step) => {
          const sumMins = _.sumBy(filteredRoster, p => p.ok.off_team_poss_pct.value || 0);
 
          const highLevel = 5*(39.0/40.0);
-         const lowLevel = 5*(35.0/40.0);
-         const highGoal = 5*(37.5/40.0);
-         const lowGoal = 5*(36.5/40.0);
+         const lowLevel = offSeasonMode ? 5*(35.0/40.0) : 5*(37.0/40.0);
+         const highGoal = offSeasonMode ? 5*(37.5/40.0) :  5*(38.5/40.0);
+         const lowGoal = offSeasonMode ? 5*(36.5/40.0) : 5*(37.5/40.0);
          const goal = 
             allThreeBenchPosHaveOverriddenMins ? 5.0 //(if bench specified then try to exactly hit 40mpg)
             : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1));
+            //(goal of -1 means I'm already inside the [lowLevel:highLevel] range)
 
-         //console.log(`Step ${step}: ${sumMins.toFixed(3)}`);
+         //Diagnostic
+         //console.log(`Step ${step}: ${sumMins.toFixed(3)} vs goal [${goal}][${lowLevel} - ${highLevel}]`);
 
          if (goal > 0) {
             const factor = goal/sumMins;
             filteredRoster.forEach(p => {
-               const prevMins = p.good.off_team_poss_pct?.value || 0;
-               assignMins(prevMins*factor, p);
+               const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
+               if (!hasMinsOverride) {  //(can't override players with fixed numbers)
+                  const prevMins = p.good.off_team_poss_pct?.value || 0;
+                  assignMins(prevMins*factor, p);
+               }
             });
          } else { // done, stop
             return false;
          }
       });
-
-      //TODO: generic fr need to be handled as special cases
    }
 
    /** Inserts unused minutes */
    static getBenchMinutes(
-      team: string, year: string, guardPctIn: number, wingPctIn: number, bigPctIn: number, overrides: Record<string, PlayerEditModel>
+      team: string, year: string, 
+      guardPctIn: number, wingPctIn: number, bigPctIn: number, 
+      overrides: Record<string, PlayerEditModel>,
+      alwaysBuildBench: boolean
    ): [ GoodBadOkTriple | undefined, GoodBadOkTriple | undefined, GoodBadOkTriple | undefined ] {
 
       const hasGuardOverride = !_.isNil(overrides[TeamEditorUtils.benchGuardKey]?.mins);
@@ -746,21 +770,23 @@ export class TeamEditorUtils {
          const benchGuardMins = hasGuardOverride ? (guardPct - guardPctIn) :
             Math.min(Math.max(0, (0.30 - guardPct)), deltaMins); // wings can play 50% of SG minutes
          const benchBigMins = hasBigOverride ? (bigPct - bigPctIn) :
-            Math.min(Math.max(0, (0.30 - bigPct)), deltaMins); // wings can play 50% of PF minutes
+            Math.min(
+               Math.max(0, (0.30 - bigPct)), // wings can play 50% of PF minutes
+               deltaMins - benchGuardMins); //(subtract off bench guard minutes from the available minutes pool)
          const benchWingMins = hasWingOverride ? (wingPct - wingPctIn) :
             Math.max(0, deltaMins - benchGuardMins - benchBigMins); //(wings get the leftover)
 
          // Diagnostics
-         //console.log(`Bench ${deltaMins} = ${guardPct}/${benchGuardMins} ${wingPct}/${benchWingMins} ${bigPct}/${benchBigMins}`)
+         //console.log(`Bench ${deltaMins} [${hasGuardOverride}/${hasWingOverride}/${hasBigOverride}] = ${guardPct}/${benchGuardMins} ${wingPct}/${benchWingMins} ${bigPct}/${benchBigMins}`)
 
          return [ 
-            (benchGuardMins > 0) || hasBenchOverrides ? buildBench(
+            (benchGuardMins > 0) || alwaysBuildBench ? buildBench(
                TeamEditorUtils.benchGuardKey, "Bench Guard Minutes", "G?", benchGuardMins
             ) : undefined, 
-            (benchWingMins > 0) || hasBenchOverrides ? buildBench(
+            (benchWingMins > 0) || alwaysBuildBench ? buildBench(
                TeamEditorUtils.benchWingKey, "Bench Wing Minutes", "W?", benchWingMins
             ) : undefined, 
-            (benchBigMins > 0) || hasBenchOverrides ? buildBench(
+            (benchBigMins > 0) || alwaysBuildBench ? buildBench(
                TeamEditorUtils.benchBigKey, "Bench Big Minutes", "PF/C", benchBigMins
             ) : undefined, 
          ];

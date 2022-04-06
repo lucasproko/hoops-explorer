@@ -105,11 +105,12 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                </Col>
                <Col xs={5}/>
                <Col xs={1} className="pt-1">
+                  {isBench ? null :
                   <OverlayTrigger overlay={deleteTooltip} placement="auto">
                      <Button size="sm" variant="outline-danger" onClick={((ev:any) => onDelete())}
                         ><FontAwesomeIcon icon={faTrash} />
                      </Button>
-                  </OverlayTrigger>
+                  </OverlayTrigger>}
                </Col>
             </Row>
             <Row className="mt-3">

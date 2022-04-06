@@ -86,27 +86,35 @@ const TeamEditorPage: NextPage<{}> = () => {
 
       // Team Editor params
 
-      (_.isNil(rawParams.showOnlyCurrentYear) || rawParams.showOnlyCurrentYear) ? [ 'showOnlyCurrentYear' ] : [],
-      (_.isNil(rawParams.showOnlyTransfers) || rawParams.showOnlyTransfers) ? [ 'showOnlyTransfers' ] : [],
+      (_.isNil(rawParams.offSeason) || rawParams.offSeason) ? [ 'offSeason' ] : [],
       (!rawParams.showPrevSeasons) ? [ 'showPrevSeasons' ] : [],
+      (!rawParams.alwaysShowBench)? [  'alwaysShowBench' ] : [],
+      (!rawParams.superSeniorsBack)? [  'superSeniorsBack' ] : [],
+
+      (!rawParams.allEditOpen) ? [ 'allEditOpen' ] : [], 
+        //(currently not used anywhere - will leave for now and decided whether to remove after more play testing)
 
       (!rawParams.deletedPlayers) ? [ 'deletedPlayers' ] : [],
       (!rawParams.disabledPlayers) ? [ 'disabledPlayers' ] : [],
       (!rawParams.addedPlayers) ? [ 'addedPlayers' ] : [],
       (!rawParams.editOpen) ? [ 'editOpen' ] : [],
       (!rawParams.overrides) ? [ 'overrides' ] : [],
-      (!rawParams.allEditOpen) ? [ 'allEditOpen' ] : [],
 
+      // Controls which players are visible in the "Add To Players"
+      (_.isNil(rawParams.showOnlyCurrentYear) || rawParams.showOnlyCurrentYear) ? [ 'showOnlyCurrentYear' ] : [],
+      (_.isNil(rawParams.showOnlyTransfers) || rawParams.showOnlyTransfers) ? [ 'showOnlyTransfers' ] : [],
+      
       // "Add players from leaderboard" params
-      //TODO: these aren't plumbed in
 
-      (!rawParams.t100) ? [ 't100' ] : [], //(TODO these 2 don't work)
-      (!rawParams.confOnly) ? [ 'confOnly' ] : [],
       (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.advancedFilter) ? [ 'advancedFilter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [], //(unused now)
       (!rawParams.posClasses) ? [ 'posClasses' ] : [],
 
+      //These aren't plumbed in:
+      (!rawParams.t100) ? [ 't100' ] : [], //(TODO these 2 don't work)
+      (!rawParams.confOnly) ? [ 'confOnly' ] : [],
+      
       (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],
       (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
       (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],

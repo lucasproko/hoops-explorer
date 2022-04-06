@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Lodash:
-import _, { concat } from "lodash";
+import _, { concat, over } from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -190,18 +190,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
 
-  // 2] State
+  // 2] State (not controllable from outside the page)
   const [ debugMode, setDebugMode ] = useState(false);
+
+  // Misc control toggles
   const [ showPrevSeasons, setShowPrevSeasons ] = useState(_.isNil(startingState.showPrevSeasons) ? false : startingState.showPrevSeasons);
+  const [ offSeasonMode, setOffSeasonMode ] = useState(_.isNil(startingState.offSeason) ? true : startingState.offSeason);
+  const [ alwaysShowBench, setAlwaysShowBench ] = useState(_.isNil(startingState.alwaysShowBench) ? false : startingState.alwaysShowBench);
+  const [ superSeniorsBack, setSuperSeniorsBack ] = useState(_.isNil(startingState.alwaysShowBench) ? false : startingState.alwaysShowBench);
 
   // Data source
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
-
-  // Data source
-  const [ offSeasonMode, setOffSeasonMode ] = useState(_.isNil(startingState.offSeason) ? true : startingState.offSeason);
 
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : year, gender);
@@ -276,7 +278,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       // Editor specific settings for transfer view
       showOnlyTransfers: onlyTransfers,
       showOnlyCurrentYear: onlyThisYear,
+      offSeason: offSeasonMode,
       showPrevSeasons: showPrevSeasons,
+      alwaysShowBench: alwaysShowBench,
+      superSeniorsBack: superSeniorsBack,
       allEditOpen: allEditOpen
     };
     onChangeState(newState);
@@ -284,7 +289,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
     otherPlayerCache, disabledPlayers, deletedPlayers, overrides, editOpen,
-    lboardParams, showPrevSeasons
+    lboardParams, showPrevSeasons, offSeasonMode, alwaysShowBench, superSeniorsBack
   ]);
 
   // 3] Utils
@@ -347,7 +352,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), !offSeasonMode, deletedPlayers, dataEvent.transfers || {}
+      team, year, (dataEvent.players || []), !offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || {}
     );
 
     // First time through ... Rebuild the state from the input params
@@ -435,8 +440,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
     TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, overrides, offSeasonMode);
-    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, overrides, teamSosNet, avgEff);
-    TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
+    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, overrides, teamSosNet, avgEff, offSeasonMode);
+    if (offSeasonMode) { //(else not projecting, just describing)
+      TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
+    }
 
     const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
     const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
@@ -497,8 +504,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
-      const prevSeasonEl = showPrevSeasons ? {
-        title: <small><i>Previous season</i></small>,
+      const inSeasonModeStillShow = offSeasonMode || (
+        !_.isEmpty(override) || (triple.orig.off_team_poss_pct?.value != triple.ok.off_team_poss_pct?.value)
+          //(ie there are overrides, OR another players override has adjusted my minutes)
+      );
+      const prevSeasonEl = showPrevSeasons && inSeasonModeStillShow && !isFiltered? {
+        title: offSeasonMode ? <small><i>Previous season</i></small> : <small><i>Unadjusted season numbers</i></small>,
         mpg: { value: (triple.orig.off_team_poss_pct?.value || 0)*40 },
         ortg: triple.orig.off_rtg,
         usage: triple.orig.off_usage,
@@ -509,7 +520,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       } : undefined;
 
-      const prevPrevSeasonEl = showPrevSeasons && triple.prevYear ? {
+      const prevPrevSeasonEl = showPrevSeasons && triple.prevYear && !isFiltered ? {
         title: <small><i>Season before</i></small>,
         mpg: { value: (triple.prevYear.off_team_poss_pct?.value || 0)*40 },
         ortg: triple.prevYear.off_rtg,
@@ -567,7 +578,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       return (allEditOpen ? [ GenericTableOps.buildHeaderRepeatRow({}, "small") ] : []).concat([ 
         GenericTableOps.buildDataRow(tableEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) 
       ]).concat(
-        showPrevSeasons ? 
+        showPrevSeasons && prevSeasonEl? 
         [ GenericTableOps.buildDataRow(prevSeasonEl, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ] : []
       ).concat(
         showPrevSeasons && prevPrevSeasonEl ? 
@@ -709,7 +720,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       : 
       TeamEditorUtils.getBenchMinutes(
         team, year,
-        rosterGuardMins, rosterWingMins, rosterBigMins, overrides
+        rosterGuardMins, rosterWingMins, rosterBigMins, overrides, alwaysShowBench
       );
 
     // Now, finally, can build display:
@@ -1061,6 +1072,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 onSelect={() => friendlyChange(() => setShowPrevSeasons(!showPrevSeasons), true)}
               />
           <GenericTogglingMenuItem
+                text={"Always show bench minutes"}
+                truthVal={alwaysShowBench}
+                onSelect={() => friendlyChange(() => setAlwaysShowBench(!alwaysShowBench), true)}
+              />
+          <Dropdown.Divider />
+          <GenericTogglingMenuItem
+                text={"Super-senior season used"}
+                truthVal={superSeniorsBack}
+                onSelect={() => friendlyChange(() => setSuperSeniorsBack(!superSeniorsBack), true)}
+              />
+          <GenericTogglingMenuItem
+                text={"Off-season mode"}
+                truthVal={offSeasonMode}
+                onSelect={() => friendlyChange(() => setOffSeasonMode(!offSeasonMode), true)}
+              />
+          <Dropdown.Divider />
+          <GenericTogglingMenuItem
               text={"Debug/Diagnostic mode"}
               truthVal={debugMode}
               onSelect={() => friendlyChange(() => setDebugMode(!debugMode), true)}
@@ -1068,6 +1096,37 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         </GenericTogglingMenu>
       </Form.Group>
     </Form.Group>
+    <Row>
+      <Col xs={12} sm={12} md={12} lg={8}>
+        <ToggleButtonGroup items={([
+            {
+              label: "History",
+              tooltip: "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+              toggled: showPrevSeasons,
+              onClick: () => friendlyChange(() => setShowPrevSeasons(!showPrevSeasons), true)
+            },
+            {
+              label: "Bench",
+              tooltip: "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+              toggled: alwaysShowBench,
+              onClick: () => friendlyChange(() => setAlwaysShowBench(!alwaysShowBench), true)
+            },
+            {
+              label: "Super Sr",
+              tooltip: "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players'",
+              toggled: superSeniorsBack,
+              onClick: () => friendlyChange(() => setSuperSeniorsBack(!superSeniorsBack), true)
+            },
+            {
+              label: "Offseason",
+              tooltip: "In 'on-season' mode shows the current teams' statistics (useful for looking at the effect of injuries)",
+              toggled: offSeasonMode,
+              onClick: () => friendlyChange(() => setOffSeasonMode(!offSeasonMode), true)
+            },
+        ])}
+        />
+      </Col>
+    </Row>
     <Row className="mt-2">
       <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
         <LoadingOverlay

@@ -147,16 +147,19 @@ export type TeamEditorParams = {
 } & {
   // Player editor settings:
   showPrevSeasons?: boolean, //(defaults to false)
+  offSeason?: boolean, //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
+  alwaysShowBench?: boolean, //(defaults to false)
+  superSeniorsBack?: boolean, //(defaults to false)
+  // Controls what transfers are shown
+  showOnlyTransfers?: boolean, //(defaults to true)
+  showOnlyCurrentYear?: boolean, //(defaults to true)
+  // Editor state
   deletedPlayers?: string, //;-separated list
   disabledPlayers?: string,//;-separated list
   addedPlayers?: string, //;-separated list
   editOpen?: string, //;-separated list, <key>|<open-tab>
   overrides?: string; //;-separated list, see TeamEditorUtils.PlayerEditModel
   allEditOpen?: string, //(defaults to undefined, all edit pages open to the tab if true)
-  offSeason?: boolean, //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
-    //^current not settable, just reads from URL
-  showOnlyTransfers?: boolean, //(defaults to true)
-  showOnlyCurrentYear?: boolean //(defaults to true)
 };
 
 export type PlayerLeaderboardParams = {
