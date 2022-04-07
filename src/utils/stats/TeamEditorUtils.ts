@@ -707,8 +707,13 @@ export class TeamEditorUtils {
             [ TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ]
          ).filter(o => !_.isNil(o.mins)).size().value() == 3;
 
+      const benchMinOverrides =_ .chain(overrides).pick( // add bench minutes override
+         [  TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ]
+      ).values().sumBy(o => (o.mins || 0)/40).value();
+      
       const needToAdjBaseMinutes = 
             offSeasonMode || //off season mode
+               (benchMinOverrides > 0) ||
                !_.isEmpty(disabledPlayers) ||
                hasDeletedPlayersOrTransfersIn || // has transfers in or deleted players
                (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins))) // has overrides
@@ -722,8 +727,9 @@ export class TeamEditorUtils {
          const highGoal = offSeasonMode ? 5*(37.5/40.0) :  5*(38.5/40.0);
          const lowGoal = offSeasonMode ? 5*(36.5/40.0) : 5*(37.5/40.0);
          const goal = 
-            allThreeBenchPosHaveOverriddenMins ? 5.0 //(if bench specified then try to exactly hit 40mpg)
-            : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1));
+            (allThreeBenchPosHaveOverriddenMins ? 5.0 //(if bench specified then try to exactly hit 40mpg)
+            : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1))
+            ) - benchMinOverrides;
             //(goal of -1 means I'm already inside the [lowLevel:highLevel] range)
 
          //Diagnostic
