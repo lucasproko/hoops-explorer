@@ -732,7 +732,7 @@ export class TeamEditorUtils {
       const deltaMins = Math.max(0, 1.0 - (guardPct + wingPct + bigPct));
 
       //(if auto-calc need for bench minutes, or if any minutes overrides are in place)
-      if ((deltaMins > 0.0) || hasBenchOverrides) {
+      if ((deltaMins > 0.0) || hasBenchOverrides || alwaysBuildBench) {
 
          const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
 

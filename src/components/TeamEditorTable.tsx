@@ -197,7 +197,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ showPrevSeasons, setShowPrevSeasons ] = useState(_.isNil(startingState.showPrevSeasons) ? false : startingState.showPrevSeasons);
   const [ offSeasonMode, setOffSeasonMode ] = useState(_.isNil(startingState.offSeason) ? true : startingState.offSeason);
   const [ alwaysShowBench, setAlwaysShowBench ] = useState(_.isNil(startingState.alwaysShowBench) ? false : startingState.alwaysShowBench);
-  const [ superSeniorsBack, setSuperSeniorsBack ] = useState(_.isNil(startingState.alwaysShowBench) ? false : startingState.alwaysShowBench);
+  const [ superSeniorsBack, setSuperSeniorsBack ] = useState(_.isNil(startingState.superSeniorsBack) ? false : startingState.superSeniorsBack);
 
   // Data source
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
