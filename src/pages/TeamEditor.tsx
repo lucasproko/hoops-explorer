@@ -103,7 +103,7 @@ const TeamEditorPage: NextPage<{}> = () => {
       // Controls which players are visible in the "Add To Players"
       (_.isNil(rawParams.showOnlyCurrentYear) || rawParams.showOnlyCurrentYear) ? [ 'showOnlyCurrentYear' ] : [],
       (_.isNil(rawParams.showOnlyTransfers) || rawParams.showOnlyTransfers) ? [ 'showOnlyTransfers' ] : [],
-      
+
       // "Add players from leaderboard" params
 
       (!rawParams.filter) ? [ 'filter' ] : [],
@@ -146,10 +146,12 @@ const TeamEditorPage: NextPage<{}> = () => {
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
-    const year = fullYear.substring(0, 4);
     const tier = (paramObj.tier || "All");
 
-    const transferModeStr = `transferMode=${(LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4)}`;
+    const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
+    const prevYear = LeaderboardUtils.getPrevYear(fullYear || "")
+    const transferYearPrev = (LeaderboardUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
+    const transferYears = [ transferYear, transferYearPrev ];
 
     if ((fullYear != currYear) || (gender != currGender) || (tier == currTier)) { // Only need to do this if the data source has changed
       setDataEvent(dataEventInit); //(clear saved sub-events)
@@ -158,15 +160,15 @@ const TeamEditorPage: NextPage<{}> = () => {
       setCurrTier(tier);
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferModeStr, true
+        "all", gender, fullYear, tier, transferYears, true
       );
 
       fetchAll.then((jsonsIn: any[]) => {
-        const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
+        const jsons = _.dropRight(jsonsIn, _.size(transferYears));
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<{f: string, t?: string}>>,
+          transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<{f: string, t?: string}>>[],
           lastUpdated: 0 //TODO use max?
         });
       });

@@ -122,23 +122,28 @@ export class TeamEditorUtils {
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
-      transfers: Record<string, Array<{f: string, t?: string}>>
+      transfers: Record<string, Array<{f: string, t?: string}>>[]
    ): GoodBadOkTriple[] {
+      const transfersThisYear = transfers[0] || {};
+      const transfersLastYear = transfers[1] || {};
+
       const fromBaseRoster = _.transform(players, (acc, p) => {
          const yearAdj = year == "All" ? p.year : ""; //(for building all star teams)
          const code = (p.code || "") + yearAdj;
          const isTransfer = p.team != team;
          const key = isTransfer ? `${p.code}:${p.team}:${yearAdj}` : `${p.code}::${yearAdj}`;
          const isRightYear = year == "All" || (p.year == year);
-         const transferringIn = offSeasonMode && _.some(transfers[code] || [], p => p.t == team);
-         const notTransferringOut = ((p.team == team) && (!offSeasonMode ||    
-                                       (           
+         const transferringIn = offSeasonMode && _.some(transfersThisYear[code] || [], p => p.t == team);
+         const isTransferringOut = _.some(transfersThisYear[code] || [], p => p.f == team)
+         const wasPlayerTxferLastYear = _.some(transfersLastYear[p.code || ""] || [], txfer => txfer.t == team);
+         const inAndNotTransferringOut = ((p.team == team) || wasPlayerTxferLastYear) && 
+                                       (!offSeasonMode || (           
                                           (includeSuperSeniors || (p.roster?.year_class != "Sr"))
-                                          && !_.some(transfers[code] || [], p => p.f == team))
+                                             && !isTransferringOut
                                        ));
          const notOnExcludeList = !excludeSet[key];
 
-         if ((transferringIn || notTransferringOut) && notOnExcludeList) {
+         if ((transferringIn || inAndNotTransferringOut) && notOnExcludeList) {
             if (isRightYear && !acc.dups[code]) {
                acc.retVal = acc.retVal.concat([{
                   key: key,
@@ -149,7 +154,8 @@ export class TeamEditorUtils {
                }]);
                acc.dups[code] = true; //(use key not code because of possibility that player with same code has transferred in)
             } else if (!isRightYear) { //(must be previous year)     
-               acc.prevYears[key] = p;
+               const lastYearKey = wasPlayerTxferLastYear ? `${p.code}::${yearAdj}` : key;
+               acc.prevYears[lastYearKey] = p;
             }
          }
       }, { retVal: [] as GoodBadOkTriple[], dups:  {} as Record<string, boolean>, prevYears: {} as Record<string, IndivStatSet> });

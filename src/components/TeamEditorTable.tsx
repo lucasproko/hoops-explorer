@@ -63,7 +63,7 @@ export type TeamEditorStatsModel = {
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
-  transfers?: Record<string, Array<{f: string, t?: string}>>,
+  transfers?: Record<string, Array<{f: string, t?: string}>>[],
   error?: string
 }
 type Props = {
@@ -352,7 +352,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || {}
+      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || []
     );
 
     // First time through ... Rebuild the state from the input params
@@ -874,7 +874,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           {
             ...dataEvent, 
             players: onlyThisYear ? (dataEvent.players || []).filter(p => p.year == year) : dataEvent.players, 
-            transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers : undefined 
+            transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers?.[0] : undefined 
           }
         )
       }
@@ -886,7 +886,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           //TODO: not supporting this correctly right now because not guaranteed to have players in memory
           //so might not be able to reconstruct fro the keys
           const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-            dataSubEventKey, gender, year, "All", `transferMode=${LeaderboardUtils.getOffseasonOfYear(year)}`, true
+            dataSubEventKey, gender, year, "All", [ LeaderboardUtils.getOffseasonOfYear(year) || "" ], true
           );
     
           fetchAll.then((jsonsIn: any[]) => {

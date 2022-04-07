@@ -14,7 +14,7 @@ export class LeaderboardUtils {
    static getMultiYearPlayerLboards(
       dataSubEventKey: string,
       gender: string, fullYear: string, tier: string,
-      transferMode: string | undefined, getLastYearAlso: boolean,
+      transferYears: string[], getLastYearAlso: boolean,
    ) {
       const year = fullYear.substring(0, 4);
    
@@ -39,11 +39,11 @@ export class LeaderboardUtils {
             Promise.resolve({ error: "No data available" });
           });
       }).concat(
-        transferMode ? [
-          fetch(`/api/getTransfers?${transferMode.match(/transferMode=[0-9]+/) || ""}`).then((response: fetch.IsomorphicResponse) => {
-            return response.ok ? response.json() : Promise.resolve({})
-          })
-        ] : []
+         transferYears.map(transferYear => {
+            return transferYear ? fetch(`/api/getTransfers?transferMode=${transferYear || ""}`).then((response: fetch.IsomorphicResponse) => {
+               return response.ok ? response.json() : Promise.resolve({})
+             }) : Promise.resolve({});
+         })
       ));  
       return fetchAll;  
    }   
