@@ -122,29 +122,48 @@ export class TeamEditorUtils {
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
-      transfers: Record<string, Array<{f: string, t?: string}>>[]
+      transfers: Record<string, Array<{f: string, t?: string}>>[], transferYearOverride: string | undefined
    ): GoodBadOkTriple[] {
       const transfersThisYear = transfers[0] || {};
       const transfersLastYear = transfers[1] || {};
+      const transfersOnly = transferYearOverride != undefined;
 
       const fromBaseRoster = _.transform(players, (acc, p) => {
-         const yearAdj = year == "All" ? p.year : ""; //(for building all star teams)
-         const code = (p.code || "") + yearAdj;
+         const yearAdj = (year == "All") ? //(for building all star teams)
+            p.year : 
+            (transferYearOverride && (year != transferYearOverride)) ? transferYearOverride : ""; 
+
+         const isRightYear = (year == "All") || (transferYearOverride ? (p.year == transferYearOverride) : (p.year == year));
+
+         const code = (p.code || "");
+         const dupCode = code + yearAdj;
          const isTransfer = p.team != team;
-         const key = isTransfer ? `${p.code}:${p.team}:${yearAdj}` : `${p.code}::${yearAdj}`;
-         const isRightYear = year == "All" || (p.year == year);
-         const transferringIn = offSeasonMode && _.some(transfersThisYear[code] || [], p => p.t == team);
+         const key = isTransfer ? `${code}:${p.team}:${yearAdj}` : `${code}::${yearAdj}`;
+         
+         const isOnTeam = !transfersOnly && !isTransfer;
+         const transferringIn = (transfersOnly || offSeasonMode) && _.some(transfersThisYear[code] || [], p => p.t == team);
          const isTransferringOut = _.some(transfersThisYear[code] || [], p => p.f == team)
-         const wasPlayerTxferLastYear = _.some(transfersLastYear[p.code || ""] || [], txfer => txfer.t == team);
-         const inAndNotTransferringOut = ((p.team == team) || wasPlayerTxferLastYear) && 
+         const wasPlayerTxferLastYear = _.some(
+            transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
+         );
+         const doubleTransfer = _.find( //Transferred to Y 2 years ago then from Y to here (T say)
+            // Example: transfers[0] = {p1: { f:X t:Y }}, transfers[1] = { p1: {f:X t:T }},
+            // players: [ { code: p1, team: X }, { code: p1, team: Y } ]
+            transfersLastYear[code] || [], txfer => {
+               return (txfer.f == p.team) &&
+                  _.some(transfersThisYear[code] || [], txfer2 => (txfer.t == txfer2.f) && (txfer2.t == team));
+            }
+         );
+
+         const inAndNotTransferringOut = (isOnTeam || wasPlayerTxferLastYear) && 
                                        (!offSeasonMode || (           
                                           (includeSuperSeniors || (p.roster?.year_class != "Sr"))
                                              && !isTransferringOut
                                        ));
          const notOnExcludeList = !excludeSet[key];
 
-         if ((transferringIn || inAndNotTransferringOut) && notOnExcludeList) {
-            if (isRightYear && !acc.dups[code]) {
+         if ((doubleTransfer || transferringIn || inAndNotTransferringOut) && notOnExcludeList) {
+            if (isRightYear && !acc.dups[dupCode]) {
                acc.retVal = acc.retVal.concat([{
                   key: key,
                   good: _.clone(p),
@@ -152,9 +171,11 @@ export class TeamEditorUtils {
                   bad: _.clone(p),
                   orig: p
                }]);
-               acc.dups[code] = true; //(use key not code because of possibility that player with same code has transferred in)
+               acc.dups[dupCode] = true; //(use key not code because of possibility that player with same code has transferred in)
             } else if (!isRightYear) { //(must be previous year)     
-               const lastYearKey = wasPlayerTxferLastYear ? `${p.code}::${yearAdj}` : key;
+               const lastYearKey = wasPlayerTxferLastYear  ? `${code}::${yearAdj}` : 
+                  (doubleTransfer ? `${code}:${doubleTransfer.t || ""}:${yearAdj}` : key);
+
                acc.prevYears[lastYearKey] = p;
             }
          }

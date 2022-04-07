@@ -59,7 +59,7 @@ import TeamRosterEditor from './shared/TeamRosterEditor';
 // Input params/models
 
 export type TeamEditorStatsModel = {
-  players?: Array<any>,
+  players?: Array<IndivStatSet>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
@@ -334,25 +334,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const genderYearLookup = `${gender}_${year}`;
   const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  const buildPlayerToAdd = (p: IndivStatSet, key: string, prevYearPlayers: IndivStatSet[]) => {
-    const retVal: GoodBadOkTriple = {
-      key,
-      good: _.clone(p),
-      bad: _.clone(p),
-      ok: _.clone(p),
-      orig: p,
-      prevYear: (year == "All") ? 
-        undefined : 
-        _.find(prevYearPlayers, p => (year != p.year) && (TeamEditorUtils.getKey(p, team, p.year || year) == key))
-          //(basically if the year isn't the right year I'm assuming it's the previous year - using "p.year" means no year wil be in key)
-    };
-    return retVal;
-  };
-
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || []
+      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || [], undefined
     );
 
     // First time through ... Rebuild the state from the input params
@@ -404,21 +389,25 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       // This is the tricky one:
       if (startingState.addedPlayers && _.isEmpty(otherPlayerCache)) {
 
-        const addedPlayersSet = new Set((startingState.addedPlayers || "").split(";"));
-        //TODO need to handle x-year players, eg what if someone adds a player from 2018/9 then unchecks "show all years"
-        //(maybe _always_ go 2 years back, just filter the dataset based on the slider)
-        // For now just handle this year:
-        const maybeMatchingPlayers = (dataEvent.players || []).filter(p => {
-          //(first pass just get a subset for all seasons)
-          const key1 = TeamEditorUtils.getKey(p, team, year); //(ie check possibly 2 years' worth of data)
-          const key2 = TeamEditorUtils.getKey(p, team, p.year); //(this one is guaranteed to have no year in code)
-          return addedPlayersSet.has(key1) || addedPlayersSet.has(key2);
-        });
-        const firstAddedPlayers = _.chain(maybeMatchingPlayers).flatMap(p => {
-          const key = TeamEditorUtils.getKey(p, team, year);
-          return addedPlayersSet.has(key) ? [ buildPlayerToAdd(p, key, maybeMatchingPlayers) ] : [];
-            //(passing in maybeMatchingPlayers also gives the prev year)
-        }).map(triple => [ triple.key, triple ]).fromPairs().value();
+        const playerTeamYear = (key: string) => {
+          const frags = key.split(":");
+          return [ frags[0], frags[1] || team, frags[2] || year ] as [ string, string, string ];
+        };
+        const keyList = (startingState.addedPlayers || "").split(";");
+        const codeSet = new Set(keyList.map(k => playerTeamYear(k)[0]));
+        const maybeMatchingPlayers = _.filter(dataEvent.players || [], p => codeSet.has(p.code || ""));
+        const maybeMatchingPlayersByCode = _.groupBy(maybeMatchingPlayers, p => p.code);
+
+        const firstAddedPlayers = _.chain(keyList).flatMap(key => {
+          const [ code, txferTeam, txferYear ] = playerTeamYear(key);
+
+          return TeamEditorUtils.getBasePlayers(
+            team, year, maybeMatchingPlayersByCode[code] || [], 
+            offSeasonMode, superSeniorsBack, {}, 
+            // Build a transfer set explicitly for this player
+            [ { [code]: [ { f: txferTeam, t: team } ] } , dataEvent.transfers?.[1] || {} ], txferYear
+          );
+        }).map(triple => [ triple.key, triple ]).fromPairs().value();  
 
         setOtherPlayerCache(firstAddedPlayers);
       }
@@ -905,11 +894,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }}
       teamEditorMode={(p: IndivStatSet) => {
         const newOtherPlayerCache = _.clone(otherPlayerCache);
-        const key = TeamEditorUtils.getKey(p, team, year);
-        newOtherPlayerCache[key] = buildPlayerToAdd(p, key, dataEvent.players || []);
+
+        TeamEditorUtils.getBasePlayers(
+          team, year, (dataEvent.players || []).filter(maybeP => maybeP.code == p.code), 
+          offSeasonMode, superSeniorsBack, {}, 
+          // Build a transfer set explicitly for this player
+          [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || year
+        ).forEach(triple => {
+          newOtherPlayerCache[triple.key] = triple;
+        });
+
         friendlyChange(() => {
           setOtherPlayerCache(newOtherPlayerCache);
-        }, otherPlayerCache[key] == undefined);
+        }, true);
       }}
     />;
   }, [ dataEvent, reloadData, team, year, otherPlayerCache, onlyTransfers, onlyThisYear, setLboardAltDataSource ]);
