@@ -171,6 +171,9 @@ const approxEndofRegSeason = getEndOfRegSeason(`${inGender}_${inYear}`) || lastU
 const ongoingYear = "2021/22";
 const averagePossInCompletedYear = (inYear == "2020/21") ? 1000 : 1600; //(reduce min allowed for Covid year)
 
+/** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
+const injectAllRapmForNbaFolks = false;
+
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
   const globalGenderYearKey = `${inGender}_${inYear}`;
@@ -597,6 +600,9 @@ export async function main() {
           const player = enrichedAndFilteredPlayersMap[rapmP.playerId] as Record<string, any>;
           // RAPM (rating + productions)
           if (player && rapmP.rapm) {
+            if (injectAllRapmForNbaFolks) {
+              player.rapm = rapmP.rapm;
+            }
             player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
             player.off_adj_rapm_prod = {
               value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
