@@ -141,7 +141,9 @@ export class TeamEditorUtils {
          const key = isTransfer ? `${code}:${p.team}:${yearAdj}` : `${code}::${yearAdj}`;
          
          const isOnTeam = !transfersOnly && !isTransfer;
-         const transferringIn = (transfersOnly || offSeasonMode) && _.some(transfersThisYear[code] || [], p => p.t == team);
+         const transferringIn = (transfersOnly || offSeasonMode) && _.some(
+            transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
+         );
          const isTransferringOut = _.some(transfersThisYear[code] || [], p => p.f == team)
          const wasPlayerTxferLastYear = _.some(
             transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
