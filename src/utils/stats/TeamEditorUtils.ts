@@ -597,6 +597,7 @@ export class TeamEditorUtils {
    static calcAndInjectMinsAssignment(
       roster: GoodBadOkTriple[], 
       team: string, year: string, disabledPlayers: Record<string, boolean>, overrides: Record<string, PlayerEditModel>,
+      hasDeletedPlayersOrTransfersIn: boolean,
       teamSosNet: number, avgEff: number, offSeasonMode: boolean
    ) {
       const getOffRapm = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
@@ -678,7 +679,11 @@ export class TeamEditorUtils {
          ).filter(o => !_.isNil(o.mins)).size().value() == 3;
 
       const needToAdjBaseMinutes = 
-            offSeasonMode || (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins)))
+            offSeasonMode || //off season mode
+               !_.isEmpty(disabledPlayers) ||
+               hasDeletedPlayersOrTransfersIn || // has transfers in or deleted players
+               (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins))) // has overrides
+
       const steps = needToAdjBaseMinutes ? [ 0, 1, 2, 3, 4, 5 ] : [];
       _.transform(steps, (acc, step) => {
          const sumMins = _.sumBy(filteredRoster, p => p.ok.off_team_poss_pct.value || 0);

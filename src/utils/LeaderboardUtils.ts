@@ -79,8 +79,8 @@ export class LeaderboardUtils {
          return "2019/20";
       } else if (y == "2019/20") {
          return "2018/9";
-      } else {
-         return undefined;
+      } else { // older, we'll show the historical data I've pulled
+         return "Extra";
       }
    }
    /** Get the offseason of the current season */

@@ -319,7 +319,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       (params.gender != divisionStatsCache.gender) ||
       _.isEmpty(divisionStatsCache)) {
         if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-        const updatedParams = (params.year == "All") ? {
+        const updatedParams = (params.year == "All") || (params.year <= "2019/20") ? { //(18/19- we only have high majors)
           ...params,
           year: ParamDefaults.defaultLeaderboardYear
         } : params;
@@ -441,8 +441,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
+    const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
+      _.omit(otherPlayerCache, _.keys(disabledPlayers)) // have added transfers in (and they aren't disabled)
+    ) || !_.isEmpty(deletedPlayers); //(or have deleted players)
+
     TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, filteredOverrides, offSeasonMode);
-    TeamEditorUtils.calcAndInjectMinsAssignment(playerSet, team, year, disabledPlayers, filteredOverrides, teamSosNet, avgEff, offSeasonMode);
+    TeamEditorUtils.calcAndInjectMinsAssignment(
+      playerSet, team, year, disabledPlayers, filteredOverrides, hasDeletedPlayersOrTransfersIn, teamSosNet, avgEff, offSeasonMode
+    );
     if (offSeasonMode) { //(else not projecting, just describing)
       TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
     }
