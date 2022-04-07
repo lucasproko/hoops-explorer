@@ -5,6 +5,7 @@ import _ from "lodash";
 import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
 import { RapmInfo, RapmUtils } from "../stats/RapmUtils";
 import { LineupUtils } from "../stats/LineupUtils";
+import { averageStatsInfo } from "../internal-data/averageStatsInfo";
 
 /** Object marshalling logic for roster tables */
 export class TeamReportTableUtils {
@@ -39,6 +40,9 @@ export class TeamReportTableUtils {
     };
     const ignoreLineupLuckKey = adjustForLuck ? "old_value" : "value";
 
+    /** Makes the non-efficiency stats be baselined against D1 (or high major for earlier years) stats, not their team */
+    const statsAverages = averageStatsInfo[genderYearLookup] || {};
+
     // Has to be in this order, else injectRapmIntoPlayers doesn't work properly
     const results = ([ "value", "old_value"  ] as Array<"value" | "old_value">).filter(valueKey => {
       if (valueKey == "old_value" && !adjustForLuck) return false; //(nothing to do)
@@ -64,7 +68,7 @@ export class TeamReportTableUtils {
           ]          
         );
         RapmUtils.injectRapmIntoPlayers(
-          tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
+          tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
           [
             lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
             ignoreLineupLuckKey //<-never use luck adjusted _lineup_ values for defense, too noisy

@@ -44,7 +44,6 @@ import { RatingUtils } from '../utils/stats/RatingUtils';
 import { RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { CbbColors } from "../utils/CbbColors";
 import { OnOffReportDiagUtils } from "../utils/tables/OnOffReportDiagUtils";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -90,7 +89,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   const teamSeasonLookup = `${commonParams.gender}_${commonParams.team}_${commonParams.year}`;
 
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
-  const statsAverages = averageStatsInfo[genderYearLookup] || {};
 
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);

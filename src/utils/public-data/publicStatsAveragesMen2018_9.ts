@@ -1,87 +1,94 @@
+import { PureStatSet } from '../StatModels';
 // See cbb-explorer/artefacts/elasticsearch-scripts/build_stats_averages.json (XXXX=2018)
-export const publicStatsAveragesMen2018_9: Record<string, any> =  {
+export const publicStatsAveragesMen2018_9: PureStatSet =  {
           "off_2p" : {
-            "value" : 0.5082572265456288
+            "value" : 0.5083260852376058
           },
           "off_3p" : {
-            "value" : 0.34193956252370716
+            "value" : 0.34225429185914813
           },
           "off_2prim" : {
-            "value" : 0.6105805987377636
+            "value" : 0.6219133079022032
           },
           "off_2pmid" : {
-            "value" : 0.395689029619368
+            "value" : 0.3498778571022781
+          },
+          "off_ft" : {
+            "value" : 0.7072673367560923
           },
           "off_ftr" : {
-            "value" : 0.33790624560995575
-          },
-          "off_ppp" : {
-            "value" : 106.1776534716126
-          },
-          "off_assist" : {
-            "value" : 0.5344756174656116
-          },
-          "off_to" : {
-            "value" : 0.18124655492721964
+            "value" : 0.33721208101478184
           },
           "off_2primr" : {
-            "value" : 0.32314116444560703
+            "value" : 0.35924583879950645
           },
           "off_2pmidr" : {
-            "value" : 0.29373210678525236
+            "value" : 0.2575335651478427
           },
           "off_3pr" : {
-            "value" : 0.3831267287691406
+            "value" : 0.38322059605265085
+          },
+          "off_assist" : {
+            "value" : 0.5346449957228401
+          },
+          "off_ppp" : {
+            "value" : 106.2103168075797
+          },
+          "off_to" : {
+            "value" : 0.18114452084087246
           },
           "off_poss" : {
-            "value" : 244915.0
+            "value" : 243176.0
           },
           "off_orb" : {
-            "value" : 0.2994010539531239
+            "value" : 0.29942824931550976
           },
           "off_efg" : {
-            "value" : 0.5100395770056144
+            "value" : 0.5102634004555009
           },
           "def_2p" : {
-            "value" : 0.48110933435165515
+            "value" : 0.4807431918149552
           },
           "def_3p" : {
-            "value" : 0.3329597541933209
+            "value" : 0.33297838625847753
           },
           "def_2prim" : {
-            "value" : 0.5797001766425411
+            "value" : 0.591564598972738
           },
           "def_2pmid" : {
-            "value" : 0.37893270258886047
+            "value" : 0.33515617758828437
+          },
+          "def_ft" : {
+            "value" : 0.7003020868653864
           },
           "def_ftr" : {
-            "value" : 0.3191668819993272
-          },
-          "def_ppp" : {
-            "value" : 100.47698321378151
-          },
-          "def_assist" : {
-            "value" : 0.5217686526797942
-          },
-          "def_to" : {
-            "value" : 0.18923462351376275
+            "value" : 0.31852055493917464
           },
           "def_2primr" : {
-            "value" : 0.3118878254976622
+            "value" : 0.3479071959469411
           },
           "def_2pmidr" : {
-            "value" : 0.3009424257346094
+            "value" : 0.26482832428398906
           },
           "def_3pr" : {
-            "value" : 0.38716974876772836
+            "value" : 0.3872644797690699
+          },
+          "def_assist" : {
+            "value" : 0.5220354700359336
+          },
+          "def_ppp" : {
+            "value" : 100.43360500433604
+          },
+          "def_to" : {
+            "value" : 0.18919974189199742
           },
           "def_poss" : {
-            "value" : 245082.0
+            "value" : 243309.0
           },
           "def_orb" : {
-            "value" : 0.281776619647984
+            "value" : 0.2817834875064784
           },
           "def_efg" : {
-            "value" : 0.48820627081210477
+            "value" : 0.48799448202731494
           }
         };

@@ -31,7 +31,6 @@ import { ParamDefaults } from "../utils/FilterModels";
 
 // Post processing
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
@@ -240,7 +239,6 @@ export async function main() {
     const genderYearLookup = `${inGender}_${teamYear}`;
     const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
     const rank = completedEfficiencyInfo?.[team]?.["stats.adj_margin.rank"] || 400;
-    const statsAverages = averageStatsInfo[genderYearLookup] || {};
 
     // Note that this definition has to be consistent with isSupported defintion above
     const naturalTier = 
