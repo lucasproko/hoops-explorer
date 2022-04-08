@@ -26,6 +26,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
+import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
 const LineupLeaderboardPage: NextPage<{}> = () => {
 
@@ -70,14 +71,6 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   )
   const lineupLeaderboardParamsRef = useRef<LineupLeaderboardParams>();
   lineupLeaderboardParamsRef.current = lineupLeaderboardParams;
-
-  const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-    if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-      return `/api/getLeaderboard?src=lineups&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
-    } else { //archived
-      return `/leaderboards/lineups/lineups_${oppo}_${gender}_${subYear}_${inTier}.json`;
-    }
-  }
   
   const onLineupLeaderboardParamsChange = (rawParams: LineupLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
@@ -121,7 +114,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
       const years = [ "2018/9", "2019/20", "2020/21", "Extra" ];
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
-        return fetch(getUrl(dataSubEventKey, gender, subYear, tier))
+        return fetch(LeaderboardUtils.getLineupUrl(dataSubEventKey, gender, subYear, tier))
           .then((response: fetch.IsomorphicResponse) => {
             return response.ok ? response.json() : Promise.resolve({ error: "No data available" });
           });
@@ -140,7 +133,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
         setCurrYear(fullYear);
         setCurrGender(gender)
         setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(getUrl(dataSubEventKey, gender, year, tier))
+        fetch(LeaderboardUtils.getLineupUrl(dataSubEventKey, gender, year, tier))
           .then((response: fetch.IsomorphicResponse) => {
             return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
               //(if year has changed then clear saved data events)

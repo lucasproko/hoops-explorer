@@ -30,6 +30,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
+import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
 const PlayLeaderboardPage: NextPage<{}> = () => {
 
@@ -80,13 +81,6 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const playerLeaderboardParamsRef = useRef<PlayerLeaderboardParams>();
   playerLeaderboardParamsRef.current = playerLeaderboardParams;
 
-  const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-    if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-      return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
-    } else { //archived
-      return `/leaderboards/lineups/players_${oppo}_${gender}_${subYear}_${inTier}.json`;
-    }
-  }
 
   const onPlayerLeaderboardParamsChange = (rawParams: PlayerLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
@@ -123,6 +117,8 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
     }
   }
 
+  //TODO: move this to using LeaderboardUtils like TeamEditor
+
   useEffect(() => { // Process data selection change
     const paramObj = playerLeaderboardParams;
     const dataSubEventKey = paramObj.t100 ?
@@ -143,7 +139,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
  
       const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
         const subYear = inYear.substring(0, 4);
-        return fetch(getUrl(dataSubEventKey, gender, subYear, inTier))
+        return fetch(LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier))
           .then((response: fetch.IsomorphicResponse) => {
             return response.ok ? 
             response.json().then((j: any) => { //(tag the tier in)
@@ -176,7 +172,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         setCurrGender(gender)
         setCurrTier(tier);
         setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(getUrl(dataSubEventKey, gender, year, tier))
+        fetch(LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, year, tier))
           .then((response: fetch.IsomorphicResponse) => {
             return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
               //(if year has changed then clear saved data events)

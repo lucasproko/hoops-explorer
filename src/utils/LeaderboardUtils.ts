@@ -63,14 +63,28 @@ export class LeaderboardUtils {
 
    // Lower level utils
 
+   /** This year is being written to GCS daily, others are no statically part of the website */
+   static readonly inSeasonYear = "2022/23";
+
+   /** Fetch the requested player leaderboard either from GCS or static storage */
    static readonly getPlayerUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-      if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
+      if (LeaderboardUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
         return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
       } else { //archived
         return `/leaderboards/lineups/players_${oppo}_${gender}_${subYear}_${inTier}.json`;
       }
    }
+    
+   /** Fetch the requested lineup leaderboard either from GCS or static storage */
+   static readonly getLineupUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
+      if (LeaderboardUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+        return `/api/getLeaderboard?src=lineups&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
+      } else { //archived
+        return `/leaderboards/lineups/lineups_${oppo}_${gender}_${subYear}_${inTier}.json`;
+      }
+    }
   
+
    /** Get the previous season */
    static readonly getPrevYear = (y: string) => {
       if (y == "2021/22") { //TODO: From 2020/21 onwards can calculate
