@@ -6,30 +6,66 @@ import _ from "lodash";
 import fetch from 'isomorphic-unfetch';
 import { ParamDefaults } from "./FilterModels";
 
+/** Information about transfer (typically indexed by player code) */
+export type TransferModel = {
+   f: string, //(team transferring from)
+   t?: string //(team transferring to)
+};
+
 export class LeaderboardUtils {
 
+   //////////////////////////////////////
+
+   // Constants
+
+   /** This year is being written to GCS daily, others are no statically part of the website */
+   static readonly inSeasonYear = "2022/23";
+
+   /** This year is being written to GCS daily, others are no statically part of the website */
+   static readonly offseasonYear = "2021/22";
+
+   /** All years supported by the leaderboard */
+   static readonly yearList = [ "2018/9", "2019/20", "2020/21", "2021/22", "Extra" ];
+
+   //////////////////////////////////////
+   
    // Top level methods
 
-   /** Get multiple years and tier of player leaderboards, plus transfer info for a given year */
+   /** Get multiple years and tier of player leaderboards, plus transfer info for a given year 
+    * Returns a list of JSONs, the last transfersYear.size of which are transfers
+   */
    static getMultiYearPlayerLboards(
-      dataSubEventKey: string,
+      dataSubEventKey: "all" | "t100" | "conf",
       gender: string, fullYear: string, tier: string,
       transferYears: string[], getLastYearAlso: boolean,
-   ) {
+   ): Promise<any[]> {
+      return LeaderboardUtils.getMultiYearLboards(
+         gender, fullYear, tier, transferYears, getLastYearAlso,
+         (gender: string, subYear: string, inTier: string) => LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier)
+      );
+   }   
+
+   /** Get multiple years and tier of player/lineup leaderboards, plus transfer info for a given year 
+    * Returns a list of JSONs, the last transfersYear.size of which are transfers
+   */
+   private static getMultiYearLboards(
+      gender: string, fullYear: string, tier: string,
+      transferYears: string[], getLastYearAlso: boolean,
+      getUrl: (gender: string, subYear: string, inTier: string) => string
+   ): Promise<any[]> {
       const year = fullYear.substring(0, 4);
    
       const lastYear = getLastYearAlso ? 
          LeaderboardUtils.getPrevYear(fullYear) : undefined; //always get last year if available TODO not for lboard page
    
-      //TODO: need this set of years to be a constant
-      const years = _.filter([ "2018/9", "2019/20", "2020/21", "2021/22", "Extra" ], inYear => (year == "All") || (inYear == fullYear) || (inYear == lastYear));
+      const years = _.filter(LeaderboardUtils.yearList, inYear => (year == "All") || (inYear == fullYear) || (inYear == lastYear));
       const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
    
       const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
    
       const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
         const subYear = inYear.substring(0, 4);
-        return fetch(LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier))
+        return fetch(getUrl(gender, subYear, inTier))
           .then((response: fetch.IsomorphicResponse) => {
             return response.ok ? 
             response.json().then((j: any) => { //(tag the tier in)
@@ -46,25 +82,35 @@ export class LeaderboardUtils {
          })
       ));  
       return fetchAll;  
-   }   
+   }
 
    /** Get a single year of player leaderboard for a single tier (mostly for older years when there was only one tier) */
    static getSingleYearPlayerLboards(
-      dataSubEventKey: string,
+      dataSubEventKey: "all" | "t100" | "conf",
       gender: string, fullYear: string, tier: string
-   ) {
+   ): Promise<any> {
+      return LeaderboardUtils.getSingleYearLboards(
+         gender, fullYear, tier, 
+         (gender: string, subYear: string, inTier: string) => LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier)
+      );
+   }
+
+   /** Get a single year of player/lineup leaderboard for a single tier (mostly for older years when there was only one tier) */
+   private static getSingleYearLboards(
+      gender: string, fullYear: string, tier: string,
+      getUrl: (gender: string, subYear: string, inTier: string) => string
+   ): Promise<any> {
       const year = fullYear.substring(0, 4);
 
-      return fetch(LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, year, tier))
+      return fetch(getUrl(gender, year, tier))
          .then((response: fetch.IsomorphicResponse) => {
             return (response.ok ? response.json() : Promise.resolve({ error: "No data available" }))
          });
    }
-
+   
+   //////////////////////////////////////
+   
    // Lower level utils
-
-   /** This year is being written to GCS daily, others are no statically part of the website */
-   static readonly inSeasonYear = "2022/23";
 
    /** Fetch the requested player leaderboard either from GCS or static storage */
    static readonly getPlayerUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
@@ -82,7 +128,7 @@ export class LeaderboardUtils {
       } else { //archived
         return `/leaderboards/lineups/lineups_${oppo}_${gender}_${subYear}_${inTier}.json`;
       }
-    }
+   }
 
    /** Fetch the requested team leaderboard either from GCS or static storage */
    static readonly getTeamUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
@@ -91,7 +137,7 @@ export class LeaderboardUtils {
       } else { //archived
         return `/leaderboards/lineups/teams_${oppo}_${gender}_${subYear}_${inTier}.json`;
       }
-    }
+   }
   
    /** Get the previous season */
    static readonly getPrevYear = (y: string) => {

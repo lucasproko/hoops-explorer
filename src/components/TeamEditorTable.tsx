@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Lodash:
-import _, { concat, over } from "lodash";
+import _ from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,10 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
@@ -31,17 +28,12 @@ import GenericTable, { GenericTableOps } from "./GenericTable";
 import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import AsyncFormControl from './shared/AsyncFormControl';
-import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './shared/AdvancedFilterAutoSuggestText';
 import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from "./PlayerLeaderboardTable";
 
 // Table building
-import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
-import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
 
 // Util imports
-import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
@@ -53,7 +45,7 @@ import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { PositionUtils } from '../utils/stats/PositionUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import TeamRosterEditor from './shared/TeamRosterEditor';
 
 // Input params/models
@@ -63,7 +55,7 @@ export type TeamEditorStatsModel = {
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
-  transfers?: Record<string, Array<{f: string, t?: string}>>[],
+  transfers?: Record<string, Array<TransferModel>>[],
   error?: string
 }
 type Props = {
@@ -883,7 +875,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             setLboardAltDataSource({
               players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
               confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-              transfers: _.last(jsonsIn) as Record<string, Array<{f: string, t?: string}>>,
+              transfers: _.last(jsonsIn) as Record<string, Array<TransferModel>>,
               lastUpdated: 0 //TODO use max?
             });
           });

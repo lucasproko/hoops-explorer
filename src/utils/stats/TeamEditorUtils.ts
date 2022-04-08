@@ -4,6 +4,7 @@ import TeamReportFilter from "../../components/TeamReportFilter";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 import { RatingUtils } from './RatingUtils';
+import { TransferModel } from '../LeaderboardUtils';
 
 type DiagCodes = 
    "fr_yearly_bonus" | "yearly_bonus" |
@@ -122,7 +123,7 @@ export class TeamEditorUtils {
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
-      transfers: Record<string, Array<{f: string, t?: string}>>[], transferYearOverride: string | undefined
+      transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
    ): GoodBadOkTriple[] {
       const transfersThisYear = transfers[0] || {};
       const transfersLastYear = transfers[1] || {};

@@ -47,14 +47,14 @@ import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTra
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import { StatModels, IndivStatSet } from '../utils/StatModels';
-import { O_SYMLINK } from 'constants';
+import { TransferModel } from '../utils/LeaderboardUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
-  transfers?: Record<string, Array<{f: string, t?: string}>>,
+  transfers?: Record<string, Array<TransferModel>>,
   error?: string,
 }
 type Props = {

@@ -4,11 +4,9 @@ import { initGA, logPageView } from '../utils/GoogleAnalytics';
 // React imports:
 import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
-import Link from 'next/link';
 
 // Next imports:
 import { NextPage } from 'next';
-import fetch from 'isomorphic-unfetch';
 
 // Lodash:
 import _ from "lodash";
@@ -21,16 +19,14 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import { ParamPrefixes, TeamEditorParams, ParamDefaults } from '../utils/FilterModels';
-import { HistoryManager } from '../utils/HistoryManager';
 import TeamEditorTable, { TeamEditorStatsModel } from '../components/TeamEditorTable';
-import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
-import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 
 const TeamEditorPage: NextPage<{}> = () => {
 
@@ -49,21 +45,13 @@ const TeamEditorPage: NextPage<{}> = () => {
 
   const transferMode = true; //(always retrieve transfers as part of the team editor table pipeline)
     //^ Note only supported for "All" tiers
-  const transferInit = transferMode ? {} as Record<string, Array<{f: string, t?:string}>> : undefined; //(start as empty list)
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
   // Team Stats interface
 
-  const dataEventInit = {
-    all: { players: [] as any[], confs: [] as string[], transfers: transferInit, lastUpdated: 0 },
-    t100: { players: [] as any[], confs: [] as string[], transfers: transferInit, lastUpdated: 0 },
-    conf: { players: [] as any[], confs: [] as string[], transfers: transferInit, lastUpdated: 0 }
-  };
-
   const [ gaInited, setGaInited ] = useState(false);
-  const [ dataEvent, setDataEvent ] = useState(dataEventInit);
   const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as TeamEditorStatsModel);
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
@@ -154,7 +142,6 @@ const TeamEditorPage: NextPage<{}> = () => {
     const transferYears = [ transferYear, transferYearPrev ];
 
     if ((fullYear != currYear) || (gender != currGender) || (tier == currTier)) { // Only need to do this if the data source has changed
-      setDataEvent(dataEventInit); //(clear saved sub-events)
       setCurrYear(fullYear);
       setCurrGender(gender)
       setCurrTier(tier);
@@ -168,7 +155,7 @@ const TeamEditorPage: NextPage<{}> = () => {
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-          transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<{f: string, t?: string}>>[],
+          transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
           lastUpdated: 0 //TODO use max?
         });
       });
@@ -206,7 +193,7 @@ const TeamEditorPage: NextPage<{}> = () => {
     <Row className="mt-3">
       {table}
     </Row>
-    <Footer dateOverride={dataEvent.all?.lastUpdated} year={teamEditorParams.year} gender={teamEditorParams.gender} server={server}/>
+    <Footer dateOverride={dataSubEvent.lastUpdated} year={teamEditorParams.year} gender={teamEditorParams.gender} server={server}/>
   </Container>;
 }
 export default TeamEditorPage;

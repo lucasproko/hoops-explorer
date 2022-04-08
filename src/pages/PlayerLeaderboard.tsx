@@ -4,11 +4,9 @@ import { initGA, logPageView } from '../utils/GoogleAnalytics';
 // React imports:
 import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
-import Link from 'next/link';
 
 // Next imports:
 import { NextPage } from 'next';
-import fetch from 'isomorphic-unfetch';
 
 // Lodash:
 import _ from "lodash";
@@ -21,16 +19,14 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import { ParamPrefixes, PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { HistoryManager } from '../utils/HistoryManager';
 import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from '../components/PlayerLeaderboardTable';
-import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
-import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 
 const PlayLeaderboardPage: NextPage<{}> = () => {
 
@@ -49,7 +45,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
 
   const transferMode = (allParams.indexOf("transferMode=true") >= 0) || (allParams.indexOf("transferMode=20") >= 0); 
     //^ Note only supported for "All" tiers
-  const transferInit = transferMode ? {} as Record<string, Array<{f: string, t?:string}>> : undefined; //(start as empty list)
+  const transferInit = transferMode ? {} as Record<string, Array<TransferModel>> : undefined; //(start as empty list)
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -117,8 +113,6 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
     }
   }
 
-  //TODO: move this to using LeaderboardUtils like TeamEditor
-
   useEffect(() => { // Process data selection change
     const paramObj = playerLeaderboardParams;
     const dataSubEventKey = paramObj.t100 ?
@@ -132,53 +126,39 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
     if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const years = _.filter([ "2018/9", "2019/20", "2020/21", "2021/22", "Extra" ], inYear => (year == "All") || (inYear == fullYear));
-      const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
+      const transferYearStr = (allParams.indexOf("transferMode=true") >= 0)
+        ? (LeaderboardUtils.getOffseasonOfYear(LeaderboardUtils.offseasonYear) || "").substring(0, 4) //(default, means most recent year)
+        :  (allParams.match(/transferMode=([0-9]+)/)?.[1] as string | undefined); //(else whatever is specified)
+      
+      const transferYearIn = (transferMode && transferYearStr) ? [ transferYearStr ] : [];
 
-      const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
- 
-      const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
-        const subYear = inYear.substring(0, 4);
-        return fetch(LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier))
-          .then((response: fetch.IsomorphicResponse) => {
-            return response.ok ? 
-            response.json().then((j: any) => { //(tag the tier in)
-              if (tier == "All") j.tier = inTier;
-              return j;
-            }) : 
-            Promise.resolve({ error: "No data available" });
-          });
-      }).concat(
-        transferMode ? [
-           fetch(`/api/getTransfers?${allParams.match(/transferMode=[0-9]+/) || ""}`).then((response: fetch.IsomorphicResponse) => {
-            return response.ok ? response.json() : Promise.resolve({})
-           })
-        ] : []
-      ));
+      const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
+        dataSubEventKey, gender, fullYear, tier, transferYearIn, false
+      );
+
       fetchAll.then((jsonsIn: any[]) => {
         const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<{f: string, t?: string}>>,
+          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<TransferModel>>,
           lastUpdated: 0 //TODO use max?
         });
       })
     } else {
       if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != fullYear) || (currGender != gender) || (currTier != tier)) {
         const oldCurrYear = currYear;
-        const oldCurrGender = currGender;
         setCurrYear(fullYear);
         setCurrGender(gender)
         setCurrTier(tier);
         setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, year, tier))
-          .then((response: fetch.IsomorphicResponse) => {
-            return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
-              //(if year has changed then clear saved data events)
-              setDataEvent({ ...(oldCurrYear != year ? dataEventInit : dataEvent), [dataSubEventKey]: json });
-              setDataSubEvent(json);
-            });
+
+        LeaderboardUtils.getSingleYearPlayerLboards(
+          dataSubEventKey, gender, fullYear, tier
+        ).then((json: any) => {
+            //(if year has changed then clear saved data events)
+            setDataEvent({ ...(oldCurrYear != year ? dataEventInit : dataEvent), [dataSubEventKey]: json });
+            setDataSubEvent(json);
           });
       } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
         setDataSubEvent(dataEvent[dataSubEventKey]);
