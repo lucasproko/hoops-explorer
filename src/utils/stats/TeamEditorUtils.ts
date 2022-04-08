@@ -157,7 +157,6 @@ export class TeamEditorUtils {
                   _.some(transfersThisYear[code] || [], txfer2 => (txfer.t == txfer2.f) && (txfer2.t == team));
             }
          );
-
          const inAndNotTransferringOut = (isOnTeam || wasPlayerTxferLastYear) && 
                                        (!offSeasonMode || (           
                                           (includeSuperSeniors || (p.roster?.year_class != "Sr"))
@@ -585,15 +584,18 @@ export class TeamEditorUtils {
    
       // ends up giving a team-wide 30% bonus/penalty to the average RAPM-adjusted defense delta
 
+      const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
+      
       const adjustProjection = (proj: "good" | "bad" | "ok") => {
-         const avDefense = 0.2*_.sumBy(roster, p => {
+
+         const avDefense = 0.2*_.sumBy(filteredRoster, p => {
             const defToUse = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
                p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
             );
             return defToUse*(p[proj].def_team_poss_pct?.value || 0);
          });
 
-         roster.filter(p => !disabledPlayers[p.key]).forEach(p => {
+         filteredRoster.forEach(p => {
             const defense = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
                p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
             );
