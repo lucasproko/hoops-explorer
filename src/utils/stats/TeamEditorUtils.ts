@@ -717,23 +717,31 @@ export class TeamEditorUtils {
                !_.isEmpty(disabledPlayers) ||
                hasDeletedPlayersOrTransfersIn || // has transfers in or deleted players
                (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins))) // has overrides
-
+               
       const steps = needToAdjBaseMinutes ? [ 0, 1, 2, 3, 4, 5 ] : [];
+      const finalStep = _.last(steps);
       _.transform(steps, (acc, step) => {
          const sumMins = _.sumBy(filteredRoster, p => p.ok.off_team_poss_pct.value || 0);
 
-         const highLevel = 5*(39.0/40.0);
-         const lowLevel = offSeasonMode ? 5*(35.0/40.0) : 5*(37.0/40.0);
-         const highGoal = offSeasonMode ? 5*(37.5/40.0) :  5*(38.5/40.0);
-         const lowGoal = offSeasonMode ? 5*(36.5/40.0) : 5*(37.5/40.0);
+         const emergencyMeasures = (step == finalStep) && (sumMins + benchMinOverrides) > 5.0;
+            //(ensure the sum of the players' + bench minutes is never more than physically possib;e)
+
+         const highLevel = 5*(39.0/40.0) - benchMinOverrides;
+         const highGoal = (offSeasonMode ? 5*(37.5/40.0) :  5*(38.5/40.0)) - benchMinOverrides;
+         const lowLevel = (offSeasonMode ? 5*(35.0/40.0) : 5*(37.0/40.0)) - benchMinOverrides;
+         const lowGoal = (offSeasonMode ? 5*(36.5/40.0) : 5*(37.5/40.0)) - benchMinOverrides;
+         const maxGoal = 5.0 - benchMinOverrides; //(if bench specified then try to exactly hit 40mpg)
          const goal = 
-            (allThreeBenchPosHaveOverriddenMins ? 5.0 //(if bench specified then try to exactly hit 40mpg)
-            : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1))
-            ) - benchMinOverrides;
+            ((allThreeBenchPosHaveOverriddenMins || emergencyMeasures) ? 
+               maxGoal
+               : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1))
+            );
             //(goal of -1 means I'm already inside the [lowLevel:highLevel] range)
 
          //Diagnostic
-         //console.log(`Step ${step}: ${sumMins.toFixed(3)} vs goal [${goal}][${lowLevel} - ${highLevel}]`);
+         // console.log(`Step [${step}]: sum=[${sumMins.toFixed(3)}] [bench=${benchMinOverrides.toFixed(3)}] vs ` +
+         //    `goal=[${goal.toFixed(3)}]/levels=[${lowLevel.toFixed(3)} - ${highLevel.toFixed(3)}]` + 
+         //    `/goal_limits=[${lowGoal.toFixed(3)} - ${highGoal.toFixed(3)}]`);
 
          if (goal > 0) {
             const factor = goal/sumMins;
@@ -741,7 +749,7 @@ export class TeamEditorUtils {
                const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
                if (!hasMinsOverride) {  //(can't override players with fixed numbers)
                   const prevMins = p.good.off_team_poss_pct?.value || 0;
-                  assignMins(prevMins*factor, p);
+                  assignMins(prevMins*factor, p, emergencyMeasures);
                }
             });
          } else { // done, stop
