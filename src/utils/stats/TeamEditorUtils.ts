@@ -157,14 +157,14 @@ export class TeamEditorUtils {
                   _.some(transfersThisYear[code] || [], txfer2 => (txfer.t == txfer2.f) && (txfer2.t == team));
             }
          );
-         const inAndNotTransferringOut = (isOnTeam || wasPlayerTxferLastYear) && 
-                                       (!offSeasonMode || (           
-                                          (includeSuperSeniors || (p.roster?.year_class != "Sr"))
-                                             && !isTransferringOut
-                                       ));
+         const isNotLeaving = (!offSeasonMode || (           
+            (includeSuperSeniors || (p.roster?.year_class != "Sr"))
+               && !isTransferringOut
+         ));
+         const inAndNotLeaving = (isOnTeam || wasPlayerTxferLastYear) && isNotLeaving;
          const notOnExcludeList = !excludeSet[key];
 
-         if ((doubleTransfer || transferringIn || inAndNotTransferringOut) && notOnExcludeList) {
+         if ((doubleTransfer || transferringIn || inAndNotLeaving) && notOnExcludeList) {
             if (isRightYear && !acc.dups[dupCode]) {
                acc.retVal = acc.retVal.concat([{
                   key: key,
@@ -181,13 +181,57 @@ export class TeamEditorUtils {
                acc.prevYears[lastYearKey] = p;
             }
          }
-      }, { retVal: [] as GoodBadOkTriple[], dups:  {} as Record<string, boolean>, prevYears: {} as Record<string, IndivStatSet> });
-
-      return fromBaseRoster.retVal.filter(triple => { // Filter out players who were already super seniors
-         return !triple.prevYear || (triple.prevYear.roster?.year_class != "Sr");
-      }).map(triple => {
-         return { ...triple, prevYear: fromBaseRoster.prevYears[triple.key]};
+      }, { 
+         retVal: [] as GoodBadOkTriple[], 
+         dups: {} as Record<string, boolean>, 
+         prevYears: {} as Record<string, IndivStatSet>,
+         inAndLeaving: {} as Record<string, boolean> //(not filled in because we can't account for early departures)
       });
+
+      const injectPrevYearsIntoBaseRoster: Array<GoodBadOkTriple> = 
+         fromBaseRoster.retVal.filter(triple => { // Filter out players who were already super seniors
+            return !triple.prevYear || (triple.prevYear.roster?.year_class != "Sr");
+         }).map(triple => {
+            const matchingPrevYear = fromBaseRoster.prevYears[triple.key];
+            if (matchingPrevYear) {
+               // remove from (unmatched) prevYears list
+               delete fromBaseRoster.prevYears[triple.key];
+            }
+            return { ...triple, prevYear: matchingPrevYear };
+         });
+
+      // Now find players who aren't the right year:
+      const unmatchedPrevYearsToAdd: Array<GoodBadOkTriple> = _.flatMap(fromBaseRoster.prevYears, (p, key) => {
+
+         if (offSeasonMode) { //might still be playing this season
+            const code = p.code || "";
+
+            // If they transferred in _this_ year then they are definitely playing
+            const transferringIn = _.some(
+               transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
+            );
+
+            // There could be other cases (eg was injured a year, now back, but it's hard to tell ...
+            // especially because of early NBA departures, so we'll just ignore and you can add them by hand)
+            // const left = fromBaseRoster.inAndLeaving[key] || false;
+            // const transferredOut = _.some(transfersLastYear[code] || [], p => p.f == team);
+            // const agedOut = (p.roster?.year_class == "Fr") || (p.roster?.year_class == "So")
+            //    || (includeSuperSeniors && (p.roster?.year_class == "Jr"));
+            // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
+
+            return transferringIn ? [{
+               key: key,
+               good: _.clone(p),
+               ok: _.clone(p),
+               bad: _.clone(p),
+               orig: p
+            }] : [];
+         } else {
+            return [];
+         }
+      });
+
+      return injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd);
    }
 
 
@@ -585,7 +629,7 @@ export class TeamEditorUtils {
       // ends up giving a team-wide 30% bonus/penalty to the average RAPM-adjusted defense delta
 
       const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
-      
+
       const adjustProjection = (proj: "good" | "bad" | "ok") => {
 
          const avDefense = 0.2*_.sumBy(filteredRoster, p => {
