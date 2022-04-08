@@ -31,6 +31,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
+import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
 const TeamLeaderboardPage: NextPage<{}> = () => {
 
@@ -84,14 +85,6 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
   const TeamLeaderboardParamsRef = useRef<TeamLeaderboardParams>();
   TeamLeaderboardParamsRef.current = teamLeaderboardParams;
 
-  const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-    if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-      return `/api/getLeaderboard?src=teams&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
-    } else { //archived
-      return `/leaderboards/lineups/teams_${oppo}_${gender}_${subYear}_${inTier}.json`;
-    }
-  }
-
   const onTeamLeaderboardParamsChange = (rawParams: TeamLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       (!rawParams.conf) ? [ 'conf' ] : [],
@@ -142,7 +135,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
  
       const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
         const subYear = inYear.substring(0, 4);
-        return fetch(getUrl(dataSubEventKey, gender, subYear, inTier))
+        return fetch(LeaderboardUtils.getTeamUrl(dataSubEventKey, gender, subYear, inTier))
           .then((response: fetch.IsomorphicResponse) => {
             return response.ok ? 
             response.json().then((j: any) => { //(tag the tier in)
@@ -169,7 +162,7 @@ const TeamLeaderboardPage: NextPage<{}> = () => {
         setCurrYear(fullYear);
         setCurrGender(gender)
         setDataSubEvent({ teams: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(getUrl(dataSubEventKey, gender, year, tier))
+        fetch(LeaderboardUtils.getTeamUrl(dataSubEventKey, gender, year, tier))
           .then((response: fetch.IsomorphicResponse) => {
             return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
               //(if year has changed then clear saved data events)

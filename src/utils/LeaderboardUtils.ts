@@ -83,8 +83,16 @@ export class LeaderboardUtils {
         return `/leaderboards/lineups/lineups_${oppo}_${gender}_${subYear}_${inTier}.json`;
       }
     }
-  
 
+   /** Fetch the requested team leaderboard either from GCS or static storage */
+   static readonly getTeamUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
+      if (LeaderboardUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+        return `/api/getLeaderboard?src=teams&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
+      } else { //archived
+        return `/leaderboards/lineups/teams_${oppo}_${gender}_${subYear}_${inTier}.json`;
+      }
+    }
+  
    /** Get the previous season */
    static readonly getPrevYear = (y: string) => {
       if (y == "2021/22") { //TODO: From 2020/21 onwards can calculate
