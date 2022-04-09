@@ -58,8 +58,8 @@ export class TeamEditorUtils {
    /** Convert user overrides to a param string */
    static playerEditModelToUrlParams(key: string, model: PlayerEditModel): string {
       const maybeMins = _.isNil(model.mins) ? undefined : `m@${model.mins.toFixed(1)}`;
-      const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(1)}`;
-      const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(1)}`;
+      const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(2)}`;
+      const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(2)}`;
       const maybePaused = _.isNil(model.pause) ? undefined : `p@${model.pause ? 1 : 0}`;
       const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused ].filter(s => !_.isNil(s));
       return `${key}|${toWrite.join("|")}`;
@@ -73,11 +73,11 @@ export class TeamEditorUtils {
          return [ key, _.transform(_.drop(fragFrags, 1), (acc, v) => {
             const vFrags = v.split("@");
             if (vFrags[0] == "m") {
-               acc.mins = parseInt(vFrags?.[1] || "");
+               acc.mins = parseFloat(vFrags?.[1] || "");
             } else if (vFrags[0] == "go") {
-               acc.global_off_adj = parseInt(vFrags?.[1] || "");
+               acc.global_off_adj = parseFloat(vFrags?.[1] || "");
             } else if (vFrags[0] == "gd") {
-               acc.global_def_adj = parseInt(vFrags?.[1] || "");
+               acc.global_def_adj = parseFloat(vFrags?.[1] || "");
             } else if (vFrags[0] == "p") {
                acc.pause = vFrags?.[1] == "1";
             }  
@@ -122,7 +122,7 @@ export class TeamEditorUtils {
    /** Pulls out the players from the designated team */
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
-      offSeasonMode: boolean, includeSuperSeniors: boolean, excludeSet: Record<string, string>, 
+      offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, excludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
    ): GoodBadOkTriple[] {
       const transfersThisYear = transfers[0] || {};
@@ -158,7 +158,7 @@ export class TeamEditorUtils {
             }
          );
          const isNotLeaving = (!offSeasonMode || (           
-            (includeSuperSeniors || (p.roster?.year_class != "Sr"))
+            (includeSuperSeniors || (p.roster?.year_class != "Sr") || (superSeniorsReturning?.has(key)))
                && !isTransferringOut
          ));
          const inAndNotLeaving = (isOnTeam || wasPlayerTxferLastYear) && isNotLeaving;

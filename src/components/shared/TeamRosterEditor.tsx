@@ -36,7 +36,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    // Starting values:
    const [ currMins, setCurrMins ] = useState(overrides?.mins?.toFixed(1) || "");
    const [ currOffAdj, setCurrOffAdj ] = useState(overrides?.global_off_adj || 0);
-   const [ currDefAdj, setCurrDefAdj ] = useState(overrides?.global_def_adj || 0);
+   const [ currDefAdj, setCurrDefAdj ] = useState(-(overrides?.global_def_adj || 0));
 
    // Presentation
 
@@ -59,8 +59,8 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    </Tooltip>;
 
    const globalAdjTooltip = <Tooltip id="globalAdjTooltip">
-      If you disagree with the automatic projections, drag the slider left (more pessimistic) / right (more optimistic).&nbsp;
-      Pressing this button applies the change.&nbsp;
+      If you disagree with the automatic projections, drag the sliders left (more pessimistic) / right (more optimistic).&nbsp;
+      Pressing this button applies the changes.&nbsp;
       Note that the adjustments won't be exactly as specified due to the details of the algorithm.
    </Tooltip>;
 
@@ -179,6 +179,11 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            } else {
                               currOverrides.global_off_adj = currOffAdj;
                            }
+                           if (currDefAdj == 0) {
+                              delete currOverrides.global_def_adj;
+                           } else {
+                              currOverrides.global_def_adj = -currDefAdj;
+                           }
                            onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
                         }}
                      >+</Button>
@@ -189,7 +194,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
             <Row className="mt-3">
                <Col xs={1}/>
                <Col xs={8}>
-                  <Form.Label><b>Defensive projections</b>: <span>adjustment=[{overrides?.global_def_adj || 0}] new=[{currDefAdj}]</span></Form.Label>
+                  <Form.Label><b>Defensive projections</b>: <span>adjustment=[{-(overrides?.global_def_adj || 0)}] new=[{currDefAdj}]</span></Form.Label>
                   <Form inline>
                      <Form.Label className="pull-left">Bearish&nbsp;&nbsp;&nbsp;</Form.Label>
                      <Form className="flex-fill">
@@ -205,21 +210,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                      <Form.Label className="pull-right">&nbsp;&nbsp;&nbsp;Bullish</Form.Label>
                   </Form>
                </Col>
-               <Col xs={2} className="pt-4">
-                  <OverlayTrigger overlay={globalAdjTooltip} placement="auto">
-                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
-                        onClick={() => {
-                           const currOverrides = overrides ? _.clone(overrides) : {};
-                           if (currDefAdj == 0) {
-                              delete currOverrides.global_def_adj;
-                           } else {
-                              currOverrides.global_def_adj = -currDefAdj;
-                           }
-                           onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
-                        }}
-                     >+</Button>
-                  </OverlayTrigger>
-               </Col>
+               <Col xs={2}/>
                <Col xs={1}/>
             </Row>
             </Container>

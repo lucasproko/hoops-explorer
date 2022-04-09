@@ -47,6 +47,7 @@ import { PositionUtils } from '../utils/stats/PositionUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import TeamRosterEditor from './shared/TeamRosterEditor';
+import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/TeamEditorManualFixes';
 
 // Input params/models
 
@@ -329,8 +330,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
 
+    const teamOverrides: TeamEditorManualFixModel = TeamEditorManualFixes.fixes[genderYearLookup]?.[team] || {};
+
     const rawTeam = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, {}, dataEvent.transfers || [], undefined
+      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, dataEvent.transfers || [], undefined
     );
 
     const playerSubList = offSeasonMode ? //(to avoid having to parse the very big players array multiple times)
@@ -338,8 +341,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         return [ triple.orig ].concat(triple.prevYear ? [ triple.prevYear ] : []);
       });
 
+    const deletedPlayersToUse = _.merge(_.cloneDeep(teamOverrides.leftTeam || {}), deletedPlayers);
+
     const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, playerSubList, offSeasonMode, superSeniorsBack, deletedPlayers, dataEvent.transfers || [], undefined
+      team, year, playerSubList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, deletedPlayersToUse, dataEvent.transfers || [], undefined
     );
 
     // First time through ... Rebuild the state from the input params
@@ -405,7 +410,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
           return TeamEditorUtils.getBasePlayers(
             team, year, maybeMatchingPlayersByCode[code] || [], 
-            offSeasonMode, superSeniorsBack, {}, 
+            offSeasonMode, superSeniorsBack, undefined, {}, 
             // Build a transfer set explicitly for this player
             [ { [code]: [ { f: txferTeam, t: team } ] } , dataEvent.transfers?.[1] || {} ], txferYear
           );
@@ -426,7 +431,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
     }
 
-    const filteredOverrides = _.chain(overrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
+    // Merge team overrides and user overrides
+    const overridesToUse: Record<string, PlayerEditModel> = 
+      _.chain(teamOverrides.overrides || {}).toPairs().map(keyVal => [keyVal[0], overrides[keyVal[0]] || keyVal[1]]).fromPairs().value();
+
+    const filteredOverrides: Record<string, PlayerEditModel> = 
+      _.chain(overridesToUse).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)); 
 
@@ -434,7 +444,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
       _.omit(otherPlayerCache, _.keys(disabledPlayers)) // have added transfers in (and they aren't disabled)
-    ) || !_.isEmpty(deletedPlayers); //(or have deleted players)
+    ) || !_.isEmpty(deletedPlayersToUse); //(or have deleted players)
 
     TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, filteredOverrides, offSeasonMode);
     TeamEditorUtils.calcAndInjectMinsAssignment(
@@ -598,7 +608,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={false}
-              overrides={overrides[triple.key]}
+              overrides={overridesToUse[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
                   setOverrides(editPlayerOverrides(triple, overrides, edit));
@@ -679,7 +689,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={true}
-              overrides={overrides[triple.key]}
+              overrides={overridesToUse[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
                   setOverrides(editPlayerOverrides(triple, overrides, edit));
@@ -747,7 +757,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     })).concat(maybeBenchBig ? buildBenchDataRowFromTriple(maybeBenchBig) : []);
 
     const addedTxfersStr = _.values(otherPlayerCache).map(p => p.orig.key).join(" / ");
-    const removedPlayerStr = _.values(deletedPlayers).join(" / ");
+    const removedPlayerStr = _.values(deletedPlayersToUse).join(" / ");
 
     const rosterTableData = _.flatten([
       rosterTableDataGuards,
@@ -935,7 +945,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
         TeamEditorUtils.getBasePlayers(
           team, year, (dataEvent.players || []).filter(maybeP => maybeP.code == p.code), 
-          offSeasonMode, superSeniorsBack, {}, 
+          offSeasonMode, superSeniorsBack, undefined, {}, 
           // Build a transfer set explicitly for this player
           [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || year
         ).forEach(triple => {
