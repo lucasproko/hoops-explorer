@@ -11,13 +11,15 @@ export const dataLastUpdated: Record<string, number> = { //Update by executing .
   "Women_2019/20": 1583968724,
   "Men_2020/21": 1617682995,
   "Women_2020/21": 1617682996,
-  "Men_2021/22": parseInt(process.env.MEN_CURR_UPDATE || "0"),
-  "Women_2021/22": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
+  "Men_2021/22": 1649491206,
+  "Women_2021/22": 1649491206,
+  "Men_2022/23": parseInt(process.env.MEN_CURR_UPDATE || "0"),
+  "Women_2022/23": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
 };
 
 const seasonNotFinished: Record<string, boolean> = {
-  "Men_2021/22": true,
-  "Women_2021/22": true
+  "Men_2021/22": false,
+  "Women_2021/22": false
 };
 
 /** Approx 20d before the end of the actual season */
