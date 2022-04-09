@@ -28,6 +28,38 @@ export class TeamEditorManualFixes {
          "Colorado St.": {
             superSeniorsReturning: new Set([ "KeMoore::" ])          
          },
+         "Duke": {
+            leftTeam: { "TrKeels::": "Keels, Trevor", "PaBanchero::": "Banchero, Paolo", "MaWilliams::": "Williams, Mark"  },
+            overrides: { //https://247sports.com/college/duke/Season/2022-Basketball/Commits/
+               [TeamEditorUtils.benchWingKey]: {
+                  mins: 60,
+                  global_off_adj: 2,
+                  global_def_adj: -2
+               },
+               [TeamEditorUtils.benchBigKey]: {
+                  mins: 40,
+                  global_off_adj: 2,
+                  global_def_adj: -2
+               }
+            },
+         },
+         "Gonzaga": {
+            leftTeam: { "ChHolmgren::": "Holmgren, Chet" },
+            overrides: { //Gonzaga recruits higher than the normal WCC level
+               [TeamEditorUtils.benchGuardKey]: {
+                  global_off_adj: 1,
+                  global_def_adj: -1
+               },
+               [TeamEditorUtils.benchWingKey]: {
+                  global_off_adj: 1,
+                  global_def_adj: -1
+               },
+               [TeamEditorUtils.benchBigKey]: {
+                  global_off_adj: 1,
+                  global_def_adj: -1
+               }
+            }
+         },
          "Iowa": {
             leftTeam: { "KeMurray::": "Murray, Keegan" }
          },
