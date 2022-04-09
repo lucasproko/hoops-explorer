@@ -15,13 +15,11 @@ export class TeamEditorManualFixes {
             overrides: {
                [TeamEditorUtils.benchGuardKey]: {
                   mins: 35,
-                  global_off_adj: 1.5,
-                  global_def_adj: -1.5,
+                  bench: "5+4*s"
                },
                [TeamEditorUtils.benchWingKey]: {
                   mins: 35,
-                  global_off_adj: 1.5,
-                  global_def_adj: -1.5
+                  bench: "5+4*s"
                }
             }
          },
@@ -33,13 +31,11 @@ export class TeamEditorManualFixes {
             overrides: { //https://247sports.com/college/duke/Season/2022-Basketball/Commits/
                [TeamEditorUtils.benchWingKey]: {
                   mins: 60,
-                  global_off_adj: 2,
-                  global_def_adj: -2
+                  bench: "5*"
                },
                [TeamEditorUtils.benchBigKey]: {
                   mins: 40,
-                  global_off_adj: 2,
-                  global_def_adj: -2
+                  bench: "5*"
                }
             },
          },
@@ -47,16 +43,13 @@ export class TeamEditorManualFixes {
             leftTeam: { "ChHolmgren::": "Holmgren, Chet" },
             overrides: { //Gonzaga recruits higher than the normal WCC level
                [TeamEditorUtils.benchGuardKey]: {
-                  global_off_adj: 1,
-                  global_def_adj: -1
+                  bench: "4*"
                },
                [TeamEditorUtils.benchWingKey]: {
-                  global_off_adj: 1,
-                  global_def_adj: -1
+                  bench: "4*"
                },
                [TeamEditorUtils.benchBigKey]: {
-                  global_off_adj: 1,
-                  global_def_adj: -1
+                  bench: "4*"
                }
             }
          },
@@ -64,7 +57,7 @@ export class TeamEditorManualFixes {
             leftTeam: { "KeMurray::": "Murray, Keegan" }
          },
          "Marquette": {
-            leftTeam: { "JuLewis::": "Lewis, Justin", "GrElliott::": "Elliott, Greg" }
+            leftTeam: { "GrElliott::": "Elliott, Greg" }
          },
          "Ohio St.": {
             leftTeam: { "MaBranham::": "Branham, Malaki" }

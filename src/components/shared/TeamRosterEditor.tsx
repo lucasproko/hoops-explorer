@@ -21,6 +21,7 @@ import { GoodBadOkTriple, PlayerEditModel } from '../../utils/stats/TeamEditorUt
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPause, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Select, { components} from "react-select"
 
 type Props = {
    overrides?: PlayerEditModel,
@@ -35,6 +36,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
 
    // Starting values:
    const [ currMins, setCurrMins ] = useState(overrides?.mins?.toFixed(1) || "");
+   const [ currBench, setCurrBench ] = useState(overrides?.bench || "Auto");
    const [ currOffAdj, setCurrOffAdj ] = useState(overrides?.global_off_adj || 0);
    const [ currDefAdj, setCurrDefAdj ] = useState(-(overrides?.global_def_adj || 0));
 
@@ -58,6 +60,11 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
       Clear the field and apply to return to the automatically calculated version.
    </Tooltip>;
 
+   const benchQualityApplyTooltip = <Tooltip id="benchQualityApplyTooltip">
+      Override the bench production to an average level for a Freshmen of the given recruiting profile.&nbsp;
+      Select "Auto" and apply to return to the automatically calculated version.
+   </Tooltip>;
+
    const globalAdjTooltip = <Tooltip id="globalAdjTooltip">
       If you disagree with the automatic projections, drag the sliders left (more pessimistic) / right (more optimistic).&nbsp;
       Pressing this button applies the changes.&nbsp;
@@ -69,6 +76,11 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
             <Col className="text-center"><b>Coming Soon!</b> For now, only "General" is used.</Col>
          </Row>
       </Container>;
+
+   /** For use in selects */
+   function stringToOption(s: string) {
+      return { label: s, value: s};
+   }
 
    return <Container><Row>
       <Col xs={1}/>
@@ -118,9 +130,9 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                         setCurrMins("");
                         setCurrOffAdj(0);
                         setCurrDefAdj(0);
+                        setCurrBench("Auto");
                         onUpdate(undefined);
-                     })}
-                        ><FontAwesomeIcon icon={faTimes} />
+                     })}><FontAwesomeIcon icon={faTimes} />
                      </Button>
                   </OverlayTrigger>
                </Col>
@@ -150,10 +162,51 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </OverlayTrigger>}
                </Col>
             </Row>
+            {isBench ? 
+               <Row className="mt-2">
+               <Col xs={1}/>               
+               <Col xs={6}>
+                  <InputGroup>
+                  <InputGroup.Prepend>
+                     <InputGroup.Text id="minPct">Bench {"&"} Fr production</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Select className="flex-fill"
+                     isDisabled={overrides?.pause}
+                     value={stringToOption(currBench)}
+                     options={[ "Auto", "5*/Lotto", "5*", "5+4*s", "4*/T40ish", "4*", "3.5*/T150ish", "3*", "2*" ].map(stringToOption)}
+                     onChange={(option) => {
+                        const selection = (option as any)?.value || "";
+                        setCurrBench(selection);
+                     }}
+                  />
+                  </InputGroup>
+               </Col>
+               <Col xs={3} className="pt-1">
+                  <OverlayTrigger overlay={benchQualityApplyTooltip} placement="auto">
+                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
+                        onClick={() => {
+                           const currOverrides = overrides ? _.clone(overrides) : {};
+                           if (currBench == "Auto") {
+                              delete currOverrides.bench;
+                           } else {
+                              currOverrides.bench = currBench;
+                           }
+                           onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
+                        }}
+                     >+</Button>
+                  </OverlayTrigger>
+                  {(currBench != (overrides?.bench || "Auto")) ?
+                     <i>&nbsp;(unapplied)</i> : null
+                  }
+               </Col>
+               <Col xs={2}/>
+            </Row>      
+            : null}
             <Row className="mt-3">
                <Col xs={1}/>
                <Col xs={8}>
-                  <Form.Label><b>Offensive projections</b>: <span>adjustment=[{overrides?.global_off_adj || 0}] new=[{currOffAdj}]</span></Form.Label>
+                  <Form.Label><b>Offensive projections</b>: <span>adjustment=[{overrides?.global_off_adj || 0}]
+                  {(currOffAdj == (overrides?.global_off_adj || 0)) ? null : <span> new=[{currOffAdj}]</span>}</span></Form.Label>
                   <Form inline>
                      <Form.Label className="pull-left">Bearish&nbsp;&nbsp;&nbsp;</Form.Label>
                      <Form className="flex-fill">
@@ -194,7 +247,8 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
             <Row className="mt-3">
                <Col xs={1}/>
                <Col xs={8}>
-                  <Form.Label><b>Defensive projections</b>: <span>adjustment=[{-(overrides?.global_def_adj || 0)}] new=[{currDefAdj}]</span></Form.Label>
+                  <Form.Label><b>Defensive projections</b>: <span>adjustment=[{-(overrides?.global_def_adj || 0)}]
+                  {(currDefAdj == -(overrides?.global_def_adj || 0)) ? null : <span> new=[{currDefAdj}]</span>}</span></Form.Label>
                   <Form inline>
                      <Form.Label className="pull-left">Bearish&nbsp;&nbsp;&nbsp;</Form.Label>
                      <Form className="flex-fill">

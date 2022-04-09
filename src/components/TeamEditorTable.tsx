@@ -433,7 +433,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Merge team overrides and user overrides
     const overridesToUse: Record<string, PlayerEditModel> = 
-      _.chain(teamOverrides.overrides || {}).toPairs().map(keyVal => [keyVal[0], overrides[keyVal[0]] || keyVal[1]]).fromPairs().value();
+      _.fromPairs(
+        _.chain(teamOverrides.overrides || {}).toPairs().filter(keyVal=> !overrides[keyVal[0]]).value().concat(
+          _.toPairs(overrides)
+        )
+      );
 
     const filteredOverrides: Record<string, PlayerEditModel> = 
       _.chain(overridesToUse).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();

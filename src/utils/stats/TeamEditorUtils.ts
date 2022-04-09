@@ -28,7 +28,8 @@ export type PlayerEditModel = {
    mins?: number,
    global_off_adj?: number,
    global_def_adj?: number,
-   pause?: boolean
+   pause?: boolean,
+   bench?: string //(see TeamRosterEditor for possible values)
 };
 
 export type GoodBadOkTriple = {
@@ -61,7 +62,8 @@ export class TeamEditorUtils {
       const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(2)}`;
       const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(2)}`;
       const maybePaused = _.isNil(model.pause) ? undefined : `p@${model.pause ? 1 : 0}`;
-      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused ].filter(s => !_.isNil(s));
+      const maybeBench = _.isNil(model.bench) ? undefined : `b@${model.bench}`;
+      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused, maybeBench ].filter(s => !_.isNil(s));
       return `${key}|${toWrite.join("|")}`;
    }
 
@@ -80,6 +82,8 @@ export class TeamEditorUtils {
                acc.global_def_adj = parseFloat(vFrags?.[1] || "");
             } else if (vFrags[0] == "p") {
                acc.pause = vFrags?.[1] == "1";
+            } else if (vFrags[0] == "b") {
+               acc.bench = vFrags?.[1];
             }  
          }, {} as PlayerEditModel) ];
       }).fromPairs().value();
@@ -686,8 +690,14 @@ export class TeamEditorUtils {
       const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
 
       const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
+      const benchGuardOverride = overrides[TeamEditorUtils.benchGuardKey]?.bench;
+      const benchWingOverride = overrides[TeamEditorUtils.benchWingKey]?.bench;
+      const benchBigOverride = overrides[TeamEditorUtils.benchBigKey]?.bench;
       const netRatings = _.sortBy(filteredRoster.map(p => getNet(p.ok)).concat(
-         [benchLevel, benchLevel, benchLevel]) //(add one bench player per pos group)
+         [benchGuardOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchGuardOverride) : benchLevel, 
+            benchWingOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchWingOverride) : benchLevel, 
+            benchBigOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchBigOverride) : benchLevel, 
+         ]) //(add one bench player per pos group)
       );
       const tierSize = (Math.ceil(_.size(netRatings)/3) || 1);
       const avgLowerTierNetTmp = _.sum(_.take(netRatings, tierSize))/tierSize;
@@ -829,11 +839,13 @@ export class TeamEditorUtils {
       //(if auto-calc need for bench minutes, or if any minutes overrides are in place)
       if ((deltaMins > 0.0) || hasBenchOverrides || alwaysBuildBench) {
 
-         const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
+         const defaultBenchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
 
          const buildBench = (key: string, name: string, posClass: string, minsPctIn: number) => {
             const maybeOverrides = overrides[key];
-
+            const benchLevelOverride = maybeOverrides?.bench;
+            const benchLevel = benchLevelOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel;
+      
             const minsPct = 
                !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
             const offAdj = maybeOverrides?.global_off_adj || 0;
@@ -1058,6 +1070,29 @@ export class TeamEditorUtils {
          } 
       }
       return getBenchLevel();
+   }
+
+   /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor" */
+   static getBenchLevelScoringByProfile(profile: string) {
+      if (profile == "5*/Lotto") {
+         return 2.5;
+      } else if (profile == "5*") {
+         return 2;
+      } else if (profile == "5+4*s") {
+         return 1.5;
+      } else if (profile == "4*/T40ish") {
+         return 1;
+      } else if (profile == "4*") {
+         return 0.75;
+      } else if (profile == "3.5*/T150ish") {
+         return 0.5;
+      } else if (profile == "3*") {
+         return 0;
+      } else if (profile == "2*") {
+         return -0.5;
+      } else {
+         return 0; //(error)
+      }
    }
    
    /** To regress Fr players we'll move them in this direction */
