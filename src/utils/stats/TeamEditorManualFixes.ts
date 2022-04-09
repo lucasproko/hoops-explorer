@@ -14,14 +14,14 @@ export class TeamEditorManualFixes {
          "Arkansas": { //Lots of big-name recruits, see https://247sports.com/college/arkansas/Season/2022-Basketball/Commits/
             overrides: {
                [TeamEditorUtils.benchGuardKey]: {
-                  mins: 30,
-                  global_off_adj: 0.5,
-                  global_def_adj: -0.5,
+                  mins: 35,
+                  global_off_adj: 1.5,
+                  global_def_adj: -1.5,
                },
                [TeamEditorUtils.benchWingKey]: {
-                  mins: 30,
-                  global_off_adj: 1.0,
-                  global_def_adj: -1.0
+                  mins: 35,
+                  global_off_adj: 1.5,
+                  global_def_adj: -1.5
                }
             }
          },

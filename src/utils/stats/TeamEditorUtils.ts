@@ -880,13 +880,13 @@ export class TeamEditorUtils {
 
          return [ 
             (benchGuardMins > 0) || alwaysBuildBench ? buildBench(
-               TeamEditorUtils.benchGuardKey, "Bench Guard Minutes", "G?", benchGuardMins
+               TeamEditorUtils.benchGuardKey, "Bench & Fr Guard Minutes", "G?", benchGuardMins
             ) : undefined, 
             (benchWingMins > 0) || alwaysBuildBench ? buildBench(
-               TeamEditorUtils.benchWingKey, "Bench Wing Minutes", "W?", benchWingMins
+               TeamEditorUtils.benchWingKey, "Bench & Fr Wing Minutes", "W?", benchWingMins
             ) : undefined, 
             (benchBigMins > 0) || alwaysBuildBench ? buildBench(
-               TeamEditorUtils.benchBigKey, "Bench Big Minutes", "PF/C", benchBigMins
+               TeamEditorUtils.benchBigKey, "Bench & Fr Big Minutes", "PF/C", benchBigMins
             ) : undefined, 
          ];
 
