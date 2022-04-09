@@ -91,6 +91,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
       position: "PF/C"
     }
   },
+  "Men_Oklahoma St._2021/22": {
+    "Moncrieffe, Matthew-Alexander": {
+      position: "PF/C"
+    }
+  },
 };
 
 export type RelativePositionFixRule = {
