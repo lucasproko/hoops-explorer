@@ -292,7 +292,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Tillman, Xavier:Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
                     <br />
                     <br />
-                     For more complex filtering enable Linq below.
+                    (Note text match is case-insensitive if the filter string is all lower case.)
+                    <br />
+                    <br />
+                    For more complex filtering enable Linq below. 
                   </ForwardRef>
                 }
                 placement="auto"
@@ -7543,7 +7546,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Tillman, Xavier:Jr_XaTillman+Xavier:Michigan St._2019/20 Jr_XaTillman:Michigan St._2019/20
                     <br />
                     <br />
-                     For more complex filtering enable Linq below.
+                    (Note text match is case-insensitive if the filter string is all lower case.)
+                    <br />
+                    <br />
+                    For more complex filtering enable Linq below. 
                   </ForwardRef>
                 }
                 placement="auto"
@@ -14794,7 +14800,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Williamson, Zion:Fr_ZiWilliamson+Zion:Duke_2018/9 Fr_ZiWilliamson:Duke_2018/9
                     <br />
                     <br />
-                     For more complex filtering enable Linq below.
+                    (Note text match is case-insensitive if the filter string is all lower case.)
+                    <br />
+                    <br />
+                    For more complex filtering enable Linq below. 
                   </ForwardRef>
                 }
                 placement="auto"
@@ -24997,7 +25006,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Pritchard, Payton:Sr_PaPritchard+Payton:Oregon_2019/20 Sr_PaPritchard:Oregon_2019/20
                     <br />
                     <br />
-                     For more complex filtering enable Linq below.
+                    (Note text match is case-insensitive if the filter string is all lower case.)
+                    <br />
+                    <br />
+                    For more complex filtering enable Linq below. 
                   </ForwardRef>
                 }
                 placement="auto"
@@ -32228,7 +32240,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Garza, Luka:Jr_LuGarza+Luka:Iowa_2019/20 Jr_LuGarza:Iowa_2019/20
                     <br />
                     <br />
-                     For more complex filtering enable Linq below.
+                    (Note text match is case-insensitive if the filter string is all lower case.)
+                    <br />
+                    <br />
+                    For more complex filtering enable Linq below. 
                   </ForwardRef>
                 }
                 placement="auto"

@@ -378,6 +378,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // 3.1] Build individual info
 
+  const caseInsensitiveSearch = filterStr == filterStr.toLowerCase();
   const filterFragmentSeparator = filterStr.substring(0, 64).indexOf(";") >= 0 ? ";" : ",";
   const filterFragments =
     filterStr.split(filterFragmentSeparator).map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -428,7 +429,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     // Filter, sort, and limit players part 2/2
     const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
-      const strToTest = buildFilterStringTest(player);
+      const strToTestCase = buildFilterStringTest(player);
+      const strToTest = caseInsensitiveSearch ? strToTestCase.toLowerCase() : strToTestCase;
       return (
         (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => {
           //(current year show only available, previous years show all transfers)
@@ -807,7 +809,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           buildFilterStringTest(dataEvent?.players[0]) :
           "Honor, Nick Sr_NiHonor+Nick:Clemson_2021/22 Sr_NiHonor:Clemson_2021/22"
         )
-    }<br/><br/> For more complex filtering enable Linq below.</Tooltip>
+    }<br/><br/>(Note text match is case-insensitive if the filter string is all lower case.)<br/><br/>For more complex filtering enable Linq below. </Tooltip>
   );
   const basicFilterText = <OverlayTrigger placement="auto" overlay={basicFilterTooltip}><div>Filter<sup>*</sup></div></OverlayTrigger>
 
