@@ -26,6 +26,9 @@ export class TeamEditorManualFixes {
             leftTeam: { "JoWieskamp::": "Wieskamp, Joe" },
             superSeniorsReturning: new Set([ "JoBohannon::" ]),
          },
+         "Marquette": {
+            leftTeam: { "DjCarton::": "Carton, D.J." },
+         },
          "Maryland": {
             leftTeam: { "AaWiggins::": "Wiggins, Aaron" },
             overrides: {
