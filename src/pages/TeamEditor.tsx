@@ -43,9 +43,6 @@ const TeamEditorPage: NextPage<{}> = () => {
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
 
-  const transferMode = true; //(always retrieve transfers as part of the team editor table pipeline)
-    //^ Note only supported for "All" tiers
-
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 

@@ -61,7 +61,8 @@ type Props = {
   startingState: PlayerLeaderboardParams,
   dataEvent: PlayerLeaderboardStatsModel,
   onChangeState: (newParams: PlayerLeaderboardParams) => void,
-  teamEditorMode?: (p: IndivStatSet) => void
+  teamEditorMode?: (p: IndivStatSet) => void,
+  testMode?: boolean //(bypasses server-side rendering restrictions)
 }
 
 // Some static methods
@@ -183,10 +184,14 @@ const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
 
 // Functional component
 
-const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, teamEditorMode}) => {
+const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, teamEditorMode, testMode}) => {
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
+  const isServer = () => typeof window === `undefined`;    
+
+  if (isServer() && !testMode) return null; //(don't render server-side)
+  
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
@@ -426,7 +431,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                 (player.off_team_poss?.value >= minPossNum);
         //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
     });
-
     // Filter, sort, and limit players part 2/2
     const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
       const strToTestCase = buildFilterStringTest(player);
@@ -434,7 +438,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       return (
         (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => {
           //(current year show only available, previous years show all transfers)
-          return (comp.f == player.team) && (!comp.t || (year != ParamDefaults.defaultLeaderboardYear));
+          return (comp.f == player.team) && (!comp.t || (startingState.transferMode?.toString() != "true"));
         }))
         &&
         ((filterFragmentsPve.length == 0) ||

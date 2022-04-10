@@ -126,9 +126,9 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
     if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const transferYearStr = (allParams.indexOf("transferMode=true") >= 0)
+      const transferYearStr = (paramObj.transferMode?.toString() == "true")
         ? (LeaderboardUtils.getOffseasonOfYear(LeaderboardUtils.offseasonYear) || "").substring(0, 4) //(default, means most recent year)
-        :  (allParams.match(/transferMode=([0-9]+)/)?.[1] as string | undefined); //(else whatever is specified)
+        :  paramObj.transferMode; //(else whatever is specified)
       
       const transferYearIn = (transferMode && transferYearStr) ? [ transferYearStr ] : [];
 

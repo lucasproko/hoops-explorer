@@ -897,6 +897,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return <PlayerLeaderboardTable
       startingState={{
         ...startingState,
+        transferMode: (year == LeaderboardUtils.offseasonYear) ? "true" : LeaderboardUtils.getOffseasonOfYear(year),
+          //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
         year: onlyThisYear ? startingState.year : "All",
         tier: "All"
       }}

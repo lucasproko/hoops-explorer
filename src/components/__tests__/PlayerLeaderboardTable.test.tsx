@@ -29,6 +29,7 @@ describe("PlayerLeaderboardTable", () => {
         startingState={{ year: "2019/20" , useRapm: false}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
+        testMode={true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -40,6 +41,7 @@ describe("PlayerLeaderboardTable", () => {
         startingState={{ year: "2019/20" , factorMins: true, useRapm: false}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
+        testMode={true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -52,6 +54,7 @@ describe("PlayerLeaderboardTable", () => {
         startingState={{ year: "2019/20" }}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
+        testMode={true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -63,6 +66,7 @@ describe("PlayerLeaderboardTable", () => {
         startingState={{ year: "2019/20" , factorMins: true}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
+        testMode={true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -83,6 +87,7 @@ describe("PlayerLeaderboardTable", () => {
         startingState={{year: "All", useRapm: false}}
         dataEvent={sampleDataMore}
         onChangeState={dummyChangeStateCallback}
+        testMode={true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();

@@ -183,7 +183,9 @@ export type PlayerLeaderboardParams = {
   showInfoSubHeader?: boolean,
   // Query pre-sets
   confOnly?: boolean,
-  t100?: boolean
+  t100?: boolean,
+  // Transfer info
+  transferMode?: string //==true => show only available, vs ==$year show all
 };
 
 export type TeamLeaderboardParams = {
