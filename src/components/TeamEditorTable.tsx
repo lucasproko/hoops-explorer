@@ -440,7 +440,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const rosterInfo = triple.orig?.roster ?
         `${triple.orig.roster?.height || "?-?"} ${
-          offSeasonMode ? TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
+          (offSeasonMode && !triple.isOnlyActualResults) ? 
+            TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
         }` : undefined;
 
       const override = filteredOverrides[triple.key];
