@@ -39,7 +39,9 @@ export type GoodBadOkTriple = {
    bad: IndivStatSet,
    orig: IndivStatSet,
    prevYear?: IndivStatSet,
-   diag?: TeamEditorDiags
+   diag?: TeamEditorDiags,
+   actualResults?: IndivStatSet
+   isOnlyActualResults?: boolean
 };
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -193,15 +195,15 @@ export class TeamEditorUtils {
       });
 
       const injectPrevYearsIntoBaseRoster: Array<GoodBadOkTriple> = 
-         fromBaseRoster.retVal.filter(triple => { // Filter out players who were already super seniors
-            return !triple.prevYear || (triple.prevYear.roster?.year_class != "Sr");
-         }).map(triple => {
+         fromBaseRoster.retVal.map(triple => {
             const matchingPrevYear = fromBaseRoster.prevYears[triple.key];
             if (matchingPrevYear) {
                // remove from (unmatched) prevYears list
                delete fromBaseRoster.prevYears[triple.key];
             }
             return { ...triple, prevYear: matchingPrevYear };
+         }).filter(triple => { // Filter out players who were already super seniors
+            return !triple.prevYear || (triple.prevYear.roster?.year_class != "Sr");
          });
 
       // Now find players who aren't the right year:

@@ -137,7 +137,7 @@ const TeamEditorPage: NextPage<{}> = () => {
     const tier = (paramObj.tier || "All");
 
     const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
-    const prevYear = LeaderboardUtils.getPrevYear(fullYear || "")
+    const prevYear = LeaderboardUtils.getPrevYear(fullYear)
     const transferYearPrev = (LeaderboardUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
 
@@ -147,7 +147,8 @@ const TeamEditorPage: NextPage<{}> = () => {
       setCurrTier(tier);
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferYears, true
+        "all", gender, fullYear, tier, transferYears, 
+        paramObj.evalMode ? [ LeaderboardUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
       );
 
       fetchAll.then((jsonsIn: any[]) => {

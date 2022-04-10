@@ -188,7 +188,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   // Misc control toggles
   const [ showPrevSeasons, setShowPrevSeasons ] = useState(_.isNil(startingState.showPrevSeasons) ? false : startingState.showPrevSeasons);
-  const [ offSeasonMode, setOffSeasonMode ] = useState(_.isNil(startingState.offSeason) ? true : startingState.offSeason);
+  const evalMode = startingState.evalMode || false; //TODO: also need to block evalMode and offSeasonMode from happening at the same time
+  const [ offSeasonMode, setOffSeasonMode ] = useState(evalMode || (_.isNil(startingState.offSeason) ? true : startingState.offSeason));
   const [ alwaysShowBench, setAlwaysShowBench ] = useState(_.isNil(startingState.alwaysShowBench) ? false : startingState.alwaysShowBench);
   const [ superSeniorsBack, setSuperSeniorsBack ] = useState(_.isNil(startingState.superSeniorsBack) ? false : startingState.superSeniorsBack);
 
@@ -332,12 +333,22 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const teamOverrides: TeamEditorManualFixModel = TeamEditorManualFixes.fixes[genderYearLookup]?.[team] || {};
 
+    const [ rawTeamCorrectYear, rawTeamNextYear ] = evalMode ? 
+      _.partition(dataEvent.players || [], p => (p.year || "") <= year) : [ (dataEvent.players || []), [] ];
+
+    /** Get the base players for what actually transpired, just one year, no transfers, etc */
+    const actualResults = evalMode ? TeamEditorUtils.getBasePlayers(
+      team, LeaderboardUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
+    ) : [];
+
+    const actualResultsKeySet = _.fromPairs(actualResults.map(triple => [ triple.orig.code || "", triple.orig ]));
+
     const rawTeam = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
-      team, year, (dataEvent.players || []), offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, dataEvent.transfers || [], undefined
+      team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, dataEvent.transfers || [], undefined
     );
 
     const playerSubList = offSeasonMode ? //(to avoid having to parse the very big players array multiple times)
-      (dataEvent.players || []) : _.flatMap(rawTeam, triple => {
+      rawTeamCorrectYear : _.flatMap(rawTeam, triple => {
         return [ triple.orig ].concat(triple.prevYear ? [ triple.prevYear ] : []);
       });
 
@@ -402,7 +413,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         };
         const keyList = (startingState.addedPlayers || "").split(";");
         const codeSet = new Set(keyList.map(k => playerTeamYear(k)[0]));
-        const maybeMatchingPlayers = _.filter(dataEvent.players || [], p => codeSet.has(p.code || ""));
+        const maybeMatchingPlayers = _.filter(dataEvent.players || [], p => codeSet.has(p.code || "") && ((p.year || "") <= year));
         const maybeMatchingPlayersByCode = _.groupBy(maybeMatchingPlayers, p => p.code);
 
         const firstAddedPlayers = _.chain(keyList).flatMap(key => {
@@ -443,6 +454,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       _.chain(overridesToUse).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)); 
+    if (evalMode) playerSet.forEach(triple => {
+      triple.actualResults = actualResultsKeySet[triple.orig.code || ""]
+    });
 
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
@@ -511,7 +525,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const override = filteredOverrides[triple.key];
 
-      const isFiltered = disabledPlayers[triple.key]; //(TODO: display some of these fields but with different formatting)
+      const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting)
       const name = <b>{triple.orig.key}</b>;
       const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
 
@@ -719,24 +733,35 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       return PositionUtils.posClassToScore(triple.orig.posClass || "") - getNet(triple.ok);
     };
 
-    const rosterGuards = _.sortBy(playerSet.filter(triple => {
+    // In eval mode, now concat the actual players
+    const playerKeySet = evalMode ? _.fromPairs(playerSet.map(triple => [ triple.orig.code || "", triple ])) : undefined; 
+    const playerSetPlusActual = playerKeySet ? 
+      playerSet.concat(actualResults.filter(triple => !playerKeySet[triple.orig.code || ""]).map(p => {
+        p.isOnlyActualResults = true;
+        return p;
+      }))
+      : playerSet;
+
+    const rosterGuards = _.sortBy(playerSetPlusActual.filter(triple => {
       return (triple.orig.posClass == "PG") || (triple.orig.posClass == "s-PG") || (triple.orig.posClass == "CG");
     }), sortedWithinPosGroup);
-    const filteredRosterGuards = rosterGuards.filter(triple => !disabledPlayers[triple.key]);
+    const filteredRosterGuards = rosterGuards.filter(triple => !triple.isOnlyActualResults && !disabledPlayers[triple.key]);
     const rosterGuardMins = _.sumBy(filteredRosterGuards, p => p.ok.off_team_poss_pct.value!)*0.2;
 
-    const rosterWings = _.sortBy(playerSet.filter(triple => {
+    const rosterWings = _.sortBy(playerSetPlusActual.filter(triple => {
       return (triple.orig.posClass == "WG") || (triple.orig.posClass == "WF") || (triple.orig.posClass == "G?");
     }), sortedWithinPosGroup);
-    const filteredRosterWings = rosterWings.filter(triple => !disabledPlayers[triple.key]);
+    const filteredRosterWings = rosterWings.filter(triple => !triple.isOnlyActualResults && !disabledPlayers[triple.key]);
     const rosterWingMins = _.sumBy(filteredRosterWings, p => p.ok.off_team_poss_pct.value!)*0.2;
 
-    const rosterBigs = _.sortBy(playerSet.filter(triple => {
+    const rosterBigs = _.sortBy(playerSetPlusActual.filter(triple => {
       return (triple.orig.posClass == "S-PF") || (triple.orig.posClass == "PF/C") || (triple.orig.posClass == "C")
               || (triple.orig.posClass == "F/C?");
     }), sortedWithinPosGroup);
-    const filteredRosterBigs = rosterBigs.filter(triple => !disabledPlayers[triple.key]);
+    const filteredRosterBigs = rosterBigs.filter(triple => !triple.isOnlyActualResults && !disabledPlayers[triple.key]);
     const rosterBigMins = _.sumBy(filteredRosterBigs, p => p.ok.off_team_poss_pct.value!)*0.2;
+
+    // (now we've built display, go back to using playerSet)
 
     // Build bench minutes:
 
@@ -914,7 +939,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           lboardAltDataSource :
           {
             ...dataEvent, 
-            players: onlyThisYear ? (dataEvent.players || []).filter(p => p.year == year) : dataEvent.players, 
+            players: onlyThisYear ? 
+              (dataEvent.players || []).filter(p => p.year == year) : 
+              (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= year) : dataEvent.players), 
             transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers?.[0] : undefined 
           }
         )
@@ -924,10 +951,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           "t100" : (newParams.confOnly ? "conf" : "all");
 
         if (dataSubEventKey != "all") {
+          const prevYear = LeaderboardUtils.getPrevYear(year || "");
+
           //TODO: not supporting this correctly right now because not guaranteed to have players in memory
           //so might not be able to reconstruct fro the keys
           const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-            dataSubEventKey, gender, year, "All", [ LeaderboardUtils.getOffseasonOfYear(year) || "" ], true
+            dataSubEventKey, gender, year, "All", [ LeaderboardUtils.getOffseasonOfYear(year) || "" ], [ prevYear ]
           );
     
           fetchAll.then((jsonsIn: any[]) => {
@@ -948,7 +977,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         const newOtherPlayerCache = _.clone(otherPlayerCache);
 
         TeamEditorUtils.getBasePlayers(
-          team, year, (dataEvent.players || []).filter(maybeP => maybeP.code == p.code), 
+          team, year, (dataEvent.players || []).filter(maybeP => (maybeP.code == p.code) && ((maybeP.year || "") <= year)), 
           offSeasonMode, superSeniorsBack, undefined, {}, 
           // Build a transfer set explicitly for this player
           [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || year

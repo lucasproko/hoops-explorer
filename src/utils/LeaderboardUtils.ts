@@ -37,10 +37,10 @@ export class LeaderboardUtils {
    static getMultiYearPlayerLboards(
       dataSubEventKey: "all" | "t100" | "conf",
       gender: string, fullYear: string, tier: string,
-      transferYears: string[], getLastYearAlso: boolean,
+      transferYears: string[], otherYears: string[],
    ): Promise<any[]> {
       return LeaderboardUtils.getMultiYearLboards(
-         gender, fullYear, tier, transferYears, getLastYearAlso,
+         gender, fullYear, tier, transferYears, otherYears,
          (gender: string, subYear: string, inTier: string) => LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier)
       );
    }   
@@ -50,15 +50,12 @@ export class LeaderboardUtils {
    */
    private static getMultiYearLboards(
       gender: string, fullYear: string, tier: string,
-      transferYears: string[], getLastYearAlso: boolean,
+      transferYears: string[], otherYears: string[],
       getUrl: (gender: string, subYear: string, inTier: string) => string
    ): Promise<any[]> {
       const year = fullYear.substring(0, 4);
    
-      const lastYear = getLastYearAlso ? 
-         LeaderboardUtils.getPrevYear(fullYear) : undefined; //always get last year if available TODO not for lboard page
-   
-      const years = _.filter(LeaderboardUtils.yearList, inYear => (year == "All") || (inYear == fullYear) || (inYear == lastYear));
+      const years = _.filter(LeaderboardUtils.yearList, inYear => (year == "All") || (inYear == fullYear) || _.some(otherYears, y => y == inYear));
       const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
    
       const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
@@ -149,6 +146,20 @@ export class LeaderboardUtils {
          return "2018/9";
       } else { // older, we'll show the historical data I've pulled
          return "Extra";
+      }
+   }
+   /** Get the next season */
+   static readonly getNextYear = (y: string) => {
+      if (y == "2021/22") { 
+         return "None";
+      } else if (y == "2020/21") { //TODO: From 2020/21 onwards can calculate
+         return "2021/22";
+      } else if (y == "2019/20") {
+         return "2020/21";
+      } else if (y == "2018/19") {
+         return "2019/20";
+      } else { 
+         return "None";
       }
    }
    /** Get the offseason of the current season */

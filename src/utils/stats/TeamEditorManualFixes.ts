@@ -10,6 +10,17 @@ export class TeamEditorManualFixes {
 
    static readonly fixes: Record<string, Record<string, TeamEditorManualFixModel>> = {
 
+      "Men_2020/21": {
+         "Maryland": {
+            leftTeam: { "AaWiggins::": "Wiggins, Aaron" },
+            overrides: {
+               [TeamEditorUtils.benchBigKey]: {
+                  mins: 15,
+                  bench: "4*"
+               }
+            }
+         }
+      },
       "Men_2021/22": {
          "Arkansas": { //Lots of big-name recruits, see https://247sports.com/college/arkansas/Season/2022-Basketball/Commits/
             overrides: {

@@ -133,7 +133,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       const transferYearIn = (transferMode && transferYearStr) ? [ transferYearStr ] : [];
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        dataSubEventKey, gender, fullYear, tier, transferYearIn, false
+        dataSubEventKey, gender, fullYear, tier, transferYearIn, []
       );
 
       fetchAll.then((jsonsIn: any[]) => {
