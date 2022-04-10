@@ -11,8 +11,14 @@ export class TeamEditorManualFixes {
 
    static readonly fixes: Record<string, Record<string, TeamEditorManualFixModel>> = {
 
+      // Rutgers, Purdue - no changes needed
       "Men_2020/21": {
-         // Rutgers, Purdue - no changes needed
+         "Alabama": {
+            leftTeam: { "JoPrimo::": "Primo, Josh" },
+         },
+         "Arkansas": {
+            leftTeam: { "MoMoody::": "Moody, Moses" },
+         },
          "Illinois": {
             leftTeam: { "AyDosunmu::": "Dosunmu, Ayo", "GiBezhanishv::": "Bezhanishvili, Giorgi" },
          },
