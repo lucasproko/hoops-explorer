@@ -4,13 +4,22 @@ import { PlayerEditModel, TeamEditorUtils } from "./TeamEditorUtils";
 export type TeamEditorManualFixModel = {
    leftTeam?: Record<string, string>,
    superSeniorsReturning?: Set<string>,
-   overrides?: Record<string, PlayerEditModel>
+   overrides?: Record<string, PlayerEditModel>,
+   codeSwitch?: Record<string, string> //this year key to next year's key
 };
 export class TeamEditorManualFixes {
 
    static readonly fixes: Record<string, Record<string, TeamEditorManualFixModel>> = {
 
       "Men_2020/21": {
+         // Rutgers, Purdue - no changes needed
+         "Illinois": {
+            leftTeam: { "AyDosunmu::": "Dosunmu, Ayo", "GiBezhanishv::": "Bezhanishvili, Giorgi" },
+         },
+         "Iowa": {
+            leftTeam: { "JoWieskamp::": "Wieskamp, Joe" },
+            superSeniorsReturning: new Set([ "JoBohannon::" ]),
+         },
          "Maryland": {
             leftTeam: { "AaWiggins::": "Wiggins, Aaron" },
             overrides: {
@@ -19,7 +28,37 @@ export class TeamEditorManualFixes {
                   bench: "4*"
                }
             }
-         }
+         },
+         "Michigan": {
+            superSeniorsReturning: new Set([ "ElBrooks::" ]),
+            leftTeam: { "FrWagner::": "Wagner, Franz" },
+            overrides: {
+               [TeamEditorUtils.benchGuardKey]: {
+                  bench: "4*/T40ish"
+               },
+               [TeamEditorUtils.benchWingKey]: {
+                  bench: "4*/T40ish"
+               },
+               [TeamEditorUtils.benchBigKey]: {
+                  bench: "4*/T40ish"
+               }
+            }
+         },
+         "Michigan St.": {
+            leftTeam: { "AaHenry::": "Henry, Aaron" },
+         },
+         "Ohio St.": {
+            leftTeam: { "DuWashington::": "Washington, Duane" },
+            overrides: {
+               [TeamEditorUtils.benchGuardKey]: {
+                  bench: "4*/T40ish"
+               },
+            }
+         },
+         "Wisconsin": {
+            superSeniorsReturning: new Set([ "BrDavison::" ]),
+            codeSwitch: { "JoDavis": "JnDavis" } //(sigh...)
+         },
       },
       "Men_2021/22": {
          "Arkansas": { //Lots of big-name recruits, see https://247sports.com/college/arkansas/Season/2022-Basketball/Commits/
