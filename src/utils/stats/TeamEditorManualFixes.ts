@@ -118,6 +118,9 @@ export class TeamEditorManualFixes {
          "Ohio St.": {
             leftTeam: { "MaBranham::": "Branham, Malaki" }
          },
+         "San Diego St.": {
+            superSeniorsReturning: new Set([ "AdSeiko::" ]),
+         },
          "Wisconsin": {
             leftTeam: { "JoDavis::": "Davis, Johnny" }
          }
