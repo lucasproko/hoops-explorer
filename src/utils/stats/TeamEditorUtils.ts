@@ -211,21 +211,27 @@ export class TeamEditorUtils {
 
          if (offSeasonMode) { //might still be playing this season
             const code = p.code || "";
+            const yearClass = p.roster?.year_class || "??";
 
             // If they transferred in _this_ year then they are definitely playing
-            const transferringIn = _.some(
+            const transferringIn = !excludeSet[key] && _.some(
                transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
             );
 
+            const left = fromBaseRoster.inAndLeaving[key] || false;
+            const transferredOut = _.some(transfersLastYear[code] || [], p => p.f == team);
+
+            const transferringInLastYear = !left && !transferredOut && !excludeSet[key] && (_.some(
+               transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
+            ) && ((yearClass != "Sr") || includeSuperSeniors || superSeniorsReturning?.has(key)));
+
             // There could be other cases (eg was injured a year, now back, but it's hard to tell ...
             // especially because of early NBA departures, so we'll just ignore and you can add them by hand)
-            // const left = fromBaseRoster.inAndLeaving[key] || false;
-            // const transferredOut = _.some(transfersLastYear[code] || [], p => p.f == team);
             // const agedOut = (p.roster?.year_class == "Fr") || (p.roster?.year_class == "So")
             //    || (includeSuperSeniors && (p.roster?.year_class == "Jr"));
             // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
 
-            return transferringIn ? [{
+            return transferringIn || transferringInLastYear ? [{
                key: key,
                good: _.clone(p),
                ok: _.clone(p),
