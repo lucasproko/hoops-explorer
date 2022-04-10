@@ -888,15 +888,17 @@ export class TeamEditorUtils {
 
          const benchGuardMins = hasGuardOverride ? (guardPct - guardPctIn) :
             Math.min(Math.max(0, (0.30 - guardPct)), deltaMins); // wings can play 50% of SG minutes
+         const nonOverriddenBenchGuardMins = hasGuardOverride ? 0 : benchGuardMins;
          const benchBigMins = hasBigOverride ? (bigPct - bigPctIn) :
             Math.min(
                Math.max(0, (0.30 - bigPct)), // wings can play 50% of PF minutes
-               deltaMins - benchGuardMins); //(subtract off bench guard minutes from the available minutes pool)
+               deltaMins - nonOverriddenBenchGuardMins); //(subtract off bench guard minutes from the available minutes pool)
+         const nonOverriddenBenchBigMins = hasBigOverride ? 0 : benchBigMins;
          const benchWingMins = hasWingOverride ? (wingPct - wingPctIn) :
-            Math.max(0, deltaMins - benchGuardMins - benchBigMins); //(wings get the leftover)
+            Math.max(0, deltaMins - nonOverriddenBenchGuardMins - nonOverriddenBenchBigMins); //(wings get the leftover)
 
          // Diagnostics
-         //console.log(`Bench ${deltaMins} [${hasGuardOverride}/${hasWingOverride}/${hasBigOverride}] = ${guardPct}/${benchGuardMins} ${wingPct}/${benchWingMins} ${bigPct}/${benchBigMins}`)
+         // console.log(`Bench ${deltaMins.toFixed(3)} [${hasGuardOverride}/${hasWingOverride}/${hasBigOverride}] = ${guardPct.toFixed(3)}/${benchGuardMins.toFixed(3)} ${wingPct.toFixed(3)}/${benchWingMins.toFixed(3)} ${bigPct.toFixed(3)}/${benchBigMins.toFixed(3)}`)
 
          return [ 
             (benchGuardMins > 0) || alwaysBuildBench ? buildBench(

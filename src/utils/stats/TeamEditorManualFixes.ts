@@ -19,12 +19,50 @@ export class TeamEditorManualFixes {
          "Arkansas": {
             leftTeam: { "MoMoody::": "Moody, Moses" },
          },
+         "Duke": {
+            leftTeam: { "JaJohnson::": "Johnson, Jalen", "MaHurt::": "Hurt, Matthew", "DjSteward::": "Steward, DJ", "BaJones::": "Jones, Bates" },
+            overrides: {
+               [TeamEditorUtils.benchGuardKey]: {
+                  mins: 20,
+                  bench: "5*"
+               },
+               [TeamEditorUtils.benchWingKey]: {
+                  mins: 45,
+                  bench: "5*/Lotto"
+               }
+            }
+         },
+         "Gonzaga": {
+            leftTeam: { "JaSuggs::": "Suggs, Jalen", "JoAyayi::": "Ayayi, Joel" },
+            overrides: { //Gonzaga recruits higher than the normal WCC level
+               [TeamEditorUtils.benchGuardKey]: {
+                  bench: "4*"
+               },
+               [TeamEditorUtils.benchWingKey]: {
+                  bench: "4*"
+               },
+               [TeamEditorUtils.benchBigKey]: {
+                  mins: 25,
+                  bench: "5*/Lotto"
+               }
+            }
+         },
          "Illinois": {
             leftTeam: { "AyDosunmu::": "Dosunmu, Ayo", "GiBezhanishv::": "Bezhanishvili, Giorgi" },
          },
          "Iowa": {
             leftTeam: { "JoWieskamp::": "Wieskamp, Joe" },
             superSeniorsReturning: new Set([ "JoBohannon::" ]),
+         },
+         "Kentucky": {
+            leftTeam: { "BrBoston::": "Boston, Brandon", "OlSarr::": "Sarr, Olivier", "IsJackson::": "Jackson, Isaiah" },
+            superSeniorsReturning: new Set([ "DaMintz::" ]),
+            overrides: {
+               [TeamEditorUtils.benchGuardKey]: {
+                  mins: 25,
+                  bench: "5*"
+               }
+            }
          },
          "Marquette": {
             leftTeam: { "DjCarton::": "Carton, D.J." },
@@ -63,6 +101,14 @@ export class TeamEditorManualFixes {
                   bench: "4*/T40ish"
                },
             }
+         },
+         "Southern California": {
+            superSeniorsReturning: new Set([ "ChGoodwin::" ]),
+            leftTeam: { "EvMobley::": "Mobley, Evan" }
+         },
+         "Tennessee": {
+            superSeniorsReturning: new Set([ "JoFulkerson::" ]),
+            leftTeam: { "JaSpringer::": "Springer, Jaden", "KeJohnson::": "Johnson, Keon" }
          },
          "Wisconsin": {
             superSeniorsReturning: new Set([ "BrDavison::" ]),
@@ -114,6 +160,19 @@ export class TeamEditorManualFixes {
          },
          "Iowa": {
             leftTeam: { "KeMurray::": "Murray, Keegan" }
+         },
+         "Kentucky": {
+            leftTeam: { "TyWashington::": "Washington, TyTy" },
+            overrides: { 
+               [TeamEditorUtils.benchGuardKey]: {
+                  mins: 27,
+                  bench: "5*/Lotto"
+               },
+               [TeamEditorUtils.benchWingKey]: {
+                  mins: 27,
+                  bench: "5*/Lotto"
+               }
+            }
          },
          "Marquette": {
             leftTeam: { "GrElliott::": "Elliott, Greg" }
