@@ -8,7 +8,7 @@ describe("LineupLeaderboardPage", () => {
     //TODO: this isn't the best test because it will just step over the async fetch
     //and render a trivial page, still will do for now
     
-    const wrapper = shallow(<LineupLeaderboardPage/>);
+    const wrapper = shallow(<LineupLeaderboardPage testMode={true}/>);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

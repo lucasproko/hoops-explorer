@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <Head>
+    <meta
+      content="http://localhost:3000/thumbnails/player_leaderboard_thumbnail.png"
+      property="og:image"
+    />
+    <meta
+      content="http://localhost:3000/thumbnails/player_leaderboard_thumbnail.png"
+      name="twitter:image"
+    />
+  </Head>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      className="text-center"
+      xs={12}
+    >
+      <h3>
+        Team Builder 
+        <span
+          className="badge badge-pill badge-info"
+        >
+          ALPHA!
+        </span>
+      </h3>
+    </Col>
+  </Row>
+  <Row
+    className="border-bottom"
+    noGutters={false}
+  >
+    <HeaderBar
+      common={
+        Object {
+          "gender": "",
+          "year": "",
+        }
+      }
+      thisPage="player-_leaderboard"
+    />
+  </Row>
+  <Row
+    className="mt-3"
+    noGutters={false}
+  >
+    <TeamEditorTable
+      dataEvent={
+        Object {
+          "confs": Array [],
+          "lastUpdated": 0,
+          "players": Array [],
+        }
+      }
+      onChangeState={[Function]}
+      startingState={Object {}}
+    />
+  </Row>
+  <Footer
+    dateOverride={0}
+    server="server"
+  />
+</Container>
+`;

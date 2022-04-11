@@ -28,7 +28,13 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 
-const PlayLeaderboardPage: NextPage<{}> = () => {
+type Props = {
+  testMode?: boolean //works around SSR issues, see below
+};
+const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
+
+  const isServer = () => typeof window === `undefined`;    
+  if (isServer() && !testMode) return null; //(don't render server-side)
 
   useEffect(() => { // Set up GA
     if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {

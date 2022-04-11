@@ -4,16 +4,6 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
-  <Head>
-    <meta
-      content="http://localhost:3000/thumbnails/team_leaderboard_thumbnail.png"
-      property="og:image"
-    />
-    <meta
-      content="http://localhost:3000/thumbnails/team_leaderboard_thumbnail.png"
-      name="twitter:image"
-    />
-  </Head>
   <Row
     noGutters={false}
   >
@@ -22,7 +12,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       xs={12}
     >
       <h3>
-        Build Your Own T25! 
+        CBB On/Off Analysis Tool 
         <span
           className="badge badge-pill badge-info"
         >
@@ -32,37 +22,128 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     </Col>
   </Row>
   <Row
-    className="border-bottom"
     noGutters={false}
   >
     <HeaderBar
-      common={
-        Object {
-          "gender": "Men",
-          "year": "2021/22",
-        }
-      }
-      thisPage="game-_leaderboard"
+      common={Object {}}
+      thisPage="game-"
     />
   </Row>
   <Row
-    className="mt-3"
     noGutters={false}
   >
-    <TeamLeaderboardTable
-      dataEvent={
-        Object {
-          "confs": Array [],
-          "lastUpdated": 0,
-          "teams": Array [],
+    <GenericCollapsibleCard
+      minimizeMargin={false}
+      summary="On/Off: 2021/22  (M): on:'', auto-off, base:''"
+      title="Team and Game Filter"
+    >
+      <GameFilter
+        forceReload1Up={0}
+        onChangeState={[Function]}
+        onStats={[Function]}
+        startingState={Object {}}
+      />
+    </GenericCollapsibleCard>
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      minimizeMargin={true}
+      title="Team Analysis"
+    >
+      <TeamStatsTable
+        dataEvent={
+          Object {
+            "lineupStats": Array [],
+            "rosterStats": Object {
+              "baseline": Array [],
+              "global": Array [],
+              "off": Array [],
+              "on": Array [],
+            },
+            "teamStats": Object {
+              "baseline": Object {
+                "doc_count": 0,
+              },
+              "global": Object {
+                "doc_count": 0,
+              },
+              "off": Object {
+                "doc_count": 0,
+              },
+              "on": Object {
+                "doc_count": 0,
+              },
+            },
+          }
         }
-      }
-      onChangeState={[Function]}
-      startingState={Object {}}
-    />
+        gameFilterParams={Object {}}
+        onChangeState={[Function]}
+      />
+    </GenericCollapsibleCard>
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      minimizeMargin={true}
+      title="Individual Analysis"
+    >
+      <RosterStatsTable
+        dataEvent={
+          Object {
+            "lineupStats": Array [],
+            "rosterStats": Object {
+              "baseline": Array [],
+              "global": Array [],
+              "off": Array [],
+              "on": Array [],
+            },
+            "teamStats": Object {
+              "baseline": Object {
+                "doc_count": 0,
+              },
+              "global": Object {
+                "doc_count": 0,
+              },
+              "off": Object {
+                "doc_count": 0,
+              },
+              "on": Object {
+                "doc_count": 0,
+              },
+            },
+          }
+        }
+        gameFilterParams={Object {}}
+        onChangeState={[Function]}
+      />
+    </GenericCollapsibleCard>
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      minimizeMargin={false}
+      title="Lineup Comparison"
+    >
+      <RosterCompareTable
+        gameFilterParams={Object {}}
+        rosterCompareStats={
+          Object {
+            "baseline": Object {},
+            "off": Object {},
+            "on": Object {},
+          }
+        }
+      />
+    </GenericCollapsibleCard>
   </Row>
   <Footer
-    dateOverride={0}
     server="server"
   />
 </Container>

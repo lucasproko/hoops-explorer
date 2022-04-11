@@ -1,5 +1,5 @@
 import React from 'react';
-import OnOffAnalyzerPage from '../../pages/index';
+import OnOffAnalyzerPage from '../../pages/OnOffAnalyzer';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 

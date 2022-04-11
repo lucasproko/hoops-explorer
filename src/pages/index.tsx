@@ -33,7 +33,13 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
-const TeamLeaderboardPage: NextPage<{}> = () => {
+type Props = {
+  testMode?: boolean //works around SSR issues, see below
+};
+const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
+
+  const isServer = () => typeof window === `undefined`;    
+  if (isServer() && !testMode) return null; //(don't render server-side)
 
   useEffect(() => { // Set up GA
     if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {

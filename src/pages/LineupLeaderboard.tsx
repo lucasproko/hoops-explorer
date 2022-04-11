@@ -28,7 +28,13 @@ import HeaderBar from '../components/shared/HeaderBar';
 import { UrlRouting } from "../utils/UrlRouting";
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
-const LineupLeaderboardPage: NextPage<{}> = () => {
+type Props = {
+  testMode?: boolean //works around SSR issues, see below
+};
+const LineupLeaderboardPage: NextPage<Props> = ({testMode}) => {
+
+  const isServer = () => typeof window === `undefined`;    
+  if (isServer() && !testMode) return null; //(don't render server-side)
 
   useEffect(() => { // Set up GA
     if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {

@@ -88,10 +88,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
-  const isServer = () => typeof window === `undefined`;    
-
-  if (isServer()) return null; //(don't render server-side)
-
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
@@ -291,7 +287,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       // Options:
       // 1] mark T100/conf players in the key and then go fetch the data from those :(
       // 2] I guess store the stats in the URL :( :(
-      // Block use of T100/conf for now <-- this is what I've gone with
+      // 3] Block use of T100/conf for now <-- this is what I've gone with
 
       const needToRebuildBasePlayers = 
         (((startingState.deletedPlayers || "") != "") && _.isEmpty(deletedPlayers)) ||
@@ -446,7 +442,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const override = filteredOverrides[triple.key];
 
-      const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting)
+      const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting?)
       const name = <b>{triple.orig.key}</b>;
       const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
 
@@ -756,9 +752,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     //(Diagnostic - will display if it's <0)
     const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
-
-//TODO: do the same finalActualEffAdj thing but in !offSeasonMode
-
     const totalActualMins = evalMode ? _.sumBy(actualResults, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
     const finalActualEffAdj = totalActualMins ? 
       5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
@@ -888,7 +881,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef),
     ]);
-    //TODO: Add: Transfer | Generic | D1
 
     return <GenericTable
       tableCopyId="rosterEditorTable"
@@ -931,7 +923,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           const prevYear = LeaderboardUtils.getPrevYear(year || "");
 
           //TODO: not supporting this correctly right now because not guaranteed to have players in memory
-          //so might not be able to reconstruct fro the keys
+          //so might not be able to reconstruct from the keys - hence this logic cannot currently be reached via UI
           const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
             dataSubEventKey, gender, year, "All", [ LeaderboardUtils.getOffseasonOfYear(year) || "" ], [ prevYear ]
           );

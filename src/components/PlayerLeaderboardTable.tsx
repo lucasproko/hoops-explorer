@@ -62,7 +62,6 @@ type Props = {
   dataEvent: PlayerLeaderboardStatsModel,
   onChangeState: (newParams: PlayerLeaderboardParams) => void,
   teamEditorMode?: (p: IndivStatSet) => void,
-  testMode?: boolean //(bypasses server-side rendering restrictions)
 }
 
 // Some static methods
@@ -184,13 +183,9 @@ const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
 
 // Functional component
 
-const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, teamEditorMode, testMode}) => {
+const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, teamEditorMode}) => {
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
-
-  const isServer = () => typeof window === `undefined`;    
-
-  if (isServer() && !testMode) return null; //(don't render server-side)
   
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
