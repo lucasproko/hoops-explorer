@@ -1065,7 +1065,9 @@ export class TeamEditorUtils {
    static getBenchLevelScoring(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getBenchLevel = () => {
-         if (level.category == "high") {
+         if (team == "Gonzaga") { // Treat as high major
+            return 0.5;            
+         } else if (level.category == "high") {
             return 0.5;            
          } else if (level.category == "midhigh") {
             return -0.5;

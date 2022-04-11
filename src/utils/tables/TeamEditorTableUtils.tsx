@@ -29,7 +29,7 @@ export class TeamEditorTableUtils {
 
          "sep1": GenericTableOps.addColSeparator(2),
 
-         actual_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, what actually happened (CURRENTLY: assumes average D1 production from <10mpg players)", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+         actual_net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, what actually happened (CURRENTLY: assumes average bench-level production from <10mpg players)", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
          "actual_sep1.5": GenericTableOps.addColSeparator(0.05),
          actual_off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, what actually happened", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
          actual_def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, what actually happened", CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)),

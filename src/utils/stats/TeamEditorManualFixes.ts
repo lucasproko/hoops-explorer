@@ -34,13 +34,7 @@ export class TeamEditorManualFixes {
          },
          "Gonzaga": {
             leftTeam: { "JaSuggs::": "Suggs, Jalen", "JoAyayi::": "Ayayi, Joel" },
-            overrides: { //Gonzaga recruits higher than the normal WCC level
-               [TeamEditorUtils.benchGuardKey]: {
-                  bench: "4*"
-               },
-               [TeamEditorUtils.benchWingKey]: {
-                  bench: "4*"
-               },
+            overrides: {
                [TeamEditorUtils.benchBigKey]: {
                   mins: 25,
                   bench: "5*/Lotto"
@@ -146,17 +140,6 @@ export class TeamEditorManualFixes {
          },
          "Gonzaga": {
             leftTeam: { "ChHolmgren::": "Holmgren, Chet" },
-            overrides: { //Gonzaga recruits higher than the normal WCC level
-               [TeamEditorUtils.benchGuardKey]: {
-                  bench: "4*"
-               },
-               [TeamEditorUtils.benchWingKey]: {
-                  bench: "4*"
-               },
-               [TeamEditorUtils.benchBigKey]: {
-                  bench: "4*"
-               }
-            }
          },
          "Iowa": {
             leftTeam: { "KeMurray::": "Murray, Keegan" }

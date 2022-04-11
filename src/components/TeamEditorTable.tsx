@@ -751,20 +751,28 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Team totals:
 
+//TODO: for pessimistic mode (I think optimistic is optimistic enough?!) recalc the minutes using the worst case 
+// RAPMs, which will allow the better players to take more minutes and hopefully narrow the gap with the normal
+
     //(Diagnostic - will display if it's <0)
     const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
-    const totalActualMins = evalMode ? _.sumBy(actualResults, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
 
-    const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig") => {
+//TODO: do the same finalActualEffAdj thing but in !offSeasonMode
+
+    const totalActualMins = evalMode ? _.sumBy(actualResults, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
+    const finalActualEffAdj = totalActualMins ? 
+      5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
+
+    const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
       const off = _.sumBy(triples, triple => {
         return (triple[range]?.off_team_poss_pct.value || 0)*getOff(triple[range] || {});
-      });
+      }) + adj;
       const def = _.sumBy(triples, triple => {
         return (triple[range]?.off_team_poss_pct.value || 0)*getDef(triple[range] || {});
-      });
+      }) - adj;
       const net = _.sumBy(triples, triple => {
         return (triple[range]?.off_team_poss_pct.value || 0)*getNet(triple[range] || {});
-      });
+      }) + 2*adj;
       return { off, def, net };
     };
     const okTotals = buildTotals(filteredPlayerSet, "ok");
@@ -816,8 +824,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
 
-    //TODO: get full data from this
-    const actualTotals = evalMode ? buildTotals(actualResults, "orig") : undefined;
+    //TODO: use team efficiency instead from team leaderboards and back into bench level?
+    const actualTotals = evalMode ? buildTotals(actualResults, "orig", finalActualEffAdj) : undefined;
     const dummyTeamActual = actualTotals ? {
       off_net: { value: actualTotals.net },
       off_adj_ppp: { value: actualTotals.off + avgEff },
@@ -1030,6 +1038,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   function getCurrentTeamOrPlaceholder() {
     return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
   }
+
+//TODO: provide ability to add new player as an override vs rely on bench
 
   return <Container>
     <Form.Group as={Row}>
