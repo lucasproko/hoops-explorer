@@ -22,22 +22,30 @@ export class TeamEditorManualFixes {
          "Duke": {
             leftTeam: { "JaJohnson::": "Johnson, Jalen", "MaHurt::": "Hurt, Matthew", "DjSteward::": "Steward, DJ", "BaJones::": "Jones, Bates" },
             overrides: {
-               [TeamEditorUtils.benchGuardKey]: {
-                  mins: 20,
-                  bench: "5*"
+               "Keels, Trevor": {
+                  name: "Keels, Trevor",
+                  pos: "CG",
+                  profile: "5*"
                },
-               [TeamEditorUtils.benchWingKey]: {
-                  mins: 45,
-                  bench: "5*/Lotto"
+               "Griffen, AJ": {
+                  name: "Griffen, AJ",
+                  pos: "WG",
+                  profile: "5*"
+               },
+               "Banchero, Paolo": {
+                  name: "Banchero, Paolo",
+                  pos: "WF",
+                  profile: "5*/Lotto"
                }
             }
          },
          "Gonzaga": {
             leftTeam: { "JaSuggs::": "Suggs, Jalen", "JoAyayi::": "Ayayi, Joel" },
             overrides: {
-               [TeamEditorUtils.benchBigKey]: {
-                  mins: 25,
-                  bench: "5*/Lotto"
+               "Holmgren, Chet": {
+                  name: "Holmgren, Chet",
+                  pos: "PF/C",
+                  profile: "5*/Lotto"
                }
             }
          },
@@ -52,9 +60,10 @@ export class TeamEditorManualFixes {
             leftTeam: { "BrBoston::": "Boston, Brandon", "OlSarr::": "Sarr, Olivier", "IsJackson::": "Jackson, Isaiah" },
             superSeniorsReturning: new Set([ "DaMintz::" ]),
             overrides: {
-               [TeamEditorUtils.benchGuardKey]: {
-                  mins: 25,
-                  bench: "5*"
+               "Washington Jr., TyTy": {
+                  name: "Washington Jr., TyTy",
+                  pos: "s-PG",
+                  profile: "5*"
                }
             }
          },
@@ -64,9 +73,10 @@ export class TeamEditorManualFixes {
          "Maryland": {
             leftTeam: { "AaWiggins::": "Wiggins, Aaron" },
             overrides: {
-               [TeamEditorUtils.benchBigKey]: {
-                  mins: 15,
-                  bench: "4*"
+               "Reese, Julian": {
+                  name: "Reese, Julian",
+                  pos: "PF/C",
+                  profile: "4*"
                }
             }
          },
@@ -75,13 +85,13 @@ export class TeamEditorManualFixes {
             leftTeam: { "FrWagner::": "Wagner, Franz" },
             overrides: {
                [TeamEditorUtils.benchGuardKey]: {
-                  bench: "4*/T40ish"
+                  profile: "4*/T40ish"
                },
                [TeamEditorUtils.benchWingKey]: {
-                  bench: "4*/T40ish"
+                  profile: "4*/T40ish"
                },
                [TeamEditorUtils.benchBigKey]: {
-                  bench: "4*/T40ish"
+                  profile: "4*/T40ish"
                }
             }
          },
@@ -90,11 +100,17 @@ export class TeamEditorManualFixes {
          },
          "Ohio St.": {
             leftTeam: { "DuWashington::": "Washington, Duane" },
+            superSeniorsReturning: new Set([ "KyYoung::" ]),
             overrides: {
-               [TeamEditorUtils.benchGuardKey]: {
-                  bench: "4*/T40ish"
+               "Branham, Malaki": {
+                  name: "Branham, Malaki",
+                  pos: "WG",
+                  profile: "4*/T40ish"
                },
             }
+         },
+         "San Diego St.": {
+            superSeniorsReturning: new Set([ "JoTomaic::", "TrPulliam::" ]),
          },
          "Southern California": {
             superSeniorsReturning: new Set([ "ChGoodwin::" ]),
@@ -114,11 +130,11 @@ export class TeamEditorManualFixes {
             overrides: {
                [TeamEditorUtils.benchGuardKey]: {
                   mins: 35,
-                  bench: "5+4*s"
+                  profile: "5+4*s"
                },
                [TeamEditorUtils.benchWingKey]: {
                   mins: 35,
-                  bench: "5+4*s"
+                  profile: "5+4*s"
                }
             }
          },
@@ -130,11 +146,11 @@ export class TeamEditorManualFixes {
             overrides: { //https://247sports.com/college/duke/Season/2022-Basketball/Commits/
                [TeamEditorUtils.benchWingKey]: {
                   mins: 60,
-                  bench: "5*"
+                  profile: "5*"
                },
                [TeamEditorUtils.benchBigKey]: {
                   mins: 40,
-                  bench: "5*"
+                  profile: "5*"
                }
             },
          },
@@ -149,11 +165,11 @@ export class TeamEditorManualFixes {
             overrides: { 
                [TeamEditorUtils.benchGuardKey]: {
                   mins: 27,
-                  bench: "5*/Lotto"
+                  profile: "5*/Lotto"
                },
                [TeamEditorUtils.benchWingKey]: {
                   mins: 27,
-                  bench: "5*/Lotto"
+                  profile: "5*/Lotto"
                }
             }
          },

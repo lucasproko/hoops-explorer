@@ -25,11 +25,13 @@ type TeamEditorDiags = {
 };
 
 export type PlayerEditModel = {
+   name?: string, //this determines if the override is a player in their own right
    mins?: number,
    global_off_adj?: number,
    global_def_adj?: number,
    pause?: boolean,
-   bench?: string //(see TeamRosterEditor for possible values)
+   profile?: string, //(see TeamRosterEditor for possible values)
+   pos?: string, //(usual set of possible pos)
 };
 
 export type GoodBadOkTriple = {
@@ -40,8 +42,9 @@ export type GoodBadOkTriple = {
    orig: IndivStatSet,
    prevYear?: IndivStatSet,
    diag?: TeamEditorDiags,
-   actualResults?: IndivStatSet
-   isOnlyActualResults?: boolean
+   actualResults?: IndivStatSet,
+   isOnlyActualResults?: boolean,
+   isFakePlayer?: boolean // created by hand
 };
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -64,8 +67,9 @@ export class TeamEditorUtils {
       const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(2)}`;
       const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(2)}`;
       const maybePaused = _.isNil(model.pause) ? undefined : `p@${model.pause ? 1 : 0}`;
-      const maybeBench = _.isNil(model.bench) ? undefined : `b@${model.bench}`;
-      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused, maybeBench ].filter(s => !_.isNil(s));
+      const maybeProfile = _.isNil(model.profile) ? undefined : `b@${model.profile}`;
+      const maybePos = _.isNil(model.pos) ? undefined : `P@${model.pos}`;
+      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused, maybeProfile, maybePos ].filter(s => !_.isNil(s));
       return `${key}|${toWrite.join("|")}`;
    }
 
@@ -85,7 +89,10 @@ export class TeamEditorUtils {
             } else if (vFrags[0] == "p") {
                acc.pause = vFrags?.[1] == "1";
             } else if (vFrags[0] == "b") {
-               acc.bench = vFrags?.[1];
+               acc.profile = vFrags?.[1];
+            } else if (vFrags[0] == "P") {
+               acc.pos = vFrags?.[1];
+               acc.name = key; //(if this is set then must be an added player, so also set name)
             }  
          }, {} as PlayerEditModel) ];
       }).fromPairs().value();
@@ -162,16 +169,19 @@ export class TeamEditorUtils {
                return (txfer.f == p.team) &&
                   _.some(transfersThisYear[code] || [], txfer2 => (txfer.t == txfer2.f) && (txfer2.t == team));
             }
-         );
-         const isNotLeaving = (!offSeasonMode || (           
+         ); //(note the purpose of doubleTransfer is to match up last year's player with this year's triple)
+         const isNotLeaving = (transferringIn || !offSeasonMode || (           
             (includeSuperSeniors || (p.roster?.year_class != "Sr") || (superSeniorsReturning?.has(key)))
                && !isTransferringOut
          ));
-         const inAndNotLeaving = (isOnTeam || wasPlayerTxferLastYear) && isNotLeaving;
+         const onTeam = (isOnTeam || wasPlayerTxferLastYear);
          const notOnExcludeList = !excludeSet[key];
 
-         if ((doubleTransfer || transferringIn || inAndNotLeaving) && notOnExcludeList) {
-            if (isRightYear && !acc.dups[dupCode]) {
+         //Diagnostic:
+         //if (dupCode == "CodeToCheck") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear}  `)
+
+         if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
+            if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {
                acc.retVal = acc.retVal.concat([{
                   key: key,
                   good: _.clone(p),
@@ -179,12 +189,14 @@ export class TeamEditorUtils {
                   bad: _.clone(p),
                   orig: p
                }]);
-               acc.dups[dupCode] = true; //(use key not code because of possibility that player with same code has transferred in)
+               acc.dups[dupCode] = true; 
             } else if (!isRightYear) { //(must be previous year)     
                const lastYearKey = wasPlayerTxferLastYear  ? `${code}::${yearAdj}` : 
                   (doubleTransfer ? `${code}:${doubleTransfer.t || ""}:${yearAdj}` : key);
 
                acc.prevYears[lastYearKey] = p;
+            } else if (!isNotLeaving) { // mark the dup so know we've seen this player when checking "unmatched prev years" 
+               acc.dups[dupCode] = true;
             }
          }
       }, { 
@@ -225,13 +237,17 @@ export class TeamEditorUtils {
                transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
             ) && ((yearClass != "Sr") || includeSuperSeniors || superSeniorsReturning?.has(key)));
 
+            const keyFrags = key.split(":");
+            const dupCode = keyFrags[0] + (keyFrags?.[2] || "");
+               //(will check we haven't seen and discard this year's version of this player)
+
             // There could be other cases (eg was injured a year, now back, but it's hard to tell ...
             // especially because of early NBA departures, so we'll just ignore and you can add them by hand)
             // const agedOut = (p.roster?.year_class == "Fr") || (p.roster?.year_class == "So")
             //    || (includeSuperSeniors && (p.roster?.year_class == "Jr"));
             // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
 
-            return transferringIn || transferringInLastYear ? [{
+            return (!fromBaseRoster.dups[dupCode] && (transferringIn || transferringInLastYear)) ? [{
                key: key,
                good: _.clone(p),
                ok: _.clone(p),
@@ -587,7 +603,7 @@ export class TeamEditorUtils {
       }
 
 
-      roster.forEach(triple => {
+      roster.filter(t => !t.isFakePlayer).forEach(triple => {
          // Calculate previous player improvement for regression
          const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined, undefined) : undefined;
          const prevPlayerYearlyAdjustment = {};
@@ -651,7 +667,7 @@ export class TeamEditorUtils {
             return defToUse*(p[proj].def_team_poss_pct?.value || 0);
          });
 
-         filteredRoster.forEach(p => {
+         filteredRoster.filter(t => !t.isFakePlayer).forEach(p => {
             const defense = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
                p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
             );
@@ -698,9 +714,9 @@ export class TeamEditorUtils {
       const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
 
       const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
-      const benchGuardOverride = overrides[TeamEditorUtils.benchGuardKey]?.bench;
-      const benchWingOverride = overrides[TeamEditorUtils.benchWingKey]?.bench;
-      const benchBigOverride = overrides[TeamEditorUtils.benchBigKey]?.bench;
+      const benchGuardOverride = overrides[TeamEditorUtils.benchGuardKey]?.profile;
+      const benchWingOverride = overrides[TeamEditorUtils.benchWingKey]?.profile;
+      const benchBigOverride = overrides[TeamEditorUtils.benchBigKey]?.profile;
       const netRatings = _.sortBy(filteredRoster.map(p => getNet(p.ok)).concat(
          [benchGuardOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchGuardOverride) : benchLevel, 
             benchWingOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchWingOverride) : benchLevel, 
@@ -851,7 +867,7 @@ export class TeamEditorUtils {
 
          const buildBench = (key: string, name: string, posClass: string, minsPctIn: number) => {
             const maybeOverrides = overrides[key];
-            const benchLevelOverride = maybeOverrides?.bench;
+            const benchLevelOverride = maybeOverrides?.profile;
             const benchLevel = benchLevelOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel;
       
             const minsPct = 

@@ -22,23 +22,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPause, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Select, { components} from "react-select"
+import { PositionUtils } from '../../utils/stats/PositionUtils';
 
 type Props = {
    overrides?: PlayerEditModel,
    onDelete: () => void,
    onUpdate: (edit: PlayerEditModel | undefined) => void,
-   isBench: boolean
+   isBench: boolean,
+   addNewPlayerMode: boolean,
 };
 
-const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, onUpdate, isBench}) => {
+const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, onUpdate, isBench, addNewPlayerMode}) => {
 
    // State
 
    // Starting values:
+   const [ currName, setCurrName ] = useState(overrides?.name || "");
    const [ currMins, setCurrMins ] = useState(overrides?.mins?.toFixed(1) || "");
-   const [ currBench, setCurrBench ] = useState(overrides?.bench || "Auto");
+   const [ currProfile, setCurrProfile ] = useState(overrides?.profile || (addNewPlayerMode ? "4*" : "Auto"));
+   const [ currPos, setCurrPos ] = useState(overrides?.pos || "WG");
    const [ currOffAdj, setCurrOffAdj ] = useState(overrides?.global_off_adj || 0);
    const [ currDefAdj, setCurrDefAdj ] = useState(-(overrides?.global_def_adj || 0));
+
+   const addOrEditPlayerMode = addNewPlayerMode || !_.isNil(overrides?.name);
+   const editPlayerMode = !addNewPlayerMode && addOrEditPlayerMode;
 
    // Presentation
 
@@ -60,9 +67,13 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
       Clear the field and apply to return to the automatically calculated version.
    </Tooltip>;
 
-   const benchQualityApplyTooltip = <Tooltip id="benchQualityApplyTooltip">
-      Override the bench production to an average level for a Freshmen of the given recruiting profile.&nbsp;
+   const profileApplyTooltip = <Tooltip id="profileApplyTooltip">
+      Override the production to an average level for a Freshmen of the given recruiting profile.&nbsp;
       Select "Auto" and apply to return to the automatically calculated version.
+   </Tooltip>;
+
+   const posApplyTooltip = <Tooltip id="profileApplyTooltip">
+      Sets the position role for the player. For display purposes only.
    </Tooltip>;
 
    const globalAdjTooltip = <Tooltip id="globalAdjTooltip">
@@ -71,11 +82,10 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
       Note that the adjustments won't be exactly as specified due to the details of the algorithm.
    </Tooltip>;
 
-   const comingSoon = <Container>
-         <Row className="mt-3 mb-3">
-            <Col className="text-center"><b>Coming Soon!</b> For now, only "General" is used.</Col>
-         </Row>
-      </Container>;
+   const validPlayer = () => {
+      return currName && (!currMins || ((parseFloat(currMins) > 0) && (parseFloat(currMins) <= 40)));
+   };
+
 
    /** For use in selects */
    function stringToOption(s: string) {
@@ -83,11 +93,41 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    }
 
    return <Container><Row>
-      <Col xs={1}/>
-      <Col xs={10}>
-      <Tabs>
-         <Tab eventKey="General" title="General">
-            <Container>
+      <Col xs={12}>
+      <Card>
+         <Container>
+            {addOrEditPlayerMode ?
+            <Row className="mt-2">
+               <Col xs={1}/>               
+               <Col xs={8}>
+                  <InputGroup>
+                     <InputGroup.Prepend>
+                        <InputGroup.Text id="playerName">Player Name</InputGroup.Text>
+                     </InputGroup.Prepend>
+                     <Form.Control disabled={!addNewPlayerMode}
+                        onChange={(ev: any) => {
+                           setCurrName(ev.target.value || "")
+                        }}
+                        placeholder = "LastName, FirstName"
+                        value={currName}
+                     />
+                  </InputGroup>
+               </Col>
+               {addNewPlayerMode ? <Col>
+                  <Button disabled={!validPlayer()} onClick={(ev: any) => {
+                     onUpdate({
+                        name: currName,
+                        mins: currMins ? parseFloat(currMins) : undefined,
+                        pos: currPos,
+                        profile: currProfile,
+                        global_off_adj: currOffAdj ? currOffAdj : undefined,
+                        global_def_adj: currDefAdj ? currDefAdj : undefined
+                     });
+                     setCurrName("");
+                  }}>Add</Button>
+               </Col> : null}
+            </Row>
+            : null}
             <Row className="mt-2">
                <Col xs={1}/>               
                <Col xs={3}>
@@ -107,6 +147,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </InputGroup>
                </Col>
                <Col xs={2} className="pt-1">
+                  {addNewPlayerMode ? null :
                   <OverlayTrigger overlay={minsApplyTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
                         onClick={() => {
@@ -121,22 +162,24 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            }
                         }}
                      >+</Button>
-                  </OverlayTrigger>
+                  </OverlayTrigger>}
                </Col>
                <Col xs={3}/>
                <Col xs={1} className="pt-1">
+                  {addOrEditPlayerMode ? null :
                   <OverlayTrigger overlay={resetTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" onClick={((ev:any) => {
                         setCurrMins("");
                         setCurrOffAdj(0);
                         setCurrDefAdj(0);
-                        setCurrBench("Auto");
+                        setCurrProfile("Auto");
                         onUpdate(undefined);
                      })}><FontAwesomeIcon icon={faTimes} />
                      </Button>
-                  </OverlayTrigger>
+                  </OverlayTrigger>}
                </Col>
                <Col xs={1} className="pt-1">
+                  {addOrEditPlayerMode ? null :
                   <OverlayTrigger overlay={pauseTooltip} placement="auto">
                      <Button size="sm" variant={overrides?.pause ? "secondary" : "outline-secondary"} onClick={((ev:any) => {
                         if (overrides) { //(else nothing to pause)
@@ -151,10 +194,10 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                      })}
                         ><FontAwesomeIcon icon={faPause} />
                      </Button>
-                  </OverlayTrigger>
+                  </OverlayTrigger>}
                </Col>
                <Col xs={1} className="pt-1">
-                  {isBench ? null :
+                  {(isBench || addNewPlayerMode) ? null :
                   <OverlayTrigger overlay={deleteTooltip} placement="auto">
                      <Button size="sm" variant="outline-danger" onClick={((ev:any) => onDelete())}
                         ><FontAwesomeIcon icon={faTrash} />
@@ -162,40 +205,80 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </OverlayTrigger>}
                </Col>
             </Row>
-            {isBench ? 
+            {(isBench || addOrEditPlayerMode) ? 
                <Row className="mt-2">
                <Col xs={1}/>               
                <Col xs={6}>
                   <InputGroup>
                   <InputGroup.Prepend>
-                     <InputGroup.Text id="minPct">Bench {"&"} Fr production</InputGroup.Text>
+                     <InputGroup.Text id="minPct">Production profile</InputGroup.Text>
                   </InputGroup.Prepend>
                   <Select className="flex-fill"
                      isDisabled={overrides?.pause}
-                     value={stringToOption(currBench)}
-                     options={[ "Auto", "5*/Lotto", "5*", "5+4*s", "4*/T40ish", "4*", "3.5*/T150ish", "3*", "2*" ].map(stringToOption)}
+                     value={stringToOption(currProfile)}
+                     options={(addNewPlayerMode ? [] : ["Auto"])
+                        .concat([ "5*/Lotto", "5*", "5+4*s", "4*/T40ish", "4*", "3.5*/T150ish", "3*", "2*" ]).map(stringToOption)
+                     }
                      onChange={(option) => {
                         const selection = (option as any)?.value || "";
-                        setCurrBench(selection);
+                        setCurrProfile(selection);
                      }}
                   />
                   </InputGroup>
                </Col>
                <Col xs={3} className="pt-1">
-                  <OverlayTrigger overlay={benchQualityApplyTooltip} placement="auto">
+                  {addNewPlayerMode ? null :
+                  <OverlayTrigger overlay={profileApplyTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
                         onClick={() => {
                            const currOverrides = overrides ? _.clone(overrides) : {};
-                           if (currBench == "Auto") {
-                              delete currOverrides.bench;
+                           if (currProfile == "Auto") {
+                              delete currOverrides.profile;
                            } else {
-                              currOverrides.bench = currBench;
+                              currOverrides.profile = currProfile;
                            }
                            onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
                         }}
                      >+</Button>
-                  </OverlayTrigger>
-                  {(currBench != (overrides?.bench || "Auto")) ?
+                  </OverlayTrigger>}
+                  {(!addNewPlayerMode && (currProfile != (overrides?.profile || "Auto"))) ?
+                     <i>&nbsp;(unapplied)</i> : null
+                  }
+               </Col>
+               <Col xs={2}/>
+            </Row>      
+            : null}
+            {addOrEditPlayerMode ? 
+               <Row className="mt-2">
+               <Col xs={1}/>               
+               <Col xs={6}>
+                  <InputGroup>
+                  <InputGroup.Prepend>
+                     <InputGroup.Text id="pos">Positional Role</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Select className="flex-fill"
+                     isDisabled={overrides?.pause}
+                     value={stringToOption(currPos)}
+                     options={_.keys(PositionUtils.idToPosition).map(stringToOption)}
+                     onChange={(option) => {
+                        const selection = (option as any)?.value || "";
+                        setCurrPos(selection);
+                     }}
+                  />
+                  </InputGroup>
+               </Col>
+               <Col xs={3} className="pt-1">
+                  {editPlayerMode ?
+                  <OverlayTrigger overlay={posApplyTooltip} placement="auto">
+                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
+                        onClick={() => {
+                           const currOverrides = overrides ? _.clone(overrides) : {};
+                           currOverrides.pos = currPos;
+                           onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
+                        }}
+                     >+</Button>
+                  </OverlayTrigger> : null}
+                  {(!addNewPlayerMode && (currPos != overrides?.pos)) ?
                      <i>&nbsp;(unapplied)</i> : null
                   }
                </Col>
@@ -223,6 +306,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </Form>
                </Col>
                <Col xs={2} className="pt-4">
+                  {addNewPlayerMode ? null :
                   <OverlayTrigger overlay={globalAdjTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
                         onClick={() => {
@@ -240,11 +324,11 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
                         }}
                      >+</Button>
-                  </OverlayTrigger>
+                  </OverlayTrigger>}
                </Col>
                <Col xs={1}/>
             </Row>
-            <Row className="mt-3">
+            <Row className="mt-3 mb-2">
                <Col xs={1}/>
                <Col xs={8}>
                   <Form.Label><b>Defensive projections</b>: <span>adjustment=[{-(overrides?.global_def_adj || 0)}]
@@ -267,20 +351,9 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                <Col xs={2}/>
                <Col xs={1}/>
             </Row>
-            </Container>
-         </Tab>
-         <Tab eventKey="Optimistic" title="Optimistic" disabled={overrides?.pause}> 
-            {comingSoon}
-         </Tab>
-         <Tab eventKey="Balanced" title="Balanced" disabled={overrides?.pause}>
-            {comingSoon}
-         </Tab>
-         <Tab eventKey="Pessimistic" title="Pessimistic" disabled={overrides?.pause}>
-            {comingSoon}
-         </Tab>
-      </Tabs>
+         </Container>
+      </Card>
       </Col>
-      <Col xs={1}/>
    </Row></Container>;
 }
 export default TeamRosterEditor;

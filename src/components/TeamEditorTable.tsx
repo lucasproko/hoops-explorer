@@ -152,6 +152,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   /** Set this to be true on expensive operations */
   const [ loadingOverride, setLoadingOverride ] = useState(false);
 
+  const [ addNewPlayerMode, setAddNewPlayerMode ] = useState(false); //(can't override this from URL)
+
   useEffect(() => { // Add and remove clipboard listener
     initClipboard();
 
@@ -243,7 +245,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
 
-    const teamOverrides: TeamEditorManualFixModel = TeamEditorManualFixes.fixes[genderYearLookup]?.[team] || {};
+    const teamOverrides: TeamEditorManualFixModel = offSeasonMode ?  //(the fixes only apply in off-season mode)
+      (TeamEditorManualFixes.fixes[genderYearLookup]?.[team] || {}) : {};
 
     const [ rawTeamCorrectYear, rawTeamNextYear ] = evalMode ? 
       _.partition(dataEvent.players || [], p => (p.year || "") <= year) : [ (dataEvent.players || []), [] ];
@@ -369,8 +372,27 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const filteredOverrides: Record<string, PlayerEditModel> = 
       _.chain(overridesToUse).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
-    const playerSet = basePlayers.concat(_.values(otherPlayerCache)); 
+    const playerSet = basePlayers.concat(_.values(otherPlayerCache)).concat(
+      _.values(overridesToUse).filter(o => o.name).map(o => { 
+        const indivStatSet = (adj: number) => { return {
+          key: o.name,
+          posClass: o.pos,
+          off_adj_rapm: { value: TeamEditorUtils.getBenchLevelScoringByProfile(o.profile || "") + adj},
+          def_adj_rapm: { value: -TeamEditorUtils.getBenchLevelScoringByProfile(o.profile || "") - adj},
+        }; };
+        return {
+          key: o.name,
+          good: indivStatSet(+0.5),
+          bad: indivStatSet(-0.5),
+          ok: indivStatSet(0),
+          orig: indivStatSet(0),
+          isFakePlayer: true
+        } as GoodBadOkTriple;
+      })
+    ); 
     if (evalMode) playerSet.forEach(triple => {
+      //TODO: merge with fictious players use triple.orig.key vs overrides.name
+
       triple.actualResults = actualResultsCodeSet[triple.orig.code || ""]
     });
 
@@ -444,7 +466,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting?)
       const name = <b>{triple.orig.key}</b>;
-      const maybeTransferName = otherPlayerCache[triple.key] ? <u>{name}</u> : name;
+      const maybeTransferName = otherPlayerCache[triple.key] || overrides[triple.key]?.name ? <u>{name}</u> : name;
 
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
@@ -498,7 +520,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         },
         ortg: triple.ok.off_rtg,
         usage: triple.ok.off_usage,
-        rebound: isFiltered ? undefined : { value: triple.ok.def_orb?.value },
+        rebound: (isFiltered || !triple.ok.def_orb) ? undefined : { value: triple.ok.def_orb?.value },
 
         pos: <span style={{whiteSpace: "nowrap"}}>{triple.orig.posClass}</span>,
 
@@ -550,6 +572,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={false}
+              addNewPlayerMode={false}
               overrides={overridesToUse[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
@@ -583,7 +606,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   const newDeletedPlayers = _.clone(deletedPlayers);
                   newDeletedPlayers[triple.key] = triple.orig.key;
                   friendlyChange(() => {
-                    setDeletedPlayers(newDeletedPlayers);
+                    if (!overridesToUse[triple.key]?.name) { //(else just needs to be cleared from overrides below)
+                      setDeletedPlayers(newDeletedPlayers);
+                    }
                     tidyUp(disabledPlayers, editOpen, overrides);
                   }, true);
                 }      
@@ -631,6 +656,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={true}
+              addNewPlayerMode={false}
               overrides={overridesToUse[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
@@ -1225,8 +1251,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         <GenericCollapsibleCard minimizeMargin={true} title="Add New Player" helpLink={undefined} startClosed={false}>
           <Container>
             <Row>
+            <Form.Group as={Col} xs="4" className="mt-2">
+                <Form.Check type="switch" 
+                  id="addNewPlayerMode"
+                  checked={addNewPlayerMode}
+                  onChange={() => {
+                    setTimeout(() => {
+                      setReloadData(true);
+                      setAddNewPlayerMode(!addNewPlayerMode);
+                      setTimeout(() => {
+                        setReloadData(false);
+                      }, 100);
+                    }, 250);
+                  }}
+                  label="Player builder mode"
+                />
+              </Form.Group>
               <Form.Group as={Col} xs="4" className="mt-2">
-                <Form.Check type="switch" disabled={!hasTransfers}
+                <Form.Check type="switch" disabled={!hasTransfers || addNewPlayerMode}
                   id="onlyTransfers"
                   checked={onlyTransfers && hasTransfers}
                   onChange={() => {
@@ -1241,9 +1283,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   label="Only show transfers"
                 />
               </Form.Group>
-              <Form.Group as={Col} xs="1" className="mt-2"/>
               <Form.Group as={Col} xs="4" className="mt-2">
-                <Form.Check type="switch" disabled={false}
+                <Form.Check type="switch" disabled={addNewPlayerMode}
                   id="onlyThisYear"
                   checked={onlyThisYear}
                   onChange={() => {
@@ -1259,9 +1300,28 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 />
               </Form.Group>
             </Row>
-            <Row>
+            {addNewPlayerMode ? <Row className="small mb-4">
+                <Col>
+                  <TeamRosterEditor
+                    isBench={false}
+                    addNewPlayerMode={true}
+                    overrides={undefined}
+                    onUpdate={(edit: PlayerEditModel | undefined) => {
+                      if (edit) {
+                        const currOverrides = _.clone(overrides);
+                        currOverrides[edit.name || ""] = edit;
+                        setOverrides(currOverrides);
+                      }
+                    }}
+                    onDelete={() => {
+                      //(can't be called)
+                    }}
+                  />
+              </Col>
+            </Row> : null}
+            {addNewPlayerMode ? null : <Row>
               {playerLeaderboard}
-            </Row>
+            </Row>}
           </Container>
         </GenericCollapsibleCard>
       </Col>
