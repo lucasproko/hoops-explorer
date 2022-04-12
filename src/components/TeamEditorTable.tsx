@@ -374,16 +374,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const playerSet = basePlayers.concat(_.values(otherPlayerCache)).concat(
       _.values(overridesToUse).filter(o => o.name).map(o => { 
+        const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
         const indivStatSet = (adj: number) => { return {
           key: o.name,
           posClass: o.pos,
-          off_adj_rapm: { value: TeamEditorUtils.getBenchLevelScoringByProfile(o.profile || "") + adj},
-          def_adj_rapm: { value: -TeamEditorUtils.getBenchLevelScoringByProfile(o.profile || "") - adj},
+          off_adj_rapm: { value: 0.5*netScoring + adj},
+          def_adj_rapm: { value: -0.5*netScoring - adj},
         }; };
         return {
           key: o.name,
-          good: indivStatSet(+0.5),
-          bad: indivStatSet(-0.5),
+          good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
+          bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
           ok: indivStatSet(0),
           orig: indivStatSet(0),
           manualProfile: o
@@ -695,13 +696,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // In eval mode, now concat the actual players
     const playerKeySet = evalMode ? _.fromPairs(playerSet.map(triple => [ triple.orig.code || "", triple ])) : undefined; 
-    const playerSetPlusActual = playerKeySet ? 
-      playerSet.concat(actualResults.filter(triple => !playerKeySet[triple.orig.code || ""]).map(p => {
+    const mutableMatchedActualPlayers = {} as Record<string, boolean>;
+    const playerSetPlusActual = playerSet.concat(
+      playerKeySet ? actualResults.filter(triple => {
+        return !playerKeySet[triple.orig.code || ""];
+      }).map(p => {
         p.actualResults = p.orig;
         p.isOnlyActualResults = true;
         return p;
-      }))
-      : playerSet;
+      }) : []);
 
     const rosterGuards = _.sortBy(playerSetPlusActual.filter(triple => {
       return (triple.orig.posClass == "PG") || (triple.orig.posClass == "s-PG") || (triple.orig.posClass == "CG");

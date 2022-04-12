@@ -24,13 +24,16 @@ type TeamEditorDiags = {
    def: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
 };
 
+export type Profiles = "5*/Lotto" | "5*" | "5+4*s" | "4*/T40ish" | "4*" | "3.5*/T150ish" | "3*" | "3+2*s" | "2*" | "Auto" | "UR";
+
+
 export type PlayerEditModel = {
    name?: string, //this determines if the override is a player in their own right
    mins?: number,
    global_off_adj?: number,
    global_def_adj?: number,
    pause?: boolean,
-   profile?: string, //(see TeamRosterEditor for possible values)
+   profile?: Profiles, //(see TeamRosterEditor for possible values)
    pos?: string, //(usual set of possible pos)
 };
 
@@ -89,7 +92,7 @@ export class TeamEditorUtils {
             } else if (vFrags[0] == "p") {
                acc.pause = vFrags?.[1] == "1";
             } else if (vFrags[0] == "b") {
-               acc.profile = vFrags?.[1];
+               acc.profile = vFrags?.[1] as Profiles | undefined;
             } else if (vFrags[0] == "P") {
                acc.pos = vFrags?.[1];
                acc.name = key; //(if this is set then must be an added player, so also set name)
@@ -721,7 +724,7 @@ export class TeamEditorUtils {
          [benchGuardOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchGuardOverride) : benchLevel, 
             benchWingOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchWingOverride) : benchLevel, 
             benchBigOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchBigOverride) : benchLevel, 
-         ]) //(add one bench player per pos group)
+         ].map(n => 0.5*n)) //(add one bench player per pos group)
       );
       const tierSize = (Math.ceil(_.size(netRatings)/3) || 1);
       const avgLowerTierNetTmp = _.sum(_.take(netRatings, tierSize))/tierSize;
@@ -868,7 +871,8 @@ export class TeamEditorUtils {
          const buildBench = (key: string, name: string, posClass: string, minsPctIn: number) => {
             const maybeOverrides = overrides[key];
             const benchLevelOverride = maybeOverrides?.profile;
-            const benchLevel = benchLevelOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel;
+            const benchLevel = 0.5*(benchLevelOverride ? 
+               TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel);
       
             const minsPct = 
                !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
@@ -887,16 +891,16 @@ export class TeamEditorUtils {
                key: key,
                good: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel + 0.5 + offAdj },
-                  def_adj_rapm: { value: -benchLevel - 0.5 + defAdj }
+                  off_adj_rapm: { value: benchLevel + TeamEditorUtils.optimisticBenchOrFr + offAdj },
+                  def_adj_rapm: { value: -benchLevel - TeamEditorUtils.optimisticBenchOrFr + defAdj }
                },
                ok: {
                   ...baseBench,
                },
                bad: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel - 1 + offAdj }, //(bench scoring can be really bad)
-                  def_adj_rapm: { value: -benchLevel + 1 + defAdj }
+                  off_adj_rapm: { value: benchLevel - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
+                  def_adj_rapm: { value: -benchLevel + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
                },
                orig: baseBench
             } as GoodBadOkTriple;
@@ -1110,53 +1114,64 @@ export class TeamEditorUtils {
       }
    }
 
+
+   /** Upside on bench/Fr predictions */
+   static readonly optimisticBenchOrFr = 0.5;
+   /** Downside on bench/Fr predictions - bench scoring can be bad so we make this higher */
+   static readonly pessimisticBenchOrFr = 1.0;
+
    /** Gets the bench level scoring depending on the quality of the team */
    static getBenchLevelScoring(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getBenchLevel = () => {
          if (team == "Gonzaga") { // Treat as high major
-            return 0.5;            
+            return TeamEditorUtils.getBenchLevelScoringByProfile("3.5*/T150ish");            
          } else if (level.category == "high") {
-            return 0.5;            
+            return TeamEditorUtils.getBenchLevelScoringByProfile("3.5*/T150ish");            
          } else if (level.category == "midhigh") {
-            return -0.5;
+            return TeamEditorUtils.getBenchLevelScoringByProfile("3*");
          } else if (level.category == "mid") {
-            return -1.5;
+            return TeamEditorUtils.getBenchLevelScoringByProfile("3+2*s");
          } else if (level.category == "midlow") {
-            return -2.5;
+            return TeamEditorUtils.getBenchLevelScoringByProfile("2*");
          } else if (level.category == "midlow") {
-            return -4;
+            return TeamEditorUtils.getBenchLevelScoringByProfile("UR");
          } else { //unknown
-            return 0;
+            return TeamEditorUtils.getBenchLevelScoringByProfile(undefined);
          } 
       }
       return getBenchLevel();
    }
 
    /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor" */
-   static getBenchLevelScoringByProfile(profile: string) {
+   static getBenchLevelScoringByProfile(profile: Profiles | undefined): number {
+      //(these numbers derived from looking at the T200 Fr for the last 4 years - the lower ranges are purely guesswork)
       if (profile == "5*/Lotto") {
-         return 2.5;
+         return 6.5;
       } else if (profile == "5*") {
-         return 2;
-      } else if (profile == "5+4*s") {
-         return 1.5;
+         return 5.2;
+      } else if (profile == "5+4*s") { //(still support this even though it's no longer selectible)
+         return 4.6;
       } else if (profile == "4*/T40ish") {
-         return 1;
+         return 3.5;
       } else if (profile == "4*") {
-         return 0.75;
+         return 1.5;
       } else if (profile == "3.5*/T150ish") {
          return 0.5;
       } else if (profile == "3*") {
-         return 0;
+         return -1;
+      } else if (profile == "3+2*s") { //(not selectible)
+         return -2;
       } else if (profile == "2*") {
-         return -0.5;
+         return -3;
+      } else if (profile == "UR") {
+         return -4;
       } else {
          return 0; //(error)
       }
    }
    
-   /** To regress Fr players we'll move them in this direction */
+   /** To regress Fr players we'll move them in this direction - TODO would be nice to include '*' rating in this */
    static getAvgProduction(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getAvgLevel = () => {

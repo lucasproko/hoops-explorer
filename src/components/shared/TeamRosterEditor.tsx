@@ -17,7 +17,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Container from 'react-bootstrap/Container';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import { GoodBadOkTriple, PlayerEditModel } from '../../utils/stats/TeamEditorUtils';
+import { GoodBadOkTriple, PlayerEditModel, Profiles } from '../../utils/stats/TeamEditorUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPause, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -39,7 +39,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    // Starting values:
    const [ currName, setCurrName ] = useState(overrides?.name || "");
    const [ currMins, setCurrMins ] = useState(overrides?.mins?.toFixed(1) || "");
-   const [ currProfile, setCurrProfile ] = useState(overrides?.profile || (addNewPlayerMode ? "4*" : "Auto"));
+   const [ currProfile, setCurrProfile ] = useState((overrides?.profile || (addNewPlayerMode ? "4*" : "Auto")) as Profiles);
    const [ currPos, setCurrPos ] = useState(overrides?.pos || "WG");
    const [ currOffAdj, setCurrOffAdj ] = useState(overrides?.global_off_adj || 0);
    const [ currDefAdj, setCurrDefAdj ] = useState(-(overrides?.global_def_adj || 0));
@@ -91,7 +91,11 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    function stringToOption(s: string) {
       return { label: s, value: s};
    }
-
+   function profileToOption(s: Profiles) {
+      return { label: s, value: s};
+   }
+   const supportedProfiles: Profiles[] = [ "5*/Lotto", "5*", "4*/T40ish", "4*", "3.5*/T150ish", "3*", "2*" ];
+ 
    return <Container><Row>
       <Col xs={12}>
       <Card>
@@ -215,13 +219,13 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </InputGroup.Prepend>
                   <Select className="flex-fill"
                      isDisabled={overrides?.pause}
-                     value={stringToOption(currProfile)}
-                     options={(addNewPlayerMode ? [] : ["Auto"])
-                        .concat([ "5*/Lotto", "5*", "5+4*s", "4*/T40ish", "4*", "3.5*/T150ish", "3*", "2*" ]).map(stringToOption)
+                     value={profileToOption(currProfile)}
+                     options={((addNewPlayerMode ? [] : ["Auto"]) as Profiles[])
+                        .concat(supportedProfiles).map(profileToOption)
                      }
                      onChange={(option) => {
                         const selection = (option as any)?.value || "";
-                        setCurrProfile(selection);
+                        setCurrProfile(selection as Profiles);
                      }}
                   />
                   </InputGroup>
