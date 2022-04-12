@@ -194,10 +194,16 @@ export class TeamEditorManualFixes {
             leftTeam: { "GrElliott::": "Elliott, Greg" }
          },
          "Ohio St.": {
-            leftTeam: { "MaBranham::": "Branham, Malaki" }
+            leftTeam: { "MaBranham::": "Branham, Malaki", "EjLiddell::": "Liddell, EJ" }
          },
          "San Diego St.": {
             superSeniorsReturning: new Set([ "AdSeiko::" ]),
+         },
+         "Syracuse": {
+            leftTeam: { "CoSwider::": "Swider, Cole" }
+         },
+         "UCLA": {
+            leftTeam: { "PeWatson::": "Watson, Peyton" }
          },
          "Wisconsin": {
             leftTeam: { "JoDavis::": "Davis, Johnny" }

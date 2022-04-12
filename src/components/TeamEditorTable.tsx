@@ -49,6 +49,7 @@ import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import TeamRosterEditor from './shared/TeamRosterEditor';
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/TeamEditorManualFixes';
 import { TeamEditorTableUtils } from '../utils/tables/TeamEditorTableUtils';
+import { UrlRouting } from '../utils/UrlRouting';
 
 // Input params/models
 
@@ -252,15 +253,22 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       _.partition(dataEvent.players || [], p => (p.year || "") <= year) : [ (dataEvent.players || []), [] ];
 
     /** Get the base players for what actually transpired, just one year, no transfers, etc */
-    const actualResults = (evalMode ? TeamEditorUtils.getBasePlayers(
+    const actualResultList = (evalMode ? TeamEditorUtils.getBasePlayers(
       team, LeaderboardUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
     ) : []).map(triple => {
       //(warning - mutates triple.org ... shouldn't mess anything else up since the next year's results aren't used anyway)
       triple.orig.code = teamOverrides.codeSwitch?.[triple.orig.code || ""] || triple.orig.code;
+      triple.isOnlyActualResults = true; //(starts with true, we'll set to false as we merge with projected results)
+      triple.actualResults = triple.orig;
       return triple;
     });
-
-    const actualResultsCodeSet = _.fromPairs(actualResults.map(triple => [ triple.orig.code || "", triple.orig ]));
+    // Alternative view of the same data
+    const actualResultsCodeOrIdSet = _.fromPairs(_.flatMap(actualResultList, triple => {
+      return [
+        [ triple.orig.key || "", triple ], //key-aka-id, for matching vs manually generated players
+        [ triple.orig.code || "", triple ] //code for normal
+      ];
+    }));
 
     const rawTeam = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
       team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, dataEvent.transfers || [], undefined
@@ -392,9 +400,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       })
     ); 
     if (evalMode) playerSet.forEach(triple => {
-      //TODO: merge with fictious players use triple.orig.key vs overrides.name
+      const matchingActual = triple.manualProfile
+        ? actualResultsCodeOrIdSet[triple.manualProfile.name || ""]
+        : actualResultsCodeOrIdSet[triple.orig.code || ""];
 
-      triple.actualResults = actualResultsCodeSet[triple.orig.code || ""]
+      if (matchingActual) {
+        triple.actualResults = matchingActual.orig;
+        matchingActual.isOnlyActualResults = false; //(merged actual results and projections)
+      }        
     });
 
     const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
@@ -463,11 +476,25 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
         }` : undefined;
 
+      const playerLeaderboardParams = {
+        tier: "All",
+        year: "All",
+        filter: `${triple.orig.key}:;`,
+        sortBy: "desc:year",
+        showInfoSubHeader: true
+      };
+      const playerLboardTooltip = (
+        <Tooltip id={`lboard_${triple.orig.code}`}>Open new tab showing all the player's seasons, in the multi-year version of the leaderboard</Tooltip>
+      );
+      const name = triple.orig.key;
+      const maybeTransferName = otherPlayerCache[triple.key] ? <i>{name}</i> : name;
+      const playerLink = <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
+        <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}><b>{maybeTransferName}</b></a>
+      </OverlayTrigger>;
+
       const override = filteredOverrides[triple.key];
 
       const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting?)
-      const name = <b>{triple.orig.key}</b>;
-      const maybeTransferName = otherPlayerCache[triple.key] || overrides[triple.key]?.name ? <u>{name}</u> : name;
 
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
@@ -511,7 +538,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const origNotEqualOk = offSeasonMode ? false : ((okDef != origDef) || (okOff != origOff));
 
       const tableEl = {
-        title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{maybeTransferName}</span>,
+        title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{playerLink}</span>,
         actual_mpg: (evalMode && triple.actualResults) ? { 
           value: (triple.actualResults.off_team_poss_pct?.value || 0)*40,
         } : undefined,
@@ -694,17 +721,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         PositionUtils.posClassToScore(triple.orig.posClass || "") - getNet(triple.ok);
     };
 
-    // In eval mode, now concat the actual players
-    const playerKeySet = evalMode ? _.fromPairs(playerSet.map(triple => [ triple.orig.code || "", triple ])) : undefined; 
-    const mutableMatchedActualPlayers = {} as Record<string, boolean>;
+    // In eval mode, now concat the actual players that we didn't match with
     const playerSetPlusActual = playerSet.concat(
-      playerKeySet ? actualResults.filter(triple => {
-        return !playerKeySet[triple.orig.code || ""];
-      }).map(p => {
-        p.actualResults = p.orig;
-        p.isOnlyActualResults = true;
-        return p;
-      }) : []);
+      evalMode ? 
+        actualResultList.filter(triple => triple.isOnlyActualResults) : []
+    );
 
     const rosterGuards = _.sortBy(playerSetPlusActual.filter(triple => {
       return (triple.orig.posClass == "PG") || (triple.orig.posClass == "s-PG") || (triple.orig.posClass == "CG");
@@ -781,7 +802,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     //(Diagnostic - will display if it's <0)
     const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
-    const totalActualMins = evalMode ? _.sumBy(actualResults, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
+    const totalActualMins = evalMode ? _.sumBy(actualResultList, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
     const finalActualEffAdj = totalActualMins ? 
       5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
 
@@ -847,7 +868,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
 
     //TODO: use team efficiency instead from team leaderboards and back into bench level?
-    const actualTotals = evalMode ? buildTotals(actualResults, "orig", finalActualEffAdj) : undefined;
+    const actualTotals = evalMode ? buildTotals(actualResultList, "orig", finalActualEffAdj) : undefined;
     const dummyTeamActual = actualTotals ? {
       off_net: { value: actualTotals.net },
       off_adj_ppp: { value: actualTotals.off + avgEff },
@@ -856,6 +877,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   
     const teamGradesActual = (dummyTeamActual && divisionStatsCache.Combo) ?
       GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
+
+
+    const teamParams = {
+      team: team, gender: gender, year: year,
+      minRank: "0", maxRank: "400",
+      factorMins: false, possAsPct: true,
+      showExpanded: true, calcRapm: true
+    };
+    const teamTooltip = (
+      <Tooltip id={`teamTooltip`}>Open new tab with the on/off analysis for this player/team</Tooltip>
+    );
+    const teamLink = team ? <OverlayTrigger placement="auto" overlay={teamTooltip}>
+      <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>Team Totals</b></a>
+    </OverlayTrigger> : <b>Team Totals</b>;
 
     const subHeaders = [ 
       GenericTableOps.buildSubHeaderRow(
@@ -876,7 +911,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       ),
     ].concat(_.isEmpty(filteredPlayerSet) ? [] : [
       GenericTableOps.buildDataRow({
-        title: <b>Team Totals</b>,
+        title: teamLink,
         //(for diag only)
         mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
         actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
@@ -895,7 +930,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef)
       ,
       GenericTableOps.buildDataRow({
-        title: <b>Team Grades</b>,
+        title: <b>Team Grades {
+          (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? `(${divisionStatsCache.year.substring(2)
+          })` : null}</b>,
         actual_net: teamGradesActual.off_net,
         actual_off: teamGradesActual.off_adj_ppp,
         actual_def: teamGradesActual.def_adj_ppp,
