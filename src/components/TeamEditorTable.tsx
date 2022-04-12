@@ -386,7 +386,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           bad: indivStatSet(-0.5),
           ok: indivStatSet(0),
           orig: indivStatSet(0),
-          isFakePlayer: true
+          manualProfile: o
         } as GoodBadOkTriple;
       })
     ); 
@@ -470,7 +470,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
-      const prevSeasonEl = showPrevSeasons && offSeasonMode && !isFiltered? {
+      const prevSeasonEl = showPrevSeasons && offSeasonMode && !triple.manualProfile && !isFiltered? {
         title: <small><i>Previous season</i></small>,
         mpg: { value: (triple.orig.off_team_poss_pct?.value || 0)*40 },
         ortg: triple.orig.off_rtg,

@@ -7,6 +7,11 @@ export type TeamEditorManualFixModel = {
    overrides?: Record<string, PlayerEditModel>,
    codeSwitch?: Record<string, string> //this year key to next year's key
 };
+
+const wName = (name: string, def: PlayerEditModel) => {
+   return { [name]: { ...def, name: name }};
+}; 
+
 export class TeamEditorManualFixes {
 
    static readonly fixes: Record<string, Record<string, TeamEditorManualFixModel>> = {
@@ -22,31 +27,27 @@ export class TeamEditorManualFixes {
          "Duke": {
             leftTeam: { "JaJohnson::": "Johnson, Jalen", "MaHurt::": "Hurt, Matthew", "DjSteward::": "Steward, DJ", "BaJones::": "Jones, Bates" },
             overrides: {
-               "Keels, Trevor": {
-                  name: "Keels, Trevor",
+               ...wName("Keels, Trevor", {
                   pos: "CG",
                   profile: "5*"
-               },
-               "Griffen, AJ": {
-                  name: "Griffen, AJ",
+               }),
+               ...wName("Griffen, AJ", {
                   pos: "WG",
                   profile: "5*"
-               },
-               "Banchero, Paolo": {
-                  name: "Banchero, Paolo",
+               }),
+               ...wName("Banchero, Paolo", {
                   pos: "WF",
                   profile: "5*/Lotto"
-               }
+               })
             }
          },
          "Gonzaga": {
             leftTeam: { "JaSuggs::": "Suggs, Jalen", "JoAyayi::": "Ayayi, Joel" },
             overrides: {
-               "Holmgren, Chet": {
-                  name: "Holmgren, Chet",
+               ...wName("Holmgren, Chet", {
                   pos: "PF/C",
                   profile: "5*/Lotto"
-               }
+               })
             }
          },
          "Illinois": {
@@ -60,11 +61,10 @@ export class TeamEditorManualFixes {
             leftTeam: { "BrBoston::": "Boston, Brandon", "OlSarr::": "Sarr, Olivier", "IsJackson::": "Jackson, Isaiah" },
             superSeniorsReturning: new Set([ "DaMintz::" ]),
             overrides: {
-               "Washington Jr., TyTy": {
-                  name: "Washington Jr., TyTy",
+               ...wName("Washington Jr., TyTy", {
                   pos: "s-PG",
                   profile: "5*"
-               }
+               })
             }
          },
          "Marquette": {
@@ -73,11 +73,10 @@ export class TeamEditorManualFixes {
          "Maryland": {
             leftTeam: { "AaWiggins::": "Wiggins, Aaron" },
             overrides: {
-               "Reese, Julian": {
-                  name: "Reese, Julian",
+               ...wName("Reese, Julian", {
                   pos: "PF/C",
                   profile: "4*"
-               }
+               })
             }
          },
          "Michigan": {
@@ -102,11 +101,10 @@ export class TeamEditorManualFixes {
             leftTeam: { "DuWashington::": "Washington, Duane" },
             superSeniorsReturning: new Set([ "KyYoung::" ]),
             overrides: {
-               "Branham, Malaki": {
-                  name: "Branham, Malaki",
+               ...wName("Branham, Malaki", {
                   pos: "WG",
                   profile: "4*/T40ish"
-               },
+               }),
             }
          },
          "San Diego St.": {
@@ -128,13 +126,20 @@ export class TeamEditorManualFixes {
       "Men_2021/22": {
          "Arkansas": { //Lots of big-name recruits, see https://247sports.com/college/arkansas/Season/2022-Basketball/Commits/
             overrides: {
-               [TeamEditorUtils.benchGuardKey]: {
-                  mins: 35,
-                  profile: "5+4*s"
-               },
+               ...wName("Smith, Nick", {
+                  profile: "5*/Lotto",
+                  pos: "CG"
+               }),
+               ...wName("Walsh, Jordan", {
+                  profile: "5*",
+                  pos: "WG"
+               }),
+               ...wName("Black, Anthony", {
+                  profile: "5*",
+                  pos: "PG"
+               }),
                [TeamEditorUtils.benchWingKey]: {
-                  mins: 35,
-                  profile: "5+4*s"
+                  profile: "4*"
                }
             }
          },
@@ -142,16 +147,28 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set([ "KeMoore::" ])          
          },
          "Duke": {
-            leftTeam: { "TrKeels::": "Keels, Trevor", "PaBanchero::": "Banchero, Paolo", "MaWilliams::": "Williams, Mark"  },
+            leftTeam: { "TrKeels::": "Keels, Trevor", "PaBanchero::": "Banchero, Paolo", "MaWilliams::": "Williams, Mark", "AjGriffin::": "Griffin, AJ"  },
             overrides: { //https://247sports.com/college/duke/Season/2022-Basketball/Commits/
-               [TeamEditorUtils.benchWingKey]: {
-                  mins: 60,
-                  profile: "5*"
-               },
-               [TeamEditorUtils.benchBigKey]: {
-                  mins: 40,
-                  profile: "5*"
-               }
+               ...wName("Lively II, Derek", {
+                  profile: "5*/Lotto",
+                  pos: "C"
+               }),
+               ...wName("Filipowski, Kyle", {
+                  profile: "5*/Lotto",
+                  pos: "C"
+               }),
+               ...wName("Whitehead, Dariq", {
+                  profile: "5*/Lotto",
+                  pos: "WG"
+               }),
+               ...wName("Mitchell, Mark", {
+                  profile: "5*",
+                  pos: "WF"
+               }),
+               ...wName("Schutt, Jaden", {
+                  profile: "4*",
+                  pos: "WG"
+               }),
             },
          },
          "Gonzaga": {
@@ -162,15 +179,15 @@ export class TeamEditorManualFixes {
          },
          "Kentucky": {
             leftTeam: { "TyWashington::": "Washington, TyTy" },
-            overrides: { 
-               [TeamEditorUtils.benchGuardKey]: {
-                  mins: 27,
-                  profile: "5*/Lotto"
-               },
-               [TeamEditorUtils.benchWingKey]: {
-                  mins: 27,
-                  profile: "5*/Lotto"
-               }
+            overrides: { //https://247sports.com/college/kentucky/Season/2022-Basketball/Commits/
+               ...wName("Livingston, Chris", {
+                  profile: "5*/Lotto",
+                  pos: "WG"
+               }),
+               ...wName("Wallace, Cason", {
+                  profile: "5*/Lotto",
+                  pos: "CG"
+               }),
             }
          },
          "Marquette": {

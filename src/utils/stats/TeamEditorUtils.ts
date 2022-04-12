@@ -1,10 +1,10 @@
 
 import _ from "lodash";
-import TeamReportFilter from "../../components/TeamReportFilter";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 import { RatingUtils } from './RatingUtils';
 import { TransferModel } from '../LeaderboardUtils';
+import { PositionUtils } from "./PositionUtils";
 
 type DiagCodes = 
    "fr_yearly_bonus" | "yearly_bonus" |
@@ -44,7 +44,7 @@ export type GoodBadOkTriple = {
    diag?: TeamEditorDiags,
    actualResults?: IndivStatSet,
    isOnlyActualResults?: boolean,
-   isFakePlayer?: boolean // created by hand
+   manualProfile?: PlayerEditModel // created by hand
 };
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -603,7 +603,7 @@ export class TeamEditorUtils {
       }
 
 
-      roster.filter(t => !t.isFakePlayer).forEach(triple => {
+      roster.filter(t => !t.manualProfile).forEach(triple => {
          // Calculate previous player improvement for regression
          const prevPlayerDiags = triple.prevYear ? calcBasicAdjustments(triple.prevYear, undefined, undefined) : undefined;
          const prevPlayerYearlyAdjustment = {};
@@ -667,7 +667,7 @@ export class TeamEditorUtils {
             return defToUse*(p[proj].def_team_poss_pct?.value || 0);
          });
 
-         filteredRoster.filter(t => !t.isFakePlayer).forEach(p => {
+         filteredRoster.filter(t => !t.manualProfile).forEach(p => {
             const defense = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
                p[proj].def_adj_rtg?.value : (p[proj] as PureStatSet).def_adj_rapm?.value) || 0
             );
@@ -979,45 +979,53 @@ export class TeamEditorUtils {
    
    /** Estimate the maximum number of minutes played based on their fouling rate */
    static calcMaxMins(p: GoodBadOkTriple) {
-      const improvement = (p.orig.roster?.year_class == "Fr") ? 0.5 :
-         ((p.orig.roster?.year_class == "So") ?  0.5 : 0);
-
-      const foulsPer50 = Math.min(Math.max(0, (p.orig.def_ftr?.value || 0)*100 - improvement), 6);
-
-      const baseMax = 0.85;
-      if (foulsPer50 > 4) { //(so now by construction it's in the 6-4 range)
-         return baseMax - (foulsPer50 - 4)*0.10;
+      if (p.manualProfile) {
+         return TeamEditorUtils.getFreshmenMaxMins(p)/40;
       } else {
-         return baseMax;
-      }    
+         const improvement = (p.orig.roster?.year_class == "Fr") ? 0.5 :
+            ((p.orig.roster?.year_class == "So") ?  0.5 : 0);
+
+         const foulsPer50 = Math.min(Math.max(0, (p.orig.def_ftr?.value || 0)*100 - improvement), 6);
+
+         const baseMax = 0.85;
+         if (foulsPer50 > 4) { //(so now by construction it's in the 6-4 range)
+            return baseMax - (foulsPer50 - 4)*0.10;
+         } else {
+            return baseMax;
+         }    
+      }
    }
 
    /** Estimate the minimum number of minutes played based on their minutes the previous season */
    static calcMinMins(p: GoodBadOkTriple, team: string, teamSosNet: number, avgEff: number) {
-      const currPossPct = p.orig.off_team_poss_pct?.value || 0.25;
-      if ((p.orig.team == team) && (p.orig.roster?.year_class == "Fr")) { // Fr always increase their minutes
-         return currPossPct;
-      } else if (p.orig.team != team) { //TODO transfer up vs transfer down
-         // Transfers ... are we transferring up or down?
-         const sosNet = (p.orig.off_adj_opp?.value || avgEff) - (p.orig.def_adj_opp?.value || avgEff);
-         const txferDeltaDiff = sosNet - teamSosNet;
-
-         //Diag:
-         //console.log(`${p.key} SoS: [${sosNet.toFixed(1)}], diff = [${txferDeltaDiff.toFixed(1)}]`);
-
-         if (txferDeltaDiff > 6) { // moving way down
-            return 1.5*currPossPct;
-         } else if (txferDeltaDiff > 3) { // moving down
+      if (p.manualProfile) {
+         return 5/40; //(some nominal value)
+      } else {
+         const currPossPct = p.orig.off_team_poss_pct?.value || 0.25;
+         if ((p.orig.team == team) && (p.orig.roster?.year_class == "Fr")) { // Fr always increase their minutes
             return currPossPct;
-         } else if (txferDeltaDiff < -6) { // moving way up
-            return 0.5*currPossPct;
-         } else if (txferDeltaDiff < -3) { // moving up
-            return 0.66*currPossPct;
-         } else { //about the same, treat same as returner, see below
-            return currPossPct*0.80;
+         } else if (p.orig.team != team) { //TODO transfer up vs transfer down
+            // Transfers ... are we transferring up or down?
+            const sosNet = (p.orig.off_adj_opp?.value || avgEff) - (p.orig.def_adj_opp?.value || avgEff);
+            const txferDeltaDiff = sosNet - teamSosNet;
+
+            //Diag:
+            //console.log(`${p.key} SoS: [${sosNet.toFixed(1)}], diff = [${txferDeltaDiff.toFixed(1)}]`);
+
+            if (txferDeltaDiff > 6) { // moving way down
+               return 1.5*currPossPct;
+            } else if (txferDeltaDiff > 3) { // moving down
+               return currPossPct;
+            } else if (txferDeltaDiff < -6) { // moving way up
+               return 0.5*currPossPct;
+            } else if (txferDeltaDiff < -3) { // moving up
+               return 0.66*currPossPct;
+            } else { //about the same, treat same as returner, see below
+               return currPossPct*0.80;
+            }
+         } else { // team member
+            return currPossPct*0.80; //(at most a 20% drop in numbers)
          }
-      } else { // team member
-         return currPossPct*0.80; //(at most a 20% drop in numbers)
       }
    }
 
@@ -1077,6 +1085,31 @@ export class TeamEditorUtils {
       return expandedTierToMins?.[closestExpandedTier] || 0.9;
    }
    
+   /** Gets a max cap on Fr minutes */
+   static getFreshmenMaxMins(triple: GoodBadOkTriple) {
+      const isBig = PositionUtils.posClassToScore(triple.orig.posClass || "") > 5500;
+      const blueChip = new Set(["5*/Lotto", "5*", "5+4*s"]);
+      const decentRecruit = new Set(["4*/T40ish", "4*", "3.5*/T150ish"]);
+      const profile = triple.manualProfile?.profile || "";
+      if (isBig) {
+         if (blueChip.has(profile)) {
+            return 25;
+         } else if (decentRecruit.has(profile)) {
+            return 20;
+         } else {
+            return 15;
+         }
+      } else {
+         if (blueChip.has(profile)) {
+            return 30;
+         } else if (decentRecruit.has(profile)) {
+            return 25;
+         } else {
+            return 20;
+         }
+      }
+   }
+
    /** Gets the bench level scoring depending on the quality of the team */
    static getBenchLevelScoring(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
@@ -1127,7 +1160,9 @@ export class TeamEditorUtils {
    static getAvgProduction(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getAvgLevel = () => {
-         if (level.category == "high") {
+         if (team == "Gonzaga") { // Treat as high major
+            return 2.5;            
+         } else if (level.category == "high") {
             return 2.5;            
          } else if (level.category == "midhigh") {
             return 1.5;
@@ -1143,6 +1178,4 @@ export class TeamEditorUtils {
       }
       return getAvgLevel();
    }
-
-   //TODO: also need to handle in-season mins (ie for "what if player goes down" type questions)
 }
