@@ -151,7 +151,7 @@ export class LeaderboardUtils {
    /** Get the next season */
    static readonly getNextYear = (y: string) => {
       if (y == "2021/22") { 
-         return "None";
+         return "2022/23";
       } else if (y == "2020/21") { //TODO: From 2020/21 onwards can calculate
          return "2021/22";
       } else if (y == "2019/20") {

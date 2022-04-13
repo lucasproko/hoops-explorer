@@ -220,8 +220,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       year, gender
     };
 
+    const firstYearWithGrades = evalMode ? "2018/19" : "2019/20";
+
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-    const updatedParams = (params.year == "All") || (params.year <= "2019/20") ? { //(18/19- we only have high majors)
+    const updatedParams = (params.year == "All") || (params.year <= firstYearWithGrades) ? { //(18/19- we only have high majors)
       ...params,
       year: ParamDefaults.defaultLeaderboardYear
     } : (evalMode ? {
@@ -465,17 +467,22 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         actual_off: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getOff(triple.actualResults) } : undefined,
         actual_def: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getDef(triple.actualResults) } : undefined,
 
-        // In in-season mode, it's the actual if different
+        // In in-season mode, it's the adjusted if different
         good_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : (origNotEqualOk ? { value: origNet } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : (origNotEqualOk ? { value: okNet } : undefined)),
         good_off: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : (origNotEqualOk ? { value: origOff } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : (origNotEqualOk ? { value: okOff } : undefined)),
         good_def: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : (origNotEqualOk ? { value: origDef } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : (origNotEqualOk ? { value: okDef } : undefined)),
 
-        ok_net: isFiltered? undefined : { value: okNet },
-        ok_off: isFiltered ? undefined : { value: okOff, ...extraInfoOffObj },
-        ok_def: isFiltered ? undefined : { value: okDef, ...extraInfoDefObj  },
+        // In in-season mode, it's the original if different
+        ok_net: isFiltered ? undefined : 
+          offSeasonMode ? { value: okNet }: { value: origNet },
+        ok_off: isFiltered ? undefined : 
+          offSeasonMode ? { value: okOff, ...extraInfoOffObj } : { value: origOff },
+        ok_def: isFiltered ? undefined : 
+          offSeasonMode ? { value: okDef, ...extraInfoDefObj  } : { value: origDef },
+
         bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
         bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad), ...extraInfoOffObj },
         bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad), ...extraInfoDefObj  },
@@ -565,16 +572,28 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const isFiltered = (mpg == 0);
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
+      const benchOverrides = pxResults.allOverrides[triple.key];
+      const benchOffOver = benchOverrides?.global_off_adj || 0;
+      const benchDefOver = benchOverrides?.global_def_adj || 0;
+      const hasBenchOverride = (benchOffOver != 0) || (benchDefOver != 0);
+      const showCol = offSeasonMode || hasBenchOverride;
+
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
         mpg: { value: mpg },
 
-        good_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.good) },
-        good_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.good) },
-        good_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.good) },
-        ok_net: isFiltered ? undefined : { value: TeamEditorUtils.getNet(triple.ok) },
-        ok_off: isFiltered ? undefined : { value: TeamEditorUtils.getOff(triple.ok) },
-        ok_def: isFiltered ? undefined : { value: TeamEditorUtils.getDef(triple.ok) },
+        good_net: (isFiltered || !showCol) ? undefined : 
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : { value: TeamEditorUtils.getNet(triple.ok) }),
+        good_off: (isFiltered || !showCol) ? undefined : 
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : { value: TeamEditorUtils.getOff(triple.ok) }),
+        good_def: (isFiltered || !showCol) ? undefined : 
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : { value: TeamEditorUtils.getDef(triple.ok) }),
+        ok_net: isFiltered ? undefined : 
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.ok) } : { value: TeamEditorUtils.getNet(triple.ok) - (benchOffOver - benchDefOver) }),
+        ok_off: isFiltered ? undefined : 
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.ok) } : { value: TeamEditorUtils.getOff(triple.ok) - benchOffOver }),
+        ok_def: isFiltered ? undefined : 
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.ok) } : { value: TeamEditorUtils.getDef(triple.ok) + benchDefOver }),
         bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
         bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad) },
         bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad) },
@@ -593,7 +612,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             <TeamRosterEditor
               isBench={true}
               addNewPlayerMode={false}
-              overrides={pxResults.allOverrides[triple.key]}
+              overrides={benchOverrides}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
                   setUiOverrides(editPlayerOverrides(triple, uiOverrides, edit));
@@ -610,16 +629,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       evalMode ? [
         [ <div/>, 6 ], 
         [ <div/>, 4 ], [ <div/>, 1 ], 
-        [ <div/>, 4 ], [ <div/>, 1 ], 
         [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], 
-        [ <div/>, 4 ], [ <div/>, 1 ], 
-        [ <div/>, 2 ]
+        [ <div/>, 12 ]
       ] : [ 
         [ <div/>, 9 ], 
-        [ <div/>, 4 ], [ <div/>, 1 ], 
         [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], 
-        [ <div/>, 4 ], [ <div/>, 1 ], 
-        [ <div/>, 2 ]
+        [ <div/>, 12 ], 
       ], "small text-center"
     );
 
@@ -661,39 +676,54 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         return { off, def, net };
       };
       const okTotals = buildTotals(filteredPlayerSet, "ok");
-      const stdDevFactor = 1.0/Math.sqrt(5);
 
-      const goodRange = buildTotals(filteredPlayerSet, "good");
-      const badRange = buildTotals(filteredPlayerSet, "bad");
-      const goodDeltaNet = (goodRange.net - okTotals.net)*stdDevFactor;
+      // Off-season and eval mode only: good and bad vs neutral ... In-season: ok vs orig
+      const stdDevFactor = 1.0/Math.sqrt(5); //(1 std dev, so divide by root of team size)
+      const goodRange = offSeasonMode ? buildTotals(filteredPlayerSet, "good") : okTotals;
+      const badRange = offSeasonMode ? buildTotals(filteredPlayerSet, "bad") : okTotals;
+      //(ignore in in-season mode)
+      const goodDeltaNet = (goodRange.net - okTotals.net)*stdDevFactor ;
       const goodDeltaOff = (goodRange.off - okTotals.off)*stdDevFactor;
       const goodDeltaDef = (goodRange.def - okTotals.def)*stdDevFactor;
       const badDeltaNet = (badRange.net - okTotals.net)*stdDevFactor;
       const badDeltaOff = (badRange.off - okTotals.off)*stdDevFactor;
       const badDeltaDef = (badRange.def - okTotals.def)*stdDevFactor;
+      //(in-season)
+      const origTotals = offSeasonMode ? okTotals : buildTotals(filteredPlayerSet, "orig");
+      const inSeasonDeltaNet = (okTotals.net - origTotals.net);
+      const inSeasonDeltaOff = (okTotals.off - origTotals.off);
+      const inSeasonDeltaDef = (okTotals.def - origTotals.def);
 
+      // In-season mode only
       const rawTotalMins = inSeasonPlayerResultsList ? 
         _.sumBy(inSeasonPlayerResultsList, p => p.orig?.off_team_poss_pct.value || 0) : 5.0;
-      const getRawBenchLevel = (5.0 - rawTotalMins)*TeamEditorUtils.getBenchLevelScoring(team, year);
+      const getRawBenchLevel = Math.max(0, 5.0 - rawTotalMins)*TeamEditorUtils.getBenchLevelScoring(team, year);
       const rawNetSum = inSeasonPlayerResultsList ? 
-        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(p.orig)) + 2*getRawBenchLevel)
-        : undefined;
+        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(p.orig))
+         + 2*getRawBenchLevel
+        ) : undefined;
       const rawOffSum = inSeasonPlayerResultsList ? 
-        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(p.orig)) + getRawBenchLevel)
-        : undefined;
+        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(p.orig)) 
+         + getRawBenchLevel
+        ) : undefined;
       const rawDefSum = inSeasonPlayerResultsList ? 
-        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(p.orig)) - getRawBenchLevel)
-        : undefined;
+        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(p.orig))
+         - getRawBenchLevel
+        ) : undefined;
+      // Avoid bench adjustment weirdness until user does something
+      const adjustedNetSum = (inSeasonDeltaNet > 0) ? goodRange.net : rawNetSum;
+      const adjustedOffSum = (inSeasonDeltaOff > 0) ? goodRange.off : rawOffSum;
+      const adjustedDefSum = (inSeasonDeltaDef > 0) ? goodRange.def : rawDefSum;
 
-      const dummyTeamOk = {
-        off_net: { value: okTotals.net },
-        off_adj_ppp: { value: okTotals.off + avgEff },
-        def_adj_ppp: { value: okTotals.def + avgEff },
+      const dummyTeamOk = { //(in "in-season" mode, reports the original values)
+        off_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net },
+        off_adj_ppp: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + avgEff },
+        def_adj_ppp: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + avgEff },
       };
-      const dummyTeamGood = { //(in "in-season" mode, reports the original values)
-        off_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net + goodDeltaNet },
-        off_adj_ppp: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + avgEff + goodDeltaOff },
-        def_adj_ppp: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + avgEff + goodDeltaDef },
+      const dummyTeamGood = { // //(in "in-season" mode, reports the adjusted values)
+        off_net: !_.isNil(rawNetSum) ? { value: adjustedNetSum } : { value: okTotals.net + goodDeltaNet },
+        off_adj_ppp: !_.isNil(rawOffSum) ? { value: adjustedOffSum! + avgEff } : { value: okTotals.off + avgEff + goodDeltaOff },
+        def_adj_ppp: !_.isNil(rawDefSum) ? { value: adjustedDefSum! + avgEff } : { value: okTotals.def + avgEff + goodDeltaDef },
       };
       const dummyTeamBad = {
         off_net: { value: okTotals.net + badDeltaNet },
@@ -707,7 +737,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
       const teamGradesBad = divisionStatsCache.Combo ?
         GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
-
 
       //TODO: use team efficiency instead from team leaderboards and back into bench level?
       const actualTotals = evalMode ? buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
@@ -733,19 +762,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>Team Totals</b></a>
       </OverlayTrigger> : <b>Team Totals</b>;
 
+      const actualResultsYear = (evalMode ? LeaderboardUtils.getNextYear(year) : year).substring(2);
+
       const subHeaders = [ 
         GenericTableOps.buildSubHeaderRow(
           evalMode ? [
             [ <div/>, 6 ], 
-            [ <i><b>{"Actual results"}</b></i>, 4 ], [ <div/>, 1 ], 
+            [ <i><b>{`${actualResultsYear} results`}</b></i>, 4 ], [ <div/>, 1 ], 
+            [ <i><b>Balanced</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
-            [ <i>Balanced</i>, 4 ], [ <div/>, 1 ], 
             [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
             [ <div/>, 2 ]
           ] : [ 
             [ <div/>, 9 ],  
-            [ <i>{offSeasonMode ? "Optimistic" : "Actual results"}</i>, 4 ], [ <div/>, 1 ], 
-            [ <i>{offSeasonMode ? "Balanced" : "Adjusted results"}</i>, 4 ], [ <div/>, 1 ], 
+            [ <i><b>{offSeasonMode ? "Balanced" : `${actualResultsYear} results`}</b></i>, 4 ], [ <div/>, 1 ], 
+            [ <i>{offSeasonMode ? "Optimistic" : `Adjusted results`}</i>, 4 ], [ <div/>, 1 ], 
             [ <i>{offSeasonMode ? "Pessimistic" : "(Unused)"}</i>, 4 ], [ <div/>, 1 ],
             [ <div/>, 2 ]
           ], "small text-center"
@@ -755,19 +786,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           title: teamLink,
           //(for diag only)
           mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
+
+          // Eval mode
           actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
           actual_net: totalActualMins ? dummyTeamActual?.off_net : undefined,
           actual_off: totalActualMins ? dummyTeamActual?.off_adj_ppp : undefined,
           actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
-          ok_net: { value: okTotals.net },
-          ok_off: { value: okTotals.off + avgEff },
-          ok_def: { value: okTotals.def + avgEff },
-          good_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net + goodDeltaNet },
-          good_off: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + goodDeltaOff + avgEff },
-          good_def: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + goodDeltaDef + avgEff },
-          bad_net: offSeasonMode ? { value: okTotals.net + badDeltaNet } : undefined,
-          bad_off: offSeasonMode ? { value: okTotals.off + badDeltaOff + avgEff } : undefined,
-          bad_def: offSeasonMode ? { value: okTotals.def + badDeltaDef + avgEff } : undefined,
+
+          // Off-season balanced; In-season: actual results
+          ok_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net },
+          ok_off: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + avgEff },
+          ok_def: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + avgEff },
+          // Off-season optimistic; In-season adjusted
+          good_net: dummyTeamGood.off_net,
+          good_off: dummyTeamGood.off_adj_ppp,
+          good_def: dummyTeamGood.def_adj_ppp,
+          bad_net: offSeasonMode ? dummyTeamBad.off_net : undefined,
+          bad_off: offSeasonMode ? dummyTeamBad.off_adj_ppp : undefined,
+          bad_def: offSeasonMode ? dummyTeamBad.def_adj_ppp : undefined,
         }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef)
         ,
         GenericTableOps.buildDataRow({
