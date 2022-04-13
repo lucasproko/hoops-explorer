@@ -241,11 +241,13 @@ export class TeamEditorUtils {
       const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayersIn)).concat(
          _.values(allOverrides).filter(o => o.name).map(o => { 
          const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
+         const offAdj = (o.global_off_adj || 0);
+         const defAdj = (o.global_def_adj || 0);
          const indivStatSet = (adj: number) => { return {
             key: o.name,
             posClass: o.pos,
-            off_adj_rapm: { value: 0.5*netScoring + adj},
-            def_adj_rapm: { value: -0.5*netScoring - adj},
+            off_adj_rapm: { value: offAdj + 0.5*netScoring + adj},
+            def_adj_rapm: { value: defAdj + -0.5*netScoring - adj},
          }; };
          return {
             key: o.name,
