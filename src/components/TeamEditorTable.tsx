@@ -34,20 +34,15 @@ import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from "./PlayerLea
 import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
 
 // Util imports
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
-import { CbbColors } from '../utils/CbbColors';
 import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
 import { GradeUtils } from '../utils/stats/GradeUtils';
-import { PositionUtils } from '../utils/stats/PositionUtils';
-import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import TeamRosterEditor from './shared/TeamRosterEditor';
-import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/TeamEditorManualFixes';
 import { TeamEditorTableUtils } from '../utils/tables/TeamEditorTableUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 
@@ -126,14 +121,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   //(the values passed in by URL pre-transform)
   const [ otherPlayerCacheIn, setOtherPlayerCacheIn ] = useState((startingState.addedPlayers || "") as string | undefined);
   const [ disabledPlayersIn, setDisabledPlayersIn ] = useState((startingState.disabledPlayers || "") as string | undefined);
-  const [ deletedPlayersIn, setDeletedPlayersIn ] = useState((startingState.deletedPlayers || "") as string | undefined);
+  const [ uiDeletedPlayersIn, setUiDeletedPlayersIn ] = useState((startingState.deletedPlayers || "") as string | undefined);
   const [ editOpenIn, setEditOpenIn ] = useState((startingState.editOpen || "") as string | undefined);
-  const [ overridesIn, setOverridesIn ] = useState((startingState.overrides || "") as string | undefined);
+  const [ uiOverridesIn, setUiOverridesIn ] = useState((startingState.overrides || "") as string | undefined);
 
   const [ otherPlayerCache, setOtherPlayerCache ] = useState({} as Record<string, GoodBadOkTriple>);
   const [ disabledPlayers, setDisabledPlayers ] = useState({} as Record<string, boolean>);
   const [ deletedPlayers, setDeletedPlayers ] = useState({} as Record<string, string>); //(value is key, for display)
-  const [ overrides, setOverrides ] = useState({} as Record<string, PlayerEditModel>);
+  const [ uiOverrides, setUiOverrides ] = useState({} as Record<string, PlayerEditModel>);
 
   // Indiv editor
   const [ allEditOpen, setAllEditOpen ] = useState(startingState.allEditOpen as string | undefined);
@@ -179,10 +174,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       // Editor specific settings for team editor itself
       // there's some complexity here because we can't update this until we've used them to build the caches
       addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
-      deletedPlayers: _.isNil(deletedPlayersIn) ? _.keys(deletedPlayers).join(";") : deletedPlayersIn,
+      deletedPlayers: _.isNil(uiDeletedPlayersIn) ? _.keys(deletedPlayers).join(";") : uiDeletedPlayersIn,
       disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
-      overrides: _.isNil(overridesIn) ? 
-        _.map(overrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : overridesIn,
+      overrides: _.isNil(uiOverridesIn) ? 
+        _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
       editOpen: _.isNil(editOpenIn) ? _.map(editOpen, (value, key) => `${key}|${value}`).join(";") : editOpenIn,
       // Editor specific settings for transfer view
       showOnlyTransfers: onlyTransfers,
@@ -198,7 +193,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
-    otherPlayerCache, disabledPlayers, deletedPlayers, overrides, editOpen,
+    otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen,
     lboardParams, showPrevSeasons, offSeasonMode, alwaysShowBench, superSeniorsBack, evalMode
   ]);
 
@@ -238,58 +233,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     });
   }, [ year, gender, evalMode ]);
 
-  // Processing
+  /////////////////////////////////////
 
-  const genderYearLookup = `${gender}_${year}`;
-  const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+  // Build Team table
 
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
 
-    const teamOverrides: TeamEditorManualFixModel = offSeasonMode ?  //(the fixes only apply in off-season mode)
-      (TeamEditorManualFixes.fixes[genderYearLookup]?.[team] || {}) : {};
-
-    const [ rawTeamCorrectYear, rawTeamNextYear ] = evalMode ? 
-      _.partition(dataEvent.players || [], p => (p.year || "") <= year) : [ (dataEvent.players || []), [] ];
-
-    /** Get the base players for what actually transpired, just one year, no transfers, etc */
-    const actualResultList = (evalMode ? TeamEditorUtils.getBasePlayers(
-      team, LeaderboardUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
-    ) : []).map(triple => {
-      //(warning - mutates triple.org ... shouldn't mess anything else up since the next year's results aren't used anyway)
-      triple.orig.code = teamOverrides.codeSwitch?.[triple.orig.code || ""] || triple.orig.code;
-      triple.isOnlyActualResults = true; //(starts with true, we'll set to false as we merge with projected results)
-      triple.actualResults = triple.orig;
-      return triple;
-    });
-    // Alternative view of the same data
-    const actualResultsCodeOrIdSet = _.fromPairs(_.flatMap(actualResultList, triple => {
-      return [
-        [ triple.orig.key || "", triple ], //key-aka-id, for matching vs manually generated players
-        [ triple.orig.code || "", triple ] //code for normal
-      ];
-    }));
-
-    const rawTeam = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
-      team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, dataEvent.transfers || [], undefined
-    );
-
-    const playerSubList = offSeasonMode ? //(to avoid having to parse the very big players array multiple times)
-      rawTeamCorrectYear : _.flatMap(rawTeam, triple => {
-        return [ triple.orig ].concat(triple.prevYear ? [ triple.prevYear ] : []);
-      });
-
-    const deletedPlayersToUse = _.merge(_.cloneDeep(teamOverrides.leftTeam || {}), deletedPlayers);
-
-    const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
-      team, year, playerSubList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, deletedPlayersToUse, dataEvent.transfers || [], undefined
-    );
-
     // First time through ... Rebuild the state from the input params
     if ((!_.isEmpty(dataEvent.players || [])) && (
       //(first time only)
-      !_.isNil(deletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn) && 
-      !_.isNil(overrides) && !_.isNil(editOpenIn) 
+      !_.isNil(uiDeletedPlayersIn) && !_.isNil(otherPlayerCacheIn) && !_.isNil(disabledPlayersIn) && 
+      !_.isNil(uiOverrides) && !_.isNil(editOpenIn) 
     )) {
 
       //TODO: there is a bug here in that if I go fetch the T100 or CONF versions of a player
@@ -304,15 +259,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         (((startingState.deletedPlayers || "") != "") && _.isEmpty(deletedPlayers)) ||
         (((startingState.addedPlayers || "") != "")  && _.isEmpty(otherPlayerCache)) ||
         (((startingState.disabledPlayers || "") != "")  && _.isEmpty(disabledPlayers)) ||
-        (((startingState.overrides || "") != "")  && _.isEmpty(overrides)) ||
+        (((startingState.overrides || "") != "")  && _.isEmpty(uiOverrides)) ||
         (((startingState.editOpen || "") != "")  && _.isEmpty(editOpen));
 
       if (startingState.deletedPlayers && _.isEmpty(deletedPlayers)) {
-        const deletedPlayersSet = new Set(startingState.deletedPlayers.split(";"));
-        const firstDeletedPlayers = _.chain(basePlayers).filter(triple => deletedPlayersSet.has(triple.key)).map(triple => {
-          return [ triple.key, triple.orig.key ];
-        }).fromPairs().value();
-        setDeletedPlayers(firstDeletedPlayers); 
+        const deletedPlayersSet = startingState.deletedPlayers.split(";");
+        setDeletedPlayers(_.fromPairs(deletedPlayersSet.map(p => [ p, "unknown" ]))); //(gets filled in later)
       }
       if (startingState.disabledPlayers && _.isEmpty(disabledPlayers)) {
         const firstDisabledPlayers = _.chain(startingState.disabledPlayers.split(";")).map(key => {
@@ -320,9 +272,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         }).fromPairs().value();
         setDisabledPlayers(firstDisabledPlayers);
       }
-      if (startingState.overrides && _.isEmpty(overrides)) {
+      if (startingState.overrides && _.isEmpty(uiOverrides)) {
         const firstOverrides = TeamEditorUtils.urlParamstoPlayerEditModels(startingState.overrides);
-        setOverrides(firstOverrides);
+        setUiOverrides(firstOverrides);
       }
       if (startingState.editOpen && _.isEmpty(editOpen)) {
         const firstEditOpen = _.chain(startingState.editOpen.split(";")).map(key => {
@@ -358,10 +310,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
 
       // Clear the startingState since we've now done this once per load
-      setDeletedPlayersIn(undefined);
+      setUiDeletedPlayersIn(undefined);
       setDisabledPlayersIn(undefined);
       setOtherPlayerCacheIn(undefined);
-      setOverridesIn(undefined);
+      setUiOverridesIn(undefined);
       setEditOpenIn(undefined);
 
       if (needToRebuildBasePlayers) { //(will get called again with the right state because of the setXxx calls)
@@ -369,64 +321,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
     }
 
-    // Merge team overrides and user overrides
-    const overridesToUse: Record<string, PlayerEditModel> = 
-      _.fromPairs(
-        _.chain(teamOverrides.overrides || {}).toPairs().filter(keyVal=> !overrides[keyVal[0]]).value().concat(
-          _.toPairs(overrides)
-        )
-      );
+    ///////////////////////////////////////////////
 
-    const filteredOverrides: Record<string, PlayerEditModel> = 
-      _.chain(overridesToUse).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
+    // Processing - various pxResults are used in the buildXxx functions below
 
-    const playerSet = basePlayers.concat(_.values(otherPlayerCache)).concat(
-      _.values(overridesToUse).filter(o => o.name).map(o => { 
-        const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
-        const indivStatSet = (adj: number) => { return {
-          key: o.name,
-          posClass: o.pos,
-          off_adj_rapm: { value: 0.5*netScoring + adj},
-          def_adj_rapm: { value: -0.5*netScoring - adj},
-        }; };
-        return {
-          key: o.name,
-          good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
-          bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
-          ok: indivStatSet(0),
-          orig: indivStatSet(0),
-          manualProfile: o
-        } as GoodBadOkTriple;
-      })
-    ); 
-    if (evalMode) playerSet.forEach(triple => {
-      const matchingActual = triple.manualProfile
-        ? actualResultsCodeOrIdSet[triple.manualProfile.name || ""]
-        : actualResultsCodeOrIdSet[triple.orig.code || ""];
-
-      if (matchingActual) {
-        triple.actualResults = matchingActual.orig;
-        matchingActual.isOnlyActualResults = false; //(merged actual results and projections)
-      }        
-    });
-
-    const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
-
-    const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
-      _.omit(otherPlayerCache, _.keys(disabledPlayers)) // have added transfers in (and they aren't disabled)
-    ) || !_.isEmpty(deletedPlayersToUse); //(or have deleted players)
-
-    TeamEditorUtils.calcAndInjectYearlyImprovement(playerSet, team, teamSosOff, teamSosDef, avgEff, filteredOverrides, offSeasonMode);
-    TeamEditorUtils.calcAndInjectMinsAssignment(
-      playerSet, team, year, disabledPlayers, filteredOverrides, hasDeletedPlayersOrTransfersIn, teamSosNet, avgEff, offSeasonMode
+    const pxResults = TeamEditorUtils.teamBuildingPipeline(
+      gender, team, year,
+      dataEvent.players || [], dataEvent.transfers || [],
+      offSeasonMode, evalMode,
+      otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
+      superSeniorsBack, alwaysShowBench
     );
-    if (offSeasonMode) { //(else not projecting, just describing)
-      TeamEditorUtils.calcAdvancedAdjustments(playerSet, team, year, disabledPlayers);
-    }
 
-    const getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
-    const getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
-    const getNet = (s: PureStatSet) => getOff(s) - getDef(s);
+    ///////////////////////////////////////////////
+
+    // Display functions
 
     // Filter player in/out (onlyDisable==true if undisabled as part of deleting that player)
     const togglePlayerDisabled = (triple: GoodBadOkTriple, currDisabled: Record<string, boolean>, onlyDisable: boolean) => {
@@ -455,7 +364,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       }
     };
     const editPlayerOverrides = (triple: GoodBadOkTriple, currOverrides: Record<string, PlayerEditModel>, newOverride: PlayerEditModel | undefined) => {
-      const newOverrides = _.clone(overrides);
+      const newOverrides = _.clone(uiOverrides);
       if (!newOverride) {
         delete newOverrides[triple.key];
       } else {
@@ -492,7 +401,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}><b>{maybeTransferName}</b></a>
       </OverlayTrigger>;
 
-      const override = filteredOverrides[triple.key];
+      const override = pxResults.unpausedOverrides[triple.key];
 
       const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting?)
 
@@ -504,9 +413,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ortg: triple.orig.off_rtg,
         usage: triple.orig.off_usage,
         rebound: { value: triple.orig.def_orb?.value },
-        ok_net: { value: getNet(triple.orig) },
-        ok_off: { value: getOff(triple.orig) },
-        ok_def: { value: getDef(triple.orig) },
+        ok_net: { value: TeamEditorUtils.getNet(triple.orig) },
+        ok_off: { value: TeamEditorUtils.getOff(triple.orig) },
+        ok_def: { value: TeamEditorUtils.getDef(triple.orig) },
 
       } : undefined;
 
@@ -516,9 +425,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ortg: triple.prevYear.off_rtg,
         usage: triple.prevYear.off_usage,
         rebound: { value: triple.prevYear.def_orb?.value },
-        ok_net: { value: getNet(triple.prevYear) },
-        ok_off: { value: getOff(triple.prevYear) },
-        ok_def: { value: getDef(triple.prevYear) },
+        ok_net: { value: TeamEditorUtils.getNet(triple.prevYear) },
+        ok_off: { value: TeamEditorUtils.getOff(triple.prevYear) },
+        ok_def: { value: TeamEditorUtils.getDef(triple.prevYear) },
 
       } : undefined;
 
@@ -527,13 +436,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const extraInfoDefObj = 
         _.isNil(override?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
 
-      const okNet = getNet(triple.ok);
-      const okOff = getOff(triple.ok);
-      const okDef = getDef(triple.ok);
+      const okNet = TeamEditorUtils.getNet(triple.ok);
+      const okOff = TeamEditorUtils.getOff(triple.ok);
+      const okDef = TeamEditorUtils.getDef(triple.ok);
 
-      const origNet = offSeasonMode ? undefined : getNet(triple.orig);
-      const origOff = offSeasonMode ? undefined : getOff(triple.orig);
-      const origDef = offSeasonMode ? undefined :  getDef(triple.orig);
+      const origNet = offSeasonMode ? undefined : TeamEditorUtils.getNet(triple.orig);
+      const origOff = offSeasonMode ? undefined : TeamEditorUtils.getOff(triple.orig);
+      const origDef = offSeasonMode ? undefined :  TeamEditorUtils.getDef(triple.orig);
 
       const origNotEqualOk = offSeasonMode ? false : ((okDef != origDef) || (okOff != origOff));
 
@@ -552,24 +461,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
         pos: <span style={{whiteSpace: "nowrap"}}>{triple.orig.posClass}</span>,
 
-        actual_net: (evalMode && triple.actualResults) ? { value: getNet(triple.actualResults) } : undefined,
-        actual_off: (evalMode && triple.actualResults) ? { value: getOff(triple.actualResults) } : undefined,
-        actual_def: (evalMode && triple.actualResults) ? { value: getDef(triple.actualResults) } : undefined,
+        actual_net: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getNet(triple.actualResults) } : undefined,
+        actual_off: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getOff(triple.actualResults) } : undefined,
+        actual_def: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getDef(triple.actualResults) } : undefined,
 
         // In in-season mode, it's the actual if different
         good_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: getNet(triple.good) } : (origNotEqualOk ? { value: origNet } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : (origNotEqualOk ? { value: origNet } : undefined)),
         good_off: isFiltered ? undefined : 
-          (offSeasonMode ? { value: getOff(triple.good) } : (origNotEqualOk ? { value: origOff } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : (origNotEqualOk ? { value: origOff } : undefined)),
         good_def: isFiltered ? undefined : 
-          (offSeasonMode ? { value: getDef(triple.good) } : (origNotEqualOk ? { value: origDef } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : (origNotEqualOk ? { value: origDef } : undefined)),
 
         ok_net: isFiltered? undefined : { value: okNet },
         ok_off: isFiltered ? undefined : { value: okOff, ...extraInfoOffObj },
         ok_def: isFiltered ? undefined : { value: okDef, ...extraInfoDefObj  },
-        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: getNet(triple.bad) },
-        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: getOff(triple.bad), ...extraInfoOffObj },
-        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: getDef(triple.bad), ...extraInfoDefObj  },
+        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
+        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad), ...extraInfoOffObj },
+        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad), ...extraInfoDefObj  },
 
         edit: <OverlayTrigger overlay={editTooltip} placement="auto">
           <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
@@ -601,10 +510,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             <TeamRosterEditor
               isBench={false}
               addNewPlayerMode={false}
-              overrides={overridesToUse[triple.key]}
+              overrides={pxResults.allOverrides[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
-                  setOverrides(editPlayerOverrides(triple, overrides, edit));
+                  setUiOverrides(editPlayerOverrides(triple, uiOverrides, edit));
                  }, true
                 );
               }}
@@ -621,23 +530,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   if (newEditOpen) {
                     setEditOpen(newEditOpen);
                   }
-                  setOverrides(editPlayerOverrides(triple, currOverrides, undefined))
+                  setUiOverrides(editPlayerOverrides(triple, currOverrides, undefined))
                 };
                 if (otherPlayerCache[triple.key]) {
                   const newOtherPlayerCache = _.clone(otherPlayerCache);
                   delete newOtherPlayerCache[triple.key];
                   friendlyChange(() => {
                     setOtherPlayerCache(newOtherPlayerCache);
-                    tidyUp(disabledPlayers, editOpen, overrides);
+                    tidyUp(disabledPlayers, editOpen, uiOverrides);
                   }, true);
                 } else {
                   const newDeletedPlayers = _.clone(deletedPlayers);
                   newDeletedPlayers[triple.key] = triple.orig.key;
                   friendlyChange(() => {
-                    if (!overridesToUse[triple.key]?.name) { //(else just needs to be cleared from overrides below)
+                    if (!pxResults.allOverrides[triple.key]?.name) { //(else just needs to be cleared from overrides below)
                       setDeletedPlayers(newDeletedPlayers);
                     }
-                    tidyUp(disabledPlayers, editOpen, overrides);
+                    tidyUp(disabledPlayers, editOpen, uiOverrides);
                   }, true);
                 }      
               }}
@@ -655,21 +564,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const mpg =  (triple.ok.off_team_poss_pct?.value || 0)*40;
       const isFiltered = (mpg == 0);
       const hasEditPage = allEditOpen || editOpen[triple.key];
-      const override = filteredOverrides[triple.key];
 
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
         mpg: { value: mpg },
 
-        good_net: (isFiltered || !offSeasonMode) ? undefined : { value: getNet(triple.good) },
-        good_off: (isFiltered || !offSeasonMode) ? undefined : { value: getOff(triple.good) },
-        good_def: (isFiltered || !offSeasonMode) ? undefined : { value: getDef(triple.good) },
-        ok_net: isFiltered ? undefined : { value: getNet(triple.ok) },
-        ok_off: isFiltered ? undefined : { value: getOff(triple.ok) },
-        ok_def: isFiltered ? undefined : { value: getDef(triple.ok) },
-        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: getNet(triple.bad) },
-        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: getOff(triple.bad) },
-        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: getDef(triple.bad) },
+        good_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.good) },
+        good_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.good) },
+        good_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.good) },
+        ok_net: isFiltered ? undefined : { value: TeamEditorUtils.getNet(triple.ok) },
+        ok_off: isFiltered ? undefined : { value: TeamEditorUtils.getOff(triple.ok) },
+        ok_def: isFiltered ? undefined : { value: TeamEditorUtils.getDef(triple.ok) },
+        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
+        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad) },
+        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad) },
         edit: <OverlayTrigger overlay={editTooltip} placement="auto">
           <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
             const newEditOpen = togglePlayerEdited(triple, editOpen, false);
@@ -685,10 +593,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             <TeamRosterEditor
               isBench={true}
               addNewPlayerMode={false}
-              overrides={overridesToUse[triple.key]}
+              overrides={pxResults.allOverrides[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
-                  setOverrides(editPlayerOverrides(triple, overrides, edit));
+                  setUiOverrides(editPlayerOverrides(triple, uiOverrides, edit));
                  }, true
                 );
               }}
@@ -715,51 +623,183 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       ], "small text-center"
     );
 
-    // (can't use minutes annoyingly because that jumps around too much as you filter/unfilter stuff)
-    const sortedWithinPosGroup = (triple: GoodBadOkTriple) => {
-      return ((evalMode && triple.isOnlyActualResults) ? 10000 : 0) + 
-        PositionUtils.posClassToScore(triple.orig.posClass || "") - getNet(triple.ok);
-    };
-
-    // In eval mode, now concat the actual players that we didn't match with
-    const playerSetPlusActual = playerSet.concat(
-      evalMode ? 
-        actualResultList.filter(triple => triple.isOnlyActualResults) : []
-    );
-
-    const rosterGuards = _.sortBy(playerSetPlusActual.filter(triple => {
-      return (triple.orig.posClass == "PG") || (triple.orig.posClass == "s-PG") || (triple.orig.posClass == "CG");
-    }), sortedWithinPosGroup);
-    const filteredRosterGuards = rosterGuards.filter(triple => !triple.isOnlyActualResults && !disabledPlayers[triple.key]);
-    const rosterGuardMins = _.sumBy(filteredRosterGuards, p => p.ok.off_team_poss_pct.value!)*0.2;
-
-    const rosterWings = _.sortBy(playerSetPlusActual.filter(triple => {
-      return (triple.orig.posClass == "WG") || (triple.orig.posClass == "WF") || (triple.orig.posClass == "G?");
-    }), sortedWithinPosGroup);
-    const filteredRosterWings = rosterWings.filter(triple => !triple.isOnlyActualResults && !disabledPlayers[triple.key]);
-    const rosterWingMins = _.sumBy(filteredRosterWings, p => p.ok.off_team_poss_pct.value!)*0.2;
-
-    const rosterBigs = _.sortBy(playerSetPlusActual.filter(triple => {
-      return (triple.orig.posClass == "S-PF") || (triple.orig.posClass == "PF/C") || (triple.orig.posClass == "C")
-              || (triple.orig.posClass == "F/C?");
-    }), sortedWithinPosGroup);
-    const filteredRosterBigs = rosterBigs.filter(triple => !triple.isOnlyActualResults && !disabledPlayers[triple.key]);
-    const rosterBigMins = _.sumBy(filteredRosterBigs, p => p.ok.off_team_poss_pct.value!)*0.2;
-
-    // (now we've built display, go back to using playerSet)
-
-    // Build bench minutes:
-
-    const [ maybeBenchGuard, maybeBenchWing, maybeBenchBig ] = _.isEmpty(playerSet) ?
-      [ undefined, undefined, undefined ]
-      : 
-      TeamEditorUtils.getBenchMinutes(
-        team, year,
-        rosterGuardMins, rosterWingMins, rosterBigMins, filteredOverrides, alwaysShowBench
+    /** actualResultsForReview / inSeasonPlayerResultsList are basically the same thing, except the former comes in 
+     * offSeasonMode+evalMode whereas the latter comes in !offSeasonMode
+     * TODO: merge them at some point
+     */
+    const buildTeamRows = (
+      actualResultsForReview: GoodBadOkTriple[], inSeasonPlayerResultsList: GoodBadOkTriple[] | undefined,
+      avgEff: number
+    ) => {
+      /** (Util to add the bench to a collection of players) */
+      const addBench = (from: GoodBadOkTriple[]) => {
+        return from
+          .concat(maybeBenchGuard ? [ maybeBenchGuard ] : [])
+          .concat(maybeBenchWing ? [ maybeBenchWing ] : [])
+          .concat(maybeBenchBig ? [ maybeBenchBig ] : [])
+      };
+      const filteredPlayerSet = addBench(
+        pxResults.basePlayersPlusHypos.filter(triple => !disabledPlayers[triple.key])
       );
 
-    // Now, finally, can build display:
+      //(Diagnostic - will display if it's <0)
+      const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
+      const totalActualMins = evalMode ? _.sumBy(actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
+      const finalActualEffAdj = totalActualMins ? 
+        5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
 
+      const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
+        const off = _.sumBy(triples, triple => {
+          return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(triple[range] || {});
+        }) + adj;
+        const def = _.sumBy(triples, triple => {
+          return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(triple[range] || {});
+        }) - adj;
+        const net = _.sumBy(triples, triple => {
+          return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
+        }) + 2*adj;
+        return { off, def, net };
+      };
+      const okTotals = buildTotals(filteredPlayerSet, "ok");
+      const stdDevFactor = 1.0/Math.sqrt(5);
+
+      const goodRange = buildTotals(filteredPlayerSet, "good");
+      const badRange = buildTotals(filteredPlayerSet, "bad");
+      const goodDeltaNet = (goodRange.net - okTotals.net)*stdDevFactor;
+      const goodDeltaOff = (goodRange.off - okTotals.off)*stdDevFactor;
+      const goodDeltaDef = (goodRange.def - okTotals.def)*stdDevFactor;
+      const badDeltaNet = (badRange.net - okTotals.net)*stdDevFactor;
+      const badDeltaOff = (badRange.off - okTotals.off)*stdDevFactor;
+      const badDeltaDef = (badRange.def - okTotals.def)*stdDevFactor;
+
+      const rawTotalMins = inSeasonPlayerResultsList ? 
+        _.sumBy(inSeasonPlayerResultsList, p => p.orig?.off_team_poss_pct.value || 0) : 5.0;
+      const getRawBenchLevel = (5.0 - rawTotalMins)*TeamEditorUtils.getBenchLevelScoring(team, year);
+      const rawNetSum = inSeasonPlayerResultsList ? 
+        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(p.orig)) + 2*getRawBenchLevel)
+        : undefined;
+      const rawOffSum = inSeasonPlayerResultsList ? 
+        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(p.orig)) + getRawBenchLevel)
+        : undefined;
+      const rawDefSum = inSeasonPlayerResultsList ? 
+        (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(p.orig)) - getRawBenchLevel)
+        : undefined;
+
+      const dummyTeamOk = {
+        off_net: { value: okTotals.net },
+        off_adj_ppp: { value: okTotals.off + avgEff },
+        def_adj_ppp: { value: okTotals.def + avgEff },
+      };
+      const dummyTeamGood = { //(in "in-season" mode, reports the original values)
+        off_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net + goodDeltaNet },
+        off_adj_ppp: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + avgEff + goodDeltaOff },
+        def_adj_ppp: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + avgEff + goodDeltaDef },
+      };
+      const dummyTeamBad = {
+        off_net: { value: okTotals.net + badDeltaNet },
+        off_adj_ppp: { value: okTotals.off + avgEff + badDeltaOff },
+        def_adj_ppp: { value: okTotals.def + avgEff + badDeltaDef },
+      };
+
+      const teamGradesOk = divisionStatsCache.Combo ?
+        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesGood = divisionStatsCache.Combo ?
+        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesBad = divisionStatsCache.Combo ?
+        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
+
+
+      //TODO: use team efficiency instead from team leaderboards and back into bench level?
+      const actualTotals = evalMode ? buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
+      const dummyTeamActual = actualTotals ? {
+        off_net: { value: actualTotals.net },
+        off_adj_ppp: { value: actualTotals.off + avgEff },
+        def_adj_ppp: { value: actualTotals.def + avgEff },
+      } : undefined;
+    
+      const teamGradesActual = (dummyTeamActual && divisionStatsCache.Combo) ?
+        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
+
+      const teamParams = {
+        team: team, gender: gender, year: year,
+        minRank: "0", maxRank: "400",
+        factorMins: false, possAsPct: true,
+        showExpanded: true, calcRapm: true
+      };
+      const teamTooltip = (
+        <Tooltip id={`teamTooltip`}>Open new tab with the on/off analysis for this player/team</Tooltip>
+      );
+      const teamLink = team ? <OverlayTrigger placement="auto" overlay={teamTooltip}>
+        <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>Team Totals</b></a>
+      </OverlayTrigger> : <b>Team Totals</b>;
+
+      const subHeaders = [ 
+        GenericTableOps.buildSubHeaderRow(
+          evalMode ? [
+            [ <div/>, 6 ], 
+            [ <i><b>{"Actual results"}</b></i>, 4 ], [ <div/>, 1 ], 
+            [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
+            [ <i>Balanced</i>, 4 ], [ <div/>, 1 ], 
+            [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
+            [ <div/>, 2 ]
+          ] : [ 
+            [ <div/>, 9 ],  
+            [ <i>{offSeasonMode ? "Optimistic" : "Actual results"}</i>, 4 ], [ <div/>, 1 ], 
+            [ <i>{offSeasonMode ? "Balanced" : "Adjusted results"}</i>, 4 ], [ <div/>, 1 ], 
+            [ <i>{offSeasonMode ? "Pessimistic" : "(Unused)"}</i>, 4 ], [ <div/>, 1 ],
+            [ <div/>, 2 ]
+          ], "small text-center"
+        ),
+      ].concat(_.isEmpty(filteredPlayerSet) ? [] : [
+        GenericTableOps.buildDataRow({
+          title: teamLink,
+          //(for diag only)
+          mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
+          actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
+          actual_net: totalActualMins ? dummyTeamActual?.off_net : undefined,
+          actual_off: totalActualMins ? dummyTeamActual?.off_adj_ppp : undefined,
+          actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
+          ok_net: { value: okTotals.net },
+          ok_off: { value: okTotals.off + avgEff },
+          ok_def: { value: okTotals.def + avgEff },
+          good_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net + goodDeltaNet },
+          good_off: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + goodDeltaOff + avgEff },
+          good_def: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + goodDeltaDef + avgEff },
+          bad_net: offSeasonMode ? { value: okTotals.net + badDeltaNet } : undefined,
+          bad_off: offSeasonMode ? { value: okTotals.off + badDeltaOff + avgEff } : undefined,
+          bad_def: offSeasonMode ? { value: okTotals.def + badDeltaDef + avgEff } : undefined,
+        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef)
+        ,
+        GenericTableOps.buildDataRow({
+          title: <b>Team Grades {
+            (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? `(${divisionStatsCache.year.substring(2)
+            })` : null}</b>,
+          actual_net: teamGradesActual.off_net,
+          actual_off: teamGradesActual.off_adj_ppp,
+          actual_def: teamGradesActual.def_adj_ppp,
+          ok_net: teamGradesOk.off_net,
+          ok_off: teamGradesOk.off_adj_ppp,
+          ok_def: teamGradesOk.def_adj_ppp,
+          good_net: teamGradesGood.off_net,
+          good_off: teamGradesGood.off_adj_ppp,
+          good_def: teamGradesGood.def_adj_ppp,
+          bad_net: offSeasonMode ? teamGradesBad.off_net : undefined,
+          bad_off: offSeasonMode ? teamGradesBad.off_adj_ppp : undefined,
+          bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
+        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef),
+      ]);
+      return subHeaders;
+    };
+
+    ///////////////////////////////////////////////
+
+    // Display pipeline:
+
+    const { //(some shortcuts for common vars)
+      rosterGuards, rosterGuardMins, maybeBenchGuard,
+      rosterWings, rosterWingMins, maybeBenchWing,
+      rosterBigs, rosterBigMins, maybeBenchBig,
+    } = pxResults;
     const rosterTableDataGuards = [ buildPosHeaderRow("Guards", rosterGuardMins) ].concat(_.flatMap(rosterGuards, triple => {
       return buildDataRowFromTriple(triple);
     })).concat(maybeBenchGuard ? buildBenchDataRowFromTriple(maybeBenchGuard) : []);
@@ -771,7 +811,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     })).concat(maybeBenchBig ? buildBenchDataRowFromTriple(maybeBenchBig) : []);
 
     const addedTxfersStr = _.values(otherPlayerCache).map(p => p.orig.key).join(" / ");
-    const removedPlayerStr = _.values(deletedPlayersToUse).join(" / ");
+    const removedPlayerStr = _.values(pxResults.allDeletedPlayers).join(" / ");
 
     const rosterTableData = _.flatten([
       rosterTableDataGuards,
@@ -784,179 +824,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       ) ]
     ]);
 
-    /** (Util to add the bench to a collection of players) */
-    const addBench = (from: GoodBadOkTriple[]) => {
-      return from
-        .concat(maybeBenchGuard ? [ maybeBenchGuard ] : [])
-        .concat(maybeBenchWing ? [ maybeBenchWing ] : [])
-        .concat(maybeBenchBig ? [ maybeBenchBig ] : [])
-    };
-    const filteredPlayerSet = addBench(
-      playerSet.filter(triple => !disabledPlayers[triple.key])
-    );
-
-    // Team totals:
-
-//TODO: for pessimistic mode (I think optimistic is optimistic enough?!) recalc the minutes using the worst case 
-// RAPMs, which will allow the better players to take more minutes and hopefully narrow the gap with the normal
-
-    //(Diagnostic - will display if it's <0)
-    const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
-    const totalActualMins = evalMode ? _.sumBy(actualResultList, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
-    const finalActualEffAdj = totalActualMins ? 
-      5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
-
-    const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
-      const off = _.sumBy(triples, triple => {
-        return (triple[range]?.off_team_poss_pct.value || 0)*getOff(triple[range] || {});
-      }) + adj;
-      const def = _.sumBy(triples, triple => {
-        return (triple[range]?.off_team_poss_pct.value || 0)*getDef(triple[range] || {});
-      }) - adj;
-      const net = _.sumBy(triples, triple => {
-        return (triple[range]?.off_team_poss_pct.value || 0)*getNet(triple[range] || {});
-      }) + 2*adj;
-      return { off, def, net };
-    };
-    const okTotals = buildTotals(filteredPlayerSet, "ok");
-    const stdDevFactor = 1.0/Math.sqrt(5);
-
-    const goodRange = buildTotals(filteredPlayerSet, "good");
-    const badRange = buildTotals(filteredPlayerSet, "bad");
-    const goodDeltaNet = (goodRange.net - okTotals.net)*stdDevFactor;
-    const goodDeltaOff = (goodRange.off - okTotals.off)*stdDevFactor;
-    const goodDeltaDef = (goodRange.def - okTotals.def)*stdDevFactor;
-    const badDeltaNet = (badRange.net - okTotals.net)*stdDevFactor;
-    const badDeltaOff = (badRange.off - okTotals.off)*stdDevFactor;
-    const badDeltaDef = (badRange.def - okTotals.def)*stdDevFactor;
-
-    const rawTotalMins = rawTeam ? 
-      _.sumBy(rawTeam, p => p.orig?.off_team_poss_pct.value || 0) : 5.0;
-    const getRawBenchLevel = (5.0 - rawTotalMins)*TeamEditorUtils.getBenchLevelScoring(team, year);
-    const rawNetSum = rawTeam ? 
-      (_.sumBy(rawTeam, p => (p.orig?.off_team_poss_pct.value || 0)*getNet(p.orig)) + 2*getRawBenchLevel)
-      : undefined;
-    const rawOffSum = rawTeam ? 
-      (_.sumBy(rawTeam, p => (p.orig?.off_team_poss_pct.value || 0)*getOff(p.orig)) + getRawBenchLevel)
-      : undefined;
-    const rawDefSum = rawTeam ? 
-      (_.sumBy(rawTeam, p => (p.orig?.off_team_poss_pct.value || 0)*getDef(p.orig)) - getRawBenchLevel)
-      : undefined;
-
-    const dummyTeamOk = {
-      off_net: { value: okTotals.net },
-      off_adj_ppp: { value: okTotals.off + avgEff },
-      def_adj_ppp: { value: okTotals.def + avgEff },
-    };
-    const dummyTeamGood = { //(in "in-season" mode, reports the original values)
-      off_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net + goodDeltaNet },
-      off_adj_ppp: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + avgEff + goodDeltaOff },
-      def_adj_ppp: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + avgEff + goodDeltaDef },
-    };
-    const dummyTeamBad = {
-      off_net: { value: okTotals.net + badDeltaNet },
-      off_adj_ppp: { value: okTotals.off + avgEff + badDeltaOff },
-      def_adj_ppp: { value: okTotals.def + avgEff + badDeltaDef },
-    };
-
-    const teamGradesOk = divisionStatsCache.Combo ?
-      GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
-    const teamGradesGood = divisionStatsCache.Combo ?
-      GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
-    const teamGradesBad = divisionStatsCache.Combo ?
-      GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
-
-
-    //TODO: use team efficiency instead from team leaderboards and back into bench level?
-    const actualTotals = evalMode ? buildTotals(actualResultList, "orig", finalActualEffAdj) : undefined;
-    const dummyTeamActual = actualTotals ? {
-      off_net: { value: actualTotals.net },
-      off_adj_ppp: { value: actualTotals.off + avgEff },
-      def_adj_ppp: { value: actualTotals.def + avgEff },
-    } : undefined;
-  
-    const teamGradesActual = (dummyTeamActual && divisionStatsCache.Combo) ?
-      GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
-
-
-    const teamParams = {
-      team: team, gender: gender, year: year,
-      minRank: "0", maxRank: "400",
-      factorMins: false, possAsPct: true,
-      showExpanded: true, calcRapm: true
-    };
-    const teamTooltip = (
-      <Tooltip id={`teamTooltip`}>Open new tab with the on/off analysis for this player/team</Tooltip>
-    );
-    const teamLink = team ? <OverlayTrigger placement="auto" overlay={teamTooltip}>
-      <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>Team Totals</b></a>
-    </OverlayTrigger> : <b>Team Totals</b>;
-
-    const subHeaders = [ 
-      GenericTableOps.buildSubHeaderRow(
-        evalMode ? [
-          [ <div/>, 6 ], 
-          [ <i><b>{"Actual results"}</b></i>, 4 ], [ <div/>, 1 ], 
-          [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
-          [ <i>Balanced</i>, 4 ], [ <div/>, 1 ], 
-          [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
-          [ <div/>, 2 ]
-        ] : [ 
-          [ <div/>, 9 ],  
-          [ <i>{offSeasonMode ? "Optimistic" : "Actual results"}</i>, 4 ], [ <div/>, 1 ], 
-          [ <i>{offSeasonMode ? "Balanced" : "Adjusted results"}</i>, 4 ], [ <div/>, 1 ], 
-          [ <i>{offSeasonMode ? "Pessimistic" : "(Unused)"}</i>, 4 ], [ <div/>, 1 ],
-          [ <div/>, 2 ]
-        ], "small text-center"
-      ),
-    ].concat(_.isEmpty(filteredPlayerSet) ? [] : [
-      GenericTableOps.buildDataRow({
-        title: teamLink,
-        //(for diag only)
-        mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
-        actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
-        actual_net: totalActualMins ? dummyTeamActual?.off_net : undefined,
-        actual_off: totalActualMins ? dummyTeamActual?.off_adj_ppp : undefined,
-        actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
-        ok_net: { value: okTotals.net },
-        ok_off: { value: okTotals.off + avgEff },
-        ok_def: { value: okTotals.def + avgEff },
-        good_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net + goodDeltaNet },
-        good_off: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + goodDeltaOff + avgEff },
-        good_def: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + goodDeltaDef + avgEff },
-        bad_net: offSeasonMode ? { value: okTotals.net + badDeltaNet } : undefined,
-        bad_off: offSeasonMode ? { value: okTotals.off + badDeltaOff + avgEff } : undefined,
-        bad_def: offSeasonMode ? { value: okTotals.def + badDeltaDef + avgEff } : undefined,
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef)
-      ,
-      GenericTableOps.buildDataRow({
-        title: <b>Team Grades {
-          (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? `(${divisionStatsCache.year.substring(2)
-          })` : null}</b>,
-        actual_net: teamGradesActual.off_net,
-        actual_off: teamGradesActual.off_adj_ppp,
-        actual_def: teamGradesActual.def_adj_ppp,
-        ok_net: teamGradesOk.off_net,
-        ok_off: teamGradesOk.off_adj_ppp,
-        ok_def: teamGradesOk.def_adj_ppp,
-        good_net: teamGradesGood.off_net,
-        good_off: teamGradesGood.off_adj_ppp,
-        good_def: teamGradesGood.def_adj_ppp,
-        bad_net: offSeasonMode ? teamGradesBad.off_net : undefined,
-        bad_off: offSeasonMode ? teamGradesBad.off_adj_ppp : undefined,
-        bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef),
-    ]);
-
     return <GenericTable
       tableCopyId="rosterEditorTable"
       tableFields={TeamEditorTableUtils.tableDef(evalMode)}
-      tableData={subHeaders.concat(rosterTableData)}
+      tableData={
+        buildTeamRows(
+          pxResults.actualResultsForReview, pxResults.inSeasonPlayerResultsList, pxResults.avgEff
+        ).concat(rosterTableData)
+      }
       cellTooltipMode={undefined}
     />;
   }, [ dataEvent, year, team, 
-      otherPlayerCache, deletedPlayers, disabledPlayers, overrides, divisionStatsCache, debugMode, showPrevSeasons,
+      otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons,
       allEditOpen, editOpen, evalMode ]);
+
+  /////////////////////////////////////
+  
+  // Add players: show the player leaderboard
 
   const playerLeaderboard = React.useMemo(() => {
     setLboardParams(startingState);
@@ -1097,8 +981,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
   }
 
-//TODO: provide ability to add new player as an override vs rely on bench
-
   return <Container>
     <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
@@ -1117,7 +999,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 setDisabledPlayers({});
                 setDeletedPlayers({});
                 setEditOpen({});
-                setOverrides({})
+                setUiOverrides({})
                 setLboardAltDataSource(undefined);
               }, newGender != gender);
             }
@@ -1140,7 +1022,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 setDisabledPlayers({});
                 setDeletedPlayers({});
                 setEditOpen({});
-                setOverrides({})
+                setUiOverrides({})
                 setLboardAltDataSource(undefined);
               }, newYear != year);
             }
@@ -1169,7 +1051,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 setDisabledPlayers({});
                 setDeletedPlayers({});
                 setEditOpen({});
-                setOverrides({})
+                setUiOverrides({})
               }, (teamYear[0] != team) && (teamYear[1] != year));
             } else {
                friendlyChange(() => {
@@ -1178,7 +1060,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 setDisabledPlayers({});
                 setDeletedPlayers({});
                 setEditOpen({});
-                setOverrides({})
+                setUiOverrides({})
                }, team != selection);
             }
           }}
@@ -1348,9 +1230,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                     overrides={undefined}
                     onUpdate={(edit: PlayerEditModel | undefined) => {
                       if (edit) {
-                        const currOverrides = _.clone(overrides);
+                        const currOverrides = _.clone(uiOverrides);
                         currOverrides[edit.name || ""] = edit;
-                        setOverrides(currOverrides);
+                        setUiOverrides(currOverrides);
                       }
                     }}
                     onDelete={() => {

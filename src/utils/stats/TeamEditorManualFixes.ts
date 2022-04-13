@@ -1,8 +1,10 @@
 import { PlayerEditModel, TeamEditorUtils } from "./TeamEditorUtils";
 
+import _ from "lodash";
+
 /** Note string keys are TeamEditorUtils.getKey, string val in leftTeam is player id (aka name) */
 export type TeamEditorManualFixModel = {
-   leftTeam?: Record<string, string>,
+   leftTeam?: Array<string>,
    superSeniorsReturning?: Set<string>,
    overrides?: Record<string, PlayerEditModel>,
    codeSwitch?: Record<string, string> //this year key to next year's key
@@ -14,18 +16,18 @@ const wName = (name: string, def: PlayerEditModel) => {
 
 export class TeamEditorManualFixes {
 
-   static readonly fixes: Record<string, Record<string, TeamEditorManualFixModel>> = {
+   static readonly fixes: () => Record<string, Record<string, TeamEditorManualFixModel>> = _.memoize(() => { return {
 
       // Rutgers, Purdue - no changes needed
       "Men_2020/21": {
          "Alabama": {
-            leftTeam: { "JoPrimo::": "Primo, Josh" },
+            leftTeam: [ "JoPrimo::" ],
          },
          "Arkansas": {
-            leftTeam: { "MoMoody::": "Moody, Moses" },
+            leftTeam: [ "MoMoody::" ],
          },
          "Duke": {
-            leftTeam: { "JaJohnson::": "Johnson, Jalen", "MaHurt::": "Hurt, Matthew", "DjSteward::": "Steward, DJ", "BaJones::": "Jones, Bates" },
+            leftTeam: [ "JaJohnson::", "MaHurt::", "DjSteward::", "BaJones::" ],
             overrides: {
                ...wName("Keels, Trevor", {
                   pos: "CG",
@@ -42,7 +44,7 @@ export class TeamEditorManualFixes {
             }
          },
          "Gonzaga": {
-            leftTeam: { "JaSuggs::": "Suggs, Jalen", "JoAyayi::": "Ayayi, Joel" },
+            leftTeam: [ "JaSuggs::", "JoAyayi::" ],
             overrides: {
                ...wName("Holmgren, Chet", {
                   pos: "PF/C",
@@ -51,14 +53,14 @@ export class TeamEditorManualFixes {
             }
          },
          "Illinois": {
-            leftTeam: { "AyDosunmu::": "Dosunmu, Ayo", "GiBezhanishv::": "Bezhanishvili, Giorgi" },
+            leftTeam: [ "AyDosunmu::", "GiBezhanishv::" ],
          },
          "Iowa": {
-            leftTeam: { "JoWieskamp::": "Wieskamp, Joe" },
+            leftTeam: [ "JoWieskamp::" ],
             superSeniorsReturning: new Set([ "JoBohannon::" ]),
          },
          "Kentucky": {
-            leftTeam: { "BrBoston::": "Boston, Brandon", "OlSarr::": "Sarr, Olivier", "IsJackson::": "Jackson, Isaiah" },
+            leftTeam: [ "BrBoston::", "OlSarr::", "IsJackson::" ],
             superSeniorsReturning: new Set([ "DaMintz::" ]),
             overrides: {
                ...wName("Washington Jr., TyTy", {
@@ -68,10 +70,10 @@ export class TeamEditorManualFixes {
             }
          },
          "Marquette": {
-            leftTeam: { "DjCarton::": "Carton, D.J." },
+            leftTeam: [ "DjCarton::" ],
          },
          "Maryland": {
-            leftTeam: { "AaWiggins::": "Wiggins, Aaron" },
+            leftTeam: [ "AaWiggins::" ],
             overrides: {
                ...wName("Reese, Julian", {
                   pos: "PF/C",
@@ -81,7 +83,7 @@ export class TeamEditorManualFixes {
          },
          "Michigan": {
             superSeniorsReturning: new Set([ "ElBrooks::" ]),
-            leftTeam: { "FrWagner::": "Wagner, Franz" },
+            leftTeam: [ "FrWagner::" ],
             overrides: {
                [TeamEditorUtils.benchGuardKey]: {
                   profile: "4*/T40ish"
@@ -95,10 +97,10 @@ export class TeamEditorManualFixes {
             }
          },
          "Michigan St.": {
-            leftTeam: { "AaHenry::": "Henry, Aaron" },
+            leftTeam: [ "AaHenry::" ],
          },
          "Ohio St.": {
-            leftTeam: { "DuWashington::": "Washington, Duane" },
+            leftTeam: [ "DuWashington::" ],
             superSeniorsReturning: new Set([ "KyYoung::" ]),
             overrides: {
                ...wName("Branham, Malaki", {
@@ -112,11 +114,11 @@ export class TeamEditorManualFixes {
          },
          "Southern California": {
             superSeniorsReturning: new Set([ "ChGoodwin::" ]),
-            leftTeam: { "EvMobley::": "Mobley, Evan" }
+            leftTeam: [ "EvMobley::" ]
          },
          "Tennessee": {
             superSeniorsReturning: new Set([ "JoFulkerson::" ]),
-            leftTeam: { "JaSpringer::": "Springer, Jaden", "KeJohnson::": "Johnson, Keon" }
+            leftTeam: [ "JaSpringer::", "KeJohnson::" ]
          },
          "Wisconsin": {
             superSeniorsReturning: new Set([ "BrDavison::" ]),
@@ -147,7 +149,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set([ "KeMoore::" ])          
          },
          "Duke": {
-            leftTeam: { "TrKeels::": "Keels, Trevor", "PaBanchero::": "Banchero, Paolo", "MaWilliams::": "Williams, Mark", "AjGriffin::": "Griffin, AJ"  },
+            leftTeam: [ "TrKeels::", "PaBanchero::", "MaWilliams::", "AjGriffin::"  ],
             overrides: { //https://247sports.com/college/duke/Season/2022-Basketball/Commits/
                ...wName("Lively II, Derek", {
                   profile: "5*/Lotto",
@@ -172,13 +174,13 @@ export class TeamEditorManualFixes {
             },
          },
          "Gonzaga": {
-            leftTeam: { "ChHolmgren::": "Holmgren, Chet" },
+            leftTeam: [ "ChHolmgren::" ],
          },
          "Iowa": {
-            leftTeam: { "KeMurray::": "Murray, Keegan" }
+            leftTeam: [ "KeMurray::" ]
          },
          "Kentucky": {
-            leftTeam: { "TyWashington::": "Washington, TyTy" },
+            leftTeam: [ "TyWashington::" ],
             overrides: { //https://247sports.com/college/kentucky/Season/2022-Basketball/Commits/
                ...wName("Livingston, Chris", {
                   profile: "5*/Lotto",
@@ -191,24 +193,24 @@ export class TeamEditorManualFixes {
             }
          },
          "Marquette": {
-            leftTeam: { "GrElliott::": "Elliott, Greg" }
+            leftTeam: [ "GrElliott::" ]
          },
          "Ohio St.": {
-            leftTeam: { "MaBranham::": "Branham, Malaki", "EjLiddell::": "Liddell, EJ" }
+            leftTeam: [ "MaBranham::", "EjLiddell::" ]
          },
          "San Diego St.": {
             superSeniorsReturning: new Set([ "AdSeiko::" ]),
          },
          "Syracuse": {
-            leftTeam: { "CoSwider::": "Swider, Cole" }
+            leftTeam: [ "CoSwider::" ]
          },
          "UCLA": {
-            leftTeam: { "PeWatson::": "Watson, Peyton" }
+            leftTeam: [ "PeWatson::" ]
          },
          "Wisconsin": {
-            leftTeam: { "JoDavis::": "Davis, Johnny" }
+            leftTeam: [ "JoDavis::" ]
          }
       }
-   }
+   }; });
 
 }

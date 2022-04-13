@@ -3,9 +3,12 @@ import _ from "lodash";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 import { RatingUtils } from './RatingUtils';
-import { TransferModel } from '../LeaderboardUtils';
+import { LeaderboardUtils, TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
+import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
+import { efficiencyAverages } from "../public-data/efficiencyAverages";
 
+/** Possibly ways we change projections */
 type DiagCodes = 
    "fr_yearly_bonus" | "yearly_bonus" |
    "undersized_txfer_pen" | "general_txfer_pen" |
@@ -16,7 +19,10 @@ type DiagCodes =
    "user_adjustment"
    ;
 
+/** For a given stat/projection, how/why we changed it */
 type TeamEditorDiagObject = { [K in DiagCodes]?: number }
+
+/** For a given player, a set of all the changes to their projection */
 type TeamEditorDiags = {
    off_rtg: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
    off_usage: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
@@ -24,9 +30,10 @@ type TeamEditorDiags = {
    def: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
 };
 
+/** Different possible HS profiles used to build Fr projections */
 export type Profiles = "5*/Lotto" | "5*" | "5+4*s" | "4*/T40ish" | "4*" | "3.5*/T150ish" | "3*" | "3+2*s" | "2*" | "Auto" | "UR";
 
-
+/** The overides */
 export type PlayerEditModel = {
    name?: string, //this determines if the override is a player in their own right
    mins?: number,
@@ -37,6 +44,7 @@ export type PlayerEditModel = {
    pos?: string, //(usual set of possible pos)
 };
 
+/** Encapsulates a projection for a player (possibly manually created), plus their actual results */
 export type GoodBadOkTriple = {
    key: string,
    good: IndivStatSet,
@@ -49,6 +57,31 @@ export type GoodBadOkTriple = {
    isOnlyActualResults?: boolean,
    manualProfile?: PlayerEditModel // created by hand
 };
+
+/** The output of the main procesing chain */
+export type TeamEditorProcessingResults = {
+   // Main results
+   rosterGuards: Array<GoodBadOkTriple>,
+   rosterGuardMins: number,
+   maybeBenchGuard: GoodBadOkTriple | undefined,
+   rosterWings: Array<GoodBadOkTriple>,
+   rosterWingMins: number,
+   maybeBenchWing: GoodBadOkTriple | undefined,
+   rosterBigs: Array<GoodBadOkTriple>,
+   rosterBigMins: number,
+   maybeBenchBig: GoodBadOkTriple | undefined,
+
+   //Lists of players needed for rendering
+   basePlayersPlusHypos: Array<GoodBadOkTriple>, //The roster, minus deleted players, plus added hypos
+   inSeasonPlayerResultsList: Array<GoodBadOkTriple> | undefined, // In-Season or Eval mode, what's actually going on
+   actualResultsForReview: Array<GoodBadOkTriple> // Eval mode, 
+
+   // Some other useful intermediates
+   avgEff: number,
+   allDeletedPlayers: Record<string, string> //(merged team and UI overrides)
+   allOverrides: Record<string, PlayerEditModel>, //(merged player and UI overrides)
+   unpausedOverrides: Record<string, PlayerEditModel>, //(active allOverrides)
+}
 
 /** Data manipulation functions for the TeamEditorTable */
 export class TeamEditorUtils {
@@ -130,7 +163,202 @@ export class TeamEditorUtils {
       }
    };
 
-   // Data processing
+   //////////////////////////////////////////////////////////////////////////////
+
+   // Data processing  - main processing pipeline
+
+   static teamBuildingPipeline(
+      gender: string, team: string, year: string,
+      playerList: Array<IndivStatSet>, transfers: Array<Record<string, TransferModel[]>>,
+      offSeasonMode: boolean, evalMode: boolean,
+      addedPlayersIn: Record<string, GoodBadOkTriple>, overridesIn: Record<string, PlayerEditModel>, 
+      deletedPlayersIn: Record<string, string>, disabledPlayersIn: Record<string, boolean>,
+      superSeniorsBack: boolean, alwaysShowBench: boolean
+   ): TeamEditorProcessingResults {
+      const genderYearLookup = `${gender}_${year}`;
+      const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+    
+      const teamOverrides: TeamEditorManualFixModel = offSeasonMode ?  //(the fixes only apply in off-season mode)
+         (TeamEditorManualFixes.fixes()[genderYearLookup]?.[team] || {}) : {};
+
+      //////////////
+      
+      // Build lots of handy lists
+
+      const [ rawTeamCorrectYear, rawTeamNextYear ] = evalMode ? 
+         _.partition(playerList, p => (p.year || "") <= year) : [ playerList, [] ];
+
+      /** Get the base players for what actually transpired, just one year, no transfers, etc */
+      const actualResultsForReview = (evalMode ? TeamEditorUtils.getBasePlayers(
+         team, LeaderboardUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
+      ) : []).map(triple => {
+         //(warning - mutates triple.org ... shouldn't mess anything else up since the next year's results aren't used anyway)
+         triple.orig.code = teamOverrides.codeSwitch?.[triple.orig.code || ""] || triple.orig.code;
+         triple.isOnlyActualResults = true; //(starts with true, we'll set to false as we merge with projected results)
+         triple.actualResults = triple.orig;
+         return triple;
+      });
+      // Alternative view of the same data
+      const actualResultsCodeOrIdSet = _.fromPairs(_.flatMap(actualResultsForReview, triple => {
+         return [
+         [ triple.orig.key || "", triple ], //key-aka-id, for matching vs manually generated players
+         [ triple.orig.code || "", triple ] //code for normal
+         ];
+      }));
+
+      // In in-season mode we get a list of all players (ignore delete/disable lists since this is what actually happened)
+      const inSeasonPlayerResultsList = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
+         team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, transfers, undefined
+      );
+
+      const candidatePlayersList = offSeasonMode ? //(to avoid having to parse the very big players array multiple times)
+         rawTeamCorrectYear 
+         : 
+         _.flatMap(inSeasonPlayerResultsList || [], triple => {
+            return [ triple.orig ].concat(triple.prevYear ? [ triple.prevYear ] : []);
+         });
+
+      const allDeletedPlayers = _.merge(
+         _.fromPairs((teamOverrides.leftTeam || []).map(p => [ p, "unknown" ])),
+         deletedPlayersIn
+      );
+
+      const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
+         team, year, candidatePlayersList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, allDeletedPlayers, transfers, undefined
+      );
+
+      // Merge team overrides and user overrides
+      const allOverrides: Record<string, PlayerEditModel> = 
+         _.fromPairs(
+            _.chain(teamOverrides.overrides || {}).toPairs().filter(keyVal=> !overridesIn[keyVal[0]]).value().concat(
+               _.toPairs(overridesIn)
+            )
+         );
+
+      const unpausedOverrides: Record<string, PlayerEditModel> = 
+         _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
+
+      const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayersIn)).concat(
+         _.values(allOverrides).filter(o => o.name).map(o => { 
+         const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
+         const indivStatSet = (adj: number) => { return {
+            key: o.name,
+            posClass: o.pos,
+            off_adj_rapm: { value: 0.5*netScoring + adj},
+            def_adj_rapm: { value: -0.5*netScoring - adj},
+         }; };
+         return {
+            key: o.name,
+            good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
+            bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
+            ok: indivStatSet(0),
+            orig: indivStatSet(0),
+            manualProfile: o
+         } as GoodBadOkTriple;
+         })
+      ); 
+      if (evalMode) basePlayersPlusHypos.forEach(triple => {
+         const matchingActual = triple.manualProfile
+            ? actualResultsCodeOrIdSet[triple.manualProfile.name || ""]
+            : actualResultsCodeOrIdSet[triple.orig.code || ""];
+
+         if (matchingActual) {
+            triple.actualResults = matchingActual.orig;
+            matchingActual.isOnlyActualResults = false; //(merged actual results and projections)
+         }        
+      });
+
+      //////////////
+
+      // Most of the math occurs here:
+
+      const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
+
+      const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
+         _.omit(addedPlayersIn, _.keys(disabledPlayersIn)) // have added transfers in (and they aren't disabled)
+      ) || !_.isEmpty(allDeletedPlayers); //(or have deleted players)
+
+      TeamEditorUtils.calcAndInjectYearlyImprovement(
+         basePlayersPlusHypos, team, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode
+      );
+      TeamEditorUtils.calcAndInjectMinsAssignment(
+         basePlayersPlusHypos, team, year, disabledPlayersIn, unpausedOverrides, hasDeletedPlayersOrTransfersIn, teamSosNet, avgEff, offSeasonMode
+      );
+      if (offSeasonMode) { //(else not projecting, just describing)
+         TeamEditorUtils.calcAdvancedAdjustments(basePlayersPlusHypos, team, year, disabledPlayersIn);
+      }
+
+      //////////////
+
+      // Summarize what's happened
+
+      // (can't use minutes annoyingly because that jumps around too much as you filter/unfilter stuff)
+      const sortedWithinPosGroup = (triple: GoodBadOkTriple) => {
+         return ((evalMode && triple.isOnlyActualResults) ? 10000 : 0) + 
+         PositionUtils.posClassToScore(triple.orig.posClass || "") - TeamEditorUtils.getNet(triple.ok);
+      };
+
+      // In eval mode, now concat the actual players that we didn't match with
+      const playerProjectionsPlusActual = basePlayersPlusHypos.concat(
+         evalMode ? 
+         actualResultsForReview.filter(triple => triple.isOnlyActualResults) : []
+      );
+
+      const rosterGuards = _.sortBy(playerProjectionsPlusActual.filter(triple => {
+         return (triple.orig.posClass == "PG") || (triple.orig.posClass == "s-PG") || (triple.orig.posClass == "CG");
+      }), sortedWithinPosGroup);
+      const filteredRosterGuards = rosterGuards.filter(triple => !triple.isOnlyActualResults && !disabledPlayersIn[triple.key]);
+      const rosterGuardMinsPreBench = _.sumBy(filteredRosterGuards, p => p.ok.off_team_poss_pct.value!)*0.2;
+
+      const rosterWings = _.sortBy(playerProjectionsPlusActual.filter(triple => {
+         return (triple.orig.posClass == "WG") || (triple.orig.posClass == "WF") || (triple.orig.posClass == "G?");
+      }), sortedWithinPosGroup);
+      const filteredRosterWings = rosterWings.filter(triple => !triple.isOnlyActualResults && !disabledPlayersIn[triple.key]);
+      const rosterWingMinsPreBench = _.sumBy(filteredRosterWings, p => p.ok.off_team_poss_pct.value!)*0.2;
+
+      const rosterBigs = _.sortBy(playerProjectionsPlusActual.filter(triple => {
+         return (triple.orig.posClass == "S-PF") || (triple.orig.posClass == "PF/C") || (triple.orig.posClass == "C")
+               || (triple.orig.posClass == "F/C?");
+      }), sortedWithinPosGroup);
+      const filteredRosterBigs = rosterBigs.filter(triple => !triple.isOnlyActualResults && !disabledPlayersIn[triple.key]);
+      const rosterBigMinsPreBench = _.sumBy(filteredRosterBigs, p => p.ok.off_team_poss_pct.value!)*0.2;
+
+      //////////////
+
+      // Build bench minutes:
+
+      const [ maybeBenchGuard, maybeBenchWing, maybeBenchBig ] = _.isEmpty(basePlayersPlusHypos) ?
+         [ undefined, undefined, undefined ]
+         : 
+         TeamEditorUtils.getBenchMinutes(
+            team, year,
+            rosterGuardMinsPreBench, rosterWingMinsPreBench, rosterBigMinsPreBench, 
+            unpausedOverrides, alwaysShowBench
+         );
+      const rosterGuardMins = rosterGuardMinsPreBench + 0.2*(maybeBenchGuard?.ok?.off_team_poss_pct?.value || 0);
+      const rosterWingMins = rosterWingMinsPreBench + 0.2*(maybeBenchWing?.ok?.off_team_poss_pct?.value || 0);
+      const rosterBigMins = rosterBigMinsPreBench + 0.2*(maybeBenchBig?.ok?.off_team_poss_pct?.value || 0);
+
+      return {
+         rosterGuards, rosterGuardMins, maybeBenchGuard,
+         rosterWings, rosterWingMins, maybeBenchWing,
+         rosterBigs, rosterBigMins, maybeBenchBig,
+
+         inSeasonPlayerResultsList, basePlayersPlusHypos, actualResultsForReview,
+
+         avgEff, allDeletedPlayers, 
+         allOverrides, unpausedOverrides
+      };
+   }
+
+//TODO: also add team totals calcs here
+
+//TODO idea: for pessimistic mode (I think optimistic is optimistic enough?!) recalc the minutes using the worst case 
+// RAPMs, which will allow the better players to take more minutes and hopefully narrow the gap with the normal
+
+   //////////////////////////////////////////////////////////////////////////////
+
+   // Data processing  - middle level
 
    //TODO: is there some way I can take walk-ons out the equation but use the roster info to list "guys that don't play much"
    // (ignoring anyone who isn't a Fr, will get rid of some of them, but not Fr walk-ons.... really need the *s)
@@ -138,7 +366,7 @@ export class TeamEditorUtils {
    /** Pulls out the players from the designated team */
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
-      offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, excludeSet: Record<string, string>, 
+      offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, mutableExcludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
    ): GoodBadOkTriple[] {
       const transfersThisYear = transfers[0] || {};
@@ -178,7 +406,10 @@ export class TeamEditorUtils {
                && !isTransferringOut
          ));
          const onTeam = (isOnTeam || wasPlayerTxferLastYear);
-         const notOnExcludeList = !excludeSet[key];
+         const notOnExcludeList = !mutableExcludeSet[key];
+         if (!notOnExcludeList) {
+            mutableExcludeSet[key] = p.key; //(fill this in with the name of the player for display purposes)
+         }
 
          //Diagnostic:
          //if (dupCode == "CodeToCheck") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear}  `)
@@ -229,14 +460,14 @@ export class TeamEditorUtils {
             const yearClass = p.roster?.year_class || "??";
 
             // If they transferred in _this_ year then they are definitely playing
-            const transferringIn = !excludeSet[key] && _.some(
+            const transferringIn = !mutableExcludeSet[key] && _.some(
                transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
             );
 
             const left = fromBaseRoster.inAndLeaving[key] || false;
             const transferredOut = _.some(transfersLastYear[code] || [], p => p.f == team);
 
-            const transferringInLastYear = !left && !transferredOut && !excludeSet[key] && (_.some(
+            const transferringInLastYear = !left && !transferredOut && !mutableExcludeSet[key] && (_.some(
                transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
             ) && ((yearClass != "Sr") || includeSuperSeniors || superSeniorsReturning?.has(key)));
 
@@ -264,7 +495,6 @@ export class TeamEditorUtils {
 
       return injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd);
    }
-
 
    /** Give players their year-on-year improvement */
    static calcAndInjectYearlyImprovement(
@@ -474,7 +704,6 @@ export class TeamEditorUtils {
 
          // Diagnostics
          //console.log(`[${player.key}]: ([${player.off_rtg?.value}]*[${thisYearWeight}] + [${adjPrevYear.off_rtg?.value}]*[${lastYearWeight}])`);
-
 
          return {
             off_rtg: {
@@ -801,7 +1030,11 @@ export class TeamEditorUtils {
                !_.isEmpty(disabledPlayers) ||
                hasDeletedPlayersOrTransfersIn || // has transfers in or deleted players
                (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins))) // has overrides
-               
+          
+      // Always reserve a few minutes for the deep bench
+      const rosterSize = _.size(filteredRoster) + Math.ceil(benchMinOverrides/15);   
+      const minsForBench = Math.max(0, 10 - rosterSize)*5; //(we're not going to include walk-ons)
+
       const steps = needToAdjBaseMinutes ? [ 0, 1, 2, 3, 4, 5 ] : [];
       const finalStep = _.last(steps);
       _.transform(steps, (acc, step) => {
@@ -810,24 +1043,21 @@ export class TeamEditorUtils {
          const emergencyMeasures = (step == finalStep) && (sumMins + benchMinOverrides) > 5.0;
             //(ensure the sum of the players' + bench minutes is never more than physically possib;e)
 
-         const highLevel = 5*(39.0/40.0) - benchMinOverrides;
-         const highGoal = (offSeasonMode ? 5*(37.5/40.0) :  5*(38.5/40.0)) - benchMinOverrides;
-         const lowLevel = (offSeasonMode ? 5*(35.0/40.0) : 5*(37.0/40.0)) - benchMinOverrides;
-         const lowGoal = (offSeasonMode ? 5*(36.5/40.0) : 5*(37.5/40.0)) - benchMinOverrides;
+         const threshold = 5.0 - minsForBench/40.0 - benchMinOverrides;
          const maxGoal = 5.0 - benchMinOverrides; //(if bench specified then try to exactly hit 40mpg)
          const goal = 
             ((allThreeBenchPosHaveOverriddenMins || emergencyMeasures) ? 
-               maxGoal
-               : (sumMins > highLevel ? highGoal : (sumMins < lowLevel ? lowGoal : -1))
+               maxGoal :
+               threshold
             );
-            //(goal of -1 means I'm already inside the [lowLevel:highLevel] range)
+         const target = 0.025; //(within 1 min)
 
          //Diagnostic
-         // console.log(`Step [${step}]: sum=[${sumMins.toFixed(3)}] [bench=${benchMinOverrides.toFixed(3)}] vs ` +
-         //    `goal=[${goal.toFixed(3)}]/levels=[${lowLevel.toFixed(3)} - ${highLevel.toFixed(3)}]` + 
-         //    `/goal_limits=[${lowGoal.toFixed(3)} - ${highGoal.toFixed(3)}]`);
-
-         if (goal > 0) {
+         if (debugMode) {
+            console.log(`Step [${step}]: sum=[${sumMins.toFixed(3)}] [bench=${benchMinOverrides.toFixed(3)}] vs ` +
+               `goal=[${goal.toFixed(3)}]/levels=[${threshold.toFixed(3)} - ${maxGoal.toFixed(3)}] = [${Math.abs(sumMins - goal).toFixed(3)}]`);
+         }
+         if ((goal > 0) && (Math.abs(sumMins - goal) > target)) {
             const factor = goal/sumMins;
             filteredRoster.forEach(p => {
                const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
@@ -945,6 +1175,7 @@ export class TeamEditorUtils {
    // 1] based on def SoS .. normally reduce it 50:50 but if >25 then reduce by more
    // 2] if >25 and ORtg isn't stellar can we just reduce it anyway?
 
+   //////////////////////////////////////////////////////////////////////////////
 
    // Lower level utils in handy testable chunks
 
@@ -1079,8 +1310,8 @@ export class TeamEditorUtils {
    /** Assign a fairly abitrary minute total based on where you sit in the team pecking order... */
    static netTierToBaseMins(playerNet: number, tiers: [number, number, number]) {
       // expand to 7 numbers by introducing the gaps
-      const expandedTiers = [ tiers[0] - 1, tiers[0], 0.5*(tiers[0] + tiers[1]), tiers[1], 0.5*(tiers[1] + tiers[2]), tiers[2], tiers[2] + 1.0 ];
-      const expandedTierToMins = [ 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85 ];
+      const expandedTiers = [ tiers[0] - 0.5, tiers[0], 0.5*(tiers[0] + tiers[1]), tiers[1], 0.5*(tiers[1] + tiers[2]), tiers[2], tiers[2] + 1.0 ];
+      const expandedTierToMins = [ 0.15, 0.30, 0.45, 0.55, 0.65, 0.75, 0.85 ];
 
       const closestExpandedTier = _.sortBy(
          expandedTiers.map((t, i) => [i, Math.abs(playerNet - t) ] as [number, number]), vi => vi[1]
@@ -1193,4 +1424,11 @@ export class TeamEditorUtils {
       }
       return getAvgLevel();
    }
+
+   /* Quick accessor for offensive contribution of player */
+   static getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
+   /* Quick accessor for defensive contribution of player */
+   static getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
+   /* Quick accessor for net (offensive + defensive) contribution of player */
+   static getNet = (s: PureStatSet) => TeamEditorUtils.getOff(s) - TeamEditorUtils.getDef(s);
 }
