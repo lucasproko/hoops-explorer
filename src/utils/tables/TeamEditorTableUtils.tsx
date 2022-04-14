@@ -8,7 +8,7 @@ export class TeamEditorTableUtils {
 
    // Table definitions
 
-   static tableDef(evalMode: boolean) { 
+   static tableDef(evalMode: boolean, offSeasonMode: boolean) { 
       return _.omit({
          title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
          "sep0": GenericTableOps.addColSeparator(0.5),
@@ -55,12 +55,18 @@ export class TeamEditorTableUtils {
 
          edit: GenericTableOps.addDataCol("", "Edit the Optimistic/Balanced/Pessmistic projections for the player", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
          disable: GenericTableOps.addDataCol("", "Disable/re-enabled this player from the roster", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-      }, evalMode ?
+      }, (evalMode && offSeasonMode) ?
          [
             "ortg", "usage", "rebound", "sep0.6"
-         ] : [
-            "actual_net", "actual_off", "actual_def", "actual_sep1.5", "actual_sep2", "actual_mpg"
-         ]
+         ] : 
+         (!offSeasonMode ?
+            [
+               "actual_net", "actual_off", "actual_def", "actual_sep1.5", "actual_sep2", "bad_net", "bad_off", "bad_def", "sep3.5", "sep4"
+            ]
+               :
+               [
+                  "actual_net", "actual_off", "actual_def", "actual_sep1.5", "actual_sep2", "actual_mpg"
+               ])
       ); 
       }
 

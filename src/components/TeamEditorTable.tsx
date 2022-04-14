@@ -220,10 +220,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       year, gender
     };
 
-    const firstYearWithGrades = evalMode ? "2018/19" : "2019/20";
+    const firstYearWithGrades = evalMode ? "2018/9" : "2019/20";
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-    const updatedParams = (params.year == "All") || (params.year <= firstYearWithGrades) ? { //(18/19- we only have high majors)
+    const updatedParams = (params.year == "All") || (params.year <= firstYearWithGrades) ? { //(18/9- we only have high majors)
       ...params,
       year: ParamDefaults.defaultLeaderboardYear
     } : (evalMode ? {
@@ -405,6 +405,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const override = pxResults.unpausedOverrides[triple.key];
 
+      // (In "in-season mode" always put added players in the adjusted column)
+      const isAddedPlayer = !offSeasonMode && otherPlayerCache[triple.key];
+
       const isFiltered = disabledPlayers[triple.key] || triple.isOnlyActualResults; //(TODO: display some of these fields but with different formatting?)
 
       const hasEditPage = allEditOpen || editOpen[triple.key];
@@ -450,9 +453,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const tableEl = {
         title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{playerLink}</span>,
-        actual_mpg: (evalMode && triple.actualResults) ? { 
+        actual_mpg: (evalMode && triple.actualResults) ? 
+        { 
           value: (triple.actualResults.off_team_poss_pct?.value || 0)*40,
-        } : undefined,
+        } : (
+          offSeasonMode ? undefined : { value: (triple.orig.off_team_poss_pct?.value || 0)*40, }
+        ),
         mpg: isFiltered ? undefined : { 
           value: (triple.ok.off_team_poss_pct?.value || 0)*40,
           extraInfo: _.isNil(override?.mins) ? undefined : "Overridden, see Player Editor tab"
@@ -469,18 +475,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
         // In in-season mode, it's the adjusted if different
         good_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : (origNotEqualOk ? { value: okNet } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : ((origNotEqualOk || isAddedPlayer) ? { value: okNet } : undefined)),
         good_off: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : (origNotEqualOk ? { value: okOff } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : ((origNotEqualOk || isAddedPlayer) ? { value: okOff } : undefined)),
         good_def: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : (origNotEqualOk ? { value: okDef } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : ((origNotEqualOk || isAddedPlayer) ? { value: okDef } : undefined)),
 
         // In in-season mode, it's the original if different
-        ok_net: isFiltered ? undefined : 
+        ok_net: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
           offSeasonMode ? { value: okNet }: { value: origNet },
-        ok_off: isFiltered ? undefined : 
+        ok_off: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
           offSeasonMode ? { value: okOff, ...extraInfoOffObj } : { value: origOff },
-        ok_def: isFiltered ? undefined : 
+        ok_def: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
           offSeasonMode ? { value: okDef, ...extraInfoDefObj  } : { value: origDef },
 
         bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
@@ -632,7 +638,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], 
         [ <div/>, 12 ]
       ] : [ 
-        [ <div/>, 9 ], 
+        [ <div/>, 9 + (offSeasonMode ? 0 : 1) ], 
         [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], 
         [ <div/>, 12 ], 
       ], "small text-center"
@@ -775,13 +781,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
             [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
             [ <div/>, 2 ]
-          ] : [ 
-            [ <div/>, 9 ],  
-            [ <i><b>{offSeasonMode ? "Balanced" : `${actualResultsYear} results`}</b></i>, 4 ], [ <div/>, 1 ], 
-            [ <i>{offSeasonMode ? "Optimistic" : `Adjusted results`}</i>, 4 ], [ <div/>, 1 ], 
-            [ <i>{offSeasonMode ? "Pessimistic" : "(Unused)"}</i>, 4 ], [ <div/>, 1 ],
+          ] : (!offSeasonMode ? [
+            [ <div/>, 10 ],  
+            [ <i><b>{actualResultsYear} results</b></i>, 4 ], [ <div/>, 1 ], 
+            [ <i>Adjusted results</i>, 4 ], [ <div/>, 1 ], 
             [ <div/>, 2 ]
-          ], "small text-center"
+          ]
+           : [ 
+            [ <div/>, 9 ],  
+            [ <i><b>Balanced</b></i>, 4 ], [ <div/>, 1 ], 
+            [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
+            [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
+            [ <div/>, 2 ]
+          ]), "small text-center"
         ),
       ].concat(_.isEmpty(filteredPlayerSet) ? [] : [
         GenericTableOps.buildDataRow({
@@ -864,7 +876,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     return <GenericTable
       tableCopyId="rosterEditorTable"
-      tableFields={TeamEditorTableUtils.tableDef(evalMode)}
+      tableFields={TeamEditorTableUtils.tableDef(evalMode, offSeasonMode)}
       tableData={
         buildTeamRows(
           pxResults.actualResultsForReview, pxResults.inSeasonPlayerResultsList, pxResults.avgEff
