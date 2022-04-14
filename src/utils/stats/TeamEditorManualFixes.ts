@@ -49,6 +49,11 @@ export class TeamEditorManualFixes {
                }),
             }
          },
+         "Creighton": {
+            overrides: {
+               ...TeamEditorManualFixes.alwaysTopBench()
+            }
+         },
          "Duke": {
             leftTeam: [ "JaJohnson::", "MaHurt::", "DjSteward::", "BaJones::" ],
             overrides: {
@@ -66,14 +71,42 @@ export class TeamEditorManualFixes {
                })
             }
          },
+         "Florida St.": {
+            overrides: {
+               ...wName("Cleveland, Matthew", {
+                  pos: "WF",
+                  profile: "5*"
+               }),
+               ...wName("Warley, Jalen", {
+                  pos: "CG",
+                  profile: "4*/T40ish"
+               }),
+            }
+         },
+         "Georgetown": {
+            overrides: {
+               ...wName("Mohammed, Aminu", {
+                  pos: "WG",
+                  profile: "5*"
+               }),
+            }
+         },
          "Gonzaga": {
             leftTeam: [ "JaSuggs::", "JoAyayi::" ],
             overrides: {
                ...wName("Holmgren, Chet", {
                   pos: "PF/C",
                   profile: "5*/Lotto"
+               }),
+               ...wName("Sallis, Hunter", {
+                  pos: "CG",
+                  profile: "5*"
+               }),
+               ...wName("Hickman, Nolan", {
+                  pos: "s-PG",
+                  profile: "4*/T40ish"
                })
-            }
+             }
          },
          "Illinois": {
             leftTeam: [ "AyDosunmu::", "GiBezhanishv::" ],
@@ -92,7 +125,31 @@ export class TeamEditorManualFixes {
                ...wName("Washington Jr., TyTy", {
                   pos: "s-PG",
                   profile: "5*"
+               }),
+               ...wName("Shaedon, Sharpe", {
+                  pos: "WG",
+                  profile: "5*/Lotto"
+               }),
+               ...wName("Collins, Daimion", {
+                  pos: "PF/C",
+                  profile: "5*"
+               }),
+               ...wName("Hopkins, Bryce", {
+                  pos: "WF",
+                  profile: "4*/T40ish"
                })
+            }
+         },
+         "LSU": {
+            overrides: {
+               ...wName("Reid, Efton", {
+                  pos: "C",
+                  profile: "5*"
+               }),
+               ...wName("Williams, Justice", {
+                  pos: "WG",
+                  profile: "4*"
+               }),
             }
          },
          "Marquette": {
@@ -107,6 +164,22 @@ export class TeamEditorManualFixes {
                })
             }
          },
+         "Memphis": {
+            overrides: {
+               ...wName("Bates, Emoni", {
+                  pos: "WF",
+                  profile: "5*/Lotto"
+               }),
+               ...wName("Duran, Jalen", {
+                  pos: "C",
+                  profile: "5*/Lotto"
+               }),
+               ...wName("Minott, Josh", {
+                  pos: "WF",
+                  profile: "4*/T40ish"
+               }),
+            }
+         },
          "Michigan": {
             superSeniorsReturning: new Set([ "ElBrooks::" ]),
             leftTeam: [ "FrWagner::" ],
@@ -116,6 +189,16 @@ export class TeamEditorManualFixes {
          },
          "Michigan St.": {
             leftTeam: [ "AaHenry::" ],
+            overrides: {
+               ...wName("Christie, Max", {
+                  pos: "WG",
+                  profile: "5*"
+               }),
+               ...wName("Akins, Jaden", {
+                  pos: "s-PG",
+                  profile: "4*/T40ish"
+               }),
+            }
          },
          "Ohio St.": {
             leftTeam: [ "DuWashington::" ],
@@ -135,9 +218,37 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set([ "ChGoodwin::" ]),
             leftTeam: [ "EvMobley::" ]
          },
+         "Stanford": {
+            overrides: {
+               ...wName("Ingram, Harrison", {
+                  pos: "WF",
+                  profile: "5*"
+               }),
+            }
+         },
          "Tennessee": {
             superSeniorsReturning: new Set([ "JoFulkerson::" ]),
-            leftTeam: [ "JaSpringer::", "KeJohnson::" ]
+            leftTeam: [ "JaSpringer::", "KeJohnson::" ],
+            overrides: {
+               ...wName("Kennedy, Chandler", {
+                  pos: "WG",
+                  profile: "5*/Lotto"
+               }),
+               ...wName("Huntley-Hatfield, Brandon", {
+                  pos: "S-PF",
+                  profile: "5*"
+               }),
+               ...wName("Aidoo, Jonas", {
+                  pos: "C",
+                  profile: "4*/T40ish"
+               }),
+               ...TeamEditorManualFixes.alwaysTopBench()
+            }
+         },
+         "UConn": {
+            overrides: {
+               ...TeamEditorManualFixes.genericLoadedBench()
+            }
          },
          "Wisconsin": {
             superSeniorsReturning: new Set([ "BrDavison::" ]),
@@ -146,6 +257,7 @@ export class TeamEditorManualFixes {
       },
       "Men_2021/22": { //https://247sports.com/Season/2022-Basketball/CompositeTeamRankings/
          "Alabama": {
+            leftTeam: [ "JdDavison::", "JoShackelfor::" ],
             overrides: {
                ...wName("Miller, Brandon", {
                   profile: "5*/Lotto",
@@ -164,6 +276,9 @@ export class TeamEditorManualFixes {
                   pos: "S-PF"
                }),
             }
+         },
+         "Arizona": {
+            leftTeam: [ "BeMathurin::" ],
          },
          "Arkansas": { 
             overrides: {
@@ -185,6 +300,7 @@ export class TeamEditorManualFixes {
             }
          },
          "Auburn": {
+            leftTeam: [ "JaSmith::", "WaKessler::" ],
             overrides: {
                ...wName("Traore, Yohan", {
                   profile: "5*",
@@ -197,6 +313,7 @@ export class TeamEditorManualFixes {
             }
          },
          "Baylor": {
+            leftTeam: [ "KeBrown::" ],
             overrides: {
                ...wName("Keyonte, George", {
                   profile: "5*",
@@ -297,6 +414,9 @@ export class TeamEditorManualFixes {
                }),
             }
          },
+         "LSU": {
+            leftTeam: [ "TaEason::" ]
+         },
          "Marquette": {
             leftTeam: [ "GrElliott::" ]
          },
@@ -316,6 +436,9 @@ export class TeamEditorManualFixes {
                }),
             }
          },
+         "Nebraska": {
+            leftTeam: [ "BrMcGowens::" ]
+         },
          "North Carolina": {
             overrides: {
                ...TeamEditorManualFixes.alwaysTopBench(),
@@ -330,6 +453,7 @@ export class TeamEditorManualFixes {
             }
          },
          "Notre Dame": {
+            leftTeam: [ "BlWesley::" ],
             overrides: {
                ...wName("Starling, JJ", {
                   profile: "4*/T40ish",
@@ -372,6 +496,12 @@ export class TeamEditorManualFixes {
                }),
             }
          },
+         "Purdue": {
+            leftTeam: [ "JaIvey" ],
+         },
+         "Rutgers": {
+            leftTeam: [ "JaJones" ],
+         },
          "San Diego St.": {
             superSeniorsReturning: new Set([ "AdSeiko::" ]),
          },
@@ -390,6 +520,12 @@ export class TeamEditorManualFixes {
                   pos: "WF"
                }),
             }
+         },
+         "Stanford": {
+            leftTeam: [ "HaIngram" ],
+         },
+         "St. John's (NY)": {
+            leftTeam: [ "JuChampagnie" ],
          },
          "Syracuse": {
             leftTeam: [ "CoSwider::" ],
@@ -412,6 +548,9 @@ export class TeamEditorManualFixes {
                }),
                ...TeamEditorManualFixes.alwaysTopBench(),
             },      
+         },
+         "Tennessee": {
+            leftTeam: [ "KeChandler::" ],
          },
          "UCLA": {
             leftTeam: [ "PeWatson::" ],
