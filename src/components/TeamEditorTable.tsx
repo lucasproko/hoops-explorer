@@ -711,9 +711,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
          - getRawBenchLevel
         ) : undefined;
       // Avoid bench adjustment weirdness until user does something
-      const adjustedNetSum = (inSeasonDeltaNet > 0) ? goodRange.net : rawNetSum;
-      const adjustedOffSum = (inSeasonDeltaOff > 0) ? goodRange.off : rawOffSum;
-      const adjustedDefSum = (inSeasonDeltaDef > 0) ? goodRange.def : rawDefSum;
+      const somethingHasChanged = (inSeasonDeltaNet > 0) 
+        || !_.isEmpty(deletedPlayers) || !_.isEmpty(otherPlayerCache) || !_.isEmpty(disabledPlayers);
+      const adjustedNetSum = somethingHasChanged ? goodRange.net : rawNetSum;
+      const adjustedOffSum = somethingHasChanged ? goodRange.off : rawOffSum;
+      const adjustedDefSum = somethingHasChanged ? goodRange.def : rawDefSum;
 
       const dummyTeamOk = { //(in "in-season" mode, reports the original values)
         off_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net },
