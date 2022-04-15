@@ -188,7 +188,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     </Head>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>Team Builder <span className="badge badge-pill badge-info">ALPHA!</span></h3>
+        <h3>Off-Season Team Builder <span className="badge badge-pill badge-info">ALPHA!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">

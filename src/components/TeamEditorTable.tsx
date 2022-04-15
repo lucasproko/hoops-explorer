@@ -1144,11 +1144,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 onSelect={() => friendlyChange(() => setSuperSeniorsBack(!superSeniorsBack), true)}
               />
           <GenericTogglingMenuItem
-                text={"Off-season mode"}
-                truthVal={evalMode || offSeasonMode}
+                text={"'What If?' mode"}
+                truthVal={!offSeasonMode}
                 onSelect={() => friendlyChange(() => {
-                  if (!evalMode) setOffSeasonMode(!offSeasonMode);
-                }, !evalMode)}
+                  setOffSeasonMode(!offSeasonMode);
+                  setEvalMode(false);
+                }, true)}
               />
           <Dropdown.Divider />
           <GenericTogglingMenuItem
@@ -1191,18 +1192,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               }, true)
             },
             {
-              label: "Offseason",
-              tooltip: "In 'on-season' mode shows the current teams' statistics (useful for looking at the effect of injuries)",
-              toggled: evalMode || offSeasonMode,
+              label: "What If?",
+              tooltip: "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
+              toggled: !offSeasonMode,
               onClick: () => friendlyChange(() => {
-                if (!evalMode) {
-                  setOffSeasonMode(!offSeasonMode);
-                }
-              }, !evalMode)
+                setOffSeasonMode(!offSeasonMode);
+                setEvalMode(false);
+            }, true)
             },
             {
               label: "Review",
-              tooltip: "Compares the off-season projection against what actually happened the following year",
+              tooltip: "Compares the off-season projection against what actually happened (/is actually happening) the following year",
               toggled: evalMode,
               onClick: () => friendlyChange(() => {
                  setOffSeasonMode(true);
