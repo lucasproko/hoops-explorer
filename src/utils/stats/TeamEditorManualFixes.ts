@@ -313,7 +313,7 @@ export class TeamEditorManualFixes {
             }
          },
          "Baylor": {
-            leftTeam: [ "KeBrown::" ],
+            leftTeam: [ "KeBrown::", "JeSochan::" ],
             overrides: {
                ...wName("Keyonte, George", {
                   profile: "5*",
@@ -440,6 +440,7 @@ export class TeamEditorManualFixes {
             leftTeam: [ "BrMcGowens::" ]
          },
          "North Carolina": {
+            superSeniorsReturning: new Set([ "LeBlack::" ]),
             overrides: {
                ...TeamEditorManualFixes.alwaysTopBench(),
                ...wName("Trimble, Seth", {

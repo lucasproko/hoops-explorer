@@ -45,6 +45,7 @@ import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import TeamRosterEditor from './shared/TeamRosterEditor';
 import { TeamEditorTableUtils } from '../utils/tables/TeamEditorTableUtils';
 import { UrlRouting } from '../utils/UrlRouting';
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 // Input params/models
 
@@ -213,24 +214,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   // Team Editor specifc logic
 
+  /** The year from which we're taking the grades - other averages need to come from that season */
+  const gradeYear = (yearIn: string, evalModeIn: boolean) => {
+    const firstYearWithGrades = evalModeIn ? "2018/9" : "2019/20";
+    return ((yearIn == "All") || (yearIn <= firstYearWithGrades)) 
+        ? ParamDefaults.defaultLeaderboardYear 
+        : (!evalMode ? yearIn : LeaderboardUtils.getNextYear(yearIn));
+  };
+
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
     const params = {
-      ...startingState,
-      year, gender
+      ...startingState, gender,
+      year: gradeYear(year, evalMode)
     };
 
-    const firstYearWithGrades = evalMode ? "2018/9" : "2019/20";
-
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-    const updatedParams = (params.year == "All") || (params.year <= firstYearWithGrades) ? { //(18/9- we only have high majors)
-      ...params,
-      year: ParamDefaults.defaultLeaderboardYear
-    } : (evalMode ? {
-      ...params,
-      year: LeaderboardUtils.getNextYear(params.year) //(in review mode, use the actual grades)
-    } : params);
-    GradeTableUtils.populateDivisionStatsCache(updatedParams, statsCache => {
+    GradeTableUtils.populateDivisionStatsCache(params, statsCache => {
       setDivisionStatsCache(statsCache);
     });
   }, [ year, gender, evalMode ]);
@@ -327,12 +327,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Processing - various pxResults are used in the buildXxx functions below
 
+    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode)}`; //(use whatever year we're taking grades for)
+    const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
+
     const pxResults = TeamEditorUtils.teamBuildingPipeline(
       gender, team, year,
       dataEvent.players || [], dataEvent.transfers || [],
       offSeasonMode, evalMode,
       otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
-      superSeniorsBack, alwaysShowBench
+      superSeniorsBack, alwaysShowBench,
+      avgEff
     );
 
     ///////////////////////////////////////////////
@@ -770,7 +774,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>Team Totals</b></a>
       </OverlayTrigger> : <b>Team Totals</b>;
 
-      const actualResultsYear = (evalMode ? LeaderboardUtils.getNextYear(year) : year).substring(2);
+      const actualResultsYear = 
+        (year == "All") ? "Actual" : (evalMode ? LeaderboardUtils.getNextYear(year) : year).substring(2);
 
       const subHeaders = [ 
         GenericTableOps.buildSubHeaderRow(
@@ -808,9 +813,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
 
           // Off-season balanced; In-season: actual results
-          ok_net: !_.isNil(rawNetSum) ? { value: rawNetSum } : { value: okTotals.net },
-          ok_off: !_.isNil(rawOffSum) ? { value: rawOffSum + avgEff } : { value: okTotals.off + avgEff },
-          ok_def: !_.isNil(rawDefSum) ? { value: rawDefSum + avgEff } : { value: okTotals.def + avgEff },
+          ok_net: !_.isNil(rawNetSum) ? (rawTotalMins ? { value: rawNetSum } : undefined) : { value: okTotals.net },
+          ok_off: !_.isNil(rawOffSum) ? (rawTotalMins ? { value: rawOffSum + avgEff } : undefined) : { value: okTotals.off + avgEff },
+          ok_def: !_.isNil(rawDefSum) ? (rawTotalMins ? { value: rawDefSum + avgEff } : undefined) : { value: okTotals.def + avgEff },
           // Off-season optimistic; In-season adjusted
           good_net: dummyTeamGood.off_net,
           good_off: dummyTeamGood.off_adj_ppp,
@@ -827,9 +832,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           actual_net: teamGradesActual.off_net,
           actual_off: teamGradesActual.off_adj_ppp,
           actual_def: teamGradesActual.def_adj_ppp,
-          ok_net: teamGradesOk.off_net,
-          ok_off: teamGradesOk.off_adj_ppp,
-          ok_def: teamGradesOk.def_adj_ppp,
+          ok_net: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.off_net : undefined,
+          ok_off: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.off_adj_ppp : undefined,
+          ok_def: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.def_adj_ppp : undefined,
           good_net: teamGradesGood.off_net,
           good_off: teamGradesGood.off_adj_ppp,
           good_def: teamGradesGood.def_adj_ppp,
@@ -886,13 +891,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     />;
   }, [ dataEvent, year, team, 
       otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons,
-      allEditOpen, editOpen, evalMode ]);
+      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack ]);
 
   /////////////////////////////////////
   
   // Add players: show the player leaderboard
 
   const playerLeaderboard = React.useMemo(() => {
+
     setLboardParams(startingState);
     return <PlayerLeaderboardTable
       startingState={{
@@ -908,7 +914,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           lboardAltDataSource :
           {
             ...dataEvent, 
-            players: onlyThisYear ? 
+            players: (onlyThisYear && (year != "All"))? 
               (dataEvent.players || []).filter(p => p.year == year) : 
               (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= year) : dataEvent.players), 
             transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers?.[0] : undefined 
@@ -1256,9 +1262,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 />
               </Form.Group>
               <Form.Group as={Col} xs="4" className="mt-2">
-                <Form.Check type="switch" disabled={addNewPlayerMode}
+                <Form.Check type="switch" disabled={(year == "All") || addNewPlayerMode}
                   id="onlyThisYear"
-                  checked={onlyThisYear}
+                  checked={(year != "All") && onlyThisYear}
                   onChange={() => {
                     setTimeout(() => {
                       setReloadData(true);

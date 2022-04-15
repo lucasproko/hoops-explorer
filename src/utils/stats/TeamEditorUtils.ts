@@ -6,7 +6,6 @@ import { RatingUtils } from './RatingUtils';
 import { LeaderboardUtils, TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
-import { efficiencyAverages } from "../public-data/efficiencyAverages";
 
 /** Possibly ways we change projections */
 type DiagCodes = 
@@ -168,16 +167,27 @@ export class TeamEditorUtils {
    // Data processing  - main processing pipeline
 
    static teamBuildingPipeline(
-      gender: string, team: string, year: string,
+      gender: string, team: string, yearIn: string,
       playerList: Array<IndivStatSet>, transfers: Array<Record<string, TransferModel[]>>,
       offSeasonMode: boolean, evalMode: boolean,
       addedPlayersIn: Record<string, GoodBadOkTriple>, overridesIn: Record<string, PlayerEditModel>, 
       deletedPlayersIn: Record<string, string>, disabledPlayersIn: Record<string, boolean>,
-      superSeniorsBack: boolean, alwaysShowBench: boolean
+      superSeniorsBack: boolean, alwaysShowBench: boolean,
+      avgEff: number,
    ): TeamEditorProcessingResults {
+      const specialCase = () => { // In "year==All" mode, if 5 players are present from the same selected team, then pick that as the base year
+         const specialCaseKey = _.chain(addedPlayersIn)
+            .filter(p => p.orig.team == team).map(p => `${p.orig.year}_${p.orig.team}`).countBy().toPairs()
+            .filter(countKey => countKey[1] >= 5).value()?.[0]?.[0];
+         if (specialCaseKey) {
+            return specialCaseKey.split("_")[0];
+         } else {
+            return yearIn;
+         }
+      };
+      const year = ((yearIn == "All") && (team != "")) ? specialCase() : yearIn;
+
       const genderYearLookup = `${gender}_${year}`;
-      const avgEff = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
-    
       const teamOverrides: TeamEditorManualFixModel = offSeasonMode ?  //(the fixes only apply in off-season mode)
          (TeamEditorManualFixes.fixes()[genderYearLookup]?.[team] || {}) : {};
 
@@ -210,6 +220,9 @@ export class TeamEditorUtils {
       const inSeasonPlayerResultsList = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
          team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, transfers, undefined
       );
+      const addedPlayers = (year != yearIn) ? //(we're in special case mode)
+         _.omit(addedPlayersIn, (inSeasonPlayerResultsList || []).map(t => t.key + year)) //(key was calculated based on year not yearIn)
+            : addedPlayersIn;
 
       const candidatePlayersList = offSeasonMode ? //(to avoid having to parse the very big players array multiple times)
          rawTeamCorrectYear 
@@ -237,25 +250,26 @@ export class TeamEditorUtils {
       const unpausedOverrides: Record<string, PlayerEditModel> = 
          _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
-      const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayersIn)).concat(
+      const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayers)).concat(
          _.values(allOverrides).filter(o => o.name).map(o => { 
-         const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
-         const offAdj = (o.global_off_adj || 0);
-         const defAdj = (o.global_def_adj || 0);
-         const indivStatSet = (adj: number) => { return {
-            key: o.name,
-            posClass: o.pos,
-            off_adj_rapm: { value: offAdj + 0.5*netScoring + adj},
-            def_adj_rapm: { value: defAdj + -0.5*netScoring - adj},
-         }; };
-         return {
-            key: o.name,
-            good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
-            bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
-            ok: indivStatSet(0),
-            orig: indivStatSet(0),
-            manualProfile: o
-         } as GoodBadOkTriple;
+            const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
+            const offAdj = (o.global_off_adj || 0);
+            const defAdj = (o.global_def_adj || 0);
+            const indivStatSet = (adj: number) => { return {
+               key: o.name,
+               posClass: o.pos,
+               off_adj_rapm: { value: offAdj + 0.5*netScoring + adj},
+               def_adj_rapm: { value: defAdj + -0.5*netScoring - adj},
+               off_team_poss_pct: { value: 0 }
+            }; };
+            return {
+               key: o.name,
+               good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
+               bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
+               ok: indivStatSet(0),
+               orig: indivStatSet(0),
+               manualProfile: o
+            } as GoodBadOkTriple;
          })
       ); 
       if (evalMode) basePlayersPlusHypos.forEach(triple => {
@@ -276,7 +290,7 @@ export class TeamEditorUtils {
       const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
 
       const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
-         _.omit(addedPlayersIn, _.keys(disabledPlayersIn)) // have added transfers in (and they aren't disabled)
+         _.omit(addedPlayers, _.keys(disabledPlayersIn)) // have added transfers in (and they aren't disabled)
       ) || !_.isEmpty(allDeletedPlayers); //(or have deleted players)
 
       TeamEditorUtils.calcAndInjectYearlyImprovement(
@@ -370,6 +384,11 @@ export class TeamEditorUtils {
       offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, mutableExcludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
    ): GoodBadOkTriple[] {
+      if ((year == "All") && !transferYearOverride) { // There's no benefit in showing N seasons of a given team, easier just to add them manually
+         //TODO: once we have a set of "addedPlayers" set up, can infer year from the most common, eg if there's 5+ from the same year?
+         return [];
+      }
+
       const transfersThisYear = transfers[0] || {};
       const transfersLastYear = transfers[1] || {};
       const transfersOnly = transferYearOverride != undefined;
@@ -379,7 +398,7 @@ export class TeamEditorUtils {
             p.year : 
             (transferYearOverride && (year != transferYearOverride)) ? transferYearOverride : ""; 
 
-         const isRightYear = (year == "All") || (transferYearOverride ? (p.year == transferYearOverride) : (p.year == year));
+         const isRightYear = (transferYearOverride ? (p.year == transferYearOverride) : (p.year == year));
 
          const code = (p.code || "");
          const dupCode = code + yearAdj;
@@ -995,15 +1014,25 @@ export class TeamEditorUtils {
          p.bad.def_team_poss_pct = adjBaseMins;
       };
 
+      const somethingChangedBase = offSeasonMode ||
+         !_.isEmpty(disabledPlayers) ||
+         hasDeletedPlayersOrTransfersIn; // has transfers in or deleted players
+
+      // In "in-season" mode, we try to leep the original minutes, but once the user starts editing all bets are off
+      const somethingChanged = somethingChangedBase || // has transfers in or deleted players
+         _.some(overrides, o => !o.pause); // has any overrides at all
+
+
       // First pass - calc minutes purely based on tier:
       filteredRoster.forEach(p => {
          //(TODO: calc mins differently per tier?)
          const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
-         const calcMins = (offSeasonMode || hasMinsOverride); //(since overrides are enforced using min/max)
+
+         const calcMins = (somethingChanged || hasMinsOverride); //(since overrides are enforced using min/max)
          const baseMins = calcMins ?
             TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ])
             :
-            (p.ok.off_team_poss_pct?.value || 0) //(in-season mode, just described minutes played)
+            (p.orig.off_team_poss_pct?.value || 0) //(in-season mode, just described minutes played)
             ;
 
          if (debugMode) { // Diagnostics
@@ -1019,17 +1048,15 @@ export class TeamEditorUtils {
       const allThreeBenchPosHaveOverriddenMins =
          _.chain(overrides).pick(
             [ TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ]
-         ).filter(o => !_.isNil(o.mins)).size().value() == 3;
+         ).filter(o => !o.pause && !_.isNil(o.mins)).size().value() == 3;
 
+      // In "in-season" mode, until the user changes something we leave the minutes along
       const benchMinOverrides =_ .chain(overrides).pick( // add bench minutes override
          [  TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ]
-      ).values().sumBy(o => (o.mins || 0)/40).value();
+      ).values().filter(o => !o.pause).sumBy(o => (o.mins || 0)/40).value();
       
-      const needToAdjBaseMinutes = 
-            offSeasonMode || //off season mode
+      const needToAdjBaseMinutes = somethingChangedBase ||
                (benchMinOverrides > 0) ||
-               !_.isEmpty(disabledPlayers) ||
-               hasDeletedPlayersOrTransfersIn || // has transfers in or deleted players
                (_.some(filteredRoster, p => !_.isNil(overrides[p.key]?.mins))) // has overrides
           
       // Always reserve a few minutes for the deep bench
@@ -1354,7 +1381,10 @@ export class TeamEditorUtils {
 
    /** Gets the bench level scoring depending on the quality of the team */
    static getBenchLevelScoring(team: string, year: string) {
-      const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
+      const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) 
+         || AvailableTeams.byName[team]?.[0] 
+         || { category: "unknown"};
+
       const getBenchLevel = () => {
          if (team == "Gonzaga") { // Treat as high major
             return TeamEditorUtils.getBenchLevelScoringByProfile("3.5*/T150ish");            

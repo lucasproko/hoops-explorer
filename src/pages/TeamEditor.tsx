@@ -59,6 +59,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
   const [ currTier, setCurrTier ] = useState("");
+  const [ currEvalMode, setCurrEvalMode ] = useState(undefined as undefined | boolean);
 
   // Game filter
 
@@ -138,16 +139,18 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const tier = (paramObj.tier || "All");
+    const evalMode = (paramObj.evalMode || false);
 
     const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
     const prevYear = LeaderboardUtils.getPrevYear(fullYear)
     const transferYearPrev = (LeaderboardUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
 
-    if ((fullYear != currYear) || (gender != currGender) || (tier == currTier)) { // Only need to do this if the data source has changed
+    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (evalMode != currEvalMode)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
       setCurrTier(tier);
+      setCurrEvalMode(evalMode);
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
         "all", gender, fullYear, tier, transferYears, 
