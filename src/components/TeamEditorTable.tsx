@@ -60,7 +60,8 @@ export type TeamEditorStatsModel = {
 type Props = {
   startingState: TeamEditorParams,
   dataEvent: TeamEditorStatsModel,
-  onChangeState: (newParams: TeamEditorParams) => void
+  onChangeState: (newParams: TeamEditorParams) => void,
+  overrideGrades?: DivisionStatistics
 }
 
 
@@ -81,7 +82,7 @@ const reduceNumberSize = (k: string, v: any) => {
 
 // Functional component
 
-const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, overrideGrades}) => {
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
@@ -149,7 +150,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   /** Set this to be true on expensive operations */
   const [ loadingOverride, setLoadingOverride ] = useState(false);
 
-  const [ addNewPlayerMode, setAddNewPlayerMode ] = useState(false); //(can't override this from URL)
+  const [ addNewPlayerMode, setAddNewPlayerMode ] = useState(overrideGrades != undefined); //(can't override this from URL)
 
   useEffect(() => { // Add and remove clipboard listener
     initClipboard();
@@ -1038,7 +1039,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   }
 
   return <Container>
-    <Form.Group as={Row}>
+    {overrideGrades ? null : <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(gender) }
@@ -1167,7 +1168,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             />
         </GenericTogglingMenu>
       </Form.Group>
-    </Form.Group>
+    </Form.Group>}
     <Row>
       <Col xs={12} sm={12} md={12} lg={8}>
         <ToggleButtonGroup items={([
@@ -1190,7 +1191,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               onClick: () => friendlyChange(() => {
                 setSuperSeniorsBack(!superSeniorsBack);
               }, true)
-            },
+            }
+          ].concat(overrideGrades ? [] : [
             {
               label: "What If?",
               tooltip: "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
@@ -1209,7 +1211,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                  setEvalMode(!evalMode);
                 }, true)
             },
-        ])}
+        ]))}
         />
       </Col>
     </Row>

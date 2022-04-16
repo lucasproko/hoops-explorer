@@ -270,7 +270,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       GradeUtils.buildAndInjectDivisionStatsLUT(mutableDivisionStats);
 
       const tableDefs = {
-         title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 12),
+         title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 10),
          "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
          "sep0": GenericTableOps.addColSeparator(),
 
@@ -352,6 +352,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                   onChangeState={(newState) => {
                      //TODO: update some weird global state
                   }}
+                  overrideGrades={mutableDivisionStats}
                />
             )
          ] : []);
@@ -449,7 +450,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             <LoadingOverlay
                active={needToLoadQuery()}
                spinner
-               text={"Loading Team Editor..."}
+               text={"Loading Offseason Leaderboard..."}
             >
                {table}
             </LoadingOverlay>
