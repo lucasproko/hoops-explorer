@@ -166,7 +166,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const table = React.useMemo(() => {
       setLoadingOverride(false);
 
-      const avgEff = efficiencyAverages.fallback;
+      const avgEff = efficiencyAverages[`${gender}_${year}`] || efficiencyAverages.fallback;
          
       const playerPartition = _.transform(dataEvent.players || [], (acc, p) => {
          const teams = [ (p.team || "") ].concat(

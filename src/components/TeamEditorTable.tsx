@@ -892,7 +892,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     />;
   }, [ dataEvent, year, team, 
       otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons,
-      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack ]);
+      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack, alwaysShowBench ]);
 
   /////////////////////////////////////
   
