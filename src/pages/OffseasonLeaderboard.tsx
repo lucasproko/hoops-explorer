@@ -18,8 +18,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, TeamEditorParams, ParamDefaults } from '../utils/FilterModels';
-import TeamEditorTable, { TeamEditorStatsModel } from '../components/TeamEditorTable';
+import { ParamPrefixes, OffseasonLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
+import { TeamEditorStatsModel } from '../components/TeamEditorTable';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
@@ -60,68 +60,27 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
   const [ currTier, setCurrTier ] = useState("");
-  const [ currEvalMode, setCurrEvalMode ] = useState(undefined as undefined | boolean);
 
   // Game filter
 
-  function getRootUrl(params: TeamEditorParams) {
+  function getRootUrl(params: OffseasonLeaderboardParams) {
     return UrlRouting.getOffseasonLeaderboard(params);
   }
 
-  const [ teamEditorParams, setTeamEditorParams ] = useState(
-    UrlRouting.removedSavedKeys(allParams) as TeamEditorParams
+  const [ offseasonLeaderboardParams, setOffseasonLeaderboardParams ] = useState(
+    UrlRouting.removedSavedKeys(allParams) as OffseasonLeaderboardParams
   )
-  const teamEditorParamsRef = useRef<TeamEditorParams>();
-  teamEditorParamsRef.current = teamEditorParams;
+  const offseasonLeaderboardParamsRef = useRef<OffseasonLeaderboardParams>();
+  offseasonLeaderboardParamsRef.current = offseasonLeaderboardParams;
 
-  const onTeamEditorParamsChange = (rawParams: TeamEditorParams) => {
+  const onOffseasonLeaderboardParamsChange = (rawParams: OffseasonLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
 
-      // Team Editor params
+      (!rawParams.team) ? [ "team" ] : [],
+      (!rawParams.confs) ? [ "confs" ] : [],
 
-      (_.isNil(rawParams.offSeason) || rawParams.offSeason) ? [ 'offSeason' ] : [],
-      (!rawParams.showPrevSeasons) ? [ 'showPrevSeasons' ] : [],
-      (!rawParams.alwaysShowBench)? [  'alwaysShowBench' ] : [],
-      (!rawParams.superSeniorsBack)? [  'superSeniorsBack' ] : [],
-
-      (!rawParams.allEditOpen) ? [ 'allEditOpen' ] : [], 
-        //(currently not used anywhere - will leave for now and decided whether to remove after more play testing)
-
-      (!rawParams.deletedPlayers) ? [ 'deletedPlayers' ] : [],
-      (!rawParams.disabledPlayers) ? [ 'disabledPlayers' ] : [],
-      (!rawParams.addedPlayers) ? [ 'addedPlayers' ] : [],
-      (!rawParams.editOpen) ? [ 'editOpen' ] : [],
-      (!rawParams.overrides) ? [ 'overrides' ] : [],
-
-      // Controls which players are visible in the "Add To Players"
-      (_.isNil(rawParams.showOnlyCurrentYear) || rawParams.showOnlyCurrentYear) ? [ 'showOnlyCurrentYear' ] : [],
-      (_.isNil(rawParams.showOnlyTransfers) || rawParams.showOnlyTransfers) ? [ 'showOnlyTransfers' ] : [],
-
-      // "Add players from leaderboard" params
-
-      (!rawParams.filter) ? [ 'filter' ] : [],
-      (!rawParams.advancedFilter) ? [ 'advancedFilter' ] : [],
-      (!rawParams.conf) ? [ 'conf' ] : [], //(unused now)
-      (!rawParams.posClasses) ? [ 'posClasses' ] : [],
-
-      //These aren't plumbed in:
-      (!rawParams.t100) ? [ 't100' ] : [], //(TODO these 2 don't work)
-      (!rawParams.confOnly) ? [ 'confOnly' ] : [],
-      
-      (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],
-      (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
-      (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],
-
-      (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
-
-      (rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos) ? [ 'minPoss' ] : [],
-      (rawParams.maxTableSize == ParamDefaults.defaultPlayerLboardMaxTableSize) ? [ 'maxTableSize' ] : [],
-      (rawParams.sortBy == ParamDefaults.defaultPlayerLboardSortBy(
-        _.isNil(rawParams.useRapm) ? ParamDefaults.defaultPlayerLboardUseRapm : rawParams.useRapm,
-        _.isNil(rawParams.factorMins) ? ParamDefaults.defaultPlayerLboardFactorMins : rawParams.factorMins
-      )) ? [ 'sortBy' ] : []
     ]));
-    if (!_.isEqual(params, teamEditorParamsRef.current)) { //(to avoid recursion)
+    if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -130,32 +89,29 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       // (need to figure out how to detect inter-page)
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
-      setTeamEditorParams(params); // (to ensure the new params are included in links)
+      setOffseasonLeaderboardParams(params); // (to ensure the new params are included in links)
     }
   }
 
   useEffect(() => { // Process data selection change
-    const paramObj = teamEditorParams;
+    const paramObj = offseasonLeaderboardParams;
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const tier = (paramObj.tier || "All");
-    const evalMode = (paramObj.evalMode || false);
 
     const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
     const prevYear = LeaderboardUtils.getPrevYear(fullYear)
     const transferYearPrev = (LeaderboardUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
 
-    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (evalMode != currEvalMode)) { // Only need to do this if the data source has changed
+    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
       setCurrTier(tier);
-      setCurrEvalMode(evalMode);
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferYears, 
-        paramObj.evalMode ? [ LeaderboardUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
+        "all", gender, fullYear, tier, transferYears, [ prevYear ]
       );
 
       fetchAll.then((jsonsIn: any[]) => {
@@ -168,16 +124,16 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
         });
       });
     }
-  }, [ teamEditorParams ]);
+  }, [ offseasonLeaderboardParams ]);
 
   // View
 
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <OffSeasonLeaderboardTable
-      startingState={teamEditorParamsRef.current || {}}
+      startingState={offseasonLeaderboardParamsRef.current || {}}
       dataEvent={dataSubEvent}
-      onChangeState={onTeamEditorParamsChange}
+      onChangeState={onOffseasonLeaderboardParamsChange}
     />
   }, [dataSubEvent]);
 
@@ -201,7 +157,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     <Row className="mt-3">
       {table}
     </Row>
-    <Footer dateOverride={dataSubEvent.lastUpdated} year={teamEditorParams.year} gender={teamEditorParams.gender} server={server}/>
+    <Footer dateOverride={dataSubEvent.lastUpdated} year={offseasonLeaderboardParams.year} gender={offseasonLeaderboardParams.gender} server={server}/>
   </Container>;
 }
 export default OffseasonLeaderboardPage;

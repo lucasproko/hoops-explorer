@@ -34,7 +34,7 @@ import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from "./PlayerLea
 import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
 
 // Util imports
-import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
+import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
@@ -57,9 +57,9 @@ const queryFiltersName = "From URL";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
 
 type Props = {
-   startingState: TeamEditorParams,
+   startingState: OffseasonLeaderboardParams,
    dataEvent: TeamEditorStatsModel,
-   onChangeState: (newParams: TeamEditorParams) => void
+   onChangeState: (newParams: OffseasonLeaderboardParams) => void
 }
 
 const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
@@ -76,10 +76,50 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
    // Data source
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
-   const [confs, setConfs] = useState(startingState.conf || "");
-   const [year, setYear] = useState(startingState.year || ParamDefaults.defaultLeaderboardYear);
-   const [gender, setGender] = useState(startingState.gender || ParamDefaults.defaultGender);
-   const [team,  setTeam] = useState("");
+   const [confs, setConfs] = useState(startingState.confs || "");
+   const [year, setYear] = useState("2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
+   const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
+   const [team,  setTeam] = useState(startingState.team || "");
+
+   /** Converts a list of params to their team's key/value params  */
+   const buildOverrides = (inOverrides: Record<string, string>) => {
+      return _.transform(inOverrides, (acc, param, key) => {
+         const splitKey = key.split("__");
+         const inTeam = splitKey[0];
+         const inParamKey = splitKey?.[1];
+         if (inParamKey) {
+            if (!acc[inTeam]) {
+               acc[inTeam] = {};
+            }
+            // Supported overrides: superSeniorsBack, deletedPlayers, disabledPlayers, addedPlayers, overrides
+            if (inParamKey == "deletedPlayers") {
+               acc[inTeam]!.deletedPlayers = param;
+            } else if (inParamKey == "disabledPlayers") {
+               acc[inTeam]!.disabledPlayers = param;
+            } else if (inParamKey == "addedPlayers") {
+               acc[inTeam]!.addedPlayers = param;
+            } else if (inParamKey == "overrides") {
+               acc[inTeam]!.overrides = param;
+            } else if (inParamKey == "superSeniorsBack") {
+               acc[inTeam]!.superSeniorsBack = (param == "true");
+            }
+         }
+      }, {} as Record<string, TeamEditorParams>);
+   }
+   const [ teamOverrides, setTeamOverrides ] = useState(
+      buildOverrides(startingState) as Record<string, TeamEditorParams>
+   );
+
+   /** When the params change */
+   useEffect(() => {
+      onChangeState(_.merge({
+         team, confs
+      }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
+         return _.map(teamEdit, 
+            (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
+         );
+      }).fromPairs().value()));
+   }, [ team, confs, teamOverrides ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -174,6 +214,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                return ((txfers || {})[p.code || ""] || [])
                   .flatMap(txfer => txfer.t ? [ txfer.t, txfer.f ] : [ txfer.f ]);
             })      
+         ).concat( // Add all players that might be added to this team
+            _.flatMap(teamOverrides,
+               (teamEdit, teamName) => ((teamEdit.addedPlayers || "").indexOf((p.code || "") + ":") >= 0) ? [ teamName ] : []
+            )
          );
          teams.forEach(team => {
             if (!acc[team]) {
@@ -202,25 +246,29 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       const teamRanks = _.chain(teamList).map(t => {
 
+         const maybeOverride = teamOverrides[t] || {};
+
+         const addedPlayers = maybeOverride.addedPlayers ? TeamEditorUtils.fillInAddedPlayers(
+            team, year,
+            maybeOverride.addedPlayers || "", playerPartition[t] || [], dataEvent.transfers?.[1] || {},
+            false, maybeOverride.superSeniorsBack || false
+         ) : {};
+         const overrides = maybeOverride.overrides ? TeamEditorUtils.urlParamstoPlayerEditModels(maybeOverride.overrides) : {};
+         const disabledPlayers = _.chain((maybeOverride.disabledPlayers || "").split(";")).map(p => [ p, true ]).fromPairs().value();
+         const deletedPlayers = _.chain((maybeOverride.deletedPlayers || "").split(";")).map(p => [ p, "unknown" ]).fromPairs().value();
+ 
          const pxResults = TeamEditorUtils.teamBuildingPipeline(
             gender, t, year,
             playerPartition[t] || [], dataEvent.transfers || [],
             true, false,
-            {}, {}, {}, {},
-            false, false,
+            addedPlayers, overrides, deletedPlayers, disabledPlayers,
+            maybeOverride.superSeniorsBack || false, false,
             avgEff
          );
-      
+         const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
+         
          const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
-            const off = _.sumBy(triples, triple => {
-               return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(triple[range] || {});
-            }) + adj;
-            const def = _.sumBy(triples, triple => {
-               return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(triple[range] || {});
-            }) - adj;
-            const net = _.sumBy(triples, triple => {
-               return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
-            }) + 2*adj;
+            const { off, def, net } = TeamEditorUtils.buildTotals(triples, range);
 
             const netInfo = _.transform(triples, (acc, triple) => { 
                const netEff = TeamEditorUtils.getNet(triple.ok || {});
@@ -237,7 +285,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             }, { numSuperstars: 0, numStars: 0, numStarters: 0, numRotation: 0});
             return { off, def, net, ...netInfo };
          };
-         const okTotals = buildTotals(pxResults.basePlayersPlusHypos, "ok");
+         const okTotals = buildTotals(filteredPlayerSet, "ok");
          const goodNet = _.sumBy(pxResults.basePlayersPlusHypos, triple => {
             return (triple.good.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple.good);
          });
@@ -320,7 +368,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const badNet = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.badNet } }, [ "net" ], true);
 
          const teamParams = {
-            year, gender, team: t.team
+            year, gender, team: t.team,
+            ...(teamOverrides[t.team] || {})
          };
          const teamTooltip = (
             <Tooltip id={`teamTooltip`}>Open new tab with the detailed off-season predictions for this team</Tooltip>
@@ -362,11 +411,20 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             GenericTableOps.buildTextRow(
                <TeamEditorTable
                   startingState={{
-                     team, year, gender
+                     team, year, gender,
+                     ...(teamOverrides[team] || {})
                   }}
                   dataEvent={dataEvent}
                   onChangeState={(newState) => {
-                     //TODO: update some weird global state
+                     const newOverrides = _.cloneDeep(teamOverrides);
+                     if (_.isEmpty(newState)) {
+                        delete newOverrides[team];
+                     } else {
+                        newOverrides[team] = newState;
+                     }
+                     friendlyChange(() => {
+                        setTeamOverrides(newOverrides);
+                     }, true);
                   }}
                   overrideGrades={mutableDivisionStats}
                />
@@ -381,7 +439,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          cellTooltipMode={undefined}
       />;
    }, [
-      gender, year, confs, team, dataEvent
+      gender, year, confs, team, dataEvent, teamOverrides
    ]);
 
    // 3] View
@@ -411,28 +469,28 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       <Form.Group as={Row}>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 12}}>
             <Select
-               value={stringToOption(gender)}
-               options={["Men", "Women"].map(
-               (gender) => stringToOption(gender)
+               value={stringToOption("Men")}
+               options={["Men"].map(
+                  (gender) => stringToOption(gender)
                )}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
-                  setGender((option as any).value);
+                  /* currently only support Men */
                }}}
             />
          </Col>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
-               value={stringToOption(year)}
+               value={stringToOption("2022/23")}
                options={
                (
-                  ["2021/22"]
+                  ["2022/23"]
                ).concat(tier == "High" ? ["Extra"] : []).map(
                   (r) => stringToOption(r)
                )}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
-                  setYear((option as any).value);
+                  /* currently only support 2022/23 */
                }}}
             />
          </Col>
@@ -445,15 +503,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                components={{ MultiValueContainer: ConferenceValueContainer }}
                value={getCurrentConfsOrPlaceholder()}
                options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams))
-               .concat([ nonHighMajorConfsName, queryFiltersName ]).map(
-               (r) => stringToOption(r)
+                  .concat([ nonHighMajorConfsName, queryFiltersName ]).map(
+                     (r) => stringToOption(r)
                )}
                onChange={(optionsIn) => {
-               const options = optionsIn as Array<any>;
-               const selection = (options || [])
-                  .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
-               const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-               friendlyChange(() => setConfs(confStr), confs != confStr);
+                  const options = optionsIn as Array<any>;
+                  const selection = (options || [])
+                     .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
+                  const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
+                  friendlyChange(() => setConfs(confStr), confs != confStr);
                }}
             />
          </Col>

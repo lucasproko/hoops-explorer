@@ -378,6 +378,35 @@ export class TeamEditorUtils {
    //TODO: is there some way I can take walk-ons out the equation but use the roster info to list "guys that don't play much"
    // (ignoring anyone who isn't a Fr, will get rid of some of them, but not Fr walk-ons.... really need the *s)
 
+   /** Handy utility to fill in all the details for addedPlayers */
+   static fillInAddedPlayers(
+      team: string, year: string,
+      addedPlayersParam: string, playerList: IndivStatSet[], prevYearTransfers: Record<string, TransferModel[]>,
+      offSeasonMode: boolean, superSeniorsBack: boolean
+   ): Record<string, GoodBadOkTriple> {
+      const playerTeamYear = (key: string) => {
+        const frags = key.split(":");
+        return [ frags[0], frags[1] || team, frags[2] || year ] as [ string, string, string ];
+      };
+      const keyList = addedPlayersParam.split(";");
+      const codeSet = new Set(keyList.map(k => playerTeamYear(k)[0]));
+      const maybeMatchingPlayers = _.filter(playerList, p => codeSet.has(p.code || "") && ((p.year || "") <= year));
+      const maybeMatchingPlayersByCode = _.groupBy(maybeMatchingPlayers, p => p.code);
+
+      const firstAddedPlayers = _.chain(keyList).flatMap(key => {
+        const [ code, txferTeam, txferYear ] = playerTeamYear(key);
+
+        return TeamEditorUtils.getBasePlayers(
+          team, year, maybeMatchingPlayersByCode[code] || [], 
+          offSeasonMode, superSeniorsBack, undefined, {}, 
+          // Build a transfer set explicitly for this player
+          [ { [code]: [ { f: txferTeam, t: team } ] } , prevYearTransfers ], txferYear
+        );
+      }).map(triple => [ triple.key, triple ]).fromPairs().value();    
+
+      return firstAddedPlayers;
+   };
+
    /** Pulls out the players from the designated team */
    static getBasePlayers(
       team: string, year: string, players: IndivStatSet[], 
@@ -1455,6 +1484,28 @@ export class TeamEditorUtils {
       }
       return getAvgLevel();
    }
+
+   /** Builds the list of players to calculate the actual season prediction over */
+   static readonly getFilteredPlayersWithBench = (pxResults: TeamEditorProcessingResults, disabledPlayers: Record<string, boolean>) => {
+      return pxResults.basePlayersPlusHypos.filter(triple => !disabledPlayers[triple.key])
+        .concat(pxResults.maybeBenchGuard ? [ pxResults.maybeBenchGuard ] : [])
+        .concat(pxResults.maybeBenchWing ? [ pxResults.maybeBenchWing ] : [])
+        .concat(pxResults.maybeBenchBig ? [ pxResults.maybeBenchBig ] : []);
+    }
+
+   /** Sums the given projection in a set of projections for the team */
+   static readonly buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
+      const off = _.sumBy(triples, triple => {
+        return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(triple[range] || {});
+      }) + adj;
+      const def = _.sumBy(triples, triple => {
+        return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(triple[range] || {});
+      }) - adj;
+      const net = _.sumBy(triples, triple => {
+        return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
+      }) + 2*adj;
+      return { off, def, net };
+   };
 
    /* Quick accessor for offensive contribution of player */
    static getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;

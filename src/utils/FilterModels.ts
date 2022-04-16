@@ -163,6 +163,11 @@ export type TeamEditorParams = {
   allEditOpen?: string, //(defaults to undefined, all edit pages open to the tab if true)
 };
 
+export type OffseasonLeaderboardParams = {
+  team?: string,
+  confs?: string,
+} & Record<string, string>;
+
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {

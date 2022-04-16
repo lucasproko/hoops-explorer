@@ -5,7 +5,7 @@ import _ from "lodash";
 import { QueryUtils } from "./QueryUtils";
 
 // Utils
-import { GameFilterParams, LineupFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, TeamEditorParams, TeamReportFilterParams } from '../utils/FilterModels';
+import { GameFilterParams, LineupFilterParams, LineupLeaderboardParams, OffseasonLeaderboardParams, PlayerLeaderboardParams, TeamEditorParams, TeamReportFilterParams } from '../utils/FilterModels';
 
 /** Url routing utils */
 export class UrlRouting {
@@ -74,7 +74,7 @@ export class UrlRouting {
     })}`;
   }
   /** The URL to use to view the "Tem Editor" page */
-  static getOffseasonLeaderboard(params: TeamEditorParams) {
+  static getOffseasonLeaderboard(params: OffseasonLeaderboardParams) {
     return `/OffseasonLeaderboard?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
     })}`;

@@ -663,9 +663,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -704,6 +704,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -4879,9 +4880,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -4920,6 +4921,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -8835,9 +8837,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -8876,6 +8878,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -13825,9 +13828,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -13866,6 +13869,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -18388,9 +18392,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -18429,6 +18433,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -22678,9 +22683,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -22719,6 +22724,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -26361,9 +26367,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -26402,6 +26408,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -30547,9 +30554,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -30588,6 +30595,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"
@@ -34475,9 +34483,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
   >
     <Col
       lg={8}
-      md={12}
-      sm={12}
-      xs={12}
+      md={10}
+      sm={10}
+      xs={8}
     >
       <ToggleButtonGroup
         items={
@@ -34516,6 +34524,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
         }
       />
     </Col>
+    <Col />
   </Row>
   <Row
     className="mt-2"

@@ -35,7 +35,7 @@ import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableU
 
 // Util imports
 import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
-import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
+import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils, TeamEditorProcessingResults } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
@@ -169,29 +169,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
 
-    const newState = {
-      ...startingState,
-      ...lboardParams,
-      gender: gender, year: year, team: team,
-      // Editor specific settings for team editor itself
-      // there's some complexity here because we can't update this until we've used them to build the caches
-      addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
-      deletedPlayers: _.isNil(uiDeletedPlayersIn) ? _.keys(deletedPlayers).join(";") : uiDeletedPlayersIn,
-      disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
-      overrides: _.isNil(uiOverridesIn) ? 
-        _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
-      editOpen: _.isNil(editOpenIn) ? _.map(editOpen, (value, key) => `${key}|${value}`).join(";") : editOpenIn,
-      // Editor specific settings for transfer view
-      showOnlyTransfers: onlyTransfers,
-      showOnlyCurrentYear: onlyThisYear,
-      offSeason: offSeasonMode,
-      showPrevSeasons: showPrevSeasons,
-      alwaysShowBench: alwaysShowBench,
-      superSeniorsBack: superSeniorsBack,
-      evalMode: evalMode,
-      allEditOpen: allEditOpen
-    };
-    onChangeState(newState);
+    if (!overrideGrades) { //(in override mode, need to push a button explicitly)
+      const newState = {
+        ...startingState,
+        ...lboardParams,
+        gender: gender, year: year, team: team,
+        // Editor specific settings for team editor itself
+        // there's some complexity here because we can't update this until we've used them to build the caches
+        addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
+        deletedPlayers: _.isNil(uiDeletedPlayersIn) ? _.keys(deletedPlayers).join(";") : uiDeletedPlayersIn,
+        disabledPlayers: _.isNil(disabledPlayersIn) ? _.keys(disabledPlayers).join(";") : disabledPlayersIn,
+        overrides: _.isNil(uiOverridesIn) ? 
+          _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
+        editOpen: _.isNil(editOpenIn) ? _.map(editOpen, (value, key) => `${key}|${value}`).join(";") : editOpenIn,
+        // Editor specific settings for transfer view
+        showOnlyTransfers: onlyTransfers,
+        showOnlyCurrentYear: onlyThisYear,
+        offSeason: offSeasonMode,
+        showPrevSeasons: showPrevSeasons,
+        alwaysShowBench: alwaysShowBench,
+        superSeniorsBack: superSeniorsBack,
+        evalMode: evalMode,
+        allEditOpen: allEditOpen
+      };
+      onChangeState(newState);
+    }
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
@@ -289,26 +291,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       // This is the tricky one:
       if (startingState.addedPlayers && _.isEmpty(otherPlayerCache)) {
 
-        const playerTeamYear = (key: string) => {
-          const frags = key.split(":");
-          return [ frags[0], frags[1] || team, frags[2] || year ] as [ string, string, string ];
-        };
-        const keyList = (startingState.addedPlayers || "").split(";");
-        const codeSet = new Set(keyList.map(k => playerTeamYear(k)[0]));
-        const maybeMatchingPlayers = _.filter(dataEvent.players || [], p => codeSet.has(p.code || "") && ((p.year || "") <= year));
-        const maybeMatchingPlayersByCode = _.groupBy(maybeMatchingPlayers, p => p.code);
-
-        const firstAddedPlayers = _.chain(keyList).flatMap(key => {
-          const [ code, txferTeam, txferYear ] = playerTeamYear(key);
-
-          return TeamEditorUtils.getBasePlayers(
-            team, year, maybeMatchingPlayersByCode[code] || [], 
-            offSeasonMode, superSeniorsBack, undefined, {}, 
-            // Build a transfer set explicitly for this player
-            [ { [code]: [ { f: txferTeam, t: team } ] } , dataEvent.transfers?.[1] || {} ], txferYear
-          );
-        }).map(triple => [ triple.key, triple ]).fromPairs().value();  
-
+        const firstAddedPlayers = TeamEditorUtils.fillInAddedPlayers(
+          team, year,
+          startingState.addedPlayers || "", dataEvent.players || [], dataEvent.transfers?.[1] || {},
+          offSeasonMode, superSeniorsBack
+        );
         setOtherPlayerCache(firstAddedPlayers);
       }
 
@@ -635,7 +622,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           ), GenericTableOps.buildRowSeparator() ] : []
       )
     };
-
     const buildPosHeaderRow = (posName: string, pct: number) => GenericTableOps.buildSubHeaderRow(
       evalMode ? [
         [ <div/>, 6 ], 
@@ -657,16 +643,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       actualResultsForReview: GoodBadOkTriple[], inSeasonPlayerResultsList: GoodBadOkTriple[] | undefined,
       avgEff: number
     ) => {
-      /** (Util to add the bench to a collection of players) */
-      const addBench = (from: GoodBadOkTriple[]) => {
-        return from
-          .concat(maybeBenchGuard ? [ maybeBenchGuard ] : [])
-          .concat(maybeBenchWing ? [ maybeBenchWing ] : [])
-          .concat(maybeBenchBig ? [ maybeBenchBig ] : [])
-      };
-      const filteredPlayerSet = addBench(
-        pxResults.basePlayersPlusHypos.filter(triple => !disabledPlayers[triple.key])
-      );
+      const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
 
       //(Diagnostic - will display if it's <0)
       const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
@@ -674,24 +651,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const finalActualEffAdj = totalActualMins ? 
         5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
 
-      const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
-        const off = _.sumBy(triples, triple => {
-          return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(triple[range] || {});
-        }) + adj;
-        const def = _.sumBy(triples, triple => {
-          return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(triple[range] || {});
-        }) - adj;
-        const net = _.sumBy(triples, triple => {
-          return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
-        }) + 2*adj;
-        return { off, def, net };
-      };
-      const okTotals = buildTotals(filteredPlayerSet, "ok");
+      const okTotals = TeamEditorUtils.buildTotals(filteredPlayerSet, "ok");
 
       // Off-season and eval mode only: good and bad vs neutral ... In-season: ok vs orig
       const stdDevFactor = 1.0/Math.sqrt(5); //(1 std dev, so divide by root of team size)
-      const goodRange = offSeasonMode ? buildTotals(filteredPlayerSet, "good") : okTotals;
-      const badRange = offSeasonMode ? buildTotals(filteredPlayerSet, "bad") : okTotals;
+      const goodRange = offSeasonMode ? TeamEditorUtils.buildTotals(filteredPlayerSet, "good") : okTotals;
+      const badRange = offSeasonMode ? TeamEditorUtils.buildTotals(filteredPlayerSet, "bad") : okTotals;
       //(ignore in in-season mode)
       const goodDeltaNet = (goodRange.net - okTotals.net)*stdDevFactor ;
       const goodDeltaOff = (goodRange.off - okTotals.off)*stdDevFactor;
@@ -700,7 +665,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const badDeltaOff = (badRange.off - okTotals.off)*stdDevFactor;
       const badDeltaDef = (badRange.def - okTotals.def)*stdDevFactor;
       //(in-season)
-      const origTotals = offSeasonMode ? okTotals : buildTotals(filteredPlayerSet, "orig");
+      const origTotals = offSeasonMode ? okTotals : TeamEditorUtils.buildTotals(filteredPlayerSet, "orig");
       const inSeasonDeltaNet = (okTotals.net - origTotals.net);
       const inSeasonDeltaOff = (okTotals.off - origTotals.off);
       const inSeasonDeltaDef = (okTotals.def - origTotals.def);
@@ -744,23 +709,25 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         def_adj_ppp: { value: okTotals.def + avgEff + badDeltaDef },
       };
 
-      const teamGradesOk = divisionStatsCache.Combo ?
-        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
-      const teamGradesGood = divisionStatsCache.Combo ?
-        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
-      const teamGradesBad = divisionStatsCache.Combo ?
-        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
+      const currOrPrevSeasonGrades = divisionStatsCache.Combo || divisionStatsCache.High;
+
+      const teamGradesOk = currOrPrevSeasonGrades ?
+        GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesGood = currOrPrevSeasonGrades ?
+        GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesBad = currOrPrevSeasonGrades ?
+        GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
       //TODO: use team efficiency instead from team leaderboards and back into bench level?
-      const actualTotals = evalMode ? buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
+      const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
       const dummyTeamActual = actualTotals ? {
         off_net: { value: actualTotals.net },
         off_adj_ppp: { value: actualTotals.off + avgEff },
         def_adj_ppp: { value: actualTotals.def + avgEff },
       } : undefined;
     
-      const teamGradesActual = (dummyTeamActual && divisionStatsCache.Combo) ?
-        GradeUtils.buildTeamPercentiles(divisionStatsCache.Combo, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesActual = (dummyTeamActual && currOrPrevSeasonGrades) ?
+        GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
 
       const teamParams = {
         team: team, gender: gender, year: year,
@@ -1170,7 +1137,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </Form.Group>
     </Form.Group>}
     <Row>
-      <Col xs={12} sm={12} md={12} lg={8}>
+      <Col xs={8} sm={10} md={10} lg={8}>
         <ToggleButtonGroup items={([
             {
               label: "History",
@@ -1214,6 +1181,28 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ]))}
         />
       </Col>
+      <Col/>
+      {overrideGrades ? <Col xs={2}>
+        <Button size="sm" variant="outline-primary" onClick={(ev: any) => {
+          onChangeState(_.omit({
+            addedPlayers: _.keys(otherPlayerCache).join(";"),
+            deletedPlayers: _.keys(deletedPlayers).join(";"),
+            disabledPlayers: _.keys(disabledPlayers).join(";"),
+            overrides: _.isNil(uiOverridesIn) ? 
+              _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
+            superSeniorsBack: superSeniorsBack,
+          }, superSeniorsBack ? [ ] : [ "superSeniorsBack" ]));
+        }}>Save</Button>
+        &nbsp;&nbsp;
+        <Button size="sm" variant="outline-secondary" onClick={(ev: any) => {
+          setOtherPlayerCache({});
+          setDeletedPlayers({});
+          setDisabledPlayers({});
+          setUiOverrides({})
+          setAlwaysShowBench(false);
+          onChangeState({});
+        }}>Reset</Button>
+      </Col> : null}
     </Row>
     <Row className="mt-2">
       <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
