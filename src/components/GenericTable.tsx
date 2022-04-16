@@ -148,7 +148,7 @@ export class GenericTableOps {
     } else if (val.samples) {
       const numSamples = val.samples || 0;
       const pcile = val.value || 0;
-      const rank = (1 + Math.ceil((1 - pcile)*numSamples));
+      const rank = (1 + Math.round((1 - pcile)*numSamples));
       return GenericTableOps.rankFormatter({ value: rank });
     } else {
       return GenericTableOps.percentFormatter(val);

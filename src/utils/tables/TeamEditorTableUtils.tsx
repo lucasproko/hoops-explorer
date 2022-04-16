@@ -99,39 +99,39 @@ export class TeamEditorTableUtils {
       // Only used in eval mode:
       actual_mpg: GenericTableOps.addPtsCol("act. mpg", "Actual minutes per game", CbbColors.alwaysWhite),
       actual_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, what actually happened",
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       actual_off: GenericTableOps.addDataCol(
          "Off", "Offensive Adjusted Pts/100 above an average D1 player, what actually happened", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       actual_def: GenericTableOps.addDataCol(
          "Def", "Defensive Adjusted Pts/100 above an average D1 player, what actually happened", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
 
       ok_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       ok_off: GenericTableOps.addDataCol(
          "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       ok_def: GenericTableOps.addDataCol(
          "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
 
       good_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       good_off: GenericTableOps.addDataCol(
          "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       good_def: GenericTableOps.addDataCol(
          "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
 
       bad_net: GenericTableOps.addDataCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       bad_off: GenericTableOps.addDataCol(
          "Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
       bad_def: GenericTableOps.addDataCol(
          "Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections", 
-         CbbColors.varPicker(CbbColors.pctile_qual[0]), GenericTableOps.gradeOrHtmlFormatter),
+         CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
    };
 }

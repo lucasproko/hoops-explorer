@@ -28,7 +28,7 @@ export class GradeUtils {
     ];
 
    /** Add a team's stats to the divison stats collection  */
-   static buildAndInjectDivisionStats = (teamBaseline: TeamStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean) => {
+   static buildAndInjectDivisionStats = (teamBaseline: PureStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
       //TODO: more complex: also style-based fields
       mutableDivisionStats.tier_sample_size += 1;
       if (inNaturalTier) {
@@ -50,10 +50,14 @@ export class GradeUtils {
            }
          }
       }
-      _.chain(GradeUtils.fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ])
-         .forEach(f => updateForField(f, teamBaseline)).value();
-      _.chain(GradeUtils.derivedFields).flatMap(field => [ `off_${field}`, `def_${field}` ]).concat([ "tempo" ])
-         .forEach(f => updateForField(f, derivedStats)).value();
+      if (_.isNil(fields)) {
+         _.chain(GradeUtils.fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ])
+            .forEach(f => updateForField(f, teamBaseline)).value();
+         _.chain(GradeUtils.derivedFields).flatMap(field => [ `off_${field}`, `def_${field}` ]).concat([ "tempo" ])
+            .forEach(f => updateForField(f, derivedStats)).value();
+      } else { // manually specified fields
+         _.chain(fields).forEach(f => updateForField(f, teamBaseline)).value();
+      }
    };
 
    /** Convert an unsorted list of samples into an LUT for Divison Stats */

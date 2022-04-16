@@ -976,7 +976,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const tooltip = (
       <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
     );
-    return  <OverlayTrigger placement="auto" overlay={tooltip}>
+    return <OverlayTrigger placement="auto" overlay={tooltip}>
         <Button className="float-left" id={`copyLink_playerLeaderboard`} variant="outline-secondary" size="sm">
           <FontAwesomeIcon icon={faLink} />
         </Button>

@@ -5552,7 +5552,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    55
+                    54
                     <sup>
                       th
                     </sup>
@@ -5754,7 +5754,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    46
+                    45
                     <sup>
                       th
                     </sup>
@@ -5775,7 +5775,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    12
+                    11
                     <sup>
                       th
                     </sup>
@@ -5853,7 +5853,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    65
+                    64
                     <sup>
                       th
                     </sup>
@@ -5874,7 +5874,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    29
+                    28
                     <sup>
                       th
                     </sup>
@@ -5955,7 +5955,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    10
+                    9
                     <sup>
                       th
                     </sup>
@@ -6748,9 +6748,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        44
+                                        43
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -7193,7 +7193,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        109
+                                        108
                                         <sup>
                                           th
                                         </sup>
@@ -7253,9 +7253,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        31
+                                        30
                                         <sup>
-                                          st
+                                          th
                                         </sup>
                                       </small>
                                     </td>
@@ -7664,7 +7664,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        137
+                                        136
                                         <sup>
                                           th
                                         </sup>
@@ -7703,9 +7703,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        4
+                                        3
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -7724,7 +7724,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        18
+                                        17
                                         <sup>
                                           th
                                         </sup>
@@ -8187,7 +8187,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        66
+                                        65
                                         <sup>
                                           th
                                         </sup>
@@ -8208,9 +8208,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        42
+                                        41
                                         <sup>
-                                          nd
+                                          st
                                         </sup>
                                       </small>
                                     </td>
@@ -8229,9 +8229,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        21
+                                        20
                                         <sup>
-                                          st
+                                          th
                                         </sup>
                                       </small>
                                     </td>
@@ -8250,9 +8250,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        31
+                                        30
                                         <sup>
-                                          st
+                                          th
                                         </sup>
                                       </small>
                                     </td>
@@ -8289,9 +8289,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        73
+                                        72
                                         <sup>
-                                          rd
+                                          nd
                                         </sup>
                                       </small>
                                     </td>
@@ -8391,7 +8391,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        10
+                                        9
                                         <sup>
                                           th
                                         </sup>
@@ -19530,9 +19530,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    34
+                    33
                     <sup>
-                      th
+                      rd
                     </sup>
                   </small>
                 </td>
@@ -19551,7 +19551,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    10
+                    9
                     <sup>
                       th
                     </sup>
@@ -19590,9 +19590,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    52
+                    51
                     <sup>
-                      nd
+                      st
                     </sup>
                   </small>
                 </td>
@@ -19629,7 +19629,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    18
+                    17
                     <sup>
                       th
                     </sup>
@@ -19916,7 +19916,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         (
                       </small>
                       <small>
-                        65
+                        64
                         <sup>
                           th
                         </sup>
@@ -19942,7 +19942,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    27
+                    26
                     <sup>
                       th
                     </sup>
@@ -20065,9 +20065,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    4
+                    3
                     <sup>
-                      th
+                      rd
                     </sup>
                   </small>
                 </td>
@@ -20143,7 +20143,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    55
+                    54
                     <sup>
                       th
                     </sup>
@@ -20164,7 +20164,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    47
+                    46
                     <sup>
                       th
                     </sup>
@@ -20245,9 +20245,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    2
+                    1
                     <sup>
-                      nd
+                      st
                     </sup>
                   </small>
                 </td>
@@ -20897,7 +20897,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        10
+                                        9
                                         <sup>
                                           th
                                         </sup>
@@ -20957,9 +20957,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        102
+                                        101
                                         <sup>
-                                          nd
+                                          st
                                         </sup>
                                       </small>
                                     </td>
@@ -21017,7 +21017,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        16
+                                        15
                                         <sup>
                                           th
                                         </sup>
@@ -21441,9 +21441,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        62
+                                        61
                                         <sup>
-                                          nd
+                                          st
                                         </sup>
                                       </small>
                                     </td>
@@ -21483,7 +21483,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        56
+                                        55
                                         <sup>
                                           th
                                         </sup>
@@ -21603,7 +21603,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        18
+                                        17
                                         <sup>
                                           th
                                         </sup>
@@ -21954,7 +21954,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        56
+                                        55
                                         <sup>
                                           th
                                         </sup>
@@ -21993,7 +21993,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        12
+                                        11
                                         <sup>
                                           th
                                         </sup>
@@ -22014,7 +22014,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        29
+                                        28
                                         <sup>
                                           th
                                         </sup>
@@ -22053,7 +22053,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        8
+                                        7
                                         <sup>
                                           th
                                         </sup>
@@ -22477,7 +22477,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        66
+                                        65
                                         <sup>
                                           th
                                         </sup>
@@ -22498,9 +22498,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        3
+                                        2
                                         <sup>
-                                          rd
+                                          nd
                                         </sup>
                                       </small>
                                     </td>
@@ -22519,7 +22519,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        69
+                                        68
                                         <sup>
                                           th
                                         </sup>
@@ -22540,9 +22540,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        94
+                                        93
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -22621,9 +22621,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        73
+                                        72
                                         <sup>
-                                          rd
+                                          nd
                                         </sup>
                                       </small>
                                     </td>
@@ -22681,9 +22681,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        4
+                                        3
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -33718,7 +33718,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    65
+                    64
                     <sup>
                       th
                     </sup>
@@ -33799,9 +33799,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    43
+                    42
                     <sup>
-                      rd
+                      nd
                     </sup>
                   </small>
                 </td>
@@ -33820,9 +33820,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    44
+                    43
                     <sup>
-                      th
+                      rd
                     </sup>
                   </small>
                 </td>
@@ -33841,7 +33841,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    16
+                    15
                     <sup>
                       th
                     </sup>
@@ -33919,9 +33919,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    23
+                    22
                     <sup>
-                      rd
+                      nd
                     </sup>
                   </small>
                 </td>
@@ -33961,9 +33961,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    73
+                    72
                     <sup>
-                      rd
+                      nd
                     </sup>
                   </small>
                 </td>
@@ -34063,9 +34063,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    52
+                    51
                     <sup>
-                      nd
+                      st
                     </sup>
                   </small>
                 </td>
@@ -34132,7 +34132,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    65
+                    64
                     <sup>
                       th
                     </sup>
@@ -34232,7 +34232,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    30
+                    29
                     <sup>
                       th
                     </sup>
@@ -34253,7 +34253,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    25
+                    24
                     <sup>
                       th
                     </sup>
@@ -34394,7 +34394,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    39
+                    38
                     <sup>
                       th
                     </sup>
@@ -34535,7 +34535,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <small>
-                    5
+                    4
                     <sup>
                       th
                     </sup>
@@ -35187,7 +35187,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        10
+                                        9
                                         <sup>
                                           th
                                         </sup>
@@ -35286,7 +35286,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        30
+                                        29
                                         <sup>
                                           th
                                         </sup>
@@ -35307,7 +35307,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        10
+                                        9
                                         <sup>
                                           th
                                         </sup>
@@ -35328,7 +35328,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        39
+                                        38
                                         <sup>
                                           th
                                         </sup>
@@ -35731,7 +35731,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        66
+                                        65
                                         <sup>
                                           th
                                         </sup>
@@ -35812,7 +35812,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        66
+                                        65
                                         <sup>
                                           th
                                         </sup>
@@ -35833,7 +35833,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        47
+                                        46
                                         <sup>
                                           th
                                         </sup>
@@ -36244,7 +36244,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        125
+                                        124
                                         <sup>
                                           th
                                         </sup>
@@ -36283,9 +36283,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        4
+                                        3
                                         <sup>
-                                          th
+                                          rd
                                         </sup>
                                       </small>
                                     </td>
@@ -36304,7 +36304,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        18
+                                        17
                                         <sup>
                                           th
                                         </sup>
@@ -36767,7 +36767,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        66
+                                        65
                                         <sup>
                                           th
                                         </sup>
@@ -36788,7 +36788,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        20
+                                        19
                                         <sup>
                                           th
                                         </sup>
@@ -36809,9 +36809,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        33
+                                        32
                                         <sup>
-                                          rd
+                                          nd
                                         </sup>
                                       </small>
                                     </td>
@@ -36830,7 +36830,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        45
+                                        44
                                         <sup>
                                           th
                                         </sup>
@@ -36971,7 +36971,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       }
                                     >
                                       <small>
-                                        7
+                                        6
                                         <sup>
                                           th
                                         </sup>
