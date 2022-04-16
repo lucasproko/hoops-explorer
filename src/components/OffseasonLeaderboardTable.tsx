@@ -20,7 +20,7 @@ import Button from 'react-bootstrap/Button';
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink, faCheck, faPen, faFilter, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faPen, faEye } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -161,7 +161,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
    // 2] Processing
 
-   const editTooltip = <Tooltip id="editTooltip">Show/hide the Team Editor tab</Tooltip>;
+   const editTooltip = <Tooltip id="editTooltip">Show/Hide the inline Team Viewer and Editor </Tooltip>;
 
    const table = React.useMemo(() => {
       setLoadingOverride(false);
@@ -222,10 +222,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
             }) + 2*adj;
 
-            const netRanks = _.map(triples, triple => {
-               return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
-            });
-
             const netInfo = _.transform(triples, (acc, triple) => { 
                const netEff = TeamEditorUtils.getNet(triple.ok || {});
                if (netEff >= 6.5) {
@@ -267,6 +263,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       // Lookups
       const offEffToRankMap = _.chain(teamRanks).sortBy(t => -t.off).map((t, rank) => [t.off, rank]).fromPairs().value();
       const defEffToRankMap = _.chain(teamRanks).sortBy(t =>t.def).map((t, rank) => [t.def, rank]).fromPairs().value();
+      const netEffToRankMap = confs ? _.chain(teamRanks).sortBy(t => -t.net).map((t, rank) => [t.net, rank]).fromPairs().value() : {};
       GradeUtils.buildAndInjectDivisionStatsLUT(mutableDivisionStats);
 
       const tableDefs = {
@@ -311,13 +308,32 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          edit: GenericTableOps.addDataCol("", "Edit the team projections", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
       };
 
-      const tableRows = _.chain(teamRanks).take(75).flatMap((t, netRank) => {
+      const confFilter = (t: {team: string, conf: string}) => {
+         return (confs == "") || (confs.indexOf(t.conf) >= 0) 
+           || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.conf) < 0))
+           || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
+           ;
+      }
+      const tableRows = _.chain(teamRanks).filter(confFilter).take(75).flatMap((t, netRankIn) => {
 
          const goodNet = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.goodNet } }, [ "net" ], true);
          const badNet = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.badNet } }, [ "net" ], true);
 
+         const teamParams = {
+            year, gender, team: t.team
+         };
+         const teamTooltip = (
+            <Tooltip id={`teamTooltip`}>Open new tab with the detailed off-season predictions for this team</Tooltip>
+          );
+         const teamLink = <OverlayTrigger placement="auto" overlay={teamTooltip}>
+            <a target="_blank" href={UrlRouting.getTeamEditorUrl(teamParams)}><b>{t.team}</b></a>
+         </OverlayTrigger>;
+    
+         ;
+         const netRank = confs ? netEffToRankMap[t.net]! : netRankIn;
+
          return [ GenericTableOps.buildDataRow({
-               title: t.team,
+               title: <span>{(confs != "") ? <sup><small>{1 + netRankIn}</small>&nbsp;</sup> : null}{teamLink}</span>,
                conf: t.conf,
 
                net: { value: t.net },
@@ -340,7 +356,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                            setTeam(t.team);
                         }
                      }, true);
-               }}><FontAwesomeIcon icon={faPen} /></Button></OverlayTrigger>,
+               }}><FontAwesomeIcon icon={faEye} /></Button></OverlayTrigger>,
             }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
          ].concat((team == t.team) ? [
             GenericTableOps.buildTextRow(
