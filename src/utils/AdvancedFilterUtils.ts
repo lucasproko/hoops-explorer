@@ -20,7 +20,7 @@ export class AdvancedFilterUtils {
       "posClass",
       "posConfidences", 
       "roster.number", "roster.height", "roster.year_class", "roster.pos",
-      "tier",
+      "tier", "transfer_dest",
 
       // Opposition strength
       "off_adj_opp",
@@ -44,20 +44,20 @@ export class AdvancedFilterUtils {
       "def_adj_rtg_rank", "def_adj_prod_rank", "def_adj_rapm_rank", "def_adj_rapm_prod_rank",
 
       // Shot creation
-      "off_usage", "off_assist", "off_ast_rim", "off_ast_mid", "off_ast_3p",
-      "off_2primr", "off_2pmidr", "off_3pr", 
+      "off_usage", "off_assist", "off_ast_rim", "off_ast_mid", "off_ast_threep",
+      "off_twoprimr", "off_twopmidr", "off_threepr", 
 
       // Shot-making
-      "off_3p", "off_2p", "off_2pmid", "off_2prim", "off_ft",
-      "off_3p_ast", "off_2p_ast", "off_2pmid_ast", "off_2prim_ast",
+      "off_threep", "off_twop", "off_twopmid", "off_twoprim", "off_ft",
+      "off_threep_ast", "off_twop_ast", "off_twopmid_ast", "off_twoprim_ast",
 
       // Scramble:
-      "off_scramble_2p", "off_scramble_2p_ast", "off_scramble_3p", "off_scramble_3p_ast", "off_scramble_2prim", "off_scramble_2prim_ast", "off_scramble_2pmid", 
-      "off_scramble_2pmid_ast", "off_scramble_ft", "off_scramble_ftr", "off_scramble_2primr", "off_scramble_2pmidr", "off_scramble_3pr", "off_scramble_assist",
+      "off_scramble_twop", "off_scramble_twop_ast", "off_scramble_threep", "off_scramble_threep_ast", "off_scramble_twoprim", "off_scramble_twoprim_ast", "off_scramble_twopmid", 
+      "off_scramble_twopmid_ast", "off_scramble_ft", "off_scramble_ftr", "off_scramble_twoprimr", "off_scramble_twopmidr", "off_scramble_threepr", "off_scramble_assist",
 
       // Transition:
-      "off_trans_2p", "off_trans_2p_ast", "off_trans_3p", "off_trans_3p_ast", "off_trans_2prim", "off_trans_2prim_ast", "off_trans_2pmid", 
-      "off_trans_2pmid_ast", "off_trans_ft", "off_trans_ftr", "off_trans_2primr", "off_trans_2pmidr", "off_trans_3pr", "off_trans_assist",
+      "off_trans_twop", "off_trans_twop_ast", "off_trans_threep", "off_trans_threep_ast", "off_trans_twoprim", "off_trans_twoprim_ast", "off_trans_twopmid", 
+      "off_trans_twopmid_ast", "off_trans_ft", "off_trans_ftr", "off_trans_twoprimr", "off_trans_twopmidr", "off_trans_threepr", "off_trans_assist",
 
       // Other:
       "off_orb", "def_orb",
@@ -69,7 +69,8 @@ export class AdvancedFilterUtils {
 
    static fixBoolOps(s: String) { return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ") };
    static fieldReplacements(s: string) { 
-      return s.replace(/def_blk/g, "def_2prim").replace(/def_stl/g, "def_to").replace(/def_fc/g, "def_ftr")
+      return s.replace(/twop/g, "2p").replace(/threep/g, "3p")
+         .replace(/def_blk/g, "def_2prim").replace(/def_stl/g, "def_to").replace(/def_fc/g, "def_ftr")
          .replace(/(off|def)_poss/g, "$1_team_poss"); 
    }
    static fixObjectFormat(s: string) { 
@@ -77,6 +78,7 @@ export class AdvancedFilterUtils {
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
          .replace(/(?:^| )((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
          .replace(/roster[.]height/g, "$.normht")
+         .replace(/transfer_dest/g, "$.transfer_dest")
          .replace(/(^| |[(])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)")
       ; 
@@ -131,6 +133,7 @@ export class AdvancedFilterUtils {
          const enumData = Enumerable.from(inData.map((p, index) => { 
             const retVal = { 
                p: p,
+               transfer_dest: p.transfer_dest || "",
                // Normalize so can do height comparisons 
                normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
                // These need to be derived

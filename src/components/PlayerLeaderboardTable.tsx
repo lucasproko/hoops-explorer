@@ -430,11 +430,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
       const strToTestCase = buildFilterStringTest(player);
       const strToTest = caseInsensitiveSearch ? strToTestCase.toLowerCase() : strToTestCase;
+
+      const maybeTxfer = _.find(dataEvent?.transfers?.[player.code] || [], comp => (comp.f == player.team));
+      if (maybeTxfer?.t) player.transfer_dest = maybeTxfer?.t;
+
       return (
-        (_.isNil(dataEvent.transfers) || _.some(dataEvent.transfers[player.code] || [], comp => {
-          //(current year show only available, previous years show all transfers)
-          return (comp.f == player.team) && (!comp.t || (startingState.transferMode?.toString() != "true"));
-        }))
+        (
+          _.isNil(dataEvent.transfers) || //(if not specified, don't care about transfers)
+          (maybeTxfer && (!maybeTxfer.t || (startingState.transferMode?.toString() != "true")))
+            //(transferred and either doesn't have a destination, or we don't care)
+        ) 
         &&
         ((filterFragmentsPve.length == 0) ||
           (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
@@ -631,13 +636,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         player.def_efg = <small><i className="text-secondary">{rosterInfoText}</i></small>;
       }
 
+      const txfeEl = player.transfer_dest ? <span> (&gt;{player.transfer_dest})</span> : null;
+
       player.off_title = <div>
         <span className="float-left">
           {rankings}
         </span>&nbsp;<b>{playerEl}{maybeYrStr}</b>
           <br/>
           <span className="float-left">
-            <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]</span>
+            <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]{txfeEl}</span>
           </span>
         </div>;
 

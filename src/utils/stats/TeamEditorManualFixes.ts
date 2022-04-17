@@ -398,7 +398,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Kentucky": {
-            leftTeam: [ "TyWashington::" ],
             overrides: { 
                ...wName("Livingston, Chris", {
                   profile: "5*/Lotto",
@@ -437,7 +436,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Nebraska": {
-            leftTeam: [ "BrMcGowens::" ]
          },
          "North Carolina": {
             superSeniorsReturning: new Set([ "LeBlack::" ]),
@@ -554,7 +552,6 @@ export class TeamEditorManualFixes {
          "Tennessee": {
          },
          "UCLA": {
-            leftTeam: [ "PeWatson::" ],
             overrides: {
                ...wName("Bailey, Amari", {
                   profile: "5*/Lotto",
