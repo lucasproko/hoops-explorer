@@ -97,36 +97,38 @@ export class GradeUtils {
    private static readonly MIN = -10000;
    private static readonly MAX = 10000;
 
-   /** Note first entry is the offset of the LUT entry */
+   /** Note first entry is the offset of the LUT entry - always go higher */
    static binaryChop(array: Array<number>, val: number, index1: number, index2: number): number {
       //TODO: not my finest code, written while I wasn't feeling great in a stream-of-consciousness. Maybe rewrite sometime?
 
       if (index1 == index2) { //no choice
          return array[0]! + index1 - 1; //(because index is relative to the 2nd element of array, 1st is offset)
       } else {
-         const nextIndex = Math.floor(0.5*(index1 + index2)); 
-         const nextVal = array[nextIndex]!;
-         const nextNextVal = (nextIndex < index2) ? array[nextIndex + 1]! : GradeUtils.MAX; //(always match in latter case)
-         const nextPrevVal = (nextIndex > index1) ? array[nextIndex - 1]! : GradeUtils.MIN; //(always match in latter case)
+         const midIndex = Math.floor(0.5*(index1 + index2)); 
+         const midVal = array[midIndex]!;
+         const midValPlus1 = (midIndex < index2) ? array[midIndex + 1]! : GradeUtils.MAX; //(always match in latter case)
+         const midValMinus1 = (midIndex > index1) ? array[midIndex - 1]! : GradeUtils.MIN; //(always match in latter case)
 
          //(for debugging:)
-         //console.log(`${val.toFixed(5)} VS ${index1} ... ${nextPrevVal.toFixed(5)} - ${nextIndex}:${nextVal.toFixed(5)}  - ${index2} ... ${nextNextVal.toFixed(5)}`)
+         //console.log(`${val.toFixed(5)} VS ${index1} ... ${midValMinus1.toFixed(5)} - ${midIndex}:${midVal.toFixed(5)}  - ${index2} ... ${midValPlus1.toFixed(5)} (start: [${array[0]}])`)
 
-         if ((nextVal == val) || ((val > nextVal) && (val < nextNextVal))) {
-            return array[0]! + nextIndex - 1; //(because index is relative to the 2nd element of array, 1st is offset)
-         } else if ((val < nextVal) && (val >= nextPrevVal)) {
-            return array[0]! + nextIndex - 2; //(because index is relative to the 2nd element of array, 1st is offset)
-         } else if (val < nextVal) { // Need a bigger jump downwards
-            if (nextIndex == index2) {
-               return array[0]! > 0 ? (array[0]! - 1) : array[0]!;
+         if ((val > midVal) && (val <= midValPlus1)) {
+            return array[0]! + midIndex; //(-1 because 0 is offset, but +1 because we pick next higher index)
+         } else if ((val <= midVal) && (val > midValMinus1)) {
+            return array[0]! + midIndex - 1; //(as above but one back)
+         } else if (val == midValMinus1) {
+            return array[0]! + midIndex - 2;
+         } else if (val < midVal) { // Need a bigger jump downwards
+            if (midIndex == index2) {
+               return array[0]!; // never go lower (by construction - we'd hit the previous LUT element)
             } else {
-               return GradeUtils.binaryChop(array, val, index1, nextIndex);
+               return GradeUtils.binaryChop(array, val, index1, midIndex);
             }
          } else { // Need a bigfer jump upwards
-            if (nextIndex == index1) { //(can't go any higher)
-               return array[0]! + index2 - 1; 
+            if (midIndex == index1) { //(can't go any higher)
+               return array[0]! + index2; 
             } else {
-               return GradeUtils.binaryChop(array, val, nextIndex, index2);
+               return GradeUtils.binaryChop(array, val, midIndex, index2);
             }
          }
       }
@@ -138,9 +140,10 @@ export class GradeUtils {
       if (divStatsField) {
          const lookupKey = (divStatsField.isPct ? (val*100) : val).toFixed(0);
          const lutArray = divStatsField.lut[lookupKey];
+         const minPctile = 1.0/(divStatsField.size);
 
          if (!lutArray && (val <= (divStatsField.min + 0.001))) {
-            return { value: 0.01, samples: divStatsField.size } as Statistic; //1st percentile
+            return { value: minPctile, samples: divStatsField.size } as Statistic; //1st percentile
          } else if (!lutArray) {
             // Either it's a split stat so doesn't appear in the LUT, or it's off the end of the chart
             // (slow may need/want to speed this up)
@@ -148,13 +151,15 @@ export class GradeUtils {
                return (arr.length > 1) && arr[1]! > val;
             });
             if (closestLutArray) {
-               return { value: Math.max(0.01, closestLutArray[0]!/(divStatsField.size || 1)), samples: divStatsField.size };
+               return { value: Math.max(minPctile, (closestLutArray[0]! + 1)*minPctile), samples: divStatsField.size };
+                  //(+1 because we don't want index we want rank)               
             } else {
                return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
             }
          } else { //lutArray
-            const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1);
-            return { value: Math.max(0.01, offsetIndex/(divStatsField.size || 1)), samples: divStatsField.size };
+            const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1); //(minPctile is lowest)
+            return { value: Math.max(minPctile, (offsetIndex + 1)*minPctile), samples: divStatsField.size };
+               //(+1 because we don't want index we want rank)
          }
       } else {
          return {};
@@ -181,8 +186,9 @@ export class GradeUtils {
          const isDef = f.startsWith("def_");
          const isInverted = GradeUtils.fieldsToInvert[f] || false;
          const invert = (!isDef && isInverted) || (isDef && !isInverted);
+         const maxPct = 1 + 1.0/(s?.samples || 1); //(since 100% is rank 1)
          const maybeInvert = (invert) ?
-            (s && _.isNumber(s.value) ? { value: 1.01 - s.value, samples: supportRank ? s.samples : 0 } : s)
+            (s && _.isNumber(s.value) ? { value: maxPct - s.value, samples: supportRank ? s.samples : 0 } : s)
             : { value: s?.value, samples: supportRank ? s?.samples : 0 };
          return maybeInvert;
       }

@@ -718,6 +718,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const teamGradesBad = currOrPrevSeasonGrades ?
         GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
+      const teamGradesOkNextYear = overrideGrades ? 
+        GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesGoodNextYear = overrideGrades ? 
+        GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesBadNextYear = overrideGrades ? 
+        GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
+
       //TODO: use team efficiency instead from team leaderboards and back into bench level?
       const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
       const dummyTeamActual = actualTotals ? {
@@ -810,7 +817,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           bad_off: offSeasonMode ? teamGradesBad.off_adj_ppp : undefined,
           bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
         }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef),
-      ]);
+      ]).concat(
+        (filteredPlayerSet && overrideGrades) ? [GenericTableOps.buildDataRow({
+          title: <b>Team Grades (projected)</b>,
+          ok_net: teamGradesOkNextYear.off_net,
+          ok_off: teamGradesOkNextYear.off_adj_ppp,
+          ok_def: teamGradesOkNextYear.def_adj_ppp,
+          good_net: teamGradesGoodNextYear.off_net,
+          good_off: teamGradesGoodNextYear.off_adj_ppp,
+          good_def: teamGradesGoodNextYear.def_adj_ppp,
+          bad_net: teamGradesBadNextYear.off_net,
+          bad_off: teamGradesBadNextYear.off_adj_ppp,
+          bad_def: teamGradesBadNextYear.def_adj_ppp,
+        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef)] : []
+      );
       return subHeaders;
     };
 

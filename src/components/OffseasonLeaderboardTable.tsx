@@ -276,22 +276,25 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             return { off, def, net, ...netInfo };
          };
          const okTotals = buildTotals(filteredPlayerSet, "ok");
-         const goodNet = _.sumBy(pxResults.basePlayersPlusHypos, triple => {
+         const goodNet = _.sumBy(filteredPlayerSet, triple => {
             return (triple.good.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple.good);
          });
-         const badNet = _.sumBy(pxResults.basePlayersPlusHypos, triple => {
+         const badNet = _.sumBy(filteredPlayerSet, triple => {
             return (triple.bad.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple.bad);
          });
-
+         const stdDevFactor = 1.0/Math.sqrt(5); //(1 std dev, so divide by root of team size)
+         const goodDeltaNet = (goodNet - okTotals.net)*stdDevFactor;
+         const badDeltaNet = (badNet - okTotals.net)*stdDevFactor;
+   
          const confStr = efficiencyInfo[`${gender}_Latest`]?.[0]?.[t]?.conf || "???";
 
          GradeUtils.buildAndInjectDivisionStats(
-            { off_rapm: { value: okTotals.off }, def_rapm: { value: okTotals.def }, off_net: { value: okTotals.net } },
-            {}, mutableDivisionStats, true, [ "off_rapm", "def_rapm", "off_net" ]
+            { off_adj_ppp: { value: okTotals.off + avgEff }, def_adj_ppp: { value: okTotals.def + avgEff }, off_net: { value: okTotals.net } },
+            {}, mutableDivisionStats, true, [ "off_adj_ppp", "def_adj_ppp", "off_net" ]
          );
 
          return { ...okTotals, 
-            goodNet, badNet,
+            goodNet: okTotals.net + goodDeltaNet, badNet: okTotals.net + badDeltaNet,
             team: t, 
             conf: ConferenceToNickname[confStr] || "???", 
             rosterInfo: `${okTotals.numSuperstars} / ${okTotals.numStars} / ${okTotals.numStarters} / ${okTotals.numRotation}` 
