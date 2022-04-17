@@ -419,7 +419,12 @@ export class TeamEditorManualFixes {
             leftTeam: [ "TaEason::" ]
          },
          "Marquette": {
-            leftTeam: [ "GrElliott::" ]
+            overrides: {
+               ...wName("Wrightsil, Zach", {
+                  pos: "S-PF",
+                  profile: "4*"
+               }),
+            }
          },
          "Michigan": {
             overrides: {
