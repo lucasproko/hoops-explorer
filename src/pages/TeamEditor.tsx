@@ -79,6 +79,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
       // Team Editor params
 
       (_.isNil(rawParams.offSeason) || rawParams.offSeason) ? [ 'offSeason' ] : [],
+      (!rawParams.evalMode) ? [ 'evalMode' ] : [],
       (!rawParams.showPrevSeasons) ? [ 'showPrevSeasons' ] : [],
       (!rawParams.alwaysShowBench)? [  'alwaysShowBench' ] : [],
       (!rawParams.superSeniorsBack)? [  'superSeniorsBack' ] : [],
@@ -98,6 +99,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
 
       // "Add players from leaderboard" params
 
+      (rawParams.tier == "All") ? [ 'tier' ] : [],
       (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.advancedFilter) ? [ 'advancedFilter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [], //(unused now)
