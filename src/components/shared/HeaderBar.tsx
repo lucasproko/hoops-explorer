@@ -77,9 +77,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
   function getTeamLeaderboardUrl() {
-    return UrlRouting.getTeamLeaderboardUrl(
-      getCommonLboardFilterParams(common) as TeamLeaderboardParams
-    );
+    if (!common.year || (common.year == "2021/22") || (common.year == "2022/23")) {
+      //TODO: unhardwire this
+      return UrlRouting.getOffseasonLeaderboard({});
+    } else {
+      return UrlRouting.getTeamLeaderboardUrl(
+        getCommonLboardFilterParams(common) as TeamLeaderboardParams
+      );
+    }
   }
   function getTeamBuilderUrl() {
     return UrlRouting.getTeamEditorUrl({} as TeamEditorParams);

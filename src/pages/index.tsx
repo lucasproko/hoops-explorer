@@ -58,11 +58,17 @@ const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
     "server" : window.location.hostname
 
   // "/" used to be OnOffAnalyzer, but now it's team leaderboard ... handle redirecting old links
-  if (allParams.indexOf("&team=") >= 0) {
+  if (allParams.indexOf("team=") >= 0) {
     console.log(`(redirecting old link [${allParams}]`);
     const newUrl = UrlRouting.getGameUrl(UrlRouting.removedSavedKeys(allParams) as GameFilterParams, {});
-    window.location.href = newUrl;
+    if (typeof window !== `undefined`) window.location.href = newUrl;
     return <span>(redirecting old link)</span>;
+  }
+  if (!testMode && ((allParams.indexOf("year=2022/23") >= 0) || (allParams.indexOf("year=") < 0))) {
+    //TODO: this needs to get un-hardwired, but for now ... 
+    const newUrl = UrlRouting.getOffseasonLeaderboard({});
+    if (typeof window !== `undefined`) window.location.href = newUrl;
+    return <span>(retrieving offseason predictions)</span>;
   }
 
   // Team Stats interface
@@ -109,7 +115,12 @@ const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
     ]));
 
-    if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
+    if (!testMode && (rawParams.year == "2022/23")) { //TODO: un-hardwire this
+      //Switch to off-season predictions
+      const newUrl = UrlRouting.getOffseasonLeaderboard({});
+      if (typeof window !== `undefined`) window.location.href = newUrl;
+  
+    } else if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

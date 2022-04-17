@@ -10,7 +10,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Dropdown from 'react-bootstrap/Dropdown';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
@@ -25,25 +24,15 @@ import ClipboardJS from 'clipboard';
 
 // Component imports
 import GenericTable, { GenericTableOps } from "./GenericTable";
-import GenericTogglingMenu from './shared/GenericTogglingMenu';
-import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
-import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from "./PlayerLeaderboardTable";
 
 // Table building
-import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
-
 // Util imports
-import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
-import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
+import { TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
+import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
-import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
 import { GradeUtils } from '../utils/stats/GradeUtils';
-import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
-import TeamRosterEditor from './shared/TeamRosterEditor';
-import { TeamEditorTableUtils } from '../utils/tables/TeamEditorTableUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import TeamEditorTable, { TeamEditorStatsModel } from './TeamEditorTable';
@@ -78,8 +67,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
    const [confs, setConfs] = useState(startingState.confs || "");
    const [year, setYear] = useState("2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
+   const [yearRedirect, setYearRedirect] = useState("2022/23"); //TODO lets us jump between off-seasons and normal leaderboards
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
-   const [team,  setTeam] = useState(startingState.team || "");
+   const [team,  setTeam] = useState(startingState.teamView || "");
 
    /** Converts a list of params to their team's key/value params  */
    const buildOverrides = (inOverrides: Record<string, string>) => {
@@ -113,13 +103,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    /** When the params change */
    useEffect(() => {
       onChangeState(_.merge({
-         team, confs
+         year: yearRedirect, teamView: team, confs
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
          );
       }).fromPairs().value()));
-   }, [ team, confs, teamOverrides ]);
+   }, [ team, confs, teamOverrides, yearRedirect ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -381,9 +371,33 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          ;
          const netRank = confs ? netEffToRankMap[t.net]! : netRankIn;
 
-         return [ GenericTableOps.buildDataRow({
+         const pickSubHeaderMessage = (rank: number) => {
+            if (rank == 0) {
+               return "Top 25 + 1";
+            } else if (rank == 26) {
+               return "Solid NCAAT teams";
+            } else if (rank == 35) {
+               return "The Bubble";
+            } else if (rank == 55) {
+               return "Autobids / AD on Selection Committee / Maybe Next Year";
+            } else {
+               return "";
+            }
+         };
+         const subHeaderMessage = pickSubHeaderMessage(netRank);
+         const subHeaderRows = (confs || !subHeaderMessage) ? [] : ([
+            GenericTableOps.buildSubHeaderRow([
+               [ <div/>, 4 ], [ <i>{subHeaderMessage}</i>, 9 ]
+            ], "small text-center") 
+         ].concat(
+            (netRank == 0) ? [] : [
+               GenericTableOps.buildHeaderRepeatRow({}, "small")
+            ]
+         ));
+
+         return subHeaderRows.concat([ GenericTableOps.buildDataRow({
                title: <span>{(confs != "") ? <sup><small>{1 + netRankIn}</small>&nbsp;</sup> : null}{teamLink}</span>,
-               conf: t.conf,
+               conf: <small>{t.conf}</small>,
 
                net: { value: t.net },
                net_grade: { samples: numTeams, value: (1.0*(numTeams - netRank))/numTeams },
@@ -407,7 +421,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                      }, true);
                }}><FontAwesomeIcon icon={faEye} /></Button></OverlayTrigger>,
             }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-         ].concat((team == t.team) ? [
+         ]).concat((team == t.team) ? [
             GenericTableOps.buildTextRow(
                <TeamEditorTable
                   startingState={{
@@ -484,13 +498,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                value={stringToOption("2022/23")}
                options={
                (
-                  ["2022/23"]
+                  ["2019/20", "2020/21", "2021/22", "2022/23"]
                ).concat(tier == "High" ? ["Extra"] : []).map(
                   (r) => stringToOption(r)
                )}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
-                  /* currently only support 2022/23 */
+                  /* currently only support 2022/23 - but lets other years be specified to jump between off-season predictions and previous results */
+                  setYearRedirect((option as any)?.value);
                }}}
             />
          </Col>

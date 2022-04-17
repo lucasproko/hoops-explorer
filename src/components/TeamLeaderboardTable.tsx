@@ -817,7 +817,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             value={stringToOption(year)}
             options={
               (
-                ["2018/9", "2019/20", "2020/21", "2021/22"]
+                ["2018/9", "2019/20", "2020/21", "2021/22", "2022/23" ]
               ).concat(tier == "High" ? ["Extra"] : []).map(
                 (r) => stringToOption(r)
               )}

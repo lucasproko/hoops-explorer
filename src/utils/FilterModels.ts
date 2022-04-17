@@ -164,7 +164,8 @@ export type TeamEditorParams = {
 };
 
 export type OffseasonLeaderboardParams = {
-  team?: string,
+  year?: string,
+  teamView?: string,
   confs?: string,
 } & Record<string, string>;
 

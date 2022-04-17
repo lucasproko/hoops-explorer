@@ -76,11 +76,16 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const onOffseasonLeaderboardParamsChange = (rawParams: OffseasonLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
 
-      (!rawParams.team) ? [ "team" ] : [],
+      (!rawParams.teamView) ? [ "teamView" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
 
     ]));
-    if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) { //(to avoid recursion)
+
+    if (rawParams.year && (rawParams.year != "2022/23")) { //TODO: un-hardwire this
+      const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
+      if (typeof window !== `undefined`) window.location.href = newUrl;
+
+    } else if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -97,7 +102,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const paramObj = offseasonLeaderboardParams;
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
+    const fullYear = LeaderboardUtils.getPrevYear(paramObj.year || "2022/23"); //TODO: fix this
     const tier = (paramObj.tier || "All");
 
     const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);

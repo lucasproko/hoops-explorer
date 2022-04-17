@@ -138,7 +138,9 @@ export class LeaderboardUtils {
   
    /** Get the previous season */
    static readonly getPrevYear = (y: string) => {
-      if (y == "2021/22") { //TODO: From 2020/21 onwards can calculate
+      if (y == "2022/23") {
+         return "2021/22";
+      } else if (y == "2021/22") { //TODO: From 2020/21 onwards can calculate
          return "2020/21";
       } else if (y == "2020/21") {
          return "2019/20";
