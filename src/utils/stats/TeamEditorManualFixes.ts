@@ -498,16 +498,23 @@ export class TeamEditorManualFixes {
                }),
             }
          },
+         "Penn St.": {
+            superSeniorsReturning: new Set([ "JaPickett::" ]),
+         },
          "Purdue": {
-            leftTeam: [ "JaIvey" ],
+            leftTeam: [ "JaIvey::" ],
          },
          "Rutgers": {
-            leftTeam: [ "JaJones" ],
+            leftTeam: [ "JaJones::" ],
          },
          "San Diego St.": {
             superSeniorsReturning: new Set([ "AdSeiko::" ]),
          },
+         "Seton Hall": {
+            leftTeam: [ "AlYetna::" ],
+         },
          "Southern California": {
+            leftTeam: [ "IsMobley::" ],
             overrides: {
                ...wName("Iwuchukwu, Vince", {
                   profile: "5*",
@@ -524,10 +531,10 @@ export class TeamEditorManualFixes {
             }
          },
          "Stanford": {
-            leftTeam: [ "HaIngram" ],
+            leftTeam: [ "HaIngram::" ],
          },
          "St. John's (NY)": {
-            leftTeam: [ "JuChampagnie" ],
+            leftTeam: [ "JuChampagnie::" ],
          },
          "Syracuse": {
             leftTeam: [ "CoSwider::" ],

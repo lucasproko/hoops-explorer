@@ -514,7 +514,9 @@ export class TeamEditorUtils {
             );
 
             const left = fromBaseRoster.inAndLeaving[key] || false;
-            const transferredOut = _.some(transfersLastYear[code] || [], p => p.f == team);
+            const transferredOut = 
+               _.some(transfersLastYear[code] || [], p => p.f == team) ||
+               _.some(transfersThisYear[code] || [], p => p.f == team);
 
             const transferringInLastYear = !left && !transferredOut && !mutableExcludeSet[key] && (_.some(
                transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
