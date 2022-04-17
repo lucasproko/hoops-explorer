@@ -257,7 +257,6 @@ export class TeamEditorManualFixes {
       },
       "Men_2021/22": { //https://247sports.com/Season/2022-Basketball/CompositeTeamRankings/
          "Alabama": {
-            leftTeam: [ "JdDavison::", "JoShackelfor::" ],
             overrides: {
                ...wName("Miller, Brandon", {
                   profile: "5*/Lotto",
@@ -278,7 +277,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Arizona": {
-            leftTeam: [ "BeMathurin::" ],
          },
          "Arkansas": { 
             overrides: {
@@ -300,7 +298,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Auburn": {
-            leftTeam: [ "JaSmith::", "WaKessler::" ],
             overrides: {
                ...wName("Traore, Yohan", {
                   profile: "5*",
@@ -313,7 +310,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Baylor": {
-            leftTeam: [ "KeBrown::", "JeSochan::" ],
             overrides: {
                ...wName("Keyonte, George", {
                   profile: "5*",
@@ -361,7 +357,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Iowa": {
-            leftTeam: [ "KeMurray::" ]
          },
          "Illinois": {
             overrides: {
@@ -416,7 +411,6 @@ export class TeamEditorManualFixes {
             }
          },
          "LSU": {
-            leftTeam: [ "TaEason::" ]
          },
          "Marquette": {
             overrides: {
@@ -460,7 +454,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Notre Dame": {
-            leftTeam: [ "BlWesley::" ],
             overrides: {
                ...wName("Starling, JJ", {
                   profile: "4*/T40ish",
@@ -507,10 +500,8 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set([ "JaPickett::" ]),
          },
          "Purdue": {
-            leftTeam: [ "JaIvey::" ],
          },
          "Rutgers": {
-            leftTeam: [ "JaJones::" ],
          },
          "San Diego St.": {
             superSeniorsReturning: new Set([ "AdSeiko::" ]),
@@ -519,7 +510,6 @@ export class TeamEditorManualFixes {
             leftTeam: [ "AlYetna::" ],
          },
          "Southern California": {
-            leftTeam: [ "IsMobley::" ],
             overrides: {
                ...wName("Iwuchukwu, Vince", {
                   profile: "5*",
@@ -536,10 +526,8 @@ export class TeamEditorManualFixes {
             }
          },
          "Stanford": {
-            leftTeam: [ "HaIngram::" ],
          },
          "St. John's (NY)": {
-            leftTeam: [ "JuChampagnie::" ],
          },
          "Syracuse": {
             leftTeam: [ "CoSwider::" ],
@@ -564,7 +552,6 @@ export class TeamEditorManualFixes {
             },      
          },
          "Tennessee": {
-            leftTeam: [ "KeChandler::" ],
          },
          "UCLA": {
             leftTeam: [ "PeWatson::" ],
@@ -599,7 +586,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Wisconsin": {
-            leftTeam: [ "JoDavis::" ]
          },
       }
    }; });
