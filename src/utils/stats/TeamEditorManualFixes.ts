@@ -373,6 +373,7 @@ export class TeamEditorManualFixes {
             }
          },
          "Indiana": {
+            superSeniorsReturning: new Set([ "RaThompson::" ]),
             overrides: {
                ...wName("Hood-Schifino, Jalen", {
                   profile: "5*",
