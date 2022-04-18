@@ -131,7 +131,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    /** This grovelling is needed to ensure that clipboard is only loaded client side */
    function initClipboard() {
       if (null == clipboard) {
-      var newClipboard = new ClipboardJS(`#copyLink_playerLeaderboard`, {
+      var newClipboard = new ClipboardJS(`#copyLink_offSeasonTeamLeaderboard`, {
          text: function(trigger) {
             return window.location.href;
          }
@@ -472,7 +472,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
       );
       return <OverlayTrigger placement="auto" overlay={tooltip}>
-      <Button className="float-left" id={`copyLink_teamLeaderboard`} variant="outline-secondary" size="sm">
+      <Button className="float-left" id={`copyLink_offSeasonTeamLeaderboard`} variant="outline-secondary" size="sm">
          <FontAwesomeIcon icon={faLink} />
       </Button>
       </OverlayTrigger>;
