@@ -364,11 +364,16 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             year, gender, team: t.team,
             ...(teamOverrides[t.team] || {})
          };
+
+         const maybeOverriddenEl = _.isEmpty(teamOverrides[t.team] || {}) ? null : <span> (*)</span>
+
          const teamTooltip = (
-            <Tooltip id={`teamTooltip`}>Open new tab with the detailed off-season predictions for this team</Tooltip>
+            <Tooltip id={`teamTooltip${netRankIn}`}>
+               {maybeOverriddenEl ? <span>(Team has edits, click on View icon to right to see them)<br/><br/></span> : null}
+               Open new tab with the detailed {maybeOverriddenEl ? <span>(unedited) </span> : null}off-season predictions for this team</Tooltip>
           );
          const teamLink = <OverlayTrigger placement="auto" overlay={teamTooltip}>
-            <a target="_blank" href={UrlRouting.getTeamEditorUrl(teamParams)}><b>{t.team}</b></a>
+            <b><a target="_blank" href={UrlRouting.getTeamEditorUrl(teamParams)}>{t.team}</a>{maybeOverriddenEl}</b>
          </OverlayTrigger>;
     
          ;

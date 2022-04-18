@@ -374,6 +374,10 @@ export class TeamEditorManualFixes {
                   profile: "5*",
                   pos: "CG"
                }),
+               ...wName("Reneau, Malik", {
+                  profile: "5*",
+                  pos: "S-PF"
+               }),
             }
          },
          "Kansas": {
