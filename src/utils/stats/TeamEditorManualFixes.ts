@@ -345,6 +345,9 @@ export class TeamEditorManualFixes {
                }),
             },
          },
+         "Florida": {
+            superSeniorsReturning: new Set([ "CoCastleton::" ]),
+         },
          "Gonzaga": {
             leftTeam: [ "ChHolmgren::" ],
          },
