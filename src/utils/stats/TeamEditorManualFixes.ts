@@ -585,6 +585,7 @@ export class TeamEditorManualFixes {
 
          },
          "Virginia": {
+            superSeniorsReturning: new Set([ "KiClark::" ]),
             overrides: {
                ...TeamEditorManualFixes.alwaysTopBench(),
             }
