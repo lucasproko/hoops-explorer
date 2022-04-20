@@ -21,7 +21,6 @@ export class TeamEditorManualFixes {
       // Rutgers, Purdue - no changes needed
       "Men_2020/21": {
          "Alabama": {
-            leftTeam: [ "JoPrimo::" ],
             overrides: {
                ...wName("Davison, JD", {
                   pos: "s-PG",
@@ -33,9 +32,6 @@ export class TeamEditorManualFixes {
                }),
                ...TeamEditorManualFixes.alwaysTopBench()
             }
-         },
-         "Arkansas": {
-            leftTeam: [ "MoMoody::" ],
          },
          "Baylor": {
             overrides: {
@@ -55,7 +51,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Duke": {
-            leftTeam: [ "JaJohnson::", "MaHurt::", "DjSteward::", "BaJones::" ],
             overrides: {
                ...wName("Keels, Trevor", {
                   pos: "CG",
@@ -92,7 +87,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Gonzaga": {
-            leftTeam: [ "JaSuggs::", "JoAyayi::" ],
             overrides: {
                ...wName("Holmgren, Chet", {
                   pos: "PF/C",
@@ -108,18 +102,13 @@ export class TeamEditorManualFixes {
                })
              }
          },
-         "Illinois": {
-            leftTeam: [ "AyDosunmu::", "GiBezhanishv::" ],
-         },
          "Iowa": {
-            leftTeam: [ "JoWieskamp::" ],
             superSeniorsReturning: new Set([ "JoBohannon::" ]),
          },
          "Kansas": {
             ...TeamEditorManualFixes.alwaysTopBench()
          },
          "Kentucky": {
-            leftTeam: [ "BrBoston::", "OlSarr::", "IsJackson::" ],
             superSeniorsReturning: new Set([ "DaMintz::" ]),
             overrides: {
                ...wName("Washington Jr., TyTy", {
@@ -152,11 +141,7 @@ export class TeamEditorManualFixes {
                }),
             }
          },
-         "Marquette": {
-            leftTeam: [ "DjCarton::" ],
-         },
          "Maryland": {
-            leftTeam: [ "AaWiggins::" ],
             overrides: {
                ...wName("Reese, Julian", {
                   pos: "PF/C",
@@ -182,13 +167,11 @@ export class TeamEditorManualFixes {
          },
          "Michigan": {
             superSeniorsReturning: new Set([ "ElBrooks::" ]),
-            leftTeam: [ "FrWagner::" ],
             overrides: {
                ...TeamEditorManualFixes.genericLoadedBench()
             }
          },
          "Michigan St.": {
-            leftTeam: [ "AaHenry::" ],
             overrides: {
                ...wName("Christie, Max", {
                   pos: "WG",
@@ -201,7 +184,6 @@ export class TeamEditorManualFixes {
             }
          },
          "Ohio St.": {
-            leftTeam: [ "DuWashington::" ],
             superSeniorsReturning: new Set([ "KyYoung::" ]),
             overrides: {
                ...wName("Branham, Malaki", {
@@ -216,7 +198,6 @@ export class TeamEditorManualFixes {
          },
          "Southern California": {
             superSeniorsReturning: new Set([ "ChGoodwin::" ]),
-            leftTeam: [ "EvMobley::" ]
          },
          "Stanford": {
             overrides: {
@@ -228,7 +209,6 @@ export class TeamEditorManualFixes {
          },
          "Tennessee": {
             superSeniorsReturning: new Set([ "JoFulkerson::" ]),
-            leftTeam: [ "JaSpringer::", "KeJohnson::" ],
             overrides: {
                ...wName("Kennedy, Chandler", {
                   pos: "WG",
