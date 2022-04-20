@@ -294,7 +294,7 @@ export class TeamEditorUtils {
       ) || !_.isEmpty(allDeletedPlayers); //(or have deleted players)
 
       TeamEditorUtils.calcAndInjectYearlyImprovement(
-         basePlayersPlusHypos, team, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode
+         basePlayersPlusHypos, team, year, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode
       );
       TeamEditorUtils.calcAndInjectMinsAssignment(
          basePlayersPlusHypos, team, year, disabledPlayersIn, unpausedOverrides, hasDeletedPlayersOrTransfersIn, teamSosNet, avgEff, offSeasonMode
@@ -550,7 +550,7 @@ export class TeamEditorUtils {
    /** Give players their year-on-year improvement */
    static calcAndInjectYearlyImprovement(
       roster: GoodBadOkTriple[], 
-      team: string, teamSosOff: number, teamSosDef: number, avgEff: number,
+      team: string, year: string, teamSosOff: number, teamSosDef: number, avgEff: number,
       overrides: Record<string, PlayerEditModel>, 
       offSeasonMode: boolean
    ) {
@@ -574,13 +574,17 @@ export class TeamEditorUtils {
          const offAdjToORtg = (offAdj: number) => {
             return (5*offAdj)*(teamSosDef/avgEff);
          };
-         
+
+         // Useuable for defense and offense
+         const maybeLevelJump = (basePlayer.team != team)  ? TeamEditorUtils.getJumpInLevel(basePlayer.team || "", team, year) : 0;
+
          // Offensive bonuses and penalties (+ == good)
 
+         //(specific to transferring up as a shorter player)
          const defSosDeltaForTxfers = teamSosDef - (basePlayer.def_adj_opp?.value || (avgEff - 4));
-         const isTransferringUpOff = ((basePlayer.team != team) && (defSosDeltaForTxfers < -4));
-         const offTxferUpPenalty = //(specific to transferring up as a shorter player)
-            isTransferringUpOff ? -TeamEditorUtils.calcTxferUpHeightEffDrop(basePlayer) : 0;
+         const offLevelJump = _.isNil(maybeLevelJump) ? ((defSosDeltaForTxfers < -4) ? 2 : 0) : maybeLevelJump;
+         const offHeightPenaltyFactor = (offLevelJump == 1) ? 0.5 : (offLevelJump >= 2 ? 1.0 : 0);
+         const offTxferUpPenalty = (offHeightPenaltyFactor > 0) ? -1*offHeightPenaltyFactor*TeamEditorUtils.calcTxferUpHeightEffDrop(basePlayer) : 0
 
          const generalTxferOffPenalty = (basePlayer.team != team) ? avgOffBump : 0; //(just the fact that you might not get quite the same off-season bump as a transfer)
 
@@ -596,14 +600,23 @@ export class TeamEditorUtils {
          const avgDefBump = -0.6; //(just make the same as the offensive bump, I don't believe there is any data)
          const defClassMulti = isFr ? 2 : 0.5; //(I'm going to assert without evidence the Fr bump for defense is relatively bigger)
 
+         //TODO: Want to do a better job of this, but for now we'll heavily limit how bad up-transfers defense can be
+         //TODO: (I'd like to try to calculate some sort of baseline for last year's team and what's returning and use that)
          const offSosDeltaForTxfers = teamSosOff - (basePlayer.off_adj_opp?.value || (avgEff + 4));
-         const isTransferringUpDef = ((basePlayer.team != team) && (offSosDeltaForTxfers > 4));
-         const defTxferUpBetterHelpBump =
-            isTransferringUpDef ? -0.5 : //(approx 50% of approx 50% help * avg delta of 2 between high and low majors)
-            0; //(for players transferring up a decent amount, give their defense a bump because the help defense should be better)
+         const defLevelJump = _.isNil(maybeLevelJump) ? ((offSosDeltaForTxfers > 4) ? 2 : 0) : maybeLevelJump;
+         //(basically the idea here is that if a transfer gets taken by a high major, their defense probably isn't unplayably bad,
+         // and if RAPM says it is, then it's likely a team-effect vs a player-effect)
+         const minDefAdj = (defLevelJump >= 3) ? 1 : ((defLevelJump >= 2) ? 0.75 : 0);
+         const minDef = TeamEditorUtils.getBenchLevelScoring(team, year) + minDefAdj;
+         const currDef = TeamEditorUtils.getDef(basePlayer);
+         const adjustedCurrDef = currDef - ((defLevelJump >= 2) ? 0.5 : 0); //(bonus help defense for players coming up from low majors)
+         const defTxferUpBetterHelpBump = (
+            ((adjustedCurrDef > minDef) && (defLevelJump >= 2)) ? minDef : adjustedCurrDef
+         ) - currDef;
+         //(end ugly heuristic defense adjustment)
 
-         const defTxferUpPenalty =
-            isTransferringUpDef ? TeamEditorUtils.calcTxferUpHeightEffDrop(basePlayer) : 0;
+         const defHeightPenaltyFactor = (defLevelJump == 1) ? 0.75 : (defLevelJump >= 2 ? 1.0 : 0);
+         const defTxferUpPenalty = (defHeightPenaltyFactor > 0) ? defHeightPenaltyFactor*TeamEditorUtils.calcTxferUpHeightEffDrop(basePlayer) : 0;
 
          const defTxferMulti = isFr ? 1 : 0.5; //(you get a bigger jump as a Fr, see defClassMulti)
          const generalTxferDefPenalty = (basePlayer.team != team) ? defTxferMulti*avgDefBump : 0; //(just the fact that you might not get quite the same off-season bump as a transfer)
@@ -669,7 +682,7 @@ export class TeamEditorUtils {
                }),
                ok: tidy({
                   [yearlyBonusField]: defClassMulti*avgDefBump,
-                  better_help_txfer_bonus: 0.5*defTxferUpBetterHelpBump,
+                  better_help_txfer_bonus: defTxferUpBetterHelpBump,
                   undersized_txfer_pen: -0.75*defTxferUpPenalty,
                   general_txfer_pen: -0.5*generalTxferDefPenalty,
                   user_adjustment: override?.global_def_adj || 0,
@@ -1427,13 +1440,38 @@ export class TeamEditorUtils {
             return TeamEditorUtils.getBenchLevelScoringByProfile("3+2*s");
          } else if (level.category == "midlow") {
             return TeamEditorUtils.getBenchLevelScoringByProfile("2*");
-         } else if (level.category == "midlow") {
+         } else if (level.category == "low") {
             return TeamEditorUtils.getBenchLevelScoringByProfile("UR");
          } else { //unknown
             return TeamEditorUtils.getBenchLevelScoringByProfile(undefined);
          } 
       }
       return getBenchLevel();
+   }
+
+   /** Returns a numeric value for how many "levels" a player has jumped */
+   static getJumpInLevel(oldTeam: string, newTeam: string, year: string): undefined | number {
+      const levelToNumber = (level: string) => {
+         switch(level) {
+            case "high": return 5;
+            case "midhigh": return 4;
+            case "mid": return 3;
+            case "midlow": return 2;
+            case "low": return 1;
+            default: return undefined;
+         }
+      }
+      const getLevel = (team: string) => _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) 
+         || AvailableTeams.byName[team]?.[0] 
+         || { category: "unknown"};
+
+      const oldLevel = levelToNumber(getLevel(oldTeam).category || "unknown");
+      const newLevel = levelToNumber(getLevel(newTeam).category || "unknown");
+      if (_.isNil(oldLevel) || _.isNil(newLevel)) {
+         return undefined;
+      } else {
+         return newLevel - oldLevel;
+      }
    }
 
    /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor" */

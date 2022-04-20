@@ -362,6 +362,7 @@ export class TeamEditorManualFixes {
          "Iowa": {
          },
          "Illinois": {
+            leftTeam: [ "KoCockburn::" ],
             overrides: {
                ...wName("Clark, Skyy", {
                   profile: "5*",
@@ -441,6 +442,9 @@ export class TeamEditorManualFixes {
                   pos: "PG"
                }),
             }
+         },
+         "Michigan St.": {
+            superSeniorsReturning: new Set([ "JoHauser::" ]),
          },
          "Nebraska": {
          },
@@ -544,6 +548,7 @@ export class TeamEditorManualFixes {
             },
          },
          "Texas": {
+            superSeniorsReturning: new Set([ "TiAllen::" ]),
             overrides: {
                ...wName("Mitchell, Dillon", {
                   profile: "5*",
