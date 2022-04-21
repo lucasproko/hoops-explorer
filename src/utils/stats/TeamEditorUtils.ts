@@ -189,7 +189,7 @@ export class TeamEditorUtils {
 
       const genderYearLookup = `${gender}_${year}`;
       const teamOverrides: TeamEditorManualFixModel = offSeasonMode ?  //(the fixes only apply in off-season mode)
-         (TeamEditorManualFixes.fixes()[genderYearLookup]?.[team] || {}) : {};
+         (TeamEditorManualFixes.fixes(genderYearLookup)[team] || {}) : {};
 
       //////////////
       
