@@ -422,6 +422,17 @@ export class TeamEditorUtils {
       const transfersLastYear = transfers[1] || {};
       const transfersOnly = transferYearOverride != undefined;
 
+      const getMaybeDoubleTransfer = (code: string, maybeP: IndivStatSet) => {
+         return _.find( //Transferred to Y 2 years ago then from Y to here (T say)
+            // Example: transfers[0] = {p1: { f:X t:Y }}, transfers[1] = { p1: {f:X t:T }},
+            // players: [ { code: p1, team: X }, { code: p1, team: Y } ]
+            transfersLastYear[code] || [], txfer => {
+               return (txfer.f == maybeP.team) &&
+                  _.some(transfersThisYear[code] || [], txfer2 => (txfer.t == txfer2.f) && (txfer2.t == team));
+            }
+         ); //(note the purpose of doubleTransfer is to match up last year's player with this year's triple)
+      };
+
       const fromBaseRoster = _.transform(players, (acc, p) => {
          const yearAdj = (year == "All") ? //(for building all star teams)
             p.year : 
@@ -442,14 +453,7 @@ export class TeamEditorUtils {
          const wasPlayerTxferLastYear = _.some(
             transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
          );
-         const doubleTransfer = _.find( //Transferred to Y 2 years ago then from Y to here (T say)
-            // Example: transfers[0] = {p1: { f:X t:Y }}, transfers[1] = { p1: {f:X t:T }},
-            // players: [ { code: p1, team: X }, { code: p1, team: Y } ]
-            transfersLastYear[code] || [], txfer => {
-               return (txfer.f == p.team) &&
-                  _.some(transfersThisYear[code] || [], txfer2 => (txfer.t == txfer2.f) && (txfer2.t == team));
-            }
-         ); //(note the purpose of doubleTransfer is to match up last year's player with this year's triple)
+         const doubleTransfer = getMaybeDoubleTransfer(code, p);
          const isNotLeaving = (transferringIn || !offSeasonMode || (           
             (includeSuperSeniors || (p.roster?.year_class != "Sr") || (superSeniorsReturning?.has(key)))
                && !isTransferringOut
@@ -509,9 +513,9 @@ export class TeamEditorUtils {
             const yearClass = p.roster?.year_class || "??";
 
             // If they transferred in _this_ year then they are definitely playing
-            const transferringIn = !mutableExcludeSet[key] && _.some(
+            const transferringIn = !mutableExcludeSet[key] && (_.some(
                transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
-            );
+            ) || !_.isNil(getMaybeDoubleTransfer(code, p)));
 
             const left = fromBaseRoster.inAndLeaving[key] || false;
             const transferredOut = 
