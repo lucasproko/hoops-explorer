@@ -160,7 +160,9 @@ export class LeaderboardUtils {
          return "2020/21";
       } else if (y == "2018/9") {
          return "2019/20";
-      } else { 
+      } else if (y == "Extra") {
+         return "2018/9";
+      } else {
          return "None";
       }
    }

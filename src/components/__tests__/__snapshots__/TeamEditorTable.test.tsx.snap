@@ -63,10 +63,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
               "label": "2019/20",
               "value": "2019/20",
             },
@@ -78,12 +74,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "2022/23",
+              "value": "2022/23",
+            },
           ]
         }
         value={
           Object {
-            "label": "2019/20",
-            "value": "2019/20",
+            "label": "2020/21",
+            "value": "2020/21",
           }
         }
       />
@@ -807,7 +807,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -4280,10 +4280,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
               "label": "2019/20",
               "value": "2019/20",
             },
@@ -4295,12 +4291,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "2022/23",
+              "value": "2022/23",
+            },
           ]
         }
         value={
           Object {
-            "label": "2019/20",
-            "value": "2019/20",
+            "label": "2020/21",
+            "value": "2020/21",
           }
         }
       />
@@ -5024,7 +5024,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -8237,10 +8237,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
               "label": "2019/20",
               "value": "2019/20",
             },
@@ -8252,12 +8248,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "2022/23",
+              "value": "2022/23",
+            },
           ]
         }
         value={
           Object {
-            "label": "2019/20",
-            "value": "2019/20",
+            "label": "2020/21",
+            "value": "2020/21",
           }
         }
       />
@@ -8997,7 +8997,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -13228,10 +13228,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
               "label": "2019/20",
               "value": "2019/20",
             },
@@ -13243,12 +13239,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "2022/23",
+              "value": "2022/23",
+            },
           ]
         }
         value={
           Object {
-            "label": "2019/20",
-            "value": "2019/20",
+            "label": "2020/21",
+            "value": "2020/21",
           }
         }
       />
@@ -13988,7 +13988,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -17792,10 +17792,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
               "label": "2019/20",
               "value": "2019/20",
             },
@@ -17807,12 +17803,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "2022/23",
+              "value": "2022/23",
+            },
           ]
         }
         value={
           Object {
-            "label": "2019/20",
-            "value": "2019/20",
+            "label": "2020/21",
+            "value": "2020/21",
           }
         }
       />
@@ -18552,7 +18552,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -22083,10 +22083,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
               "label": "2019/20",
               "value": "2019/20",
             },
@@ -22098,12 +22094,16 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "2022/23",
+              "value": "2022/23",
+            },
           ]
         }
         value={
           Object {
-            "label": "2019/20",
-            "value": "2019/20",
+            "label": "2020/21",
+            "value": "2020/21",
           }
         }
       />
@@ -22827,7 +22827,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -26500,7 +26500,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -30687,7 +30687,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -34616,7 +34616,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>

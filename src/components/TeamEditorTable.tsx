@@ -104,7 +104,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ superSeniorsBack, setSuperSeniorsBack ] = useState(_.isNil(startingState.superSeniorsBack) ? false : startingState.superSeniorsBack);
 
   // Data source
-  const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
+  const [ offSeasonYear, setOffSeasonYear ] = useState(startingState.year || ParamDefaults.defaultYear);
+  const year = offSeasonYear;
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
@@ -173,7 +174,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const newState = {
         ...startingState,
         ...lboardParams,
-        gender: gender, year: year, team: team,
+        gender: gender, 
+        year: year, 
+        team: team,
         // Editor specific settings for team editor itself
         // there's some complexity here because we can't update this until we've used them to build the caches
         addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
@@ -740,7 +743,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         team: team, gender: gender, year: year,
         minRank: "0", maxRank: "400",
         factorMins: false, possAsPct: true,
-        showExpanded: true, calcRapm: true
+        showExpanded: true, calcRapm: true,
+        showGrades: "rank:D1"
       };
       const teamTooltip = (
         <Tooltip id={`teamTooltip`}>Open new tab with the on/off analysis for this player/team</Tooltip>
@@ -802,8 +806,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ,
         GenericTableOps.buildDataRow({
           title: <b>Team Grades {
-            (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? `(${divisionStatsCache.year.substring(2)
-            })` : null}</b>,
+            (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
+              ((divisionStatsCache.year != (evalMode ? LeaderboardUtils.getNextYear(year) : year)) ?
+                "(generic)"
+                : `(${divisionStatsCache.year.substring(2)})`)
+            ) : null            
+          }</b>,
           actual_net: teamGradesActual.off_net,
           actual_off: teamGradesActual.off_adj_ppp,
           actual_def: teamGradesActual.def_adj_ppp,
@@ -1025,6 +1033,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
   }
 
+  /** Handles switching between off-season and what-if mode, where the year is interpreted differently */
+  function setOffSeasonModeWithEffects(newOffSeasonMode: boolean) {
+    if (newOffSeasonMode) {
+      setOffSeasonMode(true);
+      if ((offSeasonYear != "2018/9") && !offSeasonMode) {
+        setOffSeasonYear(LeaderboardUtils.getPrevYear(offSeasonYear));
+      }
+    } else {
+      setOffSeasonMode(false);
+      if ((offSeasonYear != "2021/22") && offSeasonMode) {
+        setOffSeasonYear(LeaderboardUtils.getNextYear(offSeasonYear));
+      }
+    }
+  }
+
   return <Container>
     {overrideGrades ? null : <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
@@ -1052,23 +1075,30 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
-          value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "2020/21", "2021/22" ].map(
-              (r) => stringToOption(r)
-          )}
+          value={ stringToOption(offSeasonMode ? LeaderboardUtils.getNextYear(offSeasonYear) : offSeasonYear) }
+          options={
+            (offSeasonMode ? [] : [ "2018/9" ])
+              .concat([ "2019/20", "2020/21", "2021/22" ])
+              .concat(offSeasonMode ? [ "2022/23" ] : [])
+              .map(
+                (r) => stringToOption(r)
+              )
+          }
           isSearchable={false}
           onChange={(option) => { 
             if ((option as any)?.value) {
-              const newYear = (option as any).value;
+              const newDisplayYear = (option as any).value;
+              const newOffseasonYear = offSeasonMode ?
+                LeaderboardUtils.getPrevYear(newDisplayYear) : newDisplayYear; //switch from displayYear to offSeasonYear
               friendlyChange(() => {
-                setYear(newYear);
+                setOffSeasonYear(newOffseasonYear); 
                 setOtherPlayerCache({});
                 setDisabledPlayers({});
                 setDeletedPlayers({});
                 setEditOpen({});
                 setUiOverrides({})
                 setLboardAltDataSource(undefined);
-              }, newYear != year);
+              }, newOffseasonYear != year);
             }
           }}
         />
@@ -1086,27 +1116,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           )}
           onChange={(option) => {
             const selection = (option as any)?.value || "";
-            if (year == AvailableTeams.extraTeamName) {
-              const teamYear = selection.split(/ (?=[^ ]+$)/);
               friendlyChange(() => {
-                setTeam(teamYear[0]);
-                setYear(teamYear[1]);
-                setOtherPlayerCache({});
-                setDisabledPlayers({});
-                setDeletedPlayers({});
-                setEditOpen({});
-                setUiOverrides({})
-              }, (teamYear[0] != team) && (teamYear[1] != year));
-            } else {
-               friendlyChange(() => {
-                setTeam(selection);
-                setOtherPlayerCache({});
-                setDisabledPlayers({});
-                setDeletedPlayers({});
-                setEditOpen({});
-                setUiOverrides({})
-               }, team != selection);
-            }
+              setTeam(selection);
+              setOtherPlayerCache({});
+              setDisabledPlayers({});
+              setDeletedPlayers({});
+              setEditOpen({});
+              setUiOverrides({})
+              }, team != selection);
           }}
         />
       </Col>
@@ -1135,7 +1152,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 text={"'What If?' mode"}
                 truthVal={!offSeasonMode}
                 onSelect={() => friendlyChange(() => {
-                  setOffSeasonMode(!offSeasonMode);
+                  setOffSeasonModeWithEffects(!offSeasonMode);
                   setEvalMode(false);
                 }, true)}
               />
@@ -1144,7 +1161,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               text={"Review mode"}
               truthVal={evalMode}
               onSelect={() => friendlyChange(() => {
-                setOffSeasonMode(true);
+                setOffSeasonModeWithEffects(true);
                 setEvalMode(!evalMode);
               }, true)}
             />
@@ -1185,7 +1202,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               tooltip: "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
               toggled: !offSeasonMode,
               onClick: () => friendlyChange(() => {
-                setOffSeasonMode(!offSeasonMode);
+                setOffSeasonModeWithEffects(!offSeasonMode);
                 setEvalMode(false);
             }, true)
             },
@@ -1194,7 +1211,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               tooltip: "Compares the off-season projection against what actually happened (/is actually happening) the following year",
               toggled: evalMode,
               onClick: () => friendlyChange(() => {
-                 setOffSeasonMode(true);
+                  setOffSeasonModeWithEffects(true);
                  setEvalMode(!evalMode);
                 }, true)
             },
