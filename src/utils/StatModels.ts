@@ -34,12 +34,15 @@ export type Statistic = {
   /** If a number was overridden by manual or luck adjustments, the original */
   old_value?: number,
   /** Provides some context for value */
-  extraInfo?: string | React.ReactNode
+  extraInfo?: string | React.ReactNode,
   /** Gives some details about how value was derived from old_value */
-  override?: string | React.ReactNode
+  override?: string | React.ReactNode,
 
   /** The number of samples that generated this statistic, if available (assume not) */
-  samples?: number
+  samples?: number,
+
+  /** Background color override (currently only supported for tables, not shadow background) */
+  colorOverride?: number,
 };
 /** Like statistic, but can take an HTML val in its value */
 export type StatisticOrRender = {

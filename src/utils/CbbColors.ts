@@ -1,5 +1,6 @@
 import { Color } from "chroma-js";
 import chroma from "chroma-js";
+import _ from 'lodash';
 
 type CbbColorTuple = [ (val: number) => string, (val: number) => string ];
 
@@ -8,7 +9,7 @@ export class CbbColors {
   /** Utility to pick a color scale based on whether the stat is offensive or defensive */
   static picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val.value as number;
+      const num = _.isNil(val.colorOverride) ? (val.value as number) : (val.colorOverride as number);
       return ((num == null) || (num == undefined)) ?
         CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
         ("off" == valMeta) ? offScale(num) : defScale(num)
@@ -24,7 +25,7 @@ export class CbbColors {
   /** For non-off/def tables, single row */
   static varPicker(scaleFn: (val: number) => string, scale: number = 1) {
     return (val: any, valMeta: string) => {
-      const num = val.value as number;
+      const num = _.isNil(val.colorOverride) ? (val.value as number) : (val.colorOverride as number);
       return ((num == null) || (num == undefined)) ?
         CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
         scaleFn(num*scale)
@@ -38,6 +39,7 @@ export class CbbColors {
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);
   private static readonly greenToRed = chroma.scale(["green", "#ffFFff", "red"]);
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
+  private static readonly orangeToBlue = chroma.scale(["orange", "#ffFFff", "lightblue"]);
   private static readonly whiteToOrange = chroma.scale(["#ffFFff", "orange"]);
 
   public static readonly getRedToGreen = () => chroma.scale(["red", "#ffFFff", "green"]);
@@ -63,6 +65,8 @@ export class CbbColors {
   public static readonly off_ppp = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val*100).toString();
   public static readonly def_ppp = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val*100).toString();
   public static readonly ppp: CbbColorTuple = [ CbbColors.off_ppp, CbbColors.def_ppp ];
+  public static readonly netGuessDomain = [ 0, 6, 12];
+  public static readonly net_guess = (val: number) => CbbColors.orangeToBlue.domain(CbbColors.netGuessDomain)(val).toString();
   // eFG
   private static readonly eFGDomain = [ 0.4, 0.5, 0.6 ];
   public static readonly off_eFG = (val: number) => CbbColors.redToGreen.domain(CbbColors.eFGDomain)(val).toString();

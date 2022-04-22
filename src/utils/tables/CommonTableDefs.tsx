@@ -29,7 +29,7 @@ export class CommonTableDefs {
 
   static picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val.value as number;
+      const num = _.isNil(val.colorOverride) ? (val.value as number) : (val.colorOverride as number);
       return _.isNil(num) ?
         CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
         ("off" == valMeta) ? offScale(num) : defScale(num)

@@ -40,6 +40,7 @@ import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks } fr
 import { CommonTableDefs } from '../utils/tables/CommonTableDefs';
 import { CbbColors } from '../utils/CbbColors';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
+import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
@@ -66,8 +67,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    // Data source
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
    const [confs, setConfs] = useState(startingState.confs || "");
-   const [year, setYear] = useState("2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
-   const [yearRedirect, setYearRedirect] = useState("2022/23"); //TODO lets us jump between off-seasons and normal leaderboards
+   const [year, setYear] = useState(startingState.year ? 
+      (startingState.evalMode ? startingState.year : LeaderboardUtils.getPrevYear(startingState.year))
+      : "2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
+   const [yearRedirect, setYearRedirect] = useState(startingState.year || "2022/23"); //TODO lets us jump between off-seasons and normal leaderboards
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
    const [team,  setTeam] = useState(startingState.teamView || "");
 
@@ -103,7 +106,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    /** When the params change */
    useEffect(() => {
       onChangeState(_.merge({
-         year: yearRedirect, teamView: team, confs
+         year: yearRedirect, teamView: team, confs, evalMode: startingState.evalMode,
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
@@ -158,7 +161,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    };
 
    // Conference filter
-
    function getCurrentConfsOrPlaceholder() {
       return (confs == "") ?
       { label: year < "2020/21" ? `All High Tier Teams` : `All Teams` } :
@@ -250,7 +252,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const pxResults = TeamEditorUtils.teamBuildingPipeline(
             gender, t, year,
             playerPartition[t] || [], dataEvent.transfers || [],
-            true, false,
+            true, startingState.evalMode || false,
             addedPlayers, overrides, deletedPlayers, disabledPlayers,
             maybeOverride.superSeniorsBack || false, false,
             avgEff
@@ -293,8 +295,21 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             {}, mutableDivisionStats, true, [ "off_adj_ppp", "def_adj_ppp", "off_net" ]
          );
 
+         // Eval mode:
+         const totalActualMins = startingState.evalMode ? _.sumBy(pxResults.actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
+         const finalActualEffAdj = totalActualMins ? 
+           5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(t, year) : 0;
+         const actualTotals = startingState.evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
+         const dummyTeamActual = actualTotals ? {
+           off_net: { value: actualTotals.net },
+           off_adj_ppp: { value: actualTotals.off + avgEff },
+           def_adj_ppp: { value: actualTotals.def + avgEff },
+         } : undefined;
+         //(end Eval mode)
+
          return { ...okTotals, 
             goodNet: okTotals.net + goodDeltaNet, badNet: okTotals.net + badDeltaNet,
+            actualNet: dummyTeamActual?.off_net?.value, //TODO: off and def also
             team: t, 
             conf: ConferenceToNickname[confStr] || "???", 
             rosterInfo: `${okTotals.numSuperstars} / ${okTotals.numStars} / ${okTotals.numStarters} / ${okTotals.numRotation}` 
@@ -305,9 +320,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       const offEffToRankMap = _.chain(teamRanks).sortBy(t => -t.off).map((t, rank) => [t.off, rank]).fromPairs().value();
       const defEffToRankMap = _.chain(teamRanks).sortBy(t =>t.def).map((t, rank) => [t.def, rank]).fromPairs().value();
       const netEffToRankMap = confs ? _.chain(teamRanks).sortBy(t => -t.net).map((t, rank) => [t.net, rank]).fromPairs().value() : {};
+      const actualNetEffToRankMap = startingState.evalMode ? 
+         _.chain(teamRanks).sortBy(t => -(t.actualNet || 0)).map((t, rank) => [t.actualNet || 0, rank]).fromPairs().value() : undefined;
+
       GradeUtils.buildAndInjectDivisionStatsLUT(mutableDivisionStats);
 
-      const tableDefs = {
+      const tableDefs = _.omit({
          title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 10),
          "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
          "sep0": GenericTableOps.addColSeparator(),
@@ -316,6 +334,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          net_grade: GenericTableOps.addDataCol("Rank", 
             "Net Adjusted Pts/100 ranking, for 'Balanced' projections",
             CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+         actual_grade: GenericTableOps.addDataCol("Act.", 
+            "Where the team would have come on this ranking scale given their actual performance",
+            CbbColors.varPicker(CbbColors.net_guess), GenericTableOps.gradeOrHtmlFormatter),
 
          "sep1": GenericTableOps.addColSeparator(),
 
@@ -347,7 +368,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          "sep5": GenericTableOps.addColSeparator(),
 
          edit: GenericTableOps.addDataCol("", "Edit the team projections", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-      };
+      }, startingState.evalMode ? [] : [ "actual_grade" ]);
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
@@ -379,6 +400,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          ;
          const netRank = confs ? netEffToRankMap[t.net]! : netRankIn;
 
+         // Eval mode:
+         //const actualNetRank = actualNetEffToRankMap ? actualNetEffToRankMap[t.actualNet || 0]! : undefined;
+         //(vs the actual rank ... empirically doesn't work well)
+         const actualNetRank = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.actualNet || 0 } }, [ "net" ], true);
+         //(vs the same ranking scale ... empirically does work well)
+         //end Eval mode
+
          const pickSubHeaderMessage = (rank: number) => {
             if (rank == 0) {
                return "Top 25 + 1";
@@ -409,6 +437,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
                net: { value: t.net },
                net_grade: { samples: numTeams, value: (1.0*(numTeams - netRank))/numTeams },
+               actual_grade: 
+                  _.isNil(actualNetRank.off_net?.value) ? undefined : { 
+                     ...(actualNetRank?.off_net),
+                     colorOverride: Math.abs((t.actualNet || t.net) - t.net)
+                  }
+               ,
                off: { value: avgEff + t.off },
                off_grade: { samples: numTeams, value: (1.0*(numTeams - offEffToRankMap[t.off]!))/numTeams },
                def: { value: avgEff + t.def },
@@ -433,7 +467,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             GenericTableOps.buildTextRow(
                <TeamEditorTable
                   startingState={{
-                     team, year, gender,
+                     team, gender, year,
+                     evalMode: startingState.evalMode,
                      ...(teamOverrides[team] || {})
                   }}
                   dataEvent={dataEvent}
@@ -503,7 +538,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          </Col>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
-               value={stringToOption("2022/23")}
+               isDisabled={startingState.evalMode}
+               value={stringToOption(startingState.evalMode ? LeaderboardUtils.getNextYear(year) : "2022/23")}
                options={
                (
                   ["2019/20", "2020/21", "2021/22", "2022/23"]

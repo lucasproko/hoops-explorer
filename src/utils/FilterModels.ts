@@ -167,6 +167,7 @@ export type OffseasonLeaderboardParams = {
   year?: string,
   teamView?: string,
   confs?: string,
+  evalMode?: boolean,
 } & Record<string, string>;
 
 export type PlayerLeaderboardParams = {

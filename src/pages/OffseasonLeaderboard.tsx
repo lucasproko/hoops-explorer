@@ -81,7 +81,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
     ]));
 
-    if (rawParams.year && (rawParams.year != "2022/23")) { //TODO: un-hardwire this
+    if (rawParams.year && (rawParams.year != "2022/23") && !rawParams.evalMode) { //TODO: un-hardwire this
       const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
       if (typeof window !== `undefined`) window.location.href = newUrl;
 
@@ -102,7 +102,9 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const paramObj = offseasonLeaderboardParams;
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = LeaderboardUtils.getPrevYear(paramObj.year || "2022/23"); //TODO: fix this
+    const fullYear =  paramObj.evalMode ?
+      (paramObj.year || "2020/21") : //(first year we can do a review)
+      LeaderboardUtils.getPrevYear(paramObj.year || "2022/23"); //TODO: fix this
     const tier = (paramObj.tier || "All");
 
     const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
@@ -116,7 +118,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       setCurrTier(tier);
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferYears, [ prevYear ]
+        "all", gender, fullYear, tier, transferYears, paramObj.evalMode ? [ LeaderboardUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
       );
 
       fetchAll.then((jsonsIn: any[]) => {
