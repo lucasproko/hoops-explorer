@@ -65,7 +65,7 @@ export class CbbColors {
   public static readonly off_ppp = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val*100).toString();
   public static readonly def_ppp = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val*100).toString();
   public static readonly ppp: CbbColorTuple = [ CbbColors.off_ppp, CbbColors.def_ppp ];
-  public static readonly netGuessDomain = [ 0, 6, 12];
+  public static readonly netGuessDomain = [ 0, 1.0, 2.0 ];
   public static readonly net_guess = (val: number) => CbbColors.orangeToBlue.domain(CbbColors.netGuessDomain)(val).toString();
   // eFG
   private static readonly eFGDomain = [ 0.4, 0.5, 0.6 ];

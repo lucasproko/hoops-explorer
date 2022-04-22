@@ -30,7 +30,7 @@ import GenericTable, { GenericTableOps } from "./GenericTable";
 import { TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
-import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
+import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { UrlRouting } from '../utils/UrlRouting';
@@ -330,24 +330,24 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
          "sep0": GenericTableOps.addColSeparator(),
 
-         net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
+         net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 team, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
          net_grade: GenericTableOps.addDataCol("Rank", 
             "Net Adjusted Pts/100 ranking, for 'Balanced' projections",
             CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
          actual_grade: GenericTableOps.addDataCol("Act.", 
-            "Where the team would have come on this ranking scale given their actual performance",
+            "Ranking based on the team's actual Net Adjusted Pts/100 above an average D1 team",
             CbbColors.varPicker(CbbColors.net_guess), GenericTableOps.gradeOrHtmlFormatter),
 
          "sep1": GenericTableOps.addColSeparator(),
 
-         off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_pp100)),
+         off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 team, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_pp100)),
          off_grade: GenericTableOps.addDataCol(
             "Rank", "Offensive Adjusted Pts/100 ranking, for 'Balanced' projections", 
             CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
 
          "sep2": GenericTableOps.addColSeparator(),
 
-         def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_pp100)),
+         def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 team, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_pp100)),
          def_grade: GenericTableOps.addDataCol(
             "Rank", "Defensive Adjusted Pts/100 ranking, for 'Balanced' projections", 
             CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
@@ -400,11 +400,22 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          ;
          const netRank = confs ? netEffToRankMap[t.net]! : netRankIn;
 
-         // Eval mode:
-         //const actualNetRank = actualNetEffToRankMap ? actualNetEffToRankMap[t.actualNet || 0]! : undefined;
-         //(vs the actual rank ... empirically doesn't work well)
-         const actualNetRank = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.actualNet || 0 } }, [ "net" ], true);
-         //(vs the same ranking scale ... empirically does work well)
+         // Eval mode:         
+         // (make the format like we'd called buildTeamPercentiles)
+         const actualNetRankObj = actualNetEffToRankMap ? 
+            { off_net: { value: 1.0 - (actualNetEffToRankMap[t.actualNet || 0]!)/(numTeams || 1), samples: numTeams } }: undefined;
+         // example of calling buildTeamPercentils
+         //const actualNetRank = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.actualNet || 0 } }, [ "net" ], true);
+         const toIntRank = (val: Statistic) => {
+            const pcile = val.value || 0;
+            const rank = 1 + Math.round((1 - pcile)*numTeams); //(+1, since 100% is rank==1)
+            return rank;
+         };
+         const actualNetRank = actualNetRankObj ? toIntRank(actualNetRankObj?.off_net) : 0;
+         const goodNetRank = actualNetRankObj ? toIntRank(goodNet.off_net) : 0;
+         const badNetRank = actualNetRankObj ? toIntRank(badNet.off_net) : 0;
+         const evalStdDev = (actualNetRank < netRank) ? (netRank - goodNetRank) : (badNetRank - netRank);
+         const deltaProjRank = Math.abs(netRank - actualNetRank)/(evalStdDev || 1);
          //end Eval mode
 
          const pickSubHeaderMessage = (rank: number) => {
@@ -438,9 +449,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                net: { value: t.net },
                net_grade: { samples: numTeams, value: (1.0*(numTeams - netRank))/numTeams },
                actual_grade: 
-                  _.isNil(actualNetRank.off_net?.value) ? undefined : { 
-                     ...(actualNetRank?.off_net),
-                     colorOverride: Math.abs((t.actualNet || t.net) - t.net)
+                  _.isNil(actualNetRankObj?.off_net) ? undefined : { 
+                     ...(actualNetRankObj?.off_net),
+                     colorOverride: deltaProjRank
                   }
                ,
                off: { value: avgEff + t.off },
