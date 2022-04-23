@@ -526,7 +526,7 @@ export async function main() {
         // For teams that have played fewer possessions than others we still have a lower limit
         //TODO: fix the secondary filter _during_ the year
         const secondaryFilter = 
-          !DateUtils.isSeasonFinished(genderYearLookup) || (playerPoss > minThreshold*averagePossInCompletedYear);
+          !DateUtils.isSeasonFinished(teamYear) || (playerPoss > minThreshold*averagePossInCompletedYear);
 
         return secondaryFilter && (playerPossPct > minThreshold); //(>10mpg)
       }).map((kv: [PlayerId, IndivStatSet]) => {

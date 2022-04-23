@@ -48,6 +48,7 @@ import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import { StatModels, IndivStatSet } from '../utils/StatModels';
 import { TransferModel } from '../utils/LeaderboardUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -179,7 +180,7 @@ const advancedFilterPresets = [
 ] as Array<[ string, string, string ]>;
 
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
-const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
+const fullDataSetSeasons = new Set(DateUtils.coreYears);
 
 // Functional component
 
@@ -905,14 +906,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Col xs={6} sm={6} md={3} lg={2}>
           <Select
             value={ stringToOption(year) }
-            options={            
-              (
-                (tier == "High" || tier == "All") ?
-                  [ "2018/9", "2019/20", "2020/21", "2021/22", "All" ] :
-                  [ "2020/21", "All" ] 
-              ).concat(tier == "High" ? [ "Extra" ] : []).map(
-              (r) => stringToOption(r)
-            )}
+            options={DateUtils.lboardYearList(tier).map(r => stringToOption(r))}
             isSearchable={false}
             onChange={(option) => { 
               if ((option as any)?.value) {

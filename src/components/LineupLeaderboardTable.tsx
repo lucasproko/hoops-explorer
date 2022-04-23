@@ -54,6 +54,7 @@ import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
 
 import ReactDOMServer from 'react-dom/server'
+import { DateUtils } from '../utils/DateUtils';
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>,
@@ -116,7 +117,8 @@ const groupedOptions = [
 ];
 
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
- const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
+const fullDataSetSeasons = new Set(DateUtils.coreYears);
+
 // Functional component
 
 const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
@@ -534,9 +536,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "2020/21", "2021/22" ].concat(tier == "High" ? [ "All", "Extra" ] : []).map(
-            (r) => stringToOption(r)
-          )}
+          options={DateUtils.lboardYearList(tier).map(r => stringToOption(r))}
           isSearchable={false}
           onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
         />

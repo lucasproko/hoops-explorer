@@ -43,7 +43,7 @@ export class LeaderboardUtils {
    ): Promise<any[]> {
       const year = fullYear.substring(0, 4);
    
-      const years = _.filter(DateUtils.lboardYearList, inYear => (year == "All") || (inYear == fullYear) || _.some(otherYears, y => y == inYear));
+      const years = _.filter(DateUtils.lboardYearListWithExtra, inYear => (year == "All") || (inYear == fullYear) || _.some(otherYears, y => y == inYear));
       const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
    
       const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));

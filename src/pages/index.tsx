@@ -32,6 +32,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 import { UrlRouting } from "../utils/UrlRouting";
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -145,7 +146,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
     if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const years = _.filter([ "2018/9", "2019/20", "2020/21", "2021/22" ], inYear => (year == "All") || (inYear == fullYear));
+      const years = _.filter(DateUtils.lboardYearListWithExtra, inYear => (year == "All") || (inYear == fullYear));
       const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
 
       const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));

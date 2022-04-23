@@ -27,6 +27,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -118,7 +119,7 @@ const LineupLeaderboardPage: NextPage<Props> = ({testMode}) => {
     if (year == "All") { //TODO: tidy this up
       setDataEvent(dataEventInit);
 
-      const years = [ "2018/9", "2019/20", "2020/21", "Extra" ];
+      const years = DateUtils.lboardYearListWithExtra;
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
         return fetch(LeaderboardUtils.getLineupUrl(dataSubEventKey, gender, subYear, tier))
           .then((response: fetch.IsomorphicResponse) => {

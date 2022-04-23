@@ -223,7 +223,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   /** The year from which we're taking the grades - other averages need to come from that season */
   const gradeYear = (yearIn: string, evalModeIn: boolean) => {
-    const firstYearWithGrades = evalModeIn ? "2018/9" : "2019/20";
+    const firstYearWithGrades = evalModeIn ? DateUtils.coreYears[0] : DateUtils.coreYears[1];
     return ((yearIn == "All") || (yearIn <= firstYearWithGrades)) 
         ? ParamDefaults.defaultLeaderboardYear 
         : (!evalMode ? yearIn : DateUtils.getNextYear(yearIn));
@@ -1038,12 +1038,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   function setOffSeasonModeWithEffects(newOffSeasonMode: boolean) {
     if (newOffSeasonMode) {
       setOffSeasonMode(true);
-      if ((offSeasonYear != "2018/9") && !offSeasonMode) {
+      if ((offSeasonYear != DateUtils.firstYearWithData) && !offSeasonMode) {
         setOffSeasonYear(DateUtils.getPrevYear(offSeasonYear));
       }
     } else {
       setOffSeasonMode(false);
-      if ((offSeasonYear != "2021/22") && offSeasonMode) {
+      if ((offSeasonYear != DateUtils.mostRecentYearWithLboardData) && offSeasonMode) {
         setOffSeasonYear(DateUtils.getNextYear(offSeasonYear));
       }
     }
@@ -1077,14 +1077,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(offSeasonMode ? DateUtils.getNextYear(offSeasonYear) : offSeasonYear) }
-          options={
-            (offSeasonMode ? [] : [ "2018/9" ])
-              .concat([ "2019/20", "2020/21", "2021/22" ])
-              .concat(offSeasonMode ? [ "2022/23" ] : [])
-              .map(
-                (r) => stringToOption(r)
-              )
-          }
+          options={DateUtils.teamEditorYears(offSeasonMode).map(r => stringToOption(r))}
           isSearchable={false}
           onChange={(option) => { 
             if ((option as any)?.value) {

@@ -552,12 +552,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             <Select
                isDisabled={startingState.evalMode}
                value={stringToOption(startingState.evalMode ? DateUtils.getNextYear(year) : "2022/23")}
-               options={
-               (
-                  ["2019/20", "2020/21", "2021/22", "2022/23"]
-               ).concat(tier == "High" ? ["Extra"] : []).map(
-                  (r) => stringToOption(r)
-               )}
+               options={DateUtils.lboardYearListWithNextYear(tier == "High").map(r => stringToOption(r))}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
                   /* currently only support 2022/23 - but lets other years be specified to jump between off-season predictions and previous results */

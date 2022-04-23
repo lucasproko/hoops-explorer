@@ -22,6 +22,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults, TeamLeaderboardParams, TeamEditorParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
+import { DateUtils } from '../../utils/DateUtils';
 
 type Props = {
   thisPage: string,
@@ -51,7 +52,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname;
 
-  const hasMidMajors = (!common.year || _.startsWith(common.year, "202")); //(2020 onwards)
+  const hasMidMajors = (!common.year || (common.year >= DateUtils.yearFromWhichAllMenD1Imported));
 
   // Lineup Leaderboard
   function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low") {
@@ -77,8 +78,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
   function getTeamLeaderboardUrl() {
-    if (!common.year || (common.year == "2021/22") || (common.year == "2022/23")) {
-      //TODO: unhardwire this
+    const currYear = common.year || DateUtils.mostRecentYearWithData;
+    if (DateUtils.isSeasonFinished(currYear) ? 
+          (currYear >= DateUtils.mostRecentYearWithData) : (currYear > DateUtils.mostRecentYearWithData)
+    ) {
       return UrlRouting.getOffseasonLeaderboard({});
     } else {
       return UrlRouting.getTeamLeaderboardUrl(

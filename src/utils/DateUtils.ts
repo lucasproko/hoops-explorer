@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import { dataLastUpdated } from "./internal-data/dataLastUpdated";
 
 /** Keep all the constants and useful manipulation methods for dates in one place  */
@@ -13,13 +15,18 @@ export class DateUtils {
    /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season */
    static readonly offseasonYear = "2021/22";
 
-   /** All years supported by the leaderboard */
-   static readonly lboardYearList = [ "2018/9", "2019/20", "2020/21", "2021/22", "Extra" ];
+   /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
+   static readonly coreYears = [ "2018/9", "2019/20", "2020/21", "2021/22" ];
 
+   /** Note should include all 3 formats */
    private static readonly seasonNotFinished: Record<string, boolean> = {
+      "2022/23": true,
       "Men_2022/23": true,
       "Women_2022/23": true
    };
+
+   /** The first year for which we had bulk date (ie not just hand-picked) */
+   static readonly firstYearWithData = DateUtils.coreYears[0];
 
    /** Used for defaults for everything but leaderboards (which get updated later) */
    static readonly mostRecentYearWithData = "2021/22";
@@ -40,8 +47,35 @@ export class DateUtils {
 
    // Methods
 
+   /** All years supported by the leaderboard - with handy flags to control extra options */
+   private static readonly lboardYearListOptions = (withNextYear: boolean, withAll: boolean, withExtra: boolean) => 
+      DateUtils.coreYears.concat(withNextYear ? [ "2022/23" ] : [])
+         .concat(withAll ? [ "All" ] : []).concat(withExtra ? ["Extra"] : []);
+
+   /** For team editing, we can go into the offseason (unless in "what-if" mode), but can't have the first season because
+    * then we'd have no history to use for projections
+    */
+   static readonly teamEditorYears = (offseasonMode: boolean) => offseasonMode ? 
+      _.drop(DateUtils.lboardYearListOptions(true, false, false), 1) //(include off-season but not very first year)
+      : DateUtils.lboardYearListOptions(false, false, false); //(include all seasons for which we have data)
+
+   /** All years supported by the leaderboard - plus sometimes "Extra" but never "All" ... TODO: figure out why?! */
+   static readonly lboardYearListWithNextYear = (withExtra: boolean) => DateUtils.lboardYearListOptions(true, false, withExtra);
+
+   /** All years selectable by the leaderboard year dropdown */
+   static readonly lboardYearList = (tier: string) => {
+      const tierIsHighOrAll = (tier == "High") || (tier == "All");
+      return DateUtils.lboardYearListOptions(false, true, tierIsHighOrAll) //(always show all)
+         .filter(y => 
+            tierIsHighOrAll || (y == "All") || (y >= DateUtils.yearFromWhichAllMenD1Imported)
+         );   
+   }
+
+   /** All years supported by the leaderboard (with Extra but not All) */
+   static readonly lboardYearListWithExtra = DateUtils.lboardYearListOptions(false, false, true);
+
    /** Is the season ongoing */
-   static readonly isSeasonFinished = (genderYear: string) => DateUtils.getEndOfRegSeason(genderYear) != undefined;
+   static readonly isSeasonFinished = (year: string) => !(DateUtils.seasonNotFinished[year] || false);
 
    /** Approx 20d before the end of the actual season (genderYear format is `${gender}_${year}`) */
    static readonly getEndOfRegSeason = (genderYear: string) => 

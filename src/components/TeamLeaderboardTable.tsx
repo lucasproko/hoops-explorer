@@ -815,12 +815,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
           <Select
             value={stringToOption(year)}
-            options={
-              (
-                ["2018/9", "2019/20", "2020/21", "2021/22", "2022/23" ]
-              ).concat(tier == "High" ? ["Extra"] : []).map(
-                (r) => stringToOption(r)
-              )}
+            options={DateUtils.lboardYearListWithNextYear(tier == "High").map(r => stringToOption(r))}
             isSearchable={false}
             onChange={(option) => { if ((option as any)?.value) {
               setPinnedRankings({});
