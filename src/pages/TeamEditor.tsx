@@ -27,6 +27,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -143,9 +144,9 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     const tier = (paramObj.tier || "All");
     const evalMode = (paramObj.evalMode || false);
 
-    const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
-    const prevYear = LeaderboardUtils.getPrevYear(fullYear)
-    const transferYearPrev = (LeaderboardUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
+    const transferYear = (DateUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
+    const prevYear = DateUtils.getPrevYear(fullYear)
+    const transferYearPrev = (DateUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
 
     if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (evalMode != currEvalMode)) { // Only need to do this if the data source has changed
@@ -156,7 +157,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
         "all", gender, fullYear, tier, transferYears, 
-        paramObj.evalMode ? [ LeaderboardUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
+        paramObj.evalMode ? [ DateUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
       );
 
       fetchAll.then((jsonsIn: any[]) => {

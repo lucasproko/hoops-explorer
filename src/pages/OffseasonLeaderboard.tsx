@@ -28,6 +28,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import OffSeasonLeaderboardTable from '../components/OffseasonLeaderboardTable';
+import { DateUtils } from '../utils/DateUtils';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -104,12 +105,12 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear =  paramObj.evalMode ?
       (paramObj.year || "2020/21") : //(first year we can do a review)
-      LeaderboardUtils.getPrevYear(paramObj.year || "2022/23"); //TODO: fix this
+      DateUtils.getPrevYear(paramObj.year || "2022/23"); //TODO: fix this
     const tier = (paramObj.tier || "All");
 
-    const transferYear = (LeaderboardUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
-    const prevYear = LeaderboardUtils.getPrevYear(fullYear)
-    const transferYearPrev = (LeaderboardUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
+    const transferYear = (DateUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
+    const prevYear = DateUtils.getPrevYear(fullYear)
+    const transferYearPrev = (DateUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
 
     if ((fullYear != currYear) || (gender != currGender) || (tier != currTier)) { // Only need to do this if the data source has changed
@@ -118,7 +119,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       setCurrTier(tier);
 
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferYears, paramObj.evalMode ? [ LeaderboardUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
+        "all", gender, fullYear, tier, transferYears, paramObj.evalMode ? [ DateUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
       );
 
       fetchAll.then((jsonsIn: any[]) => {

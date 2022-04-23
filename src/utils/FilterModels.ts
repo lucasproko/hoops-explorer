@@ -1,3 +1,4 @@
+import { DateUtils } from "./DateUtils";
 
 /** Typescript limitations - also have to repeat this for ParamPrefixesType */
 export class ParamPrefixes {
@@ -310,8 +311,8 @@ export class ParamDefaults {
   static readonly defaultTeamReportLuckAdjust = false;
   // Common
   static readonly defaultTeam = "";
-  static readonly defaultYear = "2021/22";
-  static readonly defaultLeaderboardYear = "2021/22"; //(takes a while longer to get updated)
+  static readonly defaultYear = DateUtils.mostRecentYearWithData;
+  static readonly defaultLeaderboardYear = DateUtils.mostRecentYearWithLboardData; //(takes a while longer to get updated)
   static readonly defaultGender = "Men";
   static readonly defaultMinRank = "0";
   static readonly defaultMaxRank = "400";

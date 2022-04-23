@@ -48,10 +48,11 @@ import { TeamInfo } from '../utils/StatModels';
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { CbbColors } from '../utils/CbbColors';
-import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { apPolls, sCurves } from '../utils/public-data/rankingInfo';
 import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
+import { DateUtils } from '../utils/DateUtils';
 
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
@@ -173,9 +174,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     setLoadingOverride(false); //(rendering)
 
     const genderYear = `${gender}_${year}`;
-    const isSeasonFinished = getEndOfRegSeason(`${gender}_${year}`) != undefined;
     const last30d = 
-      (getEndOfRegSeason(genderYear) || dataLastUpdated[genderYear] || ((new Date().getTime())/1000)) - 
+      (DateUtils.getEndOfRegSeason(genderYear) || dataLastUpdated[genderYear] || ((new Date().getTime())/1000)) - 
         (30*24*3600);
     const apPoll: Record<string, number> | undefined = apPolls[genderYear]?.();
     const apPollSize = apPoll?.__max__ || 25;

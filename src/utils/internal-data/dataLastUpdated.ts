@@ -16,12 +16,3 @@ export const dataLastUpdated: Record<string, number> = { //Update by executing .
   "Men_2022/23": parseInt(process.env.MEN_CURR_UPDATE || "0"),
   "Women_2022/23": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
 };
-
-const seasonNotFinished: Record<string, boolean> = {
-  "Men_2021/22": false,
-  "Women_2021/22": false
-};
-
-/** Approx 20d before the end of the actual season */
-export const getEndOfRegSeason = (gender_year: string) => 
-  seasonNotFinished[gender_year] ? undefined : (dataLastUpdated[gender_year]! - 20*24*3600);

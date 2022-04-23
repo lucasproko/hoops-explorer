@@ -5,6 +5,7 @@ import _ from "lodash";
 // Next imports:
 import fetch from 'isomorphic-unfetch';
 import { ParamDefaults } from "./FilterModels";
+import { DateUtils } from "./DateUtils";
 
 /** Information about transfer (typically indexed by player code) */
 export type TransferModel = {
@@ -13,19 +14,6 @@ export type TransferModel = {
 };
 
 export class LeaderboardUtils {
-
-   //////////////////////////////////////
-
-   // Constants
-
-   /** This year is being written to GCS daily, others are no statically part of the website */
-   static readonly inSeasonYear = "2022/23";
-
-   /** This year is being written to GCS daily, others are no statically part of the website */
-   static readonly offseasonYear = "2021/22";
-
-   /** All years supported by the leaderboard */
-   static readonly yearList = [ "2018/9", "2019/20", "2020/21", "2021/22", "Extra" ];
 
    //////////////////////////////////////
    
@@ -55,7 +43,7 @@ export class LeaderboardUtils {
    ): Promise<any[]> {
       const year = fullYear.substring(0, 4);
    
-      const years = _.filter(LeaderboardUtils.yearList, inYear => (year == "All") || (inYear == fullYear) || _.some(otherYears, y => y == inYear));
+      const years = _.filter(DateUtils.lboardYearList, inYear => (year == "All") || (inYear == fullYear) || _.some(otherYears, y => y == inYear));
       const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
    
       const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
@@ -111,7 +99,7 @@ export class LeaderboardUtils {
 
    /** Fetch the requested player leaderboard either from GCS or static storage */
    static readonly getPlayerUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-      if (LeaderboardUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+      if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
         return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
       } else { //archived
         return `/leaderboards/lineups/players_${oppo}_${gender}_${subYear}_${inTier}.json`;
@@ -120,7 +108,7 @@ export class LeaderboardUtils {
     
    /** Fetch the requested lineup leaderboard either from GCS or static storage */
    static readonly getLineupUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-      if (LeaderboardUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+      if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
         return `/api/getLeaderboard?src=lineups&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
       } else { //archived
         return `/leaderboards/lineups/lineups_${oppo}_${gender}_${subYear}_${inTier}.json`;
@@ -129,53 +117,10 @@ export class LeaderboardUtils {
 
    /** Fetch the requested team leaderboard either from GCS or static storage */
    static readonly getTeamUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
-      if (LeaderboardUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+      if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
         return `/api/getLeaderboard?src=teams&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
       } else { //archived
         return `/leaderboards/lineups/teams_${oppo}_${gender}_${subYear}_${inTier}.json`;
-      }
-   }
-  
-   /** Get the previous season */
-   static readonly getPrevYear = (y: string) => {
-      if (y == "2022/23") {
-         return "2021/22";
-      } else if (y == "2021/22") { //TODO: From 2020/21 onwards can calculate
-         return "2020/21";
-      } else if (y == "2020/21") {
-         return "2019/20";
-      } else if (y == "2019/20") {
-         return "2018/9";
-      } else { // older, we'll show the historical data I've pulled
-         return "Extra";
-      }
-   }
-   /** Get the next season */
-   static readonly getNextYear = (y: string) => {
-      if (y == "2021/22") { 
-         return "2022/23";
-      } else if (y == "2020/21") { //TODO: From 2020/21 onwards can calculate
-         return "2021/22";
-      } else if (y == "2019/20") {
-         return "2020/21";
-      } else if (y == "2018/9") {
-         return "2019/20";
-      } else if (y == "Extra") {
-         return "2018/9";
-      } else {
-         return "None";
-      }
-   }
-   /** Get the offseason of the current season */
-   static readonly getOffseasonOfYear = (y: string) => {
-      if (y == "2021/22") { //TODO: can calculate programmatically
-         return "2022";
-      } else if (y == "2020/21") {
-         return "2021";
-      } else if (y == "2019/20") {
-         return "2020";
-      } else {
-         return undefined;
       }
    }
 }

@@ -36,13 +36,14 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { AvailableTeams, AvailableTeamMeta } from '../utils/internal-data/AvailableTeams';
-import { dataLastUpdated, getEndOfRegSeason } from '../utils/internal-data/dataLastUpdated';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 import { OnBallDefenseUtils } from '../utils/stats/OnBallDefenseUtils';
 import { OnBallDefenseModel } from '../utils/stats/RatingUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -137,10 +138,10 @@ const inTier = (_.find(commandLine, p => _.startsWith(p, "--tier="))
 const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
   || `--gender=${ParamDefaults.defaultGender}`).substring(9);
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
-  || `--year=${testMode ? "2020/21": ParamDefaults.defaultLeaderboardYear}`).substring(7);
+  || `--year=${testMode ? DateUtils.yearToUseForTests : DateUtils.mostRecentYearWithData}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
-const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
+const onlyHasTopConferences = (inGender != "Men") || (inYear < DateUtils.yearFromWhichAllMenD1Imported);
 
 const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
@@ -165,11 +166,10 @@ const lastUpdated =  //(will be new now for curr year + "Extra")
   dataLastUpdated[`${inGender}_${inYear}`] || new Date().getTime();
 
 /** ~20d before end of full season */
-const approxEndofRegSeason = getEndOfRegSeason(`${inGender}_${inYear}`) || lastUpdated;
+const approxEndofRegSeason = DateUtils.getEndOfRegSeason(`${inGender}_${inYear}`) || lastUpdated;
 
 /** For completed years, filter based on possessions */
-const ongoingYear = "2021/22";
-const averagePossInCompletedYear = (inYear == "2020/21") ? 1000 : 1600; //(reduce min allowed for Covid year)
+const averagePossInCompletedYear = (inYear == DateUtils.covidSeason) ? 1000 : 1600; //(reduce min allowed for Covid year)
 
 /** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
 const injectAllRapmForNbaFolks = false;
@@ -525,8 +525,8 @@ export async function main() {
 
         // For teams that have played fewer possessions than others we still have a lower limit
         //TODO: fix the secondary filter _during_ the year
-        const secondaryFilter =
-          (fullRequestModel.year == ongoingYear) || (playerPoss > minThreshold*averagePossInCompletedYear);
+        const secondaryFilter = 
+          !DateUtils.isSeasonFinished(genderYearLookup) || (playerPoss > minThreshold*averagePossInCompletedYear);
 
         return secondaryFilter && (playerPossPct > minThreshold); //(>10mpg)
       }).map((kv: [PlayerId, IndivStatSet]) => {

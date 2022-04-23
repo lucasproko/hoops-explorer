@@ -77,6 +77,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "JoTomaic::", "TrPulliam::" ]),
             },
             "Seton Hall": {
+               superSeniorsReturning: new Set([ "MyCale::" ]),
                overrides: {
                   ...wName("Aiken, Bryce", { //(he's a super senior, but treat him like a T40 Fr, to give about the right RAPM)
                      pos: "s-PG",

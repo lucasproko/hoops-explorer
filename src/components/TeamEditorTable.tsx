@@ -46,6 +46,7 @@ import TeamRosterEditor from './shared/TeamRosterEditor';
 import { TeamEditorTableUtils } from '../utils/tables/TeamEditorTableUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { DateUtils } from '../utils/DateUtils';
 
 // Input params/models
 
@@ -225,7 +226,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const firstYearWithGrades = evalModeIn ? "2018/9" : "2019/20";
     return ((yearIn == "All") || (yearIn <= firstYearWithGrades)) 
         ? ParamDefaults.defaultLeaderboardYear 
-        : (!evalMode ? yearIn : LeaderboardUtils.getNextYear(yearIn));
+        : (!evalMode ? yearIn : DateUtils.getNextYear(yearIn));
   };
 
   // Events that trigger building or rebuilding the division stats cache
@@ -754,7 +755,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </OverlayTrigger> : <b>Team Totals</b>;
 
       const actualResultsYear = 
-        (year == "All") ? "Actual" : (evalMode ? LeaderboardUtils.getNextYear(year) : year).substring(2);
+        (year == "All") ? "Actual" : (evalMode ? DateUtils.getNextYear(year) : year).substring(2);
 
       const subHeaders = [ 
         GenericTableOps.buildSubHeaderRow(
@@ -807,7 +808,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         GenericTableOps.buildDataRow({
           title: <b>Team Grades {
             (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
-              ((divisionStatsCache.year != (evalMode ? LeaderboardUtils.getNextYear(year) : year)) ?
+              ((divisionStatsCache.year != (evalMode ? DateUtils.getNextYear(year) : year)) ?
                 "(generic)"
                 : `(${divisionStatsCache.year.substring(2)})`)
             ) : null            
@@ -899,7 +900,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return <PlayerLeaderboardTable
       startingState={{
         ...startingState,
-        transferMode: (year == LeaderboardUtils.offseasonYear) ? "true" : LeaderboardUtils.getOffseasonOfYear(year),
+        transferMode: (year == DateUtils.offseasonYear) ? "true" : DateUtils.getOffseasonOfYear(year),
           //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
         year: onlyThisYear ? startingState.year : "All",
         tier: "All"
@@ -922,12 +923,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           "t100" : (newParams.confOnly ? "conf" : "all");
 
         if (dataSubEventKey != "all") {
-          const prevYear = LeaderboardUtils.getPrevYear(year || "");
+          const prevYear = DateUtils.getPrevYear(year || "");
 
           //TODO: not supporting this correctly right now because not guaranteed to have players in memory
           //so might not be able to reconstruct from the keys - hence this logic cannot currently be reached via UI
           const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-            dataSubEventKey, gender, year, "All", [ LeaderboardUtils.getOffseasonOfYear(year) || "" ], [ prevYear ]
+            dataSubEventKey, gender, year, "All", [ DateUtils.getOffseasonOfYear(year) || "" ], [ prevYear ]
           );
     
           fetchAll.then((jsonsIn: any[]) => {
@@ -1038,12 +1039,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     if (newOffSeasonMode) {
       setOffSeasonMode(true);
       if ((offSeasonYear != "2018/9") && !offSeasonMode) {
-        setOffSeasonYear(LeaderboardUtils.getPrevYear(offSeasonYear));
+        setOffSeasonYear(DateUtils.getPrevYear(offSeasonYear));
       }
     } else {
       setOffSeasonMode(false);
       if ((offSeasonYear != "2021/22") && offSeasonMode) {
-        setOffSeasonYear(LeaderboardUtils.getNextYear(offSeasonYear));
+        setOffSeasonYear(DateUtils.getNextYear(offSeasonYear));
       }
     }
   }
@@ -1075,7 +1076,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
-          value={ stringToOption(offSeasonMode ? LeaderboardUtils.getNextYear(offSeasonYear) : offSeasonYear) }
+          value={ stringToOption(offSeasonMode ? DateUtils.getNextYear(offSeasonYear) : offSeasonYear) }
           options={
             (offSeasonMode ? [] : [ "2018/9" ])
               .concat([ "2019/20", "2020/21", "2021/22" ])
@@ -1089,7 +1090,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             if ((option as any)?.value) {
               const newDisplayYear = (option as any).value;
               const newOffseasonYear = offSeasonMode ?
-                LeaderboardUtils.getPrevYear(newDisplayYear) : newDisplayYear; //switch from displayYear to offSeasonYear
+                DateUtils.getPrevYear(newDisplayYear) : newDisplayYear; //switch from displayYear to offSeasonYear
               friendlyChange(() => {
                 setOffSeasonYear(newOffseasonYear); 
                 setOtherPlayerCache({});

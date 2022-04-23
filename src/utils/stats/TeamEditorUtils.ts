@@ -6,6 +6,7 @@ import { RatingUtils } from './RatingUtils';
 import { LeaderboardUtils, TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
+import { DateUtils } from "../DateUtils";
 
 /** Possibly ways we change projections */
 type DiagCodes = 
@@ -200,7 +201,7 @@ export class TeamEditorUtils {
 
       /** Get the base players for what actually transpired, just one year, no transfers, etc */
       const actualResultsForReview = (evalMode ? TeamEditorUtils.getBasePlayers(
-         team, LeaderboardUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
+         team, DateUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
       ) : []).map(triple => {
          //(warning - mutates triple.org ... shouldn't mess anything else up since the next year's results aren't used anyway)
          triple.orig.code = teamOverrides.codeSwitch?.[triple.orig.code || ""] || triple.orig.code;

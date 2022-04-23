@@ -27,6 +27,7 @@ import HeaderBar from '../components/shared/HeaderBar';
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -133,7 +134,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
       const transferYearStr = (paramObj.transferMode?.toString() == "true")
-        ? (LeaderboardUtils.getOffseasonOfYear(LeaderboardUtils.offseasonYear) || "").substring(0, 4) //(default, means most recent year)
+        ? (DateUtils.getOffseasonOfYear(DateUtils.offseasonYear) || "").substring(0, 4) //(default, means most recent year)
         :  paramObj.transferMode; //(else whatever is specified)
       
       const transferYearIn = (transferMode && transferYearStr) ? [ transferYearStr ] : [];

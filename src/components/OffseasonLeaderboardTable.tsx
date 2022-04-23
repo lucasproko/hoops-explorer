@@ -41,6 +41,7 @@ import { CommonTableDefs } from '../utils/tables/CommonTableDefs';
 import { CbbColors } from '../utils/CbbColors';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
+import { DateUtils } from '../utils/DateUtils';
 
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
@@ -68,7 +69,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
    const [confs, setConfs] = useState(startingState.confs || "");
    const [year, setYear] = useState(startingState.year ? 
-      (startingState.evalMode ? startingState.year : LeaderboardUtils.getPrevYear(startingState.year))
+      (startingState.evalMode ? startingState.year : DateUtils.getPrevYear(startingState.year))
       : "2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
    const [yearRedirect, setYearRedirect] = useState(startingState.year || "2022/23"); //TODO lets us jump between off-seasons and normal leaderboards
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
@@ -550,7 +551,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
                isDisabled={startingState.evalMode}
-               value={stringToOption(startingState.evalMode ? LeaderboardUtils.getNextYear(year) : "2022/23")}
+               value={stringToOption(startingState.evalMode ? DateUtils.getNextYear(year) : "2022/23")}
                options={
                (
                   ["2019/20", "2020/21", "2021/22", "2022/23"]
