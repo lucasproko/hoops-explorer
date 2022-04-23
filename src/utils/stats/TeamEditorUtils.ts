@@ -465,7 +465,7 @@ export class TeamEditorUtils {
          }
 
          //Diagnostic:
-         //if (dupCode == "PlayerCode") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear}  `)
+         //if (p.code == "PlayerCode") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear}  `)
 
          if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
             if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {
@@ -502,7 +502,9 @@ export class TeamEditorUtils {
             }
             return { ...triple, prevYear: matchingPrevYear };
          }).filter(triple => { // Filter out players who were already super seniors, if in offSeasonMode (else this is descriptive)
-            return !offSeasonMode || (!triple.prevYear || (triple.prevYear.roster?.year_class != "Sr"));
+            return !offSeasonMode || (!triple.prevYear || 
+               ((triple.prevYear.roster?.year_class != "Sr") || superSeniorsReturning?.has(triple.key)) //(manual override trumps that though)
+            );
          });
 
       // Now find players who aren't the right year:

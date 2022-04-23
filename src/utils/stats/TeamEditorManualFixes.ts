@@ -50,6 +50,9 @@ export class TeamEditorManualFixes {
       if (genderYear == "Men_2019/20") { //(offseason of 19/20, ie team for 20/21)
          const mutableToRet = TeamEditorManualFixes.buildOverrides(freshmenMen2020_21);
          const manualOverrides_Men_2020_21: Record<string, TeamEditorManualFixModel> = {
+            "Texas Tech": {
+               leftTeam: [ "DaMoretti::" ],
+            },
          }
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2020_21);
       } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
@@ -67,14 +70,31 @@ export class TeamEditorManualFixes {
             "Ohio St.": {
                superSeniorsReturning: new Set([ "KyYoung::" ]),
             },
+            "Oklahoma": {
+               leftTeam: [ "AuReaves::" ],
+            },
             "San Diego St.": {
                superSeniorsReturning: new Set([ "JoTomaic::", "TrPulliam::" ]),
+            },
+            "Seton Hall": {
+               overrides: {
+                  ...wName("Aiken, Bryce", { //(he's a super senior, but treat him like a T40 Fr, to give about the right RAPM)
+                     pos: "s-PG",
+                     profile: "4*/T40ish"
+                  })
+               },
             },
             "Southern California": {
                superSeniorsReturning: new Set([ "ChGoodwin::" ]),
             },
             "Tennessee": {
                superSeniorsReturning: new Set([ "JoFulkerson::" ]),
+            },
+            "Texas Tech": {
+               superSeniorsReturning: new Set([ "MaSantos-sil::" ]),
+            },
+            "UConn": {
+               superSeniorsReturning: new Set([ "IsWhaley::" ]),
             },
             "Wisconsin": {
                superSeniorsReturning: new Set([ "BrDavison::" ]),
@@ -120,6 +140,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "LeBlack::" ]),
             },
             "Ohio St.": {
+               superSeniorsReturning: new Set([ "SeTowns::" ]),
                leftTeam: [ "MaBranham::", "EjLiddell::" ],
             },
             "Penn St.": {
@@ -135,7 +156,13 @@ export class TeamEditorManualFixes {
                leftTeam: [ "CoSwider::" ],
             },
             "Texas": {
-               superSeniorsReturning: new Set([ "TiAllen::" ]),
+               superSeniorsReturning: new Set([ "MaCarr::", "TiAllen::" ]),
+            },
+            "Texas Tech": {
+               superSeniorsReturning: new Set([ "KeObanor::" ]),
+            },
+            "Vanderbilt": {
+               superSeniorsReturning: new Set([ "LiRobbins::", "QuMillora-br::" ]),
             },
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::" ]),
