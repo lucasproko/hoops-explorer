@@ -37,7 +37,7 @@ import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableU
 import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils, TeamEditorProcessingResults } from '../utils/stats/TeamEditorUtils';
 
-import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics } from '../utils/StatModels';
+import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
 import { GradeUtils } from '../utils/stats/GradeUtils';
@@ -103,6 +103,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ offSeasonMode, setOffSeasonMode ] = useState(evalMode || (_.isNil(startingState.offSeason) ? true : startingState.offSeason));
   const [ alwaysShowBench, setAlwaysShowBench ] = useState(_.isNil(startingState.alwaysShowBench) ? false : startingState.alwaysShowBench);
   const [ superSeniorsBack, setSuperSeniorsBack ] = useState(_.isNil(startingState.superSeniorsBack) ? false : startingState.superSeniorsBack);
+
+  type DiffBasisObj = {
+    data?: PureStatSet,
+    grades?: PureStatSet,
+    projectedGrades?: PureStatSet
+  };
+  const [ diffBasis, setDiffBasis ] = useState(
+    (_.isNil(startingState.diffBasis) ? undefined : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj
+  )
 
   // Data source
   const [ offSeasonYear, setOffSeasonYear ] = useState(startingState.year || ParamDefaults.defaultYear);
@@ -196,14 +205,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         alwaysShowBench: alwaysShowBench,
         superSeniorsBack: superSeniorsBack,
         evalMode: evalMode,
-        allEditOpen: allEditOpen
+        allEditOpen: allEditOpen,
+        diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis)
       };
       onChangeState(newState);
     }
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
-    otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen,
+    otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen, diffBasis,
     lboardParams, showPrevSeasons, factorMins, offSeasonMode, alwaysShowBench, superSeniorsBack, evalMode
   ]);
 
@@ -771,6 +781,78 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const actualResultsYear = 
         (year == "All") ? "Actual" : (evalMode ? DateUtils.getNextYear(year) : year).substring(2);
 
+      const teamStatsRowData = {
+        title: teamLink,
+        //(for diag only)
+        mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
+
+        // Eval mode
+        actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
+        actual_net: totalActualMins ? dummyTeamActual?.off_net : undefined,
+        actual_off: totalActualMins ? dummyTeamActual?.off_adj_ppp : undefined,
+        actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
+
+        // Off-season balanced; In-season: actual results
+        ok_net: !_.isNil(rawNetSum) ? (rawTotalMins ? { value: rawNetSum } : undefined) : { value: okTotals.net },
+        ok_off: !_.isNil(rawOffSum) ? (rawTotalMins ? { value: rawOffSum + avgEff } : undefined) : { value: okTotals.off + avgEff },
+        ok_def: !_.isNil(rawDefSum) ? (rawTotalMins ? { value: rawDefSum + avgEff } : undefined) : { value: okTotals.def + avgEff },
+        // Off-season optimistic; In-season adjusted
+        good_net: dummyTeamGood.off_net,
+        good_off: dummyTeamGood.off_adj_ppp,
+        good_def: dummyTeamGood.def_adj_ppp,
+        bad_net: offSeasonMode ? dummyTeamBad.off_net : undefined,
+        bad_off: offSeasonMode ? dummyTeamBad.off_adj_ppp : undefined,
+        bad_def: offSeasonMode ? dummyTeamBad.def_adj_ppp : undefined,
+      };
+      const teamGradesRowData = {
+        title: <b>Team Grades {
+          (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
+            ((divisionStatsCache.year != (evalMode ? DateUtils.getNextYear(year) : year)) ?
+              "(generic)"
+              : `(${divisionStatsCache.year.substring(2)})`)
+          ) : null            
+        }</b>,
+        actual_net: teamGradesActual.off_net,
+        actual_off: teamGradesActual.off_adj_ppp,
+        actual_def: teamGradesActual.def_adj_ppp,
+        ok_net: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.off_net : undefined,
+        ok_off: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.off_adj_ppp : undefined,
+        ok_def: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.def_adj_ppp : undefined,
+        good_net: teamGradesGood.off_net,
+        good_off: teamGradesGood.off_adj_ppp,
+        good_def: teamGradesGood.def_adj_ppp,
+        bad_net: offSeasonMode ? teamGradesBad.off_net : undefined,
+        bad_off: offSeasonMode ? teamGradesBad.off_adj_ppp : undefined,
+        bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
+      };
+      const teamProjectedGradesRowData = (filteredPlayerSet && overrideGrades) ? {
+        title: <b>Team Grades (projected)</b>,
+        ok_net: teamGradesOkNextYear.off_net,
+        ok_off: teamGradesOkNextYear.off_adj_ppp,
+        ok_def: teamGradesOkNextYear.def_adj_ppp,
+        good_net: teamGradesGoodNextYear.off_net,
+        good_off: teamGradesGoodNextYear.off_adj_ppp,
+        good_def: teamGradesGoodNextYear.def_adj_ppp,
+        bad_net: teamGradesBadNextYear.off_net,
+        bad_off: teamGradesBadNextYear.off_adj_ppp,
+        bad_def: teamGradesBadNextYear.def_adj_ppp,
+      } : undefined;
+
+      if (!_.isNil(diffBasis) && _.isEmpty(diffBasis)) {
+        setDiffBasis({
+          data: _.omit(teamStatsRowData, [ "title", "actual_mpg", "actual_net", "actual_off", "actual_def" ].concat(
+            offSeasonMode ? [] : [ "ok_net", "ok_off", "ok_def" ]
+          )) as PureStatSet,
+          grades: _.omit(teamGradesRowData, [ "title",  "actual_net", "actual_off", "actual_def" ].concat(
+            offSeasonMode ? [] : [ "ok_net", "ok_off", "ok_def" ]
+          )) as PureStatSet,
+          projectedGrades: teamProjectedGradesRowData ? 
+            (_.omit(teamProjectedGradesRowData, [ "title" ].concat(
+              offSeasonMode ? [] : [ "ok_net", "ok_off", "ok_def" ] //(don't think this is actually needed)
+            )) as PureStatSet) : undefined
+        })
+      };
+
       const subHeaders = [ 
         GenericTableOps.buildSubHeaderRow(
           evalMode ? [
@@ -795,64 +877,53 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           ]), "small text-center"
         ),
       ].concat(_.isEmpty(filteredPlayerSet) ? [] : [
-        GenericTableOps.buildDataRow({
-          title: teamLink,
-          //(for diag only)
-          mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
-
-          // Eval mode
-          actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
-          actual_net: totalActualMins ? dummyTeamActual?.off_net : undefined,
-          actual_off: totalActualMins ? dummyTeamActual?.off_adj_ppp : undefined,
-          actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
-
-          // Off-season balanced; In-season: actual results
-          ok_net: !_.isNil(rawNetSum) ? (rawTotalMins ? { value: rawNetSum } : undefined) : { value: okTotals.net },
-          ok_off: !_.isNil(rawOffSum) ? (rawTotalMins ? { value: rawOffSum + avgEff } : undefined) : { value: okTotals.off + avgEff },
-          ok_def: !_.isNil(rawDefSum) ? (rawTotalMins ? { value: rawDefSum + avgEff } : undefined) : { value: okTotals.def + avgEff },
-          // Off-season optimistic; In-season adjusted
-          good_net: dummyTeamGood.off_net,
-          good_off: dummyTeamGood.off_adj_ppp,
-          good_def: dummyTeamGood.def_adj_ppp,
-          bad_net: offSeasonMode ? dummyTeamBad.off_net : undefined,
-          bad_off: offSeasonMode ? dummyTeamBad.off_adj_ppp : undefined,
-          bad_def: offSeasonMode ? dummyTeamBad.def_adj_ppp : undefined,
-        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef)
-        ,
-        GenericTableOps.buildDataRow({
-          title: <b>Team Grades {
-            (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
-              ((divisionStatsCache.year != (evalMode ? DateUtils.getNextYear(year) : year)) ?
-                "(generic)"
-                : `(${divisionStatsCache.year.substring(2)})`)
-            ) : null            
-          }</b>,
-          actual_net: teamGradesActual.off_net,
-          actual_off: teamGradesActual.off_adj_ppp,
-          actual_def: teamGradesActual.def_adj_ppp,
-          ok_net: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.off_net : undefined,
-          ok_off: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.off_adj_ppp : undefined,
-          ok_def: (offSeasonMode || (rawTotalMins > 0)) ? teamGradesOk.def_adj_ppp : undefined,
-          good_net: teamGradesGood.off_net,
-          good_off: teamGradesGood.off_adj_ppp,
-          good_def: teamGradesGood.def_adj_ppp,
-          bad_net: offSeasonMode ? teamGradesBad.off_net : undefined,
-          bad_off: offSeasonMode ? teamGradesBad.off_adj_ppp : undefined,
-          bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
-        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef),
+        GenericTableOps.buildDataRow(
+          teamStatsRowData, 
+          GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef
+        ),
+        GenericTableOps.buildDataRow(
+          teamGradesRowData, 
+          GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef
+        ),
       ]).concat(
-        (filteredPlayerSet && overrideGrades) ? [GenericTableOps.buildDataRow({
-          title: <b>Team Grades (projected)</b>,
-          ok_net: teamGradesOkNextYear.off_net,
-          ok_off: teamGradesOkNextYear.off_adj_ppp,
-          ok_def: teamGradesOkNextYear.def_adj_ppp,
-          good_net: teamGradesGoodNextYear.off_net,
-          good_off: teamGradesGoodNextYear.off_adj_ppp,
-          good_def: teamGradesGoodNextYear.def_adj_ppp,
-          bad_net: teamGradesBadNextYear.off_net,
-          bad_off: teamGradesBadNextYear.off_adj_ppp,
-          bad_def: teamGradesBadNextYear.def_adj_ppp,
-        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef)] : []
+        teamProjectedGradesRowData ? [GenericTableOps.buildDataRow(
+          teamProjectedGradesRowData,
+          GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef
+        )] : []
+      ).concat(
+        diffBasis?.data ? [
+          GenericTableOps.buildRowSeparator(),
+          GenericTableOps.buildDataRow(
+            {
+              ...(diffBasis.data),
+              title: "'Pinned' Team Totals"
+            }, 
+            GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.teamTableDef
+          ),
+  
+        ] : []
+      ).concat(
+        diffBasis?.grades ? [
+          GenericTableOps.buildDataRow(
+            {
+              ...(diffBasis.grades),
+              title: "'Pinned' Team Grades"
+            }, 
+            GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef
+          ),
+  
+        ] : []
+      ).concat(
+        (diffBasis?.projectedGrades && teamProjectedGradesRowData) ? [
+          GenericTableOps.buildDataRow(
+            {
+              ...(diffBasis.projectedGrades),
+              title: "'Pinned' Team Grades (projected)"
+            }, 
+            GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef
+          ),
+  
+        ] : []
       );
       return subHeaders;
     };
@@ -902,7 +973,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     />;
   }, [ dataEvent, year, team, 
       otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons, factorMins,
-      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack, alwaysShowBench ]);
+      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack, alwaysShowBench, diffBasis ]);
 
   /////////////////////////////////////
   
@@ -1060,6 +1131,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         setOffSeasonYear(DateUtils.getNextYear(offSeasonYear));
       }
     }
+    setDiffBasis(undefined); //(turn off diff basis since data format is changing)
   }
 
   return <Container>
@@ -1188,6 +1260,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     <Row>
       <Col xs={8} sm={10} md={10} lg={8}>
         <ToggleButtonGroup items={([
+            {
+              label: "Diff",
+              tooltip: "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+              toggled: diffBasis != undefined,
+              onClick: () => friendlyChange(() => {
+                setDiffBasis(_.isNil(diffBasis) ? {} : undefined);
+                  //(empty means active and will be filled in when the page rerenders)
+              }, true)
+            },
             {
               label: "History",
               tooltip: "If enabled show player's previous 2 seasons (useful sanity check for projections)",

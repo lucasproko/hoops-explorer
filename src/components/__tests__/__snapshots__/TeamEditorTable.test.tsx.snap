@@ -680,6 +680,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         items={
           Array [
             Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -4912,6 +4918,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         items={
           Array [
             Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -8883,6 +8895,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       <ToggleButtonGroup
         items={
           Array [
+            Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
             Object {
               "label": "History",
               "onClick": [Function],
@@ -13890,6 +13908,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         items={
           Array [
             Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -18469,6 +18493,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         items={
           Array [
             Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -22775,6 +22805,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         items={
           Array [
             Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -26473,6 +26509,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       <ToggleButtonGroup
         items={
           Array [
+            Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
             Object {
               "label": "History",
               "onClick": [Function],
@@ -30676,6 +30718,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         items={
           Array [
             Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -34619,6 +34667,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       <ToggleButtonGroup
         items={
           Array [
+            Object {
+              "label": "Diff",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
+            },
             Object {
               "label": "History",
               "onClick": [Function],
