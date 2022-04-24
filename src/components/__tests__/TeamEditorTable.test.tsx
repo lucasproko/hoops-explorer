@@ -130,6 +130,7 @@ describe("TeamEditorTable", () => {
         startingState={{ 
           team: "Maryland", year: "2019/20", 
           offSeason: false, evalMode: false,
+          factorMins: true,
           alwaysShowBench: true, superSeniorsBack: true, 
           showOnlyTransfers: false, showOnlyCurrentYear: true
         }}

@@ -82,6 +82,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
       (_.isNil(rawParams.offSeason) || rawParams.offSeason) ? [ 'offSeason' ] : [],
       (!rawParams.evalMode) ? [ 'evalMode' ] : [],
       (!rawParams.showPrevSeasons) ? [ 'showPrevSeasons' ] : [],
+      (!rawParams.factorMins) ? [ 'factorMins' ] : [],
       (!rawParams.alwaysShowBench)? [  'alwaysShowBench' ] : [],
       (!rawParams.superSeniorsBack)? [  'superSeniorsBack' ] : [],
 

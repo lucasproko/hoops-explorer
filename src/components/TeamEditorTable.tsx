@@ -137,6 +137,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Indiv editor
   const [ allEditOpen, setAllEditOpen ] = useState(startingState.allEditOpen as string | undefined);
   const [ editOpen, setEditOpen ] = useState({} as Record<string, string>);
+  const [ factorMins, setFactorMins ] = useState(startingState.factorMins || false);
 
   // Controlling the player leaderboard table
   const [ lboardAltDataSource, setLboardAltDataSource ] = useState(
@@ -178,6 +179,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         gender: gender, 
         year: year, 
         team: team,
+        factorMins: factorMins,
         // Editor specific settings for team editor itself
         // there's some complexity here because we can't update this until we've used them to build the caches
         addedPlayers: _.isNil(otherPlayerCacheIn) ? _.keys(otherPlayerCache).join(";") : otherPlayerCacheIn,
@@ -202,7 +204,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
     otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen,
-    lboardParams, showPrevSeasons, offSeasonMode, alwaysShowBench, superSeniorsBack, evalMode
+    lboardParams, showPrevSeasons, factorMins, offSeasonMode, alwaysShowBench, superSeniorsBack, evalMode
   ]);
 
   // 3] Utils
@@ -408,15 +410,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
+      const okProdFactor = factorMins ? (triple.ok.off_team_poss_pct?.value || 0) : 1.0;
+      const goodProdFactor = factorMins ? (triple.good.off_team_poss_pct?.value || 0) : 1.0;
+      const badProdFactor = factorMins ? (triple.bad.off_team_poss_pct?.value || 0) : 1.0;
+      const actualProdFactor = (factorMins  && triple.actualResults) ? (triple.actualResults.off_team_poss_pct?.value || 0) : 1.0;
+      const origProdFactor = factorMins ? (triple.orig.off_team_poss_pct?.value || 0) : 1.0;
+      const origPrevProdFactor = (factorMins  && triple.prevYear) ? (triple.prevYear.off_team_poss_pct?.value || 0) : 1.0;
+
+
       const prevSeasonEl = showPrevSeasons && offSeasonMode && !triple.manualProfile && !isFiltered? {
         title: <small><i>Previous season</i></small>,
         mpg: { value: (triple.orig.off_team_poss_pct?.value || 0)*40 },
         ortg: triple.orig.off_rtg,
         usage: triple.orig.off_usage,
         rebound: { value: triple.orig.def_orb?.value },
-        ok_net: { value: TeamEditorUtils.getNet(triple.orig) },
-        ok_off: { value: TeamEditorUtils.getOff(triple.orig) },
-        ok_def: { value: TeamEditorUtils.getDef(triple.orig) },
+        ok_net: { value: TeamEditorUtils.getNet(triple.orig, origProdFactor) },
+        ok_off: { value: TeamEditorUtils.getOff(triple.orig, origProdFactor) },
+        ok_def: { value: TeamEditorUtils.getDef(triple.orig, origProdFactor) },
 
       } : undefined;
 
@@ -426,9 +436,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ortg: triple.prevYear.off_rtg,
         usage: triple.prevYear.off_usage,
         rebound: { value: triple.prevYear.def_orb?.value },
-        ok_net: { value: TeamEditorUtils.getNet(triple.prevYear) },
-        ok_off: { value: TeamEditorUtils.getOff(triple.prevYear) },
-        ok_def: { value: TeamEditorUtils.getDef(triple.prevYear) },
+        ok_net: { value: TeamEditorUtils.getNet(triple.prevYear, origPrevProdFactor) },
+        ok_off: { value: TeamEditorUtils.getOff(triple.prevYear, origPrevProdFactor) },
+        ok_def: { value: TeamEditorUtils.getDef(triple.prevYear, origPrevProdFactor) },
 
       } : undefined;
 
@@ -437,13 +447,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const extraInfoDefObj = 
         _.isNil(override?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
 
-      const okNet = TeamEditorUtils.getNet(triple.ok);
-      const okOff = TeamEditorUtils.getOff(triple.ok);
-      const okDef = TeamEditorUtils.getDef(triple.ok);
+      const okNet = TeamEditorUtils.getNet(triple.ok, okProdFactor);
+      const okOff = TeamEditorUtils.getOff(triple.ok, okProdFactor);
+      const okDef = TeamEditorUtils.getDef(triple.ok, okProdFactor);
 
-      const origNet = offSeasonMode ? undefined : TeamEditorUtils.getNet(triple.orig);
-      const origOff = offSeasonMode ? undefined : TeamEditorUtils.getOff(triple.orig);
-      const origDef = offSeasonMode ? undefined :  TeamEditorUtils.getDef(triple.orig);
+      const origNet = offSeasonMode ? undefined : TeamEditorUtils.getNet(triple.orig, origProdFactor);
+      const origOff = offSeasonMode ? undefined : TeamEditorUtils.getOff(triple.orig, origProdFactor);
+      const origDef = offSeasonMode ? undefined :  TeamEditorUtils.getDef(triple.orig, origProdFactor);
 
       const origNotEqualOk = offSeasonMode ? false : ((okDef != origDef) || (okOff != origOff));
 
@@ -465,17 +475,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
         pos: <span style={{whiteSpace: "nowrap"}}>{triple.orig.posClass}</span>,
 
-        actual_net: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getNet(triple.actualResults) } : undefined,
-        actual_off: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getOff(triple.actualResults) } : undefined,
-        actual_def: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getDef(triple.actualResults) } : undefined,
+        actual_net: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getNet(triple.actualResults, actualProdFactor) } : undefined,
+        actual_off: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getOff(triple.actualResults, actualProdFactor) } : undefined,
+        actual_def: (evalMode && triple.actualResults) ? { value: TeamEditorUtils.getDef(triple.actualResults, actualProdFactor) } : undefined,
 
         // In in-season mode, it's the adjusted if different
         good_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : ((origNotEqualOk || isAddedPlayer) ? { value: okNet } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) } : ((origNotEqualOk || isAddedPlayer) ? { value: okNet } : undefined)),
         good_off: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : ((origNotEqualOk || isAddedPlayer) ? { value: okOff } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) } : ((origNotEqualOk || isAddedPlayer) ? { value: okOff } : undefined)),
         good_def: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : ((origNotEqualOk || isAddedPlayer) ? { value: okDef } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) } : ((origNotEqualOk || isAddedPlayer) ? { value: okDef } : undefined)),
 
         // In in-season mode, it's the original if different
         ok_net: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
@@ -485,9 +495,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ok_def: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
           offSeasonMode ? { value: okDef, ...extraInfoDefObj  } : { value: origDef },
 
-        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
-        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad), ...extraInfoOffObj },
-        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad), ...extraInfoDefObj  },
+        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad, badProdFactor) },
+        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad, badProdFactor), ...extraInfoOffObj },
+        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad, badProdFactor), ...extraInfoDefObj  },
 
         edit: <OverlayTrigger overlay={editTooltip} placement="auto">
           <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
@@ -574,9 +584,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const isFiltered = (mpg == 0);
       const hasEditPage = allEditOpen || editOpen[triple.key];
 
+      const okProdFactor = factorMins ? (triple.ok.off_team_poss_pct?.value || 0) : 1.0;
+      const goodProdFactor = factorMins ? (triple.good.off_team_poss_pct?.value || 0) : 1.0;
+      const badProdFactor = factorMins ? (triple.bad.off_team_poss_pct?.value || 0) : 1.0;
+
       const benchOverrides = pxResults.allOverrides[triple.key];
-      const benchOffOver = benchOverrides?.global_off_adj || 0;
-      const benchDefOver = benchOverrides?.global_def_adj || 0;
+      const benchOffOver = (benchOverrides?.global_off_adj || 0)*okProdFactor;
+      const benchDefOver = (benchOverrides?.global_def_adj || 0)*okProdFactor;
       const hasBenchOverride = (benchOffOver != 0) || (benchDefOver != 0);
       const showCol = offSeasonMode || hasBenchOverride;
 
@@ -585,20 +599,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         mpg: { value: mpg },
 
         good_net: (isFiltered || !showCol) ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good) } : { value: TeamEditorUtils.getNet(triple.ok) }),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) } : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) }),
         good_off: (isFiltered || !showCol) ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good) } : { value: TeamEditorUtils.getOff(triple.ok) }),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) } : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) }),
         good_def: (isFiltered || !showCol) ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good) } : { value: TeamEditorUtils.getDef(triple.ok) }),
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) } : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) }),
         ok_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.ok) } : { value: TeamEditorUtils.getNet(triple.ok) - (benchOffOver - benchDefOver) }),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) } : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) - (benchOffOver - benchDefOver) }),
         ok_off: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.ok) } : { value: TeamEditorUtils.getOff(triple.ok) - benchOffOver }),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) } : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) - benchOffOver }),
         ok_def: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.ok) } : { value: TeamEditorUtils.getDef(triple.ok) + benchDefOver }),
-        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad) },
-        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad) },
-        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad) },
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) } : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) + benchDefOver }),
+        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad, badProdFactor) },
+        bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad, badProdFactor) },
+        bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad, badProdFactor) },
         edit: <OverlayTrigger overlay={editTooltip} placement="auto">
           <Button variant={hasEditPage ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
             const newEditOpen = togglePlayerEdited(triple, editOpen, false);
@@ -743,7 +757,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const teamParams = {
         team: team, gender: gender, year: year,
         minRank: "0", maxRank: "400",
-        factorMins: false, possAsPct: true,
+        factorMins: factorMins, possAsPct: true,
         showExpanded: true, calcRapm: true,
         showGrades: "rank:D1"
       };
@@ -887,7 +901,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       cellTooltipMode={undefined}
     />;
   }, [ dataEvent, year, team, 
-      otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons,
+      otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons, factorMins,
       allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack, alwaysShowBench ]);
 
   /////////////////////////////////////
@@ -895,7 +909,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Add players: show the player leaderboard
 
   const playerLeaderboard = React.useMemo(() => {
-
     setLboardParams(startingState);
     return <PlayerLeaderboardTable
       startingState={{
@@ -1130,7 +1143,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 text={"Show players' previous seasons"}
                 truthVal={showPrevSeasons}
                 onSelect={() => friendlyChange(() => setShowPrevSeasons(!showPrevSeasons), true)}
-              />
+            />
+          <GenericTogglingMenuItem
+            text={<span>Factor minutes % into player contributions</span>}
+            truthVal={factorMins}
+            onSelect={() => friendlyChange(() => setFactorMins(!factorMins), true)}
+            />
           <GenericTogglingMenuItem
                 text={"Always show bench minutes"}
                 truthVal={alwaysShowBench}
@@ -1175,6 +1193,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               tooltip: "If enabled show player's previous 2 seasons (useful sanity check for projections)",
               toggled: showPrevSeasons,
               onClick: () => friendlyChange(() => setShowPrevSeasons(!showPrevSeasons), true)
+            },
+            {
+              label: "* Mins%",
+              tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              toggled: factorMins,
+              onClick: () => friendlyChange(() => setFactorMins(!factorMins), true)
             },
             {
               label: "Bench",

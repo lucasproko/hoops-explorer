@@ -626,6 +626,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={false}
         />
@@ -675,6 +684,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -4843,6 +4858,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={false}
         />
@@ -4892,6 +4916,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -8800,6 +8830,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={false}
         />
@@ -8849,6 +8888,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -13791,6 +13836,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={false}
         />
@@ -13840,6 +13894,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -18355,6 +18415,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={true}
         />
@@ -18404,6 +18473,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -22646,6 +22721,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={true}
         />
@@ -22695,6 +22779,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -26330,6 +26420,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={false}
         />
@@ -26379,6 +26478,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -30517,6 +30622,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={false}
         />
@@ -30566,6 +30680,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -34446,6 +34566,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text={
+            <span>
+              Factor minutes % into player contributions
+            </span>
+          }
+          truthVal={true}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Always show bench minutes"
           truthVal={true}
         />
@@ -34495,6 +34624,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show player's previous 2 seasons (useful sanity check for projections)",
+            },
+            Object {
+              "label": "* Mins%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
             },
             Object {
               "label": "Bench",
@@ -34616,7 +34751,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
                       target="_blank"
                     >
                       <b>
@@ -35120,13 +35255,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 34.704,
                   },
                   "ok_def": Object {
-                    "value": -1.2921,
+                    "value": -1.12102596,
                   },
                   "ok_net": Object {
-                    "value": 6.33,
+                    "value": 5.491908,
                   },
                   "ok_off": Object {
-                    "value": 5.0379,
+                    "value": 4.37088204,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -35302,13 +35437,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 28.04,
                   },
                   "ok_def": Object {
-                    "value": -2.0885,
+                    "value": -1.4640384999999998,
                   },
                   "ok_net": Object {
-                    "value": 3.0587999999999997,
+                    "value": 2.1442188,
                   },
                   "ok_off": Object {
-                    "value": 0.9703,
+                    "value": 0.6801803,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -35582,13 +35717,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 28.868000000000002,
                   },
                   "ok_def": Object {
-                    "value": -3.9224,
+                    "value": -2.8307960800000003,
                   },
                   "ok_net": Object {
-                    "value": 6.3315,
+                    "value": 4.569443550000001,
                   },
                   "ok_off": Object {
-                    "value": 2.4091,
+                    "value": 1.73864747,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -35764,13 +35899,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 27.791999999999998,
                   },
                   "ok_def": Object {
-                    "value": -1.1671,
+                    "value": -0.8109010799999999,
                   },
                   "ok_net": Object {
-                    "value": 1.645,
+                    "value": 1.1429459999999998,
                   },
                   "ok_off": Object {
-                    "value": 0.4779,
+                    "value": 0.33204491999999997,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -35946,13 +36081,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 21.012,
                   },
                   "ok_def": Object {
-                    "value": -2.8738,
+                    "value": -1.50960714,
                   },
                   "ok_net": Object {
-                    "value": 3.1095,
+                    "value": 1.63342035,
                   },
                   "ok_off": Object {
-                    "value": 0.2357,
+                    "value": 0.12381320999999999,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -36226,13 +36361,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 31.236,
                   },
                   "ok_def": Object {
-                    "value": -3.3589,
+                    "value": -2.62296501,
                   },
                   "ok_net": Object {
-                    "value": 8.1036,
+                    "value": 6.3281012400000005,
                   },
                   "ok_off": Object {
-                    "value": 4.7447,
+                    "value": 3.70513623,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -36350,13 +36485,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     "value": 28.347999999999995,
                   },
                   "ok_def": Object {
-                    "value": -0.25,
+                    "value": -0.17717499999999997,
                   },
                   "ok_net": Object {
-                    "value": 0.5,
+                    "value": 0.35434999999999994,
                   },
                   "ok_off": Object {
-                    "value": 0.25,
+                    "value": 0.17717499999999997,
                   },
                   "title": <b>
                     Bench & Fr Bigs
@@ -37339,6 +37474,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 Object {
                   "alwaysShowBench": true,
                   "evalMode": false,
+                  "factorMins": true,
                   "offSeason": false,
                   "showOnlyCurrentYear": true,
                   "showOnlyTransfers": false,

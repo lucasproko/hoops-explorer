@@ -223,7 +223,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ factorMins, setFactorMins ] = useState(_.isNil(startingState.factorMins) ?
     ParamDefaults.defaultPlayerLboardFactorMins : startingState.factorMins
   );
-
   const [ useRapm, setUseRapm ] = useState(_.isNil(startingState.useRapm) ?
     ParamDefaults.defaultPlayerLboardUseRapm : startingState.useRapm
   );

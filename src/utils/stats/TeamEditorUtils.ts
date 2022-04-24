@@ -1555,9 +1555,9 @@ export class TeamEditorUtils {
    };
 
    /* Quick accessor for offensive contribution of player */
-   static getOff = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
+   static getOff = (s: PureStatSet, factor: number = 1.0) => ((s.off_adj_rapm || s.off_adj_rtg)?.value || 0)*factor;
    /* Quick accessor for defensive contribution of player */
-   static getDef = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
+   static getDef = (s: PureStatSet, factor: number = 1.0) => ((s.def_adj_rapm || s.def_adj_rtg)?.value || 0)*factor;
    /* Quick accessor for net (offensive + defensive) contribution of player */
-   static getNet = (s: PureStatSet) => TeamEditorUtils.getOff(s) - TeamEditorUtils.getDef(s);
+   static getNet = (s: PureStatSet, factor: number = 1.0) => TeamEditorUtils.getOff(s, factor) - TeamEditorUtils.getDef(s, factor);
 }
