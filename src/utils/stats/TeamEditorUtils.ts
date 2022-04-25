@@ -175,6 +175,7 @@ export class TeamEditorUtils {
       deletedPlayersIn: Record<string, string>, disabledPlayersIn: Record<string, boolean>,
       superSeniorsBack: boolean, alwaysShowBench: boolean,
       avgEff: number,
+      frList: Record<string, TeamEditorManualFixModel>
    ): TeamEditorProcessingResults {
       const specialCase = () => { // In "year==All" mode, if 5 players are present from the same selected team, then pick that as the base year
          const specialCaseKey = _.chain(addedPlayersIn)
@@ -239,13 +240,20 @@ export class TeamEditorUtils {
       const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
          team, year, candidatePlayersList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, allDeletedPlayers, transfers, undefined
       );
+      const redshirtishFr = (_.isEmpty(frList) || _.isEmpty(candidatePlayersList)) 
+         ? {} : TeamEditorUtils.addRedShirtishFreshmen(
+            team, year, frList, transfers, new Set(basePlayers.map(triple => triple.orig.code || "")), allDeletedPlayers
+         ); //(if base players is empty assume it's because we haven't loaded the data yet)
 
       // Merge team overrides and user overrides
       const allOverrides: Record<string, PlayerEditModel> = 
          _.fromPairs(
-            _.chain(teamOverrides.overrides || {}).toPairs().filter(keyVal=> !overridesIn[keyVal[0]]).value().concat(
-               _.toPairs(overridesIn)
-            )
+            _.chain(teamOverrides.overrides || {}).toPairs().filter(keyVal=> !overridesIn[keyVal[0]]).value()
+               .concat(
+                  _.toPairs(redshirtishFr)
+               ).concat(
+                  _.toPairs(overridesIn)
+               )
          );
 
       const unpausedOverrides: Record<string, PlayerEditModel> = 
@@ -379,7 +387,7 @@ export class TeamEditorUtils {
    //TODO: is there some way I can take walk-ons out the equation but use the roster info to list "guys that don't play much"
    // (ignoring anyone who isn't a Fr, will get rid of some of them, but not Fr walk-ons.... really need the *s)
 
-   /** Handy utility to fill in all the details for addedPlayers */
+   /** Handy utility to fill in all the details for addedPlayers (eg hypothetical transfers) */
    static fillInAddedPlayers(
       team: string, year: string,
       addedPlayersParam: string, playerList: IndivStatSet[], prevYearTransfers: Record<string, TransferModel[]>,
@@ -552,6 +560,43 @@ export class TeamEditorUtils {
       });
 
       return injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd);
+   }
+
+   /** Add red-shirt-ish Fr, including transfers */
+   static addRedShirtishFreshmen(
+      team: string, year: string, 
+      frList: Record<string, TeamEditorManualFixModel>, //(indexed by team) 
+      transfers: Record<string, Array<TransferModel>>[], 
+      dupCodes: Set<string>, 
+      deletedCodes: Record<string, string>
+   ): Record<string, PlayerEditModel> {
+      return _.chain(frList).flatMap((fr, frTeam) => {
+         if (team == frTeam) {
+            return _.flatMap(fr.overrides || {}, (info, key) => {
+               // Previous season ... if you didn't play 1 season ago and didn't transfer
+               if (!dupCodes.has(key) && !deletedCodes[key] && //(key is code for inserted Fr)
+                  !dupCodes.has(`${key}::`) && !deletedCodes[`${key}::`] && //(can occur with either key or code)
+                   !_.some(transfers[0]?.[key] || [], p => p.f == team)
+               ) {
+                  return [ [ key, info ]  ];
+               } else {
+                  return [];
+               }
+            });
+         } else {
+            return _.flatMap(fr.overrides || {}, (info, key) => {
+               // Transfers in
+               if (!dupCodes.has(key) && !deletedCodes[key] && //(key is code for inserted Fr)
+                  !dupCodes.has(`${key}::`) && !deletedCodes[`${key}::`] && //(can occur with either key or code)
+                  _.some(transfers[0]?.[key] || [], p => p.t == team)
+               ) {
+                  return [ [ key, info ]  ];
+               } else {
+                  return [];
+               }
+            });
+         }
+      }).fromPairs().value();
    }
 
    /** Give players their year-on-year improvement */

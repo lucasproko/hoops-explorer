@@ -47,6 +47,7 @@ import { TeamEditorTableUtils } from '../utils/tables/TeamEditorTableUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { DateUtils } from '../utils/DateUtils';
+import { TeamEditorManualFixes } from '../utils/stats/TeamEditorManualFixes';
 
 // Input params/models
 
@@ -334,13 +335,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode)}`; //(use whatever year we're taking grades for)
     const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
 
+    const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(year)}` : "NO MATCH"; //(for Fr)
+
     const pxResults = TeamEditorUtils.teamBuildingPipeline(
       gender, team, year,
       dataEvent.players || [], dataEvent.transfers || [],
       offSeasonMode, evalMode,
       otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
       superSeniorsBack, alwaysShowBench,
-      avgEff
+      avgEff, TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason)
     );
 
     ///////////////////////////////////////////////

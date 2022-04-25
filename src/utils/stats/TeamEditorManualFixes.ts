@@ -19,11 +19,23 @@ const wName = (name: string, def: PlayerEditModel) => {
 
 export class TeamEditorManualFixes {
 
+   static readonly getFreshmenForYear = _.memoize((genderYear: string) => {
+      if (genderYear == "Men_2019/20") { //(offseason of 19/20, ie team for 20/21)
+         return TeamEditorManualFixes.buildOverrides(freshmenMen2020_21);
+      } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
+         return TeamEditorManualFixes.buildOverrides(freshmenMen2021_22);
+      } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
+         return TeamEditorManualFixes.buildOverrides(freshmenMen2022_23);
+      } else {
+         return {};
+      }
+   });
+
    private static readonly buildOverrides = (recruits: Record<string, any>)  => {
       return _.transform(recruits, (acc, override, team) => {
-         const typedOverrides: Record<string, {pr: string, pos:string}> = override;
+         const typedOverrides: Record<string, {pr: string, pos:string, c:string}> = override;
          const playerOverrides = _.transform(typedOverrides, ((acc2, over, player) => {
-            acc2[player] = {
+            acc2[`${over.c}`] = { //(index by code not key, code isn't needed)
                name: player,
                profile: over.pr as Profiles,
                pos: over.pos
@@ -47,8 +59,15 @@ export class TeamEditorManualFixes {
    };
 
    static readonly fixes: (genderYear: string) => Record<string, TeamEditorManualFixModel> = _.memoize((genderYear: string) => {
-      if (genderYear == "Men_2019/20") { //(offseason of 19/20, ie team for 20/21)
-         const mutableToRet = TeamEditorManualFixes.buildOverrides(freshmenMen2020_21);
+      const mutableToRet = TeamEditorManualFixes.getFreshmenForYear(genderYear);  
+      if (genderYear == "Men_2018/9") { //offseason of 18/19 ie team for 19/20
+         const manualOverrides_Men_2019_20: Record<string, TeamEditorManualFixModel> = {
+            "Maryland": {
+               leftTeam: [ "BrFernando::" ],
+            },
+         }
+         return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2019_20);
+      } else if (genderYear == "Men_2019/20") { //(offseason of 19/20, ie team for 20/21)
          const manualOverrides_Men_2020_21: Record<string, TeamEditorManualFixModel> = {
             "Texas Tech": {
                leftTeam: [ "DaMoretti::" ],
@@ -56,7 +75,6 @@ export class TeamEditorManualFixes {
          }
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2020_21);
       } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
-         const mutableToRet = TeamEditorManualFixes.buildOverrides(freshmenMen2021_22);
          const manualOverrides_Men_2021_22: Record<string, TeamEditorManualFixModel> = {
             "Iowa": {
                superSeniorsReturning: new Set([ "JoBohannon::" ]),
@@ -105,8 +123,6 @@ export class TeamEditorManualFixes {
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2021_22);
 
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
-         const mutableToRet = TeamEditorManualFixes.buildOverrides(freshmenMen2022_23);
-
          const manualOverrides_Men_2022_23:  Record<string, TeamEditorManualFixModel> = { 
             "Colorado St.": {
                superSeniorsReturning: new Set([ "KeMoore::" ])          
@@ -164,6 +180,9 @@ export class TeamEditorManualFixes {
             },
             "Vanderbilt": {
                superSeniorsReturning: new Set([ "LiRobbins::", "QuMillora-br::" ]),
+            },
+            "Villanova": {
+               superSeniorsReturning: new Set([ "BrSlater::" ]),
             },
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::" ]),

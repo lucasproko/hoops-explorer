@@ -42,6 +42,7 @@ import { CbbColors } from '../utils/CbbColors';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
+import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/TeamEditorManualFixes';
 
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
@@ -201,6 +202,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       const avgEff = efficiencyAverages[`${gender}_${year}`] || efficiencyAverages.fallback;
          
+      // Come up with a superset of which players might be on which teams, for performance reasons
       const playerPartition = _.transform(dataEvent.players || [], (acc, p) => {
          const teams = [ (p.team || "") ].concat(
             _.flatMap(dataEvent.transfers || [], txfers => {
@@ -219,6 +221,28 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             acc[team]!.push(p);
          })
       }, {} as Record<string, IndivStatSet[]>);
+
+      // Come up with a superset of which (RSish) freshmen might be on which teams, for performance reasons
+      const genderPrevSeason = `${gender}_${DateUtils.getPrevYear(year)}`; //(For fr)
+      const frPartition = _.transform(
+         TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason), (acc, frPerTeam, teamKey) => {
+            // To be quick just include the entire overrides object if any transfer matches
+            const inject = (teamKeyIn: string, toInject: TeamEditorManualFixModel) => {
+               if (!acc[teamKey]) {
+                  acc[teamKeyIn] = {};
+               }
+               acc[teamKey]![teamKeyIn] = toInject;
+            };
+            // Always inject a team's Fr for that team:
+            inject(teamKey, frPerTeam);
+            const transferringTeams = _.chain(frPerTeam.overrides || {}).keys()
+                  .flatMap(code => dataEvent.transfers?.[0]?.[code] || [])
+                     .flatMap(p => (p.t && (p.t != "NBA")) ? [p.t] : []).value();
+            transferringTeams.forEach(teamKeyIn => {
+               inject(teamKeyIn, frPerTeam);
+            });
+
+         }, {} as Record<string, Record<string, TeamEditorManualFixModel>>);
 
       // Get a list of teams
       const teamList = _.flatMap(AvailableTeams.byName, (teams, teamName) => {
@@ -256,7 +280,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             true, startingState.evalMode || false,
             addedPlayers, overrides, deletedPlayers, disabledPlayers,
             maybeOverride.superSeniorsBack || false, false,
-            avgEff
+            avgEff, frPartition[t] || {}
          );
          const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
          
