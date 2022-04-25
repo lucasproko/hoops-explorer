@@ -286,7 +286,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       if (startingState.deletedPlayers && _.isEmpty(deletedPlayers)) {
         const deletedPlayersSet = startingState.deletedPlayers.split(";");
-        setDeletedPlayers(_.fromPairs(deletedPlayersSet.map(p => [ p, "unknown" ]))); //(gets filled in later)
+        setDeletedPlayers(_.fromPairs(deletedPlayersSet.map(p => [ p, `code:${p}` ]))); //(gets filled in later)
       }
       if (startingState.disabledPlayers && _.isEmpty(disabledPlayers)) {
         const firstDisabledPlayers = _.chain(startingState.disabledPlayers.split(";")).map(key => {
@@ -575,7 +575,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   const newDeletedPlayers = _.clone(deletedPlayers);
                   newDeletedPlayers[triple.key] = triple.orig.key;
                   friendlyChange(() => {
-                    if (!pxResults.allOverrides[triple.key]?.name) { //(else just needs to be cleared from overrides below)
+                    if (!uiOverrides[triple.key]?.name) { //(else just needs to be cleared from overrides below)
+                      //(allOverrides, I _do_ need to include it since it could be a Fr which is injected via other means)
                       setDeletedPlayers(newDeletedPlayers);
                     }
                     tidyUp(disabledPlayers, editOpen, uiOverrides);

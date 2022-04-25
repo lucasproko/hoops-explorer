@@ -234,7 +234,7 @@ export class TeamEditorUtils {
          });
 
       const allDeletedPlayers = _.merge(
-         _.fromPairs((teamOverrides.leftTeam || []).map(p => [ p, "unknown" ])),
+         _.fromPairs((teamOverrides.leftTeam || []).map(p => [ p, `code:${p}` ])),
          deletedPlayersIn
       );
       const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
@@ -260,7 +260,9 @@ export class TeamEditorUtils {
          _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
       const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayers)).concat(
-         _.values(allOverrides).filter(o => o.name).map(o => { 
+         _.chain(allOverrides).toPairs().filter(keyVal => !_.isNil(keyVal[1].name)).map(keyVal => { 
+            const code = keyVal[0];
+            const o = keyVal[1];
             const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(o.profile);
             const offAdj = (o.global_off_adj || 0);
             const defAdj = (o.global_def_adj || 0);
@@ -272,14 +274,14 @@ export class TeamEditorUtils {
                off_team_poss_pct: { value: 0 }
             }; };
             return {
-               key: o.name,
+               key: code,
                good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
                bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
                ok: indivStatSet(0),
                orig: indivStatSet(0),
                manualProfile: o
             } as GoodBadOkTriple;
-         })
+         }).value()
       ); 
       if (evalMode) basePlayersPlusHypos.forEach(triple => {
          const matchingActual = triple.manualProfile
