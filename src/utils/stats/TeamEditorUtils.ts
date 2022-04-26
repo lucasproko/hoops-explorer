@@ -608,7 +608,7 @@ export class TeamEditorUtils {
       overrides: Record<string, PlayerEditModel>, 
       offSeasonMode: boolean
    ) {
-      /** TODO: remove this once moving away from JSON */
+      /** Handy a util to make the diagnostics mode a bit more readable */
       const tidy = (inJson: TeamEditorDiagObject) => {
          const keys = _.keys(inJson) as DiagCodes[];
          keys.forEach(key => {
@@ -630,7 +630,7 @@ export class TeamEditorUtils {
          };
 
          // Useuable for defense and offense
-         const maybeLevelJump = (basePlayer.team != team)  ? TeamEditorUtils.getJumpInLevel(basePlayer.team || "", team, year) : 0;
+         const maybeLevelJump = (basePlayer.team != team) ? TeamEditorUtils.getJumpInLevel(basePlayer.team || "", team, year) : 0;
 
          // Offensive bonuses and penalties (+ == good)
 
@@ -660,8 +660,8 @@ export class TeamEditorUtils {
          const defLevelJump = _.isNil(maybeLevelJump) ? ((offSosDeltaForTxfers > 4) ? 2 : 0) : maybeLevelJump;
          //(basically the idea here is that if a transfer gets taken by a high major, their defense probably isn't unplayably bad,
          // and if RAPM says it is, then it's likely a team-effect vs a player-effect)
-         const minDefAdj = (defLevelJump >= 3) ? 1 : ((defLevelJump >= 2) ? 0.75 : 0);
-         const minDef = TeamEditorUtils.getBenchLevelScoring(team, year) + minDefAdj;
+         const minDefAdj = (defLevelJump >= 3) ? 1 : ((defLevelJump >= 2) ? 0.75 : 0); //(the bigger the jump, the worse we'll allow the defender to be, numbers are pretty arbitrary)
+         const minDef = -TeamEditorUtils.getBenchLevelScoring(team, year) + minDefAdj;
          const currDef = TeamEditorUtils.getDef(basePlayer);
          const adjustedCurrDef = currDef - ((defLevelJump >= 2) ? 0.5 : 0); //(bonus help defense for players coming up from low majors)
          const defTxferUpBetterHelpBump = (
