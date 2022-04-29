@@ -44,7 +44,12 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    const [ currOffAdj, setCurrOffAdj ] = useState(overrides?.global_off_adj || 0);
    const [ currDefAdj, setCurrDefAdj ] = useState(-(overrides?.global_def_adj || 0));
 
-   const addOrEditPlayerMode = addNewPlayerMode || !_.isNil(overrides?.name);
+   //TODO: need to handle overrides on top of manually added players (+RS Fr) differently
+   // (eg for some reason I can't get pause to work, can't reset positions, 
+   //  plus once you've added overrides, they will never again go away from the URL, even if reset, etc)
+
+   const isHandAddedPlayer = !_.isNil(overrides?.name)
+   const addOrEditPlayerMode = addNewPlayerMode || isHandAddedPlayer;
    const editPlayerMode = !addNewPlayerMode && addOrEditPlayerMode;
 
    // Presentation
@@ -170,14 +175,21 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                </Col>
                <Col xs={3}/>
                <Col xs={1} className="pt-1">
-                  {addOrEditPlayerMode ? null :
+                  {addNewPlayerMode ? null :
                   <OverlayTrigger overlay={resetTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" onClick={((ev:any) => {
-                        setCurrMins("");
                         setCurrOffAdj(0);
                         setCurrDefAdj(0);
-                        setCurrProfile("Auto");
-                        onUpdate(undefined);
+                        if (isHandAddedPlayer) { // Only reset the off/def adjustments to 0
+                           const currOverrides = overrides ? _.clone(overrides) : {};
+                           delete currOverrides.global_off_adj;
+                           delete currOverrides.global_def_adj;
+                           onUpdate(currOverrides);
+                        } else { // Else just clear the entire overrdes
+                           setCurrMins("");
+                           setCurrProfile("Auto");
+                           onUpdate(undefined);
+                        }
                      })}><FontAwesomeIcon icon={faTimes} />
                      </Button>
                   </OverlayTrigger>}

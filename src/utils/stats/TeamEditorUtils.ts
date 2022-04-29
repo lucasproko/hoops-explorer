@@ -252,10 +252,16 @@ export class TeamEditorUtils {
                .concat(
                   _.toPairs(redshirtishFr)
                ).concat(
-                  _.toPairs(overridesIn)
+                  _.toPairs(overridesIn).map(keyVal => { 
+                     //(ugly complication: redshirt-ish Fr look like "hand added" players, but their key is a code, not a human readable name)
+                     const maybeRedshirtFr = redshirtishFr[keyVal[0]];
+                     if (maybeRedshirtFr) keyVal[1].name = maybeRedshirtFr.name; //(so retrieve the name from the original source)
+                     return keyVal;
+                  })
                )
          );
 
+      //TODO: (see TeamRosterEditor TODO), this doesn't correctly handle combining overrids on top of "redshirtishFr"
       const unpausedOverrides: Record<string, PlayerEditModel> = 
          _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
