@@ -78,10 +78,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
    /** Converts a list of params to their team's key/value params  */
    const buildOverrides = (inOverrides: Record<string, string>) => {
-      return _.transform(inOverrides, (acc, param, key) => {
+      return _.transform(inOverrides, (acc, paramIn, key) => {
          const splitKey = key.split("__");
          const inTeam = splitKey[0];
          const inParamKey = splitKey?.[1];
+         const param = paramIn?.toString(); //(in case it's boolean)
          if (inParamKey) {
             if (!acc[inTeam]) {
                acc[inTeam] = {};
@@ -97,6 +98,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                acc[inTeam]!.overrides = param;
             } else if (inParamKey == "superSeniorsBack") {
                acc[inTeam]!.superSeniorsBack = (param == "true");
+            } else if (inParamKey == "diffBasis") {
+               acc[inTeam]!.diffBasis = param;
+            } else if (inParamKey == "showPrevSeasons") {
+               acc[inTeam]!.showPrevSeasons = (param == "true");
+            } else if (inParamKey == "alwaysShowBench") {
+               acc[inTeam]!.alwaysShowBench = (param == "true");
+            } else if (inParamKey == "factorMins") {
+               acc[inTeam]!.factorMins = (param == "true");
             }
          }
       }, {} as Record<string, TeamEditorParams>);

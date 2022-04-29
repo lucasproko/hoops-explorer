@@ -1325,13 +1325,26 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       {overrideGrades ? <Col xs={2}>
         <Button size="sm" variant="outline-primary" onClick={(ev: any) => {
           onChangeState(_.omit({
+            factorMins: factorMins,
             addedPlayers: _.keys(otherPlayerCache).join(";"),
             deletedPlayers: _.keys(deletedPlayers).join(";"),
             disabledPlayers: _.keys(disabledPlayers).join(";"),
             overrides: _.isNil(uiOverridesIn) ? 
               _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
             superSeniorsBack: superSeniorsBack,
-          }, superSeniorsBack ? [ ] : [ "superSeniorsBack" ]));
+            showPrevSeasons: showPrevSeasons,
+            alwaysShowBench: alwaysShowBench,
+            diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis)
+          }, ([] as string[]).concat(
+              factorMins ? [ ] : [ "factorMins" ]
+            ).concat(
+              superSeniorsBack ? [ ] : [ "superSeniorsBack" ]
+            ).concat(
+              showPrevSeasons ? [ ] : [ "showPrevSeasons" ]
+            ).concat(
+              alwaysShowBench ? [ ] : [ "alwaysShowBench" ]
+            )
+          ));
         }}>Save</Button>
         &nbsp;&nbsp;
         <Button size="sm" variant="outline-secondary" onClick={(ev: any) => {
