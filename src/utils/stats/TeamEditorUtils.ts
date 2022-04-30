@@ -15,8 +15,9 @@ type DiagCodes =
    "player_gravity_bonus" | "player_gravity_penalty" | 
    "better_help_txfer_bonus" | "share_team_defense" |
    "incorp_prev_season" | "fr_regression" |
-   "switch_usage_ortg" |
-   "user_adjustment"
+   "switch_usage_ortg_style" |
+   "user_adjustment" |
+   "average_usage" | "switch_usage_ortg_average" | "lack_of_playmaking_penalty"
    ;
 
 /** For a given stat/projection, how/why we changed it */
@@ -145,8 +146,11 @@ export class TeamEditorUtils {
       share_team_defense: "Shared team defense",
       incorp_prev_season: "Incorporate previous seasons' stats",
       fr_regression: "Freshmen stats are prone to regression",
-      switch_usage_ortg: "Trade usage for efficiency",
-      user_adjustment: "User adjustment"
+      switch_usage_ortg_style: "Trade usage for efficiency (style reasons)",
+      user_adjustment: "User adjustment",
+      average_usage: "Average usage across team",
+      switch_usage_ortg_average: "Trade usage for efficiency (after averaging usage)",
+      lack_of_playmaking_penalty: "Team penalty because there's a lack of playmaking"
    };
       
 
@@ -912,24 +916,24 @@ export class TeamEditorUtils {
          return {
             off_rtg: {
                good: tidy({
-                  switch_usage_ortg: goodDeltaORtg
+                  switch_usage_ortg_style: goodDeltaORtg
                }),
                ok: tidy({
-                  switch_usage_ortg: okDeltaORtg
+                  switch_usage_ortg_style: okDeltaORtg
                }),
                bad: tidy({
-                  switch_usage_ortg: badDeltaORtg
+                  switch_usage_ortg_style: badDeltaORtg
                }),
             },
             off_usage: {
                good: tidy({
-                  switch_usage_ortg: goodDeltaUsg*100
+                  switch_usage_ortg_style: goodDeltaUsg*100
                }),
                ok: tidy({
-                  switch_usage_ortg: okDeltaUsg*100
+                  switch_usage_ortg_style: okDeltaUsg*100
                }),
                bad: tidy({
-                  switch_usage_ortg: badDeltaUsg*100
+                  switch_usage_ortg_style: badDeltaUsg*100
                }),
             },
             off: { good: {}, ok: {}, bad: {} },
@@ -993,7 +997,7 @@ export class TeamEditorUtils {
             const balanceORtgDiag = balanceORtgAndUsage(triple) as TeamEditorDiags;
             ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
                applyDiagsToBase(proj, balanceORtgDiag, triple[proj], triple[proj], false, // <- already applied it
-                  new Set<DiagCodes>([ "switch_usage_ortg" ]))
+                  new Set<DiagCodes>([ "switch_usage_ortg_style" ]))
             });
             triple.diag = _.merge(triple.diag, balanceORtgDiag);
          }
@@ -1014,7 +1018,7 @@ export class TeamEditorUtils {
 
       const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
 
-      const adjustProjection = (proj: "good" | "bad" | "ok") => {
+      const shareTeamDefense = (proj: "good" | "bad" | "ok") => {
 
          const avDefense = 0.2*_.sumBy(filteredRoster, p => {
             const defToUse = ((_.isNil((p[proj] as PureStatSet).def_adj_rapm?.value) ? 
@@ -1044,13 +1048,80 @@ export class TeamEditorUtils {
             }
          });
       };
-      adjustProjection("good");
-      adjustProjection("ok");
-      adjustProjection("bad");
 
-      //TODO: more advanced
-      // 1] if >0.90 of transfer minutes then have a penatly of 0.5/0.5 -> 1.0/1.0 divided across all the players
-      // 2] need playmaking (some % of usage>25 or assist>22) else reduce secondary playmakers' offense
+      const balanceUsage = (proj: "good" | "bad" | "ok") => {
+         const newPlayerAndBenchUsage = 0.18;
+
+         const usgInfo = _.transform(roster, (acc, triple) => {
+
+            const indivStatSet = (triple[proj] as PureStatSet);
+
+            const mins = indivStatSet.off_team_poss_pct?.value || 0;
+            const usg = (indivStatSet.off_usage?.value || newPlayerAndBenchUsage); // (Fr-ish get a baseline of 0.18)
+
+            acc.minUsgSum += mins*usg;
+            acc.minSum += mins;
+
+            // const tripleOk = (triple.ok as PureStatSet)
+            // indivStatSet.off_adj_rapm = {  value: (indivStatSet.off_adj_rapm?.value || 0) - 0.25*1.58 }
+
+         }, { minUsgSum: 0, minSum: 0 });
+
+         const benchMins = Math.max(5 - usgInfo.minSum, 0);
+         const totalMins = usgInfo.minSum + benchMins;
+         const minUsgSumIncBench = usgInfo.minUsgSum + benchMins*newPlayerAndBenchUsage;
+
+         const weightedUsg = (minUsgSumIncBench/totalMins);
+         const deltaUsg = 0.20 - weightedUsg;
+
+         //Debugging
+         //console.log(`AVG_USG [${proj}] = ${weightedUsg.toFixed(4)} .. player_mins[${usgInfo.minSum.toFixed(2)}] total=[${totalMins}]`)
+
+         const applyPlaymakingPenalty = (proj != "good") && (deltaUsg > 0);
+
+         // In all cases want to fix the usg/org
+         if (deltaUsg != 0) roster.forEach(triple => {
+            const indivStatSet = (triple[proj] as PureStatSet);
+            const oRtgAdjustment = applyPlaymakingPenalty ? -deltaUsg*100 : 0; 
+               //Arbitrary: 1 pt of ORtg per player per % of usage below 20
+
+            if (indivStatSet.off_usage) { // Don't have this info for Fr-ish
+               const ortg = indivStatSet.off_rtg?.value || 100;
+               const usage = indivStatSet.off_usage?.value || 0.20;
+               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsg) - ortg;            
+
+               indivStatSet.off_rtg = TeamEditorUtils.addToVal(indivStatSet.off_rtg, deltaORtg + oRtgAdjustment)!;
+               indivStatSet.off_usage = TeamEditorUtils.addToVal(indivStatSet.off_usage, deltaUsg)!;
+
+               if (triple.diag) {
+                  triple.diag.off_rtg[proj]["switch_usage_ortg_average"] = deltaORtg;
+                  triple.diag.off_usage[proj]["average_usage"] = deltaUsg;
+                  if (applyPlaymakingPenalty) {
+                     triple.diag.off_rtg[proj]["lack_of_playmaking_penalty"] = oRtgAdjustment;
+                  }
+               }
+            }
+            if (applyPlaymakingPenalty) {
+               //Debugging"
+               //console.log(`RAPM_adj [${proj}] = ${rapmAdjustment.toFixed(4)}`)
+               const rapmAdjustment = oRtgAdjustment*0.2;   
+               indivStatSet.off_adj_rtg = TeamEditorUtils.addToVal(indivStatSet.off_adj_rtg, rapmAdjustment)!;
+               indivStatSet.off_adj_rapm = TeamEditorUtils.addToVal(indivStatSet.off_adj_rapm, rapmAdjustment)!; 
+               if (triple.diag) {
+                  triple.diag.off[proj]["lack_of_playmaking_penalty"] = rapmAdjustment;
+               }
+            }
+
+         });
+      };
+
+      // Apply advanced:
+      ([ "good", "ok", "bad" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
+         shareTeamDefense(proj);
+         balanceUsage(proj);
+      })
+
+      //TODO: other more advanced adjustments? Improve playmaking penalty maybe?
    }
 
    /** Calculate minutes assignment, mutates roster */
