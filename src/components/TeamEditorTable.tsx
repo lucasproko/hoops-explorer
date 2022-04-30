@@ -1038,7 +1038,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
         TeamEditorUtils.getBasePlayers(
           team, year, (dataEvent.players || []).filter(maybeP => (maybeP.code == p.code) && ((maybeP.year || "") <= year)), 
-          offSeasonMode, superSeniorsBack, undefined, {}, 
+          offSeasonMode, true, undefined, {}, 
           // Build a transfer set explicitly for this player
           [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || year
         ).forEach(triple => {
