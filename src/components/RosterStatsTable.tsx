@@ -42,7 +42,7 @@ import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from '../utils/StatModels';
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
@@ -161,9 +161,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // Transform the list into a map of maps of values
   const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
-  const overridableStatsList = _.keys(OverrideUtils.shotQualityMetricMap).concat(
-    _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player))    
-  ); //(do SQ first, _then_ manual overrides)
 
   const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
     false : gameFilterParams.showPlayerManual
@@ -310,7 +307,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
           const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!, rosterStatsByCode.global, teamStats[key]!, avgEfficiency, adjustForLuck, luckConfig.base, onBallDefenseByCode
+            rosterStats[key]!, rosterStatsByCode.global, teamStats[key]!, avgEfficiency, adjustForLuck, luckConfig.base, 
+            manualOverridesAsMap, onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)
@@ -441,8 +439,27 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       baseline: onOffBasePicker("Baseline", key_onOffBase[1]),
       global: onOffBasePicker("Global", key_onOffBase[1]),
     };
-    const baseOrSeasonTeamStats = (luckConfig.base == "baseline")
-      ? teamStats.baseline : teamStats.global;
+    return player;
+  }).value();
+
+  // Now mutate players
+
+  // First enrich with (luck, on-ball defense, manual overrides and...) ORtg etc
+
+  ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach((key) => {
+    const playerList = allPlayers.filter(triple => triple[key]).map(triple => triple[key]!);
+
+    const teamStat = teamStats[key] || StatModels.emptyTeam();
+
+    LineupTableUtils.buildBaselinePlayerInfo(
+      playerList, rosterStatsByCode.global, teamStat, avgEfficiency, adjustForLuck, luckConfig.base, 
+      manualOverridesAsMap, onBallDefenseByCode
+    );
+  });
+
+  // Then some final overrides for table display purposes
+
+  allPlayers.forEach(player => {
 
     /** (ugly hack so that we only render the roster info for one of the rows per player)*/
     var varFirstRowKey: string | undefined = undefined;
@@ -451,43 +468,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach((key) => {
       const stat = player[key];
       const teamStat = teamStats[key] || StatModels.emptyTeam();
+
       if (stat) {
         if (!varFirstRowKey) varFirstRowKey = key;
 
-        stat.off_team_poss_pct = { value: _.min([(stat.off_team_poss.value || 0)
-            / (teamStat.off_poss?.value || 1), 1 ]) };
-        stat.def_team_poss_pct = { value: _.min([(stat.def_team_poss.value || 0)
-            / (teamStat.def_poss?.value || 1), 1 ]) };
-
-        // Handle luck:
-        const baseOrGlobalPlayer = (luckConfig.base == "baseline")
-          ? player.baseline : player.global;
-
-        const [ offLuckAdj, defLuckAdj ] = baseOrGlobalPlayer && adjustForLuck ? [
-          LuckUtils.calcOffPlayerLuckAdj(
-            stat, baseOrGlobalPlayer, avgEfficiency
-          ), LuckUtils.calcDefPlayerLuckAdj(
-            stat, baseOrGlobalPlayer, avgEfficiency
-          ) ] : [ undefined, undefined ];
-
-        if (stat?.doc_count) {
-          LuckUtils.injectLuck(stat, offLuckAdj, defLuckAdj);
-        }
-        stat.off_luck = offLuckAdj;
-        stat.def_luck = defLuckAdj;
-
-        // Apply roster info:
-        // (note this duplicates the code derivation in LineupTableUtils.buildBaselinePlayerInfo,
-        // but that isn't called unless RAPM is enabled, so we ensure it here)
-        const playerCode = teamStats.global?.roster ?
-          (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
-        stat.code = playerCode; //(ensure it exists)
-
-        const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
-        if (!_.isEmpty(rosterEntry)) {
-          stat.roster = rosterEntry;
-        }
-
+        const rosterEntry = stat.roster || {};
         const height = rosterEntry.height;
         const heightIn = rosterEntry.height_in;
         const yearClass = rosterEntry.year_class;
@@ -500,101 +485,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           stat.def_efg = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{rosterInfoText}</i></small>;
         }
 
-        // Once luck is applied apply any manual overrides
-
-        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey!);
-        const overrides = manualOverridesAsMap[playerOverrideKey];
-        const overrodeOffFields = _.reduce(overridableStatsList, (acc, statName) => {
-          const override = overrides?.[statName];
-
-          if (_.isNil(override) && overrides?.hasOwnProperty(OverrideUtils.keyToShotQualityKey(statName) || "")) {
-            return acc; //(if there is an SQ override and not a normal one then don't unset the SQ one)
-          } else {
-            const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
-            return acc || maybeDoOverride;
-          }
-        }, false);
-
-        const adjustmentReason = (() => {
-          if (adjustForLuck && overrodeOffFields) {
-            return "Derived from luck adjustments and manual overrides";
-          } else if (!adjustForLuck && overrodeOffFields) {
-            return "Derived from manual overrides";
-          } else if (adjustForLuck && !overrodeOffFields) {
-            return "Derived from luck adjustments";
-          } else {
-            return undefined;
-          }
-        })();
-        // Set or unset derived stats:
-        OverrideUtils.updateDerivedStats(stat, adjustmentReason);
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
         TableDisplayUtils.injectPlayTypeInfo(stat, expandedView, true, teamSeasonLookup);
-
-        // Ratings:
-
-        const calcDiagModeOff = showDiagMode;
-        const calcDiagModeDef = showDiagMode || !_.isEmpty(onBallDefenseByCode);
-
-//TODO make this a UI parameter, default true
-        const useAdjUsage = true; 
-
-        const [
-          oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
-        ] = RatingUtils.buildORtg(
-            stat, rosterStatsByCode[key], { 
-              //(some extra info needed to get the pts/poss as close as possible)
-              total_off_to: teamStat.total_off_to || { value: 0 },
-              sum_total_off_to: { //(sum of all players TOs, so we can calc team TOVs)
-                //(note don't luck adjust these since the team values aren't luck adjusted)
-                value: _.sumBy((rosterStats[key] || []) as IndivStatSet[], p => p.total_off_to?.value || 0)
-              }
-            },
-            avgEfficiency, calcDiagModeOff || useAdjUsage, adjustForLuck || overrodeOffFields
-          );
-        const [
-          dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
-        ] = RatingUtils.buildDRtg(stat, avgEfficiency, calcDiagModeDef, adjustForLuck);
-        stat.off_rtg = {
-          value: oRtg?.value, old_value: rawORtg?.value,
-          override: adjustmentReason
-        };
-        stat.off_adj_rtg = {
-          value: adjORtg?.value, old_value: rawAdjORtg?.value,
-          override: adjustmentReason
-        };
-        stat.off_adj_prod = {
-          value: (adjORtg?.value || 0)*stat.off_team_poss_pct.value!,
-          old_value: (rawAdjORtg?.value || 0)*stat.off_team_poss_pct.value!,
-          override: adjustmentReason
-        };
-        stat.off_usage = {
-          value: !_.isNil(oRtgDiag) ? oRtgDiag!.Usage*0.01 : (stat.off_usage?.value || 0.2)
-        };
-        stat.diag_off_rtg = oRtgDiag;
-        stat.def_rtg = {
-          value: dRtg?.value, old_value: rawDRtg?.value,
-          override: adjustForLuck ? "Derived from luck adjustments" : undefined
-        };
-        stat.def_adj_rtg = {
-          value: adjDRtg?.value,
-          old_value: rawAdjDRtg?.value,
-          override: adjustForLuck ? "Derived from luck adjustments" : undefined
-        };
-        stat.def_adj_prod = {
-          value: (adjDRtg?.value || 0)*stat.def_team_poss_pct.value!,
-          old_value: (rawAdjDRtg?.value || 0)*stat.def_team_poss_pct.value!,
-          override: adjustForLuck ? "Derived from luck adjustments" : undefined
-        };
-        stat.diag_def_rtg = dRtgDiag;
-
-        // Apply on-ball defense if it exists for this player
-        if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(playerCode)) {
-          const onBallDefense = onBallDefenseByCode[playerCode]!;
-          const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(stat, dRtgDiag, onBallDefense);
-          dRtgDiag.onBallDef = onBallDefense;
-          dRtgDiag.onBallDiags = onBallDiags;
-        }
 
         // Positional info (NOTE - no dependencies on other processing like ORtg):
 
@@ -619,20 +511,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
             const rapm = cachedRapm?.[key]?.[stat.key] || {};
-            // Always calc defensive (used for on ball)
+            // Always calc defensive (used for on ball), even if not displayed
             stat.def_adj_rapm = rapm.def_adj_rapm;
             stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             if (expandedView) {
               stat.off_adj_rapm = rapm.off_adj_rapm;
               stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
             } else {
-              const offAdjRapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
-                { value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) } :
-                undefined;
+
+//TODO: need to put adjustment reasons in here
+              
+              const offAdjRapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ? { 
+                  value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) 
+                } : undefined;
               stat.off_adj_rapm = offAdjRapm;
-              stat.off_adj_rapm_prod = offAdjRapm ?
-                { value: offAdjRapm.value*stat.off_team_poss_pct.value! }
-                : undefined;
+              stat.off_adj_rapm_prod = offAdjRapm ? { 
+                value: offAdjRapm.value*stat.off_team_poss_pct.value! 
+              } : undefined;
             }
           }
         }
@@ -648,16 +543,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ];
       }
     });
-    return player;
-  }).value();
-
-  // If we have on-ball defense, then need to do a quick aggregation of the personal DRtgs
-  if (!_.isEmpty(onBallDefenseByCode)) {
-    _.forEach([ "on", "off", "baseline" ], (loc: OnOffBaselineEnum) => {
-      const playerList = allPlayers.filter(p => !_.isNil(p[loc]?.off_title)).map(p => p[loc]!);
-      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList, teamStats[loc] || {});
-    });
-  }
+  });
 
   const filteredPlayers = allPlayers.filter((player) => {
     const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "") +

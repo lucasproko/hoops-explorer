@@ -505,7 +505,7 @@ export async function main() {
       //(end on ball defense logic)
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency, true, "baseline", onBallDefenseByCode //(always adjust for luck)
+        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency, true, "baseline", {}, onBallDefenseByCode //(always adjust for luck)
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 

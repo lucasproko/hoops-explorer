@@ -24,7 +24,7 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 import { ManualOverride, ParamPrefixes, ParamPrefixesType } from '../../utils/FilterModels';
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OverrideUtils } from "../../utils/stats/OverrideUtils";
-import { Statistic, IndivStatSet } from '../../utils/StatModels';
+import { Statistic, IndivStatSet, PureStatSet } from '../../utils/StatModels';
 
 // External Data Model
 
@@ -301,7 +301,8 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
 
  // View
 
-  const statsTableFields = CommonTableDefs.onOffIndividualTable(true, false, false, false); //(expanded view, abs poss count, rating not prod)
+  const hasRapm = !_.isNil((inStats[0] as PureStatSet)?.off_adj_rapm?.value);
+  const statsTableFields = CommonTableDefs.onOffIndividualTable(true, false, false, hasRapm); //(expanded view, abs poss count, rating not prod)
 
   return <div><Modal size="lg" {...props}
     onEntered={() => {

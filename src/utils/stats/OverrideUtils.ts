@@ -8,6 +8,46 @@ import { IndivStatSet, Statistic, TeamStatSet, LineupStatSet } from '../StatMode
 /** Utilities for managing luck or manual overrides to individual/team stats */
 export class OverrideUtils {
 
+  // Top level
+
+  /** Apply any generated overrides to a player */
+  static readonly applyOverrides = (
+    stat: IndivStatSet, onOffKey: "On" | "Off" | "Baseline" | "Global",
+    manualOverridesAsMap: Record<string, Record<string, number>>, 
+    adjustForLuck: boolean
+  ) => {
+    const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, onOffKey);
+    const overrides = manualOverridesAsMap[playerOverrideKey];
+    const overrodeOffFields = _.reduce(OverrideUtils.playerOverridableStatsList, (acc, statName) => {
+      const override = overrides?.[statName];
+
+      if (_.isNil(override) && overrides?.hasOwnProperty(OverrideUtils.keyToShotQualityKey(statName) || "")) {
+        return acc; //(if there is an SQ override and not a normal one then don't unset the SQ one)
+      } else {
+        const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
+        return acc || maybeDoOverride;
+      }
+    }, false);
+
+    const adjustmentReason = (() => {
+      if (adjustForLuck && overrodeOffFields) {
+        return "Derived from luck adjustments and manual overrides";
+      } else if (!adjustForLuck && overrodeOffFields) {
+        return "Derived from manual overrides";
+      } else if (adjustForLuck && !overrodeOffFields) {
+        return "Derived from luck adjustments";
+      } else {
+        return undefined;
+      }
+    })();
+    // Set or unset derived stats:
+    OverrideUtils.updateDerivedStats(stat, adjustmentReason);
+
+    return [ adjustmentReason, overrodeOffFields ] as [ string | undefined, boolean ];
+  };
+
+  // Lower level
+
   /** Returns the original value regardless of whether it's overridden or not */
   private static readonly getOriginalVal = (mutableVal: Statistic): number | undefined => {
     return (_.isNil(mutableVal?.old_value) ? mutableVal?.value : mutableVal?.old_value);
@@ -175,11 +215,17 @@ export class OverrideUtils {
     return statNameKey;
   };
 
-    /** Switches from sq_ to the corresponding stat set key */
-    static readonly keyToShotQualityKey = (key: string): string | undefined => {
-      const candidate = `sq_${key.substring(4)}`;
-      const sqKey = OverrideUtils.shotQualityMetricMap[candidate];
-      return sqKey ? candidate : undefined;
-    };
+  /** Switches from sq_ to the corresponding stat set key */
+  static readonly keyToShotQualityKey = (key: string): string | undefined => {
+    const candidate = `sq_${key.substring(4)}`;
+    const sqKey = OverrideUtils.shotQualityMetricMap[candidate];
+    return sqKey ? candidate : undefined;
+  };
+
+  // Some constants  
+
+  static readonly playerOverridableStatsList = _.keys(OverrideUtils.shotQualityMetricMap).concat(
+    _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player))    
+  ); //(do SQ first, _then_ manual overrides)
   
 }

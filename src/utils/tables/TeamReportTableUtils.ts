@@ -23,6 +23,9 @@ export class TeamReportTableUtils {
     //TODO (#173): ^ similar for on-ball defense adjustments. Both these only affect the priors, so
     //need some logic to loop over before/after options for luck/!luck
 
+    //TODO (#???): currently on-ball defense and manual overrides just impact the priors but actually 
+    // should also "smear" impact uniformly across players' lineups
+
     const tempTeamReport = preCalcTeamReport || LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
       lineups: enrichedLineups
     });
@@ -45,6 +48,7 @@ export class TeamReportTableUtils {
 
     // Has to be in this order, else injectRapmIntoPlayers doesn't work properly
     const results = ([ "value", "old_value"  ] as Array<"value" | "old_value">).filter(valueKey => {
+      // What about if there  is a per-player manual override? For now just ignore. See "todos" at the top of the method
       if (valueKey == "old_value" && !adjustForLuck) return false; //(nothing to do)
       else return true;
     }).map((valueKey, index) => {
