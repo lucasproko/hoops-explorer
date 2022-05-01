@@ -185,19 +185,19 @@ export class CommonTableDefs {
     "adj_prod": GenericTableOps.addPtsCol("Adj+ Prod",
       (expandedView ? "Offensive/Defensive" : "Offensive") + " production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
 
-    // 2 of these 4 are always omitted by onOffIndividualTable, the other 2 we just make {} so that auto-gen of table sort works
-    "adj_rapm_margin": expandedView ? {} : GenericTableOps.addDataCol(
+    // 2 of these 4 are always omitted by onOffIndividualTable, the other 2 we just make empty-ish so that auto-gen of table sort works
+    "adj_rapm_margin": expandedView ? { colName: undefined } : GenericTableOps.addDataCol(
       "RAPM diff", "Adjusted Plus-Minus vs D1 average (Off-Def margin)",
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
-    "adj_rapm_prod_margin": expandedView ? {} : GenericTableOps.addDataCol(
+    "adj_rapm_prod_margin": expandedView ? { colName: undefined } : GenericTableOps.addDataCol(
       "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average (Off-Def margin)",
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "adj_rapm": expandedView ? GenericTableOps.addDataCol(
       "RAPM", "Adjusted Plus-Minus vs D1 average",
-      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter) : {},
+      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter) : { colName: undefined },
     "adj_rapm_prod": expandedView ? GenericTableOps.addDataCol(
       "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average",
-      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter) : {},
+      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter) : { colName: undefined },
 
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addDataCol(
