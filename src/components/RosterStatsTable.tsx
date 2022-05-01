@@ -42,7 +42,7 @@ import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from '../utils/StatModels';
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, PureStatSet } from '../utils/StatModels';
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
@@ -505,29 +505,39 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             const rapmPlaceholder = <OverlayTrigger placement="auto" overlay={
               <Tooltip id={`${stat.key}-pendingRapm`}>Calculating, stand by...</Tooltip>
             }><i>??</i></OverlayTrigger>;
-            stat.off_adj_rapm = rapmPlaceholder;
+            stat.off_adj_rapm = rapmPlaceholder; 
             stat.def_adj_rapm = rapmPlaceholder;
             stat.off_adj_rapm_prod = rapmPlaceholder;
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
             const rapm = cachedRapm?.[key]?.[stat.key] || {};
-            // Always calc defensive (used for on ball), even if not displayed
+            stat.off_adj_rapm = rapm.off_adj_rapm;
+            stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+            if (stat.off_adj_rtg.override && stat.off_adj_rapm) {
+              (stat as PureStatSet).off_adj_rapm.override = stat.off_adj_rtg.override; //(just copy across)
+              if (stat.off_adj_rapm_prod && stat.off_adj_rapm_prod) {
+                (stat as PureStatSet).off_adj_rapm_prod.override = stat.off_adj_rtg.override;
+              }
+            }
             stat.def_adj_rapm = rapm.def_adj_rapm;
             stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
-            if (expandedView) {
-              stat.off_adj_rapm = rapm.off_adj_rapm;
-              stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
-            } else {
+            //(note don't copy override across for defense, currently there are no defensive overrides and on-ball adjustments are shown elsewhere)
 
-//TODO: need to put adjustment reasons in here
-              
-              const offAdjRapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ? { 
+            if (!expandedView) {
+              const adjRapmMargin: Statistic | undefined = (rapm.off_adj_rapm && rapm.def_adj_rapm) ? { 
                   value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) 
-                } : undefined;
-              stat.off_adj_rapm = offAdjRapm;
-              stat.off_adj_rapm_prod = offAdjRapm ? { 
-                value: offAdjRapm.value*stat.off_team_poss_pct.value! 
               } : undefined;
+
+              if (adjRapmMargin) {
+                if (stat.off_adj_rtg.override || stat.off_adj_rtg.override) {
+                  adjRapmMargin.override = "Luck/Manual/On-Ball adjusted"; //(gloss over the exact details!)
+                }
+                stat.off_adj_rapm_margin = adjRapmMargin;
+                stat.off_adj_rapm_prod_margin = { 
+                  value: adjRapmMargin.value!*stat.off_team_poss_pct.value!,
+                  override: adjRapmMargin.override
+                };
+              }
             }
           }
         }

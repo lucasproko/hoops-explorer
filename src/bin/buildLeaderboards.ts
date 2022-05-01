@@ -557,6 +557,7 @@ export async function main() {
                 (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||
                 (t2[0] == "def_team_poss") || (t2[0] == "def_team_poss_pct")
               ) || (
+                (t2[0] != "diag_off_rtg") &&
                 (t2[0] != "diag_def_rtg") &&
                 !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
                 !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&

@@ -44,9 +44,6 @@ export class LineupTableUtils {
 
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: IndivStatSet) => {
-        const playerAdjustForLuckOff = adjustForLuck; //(only apply luck to the lineups if we have granular lineup 3PA info, but always apply to priors)
-        const playerAdjustForLuckDef = adjustForLuck; //(never apply luck to the lineups, but always apply to priors)
-
         // Possession %
         mutableP.off_team_poss_pct = { value: _.min([(mutableP.off_team_poss?.value || 0)
             / (teamStat.off_poss?.value || 1), 1 ]) };
@@ -57,19 +54,19 @@ export class LineupTableUtils {
           const globalPlayerStats = (luckConfigBase == "season") ? 
             (globalRosterStatsByCode[mutableP.code || "??"] || mutableP) : mutableP;
           // (No offensive luck since our "to adjust" and baseline are the same)
-          const offLuckAdj = LuckUtils.calcOffPlayerLuckAdj(
+          const offLuckAdj = adjustForLuck ? LuckUtils.calcOffPlayerLuckAdj(
             mutableP, globalPlayerStats, avgEfficiency
-          );
+          ) : undefined;
           // Calculate luck for defense - over the baseline query, but will regress to opponent SoS
-          const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
+          const defLuckAdj = adjustForLuck ? LuckUtils.calcDefPlayerLuckAdj(
             mutableP, globalPlayerStats, avgEfficiency
-          );
+          ) : undefined;
           LuckUtils.injectLuck(mutableP, offLuckAdj, defLuckAdj);
         }
 
         // Once luck is applied apply any manual overrides
         const [ adjustmentReason, overrodeOffFields ] = 
-          OverrideUtils.applyOverrides(mutableP, mutableP.onOffKey || "Baseline", manualOverridesAsMap, playerAdjustForLuckOff);
+          OverrideUtils.applyOverrides(mutableP, mutableP.onOffKey || "Baseline", manualOverridesAsMap, adjustForLuck);
         
         // Add ORtg to lineup stats:
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
@@ -79,15 +76,16 @@ export class LineupTableUtils {
                 //(note don't luck adjust these since the team values aren't luck adjusted)
                 value: _.sumBy(players, p => p.total_off_to?.value || 0)
               }
-          }, avgEfficiency, true, playerAdjustForLuckOff || overrodeOffFields
+          }, avgEfficiency, true, adjustForLuck || overrodeOffFields
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-          mutableP, avgEfficiency, !_.isEmpty(onBallDefenseByCode), playerAdjustForLuckDef
+          mutableP, avgEfficiency, !_.isEmpty(onBallDefenseByCode), adjustForLuck
         );
         mutableP.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
           override: adjustmentReason 
         };
+        mutableP.diag_off_rtg = oRtgDiag;
         mutableP.off_adj_rtg = {
           value: adjORtg?.value, old_value: rawAdjORtg?.value,
           override: adjustmentReason 
@@ -103,16 +101,16 @@ export class LineupTableUtils {
         };
         mutableP.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
-          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Luck adjusted" : undefined
         };
         mutableP.def_adj_rtg = {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Luck adjusted" : undefined
         };
         mutableP.def_adj_prod = {
           value: (adjDRtg?.value || 0)*mutableP.def_team_poss_pct.value!,
           old_value: (rawAdjDRtg?.value || 0)*mutableP.def_team_poss_pct.value!,
-          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Luck adjusted" : undefined
         };
         mutableP.diag_def_rtg = dRtgDiag;
 

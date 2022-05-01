@@ -184,12 +184,21 @@ export class CommonTableDefs {
       (expandedView ? "Offensive/Defensive" : "Offensive") + " rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "adj_prod": GenericTableOps.addPtsCol("Adj+ Prod",
       (expandedView ? "Offensive/Defensive" : "Offensive") + " production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
-    "adj_rapm": GenericTableOps.addDataCol(
-      expandedView ? "RAPM" : "RAPM diff", "Adjusted Plus-Minus vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
+
+    // 2 of these 4 are always omitted by onOffIndividualTable, the other 2 we just make {} so that auto-gen of table sort works
+    "adj_rapm_margin": expandedView ? {} : GenericTableOps.addDataCol(
+      "RAPM diff", "Adjusted Plus-Minus vs D1 average (Off-Def margin)",
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
-    "adj_rapm_prod": GenericTableOps.addDataCol(
-      "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
+    "adj_rapm_prod_margin": expandedView ? {} : GenericTableOps.addDataCol(
+      "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average (Off-Def margin)",
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
+    "adj_rapm": expandedView ? GenericTableOps.addDataCol(
+      "RAPM", "Adjusted Plus-Minus vs D1 average",
+      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter) : {},
+    "adj_rapm_prod": expandedView ? GenericTableOps.addDataCol(
+      "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average",
+      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter) : {},
+
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addDataCol(
       "eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups",
@@ -242,7 +251,11 @@ export class CommonTableDefs {
         [ possAsPct ? "team_poss" : "team_poss_pct" ],
         [ factorMins ? "adj_rtg" : "adj_prod" ],
         includeRapm ?
-          [ factorMins ? "adj_rapm" : "adj_rapm_prod" ] : [ "adj_rapm", "adj_rapm_prod" ]
+          factorMins ? 
+            [ "adj_rapm", "adj_rapm_margin" ].concat(expandedView ? [ "adj_rapm_prod_margin" ] : [ "adj_rapm_prod" ]) : 
+            [ "adj_rapm_prod", "adj_rapm_prod_margin" ].concat(expandedView ? [ "adj_rapm_margin" ] : [ "adj_rapm" ])
+          :
+          [ "adj_rapm", "adj_rapm_prod", "adj_rapm_margin", "adj_rapm_prod_margin" ] //(all RAPM)
       ])
     ) as Record<string, GenericTableColProps>;
   };

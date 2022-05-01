@@ -374,7 +374,9 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         const cellTooltip = hasTooltip(tmpVal) ?
           <Tooltip id={cellTooltipId}>
             {tmpVal?.override ? <span>
-              Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
+              Original Value: {
+                _.isNil(tmpVal?.old_value) ? "unknown" : valBuilder({value: tmpVal?.old_value}) || colProp.missingData
+              }<br/>
               {tmpVal?.override}
             </span> : null}
             {tmpVal?.extraInfo && tmpVal?.override ? <br/> : null}
