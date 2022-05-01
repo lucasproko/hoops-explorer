@@ -35,7 +35,7 @@ export class OverrideUtils {
       } else if (!adjustForLuck && overrodeOffFields) {
         return "Derived from manual overrides";
       } else if (adjustForLuck && !overrodeOffFields) {
-        return "Derived from luck adjustments";
+        return "Luck adjusted";
       } else {
         return undefined;
       }

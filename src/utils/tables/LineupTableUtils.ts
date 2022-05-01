@@ -103,16 +103,16 @@ export class LineupTableUtils {
         };
         mutableP.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
-          override: playerAdjustForLuckDef ? "Derived from luck adjustments" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         mutableP.def_adj_rtg = {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-          override: playerAdjustForLuckDef ? "Derived from luck adjustments" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         mutableP.def_adj_prod = {
           value: (adjDRtg?.value || 0)*mutableP.def_team_poss_pct.value!,
           old_value: (rawAdjDRtg?.value || 0)*mutableP.def_team_poss_pct.value!,
-          override: playerAdjustForLuckDef ? "Derived from luck adjustments" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         mutableP.diag_def_rtg = dRtgDiag;
 
@@ -125,7 +125,7 @@ export class LineupTableUtils {
         }
 
         // If roster info is available then add:
-        const rosterEntry = globalRosterStatsByCode[mutableP.code!].roster;
+        const rosterEntry = globalRosterStatsByCode[mutableP.code!]?.roster || {};
         if (rosterEntry && !_.isEmpty(rosterEntry)) {
           mutableP.roster = rosterEntry;
         }
