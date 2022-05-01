@@ -534,7 +534,7 @@ export async function main() {
         const player = kv[1];
 
         // Remove offensive luck apart from RAPM (everything else is normalized to data set)
-        [ "off_rtg", "off_adj_rtg", "off_efg", "off_3p" ].forEach(field => {
+        [ "off_rtg", "off_adj_rtg", "off_adj_prod", "off_efg", "off_3p" ].forEach(field => {
           if (!_.isNil(player[field]?.old_value)) delete player[field]?.old_value; 
           if (!_.isNil(player[field]?.override)) delete player[field]?.override;  
         });
@@ -551,15 +551,6 @@ export async function main() {
           conf: conference,
           team: team,
           year: teamYear,
-          // Rating production
-          off_adj_prod: {
-            value: (kv[1].off_adj_rtg?.value || 0) * (kv[1].off_team_poss_pct?.value || 0)
-          },
-          def_adj_prod: {
-            value: (kv[1].def_adj_rtg?.value || 0) * (kv[1].def_team_poss_pct?.value || 0),
-            old_value: (kv[1].def_adj_rtg?.old_value || 0) * (kv[1].def_team_poss_pct?.value || 0),
-            override: kv[1].def_adj_rtg?.override
-          },
           ...posInfo,
           ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
               (
