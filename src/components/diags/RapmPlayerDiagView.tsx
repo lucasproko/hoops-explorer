@@ -46,8 +46,8 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const offPossPctStr = (100.0*(offInputs.playerPossPcts[col]!)).toFixed(0);
 
     // Prior (luck adjusted o/drtg)
-    const offPrior = ctx.priorInfo.playersWeak?.[col]?.off_adj_ppp || 0;
-    const defPrior = ctx.priorInfo.playersWeak?.[col]?.def_adj_ppp || 0;
+    const offPrior = (ctx.priorInfo.playersWeak?.[col]?.off_adj_ppp || 0) - ctx.priorInfo.basis.off;
+    const defPrior = (ctx.priorInfo.playersWeak?.[col]?.def_adj_ppp || 0) - ctx.priorInfo.basis.def;
 
     const offUnbiasRapm = offInputs.rapmRawAdjPpp[col];
     const defUnbiasRapm = defInputs.rapmRawAdjPpp[col];

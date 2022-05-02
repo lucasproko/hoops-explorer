@@ -103,6 +103,7 @@ export type RapmPriorInfo = {
   includeStrong: Record<string, boolean>, //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
   playersStrong: Array<Record<string, number>>,
   playersWeak: Array<Record<string, number>>,
+  basis: { off: number, def: number }, //(to handle cases when the prior is close to 0)
   keyUsed: ValueKey //(whether luck is being used in this prior)
 };
 /** Handy util to */
@@ -203,7 +204,24 @@ export class RapmUtils {
     const getVal = (o: any) => {
       return (_.isNil(o?.[valueKey]) ? o?.value : o?.[valueKey]) || 0;
     };
+    
     const noWeakPrior = priorMode < -1.5;
+
+    // This handles the case where the prior is too close to 0 and the weak prior math breaks down
+    // Pick a replacement value such that hte players have a RAPM of ~3
+    const getPriorBasis = (offOrDef: "off" | "def") => {
+      const priorSum = _.chain(playersBaseline).values()
+        .map(stats => getVal(stats[`${offOrDef}_adj_rtg`])*getVal(stats[`${offOrDef}_team_poss_pct`])).sum().value();
+
+      if (priorSum > 0) { //reduce to lower "replacement value" for offense, raise the bar for defense
+        return Math.max(3.0 - priorSum, 0)*0.2;
+      } else { //opposite
+        return Math.min(0, -3.0 - priorSum)*0.2;
+      }
+    }
+    const offBasis = noWeakPrior ? 0 : getPriorBasis("off");
+    const defBasis = noWeakPrior ? 0 : getPriorBasis("def");
+
     const returnVal = {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
       strongWeight: noWeakPrior ? 0 : priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
@@ -214,8 +232,8 @@ export class RapmUtils {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
-            off_adj_ppp: getVal(stats.off_adj_rtg),
-            def_adj_ppp: getVal(stats.def_adj_rtg),
+            off_adj_ppp: getVal(stats.off_adj_rtg) + offBasis,
+            def_adj_ppp: getVal(stats.def_adj_rtg) + defBasis,
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
@@ -223,11 +241,14 @@ export class RapmUtils {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
-            off_adj_ppp: getVal(stats.off_adj_rtg),
+            off_adj_ppp: getVal(stats.off_adj_rtg) + offBasis,
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
-      keyUsed: valueKey 
+      keyUsed: valueKey,
+      basis: {
+        off: offBasis, def: defBasis
+      }
     };
     //console.log(JSON.stringify(returnVal));
     return returnVal;
@@ -306,8 +327,6 @@ export class RapmUtils {
 
       if (shouldRemoveLineup) {
         l.rapmRemove = true; //(temp flag for peformance in calculateAggregatedLineupStats)
-        const lineupPossOffCount = (l.off_poss?.value || 0) + (l.def_poss?.value || 0);
-        const lineupPossDefCount = (l.off_poss?.value || 0) + (l.def_poss?.value || 0);
       }
       return shouldRemoveLineup ? [] : [ l ];
     }).value();
@@ -458,21 +477,25 @@ export class RapmUtils {
           if (!_.isNil(playerIndex) && (playerIndex >= 0)) { //(case 1] above)
             //(the strong weight is currently 0 for everything except adj_off_rtg)
             const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[playerIndex]);
-            return acc + (strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0);
+
+            const strongVal = ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
+              //(note this already contains the basis)
+              
+            return acc + strongWeight*strongVal;
           } else { // this player is filtered out but we still want to use their result on the RHS of equation
             // case 2] above
             const removedPlayerInfo = ctx.removedPlayers[player.id] as [ number, number, IndivStatSet ] || undefined;
             if (removedPlayerInfo) {
               const removedPlayerStat = removedPlayerInfo[2] || {};
               const removedPlayerStatAboveMean = (field == "adj_ppp") ?
-              getVal[prefix](removedPlayerStat[`${prefix}_adj_rtg`]) :
-                (getVal[prefix](removedPlayerStat[`${prefix}_${field}`]) - offsets[prefix]);
+                (getVal[prefix](removedPlayerStat[`${prefix}_adj_rtg`]) + ctx.priorInfo.basis[prefix]) :
+                  (getVal[prefix](removedPlayerStat[`${prefix}_${field}`]) - offsets[prefix]);
               return acc + removedPlayerStatAboveMean;
             } else {  //(else exception case)
               return acc;
             }
           }
-        }, offsets[prefix]); //(starting value is the D1 average for that stat)
+        }, offsets[prefix]); //(starting value is the D1 average for that stat, minus any basis to avoid "edge effects")
 
         return (val + globalLuckAdjOffsets[prefix] - priorOffset)*possCountWeight;
       });
@@ -704,22 +727,26 @@ export class RapmUtils {
       def: SVD(weights.def.valueOf())
     };
 
+    // If priors get too close to 0 then use something closer to replacement value 
+    const offEfficiencyBasis = ctx.avgEfficiency - ctx.priorInfo.basis.off*5;
+    const defEfficiencyBasis = ctx.avgEfficiency - ctx.priorInfo.basis.def*5;
+
     // Get an approximate idea of the scale of the lambdas:
     const avgEigenVal = 0.5*mean(svd.off.q) + 0.5*mean(svd.def.q);
     const allLineups = _.isEmpty(ctx.teamInfo.all_lineups) ? ctx.teamInfo : ctx.teamInfo.all_lineups;
       //(handle the special case where filtered lineups == all lineups)
     const actualEff = {
       //(we include both "RAPM players only" and "all other lineups" and then counter adjust with adj_rtg when we don't have RAPM)
-      off: getAggVal(allLineups?.off_adj_ppp) - ctx.avgEfficiency,
-      def: getAggVal(allLineups?.def_adj_ppp) - ctx.avgEfficiency
+      off: getAggVal(allLineups?.off_adj_ppp) - offEfficiencyBasis,
+      def: getAggVal(allLineups?.def_adj_ppp) - defEfficiencyBasis
     };
 
     if (offDefDebugMode.off) {
-      const possUsedinRapm = getAggVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency;
+      const possUsedinRapm = getAggVal(ctx.teamInfo.off_adj_ppp) - offEfficiencyBasis;
       console.log(`off: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.off - possUsedinRapm).toFixed(2)}]`);
     }
     if (offDefDebugMode.def) {
-      const possUsedinRapm = getAggVal(ctx.teamInfo.def_adj_ppp) - ctx.avgEfficiency;
+      const possUsedinRapm = getAggVal(ctx.teamInfo.def_adj_ppp) - defEfficiencyBasis;
       console.log(`def: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.def - possUsedinRapm).toFixed(2)}]`);
     }
 
@@ -751,7 +778,7 @@ export class RapmUtils {
           _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
             const vStat = v[2] || {};
             // (use total bench mins as per [IMPORTANT-EQUATION-01])
-            return acc + getAggVal(vStat[`${onOrOff}_adj_rtg`])*getAggVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
+            return acc + (getAggVal(vStat[`${onOrOff}_adj_rtg`]) + ctx.priorInfo.basis[onOrOff])*getAggVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
           }, 0.0).value()
           ,
           (ctx as any)[`${onOrOff}LineupPoss`]!/lineupPossCount //% of rotation+combined possessions, diag only
@@ -771,7 +798,7 @@ export class RapmUtils {
     };
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, adaptiveCorrelWeights, useLineupOldValIfPossible
+      "adj_ppp", offEfficiencyBasis, defEfficiencyBasis, ctx, adaptiveCorrelWeights, useLineupOldValIfPossible
     );
     const adjPoss = {
       off: offAdjPoss,
@@ -869,8 +896,9 @@ export class RapmUtils {
                 playersWeak: RapmUtils.buildWeakPriorFromRapm(resultsPrePrior, offOrDef)
               }, debugMode)(adjEffErrPrePrior, resultsPrePrior) : resultsPrePrior;
 
-            acc.output.rapmAdjPpp = ctx.priorInfo.noWeakPrior ? maybeRecursiveWeakPrior : results;
-            acc.output.rapmRawAdjPpp = resultsPrePrior;
+            acc.output.rapmAdjPpp = 
+              (ctx.priorInfo.noWeakPrior ? maybeRecursiveWeakPrior : results).map(n => n - ctx.priorInfo.basis[offOrDef]);
+            acc.output.rapmRawAdjPpp = resultsPrePrior.map(n => n - ctx.priorInfo.basis[offOrDef]);
             acc.output.solnMatrix = solver;
 
             const lastError = (acc.lastAttempt.adjEffErr || adjEffErr) as number;
@@ -900,7 +928,7 @@ export class RapmUtils {
           // Add diags for any step on which we've done processing
           acc.output.prevAttempts.push({
             ridgeLambda: ridgeLambda,
-            results: results
+            results: results.map(n => n - ctx.priorInfo.basis[offOrDef])
           });
 
         }//(else short circuit processing, we're done)
