@@ -33,12 +33,13 @@ export class TeamEditorManualFixes {
 
    private static readonly buildOverrides = (recruits: Record<string, any>)  => {
       return _.transform(recruits, (acc, override, team) => {
-         const typedOverrides: Record<string, {pr: string, pos:string, c:string}> = override;
+         const typedOverrides: Record<string, {pr: string, pos:string, c:string, h:string}> = override;
          const playerOverrides = _.transform(typedOverrides, ((acc2, over, player) => {
             acc2[`${over.c}`] = { //(index by code not key, code isn't needed)
                name: player,
                profile: over.pr as Profiles,
-               pos: over.pos
+               pos: over.pos,
+               height: over.h
             }
          }), {} as Record<string, PlayerEditModel>);
          acc[team] = {
