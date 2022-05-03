@@ -792,29 +792,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": 97.68502457336189,
                   },
                   "bad_net": Object {
-                    "value": 14.748692611472944,
+                    "value": 14.752073110570656,
                   },
                   "bad_off": Object {
-                    "value": 112.43371718483482,
+                    "value": 112.43709768393255,
                   },
                   "good_def": Object {
                     "value": 94.58253433260579,
                   },
                   "good_net": Object {
-                    "value": 22.083196883408245,
+                    "value": 22.08931226372548,
                   },
                   "good_off": Object {
-                    "value": 116.66573121601404,
+                    "value": 116.67184659633128,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
                     "value": 95.7974404997353,
                   },
                   "ok_net": Object {
-                    "value": 18.787514305714343,
+                    "value": 18.793629686031572,
                   },
                   "ok_off": Object {
-                    "value": 114.58495480544964,
+                    "value": 114.59107018576688,
                   },
                   "title": <OverlayTrigger
                     overlay={
@@ -1332,10 +1332,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": -1.5235951499999998,
                   },
                   "good_net": Object {
-                    "value": 8.288781052094645,
+                    "value": 8.29597561717374,
                   },
                   "good_off": Object {
-                    "value": 6.765185902094646,
+                    "value": 6.77238046717374,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
@@ -1345,10 +1345,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": -1.351540207512373,
                   },
                   "ok_net": Object {
-                    "value": 7.13447610960702,
+                    "value": 7.141670674686113,
                   },
                   "ok_off": Object {
-                    "value": 5.782935902094646,
+                    "value": 5.79013046717374,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -3733,9 +3733,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 4.8111,
+                                            "old_value": 4.8637,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 5.0909,
+                                            "value": 5.1164,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -3877,9 +3877,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.5354,
+                                            "old_value": 1.5447,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.6155,
+                                            "value": 1.6247,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -3949,9 +3949,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.1534,
+                                            "old_value": 1.1709,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.3057,
+                                            "value": 1.3126,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -3985,9 +3985,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1679,
+                                            "old_value": -0.1581,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.112,
+                                            "value": -0.098,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -4021,9 +4021,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -1.4672,
+                                            "old_value": -1.4638,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -1.458,
+                                            "value": -1.4434,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -4129,9 +4129,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1733,
+                                            "old_value": -0.2264,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.2131,
+                                            "value": -0.2513,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -4201,9 +4201,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.7671,
+                                            "old_value": -0.8269,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.8256,
+                                            "value": -0.8686,
                                           }},
                   ],
                   "transfers": undefined,
@@ -7715,9 +7715,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 4.8111,
+                                            "old_value": 4.8637,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 5.0909,
+                                            "value": 5.1164,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -7859,9 +7859,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.5354,
+                                            "old_value": 1.5447,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.6155,
+                                            "value": 1.6247,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -7931,9 +7931,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.1534,
+                                            "old_value": 1.1709,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.3057,
+                                            "value": 1.3126,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -7967,9 +7967,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1679,
+                                            "old_value": -0.1581,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.112,
+                                            "value": -0.098,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -8003,9 +8003,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -1.4672,
+                                            "old_value": -1.4638,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -1.458,
+                                            "value": -1.4434,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -8111,9 +8111,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1733,
+                                            "old_value": -0.2264,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.2131,
+                                            "value": -0.2513,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -8183,9 +8183,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.7671,
+                                            "old_value": -0.8269,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.8256,
+                                            "value": -0.8686,
                                           }},
                   ],
                   "transfers": undefined,
@@ -9024,29 +9024,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 96.98502457336188,
                   },
                   "bad_net": Object {
-                    "value": 14.748692611472944,
+                    "value": 14.752073110570656,
                   },
                   "bad_off": Object {
-                    "value": 111.73371718483482,
+                    "value": 111.73709768393255,
                   },
                   "good_def": Object {
                     "value": 93.88253433260579,
                   },
                   "good_net": Object {
-                    "value": 22.083196883408245,
+                    "value": 22.08931226372548,
                   },
                   "good_off": Object {
-                    "value": 115.96573121601403,
+                    "value": 115.97184659633128,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
                     "value": 95.0974404997353,
                   },
                   "ok_net": Object {
-                    "value": 18.787514305714343,
+                    "value": 18.793629686031572,
                   },
                   "ok_off": Object {
-                    "value": 113.88495480544964,
+                    "value": 113.89107018576688,
                   },
                   "title": <OverlayTrigger
                     overlay={
@@ -9568,10 +9568,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": -1.5235951499999998,
                   },
                   "good_net": Object {
-                    "value": 8.288781052094645,
+                    "value": 8.29597561717374,
                   },
                   "good_off": Object {
-                    "value": 6.765185902094646,
+                    "value": 6.77238046717374,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
@@ -9581,10 +9581,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": -1.351540207512373,
                   },
                   "ok_net": Object {
-                    "value": 7.13447610960702,
+                    "value": 7.141670674686113,
                   },
                   "ok_off": Object {
-                    "value": 5.782935902094646,
+                    "value": 5.79013046717374,
                   },
                   "ortg": Object {
                     "old_value": undefined,
@@ -12723,9 +12723,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 4.8111,
+                                            "old_value": 4.8637,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 5.0909,
+                                            "value": 5.1164,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -12867,9 +12867,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.5354,
+                                            "old_value": 1.5447,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.6155,
+                                            "value": 1.6247,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -12939,9 +12939,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.1534,
+                                            "old_value": 1.1709,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.3057,
+                                            "value": 1.3126,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -12975,9 +12975,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1679,
+                                            "old_value": -0.1581,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.112,
+                                            "value": -0.098,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -13011,9 +13011,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -1.4672,
+                                            "old_value": -1.4638,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -1.458,
+                                            "value": -1.4434,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -13119,9 +13119,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1733,
+                                            "old_value": -0.2264,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.2131,
+                                            "value": -0.2513,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -13191,9 +13191,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.7671,
+                                            "old_value": -0.8269,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.8256,
+                                            "value": -0.8686,
                                           }},
                   ],
                   "transfers": undefined,
@@ -17312,9 +17312,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 4.8111,
+                                            "old_value": 4.8637,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 5.0909,
+                                            "value": 5.1164,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -17456,9 +17456,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.5354,
+                                            "old_value": 1.5447,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.6155,
+                                            "value": 1.6247,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -17528,9 +17528,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.1534,
+                                            "old_value": 1.1709,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.3057,
+                                            "value": 1.3126,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -17564,9 +17564,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1679,
+                                            "old_value": -0.1581,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.112,
+                                            "value": -0.098,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -17600,9 +17600,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -1.4672,
+                                            "old_value": -1.4638,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -1.458,
+                                            "value": -1.4434,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -17708,9 +17708,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1733,
+                                            "old_value": -0.2264,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.2131,
+                                            "value": -0.2513,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -17780,9 +17780,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.7671,
+                                            "old_value": -0.8269,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.8256,
+                                            "value": -0.8686,
                                           }},
                   ],
                   "transfers": undefined,
@@ -29533,9 +29533,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 4.8111,
+                                            "old_value": 4.8637,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 5.0909,
+                                            "value": 5.1164,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -29677,9 +29677,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.5354,
+                                            "old_value": 1.5447,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.6155,
+                                            "value": 1.6247,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -29749,9 +29749,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.1534,
+                                            "old_value": 1.1709,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.3057,
+                                            "value": 1.3126,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -29785,9 +29785,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1679,
+                                            "old_value": -0.1581,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.112,
+                                            "value": -0.098,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -29821,9 +29821,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -1.4672,
+                                            "old_value": -1.4638,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -1.458,
+                                            "value": -1.4434,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -29929,9 +29929,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1733,
+                                            "old_value": -0.2264,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.2131,
+                                            "value": -0.2513,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -30001,9 +30001,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.7671,
+                                            "old_value": -0.8269,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.8256,
+                                            "value": -0.8686,
                                           }},
                   ],
                   "transfers": undefined,
@@ -33487,9 +33487,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 4.8111,
+                                            "old_value": 4.8637,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 5.0909,
+                                            "value": 5.1164,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33631,9 +33631,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.5354,
+                                            "old_value": 1.5447,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.6155,
+                                            "value": 1.6247,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33703,9 +33703,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": 1.1534,
+                                            "old_value": 1.1709,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": 1.3057,
+                                            "value": 1.3126,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33739,9 +33739,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1679,
+                                            "old_value": -0.1581,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.112,
+                                            "value": -0.098,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33775,9 +33775,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -1.4672,
+                                            "old_value": -1.4638,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -1.458,
+                                            "value": -1.4434,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33883,9 +33883,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.1733,
+                                            "old_value": -0.2264,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.2131,
+                                            "value": -0.2513,
                                           }},
                     {
                       def_adj_prod: Object {
@@ -33955,9 +33955,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                           }
 
                       off_adj_rapm: Object {
-                                            "old_value": -0.7671,
+                                            "old_value": -0.8269,
                                             "override": "Adjusted from Off 3P%",
-                                            "value": -0.8256,
+                                            "value": -0.8686,
                                           }},
                   ],
                   "transfers": undefined,

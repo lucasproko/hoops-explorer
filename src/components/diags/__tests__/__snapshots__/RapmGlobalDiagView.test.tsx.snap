@@ -9668,67 +9668,71 @@ Object {
     "Wiggins, Aaron": 0,
   },
   "priorInfo": Object {
+    "basis": Object {
+      "def": -0.6000000000000001,
+      "off": 0.6000000000000001,
+    },
     "includeStrong": Object {},
     "keyUsed": "value",
     "noWeakPrior": false,
     "playersStrong": Array [
       Object {
-        "off_adj_ppp": 4.5,
+        "off_adj_ppp": 5.1,
       },
       Object {
-        "off_adj_ppp": 5,
+        "off_adj_ppp": 5.6,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
     ],
     "playersWeak": Array [
       Object {
-        "def_adj_ppp": -4.5,
-        "off_adj_ppp": 4.5,
+        "def_adj_ppp": -5.1,
+        "off_adj_ppp": 5.1,
       },
       Object {
-        "def_adj_ppp": -5,
-        "off_adj_ppp": 5,
+        "def_adj_ppp": -5.6,
+        "off_adj_ppp": 5.6,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
     ],
     "strongWeight": -1,
@@ -9764,53 +9768,57 @@ Object {
     "Wiggins, Aaron": 0,
   },
   "priorInfo": Object {
+    "basis": Object {
+      "def": -0.6000000000000001,
+      "off": 0.6000000000000001,
+    },
     "includeStrong": Object {},
     "keyUsed": "value",
     "noWeakPrior": false,
     "playersStrong": Array [
       Object {
-        "off_adj_ppp": 4.5,
+        "off_adj_ppp": 5.1,
       },
       Object {
-        "off_adj_ppp": 5,
+        "off_adj_ppp": 5.6,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "off_adj_ppp": 0,
+        "off_adj_ppp": 0.6000000000000001,
       },
     ],
     "playersWeak": Array [
       Object {
-        "def_adj_ppp": -4.5,
-        "off_adj_ppp": 4.5,
+        "def_adj_ppp": -5.1,
+        "off_adj_ppp": 5.1,
       },
       Object {
-        "def_adj_ppp": -5,
-        "off_adj_ppp": 5,
+        "def_adj_ppp": -5.6,
+        "off_adj_ppp": 5.6,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
       Object {
-        "def_adj_ppp": 0,
-        "off_adj_ppp": 0,
+        "def_adj_ppp": -0.6000000000000001,
+        "off_adj_ppp": 0.6000000000000001,
       },
     ],
     "strongWeight": -1,

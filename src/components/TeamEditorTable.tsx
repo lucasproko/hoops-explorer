@@ -392,11 +392,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     </Tooltip>
 
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
+      const override = pxResults.unpausedOverrides[triple.key];
+      
       const rosterInfo = triple.orig?.roster ?
         `${triple.orig.roster?.height || "?-?"} ${
           (offSeasonMode && !triple.isOnlyActualResults) ? 
             TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
-        }` : undefined;
+        }` : (
+          override.height ? `${override.height}` : undefined
+        );
 
       const playerLeaderboardParams = {
         tier: "All",
@@ -414,7 +418,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}><b>{maybeTransferName}</b></a>
       </OverlayTrigger>;
 
-      const override = pxResults.unpausedOverrides[triple.key];
 
       // (In "in-season mode" always put added players in the adjusted column)
       const isAddedPlayer = !offSeasonMode && otherPlayerCache[triple.key];

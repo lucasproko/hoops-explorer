@@ -43,6 +43,7 @@ export type PlayerEditModel = {
    pause?: boolean,
    profile?: Profiles, //(see TeamRosterEditor for possible values)
    pos?: string, //(usual set of possible pos)
+   height?: string //(for handling the info from Fr who don't have roster entries)
 };
 
 /** Encapsulates a projection for a player (possibly manually created), plus their actual results */
@@ -259,7 +260,10 @@ export class TeamEditorUtils {
                   _.toPairs(overridesIn).map(keyVal => { 
                      //(ugly complication: redshirt-ish Fr look like "hand added" players, but their key is a code, not a human readable name)
                      const maybeRedshirtFr = redshirtishFr[keyVal[0]];
-                     if (maybeRedshirtFr) keyVal[1].name = maybeRedshirtFr.name; //(so retrieve the name from the original source)
+                     if (maybeRedshirtFr) {
+                        keyVal[1].name = maybeRedshirtFr.name; //(so retrieve the name from the original source)
+                        keyVal[1].height = maybeRedshirtFr.height;
+                     }
                      return keyVal;
                   })
                )

@@ -42,7 +42,10 @@ export const semiRealRapmResults = {
       includeStrong: {},
       playersStrong: [ { off_adj_ppp: 5.0 }, { off_adj_ppp: 4.5 }, { off_adj_ppp: 4.0 }, { off_adj_ppp: 3.5 }, { off_adj_ppp: 3.0 }, {  off_adj_ppp: 2.5  }, {  off_adj_ppp: 2.0  }, {  off_adj_ppp: 2.0 }  ],
       playersWeak: [ { off_adj_ppp: 5.0, def_adj_ppp: -5.0 }, { off_adj_ppp: 4.5, def_adj_ppp: -4.5 }, { off_adj_ppp: 4.0, def_adj_ppp: -4.0 }, { off_adj_ppp: 3.5, def_adj_ppp: -3.5 }, { off_adj_ppp: 3.0, def_adj_ppp: -3.0 }, { off_adj_ppp: 2.5, def_adj_ppp: -2.5 }, { off_adj_ppp: 2.0, def_adj_ppp: -2.0 }, { off_adj_ppp: 1.5, def_adj_ppp: -1.5 } ],
-      keyUsed: "value"
+      keyUsed: "value",
+      basis: { 
+        off: 0, def: 0
+      }
     }
     ,
     // Extra fields:
@@ -153,25 +156,33 @@ describe("RapmUtils", () => {
       const context = RapmUtils.buildPlayerContext(
         onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", strongWeight, 0.0
       );
+      expect(context.priorInfo.basis).toEqual(
+        { off: 0.6000000000000001, def: -0.6000000000000001 }
+      );
+      const adjustedBasisOffEff = 100.0 - 5*context.priorInfo.basis.off;
+      const adjustedBasisDefEff = 100.0 - 5*context.priorInfo.basis.def;
+
       const adapativeWeights = (onOffReport.players || []).map(p => 0.5);
       const results = RapmUtils.calcLineupOutputs(
-        "adj_ppp", 100.0, 100.0, context, strongWeight < 0 ? adapativeWeights : undefined
+        "adj_ppp", adjustedBasisOffEff, adjustedBasisDefEff, 
+        context, strongWeight < 0 ? adapativeWeights : undefined
       );
+
       const tidyResults = (resMatrix: Array<Array<number>>) => {
         return resMatrix.map((arr) => {
           return arr.map((val) => val.toFixed(2));
         });
       };
       expect(tidyResults(results)).toEqual([
-        strongWeight ? [ "13.07", "5.84", "7.70" ] : [],
-        strongWeight ? [ "-8.48", "-10.69", "-8.83" ] : []
+        strongWeight ? [ "14.12", "6.61", "8.44" ] : [],
+        strongWeight ? [ "-10.58", "-12.25", "-10.31" ] : []
       ]);
       const oldValResults = RapmUtils.calcLineupOutputs(
-        "adj_ppp", 100.0, 100.0, context, strongWeight < 0 ? adapativeWeights : undefined, [ false, true ]
+        "adj_ppp", adjustedBasisOffEff, adjustedBasisDefEff, context, strongWeight < 0 ? adapativeWeights : undefined, [ false, true ]
       );
       expect(tidyResults(oldValResults)).toEqual([
-        strongWeight ? [ "13.07", "5.84", "7.70" ] : [],
-        strongWeight ? [ "-8.48", "-10.69", "-8.83" ] : []
+        strongWeight ? [ "14.12", "6.61", "8.44" ] : [],
+        strongWeight ? [ "-10.58", "-12.25", "-10.31" ] : []
       ]);
     });
   });
@@ -312,7 +323,8 @@ describe("RapmUtils", () => {
         includeStrong: {},
         playersWeak: [],
         playersStrong: [],
-        keyUsed: "value" as "value"
+        keyUsed: "value" as "value",
+        basis: { off: 0, def: 0 }
       }
     };
 
