@@ -147,7 +147,7 @@ const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "Maryland" ]) //, "Dayton", "Fordham" ]);
+//const testTeamFilter = new Set([ "South Dakota St." ]) //, "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -520,13 +520,23 @@ export async function main() {
         const minThreshold = 0.25;
         const player = kv[1];
 
+        const extraPossFactor = (() => {
+          if (label == "conf") {
+            return 0.5;
+          } else if (label == "t100") {
+            return 0.5;
+          } else {
+            return 1;
+          }
+        })();
+
         const playerPossPct = player.off_team_poss_pct?.value || 0;
         const playerPoss = player.off_team_poss?.value || 0; //(despite it's name this is the player possessions, not team possessions)
 
         // For teams that have played fewer possessions than others we still have a lower limit
         //TODO: fix the secondary filter _during_ the year
         const secondaryFilter = 
-          !DateUtils.isSeasonFinished(teamYear) || (playerPoss > minThreshold*averagePossInCompletedYear);
+          !DateUtils.isSeasonFinished(teamYear) || (playerPoss > minThreshold*averagePossInCompletedYear*extraPossFactor);
 
         return secondaryFilter && (playerPossPct > minThreshold); //(>10mpg)
       }).map((kv: [PlayerId, IndivStatSet]) => {
