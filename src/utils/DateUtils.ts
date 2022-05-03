@@ -123,4 +123,16 @@ export class DateUtils {
          return undefined;
       }
    }
+
+    /** If we have per-player shot info in lineups then use luck-adjusted lineups in offensive RAPM, else don't */
+    static readonly lineupsHavePlayerShotInfo = (gy: string) => {
+      if (("Men_2021/22" == gy) 
+          || ("Men_2014/5" == gy)
+      )
+      {
+        return true;
+      } else {
+        return false;
+      }
+    };
 }

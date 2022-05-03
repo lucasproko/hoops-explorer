@@ -16,7 +16,7 @@ import zlib from 'zlib';
 import _ from "lodash";
 
 // Models
-import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics, TeamStatInfo } from "../utils/StatModels";
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics, TeamStatInfo, PureStatSet } from '../utils/StatModels';
 
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
@@ -548,9 +548,11 @@ export async function main() {
           if (!_.isNil(player[field]?.old_value)) delete player[field]?.old_value; 
           if (!_.isNil(player[field]?.override)) delete player[field]?.override;  
         });
+
         // Improving wording of explanation of def rtg improvements
         if (player.diag_def_rtg?.onBallDef) {
-          [ "def_rtg", "def_adj_rtg", "def_adj_prod", "def_adj_rapm", "def_adj_rapm_prod"  ].forEach(field => {
+          [ "def_rtg", "def_adj_rtg", "def_adj_prod" ].forEach(field => {
+            //Note: also copied into RAPM below
             if (!_.isNil(player[field])) player[field].extraInfo = 
               "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages";
           });
@@ -611,14 +613,27 @@ export async function main() {
             };
             player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
             if (player.def_adj_rapm && player.def_adj_rtg?.extraInfo) {
-              player.def_adj_rapm.extraInfo = player.def_adj_rtg?.extraInfo; //(since it's used as a prior)
+              player.def_adj_rapm.extraInfo = player.def_adj_rtg?.extraInfo; //(on-ball defense context, def_adj_rtg is a prior for RAPM)
             }
             player.def_adj_rapm_prod = {
               value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
               old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
               override: rapmP.rapm?.def_adj_ppp?.override,
-              extraInfo: player.def_adj_prod?.extraInfo //(since it's used as a prior)
+              extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
             };
+
+            // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
+            [ "off_adj_rapm", "off_adj_rapm_prod" ].forEach(field => {
+              const maybeRapm = player[field];
+              if (!DateUtils.lineupsHavePlayerShotInfo(genderYearLookup)) {
+                if (maybeRapm?.old_value) {
+                  maybeRapm.value = maybeRapm.old_value;
+                  delete maybeRapm.override;
+                }
+              } else if (maybeRapm?.override) { // Improve wording of luck override if we're keeping it
+                maybeRapm.override = "Adjusted from per-lineup 3P% luck adjustments"
+              }
+            });
           }
         });
       } //(end RAPM)

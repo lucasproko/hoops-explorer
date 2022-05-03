@@ -6,6 +6,7 @@ import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, P
 import { RapmInfo, RapmUtils } from "../stats/RapmUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { averageStatsInfo } from "../internal-data/averageStatsInfo";
+import { DateUtils } from "../DateUtils";
 
 /** Object marshalling logic for roster tables */
 export class TeamReportTableUtils {
@@ -29,18 +30,6 @@ export class TeamReportTableUtils {
     const tempTeamReport = preCalcTeamReport || LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
       lineups: enrichedLineups
     });
-
-    /** If we have per-player shot info in lineups then use luck-adjusted lineups in offensive RAPM, else don't */
-    const lineupsHavePlayerShotInfo = (gy: string) => {
-      if (("Men_2021/22" == gy) 
-          || ("Men_2014/5" == gy)
-      )
-      {
-        return true;
-      } else {
-        return false;
-      }
-    };
     const ignoreLineupLuckKey = adjustForLuck ? "old_value" : "value";
 
     /** Makes the non-efficiency stats be baselined against D1 (or high major for earlier years) stats, not their team */
@@ -67,14 +56,14 @@ export class TeamReportTableUtils {
           offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != ""),
           valueKey, //<- we fit to the overall efficiency, be it luck adjusted or not
           [
-            lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
+            DateUtils.lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
             ignoreLineupLuckKey //<-never use luck adjusted _lineup_ values for defense, too noisy
           ]          
         );
         RapmUtils.injectRapmIntoPlayers(
           tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
           [
-            lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
+            DateUtils.lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
             ignoreLineupLuckKey //<-never use luck adjusted _lineup_ values for defense, too noisy
           ],
           valueKey //(write)
