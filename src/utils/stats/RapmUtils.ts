@@ -213,7 +213,9 @@ export class RapmUtils {
       const priorSum = _.chain(playersBaseline).values()
         .map(stats => getVal(stats[`${offOrDef}_adj_rtg`])*getVal(stats[`${offOrDef}_team_poss_pct`])).sum().value();
 
-      if (priorSum > 0) { //reduce to lower "replacement value" for offense, raise the bar for defense
+      const tieGoesPveIffOff = (priorSum == 0) && (offOrDef == "off");
+
+      if ((priorSum > 0) || tieGoesPveIffOff) { //reduce to lower "replacement value" for offense, raise the bar for defense
         return Math.max(3.0 - priorSum, 0)*0.2;
       } else { //opposite
         return Math.min(0, -3.0 - priorSum)*0.2;
@@ -480,7 +482,7 @@ export class RapmUtils {
 
             const strongVal = ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
               //(note this already contains the basis)
-              
+
             return acc + strongWeight*strongVal;
           } else { // this player is filtered out but we still want to use their result on the RHS of equation
             // case 2] above

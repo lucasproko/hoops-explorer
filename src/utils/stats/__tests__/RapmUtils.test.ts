@@ -157,7 +157,7 @@ describe("RapmUtils", () => {
         onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", strongWeight, 0.0
       );
       expect(context.priorInfo.basis).toEqual(
-        { off: -0.6000000000000001, def: -0.6000000000000001 }
+        { off: 0.6000000000000001, def: -0.6000000000000001 }
       );
       const adjustedBasisOffEff = 100.0 - 5*context.priorInfo.basis.off;
       const adjustedBasisDefEff = 100.0 - 5*context.priorInfo.basis.def;
@@ -174,14 +174,14 @@ describe("RapmUtils", () => {
         });
       };
       expect(tidyResults(results)).toEqual([
-        strongWeight ? [ "12.01", "5.07", "6.96" ] : [],
+        strongWeight ? [ "14.12", "6.61", "8.44" ] : [],
         strongWeight ? [ "-10.58", "-12.25", "-10.31" ] : []
       ]);
       const oldValResults = RapmUtils.calcLineupOutputs(
         "adj_ppp", adjustedBasisOffEff, adjustedBasisDefEff, context, strongWeight < 0 ? adapativeWeights : undefined, [ false, true ]
       );
       expect(tidyResults(oldValResults)).toEqual([
-        strongWeight ? [ "12.01", "5.07", "6.96" ] : [],
+        strongWeight ? [ "14.12", "6.61", "8.44" ] : [],
         strongWeight ? [ "-10.58", "-12.25", "-10.31" ] : []
       ]);
     });
