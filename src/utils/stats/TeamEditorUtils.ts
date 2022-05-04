@@ -775,8 +775,8 @@ export class TeamEditorUtils {
          const regressedDefRapm = 0.75*((player as PureStatSet).def_adj_rapm?.value || 0) + 0.25*(netRegressTo*0.5)
 
          // Only apply if negative, and not to optimistic result
-         const deltaOffRapm = regressedOffRapm - ((player as PureStatSet).off_adj_rapm?.value || 0);
-         const deltaDefRapm = regressedDefRapm - ((player as PureStatSet).def_adj_rapm?.value || 0);
+         const deltaOffRapm = Math.min(0, regressedOffRapm - ((player as PureStatSet).off_adj_rapm?.value || 0));
+         const deltaDefRapm = Math.min(0, regressedDefRapm - ((player as PureStatSet).def_adj_rapm?.value || 0));
 
          // Diagnostic
          // console.log(`[${player.key}]: reg=[${regressedOffRapm.toFixed(1)},${regressedDefRapm.toFixed(1)}], ` +
@@ -788,19 +788,19 @@ export class TeamEditorUtils {
             off: { 
                good: {},
                ok: tidy({
-                  fr_regression: deltaOffRapm < 0 ? 0.5*deltaOffRapm : 0
+                  fr_regression: 0.5*deltaOffRapm
                }),
                bad: tidy({
-                  fr_regression: deltaOffRapm < 0 ? deltaOffRapm : 0
+                  fr_regression: deltaOffRapm
                }),
             },
             def: { 
                good: {},
                ok: tidy({
-                  fr_regression: deltaDefRapm > 0 ? 0.5*deltaDefRapm : 0
+                  fr_regression: 0.5*deltaDefRapm
                }),
                bad: tidy({
-                  fr_regression: deltaDefRapm > 0 ? deltaDefRapm : 0
+                  fr_regression: deltaDefRapm
                }),
             }      
          };
@@ -1556,9 +1556,9 @@ export class TeamEditorUtils {
 
 
    /** Upside on bench/Fr predictions */
-   static readonly optimisticBenchOrFr = 0.5;
+   static readonly optimisticBenchOrFr = 0.75;
    /** Downside on bench/Fr predictions - bench scoring can be bad so we make this higher */
-   static readonly pessimisticBenchOrFr = 1.0;
+   static readonly pessimisticBenchOrFr = 1.25;
 
    /** Gets the bench level scoring depending on the quality of the team */
    static getBenchLevelScoring(team: string, year: string) {
@@ -1614,15 +1614,20 @@ export class TeamEditorUtils {
    /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor" */
    static getBenchLevelScoringByProfile(profile: Profiles | undefined): number {
       //(these numbers derived from looking at the T200 Fr for the last 4 years - the lower ranges are purely guesswork)
-      if (profile == "5*/Lotto") {
-         return 6.5;
+      const lotto = 6.5;
+      const fiveStar = 5.2;
+      const borderline5Star = 4.6;
+      const top40 = 3.5;
+      const fourStar = 1.5;
+      if (profile == "5*/Lotto") { // blend the various RAPM range because a lotto pick sometimes just ... isn't...
+         return 0.7*lotto + 0.2*fiveStar + 0.1*top40;
       } else if (profile == "5*") {
-         return 5.2;
+         return 0.1*lotto + 0.7*fiveStar + 0.2*top40;
       } else if (profile == "5+4*s") { //(still support this even though it's no longer selectible)
-         return 4.6;
+         return 0.8*borderline5Star + 0.2*top40;
       } else if (profile == "4*/T40ish") {
-         return 3.5;
-      } else if (profile == "4*") {
+         return 0.15*borderline5Star + 0.70*top40 + 0.15*fourStar;
+      } else if (profile == "4*") { //(from here on down it's symmetric)
          return 1.5;
       } else if (profile == "3.5*/T150ish") {
          return 0.5;
@@ -1639,7 +1644,9 @@ export class TeamEditorUtils {
       }
    }
    
-   /** To regress Fr players we'll move them in this direction - TODO would be nice to include '*' rating in this */
+   /** To regress Fr players we'll move them in this direction - TODO would be nice to include '*' rating in this 
+    * note this is (off-def) margin, we 0.5* to get off and def components
+   */
    static getAvgProduction(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getAvgLevel = () => {
