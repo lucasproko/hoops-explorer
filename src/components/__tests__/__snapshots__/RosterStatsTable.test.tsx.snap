@@ -96,7 +96,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 97.93561913082087,
+               "adjDRtg": 90.4630386352586,
+               "adjDRtgPlus": -1.9073922729482804
+            }
 
             diag_off_rtg: {
                "oRtg": 116.22380931760613,
@@ -326,7 +330,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 103.73082160102601,
+               "adjDRtg": 97.12355288864569,
+               "adjDRtgPlus": -0.5752894222708619
+            }
 
             diag_off_rtg: {
                "oRtg": 124.85726151245744,
@@ -556,7 +564,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -786,7 +798,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.2892111124598,
+               "adjDRtg": 84.52946260306088,
+               "adjDRtgPlus": -3.0941074793878247
+            }
 
             diag_off_rtg: {
                "oRtg": 96.36310974319929,
@@ -1016,7 +1032,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -1246,7 +1266,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 130.4212061109622,
+               "adjDRtg": 128.54807698912074,
+               "adjDRtgPlus": 5.709615397824149
+            }
 
             diag_off_rtg: {
                "oRtg": 174.561023832862,
@@ -1489,7 +1513,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -1726,7 +1754,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -1965,7 +1997,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 103.73082160102601,
+                   "adjDRtg": 97.12355288864569,
+                   "adjDRtgPlus": -0.5752894222708619
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -2202,7 +2238,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 103.73082160102601,
+                   "adjDRtg": 97.12355288864569,
+                   "adjDRtgPlus": -0.5752894222708619
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -2441,7 +2481,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 97.93561913082087,
+                   "adjDRtg": 90.4630386352586,
+                   "adjDRtgPlus": -1.9073922729482804
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -2678,7 +2722,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 97.93561913082087,
+                   "adjDRtg": 90.4630386352586,
+                   "adjDRtgPlus": -1.9073922729482804
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -2917,7 +2965,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 130.4212061109622,
+                   "adjDRtg": 128.54807698912074,
+                   "adjDRtgPlus": 5.709615397824149
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -3154,7 +3206,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 130.4212061109622,
+                   "adjDRtg": 128.54807698912074,
+                   "adjDRtgPlus": 5.709615397824149
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -3393,7 +3449,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -3630,7 +3690,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -3869,7 +3933,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.2892111124598,
+                   "adjDRtg": 84.52946260306088,
+                   "adjDRtgPlus": -3.0941074793878247
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -4106,7 +4174,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.2892111124598,
+                   "adjDRtg": 84.52946260306088,
+                   "adjDRtgPlus": -3.0941074793878247
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -4362,7 +4434,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -4592,7 +4668,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -5505,7 +5585,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 97.93561913082087,
+                     "adjDRtg": 90.4630386352586,
+                     "adjDRtgPlus": -1.9073922729482804
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 116.22380931760613,
@@ -5742,7 +5826,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 103.73082160102601,
+                     "adjDRtg": 97.12355288864569,
+                     "adjDRtgPlus": -0.5752894222708619
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 124.85726151245744,
@@ -5982,7 +6070,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.2892111124598,
+                     "adjDRtg": 84.52946260306088,
+                     "adjDRtgPlus": -3.0941074793878247
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 96.36310974319929,
@@ -6222,7 +6314,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 130.4212061109622,
+                     "adjDRtg": 128.54807698912074,
+                     "adjDRtgPlus": 5.709615397824149
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 174.561023832862,
@@ -6736,7 +6832,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -6959,7 +7059,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -7195,7 +7299,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -7425,7 +7533,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -7657,7 +7769,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -7887,7 +8003,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -8136,7 +8256,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -8359,7 +8483,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -9265,7 +9393,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 98.84955759282161,
+                     "adjDRtg": 91.49371821720374,
+                     "adjDRtgPlus": -1.7012563565592531
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 117.59977517402329,
@@ -9498,7 +9630,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.88787789273368,
+                     "adjDRtg": 85.2450036517857,
+                     "adjDRtgPlus": -2.9509992696428613
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 99.76347678499295,
@@ -10005,7 +10141,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -10187,7 +10327,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -10382,7 +10526,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -10571,7 +10719,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -10762,7 +10914,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -10951,7 +11107,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -11159,7 +11319,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -11341,7 +11505,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -12222,7 +12390,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 98.84955759282161,
+                     "adjDRtg": 91.49371821720374,
+                     "adjDRtgPlus": -1.7012563565592531
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 117.59977517402329,
@@ -12411,7 +12583,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 98.84955759282161,
+                     "adjDRtg": 91.49371821720374,
+                     "adjDRtgPlus": -1.7012563565592531
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 117.59977517402329,
@@ -12603,7 +12779,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.88787789273368,
+                     "adjDRtg": 85.2450036517857,
+                     "adjDRtgPlus": -2.9509992696428613
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 99.76347678499295,
@@ -12792,7 +12972,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.88787789273368,
+                     "adjDRtg": 85.2450036517857,
+                     "adjDRtgPlus": -2.9509992696428613
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 99.76347678499295,
@@ -13318,7 +13502,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 97.93561913082087,
+               "adjDRtg": 90.4630386352586,
+               "adjDRtgPlus": -1.9073922729482804
+            }
 
             diag_off_rtg: {
                "oRtg": 116.22380931760613,
@@ -13506,7 +13694,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 103.73082160102601,
+               "adjDRtg": 97.12355288864569,
+               "adjDRtgPlus": -0.5752894222708619
+            }
 
             diag_off_rtg: {
                "oRtg": 124.85726151245744,
@@ -13694,7 +13886,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -13882,7 +14078,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.2892111124598,
+               "adjDRtg": 84.52946260306088,
+               "adjDRtgPlus": -3.0941074793878247
+            }
 
             diag_off_rtg: {
                "oRtg": 96.36310974319929,
@@ -14070,7 +14270,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -14258,7 +14462,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 130.4212061109622,
+               "adjDRtg": 128.54807698912074,
+               "adjDRtgPlus": 5.709615397824149
+            }
 
             diag_off_rtg: {
                "oRtg": 174.561023832862,
@@ -14459,7 +14667,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -14654,7 +14866,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -14851,7 +15067,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 103.73082160102601,
+                   "adjDRtg": 97.12355288864569,
+                   "adjDRtgPlus": -0.5752894222708619
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -15046,7 +15266,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 103.73082160102601,
+                   "adjDRtg": 97.12355288864569,
+                   "adjDRtgPlus": -0.5752894222708619
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -15243,7 +15467,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 97.93561913082087,
+                   "adjDRtg": 90.4630386352586,
+                   "adjDRtgPlus": -1.9073922729482804
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -15438,7 +15666,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 97.93561913082087,
+                   "adjDRtg": 90.4630386352586,
+                   "adjDRtgPlus": -1.9073922729482804
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -15635,7 +15867,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 130.4212061109622,
+                   "adjDRtg": 128.54807698912074,
+                   "adjDRtgPlus": 5.709615397824149
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -15830,7 +16066,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 130.4212061109622,
+                   "adjDRtg": 128.54807698912074,
+                   "adjDRtgPlus": 5.709615397824149
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -16027,7 +16267,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -16222,7 +16466,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -16419,7 +16667,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.2892111124598,
+                   "adjDRtg": 84.52946260306088,
+                   "adjDRtgPlus": -3.0941074793878247
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -16614,7 +16866,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.2892111124598,
+                   "adjDRtg": 84.52946260306088,
+                   "adjDRtgPlus": -3.0941074793878247
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -16828,7 +17084,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -17016,7 +17276,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -17903,7 +18167,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 97.93561913082087,
+                     "adjDRtg": 90.4630386352586,
+                     "adjDRtgPlus": -1.9073922729482804
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 116.22380931760613,
@@ -18098,7 +18366,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 97.93561913082087,
+                     "adjDRtg": 90.4630386352586,
+                     "adjDRtgPlus": -1.9073922729482804
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 116.22380931760613,
@@ -18293,7 +18565,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 103.73082160102601,
+                     "adjDRtg": 97.12355288864569,
+                     "adjDRtgPlus": -0.5752894222708619
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 124.85726151245744,
@@ -18488,7 +18764,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 103.73082160102601,
+                     "adjDRtg": 97.12355288864569,
+                     "adjDRtgPlus": -0.5752894222708619
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 124.85726151245744,
@@ -18686,7 +18966,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.2892111124598,
+                     "adjDRtg": 84.52946260306088,
+                     "adjDRtgPlus": -3.0941074793878247
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 96.36310974319929,
@@ -18881,7 +19165,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.2892111124598,
+                     "adjDRtg": 84.52946260306088,
+                     "adjDRtgPlus": -3.0941074793878247
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 96.36310974319929,
@@ -19079,7 +19367,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 130.4212061109622,
+                     "adjDRtg": 128.54807698912074,
+                     "adjDRtgPlus": 5.709615397824149
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 174.561023832862,
@@ -19274,7 +19566,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 130.4212061109622,
+                     "adjDRtg": 128.54807698912074,
+                     "adjDRtgPlus": 5.709615397824149
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 174.561023832862,
@@ -19806,7 +20102,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.79566980021075,
+               "adjDRtg": 91.25746662401077,
+               "adjDRtgPlus": -1.748506675197845
+            }
 
             diag_off_rtg: {
                "oRtg": 116.22380931760613,
@@ -20044,7 +20344,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 102.44528970746552,
+               "adjDRtg": 95.91990461008015,
+               "adjDRtgPlus": -0.8160190779839696
+            }
 
             diag_off_rtg: {
                "oRtg": 124.85726151245744,
@@ -20282,7 +20586,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 99.38322763133561,
+               "adjDRtg": 91.98767547218603,
+               "adjDRtgPlus": -1.6024649055627949
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -20520,7 +20828,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 93.87361035130118,
+               "adjDRtg": 86.92249323777523,
+               "adjDRtgPlus": -2.6155013524449546
+            }
 
             diag_off_rtg: {
                "oRtg": 96.36310974319929,
@@ -20758,7 +21070,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 93.54860666651514,
+               "adjDRtg": 86.78567292865036,
+               "adjDRtgPlus": -2.642865414269929
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -20996,7 +21312,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 110.285740933088,
+               "adjDRtg": 108.70180041278738,
+               "adjDRtgPlus": 1.7403600825574757
+            }
 
             diag_off_rtg: {
                "oRtg": 174.561023832862,
@@ -21247,7 +21567,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 99.38322763133561,
+                   "adjDRtg": 91.98767547218603,
+                   "adjDRtgPlus": -1.6024649055627949
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -21492,7 +21816,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 99.38322763133561,
+                   "adjDRtg": 91.98767547218603,
+                   "adjDRtgPlus": -1.6024649055627949
+                }
 
                 diag_off_rtg: {
                    "oRtg": 117.59977517402329,
@@ -21739,7 +22067,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 102.44528970746552,
+                   "adjDRtg": 95.91990461008015,
+                   "adjDRtgPlus": -0.8160190779839696
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -21984,7 +22316,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 102.44528970746552,
+                   "adjDRtg": 95.91990461008015,
+                   "adjDRtgPlus": -0.8160190779839696
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -22231,7 +22567,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.79566980021075,
+                   "adjDRtg": 91.25746662401077,
+                   "adjDRtgPlus": -1.748506675197845
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -22476,7 +22816,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.79566980021075,
+                   "adjDRtg": 91.25746662401077,
+                   "adjDRtgPlus": -1.748506675197845
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -22723,7 +23067,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 110.285740933088,
+                   "adjDRtg": 108.70180041278738,
+                   "adjDRtgPlus": 1.7403600825574757
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -22968,7 +23316,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 110.285740933088,
+                   "adjDRtg": 108.70180041278738,
+                   "adjDRtgPlus": 1.7403600825574757
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -23215,7 +23567,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 93.54860666651514,
+                   "adjDRtg": 86.78567292865036,
+                   "adjDRtgPlus": -2.642865414269929
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -23460,7 +23816,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 93.54860666651514,
+                   "adjDRtg": 86.78567292865036,
+                   "adjDRtgPlus": -2.642865414269929
+                }
 
                 diag_off_rtg: {
                    "oRtg": 99.76347678499295,
@@ -23707,7 +24067,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 93.87361035130118,
+                   "adjDRtg": 86.92249323777523,
+                   "adjDRtgPlus": -2.6155013524449546
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -23952,7 +24316,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 93.87361035130118,
+                   "adjDRtg": 86.92249323777523,
+                   "adjDRtgPlus": -2.6155013524449546
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -24216,7 +24584,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 99.38322763133561,
+               "adjDRtg": 91.98767547218603,
+               "adjDRtgPlus": -1.6024649055627949
+            }
 
             diag_off_rtg: {
                "oRtg": 117.59977517402329,
@@ -24454,7 +24826,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 93.54860666651514,
+               "adjDRtg": 86.78567292865036,
+               "adjDRtgPlus": -2.642865414269929
+            }
 
             diag_off_rtg: {
                "oRtg": 99.76347678499295,
@@ -25375,7 +25751,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 98.79566980021075,
+                     "adjDRtg": 91.25746662401077,
+                     "adjDRtgPlus": -1.748506675197845
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 116.22380931760613,
@@ -25535,6 +25915,26 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 98.79566980021075,
+   "adjDRtg": 91.25746662401077,
+   "adjDRtgPlus": -1.748506675197845
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 116.22380931760613,
+   "adjORtg": 127.43343809771865,
+   "adjORtgPlus": 5.48668761954373
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -25622,7 +26022,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 98.79566980021075,
+                         "adjDRtg": 91.25746662401077,
+                         "adjDRtgPlus": -1.748506675197845
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 116.22380931760613,
@@ -25886,7 +26290,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 102.44528970746552,
+                     "adjDRtg": 95.91990461008015,
+                     "adjDRtgPlus": -0.8160190779839696
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 124.85726151245744,
@@ -26046,6 +26454,26 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 102.44528970746552,
+   "adjDRtg": 95.91990461008015,
+   "adjDRtgPlus": -0.8160190779839696
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 124.85726151245744,
+   "adjORtg": 138.95490038126016,
+   "adjORtgPlus": 7.7909800762520325
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -26133,7 +26561,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 102.44528970746552,
+                         "adjDRtg": 95.91990461008015,
+                         "adjDRtgPlus": -0.8160190779839696
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 124.85726151245744,
@@ -26400,7 +26832,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 93.87361035130118,
+                     "adjDRtg": 86.92249323777523,
+                     "adjDRtgPlus": -2.6155013524449546
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 96.36310974319929,
@@ -26560,6 +26996,26 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 93.87361035130118,
+   "adjDRtg": 86.92249323777523,
+   "adjDRtgPlus": -2.6155013524449546
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 96.36310974319929,
+   "adjORtg": 101.36047005936106,
+   "adjORtgPlus": 0.2720940118722126
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -26647,7 +27103,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 93.87361035130118,
+                         "adjDRtg": 86.92249323777523,
+                         "adjDRtgPlus": -2.6155013524449546
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 96.36310974319929,
@@ -26914,7 +27374,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 110.285740933088,
+                     "adjDRtg": 108.70180041278738,
+                     "adjDRtgPlus": 1.7403600825574757
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 174.561023832862,
@@ -27074,6 +27538,26 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 110.285740933088,
+   "adjDRtg": 108.70180041278738,
+   "adjDRtgPlus": 1.7403600825574757
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 174.561023832862,
+   "adjORtg": 156.75087181491494,
+   "adjORtgPlus": 11.35017436298299
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -27161,7 +27645,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 110.285740933088,
+                         "adjDRtg": 108.70180041278738,
+                         "adjDRtgPlus": 1.7403600825574757
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 174.561023832862,
@@ -27684,7 +28172,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.88686134582382,
+               "adjDRtg": 91.34170016832508,
+               "adjDRtgPlus": -1.731659966334985
+            }
 
             diag_off_rtg: {
                "oRtg": 116.02403345392152,
@@ -27930,7 +28422,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 101.63092848404449,
+               "adjDRtg": 95.15741517702034,
+               "adjDRtgPlus": -0.9685169645959321
+            }
 
             diag_off_rtg: {
                "oRtg": 126.33370738187469,
@@ -28176,7 +28672,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 99.38322763133561,
+               "adjDRtg": 91.98767547218603,
+               "adjDRtgPlus": -1.6024649055627949
+            }
 
             diag_off_rtg: {
                "oRtg": 130.05090623641826,
@@ -28422,7 +28922,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 94.12958834259099,
+               "adjDRtg": 87.15951666889332,
+               "adjDRtgPlus": -2.5680966662213365
+            }
 
             diag_off_rtg: {
                "oRtg": 97.60830811157857,
@@ -28668,7 +29172,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 93.54860666651514,
+               "adjDRtg": 86.78567292865036,
+               "adjDRtgPlus": -2.642865414269929
+            }
 
             diag_off_rtg: {
                "oRtg": 122.90485209699797,
@@ -28926,7 +29434,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 110.285740933088,
+               "adjDRtg": 108.70180041278738,
+               "adjDRtgPlus": 1.7403600825574757
+            }
 
             diag_off_rtg: {
                "oRtg": 174.561023832862,
@@ -29206,7 +29718,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 99.38322763133561,
+                   "adjDRtg": 91.98767547218603,
+                   "adjDRtgPlus": -1.6024649055627949
+                }
 
                 diag_off_rtg: {
                    "oRtg": 130.05090623641826,
@@ -29459,7 +29975,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 99.38322763133561,
+                   "adjDRtg": 91.98767547218603,
+                   "adjDRtgPlus": -1.6024649055627949
+                }
 
                 diag_off_rtg: {
                    "oRtg": 130.05090623641826,
@@ -29714,7 +30234,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 101.63092848404449,
+                   "adjDRtg": 95.15741517702034,
+                   "adjDRtgPlus": -0.9685169645959321
+                }
 
                 diag_off_rtg: {
                    "oRtg": 126.33370738187469,
@@ -29967,7 +30491,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 101.63092848404449,
+                   "adjDRtg": 95.15741517702034,
+                   "adjDRtgPlus": -0.9685169645959321
+                }
 
                 diag_off_rtg: {
                    "oRtg": 126.33370738187469,
@@ -30222,7 +30750,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.88686134582382,
+                   "adjDRtg": 91.34170016832508,
+                   "adjDRtgPlus": -1.731659966334985
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.02403345392152,
@@ -30475,7 +31007,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.88686134582382,
+                   "adjDRtg": 91.34170016832508,
+                   "adjDRtgPlus": -1.731659966334985
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.02403345392152,
@@ -30730,7 +31266,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 110.285740933088,
+                   "adjDRtg": 108.70180041278738,
+                   "adjDRtgPlus": 1.7403600825574757
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -30977,7 +31517,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 110.285740933088,
+                   "adjDRtg": 108.70180041278738,
+                   "adjDRtgPlus": 1.7403600825574757
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -31226,7 +31770,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 93.54860666651514,
+                   "adjDRtg": 86.78567292865036,
+                   "adjDRtgPlus": -2.642865414269929
+                }
 
                 diag_off_rtg: {
                    "oRtg": 122.90485209699797,
@@ -31491,7 +32039,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 93.54860666651514,
+                   "adjDRtg": 86.78567292865036,
+                   "adjDRtgPlus": -2.642865414269929
+                }
 
                 diag_off_rtg: {
                    "oRtg": 122.90485209699797,
@@ -31758,7 +32310,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 94.12958834259099,
+                   "adjDRtg": 87.15951666889332,
+                   "adjDRtgPlus": -2.5680966662213365
+                }
 
                 diag_off_rtg: {
                    "oRtg": 97.60830811157857,
@@ -32011,7 +32567,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 94.12958834259099,
+                   "adjDRtg": 87.15951666889332,
+                   "adjDRtgPlus": -2.5680966662213365
+                }
 
                 diag_off_rtg: {
                    "oRtg": 97.60830811157857,
@@ -32283,7 +32843,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 99.38322763133561,
+               "adjDRtg": 91.98767547218603,
+               "adjDRtgPlus": -1.6024649055627949
+            }
 
             diag_off_rtg: {
                "oRtg": 130.05090623641826,
@@ -32529,7 +33093,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 93.54860666651514,
+               "adjDRtg": 86.78567292865036,
+               "adjDRtgPlus": -2.642865414269929
+            }
 
             diag_off_rtg: {
                "oRtg": 122.90485209699797,
@@ -33478,7 +34046,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 98.88686134582382,
+                     "adjDRtg": 91.34170016832508,
+                     "adjDRtgPlus": -1.731659966334985
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 116.02403345392152,
@@ -33646,6 +34218,26 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 98.88686134582382,
+   "adjDRtg": 91.34170016832508,
+   "adjDRtgPlus": -1.731659966334985
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 116.02403345392152,
+   "adjORtg": 127.22576757513805,
+   "adjORtgPlus": 5.44515351502761
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -33733,7 +34325,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 98.88686134582382,
+                         "adjDRtg": 91.34170016832508,
+                         "adjDRtgPlus": -1.731659966334985
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 116.02403345392152,
@@ -33989,7 +34585,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 98.88686134582382,
+                         "adjDRtg": 91.34170016832508,
+                         "adjDRtgPlus": -1.731659966334985
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 116.02403345392152,
@@ -34246,7 +34846,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 91.88787789273368,
+                           "adjDRtg": 85.2450036517857,
+                           "adjDRtgPlus": -2.9509992696428613
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 100.50917346010739,
@@ -34486,7 +35090,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 98.84955759282161,
+                           "adjDRtg": 91.49371821720374,
+                           "adjDRtgPlus": -1.7012563565592531
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 130.05090623641826,
@@ -34765,7 +35373,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 101.63092848404449,
+                     "adjDRtg": 95.15741517702034,
+                     "adjDRtgPlus": -0.9685169645959321
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 126.33370738187469,
@@ -34933,6 +35545,26 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 101.63092848404449,
+   "adjDRtg": 95.15741517702034,
+   "adjDRtgPlus": -0.9685169645959321
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 126.33370738187469,
+   "adjORtg": 140.46400662880282,
+   "adjORtgPlus": 8.092801325760565
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -35020,7 +35652,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 101.63092848404449,
+                         "adjDRtg": 95.15741517702034,
+                         "adjDRtgPlus": -0.9685169645959321
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 126.33370738187469,
@@ -35276,7 +35912,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 101.63092848404449,
+                         "adjDRtg": 95.15741517702034,
+                         "adjDRtgPlus": -0.9685169645959321
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 126.33370738187469,
@@ -35533,7 +36173,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 91.88787789273368,
+                           "adjDRtg": 85.2450036517857,
+                           "adjDRtgPlus": -2.9509992696428613
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 100.50917346010739,
@@ -35773,7 +36417,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 98.84955759282161,
+                           "adjDRtg": 91.49371821720374,
+                           "adjDRtgPlus": -1.7012563565592531
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 130.05090623641826,
@@ -36055,7 +36703,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 94.12958834259099,
+                     "adjDRtg": 87.15951666889332,
+                     "adjDRtgPlus": -2.5680966662213365
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 97.60830811157857,
@@ -36223,6 +36875,26 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 94.12958834259099,
+   "adjDRtg": 87.15951666889332,
+   "adjDRtgPlus": -2.5680966662213365
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 97.60830811157857,
+   "adjORtg": 102.63660875795077,
+   "adjORtgPlus": 0.5273217515901536
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -36310,7 +36982,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 94.12958834259099,
+                         "adjDRtg": 87.15951666889332,
+                         "adjDRtgPlus": -2.5680966662213365
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 97.60830811157857,
@@ -36566,7 +37242,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 94.12958834259099,
+                         "adjDRtg": 87.15951666889332,
+                         "adjDRtgPlus": -2.5680966662213365
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 97.60830811157857,
@@ -36823,7 +37503,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 91.88787789273368,
+                           "adjDRtg": 85.2450036517857,
+                           "adjDRtgPlus": -2.9509992696428613
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 100.50917346010739,
@@ -37063,7 +37747,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 98.84955759282161,
+                           "adjDRtg": 91.49371821720374,
+                           "adjDRtgPlus": -1.7012563565592531
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 130.05090623641826,
@@ -37345,7 +38033,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 110.285740933088,
+                     "adjDRtg": 108.70180041278738,
+                     "adjDRtgPlus": 1.7403600825574757
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 174.561023832862,
@@ -37507,6 +38199,26 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 110.285740933088,
+   "adjDRtg": 108.70180041278738,
+   "adjDRtgPlus": 1.7403600825574757
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 174.561023832862,
+   "adjORtg": 156.75087181491494,
+   "adjORtgPlus": 11.35017436298299
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -37594,7 +38306,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 110.285740933088,
+                         "adjDRtg": 108.70180041278738,
+                         "adjDRtgPlus": 1.7403600825574757
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 174.561023832862,
@@ -37844,7 +38560,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 110.285740933088,
+                         "adjDRtg": 108.70180041278738,
+                         "adjDRtgPlus": 1.7403600825574757
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 174.561023832862,
@@ -38089,7 +38809,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 91.88787789273368,
+                           "adjDRtg": 85.2450036517857,
+                           "adjDRtgPlus": -2.9509992696428613
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 100.50917346010739,
@@ -38329,7 +39053,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </small>
                                               </OverlayTrigger>
 
-                        diag_def_rtg: undefined
+                        diag_def_rtg: {
+                           "dRtg": 98.84955759282161,
+                           "adjDRtg": 91.49371821720374,
+                           "adjDRtgPlus": -1.7012563565592531
+                        }
 
                         diag_off_rtg: {
                            "oRtg": 130.05090623641826,
@@ -38867,7 +39595,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 97.93561913082087,
+               "adjDRtg": 90.4630386352586,
+               "adjDRtgPlus": -1.9073922729482804
+            }
 
             diag_off_rtg: {
                "oRtg": 116.22380931760613,
@@ -39097,7 +39829,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 103.73082160102601,
+               "adjDRtg": 97.12355288864569,
+               "adjDRtgPlus": -0.5752894222708619
+            }
 
             diag_off_rtg: {
                "oRtg": 124.85726151245744,
@@ -39327,7 +40063,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 130.05090623641826,
@@ -39569,7 +40309,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.2892111124598,
+               "adjDRtg": 84.52946260306088,
+               "adjDRtgPlus": -3.0941074793878247
+            }
 
             diag_off_rtg: {
                "oRtg": 96.36310974319929,
@@ -39799,7 +40543,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 100.50917346010739,
@@ -40029,7 +40777,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 130.4212061109622,
+               "adjDRtg": 128.54807698912074,
+               "adjDRtgPlus": 5.709615397824149
+            }
 
             diag_off_rtg: {
                "oRtg": 174.561023832862,
@@ -40281,7 +41033,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 130.05090623641826,
@@ -40530,7 +41286,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 98.84955759282161,
+                   "adjDRtg": 91.49371821720374,
+                   "adjDRtgPlus": -1.7012563565592531
+                }
 
                 diag_off_rtg: {
                    "oRtg": 130.05090623641826,
@@ -40781,7 +41541,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 103.73082160102601,
+                   "adjDRtg": 97.12355288864569,
+                   "adjDRtgPlus": -0.5752894222708619
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -41018,7 +41782,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 103.73082160102601,
+                   "adjDRtg": 97.12355288864569,
+                   "adjDRtgPlus": -0.5752894222708619
+                }
 
                 diag_off_rtg: {
                    "oRtg": 124.85726151245744,
@@ -41257,7 +42025,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 97.93561913082087,
+                   "adjDRtg": 90.4630386352586,
+                   "adjDRtgPlus": -1.9073922729482804
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -41494,7 +42266,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 97.93561913082087,
+                   "adjDRtg": 90.4630386352586,
+                   "adjDRtgPlus": -1.9073922729482804
+                }
 
                 diag_off_rtg: {
                    "oRtg": 116.22380931760613,
@@ -41733,7 +42509,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 130.4212061109622,
+                   "adjDRtg": 128.54807698912074,
+                   "adjDRtgPlus": 5.709615397824149
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -41970,7 +42750,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 130.4212061109622,
+                   "adjDRtg": 128.54807698912074,
+                   "adjDRtgPlus": 5.709615397824149
+                }
 
                 diag_off_rtg: {
                    "oRtg": 174.561023832862,
@@ -42209,7 +42993,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 100.50917346010739,
@@ -42446,7 +43234,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.88787789273368,
+                   "adjDRtg": 85.2450036517857,
+                   "adjDRtgPlus": -2.9509992696428613
+                }
 
                 diag_off_rtg: {
                    "oRtg": 100.50917346010739,
@@ -42685,7 +43477,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.2892111124598,
+                   "adjDRtg": 84.52946260306088,
+                   "adjDRtgPlus": -3.0941074793878247
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -42922,7 +43718,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </small>
                               </OverlayTrigger>
 
-                diag_def_rtg: undefined
+                diag_def_rtg: {
+                   "dRtg": 91.2892111124598,
+                   "adjDRtg": 84.52946260306088,
+                   "adjDRtgPlus": -3.0941074793878247
+                }
 
                 diag_off_rtg: {
                    "oRtg": 96.36310974319929,
@@ -43178,7 +43978,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
 
             diag_off_rtg: {
                "oRtg": 130.05090623641826,
@@ -43420,7 +44224,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </small>
                       </OverlayTrigger>
 
-            diag_def_rtg: undefined
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
 
             diag_off_rtg: {
                "oRtg": 100.50917346010739,
@@ -44341,7 +45149,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 97.93561913082087,
+                     "adjDRtg": 90.4630386352586,
+                     "adjDRtgPlus": -1.9073922729482804
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 116.22380931760613,
@@ -44493,6 +45305,26 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 97.93561913082087,
+   "adjDRtg": 90.4630386352586,
+   "adjDRtgPlus": -1.9073922729482804
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 116.22380931760613,
+   "adjORtg": 127.43343809771865,
+   "adjORtgPlus": 5.48668761954373
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -44580,7 +45412,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 97.93561913082087,
+                         "adjDRtg": 90.4630386352586,
+                         "adjDRtgPlus": -1.9073922729482804
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 116.22380931760613,
@@ -44836,7 +45672,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 103.73082160102601,
+                     "adjDRtg": 97.12355288864569,
+                     "adjDRtgPlus": -0.5752894222708619
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 124.85726151245744,
@@ -44988,6 +45828,26 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 103.73082160102601,
+   "adjDRtg": 97.12355288864569,
+   "adjDRtgPlus": -0.5752894222708619
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 124.85726151245744,
+   "adjORtg": 138.95490038126016,
+   "adjORtgPlus": 7.7909800762520325
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -45075,7 +45935,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 103.73082160102601,
+                         "adjDRtg": 97.12355288864569,
+                         "adjDRtgPlus": -0.5752894222708619
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 124.85726151245744,
@@ -45334,7 +46198,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 91.2892111124598,
+                     "adjDRtg": 84.52946260306088,
+                     "adjDRtgPlus": -3.0941074793878247
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 96.36310974319929,
@@ -45486,6 +46354,26 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 91.2892111124598,
+   "adjDRtg": 84.52946260306088,
+   "adjDRtgPlus": -3.0941074793878247
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 96.36310974319929,
+   "adjORtg": 101.36047005936106,
+   "adjORtgPlus": 0.2720940118722126
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -45573,7 +46461,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 91.2892111124598,
+                         "adjDRtg": 84.52946260306088,
+                         "adjDRtgPlus": -3.0941074793878247
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 96.36310974319929,
@@ -45832,7 +46724,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </small>
                                   </OverlayTrigger>
 
-                  diag_def_rtg: undefined
+                  diag_def_rtg: {
+                     "dRtg": 130.4212061109622,
+                     "adjDRtg": 128.54807698912074,
+                     "adjDRtgPlus": 5.709615397824149
+                  }
 
                   diag_off_rtg: {
                      "oRtg": 174.561023832862,
@@ -45984,6 +46880,26 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
+                "text": <RosterStatsDiagView
+                  drtgDiags={
+                    {
+   "dRtg": 130.4212061109622,
+   "adjDRtg": 128.54807698912074,
+   "adjDRtgPlus": 5.709615397824149
+}
+                  }
+                  ortgDiags={
+                    {
+   "oRtg": 174.561023832862,
+   "adjORtg": 156.75087181491494,
+   "adjORtgPlus": 11.35017436298299
+}
+                  }
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
                 "text": <PositionalDiagView
                   player={
                     {
@@ -46071,7 +46987,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             </small>
                                           </OverlayTrigger>
 
-                      diag_def_rtg: undefined
+                      diag_def_rtg: {
+                         "dRtg": 130.4212061109622,
+                         "adjDRtg": 128.54807698912074,
+                         "adjDRtgPlus": 5.709615397824149
+                      }
 
                       diag_off_rtg: {
                          "oRtg": 174.561023832862,

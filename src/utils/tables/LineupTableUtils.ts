@@ -79,7 +79,7 @@ export class LineupTableUtils {
           }, avgEfficiency, true, adjustForLuck || overrodeOffFields
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-          mutableP, avgEfficiency, !_.isEmpty(onBallDefenseByCode), adjustForLuck
+          mutableP, avgEfficiency, true, adjustForLuck
         );
         mutableP.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
