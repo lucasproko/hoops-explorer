@@ -237,21 +237,23 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason), (acc, frPerTeam, teamKey) => {
             // To be quick just include the entire overrides object if any transfer matches
             const inject = (teamKeyIn: string, toInject: TeamEditorManualFixModel) => {
-               if (!acc[teamKey]) {
+               if (!acc[teamKeyIn]) {
                   acc[teamKeyIn] = {};
                }
-               acc[teamKey]![teamKeyIn] = toInject;
+               acc[teamKeyIn]![teamKey] = toInject;
             };
             // Always inject a team's Fr for that team:
             inject(teamKey, frPerTeam);
             const transferringTeams = _.chain(frPerTeam.overrides || {}).keys()
                   .flatMap(code => dataEvent.transfers?.[0]?.[code] || [])
                      .flatMap(p => (p.t && (p.t != "NBA")) ? [p.t] : []).value();
+
             transferringTeams.forEach(teamKeyIn => {
                inject(teamKeyIn, frPerTeam);
             });
 
-         }, {} as Record<string, Record<string, TeamEditorManualFixModel>>);
+         }, {} as Record<string, Record<string, TeamEditorManualFixModel>>
+      );
 
       // Get a list of teams
       const teamList = _.flatMap(AvailableTeams.byName, (teams, teamName) => {

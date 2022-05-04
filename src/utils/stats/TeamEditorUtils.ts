@@ -379,6 +379,9 @@ export class TeamEditorUtils {
       const rosterWingMins = rosterWingMinsPreBench + 0.2*(maybeBenchWing?.ok?.off_team_poss_pct?.value || 0);
       const rosterBigMins = rosterBigMinsPreBench + 0.2*(maybeBenchBig?.ok?.off_team_poss_pct?.value || 0);
 
+      // Useful diag for comparing TeamEditorTable and OffseasonLeaderboardTable
+      //console.log(`TEAM [${year}]: ${basePlayersPlusHypos.map(t => `${t.key}/${(t.ok as PureStatSet).off_adj_rapm?.value}/${t.ok.off_team_poss_pct.value}`)}`)
+
       return {
          rosterGuards, rosterGuardMins, maybeBenchGuard,
          rosterWings, rosterWingMins, maybeBenchWing,
@@ -769,18 +772,27 @@ export class TeamEditorUtils {
       const applyFrRegression = (
          player: IndivStatSet, 
       ) => {
-         const netRegressTo = TeamEditorUtils.getAvgProduction(team, player.year || "");
+         const netRegressTo = TeamEditorUtils.getAvFrProduction(team, player.year || "");
+            //TODO: use player profile to build this, eg for 5* should regress to a higher value
 
-         const regressedOffRapm = 0.75*((player as PureStatSet).off_adj_rapm?.value || 0) + 0.25*(netRegressTo*0.5)
-         const regressedDefRapm = 0.75*((player as PureStatSet).def_adj_rapm?.value || 0) + 0.25*(netRegressTo*0.5)
+         const minRegression = 0.10; // at 30mpg+ (0.75%)
+         const maxRegression = 0.50; // at 10mpg- (0.25%)
+         const poss = Math.max(0.25, Math.min(0.75, player.off_team_poss_pct?.value || 0));
+         const regressionFactor = minRegression + (2*(0.75 - poss))*(maxRegression - minRegression);
 
-         // Only apply if negative, and not to optimistic result
+         const regressedOffRapm = 
+            (1 - regressionFactor)*((player as PureStatSet).off_adj_rapm?.value || 0) + regressionFactor*(netRegressTo*0.5)
+         const regressedDefRapm = 
+            (1 - regressionFactor)*((player as PureStatSet).def_adj_rapm?.value || 0) + regressionFactor*(-netRegressTo*0.5)
+
+         // Only apply if "bad" (-ve off, +ve def), and only to ok(partial) + bad projections
          const deltaOffRapm = Math.min(0, regressedOffRapm - ((player as PureStatSet).off_adj_rapm?.value || 0));
-         const deltaDefRapm = Math.min(0, regressedDefRapm - ((player as PureStatSet).def_adj_rapm?.value || 0));
+         const deltaDefRapm = Math.max(0, regressedDefRapm - ((player as PureStatSet).def_adj_rapm?.value || 0));
 
          // Diagnostic
          // console.log(`[${player.key}]: reg=[${regressedOffRapm.toFixed(1)},${regressedDefRapm.toFixed(1)}], ` +
-         //    `act=[${((player as PureStatSet).off_adj_rapm?.value || 0)},${((player as PureStatSet).def_adj_rapm?.value || 0)}] (${netRegressTo})`);
+         //    `act=[${((player as PureStatSet).off_adj_rapm?.value || 0)},${((player as PureStatSet).def_adj_rapm?.value || 0)}] (${netRegressTo}), ` +
+         //    `regressFactor=[${regressionFactor.toFixed(2)}] (adj_poss=[${poss.toFixed(2)}]]), actual deltas: off=[${deltaOffRapm.toFixed(2)}] def=[${deltaDefRapm.toFixed(2)}]`);
 
          return {
             off_rtg: { good: {}, bad: {}, ok: {} },
@@ -1560,7 +1572,9 @@ export class TeamEditorUtils {
    /** Downside on bench/Fr predictions - bench scoring can be bad so we make this higher */
    static readonly pessimisticBenchOrFr = 1.25;
 
-   /** Gets the bench level scoring depending on the quality of the team */
+   /** Gets the bench level scoring depending on the quality of the team 
+    * note this is (off-def) margin, use 0.5* to get off and def components
+    */
    static getBenchLevelScoring(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) 
          || AvailableTeams.byName[team]?.[0] 
@@ -1611,7 +1625,9 @@ export class TeamEditorUtils {
       }
    }
 
-   /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor" */
+   /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor"
+    * note this is (off-def) margin, use 0.5* to get off and def components
+    */
    static getBenchLevelScoringByProfile(profile: Profiles | undefined): number {
       //(these numbers derived from looking at the T200 Fr for the last 4 years - the lower ranges are purely guesswork)
       const lotto = 6.5;
@@ -1645,9 +1661,9 @@ export class TeamEditorUtils {
    }
    
    /** To regress Fr players we'll move them in this direction - TODO would be nice to include '*' rating in this 
-    * note this is (off-def) margin, we 0.5* to get off and def components
-   */
-   static getAvgProduction(team: string, year: string) {
+    * note this is (off-def) margin, use 0.5* to get off and def components
+    */
+   static getAvFrProduction(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getAvgLevel = () => {
          if (team == "Gonzaga") { // Treat as high major

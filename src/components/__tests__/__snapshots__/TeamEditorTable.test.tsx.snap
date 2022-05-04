@@ -789,29 +789,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": 97.40605181681347,
+                    "value": 97.64648288993361,
                   },
                   "bad_net": Object {
-                    "value": 14.666979519742931,
+                    "value": 14.426548446622807,
                   },
                   "bad_off": Object {
                     "value": 112.0730313365564,
                   },
                   "good_def": Object {
-                    "value": 94.10744448540422,
+                    "value": 94.19928098338448,
                   },
                   "good_net": Object {
-                    "value": 22.699734311535934,
+                    "value": 22.607897813555653,
                   },
                   "good_off": Object {
                     "value": 116.80717879694014,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 95.42040919786031,
+                    "value": 95.58654298341051,
                   },
                   "ok_net": Object {
-                    "value": 19.031869230558154,
+                    "value": 18.86573544500795,
                   },
                   "ok_off": Object {
                     "value": 114.45227842841845,
@@ -1218,10 +1218,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -0.9330044325123734,
+                    "value": -0.9098364438243733,
                   },
                   "bad_net": Object {
-                    "value": 5.811348780449098,
+                    "value": 5.788180791761098,
                   },
                   "bad_off": Object {
                     "value": 4.878344347936725,
@@ -1342,10 +1342,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -1.3778294325123732,
+                    "value": -1.3662454381683733,
                   },
                   "ok_net": Object {
-                    "value": 7.156173780449098,
+                    "value": 7.144589786105097,
                   },
                   "ok_off": Object {
                     "value": 5.7783443479367245,
@@ -1878,10 +1878,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "actual_off": undefined,
                   "bad_def": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
-                    "value": -1.5475074996871703,
+                    "value": -1.52433951099917,
                   },
                   "bad_net": Object {
-                    "value": 2.45780749968717,
+                    "value": 2.43463951099917,
                   },
                   "bad_off": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
@@ -2004,10 +2004,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   },
                   "ok_def": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
-                    "value": -1.8873324996871705,
+                    "value": -1.8757485053431706,
                   },
                   "ok_net": Object {
-                    "value": 3.7488983610650686,
+                    "value": 3.7373143667210686,
                   },
                   "ok_off": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
@@ -2073,10 +2073,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.452964248260758,
+                    "value": -2.111804257972758,
                   },
                   "bad_net": Object {
-                    "value": 2.638164248260758,
+                    "value": 2.297004257972758,
                   },
                   "bad_off": Object {
                     "value": 0.1852,
@@ -2197,10 +2197,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.422789248260758,
+                    "value": -3.252209253116758,
                   },
                   "ok_net": Object {
-                    "value": 4.807989248260758,
+                    "value": 4.637409253116758,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
@@ -2381,10 +2381,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.4771142482607584,
+                    "value": -2.453946259572758,
                   },
                   "bad_net": Object {
-                    "value": 7.126314248260758,
+                    "value": 7.103146259572759,
                   },
                   "bad_off": Object {
                     "value": 4.6492,
@@ -2505,10 +2505,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -2.816939248260758,
+                    "value": -2.8053552539167574,
                   },
                   "ok_net": Object {
-                    "value": 8.066139248260757,
+                    "value": 8.054555253916757,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
@@ -4996,29 +4996,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": 91.0145523563288,
+                    "value": 91.28138753916404,
                   },
                   "bad_net": Object {
-                    "value": 20.041384438528908,
+                    "value": 19.774549255693675,
                   },
                   "bad_off": Object {
                     "value": 111.05593679485771,
                   },
                   "good_def": Object {
-                    "value": 88.84439128758358,
+                    "value": 88.94631325803235,
                   },
                   "good_net": Object {
-                    "value": 27.215026294878317,
+                    "value": 27.11310432442955,
                   },
                   "good_off": Object {
                     "value": 116.05941758246189,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 89.83421174074665,
+                    "value": 90.01859031738866,
                   },
                   "ok_net": Object {
-                    "value": 24.107696424450463,
+                    "value": 23.923317847808462,
                   },
                   "ok_off": Object {
                     "value": 113.94190816519712,
@@ -5425,10 +5425,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.3258601511753523,
+                    "value": -2.3026921624873524,
                   },
                   "bad_net": Object {
-                    "value": 2.8431101511753516,
+                    "value": 2.8199421624873517,
                   },
                   "bad_off": Object {
                     "value": 0.5172499999999993,
@@ -5549,10 +5549,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -2.44667494328146,
+                    "value": -2.43509094893746,
                   },
                   "ok_net": Object {
-                    "value": 4.214535571383923,
+                    "value": 4.202951577039922,
                   },
                   "ok_off": Object {
                     "value": 1.7678606281024627,
@@ -5733,10 +5733,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -3.7184901511753528,
+                    "value": -3.695322162487353,
                   },
                   "bad_net": Object {
-                    "value": 4.8304401511753525,
+                    "value": 4.807272162487353,
                   },
                   "bad_off": Object {
                     "value": 1.1119499999999993,
@@ -5857,10 +5857,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -4.019056481511639,
+                    "value": -4.0074724871676395,
                   },
                   "ok_net": Object {
-                    "value": 7.025121951086703,
+                    "value": 7.013537956742703,
                   },
                   "ok_off": Object {
                     "value": 3.0060654695750637,
@@ -5925,10 +5925,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.5231234026017648,
+                    "value": -1.499955413913765,
                   },
                   "bad_net": Object {
-                    "value": 1.735723402601764,
+                    "value": 1.7125554139137642,
                   },
                   "bad_off": Object {
                     "value": 0.21259999999999935,
@@ -6049,10 +6049,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -1.840044147295733,
+                    "value": -1.828460152951733,
                   },
                   "ok_net": Object {
-                    "value": 3.2016100086736308,
+                    "value": 3.190026014329631,
                   },
                   "ok_off": Object {
                     "value": 1.3615658613778978,
@@ -6117,10 +6117,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.7785801511753525,
+                    "value": -2.4374201608873527,
                   },
                   "bad_net": Object {
-                    "value": 2.766080151175352,
+                    "value": 2.424920160887352,
                   },
                   "bad_off": Object {
                     "value": -0.01250000000000065,
@@ -6241,10 +6241,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.7255008958693208,
+                    "value": -3.5549209007253206,
                   },
                   "ok_net": Object {
-                    "value": 5.1107008958693205,
+                    "value": 4.94012090072532,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
@@ -6332,10 +6332,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.802730151175353,
+                    "value": -2.779562162487353,
                   },
                   "bad_net": Object {
-                    "value": 7.254230151175353,
+                    "value": 7.231062162487353,
                   },
                   "bad_off": Object {
                     "value": 4.451499999999999,
@@ -6456,10 +6456,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.1196508958693205,
+                    "value": -3.10806690152532,
                   },
                   "ok_net": Object {
-                    "value": 8.36885089586932,
+                    "value": 8.357266901525321,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
@@ -8959,29 +8959,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 114.96790346,
                   },
                   "bad_def": Object {
-                    "value": 96.70605181681347,
+                    "value": 96.9464828899336,
                   },
                   "bad_net": Object {
-                    "value": 14.666979519742931,
+                    "value": 14.426548446622807,
                   },
                   "bad_off": Object {
                     "value": 111.3730313365564,
                   },
                   "good_def": Object {
-                    "value": 93.40744448540421,
+                    "value": 93.49928098338448,
                   },
                   "good_net": Object {
-                    "value": 22.699734311535934,
+                    "value": 22.607897813555653,
                   },
                   "good_off": Object {
                     "value": 116.10717879694013,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 94.7204091978603,
+                    "value": 94.88654298341051,
                   },
                   "ok_net": Object {
-                    "value": 19.031869230558154,
+                    "value": 18.86573544500795,
                   },
                   "ok_off": Object {
                     "value": 113.75227842841845,
@@ -9392,10 +9392,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -0.9330044325123734,
+                    "value": -0.9098364438243733,
                   },
                   "bad_net": Object {
-                    "value": 5.811348780449098,
+                    "value": 5.788180791761098,
                   },
                   "bad_off": Object {
                     "value": 4.878344347936725,
@@ -9516,10 +9516,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -1.3778294325123732,
+                    "value": -1.3662454381683733,
                   },
                   "ok_net": Object {
-                    "value": 7.156173780449098,
+                    "value": 7.144589786105097,
                   },
                   "ok_off": Object {
                     "value": 5.7783443479367245,
@@ -10072,10 +10072,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   },
                   "bad_def": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
-                    "value": -1.5475074996871703,
+                    "value": -1.52433951099917,
                   },
                   "bad_net": Object {
-                    "value": 2.45780749968717,
+                    "value": 2.43463951099917,
                   },
                   "bad_off": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
@@ -10198,10 +10198,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   },
                   "ok_def": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
-                    "value": -1.8873324996871705,
+                    "value": -1.8757485053431706,
                   },
                   "ok_net": Object {
-                    "value": 3.7488983610650686,
+                    "value": 3.7373143667210686,
                   },
                   "ok_off": Object {
                     "extraInfo": "Manually adjusted, see Player Editor tab",
@@ -10275,10 +10275,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 3.753,
                   },
                   "bad_def": Object {
-                    "value": -2.452964248260758,
+                    "value": -2.111804257972758,
                   },
                   "bad_net": Object {
-                    "value": 2.638164248260758,
+                    "value": 2.297004257972758,
                   },
                   "bad_off": Object {
                     "value": 0.1852,
@@ -10399,10 +10399,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.422789248260758,
+                    "value": -3.252209253116758,
                   },
                   "ok_net": Object {
-                    "value": 4.807989248260758,
+                    "value": 4.637409253116758,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
@@ -11112,10 +11112,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.4771142482607584,
+                    "value": -2.453946259572758,
                   },
                   "bad_net": Object {
-                    "value": 7.126314248260758,
+                    "value": 7.103146259572759,
                   },
                   "bad_off": Object {
                     "value": 4.6492,
@@ -11236,10 +11236,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -2.816939248260758,
+                    "value": -2.8053552539167574,
                   },
                   "ok_net": Object {
-                    "value": 8.066139248260757,
+                    "value": 8.054555253916757,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
@@ -13940,29 +13940,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 114.96790346,
                   },
                   "bad_def": Object {
-                    "value": 90.3145523563288,
+                    "value": 90.58138753916404,
                   },
                   "bad_net": Object {
-                    "value": 20.041384438528908,
+                    "value": 19.774549255693675,
                   },
                   "bad_off": Object {
                     "value": 110.35593679485771,
                   },
                   "good_def": Object {
-                    "value": 88.14439128758357,
+                    "value": 88.24631325803234,
                   },
                   "good_net": Object {
-                    "value": 27.215026294878317,
+                    "value": 27.11310432442955,
                   },
                   "good_off": Object {
                     "value": 115.35941758246189,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 89.13421174074665,
+                    "value": 89.31859031738865,
                   },
                   "ok_net": Object {
-                    "value": 24.107696424450463,
+                    "value": 23.923317847808462,
                   },
                   "ok_off": Object {
                     "value": 113.24190816519712,
@@ -14381,10 +14381,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 4.7276,
                   },
                   "bad_def": Object {
-                    "value": -2.3258601511753523,
+                    "value": -2.3026921624873524,
                   },
                   "bad_net": Object {
-                    "value": 2.8431101511753516,
+                    "value": 2.8199421624873517,
                   },
                   "bad_off": Object {
                     "value": 0.5172499999999993,
@@ -14505,10 +14505,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -2.44667494328146,
+                    "value": -2.43509094893746,
                   },
                   "ok_net": Object {
-                    "value": 4.214535571383923,
+                    "value": 4.202951577039922,
                   },
                   "ok_off": Object {
                     "value": 1.7678606281024627,
@@ -14701,10 +14701,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 3.7957,
                   },
                   "bad_def": Object {
-                    "value": -3.7184901511753528,
+                    "value": -3.695322162487353,
                   },
                   "bad_net": Object {
-                    "value": 4.8304401511753525,
+                    "value": 4.807272162487353,
                   },
                   "bad_off": Object {
                     "value": 1.1119499999999993,
@@ -14825,10 +14825,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -4.019056481511639,
+                    "value": -4.0074724871676395,
                   },
                   "ok_net": Object {
-                    "value": 7.025121951086703,
+                    "value": 7.013537956742703,
                   },
                   "ok_off": Object {
                     "value": 3.0060654695750637,
@@ -14901,10 +14901,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 0.8234,
                   },
                   "bad_def": Object {
-                    "value": -1.5231234026017648,
+                    "value": -1.499955413913765,
                   },
                   "bad_net": Object {
-                    "value": 1.735723402601764,
+                    "value": 1.7125554139137642,
                   },
                   "bad_off": Object {
                     "value": 0.21259999999999935,
@@ -15025,10 +15025,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -1.840044147295733,
+                    "value": -1.828460152951733,
                   },
                   "ok_net": Object {
-                    "value": 3.2016100086736308,
+                    "value": 3.190026014329631,
                   },
                   "ok_off": Object {
                     "value": 1.3615658613778978,
@@ -15101,10 +15101,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 3.753,
                   },
                   "bad_def": Object {
-                    "value": -2.7785801511753525,
+                    "value": -2.4374201608873527,
                   },
                   "bad_net": Object {
-                    "value": 2.766080151175352,
+                    "value": 2.424920160887352,
                   },
                   "bad_off": Object {
                     "value": -0.01250000000000065,
@@ -15225,10 +15225,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.7255008958693208,
+                    "value": -3.5549209007253206,
                   },
                   "ok_net": Object {
-                    "value": 5.1107008958693205,
+                    "value": 4.94012090072532,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
@@ -15670,10 +15670,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.802730151175353,
+                    "value": -2.779562162487353,
                   },
                   "bad_net": Object {
-                    "value": 7.254230151175353,
+                    "value": 7.231062162487353,
                   },
                   "bad_off": Object {
                     "value": 4.451499999999999,
@@ -15794,10 +15794,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.1196508958693205,
+                    "value": -3.10806690152532,
                   },
                   "ok_net": Object {
-                    "value": 8.36885089586932,
+                    "value": 8.357266901525321,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
@@ -18494,29 +18494,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 114.96790346,
                   },
                   "bad_def": Object {
-                    "value": 90.22377380952807,
+                    "value": 90.46277618260359,
                   },
                   "bad_net": Object {
-                    "value": 24.24038750354464,
+                    "value": 24.00138513046913,
                   },
                   "bad_off": Object {
                     "value": 114.46416131307272,
                   },
                   "good_def": Object {
-                    "value": 88.31608794757116,
+                    "value": 88.40737873069413,
                   },
                   "good_net": Object {
-                    "value": 30.612557079266008,
+                    "value": 30.521266296143047,
                   },
                   "good_off": Object {
                     "value": 118.92864502683717,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 89.14776924747642,
+                    "value": 89.31291582557566,
                   },
                   "ok_net": Object {
-                    "value": 27.60754906050411,
+                    "value": 27.442402482404873,
                   },
                   "ok_off": Object {
                     "value": 116.75531830798053,
@@ -18927,10 +18927,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.6856606522535014,
+                    "value": -1.665215927842298,
                   },
                   "bad_net": Object {
-                    "value": 6.561463149679769,
+                    "value": 6.5410184252685655,
                   },
                   "bad_off": Object {
                     "value": 4.8758024974262675,
@@ -19051,10 +19051,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -2.0050334577047533,
+                    "value": -1.994811095499151,
                   },
                   "ok_net": Object {
-                    "value": 7.48083595513102,
+                    "value": 7.470613592925418,
                   },
                   "ok_off": Object {
                     "value": 5.475802497426267,
@@ -19127,10 +19127,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 4.7276,
                   },
                   "bad_def": Object {
-                    "value": -2.3222305078663017,
+                    "value": -2.301785783455098,
                   },
                   "bad_net": Object {
-                    "value": 3.0371805078663017,
+                    "value": 3.016735783455098,
                   },
                   "bad_off": Object {
                     "value": 0.71495,
@@ -19251,10 +19251,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 25.8860921980291,
                   },
                   "ok_def": Object {
-                    "value": -2.445497360729692,
+                    "value": -2.4352749985240907,
                   },
                   "ok_net": Object {
-                    "value": 4.213357988832154,
+                    "value": 4.203135626626553,
                   },
                   "ok_off": Object {
                     "value": 1.7678606281024627,
@@ -19447,10 +19447,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 3.7957,
                   },
                   "bad_def": Object {
-                    "value": -3.7148605078663017,
+                    "value": -3.6944157834550984,
                   },
                   "bad_net": Object {
-                    "value": 5.024510507866301,
+                    "value": 5.004065783455099,
                   },
                   "bad_off": Object {
                     "value": 1.30965,
@@ -19571,10 +19571,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 30.0034948800266,
                   },
                   "ok_def": Object {
-                    "value": -4.0178788989598715,
+                    "value": -4.00765653675427,
                   },
                   "ok_net": Object {
-                    "value": 7.023944368534935,
+                    "value": 7.013722006329334,
                   },
                   "ok_off": Object {
                     "value": 3.0060654695750637,
@@ -19647,10 +19647,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 0.8234,
                   },
                   "bad_def": Object {
-                    "value": -1.5194937592927142,
+                    "value": -1.4990490348815104,
                   },
                   "bad_net": Object {
-                    "value": 1.9297937592927141,
+                    "value": 1.9093490348815103,
                   },
                   "bad_off": Object {
                     "value": 0.4103,
@@ -19771,10 +19771,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 25.657142452483054,
                   },
                   "ok_def": Object {
-                    "value": -1.8388665647439655,
+                    "value": -1.8286442025383638,
                   },
                   "ok_net": Object {
-                    "value": 3.2004324261218633,
+                    "value": 3.1902100639162616,
                   },
                   "ok_off": Object {
                     "value": 1.3615658613778978,
@@ -19847,10 +19847,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 3.753,
                   },
                   "bad_def": Object {
-                    "value": -2.774950507866302,
+                    "value": -2.436513781855098,
                   },
                   "bad_net": Object {
-                    "value": 2.960150507866302,
+                    "value": 2.621713781855098,
                   },
                   "bad_off": Object {
                     "value": 0.1852,
@@ -19971,10 +19971,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 30.0034948800266,
                   },
                   "ok_def": Object {
-                    "value": -3.7243233133175533,
+                    "value": -3.555104950311951,
                   },
                   "ok_net": Object {
-                    "value": 5.1095233133175535,
+                    "value": 4.940304950311951,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
@@ -20491,10 +20491,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.799100507866302,
+                    "value": -2.7786557834550987,
                   },
                   "bad_net": Object {
-                    "value": 7.4483005078663025,
+                    "value": 7.427855783455099,
                   },
                   "bad_off": Object {
                     "value": 4.6492,
@@ -20615,10 +20615,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.118473313317553,
+                    "value": -3.108250951111951,
                   },
                   "ok_net": Object {
-                    "value": 8.367673313317553,
+                    "value": 8.35745095111195,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
@@ -22774,29 +22774,29 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": 90.92377380952809,
+                    "value": 91.1627761826036,
                   },
                   "bad_net": Object {
-                    "value": 24.24038750354464,
+                    "value": 24.00138513046913,
                   },
                   "bad_off": Object {
                     "value": 115.16416131307273,
                   },
                   "good_def": Object {
-                    "value": 89.01608794757118,
+                    "value": 89.10737873069414,
                   },
                   "good_net": Object {
-                    "value": 30.612557079266008,
+                    "value": 30.521266296143047,
                   },
                   "good_off": Object {
                     "value": 119.62864502683718,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 89.84776924747644,
+                    "value": 90.01291582557566,
                   },
                   "ok_net": Object {
-                    "value": 27.60754906050411,
+                    "value": 27.442402482404873,
                   },
                   "ok_off": Object {
                     "value": 117.45531830798053,
@@ -23203,10 +23203,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.6856606522535014,
+                    "value": -1.665215927842298,
                   },
                   "bad_net": Object {
-                    "value": 6.561463149679769,
+                    "value": 6.5410184252685655,
                   },
                   "bad_off": Object {
                     "value": 4.8758024974262675,
@@ -23327,10 +23327,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -2.0050334577047533,
+                    "value": -1.994811095499151,
                   },
                   "ok_net": Object {
-                    "value": 7.48083595513102,
+                    "value": 7.470613592925418,
                   },
                   "ok_off": Object {
                     "value": 5.475802497426267,
@@ -23395,10 +23395,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.3222305078663017,
+                    "value": -2.301785783455098,
                   },
                   "bad_net": Object {
-                    "value": 3.0371805078663017,
+                    "value": 3.016735783455098,
                   },
                   "bad_off": Object {
                     "value": 0.71495,
@@ -23519,10 +23519,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 25.8860921980291,
                   },
                   "ok_def": Object {
-                    "value": -2.445497360729692,
+                    "value": -2.4352749985240907,
                   },
                   "ok_net": Object {
-                    "value": 4.213357988832154,
+                    "value": 4.203135626626553,
                   },
                   "ok_off": Object {
                     "value": 1.7678606281024627,
@@ -23703,10 +23703,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -3.7148605078663017,
+                    "value": -3.6944157834550984,
                   },
                   "bad_net": Object {
-                    "value": 5.024510507866301,
+                    "value": 5.004065783455099,
                   },
                   "bad_off": Object {
                     "value": 1.30965,
@@ -23827,10 +23827,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 30.0034948800266,
                   },
                   "ok_def": Object {
-                    "value": -4.0178788989598715,
+                    "value": -4.00765653675427,
                   },
                   "ok_net": Object {
-                    "value": 7.023944368534935,
+                    "value": 7.013722006329334,
                   },
                   "ok_off": Object {
                     "value": 3.0060654695750637,
@@ -23895,10 +23895,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.5194937592927142,
+                    "value": -1.4990490348815104,
                   },
                   "bad_net": Object {
-                    "value": 1.9297937592927141,
+                    "value": 1.9093490348815103,
                   },
                   "bad_off": Object {
                     "value": 0.4103,
@@ -24019,10 +24019,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 25.657142452483054,
                   },
                   "ok_def": Object {
-                    "value": -1.8388665647439655,
+                    "value": -1.8286442025383638,
                   },
                   "ok_net": Object {
-                    "value": 3.2004324261218633,
+                    "value": 3.1902100639162616,
                   },
                   "ok_off": Object {
                     "value": 1.3615658613778978,
@@ -24087,10 +24087,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.774950507866302,
+                    "value": -2.436513781855098,
                   },
                   "bad_net": Object {
-                    "value": 2.960150507866302,
+                    "value": 2.621713781855098,
                   },
                   "bad_off": Object {
                     "value": 0.1852,
@@ -24211,10 +24211,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 30.0034948800266,
                   },
                   "ok_def": Object {
-                    "value": -3.7243233133175533,
+                    "value": -3.555104950311951,
                   },
                   "ok_net": Object {
-                    "value": 5.1095233133175535,
+                    "value": 4.940304950311951,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
@@ -24377,10 +24377,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.799100507866302,
+                    "value": -2.7786557834550987,
                   },
                   "bad_net": Object {
-                    "value": 7.4483005078663025,
+                    "value": 7.427855783455099,
                   },
                   "bad_off": Object {
                     "value": 4.6492,
@@ -24501,10 +24501,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.118473313317553,
+                    "value": -3.108250951111951,
                   },
                   "ok_net": Object {
-                    "value": 8.367673313317553,
+                    "value": 8.35745095111195,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
