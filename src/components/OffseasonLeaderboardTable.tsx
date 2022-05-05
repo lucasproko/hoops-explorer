@@ -428,7 +428,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                "sepInOut1", "inout_margin", "in_margin", "out_margin"
             ]
          )
-      );
+      ) as Record<string, GenericTableOps>;
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
