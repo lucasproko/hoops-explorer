@@ -490,6 +490,7 @@ export class TeamEditorUtils {
             transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
          );
          const isTransferringOut = _.some(transfersThisYear[code] || [], p => p.f == team)
+         const isTransferringOutNba = isTransferringOut && _.some(transfersThisYear[code] || [], p => p.f == team && p.t == "NBA")
          const wasPlayerTxferLastYear = _.some(
             transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
          );
@@ -504,9 +505,14 @@ export class TeamEditorUtils {
             mutableExcludeSet[key] = p.key; //(fill this in with the name of the player for display purposes)
          }
 
-         if (wasOnTeam && isTransferringOut) { //
-            acc.out_off = acc.out_off + TeamEditorUtils.getOff(p)*possPctOff;
-            acc.out_def = acc.out_def + TeamEditorUtils.getDef(p)*possPctDef;
+         if (wasOnTeam && isTransferringOut && !isTransferringOutNba && (p.year == year)) { //(this year only)
+            if (!acc.txferCountdups[key]) {
+               acc.out_off = acc.out_off + TeamEditorUtils.getOff(p)*possPctOff;
+               acc.out_def = acc.out_def + TeamEditorUtils.getDef(p)*possPctDef;
+               //Diag
+               //if (team == "Team") console.log(`Leaving [${p.code}][${p.year}]: [${acc.out_off.toFixed(2)}] [${acc.out_def.toFixed(2)}]`);
+               acc.txferCountdups[key] = true;
+            }
          }
 
          //Diagnostic:
@@ -518,6 +524,8 @@ export class TeamEditorUtils {
                if (isTransfer && (doubleTransfer || transferringIn)) { //(this year only)
                   acc.in_off = acc.in_off + TeamEditorUtils.getOff(p)*possPctOff;
                   acc.in_def = acc.in_def + TeamEditorUtils.getDef(p)*possPctDef;
+                  //Diag
+                  //if (team == "Maryland") console.log(`Joining [${p.code}]: [${acc.in_off.toFixed(2)}] [${acc.in_def.toFixed(2)}]`);
                }
                acc.retVal = acc.retVal.concat([{
                   key: key,
@@ -539,6 +547,7 @@ export class TeamEditorUtils {
       }, { 
          retVal: [] as GoodBadOkTriple[], 
          dups: {} as Record<string, boolean>, 
+         txferCountdups: {} as Record<string, boolean>, 
          prevYears: {} as Record<string, IndivStatSet>,
          inAndLeaving: {} as Record<string, boolean>, //(not filled in because we can't account for early departures)
          in_off: 0, in_def: 0, out_off: 0, out_def: 0 
