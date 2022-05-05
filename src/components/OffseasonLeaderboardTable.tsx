@@ -23,7 +23,7 @@ import { faLink, faPen, faEye } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
-import GenericTable, { GenericTableOps } from "./GenericTable";
+import GenericTable, { GenericTableColProps, GenericTableOps } from "./GenericTable";
 
 // Table building
 // Util imports
@@ -428,7 +428,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                "sepInOut1", "inout_margin", "in_margin", "out_margin"
             ]
          )
-      ) as Record<string, GenericTableOps>;
+      ) as Record<string, GenericTableColProps>;
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
