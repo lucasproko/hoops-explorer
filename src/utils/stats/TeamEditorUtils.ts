@@ -83,6 +83,9 @@ export type TeamEditorProcessingResults = {
    allDeletedPlayers: Record<string, string> //(merged team and UI overrides)
    allOverrides: Record<string, PlayerEditModel>, //(merged player and UI overrides)
    unpausedOverrides: Record<string, PlayerEditModel>, //(active allOverrides)
+
+   // Tracking transfers in and out for fun
+   in_off: number, in_def: number, out_off: number, out_def: number
 }
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -208,7 +211,7 @@ export class TeamEditorUtils {
       /** Get the base players for what actually transpired, just one year, no transfers, etc */
       const actualResultsForReview = (evalMode ? TeamEditorUtils.getBasePlayers(
          team, DateUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
-      ) : []).map(triple => {
+      ).list : []).map(triple => {
          //(warning - mutates triple.org ... shouldn't mess anything else up since the next year's results aren't used anyway)
          triple.orig.code = teamOverrides.codeSwitch?.[triple.orig.code || ""] || triple.orig.code;
          triple.isOnlyActualResults = true; //(starts with true, we'll set to false as we merge with projected results)
@@ -226,7 +229,7 @@ export class TeamEditorUtils {
       // In in-season mode we get a list of all players (ignore delete/disable lists since this is what actually happened)
       const inSeasonPlayerResultsList = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
          team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, transfers, undefined
-      );
+      ).list;
       const addedPlayers = (year != yearIn) ? //(we're in special case mode)
          _.omit(addedPlayersIn, (inSeasonPlayerResultsList || []).map(t => t.key + year)) //(key was calculated based on year not yearIn)
             : addedPlayersIn;
@@ -238,11 +241,15 @@ export class TeamEditorUtils {
             return [ triple.orig ].concat(triple.prevYear ? [ triple.prevYear ] : []);
          });
 
+         // const { list: inSeasonPlayerResultsList, ...inOutInfo } = offSeasonMode ? {
+         //    list: [], in_off: 0, in_def: 0, out_off: 0, out_def: 0
+         // } : 
+
       const allDeletedPlayers = _.merge(
          _.fromPairs((teamOverrides.leftTeam || []).map(p => [ p, `code:${p}` ])),
          deletedPlayersIn
       );
-      const basePlayers: GoodBadOkTriple[] = TeamEditorUtils.getBasePlayers(
+      const { list: basePlayers, ...inOutInfo } = TeamEditorUtils.getBasePlayers(
          team, year, candidatePlayersList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, allDeletedPlayers, transfers, undefined
       );
       const redshirtishFr = (_.isEmpty(frList) || _.isEmpty(candidatePlayersList)) 
@@ -390,7 +397,9 @@ export class TeamEditorUtils {
          inSeasonPlayerResultsList, basePlayersPlusHypos, actualResultsForReview,
 
          avgEff, allDeletedPlayers, 
-         allOverrides, unpausedOverrides
+         allOverrides, unpausedOverrides,
+
+         ...inOutInfo
       };
    }
 
@@ -429,7 +438,7 @@ export class TeamEditorUtils {
           offSeasonMode, superSeniorsBack, undefined, {}, 
           // Build a transfer set explicitly for this player
           [ { [code]: [ { f: txferTeam, t: team } ] } , prevYearTransfers ], txferYear
-        );
+        ).list;
       }).map(triple => [ triple.key, triple ]).fromPairs().value();    
 
       return firstAddedPlayers;
@@ -440,10 +449,10 @@ export class TeamEditorUtils {
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, mutableExcludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
-   ): GoodBadOkTriple[] {
+   ): { list: GoodBadOkTriple[], in_off: number, in_def: number, out_off: number, out_def: number } {
       if ((year == "All") && !transferYearOverride) { // There's no benefit in showing N seasons of a given team, easier just to add them manually
          //TODO: once we have a set of "addedPlayers" set up, can infer year from the most common, eg if there's 5+ from the same year?
-         return [];
+         return { list: [], in_off: 0, in_def: 0, out_off: 0, out_def: 0 }
       }
 
       const transfersThisYear = transfers[0] || {};
@@ -462,6 +471,9 @@ export class TeamEditorUtils {
       };
 
       const fromBaseRoster = _.transform(players, (acc, p) => {
+         const possPctOff = p.off_team_poss_pct?.value || 0;
+         const possPctDef = p.def_team_poss_pct?.value || 0;
+
          const yearAdj = (year == "All") ? //(for building all star teams)
             p.year : 
             (transferYearOverride && (year != transferYearOverride)) ? transferYearOverride : ""; 
@@ -473,7 +485,7 @@ export class TeamEditorUtils {
          const isTransfer = p.team != team;
          const key = isTransfer ? `${code}:${p.team}:${yearAdj}` : `${code}::${yearAdj}`;
          
-         const isOnTeam = !transfersOnly && !isTransfer;
+         const wasOnTeam = !transfersOnly && !isTransfer;
          const transferringIn = (transfersOnly || offSeasonMode) && _.some(
             transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
          );
@@ -481,15 +493,20 @@ export class TeamEditorUtils {
          const wasPlayerTxferLastYear = _.some(
             transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
          );
-         const doubleTransfer = getMaybeDoubleTransfer(code, p);
+         const doubleTransfer = getMaybeDoubleTransfer(code, p); //(note this always implies transferringIn in practice)
          const isNotLeaving = (transferringIn || !offSeasonMode || (           
             (includeSuperSeniors || (p.roster?.year_class != "Sr") || (superSeniorsReturning?.has(key)))
                && !isTransferringOut
          ));
-         const onTeam = (isOnTeam || wasPlayerTxferLastYear);
+         const onTeam = (wasOnTeam || wasPlayerTxferLastYear);
          const notOnExcludeList = !mutableExcludeSet[key];
          if (!notOnExcludeList) {
             mutableExcludeSet[key] = p.key; //(fill this in with the name of the player for display purposes)
+         }
+
+         if (wasOnTeam && isTransferringOut) { //
+            acc.out_off = acc.out_off + TeamEditorUtils.getOff(p)*possPctOff;
+            acc.out_def = acc.out_def + TeamEditorUtils.getDef(p)*possPctDef;
          }
 
          //Diagnostic:
@@ -497,6 +514,11 @@ export class TeamEditorUtils {
 
          if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
             if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {
+
+               if (isTransfer && (doubleTransfer || transferringIn)) { //(this year only)
+                  acc.in_off = acc.in_off + TeamEditorUtils.getOff(p)*possPctOff;
+                  acc.in_def = acc.in_def + TeamEditorUtils.getDef(p)*possPctDef;
+               }
                acc.retVal = acc.retVal.concat([{
                   key: key,
                   good: _.clone(p),
@@ -518,7 +540,8 @@ export class TeamEditorUtils {
          retVal: [] as GoodBadOkTriple[], 
          dups: {} as Record<string, boolean>, 
          prevYears: {} as Record<string, IndivStatSet>,
-         inAndLeaving: {} as Record<string, boolean> //(not filled in because we can't account for early departures)
+         inAndLeaving: {} as Record<string, boolean>, //(not filled in because we can't account for early departures)
+         in_off: 0, in_def: 0, out_off: 0, out_def: 0 
       });
 
       const injectPrevYearsIntoBaseRoster: Array<GoodBadOkTriple> = 
@@ -539,6 +562,8 @@ export class TeamEditorUtils {
 
       // Now find players who aren't the right year:
       const unmatchedPrevYearsToAdd: Array<GoodBadOkTriple> = _.flatMap(fromBaseRoster.prevYears, (p, key) => {
+         const possPctOff = p.off_team_poss_pct?.value || 0;
+         const possPctDef = p.def_team_poss_pct?.value || 0;
 
          if (offSeasonMode) { //might still be playing this season
             const code = p.code || "";
@@ -568,6 +593,11 @@ export class TeamEditorUtils {
             //    || (includeSuperSeniors && (p.roster?.year_class == "Jr"));
             // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
 
+            if (transferringIn) { //(this year only)
+               fromBaseRoster.in_off = fromBaseRoster.in_off + TeamEditorUtils.getOff(p)*possPctOff;
+               fromBaseRoster.in_def = fromBaseRoster.in_def + TeamEditorUtils.getDef(p)*possPctDef;
+            }
+
             return (!fromBaseRoster.dups[dupCode] && (transferringIn || transferringInLastYear)) ? [{
                key: key,
                good: _.clone(p),
@@ -580,7 +610,11 @@ export class TeamEditorUtils {
          }
       });
 
-      return injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd);
+      return { 
+         list: injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd), 
+         in_off: fromBaseRoster.in_off, in_def: fromBaseRoster.in_def, 
+         out_off: fromBaseRoster.out_off, out_def: fromBaseRoster.out_def
+      };
    }
 
    /** Add red-shirt-ish Fr, including transfers */

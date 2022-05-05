@@ -1044,7 +1044,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           offSeasonMode, true, undefined, {}, 
           // Build a transfer set explicitly for this player
           [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || year
-        ).forEach(triple => {
+        ).list.forEach(triple => {
           newOtherPlayerCache[triple.key] = triple;
         });
 

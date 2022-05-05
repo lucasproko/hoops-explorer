@@ -168,7 +168,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::" ]),
             },
             "Seton Hall": {
-               leftTeam: [ "AlYetna::" ],
+               leftTeam: [ "AlYetna::", "BrAiken::" ],
             },
             "Syracuse": {
                leftTeam: [ "CoSwider::" ],

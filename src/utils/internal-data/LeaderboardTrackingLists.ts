@@ -51,7 +51,7 @@ export const PlayerLeaderboardTracking = {
   "__MD_TXFER_2022__":
   _.flatten([
     [ 
-      "AnDavis+Antoine;JeCouisnard+Jerm;FeOdukale;EfAbogidi;DoCarey+Donald;OsOsunniyi;ShMoore+Shakeel"
+      "AnDavis+Antoine;FeOdukale;EfAbogidi;DoCarey+Donald;OsOsunniyi;ShMoore+Shakeel"
     ]
   ]).join(";"),
 
