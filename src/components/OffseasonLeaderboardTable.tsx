@@ -379,11 +379,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          // Txfer in/out
          "sepInOut1": GenericTableOps.addColSeparator(),
          inout_margin: GenericTableOps.addDataCol(
-            "I-O", "For efficiency margin, in-from-transfers minus out-from-transfers",
+            "I-O", "For efficiency margin, in-from-transfers minus out-from-transfers (using projected production for 'in')",
             CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
          ),
          in_margin: GenericTableOps.addDataCol(
-            "TxIn", "For efficiency margin, in-from-transfers",
+            "TxIn", "For efficiency margin, in-from-transfers (using projected production)",
             CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
          ),
          out_margin: GenericTableOps.addDataCol(

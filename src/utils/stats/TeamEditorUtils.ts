@@ -241,15 +241,11 @@ export class TeamEditorUtils {
             return [ triple.orig ].concat(triple.prevYear ? [ triple.prevYear ] : []);
          });
 
-         // const { list: inSeasonPlayerResultsList, ...inOutInfo } = offSeasonMode ? {
-         //    list: [], in_off: 0, in_def: 0, out_off: 0, out_def: 0
-         // } : 
-
       const allDeletedPlayers = _.merge(
          _.fromPairs((teamOverrides.leftTeam || []).map(p => [ p, `code:${p}` ])),
          deletedPlayersIn
       );
-      const { list: basePlayers, ...inOutInfo } = TeamEditorUtils.getBasePlayers(
+      const { list: basePlayers, ...outInfo } = TeamEditorUtils.getBasePlayers(
          team, year, candidatePlayersList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, allDeletedPlayers, transfers, undefined
       );
       const redshirtishFr = (_.isEmpty(frList) || _.isEmpty(candidatePlayersList)) 
@@ -334,6 +330,16 @@ export class TeamEditorUtils {
       if (offSeasonMode) { //(else not projecting, just describing)
          TeamEditorUtils.calcAdvancedAdjustments(basePlayersPlusHypos, team, year, disabledPlayersIn);
       }
+      const inInfo = _.transform(basePlayersPlusHypos, (acc, p) => {
+         const possPctOff = p.ok.off_team_poss_pct?.value || 0;
+         const possPctDef = p.ok.def_team_poss_pct?.value || 0;
+         if (p.orig.team && (p.orig.team != team)) {
+            acc.in_off = acc.in_off + TeamEditorUtils.getOff(p.ok)*possPctOff;
+            acc.in_def = acc.in_def + TeamEditorUtils.getDef(p.ok)*possPctDef;
+            //Diag
+            //if (team == "Wake Forest") console.log(`Arriving [${p.orig.code}][${p.orig.team}][${p.orig.year}]: [${acc.in_off.toFixed(2)}] [${acc.in_def.toFixed(2)}]`);
+         }
+      }, { in_off: 0, in_def: 0 });
 
       //////////////
 
@@ -348,7 +354,7 @@ export class TeamEditorUtils {
       // In eval mode, now concat the actual players that we didn't match with
       const playerProjectionsPlusActual = basePlayersPlusHypos.concat(
          evalMode ? 
-         actualResultsForReview.filter(triple => triple.isOnlyActualResults) : []
+            actualResultsForReview.filter(triple => triple.isOnlyActualResults) : []
       );
 
       const rosterGuards = _.sortBy(playerProjectionsPlusActual.filter(triple => {
@@ -399,7 +405,8 @@ export class TeamEditorUtils {
          avgEff, allDeletedPlayers, 
          allOverrides, unpausedOverrides,
 
-         ...inOutInfo
+         ...outInfo,
+         ...inInfo
       };
    }
 
@@ -449,10 +456,10 @@ export class TeamEditorUtils {
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, mutableExcludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
-   ): { list: GoodBadOkTriple[], in_off: number, in_def: number, out_off: number, out_def: number } {
+   ): { list: GoodBadOkTriple[], out_off: number, out_def: number } {
       if ((year == "All") && !transferYearOverride) { // There's no benefit in showing N seasons of a given team, easier just to add them manually
          //TODO: once we have a set of "addedPlayers" set up, can infer year from the most common, eg if there's 5+ from the same year?
-         return { list: [], in_off: 0, in_def: 0, out_off: 0, out_def: 0 }
+         return { list: [], out_off: 0, out_def: 0 }
       }
 
       const transfersThisYear = transfers[0] || {};
@@ -520,13 +527,6 @@ export class TeamEditorUtils {
 
          if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
             if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {
-
-               if (isTransfer && (doubleTransfer || transferringIn)) { //(this year only)
-                  acc.in_off = acc.in_off + TeamEditorUtils.getOff(p)*possPctOff;
-                  acc.in_def = acc.in_def + TeamEditorUtils.getDef(p)*possPctDef;
-                  //Diag
-                  //if (team == "Maryland") console.log(`Joining [${p.code}]: [${acc.in_off.toFixed(2)}] [${acc.in_def.toFixed(2)}]`);
-               }
                acc.retVal = acc.retVal.concat([{
                   key: key,
                   good: _.clone(p),
@@ -571,9 +571,6 @@ export class TeamEditorUtils {
 
       // Now find players who aren't the right year:
       const unmatchedPrevYearsToAdd: Array<GoodBadOkTriple> = _.flatMap(fromBaseRoster.prevYears, (p, key) => {
-         const possPctOff = p.off_team_poss_pct?.value || 0;
-         const possPctDef = p.def_team_poss_pct?.value || 0;
-
          if (offSeasonMode) { //might still be playing this season
             const code = p.code || "";
             const yearClass = p.roster?.year_class || "??";
@@ -601,12 +598,6 @@ export class TeamEditorUtils {
             // const agedOut = (p.roster?.year_class == "Fr") || (p.roster?.year_class == "So")
             //    || (includeSuperSeniors && (p.roster?.year_class == "Jr"));
             // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
-
-            if (transferringIn) { //(this year only)
-               fromBaseRoster.in_off = fromBaseRoster.in_off + TeamEditorUtils.getOff(p)*possPctOff;
-               fromBaseRoster.in_def = fromBaseRoster.in_def + TeamEditorUtils.getDef(p)*possPctDef;
-            }
-
             return (!fromBaseRoster.dups[dupCode] && (transferringIn || transferringInLastYear)) ? [{
                key: key,
                good: _.clone(p),
@@ -621,7 +612,6 @@ export class TeamEditorUtils {
 
       return { 
          list: injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd), 
-         in_off: fromBaseRoster.in_off, in_def: fromBaseRoster.in_def, 
          out_off: fromBaseRoster.out_off, out_def: fromBaseRoster.out_def
       };
    }
