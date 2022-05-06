@@ -184,7 +184,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     />
   }, [dataSubEvent]);
 
-  const thumbnailUrl = `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
+  const thumbnailUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
   return <Container>
     <Head>
       <meta property="og:image" content={thumbnailUrl} />

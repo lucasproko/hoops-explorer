@@ -24,7 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return undefined;
     } else {
         try {
-            const cacheId = process.env.VERCEL_URL || "default_cache_control";
+            const cacheId = process.env.NEXT_PUBLIC_VERCEL_URL || "default_cache_control";
             const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${parsed.src}_${parsed.oppo}_${parsed.gender}_${parsed.year}_${parsed.tier}.json?cacheId=${cacheId}`, {
                 method: 'get'
             });
