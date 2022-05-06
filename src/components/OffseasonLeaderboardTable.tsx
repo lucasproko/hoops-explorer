@@ -407,7 +407,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
          ),
          sr_margin: GenericTableOps.addDataCol(
-            "SrOut", "For efficiency margin, lost production from last season due to early graduation",
+            "SrOut", "For efficiency margin, lost production from last season due to graduation",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
          ),
 
