@@ -85,7 +85,9 @@ export type TeamEditorProcessingResults = {
    unpausedOverrides: Record<string, PlayerEditModel>, //(active allOverrides)
 
    // Tracking transfers in and out for fun
-   in_off: number, in_def: number, out_off: number, out_def: number
+   in_off: number, in_def: number, out_off: number, out_def: number,
+   sr_off: number, sr_def: number, nba_off: number, nba_def: number,
+   fr_net: number, dev_off: number, dev_def: number
 }
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -337,9 +339,22 @@ export class TeamEditorUtils {
             acc.in_off = acc.in_off + TeamEditorUtils.getOff(p.ok)*possPctOff;
             acc.in_def = acc.in_def + TeamEditorUtils.getDef(p.ok)*possPctDef;
             //Diag
-            //if (team == "Wake Forest") console.log(`Arriving [${p.orig.code}][${p.orig.team}][${p.orig.year}]: [${acc.in_off.toFixed(2)}] [${acc.in_def.toFixed(2)}]`);
+            //if (team == "Team") console.log(`Arriving [${p.orig.code}][${p.orig.team}][${p.orig.year}]: [${acc.in_off.toFixed(2)}] [${acc.in_def.toFixed(2)}]`);
+         } else if (p.manualProfile) {
+            acc.fr_net = acc.fr_net + (TeamEditorUtils.getOff(p.ok) + TeamEditorUtils.getOff(p.ok))*possPctOff; 
+         } else if ((p.orig.team == team) && p.orig.code) { // development
+            const possProjPctOff = p.orig.off_team_poss_pct?.value || 0;
+            const possProjPctDef = p.orig.def_team_poss_pct?.value || 0;
+            acc.dev_off = acc.dev_off + (
+               TeamEditorUtils.getOff(p.ok)*possPctOff - TeamEditorUtils.getOff(p.orig)*possProjPctOff
+            );
+            acc.dev_def = acc.dev_def + (
+               TeamEditorUtils.getDef(p.ok)*possPctDef - TeamEditorUtils.getDef(p.orig)*possProjPctDef
+            );               
+            //Diag
+            //if (team == "Team") console.log(`Developing [${p.orig.code}][${p.orig.team}][${p.orig.year}]: [${acc.dev_off.toFixed(2)}] [${acc.dev_def.toFixed(2)}]`);
          }
-      }, { in_off: 0, in_def: 0 });
+      }, { in_off: 0, in_def: 0, fr_net: 0, dev_off: 0, dev_def: 0 });
 
       //////////////
 
@@ -456,10 +471,10 @@ export class TeamEditorUtils {
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, mutableExcludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
-   ): { list: GoodBadOkTriple[], out_off: number, out_def: number } {
+   ): { list: GoodBadOkTriple[], out_off: number, out_def: number, sr_off: number, sr_def: number, nba_off: number, nba_def: number } {
       if ((year == "All") && !transferYearOverride) { // There's no benefit in showing N seasons of a given team, easier just to add them manually
          //TODO: once we have a set of "addedPlayers" set up, can infer year from the most common, eg if there's 5+ from the same year?
-         return { list: [], out_off: 0, out_def: 0 }
+         return { list: [], out_off: 0, out_def: 0, sr_off: 0, sr_def: 0, nba_off: 0, nba_def: 0 }
       }
 
       const transfersThisYear = transfers[0] || {};
@@ -502,9 +517,9 @@ export class TeamEditorUtils {
             transfersLastYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
          );
          const doubleTransfer = getMaybeDoubleTransfer(code, p); //(note this always implies transferringIn in practice)
+         const notAgingOut = includeSuperSeniors || (p.roster?.year_class != "Sr") || (superSeniorsReturning?.has(key));
          const isNotLeaving = (transferringIn || !offSeasonMode || (           
-            (includeSuperSeniors || (p.roster?.year_class != "Sr") || (superSeniorsReturning?.has(key)))
-               && !isTransferringOut
+            notAgingOut && !isTransferringOut
          ));
          const onTeam = (wasOnTeam || wasPlayerTxferLastYear);
          const notOnExcludeList = !mutableExcludeSet[key];
@@ -512,12 +527,27 @@ export class TeamEditorUtils {
             mutableExcludeSet[key] = p.key; //(fill this in with the name of the player for display purposes)
          }
 
-         if (wasOnTeam && isTransferringOut && !isTransferringOutNba && (p.year == year)) { //(this year only)
+         if (wasOnTeam && isTransferringOut && (p.year == year)) { //(this year only)
             if (!acc.txferCountdups[key]) {
-               acc.out_off = acc.out_off + TeamEditorUtils.getOff(p)*possPctOff;
-               acc.out_def = acc.out_def + TeamEditorUtils.getDef(p)*possPctDef;
+               if (isTransferringOutNba) {
+                  acc.nba_off = acc.nba_off + TeamEditorUtils.getOff(p)*possPctOff;
+                  acc.nba_def = acc.nba_def + TeamEditorUtils.getDef(p)*possPctDef;
+                  //Diag
+                  //if (team == "Team") console.log(`Leaving(NBA) [${p.code}][${p.year}]: [${acc.nba_off.toFixed(2)}] [${acc.nba_def.toFixed(2)}]`);
+               } else {
+                  acc.out_off = acc.out_off + TeamEditorUtils.getOff(p)*possPctOff;
+                  acc.out_def = acc.out_def + TeamEditorUtils.getDef(p)*possPctDef;
+                  //Diag
+                  //if (team == "Team") console.log(`Leaving(Portal) [${p.code}][${p.year}]: [${acc.out_off.toFixed(2)}] [${acc.out_def.toFixed(2)}]`);
+               }
+               acc.txferCountdups[key] = true;
+            }
+         } else if (wasOnTeam && !notAgingOut && (p.year == year)) {
+            if (!acc.txferCountdups[key]) {
+               acc.sr_off = acc.sr_off + TeamEditorUtils.getOff(p)*possPctOff;
+               acc.sr_def = acc.sr_def + TeamEditorUtils.getDef(p)*possPctDef;
                //Diag
-               //if (team == "Team") console.log(`Leaving [${p.code}][${p.year}]: [${acc.out_off.toFixed(2)}] [${acc.out_def.toFixed(2)}]`);
+               //if (team == "Team") console.log(`Leaving(Sr) [${p.code}][${p.year}]: [${acc.sr_off.toFixed(2)}] [${acc.sr_def.toFixed(2)}]`);
                acc.txferCountdups[key] = true;
             }
          }
@@ -550,7 +580,7 @@ export class TeamEditorUtils {
          txferCountdups: {} as Record<string, boolean>, 
          prevYears: {} as Record<string, IndivStatSet>,
          inAndLeaving: {} as Record<string, boolean>, //(not filled in because we can't account for early departures)
-         in_off: 0, in_def: 0, out_off: 0, out_def: 0 
+         out_off: 0, out_def: 0, nba_off: 0, nba_def: 0, sr_off: 0, sr_def: 0
       });
 
       const injectPrevYearsIntoBaseRoster: Array<GoodBadOkTriple> = 
@@ -612,7 +642,9 @@ export class TeamEditorUtils {
 
       return { 
          list: injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd), 
-         out_off: fromBaseRoster.out_off, out_def: fromBaseRoster.out_def
+         out_off: fromBaseRoster.out_off, out_def: fromBaseRoster.out_def,
+         sr_off: fromBaseRoster.sr_off, sr_def: fromBaseRoster.sr_def,
+         nba_off: fromBaseRoster.nba_off, nba_def: fromBaseRoster.nba_def,
       };
    }
 

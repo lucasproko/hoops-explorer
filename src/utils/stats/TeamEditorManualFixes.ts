@@ -80,6 +80,9 @@ export class TeamEditorManualFixes {
             "Iowa": {
                superSeniorsReturning: new Set([ "JoBohannon::" ]),
             },
+            "Illinois": {
+               superSeniorsReturning: new Set([ "DaWilliams::" ]),
+            },
             "Kentucky": {
                superSeniorsReturning: new Set([ "DaMintz::" ]),
             },   

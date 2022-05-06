@@ -351,6 +351,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             rosterInfo: `${okTotals.numSuperstars} / ${okTotals.numStars} / ${okTotals.numStarters} / ${okTotals.numRotation}`,
             // Some transfer diags
             in_off: pxResults.in_off, in_def: pxResults.in_def, out_off: pxResults.out_off, out_def: pxResults.out_def, 
+            nba_off: pxResults.nba_off, nba_def: pxResults.nba_def, sr_off: pxResults.sr_off, sr_def: pxResults.sr_def, 
+            dev_off: pxResults.dev_off, dev_def: pxResults.dev_def, fr_net: pxResults.fr_net
          };
       }).sortBy(t => -t.net).value();
 
@@ -378,16 +380,33 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
          // Txfer in/out
          "sepInOut1": GenericTableOps.addColSeparator(),
+         dev_margin: GenericTableOps.addDataCol(
+            "Dev", "For efficiency margin, expected increase in production from returning players",
+            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
+         ),
          inout_margin: GenericTableOps.addDataCol(
-            "I-O", "For efficiency margin, in-from-transfers minus out-from-transfers (using projected production for 'in')",
+            "I-O", "For efficiency margin, in-from-transfers minus out-from-transfers/NBA/Sr (using projected production for 'in')",
+            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
+         ),
+         "sepInOut1.5": GenericTableOps.addColSeparator(0.25),
+         fr_margin: GenericTableOps.addDataCol(
+            "FrIn", "For efficiency margin, projected production from Freshmen",
             CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
          ),
          in_margin: GenericTableOps.addDataCol(
-            "TxIn", "For efficiency margin, in-from-transfers (using projected production)",
+            "TxIn", "For efficiency margin, projected production from incoming transfers",
             CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
          ),
          out_margin: GenericTableOps.addDataCol(
-            "TxOut", "For efficiency margin, in-from-transfers",
+            "TxOut", "For efficiency margin, lost production from last season due to transfers",
+            CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
+         ),
+         nba_margin: GenericTableOps.addDataCol(
+            "NBA", "For efficiency margin, lost production from last season due to early NBA departures",
+            CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
+         ),
+         sr_margin: GenericTableOps.addDataCol(
+            "SrOut", "For efficiency margin, lost production from last season due to early graduation",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
          ),
 
@@ -425,7 +444,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             startingState.evalMode ? [] : [ "actual_grade" ]
          ).concat(
             startingState.transferInOutMode ? [ "high_grade", "low_grade" ] : [
-               "sepInOut1", "inout_margin", "in_margin", "out_margin"
+               "sepInOut1", "dev_margin", "inout_margin", "sepInOut1.5", "in_margin", "out_margin", "nba_margin", "fr_margin", "sr_margin"
             ]
          )
       ) as Record<string, GenericTableColProps>;
@@ -503,6 +522,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             ]
          ));
 
+         const totalInOutMargin = t.fr_net + (t.in_off - t.in_def ) - (t.out_off - t.out_def) - (t.nba_off - t.nba_def) - (t.sr_off - t.sr_def);
          return subHeaderRows.concat([ GenericTableOps.buildDataRow({
                title: <span>{(confs != "") ? <sup><small>{1 + netRankIn}</small>&nbsp;</sup> : null}{teamLink}</span>,
                conf: <small>{t.conf}</small>,
@@ -523,9 +543,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                high_grade: goodNet.off_net,
                low_grade: badNet.off_net,
 
-               inout_margin: { value: (t.in_off - t.in_def ) - (t.out_off - t.out_def) },
+               dev_margin: { value: t.dev_off - t.dev_def },
+               inout_margin: { value: totalInOutMargin },
+               fr_margin: { value: t.fr_net },
                in_margin: { value: t.in_off - t.in_def },
                out_margin: { value: t.out_off - t.out_def },
+               nba_margin: { value: t.nba_off - t.nba_def },
+               sr_margin: { value: t.sr_off - t.sr_def },
 
                roster: <span style={{whiteSpace: "nowrap"}}><small>{t.rosterInfo}</small></span>,
                edit: <OverlayTrigger overlay={editTooltip} placement="auto">
