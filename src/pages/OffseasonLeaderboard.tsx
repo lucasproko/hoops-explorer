@@ -77,6 +77,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const onOffseasonLeaderboardParamsChange = (rawParams: OffseasonLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
 
+      (!rawParams.transferInOutMode) ? [ "transferInOutMode" ] : [],
       (!rawParams.teamView) ? [ "teamView" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
 
