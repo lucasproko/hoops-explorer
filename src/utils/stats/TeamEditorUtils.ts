@@ -343,16 +343,19 @@ export class TeamEditorUtils {
          } else if (p.manualProfile) {
             acc.fr_net = acc.fr_net + (TeamEditorUtils.getOff(p.ok) + TeamEditorUtils.getOff(p.ok))*possPctOff; 
          } else if ((p.orig.team == team) && p.orig.code) { // development
-            const possProjPctOff = p.orig.off_team_poss_pct?.value || 0;
-            const possProjPctDef = p.orig.def_team_poss_pct?.value || 0;
+            const possActPctOff = p.orig.off_team_poss_pct?.value || 0;
+            const possActPctDef = p.orig.def_team_poss_pct?.value || 0;
             acc.dev_off = acc.dev_off + (
-               TeamEditorUtils.getOff(p.ok)*possPctOff - TeamEditorUtils.getOff(p.orig)*possProjPctOff
+               TeamEditorUtils.getOff(p.ok)*possPctOff - TeamEditorUtils.getOff(p.orig)*possActPctOff
             );
             acc.dev_def = acc.dev_def + (
-               TeamEditorUtils.getDef(p.ok)*possPctDef - TeamEditorUtils.getDef(p.orig)*possProjPctDef
+               TeamEditorUtils.getDef(p.ok)*possPctDef - TeamEditorUtils.getDef(p.orig)*possActPctDef
             );               
             //Diag
-            //if (team == "Team") console.log(`Developing [${p.orig.code}][${p.orig.team}][${p.orig.year}]: [${acc.dev_off.toFixed(2)}] [${acc.dev_def.toFixed(2)}]`);
+            // if (team == "Kansas") console.log(`Developing [${p.orig.code}][${p.orig.team}][${p.orig.year}] / ` +
+            //    `off:[${TeamEditorUtils.getOff(p.ok).toFixed(2)}][${TeamEditorUtils.getOff(p.orig).toFixed(2)}] ` +
+            //    `mins:[${possPctOff.toFixed(2)}][${possActPctOff.toFixed(2)}]: ` +
+            //    `[${acc.dev_off.toFixed(2)}] [${acc.dev_def.toFixed(2)}]`);
          }
       }, { in_off: 0, in_def: 0, fr_net: 0, dev_off: 0, dev_def: 0 });
 

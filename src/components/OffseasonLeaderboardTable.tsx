@@ -389,10 +389,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
          ),
          "sepInOut1.5": GenericTableOps.addColSeparator(0.25),
-         fr_margin: GenericTableOps.addDataCol(
-            "FrIn", "For efficiency margin, projected production from Freshmen",
-            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
-         ),
          in_margin: GenericTableOps.addDataCol(
             "TxIn", "For efficiency margin, projected production from incoming transfers",
             CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
@@ -400,6 +396,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          out_margin: GenericTableOps.addDataCol(
             "TxOut", "For efficiency margin, lost production from last season due to transfers",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
+         ),
+         "sepInOut1.6": GenericTableOps.addColSeparator(0.25),
+         fr_margin: GenericTableOps.addDataCol(
+            "FrIn", "For efficiency margin, projected production from Freshmen",
+            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
          ),
          nba_margin: GenericTableOps.addDataCol(
             "NBA", "For efficiency margin, lost production from last season due to early NBA departures",
@@ -444,7 +445,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             startingState.evalMode ? [] : [ "actual_grade" ]
          ).concat(
             startingState.transferInOutMode ? [ "high_grade", "low_grade" ] : [
-               "sepInOut1", "dev_margin", "inout_margin", "sepInOut1.5", "in_margin", "out_margin", "nba_margin", "fr_margin", "sr_margin"
+               "sepInOut1", "dev_margin", "inout_margin", "sepInOut1.5", "sepInOut1.6", "in_margin", "out_margin", "nba_margin", "fr_margin", "sr_margin"
             ]
          )
       ) as Record<string, GenericTableColProps>;
@@ -511,17 +512,24 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                return "";
             }
          };
+         const yearOnYearDetails = GenericTableOps.buildSubHeaderRow([
+            [ <div/>, 5 ], [ <i>Net Yr-on-Yr</i>, 4 ], [ <i>Yr-on-Yr gain/loss details</i> , 6 ]
+         ], "small text-center");
+
          const subHeaderMessage = pickSubHeaderMessage(netRank);
-         const subHeaderRows = (confs || !subHeaderMessage) ? [] : ([
+         const subHeaderRows = (confs || !subHeaderMessage) ? 
+            (((netRankIn == 0) && startingState.transferInOutMode) ? [ yearOnYearDetails ] : [])
+         : ([
             GenericTableOps.buildSubHeaderRow([
-               [ <div/>, 4 ], [ <i>{subHeaderMessage}</i>, 9 ]
+               [ <div/>, 4 ], [ <i>{subHeaderMessage}</i>, startingState.transferInOutMode ? 11 : 9 ]
             ], "small text-center") 
          ].concat(
-            (netRank == 0) ? [] : [
-               GenericTableOps.buildHeaderRepeatRow({}, "small")
-            ]
+            (netRank == 0) ? [ yearOnYearDetails ] 
+            : (
+            [ GenericTableOps.buildHeaderRepeatRow({}, "small") ]
+               .concat(startingState.transferInOutMode ? [ yearOnYearDetails ] : [])
+            )
          ));
-
          const totalInOutMargin = t.fr_net + (t.in_off - t.in_def ) - (t.out_off - t.out_def) - (t.nba_off - t.nba_def) - (t.sr_off - t.sr_def);
          return subHeaderRows.concat([ GenericTableOps.buildDataRow({
                title: <span>{(confs != "") ? <sup><small>{1 + netRankIn}</small>&nbsp;</sup> : null}{teamLink}</span>,
