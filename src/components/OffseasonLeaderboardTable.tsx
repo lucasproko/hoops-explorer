@@ -76,7 +76,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       : "2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
    const [yearRedirect, setYearRedirect] = useState(startingState.year || DateUtils.inSeasonYear); //TODO lets us jump between off-seasons and normal leaderboards
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
-   const [team,  setTeam] = useState(startingState.teamView || "");
+   const [teamView,  setTeamView] = useState(startingState.teamView || "");
 
    const [transferInOutMode, setTransferInOutMode] = useState(startingState.transferInOutMode || false);
    const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
@@ -122,13 +122,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    /** When the params change */
    useEffect(() => {
       onChangeState(_.merge({
-         year: yearRedirect, teamView: team, confs, evalMode: evalMode, transferInOutMode: transferInOutMode,
+         year: yearRedirect, teamView: teamView, confs, evalMode: evalMode, transferInOutMode: transferInOutMode,
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
          );
       }).fromPairs().value()));
-   }, [ team, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode ]);
+   }, [ teamView, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -282,7 +282,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const maybeOverride = teamOverrides[t] || {};
 
          const addedPlayers = maybeOverride.addedPlayers ? TeamEditorUtils.fillInAddedPlayers(
-            team, year,
+            t, year,
             maybeOverride.addedPlayers || "", playerPartition[t] || [], dataEvent.transfers?.[1] || {},
             false, maybeOverride.superSeniorsBack || false
          ) : {};
@@ -566,31 +566,31 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
                roster: <span style={{whiteSpace: "nowrap"}}><small>{t.rosterInfo}</small></span>,
                edit: <OverlayTrigger overlay={editTooltip} placement="auto">
-                  <Button variant={(t.team == team) ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
+                  <Button variant={(t.team == teamView) ? "secondary" : "outline-secondary"} size="sm" onClick={(ev: any) => {
                      friendlyChange(() => {
-                        if (team == t.team) {
-                           setTeam("");
+                        if (teamView == t.team) {
+                           setTeamView("");
                         } else {
-                           setTeam(t.team);
+                           setTeamView(t.team);
                         }
                      }, true);
                }}><FontAwesomeIcon icon={faEye} /></Button></OverlayTrigger>,
             }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-         ]).concat((team == t.team) ? [
+         ]).concat((teamView == t.team) ? [
             GenericTableOps.buildTextRow(
                <TeamEditorTable
                   startingState={{
-                     team, gender, year,
+                     team: teamView, gender, year,
                      evalMode: evalMode,
-                     ...(teamOverrides[team] || {})
+                     ...(teamOverrides[teamView] || {})
                   }}
                   dataEvent={dataEvent}
                   onChangeState={(newState) => {
                      const newOverrides = _.cloneDeep(teamOverrides);
                      if (_.isEmpty(newState)) {
-                        delete newOverrides[team];
+                        delete newOverrides[teamView];
                      } else {
-                        newOverrides[team] = newState;
+                        newOverrides[teamView] = newState;
                      }
                      friendlyChange(() => {
                         setTeamOverrides(newOverrides);
@@ -609,7 +609,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          cellTooltipMode={undefined}
       />;
    }, [
-      gender, year, confs, team, dataEvent, teamOverrides, transferInOutMode, evalMode
+      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode
    ]);
 
    // 3] View

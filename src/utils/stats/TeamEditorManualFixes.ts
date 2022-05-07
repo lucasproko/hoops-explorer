@@ -128,6 +128,9 @@ export class TeamEditorManualFixes {
 
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2022_23:  Record<string, TeamEditorManualFixModel> = { 
+            "BYU": {
+               superSeniorsReturning: new Set([ "GiGeorge::" ])          
+            },
             "Colorado St.": {
                superSeniorsReturning: new Set([ "KeMoore::" ])          
             },
