@@ -20,12 +20,13 @@ type Props = {
   readonly text: string | React.ReactNode,
   readonly truthVal: boolean,
   readonly onSelect: () => void,
+  readonly disabled?: boolean,
   readonly helpLink?: string
 };
 
-const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({text, truthVal, onSelect, helpLink}) => {
+const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({text, truthVal, onSelect, disabled, helpLink}) => {
 
-  return <Dropdown.Item as={Button}>
+  return <Dropdown.Item as={Button} disabled={disabled}>
       <div onClick={(e: any) => { if (!e.target.href) onSelect() }}>
         {_.isString(text) ? <span>{text}</span> : text}
         {helpLink ? <span>&nbsp;<a  target="_blank" href={helpLink}>(?)</a></span> : null}

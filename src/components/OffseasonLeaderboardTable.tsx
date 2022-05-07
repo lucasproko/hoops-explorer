@@ -74,11 +74,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [year, setYear] = useState(startingState.year ? 
       (startingState.evalMode ? startingState.year : DateUtils.getPrevYear(startingState.year))
       : "2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
-   const [yearRedirect, setYearRedirect] = useState(startingState.year || "2022/23"); //TODO lets us jump between off-seasons and normal leaderboards
+   const [yearRedirect, setYearRedirect] = useState(startingState.year || DateUtils.inSeasonYear); //TODO lets us jump between off-seasons and normal leaderboards
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
    const [team,  setTeam] = useState(startingState.teamView || "");
 
    const [transferInOutMode, setTransferInOutMode] = useState(startingState.transferInOutMode || false);
+   const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
 
    /** Converts a list of params to their team's key/value params  */
    const buildOverrides = (inOverrides: Record<string, string>) => {
@@ -121,13 +122,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    /** When the params change */
    useEffect(() => {
       onChangeState(_.merge({
-         year: yearRedirect, teamView: team, confs, evalMode: startingState.evalMode, transferInOutMode: transferInOutMode,
+         year: yearRedirect, teamView: team, confs, evalMode: evalMode, transferInOutMode: transferInOutMode,
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
          );
       }).fromPairs().value()));
-   }, [ team, confs, teamOverrides, yearRedirect, transferInOutMode ]);
+   }, [ team, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -292,7 +293,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const pxResults = TeamEditorUtils.teamBuildingPipeline(
             gender, t, year,
             playerPartition[t] || [], dataEvent.transfers || [],
-            true, startingState.evalMode || false,
+            true, evalMode || false,
             addedPlayers, overrides, deletedPlayers, disabledPlayers,
             maybeOverride.superSeniorsBack || false, false,
             avgEff, frPartition[t] || {}
@@ -336,10 +337,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          );
 
          // Eval mode:
-         const totalActualMins = startingState.evalMode ? _.sumBy(pxResults.actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
+         const totalActualMins = evalMode ? _.sumBy(pxResults.actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
          const finalActualEffAdj = totalActualMins ? 
            5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(t, year) : 0;
-         const actualTotals = startingState.evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
+         const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
          const dummyTeamActual = actualTotals ? {
            off_net: { value: actualTotals.net },
            off_adj_ppp: { value: actualTotals.off + avgEff },
@@ -364,7 +365,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       const offEffToRankMap = _.chain(teamRanks).sortBy(t => -t.off).map((t, rank) => [t.off, rank]).fromPairs().value();
       const defEffToRankMap = _.chain(teamRanks).sortBy(t =>t.def).map((t, rank) => [t.def, rank]).fromPairs().value();
       const netEffToRankMap = confs ? _.chain(teamRanks).sortBy(t => -t.net).map((t, rank) => [t.net, rank]).fromPairs().value() : {};
-      const actualNetEffToRankMap = startingState.evalMode ? 
+      const actualNetEffToRankMap = evalMode ? 
          _.chain(teamRanks).sortBy(t => -(t.actualNet || 0)).map((t, rank) => [t.actualNet || 0, rank]).fromPairs().value() : undefined;
 
       GradeUtils.buildAndInjectDivisionStatsLUT(mutableDivisionStats);
@@ -446,7 +447,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
          edit: GenericTableOps.addDataCol("", "Edit the team projections", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
       }, ([] as string[]).concat(
-            startingState.evalMode ? [] : [ "actual_grade" ]
+            evalMode ? [] : [ "actual_grade" ]
          ).concat(
             transferInOutMode ? [ "high_grade", "low_grade" ] : [
                "sepInOut1", "dev_margin", "inout_margin", "sepInOut1.5", "sepInOut1.6", "in_margin", "out_margin", "nba_margin", "fr_margin", "sr_margin"
@@ -467,7 +468,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
          const teamParams = {
             year, gender, team: t.team,
-            evalMode: startingState.evalMode,
+            evalMode: evalMode,
             ...(teamOverrides[t.team] || {})
          };
 
@@ -580,7 +581,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                <TeamEditorTable
                   startingState={{
                      team, gender, year,
-                     evalMode: startingState.evalMode,
+                     evalMode: evalMode,
                      ...(teamOverrides[team] || {})
                   }}
                   dataEvent={dataEvent}
@@ -608,7 +609,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          cellTooltipMode={undefined}
       />;
    }, [
-      gender, year, confs, team, dataEvent, teamOverrides, transferInOutMode
+      gender, year, confs, team, dataEvent, teamOverrides, transferInOutMode, evalMode
    ]);
 
    // 3] View
@@ -650,8 +651,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          </Col>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
-               isDisabled={startingState.evalMode}
-               value={stringToOption(startingState.evalMode ? DateUtils.getNextYear(year) : "2022/23")}
+               isDisabled={evalMode || transferInOutMode}
+               value={stringToOption((evalMode || transferInOutMode) ? DateUtils.getNextYear(year) : "2022/23")}
                options={DateUtils.lboardYearListWithNextYear(tier == "High").map(r => stringToOption(r))}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
@@ -689,8 +690,26 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                <GenericTogglingMenuItem
                   text={"Show breakdown of team's offseason metrics"}
                   truthVal={transferInOutMode}
-                  onSelect={() => friendlyChange(() => setTransferInOutMode(!transferInOutMode), true)}
+                  disabled={evalMode}
+                  onSelect={() => friendlyChange(() => setTransferInOutMode(!transferInOutMode), !evalMode)}
                   />
+               <GenericTogglingMenuItem
+                  text={"Review mode"}
+                  truthVal={evalMode}
+                  disabled={transferInOutMode}
+                  onSelect={() => friendlyChange(() => {
+                     if (evalMode) { // Switching off, go back to current year
+                        setYearRedirect(DateUtils.inSeasonYear);
+                        setYear(DateUtils.getPrevYear(DateUtils.inSeasonYear));
+                        setEvalMode(false);  //(do this last so don't run into "redirect to in-season rankings")
+                     } else { //Switching on, 20/21 *offseason* is the only season we support
+                        setEvalMode(true); //(do this first so don't run into "redirect to in-season rankings")
+                        const onlySeasonSupported = DateUtils.getPrevYear(DateUtils.offseasonYear);
+                        setYearRedirect(onlySeasonSupported);
+                        setYear(onlySeasonSupported);
+                     }
+                  }, true)}
+               />
             </GenericTogglingMenu>
          </Col>               
       </Form.Group>

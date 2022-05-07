@@ -61,6 +61,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
   const [ currTier, setCurrTier ] = useState("");
+  const [ currEvalMode, setCurrEvalMode ] = useState(false);
 
   // Game filter
 
@@ -78,12 +79,12 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
 
       (!rawParams.transferInOutMode) ? [ "transferInOutMode" ] : [],
+      (!rawParams.evalMode) ? [ "evalMode" ] : [],
       (!rawParams.teamView) ? [ "teamView" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
 
     ]));
-
-    if (rawParams.year && (rawParams.year != "2022/23") && !rawParams.evalMode) { //TODO: un-hardwire this
+    if (rawParams.year && (rawParams.year != DateUtils.inSeasonYear) && !rawParams.evalMode && !rawParams.transferInOutMode) { //TODO: un-hardwire this
       const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
       if (typeof window !== `undefined`) window.location.href = newUrl;
 
@@ -105,20 +106,19 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear =  paramObj.evalMode ?
-      (paramObj.year || "2020/21") : //(first year we can do a review)
-      DateUtils.getPrevYear(paramObj.year || "2022/23"); //TODO: fix this
+      (paramObj.year || DateUtils.getPrevYear(DateUtils.offseasonYear)) : //(first year we can do a review)
+      DateUtils.getPrevYear(paramObj.year || DateUtils.inSeasonYear); //TODO: fix this
     const tier = (paramObj.tier || "All");
 
     const transferYear = (DateUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
     const prevYear = DateUtils.getPrevYear(fullYear)
     const transferYearPrev = (DateUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
-
-    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier)) { // Only need to do this if the data source has changed
+    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (paramObj.evalMode != currEvalMode)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
       setCurrTier(tier);
-
+      setCurrEvalMode(paramObj.evalMode || false);
       const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
         "all", gender, fullYear, tier, transferYears, paramObj.evalMode ? [ DateUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
       );
