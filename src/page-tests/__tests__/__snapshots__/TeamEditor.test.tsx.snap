@@ -6,11 +6,11 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
 >
   <Head>
     <meta
-      content="http://localhost:3000/thumbnails/player_leaderboard_thumbnail.png"
+      content="https://server/thumbnails/player_leaderboard_thumbnail.png"
       property="og:image"
     />
     <meta
-      content="http://localhost:3000/thumbnails/player_leaderboard_thumbnail.png"
+      content="https://server/thumbnails/player_leaderboard_thumbnail.png"
       name="twitter:image"
     />
   </Head>

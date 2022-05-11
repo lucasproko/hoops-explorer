@@ -392,14 +392,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     </Tooltip>
 
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
-      const override = pxResults.unpausedOverrides[triple.key];
+      const maybeOverride: PlayerEditModel | undefined = pxResults.unpausedOverrides[triple.key];
       
       const rosterInfo = triple.orig?.roster ?
         `${triple.orig.roster?.height || "?-?"} ${
           (offSeasonMode && !triple.isOnlyActualResults) ? 
             TeamEditorUtils.getNextClass(triple.orig.roster?.year_class) : triple.orig.roster?.year_class
         }` : (
-          override.height ? `${override.height}` : undefined
+          maybeOverride?.height ? `${maybeOverride.height}` : undefined
         );
 
       const playerLeaderboardParams = {
@@ -459,9 +459,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       } : undefined;
 
       const extraInfoOffObj = 
-        _.isNil(override?.global_off_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
+        _.isNil(maybeOverride?.global_off_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
       const extraInfoDefObj = 
-        _.isNil(override?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
+        _.isNil(maybeOverride?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
 
       const okNet = TeamEditorUtils.getNet(triple.ok, okProdFactor);
       const okOff = TeamEditorUtils.getOff(triple.ok, okProdFactor);
@@ -483,7 +483,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         ),
         mpg: isFiltered ? undefined : { 
           value: (triple.ok.off_team_poss_pct?.value || 0)*40,
-          extraInfo: _.isNil(override?.mins) ? undefined : "Overridden, see Player Editor tab"
+          extraInfo: _.isNil(maybeOverride?.mins) ? undefined : "Overridden, see Player Editor tab"
         },
         ortg: triple.ok.off_rtg,
         usage: triple.ok.off_usage,
