@@ -57,10 +57,12 @@ export class LineupTableUtils {
           const offLuckAdj = adjustForLuck ? LuckUtils.calcOffPlayerLuckAdj(
             mutableP, globalPlayerStats, avgEfficiency
           ) : undefined;
+          if (offLuckAdj) mutableP.off_luck = offLuckAdj;
           // Calculate luck for defense - over the baseline query, but will regress to opponent SoS
           const defLuckAdj = adjustForLuck ? LuckUtils.calcDefPlayerLuckAdj(
             mutableP, globalPlayerStats, avgEfficiency
           ) : undefined;
+          if (defLuckAdj) mutableP.def_luck = defLuckAdj;
           LuckUtils.injectLuck(mutableP, offLuckAdj, defLuckAdj);
         }
 

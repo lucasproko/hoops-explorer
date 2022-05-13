@@ -67,7 +67,7 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
             Sample_Off_3PR [<b>{(100*o.sampleOff3PRate).toFixed(1)}</b>%]
             </li>
             <ul>
-              <li><i>(The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting agains that.)</i></li>
+              <li><i>(The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting against that.)</i></li>
               <li>Adj_3P_Off: [<b>{(100*(o.delta3P + o.sample3P)).toFixed(1)}</b>%] = <i>Weighted_Mean</i>(
                 Expected_3P% [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%], Base_3PA [<b>{o.base3PA.toFixed(0)}</b>],
               Sample_3P% [<b>{(100*o.sample3P).toFixed(1)}</b>%], Sample_3PA [<b>{o.sample3PA.toFixed(0)}</b>] )</li>

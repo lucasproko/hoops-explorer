@@ -110,7 +110,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
         <ul>
           <li>
             <i>
-              (The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting agains that.)
+              (The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting against that.)
             </i>
           </li>
           <li>
@@ -653,7 +653,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
         <ul>
           <li>
             <i>
-              (The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting agains that.)
+              (The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting against that.)
             </i>
           </li>
           <li>

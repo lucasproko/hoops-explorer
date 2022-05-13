@@ -20071,6 +20071,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -1.748506675197845,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 97.93561913082087,
                         "override": "Luck adjusted",
@@ -20184,6 +20190,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.5787671232876712,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 116.22380931760613,
@@ -20313,6 +20325,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -0.8160190779839696,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 103.73082160102601,
                         "override": "Luck adjusted",
@@ -20426,6 +20444,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.671875,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 124.85726151245744,
@@ -20555,6 +20579,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -1.6024649055627949,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 98.84955759282161,
                         "override": "Luck adjusted",
@@ -20668,6 +20698,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.5955056179775281,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 117.59977517402329,
@@ -20797,6 +20833,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -2.6155013524449546,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 91.2892111124598,
                         "override": "Luck adjusted",
@@ -20910,6 +20952,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.2073170731707317,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 96.36310974319929,
@@ -21039,6 +21087,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -2.642865414269929,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 91.88787789273368,
                         "override": "Luck adjusted",
@@ -21152,6 +21206,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.2,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 99.76347678499295,
@@ -21281,6 +21341,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 1.7403600825574757,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 130.4212061109622,
                         "override": "Luck adjusted",
@@ -21394,6 +21460,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.6666666666666666,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 174.561023832862,
@@ -21536,6 +21608,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -1.6024649055627949,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 98.84955759282161,
                                 "override": "Luck adjusted",
@@ -21649,6 +21727,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.5955056179775281,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 117.59977517402329,
@@ -21785,6 +21869,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -1.6024649055627949,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 98.84955759282161,
                                 "override": "Luck adjusted",
@@ -21898,6 +21988,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.5955056179775281,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 117.59977517402329,
@@ -22036,6 +22132,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -0.8160190779839696,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Luck adjusted",
@@ -22149,6 +22251,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.671875,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 124.85726151245744,
@@ -22285,6 +22393,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -0.8160190779839696,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Luck adjusted",
@@ -22398,6 +22512,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.671875,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 124.85726151245744,
@@ -22536,6 +22656,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -1.748506675197845,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Luck adjusted",
@@ -22649,6 +22775,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.5787671232876712,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 116.22380931760613,
@@ -22785,6 +22917,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -1.748506675197845,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Luck adjusted",
@@ -22898,6 +23036,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.5787671232876712,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 116.22380931760613,
@@ -23036,6 +23180,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 1.7403600825574757,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 130.4212061109622,
                                 "override": "Luck adjusted",
@@ -23149,6 +23299,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.6666666666666666,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 174.561023832862,
@@ -23285,6 +23441,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 1.7403600825574757,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 130.4212061109622,
                                 "override": "Luck adjusted",
@@ -23398,6 +23560,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.6666666666666666,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 174.561023832862,
@@ -23536,6 +23704,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -2.642865414269929,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.88787789273368,
                                 "override": "Luck adjusted",
@@ -23649,6 +23823,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.2,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 99.76347678499295,
@@ -23785,6 +23965,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -2.642865414269929,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.88787789273368,
                                 "override": "Luck adjusted",
@@ -23898,6 +24084,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.2,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 99.76347678499295,
@@ -24036,6 +24228,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -2.6155013524449546,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Luck adjusted",
@@ -24149,6 +24347,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.2073170731707317,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 96.36310974319929,
@@ -24285,6 +24489,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": -2.6155013524449546,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Luck adjusted",
@@ -24398,6 +24608,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 </span>,
                                 "value": 0.2073170731707317,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 96.36310974319929,
@@ -24553,6 +24769,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -1.6024649055627949,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 98.84955759282161,
                         "override": "Luck adjusted",
@@ -24666,6 +24888,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.5955056179775281,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 117.59977517402329,
@@ -24795,6 +25023,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": -2.642865414269929,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 91.88787789273368,
                         "override": "Luck adjusted",
@@ -24908,6 +25142,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         </span>,
                         "value": 0.2,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 99.76347678499295,
@@ -25720,6 +25960,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": -1.748506675197845,
                                   }
 
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
+
                   def_rtg: Object {
                                     "old_value": 97.93561913082087,
                                     "override": "Luck adjusted",
@@ -25833,6 +26079,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </span>,
                                     "value": 0.5787671232876712,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": 116.22380931760613,
@@ -25991,6 +26243,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": -1.748506675197845,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 97.93561913082087,
                                             "override": "Luck adjusted",
@@ -26105,6 +26363,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.5787671232876712,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": 116.22380931760613,
                                             "override": "Luck adjusted",
@@ -26184,6 +26448,30 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   teamSeason="undefined_undefined_undefined"
                 />,
               },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="A Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
+                />,
+              },
               GenericTableRepeatHeaderRow {
                 "className": "small",
                 "colRename": Object {
@@ -26258,6 +26546,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "override": "Luck adjusted",
                                     "value": -0.8160190779839696,
                                   }
+
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
 
                   def_rtg: Object {
                                     "old_value": 103.73082160102601,
@@ -26372,6 +26666,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </span>,
                                     "value": 0.671875,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": 124.85726151245744,
@@ -26530,6 +26830,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": -0.8160190779839696,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 103.73082160102601,
                                             "override": "Luck adjusted",
@@ -26644,6 +26950,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.671875,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": 124.85726151245744,
                                             "override": "Luck adjusted",
@@ -26723,6 +27035,30 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   teamSeason="undefined_undefined_undefined"
                 />,
               },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="B Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
+                />,
+              },
               GenericTableSeparator {
                 "kind": "separator",
               },
@@ -26800,6 +27136,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "override": "Luck adjusted",
                                     "value": -2.6155013524449546,
                                   }
+
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
 
                   def_rtg: Object {
                                     "old_value": 91.2892111124598,
@@ -26914,6 +27256,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </span>,
                                     "value": 0.2073170731707317,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": 96.36310974319929,
@@ -27072,6 +27420,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": -2.6155013524449546,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 91.2892111124598,
                                             "override": "Luck adjusted",
@@ -27186,6 +27540,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.2073170731707317,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": 96.36310974319929,
                                             "override": "Luck adjusted",
@@ -27265,6 +27625,30 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   teamSeason="undefined_undefined_undefined"
                 />,
               },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="A Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
+                />,
+              },
               GenericTableSeparator {
                 "kind": "separator",
               },
@@ -27342,6 +27726,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "override": "Luck adjusted",
                                     "value": 1.7403600825574757,
                                   }
+
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
 
                   def_rtg: Object {
                                     "old_value": 130.4212061109622,
@@ -27456,6 +27846,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     </span>,
                                     "value": 0.6666666666666666,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": 174.561023832862,
@@ -27614,6 +28010,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 1.7403600825574757,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 130.4212061109622,
                                             "override": "Luck adjusted",
@@ -27728,6 +28130,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.6666666666666666,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": 174.561023832862,
                                             "override": "Luck adjusted",
@@ -27805,6 +28213,30 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
                   showHelp={true}
                   teamSeason="undefined_undefined_undefined"
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="B Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {
@@ -28141,6 +28573,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": -1.731659966334985,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 97.93561913082087,
                         "override": "Luck adjusted",
@@ -28260,6 +28698,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.5787671232876712,
                       }
+
+            off_luck: {
+               "deltaOffPpp": -0.3069232120644802,
+               "deltaOffEfg": -0.0019624787254275576,
+               "deltaOffAdjEff": -0.31866275640170155
+            }
 
             off_rtg: Object {
                         "old_value": 116.22380931760613,
@@ -28391,6 +28835,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": -0.9685169645959321,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 103.73082160102601,
                         "override": "Luck adjusted",
@@ -28510,6 +28960,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.671875,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 2.287906575063127,
+               "deltaOffEfg": 0.013957408435072146,
+               "deltaOffAdjEff": 2.329747464020273
+            }
 
             off_rtg: Object {
                         "old_value": 124.85726151245744,
@@ -28641,6 +29097,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": -1.6024649055627949,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 98.84955759282161,
                         "override": "Luck adjusted",
@@ -28760,6 +29222,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.5955056179775281,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 117.59977517402329,
@@ -28891,6 +29359,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": -2.5680966662213365,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 91.2892111124598,
                         "override": "Luck adjusted",
@@ -29010,6 +29484,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.2073170731707317,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 2.030680877993925,
+               "deltaOffEfg": 0.01072981550969359,
+               "deltaOffAdjEff": 2.1066685350444696
+            }
 
             off_rtg: Object {
                         "old_value": 96.3509617872422,
@@ -29140,6 +29620,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "override": "Luck adjusted",
                         "value": -2.642865414269929,
                       }
+
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
 
             def_rtg: Object {
                         "old_value": 91.88787789273368,
@@ -29273,6 +29759,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.2,
                       }
 
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
+
             off_rtg: Object {
                         "old_value": 100.50917346010739,
                         "override": "Derived from luck adjustments and manual overrides",
@@ -29403,6 +29895,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 1.7403600825574757,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 130.4212061109622,
                         "override": "Luck adjusted",
@@ -29516,6 +30014,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.6666666666666666,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 174.561023832862,
@@ -29687,6 +30191,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -1.6024649055627949,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 98.84955759282161,
                                 "override": "Luck adjusted",
@@ -29806,6 +30316,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.5955056179775281,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 117.59977517402329,
@@ -29944,6 +30460,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -1.6024649055627949,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 98.84955759282161,
                                 "override": "Luck adjusted",
@@ -30063,6 +30585,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.5955056179775281,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 117.59977517402329,
@@ -30203,6 +30731,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -0.9685169645959321,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Luck adjusted",
@@ -30322,6 +30856,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.671875,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 2.287906575063127,
+                   "deltaOffEfg": 0.013957408435072146,
+                   "deltaOffAdjEff": 2.329747464020273
+                }
 
                 off_rtg: Object {
                                 "old_value": 124.85726151245744,
@@ -30460,6 +31000,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -0.9685169645959321,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 103.73082160102601,
                                 "override": "Luck adjusted",
@@ -30579,6 +31125,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.671875,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 2.287906575063127,
+                   "deltaOffEfg": 0.013957408435072146,
+                   "deltaOffAdjEff": 2.329747464020273
+                }
 
                 off_rtg: Object {
                                 "old_value": 124.85726151245744,
@@ -30719,6 +31271,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -1.731659966334985,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Luck adjusted",
@@ -30838,6 +31396,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.5787671232876712,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": -0.3069232120644802,
+                   "deltaOffEfg": -0.0019624787254275576,
+                   "deltaOffAdjEff": -0.31866275640170155
+                }
 
                 off_rtg: Object {
                                 "old_value": 116.22380931760613,
@@ -30976,6 +31540,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -1.731659966334985,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 97.93561913082087,
                                 "override": "Luck adjusted",
@@ -31095,6 +31665,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.5787671232876712,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": -0.3069232120644802,
+                   "deltaOffEfg": -0.0019624787254275576,
+                   "deltaOffAdjEff": -0.31866275640170155
+                }
 
                 off_rtg: Object {
                                 "old_value": 116.22380931760613,
@@ -31235,6 +31811,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 1.7403600825574757,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 130.4212061109622,
                                 "override": "Luck adjusted",
@@ -31348,6 +31930,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.6666666666666666,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 174.561023832862,
@@ -31486,6 +32074,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 1.7403600825574757,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 130.4212061109622,
                                 "override": "Luck adjusted",
@@ -31599,6 +32193,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.6666666666666666,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 174.561023832862,
@@ -31739,6 +32339,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -2.642865414269929,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.88787789273368,
                                 "override": "Luck adjusted",
@@ -31870,6 +32476,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.2,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 100.50917346010739,
@@ -32008,6 +32620,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -2.642865414269929,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.88787789273368,
                                 "override": "Luck adjusted",
@@ -32139,6 +32757,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.2,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 100.50917346010739,
@@ -32279,6 +32903,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -2.5680966662213365,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Luck adjusted",
@@ -32398,6 +33028,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.2073170731707317,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 2.030680877993925,
+                   "deltaOffEfg": 0.01072981550969359,
+                   "deltaOffAdjEff": 2.1066685350444696
+                }
 
                 off_rtg: Object {
                                 "old_value": 96.3509617872422,
@@ -32536,6 +33172,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": -2.5680966662213365,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": 91.2892111124598,
                                 "override": "Luck adjusted",
@@ -32655,6 +33297,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 </span>,
                                 "value": 0.2073170731707317,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 2.030680877993925,
+                   "deltaOffEfg": 0.01072981550969359,
+                   "deltaOffAdjEff": 2.1066685350444696
+                }
 
                 off_rtg: Object {
                                 "old_value": 96.3509617872422,
@@ -32812,6 +33460,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": -1.6024649055627949,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": 98.84955759282161,
                         "override": "Luck adjusted",
@@ -32931,6 +33585,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.5955056179775281,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 117.59977517402329,
@@ -33061,6 +33721,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "override": "Luck adjusted",
                         "value": -2.642865414269929,
                       }
+
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
 
             def_rtg: Object {
                         "old_value": 91.88787789273368,
@@ -33193,6 +33859,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         </span>,
                         "value": 0.2,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 100.50917346010739,
@@ -34015,6 +34687,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": -1.731659966334985,
                                   }
 
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
+
                   def_rtg: Object {
                                     "old_value": 97.93561913082087,
                                     "override": "Luck adjusted",
@@ -34134,6 +34812,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </span>,
                                     "value": 0.5787671232876712,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": -0.3069232120644802,
+                     "deltaOffEfg": -0.0019624787254275576,
+                     "deltaOffAdjEff": -0.31866275640170155
+                  }
 
                   off_rtg: Object {
                                     "old_value": 116.22380931760613,
@@ -34294,6 +34978,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": -1.731659966334985,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 97.93561913082087,
                                             "override": "Luck adjusted",
@@ -34413,6 +35103,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.5787671232876712,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": -0.3069232120644802,
+                         "deltaOffEfg": -0.0019624787254275576,
+                         "deltaOffAdjEff": -0.31866275640170155
+                      }
 
                       off_rtg: Object {
                                             "old_value": 116.22380931760613,
@@ -34496,6 +35192,30 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 />,
               },
               GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="A Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": -0.3069232120644802,
+   "deltaOffEfg": -0.0019624787254275576,
+   "deltaOffAdjEff": -0.31866275640170155
+}
+                  }
+                  showHelp={true}
+                />,
+              },
+              GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
                 "text": <PlayerPlayTypeDiagView
@@ -34553,6 +35273,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "override": "Luck adjusted",
                                             "value": -1.731659966334985,
                                           }
+
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
 
                       def_rtg: Object {
                                             "old_value": 97.93561913082087,
@@ -34673,6 +35399,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.5787671232876712,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": -0.3069232120644802,
+                         "deltaOffEfg": -0.0019624787254275576,
+                         "deltaOffAdjEff": -0.31866275640170155
+                      }
 
                       off_rtg: Object {
                                             "old_value": 116.22380931760613,
@@ -34815,6 +35547,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -2.9509992696428613,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -34922,6 +35660,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.2,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": undefined,
@@ -35059,6 +35803,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -1.7012563565592531,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -35178,6 +35928,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.5955056179775281,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": 117.59977517402329,
@@ -35342,6 +36098,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": -0.9685169645959321,
                                   }
 
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
+
                   def_rtg: Object {
                                     "old_value": 103.73082160102601,
                                     "override": "Luck adjusted",
@@ -35461,6 +36223,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </span>,
                                     "value": 0.671875,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 2.287906575063127,
+                     "deltaOffEfg": 0.013957408435072146,
+                     "deltaOffAdjEff": 2.329747464020273
+                  }
 
                   off_rtg: Object {
                                     "old_value": 124.85726151245744,
@@ -35621,6 +36389,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": -0.9685169645959321,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 103.73082160102601,
                                             "override": "Luck adjusted",
@@ -35740,6 +36514,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.671875,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": 2.287906575063127,
+                         "deltaOffEfg": 0.013957408435072146,
+                         "deltaOffAdjEff": 2.329747464020273
+                      }
 
                       off_rtg: Object {
                                             "old_value": 124.85726151245744,
@@ -35823,6 +36603,30 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 />,
               },
               GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="B Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 2.287906575063127,
+   "deltaOffEfg": 0.013957408435072146,
+   "deltaOffAdjEff": 2.329747464020273
+}
+                  }
+                  showHelp={true}
+                />,
+              },
+              GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
                 "text": <PlayerPlayTypeDiagView
@@ -35880,6 +36684,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "override": "Luck adjusted",
                                             "value": -0.9685169645959321,
                                           }
+
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
 
                       def_rtg: Object {
                                             "old_value": 103.73082160102601,
@@ -36000,6 +36810,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.671875,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": 2.287906575063127,
+                         "deltaOffEfg": 0.013957408435072146,
+                         "deltaOffAdjEff": 2.329747464020273
+                      }
 
                       off_rtg: Object {
                                             "old_value": 124.85726151245744,
@@ -36142,6 +36958,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -2.9509992696428613,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -36249,6 +37071,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.2,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": undefined,
@@ -36386,6 +37214,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -1.7012563565592531,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -36505,6 +37339,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.5955056179775281,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": 117.59977517402329,
@@ -36672,6 +37512,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": -2.5680966662213365,
                                   }
 
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
+
                   def_rtg: Object {
                                     "old_value": 91.2892111124598,
                                     "override": "Luck adjusted",
@@ -36791,6 +37637,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </span>,
                                     "value": 0.2073170731707317,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 2.030680877993925,
+                     "deltaOffEfg": 0.01072981550969359,
+                     "deltaOffAdjEff": 2.1066685350444696
+                  }
 
                   off_rtg: Object {
                                     "old_value": 96.3509617872422,
@@ -36951,6 +37803,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": -2.5680966662213365,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 91.2892111124598,
                                             "override": "Luck adjusted",
@@ -37070,6 +37928,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.2073170731707317,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": 2.030680877993925,
+                         "deltaOffEfg": 0.01072981550969359,
+                         "deltaOffAdjEff": 2.1066685350444696
+                      }
 
                       off_rtg: Object {
                                             "old_value": 96.3509617872422,
@@ -37153,6 +38017,30 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 />,
               },
               GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="A Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 2.030680877993925,
+   "deltaOffEfg": 0.01072981550969359,
+   "deltaOffAdjEff": 2.1066685350444696
+}
+                  }
+                  showHelp={true}
+                />,
+              },
+              GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
                 "text": <PlayerPlayTypeDiagView
@@ -37210,6 +38098,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "override": "Luck adjusted",
                                             "value": -2.5680966662213365,
                                           }
+
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
 
                       def_rtg: Object {
                                             "old_value": 91.2892111124598,
@@ -37330,6 +38224,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.2073170731707317,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": 2.030680877993925,
+                         "deltaOffEfg": 0.01072981550969359,
+                         "deltaOffAdjEff": 2.1066685350444696
+                      }
 
                       off_rtg: Object {
                                             "old_value": 96.3509617872422,
@@ -37472,6 +38372,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -2.9509992696428613,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -37579,6 +38485,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.2,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": undefined,
@@ -37716,6 +38628,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -1.7012563565592531,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -37835,6 +38753,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.5955056179775281,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": 117.59977517402329,
@@ -38002,6 +38926,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 1.7403600825574757,
                                   }
 
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
+
                   def_rtg: Object {
                                     "old_value": 130.4212061109622,
                                     "override": "Luck adjusted",
@@ -38115,6 +39045,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     </span>,
                                     "value": 0.6666666666666666,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": 174.561023832862,
@@ -38275,6 +39211,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 1.7403600825574757,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": 130.4212061109622,
                                             "override": "Luck adjusted",
@@ -38388,6 +39330,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.6666666666666666,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
 
                       off_rtg: Object {
                                             "old_value": 174.561023832862,
@@ -38471,6 +39419,30 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 />,
               },
               GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="B Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
+                />,
+              },
+              GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
                 "text": <PlayerPlayTypeDiagView
@@ -38528,6 +39500,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "override": "Luck adjusted",
                                             "value": 1.7403600825574757,
                                           }
+
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
 
                       def_rtg: Object {
                                             "old_value": 130.4212061109622,
@@ -38642,6 +39620,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             </span>,
                                             "value": 0.6666666666666666,
                                           }
+
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
 
                       off_rtg: Object {
                                             "old_value": 174.561023832862,
@@ -38778,6 +39762,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -2.9509992696428613,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -38885,6 +39875,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.2,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": undefined,
@@ -39022,6 +40018,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": -1.7012563565592531,
                                               }
 
+                        def_luck: {
+                           "deltaDefPpp": 0,
+                           "deltaDefEfg": 0,
+                           "deltaDefAdjEff": 0
+                        }
+
                         def_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
@@ -39141,6 +40143,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 </span>,
                                                 "value": 0.5955056179775281,
                                               }
+
+                        off_luck: {
+                           "deltaOffPpp": 0,
+                           "deltaOffEfg": 0,
+                           "deltaOffAdjEff": 0
+                        }
 
                         off_rtg: Object {
                                                 "old_value": 117.59977517402329,
@@ -39564,6 +40572,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -1.9073922729482804,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -39671,6 +40685,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.5787671232876712,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": undefined,
@@ -39798,6 +40818,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -0.5752894222708619,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -39905,6 +40931,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.671875,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": undefined,
@@ -40032,6 +41064,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -1.7012563565592531,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -40151,6 +41189,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.5955056179775281,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 117.59977517402329,
@@ -40278,6 +41322,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -3.0941074793878247,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -40385,6 +41435,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.2073170731707317,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": undefined,
@@ -40512,6 +41568,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -2.9509992696428613,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -40619,6 +41681,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.2,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": undefined,
@@ -40746,6 +41814,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 5.709615397824149,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -40853,6 +41927,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.6666666666666666,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": undefined,
@@ -41002,6 +42082,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -1.7012563565592531,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -41121,6 +42207,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.5955056179775281,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 117.59977517402329,
@@ -41255,6 +42347,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -1.7012563565592531,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -41374,6 +42472,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.5955056179775281,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": 117.59977517402329,
@@ -41510,6 +42614,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -0.5752894222708619,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -41617,6 +42727,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.671875,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -41751,6 +42867,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -0.5752894222708619,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -41858,6 +42980,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.671875,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -41994,6 +43122,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -1.9073922729482804,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -42101,6 +43235,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.5787671232876712,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -42235,6 +43375,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -1.9073922729482804,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -42342,6 +43488,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.5787671232876712,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -42478,6 +43630,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 5.709615397824149,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -42585,6 +43743,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.6666666666666666,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -42719,6 +43883,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 5.709615397824149,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -42826,6 +43996,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.6666666666666666,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -42962,6 +44138,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -2.9509992696428613,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -43069,6 +44251,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.2,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -43203,6 +44391,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -2.9509992696428613,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -43310,6 +44504,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.2,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -43446,6 +44646,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -3.0941074793878247,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -43553,6 +44759,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.2073170731707317,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -43687,6 +44899,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": -3.0941074793878247,
                               }
 
+                def_luck: {
+                   "deltaDefPpp": 0,
+                   "deltaDefEfg": 0,
+                   "deltaDefAdjEff": 0
+                }
+
                 def_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
@@ -43794,6 +45012,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 </span>,
                                 "value": 0.2073170731707317,
                               }
+
+                off_luck: {
+                   "deltaOffPpp": 0,
+                   "deltaOffEfg": 0,
+                   "deltaOffAdjEff": 0
+                }
 
                 off_rtg: Object {
                                 "old_value": undefined,
@@ -43947,6 +45171,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -1.7012563565592531,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -44066,6 +45296,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.5955056179775281,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": 117.59977517402329,
@@ -44193,6 +45429,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": -2.9509992696428613,
                       }
 
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
             def_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
@@ -44300,6 +45542,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         </span>,
                         "value": 0.2,
                       }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
 
             off_rtg: Object {
                         "old_value": undefined,
@@ -45118,6 +46366,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": -1.9073922729482804,
                                   }
 
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
+
                   def_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
@@ -45225,6 +46479,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </span>,
                                     "value": 0.5787671232876712,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": undefined,
@@ -45381,6 +46641,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": -1.9073922729482804,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -45489,6 +46755,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.5787671232876712,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -45566,6 +46838,30 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   teamSeason="undefined_undefined_undefined"
                 />,
               },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="A Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
+                />,
+              },
               GenericTableRepeatHeaderRow {
                 "className": "small",
                 "colRename": Object {
@@ -45640,6 +46936,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "override": undefined,
                                     "value": -0.5752894222708619,
                                   }
+
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
 
                   def_rtg: Object {
                                     "old_value": undefined,
@@ -45748,6 +47050,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </span>,
                                     "value": 0.671875,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": undefined,
@@ -45904,6 +47212,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": -0.5752894222708619,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -46012,6 +47326,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.671875,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -46087,6 +47407,30 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   }
                   showHelp={true}
                   teamSeason="undefined_undefined_undefined"
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="B Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {
@@ -46166,6 +47510,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "override": undefined,
                                     "value": -3.0941074793878247,
                                   }
+
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
 
                   def_rtg: Object {
                                     "old_value": undefined,
@@ -46274,6 +47624,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </span>,
                                     "value": 0.2073170731707317,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": undefined,
@@ -46430,6 +47786,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": -3.0941074793878247,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -46538,6 +47900,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.2073170731707317,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -46613,6 +47981,30 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   }
                   showHelp={true}
                   teamSeason="undefined_undefined_undefined"
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="A Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {
@@ -46692,6 +48084,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "override": undefined,
                                     "value": 5.709615397824149,
                                   }
+
+                  def_luck: {
+                     "deltaDefPpp": 0,
+                     "deltaDefEfg": 0,
+                     "deltaDefAdjEff": 0
+                  }
 
                   def_rtg: Object {
                                     "old_value": undefined,
@@ -46800,6 +48198,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     </span>,
                                     "value": 0.6666666666666666,
                                   }
+
+                  off_luck: {
+                     "deltaOffPpp": 0,
+                     "deltaOffEfg": 0,
+                     "deltaOffAdjEff": 0
+                  }
 
                   off_rtg: Object {
                                     "old_value": undefined,
@@ -46956,6 +48360,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 5.709615397824149,
                                           }
 
+                      def_luck: {
+                         "deltaDefPpp": 0,
+                         "deltaDefEfg": 0,
+                         "deltaDefAdjEff": 0
+                      }
+
                       def_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -47064,6 +48474,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.6666666666666666,
                                           }
 
+                      off_luck: {
+                         "deltaOffPpp": 0,
+                         "deltaOffEfg": 0,
+                         "deltaOffAdjEff": 0
+                      }
+
                       off_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
@@ -47139,6 +48555,30 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   }
                   showHelp={true}
                   teamSeason="undefined_undefined_undefined"
+                />,
+              },
+              GenericTableTextRow {
+                "className": "small pt-2",
+                "kind": "text-row",
+                "text": <LuckAdjDiagView
+                  baseline="season"
+                  defLuck={
+                    {
+   "deltaDefPpp": 0,
+   "deltaDefEfg": 0,
+   "deltaDefAdjEff": 0
+}
+                  }
+                  individualMode={true}
+                  name="B Lineups"
+                  offLuck={
+                    {
+   "deltaOffPpp": 0,
+   "deltaOffEfg": 0,
+   "deltaOffAdjEff": 0
+}
+                  }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {

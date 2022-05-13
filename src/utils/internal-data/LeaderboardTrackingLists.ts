@@ -48,13 +48,6 @@ export const PlayerLeaderboardTracking = {
     ]
   ]).join(","),
 
-  "__MD_TXFER_2022__":
-  _.flatten([
-    [ 
-      "EfAbogidi;OsOsunniyi;DoWelch+Dom;GrElliott+Greg"
-    ]
-  ]).join(";"),
-
   // Archived:
 
   // "__NBA_2021__":  _.flatten([
