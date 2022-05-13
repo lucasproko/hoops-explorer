@@ -578,7 +578,7 @@ export class TeamEditorUtils {
          }
 
          //Diagnostic:
-         //if (p.code == "PlayerCode") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear} dup=[${acc.dups[dupCode]}] [${transferYearOverride}]`)
+         //if (p.code == "PlayerCode") console.log(`? ${p.key}:${p.team}/${p.code}:${p.year} dbl=${doubleTransfer} txin=${transferringIn} onteam=${onTeam} !exc=${notOnExcludeList} !leaving=${isNotLeaving} right_yr=${isRightYear} dup=[${acc.dups[dupCode]}] [${transferYearOverride}]`)
 
          if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
             if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {
@@ -658,9 +658,9 @@ export class TeamEditorUtils {
             const transferredInDidntPlayLastYear = transferringIn || transferringInLastYear;
 
             //Diag:
-            if (!transferredInDidntPlayLastYear && wasInProbablyStillIn && !fromBaseRoster.dups[dupCode]) {
-               console.log(`NOT AGED OUT: ${team} - ${key} ... ${p.key}`);
-            }
+            // if (!transferredInDidntPlayLastYear && wasInProbablyStillIn && !fromBaseRoster.dups[dupCode]) {
+            //    console.log(`NOT AGED OUT: ${team} - ${key} ... ${p.key}`);
+            // }
 
             // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
             return (!fromBaseRoster.dups[dupCode] && (transferredInDidntPlayLastYear || wasInProbablyStillIn)) ? [{

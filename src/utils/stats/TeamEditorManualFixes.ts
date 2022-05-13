@@ -155,6 +155,9 @@ export class TeamEditorManualFixes {
             "Indiana": {
                superSeniorsReturning: new Set([ "RaThompson::" ]),
             },
+            "Kentucky": {
+               leftTeam: [ "ShSharpe::" ],
+            },
             "Marquette": {
                overrides: {
                   ...wName("Wrightsil, Zach", {
@@ -199,7 +202,10 @@ export class TeamEditorManualFixes {
             },
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::" ]),
-            }
+            },
+            "Wisconsin": {
+               leftTeam: [ "JnDavis::" ],
+            },
          };
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2022_23);
       } else {
