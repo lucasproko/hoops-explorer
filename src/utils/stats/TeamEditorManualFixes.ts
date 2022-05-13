@@ -134,6 +134,9 @@ export class TeamEditorManualFixes {
             "Colorado St.": {
                superSeniorsReturning: new Set([ "KeMoore::" ])          
             },
+            "Drake": {
+               superSeniorsReturning: new Set([ "DjWilkins::", "RoPenn::", "GaSturtz::", "DaBrodie::" ])
+            },
             "Duke": {
                leftTeam: [ "TrKeels::", "PaBanchero::", "MaWilliams::", "AjGriffin::"  ],
             },
