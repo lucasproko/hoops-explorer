@@ -179,7 +179,7 @@ export class TeamEditorUtils {
 
    static teamBuildingPipeline(
       gender: string, team: string, yearIn: string,
-      playerList: Array<IndivStatSet>, transfers: Array<Record<string, TransferModel[]>>,
+      playerListIn: Array<IndivStatSet>, transfers: Array<Record<string, TransferModel[]>>,
       offSeasonMode: boolean, evalMode: boolean,
       addedPlayersIn: Record<string, GoodBadOkTriple>, overridesIn: Record<string, PlayerEditModel>, 
       deletedPlayersIn: Record<string, string>, disabledPlayersIn: Record<string, boolean>,
@@ -199,9 +199,31 @@ export class TeamEditorUtils {
       };
       const year = ((yearIn == "All") && (team != "")) ? specialCase() : yearIn;
 
+      // Some tidying up of the player list before we start any processing:
+
       const genderYearLookup = `${gender}_${year}`;
       const teamOverrides: TeamEditorManualFixModel = offSeasonMode ?  //(the fixes only apply in off-season mode)
          (TeamEditorManualFixes.fixes(genderYearLookup)[team] || {}) : {};
+
+      // Special case: if a player from the previous year went a code switch because of sibling shenanigans
+      // then mutate player list to fix it so transfer lists are correctly applied in getBasePlayers
+      const prevYear = DateUtils.getPrevYear(year);
+      //(if the prev year was "Extra", it's a collection of years, so remove all but the most recent)
+      const playerList = prevYear != "Extra" ? playerListIn : playerListIn.filter(p => (p.year == DateUtils.lastExtraYear) || (p.year == year));
+      const genderPrevYearLookup = `${gender}_${prevYear}`
+      const prevYearCodeSwitches = TeamEditorManualFixes.fixes(genderPrevYearLookup)[team]?.codeSwitch;
+      if (prevYearCodeSwitches) {
+         playerList.forEach(p => {
+            if (p.team == team) {
+               const newCode = prevYearCodeSwitches[p.code || ""];
+               if (newCode) {
+                  //Diag:
+                  //console.log(`RENAMED player from previous year: ${p.code} to ${newCode} [${team}]`)                  
+                  p.code = newCode; //(not idea that it mutates this, but should always make things better?!)
+               }
+            }
+         })
+      }
 
       //////////////
       
@@ -556,7 +578,7 @@ export class TeamEditorUtils {
          }
 
          //Diagnostic:
-         //if (p.code == "JoMballa") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear} dup=[${acc.dups[dupCode]}] [${transferYearOverride}]`)
+         //if (p.code == "PlayerCode") console.log(`? ${p.year} ${doubleTransfer} ${transferringIn} ${onTeam} ${notOnExcludeList} ${isNotLeaving} ${isRightYear} dup=[${acc.dups[dupCode]}] [${transferYearOverride}]`)
 
          if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
             if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {
@@ -626,12 +648,22 @@ export class TeamEditorUtils {
             const dupCode = keyFrags[0] + (keyFrags?.[2] || "");
                //(will check we haven't seen and discard this year's version of this player)
 
-            // There could be other cases (eg was injured a year, now back, but it's hard to tell ...
-            // especially because of early NBA departures, so we'll just ignore and you can add them by hand)
-            // const agedOut = (p.roster?.year_class == "Fr") || (p.roster?.year_class == "So")
-            //    || (includeSuperSeniors && (p.roster?.year_class == "Jr"));
+            // There could be other cases but it gets too hard to decide so we'll use superSeniorsReturning to
+            // allow these players to be added by hand
+            const wasInAndNotAgedOut = (p.roster?.year_class == "Fr") || (p.roster?.year_class == "So")
+               || (includeSuperSeniors && (p.roster?.year_class == "Jr")) || superSeniorsReturning?.has(key);
+
+            const wasInProbablyStillIn = wasInAndNotAgedOut && !transferredOut;
+
+            const transferredInDidntPlayLastYear = transferringIn || transferringInLastYear;
+
+            //Diag:
+            if (!transferredInDidntPlayLastYear && wasInProbablyStillIn && !fromBaseRoster.dups[dupCode]) {
+               console.log(`NOT AGED OUT: ${team} - ${key} ... ${p.key}`);
+            }
+
             // (inAndLeaving was defined as "(isOnTeam || wasPlayerTxferLastYear) && !isNotLeaving")
-            return (!fromBaseRoster.dups[dupCode] && (transferringIn || transferringInLastYear)) ? [{
+            return (!fromBaseRoster.dups[dupCode] && (transferredInDidntPlayLastYear || wasInProbablyStillIn)) ? [{
                key: key,
                good: _.clone(p),
                ok: _.clone(p),

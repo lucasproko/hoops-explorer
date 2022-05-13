@@ -18,6 +18,9 @@ export class DateUtils {
    /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
    static readonly coreYears = [ "2018/9", "2019/20", "2020/21", "2021/22" ];
 
+   /** The final year in which a player/lineup/team might coem from the "Extra" bucket */
+   static readonly lastExtraYear = "2017/8";
+
    /** Note should include all 3 formats */
    private static readonly seasonNotFinished: Record<string, boolean> = {
       "2022/23": true,

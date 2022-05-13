@@ -22,18 +22,26 @@ describe("TeamEditorTable", () => {
   const sampleDataEvenMore = JSON.parse(
     fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2020_High.json", { encoding: "UTF-8"})
   );
+  const transfers = [
+    { 
+      "RiLindo": [ { "f": "Maryland", "t": "George Washington"} ],
+      "SeSmith": [ { "f": "Maryland", "t": "ETSU"} ],
+    }
+  ];
   const twoYears = {
     ...sampleData,
     players: (sampleData.players || []).concat(sampleDataMore.players || []).filter((p: any) => {
       return (p.team == "Maryland") || (p.team == "Seton Hall");
-    })
+    }),
+    transfers: transfers
   };
   const threeYears = {
     ...sampleData,
     players: (sampleData.players || []).concat(sampleDataMore.players || []).concat(sampleDataEvenMore.players || []).filter((p: any) => {
       return (p.team == "Maryland") || (p.team == "Seton Hall");
-    })
-  }
+    }),
+    transfers: transfers
+  };
 
   // Tidy up snapshot rendering:
   expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
@@ -56,6 +64,7 @@ describe("TeamEditorTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
   test("TeamEditorTable - should create snapshot, eval mode", () => {
     const dummyChangeStateCallback = (stats: TeamEditorParams) => {};
     const wrapper = shallow(

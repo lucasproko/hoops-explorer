@@ -64,12 +64,15 @@ export class TeamEditorManualFixes {
       if (genderYear == "Men_2018/9") { //offseason of 18/19 ie team for 19/20
          const manualOverrides_Men_2019_20: Record<string, TeamEditorManualFixModel> = {
             "Maryland": {
-               leftTeam: [ "BrFernando::" ],
+               leftTeam: [ "BrFernando::", "KeHuerter::", "JuJackson::" ], //(Fernando/Huerter/Jackson appear in Extra, before I did NBA departures)
             },
          }
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2019_20);
       } else if (genderYear == "Men_2019/20") { //(offseason of 19/20, ie team for 20/21)
          const manualOverrides_Men_2020_21: Record<string, TeamEditorManualFixModel> = {
+            "Maryland": {
+               leftTeam: [ "BrFernando::" ]
+            },
             "Texas Tech": {
                leftTeam: [ "DaMoretti::" ],
             },
@@ -196,7 +199,7 @@ export class TeamEditorManualFixes {
             },
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::" ]),
-            },
+            }
          };
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2022_23);
       } else {

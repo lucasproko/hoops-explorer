@@ -2675,7 +2675,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     removed
                   </b>
                    [
-                  Ayala, Eric
+                  Fernando, Bruno / Ayala, Eric
                   ]
                 </i>,
               },
@@ -4175,7 +4175,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -6626,7 +6639,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     removed
                   </b>
                    [
-                  
+                  Fernando, Bruno
                   ]
                 </i>,
               },
@@ -8126,7 +8139,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -11581,7 +11607,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     removed
                   </b>
                    [
-                  Ayala, Eric
+                  Fernando, Bruno / Ayala, Eric
                   ]
                 </i>,
               },
@@ -13103,7 +13129,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -16139,7 +16178,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     removed
                   </b>
                    [
-                  
+                  Fernando, Bruno
                   ]
                 </i>,
               },
@@ -17661,7 +17700,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -20960,7 +21012,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     removed
                   </b>
                    [
-                  
+                  Fernando, Bruno
                   ]
                 </i>,
               },
@@ -24671,7 +24723,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     removed
                   </b>
                    [
-                  
+                  Fernando, Bruno
                   ]
                 </i>,
               },
@@ -29819,7 +29871,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -33742,7 +33807,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
