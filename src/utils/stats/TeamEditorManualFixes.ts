@@ -141,7 +141,7 @@ export class TeamEditorManualFixes {
                leftTeam: [ "TrKeels::", "PaBanchero::", "MaWilliams::", "AjGriffin::"  ],
             },
             "Florida": {
-               superSeniorsReturning: new Set([ "CoCastleton::" ]),
+               superSeniorsReturning: new Set([ "CoCastleton::", "MyJones::" ]),
             },
             "Gonzaga": {
                leftTeam: [ "ChHolmgren::" ],
