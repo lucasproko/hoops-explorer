@@ -1840,19 +1840,68 @@ export class TeamEditorUtils {
         .concat(pxResults.maybeBenchGuard ? [ pxResults.maybeBenchGuard ] : [])
         .concat(pxResults.maybeBenchWing ? [ pxResults.maybeBenchWing ] : [])
         .concat(pxResults.maybeBenchBig ? [ pxResults.maybeBenchBig ] : []);
-    }
+   }
+
+   static readonly calcDepthBonus = (triples: GoodBadOkTriple[], team: string) => {
+      const noBenchTriples = triples.filter(t => !t.key.startsWith("bench"));
+      if (noBenchTriples.length > 7) { // Might get a depth bonus!
+         // Basically if a player under-achieves but you have depth then their understudies in the rotation
+         // can take their place!
+         const triplesByNetRapm = _.sortBy(noBenchTriples, triple => -TeamEditorUtils.getNet(triple.ok));
+         const top7Triples = _.reverse(_.take(triplesByNetRapm, 7)); //(worst first)
+         const bottomTriples = _.drop(triplesByNetRapm, 7);
+         const triplesToComp = _.zip(top7Triples, bottomTriples);
+         const adjustments = _.transform(triplesToComp, (acc, topBottom) => {
+            const topTriple = topBottom[0];
+            const bottomTriple = topBottom[1];
+            if (topTriple && bottomTriple) {
+               // Average top being bad / bottom being good scenarios
+               const topNotGreatOff = 0.25*TeamEditorUtils.getOff(topTriple.ok) + 0.75*TeamEditorUtils.getOff(topTriple.bad);
+               const topNotGreatDef = 0.25*TeamEditorUtils.getDef(topTriple.ok) + 0.75*TeamEditorUtils.getDef(topTriple.bad);
+               const bottomDecentOff = 0.75*TeamEditorUtils.getOff(bottomTriple.ok) + 0.25*TeamEditorUtils.getOff(bottomTriple.good);
+               const bottomDecentDef = 0.75*TeamEditorUtils.getDef(bottomTriple.ok) + 0.25*TeamEditorUtils.getDef(bottomTriple.good);
+               const netAdj = 0.25*Math.max(0, (bottomDecentOff - topNotGreatOff) - (bottomDecentDef - topNotGreatDef));
+               if (netAdj > 0) {
+                  const offAdj = 0.25*(bottomDecentOff - topNotGreatOff); 
+                  const defAdj = 0.25*(bottomDecentDef - topNotGreatDef);
+                  acc.off = acc.off + offAdj;
+                  acc.def = acc.def + defAdj;
+
+                  //Diag:
+                  //console.log(`Player Depth adj: [${team}]: top=[${topTriple.key}] vs bot=[${bottomTriple.key}]: off=[${offAdj.toFixed(2)}] def=[${defAdj.toFixed(2)}] net=[${netAdj.toFixed(2)}]`);
+               }
+
+            } else return false; //(all done here)
+
+         }, { off: 0, def: 0 });
+
+         return adjustments;
+      } else {
+         return { off: 0, def: 0};
+      }
+   };
 
    /** Sums the given projection in a set of projections for the team */
-   static readonly buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
+   static readonly buildTotals = (
+      triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", depthBonus: { off: number, def: number }, adj: number = 0
+   ) => {
+      const depthBonusFactor = (() => {
+         switch(range) {
+            case "good": return 1.5;
+            case "ok": return 1;
+            case "bad": return 0.5;
+            default: return 0;
+         }
+      })();
       const off = _.sumBy(triples, triple => {
         return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getOff(triple[range] || {});
-      }) + adj;
+      }) + adj + depthBonus.off*depthBonusFactor;
       const def = _.sumBy(triples, triple => {
         return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getDef(triple[range] || {});
-      }) - adj;
+      }) - adj + depthBonus.def*depthBonusFactor;
       const net = _.sumBy(triples, triple => {
         return (triple[range]?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple[range] || {});
-      }) + 2*adj;
+      }) + 2*adj + (depthBonus.off - depthBonus.def)*depthBonusFactor;
       return { off, def, net };
    };
 

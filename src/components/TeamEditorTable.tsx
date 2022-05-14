@@ -686,12 +686,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const finalActualEffAdj = totalActualMins ? 
         5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
 
-      const okTotals = TeamEditorUtils.buildTotals(filteredPlayerSet, "ok");
+      const depthBonus = TeamEditorUtils.calcDepthBonus(filteredPlayerSet, team);
+
+      //Depth diag:
+      //console.log(`Team depth bonus: [${team}], off=[${depthBonus.off.toFixed(2)}] def=[${depthBonus.def.toFixed(2)}] net=[${(depthBonus.off-depthBonus.def).toFixed(2)}]`);
+
+      const okTotals = TeamEditorUtils.buildTotals(filteredPlayerSet, "ok", depthBonus);
 
       // Off-season and eval mode only: good and bad vs neutral ... In-season: ok vs orig
       const stdDevFactor = 1.0/Math.sqrt(5); //(1 std dev, so divide by root of team size)
-      const goodRange = offSeasonMode ? TeamEditorUtils.buildTotals(filteredPlayerSet, "good") : okTotals;
-      const badRange = offSeasonMode ? TeamEditorUtils.buildTotals(filteredPlayerSet, "bad") : okTotals;
+      const goodRange = offSeasonMode ? TeamEditorUtils.buildTotals(filteredPlayerSet, "good", depthBonus) : okTotals;
+      const badRange = offSeasonMode ? TeamEditorUtils.buildTotals(filteredPlayerSet, "bad", depthBonus) : okTotals;
       //(ignore in in-season mode)
       const goodDeltaNet = (goodRange.net - okTotals.net)*stdDevFactor ;
       const goodDeltaOff = (goodRange.off - okTotals.off)*stdDevFactor;
@@ -700,7 +705,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const badDeltaOff = (badRange.off - okTotals.off)*stdDevFactor;
       const badDeltaDef = (badRange.def - okTotals.def)*stdDevFactor;
       //(in-season)
-      const origTotals = offSeasonMode ? okTotals : TeamEditorUtils.buildTotals(filteredPlayerSet, "orig");
+      const origTotals = offSeasonMode ? okTotals : TeamEditorUtils.buildTotals(filteredPlayerSet, "orig", depthBonus);
       const inSeasonDeltaNet = (okTotals.net - origTotals.net);
       const inSeasonDeltaOff = (okTotals.off - origTotals.off);
       const inSeasonDeltaDef = (okTotals.def - origTotals.def);
@@ -761,7 +766,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
       //TODO: use team efficiency instead from team leaderboards and back into bench level?
-      const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
+      const actualTotals = evalMode ? 
+        TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", depthBonus, finalActualEffAdj) : undefined;
       const dummyTeamActual = actualTotals ? {
         off_net: { value: actualTotals.net },
         off_adj_ppp: { value: actualTotals.off + avgEff },

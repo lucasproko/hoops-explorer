@@ -300,8 +300,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          );
          const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
          
-         const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", adj: number = 0) => {
-            const { off, def, net } = TeamEditorUtils.buildTotals(triples, range);
+         const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", depthBonus: {off: number, def: number}, adj: number = 0) => {
+            const { off, def, net } = TeamEditorUtils.buildTotals(triples, range, depthBonus, adj);
 
             const netInfo = _.transform(triples, (acc, triple) => { 
                const netEff = TeamEditorUtils.getNet(triple.ok || {});
@@ -318,7 +318,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             }, { numSuperstars: 0, numStars: 0, numStarters: 0, numRotation: 0});
             return { off, def, net, ...netInfo };
          };
-         const okTotals = buildTotals(filteredPlayerSet, "ok");
+         const depthBonus = TeamEditorUtils.calcDepthBonus(filteredPlayerSet, t);
+
+         //Depth diag:
+         // if ((depthBonus.off > 0) || (depthBonus.def < 0)) {
+         //    console.log(`Team depth bonus: [${t}], off=[${depthBonus.off.toFixed(2)}] def=[${depthBonus.def.toFixed(2)}] net=[${(depthBonus.off-depthBonus.def).toFixed(2)}]`);
+         // }
+
+         const okTotals = buildTotals(filteredPlayerSet, "ok", depthBonus);
          const goodNet = _.sumBy(filteredPlayerSet, triple => {
             return (triple.good.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(triple.good);
          });
@@ -340,7 +347,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const totalActualMins = evalMode ? _.sumBy(pxResults.actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
          const finalActualEffAdj = totalActualMins ? 
            5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(t, year) : 0;
-         const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", finalActualEffAdj) : undefined;
+         const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", depthBonus, finalActualEffAdj) : undefined;
          const dummyTeamActual = actualTotals ? {
            off_net: { value: actualTotals.net },
            off_adj_ppp: { value: actualTotals.off + avgEff },
