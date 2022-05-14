@@ -7,6 +7,7 @@ import { LeaderboardUtils, TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
 import { DateUtils } from "../DateUtils";
+import { sub } from "date-fns";
 
 /** Possibly ways we change projections */
 type DiagCodes = 
@@ -17,7 +18,8 @@ type DiagCodes =
    "incorp_prev_season" | "fr_regression" |
    "switch_usage_ortg_style" |
    "user_adjustment" |
-   "average_usage" | "switch_usage_ortg_average" | "lack_of_playmaking_penalty"
+   "average_usage" | "switch_usage_ortg_average" | "lack_of_playmaking_penalty" |
+   "positional_penalty"
    ;
 
 /** For a given stat/projection, how/why we changed it */
@@ -156,7 +158,8 @@ export class TeamEditorUtils {
       user_adjustment: "User adjustment",
       average_usage: "Average usage across team",
       switch_usage_ortg_average: "Trade usage for efficiency (after averaging usage)",
-      lack_of_playmaking_penalty: "Team penalty because there's a lack of playmaking"
+      lack_of_playmaking_penalty: "Team penalty because there's a lack of playmaking",
+      positional_penalty: "Penalty for playing at the wing as a frontcourt player",
    };
       
 
@@ -1233,10 +1236,47 @@ export class TeamEditorUtils {
          });
       };
 
+      const positionalPenalty = (proj: "good" | "bad" | "ok") => {
+         const isFrontCourt = 
+            (t: GoodBadOkTriple) => (t.orig.posClass == "C") || (t.orig.posClass == "PF/C") || (t.orig.posClass == "S-PF");
+         const frontCourtLikePenalty = (t: GoodBadOkTriple) => {
+            const pfNess = (t.orig.posConfidences?.[3] || 0);
+            const sgNess = (t.orig.posConfidences?.[1] || 0);
+            return Math.max(Math.min(pfNess - sgNess, 0.4), 0)*0.75; //(to the eye test, 1x looked too punishing)
+         };
+         const sumFrontcourtishMins = _.sumBy(filteredRoster, triple => {
+            const indivStatSet = (triple[proj] as PureStatSet);
+            const frontCourtness = isFrontCourt(triple) ? 1.0 : frontCourtLikePenalty(triple);
+            return frontCourtness*(indivStatSet.off_team_poss_pct.value || 0);
+         });
+         const deltaFrontCourtMins = sumFrontcourtishMins - 2.1; //(4 mins grace)
+         if (deltaFrontCourtMins > 0) { // big penalty (-2) off and def for playing big men in skill positions, we're not in the 90s!
+            const posPenaltyFactor = proj == "good" ? 0.75 : (proj == "bad" ? 1.25 : 1.0)
+            const offPenalty = -2.0*deltaFrontCourtMins*0.2*posPenaltyFactor; //(divide by 5 since applying for the entire team)
+            const defPenalty = 2.0*deltaFrontCourtMins*0.2*posPenaltyFactor;
+
+            // Diag
+            //if (proj == "ok") console.log(`Position penalty: [${team}]: off=[${(5*offPenalty).toFixed(2)}] def=[${(5*defPenalty).toFixed(2)}] (min%=[${sumFrontcourtishMins.toFixed(2)}])`);
+
+            filteredRoster.forEach(triple => { //apply penalty across entire team
+               const indivStatSet = (triple[proj] as PureStatSet);
+               indivStatSet.off_adj_rtg = TeamEditorUtils.addToVal(indivStatSet.off_adj_rtg, offPenalty)!;
+               indivStatSet.off_adj_rapm = TeamEditorUtils.addToVal(indivStatSet.off_adj_rapm, offPenalty)!; 
+               indivStatSet.def_adj_rtg = TeamEditorUtils.addToVal(indivStatSet.def_adj_rtg, defPenalty)!;
+               indivStatSet.def_adj_rapm = TeamEditorUtils.addToVal(indivStatSet.def_adj_rapm, defPenalty)!; 
+               if (triple.diag) {
+                  triple.diag.off[proj]["positional_penalty"] = offPenalty;
+                  triple.diag.def[proj]["positional_penalty"] = defPenalty;
+               }
+            });
+         }
+      };
+
       // Apply advanced:
       ([ "good", "ok", "bad" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
          shareTeamDefense(proj);
          balanceUsage(proj);
+         positionalPenalty(proj);
       })
 
       //TODO: other more advanced adjustments? Improve playmaking penalty maybe?
