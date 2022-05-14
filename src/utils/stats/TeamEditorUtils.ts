@@ -211,15 +211,17 @@ export class TeamEditorUtils {
       //(if the prev year was "Extra", it's a collection of years, so remove all but the most recent)
       const playerList = prevYear != "Extra" ? playerListIn : playerListIn.filter(p => (p.year == DateUtils.lastExtraYear) || (p.year == year));
       const genderPrevYearLookup = `${gender}_${prevYear}`
+      const thisYearCodeSitches = teamOverrides.codeSwitch;
       const prevYearCodeSwitches = TeamEditorManualFixes.fixes(genderPrevYearLookup)[team]?.codeSwitch;
-      if (prevYearCodeSwitches) {
+      if (thisYearCodeSitches || prevYearCodeSwitches) {
          playerList.forEach(p => {
-            if (p.team == team) {
-               const newCode = prevYearCodeSwitches[p.code || ""];
+            if (p.team == team) { //(currently not supported for transfers, though should be trivial to add)
+               const newCode = p.year == prevYear 
+                  ? (prevYearCodeSwitches?.[p.code || ""]) : (thisYearCodeSitches?.[p.code || ""]);
                if (newCode) {
                   //Diag:
-                  //console.log(`RENAMED player from previous year: ${p.code} to ${newCode} [${team}]`)                  
-                  p.code = newCode; //(not idea that it mutates this, but should always make things better?!)
+                  //console.log(`RENAMED player from year [${p.year}]: ${p.code} to ${newCode} [${team}]`)                  
+                  p.code = newCode; //(not ideal that it mutates this, but should always make things better?!)
                }
             }
          })
@@ -236,8 +238,6 @@ export class TeamEditorUtils {
       const actualResultsForReview = (evalMode ? TeamEditorUtils.getBasePlayers(
          team, DateUtils.getNextYear(year), rawTeamNextYear, false, false, undefined, {}, [], undefined
       ).list : []).map(triple => {
-         //(warning - mutates triple.org ... shouldn't mess anything else up since the next year's results aren't used anyway)
-         triple.orig.code = teamOverrides.codeSwitch?.[triple.orig.code || ""] || triple.orig.code;
          triple.isOnlyActualResults = true; //(starts with true, we'll set to false as we merge with projected results)
          triple.actualResults = triple.orig;
          return triple;
@@ -578,7 +578,7 @@ export class TeamEditorUtils {
          }
 
          //Diagnostic:
-         //if (p.code == "PlayerCode") console.log(`? ${p.key}:${p.team}/${p.code}:${p.year} dbl=${doubleTransfer} txin=${transferringIn} onteam=${onTeam} !exc=${notOnExcludeList} !leaving=${isNotLeaving} right_yr=${isRightYear} dup=[${acc.dups[dupCode]}] [${transferYearOverride}]`)
+         //if (((p.code == "PlayerCodeA") || (p.code == "PlayerCodeB")) && (p.team == "Team")) console.log(`y=[${year}] ${p.key}:${p.team}/${p.code}:${p.year} dbl=${doubleTransfer} txin=${transferringIn} onteam=${onTeam} !exc=${notOnExcludeList} !leaving=${isNotLeaving} right_yr=${isRightYear} dup=[${acc.dups[dupCode]}] [${transferYearOverride}]`)
 
          if ((doubleTransfer || transferringIn || onTeam) && notOnExcludeList) {
             if (isNotLeaving && isRightYear && !acc.dups[dupCode]) {

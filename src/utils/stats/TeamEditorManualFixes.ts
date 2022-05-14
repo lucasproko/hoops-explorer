@@ -10,7 +10,7 @@ export type TeamEditorManualFixModel = {
    leftTeam?: Array<string>,
    superSeniorsReturning?: Set<string>,
    overrides?: Record<string, PlayerEditModel>,
-   codeSwitch?: Record<string, string> //this year key to next year's key
+   codeSwitch?: Record<string, string> //this year code to next year's code, note not currently supported for transfers
 };
 
 const wName = (name: string, def: PlayerEditModel) => {
@@ -124,7 +124,7 @@ export class TeamEditorManualFixes {
             },
             "Wisconsin": {
                superSeniorsReturning: new Set([ "BrDavison::" ]),
-               codeSwitch: { "JoDavis": "JnDavis" } //(sigh...)
+               codeSwitch: { "JnDavis": "JoDavis" } //(sigh... see cbb-exlorer:DataQualityIssues)
             },
          }
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2021_22);
@@ -202,10 +202,7 @@ export class TeamEditorManualFixes {
             },
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::" ]),
-            },
-            "Wisconsin": {
-               leftTeam: [ "JnDavis::" ],
-            },
+            }
          };
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2022_23);
       } else {
