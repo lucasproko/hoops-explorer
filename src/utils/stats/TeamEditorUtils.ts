@@ -1358,8 +1358,14 @@ export class TeamEditorUtils {
 
       const steps = needToAdjBaseMinutes ? [ 0, 1, 2, 3, 4, 5 ] : [];
       const finalStep = _.last(steps);
+      const isFrontCourt = 
+         (t: GoodBadOkTriple) => (t.orig.posClass == "C") || (t.orig.posClass == "PF/C") || (t.orig.posClass == "S-PF");
+      const maxFrontCourtMins = 2.1; // can't play front court positions outside of 4/5 (with small error bar)
       _.transform(steps, (acc, step) => {
          const sumMins = _.sumBy(filteredRoster, p => p.ok.off_team_poss_pct.value || 0);
+
+         const sumFrontCourtMins = _.sumBy(filteredRoster.filter(isFrontCourt), p => p.ok.off_team_poss_pct.value || 0);
+         const frontCourtScale = Math.min(maxFrontCourtMins/(sumFrontCourtMins || 1), 1.0);
 
          const emergencyMeasures = (step == finalStep) && (sumMins + benchMinOverrides) > 5.0;
             //(ensure the sum of the players' + bench minutes is never more than physically possib;e)
@@ -1375,16 +1381,19 @@ export class TeamEditorUtils {
 
          //Diagnostic
          if (debugMode) {
-            console.log(`Step [${step}]: sum=[${sumMins.toFixed(3)}] [bench=${benchMinOverrides.toFixed(3)}] vs ` +
-               `goal=[${goal.toFixed(3)}]/levels=[${threshold.toFixed(3)} - ${maxGoal.toFixed(3)}] = [${Math.abs(sumMins - goal).toFixed(3)}]`);
+            console.log(`Team [${team}]/ Step [${step}]: sum=[${sumMins.toFixed(3)}] [bench=${benchMinOverrides.toFixed(3)}] vs ` +
+               `goal=[${goal.toFixed(3)}]/levels=[${threshold.toFixed(3)} - ${maxGoal.toFixed(3)}] = [${Math.abs(sumMins - goal).toFixed(3)}] ` +
+               `frontcourt=[${frontCourtScale.toFixed(2)}](${sumFrontCourtMins.toFixed(2)})`
+            );
          }
-         if ((goal > 0) && (Math.abs(sumMins - goal) > target)) {
+         if (((goal > 0) && (Math.abs(sumMins - goal) > target)) || (frontCourtScale < 0.99)) {
             const factor = goal/sumMins;
             filteredRoster.forEach(p => {
                const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
+               const finalFactor = isFrontCourt(p) ? factor*frontCourtScale : factor;
                if (!hasMinsOverride) {  //(can't override players with fixed numbers)
                   const prevMins = p.good.off_team_poss_pct?.value || 0;
-                  assignMins(prevMins*factor, p, emergencyMeasures);
+                  assignMins(prevMins*finalFactor, p, emergencyMeasures);
                }
             });
          } else { // done, stop
