@@ -772,7 +772,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
 
       const teamParams = {
-        team: team, gender: gender, year: year,
+        team: team, gender: gender, 
+        year: offSeasonMode ? DateUtils.getNextSeasonOrLastWithData(year) : year,
+          //(unless this is the last off-season, seems more natural to link to what actually happened for the selected year)
         minRank: "0", maxRank: "400",
         factorMins: factorMins, possAsPct: true,
         showExpanded: true, calcRapm: true,

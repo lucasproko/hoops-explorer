@@ -97,7 +97,7 @@ export class DateUtils {
       } else { // older, we'll show the historical data I've pulled
          return "Extra";
       }
-   }
+   };
    /** Get the next season */
    static readonly getNextYear = (y: string) => {
       if (y == "2021/22") { 
@@ -113,7 +113,13 @@ export class DateUtils {
       } else {
          return "None";
       }
-   }
+   };
+   /** Next season if we have data for it else  */
+   static readonly getNextSeasonOrLastWithData = (y: string) => {
+      const nextYear = DateUtils.getNextYear(y);
+      return ((nextYear == "None") || (nextYear > DateUtils.mostRecentYearWithData)) ? DateUtils.mostRecentYearWithData : nextYear;
+   };
+         
    /** Get the offseason of the current season */
    static readonly getOffseasonOfYear = (y: string) => {
       if (y == "2021/22") { //TODO: can calculate programmatically
@@ -125,7 +131,7 @@ export class DateUtils {
       } else {
          return undefined;
       }
-   }
+   };
 
     /** If we have per-player shot info in lineups then use luck-adjusted lineups in offensive RAPM, else don't */
     static readonly lineupsHavePlayerShotInfo = (gy: string) => {

@@ -828,7 +828,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>
@@ -5048,7 +5048,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>
@@ -9024,7 +9024,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>
@@ -14018,7 +14018,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>
@@ -18585,7 +18585,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>
@@ -22865,7 +22865,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2019%2F20&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>
