@@ -1715,7 +1715,6 @@ export class TeamEditorUtils {
       }
    }
 
-
    /** Upside on bench/Fr predictions */
    static readonly optimisticBenchOrFr = 0.75;
    /** Downside on bench/Fr predictions - bench scoring can be bad so we make this higher */

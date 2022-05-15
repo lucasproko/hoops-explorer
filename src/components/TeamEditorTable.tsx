@@ -37,7 +37,7 @@ import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableU
 import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils, TeamEditorProcessingResults } from '../utils/stats/TeamEditorUtils';
 
-import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic } from '../utils/StatModels';
+import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic, TeamStatInfo } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
 import { GradeUtils } from '../utils/stats/GradeUtils';
@@ -53,6 +53,7 @@ import { TeamEditorManualFixes } from '../utils/stats/TeamEditorManualFixes';
 
 export type TeamEditorStatsModel = {
   players?: Array<IndivStatSet>,
+  teamStats?: Array<TeamStatInfo>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
@@ -765,15 +766,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const teamGradesBadNextYear = overrideGrades ? 
         GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
-      //TODO: use team efficiency instead from team leaderboards and back into bench level?
-      const actualTotals = evalMode ? 
-        TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", depthBonus, finalActualEffAdj) : undefined;
-      const dummyTeamActual = actualTotals ? {
-        off_net: { value: actualTotals.net },
-        off_adj_ppp: { value: actualTotals.off + avgEff },
-        def_adj_ppp: { value: actualTotals.def + avgEff },
+      // Use measured team efficiency if it exists, else fallback to legacy (calculate from sum of qualifying players)
+
+      //TODO: other adjustments based on this new logic...(calc/display bench production)
+
+      const actualTotalsFromTeam = evalMode ?
+        _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == DateUtils.getNextYear(year))) : undefined;
+
+      const getLuckAdjOrRaw = (s: Statistic | undefined) => (_.isNil(s?.old_value) ? s?.value : s?.old_value) || avgEff;
+      const dummyTeamActualFromTeamNoLuck = actualTotalsFromTeam ? {
+        off_net: { 
+          value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) - getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) 
+        }, 
+        off_adj_ppp: { value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) },
+        def_adj_ppp: { value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) },
       } : undefined;
-    
+  
+      const actualTotalsFromPlayers = evalMode && !actualTotalsFromTeam ? 
+        TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", depthBonus, finalActualEffAdj) : undefined;
+      const dummyTeamActualFromPlayers = actualTotalsFromPlayers ? {
+        off_net: { value: actualTotalsFromPlayers.net },
+        off_adj_ppp: { value: actualTotalsFromPlayers.off + avgEff },
+        def_adj_ppp: { value: actualTotalsFromPlayers.def + avgEff },
+      } : undefined;
+      const dummyTeamActual = dummyTeamActualFromTeamNoLuck || dummyTeamActualFromPlayers;
+
       const teamGradesActual = (dummyTeamActual && currOrPrevSeasonGrades) ?
         GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
 

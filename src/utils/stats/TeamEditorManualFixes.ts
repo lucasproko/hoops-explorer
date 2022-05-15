@@ -122,6 +122,9 @@ export class TeamEditorManualFixes {
             "UConn": {
                superSeniorsReturning: new Set([ "IsWhaley::" ]),
             },
+            "VCU": {
+               superSeniorsReturning: new Set([ "LeStockard::" ]),
+            },
             "Wisconsin": {
                superSeniorsReturning: new Set([ "BrDavison::" ]),
                codeSwitch: { "JnDavis": "JoDavis" } //(sigh... see cbb-exlorer:DataQualityIssues)

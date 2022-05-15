@@ -32,7 +32,7 @@ import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import { TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
-import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic } from '../utils/StatModels';
+import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic, TeamStatInfo } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { UrlRouting } from '../utils/UrlRouting';
@@ -236,6 +236,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          })
       }, {} as Record<string, IndivStatSet[]>);
 
+      const nextSeasonForEvalMode = DateUtils.getNextYear(year);
+      const teamStatsPartition = _.transform(dataEvent.teamStats || [], (acc, t) => {         
+         if (t.year == year) {
+            acc.projYear[t.team_name] = t;
+         } else if (t.year == nextSeasonForEvalMode) {
+            acc.actualYear[t.team_name] = t;
+         }
+      }, { projYear: {} as Record<string, TeamStatInfo>, actualYear: {} as Record<string, TeamStatInfo> });
+
       // Come up with a superset of which (RSish) freshmen might be on which teams, for performance reasons
       const genderPrevSeason = `${gender}_${DateUtils.getPrevYear(year)}`; //(For fr)
       const frPartition = _.transform(
@@ -344,15 +353,30 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          );
 
          // Eval mode:
+         //(we try to use the actual team totals from the team stats page, though have a legacy fallback just because the code was there)
          const totalActualMins = evalMode ? _.sumBy(pxResults.actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
          const finalActualEffAdj = totalActualMins ? 
            5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(t, year) : 0;
-         const actualTotals = evalMode ? TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", depthBonus, finalActualEffAdj) : undefined;
-         const dummyTeamActual = actualTotals ? {
-           off_net: { value: actualTotals.net },
-           off_adj_ppp: { value: actualTotals.off + avgEff },
-           def_adj_ppp: { value: actualTotals.def + avgEff },
+
+         const actualTotalsFromTeam = evalMode ? teamStatsPartition.actualYear[t] : undefined;
+
+         const getLuckAdjOrRaw = (s: Statistic | undefined) => (_.isNil(s?.old_value) ? s?.value : s?.old_value) || avgEff;
+         const dummyTeamActualFromTeamNoLuck = actualTotalsFromTeam ? {
+           off_net: { 
+             value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) - getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) 
+           }, 
+           off_adj_ppp: { value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) },
+           def_adj_ppp: { value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) },
          } : undefined;
+     
+         const actualTotalsFromPlayers = evalMode && !actualTotalsFromTeam ? 
+           TeamEditorUtils.buildTotals(pxResults.actualResultsForReview, "orig", depthBonus, finalActualEffAdj) : undefined;
+         const dummyTeamActualFromPlayers = actualTotalsFromPlayers ? {
+           off_net: { value: actualTotalsFromPlayers.net },
+           off_adj_ppp: { value: actualTotalsFromPlayers.off + avgEff },
+           def_adj_ppp: { value: actualTotalsFromPlayers.def + avgEff },
+         } : undefined;
+         const dummyTeamActual = dummyTeamActualFromTeamNoLuck || dummyTeamActualFromPlayers;
          //(end Eval mode)
 
          return { ...okTotals, 

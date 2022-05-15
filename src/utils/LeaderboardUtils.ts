@@ -93,6 +93,33 @@ export class LeaderboardUtils {
          });
    }
    
+   /** Get a single year (but multiple tiers) of team stats
+   */
+   static getMultiYearTeamStats(
+      gender: string, fullYear: string, tier: string, otherYears: string[],
+   ): Promise<any[]> {
+      const year = fullYear.substring(0, 4);
+   
+      const years = _.filter(DateUtils.lboardYearListWithExtra, inYear => (year == "All") || (inYear == fullYear) || _.some(otherYears, y => y == inYear));
+      const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
+   
+      const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
+   
+      const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
+        const subYear = inYear.substring(0, 4);
+        return fetch(LeaderboardUtils.getTeamStatsUrl(gender, subYear, inTier))
+          .then((response: fetch.IsomorphicResponse) => {
+            return response.ok ? 
+            response.json().then((j: any) => { //(tag the tier in)
+              if (tier == "All") j.tier = inTier;
+              return j;
+            }) : 
+            Promise.resolve({ error: "No data available" });
+          });
+      }));  
+      return fetchAll;  
+   }
+
    //////////////////////////////////////
    
    // Lower level utils
@@ -121,6 +148,15 @@ export class LeaderboardUtils {
         return `/api/getLeaderboard?src=teams&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
       } else { //archived
         return `/leaderboards/lineups/teams_${oppo}_${gender}_${subYear}_${inTier}.json`;
+      }
+   }
+
+   /** Fetch the requested team stats either from GCS or static storage */
+   static readonly getTeamStatsUrl = (gender: string, subYear: string, inTier: string) => {
+      if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+        return `/api/getTeamStats?src=teams&gender=${gender}&year=${subYear}&tier=${inTier}`; //TODO: doesn't currently exist
+      } else { //archived
+        return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
       }
    }
 }

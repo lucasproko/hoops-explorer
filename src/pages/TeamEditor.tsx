@@ -156,15 +156,22 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
       setCurrTier(tier);
       setCurrEvalMode(evalMode);
 
-      const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
+      const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
         "all", gender, fullYear, tier, transferYears, 
         paramObj.evalMode ? [ DateUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
       );
+      const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
+        gender, fullYear, tier, paramObj.evalMode ? [ DateUtils.getNextYear(fullYear) ] : []
+      );
+      const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
 
-      fetchAll.then((jsonsIn: any[]) => {
+      fetchAll.then((playersTeams: [ any[], any[] ]) => {
+        const jsonsIn = playersTeams[0];
+        const teamsIn = playersTeams[1];
         const jsons = _.dropRight(jsonsIn, _.size(transferYears));
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
+          teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
           lastUpdated: 0 //TODO use max?
