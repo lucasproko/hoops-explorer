@@ -44,6 +44,7 @@ import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 import { OnBallDefenseUtils } from '../utils/stats/OnBallDefenseUtils';
 import { OnBallDefenseModel } from '../utils/stats/RatingUtils';
 import { DateUtils } from '../utils/DateUtils';
+import { LuckUtils } from '../utils/stats/LuckUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -147,7 +148,7 @@ const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "South Dakota St." ]) //, "Dayton", "Fordham" ]);
+//const testTeamFilter = new Set([ "VCU" ]) //, "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -396,6 +397,12 @@ export async function main() {
           // Build all the samples ready for percentiles:
           GradeUtils.buildAndInjectDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
 
+          // Apply luck so we have both lucky and non-luck versions
+          const teamBaselineWithLuck = _.cloneDeep(teamBaseline);
+          const defLuckInfo = LuckUtils.calcDefTeamLuckAdj(teamBaselineWithLuck, teamBaseline, avgEfficiency);
+          LuckUtils.injectLuck(teamBaselineWithLuck, undefined, defLuckInfo);
+          //(currently injectTeamDerivedStats does not support luck)
+
           teamStatInfo.push({
             team_name: fullRequestModel.team,
             gender: fullRequestModel.gender,
@@ -404,7 +411,7 @@ export async function main() {
 
             stats: {
               // Subset of baseline team stats
-              ...(_.pick(teamBaseline, _.flatMap(["off", "def"], prefix => {
+              ...(_.pick(teamBaselineWithLuck, _.flatMap(["off", "def"], prefix => {
                 const fields = [ "adj_ppp", "ppp", "to", "3p", "2p", "3pr", "ftr", "sos" ];
                 return fields.map(field => `${prefix}_${field}`);
               }).concat(["tempo"]))),
