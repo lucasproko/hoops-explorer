@@ -10,6 +10,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import _ from "lodash";
 import fs from 'fs';
+import { teamStatInfo } from '../../bin/buildLeaderboards';
 
 describe("TeamEditorTable", () => {
   // Load in data sample:
@@ -21,6 +22,9 @@ describe("TeamEditorTable", () => {
   );
   const sampleDataEvenMore = JSON.parse(
     fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2020_High.json", { encoding: "UTF-8"})
+  );
+  const sampleTeamData = JSON.parse(
+    fs.readFileSync("./public/leaderboards/lineups/team_stats_all_Men_2020_High.json", { encoding: "UTF-8"})
   );
   const transfers = [
     { 
@@ -42,6 +46,10 @@ describe("TeamEditorTable", () => {
     }),
     transfers: transfers
   };
+  const threeYearsWithEvalTeamStats = {
+    ...threeYears,
+    teamStats: sampleTeamData.teams.filter((t: any) => t.team_name == "Maryland"),
+  }
 
   // Tidy up snapshot rendering:
   expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
@@ -75,7 +83,7 @@ describe("TeamEditorTable", () => {
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
         }}
-        dataEvent={threeYears}
+        dataEvent={threeYearsWithEvalTeamStats}
         onChangeState={dummyChangeStateCallback}
       />
     );
@@ -142,7 +150,7 @@ describe("TeamEditorTable", () => {
           alwaysShowBench: true, superSeniorsBack: true, 
           showOnlyTransfers: false, showOnlyCurrentYear: true
         }}
-        dataEvent={threeYears}
+        dataEvent={threeYearsWithEvalTeamStats}
         onChangeState={dummyChangeStateCallback}
       />
     );
