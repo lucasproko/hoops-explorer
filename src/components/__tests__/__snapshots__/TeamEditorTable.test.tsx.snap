@@ -1587,6 +1587,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -2260,6 +2264,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -2568,6 +2576,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -5625,6 +5637,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -6532,6 +6548,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -8976,7 +8996,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": 94.07848317,
                   },
                   "actual_mpg": Object {
-                    "value": -3.1240000000000023,
+                    "value": -15.620000000000012,
                   },
                   "actual_net": Object {
                     "value": 20.889420289999997,
@@ -9787,6 +9807,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -11013,6 +11037,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -11500,6 +11528,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -11634,7 +11666,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Actual minutes per game (shows missing minutes from <10mpg players)",
+                "toolTip": "Actual minutes per game (bench minutes are currently estimated)",
                 "widthUnits": 2,
               },
               "actual_net": GenericTableColProps {
@@ -13970,7 +14002,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     "value": 94.07848317,
                   },
                   "actual_mpg": Object {
-                    "value": -3.1240000000000023,
+                    "value": -15.620000000000012,
                   },
                   "actual_net": Object {
                     "value": 20.889420289999997,
@@ -14607,6 +14639,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -15673,6 +15709,85 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
               },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
+                  "bad_def": undefined,
+                  "bad_net": undefined,
+                  "bad_off": undefined,
+                  "edit": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="editTooltip"
+                        placement="right"
+                      >
+                        Show/hide the Player Editor tab
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <ForwardRef
+                      active={false}
+                      disabled={false}
+                      onClick={[Function]}
+                      size="sm"
+                      variant="outline-secondary"
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={false}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [
+                              512,
+                              512,
+                              Array [],
+                              "f304",
+                              "M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z",
+                            ],
+                            "iconName": "pen",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        swapOpacity={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      />
+                    </ForwardRef>
+                  </OverlayTrigger>,
+                  "good_def": undefined,
+                  "good_net": undefined,
+                  "good_off": undefined,
+                  "mpg": Object {
+                    "value": 0,
+                  },
+                  "ok_def": undefined,
+                  "ok_net": undefined,
+                  "ok_off": undefined,
+                  "title": <b>
+                    Bench & Fr Wings
+                  </b>,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
@@ -16071,6 +16186,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -16205,7 +16324,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Actual minutes per game (shows missing minutes from <10mpg players)",
+                "toolTip": "Actual minutes per game (bench minutes are currently estimated)",
                 "widthUnits": 2,
               },
               "actual_net": GenericTableColProps {
@@ -18537,7 +18656,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 94.07848317,
                   },
                   "actual_mpg": Object {
-                    "value": -3.1240000000000023,
+                    "value": -15.620000000000012,
                   },
                   "actual_net": Object {
                     "value": 20.889420289999997,
@@ -19366,6 +19485,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -20436,6 +20559,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -20905,6 +21032,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -21039,7 +21170,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Actual minutes per game (shows missing minutes from <10mpg players)",
+                "toolTip": "Actual minutes per game (bench minutes are currently estimated)",
                 "widthUnits": 2,
               },
               "actual_net": GenericTableColProps {
@@ -23634,6 +23765,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -24326,6 +24461,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -24616,6 +24755,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": Object {
                     "value": 1,
                   },
@@ -28034,6 +28177,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -28320,6 +28467,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -28431,7 +28582,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Actual minutes per game (shows missing minutes from <10mpg players)",
+                "toolTip": "Actual minutes per game (bench minutes are currently estimated)",
                 "widthUnits": 2,
               },
               "disable": GenericTableColProps {
@@ -32256,6 +32407,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -32367,7 +32522,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Actual minutes per game (shows missing minutes from <10mpg players)",
+                "toolTip": "Actual minutes per game (bench minutes are currently estimated)",
                 "widthUnits": 2,
               },
               "disable": GenericTableColProps {
@@ -35414,6 +35569,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -36058,6 +36217,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -36338,6 +36501,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "actual_def": undefined,
+                  "actual_mpg": undefined,
+                  "actual_net": undefined,
+                  "actual_off": undefined,
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
@@ -36449,7 +36616,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Actual minutes per game (shows missing minutes from <10mpg players)",
+                "toolTip": "Actual minutes per game (bench minutes are currently estimated)",
                 "widthUnits": 2,
               },
               "disable": GenericTableColProps {

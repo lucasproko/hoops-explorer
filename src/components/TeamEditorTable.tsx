@@ -343,7 +343,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       dataEvent.players || [], dataEvent.transfers || [],
       offSeasonMode, evalMode,
       otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
-      superSeniorsBack, alwaysShowBench,
+      superSeniorsBack, alwaysShowBench || evalMode,
       avgEff, TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason)
     );
 
@@ -616,6 +616,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         title: <b>{triple.orig.key}</b>,
         mpg: { value: mpg },
 
+        actual_net: (!triple.actualResults) ? undefined : { value: TeamEditorUtils.getNet(triple.actualResults, 1.0) },
+        actual_off: (!triple.actualResults) ? undefined : { value: TeamEditorUtils.getOff(triple.actualResults, 1.0) },
+        actual_def: (!triple.actualResults) ? undefined : { value: TeamEditorUtils.getDef(triple.actualResults, 1.0) },
+        actual_mpg: (!triple.actualResults) ? undefined : { value: (triple.actualResults.off_team_poss_pct?.value || 0)*40 },
+
         good_net: (isFiltered || !showCol) ? undefined : 
           (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) } : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) }),
         good_off: (isFiltered || !showCol) ? undefined : 
@@ -673,10 +678,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     /** actualResultsForReview / inSeasonPlayerResultsList are basically the same thing, except the former comes in 
      * offSeasonMode+evalMode whereas the latter comes in !offSeasonMode
+     * (mutates the bench, adding "actual" based on summing the data)
      * TODO: merge them at some point
      */
     const buildTeamRows = (
       actualResultsForReview: GoodBadOkTriple[], inSeasonPlayerResultsList: GoodBadOkTriple[] | undefined,
+      mutableBench: GoodBadOkTriple[],
       avgEff: number
     ) => {
       const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
@@ -774,12 +781,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == DateUtils.getNextYear(year))) : undefined;
 
       const getLuckAdjOrRaw = (s: Statistic | undefined) => (_.isNil(s?.old_value) ? s?.value : s?.old_value) || avgEff;
+      const getRaw = (s: Statistic | undefined) => s?.value || avgEff;
       const dummyTeamActualFromTeamNoLuck = actualTotalsFromTeam ? {
         off_net: { 
-          value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) - getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) 
+          value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) - getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp),
+          extraInfo: !_.isNil(actualTotalsFromTeam.stats.def_adj_ppp.old_value) ?
+            <i>Luck adjusted (used in projections): [{(getRaw(actualTotalsFromTeam.stats.off_adj_ppp) - getRaw(actualTotalsFromTeam.stats.def_adj_ppp)).toFixed(1)}]</i> :
+            null
         }, 
         off_adj_ppp: { value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) },
-        def_adj_ppp: { value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) },
+        def_adj_ppp: { 
+          value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp),
+          extraInfo: !_.isNil(actualTotalsFromTeam.stats.def_adj_ppp.old_value) ?
+            <i>Luck adjusted (used in projections): [{(getRaw(actualTotalsFromTeam.stats.def_adj_ppp)).toFixed(1)}]</i> :
+            null
+        },
       } : undefined;
   
       const actualTotalsFromPlayers = evalMode && !actualTotalsFromTeam ? 
@@ -793,6 +809,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const teamGradesActual = (dummyTeamActual && currOrPrevSeasonGrades) ?
         GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
+
+      const actualBenchInfo = actualTotalsFromTeam ?
+        TeamEditorUtils.calcActualBenchProduction(actualTotalsFromTeam.stats, pxResults.actualResultsForReview, avgEff) : undefined;
+
+      if (actualBenchInfo) { //(enrich the existing bench info with actual results)
+        mutableBench.forEach(b => b.actualResults = actualBenchInfo);
+      }
 
       const teamParams = {
         team: team, gender: gender, 
@@ -816,10 +839,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const teamStatsRowData = {
         title: teamLink,
         //(for diag only)
-        mpg: totalMins < 0.99 ? { value: (totalMins - 1.0)*40 } : undefined,
+        mpg: totalMins < 0.99 ? { value: (totalMins - 1.0) } : undefined,
 
         // Eval mode
-        actual_mpg: totalActualMins && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40 } : undefined,
+        actual_mpg: totalActualMins && !actualBenchInfo && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40*5 } : undefined,
         actual_net: totalActualMins ? dummyTeamActual?.off_net : undefined,
         actual_off: totalActualMins ? dummyTeamActual?.off_adj_ppp : undefined,
         actual_def: totalActualMins ? dummyTeamActual?.def_adj_ppp : undefined,
@@ -969,6 +992,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       rosterWings, rosterWingMins, maybeBenchWing,
       rosterBigs, rosterBigMins, maybeBenchBig,
     } = pxResults;
+
+    //TODO: ugliness: this mutates the bench info while generating the team view, better would be to 
+    // calculate the depds for buildTeamRows and buildPosHeaderRow here and pass down
+    const teamRows = buildTeamRows(
+      pxResults.actualResultsForReview, pxResults.inSeasonPlayerResultsList, 
+      [ maybeBenchGuard, maybeBenchWing, maybeBenchBig ].filter(p => !_.isNil(p)) as GoodBadOkTriple[],
+      pxResults.avgEff,
+    );
+
     const rosterTableDataGuards = [ buildPosHeaderRow("Guards", rosterGuardMins) ].concat(_.flatMap(rosterGuards, triple => {
       return buildDataRowFromTriple(triple);
     })).concat(maybeBenchGuard ? buildBenchDataRowFromTriple(maybeBenchGuard) : []);
@@ -997,9 +1029,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       tableCopyId="rosterEditorTable"
       tableFields={TeamEditorTableUtils.tableDef(evalMode, offSeasonMode)}
       tableData={
-        buildTeamRows(
-          pxResults.actualResultsForReview, pxResults.inSeasonPlayerResultsList, pxResults.avgEff
-        ).concat(rosterTableData)
+        teamRows.concat(rosterTableData)
       }
       cellTooltipMode={undefined}
     />;

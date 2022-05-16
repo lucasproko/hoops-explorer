@@ -81,6 +81,22 @@ describe("TeamEditorTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test("TeamEditorTable - should create snapshot, eval mode (legacy mode - no team info)", () => {
+    const dummyChangeStateCallback = (stats: TeamEditorParams) => {};
+    const wrapper = shallow(
+      <TeamEditorTable
+        startingState={{ 
+          team: "Maryland", year: "2019/20", 
+          offSeason: true, evalMode: true,
+          alwaysShowBench: false, superSeniorsBack: false, 
+          showOnlyTransfers: true, showOnlyCurrentYear: false
+        }}
+        dataEvent={threeYears}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
   test("TeamEditorTable - should create snapshot, what if mode", () => {
     const dummyChangeStateCallback = (stats: TeamEditorParams) => {};
     const wrapper = shallow(

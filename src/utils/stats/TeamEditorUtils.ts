@@ -1537,13 +1537,25 @@ export class TeamEditorUtils {
       }
    }
 
-   //TODO: position adjustments ... if playing WF or S-PF at center then add/subtract -1
-   // if have non-PG minutes then mark down offense if there is a traditional center
-   // if have a WF playing the 3 then mark down offense
+   /** Calculate the actual bench production and minutes */
+   static calcActualBenchProduction = (teamStatsInfo: PureStatSet, players: GoodBadOkTriple[], avgEff: number) => {
+      const noDepthBonus = { off:0 , def: 0 };
+      const totals = TeamEditorUtils.buildTotals(players, "orig", noDepthBonus, 0); 
+      const totalOffMins = 5.0 - _.sumBy(players, p => p.orig.off_team_poss_pct.value!);
+      const totalDefMins = 5.0 - _.sumBy(players, p => p.orig.def_team_poss_pct.value!);
+      const leftoverOff = (teamStatsInfo.off_adj_ppp?.value || avgEff) - avgEff - totals.off;
+      const leftoverDef = (teamStatsInfo.def_adj_ppp?.value || avgEff) - avgEff - totals.def;
 
-   //TODO: two ways to reduce usage (and vice versa)
-   // 1] based on def SoS .. normally reduce it 50:50 but if >25 then reduce by more
-   // 2] if >25 and ORtg isn't stellar can we just reduce it anyway?
+      //console.log(`Bench: mins=[${totalOffMins.toFixed(2)}][${totalDefMins.toFixed(2)}] / off=[${(leftoverOff/(totalOffMins || 1)).toFixed(2)}], def=[${(leftoverDef/(totalDefMins || 1)).toFixed(2)}]`)
+
+      return {
+         key: "Generic Bench",
+         off_adj_rapm: { value: totalOffMins > 0 ? leftoverOff/(totalOffMins) : 0 },
+         def_adj_rapm: { value: totalDefMins > 0 ? leftoverDef/(totalDefMins) : 0 },
+         off_team_poss_pct: { value: totalOffMins/3 },
+         def_team_poss_pct: { value: totalDefMins/3 },
+      } as IndivStatSet;
+   }
 
    //////////////////////////////////////////////////////////////////////////////
 
