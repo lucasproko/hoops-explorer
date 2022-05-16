@@ -302,7 +302,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
  
          const pxResults = TeamEditorUtils.teamBuildingPipeline(
             gender, t, year,
-            playerPartition[t] || [], dataEvent.transfers || [],
+            playerPartition[t] || [], teamStatsPartition.projYear[t]?.stats, dataEvent.transfers || [],
             true, evalMode || false,
             addedPlayers, overrides, deletedPlayers, disabledPlayers,
             maybeOverride.superSeniorsBack || false, false,

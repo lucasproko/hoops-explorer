@@ -182,7 +182,7 @@ export class TeamEditorUtils {
 
    static teamBuildingPipeline(
       gender: string, team: string, yearIn: string,
-      playerListIn: Array<IndivStatSet>, transfers: Array<Record<string, TransferModel[]>>,
+      playerListIn: Array<IndivStatSet>, teamStats: PureStatSet | undefined, transfers: Array<Record<string, TransferModel[]>>,
       offSeasonMode: boolean, evalMode: boolean,
       addedPlayersIn: Record<string, GoodBadOkTriple>, overridesIn: Record<string, PlayerEditModel>, 
       deletedPlayersIn: Record<string, string>, disabledPlayersIn: Record<string, boolean>,
@@ -272,7 +272,7 @@ export class TeamEditorUtils {
          _.fromPairs((teamOverrides.leftTeam || []).map(p => [ p, `code:${p}` ])),
          deletedPlayersIn
       );
-      const { list: basePlayers, ...outInfo } = TeamEditorUtils.getBasePlayers(
+      const { list: basePlayers, lastSeasonTeam, ...outInfo } = TeamEditorUtils.getBasePlayers(
          team, year, candidatePlayersList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, allDeletedPlayers, transfers, undefined
       );
       const redshirtishFr = (_.isEmpty(frList) || _.isEmpty(candidatePlayersList)) 
@@ -423,12 +423,23 @@ export class TeamEditorUtils {
 
       // Build bench minutes:
 
+      const prevSeasonBench = teamStats ? 
+         TeamEditorUtils.calcActualBenchProduction(teamStats, lastSeasonTeam.map(p => {
+            return {
+               orig: p,
+               //(these are just needed for typing)
+               key: p.code,
+               good: p, bad: p, ok: p,
+            } as GoodBadOkTriple;
+         }), avgEff) : undefined;
+
       const [ maybeBenchGuard, maybeBenchWing, maybeBenchBig ] = _.isEmpty(basePlayersPlusHypos) ?
          [ undefined, undefined, undefined ]
          : 
          TeamEditorUtils.getBenchMinutes(
             team, year,
             rosterGuardMinsPreBench, rosterWingMinsPreBench, rosterBigMinsPreBench, 
+            prevSeasonBench,
             unpausedOverrides, alwaysShowBench
          );
       const rosterGuardMins = rosterGuardMinsPreBench + 0.2*(maybeBenchGuard?.ok?.off_team_poss_pct?.value || 0);
@@ -499,10 +510,13 @@ export class TeamEditorUtils {
       team: string, year: string, players: IndivStatSet[], 
       offSeasonMode: boolean, includeSuperSeniors: boolean, superSeniorsReturning: Set<string> | undefined, mutableExcludeSet: Record<string, string>, 
       transfers: Record<string, Array<TransferModel>>[], transferYearOverride: string | undefined
-   ): { list: GoodBadOkTriple[], out_off: number, out_def: number, sr_off: number, sr_def: number, nba_off: number, nba_def: number } {
+   ): { 
+      list: GoodBadOkTriple[], lastSeasonTeam: IndivStatSet[], 
+      out_off: number, out_def: number, sr_off: number, sr_def: number, nba_off: number, nba_def: number 
+   } {
       if ((year == "All") && !transferYearOverride) { // There's no benefit in showing N seasons of a given team, easier just to add them manually
          //TODO: once we have a set of "addedPlayers" set up, can infer year from the most common, eg if there's 5+ from the same year?
-         return { list: [], out_off: 0, out_def: 0, sr_off: 0, sr_def: 0, nba_off: 0, nba_def: 0 }
+         return { list: [], lastSeasonTeam: [], out_off: 0, out_def: 0, sr_off: 0, sr_def: 0, nba_off: 0, nba_def: 0 }
       }
 
       const transfersThisYear = transfers[0] || {};
@@ -535,6 +549,12 @@ export class TeamEditorUtils {
          const isTransfer = p.team != team;
          const key = isTransfer ? `${code}:${p.team}:${yearAdj}` : `${code}::${yearAdj}`;
          
+         // Need to build last year's team as well so we can estimate the bench impact
+         if (!isTransfer && isRightYear && !acc.lastSeasonDups[key]) {
+            acc.lastSeasonDups[key] = true;
+            acc.lastSeasonTeam = acc.lastSeasonTeam.concat([ p ]);
+         }
+
          const wasOnTeam = !transfersOnly && !isTransfer;
          const transferringIn = (transfersOnly || offSeasonMode) && _.some(
             transfersThisYear[code] || [], txfer => (txfer.f == p.team) && (txfer.t == team)
@@ -556,7 +576,7 @@ export class TeamEditorUtils {
          }
 
          if (wasOnTeam && isTransferringOut && (p.year == year)) { //(this year only)
-            if (!acc.txferCountdups[key]) {
+            if (!acc.txferCountDups[key]) {
                if (isTransferringOutNba) {
                   acc.nba_off = acc.nba_off + TeamEditorUtils.getOff(p)*possPctOff;
                   acc.nba_def = acc.nba_def + TeamEditorUtils.getDef(p)*possPctDef;
@@ -568,15 +588,15 @@ export class TeamEditorUtils {
                   //Diag
                   //if (team == "Team") console.log(`Leaving(Portal) [${p.code}][${p.year}]: [${acc.out_off.toFixed(2)}] [${acc.out_def.toFixed(2)}]`);
                }
-               acc.txferCountdups[key] = true;
+               acc.txferCountDups[key] = true;
             }
          } else if (wasOnTeam && !notAgingOut && (p.year == year)) {
-            if (!acc.txferCountdups[key]) {
+            if (!acc.txferCountDups[key]) {
                acc.sr_off = acc.sr_off + TeamEditorUtils.getOff(p)*possPctOff;
                acc.sr_def = acc.sr_def + TeamEditorUtils.getDef(p)*possPctDef;
                //Diag
                //if (team == "Team") console.log(`Leaving(Sr) [${p.code}][${p.year}]: [${acc.sr_off.toFixed(2)}] [${acc.sr_def.toFixed(2)}]`);
-               acc.txferCountdups[key] = true;
+               acc.txferCountDups[key] = true;
             }
          }
 
@@ -604,8 +624,10 @@ export class TeamEditorUtils {
          }
       }, { 
          retVal: [] as GoodBadOkTriple[], 
+         lastSeasonTeam: [] as IndivStatSet[], 
          dups: {} as Record<string, boolean>, 
-         txferCountdups: {} as Record<string, boolean>, 
+         txferCountDups: {} as Record<string, boolean>, 
+         lastSeasonDups: {} as Record<string, boolean>, 
          prevYears: {} as Record<string, IndivStatSet>,
          inAndLeaving: {} as Record<string, boolean>, //(not filled in because we can't account for early departures)
          out_off: 0, out_def: 0, nba_off: 0, nba_def: 0, sr_off: 0, sr_def: 0
@@ -680,6 +702,7 @@ export class TeamEditorUtils {
 
       return { 
          list: injectPrevYearsIntoBaseRoster.concat(unmatchedPrevYearsToAdd), 
+         lastSeasonTeam: fromBaseRoster.lastSeasonTeam,
          out_off: fromBaseRoster.out_off, out_def: fromBaseRoster.out_def,
          sr_off: fromBaseRoster.sr_off, sr_def: fromBaseRoster.sr_def,
          nba_off: fromBaseRoster.nba_off, nba_def: fromBaseRoster.nba_def,
@@ -1327,7 +1350,7 @@ export class TeamEditorUtils {
          return [ p.key, Math.min(minMins, maxMinsPerKey[p.key] || minMins) ]; //(prevent min>max)
       }).fromPairs().value();
 
-      const debugMode = false;
+      const debugMode = false; 
       if (debugMode) { // Diagnostics
          console.log(`NET TIERS: [${avgLowerTierNet.toFixed(1)}] - [${avgMidTierNet.toFixed(1)}] - [${avgUpperTierNet.toFixed(1)}] (SoS: [${teamSosNet.toFixed(3)}])`);
          _.keys(maxMinsPerKey).forEach(p => {
@@ -1427,10 +1450,17 @@ export class TeamEditorUtils {
             );
          }
          if (((goal > 0) && (Math.abs(sumMins - goal) > target)) || (frontCourtScale < 0.99)) {
+            // Fix front court and back-court separately
+            const [ frontCourt, backCourt ] = _.partition(filteredRoster, isFrontCourt);
+
             const factor = goal/sumMins;
+            // if we have too many front court minutes then treat frontcourt/backcourt separately
+            const tooManyFrontCourtMins = (sumFrontCourtMins*factor) > 2.0; //(ie will end up with too many _after_ applying this iteration)
+            const frontCourtFactor = tooManyFrontCourtMins ? (2.0/sumFrontCourtMins) : factor;
+            const backCourtFactor = tooManyFrontCourtMins ? ((goal - 2.0)/(sumMins - sumFrontCourtMins)) : factor;
             filteredRoster.forEach(p => {
                const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
-               const finalFactor = isFrontCourt(p) ? factor*frontCourtScale : factor;
+               const finalFactor = isFrontCourt(p) ? frontCourtFactor : backCourtFactor;
                if (!hasMinsOverride) {  //(can't override players with fixed numbers)
                   const prevMins = p.good.off_team_poss_pct?.value || 0;
                   assignMins(prevMins*finalFactor, p, emergencyMeasures);
@@ -1445,7 +1475,7 @@ export class TeamEditorUtils {
    /** Inserts unused minutes */
    static getBenchMinutes(
       team: string, year: string, 
-      guardPctIn: number, wingPctIn: number, bigPctIn: number, 
+      guardPctIn: number, wingPctIn: number, bigPctIn: number, lastYearBenchStats: IndivStatSet | undefined,
       overrides: Record<string, PlayerEditModel>,
       alwaysBuildBench: boolean
    ): [ GoodBadOkTriple | undefined, GoodBadOkTriple | undefined, GoodBadOkTriple | undefined ] {
@@ -1468,12 +1498,29 @@ export class TeamEditorUtils {
 
          const defaultBenchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
 
+         const regressedBenchFactorOff = lastYearBenchStats ? //0.5 if played 20mpg
+            Math.min(3*(lastYearBenchStats.off_team_poss_pct?.value || 0), 0.5) : 0;
+         const regressedBenchFactorDef = lastYearBenchStats ? 
+            Math.min(3*(lastYearBenchStats.def_team_poss_pct?.value || 0), 0.5) : 0;
+            //(the 3x is because we divided the mins by 3 earlier on to portion across the 3 position groups)
+
          const buildBench = (key: string, name: string, posClass: string, minsPctIn: number) => {
             const maybeOverrides = overrides[key];
             const benchLevelOverride = maybeOverrides?.profile;
             const benchLevel = 0.5*(benchLevelOverride ? 
                TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel);
-      
+
+            //TODO: want 0.6 and -0.3 to be constants (for average yearly growth)
+            const regressedBenchLevelOff = lastYearBenchStats ?
+               (regressedBenchFactorOff*(TeamEditorUtils.getOff(lastYearBenchStats) + 0.6) + (1.0 - regressedBenchFactorOff)*benchLevel)
+               : benchLevel;
+
+            const regressedBenchLevelDef = lastYearBenchStats ?
+               (regressedBenchFactorDef*(TeamEditorUtils.getDef(lastYearBenchStats) - 0.3) - (1.0 - regressedBenchFactorDef)*benchLevel)
+               : -benchLevel;
+               
+            //TODO: add diag for bench regression
+
             const minsPct = 
                !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
             const offAdj = maybeOverrides?.global_off_adj || 0;
@@ -1483,24 +1530,24 @@ export class TeamEditorUtils {
                key: name,
                off_team_poss_pct: { value: minsPct },
                def_team_poss_pct: { value: minsPct },
-               off_adj_rapm: { value: benchLevel + offAdj },
-               def_adj_rapm: { value: -benchLevel + defAdj },
+               off_adj_rapm: { value: regressedBenchLevelOff + offAdj },
+               def_adj_rapm: { value: regressedBenchLevelDef + defAdj },
                posClass: posClass
             };
             return {
                key: key,
                good: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel + TeamEditorUtils.optimisticBenchOrFr + offAdj },
-                  def_adj_rapm: { value: -benchLevel - TeamEditorUtils.optimisticBenchOrFr + defAdj }
+                  off_adj_rapm: { value: regressedBenchLevelOff + TeamEditorUtils.optimisticBenchOrFr + offAdj },
+                  def_adj_rapm: { value: regressedBenchLevelDef - TeamEditorUtils.optimisticBenchOrFr + defAdj }
                },
                ok: {
                   ...baseBench,
                },
                bad: {
                   ...baseBench,
-                  off_adj_rapm: { value: benchLevel - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
-                  def_adj_rapm: { value: -benchLevel + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
+                  off_adj_rapm: { value: regressedBenchLevelOff - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
+                  def_adj_rapm: { value: regressedBenchLevelDef + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
                },
                orig: baseBench
             } as GoodBadOkTriple;
@@ -1552,7 +1599,7 @@ export class TeamEditorUtils {
          key: "Generic Bench",
          off_adj_rapm: { value: totalOffMins > 0 ? leftoverOff/(totalOffMins) : 0 },
          def_adj_rapm: { value: totalDefMins > 0 ? leftoverDef/(totalDefMins) : 0 },
-         off_team_poss_pct: { value: totalOffMins/3 },
+         off_team_poss_pct: { value: totalOffMins/3 }, //NOTE: if you change this, you also have to change getBenchMinutes
          def_team_poss_pct: { value: totalDefMins/3 },
       } as IndivStatSet;
    }

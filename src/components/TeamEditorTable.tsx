@@ -338,9 +338,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(year)}` : "NO MATCH"; //(for Fr)
 
+    const teamLastSeason = _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == year));
+
     const pxResults = TeamEditorUtils.teamBuildingPipeline(
       gender, team, year,
-      dataEvent.players || [], dataEvent.transfers || [],
+      dataEvent.players || [], teamLastSeason?.stats, dataEvent.transfers || [],
       offSeasonMode, evalMode,
       otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
       superSeniorsBack, alwaysShowBench || evalMode,
