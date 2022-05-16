@@ -123,6 +123,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    useEffect(() => {
       onChangeState(_.merge({
          year: yearRedirect, teamView: teamView, confs, evalMode: evalMode, transferInOutMode: transferInOutMode,
+         queryFilters: startingState.queryFilters
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []

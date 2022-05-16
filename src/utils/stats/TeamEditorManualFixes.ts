@@ -182,6 +182,12 @@ export class TeamEditorManualFixes {
             "Penn St.": {
                superSeniorsReturning: new Set([ "JaPickett::" ]),
             },
+            "Providence": {
+               superSeniorsReturning: new Set([ "EdCroswell::" ]),
+            },
+            "Saint Louis": {
+               superSeniorsReturning: new Set([ "JaPerkins::" ]),
+            },
             "San Diego St.": {
                superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::" ]),
             },
