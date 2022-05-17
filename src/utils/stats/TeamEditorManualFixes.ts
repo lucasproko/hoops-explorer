@@ -134,11 +134,32 @@ export class TeamEditorManualFixes {
 
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2022_23:  Record<string, TeamEditorManualFixModel> = { 
+            "Alabama": {
+               superSeniorsReturning: new Set([ "NoGurley::" ])          
+            },
+            "Auburn": {
+               superSeniorsReturning: new Set([ "ZeJasper::" ])          
+            },
+            "Baylor": {
+               superSeniorsReturning: new Set([ "FlThamba::" ])          
+            },
+            "Boston College": {
+               superSeniorsReturning: new Set([ "MaAshton-lan::" ])          
+            },
             "BYU": {
                superSeniorsReturning: new Set([ "GiGeorge::" ])          
             },
             "Colorado St.": {
                superSeniorsReturning: new Set([ "KeMoore::" ])          
+            },
+            "Clemson": {
+               superSeniorsReturning: new Set([ "HuTyson::" ])          
+            },
+            "Cleveland St.": {
+               superSeniorsReturning: new Set([ "DeJohnson::" ])          
+            },
+            "DePaul": {
+               superSeniorsReturning: new Set([ "YoAnei::" ]),
             },
             "Drake": {
                superSeniorsReturning: new Set([ "DjWilkins::", "RoPenn::", "GaSturtz::", "DaBrodie::" ])
@@ -152,14 +173,26 @@ export class TeamEditorManualFixes {
             "Gonzaga": {
                leftTeam: [ "ChHolmgren::" ],
             },
+            "Houson": {
+               superSeniorsReturning: new Set([ "ReChaney::" ])          
+            },
             "Illinois": {
                leftTeam: [ "KoCockburn::" ],
+            },
+            "Iowa": {
+               superSeniorsReturning: new Set([ "FiRebraca::" ]),
+            },
+            "Iowa St.": {
+               superSeniorsReturning: new Set([ "GaKalscheur::", "AlKunc::" ]),
             },
             "Indiana": {
                superSeniorsReturning: new Set([ "RaThompson::" ]),
             },
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ],
+            },
+            "Liberty": {
+               superSeniorsReturning: new Set([ "DaMcGhee::" ]),
             },
             "Marquette": {
                overrides: {
@@ -172,27 +205,54 @@ export class TeamEditorManualFixes {
             "Michigan St.": {
                superSeniorsReturning: new Set([ "JoHauser::" ]),
             },
+            "Nebraska": {
+               superSeniorsReturning: new Set([ "DeWalker::" ]),
+            },
             "North Carolina": {
                superSeniorsReturning: new Set([ "LeBlack::" ]),
             },
+            "Notre Dame": {
+               superSeniorsReturning: new Set([ "CoRyan::", "DaGoodwin::" ]),
+            },
             "Ohio St.": {
-               superSeniorsReturning: new Set([ "SeTowns::" ]),
+               superSeniorsReturning: new Set([ "SeTowns::", "JuSueing::" ]),
                leftTeam: [ "MaBranham::", "EjLiddell::" ],
             },
+            "Oklahoma": {
+               superSeniorsReturning: new Set([ "TaGroves::", "ElHarkless" ]),
+            },
+            "Ole Miss": {
+               superSeniorsReturning: new Set([ "TyFagan::" ]),
+            },
             "Penn St.": {
-               superSeniorsReturning: new Set([ "JaPickett::" ]),
+               superSeniorsReturning: new Set([ "JaPickett::", "MyDread::" ]),
+            },
+            "Pittsburgh": {
+               superSeniorsReturning: new Set([ "JaBurton::" ]),
             },
             "Providence": {
                superSeniorsReturning: new Set([ "EdCroswell::" ]),
             },
+            "Richmond": {
+               superSeniorsReturning: new Set([ "MaGrace::" ]),
+            },
+            "Rider": {
+               superSeniorsReturning: new Set([ "DwMurray::" ]),
+            },
             "Saint Louis": {
                superSeniorsReturning: new Set([ "JaPerkins::" ]),
             },
+            "Saint Mary's (CA)": {
+               superSeniorsReturning: new Set([ "LoJohnson::" ]),
+            },
             "San Diego St.": {
-               superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::" ]),
+               superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::" ]),
             },
             "Seton Hall": {
                leftTeam: [ "AlYetna::", "BrAiken::" ],
+            },
+            "St. John's (NY)": {
+               superSeniorsReturning: new Set([ "MoMathis::" ]),
             },
             "Syracuse": {
                leftTeam: [ "CoSwider::" ],
@@ -203,15 +263,27 @@ export class TeamEditorManualFixes {
             "Texas Tech": {
                superSeniorsReturning: new Set([ "KeObanor::" ]),
             },
+            "UCLA": {
+               superSeniorsReturning: new Set([ "DaSingleton::" ]),
+            },
             "Vanderbilt": {
                superSeniorsReturning: new Set([ "LiRobbins::", "QuMillora-br::" ]),
             },
             "Villanova": {
-               superSeniorsReturning: new Set([ "BrSlater::" ]),
+               superSeniorsReturning: new Set([ "BrSlater::", "CaDaniels::" ]),
             },
             "Virginia": {
-               superSeniorsReturning: new Set([ "KiClark::" ]),
-            }
+               superSeniorsReturning: new Set([ "KiClark::", "JaGardner::" ]),
+            },
+            "Western Ky.": {
+               superSeniorsReturning: new Set([ "JsHamilton::" ]),
+            },
+            "Wyoming": {
+               superSeniorsReturning: new Set([ "HuThompson::" ]),
+            },
+            "Xavier": {
+               superSeniorsReturning: new Set([ "BeStanley::", "AdKunkel::" ]),
+            },
          };
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2022_23);
       } else {
