@@ -249,7 +249,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::" ]),
             },
             "Seton Hall": {
-               leftTeam: [ "AlYetna::", "BrAiken::" ],
+               leftTeam: [ "BrAiken::" ],
             },
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "MoMathis::" ]),
@@ -276,7 +276,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "KiClark::", "JaGardner::" ]),
             },
             "Western Ky.": {
-               superSeniorsReturning: new Set([ "JsHamilton::" ]),
+               superSeniorsReturning: new Set([ "JsHamilton::", "LuFrampton::" ]),
             },
             "Wyoming": {
                superSeniorsReturning: new Set([ "HuThompson::" ]),
