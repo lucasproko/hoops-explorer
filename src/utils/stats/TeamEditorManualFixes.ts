@@ -170,14 +170,8 @@ export class TeamEditorManualFixes {
             "Florida": {
                superSeniorsReturning: new Set([ "CoCastleton::", "MyJones::" ]),
             },
-            "Gonzaga": {
-               leftTeam: [ "ChHolmgren::" ],
-            },
             "Houson": {
                superSeniorsReturning: new Set([ "ReChaney::" ])          
-            },
-            "Illinois": {
-               leftTeam: [ "KoCockburn::" ],
             },
             "Iowa": {
                superSeniorsReturning: new Set([ "FiRebraca::" ]),
@@ -249,13 +243,11 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::" ]),
             },
             "Seton Hall": {
-               leftTeam: [ "BrAiken::" ],
+               superSeniorsReturning: new Set([ "JaHarris::" ]),
+               leftTeam: [ "Aiken, Bryce" ],
             },
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "MoMathis::" ]),
-            },
-            "Syracuse": {
-               leftTeam: [ "CoSwider::" ],
             },
             "Texas": {
                superSeniorsReturning: new Set([ "MaCarr::", "TiAllen::" ]),

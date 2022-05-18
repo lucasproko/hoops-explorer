@@ -613,7 +613,7 @@ export class TeamEditorUtils {
                   orig: p
                }]);
                acc.dups[dupCode] = true; 
-            } else if (!isRightYear) { //(must be previous year)     
+            } else if (notOnExcludeList && !isRightYear) { //(must be previous year)     
                const lastYearKey = wasPlayerTxferLastYear  ? `${code}::${yearAdj}` : 
                   (doubleTransfer ? `${code}:${doubleTransfer.t || ""}:${yearAdj}` : key);
 
