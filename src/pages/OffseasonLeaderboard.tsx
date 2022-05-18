@@ -82,6 +82,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       (!rawParams.evalMode) ? [ "evalMode" ] : [],
       (!rawParams.teamView) ? [ "teamView" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
+      (rawParams.sortBy == "net") ? [ "sortBy" ] : [],
 
     ]));
     if (rawParams.year && (rawParams.year != DateUtils.inSeasonYear) && !rawParams.evalMode && !rawParams.transferInOutMode) { //TODO: un-hardwire this

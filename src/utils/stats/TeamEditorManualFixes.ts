@@ -242,6 +242,9 @@ export class TeamEditorManualFixes {
             "San Diego St.": {
                superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::" ]),
             },
+            "San Francisco": {
+               superSeniorsReturning: new Set([ "KhShabazz::" ]),
+            },
             "Seton Hall": {
                superSeniorsReturning: new Set([ "JaHarris::" ]),
                leftTeam: [ "Aiken, Bryce" ],

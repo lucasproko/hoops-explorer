@@ -46,6 +46,7 @@ import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/TeamEditorManualFixes';
 
+const highMajorConfsName = "Power 6 Conferences";
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
@@ -80,6 +81,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
    const [transferInOutMode, setTransferInOutMode] = useState(startingState.transferInOutMode || false);
    const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
+
+   const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
 
    /** Converts a list of params to their team's key/value params  */
    const buildOverrides = (inOverrides: Record<string, string>) => {
@@ -123,13 +126,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    useEffect(() => {
       onChangeState(_.merge({
          year: yearRedirect, teamView: teamView, confs, evalMode: evalMode, transferInOutMode: transferInOutMode,
+         sortBy: sortBy,
          queryFilters: startingState.queryFilters
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
          );
       }).fromPairs().value()));
-   }, [ teamView, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode ]);
+   }, [ teamView, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode, sortBy ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -391,12 +395,40 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             nba_off: pxResults.nba_off, nba_def: pxResults.nba_def, sr_off: pxResults.sr_off, sr_def: pxResults.sr_def, 
             dev_off: pxResults.dev_off, dev_def: pxResults.dev_def, fr_net: pxResults.fr_net
          };
-      }).sortBy(t => -t.net).value();
+      }).sortBy(t => {
+         // For net transfer purposes, cap the benefit you can get from losing players
+         const transferIn = (t.in_off - t.in_def);
+         const benefitCap = t.net > 0 ? (0.33*t.net) : t.net; //(1/3 transfer, 1/3 dev, 1/3 Fr)
+         const transferInOutMargin = (t.in_off - t.in_def) - Math.max((t.out_off - t.out_def), -benefitCap);
+         const seniorOut = Math.max((t.sr_off - t.sr_def), -benefitCap);
+
+         const totalInOutMargin = t.fr_net + transferInOutMargin - (t.nba_off - t.nba_def) - seniorOut;
+         switch(sortBy) {
+            case "offseason_net":
+               return -totalInOutMargin - (t.dev_off - t.dev_def);
+            case "dev_in":
+               return -(t.dev_off - t.dev_def);
+            case "total_io":
+               return -totalInOutMargin;
+            case "txfer_in":
+               return -transferIn;
+            case "txfer_out":
+               return -(t.out_off - t.out_def);
+            case "txfer_io":
+               return -transferInOutMargin;               
+            case "nba_out":
+               return -(t.nba_off - t.nba_def);
+            case "sr_out":
+               return -seniorOut;
+            default: 
+               return -t.net;
+         }
+      }).value();
 
       // Lookups
       const offEffToRankMap = _.chain(teamRanks).sortBy(t => -t.off).map((t, rank) => [t.off, rank]).fromPairs().value();
       const defEffToRankMap = _.chain(teamRanks).sortBy(t =>t.def).map((t, rank) => [t.def, rank]).fromPairs().value();
-      const netEffToRankMap = confs ? _.chain(teamRanks).sortBy(t => -t.net).map((t, rank) => [t.net, rank]).fromPairs().value() : {};
+      const netEffToRankMap = (confs || (sortBy != "net")) ? _.chain(teamRanks).sortBy(t => -t.net).map((t, rank) => [t.net, rank]).fromPairs().value() : {};
       const actualNetEffToRankMap = evalMode ? 
          _.chain(teamRanks).sortBy(t => -(t.actualNet || 0)).map((t, rank) => [t.actualNet || 0, rank]).fromPairs().value() : undefined;
 
@@ -489,11 +521,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
-           || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.conf) < 0))
-           || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
-           ;
+            || (((confs.indexOf("P6") >= 0) && confs.indexOf(nonHighMajorConfsName) < 0) && (powerSixConfsStr.indexOf(t.conf) >= 0))
+            || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.conf) < 0))
+            || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
+            ;
       }
       const tableRows = _.chain(teamRanks).filter(confFilter).take(75).flatMap((t, netRankIn) => {
+
+         const nonStdSort = sortBy && (sortBy != "net") && transferInOutMode;
 
          const goodNet = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.goodNet } }, [ "net" ], true);
          const badNet = GradeUtils.buildTeamPercentiles(mutableDivisionStats, { off_net: { value: t.badNet } }, [ "net" ], true);
@@ -514,9 +549,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const teamLink = <OverlayTrigger placement="auto" overlay={teamTooltip}>
             <b><a target="_blank" href={UrlRouting.getTeamEditorUrl(teamParams)}>{t.team}</a>{maybeOverriddenEl}</b>
          </OverlayTrigger>;
-    
-         ;
-         const netRank = confs ? netEffToRankMap[t.net]! : netRankIn;
+             
+         const netRank = (nonStdSort || confs) ? netEffToRankMap[t.net]! : netRankIn;
 
          // Eval mode:         
          // (make the format like we'd called buildTeamPercentiles)
@@ -554,7 +588,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          ], "small text-center");
 
          const subHeaderMessage = pickSubHeaderMessage(netRank);
-         const subHeaderRows = (confs || !subHeaderMessage) ? 
+         const subHeaderRows = (nonStdSort || confs || !subHeaderMessage) ? 
             (((netRankIn == 0) && transferInOutMode) ? [ yearOnYearDetails ] : [])
          : ([
             GenericTableOps.buildSubHeaderRow([
@@ -569,7 +603,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          ));
          const totalInOutMargin = t.fr_net + (t.in_off - t.in_def ) - (t.out_off - t.out_def) - (t.nba_off - t.nba_def) - (t.sr_off - t.sr_def);
          return subHeaderRows.concat([ GenericTableOps.buildDataRow({
-               title: <span>{(confs != "") ? <sup><small>{1 + netRankIn}</small>&nbsp;</sup> : null}{teamLink}</span>,
+               title: <span>{(nonStdSort || confs) ? <sup><small>{1 + netRankIn}</small>&nbsp;</sup> : null}{teamLink}</span>,
                conf: <small>{t.conf}</small>,
 
                net: { value: t.net },
@@ -641,7 +675,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          cellTooltipMode={undefined}
       />;
    }, [
-      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode
+      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode, sortBy
    ]);
 
    // 3] View
@@ -666,6 +700,17 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    function stringToOption(s: string) {
       return { label: s, value: s };
    }
+   const sortByOptions: Record<string, { label: string, value: string}> = {
+      net: { label: "Net Rating", value: "net" },  
+      offseason_net: { label: "Total offseason net", value: "offseason_net" },
+      total_io: { label: "Total in - out", value: "total_io" },
+      txfer_io: { label: "Transfer in - out", value: "txfer_io" },
+      txfer_in: { label: "Transfers in", value: "txfer_in" },
+      txfer_out: { label: "Transfers out", value: "txfer_out" },
+      dev_in: { label: "Returning improvement", value: "dev_in" },
+      nba_out: { label: "Declared", value: "nba_out" },
+      sr_out: { label: "Aged out", value: "sr_out" },
+   };
   
    return <Container>
       <Form.Group as={Row}>
@@ -701,7 +746,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                isMulti
                components={{ MultiValueContainer: ConferenceValueContainer }}
                value={getCurrentConfsOrPlaceholder()}
-               options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams))
+               options={([highMajorConfsName, nonHighMajorConfsName]).concat(_.sortBy(confsWithTeams))
                   .concat([ nonHighMajorConfsName, queryFiltersName ]).map(
                      (r) => stringToOption(r)
                )}
@@ -745,6 +790,20 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             </GenericTogglingMenu>
          </Col>               
       </Form.Group>
+      {transferInOutMode ? <Form.Group as={Row}>
+         <Col xs={12} sm={12} md={4} lg={4}>
+         <Select
+            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+            value={sortByOptions[sortBy]}
+            options={_.values(sortByOptions)}
+            isSearchable={false}
+            onChange={(option) => { if ((option as any)?.value) {
+               const newSortBy = (option as any)?.value || "net";               
+               friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
+            }}}
+         />
+         </Col>
+      </Form.Group> : null}       
       <Row>
          <Col>
             <LoadingOverlay

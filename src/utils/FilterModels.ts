@@ -169,8 +169,9 @@ export type OffseasonLeaderboardParams = {
   year?: string,
   teamView?: string,
   confs?: string,
-  evalMode?: boolean, // (currently via URL only)
-  transferInOutMode?: boolean // (currently via URL only)
+  evalMode?: boolean,
+  transferInOutMode?: boolean,
+  sortBy?: string, //(for transferInOutMode)
 } & Record<string, string>;
 
 export type PlayerLeaderboardParams = {
