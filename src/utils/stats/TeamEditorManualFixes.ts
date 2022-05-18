@@ -143,6 +143,9 @@ export class TeamEditorManualFixes {
             "Baylor": {
                superSeniorsReturning: new Set([ "FlThamba::" ])          
             },
+            "Boise St.": {
+               superSeniorsReturning: new Set([ "MaShaver::" ])          
+            },
             "Boston College": {
                superSeniorsReturning: new Set([ "MaAshton-lan::" ])          
             },
@@ -174,7 +177,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "ReChaney::" ])          
             },
             "Iowa": {
-               superSeniorsReturning: new Set([ "FiRebraca::" ]),
+               superSeniorsReturning: new Set([ "FiRebraca::", "CoMccaffery::" ]),
             },
             "Iowa St.": {
                superSeniorsReturning: new Set([ "GaKalscheur::", "AlKunc::" ]),
@@ -253,7 +256,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "MoMathis::" ]),
             },
             "Texas": {
-               superSeniorsReturning: new Set([ "MaCarr::", "TiAllen::" ]),
+               superSeniorsReturning: new Set([ "MaCarr::", "TiAllen::", "ChBishop::" ]),
             },
             "Texas Tech": {
                superSeniorsReturning: new Set([ "KeObanor::" ]),

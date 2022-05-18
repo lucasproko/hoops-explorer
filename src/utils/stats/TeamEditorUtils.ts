@@ -257,9 +257,14 @@ export class TeamEditorUtils {
       const inSeasonPlayerResultsList = offSeasonMode ? undefined : TeamEditorUtils.getBasePlayers(
          team, year, rawTeamCorrectYear, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, {}, transfers, undefined
       ).list;
-      const addedPlayers = (year != yearIn) ? //(we're in special case mode)
-         _.omit(addedPlayersIn, (inSeasonPlayerResultsList || []).map(t => t.key + year)) //(key was calculated based on year not yearIn)
-            : addedPlayersIn;
+
+      const addedPlayers = ((year != yearIn) || teamOverrides.superSeniorsReturning) ? _.omit(
+         addedPlayersIn, 
+         Array.from(teamOverrides.superSeniorsReturning || []).concat(
+            (year != yearIn) ? (inSeasonPlayerResultsList || []).map(t => t.key + year) : []
+               //(we're in special case mode, note: key was calculated based on year not yearIn)
+         )
+      ) : addedPlayersIn;
 
       const candidatePlayersList = offSeasonMode ? //(to avoid having to parse the very big players array multiple times)
          rawTeamCorrectYear 
