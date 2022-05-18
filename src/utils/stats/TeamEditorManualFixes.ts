@@ -318,3 +318,13 @@ export class TeamEditorManualFixes {
    }; };
    
 }
+
+// Use this to build leaderboard lists
+// console.log(`${
+//    _.chain(TeamEditorManualFixes.fixes("Men_2021/22"))
+//       .toPairs().flatMap(teamOver => {
+//          const team = teamOver[0];
+//          const over = teamOver[1];
+//          return Array.from(over.superSeniorsReturning || []).map(p => `${p.replaceAll(":","")}:${team}`)
+//       }).value().join(";")
+// }`)
