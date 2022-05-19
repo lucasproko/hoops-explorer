@@ -173,6 +173,9 @@ export class TeamEditorManualFixes {
             "Florida": {
                superSeniorsReturning: new Set([ "CoCastleton::", "MyJones::" ]),
             },
+            "Fordham": {
+               superSeniorsReturning: new Set([ "DaQuisenberr::" ])                         
+            },
             "Houson": {
                superSeniorsReturning: new Set([ "ReChaney::" ])          
             },
@@ -241,6 +244,9 @@ export class TeamEditorManualFixes {
             },
             "Saint Mary's (CA)": {
                superSeniorsReturning: new Set([ "LoJohnson::" ]),
+            },
+            "San Diego": {
+               superSeniorsReturning: new Set([ "MaEarlington::" ]),
             },
             "San Diego St.": {
                superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::" ]),
