@@ -41,7 +41,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname, NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
 import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTrackingLists';
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
@@ -408,8 +408,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const table = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
 
+    const specialCases = {
+      "P6": Power6Conferences,
+      "MM": NonP6Conferences
+    } as Record<string, any>;
+
     const confSet = confs ? new Set(
-      _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
+      _.flatMap((confs || "").split(","), c => specialCases[c] || [ NicknameToConference[c] || c ])
     ) : undefined;
 
     const posClassSet = posClasses ? new Set(
@@ -417,7 +422,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ) : undefined;
     const dataEventPlayers = (dataEvent?.players || []);
 
-//TODO: make this a % or an int?
+    //TODO: make this a % or an int?
     // Filter and limit players part 1/2
     const minPossNum = parseInt(minPoss) || 0;
     const confDataEventPlayers = dataEventPlayers.filter(player => {
@@ -755,7 +760,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   }
   function getExtraConfsByTier() {
     if (tier == "All") {
-      return [ "High Tier", "Medium Tier", "Low Tier", "Power 6 Conferences" ];
+      return [ "High Tier", "Medium Tier", "Low Tier", "Power 6 Conferences", "Outside the P6" ];
     } else if (tier == "High") {
       return [ "All Tiers", "Medium Tier", "Low Tier", "Power 6 Conferences" ];
     } else if (tier == "Medium") {

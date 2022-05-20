@@ -4,6 +4,7 @@ import _ from "lodash";
 /** Note these use the KenPom naming conventions */
 export const ConferenceToNickname: Record<string, string> = {
   "Power 6 Conferences": "P6",
+  "Outside the P6": "MM",
   "American Athletic Conference": "AAC",
   "America East Conference": "AE",
   "Atlantic Coast Conference": "ACC",
@@ -45,5 +46,9 @@ export const HighMajorConfs: Set<String> = new Set(
 export const NicknameToConference: Record<string, string> =
   _.chain(ConferenceToNickname).toPairs().map(kv => [ kv[1], kv[0] ]).fromPairs().value();
 
-  export const Power6ConferencesNicks = [ "B1G", "ACC", "BE", "B12", "P12", "SEC" ];
-  export const Power6Conferences = Power6ConferencesNicks.map(c => NicknameToConference[c] || c);
+export const Power6ConferencesNicks = [ "B1G", "ACC", "BE", "B12", "P12", "SEC" ];
+export const Power6Conferences = Power6ConferencesNicks.map(c => NicknameToConference[c] || c);
+
+export const NonP6Conferences = 
+  _.chain(ConferenceToNickname).flatMap((confNick, conf) => 
+    (confNick == "MM" || confNick == "P6" || HighMajorConfs.has(conf)) ? [] : [ conf ]).value();
