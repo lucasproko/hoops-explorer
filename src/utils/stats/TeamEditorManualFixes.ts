@@ -279,6 +279,9 @@ export class TeamEditorManualFixes {
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::", "JaGardner::" ]),
             },
+            "Wake Forest": {
+               superSeniorsReturning: new Set([ "DaWilliamson::" ]),
+            },
             "Western Ky.": {
                superSeniorsReturning: new Set([ "JsHamilton::", "LuFrampton::" ]),
             },
