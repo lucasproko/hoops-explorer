@@ -958,10 +958,11 @@ export class TeamEditorUtils {
          const lastYearPossWeighted = Math.min(lastYearPossWeightedTmp, 0.40*thisYearPossWeighted); 
             //(as much weight as we'll allow last season)
 
-         const thisYearDefSos = (player.def_adj_opp?.value || 100);
-         const lastYearDefSos = (player.prevYear?.value || 100);
-         const thisYearNormalizer = teamSosDef/thisYearDefSos;
-         const lastYearNormalizer = teamSosDef/lastYearDefSos;
+         const thisYearDefSos = (player.def_adj_opp?.value || teamSosDef);
+         const lastYearDefSos = (prevYear.def_adj_opp?.value || teamSosDef);
+
+         const thisYearNormalizer = teamSosDef/thisYearDefSos;  //(scale, eg for x-team SoS)
+         const lastYearNormalizer = 1.0; //(we've already scaled last year's to this team-year's)
 
          const totalWeightInv = 1.0/((thisYearPossWeighted + lastYearPossWeighted) || 1);
          const thisYearWeight = thisYearPossWeighted*totalWeightInv;
@@ -973,7 +974,7 @@ export class TeamEditorUtils {
          const regressedOffRapm = thisYearWeight*(player.off_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.off_adj_rapm?.value || 0);
          const regressedDefRapm = thisYearWeight*(player.def_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.def_adj_rapm?.value || 0);
 
-         const deltaORtg = regressedORtg - (player.off_rtg?.value || 0); //(only incorporate the 2 if they were better)
+         const deltaORtg = regressedORtg - (player.off_rtg?.value || 0)*thisYearNormalizer; //(only incorporate the 2 if they were better)
          const deltaUsg = regressedUsage - (player.off_usage?.value || 0);
          const deltaOffRapm = regressedOffRapm - (player.off_adj_rapm?.value || 0);
          const deltaDefRapm = regressedDefRapm - (player.def_adj_rapm?.value || 0);
@@ -985,24 +986,24 @@ export class TeamEditorUtils {
          return {
             off_rtg: {
                good: tidy({
-                  incorp_prev_season: (deltaOffRapm > 0) ? deltaORtg : 0 //if it's good
+                  incorp_prev_season: (deltaOffRapm > 0) ? deltaORtg : 0 //if it's net (ortg+usg) good
                }),
                ok: tidy({
-                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaORtg : 0 //(for Fr - only if it's good)
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaORtg : 0 //(for Fr - only if it's net (ortg+usg) good)
                }),
                bad: tidy({
-                  incorp_prev_season: !lastYearWasFr && (deltaOffRapm < 0) ? deltaORtg : 0 //(only if it's bad, not Fr)
+                  incorp_prev_season: (!lastYearWasFr && (deltaOffRapm < 0)) ? deltaORtg : 0 //(only if it's net (ortg+usg) bad, not Fr)
                }),
             },
             off_usage: {
                good: tidy({
-                  incorp_prev_season: (deltaOffRapm > 0) ? deltaUsg : 0 //if it's good
+                  incorp_prev_season: (deltaOffRapm > 0) ? deltaOffRapm : 0 //if it's net (ortg+usg) good
                }),
                ok: tidy({
-                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaUsg : 0 //(for Fr - only if it's good)
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaUsg : 0 //(for Fr - only if it's net (ortg+usg) good)
                }),
                bad: tidy({
-                  incorp_prev_season: !lastYearWasFr && (deltaOffRapm < 0) ? deltaUsg : 0 //(only if it's bad, not Fr)
+                  incorp_prev_season: (!lastYearWasFr && (deltaOffRapm < 0)) ? deltaUsg : 0 //(only if it's net (ortg+usg) bad, not Fr)
                }),
             },
             off: {
@@ -1013,7 +1014,7 @@ export class TeamEditorUtils {
                   incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaOffRapm : 0 //(for Fr - only if it's good)
                }),
                bad: tidy({
-                  incorp_prev_season: !lastYearWasFr && (deltaOffRapm < 0) ? deltaOffRapm : 0 //(only if it's bad, not Fr)
+                  incorp_prev_season: (!lastYearWasFr && (deltaOffRapm < 0)) ? deltaOffRapm : 0 //(only if it's bad, not Fr)
                }),
             },
             def: {
@@ -1024,7 +1025,7 @@ export class TeamEditorUtils {
                   incorp_prev_season: (!lastYearWasFr || (deltaDefRapm > 0)) ? deltaDefRapm : 0 //(for Fr - only if it's good)
                }),
                bad: tidy({
-                  incorp_prev_season: !lastYearWasFr && (deltaDefRapm < 0) ? deltaDefRapm : 0 //(only if it's bad, not Fr)
+                  incorp_prev_season: (!lastYearWasFr && (deltaDefRapm < 0)) ? deltaDefRapm : 0 //(only if it's bad, not Fr)
                }),
             },
          }
@@ -1032,32 +1033,51 @@ export class TeamEditorUtils {
 
       /** Balance ORtg and usage somewhat - this is really just for display */
       const balanceORtgAndUsage = (triple: GoodBadOkTriple) => {
+
+         const player = triple.orig;
+         const thisYearDefSos = (player.def_adj_opp?.value || teamSosDef);
+         const thisYearNormalizerInv = thisYearDefSos/teamSosDef;  //(approx back to prev year's SoS)
+
          const handleScenario = (proj: "good" | "bad" | "ok", dataSource: PureStatSet) => {
-            const usage = dataSource.off_usage?.value || 0.20;
-            const ortg = dataSource.off_rtg?.value || 0.20;
+            const usageIn = dataSource.off_usage?.value || 0.20;
+            const ortgIn = dataSource.off_rtg?.value || 0.20;
             // Diagnostics
             //console.log(`?? [${triple.key}][${proj}] - usg=${usage} rtg=${ortg}`);            
 
-            if ((usage > 0.25) && (ortg < 110)) {
-               // Scenario 1: Heavy usage (>25%), not superstar efficiency (ORtg < 110), try shot selection
-               // aim for 24, assume we'll get 2/3rds of the way there
-               const deltaUsage = -(usage - 0.24)*0.66;
-               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;
-               // Diagnostics
-               //console.log(`?? [${triple.key}][${proj}] - Delta usg=${deltaUsage} rtg=${deltaORtg}`);            
-               return [ deltaORtg, deltaUsage ];
-            } else if ((ortg < 90) && (usage > 0.10)) {
-               // Scenario 2: Your ORtg is so bad that you'll lower your usage as low as it will go to get back to 90
-               const deltaUsage = -(usage - 0.10)*0.66;
-               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;
-               return [ deltaORtg, deltaUsage ];
-            } else if ((usage > 0.21) && (usage < 0.25) && (ortg < 98)) {
-               // Scenario 3: the search for 100!
-               const deltaUsage = -(usage - 0.19)*0.80; //(will go all the way down to 19)
-               const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;            
-               return [ deltaORtg, deltaUsage ];
-            } 
-            return [ 0, 0 ];
+            // if SoS increases, and this is negative, in practice players will be more selective, ie their usage
+            // will decrease, not their ORtg, so we balance this as 3:1
+            const deltaORtgFromSosDiff = ortgIn*(1.0 - thisYearNormalizerInv);
+            const totalDeltaUsgFromSosDiff = 0.01*deltaORtgFromSosDiff*1.25;
+            const deltaUsageToUse = Math.min(0, 0.75*totalDeltaUsgFromSosDiff);
+            const deltaORtgToUse = RatingUtils.adjustORtgForUsageDelta(ortgIn, usageIn, deltaUsageToUse) - ortgIn;
+
+            // Once we've sorted out a sensible ORtg/usg after messing with SoS, now we'll apply some other 
+            // scenarios
+
+            const checkScenario = (ortg: number, usage: number) => {
+               if ((usage > 0.25) && (ortg < 110)) {
+                  // Scenario 1: Heavy usage (>25%), not superstar efficiency (ORtg < 110), try shot selection
+                  // aim for 24, assume we'll get 2/3rds of the way there
+                  const deltaUsage = -(usage - 0.24)*0.66;
+                  const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;
+                  // Diagnostics
+                  //console.log(`?? [${triple.key}][${proj}] - Delta usg=${deltaUsage} rtg=${deltaORtg}`);            
+                  return [ deltaORtg, deltaUsage ];
+               } else if ((ortg < 90) && (usage > 0.10)) {
+                  // Scenario 2: Your ORtg is so bad that you'll lower your usage as low as it will go to get back to 90
+                  const deltaUsage = -(usage - 0.10)*0.66;
+                  const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;
+                  return [ deltaORtg, deltaUsage ];
+               } else if ((usage > 0.21) && (usage < 0.25) && (ortg < 98)) {
+                  // Scenario 3: the search for 100!
+                  const deltaUsage = -(usage - 0.19)*0.80; //(will go all the way down to 19)
+                  const deltaORtg = RatingUtils.adjustORtgForUsageDelta(ortg, usage, deltaUsage) - ortg;            
+                  return [ deltaORtg, deltaUsage ];
+               } 
+               return [ 0, 0 ];
+            };
+            const [ preSosAdjOff, preSosAdjUsage ] = checkScenario(ortgIn + deltaORtgToUse, usageIn + deltaUsageToUse);
+            return [ preSosAdjOff + deltaORtgToUse, preSosAdjUsage + deltaUsageToUse ];
          }
          const [ goodDeltaORtg, goodDeltaUsg ] = handleScenario("good", triple.good);
          const [ okDeltaORtg, okDeltaUsg ] = handleScenario("ok", triple.ok);
@@ -1093,13 +1113,13 @@ export class TeamEditorUtils {
       // Now apply the above rules
 
       const applyDiagsToBase = (proj: "good" | "bad" | "ok", 
-         diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet, applySos: boolean,
+         diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet, applySosToAdj: boolean,
          filter: Set<DiagCodes> | undefined
       ) => {
          // (These 2 are just for display) 
-         const thisYearDefSos = applySos ? (basePlayer.def_adj_opp?.value || 100) : teamSosDef; //(For ORtg, need to take SoS into account)
+         const thisYearDefSos = applySosToAdj ? (basePlayer.def_adj_opp?.value || teamSosDef) : teamSosDef; //(For ORtg, need to take SoS into account)
          const sumOffRtg = _.chain(diags.off_rtg[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
-         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, applySos ? (teamSosDef/thisYearDefSos) : 1.0)!;
+         mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, applySosToAdj ? (teamSosDef/thisYearDefSos) : 1.0)!;
          const sumOffUsage = 0.01*_.chain(diags.off_usage[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
          mutableTarget.off_usage = TeamEditorUtils.addToVal(basePlayer.off_usage, sumOffUsage)!;
 
@@ -1118,10 +1138,11 @@ export class TeamEditorUtils {
          const prevPlayerYearlyAdjustment = {};
          if (prevPlayerDiags && triple.prevYear && offSeasonMode) {
             applyDiagsToBase("ok", 
-               prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, true,
+               prevPlayerDiags, prevPlayerYearlyAdjustment, triple.prevYear, true, 
                new Set([ "fr_yearly_bonus", "yearly_bonus" ] as DiagCodes[])
-            );
+            ); //(2 years' ago ORtg is now scaled to the "current team's last year SoS")
          };
+
          const isFr = (triple.orig.roster?.year_class == "Fr"); //("fake Freshmen" already handled by 1st clause)
          const regressionDeltas = triple.prevYear ? 
             applyRegression(triple.orig, triple.prevYear, prevPlayerYearlyAdjustment) : 
