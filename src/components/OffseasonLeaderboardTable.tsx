@@ -45,10 +45,12 @@ import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LeaderboardUtils } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/TeamEditorManualFixes';
+import { InputGroup } from 'react-bootstrap';
+import AsyncFormControl from './shared/AsyncFormControl';
 
 const highMajorConfsName = "Power 6 Conferences";
 const nonHighMajorConfsName = "Outside The P6";
-const queryFiltersName = "From URL";
+const queryFiltersName = "Manual Filter";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
 
 type Props = {
@@ -72,6 +74,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    // Data source
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
    const [confs, setConfs] = useState(startingState.confs || "");
+   const hasCustomFilter = confs.indexOf(queryFiltersName) >= 0;
+
    const [year, setYear] = useState(startingState.year ? 
       (startingState.evalMode ? startingState.year : DateUtils.getPrevYear(startingState.year))
       : "2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
@@ -83,6 +87,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
 
    const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
+   const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
 
    /** Converts a list of params to their team's key/value params  */
    const buildOverrides = (inOverrides: Record<string, string>) => {
@@ -127,13 +132,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       onChangeState(_.merge({
          year: yearRedirect, teamView: teamView, confs, evalMode: evalMode, transferInOutMode: transferInOutMode,
          sortBy: sortBy,
-         queryFilters: startingState.queryFilters
+         queryFilters: queryFilters
       }, _.chain(teamOverrides).flatMap((teamEdit, teamToOver) => {
          return _.map(teamEdit, 
             (teamEditVal, paramKey) => teamEditVal ? [ `${teamToOver}__${paramKey}`, teamEditVal.toString() ] : []
          );
       }).fromPairs().value()));
-   }, [ teamView, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode, sortBy ]);
+   }, [ teamView, confs, teamOverrides, yearRedirect, evalMode, transferInOutMode, sortBy, queryFilters ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -523,9 +528,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
             || (((confs.indexOf("P6") >= 0) && confs.indexOf(nonHighMajorConfsName) < 0) && (powerSixConfsStr.indexOf(t.conf) >= 0))
             || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.conf) < 0))
-            || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
+            || (hasCustomFilter && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
             ;
       }
+      
       const tableRows = _.chain(teamRanks).filter(confFilter).take(75).flatMap((t, netRankIn) => {
 
          const nonStdSort = sortBy && (sortBy != "net") && transferInOutMode;
@@ -675,7 +681,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          cellTooltipMode={undefined}
       />;
    }, [
-      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode, sortBy
+      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode, sortBy, queryFilters
    ]);
 
    // 3] View
@@ -746,10 +752,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                isMulti
                components={{ MultiValueContainer: ConferenceValueContainer }}
                value={getCurrentConfsOrPlaceholder()}
-               options={([highMajorConfsName, nonHighMajorConfsName]).concat(_.sortBy(confsWithTeams))
-                  .concat([ nonHighMajorConfsName, queryFiltersName ]).map(
-                     (r) => stringToOption(r)
-               )}
+               options={([highMajorConfsName, nonHighMajorConfsName, queryFiltersName]).concat(_.sortBy(confsWithTeams))
+                  .map(r => stringToOption(r))
+               }
                onChange={(optionsIn) => {
                   const options = optionsIn as Array<any>;
                   const selection = (options || [])
@@ -790,19 +795,35 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             </GenericTogglingMenu>
          </Col>               
       </Form.Group>
-      {transferInOutMode ? <Form.Group as={Row}>
-         <Col xs={12} sm={12} md={4} lg={4}>
-         <Select
-            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-            value={sortByOptions[sortBy]}
-            options={_.values(sortByOptions)}
-            isSearchable={false}
-            onChange={(option) => { if ((option as any)?.value) {
-               const newSortBy = (option as any)?.value || "net";               
-               friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
-            }}}
-         />
-         </Col>
+      {(transferInOutMode || hasCustomFilter) ? <Form.Group as={Row}>
+         {hasCustomFilter ? <Col xs={12} sm={12} md={8} lg={8}>
+            <InputGroup>
+               <InputGroup.Prepend>
+                  <InputGroup.Text id="filter">Filter:</InputGroup.Text>
+               </InputGroup.Prepend>
+               <AsyncFormControl
+                  startingVal={queryFilters}
+                  onChange={(t: string) => {
+                     const newStr = t.endsWith(";") ? t : t + ";";
+                     friendlyChange(() => setQueryFilters(newStr), newStr != queryFilters);
+                  }}
+                  timeout={500}
+                  placeholder = ";-separated list of teams"
+               />
+            </InputGroup>
+         </Col> : null}
+         {transferInOutMode ? <Col xs={12} sm={12} md={4} lg={4}>
+            <Select
+               styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+               value={sortByOptions[sortBy]}
+               options={_.values(sortByOptions)}
+               isSearchable={false}
+               onChange={(option) => { if ((option as any)?.value) {
+                  const newSortBy = (option as any)?.value || "net";               
+                  friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
+               }}}
+            />
+         </Col> : null}
       </Form.Group> : null}       
       <Row>
          <Col>

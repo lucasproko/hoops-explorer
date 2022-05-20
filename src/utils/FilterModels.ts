@@ -172,6 +172,7 @@ export type OffseasonLeaderboardParams = {
   evalMode?: boolean,
   transferInOutMode?: boolean,
   sortBy?: string, //(for transferInOutMode)
+  queryFilters?: string
 } & Record<string, string>;
 
 export type PlayerLeaderboardParams = {

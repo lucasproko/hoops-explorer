@@ -82,6 +82,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       (!rawParams.evalMode) ? [ "evalMode" ] : [],
       (!rawParams.teamView) ? [ "teamView" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
+      (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
       (rawParams.sortBy == "net") ? [ "sortBy" ] : [],
 
     ]));
