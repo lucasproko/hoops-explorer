@@ -176,17 +176,17 @@ export class TeamEditorManualFixes {
             "Fordham": {
                superSeniorsReturning: new Set([ "DaQuisenberr::" ])                         
             },
-            "Houson": {
+            "Houston": {
                superSeniorsReturning: new Set([ "ReChaney::" ])          
+            },
+            "Indiana": {
+               superSeniorsReturning: new Set([ "RaThompson::", "MiKopp::", "XaJohnson::" ]),
             },
             "Iowa": {
                superSeniorsReturning: new Set([ "FiRebraca::", "CoMccaffery::" ]),
             },
             "Iowa St.": {
                superSeniorsReturning: new Set([ "GaKalscheur::", "AlKunc::" ]),
-            },
-            "Indiana": {
-               superSeniorsReturning: new Set([ "RaThompson::" ]),
             },
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ],
