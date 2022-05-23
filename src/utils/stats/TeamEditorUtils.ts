@@ -327,7 +327,13 @@ export class TeamEditorUtils {
                bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
                ok: indivStatSet(0),
                orig: indivStatSet(0),
-               manualProfile: o
+               manualProfile: o,
+               diag: {
+                  off_rtg: { good: {}, bad: {}, ok: {} },
+                  off_usage: { good: {}, bad: {}, ok: {} },
+                  off: { good: {}, bad: {}, ok: {} },
+                  def: { good: {}, bad: {}, ok: {} },
+               }
             } as GoodBadOkTriple;
          }).value()
       ); 
@@ -1544,8 +1550,6 @@ export class TeamEditorUtils {
                (regressedBenchFactorDef*(TeamEditorUtils.getDef(lastYearBenchStats) - 0.3) - (1.0 - regressedBenchFactorDef)*benchLevel)
                : -benchLevel;
                
-            //TODO: add diag for bench regression
-
             const minsPct = 
                !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
             const offAdj = maybeOverrides?.global_off_adj || 0;
@@ -1574,7 +1578,25 @@ export class TeamEditorUtils {
                   off_adj_rapm: { value: regressedBenchLevelOff - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
                   def_adj_rapm: { value: regressedBenchLevelDef + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
                },
-               orig: baseBench
+               orig: baseBench,
+               diag: {
+                  off_rtg: { good: {}, bad: {}, ok: {} },
+                  off_usage: { good: {}, bad: {}, ok: {} },
+                  off: { good: {
+                     incorp_prev_season: regressedBenchLevelOff - benchLevel
+                  }, bad: {
+                     incorp_prev_season: regressedBenchLevelOff - benchLevel
+                  }, ok: {
+                     incorp_prev_season: regressedBenchLevelOff - benchLevel
+                  } },
+                  def: { good: {
+                     incorp_prev_season: regressedBenchLevelDef + benchLevel
+                  }, bad: {
+                     incorp_prev_season: regressedBenchLevelDef + benchLevel
+                  }, ok: {
+                     incorp_prev_season: regressedBenchLevelDef + benchLevel
+                  } }
+               }
             } as GoodBadOkTriple;
          };
 

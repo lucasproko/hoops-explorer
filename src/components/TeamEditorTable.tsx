@@ -663,6 +663,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               onDelete={() => null}
             />, "small"
           ), GenericTableOps.buildRowSeparator() ] : []
+      ).concat(
+        debugMode ? [ 
+          GenericTableOps.buildTextRow(
+            JSON.stringify(_.omit(triple.diag, [ "off_rtg", "off_usage" ]), reduceNumberSize), "small"
+          )
+        ] : []
       )
     };
     const buildPosHeaderRow = (posName: string, pct: number) => GenericTableOps.buildSubHeaderRow(
