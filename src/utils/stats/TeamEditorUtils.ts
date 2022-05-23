@@ -3,11 +3,10 @@ import _ from "lodash";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 import { RatingUtils } from './RatingUtils';
-import { LeaderboardUtils, TransferModel } from '../LeaderboardUtils';
+import { TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
 import { DateUtils } from "../DateUtils";
-import { sub } from "date-fns";
 
 /** Possibly ways we change projections */
 type DiagCodes = 
@@ -304,7 +303,7 @@ export class TeamEditorUtils {
                )
          );
 
-      //TODO: (see TeamRosterEditor TODO), this doesn't correctly handle combining overrids on top of "redshirtishFr"
+      //TODO: (see TeamRosterEditor TODO), this doesn't correctly handle combining overrides on top of "redshirtishFr"
       const unpausedOverrides: Record<string, PlayerEditModel> = 
          _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
@@ -1863,11 +1862,12 @@ export class TeamEditorUtils {
     */
    static getBenchLevelScoringByProfile(profile: Profiles | undefined): number {
       //(these numbers derived from looking at the T200 Fr for the last 4 years - the lower ranges are purely guesswork)
-      const lotto = 6.5;
-      const fiveStar = 5.2;
+      const lotto = 6.5; //6.5 to 5.5, depending on penalty
+      const fiveStar = 5.2; // 5.2 to 4.2 depending on penalty
       const borderline5Star = 4.6;
-      const top40 = 3.5;
-      const fourStar = 1.5;
+      const top40 = 3.5; //3 to 4 depending on bonus
+      //(discontinuity here, slightly arbitrary but blue chip Fr do seem to have a jump)
+      const fourStar = 1.5; // 1 to 2 depending on bonus
       if (profile == "5*/Lotto") { // blend the various RAPM range because a lotto pick sometimes just ... isn't...
          return 0.7*lotto + 0.2*fiveStar + 0.1*top40;
       } else if (profile == "5*") {
@@ -1877,13 +1877,13 @@ export class TeamEditorUtils {
       } else if (profile == "4*/T40ish") {
          return 0.15*borderline5Star + 0.70*top40 + 0.15*fourStar;
       } else if (profile == "4*") { //(from here on down it's symmetric)
-         return 1.5;
+         return fourStar;
       } else if (profile == "3.5*/T150ish") {
-         return 0.5;
+         return 0.5; //0 to 1 depending on bonus)
       } else if (profile == "3*") {
-         return -1;
+         return -0.5; // -1.0 to 0 depending on bonus
       } else if (profile == "3+2*s") { //(not selectible)
-         return -2;
+         return -2; //(discontinuity here there is a huge rating range of "3*" and they aren't v distinguishable)
       } else if (profile == "2*") {
          return -3;
       } else if (profile == "UR") {
