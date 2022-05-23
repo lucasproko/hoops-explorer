@@ -188,6 +188,9 @@ export class TeamEditorManualFixes {
             "Iowa St.": {
                superSeniorsReturning: new Set([ "GaKalscheur::", "AlKunc::" ]),
             },
+            "Jacksonville": {
+               superSeniorsReturning: new Set([ "TyGreene::" ]),
+            },
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ],
             },
