@@ -1389,7 +1389,7 @@ export class TeamEditorUtils {
       }
 
       const assignMins = (newMins: number, p: GoodBadOkTriple, force: boolean = false) => {
-         const minMins = minMinsPerKey[p.key] || newMins;
+         const minMins = !_.isNil(minMinsPerKey[p.key]) ? minMinsPerKey[p.key] : newMins;
          const maxMins = maxMinsPerKey[p.key] || newMins;
          const adjBaseMins: Statistic = { value: force ? newMins : Math.max(Math.min(newMins, maxMins), minMins) };
          p.good.off_team_poss_pct = adjBaseMins;
@@ -1427,7 +1427,8 @@ export class TeamEditorUtils {
             ;
 
          if (debugMode) { // Diagnostics
-            console.log(`[${p.key}]: base mins [${baseMins}] from net=[${okNet.toFixed(1)}] frFactor=[${frFactor.toFixed(2)}][${p.manualProfile?.profile}] bench=[${benchLevelScoring.toFixed(1)}]`);
+            console.log(`[${p.key}]: base mins [${baseMins}] min=[${minMinsPerKey[p.key]?.toFixed(1)}]/max=[${maxMinsPerKey[p.key]?.toFixed(1)}] ` +
+            `from net=[${okNet.toFixed(1)}] frFactor=[${frFactor.toFixed(2)}][${p.manualProfile?.profile}] bench=[${benchLevelScoring.toFixed(1)}]`);
          }
          assignMins(baseMins, p, !calcMins);
       });
@@ -1465,7 +1466,7 @@ export class TeamEditorUtils {
          const sumFrontCourtMins = _.sumBy(filteredRoster.filter(isFrontCourt), p => p.ok.off_team_poss_pct.value || 0);
          const frontCourtScale = Math.min(maxFrontCourtMins/(sumFrontCourtMins || 1), 1.0);
 
-         const emergencyMeasures = (step == finalStep) && (sumMins + benchMinOverrides) > 5.0;
+         const emergencyMeasures = (step == finalStep) && ((sumMins + benchMinOverrides) > 5.0);
             //(ensure the sum of the players' + bench minutes is never more than physically possib;e)
 
          const threshold = 5.0 - minsForBench/40.0 - benchMinOverrides;
@@ -1485,9 +1486,6 @@ export class TeamEditorUtils {
             );
          }
          if (((goal > 0) && (Math.abs(sumMins - goal) > target)) || (frontCourtScale < 0.99)) {
-            // Fix front court and back-court separately
-            const [ frontCourt, backCourt ] = _.partition(filteredRoster, isFrontCourt);
-
             const factor = goal/sumMins;
             // if we have too many front court minutes then treat frontcourt/backcourt separately
             const tooManyFrontCourtMins = (sumFrontCourtMins*factor) > 2.0; //(ie will end up with too many _after_ applying this iteration)
@@ -1811,14 +1809,21 @@ export class TeamEditorUtils {
       const isBig = PositionUtils.posClassToScore(triple.orig.posClass || "") > 5500;
       const bigPenalty = isBig ? 5 : 0;
 
+      // Smooth over discontinuities in rating for 3-4*s
+      const ratingBonusOrPenalty = Math.max(-0.5, 
+         Math.min(0.5,
+            (triple.manualProfile?.global_off_adj || 0) -  (triple.manualProfile?.global_def_adj || 0)
+         )
+      )*5;
+
       if (levelAboveBench >= 3) {
          return 30 - bigPenalty;
       } else if (levelAboveBench >= 2) {
-         return 25 - bigPenalty;
+         return 25 - bigPenalty + ratingBonusOrPenalty;
       } else if (levelAboveBench >= 1) {
-         return 20 - bigPenalty;
+         return 20 - bigPenalty + ratingBonusOrPenalty;
       } else {
-         return 15 - bigPenalty;
+         return 15 - bigPenalty + ratingBonusOrPenalty;
       }
    }
 
