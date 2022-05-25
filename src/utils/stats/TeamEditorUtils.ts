@@ -3,11 +3,11 @@ import _ from "lodash";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
 import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
 import { RatingUtils } from './RatingUtils';
-import { LeaderboardUtils, TransferModel } from '../LeaderboardUtils';
+import { TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
 import { DateUtils } from "../DateUtils";
-import { sub } from "date-fns";
+import { TeamEditorTableUtils } from '../tables/TeamEditorTableUtils';
 
 /** Possibly ways we change projections */
 type DiagCodes = 
@@ -304,7 +304,7 @@ export class TeamEditorUtils {
                )
          );
 
-      //TODO: (see TeamRosterEditor TODO), this doesn't correctly handle combining overrids on top of "redshirtishFr"
+      //TODO: (see TeamRosterEditor TODO), this doesn't correctly handle combining overrides on top of "redshirtishFr"
       const unpausedOverrides: Record<string, PlayerEditModel> = 
          _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
 
@@ -328,7 +328,13 @@ export class TeamEditorUtils {
                bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
                ok: indivStatSet(0),
                orig: indivStatSet(0),
-               manualProfile: o
+               manualProfile: o,
+               diag: {
+                  off_rtg: { good: {}, bad: {}, ok: {} },
+                  off_usage: { good: {}, bad: {}, ok: {} },
+                  off: { good: {}, bad: {}, ok: {} },
+                  def: { good: {}, bad: {}, ok: {} },
+               }
             } as GoodBadOkTriple;
          }).value()
       ); 
@@ -1172,7 +1178,6 @@ export class TeamEditorUtils {
             triple.diag = _.merge(triple.diag, balanceORtgDiag);
          }
       });
-      //TODO: turn the adjustment into an ORtg/usage delta for "OK" tier (add off_ortg and off_usg)
    }
 
    /** More advanced calculations that require the minutes adjustments */
@@ -1327,8 +1332,6 @@ export class TeamEditorUtils {
          balanceUsage(proj);
          positionalPenalty(proj);
       })
-
-      //TODO: other more advanced adjustments? Improve playmaking penalty maybe?
    }
 
    /** Calculate minutes assignment, mutates roster */
@@ -1347,14 +1350,15 @@ export class TeamEditorUtils {
       
       const filteredRoster = roster.filter(p => !disabledPlayers[p.key]);
 
-      const benchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
+      const benchProfileLevel = TeamEditorUtils.teamToProfileLevel(team, year);
+      const benchLevelScoring = TeamEditorUtils.getBenchLevelScoring(team, year);
       const benchGuardOverride = overrides[TeamEditorUtils.benchGuardKey]?.profile;
       const benchWingOverride = overrides[TeamEditorUtils.benchWingKey]?.profile;
       const benchBigOverride = overrides[TeamEditorUtils.benchBigKey]?.profile;
       const netRatings = _.sortBy(filteredRoster.map(p => getNet(p.ok)).concat(
-         [benchGuardOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchGuardOverride) : benchLevel, 
-            benchWingOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchWingOverride) : benchLevel, 
-            benchBigOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchBigOverride) : benchLevel, 
+         [benchGuardOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchGuardOverride) : benchLevelScoring, 
+            benchWingOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchWingOverride) : benchLevelScoring, 
+            benchBigOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchBigOverride) : benchLevelScoring, 
          ].map(n => 0.5*n)) //(add one bench player per pos group)
       );
       const tierSize = (Math.ceil(_.size(netRatings)/3) || 1);
@@ -1367,12 +1371,12 @@ export class TeamEditorUtils {
 
       const maxMinsPerKey = _.chain(filteredRoster).map(p => {
          const maybeOverride = overrides[p.key]?.mins;
-         return [ p.key, maybeOverride ? maybeOverride/40.0 : TeamEditorUtils.calcMaxMins(p) ];
+         return [ p.key, maybeOverride ? maybeOverride/40.0 : TeamEditorUtils.calcMaxMins(p, benchProfileLevel) ];
       }).fromPairs().value();
 
       const minMinsPerKey = _.chain(filteredRoster).map(p => {
          const maybeOverride = overrides[p.key]?.mins;
-         const minMins = maybeOverride ? maybeOverride/40.0 : TeamEditorUtils.calcMinMins(p, team, teamSosNet, avgEff);
+         const minMins = maybeOverride ? maybeOverride/40.0 : TeamEditorUtils.calcMinMins(p, benchProfileLevel, team, teamSosNet, avgEff);
          return [ p.key, Math.min(minMins, maxMinsPerKey[p.key] || minMins) ]; //(prevent min>max)
       }).fromPairs().value();
 
@@ -1385,7 +1389,7 @@ export class TeamEditorUtils {
       }
 
       const assignMins = (newMins: number, p: GoodBadOkTriple, force: boolean = false) => {
-         const minMins = minMinsPerKey[p.key] || newMins;
+         const minMins = !_.isNil(minMinsPerKey[p.key]) ? minMinsPerKey[p.key] : newMins;
          const maxMins = maxMinsPerKey[p.key] || newMins;
          const adjBaseMins: Statistic = { value: force ? newMins : Math.max(Math.min(newMins, maxMins), minMins) };
          p.good.off_team_poss_pct = adjBaseMins;
@@ -1409,16 +1413,22 @@ export class TeamEditorUtils {
       filteredRoster.forEach(p => {
          //(TODO: calc mins differently per tier?)
          const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
-
          const calcMins = (somethingChanged || hasMinsOverride); //(since overrides are enforced using min/max)
+
+         const okNet = calcMins ? getNet(p.ok) : 0;
+         const frFactor = (calcMins && p.manualProfile?.profile) ? 
+            (0.25 + Math.max(0, Math.min(0.75, (okNet - benchLevelScoring)*0.5))) : 1.0;
+               //(for Fr we apply an additional penalty if they aren't significantly better than the bench scoring level)
+
          const baseMins = calcMins ?
-            TeamEditorUtils.netTierToBaseMins(getNet(p.ok), [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ])
+            frFactor*TeamEditorUtils.netTierToBaseMins(okNet, [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ])
             :
             (p.orig.off_team_poss_pct?.value || 0) //(in-season mode, just described minutes played)
             ;
 
          if (debugMode) { // Diagnostics
-            console.log(`[${p.key}]: base mins [${baseMins}] from ${getNet(p.ok).toFixed(1)}`);
+            console.log(`[${p.key}]: base mins [${baseMins}] min=[${minMinsPerKey[p.key]?.toFixed(1)}]/max=[${maxMinsPerKey[p.key]?.toFixed(1)}] ` +
+            `from net=[${okNet.toFixed(1)}] frFactor=[${frFactor.toFixed(2)}][${p.manualProfile?.profile}] bench=[${benchLevelScoring.toFixed(1)}]`);
          }
          assignMins(baseMins, p, !calcMins);
       });
@@ -1456,7 +1466,7 @@ export class TeamEditorUtils {
          const sumFrontCourtMins = _.sumBy(filteredRoster.filter(isFrontCourt), p => p.ok.off_team_poss_pct.value || 0);
          const frontCourtScale = Math.min(maxFrontCourtMins/(sumFrontCourtMins || 1), 1.0);
 
-         const emergencyMeasures = (step == finalStep) && (sumMins + benchMinOverrides) > 5.0;
+         const emergencyMeasures = (step == finalStep) && ((sumMins + benchMinOverrides) > 5.0);
             //(ensure the sum of the players' + bench minutes is never more than physically possib;e)
 
          const threshold = 5.0 - minsForBench/40.0 - benchMinOverrides;
@@ -1476,9 +1486,6 @@ export class TeamEditorUtils {
             );
          }
          if (((goal > 0) && (Math.abs(sumMins - goal) > target)) || (frontCourtScale < 0.99)) {
-            // Fix front court and back-court separately
-            const [ frontCourt, backCourt ] = _.partition(filteredRoster, isFrontCourt);
-
             const factor = goal/sumMins;
             // if we have too many front court minutes then treat frontcourt/backcourt separately
             const tooManyFrontCourtMins = (sumFrontCourtMins*factor) > 2.0; //(ie will end up with too many _after_ applying this iteration)
@@ -1545,8 +1552,6 @@ export class TeamEditorUtils {
                (regressedBenchFactorDef*(TeamEditorUtils.getDef(lastYearBenchStats) - 0.3) - (1.0 - regressedBenchFactorDef)*benchLevel)
                : -benchLevel;
                
-            //TODO: add diag for bench regression
-
             const minsPct = 
                !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
             const offAdj = maybeOverrides?.global_off_adj || 0;
@@ -1575,7 +1580,25 @@ export class TeamEditorUtils {
                   off_adj_rapm: { value: regressedBenchLevelOff - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
                   def_adj_rapm: { value: regressedBenchLevelDef + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
                },
-               orig: baseBench
+               orig: baseBench,
+               diag: {
+                  off_rtg: { good: {}, bad: {}, ok: {} },
+                  off_usage: { good: {}, bad: {}, ok: {} },
+                  off: { good: {
+                     incorp_prev_season: regressedBenchLevelOff - benchLevel
+                  }, bad: {
+                     incorp_prev_season: regressedBenchLevelOff - benchLevel
+                  }, ok: {
+                     incorp_prev_season: regressedBenchLevelOff - benchLevel
+                  } },
+                  def: { good: {
+                     incorp_prev_season: regressedBenchLevelDef + benchLevel
+                  }, bad: {
+                     incorp_prev_season: regressedBenchLevelDef + benchLevel
+                  }, ok: {
+                     incorp_prev_season: regressedBenchLevelDef + benchLevel
+                  } }
+               }
             } as GoodBadOkTriple;
          };
 
@@ -1668,9 +1691,9 @@ export class TeamEditorUtils {
    }
    
    /** Estimate the maximum number of minutes played based on their fouling rate */
-   static calcMaxMins(p: GoodBadOkTriple) {
+   static calcMaxMins(p: GoodBadOkTriple, benchLevel: number | undefined) {
       if (p.manualProfile) {
-         return TeamEditorUtils.getFreshmenMaxMins(p)/40;
+         return TeamEditorUtils.getFreshmenMaxMins(p, benchLevel)/40;
       } else {
          const improvement = (p.orig.roster?.year_class == "Fr") ? 0.5 :
             ((p.orig.roster?.year_class == "So") ?  0.5 : 0);
@@ -1687,9 +1710,12 @@ export class TeamEditorUtils {
    }
 
    /** Estimate the minimum number of minutes played based on their minutes the previous season */
-   static calcMinMins(p: GoodBadOkTriple, team: string, teamSosNet: number, avgEff: number) {
+   static calcMinMins(p: GoodBadOkTriple, benchLevel: number | undefined, team: string, teamSosNet: number, avgEff: number) {
       if (p.manualProfile) {
-         return 5/40; //(some nominal value)
+         const levelAboveBench = (p.manualProfile?.profile && !_.isNil(benchLevel)) ?
+         (TeamEditorUtils.profileToProfileLevel(p.manualProfile?.profile) - benchLevel): 1;
+         
+         return Math.max(0, Math.min(8, levelAboveBench*4))/40; //(some nominal value)
       } else {
          const currPossPct = p.orig.off_team_poss_pct?.value || 0.25;
          if ((p.orig.team == team) && (p.orig.roster?.year_class == "Fr")) { // Fr always increase their minutes
@@ -1775,28 +1801,29 @@ export class TeamEditorUtils {
       return expandedTierToMins?.[closestExpandedTier] || 0.9;
    }
    
-   /** Gets a max cap on Fr minutes */
-   static getFreshmenMaxMins(triple: GoodBadOkTriple) {
+   /** Gets a max cap on Fr minutes */   
+   static getFreshmenMaxMins(triple: GoodBadOkTriple, benchLevel: number | undefined) {
+      const levelAboveBench = (triple.manualProfile?.profile && !_.isNil(benchLevel)) ?
+         (TeamEditorUtils.profileToProfileLevel(triple.manualProfile?.profile) - benchLevel): 1;
+      
       const isBig = PositionUtils.posClassToScore(triple.orig.posClass || "") > 5500;
-      const blueChip = new Set(["5*/Lotto", "5*", "5+4*s"]);
-      const decentRecruit = new Set(["4*/T40ish", "4*", "3.5*/T150ish"]);
-      const profile = triple.manualProfile?.profile || "";
-      if (isBig) {
-         if (blueChip.has(profile)) {
-            return 25;
-         } else if (decentRecruit.has(profile)) {
-            return 20;
-         } else {
-            return 15;
-         }
+      const bigPenalty = isBig ? 5 : 0;
+
+      // Smooth over discontinuities in rating for 3-4*s
+      const ratingBonusOrPenalty = Math.max(-0.5, 
+         Math.min(0.5,
+            (triple.manualProfile?.global_off_adj || 0) -  (triple.manualProfile?.global_def_adj || 0)
+         )
+      )*5;
+
+      if (levelAboveBench >= 3) {
+         return 30 - bigPenalty;
+      } else if (levelAboveBench >= 2) {
+         return 25 - bigPenalty + ratingBonusOrPenalty;
+      } else if (levelAboveBench >= 1) {
+         return 20 - bigPenalty + ratingBonusOrPenalty;
       } else {
-         if (blueChip.has(profile)) {
-            return 30;
-         } else if (decentRecruit.has(profile)) {
-            return 25;
-         } else {
-            return 20;
-         }
+         return 15 - bigPenalty + ratingBonusOrPenalty;
       }
    }
 
@@ -1833,8 +1860,8 @@ export class TeamEditorUtils {
       return getBenchLevel();
    }
 
-   /** Returns a numeric value for how many "levels" a player has jumped */
-   static getJumpInLevel(oldTeam: string, newTeam: string, year: string): undefined | number {
+   /** Switches a team/profile level to a number so they can be compared */
+   private static teamToProfileLevel(team: string, year: string): number | undefined {
       const levelToNumber = (level: string) => {
          switch(level) {
             case "high": return 5;
@@ -1849,8 +1876,26 @@ export class TeamEditorUtils {
          || AvailableTeams.byName[team]?.[0] 
          || { category: "unknown"};
 
-      const oldLevel = levelToNumber(getLevel(oldTeam).category || "unknown");
-      const newLevel = levelToNumber(getLevel(newTeam).category || "unknown");
+      return levelToNumber(getLevel(team).category || "unknown");
+   }
+
+   /** Switches a team/profile level to a number so they can be compared */
+   private static profileToProfileLevel = (profile: Profiles): number => {
+      switch(profile) {
+         case "5*/Lotto": return 9;
+         case "5*": return 8;
+         case "4*/T40ish": return 7;
+         case "4*": return 6;
+         case "3.5*/T150ish": return 5;
+         case "3*": return 4;
+         default: return 3;
+      }
+   }
+
+   /** Returns a numeric value for how many "levels" a player has jumped */
+   static getJumpInLevel(oldTeam: string, newTeam: string, year: string): undefined | number {
+      const oldLevel = TeamEditorUtils.teamToProfileLevel(oldTeam, year);
+      const newLevel = TeamEditorUtils.teamToProfileLevel(newTeam, year);
       if (_.isNil(oldLevel) || _.isNil(newLevel)) {
          return undefined;
       } else {
@@ -1863,11 +1908,12 @@ export class TeamEditorUtils {
     */
    static getBenchLevelScoringByProfile(profile: Profiles | undefined): number {
       //(these numbers derived from looking at the T200 Fr for the last 4 years - the lower ranges are purely guesswork)
-      const lotto = 6.5;
-      const fiveStar = 5.2;
+      const lotto = 6.5; //6.5 to 5.5, depending on penalty
+      const fiveStar = 5.2; // 5.2 to 4.2 depending on penalty
       const borderline5Star = 4.6;
-      const top40 = 3.5;
-      const fourStar = 1.5;
+      const top40 = 3.5; //3 to 4 depending on bonus
+      //(discontinuity here, slightly arbitrary but blue chip Fr do seem to have a jump)
+      const fourStar = 1.5; // 1 to 2 depending on bonus
       if (profile == "5*/Lotto") { // blend the various RAPM range because a lotto pick sometimes just ... isn't...
          return 0.7*lotto + 0.2*fiveStar + 0.1*top40;
       } else if (profile == "5*") {
@@ -1877,13 +1923,13 @@ export class TeamEditorUtils {
       } else if (profile == "4*/T40ish") {
          return 0.15*borderline5Star + 0.70*top40 + 0.15*fourStar;
       } else if (profile == "4*") { //(from here on down it's symmetric)
-         return 1.5;
+         return fourStar;
       } else if (profile == "3.5*/T150ish") {
-         return 0.5;
+         return 0.5; //0 to 1 depending on bonus)
       } else if (profile == "3*") {
-         return -1;
+         return -0.5; // -1.0 to 0 depending on bonus
       } else if (profile == "3+2*s") { //(not selectible)
-         return -2;
+         return -2; //(discontinuity here there is a huge rating range of "3*" and they aren't v distinguishable)
       } else if (profile == "2*") {
          return -3;
       } else if (profile == "UR") {
