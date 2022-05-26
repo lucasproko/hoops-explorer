@@ -188,7 +188,8 @@ export class TeamEditorUtils {
       deletedPlayersIn: Record<string, string>, disabledPlayersIn: Record<string, boolean>,
       superSeniorsBack: boolean, alwaysShowBench: boolean,
       avgEff: number,
-      frList: Record<string, TeamEditorManualFixModel>
+      /** pass this in because we have to search it for transfers, so in leaderboard board (all teams at once) want to partition it */
+      prevYearFrList: Record<string, TeamEditorManualFixModel>
    ): TeamEditorProcessingResults {
       const specialCase = () => { // In "year==All" mode, if 5 players are present from the same selected team, then pick that as the base year
          const specialCaseKey = _.chain(addedPlayersIn)
@@ -280,9 +281,9 @@ export class TeamEditorUtils {
       const { list: basePlayers, lastSeasonTeam, ...outInfo } = TeamEditorUtils.getBasePlayers(
          team, year, candidatePlayersList, offSeasonMode, superSeniorsBack, teamOverrides.superSeniorsReturning, allDeletedPlayers, transfers, undefined
       );
-      const redshirtishFr = (_.isEmpty(frList) || _.isEmpty(candidatePlayersList)) 
+      const redshirtishFr = (_.isEmpty(prevYearFrList) || _.isEmpty(candidatePlayersList)) 
          ? {} : TeamEditorUtils.addRedShirtishFreshmen(
-            team, year, frList, transfers, new Set(basePlayers.map(triple => triple.orig.code || "")), allDeletedPlayers
+            team, year, prevYearFrList, transfers, new Set(basePlayers.map(triple => triple.orig.code || "")), allDeletedPlayers
          ); //(if base players is empty assume it's because we haven't loaded the data yet)
 
       // Merge team overrides and user overrides
@@ -723,12 +724,12 @@ export class TeamEditorUtils {
    /** Add red-shirt-ish Fr, including transfers */
    static addRedShirtishFreshmen(
       team: string, year: string, 
-      frList: Record<string, TeamEditorManualFixModel>, //(indexed by team) 
+      prevYearFrList: Record<string, TeamEditorManualFixModel>, //(indexed by team) 
       transfers: Record<string, Array<TransferModel>>[], 
       dupCodes: Set<string>, 
       deletedCodes: Record<string, string>
    ): Record<string, PlayerEditModel> {
-      return _.chain(frList).flatMap((fr, frTeam) => {
+      return _.chain(prevYearFrList).flatMap((fr, frTeam) => {
          if (team == frTeam) {
             return _.flatMap(fr.overrides || {}, (info, key) => {
                // Previous season ... if you didn't play 1 season ago and didn't transfer

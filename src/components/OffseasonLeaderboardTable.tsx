@@ -257,7 +257,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       // Come up with a superset of which (RSish) freshmen might be on which teams, for performance reasons
       const genderPrevSeason = `${gender}_${DateUtils.getPrevYear(year)}`; //(For fr)
-      const frPartition = _.transform(
+      const pretYearFrPartition = _.transform(
          TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason), (acc, frPerTeam, teamKey) => {
             // To be quick just include the entire overrides object if any transfer matches
             const inject = (teamKeyIn: string, toInject: TeamEditorManualFixModel) => {
@@ -315,7 +315,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             true, evalMode || false,
             addedPlayers, overrides, deletedPlayers, disabledPlayers,
             maybeOverride.superSeniorsBack || false, false,
-            avgEff, frPartition[t] || {}
+            avgEff, pretYearFrPartition[t] || {}
          );
          const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
          

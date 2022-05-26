@@ -340,13 +340,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     const teamLastSeason = _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == year));
 
+    const prevYearFreshmen = TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason);
+
     const pxResults = TeamEditorUtils.teamBuildingPipeline(
       gender, team, year,
       dataEvent.players || [], teamLastSeason?.stats, dataEvent.transfers || [],
       offSeasonMode, evalMode,
       otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
       superSeniorsBack, alwaysShowBench || evalMode,
-      avgEff, TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason)
+      avgEff, prevYearFreshmen
     );
 
     ///////////////////////////////////////////////
