@@ -10,7 +10,7 @@ export type TeamEditorManualFixModel = {
    leftTeam?: Array<string>,
    superSeniorsReturning?: Set<string>,
    overrides?: Record<string, PlayerEditModel>,
-   codeSwitch?: Record<string, string> //this year code to next year's code, note not currently supported for transfers
+   codeSwitch?: Record<string, string>, //this year code to next year's code, note not currently supported for transfers
 };
 
 const wName = (name: string, def: PlayerEditModel) => {
@@ -46,13 +46,14 @@ export class TeamEditorManualFixes {
 
             const factorTimeRating = parseFloat((factor*adjRtg).toFixed(2));
 
-            acc2[`${over.c}`] = { //(index by code not key, code isn't needed)
+            acc2[`${over.c}`] = { //(index by code not key)
                name: player,
                profile: over.pr as Profiles,
                pos: over.pos,
                height: over.h,
                global_off_adj: adjRtg ? factorTimeRating : undefined, //apportion out bonus/penalty if there is one
                global_def_adj: adjRtg ? -factorTimeRating : undefined,
+               fromFrList: true
             }
          }), {} as Record<string, PlayerEditModel>);
          acc[team] = {

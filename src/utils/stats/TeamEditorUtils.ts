@@ -45,7 +45,8 @@ export type PlayerEditModel = {
    pause?: boolean,
    profile?: Profiles, //(see TeamRosterEditor for possible values)
    pos?: string, //(usual set of possible pos)
-   height?: string //(for handling the info from Fr who don't have roster entries)
+   height?: string, //(for handling the info from Fr who don't have roster entries)
+   fromFrList?: boolean //(comes from the Fr list, not added by user)
 };
 
 /** Encapsulates a projection for a player (possibly manually created), plus their actual results */
@@ -294,11 +295,28 @@ export class TeamEditorUtils {
                   _.toPairs(redshirtishFr)
                ).concat(
                   _.toPairs(overridesIn).map(keyVal => { 
-                     //(ugly complication: redshirt-ish Fr look like "hand added" players, but their key is a code, not a human readable name)
-                     const maybeRedshirtFr = redshirtishFr[keyVal[0]];
-                     if (maybeRedshirtFr) {
-                        keyVal[1].name = maybeRedshirtFr.name; //(so retrieve the name from the original source)
-                        keyVal[1].height = maybeRedshirtFr.height;
+                     //(ugly complication: Fr/RS-Fr look like "hand added" players, but their key is a code, not a human readable name)
+                     const maybeOverrides = teamOverrides.overrides || {};
+                     const maybeFr = maybeOverrides[keyVal[0]] || redshirtishFr[keyVal[0]];
+                     if (maybeFr) {
+                        keyVal[1].name = maybeFr.name; //(so retrieve the name from the original source)
+                        keyVal[1].height = maybeFr.height;
+                        keyVal[1].fromFrList = true;
+
+                        // In practice these aren't needed since either the whole object is deleted or all fields are present
+                        // (we include it just to make us more robust to adding field level overrides in the future)
+                        if (_.isNil(keyVal[1].global_off_adj)) { //(if no override then fall-back to the Fr value)
+                           keyVal[1].global_off_adj = maybeFr.global_off_adj;
+                        }
+                        if (_.isNil(keyVal[1].global_def_adj)) { //(if no override then fall-back to the Fr value)
+                           keyVal[1].global_def_adj = maybeFr.global_def_adj;
+                        }
+                        if (_.isNil(keyVal[1].pos)) { //(if no override then fall-back to the Fr value)
+                           keyVal[1].pos = maybeFr.pos;
+                        }
+                        if (_.isNil(keyVal[1].profile)) { //(if no override then fall-back to the Fr value)
+                           keyVal[1].profile = maybeFr.profile;
+                        }
                      }
                      return keyVal;
                   })

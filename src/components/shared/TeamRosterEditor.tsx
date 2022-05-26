@@ -48,8 +48,9 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    // (eg for some reason I can't get pause to work, can't reset positions, 
    //  plus once you've added overrides, they will never again go away from the URL, even if reset, etc)
 
-   const isHandAddedPlayer = !_.isNil(overrides?.name)
-   const addOrEditPlayerMode = addNewPlayerMode || isHandAddedPlayer;
+   const isHandAddedPlayer = !_.isNil(overrides?.name) && !overrides?.fromFrList;
+   const isHandAddedPlayerOrFr = overrides?.fromFrList || false;
+   const addOrEditPlayerMode = addNewPlayerMode || isHandAddedPlayerOrFr;
    const editPlayerMode = !addNewPlayerMode && addOrEditPlayerMode;
 
    // Presentation
