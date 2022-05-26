@@ -13,10 +13,6 @@ export type TeamEditorManualFixModel = {
    codeSwitch?: Record<string, string>, //this year code to next year's code, note not currently supported for transfers
 };
 
-const wName = (name: string, def: PlayerEditModel) => {
-   return { [name]: { ...def, name: name }};
-}; 
-
 export class TeamEditorManualFixes {
 
    static readonly getFreshmenForYear = _.memoize((genderYear: string) => {
@@ -90,6 +86,14 @@ export class TeamEditorManualFixes {
             "Texas Tech": {
                leftTeam: [ "DaMoretti::" ],
             },
+            "Seton Hall": {
+               ...(TeamEditorManualFixes.buildOverrides({"": {
+                  "Aiken, Bryce": {
+                     //(he's a super senior, but treat him like a T40 Fr, to give about the right RAPM)
+                     "pos": "s-PG", "pr": "4*/T40ish", "c": "BrAiken", "h": "5-11", "r": 0
+                  },
+               }})[""])
+            },
          }
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2020_21);
       } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
@@ -117,12 +121,6 @@ export class TeamEditorManualFixes {
             },
             "Seton Hall": {
                superSeniorsReturning: new Set([ "MyCale::" ]),
-               overrides: {
-                  ...wName("Aiken, Bryce", { //(he's a super senior, but treat him like a T40 Fr, to give about the right RAPM)
-                     pos: "s-PG",
-                     profile: "4*/T40ish"
-                  })
-               },
             },
             "Southern California": {
                superSeniorsReturning: new Set([ "ChGoodwin::" ]),
@@ -151,11 +149,26 @@ export class TeamEditorManualFixes {
             "Alabama": {
                superSeniorsReturning: new Set([ "NoGurley::" ])          
             },
+            "Arizona": {
+               ...(TeamEditorManualFixes.buildOverrides({"": {
+                  "Veesaar, Henri": {
+                     "pos": "PF/C", "pr": "4*/T40ish", "c": "HeVeesaar", "h": "6-11", "r": 0
+                  },
+                  "Borovicanin, Filip": {
+                     "pos": "WF", "pr": "4*", "c": "FiBorovicani", "h": "6-8", "r": -50
+                  },
+               }})[""])
+            },
             "Auburn": {
                superSeniorsReturning: new Set([ "ZeJasper::" ])          
             },
             "Baylor": {
-               superSeniorsReturning: new Set([ "FlThamba::" ])          
+               superSeniorsReturning: new Set([ "FlThamba::" ]),          
+               ...(TeamEditorManualFixes.buildOverrides({"": {
+                  "Ojianwuna, Joshua": {
+                     "pos": "C", "pr": "4*", "c": "JoOjianwuna", "h": "6-10", "r": 0
+                  },
+               }})[""])
             },
             "Boise St.": {
                superSeniorsReturning: new Set([ "MaShaver::" ])          
@@ -212,12 +225,11 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "DaMcGhee::" ]),
             },
             "Marquette": {
-               overrides: {
-                  ...wName("Wrightsil, Zach", {
-                     pos: "S-PF",
-                     profile: "4*"
-                  }),
-               }
+               ...(TeamEditorManualFixes.buildOverrides({"": {
+                  "Wrightsil, Zach": {
+                     "pos": "S-PF", "pr": "4*", "c": "ZaWrightsil", "h": "6-7", "r": 0
+                  },
+               }})[""])
             },
             "Michigan St.": {
                superSeniorsReturning: new Set([ "JoHauser::" ]),
