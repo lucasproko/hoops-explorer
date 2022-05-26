@@ -1885,6 +1885,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": -1.52433951099917,
                   },
                   "bad_net": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 2.43463951099917,
                   },
                   "bad_off": Object {
@@ -1994,12 +1995,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": -1.9377301499999997,
                   },
                   "good_net": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 4.399296011377897,
                   },
                   "good_off": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 2.461565861377898,
                   },
                   "mpg": Object {
@@ -2011,6 +2015,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "value": -1.8757485053431706,
                   },
                   "ok_net": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 3.7373143667210686,
                   },
                   "ok_off": Object {
@@ -14779,6 +14784,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": -1.52433951099917,
                   },
                   "bad_net": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 2.43463951099917,
                   },
                   "bad_off": Object {
@@ -14888,12 +14894,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": -1.9377301499999997,
                   },
                   "good_net": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 4.399296011377897,
                   },
                   "good_off": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 2.461565861377898,
                   },
                   "mpg": Object {
@@ -14905,6 +14914,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "value": -1.8757485053431706,
                   },
                   "ok_net": Object {
+                    "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 3.7373143667210686,
                   },
                   "ok_off": Object {

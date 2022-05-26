@@ -41,15 +41,41 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
    const [ currMins, setCurrMins ] = useState(overrides?.mins?.toFixed(1) || "");
    const [ currProfile, setCurrProfile ] = useState((overrides?.profile || (addNewPlayerMode ? "4*" : "Auto")) as Profiles);
    const [ currPos, setCurrPos ] = useState(overrides?.pos || "WG");
-   const [ currOffAdj, setCurrOffAdj ] = useState(overrides?.global_off_adj || 0);
-   const [ currDefAdj, setCurrDefAdj ] = useState(-(overrides?.global_def_adj || 0));
+   const [ currOffAdj, setCurrOffAdj ] = useState((overrides?.global_off_adj || 0) as number | undefined);
+   const [ currDefAdj, setCurrDefAdj ] = useState((-(overrides?.global_def_adj || 0)) as number | undefined);
+
+   // Start: some ugly logic to handle resetting Fr global adjustments
+   useEffect(() => {
+      // If we've unset these as part of a Fr reset then set them back again
+      if (!_.isNil(overrides?.global_off_adj)) {
+         setCurrOffAdj(overrides?.global_off_adj);
+      }
+      if (!_.isNil(overrides?.global_def_adj)) {
+         setCurrDefAdj(-(overrides?.global_def_adj || 0));
+      }
+   }, [ overrides ] ); // This doesn't get called if overrides is the same value after the reset, so fallback to...
+
+   // ... this will get called normally before the above useEffect; but if we need to change the value, useEffect will get called anyway
+
+   if (_.isNil(currOffAdj) && !_.isNil(overrides?.global_off_adj)) {
+      setCurrOffAdj(overrides?.global_off_adj);
+   }
+   if (_.isNil(currDefAdj) && !_.isNil(overrides?.global_def_adj)) {
+      setCurrDefAdj(-(overrides?.global_def_adj || 0));
+   }
+   // End: some ugly logic to handle resetting Fr global adjustments
+
+   //diag:
+   //console.log(`INCOMING STATE: [${currOffAdj}] [${currDefAdj}] ... ${JSON.stringify(overrides || {})}`);
 
    //TODO: need to handle overrides on top of manually added players (+RS Fr) differently
-   // (eg for some reason I can't get pause to work, can't reset positions, 
-   //  plus once you've added overrides, they will never again go away from the URL, even if reset, etc)
+   // when pausing, the override that gets passed into here is the team one (since allOverrides needs to include that)
+   // but then any subsequent changes ... like unpausing! ... will be on top of that, not the manual override
+   // For now just block pausing
 
    const isHandAddedPlayer = !_.isNil(overrides?.name) && !overrides?.fromFrList;
-   const isHandAddedPlayerOrFr = overrides?.fromFrList || false;
+   const isFr = overrides?.fromFrList || false;
+   const isHandAddedPlayerOrFr = isHandAddedPlayer || isFr;
    const addOrEditPlayerMode = addNewPlayerMode || isHandAddedPlayerOrFr;
    const editPlayerMode = !addNewPlayerMode && addOrEditPlayerMode;
 
@@ -179,8 +205,9 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   {addNewPlayerMode ? null :
                   <OverlayTrigger overlay={resetTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" onClick={((ev:any) => {
-                        setCurrOffAdj(0);
-                        setCurrDefAdj(0);
+                        setCurrOffAdj(isFr ? undefined : 0);
+                        setCurrDefAdj(isFr ? undefined : 0);
+
                         if (isHandAddedPlayer) { // Only reset the off/def adjustments to 0
                            const currOverrides = overrides ? _.clone(overrides) : {};
                            delete currOverrides.global_off_adj;
@@ -188,7 +215,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            onUpdate(currOverrides);
                         } else { // Else just clear the entire overrdes
                            setCurrMins("");
-                           setCurrProfile("Auto");
+                           if (!isFr) setCurrProfile("Auto");
                            onUpdate(undefined);
                         }
                      })}><FontAwesomeIcon icon={faTimes} />
@@ -196,7 +223,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                   </OverlayTrigger>}
                </Col>
                <Col xs={1} className="pt-1">
-                  {addOrEditPlayerMode ? null :
+                  {isHandAddedPlayerOrFr ? null :
                   <OverlayTrigger overlay={pauseTooltip} placement="auto">
                      <Button size="sm" variant={overrides?.pause ? "secondary" : "outline-secondary"} onClick={((ev:any) => {
                         if (overrides) { //(else nothing to pause)
@@ -336,7 +363,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            if (currDefAdj == 0) {
                               delete currOverrides.global_def_adj;
                            } else {
-                              currOverrides.global_def_adj = -currDefAdj;
+                              currOverrides.global_def_adj = -(currDefAdj || 0);
                            }
                            onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
                         }}

@@ -296,36 +296,46 @@ export class TeamEditorUtils {
                ).concat(
                   _.toPairs(overridesIn).map(keyVal => { 
                      //(ugly complication: Fr/RS-Fr look like "hand added" players, but their key is a code, not a human readable name)
-                     const maybeOverrides = teamOverrides.overrides || {};
-                     const maybeFr = maybeOverrides[keyVal[0]] || redshirtishFr[keyVal[0]];
+                     const userOverride = keyVal[1];
+                     const maybeTeamOverrides = teamOverrides.overrides || {};
+                     const maybeFr: PlayerEditModel | undefined = maybeTeamOverrides[keyVal[0]] || redshirtishFr[keyVal[0]];
                      if (maybeFr) {
-                        keyVal[1].name = maybeFr.name; //(so retrieve the name from the original source)
-                        keyVal[1].height = maybeFr.height;
-                        keyVal[1].fromFrList = true;
-
-                        // In practice these aren't needed since either the whole object is deleted or all fields are present
-                        // (we include it just to make us more robust to adding field level overrides in the future)
-                        if (_.isNil(keyVal[1].global_off_adj)) { //(if no override then fall-back to the Fr value)
-                           keyVal[1].global_off_adj = maybeFr.global_off_adj;
-                        }
-                        if (_.isNil(keyVal[1].global_def_adj)) { //(if no override then fall-back to the Fr value)
-                           keyVal[1].global_def_adj = maybeFr.global_def_adj;
-                        }
-                        if (_.isNil(keyVal[1].pos)) { //(if no override then fall-back to the Fr value)
-                           keyVal[1].pos = maybeFr.pos;
-                        }
-                        if (_.isNil(keyVal[1].profile)) { //(if no override then fall-back to the Fr value)
-                           keyVal[1].profile = maybeFr.profile;
-                        }
+                        const teamVals = userOverride.pause ? maybeFr : {
+                           // Always retrieve this metadata and overwrite:
+                           name: maybeFr.name,
+                           height: maybeFr.height
+                        };
+                        return [ keyVal[0], {
+                           ...userOverride,
+                           ...teamVals, //(if paused this removes all any manual overrides)
+                           fromFrList: true
+                        } ];
+                     } else {
+                        return keyVal;
                      }
-                     return keyVal;
                   })
                )
          );
-
-      //TODO: (see TeamRosterEditor TODO), this doesn't correctly handle combining overrides on top of "redshirtishFr"
       const unpausedOverrides: Record<string, PlayerEditModel> = 
-         _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).fromPairs().value();
+         _.chain(allOverrides).toPairs().filter(keyVal => !keyVal[1].pause).map(keyVal => { 
+            // More annoying Fr/RS-Fr complications. This is the map the UI uses to apply or not overrides
+            // therefore we need to remove the global_off/def_adj if it's the same otherwise the display
+            // makes it look like we've changed something when we haven't
+            const maybeOverrides = teamOverrides.overrides || {};
+            const maybeFr: PlayerEditModel | undefined = maybeOverrides[keyVal[0]] || redshirtishFr[keyVal[0]];
+            if (maybeFr) {
+               const userOverride = keyVal[1];
+
+               const newGlobalOffAdj = (maybeFr.global_off_adj != userOverride.global_off_adj) ? userOverride.global_off_adj : undefined;
+               const newGlobalDefAdj = (maybeFr.global_def_adj != userOverride.global_def_adj) ? userOverride.global_def_adj : undefined;
+
+               return (_.isNil(newGlobalOffAdj) || _.isNil(newGlobalDefAdj)) ? [ keyVal[0], {
+                  ...userOverride,
+                  global_off_adj: newGlobalOffAdj,
+                  global_def_adj: newGlobalDefAdj
+               } ] : keyVal;
+            } else return keyVal;
+         }).fromPairs().value();
 
       const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayers)).concat(
          _.chain(allOverrides).toPairs().filter(keyVal => !_.isNil(keyVal[1].name)).map(keyVal => { 

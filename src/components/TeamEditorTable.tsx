@@ -381,7 +381,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         return undefined;
       }
     };
-    const editPlayerOverrides = (triple: GoodBadOkTriple, currOverrides: Record<string, PlayerEditModel>, newOverride: PlayerEditModel | undefined) => {
+    const editPlayerOverrides = (triple: GoodBadOkTriple, newOverride: PlayerEditModel | undefined) => {
       const newOverrides = _.clone(uiOverrides);
       if (!newOverride) {
         delete newOverrides[triple.key];
@@ -422,7 +422,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const playerLink = <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
         <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}><b>{maybeTransferName}</b></a>
       </OverlayTrigger>;
-
 
       // (In "in-season mode" always put added players in the adjusted column)
       const isAddedPlayer = !offSeasonMode && otherPlayerCache[triple.key];
@@ -467,6 +466,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         _.isNil(maybeOverride?.global_off_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
       const extraInfoDefObj = 
         _.isNil(maybeOverride?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
+      const extraInfoNetObj = 
+        _.isNil(maybeOverride?.global_off_adj) && _.isNil(maybeOverride?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
 
       const okNet = TeamEditorUtils.getNet(triple.ok, okProdFactor);
       const okOff = TeamEditorUtils.getOff(triple.ok, okProdFactor);
@@ -502,21 +503,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
         // In in-season mode, it's the adjusted if different
         good_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) } : ((origNotEqualOk || isAddedPlayer) ? { value: okNet } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor), ...extraInfoNetObj } 
+            : ((origNotEqualOk || isAddedPlayer) ? { value: okNet } : undefined)),
         good_off: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) } : ((origNotEqualOk || isAddedPlayer) ? { value: okOff } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor), ...extraInfoOffObj } 
+            : ((origNotEqualOk || isAddedPlayer) ? { value: okOff } : undefined)),
         good_def: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) } : ((origNotEqualOk || isAddedPlayer) ? { value: okDef } : undefined)),
+          (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor), ...extraInfoDefObj } 
+            : ((origNotEqualOk || isAddedPlayer) ? { value: okDef } : undefined)),
 
         // In in-season mode, it's the original if different
         ok_net: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
-          offSeasonMode ? { value: okNet }: { value: origNet },
+          offSeasonMode ? { value: okNet, ...extraInfoNetObj }: { value: origNet },
         ok_off: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
           offSeasonMode ? { value: okOff, ...extraInfoOffObj } : { value: origOff },
         ok_def: ((isFiltered && offSeasonMode) || isAddedPlayer) ? undefined : 
           offSeasonMode ? { value: okDef, ...extraInfoDefObj  } : { value: origDef },
 
-        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad, badProdFactor) },
+        bad_net: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getNet(triple.bad, badProdFactor), ...extraInfoNetObj },
         bad_off: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getOff(triple.bad, badProdFactor), ...extraInfoOffObj },
         bad_def: (isFiltered || !offSeasonMode) ? undefined : { value: TeamEditorUtils.getDef(triple.bad, badProdFactor), ...extraInfoDefObj  },
 
@@ -553,7 +557,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               overrides={pxResults.allOverrides[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
-                  setUiOverrides(editPlayerOverrides(triple, uiOverrides, edit));
+                  setUiOverrides(editPlayerOverrides(triple, edit));
                  }, true
                 );
               }}
@@ -570,7 +574,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   if (newEditOpen) {
                     setEditOpen(newEditOpen);
                   }
-                  setUiOverrides(editPlayerOverrides(triple, currOverrides, undefined))
+                  setUiOverrides(editPlayerOverrides(triple, undefined))
                 };
                 if (otherPlayerCache[triple.key]) {
                   const newOtherPlayerCache = _.clone(otherPlayerCache);
@@ -658,7 +662,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               overrides={benchOverrides}
               onUpdate={(edit: PlayerEditModel | undefined) => {
                 friendlyChange(() => {
-                  setUiOverrides(editPlayerOverrides(triple, uiOverrides, edit));
+                  setUiOverrides(editPlayerOverrides(triple, edit));
                  }, true
                 );
               }}
