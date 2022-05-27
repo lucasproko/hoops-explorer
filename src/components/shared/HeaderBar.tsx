@@ -154,8 +154,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const teamBuilderTooltip = (
     <Tooltip id={"teamBuilderTooltip"}>Build your own roster out of returning players, transfers (or steals!), and the bench!</Tooltip>
   );
-  const playerLeaderboardTooltipNba2021 = (
-    <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
+  // const playerLeaderboardTooltipNba2021 = (
+  //   <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
+  // );
+  const playerLeaderboardTooltipNba2022 = (
+    <Tooltip id="playerLeaderboardTooltipNba2022">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2022 NBA prospects (from DraftExpress)</Tooltip>
   );
   const playerLeaderboardTooltipMdDmv2017 = (
     <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for Md/DMV-area players class of 2017+</Tooltip>
@@ -303,6 +306,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             <Dropdown.Item>
               {buildNavItem("Canadian players (HS 2017+)", playerLeaderboardTooltipCanada2017, getPlayerLeaderboardTrackingUrl("__CANADA_2017__"), true)}
             </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
+            </Dropdown.Item>
             {
               // Archived tracking lists:
               // <Dropdown.Item>
@@ -329,6 +335,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             </Dropdown.Item>
             <Dropdown.Item>
               {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
             </Dropdown.Item>
           </Dropdown.Menu>
         }
