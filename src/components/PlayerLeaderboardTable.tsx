@@ -19,7 +19,7 @@ import Button from 'react-bootstrap/Button';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components } from "react-select";
+import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faCheck, faExclamation, faFilter } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
@@ -933,6 +933,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
             ]}
             formatGroupLabel={formatGroupLabel}
+            filterOption={createFilter({
+              ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
+              stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
+            })}
             onChange={(optionsIn) => {
               const options = optionsIn as Array<any>;
               const selection = (options || [])

@@ -120,6 +120,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
@@ -7354,6 +7355,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
@@ -14588,6 +14590,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
@@ -24780,6 +24783,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}
@@ -31994,6 +31998,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           formatGroupLabel={[Function]}
           isClearable={true}
           isMulti={true}

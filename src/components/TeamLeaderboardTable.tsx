@@ -23,7 +23,7 @@ import Button from 'react-bootstrap/Button';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components } from "react-select";
+import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons'
@@ -54,6 +54,7 @@ import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 import { DateUtils } from '../utils/DateUtils';
 
+const highMajorConfsName = "Power 6 Conferences";
 const nonHighMajorConfsName = "Outside The P6";
 const queryFiltersName = "From URL";
 const powerSixConfsStr = Power6ConferencesNicks.join(",");
@@ -741,6 +742,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     return <components.MultiValueContainer {...newProps} />
   };
 
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+    <span>{data.label}</span>
+    </div>
+  );
+
   /** At the expense of some time makes it easier to see when changes are happening */
   const friendlyChange = (change: () => void, guard: boolean, timeout: number = 250) => {
     if (guard) {
@@ -832,10 +840,15 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             isMulti
             components={{ MultiValueContainer: ConferenceValueContainer }}
             value={getCurrentConfsOrPlaceholder()}
-            options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams))
-              .concat([ nonHighMajorConfsName, queryFiltersName ]).map(
-              (r) => stringToOption(r)
-            )}
+            options={[
+              { label: "Groups", options: [highMajorConfsName, nonHighMajorConfsName, queryFiltersName].map(stringToOption) },
+              { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
+            ]}
+            formatGroupLabel={formatGroupLabel}
+            filterOption={createFilter({
+              ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
+              stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
+            })}
             onChange={(optionsIn) => {
               const options = optionsIn as Array<any>;
               const selection = (options || [])

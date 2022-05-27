@@ -22,7 +22,7 @@ import Button from 'react-bootstrap/Button';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components } from "react-select";
+import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
@@ -552,6 +552,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams)).map(
             (r) => stringToOption(r)
           )}
+          filterOption={createFilter({
+            ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
+            stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
+          })}
           onChange={(optionsIn) => {
             const options = optionsIn as Array<any>;
             const selection = (options || [])

@@ -17,7 +17,7 @@ import Button from 'react-bootstrap/Button';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components } from "react-select";
+import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faPen, faEye } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
@@ -706,7 +706,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    function stringToOption(s: string) {
       return { label: s, value: s };
    }
-   const sortByOptions: Record<string, { label: string, value: string}> = {
+   /** The sub-header builder */
+   const formatGroupLabel = (data: any) => (
+      <div>
+      <span>{data.label}</span>
+      </div>
+   );
+  const sortByOptions: Record<string, { label: string, value: string}> = {
       net: { label: "Net Rating", value: "net" },  
       offseason_net: { label: "Total offseason net", value: "offseason_net" },
       total_io: { label: "Total in - out", value: "total_io" },
@@ -752,10 +758,16 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                isMulti
                components={{ MultiValueContainer: ConferenceValueContainer }}
                value={getCurrentConfsOrPlaceholder()}
-               options={([highMajorConfsName, nonHighMajorConfsName, queryFiltersName]).concat(_.sortBy(confsWithTeams))
-                  .map(r => stringToOption(r))
-               }
-               onChange={(optionsIn) => {
+               options={[
+                  { label: "Groups", options: [highMajorConfsName, nonHighMajorConfsName, queryFiltersName].map(stringToOption) },
+                  { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
+                ]}
+                formatGroupLabel={formatGroupLabel}
+                filterOption={createFilter({
+                   ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
+                   stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
+                })}
+                onChange={(optionsIn) => {
                   const options = optionsIn as Array<any>;
                   const selection = (options || [])
                      .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));

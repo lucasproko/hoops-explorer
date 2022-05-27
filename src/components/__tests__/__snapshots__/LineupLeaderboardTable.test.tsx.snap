@@ -120,6 +120,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -13393,6 +13394,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}
@@ -32860,6 +32862,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          filterOption={[Function]}
           isClearable={true}
           isMulti={true}
           onChange={[Function]}

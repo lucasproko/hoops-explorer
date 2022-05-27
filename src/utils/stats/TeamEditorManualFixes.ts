@@ -278,7 +278,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "MaEarlington::" ]),
             },
             "San Diego St.": {
-               superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::" ]),
+               superSeniorsReturning: new Set([ "AdSeiko::", "AgArop::", "MaBradley::", "NaMensah::" ]),
             },
             "San Francisco": {
                superSeniorsReturning: new Set([ "KhShabazz::" ]),
