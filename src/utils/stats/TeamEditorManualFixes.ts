@@ -271,6 +271,9 @@ export class TeamEditorManualFixes {
             "Rider": {
                superSeniorsReturning: new Set([ "DwMurray::" ]),
             },
+            "Rutgers": {
+               superSeniorsReturning: new Set([ "AuHyatt::" ]),
+            },
             "Saint Louis": {
                superSeniorsReturning: new Set([ "JaPerkins::" ]),
             },
