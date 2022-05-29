@@ -4,7 +4,7 @@ import _ from "lodash";
 /** Note these use the KenPom naming conventions */
 export const ConferenceToNickname: Record<string, string> = {
   "Power 6 Conferences": "P6",
-  "Outside the P6": "MM",
+  "Outside The P6": "MM",
   "American Athletic Conference": "AAC",
   "America East Conference": "AE",
   "Atlantic Coast Conference": "ACC",

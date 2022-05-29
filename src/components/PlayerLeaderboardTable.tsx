@@ -49,6 +49,7 @@ import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import { StatModels, IndivStatSet } from '../utils/StatModels';
 import { TransferModel } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
+import ConferenceSelector from './shared/ConferenceSelector';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -749,47 +750,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }
   }
 
-  // Conference filter
-
-  function getCurrentConfsOrPlaceholder() {
-    const onlyTransfers = !_.isNil(dataEvent?.transfers);
-    return (confs == "") ?
-      { label: `All ${onlyTransfers ? "Transfers" : "Teams"} in ${tier} Tier${tier == "All" ? "s" : ""}` } 
-      :
-      confs.split(",").map((conf: string) => stringToOption(`${NicknameToConference[conf] || conf}${onlyTransfers ? " Txfers" : ""}`));
-  }
-  function getExtraConfsByTier() {
-    if (tier == "All") {
-      return [ "High Tier", "Medium Tier", "Low Tier", "Power 6 Conferences", "Outside the P6" ];
-    } else if (tier == "High") {
-      return [ "All Tiers", "Medium Tier", "Low Tier", "Power 6 Conferences" ];
-    } else if (tier == "Medium") {
-      return [ "All Tiers", "High Tier", "Low Tier" ];
-    } else if (tier == "Low") {
-      return [ "All Tiers", "High Tier", "Medium Tier" ];
-    } else {
-      return [];
-    }
-  }
-
-  /** Slightly hacky code to render the conference nick names */
-  const ConferenceValueContainer = (props: any) => {
-    const oldText = props.children[0];
-    const fullConfname = oldText.props.children;
-    const newText = {
-      ...oldText,
-      props: {
-        ...oldText.props,
-        children: [ ConferenceToNickname[fullConfname] || fullConfname ]
-      }
-    }
-    const newProps = {
-      ...props,
-      children: [ newText, props.children[1] ]
-    }
-    return <components.MultiValueContainer {...newProps} />
-  };
-
   // Advanced filter text
 
   const editingAdvFilterTooltip = (
@@ -922,37 +882,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
         <Col xs={12} sm={12} md={6} lg={6}>
-          <Select
-            isClearable={true}
-            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-            isMulti
-            components={{ MultiValueContainer: ConferenceValueContainer }}
-            value={ getCurrentConfsOrPlaceholder() }
-            options={[
-              { label: "Tiers", options: getExtraConfsByTier().map(stringToOption) },
-              { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
-            ]}
-            formatGroupLabel={formatGroupLabel}
-            filterOption={createFilter({
-              ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
-              stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
-            })}
-            onChange={(optionsIn) => {
-              const options = optionsIn as Array<any>;
-              const selection = (options || [])
-                .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
-              const maybeTier = _.find(selection, sel => sel.indexOf("Tier") >= 0);
-              if (maybeTier) {
-                const newTier = maybeTier.split(" ")[0];
-                friendlyChange(() => {
-                  setTier(newTier);
-                  setConfs("");
-                }, (confs != "") || (tier != newTier));              
-              } else {
-                const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-                friendlyChange(() => setConfs(confStr), confs != confStr);
-              }
-            }}
+          <ConferenceSelector
+              emptyLabel={`All ${!_.isNil(dataEvent?.transfers) ? "Transfers" : "Teams"} in ${tier} Tier${tier == "All" ? "s" : ""}`}
+              confStr={confs}
+              tier={tier}
+              confMap={dataEvent?.confMap}
+              confs={dataEvent?.confs}
+              onChangeConf={confStr => {
+                if (confStr.indexOf("Tier") >= 0) {
+                  const newTier = confStr.split(" ")[0];
+                  friendlyChange(() => {
+                    setTier(newTier);
+                    setConfs("");
+                  }, (confs != "") || (tier != newTier));                
+                } else {
+                  friendlyChange(() => setConfs(confStr), confs != confStr);
+                }
+              }}
           />
         </Col>
         <Col lg={1} className="mt-1">

@@ -114,99 +114,38 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
       }
       xs={12}
     >
-      <StateManager
-        components={
+      <ConferenceSelector
+        confMap={
           Object {
-            "MultiValueContainer": [Function],
+            "American Athletic Conference": Array [],
+            "Atlantic 10 Conference": Array [],
+            "Atlantic Coast Conference": Array [],
+            "Big 12 Conference": Array [],
+            "Big East Conference": Array [],
+            "Big Ten Conference": Array [],
+            "Mountain West Conference": Array [],
+            "Pac 12 Conference": Array [],
+            "Southeastern Conference": Array [],
+            "West Coast Conference": Array [],
           }
         }
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
-        filterOption={[Function]}
-        formatGroupLabel={[Function]}
-        isClearable={true}
-        isMulti={true}
-        onChange={[Function]}
-        options={
+        confStr="Manual Filter"
+        confs={
           Array [
-            Object {
-              "label": "Groups",
-              "options": Array [
-                Object {
-                  "label": "Power 6 Conferences",
-                  "value": "Power 6 Conferences",
-                },
-                Object {
-                  "label": "Outside The P6",
-                  "value": "Outside The P6",
-                },
-                Object {
-                  "label": "Manual Filter",
-                  "value": "Manual Filter",
-                },
-              ],
-            },
-            Object {
-              "label": "Confs",
-              "options": Array [
-                Object {
-                  "label": "American Athletic Conference",
-                  "value": "American Athletic Conference",
-                },
-                Object {
-                  "label": "Atlantic 10 Conference",
-                  "value": "Atlantic 10 Conference",
-                },
-                Object {
-                  "label": "Atlantic Coast Conference",
-                  "value": "Atlantic Coast Conference",
-                },
-                Object {
-                  "label": "Big 12 Conference",
-                  "value": "Big 12 Conference",
-                },
-                Object {
-                  "label": "Big East Conference",
-                  "value": "Big East Conference",
-                },
-                Object {
-                  "label": "Big Ten Conference",
-                  "value": "Big Ten Conference",
-                },
-                Object {
-                  "label": "Mountain West Conference",
-                  "value": "Mountain West Conference",
-                },
-                Object {
-                  "label": "Pac 12 Conference",
-                  "value": "Pac 12 Conference",
-                },
-                Object {
-                  "label": "Southeastern Conference",
-                  "value": "Southeastern Conference",
-                },
-                Object {
-                  "label": "West Coast Conference",
-                  "value": "West Coast Conference",
-                },
-              ],
-            },
+            "Big Ten Conference",
+            "Southeastern Conference",
+            "Pac 12 Conference",
+            "West Coast Conference",
+            "Big 12 Conference",
+            "Atlantic Coast Conference",
+            "Big East Conference",
+            "American Athletic Conference",
+            "Atlantic 10 Conference",
+            "Mountain West Conference",
           ]
         }
-        styles={
-          Object {
-            "menu": [Function],
-          }
-        }
-        value={
-          Array [
-            Object {
-              "label": "Manual Filter",
-              "value": "Manual Filter",
-            },
-          ]
-        }
+        emptyLabel="All High Tier Teams"
+        onChangeConf={[Function]}
       />
     </Col>
     <Col
@@ -823,99 +762,38 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={12}
     >
-      <StateManager
-        components={
+      <ConferenceSelector
+        confMap={
           Object {
-            "MultiValueContainer": [Function],
+            "American Athletic Conference": Array [],
+            "Atlantic 10 Conference": Array [],
+            "Atlantic Coast Conference": Array [],
+            "Big 12 Conference": Array [],
+            "Big East Conference": Array [],
+            "Big Ten Conference": Array [],
+            "Mountain West Conference": Array [],
+            "Pac 12 Conference": Array [],
+            "Southeastern Conference": Array [],
+            "West Coast Conference": Array [],
           }
         }
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
-        filterOption={[Function]}
-        formatGroupLabel={[Function]}
-        isClearable={true}
-        isMulti={true}
-        onChange={[Function]}
-        options={
+        confStr="B1G"
+        confs={
           Array [
-            Object {
-              "label": "Groups",
-              "options": Array [
-                Object {
-                  "label": "Power 6 Conferences",
-                  "value": "Power 6 Conferences",
-                },
-                Object {
-                  "label": "Outside The P6",
-                  "value": "Outside The P6",
-                },
-                Object {
-                  "label": "Manual Filter",
-                  "value": "Manual Filter",
-                },
-              ],
-            },
-            Object {
-              "label": "Confs",
-              "options": Array [
-                Object {
-                  "label": "American Athletic Conference",
-                  "value": "American Athletic Conference",
-                },
-                Object {
-                  "label": "Atlantic 10 Conference",
-                  "value": "Atlantic 10 Conference",
-                },
-                Object {
-                  "label": "Atlantic Coast Conference",
-                  "value": "Atlantic Coast Conference",
-                },
-                Object {
-                  "label": "Big 12 Conference",
-                  "value": "Big 12 Conference",
-                },
-                Object {
-                  "label": "Big East Conference",
-                  "value": "Big East Conference",
-                },
-                Object {
-                  "label": "Big Ten Conference",
-                  "value": "Big Ten Conference",
-                },
-                Object {
-                  "label": "Mountain West Conference",
-                  "value": "Mountain West Conference",
-                },
-                Object {
-                  "label": "Pac 12 Conference",
-                  "value": "Pac 12 Conference",
-                },
-                Object {
-                  "label": "Southeastern Conference",
-                  "value": "Southeastern Conference",
-                },
-                Object {
-                  "label": "West Coast Conference",
-                  "value": "West Coast Conference",
-                },
-              ],
-            },
+            "Big Ten Conference",
+            "Southeastern Conference",
+            "Pac 12 Conference",
+            "West Coast Conference",
+            "Big 12 Conference",
+            "Atlantic Coast Conference",
+            "Big East Conference",
+            "American Athletic Conference",
+            "Atlantic 10 Conference",
+            "Mountain West Conference",
           ]
         }
-        styles={
-          Object {
-            "menu": [Function],
-          }
-        }
-        value={
-          Array [
-            Object {
-              "label": "Big Ten Conference",
-              "value": "Big Ten Conference",
-            },
-          ]
-        }
+        emptyLabel="All High Tier Teams"
+        onChangeConf={[Function]}
       />
     </Col>
     <Col
@@ -3475,96 +3353,38 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={12}
     >
-      <StateManager
-        components={
+      <ConferenceSelector
+        confMap={
           Object {
-            "MultiValueContainer": [Function],
+            "American Athletic Conference": Array [],
+            "Atlantic 10 Conference": Array [],
+            "Atlantic Coast Conference": Array [],
+            "Big 12 Conference": Array [],
+            "Big East Conference": Array [],
+            "Big Ten Conference": Array [],
+            "Mountain West Conference": Array [],
+            "Pac 12 Conference": Array [],
+            "Southeastern Conference": Array [],
+            "West Coast Conference": Array [],
           }
         }
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
-        filterOption={[Function]}
-        formatGroupLabel={[Function]}
-        isClearable={true}
-        isMulti={true}
-        onChange={[Function]}
-        options={
+        confStr=""
+        confs={
           Array [
-            Object {
-              "label": "Groups",
-              "options": Array [
-                Object {
-                  "label": "Power 6 Conferences",
-                  "value": "Power 6 Conferences",
-                },
-                Object {
-                  "label": "Outside The P6",
-                  "value": "Outside The P6",
-                },
-                Object {
-                  "label": "Manual Filter",
-                  "value": "Manual Filter",
-                },
-              ],
-            },
-            Object {
-              "label": "Confs",
-              "options": Array [
-                Object {
-                  "label": "American Athletic Conference",
-                  "value": "American Athletic Conference",
-                },
-                Object {
-                  "label": "Atlantic 10 Conference",
-                  "value": "Atlantic 10 Conference",
-                },
-                Object {
-                  "label": "Atlantic Coast Conference",
-                  "value": "Atlantic Coast Conference",
-                },
-                Object {
-                  "label": "Big 12 Conference",
-                  "value": "Big 12 Conference",
-                },
-                Object {
-                  "label": "Big East Conference",
-                  "value": "Big East Conference",
-                },
-                Object {
-                  "label": "Big Ten Conference",
-                  "value": "Big Ten Conference",
-                },
-                Object {
-                  "label": "Mountain West Conference",
-                  "value": "Mountain West Conference",
-                },
-                Object {
-                  "label": "Pac 12 Conference",
-                  "value": "Pac 12 Conference",
-                },
-                Object {
-                  "label": "Southeastern Conference",
-                  "value": "Southeastern Conference",
-                },
-                Object {
-                  "label": "West Coast Conference",
-                  "value": "West Coast Conference",
-                },
-              ],
-            },
+            "Big Ten Conference",
+            "Southeastern Conference",
+            "Pac 12 Conference",
+            "West Coast Conference",
+            "Big 12 Conference",
+            "Atlantic Coast Conference",
+            "Big East Conference",
+            "American Athletic Conference",
+            "Atlantic 10 Conference",
+            "Mountain West Conference",
           ]
         }
-        styles={
-          Object {
-            "menu": [Function],
-          }
-        }
-        value={
-          Object {
-            "label": "All High Tier Teams",
-          }
-        }
+        emptyLabel="All High Tier Teams"
+        onChangeConf={[Function]}
       />
     </Col>
     <Col
@@ -15389,96 +15209,38 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={12}
     >
-      <StateManager
-        components={
+      <ConferenceSelector
+        confMap={
           Object {
-            "MultiValueContainer": [Function],
+            "American Athletic Conference": Array [],
+            "Atlantic 10 Conference": Array [],
+            "Atlantic Coast Conference": Array [],
+            "Big 12 Conference": Array [],
+            "Big East Conference": Array [],
+            "Big Ten Conference": Array [],
+            "Mountain West Conference": Array [],
+            "Pac 12 Conference": Array [],
+            "Southeastern Conference": Array [],
+            "West Coast Conference": Array [],
           }
         }
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
-        filterOption={[Function]}
-        formatGroupLabel={[Function]}
-        isClearable={true}
-        isMulti={true}
-        onChange={[Function]}
-        options={
+        confStr=""
+        confs={
           Array [
-            Object {
-              "label": "Groups",
-              "options": Array [
-                Object {
-                  "label": "Power 6 Conferences",
-                  "value": "Power 6 Conferences",
-                },
-                Object {
-                  "label": "Outside The P6",
-                  "value": "Outside The P6",
-                },
-                Object {
-                  "label": "Manual Filter",
-                  "value": "Manual Filter",
-                },
-              ],
-            },
-            Object {
-              "label": "Confs",
-              "options": Array [
-                Object {
-                  "label": "American Athletic Conference",
-                  "value": "American Athletic Conference",
-                },
-                Object {
-                  "label": "Atlantic 10 Conference",
-                  "value": "Atlantic 10 Conference",
-                },
-                Object {
-                  "label": "Atlantic Coast Conference",
-                  "value": "Atlantic Coast Conference",
-                },
-                Object {
-                  "label": "Big 12 Conference",
-                  "value": "Big 12 Conference",
-                },
-                Object {
-                  "label": "Big East Conference",
-                  "value": "Big East Conference",
-                },
-                Object {
-                  "label": "Big Ten Conference",
-                  "value": "Big Ten Conference",
-                },
-                Object {
-                  "label": "Mountain West Conference",
-                  "value": "Mountain West Conference",
-                },
-                Object {
-                  "label": "Pac 12 Conference",
-                  "value": "Pac 12 Conference",
-                },
-                Object {
-                  "label": "Southeastern Conference",
-                  "value": "Southeastern Conference",
-                },
-                Object {
-                  "label": "West Coast Conference",
-                  "value": "West Coast Conference",
-                },
-              ],
-            },
+            "Big Ten Conference",
+            "Southeastern Conference",
+            "Pac 12 Conference",
+            "West Coast Conference",
+            "Big 12 Conference",
+            "Atlantic Coast Conference",
+            "Big East Conference",
+            "American Athletic Conference",
+            "Atlantic 10 Conference",
+            "Mountain West Conference",
           ]
         }
-        styles={
-          Object {
-            "menu": [Function],
-          }
-        }
-        value={
-          Object {
-            "label": "All High Tier Teams",
-          }
-        }
+        emptyLabel="All High Tier Teams"
+        onChangeConf={[Function]}
       />
     </Col>
     <Col
@@ -28849,96 +28611,38 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       }
       xs={12}
     >
-      <StateManager
-        components={
+      <ConferenceSelector
+        confMap={
           Object {
-            "MultiValueContainer": [Function],
+            "American Athletic Conference": Array [],
+            "Atlantic 10 Conference": Array [],
+            "Atlantic Coast Conference": Array [],
+            "Big 12 Conference": Array [],
+            "Big East Conference": Array [],
+            "Big Ten Conference": Array [],
+            "Mountain West Conference": Array [],
+            "Pac 12 Conference": Array [],
+            "Southeastern Conference": Array [],
+            "West Coast Conference": Array [],
           }
         }
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
-        filterOption={[Function]}
-        formatGroupLabel={[Function]}
-        isClearable={true}
-        isMulti={true}
-        onChange={[Function]}
-        options={
+        confStr=""
+        confs={
           Array [
-            Object {
-              "label": "Groups",
-              "options": Array [
-                Object {
-                  "label": "Power 6 Conferences",
-                  "value": "Power 6 Conferences",
-                },
-                Object {
-                  "label": "Outside The P6",
-                  "value": "Outside The P6",
-                },
-                Object {
-                  "label": "Manual Filter",
-                  "value": "Manual Filter",
-                },
-              ],
-            },
-            Object {
-              "label": "Confs",
-              "options": Array [
-                Object {
-                  "label": "American Athletic Conference",
-                  "value": "American Athletic Conference",
-                },
-                Object {
-                  "label": "Atlantic 10 Conference",
-                  "value": "Atlantic 10 Conference",
-                },
-                Object {
-                  "label": "Atlantic Coast Conference",
-                  "value": "Atlantic Coast Conference",
-                },
-                Object {
-                  "label": "Big 12 Conference",
-                  "value": "Big 12 Conference",
-                },
-                Object {
-                  "label": "Big East Conference",
-                  "value": "Big East Conference",
-                },
-                Object {
-                  "label": "Big Ten Conference",
-                  "value": "Big Ten Conference",
-                },
-                Object {
-                  "label": "Mountain West Conference",
-                  "value": "Mountain West Conference",
-                },
-                Object {
-                  "label": "Pac 12 Conference",
-                  "value": "Pac 12 Conference",
-                },
-                Object {
-                  "label": "Southeastern Conference",
-                  "value": "Southeastern Conference",
-                },
-                Object {
-                  "label": "West Coast Conference",
-                  "value": "West Coast Conference",
-                },
-              ],
-            },
+            "Big Ten Conference",
+            "Southeastern Conference",
+            "Pac 12 Conference",
+            "West Coast Conference",
+            "Big 12 Conference",
+            "Atlantic Coast Conference",
+            "Big East Conference",
+            "American Athletic Conference",
+            "Atlantic 10 Conference",
+            "Mountain West Conference",
           ]
         }
-        styles={
-          Object {
-            "menu": [Function],
-          }
-        }
-        value={
-          Object {
-            "label": "All High Tier Teams",
-          }
-        }
+        emptyLabel="All High Tier Teams"
+        onChangeConf={[Function]}
       />
     </Col>
     <Col
@@ -40452,99 +40156,38 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       }
       xs={12}
     >
-      <StateManager
-        components={
+      <ConferenceSelector
+        confMap={
           Object {
-            "MultiValueContainer": [Function],
+            "American Athletic Conference": Array [],
+            "Atlantic 10 Conference": Array [],
+            "Atlantic Coast Conference": Array [],
+            "Big 12 Conference": Array [],
+            "Big East Conference": Array [],
+            "Big Ten Conference": Array [],
+            "Mountain West Conference": Array [],
+            "Pac 12 Conference": Array [],
+            "Southeastern Conference": Array [],
+            "West Coast Conference": Array [],
           }
         }
-        defaultInputValue=""
-        defaultMenuIsOpen={false}
-        defaultValue={null}
-        filterOption={[Function]}
-        formatGroupLabel={[Function]}
-        isClearable={true}
-        isMulti={true}
-        onChange={[Function]}
-        options={
+        confStr="Manual Filter"
+        confs={
           Array [
-            Object {
-              "label": "Groups",
-              "options": Array [
-                Object {
-                  "label": "Power 6 Conferences",
-                  "value": "Power 6 Conferences",
-                },
-                Object {
-                  "label": "Outside The P6",
-                  "value": "Outside The P6",
-                },
-                Object {
-                  "label": "Manual Filter",
-                  "value": "Manual Filter",
-                },
-              ],
-            },
-            Object {
-              "label": "Confs",
-              "options": Array [
-                Object {
-                  "label": "American Athletic Conference",
-                  "value": "American Athletic Conference",
-                },
-                Object {
-                  "label": "Atlantic 10 Conference",
-                  "value": "Atlantic 10 Conference",
-                },
-                Object {
-                  "label": "Atlantic Coast Conference",
-                  "value": "Atlantic Coast Conference",
-                },
-                Object {
-                  "label": "Big 12 Conference",
-                  "value": "Big 12 Conference",
-                },
-                Object {
-                  "label": "Big East Conference",
-                  "value": "Big East Conference",
-                },
-                Object {
-                  "label": "Big Ten Conference",
-                  "value": "Big Ten Conference",
-                },
-                Object {
-                  "label": "Mountain West Conference",
-                  "value": "Mountain West Conference",
-                },
-                Object {
-                  "label": "Pac 12 Conference",
-                  "value": "Pac 12 Conference",
-                },
-                Object {
-                  "label": "Southeastern Conference",
-                  "value": "Southeastern Conference",
-                },
-                Object {
-                  "label": "West Coast Conference",
-                  "value": "West Coast Conference",
-                },
-              ],
-            },
+            "Big Ten Conference",
+            "Southeastern Conference",
+            "Pac 12 Conference",
+            "West Coast Conference",
+            "Big 12 Conference",
+            "Atlantic Coast Conference",
+            "Big East Conference",
+            "American Athletic Conference",
+            "Atlantic 10 Conference",
+            "Mountain West Conference",
           ]
         }
-        styles={
-          Object {
-            "menu": [Function],
-          }
-        }
-        value={
-          Array [
-            Object {
-              "label": "Manual Filter",
-              "value": "Manual Filter",
-            },
-          ]
-        }
+        emptyLabel="All High Tier Teams"
+        onChangeConf={[Function]}
       />
     </Col>
     <Col

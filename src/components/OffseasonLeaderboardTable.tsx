@@ -17,7 +17,7 @@ import Button from 'react-bootstrap/Button';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components, createFilter } from "react-select";
+import Select from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faPen, faEye } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
@@ -26,6 +26,7 @@ import ClipboardJS from 'clipboard';
 import GenericTable, { GenericTableColProps, GenericTableOps } from "./GenericTable";
 import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
+import ConferenceSelector, { ConfSelectorConstants } from './shared/ConferenceSelector';
 
 // Table building
 // Util imports
@@ -48,10 +49,6 @@ import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/
 import { InputGroup } from 'react-bootstrap';
 import AsyncFormControl from './shared/AsyncFormControl';
 
-const highMajorConfsName = "Power 6 Conferences";
-const nonHighMajorConfsName = "Outside The P6";
-const queryFiltersName = "Manual Filter";
-const powerSixConfsStr = Power6ConferencesNicks.join(",");
 
 type Props = {
    startingState: OffseasonLeaderboardParams,
@@ -74,7 +71,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    // Data source
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
    const [confs, setConfs] = useState(startingState.confs || "");
-   const hasCustomFilter = confs.indexOf(queryFiltersName) >= 0;
+   const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
 
    const [year, setYear] = useState(startingState.year ? 
       (startingState.evalMode ? startingState.year : DateUtils.getPrevYear(startingState.year))
@@ -185,37 +182,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       }, timeout)
       }
    };
-
-   // Conference filter
-   function getCurrentConfsOrPlaceholder() {
-      return (confs == "") ?
-      { label: year < "2020/21" ? `All High Tier Teams` : `All Teams` } :
-      confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
-   }
-
-   /** Slightly hacky code to render the conference nick names */
-   const ConferenceValueContainer = (props: any) => {
-      const oldText = props.children[0];
-      const fullConfname = oldText.props.children;
-      const newText = {
-      ...oldText,
-      props: {
-         ...oldText.props,
-         children: [ConferenceToNickname[fullConfname] || fullConfname]
-      }
-      }
-      const newProps = {
-      ...props,
-      children: [newText, props.children[1]]
-      }
-      return <components.MultiValueContainer {...newProps} />
-   };
-
-   const confsWithTeams = dataEvent?.confMap ?
-      _.toPairs(dataEvent?.confMap || {}).map(kv => {
-      const teams = kv[1] || [];
-      return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
-      }) : (dataEvent?.confs || []);
 
    // 2] Processing
 
@@ -526,8 +492,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
-            || (((confs.indexOf("P6") >= 0) && confs.indexOf(nonHighMajorConfsName) < 0) && (powerSixConfsStr.indexOf(t.conf) >= 0))
-            || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.conf) < 0))
+            || (((confs.indexOf("P6") >= 0) && confs.indexOf(ConfSelectorConstants.nonHighMajorConfsName) < 0) 
+                     && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0))
+            || ((confs.indexOf(ConfSelectorConstants.nonHighMajorConfsName) >= 0) 
+                     && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0))
             || (hasCustomFilter && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
             ;
       }
@@ -706,13 +674,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    function stringToOption(s: string) {
       return { label: s, value: s };
    }
-   /** The sub-header builder */
-   const formatGroupLabel = (data: any) => (
-      <div>
-      <span>{data.label}</span>
-      </div>
-   );
-  const sortByOptions: Record<string, { label: string, value: string}> = {
+   const sortByOptions: Record<string, { label: string, value: string}> = {
       net: { label: "Net Rating", value: "net" },  
       offseason_net: { label: "Total offseason net", value: "offseason_net" },
       total_io: { label: "Total in - out", value: "total_io" },
@@ -752,28 +714,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          </Col>
          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
          <Col xs={12} sm={12} md={6} lg={6} style={{zIndex: 10}}>
-            <Select
-               isClearable={true}
-               styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-               isMulti
-               components={{ MultiValueContainer: ConferenceValueContainer }}
-               value={getCurrentConfsOrPlaceholder()}
-               options={[
-                  { label: "Groups", options: [highMajorConfsName, nonHighMajorConfsName, queryFiltersName].map(stringToOption) },
-                  { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
-                ]}
-                formatGroupLabel={formatGroupLabel}
-                filterOption={createFilter({
-                   ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
-                   stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
-                })}
-                onChange={(optionsIn) => {
-                  const options = optionsIn as Array<any>;
-                  const selection = (options || [])
-                     .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
-                  const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-                  friendlyChange(() => setConfs(confStr), confs != confStr);
-               }}
+            <ConferenceSelector
+               emptyLabel={year < "2020/21" ? `All High Tier Teams` : `All Teams`}
+               confStr={confs}
+               confMap={dataEvent?.confMap}
+               confs={dataEvent?.confs}
+               onChangeConf={confStr => friendlyChange(() => setConfs(confStr), confs != confStr)}
             />
          </Col>
          <Col lg={1} className="mt-1">
