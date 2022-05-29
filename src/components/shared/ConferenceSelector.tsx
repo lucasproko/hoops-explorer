@@ -27,7 +27,11 @@ type Props = {
    confs?: Array<string>,
    onChangeConf: (newConfOrTier: string) => void
 };
-const ConferenceSelector: React.FunctionComponent<Props> = ({emptyLabel, confStr, tier, confMap, confs, onChangeConf}) => {
+const ConferenceSelector: React.FunctionComponent<Props> = ({emptyLabel, confStr: confStrIn, tier, confMap, confs, onChangeConf}) => {
+
+   const confArray = confStrIn.split(",");
+   const confStr = ((confArray.length == 1) || (confStrIn.indexOf(ConfSelectorConstants.multiName) >= 0))
+      ? confStrIn : `${confStrIn},${ConfSelectorConstants.multiName}`; //(bwc)
 
    function stringToOption(s: string) {
       return { label: s, value: s };
