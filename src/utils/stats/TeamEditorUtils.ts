@@ -337,7 +337,9 @@ export class TeamEditorUtils {
             } else return keyVal;
          }).fromPairs().value();
 
-      const basePlayersPlusHypos = basePlayers.concat(_.values(addedPlayers)).concat(
+      const basePlayersPlusHypos = _.uniqBy(basePlayers.concat(
+         _.values(addedPlayers)
+      ).concat(
          _.chain(allOverrides).toPairs().filter(keyVal => !_.isNil(keyVal[1].name)).map(keyVal => { 
             const code = keyVal[0];
             const o = keyVal[1];
@@ -366,7 +368,8 @@ export class TeamEditorUtils {
                }
             } as GoodBadOkTriple;
          }).value()
-      ); 
+      ), t => t.key); // resolve all the duplicates, eg added by inferred
+
       if (evalMode) basePlayersPlusHypos.forEach(triple => {
          const matchingActual = triple.manualProfile
             ? actualResultsCodeOrIdSet[triple.manualProfile.name || ""]
