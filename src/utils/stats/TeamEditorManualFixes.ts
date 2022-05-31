@@ -206,6 +206,9 @@ export class TeamEditorManualFixes {
             "Furman":{
                superSeniorsReturning: new Set([ "MiBothwell::", "JaSlawson::" ])                         
             },
+            "Gonzaga":{
+               superSeniorsReturning: new Set([ "RaBolton::" ])                         
+            },
             "Houston": {
                superSeniorsReturning: new Set([ "ReChaney::" ])          
             },
