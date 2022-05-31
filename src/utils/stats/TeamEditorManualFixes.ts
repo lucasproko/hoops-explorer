@@ -243,6 +243,9 @@ export class TeamEditorManualFixes {
             "North Carolina": {
                superSeniorsReturning: new Set([ "LeBlack::" ]),
             },
+            "Northern Colo.": {
+               superSeniorsReturning: new Set([ "DaKountz::" ]),
+            },
             "Notre Dame": {
                superSeniorsReturning: new Set([ "CoRyan::", "DaGoodwin::" ]),
             },
