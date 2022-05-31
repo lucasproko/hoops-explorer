@@ -16,7 +16,7 @@ type DiagCodes =
    "player_gravity_bonus" | "player_gravity_penalty" | 
    "better_help_txfer_bonus" | "share_team_defense" |
    "incorp_prev_season" | "fr_regression" |
-   "switch_usage_ortg_style" |
+   "switch_usage_ortg_style" | "ortg_sos_delta" |
    "user_adjustment" |
    "average_usage" | "switch_usage_ortg_average" | "lack_of_playmaking_penalty" |
    "positional_penalty"
@@ -161,6 +161,7 @@ export class TeamEditorUtils {
       switch_usage_ortg_average: "Trade usage for efficiency (after averaging usage)",
       lack_of_playmaking_penalty: "Team penalty because there's a lack of playmaking",
       positional_penalty: "Penalty for playing at the wing as a frontcourt player",
+      ortg_sos_delta: "Adjustment for defensive SoS"
    };
       
 
@@ -385,7 +386,9 @@ export class TeamEditorUtils {
 
       // Most of the math occurs here:
 
-      const [ teamSosNet, teamSosOff, teamSosDef ] = TeamEditorUtils.calcApproxTeamSoS(basePlayers.map(p => p.orig), avgEff);
+      const [ teamSosNet, teamSosOff, teamSosDef ] = 
+         teamStats ? TeamEditorUtils.calcApproxTeamSoS(teamStats, avgEff)
+          : TeamEditorUtils.calcApproxTeamSoSLegacy(basePlayers.filter(p => p.orig.team == team).map(p => p.orig), avgEff);
 
       const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
          _.omit(addedPlayers, _.keys(disabledPlayersIn)) // have added transfers in (and they aren't disabled)
@@ -506,8 +509,6 @@ export class TeamEditorUtils {
          ...inInfo
       };
    }
-
-//TODO: also add team totals calcs here
 
 //TODO idea: for pessimistic mode (I think optimistic is optimistic enough?!) recalc the minutes using the worst case 
 // RAPMs, which will allow the better players to take more minutes and hopefully narrow the gap with the normal
@@ -1150,13 +1151,15 @@ export class TeamEditorUtils {
 
       // Now apply the above rules
 
+      /** Returns the SoS delta */
       const applyDiagsToBase = (proj: "good" | "bad" | "ok", 
          diags: TeamEditorDiags, mutableTarget: PureStatSet, basePlayer: PureStatSet, applySosToAdj: boolean,
          filter: Set<DiagCodes> | undefined
-      ) => {
+      ): number => {
          // (These 2 are just for display) 
          const thisYearDefSos = applySosToAdj ? (basePlayer.def_adj_opp?.value || teamSosDef) : teamSosDef; //(For ORtg, need to take SoS into account)
          const sumOffRtg = _.chain(diags.off_rtg[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
+         const dummyForSosDelta = applySosToAdj ? TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, 1.0) : undefined;
          mutableTarget.off_rtg = TeamEditorUtils.addToVal(basePlayer.off_rtg, sumOffRtg, applySosToAdj ? (teamSosDef/thisYearDefSos) : 1.0)!;
          const sumOffUsage = 0.01*_.chain(diags.off_usage[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
          mutableTarget.off_usage = TeamEditorUtils.addToVal(basePlayer.off_usage, sumOffUsage)!;
@@ -1167,6 +1170,8 @@ export class TeamEditorUtils {
          const sumDefAdj = _.chain(diags.def[proj]).filter((value, key) => !filter || filter.has(key as DiagCodes)).sum().value();
          mutableTarget.def_adj_rtg = TeamEditorUtils.addToVal(basePlayer.def_adj_rtg, sumDefAdj)!;
          mutableTarget.def_adj_rapm = TeamEditorUtils.addToVal(basePlayer.def_adj_rapm, sumDefAdj)!;
+
+         return dummyForSosDelta ? (mutableTarget.off_rtg?.value || 0) - (dummyForSosDelta?.value || 0) : 0;
       }
 
 
@@ -1195,20 +1200,25 @@ export class TeamEditorUtils {
          const playerDiags = calcBasicAdjustments(triple.orig, triple.prevYear, maybeOverride);
          triple.diag = (regressionDeltas && offSeasonMode) ? _.merge(playerDiags, regressionDeltas) : playerDiags;
          ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
-            applyDiagsToBase(
+            const offSosDelta = applyDiagsToBase(
                proj, playerDiags, triple[proj], triple.orig, true, 
                offSeasonMode ? undefined : new Set<DiagCodes>([ "user_adjustment" ])
-            )
+            );
+            if (triple.diag?.off_rtg && offSosDelta) {
+               triple.diag.off_rtg[proj]["ortg_sos_delta"] = offSosDelta;
+            }
          });
          // Now we have calculated the ORtg/usage corresponding to the RAPM, balance it to look better
          if (offSeasonMode) {
             const balanceORtgDiag = balanceORtgAndUsage(triple) as TeamEditorDiags;
             ([ "good", "bad", "ok" ] as ("good" | "bad" | "ok")[]).forEach(proj => {
-               applyDiagsToBase(proj, balanceORtgDiag, triple[proj], triple[proj], false, // <- already applied it
+               applyDiagsToBase(proj, balanceORtgDiag, triple[proj], triple[proj], false, // <- already applied the SoS factor
                   new Set<DiagCodes>([ "switch_usage_ortg_style" ]))
             });
             triple.diag = _.merge(triple.diag, balanceORtgDiag);
          }
+         // Calc SoS factor for diag mode
+
       });
    }
 
@@ -1701,8 +1711,20 @@ export class TeamEditorUtils {
       }
    };
 
-   /** Calculate SoS */
-   static calcApproxTeamSoS(origRoster: IndivStatSet[], avgEff: number): [ number, number, number ] {
+   /** Calculate SoS when you do have the team stats BUT they don't include SoS */
+   static calcApproxTeamSoS(teamStats: PureStatSet, avgEff: number): [ number, number, number ] {
+      const offRaw = (teamStats.off_ppp?.value || avgEff);
+      const offAdj = (teamStats.off_adj_ppp?.value || avgEff); // adj = raw*(avgEff/sos)
+      const defSoS = (offRaw/offAdj)*avgEff;
+      const defRaw = (teamStats.def_ppp?.value || avgEff);
+      const defAdj = (teamStats.def_adj_ppp?.value || avgEff); 
+      const offSoS = (defRaw/defAdj)*avgEff;
+
+      return [ offSoS - defSoS, offSoS, defSoS ];
+   }
+
+   /** Calculate SoS when you don't have the team stats */
+   static calcApproxTeamSoSLegacy(origRoster: IndivStatSet[], avgEff: number): [ number, number, number ] {
       if (!_.isEmpty(origRoster)) {
          const calcs = _.transform(origRoster, (acc, p) => {
             const thisOffPoss = p.off_team_poss_pct?.value || 0;
