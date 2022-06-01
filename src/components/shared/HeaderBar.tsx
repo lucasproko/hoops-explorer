@@ -158,19 +158,22 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   //   <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
   // );
   const playerLeaderboardTooltipNba2022 = (
-    <Tooltip id="playerLeaderboardTooltipNba2022">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2022 NBA prospects (from DraftExpress)</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipNba2022">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for 2022 NBA prospects (from ESPN/@DraftExpress)</Tooltip>
+  );
+  const playerLeaderboardTooltipSuperSr2022 = (
+    <Tooltip id="playerLeaderboardTooltipSuperSr2022">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for 2022 returning super seniors</Tooltip>
   );
   const playerLeaderboardTooltipMdDmv2017 = (
-    <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for Md/DMV-area players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for Md/DMV-area players class of 2017+</Tooltip>
   );
   const playerLeaderboardTooltipNyNj2017 = (
-    <Tooltip id="playerLeaderboardTooltipNyNj2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for NY/NJ-area players class of 2017+ (h/t jules99b from reddit)</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipNyNj2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for NY/NJ-area players class of 2017+ (h/t jules99b from reddit)</Tooltip>
   );
   const playerLeaderboardTooltipEuro2017 = (
-    <Tooltip id="playerLeaderboardTooltipEuro2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for European players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipEuro2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for European players class of 2017+</Tooltip>
   );
   const playerLeaderboardTooltipCanada2017 = (
-    <Tooltip id="playerLeaderboardTooltipCanada2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for Canadian players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipCanada2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for Canadian players class of 2017+</Tooltip>
   );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
@@ -309,6 +312,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             <Dropdown.Item>
               {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
             </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("2022 returning super seniors", playerLeaderboardTooltipSuperSr2022, getPlayerLeaderboardTrackingUrl("__SUPER_SR_2022__"), true)}
+            </Dropdown.Item>
+            
             {
               // Archived tracking lists:
               // <Dropdown.Item>

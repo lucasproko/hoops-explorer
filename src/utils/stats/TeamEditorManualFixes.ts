@@ -311,6 +311,9 @@ export class TeamEditorManualFixes {
             "UCLA": {
                superSeniorsReturning: new Set([ "DaSingleton::" ]),
             },
+            "Southern California": {
+               superSeniorsReturning: new Set([ "DrPeterson::" ]),
+            },
             "Vanderbilt": {
                superSeniorsReturning: new Set([ "LiRobbins::", "QuMillora-br::" ]),
             },
