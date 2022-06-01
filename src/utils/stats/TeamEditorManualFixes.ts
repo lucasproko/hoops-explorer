@@ -7,7 +7,7 @@ import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
 
 /** Note string keys are TeamEditorUtils.getKey, string val in leftTeam is player id (aka name) */
 export type TeamEditorManualFixModel = {
-   leftTeam?: Array<string>,
+   leftTeam?: Array<string>, //Note use normal key for players in DB, omit the "::" for Fr
    superSeniorsReturning?: Set<string>,
    overrides?: Record<string, PlayerEditModel>,
    codeSwitch?: Record<string, string>, //this year code to next year's code, note not currently supported for transfers
@@ -177,6 +177,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "MaAshton-lan::" ])          
             },
             "BYU": {
+               leftTeam: [ "CoChandler" ], //(Fr on mission - Fr hence no ::)
                superSeniorsReturning: new Set([ "GiGeorge::" ])          
             },
             "Colorado St.": {
@@ -195,7 +196,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "DjWilkins::", "RoPenn::", "GaSturtz::", "DaBrodie::" ])
             },
             "Duke": {
-               leftTeam: [ "TrKeels::", "PaBanchero::", "MaWilliams::", "AjGriffin::"  ],
+               leftTeam: [],
             },
             "Florida": {
                superSeniorsReturning: new Set([ "CoCastleton::", "MyJones::" ]),
@@ -236,6 +237,9 @@ export class TeamEditorManualFixes {
                      "pos": "S-PF", "pr": "4*", "c": "ZaWrightsil", "h": "6-7", "r": 0
                   },
                }})[""])
+            },
+            "Memphis": {
+               superSeniorsReturning: new Set([ "DeWilliams::" ]),
             },
             "Michigan St.": {
                superSeniorsReturning: new Set([ "JoHauser::" ]),

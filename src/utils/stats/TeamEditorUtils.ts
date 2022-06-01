@@ -291,9 +291,10 @@ export class TeamEditorUtils {
       // Merge team overrides and user overrides
       const allOverrides: Record<string, PlayerEditModel> = 
          _.fromPairs(
-            _.chain(teamOverrides.overrides || {}).toPairs().filter(keyVal=> !overridesIn[keyVal[0]]).value()
+            _.chain(teamOverrides.overrides || {}).toPairs()
+               .filter(keyVal=> !overridesIn[keyVal[0]] && !allDeletedPlayers[keyVal[0]]).value()
                .concat(
-                  _.toPairs(redshirtishFr)
+                  _.toPairs(redshirtishFr).filter(keyVal => !allDeletedPlayers[keyVal[0]])
                ).concat(
                   _.toPairs(overridesIn).map(keyVal => { 
                      //(ugly complication: Fr/RS-Fr look like "hand added" players, but their key is a code, not a human readable name)
