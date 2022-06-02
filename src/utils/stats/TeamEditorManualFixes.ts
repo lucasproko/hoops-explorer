@@ -181,6 +181,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "GiGeorge::" ])          
             },
             "Colorado St.": {
+               leftTeam: [ "DaRoddy::" ],
                superSeniorsReturning: new Set([ "KeMoore::" ])          
             },
             "Clemson": {
@@ -196,7 +197,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "DjWilkins::", "RoPenn::", "GaSturtz::", "DaBrodie::" ])
             },
             "Duke": {
-               leftTeam: [],
+               leftTeam: [ "TrKeels::" ],
             },
             "Florida": {
                superSeniorsReturning: new Set([ "CoCastleton::", "MyJones::" ]),
@@ -206,6 +207,9 @@ export class TeamEditorManualFixes {
             },
             "Furman":{
                superSeniorsReturning: new Set([ "MiBothwell::", "JaSlawson::" ])                         
+            },
+            "Georgetown":{
+               leftTeam: [ "AmMohammed::" ]                      
             },
             "Gonzaga":{
                superSeniorsReturning: new Set([ "RaBolton::" ])                         
@@ -242,7 +246,11 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "Memphis": {
+               leftTeam: [ "LeQuinones::" ],
                superSeniorsReturning: new Set([ "DeWilliams::" ]),
+            },
+            "Michigan": {
+               leftTeam: [ "CaHoustan::" ],
             },
             "Michigan St.": {
                superSeniorsReturning: new Set([ "JoHauser::" ]),
@@ -257,7 +265,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "DaKountz::" ]),
             },
             "Notre Dame": {
-               superSeniorsReturning: new Set([ "CoRyan::", "DaGoodwin::" ]),
+               superSeniorsReturning: new Set([ "CoRyan::", "DaGoodwin::", "NaLaszewski::" ]),
             },
             "Ohio St.": {
                superSeniorsReturning: new Set([ "SeTowns::", "JuSueing::" ]),
@@ -288,7 +296,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "DwMurray::" ]),
             },
             "Rutgers": {
-               superSeniorsReturning: new Set([ "AuHyatt::" ]),
+               superSeniorsReturning: new Set([ "AuHyatt::", "CaMcconnell::" ]),
             },
             "Saint Louis": {
                superSeniorsReturning: new Set([ "JaPerkins::" ]),
@@ -307,7 +315,7 @@ export class TeamEditorManualFixes {
             },
             "Seton Hall": {
                superSeniorsReturning: new Set([ "JaHarris::" ]),
-               leftTeam: [ "Aiken, Bryce" ],
+               leftTeam: [ "Aiken, Bryce" ], //(manual override from a previous year with this key)
             },
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "MoMathis::" ]),
@@ -320,6 +328,9 @@ export class TeamEditorManualFixes {
             },
             "UCLA": {
                superSeniorsReturning: new Set([ "DaSingleton::" ]),
+            },
+            "UNLV": {
+               leftTeam: [ "DoWilliams::" ],
             },
             "Southern California": {
                superSeniorsReturning: new Set([ "DrPeterson::" ]),
