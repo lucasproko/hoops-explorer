@@ -405,6 +405,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       GradeUtils.buildAndInjectDivisionStatsLUT(mutableDivisionStats);
 
+      //Useful for building late off-season grade lists      
+      const logDivisionStatsToConsole = false;
+      if (logDivisionStatsToConsole && server == "localhost") {
+         console.log(JSON.stringify(mutableDivisionStats));
+      }
+
       const tableDefs = _.omit({
          title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 10),
          "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),

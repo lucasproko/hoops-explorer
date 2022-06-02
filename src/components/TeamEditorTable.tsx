@@ -122,6 +122,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
 
+  const usePreseasonRanks = !evalMode && DateUtils.hasPreseasonRankings[`${gender}_${DateUtils.getNextYear(year)}`];
+
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : year, gender);
 
@@ -247,13 +249,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   useEffect(() => {
     const params = {
       ...startingState, gender,
-      year: gradeYear(year, evalMode)
+      year: usePreseasonRanks ? DateUtils.getNextYear(year) : gradeYear(year, evalMode)
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
     GradeTableUtils.populateDivisionStatsCache(params, statsCache => {
       setDivisionStatsCache(statsCache);
-    });
+    }, usePreseasonRanks ? "Preseason" : undefined);
   }, [ year, gender, evalMode ]);
 
   /////////////////////////////////////
@@ -873,12 +875,32 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_off: offSeasonMode ? dummyTeamBad.off_adj_ppp : undefined,
         bad_def: offSeasonMode ? dummyTeamBad.def_adj_ppp : undefined,
       };
-      const teamGradesRowData = {
+      const teamProjectedGradesRowData = (filteredPlayerSet && overrideGrades) ? {
+        title: <b>Team Grades (projected)</b>,
+        ok_net: teamGradesOkNextYear.off_net,
+        ok_off: teamGradesOkNextYear.off_adj_ppp,
+        ok_def: teamGradesOkNextYear.def_adj_ppp,
+        good_net: teamGradesGoodNextYear.off_net,
+        good_off: teamGradesGoodNextYear.off_adj_ppp,
+        good_def: teamGradesGoodNextYear.def_adj_ppp,
+        bad_net: teamGradesBadNextYear.off_net,
+        bad_off: teamGradesBadNextYear.off_adj_ppp,
+        bad_def: teamGradesBadNextYear.def_adj_ppp,
+      } : undefined;
+
+      const teamGradesRowData = (!teamProjectedGradesRowData || !usePreseasonRanks) ? {
         title: <b>Team Grades {
           (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
-            ((divisionStatsCache.year != (evalMode ? DateUtils.getNextYear(year) : year)) ?
-              "(generic)"
-              : `(${divisionStatsCache.year.substring(2)})`)
+            (() => {
+              const nextYear = DateUtils.getNextYear(year);
+              if (usePreseasonRanks) {
+                return "(preseason)";
+              } else {
+                return  ((divisionStatsCache.year != (evalMode ? nextYear : year)) ?
+                "(generic)"
+                : `(${divisionStatsCache.year.substring(2)})`);
+              }
+            })()         
           ) : null            
         }</b>,
         actual_net: teamGradesActual.off_net,
@@ -893,19 +915,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_net: offSeasonMode ? teamGradesBad.off_net : undefined,
         bad_off: offSeasonMode ? teamGradesBad.off_adj_ppp : undefined,
         bad_def: offSeasonMode ? teamGradesBad.def_adj_ppp : undefined,
-      };
-      const teamProjectedGradesRowData = (filteredPlayerSet && overrideGrades) ? {
-        title: <b>Team Grades (projected)</b>,
-        ok_net: teamGradesOkNextYear.off_net,
-        ok_off: teamGradesOkNextYear.off_adj_ppp,
-        ok_def: teamGradesOkNextYear.def_adj_ppp,
-        good_net: teamGradesGoodNextYear.off_net,
-        good_off: teamGradesGoodNextYear.off_adj_ppp,
-        good_def: teamGradesGoodNextYear.def_adj_ppp,
-        bad_net: teamGradesBadNextYear.off_net,
-        bad_off: teamGradesBadNextYear.off_adj_ppp,
-        bad_def: teamGradesBadNextYear.def_adj_ppp,
-      } : undefined;
+      } : teamProjectedGradesRowData;
+
+      const showSeparateProjectedGrades = teamProjectedGradesRowData && (teamProjectedGradesRowData != teamGradesRowData);
 
       if (!_.isNil(diffBasis) && _.isEmpty(diffBasis)) {
         setDiffBasis({
@@ -955,7 +967,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef
         ),
       ]).concat(
-        teamProjectedGradesRowData ? [GenericTableOps.buildDataRow(
+        showSeparateProjectedGrades ? [GenericTableOps.buildDataRow(
           teamProjectedGradesRowData,
           GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta, TeamEditorTableUtils.gradeTableDef
         )] : []
@@ -983,7 +995,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   
         ] : []
       ).concat(
-        (diffBasis?.projectedGrades && teamProjectedGradesRowData) ? [
+        (diffBasis?.projectedGrades && showSeparateProjectedGrades) ? [
           GenericTableOps.buildDataRow(
             {
               ...(diffBasis.projectedGrades),

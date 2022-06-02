@@ -28,6 +28,11 @@ export class DateUtils {
       "Women_2022/23": true
    };
 
+   /** Use pre-season rankings instead of previous season's rankings - do once the pre-season ranks settle down (1st June?) */
+   static readonly hasPreseasonRankings: Record<string, boolean> = {
+      "Men_2022/23": true,
+   };
+
    /** The first year for which we had bulk date (ie not just hand-picked) */
    static readonly firstYearWithData = DateUtils.coreYears[0];
 

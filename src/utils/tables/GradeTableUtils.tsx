@@ -93,7 +93,8 @@ export class GradeTableUtils {
   /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
   static readonly populateDivisionStatsCache = (
      filterParams: CommonFilterParams,
-     setCache: (s: DivisionStatsCache) => void
+     setCache: (s: DivisionStatsCache) => void,
+     tierOverride: string | undefined = undefined
    ) => {
       const getUrl = (inGender: string, inYear: string, inTier: string) => {
          const subYear = inYear.substring(0, 4);
@@ -106,7 +107,7 @@ export class GradeTableUtils {
 
       const inGender = filterParams.gender || ParamDefaults.defaultGender;
       const inYear = filterParams.year || ParamDefaults.defaultYear;
-      const fetchAll = [ "Combo", "High", "Medium", "Low" ].map((tier) => {
+      const fetchAll = (tierOverride ? [ tierOverride ] : [ "Combo", "High", "Medium", "Low" ]).map((tier) => {
       return fetch(getUrl(inGender, inYear, tier)).then((response: fetch.IsomorphicResponse) => {
             return response.ok ? response.json() : Promise.resolve({});
          });
@@ -114,7 +115,7 @@ export class GradeTableUtils {
       Promise.all(fetchAll).then((jsons: any[]) => {
       setCache({
          year: inYear, gender: inGender, //(so know when to refresh cache)
-         Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0],
+         Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0], //(if using tierOverride, it goes in here)
          High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
          Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
          Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
