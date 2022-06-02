@@ -228,6 +228,9 @@ export class TeamEditorManualFixes {
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ],
             },
+            "Kent St.": {
+               superSeniorsReturning: new Set([ "SiCarry::" ]),
+            },
             "Liberty": {
                superSeniorsReturning: new Set([ "DaMcGhee::" ]),
             },
@@ -265,6 +268,9 @@ export class TeamEditorManualFixes {
             },
             "Ole Miss": {
                superSeniorsReturning: new Set([ "TyFagan::" ]),
+            },
+            "Oregon": {
+               superSeniorsReturning: new Set([ "WiRichardson::" ]),
             },
             "Penn St.": {
                superSeniorsReturning: new Set([ "JaPickett::", "MyDread::" ]),
@@ -326,6 +332,9 @@ export class TeamEditorManualFixes {
             },
             "Virginia": {
                superSeniorsReturning: new Set([ "KiClark::", "JaGardner::" ]),
+            },
+            "Virginia Tech": {
+               superSeniorsReturning: new Set([ "JuMutts::" ]),
             },
             "Wake Forest": {
                superSeniorsReturning: new Set([ "DaWilliamson::" ]),
