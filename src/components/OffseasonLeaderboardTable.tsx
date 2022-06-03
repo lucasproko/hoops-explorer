@@ -39,7 +39,7 @@ import { GradeUtils } from '../utils/stats/GradeUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import TeamEditorTable, { TeamEditorStatsModel } from './TeamEditorTable';
-import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks } from '../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname, latestConfChanges, NicknameToConference, Power6ConferencesNicks } from '../utils/public-data/ConferenceInfo';
 import { CommonTableDefs } from '../utils/tables/CommonTableDefs';
 import { CbbColors } from '../utils/CbbColors';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
@@ -321,7 +321,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const goodDeltaNet = (goodNet - okTotals.net)*stdDevFactor;
          const badDeltaNet = (badNet - okTotals.net)*stdDevFactor;
    
-         const confStr = efficiencyInfo[`${gender}_Latest`]?.[0]?.[t]?.conf || "???";
+         const offseasonConfChanges = (!evalMode && (DateUtils.offseasonYear == year)) ? latestConfChanges : {};
+         const confStr = offseasonConfChanges[t] || (efficiencyInfo[`${gender}_Latest`]?.[0]?.[t]?.conf || "???");
 
          GradeUtils.buildAndInjectDivisionStats(
             { off_adj_ppp: { value: okTotals.off + avgEff }, def_adj_ppp: { value: okTotals.def + avgEff }, off_net: { value: okTotals.net } },
