@@ -1363,6 +1363,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1116,
                   },
@@ -1554,6 +1555,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <OverlayTrigger
@@ -1672,6 +1674,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -1836,6 +1839,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -2035,6 +2039,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -2227,6 +2232,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -2354,6 +2360,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -2539,6 +2546,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -2666,6 +2674,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -2862,7 +2871,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of available defensive rebounds made by this player ('Balanced' projection) (CURRENTLY: last season's numbers)",
+                "toolTip": "% of available defensive rebounds made by this player (just last season's numbers)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -5600,6 +5609,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -5727,6 +5737,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -5912,6 +5923,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -6104,6 +6116,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -6296,6 +6309,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -6511,6 +6525,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -6638,6 +6653,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -6834,7 +6850,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of available defensive rebounds made by this player ('Balanced' projection) (CURRENTLY: last season's numbers)",
+                "toolTip": "% of available defensive rebounds made by this player (just last season's numbers)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -9596,6 +9612,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -9723,6 +9740,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -9920,6 +9938,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -10120,6 +10139,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -10320,6 +10340,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -10498,6 +10519,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -10673,6 +10695,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -10779,6 +10802,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "ok_def": undefined,
                   "ok_net": undefined,
                   "ok_off": undefined,
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -10968,6 +10992,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -11146,6 +11171,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   >
                     C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -11270,6 +11296,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -11334,7 +11361,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened (CURRENTLY: assumes average bench-level production from <10mpg players)",
+                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened",
                 "widthUnits": 2,
               },
               "actual_off": GenericTableColProps {
@@ -14242,6 +14269,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1116,
                   },
@@ -14433,6 +14461,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <OverlayTrigger
@@ -14551,6 +14580,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -14727,6 +14757,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -14934,6 +14965,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -15134,6 +15166,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -15312,6 +15345,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -15487,6 +15521,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -15662,6 +15697,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -15786,6 +15822,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -15975,6 +16012,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -16153,6 +16191,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   >
                     C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -16277,6 +16316,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -16341,7 +16381,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened (CURRENTLY: assumes average bench-level production from <10mpg players)",
+                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened",
                 "widthUnits": 2,
               },
               "actual_off": GenericTableColProps {
@@ -19269,6 +19309,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -19404,6 +19445,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -19601,6 +19643,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -19801,6 +19844,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -20001,6 +20045,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -20179,6 +20224,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -20354,6 +20400,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -20468,6 +20515,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "ok_def": undefined,
                   "ok_net": undefined,
                   "ok_off": undefined,
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -20657,6 +20705,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -20835,6 +20884,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   >
                     C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -20967,6 +21017,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -21031,7 +21082,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened (CURRENTLY: assumes average bench-level production from <10mpg players)",
+                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened",
                 "widthUnits": 2,
               },
               "actual_off": GenericTableColProps {
@@ -24110,6 +24161,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     s-PG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.096,
                   },
@@ -24310,6 +24362,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -24445,6 +24498,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -24642,6 +24696,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -24842,6 +24897,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -25042,6 +25098,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -25220,6 +25277,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -25395,6 +25453,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -25509,6 +25568,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "ok_def": undefined,
                   "ok_net": undefined,
                   "ok_off": undefined,
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -25698,6 +25758,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -25876,6 +25937,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   >
                     C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -26008,6 +26070,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -26072,7 +26135,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened (CURRENTLY: assumes average bench-level production from <10mpg players)",
+                "toolTip": "Net Adjusted Pts/100 above an average D1 player, what actually happened",
                 "widthUnits": 2,
               },
               "actual_off": GenericTableColProps {
@@ -28585,6 +28648,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   >
                     s-PG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.096,
                   },
@@ -28777,6 +28841,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -28904,6 +28969,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -29089,6 +29155,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -29281,6 +29348,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -29473,6 +29541,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -29582,6 +29651,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "ok_def": undefined,
                   "ok_net": undefined,
                   "ok_off": undefined,
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -29767,6 +29837,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -29894,6 +29965,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -30090,7 +30162,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of available defensive rebounds made by this player ('Balanced' projection) (CURRENTLY: last season's numbers)",
+                "toolTip": "% of available defensive rebounds made by this player (just last season's numbers)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -32265,6 +32337,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     s-PG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.096,
                   },
@@ -32447,6 +32520,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1116,
                   },
@@ -32628,6 +32702,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <OverlayTrigger
@@ -32821,6 +32896,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": undefined,
                   "title": <span>
                     <i>
@@ -33007,6 +33083,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -33189,6 +33266,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -33304,6 +33382,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -33479,6 +33558,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -33594,6 +33674,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -33768,7 +33849,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of available defensive rebounds made by this player ('Balanced' projection) (CURRENTLY: last season's numbers)",
+                "toolTip": "% of available defensive rebounds made by this player (just last season's numbers)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -36463,6 +36544,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     s-PG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.096,
                   },
@@ -36645,6 +36727,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     CG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -36850,6 +36933,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -37032,6 +37116,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     WG
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -37214,6 +37299,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     WF
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -37419,6 +37505,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": undefined,
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -37534,6 +37621,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "ok_off": Object {
                     "value": 0.25,
                   },
+                  "ptsPlus": undefined,
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -37708,7 +37796,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of available defensive rebounds made by this player ('Balanced' projection) (CURRENTLY: last season's numbers)",
+                "toolTip": "% of available defensive rebounds made by this player (just last season's numbers)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -40399,6 +40487,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   >
                     s-PG
                   </span>,
+                  "ptsPlus": Object {
+                    "value": 17.97758016902623,
+                  },
                   "rebound": Object {
                     "value": 0.096,
                   },
@@ -40581,6 +40672,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   >
                     CG
                   </span>,
+                  "ptsPlus": Object {
+                    "value": 9.376008468415836,
+                  },
                   "rebound": Object {
                     "value": 0.091,
                   },
@@ -40690,6 +40784,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   "ok_def": undefined,
                   "ok_net": undefined,
                   "ok_off": undefined,
+                  "ptsPlus": Object {
+                    "value": 0,
+                  },
                   "title": <b>
                     Bench & Fr Guards
                   </b>,
@@ -40865,6 +40962,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   >
                     WG
                   </span>,
+                  "ptsPlus": Object {
+                    "value": 10.014493175799597,
+                  },
                   "rebound": Object {
                     "value": 0.1381,
                   },
@@ -41047,6 +41147,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   >
                     WG
                   </span>,
+                  "ptsPlus": Object {
+                    "value": 9.551900510745776,
+                  },
                   "rebound": Object {
                     "value": 0.1311,
                   },
@@ -41229,6 +41332,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   >
                     WF
                   </span>,
+                  "ptsPlus": Object {
+                    "value": 5.885398159522082,
+                  },
                   "rebound": Object {
                     "value": 0.1146,
                   },
@@ -41338,6 +41444,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   "ok_def": undefined,
                   "ok_net": undefined,
                   "ok_off": undefined,
+                  "ptsPlus": Object {
+                    "value": 0,
+                  },
                   "title": <b>
                     Bench & Fr Wings
                   </b>,
@@ -41513,6 +41622,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   >
                     PF/C
                   </span>,
+                  "ptsPlus": Object {
+                    "value": 14.823130621448833,
+                  },
                   "rebound": Object {
                     "value": 0.2478,
                   },
@@ -41628,6 +41740,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   "ok_off": Object {
                     "value": 0.17717499999999997,
                   },
+                  "ptsPlus": Object {
+                    "value": 9.566697625520225,
+                  },
                   "title": <b>
                     Bench & Fr Bigs
                   </b>,
@@ -41703,7 +41818,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
+                "toolTip": "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections (weighted for a player's mpg)",
                 "widthUnits": 2,
               },
               "good_net": GenericTableColProps {
@@ -41714,7 +41829,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
+                "toolTip": "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections (weighted for a player's mpg)",
                 "widthUnits": 2,
               },
               "good_off": GenericTableColProps {
@@ -41725,7 +41840,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
+                "toolTip": "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections (weighted for a player's mpg)",
                 "widthUnits": 2,
               },
               "mpg": GenericTableColProps {
@@ -41747,7 +41862,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
+                "toolTip": "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections (weighted for a player's mpg)",
                 "widthUnits": 2,
               },
               "ok_net": GenericTableColProps {
@@ -41758,7 +41873,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
+                "toolTip": "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections (weighted for a player's mpg)",
                 "widthUnits": 2,
               },
               "ok_off": GenericTableColProps {
@@ -41769,7 +41884,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
+                "toolTip": "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections (weighted for a player's mpg)",
                 "widthUnits": 2,
               },
               "ortg": GenericTableColProps {
@@ -41794,15 +41909,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 "toolTip": "Positional class of player (algorithmically generated)",
                 "widthUnits": 2,
               },
-              "rebound": GenericTableColProps {
+              "ptsPlus": GenericTableColProps {
                 "className": "",
-                "colName": "RB%",
+                "colName": "Pts+",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of available defensive rebounds made by this player ('Balanced' projection) (CURRENTLY: last season's numbers)",
+                "toolTip": "Points per game scored or created - weighted according to scored/assisted/rebounded: a reasonable proxy for PPG ('Balanced' projection, assumes a 70 possession game)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {

@@ -48,6 +48,7 @@ import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { DateUtils } from '../utils/DateUtils';
 import { TeamEditorManualFixes } from '../utils/stats/TeamEditorManualFixes';
+import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 
 // Input params/models
 
@@ -352,6 +353,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       superSeniorsBack, alwaysShowBench || evalMode,
       avgEff, prevYearFreshmen
     );
+    const avgPts100 = 100*pxResults.teamSosDef/(pxResults.avgEff || 1);
 
     ///////////////////////////////////////////////
 
@@ -439,10 +441,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const origProdFactor = factorMins ? (triple.orig.off_team_poss_pct?.value || 0) : 1.0;
       const origPrevProdFactor = (factorMins  && triple.prevYear) ? (triple.prevYear.off_team_poss_pct?.value || 0) : 1.0;
 
-
       const prevSeasonEl = showPrevSeasons && offSeasonMode && !triple.manualProfile && !isFiltered? {
         title: <small><i>Previous season</i></small>,
         mpg: { value: (triple.orig.off_team_poss_pct?.value || 0)*40 },
+        ptsPlus: factorMins ? { value: 
+          (triple.orig.off_rtg?.value || 0)*(triple.orig.off_usage?.value || 0)*(triple.orig.off_team_poss_pct?.value || 0)
+            *(DerivedStatsUtils.injectPaceStats(triple.orig, {}, true)["tempo"]?.value || 0)*0.01,
+        } : undefined,
         ortg: triple.orig.off_rtg,
         usage: triple.orig.off_usage,
         rebound: { value: triple.orig.def_orb?.value },
@@ -455,6 +460,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const prevPrevSeasonEl = showPrevSeasons && triple.prevYear && !isFiltered ? {
         title: <small><i>Season before</i></small>,
         mpg: { value: (triple.prevYear.off_team_poss_pct?.value || 0)*40 },
+        ptsPlus: factorMins ? { value: 
+          (triple.prevYear.off_rtg?.value || 0)*(triple.prevYear.off_usage?.value || 0)*(triple.prevYear.off_team_poss_pct?.value || 0) 
+            *(DerivedStatsUtils.injectPaceStats(triple.prevYear, {}, true)["tempo"]?.value || 0)*0.01,
+        } : undefined,
         ortg: triple.prevYear.off_rtg,
         usage: triple.prevYear.off_usage,
         rebound: { value: triple.prevYear.def_orb?.value },
@@ -481,6 +490,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const origNotEqualOk = offSeasonMode ? false : ((okDef != origDef) || (okOff != origOff));
 
+      const approxPtsCalc = triple.ok.off_rtg ? 
+        (triple.ok.off_rtg?.value || 0)*(triple.ok.off_usage?.value || 0)*okProdFactor :
+        (avgPts100*0.20*okProdFactor + okNet);
+
       const tableEl = {
         title: <span>{rosterInfo ? <i>{rosterInfo}&nbsp;/&nbsp;</i> : null}{playerLink}</span>,
         actual_mpg: (evalMode && triple.actualResults) ? 
@@ -494,6 +507,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           extraInfo: _.isNil(maybeOverride?.mins) ? undefined : "Overridden, see Player Editor tab"
         },
         ortg: triple.ok.off_rtg,
+        ptsPlus: factorMins ? { value: approxPtsCalc*0.70 } : undefined, //TODO, make this be the average team tempo
         usage: triple.ok.off_usage,
         rebound: (isFiltered || !triple.ok.def_orb) ? undefined : { value: triple.ok.def_orb?.value },
 
@@ -622,9 +636,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const hasBenchOverride = (benchOffOver != 0) || (benchDefOver != 0);
       const showCol = offSeasonMode || hasBenchOverride;
 
+      const okNet = offSeasonMode ? 
+        TeamEditorUtils.getNet(triple.ok, okProdFactor) : TeamEditorUtils.getNet(triple.ok, okProdFactor) - (benchOffOver - benchDefOver);
+
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
         mpg: { value: mpg },
+
+        ptsPlus: factorMins ? { value: (avgPts100*0.20*okProdFactor + okNet)*0.70 } : undefined, //TODO: calc poss/g
 
         actual_net: (!triple.actualResults) ? undefined : { value: TeamEditorUtils.getNet(triple.actualResults, 1.0) },
         actual_off: (!triple.actualResults) ? undefined : { value: TeamEditorUtils.getOff(triple.actualResults, 1.0) },
@@ -637,8 +656,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) } : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) }),
         good_def: (isFiltered || !showCol) ? undefined : 
           (offSeasonMode ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) } : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) }),
-        ok_net: isFiltered ? undefined : 
-          (offSeasonMode ? { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) } : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) - (benchOffOver - benchDefOver) }),
+        ok_net: isFiltered ? undefined : { value: okNet },
         ok_off: isFiltered ? undefined : 
           (offSeasonMode ? { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) } : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) - benchOffOver }),
         ok_def: isFiltered ? undefined : 
@@ -1053,7 +1071,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     return <GenericTable
       tableCopyId="rosterEditorTable"
-      tableFields={TeamEditorTableUtils.tableDef(evalMode, offSeasonMode)}
+      tableFields={TeamEditorTableUtils.tableDef(evalMode, offSeasonMode, factorMins)}
       tableData={
         teamRows.concat(rosterTableData)
       }

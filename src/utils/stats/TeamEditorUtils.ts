@@ -83,6 +83,7 @@ export type TeamEditorProcessingResults = {
 
    // Some other useful intermediates
    avgEff: number,
+   teamSosDef: number,
    allDeletedPlayers: Record<string, string> //(merged team and UI overrides)
    allOverrides: Record<string, PlayerEditModel>, //(merged player and UI overrides)
    unpausedOverrides: Record<string, PlayerEditModel>, //(active allOverrides)
@@ -95,6 +96,9 @@ export type TeamEditorProcessingResults = {
 
 /** Data manipulation functions for the TeamEditorTable */
 export class TeamEditorUtils {
+
+   static readonly genericBenchUsage = 0.18;
+   static readonly genericFrUsage = 0.18;
 
    static readonly benchGuardKey = "benchG";
    static readonly benchWingKey = "benchW";
@@ -503,7 +507,7 @@ export class TeamEditorUtils {
 
          inSeasonPlayerResultsList, basePlayersPlusHypos, actualResultsForReview,
 
-         avgEff, allDeletedPlayers, 
+         avgEff, teamSosDef, allDeletedPlayers, 
          allOverrides, unpausedOverrides,
 
          ...outInfo,
@@ -1268,14 +1272,13 @@ export class TeamEditorUtils {
       };
 
       const balanceUsage = (proj: "good" | "bad" | "ok") => {
-         const newPlayerAndBenchUsage = 0.18;
 
          const usgInfo = _.transform(roster, (acc, triple) => {
 
             const indivStatSet = (triple[proj] as PureStatSet);
 
             const mins = indivStatSet.off_team_poss_pct?.value || 0;
-            const usg = (indivStatSet.off_usage?.value || newPlayerAndBenchUsage); // (Fr-ish get a baseline of 0.18)
+            const usg = (indivStatSet.off_usage?.value || TeamEditorUtils.genericFrUsage); // (Fr-ish get a baseline of 0.18)
 
             acc.minUsgSum += mins*usg;
             acc.minSum += mins;
@@ -1287,7 +1290,7 @@ export class TeamEditorUtils {
 
          const benchMins = Math.max(5 - usgInfo.minSum, 0);
          const totalMins = usgInfo.minSum + benchMins;
-         const minUsgSumIncBench = usgInfo.minUsgSum + benchMins*newPlayerAndBenchUsage;
+         const minUsgSumIncBench = usgInfo.minUsgSum + benchMins*TeamEditorUtils.genericBenchUsage;
 
          const weightedUsg = (minUsgSumIncBench/totalMins);
          const deltaUsg = 0.20 - weightedUsg;
