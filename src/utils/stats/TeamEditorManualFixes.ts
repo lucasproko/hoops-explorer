@@ -198,6 +198,11 @@ export class TeamEditorManualFixes {
             },
             "Duke": {
                leftTeam: [ "TrKeels::" ],
+               ...(TeamEditorManualFixes.buildOverrides({"": {
+                  "Proctor, Tyrese": {
+                     "pos": "PG", "pr": "5*", "c": "TyProctor", "h": "6-4", "r": -25
+                  },
+               }})[""])
             },
             "Florida": {
                superSeniorsReturning: new Set([ "CoCastleton::", "MyJones::" ]),
