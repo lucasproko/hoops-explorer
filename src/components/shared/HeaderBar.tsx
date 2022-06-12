@@ -284,7 +284,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
               {buildNavItem("Players - all tiers", playerLeaderboardTooltip("All"), getPlayerLeaderboardUrl("All"), true)}
             </Dropdown.Item>
             <Dropdown.Item>
-              {buildNavItem("Players - 2022 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true", true)}
+              {buildNavItem("Players - 2022 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=2022&advancedFilter=transfer_dest%20%3D%3D%20%22%22", true)}
             </Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item>
