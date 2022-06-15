@@ -33,7 +33,7 @@ export class RequestUtils {
   static fixRosterUrl(str: string, encodeEncodePrefix: boolean): string {
     const stage1 = encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
       return '%' + c.charCodeAt(0).toString(16);
-    }).replace(/[%]20/g, "+");
+    }).replace(/[%]20/g, "%2B"); //(encoded as + on file, which needs to be URL encoded since + == " " in URL)
     return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
   }
   static mutateRosterJsonForWomen(json: any, gender: string | undefined) {
