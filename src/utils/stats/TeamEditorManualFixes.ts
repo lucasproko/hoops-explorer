@@ -323,7 +323,7 @@ export class TeamEditorManualFixes {
                leftTeam: [ "Aiken, Bryce" ], //(manual override from a previous year with this key)
             },
             "Southern Utah": {
-               superSeniorsReturning: new Set([ "TeJones::" ]),               
+               superSeniorsReturning: new Set([ "TeJones::", "MaFausett::" ]),
             },
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "MoMathis::" ]),
