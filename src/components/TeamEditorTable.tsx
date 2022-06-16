@@ -123,7 +123,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
 
-  const usePreseasonRanks = !evalMode && DateUtils.hasPreseasonRankings[`${gender}_${DateUtils.getNextYear(year)}`];
+  const usePreseasonRanks = 
+    !evalMode && offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${DateUtils.getNextYear(year)}`];
 
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : year, gender);
@@ -243,7 +244,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const firstYearWithGrades = evalModeIn ? DateUtils.coreYears[0] : DateUtils.coreYears[1];
     return ((yearIn == "All") || (yearIn <= firstYearWithGrades)) 
         ? ParamDefaults.defaultLeaderboardYear 
-        : (!evalMode ? yearIn : DateUtils.getNextYear(yearIn));
+        : (!evalModeIn ? yearIn : DateUtils.getNextYear(yearIn));
   };
 
   // Events that trigger building or rebuilding the division stats cache
@@ -257,7 +258,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     GradeTableUtils.populateDivisionStatsCache(params, statsCache => {
       setDivisionStatsCache(statsCache);
     }, usePreseasonRanks ? "Preseason" : undefined);
-  }, [ year, gender, evalMode ]);
+  }, [ year, gender, evalMode, offSeasonMode ]);
 
   /////////////////////////////////////
 
