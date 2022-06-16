@@ -344,9 +344,6 @@ export class RatingUtils {
     const Team_TOV = statGet("team_total_off_to");
     const Team_3PM = statGet("team_total_off_3p_made");
     const Team_Poss = statGet("team_total_off_poss");
-    // New for assist calcs:
-    const Team_Made = shotLocs.map(l => statGet(`team_total_off_${l}_made`));
-    const Team_Attempts = shotLocs.map(l => statGet(`team_total_off_${l}_attempts`));
 
     // TODO: regress this to bigger samples
     const Team_ORB = statSet?.team_total_off_orb?.value || 0;
@@ -357,6 +354,26 @@ export class RatingUtils {
     const Global_ORB =
       _.chain(rosterStatsByCode).values().sumBy(p => p.team_total_off_orb?.value || 0).value()/5;
     const Roster_ORB = Team_ORB * (Sum_Players_ORB/(Global_ORB || 1));
+
+    // New for more granular ORB calcs:
+    //TODO: don't currently collect these for the team, need to decide what to do
+    //(eg calc approx weights from team? Or start collecting - another 5 sums per player? Or do it properly at the source?)
+    // const Team_Made = shotLocs.map(l => statGet(`team_total_off_${l}_made`));
+    // const Team_Attempts = shotLocs.map(l => statGet(`team_total_off_${l}_attempts`));
+    // const ORB_Type_Weights = [ 1.0, 0.75, 0.5 ]; 
+    // const Weighted_Team_Misses = _.zipWith(
+    //   Team_Attempts, Team_Made, ORB_Type_Weights, 
+    //   (attempts, made, weights) => ((attempts || 0) - (made || 0))*(weights || 0)
+    // );
+    // const Team_FGX = Team_FGA - Team_FGM;
+    //   //it gets harder to rebound the longer the shots, see https://kenpom.com/blog/rebounding-2s-vs-3s/
+    //   // (the mid-range is a bit arbitrary, I weighted it towards the rim because longer 2s are rarer)
+    // const Team_ORB_Rim = Team_ORB/(_.sumBy(Weighted_Team_Misses, miss => miss/(Team_FGX || 1)) || 1);
+    // const Team_ORB_Mid = Team_ORB_Rim*(4/3);
+    // const Team_ORB_3P = Team_ORB_Rim*2;
+
+    // // Debug:
+    // console.log(`ORBS [${statSet.key}]: [${Team_ORB}] = rim=[${Team_ORB_Rim}] + mid=[${Team_ORB_Mid}] + 3p=[${Team_ORB_3P}] (weighted misses: [${Team_Made}])`);
 
     // Useful base derived stats:
     const PTS_FROM_FG = 2*FG2PM + 3*FG3PM;
