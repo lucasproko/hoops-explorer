@@ -93,8 +93,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
         }
         value={
           Object {
-            "label": "2022/23",
-            "value": "2022/23",
+            "label": "2019/20",
+            "value": "2019/20",
           }
         }
       />
@@ -741,8 +741,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         }
         value={
           Object {
-            "label": "2022/23",
-            "value": "2022/23",
+            "label": "2019/20",
+            "value": "2019/20",
           }
         }
       />
@@ -15188,8 +15188,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         }
         value={
           Object {
-            "label": "2022/23",
-            "value": "2022/23",
+            "label": "2019/20",
+            "value": "2019/20",
           }
         }
       />
@@ -28590,8 +28590,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         }
         value={
           Object {
-            "label": "2022/23",
-            "value": "2022/23",
+            "label": "2019/20",
+            "value": "2019/20",
           }
         }
       />

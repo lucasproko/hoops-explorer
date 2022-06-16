@@ -49,6 +49,8 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { DateUtils } from '../utils/DateUtils';
 import { TeamEditorManualFixes } from '../utils/stats/TeamEditorManualFixes';
 import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
+import { ConferenceToNickname, latestConfChanges } from '../utils/public-data/ConferenceInfo';
+import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 
 // Input params/models
 
@@ -118,6 +120,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   // Data source
   const [ offSeasonYear, setOffSeasonYear ] = useState(startingState.year || ParamDefaults.defaultYear);
+  const yearToShowInDropdown = offSeasonMode ? DateUtils.getNextYear(offSeasonYear) : offSeasonYear;
+
   const year = offSeasonYear;
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   // Data source
@@ -953,23 +957,34 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         })
       };
 
+      //TODO; centralize this conf logic (also used in OffseasonLeaderboardTable)
+      const offseasonConfChanges = (yearToShowInDropdown > DateUtils.offseasonYear) ? latestConfChanges : {};
+      const confLookupToUse = efficiencyInfo[`${gender}_${yearToShowInDropdown}`] || efficiencyInfo[`${gender}_Latest`];
+      const confStr = offseasonConfChanges[team] || (confLookupToUse?.[0]?.[team]?.conf || "(Unknown Conf)");
+      const confStrToUse = (confStr.length > 35) ? (ConferenceToNickname[confStr] || confStr) : confStr;
+        //(in practice this will always be the confStr, but if we ever narrow down the 1st column this pattern may be useful)
+      const confEl = <i>{confStrToUse}</i>; //TODO: make it be a link if we want to be able to show the full season
+
       const subHeaders = [ 
         GenericTableOps.buildSubHeaderRow(
           evalMode ? [
-            [ <div/>, 6 ], 
+            [ <div className="text-right">{confEl}</div>, 1 ],
+            [ <div/>, 5 ], 
             [ <i><b>{`${actualResultsYear} results`}</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i><b>Balanced</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
             [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
             [ <div/>, 2 ]
           ] : (!offSeasonMode ? [
-            [ <div/>, 10 ],  
+            [ <div className="text-right">{confEl}</div>, 1 ],
+            [ <div/>, 9 ],  
             [ <i><b>{actualResultsYear} results</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i>Adjusted results</i>, 4 ], [ <div/>, 1 ], 
             [ <div/>, 2 ]
           ]
            : [ 
-            [ <div/>, 9 ],  
+            [ <div className="text-right">{confEl}</div>, 1 ],
+            [ <div/>, 8 ],  
             [ <i><b>Balanced</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
             [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
@@ -1268,7 +1283,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
-          value={ stringToOption(offSeasonMode ? DateUtils.getNextYear(offSeasonYear) : offSeasonYear) }
+          value={ stringToOption(yearToShowInDropdown) }
           options={DateUtils.teamEditorYears(offSeasonMode).map(r => stringToOption(r))}
           isSearchable={false}
           onChange={(option) => { 

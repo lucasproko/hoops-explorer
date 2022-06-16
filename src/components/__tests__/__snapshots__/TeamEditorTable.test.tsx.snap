@@ -751,6 +751,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -770,7 +777,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  9,
+                  1,
+                  8,
                   4,
                   1,
                   4,
@@ -4997,6 +5005,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -5016,7 +5031,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  9,
+                  1,
+                  8,
                   4,
                   1,
                   4,
@@ -8972,6 +8988,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -8997,7 +9020,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  6,
+                  1,
+                  5,
                   4,
                   1,
                   4,
@@ -13637,6 +13661,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -13662,7 +13693,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  6,
+                  1,
+                  5,
                   4,
                   1,
                   4,
@@ -18661,6 +18693,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -18686,7 +18725,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  6,
+                  1,
+                  5,
                   4,
                   1,
                   4,
@@ -23521,6 +23561,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -23546,7 +23593,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  6,
+                  1,
+                  5,
                   4,
                   1,
                   4,
@@ -28036,6 +28084,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -28055,7 +28110,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  9,
+                  1,
+                  8,
                   4,
                   1,
                   4,
@@ -31746,6 +31802,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -31762,7 +31825,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  10,
+                  1,
+                  9,
                   4,
                   1,
                   4,
@@ -35953,6 +36017,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -35969,7 +36040,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  10,
+                  1,
+                  9,
                   4,
                   1,
                   4,
@@ -39896,6 +39968,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               GenericTableSubHeaderRow {
                 "className": "small text-center",
                 "cols": Array [
+                  <div
+                    className="text-right"
+                  >
+                    <i>
+                      Big Ten Conference
+                    </i>
+                  </div>,
                   <div />,
                   <i>
                     <b>
@@ -39912,7 +39991,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  10,
+                  1,
+                  9,
                   4,
                   1,
                   4,

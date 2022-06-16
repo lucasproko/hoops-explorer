@@ -76,6 +76,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [year, setYear] = useState(startingState.year ? 
       (startingState.evalMode ? startingState.year : DateUtils.getPrevYear(startingState.year))
       : "2021/22"); //TODO ignore input just take 2021/22 (display 2022/23 but it's off-season)
+   const yearToShowInDropdown = DateUtils.getNextYear(year);
+
    const [yearRedirect, setYearRedirect] = useState(startingState.year || DateUtils.inSeasonYear); //TODO lets us jump between off-seasons and normal leaderboards
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
    const [teamView,  setTeamView] = useState(startingState.teamView || "");
@@ -321,8 +323,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const goodDeltaNet = (goodNet - okTotals.net)*stdDevFactor;
          const badDeltaNet = (badNet - okTotals.net)*stdDevFactor;
    
-         const offseasonConfChanges = (!evalMode && (DateUtils.offseasonYear == year)) ? latestConfChanges : {};
-         const confStr = offseasonConfChanges[t] || (efficiencyInfo[`${gender}_Latest`]?.[0]?.[t]?.conf || "???");
+         //TODO; centralize this conf logic (also used in TeamEditorTable)
+         const offseasonConfChanges = (yearToShowInDropdown > DateUtils.offseasonYear) ? latestConfChanges : {};
+         const confLookupToUse = efficiencyInfo[`${gender}_${yearToShowInDropdown}`] || efficiencyInfo[`${gender}_Latest`];
+         const confStr = offseasonConfChanges[t] || (confLookupToUse?.[0]?.[t]?.conf || "???");
 
          GradeUtils.buildAndInjectDivisionStats(
             { off_adj_ppp: { value: okTotals.off + avgEff }, def_adj_ppp: { value: okTotals.def + avgEff }, off_net: { value: okTotals.net } },
@@ -711,7 +715,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
                isDisabled={evalMode || transferInOutMode}
-               value={stringToOption((evalMode || transferInOutMode) ? DateUtils.getNextYear(year) : "2022/23")}
+               value={stringToOption(yearToShowInDropdown)}
                options={DateUtils.lboardYearListWithNextYear(tier == "High").map(r => stringToOption(r))}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
