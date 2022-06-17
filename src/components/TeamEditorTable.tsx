@@ -34,7 +34,7 @@ import PlayerLeaderboardTable, { PlayerLeaderboardStatsModel } from "./PlayerLea
 import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
 
 // Util imports
-import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams } from '../utils/FilterModels';
+import { PlayerLeaderboardParams, ParamDefaults, TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, PlayerEditModel, TeamEditorUtils, TeamEditorProcessingResults } from '../utils/stats/TeamEditorUtils';
 
 import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic, TeamStatInfo } from '../utils/StatModels';
@@ -226,6 +226,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen, diffBasis,
     lboardParams, showPrevSeasons, factorMins, offSeasonMode, alwaysShowBench, superSeniorsBack, evalMode
   ]);
+
+  /** Converts team editor state to offseason leaderboard state (need to prefix each key with `$team__` in the leaderboard */
+  const buildStateForTeamLeaderboard = () => {
+    return _.omit({
+      factorMins: factorMins,
+      addedPlayers: _.keys(otherPlayerCache).join(";"),
+      deletedPlayers: _.keys(deletedPlayers).join(";"),
+      disabledPlayers: _.keys(disabledPlayers).join(";"),
+      overrides: _.isNil(uiOverridesIn) ? 
+        _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
+      superSeniorsBack: superSeniorsBack,
+      showPrevSeasons: showPrevSeasons,
+      alwaysShowBench: alwaysShowBench,
+      diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis)
+    }, ([] as string[]).concat(
+        factorMins ? [ ] : [ "factorMins" ]
+      ).concat(
+        superSeniorsBack ? [ ] : [ "superSeniorsBack" ]
+      ).concat(
+        showPrevSeasons ? [ ] : [ "showPrevSeasons" ]
+      ).concat(
+        alwaysShowBench ? [ ] : [ "alwaysShowBench" ]
+      )
+    ) as Record<string, string>;
+  };
 
   // 3] Utils
 
@@ -963,7 +988,48 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const confStr = offseasonConfChanges[team] || (confLookupToUse?.[0]?.[team]?.conf || "(Unknown Conf)");
       const confStrToUse = (confStr.length > 35) ? (ConferenceToNickname[confStr] || confStr) : confStr;
         //(in practice this will always be the confStr, but if we ever narrow down the 1st column this pattern may be useful)
-      const confEl = <i>{confStrToUse}</i>; //TODO: make it be a link if we want to be able to show the full season
+
+      // Build a link to the offseason leaderboard:
+
+      const confEl = (() => { 
+        const overrides = _.chain(buildStateForTeamLeaderboard()).mapKeys(
+          (val, k) => val ? `${team}__${k}` : `ignore__${k}`
+        ).value();
+        if (yearToShowInDropdown > DateUtils.offseasonYear) {
+          const confTooltip = (
+            <Tooltip id={`confTooltip`}>
+               <span>View this team (with any overrides) in a conference ranking for the following season</span>
+            </Tooltip>
+          );
+          const url = UrlRouting.getOffseasonLeaderboard({
+            year: yearToShowInDropdown,
+            confs: ConferenceToNickname[confStr],
+            teamView: team,
+            ...overrides
+          });
+          return <OverlayTrigger placement="auto" overlay={confTooltip}>
+            <a href={url}>{confStrToUse}</a>
+          </OverlayTrigger>;
+        } else if (yearToShowInDropdown == DateUtils.offseasonYear) {
+          const confTooltip = (
+            <Tooltip id={`confReviewTooltip`}>
+               <span>View the evaluation of this team's season (with any overrides) vs its ranking, together with other teams in teh conference</span>
+            </Tooltip>
+          );
+          const url = UrlRouting.getOffseasonLeaderboard({
+            year: DateUtils.getPrevYear(yearToShowInDropdown),
+            confs: ConferenceToNickname[confStr],
+            evalMode: true,
+            teamView: team,
+            ...overrides
+          } as OffseasonLeaderboardParams);
+          return <OverlayTrigger placement="auto" overlay={confTooltip}>
+            <a href={url}>{confStrToUse}</a>
+          </OverlayTrigger>;
+        } else { //(don't yet support a link)
+          return <i>{confStrToUse}</i>;
+        }
+      })();
 
       const subHeaders = [ 
         GenericTableOps.buildSubHeaderRow(
@@ -1442,27 +1508,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       <Col/>
       {overrideGrades ? <Col xs={2}>
         <Button size="sm" variant="outline-primary" onClick={(ev: any) => {
-          onChangeState(_.omit({
-            factorMins: factorMins,
-            addedPlayers: _.keys(otherPlayerCache).join(";"),
-            deletedPlayers: _.keys(deletedPlayers).join(";"),
-            disabledPlayers: _.keys(disabledPlayers).join(";"),
-            overrides: _.isNil(uiOverridesIn) ? 
-              _.map(uiOverrides, (value, key) => TeamEditorUtils.playerEditModelToUrlParams(key, value)).join(";") : uiOverridesIn,
-            superSeniorsBack: superSeniorsBack,
-            showPrevSeasons: showPrevSeasons,
-            alwaysShowBench: alwaysShowBench,
-            diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis)
-          }, ([] as string[]).concat(
-              factorMins ? [ ] : [ "factorMins" ]
-            ).concat(
-              superSeniorsBack ? [ ] : [ "superSeniorsBack" ]
-            ).concat(
-              showPrevSeasons ? [ ] : [ "showPrevSeasons" ]
-            ).concat(
-              alwaysShowBench ? [ ] : [ "alwaysShowBench" ]
-            )
-          ));
+          const teamLeaderboardState = buildStateForTeamLeaderboard();
+          onChangeState(teamLeaderboardState);
         }}>Save</Button>
         &nbsp;&nbsp;
         <Button size="sm" variant="outline-secondary" onClick={(ev: any) => {
