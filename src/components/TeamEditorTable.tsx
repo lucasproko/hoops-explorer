@@ -985,7 +985,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       //TODO; centralize this conf logic (also used in OffseasonLeaderboardTable)
       const offseasonConfChanges = (yearToShowInDropdown > DateUtils.offseasonYear) ? latestConfChanges : {};
       const confLookupToUse = efficiencyInfo[`${gender}_${yearToShowInDropdown}`] || efficiencyInfo[`${gender}_Latest`];
-      const confStr = offseasonConfChanges[team] || (confLookupToUse?.[0]?.[team]?.conf || "(Unknown Conf)");
+      const confStr = offseasonConfChanges[team] || (confLookupToUse?.[0]?.[team]?.conf || "");
       const confStrToUse = (confStr.length > 35) ? (ConferenceToNickname[confStr] || confStr) : confStr;
         //(in practice this will always be the confStr, but if we ever narrow down the 1st column this pattern may be useful)
 
