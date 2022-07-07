@@ -152,10 +152,13 @@ export class TeamEditorManualFixes {
             "Arizona": {
                ...(TeamEditorManualFixes.buildOverrides({"": {
                   "Veesaar, Henri": {
-                     "pos": "PF/C", "pr": "4*/T40ish", "c": "HeVeesaar", "h": "6-11", "r": 0
+                     "pos": "PF/C", "pr": "4*/T40ish", "c": "HeVeesaar", "h": "6-11", "r": 54
                   },
                   "Borovicanin, Filip": {
-                     "pos": "WF", "pr": "4*", "c": "FiBorovicani", "h": "6-8", "r": -50
+                     "pos": "WF", "pr": "3.5*/T150ish", "c": "FiBorovicani", "h": "6-8", "r": 72
+                  },
+                  "Boswell, Kylan": {
+                     "pos": "PG", "pr": "4*/T40ish", "c": "KyBoswell", "h": "6-1", "r": 90
                   },
                }})[""])
             },
@@ -200,7 +203,7 @@ export class TeamEditorManualFixes {
                leftTeam: [ "TrKeels::" ],
                ...(TeamEditorManualFixes.buildOverrides({"": {
                   "Proctor, Tyrese": {
-                     "pos": "PG", "pr": "5*", "c": "TyProctor", "h": "6-4", "r": -25
+                     "pos": "PG", "pr": "5*", "c": "TyProctor", "h": "6-4", "r": -100
                   },
                }})[""])
             },
