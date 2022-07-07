@@ -99,10 +99,10 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
             </YAxis>
             <Tooltip
               content={(<CustomTooltip />)}
-              wrapperStyle={{ opacity: "0.9", zIndex: "1000" }}
+              wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
               formatter={(value: number, name: string, props: any) => value.toFixed(0)}
               allowEscapeViewBox={{x: true, y: true}}
-              itemSorter={(item: any) => <span>item.value</span>}
+              itemSorter={(item: any) => item.value}
             />
             <defs>
               <linearGradient id={`splitColor${currId}`} x1="0" y1="0" x2="1" y2="0">

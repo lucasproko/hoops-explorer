@@ -266,7 +266,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef})
             <Label value={`Selected regression 'lambda' [${rapmInfo.offInputs.ridgeLambda.toFixed(3)}]`} position="insideTop"/>
             </ReferenceLine>
             <Tooltip
-              wrapperStyle={{ opacity: "0.8", zIndex: "1000" }}
+              wrapperStyle={{ opacity: "0.8", zIndex: 1000 }}
               formatter={(value: number, name: string, props: any) => value.toFixed(3)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => -item.value}
@@ -286,7 +286,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef})
               <Label value={`Selected regression 'lambda' [${rapmInfo.defInputs.ridgeLambda.toFixed(3)}]`} position="insideTop"/>
             </ReferenceLine>
             <Tooltip
-              wrapperStyle={{ opacity: "0.8", zIndex: "1000" }}
+              wrapperStyle={{ opacity: "0.8", zIndex: 1000 }}
               formatter={(value: number, name: string, props: any) => value.toFixed(3)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => item.value}
