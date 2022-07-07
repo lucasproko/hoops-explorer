@@ -3,7 +3,6 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 import queryString from "query-string";
-import { processEnv } from 'next/dist/lib/load-env-config';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const url = require('url').parse(req.url);
