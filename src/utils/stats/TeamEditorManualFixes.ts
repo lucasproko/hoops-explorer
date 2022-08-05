@@ -255,7 +255,7 @@ export class TeamEditorManualFixes {
             },
             "Memphis": {
                leftTeam: [ "LeQuinones::" ],
-               superSeniorsReturning: new Set([ "DeWilliams::" ]),
+               superSeniorsReturning: new Set([ "DeWilliams::", "AlLomax::" ]),
             },
             "Michigan": {
                leftTeam: [ "CaHoustan::" ],
