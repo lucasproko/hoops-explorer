@@ -193,6 +193,9 @@ export class TeamEditorManualFixes {
             "Cleveland St.": {
                superSeniorsReturning: new Set([ "DeJohnson::" ])          
             },
+            "Creighton": {
+               leftTeam: [ "RaAndronikas::" ],
+            },
             "DePaul": {
                superSeniorsReturning: new Set([ "YoAnei::" ]),
             },
