@@ -203,7 +203,6 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "DjWilkins::", "RoPenn::", "GaSturtz::", "DaBrodie::" ])
             },
             "Duke": {
-               leftTeam: [ "TrKeels::" ],
                ...(TeamEditorManualFixes.buildOverrides({"": {
                   "Proctor, Tyrese": {
                      "pos": "PG", "pr": "5*", "c": "TyProctor", "h": "6-4", "r": -100
@@ -220,7 +219,6 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "MiBothwell::", "JaSlawson::" ])                         
             },
             "Georgetown":{
-               leftTeam: [ "AmMohammed::" ]                      
             },
             "Gonzaga":{
                superSeniorsReturning: new Set([ "RaBolton::" ])                         
@@ -257,11 +255,7 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "Memphis": {
-               leftTeam: [ "LeQuinones::" ],
                superSeniorsReturning: new Set([ "DeWilliams::", "AlLomax::" ]),
-            },
-            "Michigan": {
-               leftTeam: [ "CaHoustan::" ],
             },
             "Michigan St.": {
                superSeniorsReturning: new Set([ "JoHauser::" ]),
@@ -363,6 +357,9 @@ export class TeamEditorManualFixes {
             },
             "Wake Forest": {
                superSeniorsReturning: new Set([ "DaWilliamson::" ]),
+            },
+            "Washington St.": {
+               leftTeam: [ "EfAbogidi::" ], //(joined a G-League team, which doesn't count as declaring)
             },
             "Western Ky.": {
                superSeniorsReturning: new Set([ "JsHamilton::", "LuFrampton::" ]),
