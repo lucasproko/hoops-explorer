@@ -1352,6 +1352,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               const newYear = (option as any).value;
               friendlyChange(() => {
                 setYear(newYear); 
+                if (newYear > DateUtils.offseasonYear) {
+                  setEvalMode(false);
+                  setOffSeasonMode(true);
+                }
                 setOtherPlayerCache({});
                 setDisabledPlayers({});
                 setDeletedPlayers({});
@@ -1416,6 +1420,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           <GenericTogglingMenuItem
                 text={"'What If?' mode"}
                 truthVal={!offSeasonMode}
+                disabled={year > DateUtils.offseasonYear}
                 onSelect={() => friendlyChange(() => {
                   setOffSeasonModeWithEffects(!offSeasonMode);
                   setEvalMode(false);
@@ -1425,6 +1430,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           <GenericTogglingMenuItem
               text={"Review mode"}
               truthVal={evalMode}
+              disabled={year > DateUtils.offseasonYear}
               onSelect={() => friendlyChange(() => {
                 setOffSeasonModeWithEffects(true);
                 setEvalMode(!evalMode);
@@ -1445,7 +1451,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               label: "Diff",
               tooltip: "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
               toggled: diffBasis != undefined,
-              onClick: () => friendlyChange(() => {
+              disabled: false,
+                onClick: () => friendlyChange(() => {
                 setDiffBasis(_.isNil(diffBasis) ? {} : undefined);
                   //(empty means active and will be filled in when the page rerenders)
               }, true)
@@ -1481,19 +1488,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               label: "What If?",
               tooltip: "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
               toggled: !offSeasonMode,
+              disabled: year > DateUtils.offseasonYear,
               onClick: () => friendlyChange(() => {
                 setOffSeasonModeWithEffects(!offSeasonMode);
                 setEvalMode(false);
-            }, true)
+              }, true)
             },
             {
               label: "Review",
               tooltip: "Compares the off-season projection against what actually happened (/is actually happening) the following year",
               toggled: evalMode,
+              disabled: year > DateUtils.offseasonYear,
               onClick: () => friendlyChange(() => {
-                  setOffSeasonModeWithEffects(true);
-                 setEvalMode(!evalMode);
-                }, true)
+                setOffSeasonModeWithEffects(true);
+                setEvalMode(!evalMode);
+              }, true)
             },
         ]))}
         />
