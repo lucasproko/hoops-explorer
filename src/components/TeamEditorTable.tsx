@@ -119,25 +119,25 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   )
 
   // Data source
-  const [ offSeasonYear, setOffSeasonYear ] = useState(startingState.year || ParamDefaults.defaultYear);
-  const yearToShowInDropdown = offSeasonMode ? DateUtils.getNextYear(offSeasonYear) : offSeasonYear;
+  const [ year, setYear ] = useState(startingState.year || DateUtils.offseasonPredictionYear);
+  /** The first year containing stats used for projection (note in eval mode we also use the current year's stats) */
+  const yearWithStats = offSeasonMode ? DateUtils.getPrevYear(year) : year;
 
-  const year = offSeasonYear;
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
 
   const usePreseasonRanks = 
-    !evalMode && offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${DateUtils.getNextYear(year)}`];
+    !evalMode && offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${year}`];
 
   /** Pre-calculate this */
-  const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : year, gender);
+  const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : yearWithStats, gender);
 
   // Handling various ways of uploading data
   const [ onlyTransfers, setOnlyTransfers ] = useState(_.isNil(startingState.showOnlyTransfers) ? true : startingState.showOnlyTransfers);
   const [ onlyThisYear, setOnlyThisYear ] = useState(_.isNil(startingState.showOnlyCurrentYear) ? true : startingState.showOnlyCurrentYear);
   const [ reloadData, setReloadData ] = useState(false);
-  const hasTransfers  = (gender == "Men") && (year >= "2019");
+  const hasTransfers  = (gender == "Men") && (yearWithStats >= "2019");
 
   // Core team editor state
 
@@ -270,17 +270,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   /** The year from which we're taking the grades - other averages need to come from that season */
   const gradeYear = (yearIn: string, evalModeIn: boolean) => {
-    const firstYearWithGrades = evalModeIn ? DateUtils.coreYears[0] : DateUtils.coreYears[1];
-    return ((yearIn == "All") || (yearIn <= firstYearWithGrades)) 
+    const firstYearWithGrades = DateUtils.coreYears[0];
+    const yearToUse = evalModeIn ? yearIn : DateUtils.getPrevYear(yearIn);
+    return ((yearIn == "All") || (yearToUse <= firstYearWithGrades)) 
         ? ParamDefaults.defaultLeaderboardYear 
-        : (!evalModeIn ? yearIn : DateUtils.getNextYear(yearIn));
+        : yearToUse;
   };
 
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
     const params = {
       ...startingState, gender,
-      year: usePreseasonRanks ? DateUtils.getNextYear(year) : gradeYear(year, evalMode)
+      year: usePreseasonRanks ? year : gradeYear(year, evalMode)
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
@@ -343,7 +344,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       if (startingState.addedPlayers && _.isEmpty(otherPlayerCache)) {
 
         const firstAddedPlayers = TeamEditorUtils.fillInAddedPlayers(
-          team, year,
+          team, yearWithStats,
           startingState.addedPlayers || "", dataEvent.players || [], dataEvent.transfers?.[1] || {},
           offSeasonMode, superSeniorsBack
         );
@@ -369,14 +370,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode)}`; //(use whatever year we're taking grades for)
     const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
 
-    const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(year)}` : "NO MATCH"; //(for Fr)
+    const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(yearWithStats)}` : "NO MATCH"; //(for Fr)
 
-    const teamLastSeason = _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == year));
+    const teamLastSeason = _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == yearWithStats));
 
     const prevYearFreshmen = TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason);
 
     const pxResults = TeamEditorUtils.teamBuildingPipeline(
-      gender, team, year,
+      gender, team, yearWithStats,
       dataEvent.players || [], teamLastSeason?.stats, dataEvent.transfers || [],
       offSeasonMode, evalMode,
       otherPlayerCache, uiOverrides, deletedPlayers, disabledPlayers,
@@ -756,7 +757,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
       const totalActualMins = evalMode ? _.sumBy(actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
       const finalActualEffAdj = totalActualMins ? 
-        5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, year) : 0;
+        5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, yearWithStats) : 0;
 
       const depthBonus = TeamEditorUtils.calcDepthBonus(filteredPlayerSet, team);
 
@@ -785,7 +786,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       // In-season mode only
       const rawTotalMins = inSeasonPlayerResultsList ? 
         _.sumBy(inSeasonPlayerResultsList, p => p.orig?.off_team_poss_pct.value || 0) : 5.0;
-      const getRawBenchLevel = Math.max(0, 5.0 - rawTotalMins)*TeamEditorUtils.getBenchLevelScoring(team, year);
+      const getRawBenchLevel = Math.max(0, 5.0 - rawTotalMins)*TeamEditorUtils.getBenchLevelScoring(team, yearWithStats);
       const rawNetSum = inSeasonPlayerResultsList ? 
         (_.sumBy(inSeasonPlayerResultsList, p => (p.orig?.off_team_poss_pct.value || 0)*TeamEditorUtils.getNet(p.orig))
          + 2*getRawBenchLevel
@@ -842,7 +843,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       //TODO: other adjustments based on this new logic...(calc/display bench production)
 
       const actualTotalsFromTeam = evalMode ?
-        _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == DateUtils.getNextYear(year))) : undefined;
+        _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == DateUtils.getNextYear(yearWithStats))) : undefined;
 
       const getLuckAdjOrRaw = (s: Statistic | undefined) => (_.isNil(s?.old_value) ? s?.value : s?.old_value) || avgEff;
       const getRaw = (s: Statistic | undefined) => s?.value || avgEff;
@@ -883,7 +884,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       const teamParams = {
         team: team, gender: gender, 
-        year: offSeasonMode ? DateUtils.getNextSeasonOrLastWithData(year) : year,
+        year: offSeasonMode ? DateUtils.getLastSeasonWithDataFrom(year) : year,
           //(unless this is the last off-season, seems more natural to link to what actually happened for the selected year)
         minRank: "0", maxRank: "400",
         factorMins: factorMins, possAsPct: true,
@@ -898,7 +899,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </OverlayTrigger> : <b>Team Totals</b>;
 
       const actualResultsYear = 
-        (year == "All") ? "Actual" : (evalMode ? DateUtils.getNextYear(year) : year).substring(2);
+        (year == "All") ? "Actual" : (evalMode ? year : DateUtils.getPrevYear(year)).substring(2);
 
       const teamStatsRowData = {
         title: teamLink,
@@ -940,11 +941,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         title: <b>Team Grades {
           (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
             (() => {
-              const nextYear = DateUtils.getNextYear(year);
+              const prevYear = DateUtils.getPrevYear(year);
               if (usePreseasonRanks) {
                 return "(preseason)";
               } else {
-                return  ((divisionStatsCache.year != (evalMode ? nextYear : year)) ?
+                return  ((divisionStatsCache.year != (evalMode ? year : prevYear)) ?
                 "(generic)"
                 : `(${divisionStatsCache.year.substring(2)})`);
               }
@@ -983,8 +984,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       };
 
       //TODO; centralize this conf logic (also used in OffseasonLeaderboardTable)
-      const offseasonConfChanges = (yearToShowInDropdown > DateUtils.offseasonYear) ? latestConfChanges : {};
-      const confLookupToUse = efficiencyInfo[`${gender}_${yearToShowInDropdown}`] || efficiencyInfo[`${gender}_Latest`];
+      const offseasonConfChanges = (year > DateUtils.offseasonYear) ? latestConfChanges : {};
+      const confLookupToUse = efficiencyInfo[`${gender}_${yearWithStats}`] || efficiencyInfo[`${gender}_Latest`];
       const confStr = offseasonConfChanges[team] || (confLookupToUse?.[0]?.[team]?.conf || "");
       const confStrToUse = (confStr.length > 35) ? (ConferenceToNickname[confStr] || confStr) : confStr;
         //(in practice this will always be the confStr, but if we ever narrow down the 1st column this pattern may be useful)
@@ -995,14 +996,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         const overrides = _.chain(buildStateForTeamLeaderboard()).mapKeys(
           (val, k) => val ? `${team}__${k}` : `ignore__${k}`
         ).value();
-        if (yearToShowInDropdown > DateUtils.offseasonYear) {
+        if (year > DateUtils.offseasonYear) {
           const confTooltip = (
             <Tooltip id={`confTooltip`}>
                <span>View this team (with any overrides) in a conference ranking for the following season</span>
             </Tooltip>
           );
           const url = UrlRouting.getOffseasonLeaderboard({
-            year: yearToShowInDropdown,
+            year: yearWithStats,
             confs: ConferenceToNickname[confStr],
             teamView: team,
             ...overrides
@@ -1010,14 +1011,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           return <OverlayTrigger placement="auto" overlay={confTooltip}>
             <a href={url}>{confStrToUse}</a>
           </OverlayTrigger>;
-        } else if (yearToShowInDropdown == DateUtils.offseasonYear) {
+        } else if (year > DateUtils.offseasonYear) {
           const confTooltip = (
             <Tooltip id={`confReviewTooltip`}>
                <span>View the evaluation of this team's season (with any overrides) vs its ranking, together with other teams in teh conference</span>
             </Tooltip>
           );
           const url = UrlRouting.getOffseasonLeaderboard({
-            year: DateUtils.getPrevYear(yearToShowInDropdown),
+            year: year,
             confs: ConferenceToNickname[confStr],
             evalMode: true,
             teamView: team,
@@ -1172,7 +1173,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return <PlayerLeaderboardTable
       startingState={{
         ...startingState,
-        transferMode: (year == DateUtils.offseasonYear) ? "true" : DateUtils.getOffseasonOfYear(year),
+        transferMode: (yearWithStats == DateUtils.offseasonYear) ? "true" : DateUtils.getOffseasonOfYear(yearWithStats),
           //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
         year: onlyThisYear ? startingState.year : "All",
         tier: "All"
@@ -1184,8 +1185,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           {
             ...dataEvent, 
             players: (onlyThisYear && (year != "All"))? 
-              (dataEvent.players || []).filter(p => p.year == year) : 
-              (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= year) : dataEvent.players), 
+              (dataEvent.players || []).filter(p => p.year == yearWithStats) : 
+              (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= yearWithStats) : dataEvent.players), 
             transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers?.[0] : undefined 
           }
         )
@@ -1195,12 +1196,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           "t100" : (newParams.confOnly ? "conf" : "all");
 
         if (dataSubEventKey != "all") {
-          const prevYear = DateUtils.getPrevYear(year || "");
+          const prevYearWithStats = DateUtils.getPrevYear(yearWithStats)
 
           //TODO: not supporting this correctly right now because not guaranteed to have players in memory
           //so might not be able to reconstruct from the keys - hence this logic cannot currently be reached via UI
           const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-            dataSubEventKey, gender, year, "All", [ DateUtils.getOffseasonOfYear(year) || "" ], [ prevYear ]
+            dataSubEventKey, gender, yearWithStats, "All", [ DateUtils.getOffseasonOfYear(yearWithStats) || "" ], [ prevYearWithStats ]
           );
     
           fetchAll.then((jsonsIn: any[]) => {
@@ -1221,10 +1222,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         const newOtherPlayerCache = _.clone(otherPlayerCache);
 
         TeamEditorUtils.getBasePlayers(
-          team, year, (dataEvent.players || []).filter(maybeP => (maybeP.code == p.code) && ((maybeP.year || "") <= year)), 
+          team, year, (dataEvent.players || []).filter(maybeP => (maybeP.code == p.code) && ((maybeP.year || "") <= yearWithStats)), 
           offSeasonMode, true, undefined, {}, 
           // Build a transfer set explicitly for this player
-          [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || year
+          [ { [p.code || ""]: [ { f: (p.team || ""), t: team } ] } , dataEvent.transfers?.[1] || {} ], p.year || yearWithStats
         ).list.forEach(triple => {
           newOtherPlayerCache[triple.key] = triple;
         });
@@ -1306,18 +1307,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
   }
 
-  /** Handles switching between off-season and what-if mode, where the year is interpreted differently */
+  /** Handles switching between off-season and what-if mode */
   function setOffSeasonModeWithEffects(newOffSeasonMode: boolean) {
     if (newOffSeasonMode) {
       setOffSeasonMode(true);
-      if ((offSeasonYear != DateUtils.firstYearWithData) && !offSeasonMode) {
-        setOffSeasonYear(DateUtils.getPrevYear(offSeasonYear));
-      }
     } else {
       setOffSeasonMode(false);
-      if ((offSeasonYear != DateUtils.mostRecentYearWithLboardData) && offSeasonMode) {
-        setOffSeasonYear(DateUtils.getNextYear(offSeasonYear));
-      }
     }
     setDiffBasis(undefined); //(turn off diff basis since data format is changing)
   }
@@ -1349,23 +1344,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
-          value={ stringToOption(yearToShowInDropdown) }
+          value={ stringToOption(year) }
           options={DateUtils.teamEditorYears(offSeasonMode).map(r => stringToOption(r))}
           isSearchable={false}
           onChange={(option) => { 
             if ((option as any)?.value) {
-              const newDisplayYear = (option as any).value;
-              const newOffseasonYear = offSeasonMode ?
-                DateUtils.getPrevYear(newDisplayYear) : newDisplayYear; //switch from displayYear to offSeasonYear
+              const newYear = (option as any).value;
               friendlyChange(() => {
-                setOffSeasonYear(newOffseasonYear); 
+                setYear(newYear); 
                 setOtherPlayerCache({});
                 setDisabledPlayers({});
                 setDeletedPlayers({});
                 setEditOpen({});
                 setUiOverrides({})
                 setLboardAltDataSource(undefined);
-              }, newOffseasonYear != year);
+              }, newYear != year);
             }
           }}
         />

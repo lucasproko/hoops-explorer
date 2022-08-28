@@ -39,6 +39,9 @@ export class DateUtils {
    /** Used for defaults for everything but leaderboards (which get updated later) */
    static readonly mostRecentYearWithData = "2021/22";
 
+   /** The year to use if making off-season predictions */
+   static readonly offseasonPredictionYear = "2022/23";
+
    /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
    static readonly mostRecentYearWithLboardData = "2021/22";
 
@@ -105,7 +108,9 @@ export class DateUtils {
    };
    /** Get the next season */
    static readonly getNextYear = (y: string) => {
-      if (y == "2021/22") { 
+      if (y == "2022/23") { 
+         return "2023/24";
+      } else if (y == "2021/22") { 
          return "2022/23";
       } else if (y == "2020/21") { //TODO: From 2020/21 onwards can calculate
          return "2021/22";
@@ -120,9 +125,8 @@ export class DateUtils {
       }
    };
    /** Next season if we have data for it else  */
-   static readonly getNextSeasonOrLastWithData = (y: string) => {
-      const nextYear = DateUtils.getNextYear(y);
-      return ((nextYear == "None") || (nextYear > DateUtils.mostRecentYearWithData)) ? DateUtils.mostRecentYearWithData : nextYear;
+   static readonly getLastSeasonWithDataFrom = (y: string) => {
+      return ((y > DateUtils.mostRecentYearWithData)) ? DateUtils.mostRecentYearWithData : y;
    };
          
    /** Get the offseason of the current season */

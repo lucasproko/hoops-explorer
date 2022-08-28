@@ -141,13 +141,14 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     const paramObj = teamEditorParams;
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
+    const fullYear = (paramObj.year || DateUtils.offseasonPredictionYear);
     const tier = (paramObj.tier || "All");
     const evalMode = (paramObj.evalMode || false);
 
-    const transferYear = (DateUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
-    const prevYear = DateUtils.getPrevYear(fullYear)
-    const transferYearPrev = (DateUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
+    const transferYear = fullYear.substring(0, 4); 
+    const prevYear = DateUtils.getPrevYear(fullYear); 
+    const twoYearsAgo = DateUtils.getPrevYear(prevYear); 
+    const transferYearPrev = prevYear.substring(0, 4);
     const transferYears = [ transferYear, transferYearPrev ];
 
     if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (evalMode != currEvalMode)) { // Only need to do this if the data source has changed
@@ -157,11 +158,11 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
       setCurrEvalMode(evalMode);
 
       const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferYears, 
-        paramObj.evalMode ? [ DateUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
+        "all", gender, prevYear, tier, transferYears, 
+        paramObj.evalMode ? [ fullYear, twoYearsAgo ] : [ twoYearsAgo ]
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
-        gender, fullYear, tier, paramObj.evalMode ? [ DateUtils.getNextYear(fullYear) ] : []
+        gender, prevYear, tier, paramObj.evalMode ? [ fullYear ] : []
       );
       const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
 
