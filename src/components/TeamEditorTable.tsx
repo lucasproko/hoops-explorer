@@ -269,9 +269,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Team Editor specifc logic
 
   /** The year from which we're taking the grades - other averages need to come from that season */
-  const gradeYear = (yearIn: string, evalModeIn: boolean) => {
+  const gradeYear = (yearIn: string, evalModeIn: boolean, offSeasonModeIn: boolean) => {
     const firstYearWithGrades = DateUtils.coreYears[0];
-    const yearToUse = evalModeIn ? yearIn : DateUtils.getPrevYear(yearIn);
+    const yearToUse = (evalModeIn || !offSeasonModeIn) ? yearIn : DateUtils.getPrevYear(yearIn);
     return ((yearIn == "All") || (yearToUse <= firstYearWithGrades)) 
         ? ParamDefaults.defaultLeaderboardYear 
         : yearToUse;
@@ -281,7 +281,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   useEffect(() => {
     const params = {
       ...startingState, gender,
-      year: usePreseasonRanks ? year : gradeYear(year, evalMode)
+      year: usePreseasonRanks ? year : gradeYear(year, evalMode, offSeasonMode)
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
@@ -367,7 +367,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Processing - various pxResults are used in the buildXxx functions below
 
-    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode)}`; //(use whatever year we're taking grades for)
+    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode, offSeasonMode)}`; //(use whatever year we're taking grades for)
     const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
 
     const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(yearWithStats)}` : "NO MATCH"; //(for Fr)
@@ -945,7 +945,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               if (usePreseasonRanks) {
                 return "(preseason)";
               } else {
-                return  ((divisionStatsCache.year != (evalMode ? year : prevYear)) ?
+                return  ((divisionStatsCache.year != ((evalMode || !offSeasonMode) ? year : prevYear)) ?
                 "(generic)"
                 : `(${divisionStatsCache.year.substring(2)})`);
               }
