@@ -270,9 +270,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   /** The year from which we're taking the grades - other averages need to come from that season */
   const gradeYear = (yearIn: string, evalModeIn: boolean, offSeasonModeIn: boolean) => {
-    const firstYearWithGrades = DateUtils.coreYears[0];
     const yearToUse = (evalModeIn || !offSeasonModeIn) ? yearIn : DateUtils.getPrevYear(yearIn);
-    return ((yearIn == "All") || (yearToUse <= firstYearWithGrades)) 
+      //(basically if we're in prediction mode, we use the year before - ie what it would have looked like
+      // before the season started. In "review" mode we obv use the data from that year)
+    const firstYearWithFullD1Grades = DateUtils.yearFromWhichAllMenD1Imported;
+      //(if we have all D1 data use the requested year, otherwise use the last full season)
+    return ((yearIn == "All") || (yearToUse < firstYearWithFullD1Grades)) 
         ? ParamDefaults.defaultLeaderboardYear 
         : yearToUse;
   };
@@ -899,7 +902,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       </OverlayTrigger> : <b>Team Totals</b>;
 
       const actualResultsYear = 
-        (year == "All") ? "Actual" : (evalMode ? year : DateUtils.getPrevYear(year)).substring(2);
+        (year == "All") ? "Actual" : year.substring(2);
 
       const teamStatsRowData = {
         title: teamLink,
