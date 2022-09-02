@@ -108,14 +108,18 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear =  paramObj.evalMode ?
-      (paramObj.year || DateUtils.getPrevYear(DateUtils.offseasonYear)) : //(first year we can do a review)
-      DateUtils.getPrevYear(paramObj.year || DateUtils.inSeasonYear); //TODO: fix this
+      (paramObj.year || DateUtils.offseasonYear) : //(first year we can do a review)
+      (paramObj.year || DateUtils.offseasonPredictionYear); 
+    const prevYear = DateUtils.getPrevYear(fullYear)
     const tier = (paramObj.tier || "All");
 
-    const transferYear = (DateUtils.getOffseasonOfYear(fullYear) || "").substring(0, 4);
-    const prevYear = DateUtils.getPrevYear(fullYear)
-    const transferYearPrev = (DateUtils.getOffseasonOfYear(prevYear) || "").substring(0, 4);
+    const transferYear = fullYear.substring(0, 4);
+    const transferYearPrev = prevYear.substring(0, 4);
+
+    const yearWithStats = prevYear; 
+    const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
     const transferYears = [ transferYear, transferYearPrev ];
+
     if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (paramObj.evalMode != currEvalMode)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
@@ -123,10 +127,11 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       setCurrEvalMode(paramObj.evalMode || false);
 
       const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, fullYear, tier, transferYears, paramObj.evalMode ? [ DateUtils.getNextYear(fullYear), prevYear ] : [ prevYear ]
+        "all", gender, yearWithStats, tier, transferYears, 
+        paramObj.evalMode ? [ fullYear, prevYearWithStats ] : [ prevYearWithStats ]
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
-        gender, fullYear, tier, paramObj.evalMode ? [ DateUtils.getNextYear(fullYear) ] : []
+        gender, yearWithStats, tier, paramObj.evalMode ? [ fullYear ] : []
       );
       const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
 
