@@ -1003,7 +1003,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             </Tooltip>
           );
           const url = UrlRouting.getOffseasonLeaderboard({
-            year: yearWithStats,
+            year: year,
             confs: ConferenceToNickname[confStr],
             teamView: team,
             ...overrides
@@ -1011,14 +1011,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           return <OverlayTrigger placement="auto" overlay={confTooltip}>
             <a href={url}>{confStrToUse}</a>
           </OverlayTrigger>;
-        } else if (year > DateUtils.offseasonYear) {
+        } else if (year == DateUtils.offseasonYear) { //TODO: currently only support review mode 1 year back, add more years
           const confTooltip = (
             <Tooltip id={`confReviewTooltip`}>
                <span>View the evaluation of this team's season (with any overrides) vs its ranking, together with other teams in teh conference</span>
             </Tooltip>
           );
           const url = UrlRouting.getOffseasonLeaderboard({
-            year: year,
+            year: DateUtils.getPrevYear(year), //TODO: currently the team leaderboard interprets year differently in "review" mode, fix this once have fixed that
             confs: ConferenceToNickname[confStr],
             evalMode: true,
             teamView: team,
