@@ -647,6 +647,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -655,6 +656,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={false}
@@ -680,6 +682,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -710,12 +713,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": false,
@@ -4901,6 +4906,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -4909,6 +4915,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={false}
@@ -4934,6 +4941,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -4964,12 +4972,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": false,
@@ -8884,6 +8894,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -8892,6 +8903,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={true}
@@ -8917,6 +8929,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -8947,12 +8960,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": true,
@@ -13557,6 +13572,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -13565,6 +13581,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={true}
@@ -13590,6 +13607,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -13620,12 +13638,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": true,
@@ -18589,6 +18609,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -18597,6 +18618,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={true}
@@ -18622,6 +18644,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -18652,12 +18675,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": true,
@@ -23457,6 +23482,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
           truthVal={true}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -23465,6 +23491,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={true}
@@ -23490,6 +23517,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -23520,12 +23548,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": true,
@@ -27320,7 +27350,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "team": "Maryland",
                   "tier": "All",
                   "transferMode": "2020",
-                  "year": "2019/20",
+                  "year": "2020/21",
                 }
               }
               teamEditorMode={[Function]}
@@ -27980,6 +28010,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
           truthVal={true}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={false}
@@ -27988,6 +28019,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={false}
@@ -28013,6 +28045,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -28043,12 +28076,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": false,
@@ -31038,7 +31073,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "team": "Maryland",
                   "tier": "All",
                   "transferMode": "2020",
-                  "year": "2019/20",
+                  "year": "2020/21",
                 }
               }
               teamEditorMode={[Function]}
@@ -31128,6 +31163,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             Object {
               "label": "2021/22",
               "value": "2021/22",
+            },
+            Object {
+              "label": "All",
+              "value": "All",
             },
           ]
         }
@@ -31698,6 +31737,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={true}
@@ -31706,6 +31746,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={false}
@@ -31731,6 +31772,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -31761,12 +31803,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": true,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": false,
@@ -35344,6 +35388,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "All",
+              "value": "All",
+            },
           ]
         }
         value={
@@ -35913,6 +35961,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
           truthVal={false}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={true}
@@ -35921,6 +35970,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={false}
@@ -35946,6 +35996,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -35976,12 +36027,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": true,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": false,
@@ -39295,6 +39348,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "label": "2021/22",
               "value": "2021/22",
             },
+            Object {
+              "label": "All",
+              "value": "All",
+            },
           ]
         }
         value={
@@ -39864,6 +39921,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
           truthVal={true}
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="'What If?' mode"
           truthVal={true}
@@ -39872,6 +39930,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
           role="separator"
         />
         <GenericTogglingMenuItem
+          disabled={false}
           onSelect={[Function]}
           text="Review mode"
           truthVal={false}
@@ -39897,6 +39956,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
         items={
           Array [
             Object {
+              "disabled": false,
               "label": "Diff",
               "onClick": [Function],
               "toggled": false,
@@ -39927,12 +39987,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
             },
             Object {
+              "disabled": false,
               "label": "What If?",
               "onClick": [Function],
               "toggled": true,
               "tooltip": "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
             },
             Object {
+              "disabled": false,
               "label": "Review",
               "onClick": [Function],
               "toggled": false,

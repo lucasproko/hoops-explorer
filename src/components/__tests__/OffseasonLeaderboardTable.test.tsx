@@ -101,7 +101,7 @@ describe("OffseasonLeaderboardTable", () => {
       <OffSeasonLeaderboardTable
          startingState={{
             evalMode: true,
-            year: "2019/20", 
+            year: "2020/21", 
          } as OffseasonLeaderboardParams}
          dataEvent={threeYearsWithEvalTeamStats}
          onChangeState={dummyChangeStateCallback}

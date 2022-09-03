@@ -61,7 +61,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: false,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -78,7 +78,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: true,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -94,7 +94,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: true,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -129,7 +129,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: false,
           alwaysShowBench: true, superSeniorsBack: true, 
           showOnlyTransfers: false, showOnlyCurrentYear: true
@@ -145,7 +145,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: true,
           alwaysShowBench: true, superSeniorsBack: true, 
           showOnlyTransfers: false, showOnlyCurrentYear: true
@@ -194,7 +194,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: false,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false,
@@ -211,7 +211,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: "2020/21", 
           offSeason: true, evalMode: true,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false,
