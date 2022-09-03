@@ -421,7 +421,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&overrides=ErAyala%3A%3A%7Cm%3D20.0&team=Maryland&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&overrides=ErAyala%3A%3A%7Cm%3D20.0&team=Maryland&year=2019%2F20&"
                           target="_blank"
                         >
                           Maryland
@@ -1026,7 +1026,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2019%2F20&"
                           target="_blank"
                         >
                           Maryland
@@ -1179,7 +1179,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Illinois&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Illinois&year=2019%2F20&"
                           target="_blank"
                         >
                           Illinois
@@ -1332,7 +1332,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Indiana&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Indiana&year=2019%2F20&"
                           target="_blank"
                         >
                           Indiana
@@ -1485,7 +1485,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa&year=2019%2F20&"
                           target="_blank"
                         >
                           Iowa
@@ -1638,7 +1638,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan&year=2019%2F20&"
                           target="_blank"
                         >
                           Michigan
@@ -1791,7 +1791,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Michigan St.
@@ -1944,7 +1944,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Minnesota&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Minnesota&year=2019%2F20&"
                           target="_blank"
                         >
                           Minnesota
@@ -2097,7 +2097,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Nebraska&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Nebraska&year=2019%2F20&"
                           target="_blank"
                         >
                           Nebraska
@@ -2250,7 +2250,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Northwestern&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Northwestern&year=2019%2F20&"
                           target="_blank"
                         >
                           Northwestern
@@ -2403,7 +2403,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Ohio%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Ohio%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Ohio St.
@@ -2556,7 +2556,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Penn%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Penn%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Penn St.
@@ -2709,7 +2709,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Purdue&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Purdue&year=2019%2F20&"
                           target="_blank"
                         >
                           Purdue
@@ -2862,7 +2862,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Rutgers&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Rutgers&year=2019%2F20&"
                           target="_blank"
                         >
                           Rutgers
@@ -3015,7 +3015,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Wisconsin&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Wisconsin&year=2019%2F20&"
                           target="_blank"
                         >
                           Wisconsin
@@ -3383,7 +3383,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             "Mountain West Conference",
           ]
         }
-        emptyLabel="All High Tier Teams"
+        emptyLabel="All Teams"
         onChangeConf={[Function]}
       />
     </Col>
@@ -3629,7 +3629,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Maryland&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Maryland&year=2020%2F21&"
                           target="_blank"
                         >
                           Maryland
@@ -3780,7 +3780,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Duke&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Duke&year=2020%2F21&"
                           target="_blank"
                         >
                           Duke
@@ -3931,7 +3931,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Seton%20Hall&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Seton%20Hall&year=2020%2F21&"
                           target="_blank"
                         >
                           Seton Hall
@@ -4082,7 +4082,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Kentucky&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Kentucky&year=2020%2F21&"
                           target="_blank"
                         >
                           Kentucky
@@ -4233,7 +4233,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=North%20Carolina&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=North%20Carolina&year=2020%2F21&"
                           target="_blank"
                         >
                           North Carolina
@@ -4384,7 +4384,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Tennessee&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Tennessee&year=2020%2F21&"
                           target="_blank"
                         >
                           Tennessee
@@ -4535,7 +4535,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Arizona%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Arizona%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Arizona St.
@@ -4686,7 +4686,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Gonzaga&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Gonzaga&year=2020%2F21&"
                           target="_blank"
                         >
                           Gonzaga
@@ -4837,7 +4837,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=LSU&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=LSU&year=2020%2F21&"
                           target="_blank"
                         >
                           LSU
@@ -4988,7 +4988,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Oklahoma%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Oklahoma%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Oklahoma St.
@@ -5139,7 +5139,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Auburn&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Auburn&year=2020%2F21&"
                           target="_blank"
                         >
                           Auburn
@@ -5290,7 +5290,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Stanford&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Stanford&year=2020%2F21&"
                           target="_blank"
                         >
                           Stanford
@@ -5441,7 +5441,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Texas%20Tech&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Texas%20Tech&year=2020%2F21&"
                           target="_blank"
                         >
                           Texas Tech
@@ -5592,7 +5592,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Illinois&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Illinois&year=2020%2F21&"
                           target="_blank"
                         >
                           Illinois
@@ -5743,7 +5743,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Southern%20California&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Southern%20California&year=2020%2F21&"
                           target="_blank"
                         >
                           Southern California
@@ -5894,7 +5894,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Florida%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Florida%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Florida St.
@@ -6045,7 +6045,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Texas&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Texas&year=2020%2F21&"
                           target="_blank"
                         >
                           Texas
@@ -6196,7 +6196,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Kansas&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Kansas&year=2020%2F21&"
                           target="_blank"
                         >
                           Kansas
@@ -6347,7 +6347,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Indiana&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Indiana&year=2020%2F21&"
                           target="_blank"
                         >
                           Indiana
@@ -6498,7 +6498,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Arkansas&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Arkansas&year=2020%2F21&"
                           target="_blank"
                         >
                           Arkansas
@@ -6649,7 +6649,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Virginia&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Virginia&year=2020%2F21&"
                           target="_blank"
                         >
                           Virginia
@@ -6800,7 +6800,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Miami%20%28FL%29&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Miami%20%28FL%29&year=2020%2F21&"
                           target="_blank"
                         >
                           Miami (FL)
@@ -6951,7 +6951,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Arizona&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Arizona&year=2020%2F21&"
                           target="_blank"
                         >
                           Arizona
@@ -7102,7 +7102,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Oregon&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Oregon&year=2020%2F21&"
                           target="_blank"
                         >
                           Oregon
@@ -7253,7 +7253,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Ole%20Miss&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Ole%20Miss&year=2020%2F21&"
                           target="_blank"
                         >
                           Ole Miss
@@ -7404,7 +7404,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Michigan%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Michigan%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Michigan St.
@@ -7574,7 +7574,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Michigan&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Michigan&year=2020%2F21&"
                           target="_blank"
                         >
                           Michigan
@@ -7725,7 +7725,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Xavier&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Xavier&year=2020%2F21&"
                           target="_blank"
                         >
                           Xavier
@@ -7876,7 +7876,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Marquette&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Marquette&year=2020%2F21&"
                           target="_blank"
                         >
                           Marquette
@@ -8027,7 +8027,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Clemson&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Clemson&year=2020%2F21&"
                           target="_blank"
                         >
                           Clemson
@@ -8178,7 +8178,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Florida&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Florida&year=2020%2F21&"
                           target="_blank"
                         >
                           Florida
@@ -8329,7 +8329,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Villanova&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Villanova&year=2020%2F21&"
                           target="_blank"
                         >
                           Villanova
@@ -8480,7 +8480,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Alabama&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Alabama&year=2020%2F21&"
                           target="_blank"
                         >
                           Alabama
@@ -8631,7 +8631,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Rutgers&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Rutgers&year=2020%2F21&"
                           target="_blank"
                         >
                           Rutgers
@@ -8782,7 +8782,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=UCLA&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=UCLA&year=2020%2F21&"
                           target="_blank"
                         >
                           UCLA
@@ -8952,7 +8952,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Texas%20A%26M&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Texas%20A%26M&year=2020%2F21&"
                           target="_blank"
                         >
                           Texas A&M
@@ -9103,7 +9103,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Mississippi%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Mississippi%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Mississippi St.
@@ -9254,7 +9254,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=NC%20State&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=NC%20State&year=2020%2F21&"
                           target="_blank"
                         >
                           NC State
@@ -9405,7 +9405,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Creighton&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Creighton&year=2020%2F21&"
                           target="_blank"
                         >
                           Creighton
@@ -9556,7 +9556,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Wake%20Forest&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Wake%20Forest&year=2020%2F21&"
                           target="_blank"
                         >
                           Wake Forest
@@ -9707,7 +9707,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Purdue&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Purdue&year=2020%2F21&"
                           target="_blank"
                         >
                           Purdue
@@ -9858,7 +9858,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Baylor&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Baylor&year=2020%2F21&"
                           target="_blank"
                         >
                           Baylor
@@ -10009,7 +10009,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Iowa%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Iowa%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Iowa St.
@@ -10160,7 +10160,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=West%20Virginia&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=West%20Virginia&year=2020%2F21&"
                           target="_blank"
                         >
                           West Virginia
@@ -10311,7 +10311,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Syracuse&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Syracuse&year=2020%2F21&"
                           target="_blank"
                         >
                           Syracuse
@@ -10462,7 +10462,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=DePaul&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=DePaul&year=2020%2F21&"
                           target="_blank"
                         >
                           DePaul
@@ -10613,7 +10613,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Georgia&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Georgia&year=2020%2F21&"
                           target="_blank"
                         >
                           Georgia
@@ -10764,7 +10764,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Virginia%20Tech&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Virginia%20Tech&year=2020%2F21&"
                           target="_blank"
                         >
                           Virginia Tech
@@ -10915,7 +10915,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Pittsburgh&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Pittsburgh&year=2020%2F21&"
                           target="_blank"
                         >
                           Pittsburgh
@@ -11066,7 +11066,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Wisconsin&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Wisconsin&year=2020%2F21&"
                           target="_blank"
                         >
                           Wisconsin
@@ -11217,7 +11217,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Georgetown&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Georgetown&year=2020%2F21&"
                           target="_blank"
                         >
                           Georgetown
@@ -11368,7 +11368,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Boston%20College&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Boston%20College&year=2020%2F21&"
                           target="_blank"
                         >
                           Boston College
@@ -11519,7 +11519,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Louisville&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Louisville&year=2020%2F21&"
                           target="_blank"
                         >
                           Louisville
@@ -11670,7 +11670,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Colorado&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Colorado&year=2020%2F21&"
                           target="_blank"
                         >
                           Colorado
@@ -11821,7 +11821,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Utah&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Utah&year=2020%2F21&"
                           target="_blank"
                         >
                           Utah
@@ -11991,7 +11991,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Memphis&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Memphis&year=2020%2F21&"
                           target="_blank"
                         >
                           Memphis
@@ -12014,7 +12014,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0.009433962264150941,
                   },
                   "conf": <small>
-                    BE
+                    AAC
                   </small>,
                   "def": Object {
                     "value": 101.8656,
@@ -12142,7 +12142,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=UConn&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=UConn&year=2020%2F21&"
                           target="_blank"
                         >
                           UConn
@@ -12293,7 +12293,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=BYU&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=BYU&year=2020%2F21&"
                           target="_blank"
                         >
                           BYU
@@ -12444,7 +12444,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Butler&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Butler&year=2020%2F21&"
                           target="_blank"
                         >
                           Butler
@@ -12595,7 +12595,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=California&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=California&year=2020%2F21&"
                           target="_blank"
                         >
                           California
@@ -12746,7 +12746,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Cincinnati&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Cincinnati&year=2020%2F21&"
                           target="_blank"
                         >
                           Cincinnati
@@ -12897,7 +12897,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Davidson&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Davidson&year=2020%2F21&"
                           target="_blank"
                         >
                           Davidson
@@ -13048,7 +13048,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Dayton&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Dayton&year=2020%2F21&"
                           target="_blank"
                         >
                           Dayton
@@ -13199,7 +13199,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Duquesne&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Duquesne&year=2020%2F21&"
                           target="_blank"
                         >
                           Duquesne
@@ -13350,7 +13350,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=East%20Carolina&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=East%20Carolina&year=2020%2F21&"
                           target="_blank"
                         >
                           East Carolina
@@ -13501,7 +13501,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Fordham&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Fordham&year=2020%2F21&"
                           target="_blank"
                         >
                           Fordham
@@ -13652,7 +13652,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=George%20Mason&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=George%20Mason&year=2020%2F21&"
                           target="_blank"
                         >
                           George Mason
@@ -13803,7 +13803,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Georgia%20Tech&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Georgia%20Tech&year=2020%2F21&"
                           target="_blank"
                         >
                           Georgia Tech
@@ -13954,7 +13954,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Iowa&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Iowa&year=2020%2F21&"
                           target="_blank"
                         >
                           Iowa
@@ -14105,7 +14105,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Kansas%20St.&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Kansas%20St.&year=2020%2F21&"
                           target="_blank"
                         >
                           Kansas St.
@@ -14256,7 +14256,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=La%20Salle&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=La%20Salle&year=2020%2F21&"
                           target="_blank"
                         >
                           La Salle
@@ -14407,7 +14407,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Massachusetts&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Massachusetts&year=2020%2F21&"
                           target="_blank"
                         >
                           Massachusetts
@@ -14558,7 +14558,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Minnesota&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Minnesota&year=2020%2F21&"
                           target="_blank"
                         >
                           Minnesota
@@ -14709,7 +14709,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Missouri&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Missouri&year=2020%2F21&"
                           target="_blank"
                         >
                           Missouri
@@ -14860,7 +14860,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Nebraska&year=2019%2F20&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Nebraska&year=2020%2F21&"
                           target="_blank"
                         >
                           Nebraska
@@ -15481,7 +15481,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2019%2F20&"
                           target="_blank"
                         >
                           Maryland
@@ -17346,7 +17346,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       "evalMode": false,
                       "gender": "Men",
                       "team": "Maryland",
-                      "year": "2018/9",
+                      "year": "2019/20",
                     }
                   }
                 />,
@@ -17485,7 +17485,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Seton%20Hall&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Seton%20Hall&year=2019%2F20&"
                           target="_blank"
                         >
                           Seton Hall
@@ -17632,7 +17632,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Alabama&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Alabama&year=2019%2F20&"
                           target="_blank"
                         >
                           Alabama
@@ -17779,7 +17779,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona&year=2019%2F20&"
                           target="_blank"
                         >
                           Arizona
@@ -17926,7 +17926,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Arizona St.
@@ -18073,7 +18073,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Arkansas&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Arkansas&year=2019%2F20&"
                           target="_blank"
                         >
                           Arkansas
@@ -18220,7 +18220,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Auburn&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Auburn&year=2019%2F20&"
                           target="_blank"
                         >
                           Auburn
@@ -18367,7 +18367,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=BYU&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=BYU&year=2019%2F20&"
                           target="_blank"
                         >
                           BYU
@@ -18514,7 +18514,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Baylor&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Baylor&year=2019%2F20&"
                           target="_blank"
                         >
                           Baylor
@@ -18661,7 +18661,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Boston%20College&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Boston%20College&year=2019%2F20&"
                           target="_blank"
                         >
                           Boston College
@@ -18808,7 +18808,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Butler&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Butler&year=2019%2F20&"
                           target="_blank"
                         >
                           Butler
@@ -18955,7 +18955,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=California&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=California&year=2019%2F20&"
                           target="_blank"
                         >
                           California
@@ -19102,7 +19102,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Cincinnati&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Cincinnati&year=2019%2F20&"
                           target="_blank"
                         >
                           Cincinnati
@@ -19249,7 +19249,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Clemson&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Clemson&year=2019%2F20&"
                           target="_blank"
                         >
                           Clemson
@@ -19396,7 +19396,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Colorado&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Colorado&year=2019%2F20&"
                           target="_blank"
                         >
                           Colorado
@@ -19543,7 +19543,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Creighton&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Creighton&year=2019%2F20&"
                           target="_blank"
                         >
                           Creighton
@@ -19690,7 +19690,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Davidson&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Davidson&year=2019%2F20&"
                           target="_blank"
                         >
                           Davidson
@@ -19837,7 +19837,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Dayton&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Dayton&year=2019%2F20&"
                           target="_blank"
                         >
                           Dayton
@@ -19984,7 +19984,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=DePaul&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=DePaul&year=2019%2F20&"
                           target="_blank"
                         >
                           DePaul
@@ -20131,7 +20131,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Duke&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Duke&year=2019%2F20&"
                           target="_blank"
                         >
                           Duke
@@ -20278,7 +20278,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Duquesne&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Duquesne&year=2019%2F20&"
                           target="_blank"
                         >
                           Duquesne
@@ -20425,7 +20425,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=East%20Carolina&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=East%20Carolina&year=2019%2F20&"
                           target="_blank"
                         >
                           East Carolina
@@ -20572,7 +20572,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida&year=2019%2F20&"
                           target="_blank"
                         >
                           Florida
@@ -20719,7 +20719,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Florida St.
@@ -20866,7 +20866,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Fordham&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Fordham&year=2019%2F20&"
                           target="_blank"
                         >
                           Fordham
@@ -21013,7 +21013,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=George%20Mason&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=George%20Mason&year=2019%2F20&"
                           target="_blank"
                         >
                           George Mason
@@ -21179,7 +21179,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgetown&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgetown&year=2019%2F20&"
                           target="_blank"
                         >
                           Georgetown
@@ -21326,7 +21326,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia&year=2019%2F20&"
                           target="_blank"
                         >
                           Georgia
@@ -21473,7 +21473,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia%20Tech&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia%20Tech&year=2019%2F20&"
                           target="_blank"
                         >
                           Georgia Tech
@@ -21620,7 +21620,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Gonzaga&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Gonzaga&year=2019%2F20&"
                           target="_blank"
                         >
                           Gonzaga
@@ -21767,7 +21767,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Houston&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Houston&year=2019%2F20&"
                           target="_blank"
                         >
                           Houston
@@ -21914,7 +21914,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Illinois&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Illinois&year=2019%2F20&"
                           target="_blank"
                         >
                           Illinois
@@ -22061,7 +22061,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Indiana&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Indiana&year=2019%2F20&"
                           target="_blank"
                         >
                           Indiana
@@ -22208,7 +22208,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa&year=2019%2F20&"
                           target="_blank"
                         >
                           Iowa
@@ -22355,7 +22355,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Iowa St.
@@ -22521,7 +22521,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas&year=2019%2F20&"
                           target="_blank"
                         >
                           Kansas
@@ -22668,7 +22668,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Kansas St.
@@ -22815,7 +22815,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Kentucky&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Kentucky&year=2019%2F20&"
                           target="_blank"
                         >
                           Kentucky
@@ -22962,7 +22962,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=LSU&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=LSU&year=2019%2F20&"
                           target="_blank"
                         >
                           LSU
@@ -23109,7 +23109,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=La%20Salle&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=La%20Salle&year=2019%2F20&"
                           target="_blank"
                         >
                           La Salle
@@ -23256,7 +23256,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Louisville&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Louisville&year=2019%2F20&"
                           target="_blank"
                         >
                           Louisville
@@ -23403,7 +23403,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Marquette&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Marquette&year=2019%2F20&"
                           target="_blank"
                         >
                           Marquette
@@ -23550,7 +23550,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Massachusetts&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Massachusetts&year=2019%2F20&"
                           target="_blank"
                         >
                           Massachusetts
@@ -23697,7 +23697,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Memphis&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Memphis&year=2019%2F20&"
                           target="_blank"
                         >
                           Memphis
@@ -23844,7 +23844,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Miami%20%28FL%29&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Miami%20%28FL%29&year=2019%2F20&"
                           target="_blank"
                         >
                           Miami (FL)
@@ -23991,7 +23991,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan&year=2019%2F20&"
                           target="_blank"
                         >
                           Michigan
@@ -24138,7 +24138,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Michigan St.
@@ -24285,7 +24285,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Minnesota&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Minnesota&year=2019%2F20&"
                           target="_blank"
                         >
                           Minnesota
@@ -24432,7 +24432,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Mississippi%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Mississippi%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Mississippi St.
@@ -24579,7 +24579,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Missouri&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Missouri&year=2019%2F20&"
                           target="_blank"
                         >
                           Missouri
@@ -24726,7 +24726,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=NC%20State&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=NC%20State&year=2019%2F20&"
                           target="_blank"
                         >
                           NC State
@@ -24873,7 +24873,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Nebraska&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Nebraska&year=2019%2F20&"
                           target="_blank"
                         >
                           Nebraska
@@ -25020,7 +25020,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=North%20Carolina&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=North%20Carolina&year=2019%2F20&"
                           target="_blank"
                         >
                           North Carolina
@@ -25167,7 +25167,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Northwestern&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Northwestern&year=2019%2F20&"
                           target="_blank"
                         >
                           Northwestern
@@ -25314,7 +25314,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Notre%20Dame&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Notre%20Dame&year=2019%2F20&"
                           target="_blank"
                         >
                           Notre Dame
@@ -25480,7 +25480,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Ohio%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Ohio%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Ohio St.
@@ -25627,7 +25627,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma&year=2019%2F20&"
                           target="_blank"
                         >
                           Oklahoma
@@ -25774,7 +25774,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Oklahoma St.
@@ -25921,7 +25921,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Ole%20Miss&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Ole%20Miss&year=2019%2F20&"
                           target="_blank"
                         >
                           Ole Miss
@@ -26068,7 +26068,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon&year=2019%2F20&"
                           target="_blank"
                         >
                           Oregon
@@ -26215,7 +26215,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Oregon St.
@@ -26362,7 +26362,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Penn%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Penn%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Penn St.
@@ -26509,7 +26509,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Pittsburgh&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Pittsburgh&year=2019%2F20&"
                           target="_blank"
                         >
                           Pittsburgh
@@ -26656,7 +26656,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Providence&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Providence&year=2019%2F20&"
                           target="_blank"
                         >
                           Providence
@@ -26803,7 +26803,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Purdue&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Purdue&year=2019%2F20&"
                           target="_blank"
                         >
                           Purdue
@@ -26950,7 +26950,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Rhode%20Island&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Rhode%20Island&year=2019%2F20&"
                           target="_blank"
                         >
                           Rhode Island
@@ -27097,7 +27097,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Richmond&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Richmond&year=2019%2F20&"
                           target="_blank"
                         >
                           Richmond
@@ -27244,7 +27244,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Rutgers&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Rutgers&year=2019%2F20&"
                           target="_blank"
                         >
                           Rutgers
@@ -27391,7 +27391,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=SMU&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=SMU&year=2019%2F20&"
                           target="_blank"
                         >
                           SMU
@@ -27538,7 +27538,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Joseph%27s&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Joseph%27s&year=2019%2F20&"
                           target="_blank"
                         >
                           Saint Joseph's
@@ -27685,7 +27685,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Louis&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Louis&year=2019%2F20&"
                           target="_blank"
                         >
                           Saint Louis
@@ -27832,7 +27832,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Mary%27s%20%28CA%29&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
                           target="_blank"
                         >
                           Saint Mary's (CA)
@@ -27979,7 +27979,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=San%20Diego%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=San%20Diego%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           San Diego St.
@@ -28126,7 +28126,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Carolina&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Carolina&year=2019%2F20&"
                           target="_blank"
                         >
                           South Carolina
@@ -28273,7 +28273,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Fla.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Fla.&year=2019%2F20&"
                           target="_blank"
                         >
                           South Fla.
@@ -28883,7 +28883,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2019%2F20&"
                           target="_blank"
                         >
                           Maryland
@@ -29030,7 +29030,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Seton%20Hall&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Seton%20Hall&year=2019%2F20&"
                           target="_blank"
                         >
                           Seton Hall
@@ -29177,7 +29177,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Alabama&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Alabama&year=2019%2F20&"
                           target="_blank"
                         >
                           Alabama
@@ -29324,7 +29324,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona&year=2019%2F20&"
                           target="_blank"
                         >
                           Arizona
@@ -29471,7 +29471,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Arizona%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Arizona St.
@@ -29618,7 +29618,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Arkansas&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Arkansas&year=2019%2F20&"
                           target="_blank"
                         >
                           Arkansas
@@ -29765,7 +29765,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Auburn&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Auburn&year=2019%2F20&"
                           target="_blank"
                         >
                           Auburn
@@ -29912,7 +29912,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=BYU&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=BYU&year=2019%2F20&"
                           target="_blank"
                         >
                           BYU
@@ -30059,7 +30059,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Baylor&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Baylor&year=2019%2F20&"
                           target="_blank"
                         >
                           Baylor
@@ -30206,7 +30206,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Boston%20College&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Boston%20College&year=2019%2F20&"
                           target="_blank"
                         >
                           Boston College
@@ -30353,7 +30353,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Butler&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Butler&year=2019%2F20&"
                           target="_blank"
                         >
                           Butler
@@ -30500,7 +30500,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=California&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=California&year=2019%2F20&"
                           target="_blank"
                         >
                           California
@@ -30647,7 +30647,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Cincinnati&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Cincinnati&year=2019%2F20&"
                           target="_blank"
                         >
                           Cincinnati
@@ -30794,7 +30794,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Clemson&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Clemson&year=2019%2F20&"
                           target="_blank"
                         >
                           Clemson
@@ -30941,7 +30941,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Colorado&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Colorado&year=2019%2F20&"
                           target="_blank"
                         >
                           Colorado
@@ -31088,7 +31088,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Creighton&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Creighton&year=2019%2F20&"
                           target="_blank"
                         >
                           Creighton
@@ -31235,7 +31235,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Davidson&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Davidson&year=2019%2F20&"
                           target="_blank"
                         >
                           Davidson
@@ -31382,7 +31382,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Dayton&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Dayton&year=2019%2F20&"
                           target="_blank"
                         >
                           Dayton
@@ -31529,7 +31529,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=DePaul&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=DePaul&year=2019%2F20&"
                           target="_blank"
                         >
                           DePaul
@@ -31676,7 +31676,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Duke&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Duke&year=2019%2F20&"
                           target="_blank"
                         >
                           Duke
@@ -31823,7 +31823,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Duquesne&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Duquesne&year=2019%2F20&"
                           target="_blank"
                         >
                           Duquesne
@@ -31970,7 +31970,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=East%20Carolina&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=East%20Carolina&year=2019%2F20&"
                           target="_blank"
                         >
                           East Carolina
@@ -32117,7 +32117,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida&year=2019%2F20&"
                           target="_blank"
                         >
                           Florida
@@ -32264,7 +32264,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Florida%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Florida St.
@@ -32411,7 +32411,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Fordham&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Fordham&year=2019%2F20&"
                           target="_blank"
                         >
                           Fordham
@@ -32558,7 +32558,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=George%20Mason&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=George%20Mason&year=2019%2F20&"
                           target="_blank"
                         >
                           George Mason
@@ -32724,7 +32724,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgetown&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgetown&year=2019%2F20&"
                           target="_blank"
                         >
                           Georgetown
@@ -32871,7 +32871,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia&year=2019%2F20&"
                           target="_blank"
                         >
                           Georgia
@@ -33018,7 +33018,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia%20Tech&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Georgia%20Tech&year=2019%2F20&"
                           target="_blank"
                         >
                           Georgia Tech
@@ -33165,7 +33165,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Gonzaga&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Gonzaga&year=2019%2F20&"
                           target="_blank"
                         >
                           Gonzaga
@@ -33312,7 +33312,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Houston&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Houston&year=2019%2F20&"
                           target="_blank"
                         >
                           Houston
@@ -33459,7 +33459,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Illinois&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Illinois&year=2019%2F20&"
                           target="_blank"
                         >
                           Illinois
@@ -33606,7 +33606,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Indiana&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Indiana&year=2019%2F20&"
                           target="_blank"
                         >
                           Indiana
@@ -33753,7 +33753,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa&year=2019%2F20&"
                           target="_blank"
                         >
                           Iowa
@@ -33900,7 +33900,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Iowa%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Iowa St.
@@ -34066,7 +34066,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas&year=2019%2F20&"
                           target="_blank"
                         >
                           Kansas
@@ -34213,7 +34213,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Kansas%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Kansas St.
@@ -34360,7 +34360,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Kentucky&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Kentucky&year=2019%2F20&"
                           target="_blank"
                         >
                           Kentucky
@@ -34507,7 +34507,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=LSU&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=LSU&year=2019%2F20&"
                           target="_blank"
                         >
                           LSU
@@ -34654,7 +34654,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=La%20Salle&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=La%20Salle&year=2019%2F20&"
                           target="_blank"
                         >
                           La Salle
@@ -34801,7 +34801,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Louisville&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Louisville&year=2019%2F20&"
                           target="_blank"
                         >
                           Louisville
@@ -34948,7 +34948,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Marquette&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Marquette&year=2019%2F20&"
                           target="_blank"
                         >
                           Marquette
@@ -35095,7 +35095,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Massachusetts&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Massachusetts&year=2019%2F20&"
                           target="_blank"
                         >
                           Massachusetts
@@ -35242,7 +35242,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Memphis&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Memphis&year=2019%2F20&"
                           target="_blank"
                         >
                           Memphis
@@ -35389,7 +35389,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Miami%20%28FL%29&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Miami%20%28FL%29&year=2019%2F20&"
                           target="_blank"
                         >
                           Miami (FL)
@@ -35536,7 +35536,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan&year=2019%2F20&"
                           target="_blank"
                         >
                           Michigan
@@ -35683,7 +35683,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Michigan%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Michigan St.
@@ -35830,7 +35830,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Minnesota&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Minnesota&year=2019%2F20&"
                           target="_blank"
                         >
                           Minnesota
@@ -35977,7 +35977,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Mississippi%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Mississippi%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Mississippi St.
@@ -36124,7 +36124,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Missouri&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Missouri&year=2019%2F20&"
                           target="_blank"
                         >
                           Missouri
@@ -36271,7 +36271,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=NC%20State&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=NC%20State&year=2019%2F20&"
                           target="_blank"
                         >
                           NC State
@@ -36418,7 +36418,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Nebraska&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Nebraska&year=2019%2F20&"
                           target="_blank"
                         >
                           Nebraska
@@ -36565,7 +36565,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=North%20Carolina&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=North%20Carolina&year=2019%2F20&"
                           target="_blank"
                         >
                           North Carolina
@@ -36712,7 +36712,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Northwestern&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Northwestern&year=2019%2F20&"
                           target="_blank"
                         >
                           Northwestern
@@ -36859,7 +36859,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Notre%20Dame&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Notre%20Dame&year=2019%2F20&"
                           target="_blank"
                         >
                           Notre Dame
@@ -37025,7 +37025,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Ohio%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Ohio%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Ohio St.
@@ -37172,7 +37172,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma&year=2019%2F20&"
                           target="_blank"
                         >
                           Oklahoma
@@ -37319,7 +37319,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oklahoma%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Oklahoma St.
@@ -37466,7 +37466,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Ole%20Miss&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Ole%20Miss&year=2019%2F20&"
                           target="_blank"
                         >
                           Ole Miss
@@ -37613,7 +37613,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon&year=2019%2F20&"
                           target="_blank"
                         >
                           Oregon
@@ -37760,7 +37760,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Oregon%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Oregon St.
@@ -37907,7 +37907,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Penn%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Penn%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           Penn St.
@@ -38054,7 +38054,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Pittsburgh&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Pittsburgh&year=2019%2F20&"
                           target="_blank"
                         >
                           Pittsburgh
@@ -38201,7 +38201,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Providence&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Providence&year=2019%2F20&"
                           target="_blank"
                         >
                           Providence
@@ -38348,7 +38348,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Purdue&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Purdue&year=2019%2F20&"
                           target="_blank"
                         >
                           Purdue
@@ -38495,7 +38495,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Rhode%20Island&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Rhode%20Island&year=2019%2F20&"
                           target="_blank"
                         >
                           Rhode Island
@@ -38642,7 +38642,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Richmond&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Richmond&year=2019%2F20&"
                           target="_blank"
                         >
                           Richmond
@@ -38789,7 +38789,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Rutgers&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Rutgers&year=2019%2F20&"
                           target="_blank"
                         >
                           Rutgers
@@ -38936,7 +38936,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=SMU&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=SMU&year=2019%2F20&"
                           target="_blank"
                         >
                           SMU
@@ -39083,7 +39083,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Joseph%27s&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Joseph%27s&year=2019%2F20&"
                           target="_blank"
                         >
                           Saint Joseph's
@@ -39230,7 +39230,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Louis&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Louis&year=2019%2F20&"
                           target="_blank"
                         >
                           Saint Louis
@@ -39377,7 +39377,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Mary%27s%20%28CA%29&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
                           target="_blank"
                         >
                           Saint Mary's (CA)
@@ -39524,7 +39524,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=San%20Diego%20St.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=San%20Diego%20St.&year=2019%2F20&"
                           target="_blank"
                         >
                           San Diego St.
@@ -39671,7 +39671,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Carolina&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Carolina&year=2019%2F20&"
                           target="_blank"
                         >
                           South Carolina
@@ -39818,7 +39818,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Fla.&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=South%20Fla.&year=2019%2F20&"
                           target="_blank"
                         >
                           South Fla.
@@ -40538,7 +40538,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2018%2F9&"
+                          href="/TeamEditor?evalMode=false&gender=Men&team=Maryland&year=2019%2F20&"
                           target="_blank"
                         >
                           Maryland
