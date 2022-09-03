@@ -157,7 +157,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                         pos: currPos,
                         profile: currProfile,
                         global_off_adj: currOffAdj ? currOffAdj : undefined,
-                        global_def_adj: currDefAdj ? currDefAdj : undefined
+                        global_def_adj: currDefAdj ? -currDefAdj : undefined
                      });
                      setCurrName("");
                   }}>Add</Button>
