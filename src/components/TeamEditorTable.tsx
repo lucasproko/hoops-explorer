@@ -1190,7 +1190,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             players: (onlyThisYear && (year != "All"))? 
               (dataEvent.players || []).filter(p => p.year == yearWithStats) : 
               (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= yearWithStats) : dataEvent.players), 
-            transfers: (onlyTransfers && hasTransfers) ? dataEvent.transfers?.[0] : undefined 
+            transfers: (onlyTransfers && hasTransfers && (year != "All")) ? dataEvent.transfers?.[0] : undefined 
           }
         )
       }
@@ -1348,14 +1348,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={DateUtils.teamEditorYears(offSeasonMode).map(r => stringToOption(r))}
+          options={DateUtils.teamEditorYears(offSeasonMode).concat(
+            offSeasonMode ? [] : [ "All" ]
+          ).map(r => stringToOption(r))}
           isSearchable={false}
           onChange={(option) => { 
             if ((option as any)?.value) {
               const newYear = (option as any).value;
               friendlyChange(() => {
                 setYear(newYear); 
-                if (newYear > DateUtils.offseasonYear) {
+                if (newYear == "All") {
+                  setOffSeasonMode(false);
+                  setEvalMode(false);
+                } else if (newYear > DateUtils.offseasonYear) {
                   setEvalMode(false);
                   setOffSeasonMode(true);
                 }
@@ -1560,9 +1565,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 />
               </Form.Group>
               <Form.Group as={Col} xs="4" className="mt-2">
-                <Form.Check type="switch" disabled={!hasTransfers || addNewPlayerMode}
+                <Form.Check type="switch" disabled={!hasTransfers || addNewPlayerMode || (year == "All")}
                   id="onlyTransfers"
-                  checked={onlyTransfers && hasTransfers}
+                  checked={onlyTransfers && hasTransfers && (year != "All")}
                   onChange={() => {
                     setTimeout(() => {
                       setReloadData(true);
