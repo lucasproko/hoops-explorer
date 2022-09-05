@@ -147,7 +147,7 @@ export class TeamEditorManualFixes {
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2022_23:  Record<string, TeamEditorManualFixModel> = { 
             "Alabama": {
-               superSeniorsReturning: new Set([ "NoGurley::" ])          
+               superSeniorsReturning: new Set([ "NoGurley::", "JaQuinerly::" ])          
             },
             "Arizona": {
                ...(TeamEditorManualFixes.buildOverrides({"": {
