@@ -3,8 +3,51 @@ import _ from "lodash";
 
 import { DivisionStatistics, Statistic, TeamStatSet, PureStatSet } from '../StatModels';
 
+type QualifyingCriterion = [ string, number ];
+
 /** Utility functions for calculating percentile/grade related statistics */
 export class GradeUtils {
+
+   /** For players, only use their stats for grades if they've played 40% of possessions (same for display, but will allow override) */
+   static readonly minPossPctForInclusion = 0.4;
+
+   /** Fields to be used for player grades, _plus_ "qualifying" criteria for including them */
+   static readonly playerFields: Record<string, QualifyingCriterion | undefined> = { //(qualifying possessions will always be 40% for consistency with KenPom?)
+      //TODO: poss%, poss count, SoS
+      // Overall production
+      "off_rtg": undefined, "def_rtg": undefined,
+      "off_adj_rtg": undefined, "def_adj_rtg": undefined,
+      "off_adj_prod": undefined, "def_adj_prod": undefined,
+      "off_adj_rapm": undefined, "def_adj_rapm": undefined,
+      "off_adj_rapm_prod": undefined, "def_adj_rapm_prod": undefined,
+      "off_usage": undefined,
+      // Assists, TOs, steals, blocks, fouls
+      "off_ast": undefined,
+      "off_to": undefined,
+      "def_stl": undefined,
+      "def_blk": undefined,
+      "def_ftr": undefined, // (FC/50) TODO invert
+      // Rebounding:
+      "off_drb": undefined,
+      "def_drb": undefined,
+      // Shooting % stats
+      "off_efg": [ "off_team_poss_pct", 0.6 ],
+      "off_3p": [ "total_off_3p_attempts", 60 ],
+      "off_2p": [ "total_off_2p_attempts", 60 ],
+      "off_2pmid": [ "total_off_2pmid_attempts", 60 ],
+      "off_2prim": [ "total_off_2pim_attempts", 60 ],
+      // Shooting style
+      "off_3pr": undefined,
+      "off_2pmidr": undefined,
+      "off_2primr": undefined,
+      "def_3pr": [ "total_off_3p_attempts", 60 ], //(assisted %s)
+      "def_2pmidr": [ "total_off_2pmid_attempts", 60 ],
+      "def_2primr": [ "total_off_2pim_attempts", 60 ],
+      //TODO: assisted% (will want so min criteria for that)
+      "off_ftr": [ "off_team_poss_pct", 0.6 ], //TODO: handle %
+      // Other stylistic grades: assist breakdowns, transition, scramble etc
+      //TODO
+   };
 
    /** Fields to record that are part of the query response (apart from "net", which is derived) */
    static readonly fieldsToRecord = [ 
@@ -59,6 +102,48 @@ export class GradeUtils {
          _.chain(fields).forEach(f => updateForField(f, teamBaseline)).value();
       }
    };
+
+   /** Add a team's stats to the divison stats collection  */
+   static buildAndInjectPlayerDivisionStats = (playerStats: PureStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
+      const possPct = playerStats?.off_team_poss_pct?.value || 0;
+      if (possPct >= GradeUtils.minPossPctForInclusion) {
+         mutableDivisionStats.tier_sample_size += 1;
+         if (inNaturalTier) {
+           mutableDivisionStats.dedup_sample_size += 1;
+         }
+         //(this will be inaccurate for fields with addition criteria but it's only used for display anyway)
+         const updateForField = (field: string, dataSet: PureStatSet) => {
+            const maybeStat = dataSet[field]?.value;
+            if (!_.isNil(maybeStat)) {
+              if (!mutableDivisionStats.tier_samples[field]) {
+                mutableDivisionStats.tier_samples[field] = [];
+              }
+              mutableDivisionStats.tier_samples[field]!.push(maybeStat);
+   
+              if (inNaturalTier) {
+                if (!mutableDivisionStats.dedup_samples[field]) {
+                  mutableDivisionStats.dedup_samples[field] = [];
+                }
+                mutableDivisionStats.dedup_samples[field]!.push(maybeStat);
+              }
+            }
+         }
+         const manualFieldSet = _.isNil(fields) ? new Set([]) : new Set(fields);
+         const fieldChain = _.chain(GradeUtils.playerFields).toPairs().filter(kv => {
+            return _.isNil(fields) ? true : manualFieldSet.has(kv[0]);
+         }).flatMap(kv => {
+            const key = kv[0];
+            const value = kv[1];
+            if (!value) {
+               return [ key ];
+            } else { // Check if the qualifying criteria are met for each field
+               const [ field, criterion ] = value;
+               return ((playerStats?.[field]?.value || 0) >= criterion) ? [ field ] : [];
+            }
+         });
+         fieldChain.forEach(f => updateForField(f, playerStats)).value();
+      }
+   }
 
    /** Convert an unsorted list of samples into an LUT for Divison Stats */
    static buildAndInjectDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics) => {

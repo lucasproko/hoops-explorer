@@ -45,6 +45,7 @@ import { OnBallDefenseUtils } from '../utils/stats/OnBallDefenseUtils';
 import { OnBallDefenseModel } from '../utils/stats/RatingUtils';
 import { DateUtils } from '../utils/DateUtils';
 import { LuckUtils } from '../utils/stats/LuckUtils';
+import { PositionUtils } from '../utils/stats/PositionUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -115,14 +116,28 @@ var eliteDefenseInfo: number[] = [];
 /** Exported for test only */
 export const teamStatInfo = [] as Array<TeamStatInfo>;
 
+const buildEmptyDivisionStats = () => {
+  return { 
+    tier_sample_size: 0,
+    dedup_sample_size: 0,
+    tier_samples: {},
+    tier_lut: {},
+    dedup_samples: {}
+   };
+};
+
 /** Exported for test only */
-export const mutableDivisionStats: DivisionStatistics = { 
-  tier_sample_size: 0,
-  dedup_sample_size: 0,
-  tier_samples: {},
-  tier_lut: {},
-  dedup_samples: {}
- };
+export const mutableDivisionStats: DivisionStatistics = buildEmptyDivisionStats(); 
+
+/** Exported for test only */
+export const mutablePlayerDivisionStats: DivisionStatistics = buildEmptyDivisionStats(); 
+
+/** Exported for test only */
+//TODO
+// export const mutablePlayerDivisionStats_byPosGroup: Record<string, DivisionStatistics> =
+//  _.chain(PositionUtils.idToPosition).keys()
+//   .filter(pos => !pos.endsWith("?")).map(pos => [ pos, buildEmptyDivisionStats() ])
+//   .fromPairs().value()
 
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
