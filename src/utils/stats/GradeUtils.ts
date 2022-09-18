@@ -1,5 +1,6 @@
 // Lodash
-import _ from "lodash";
+import _, { find } from "lodash";
+import { find as treeFind, emptyWithNumericKeys as emptyTree, fromPairsWithNumericKeys as treeFromPairs, RedBlackTree } from '@collectable/red-black-tree';
 
 import { DivisionStatistics, Statistic, TeamStatSet, PureStatSet } from '../StatModels';
 
@@ -219,8 +220,28 @@ export class GradeUtils {
       }
    }
 
+   /** Builds a LUT for if the initial lookup misses */
+   static buildSpacesBetween(divStats: DivisionStatistics, field: string): RedBlackTree.Instance<number, number> {
+      const divStatsField = divStats.tier_lut[field];
+      if (divStatsField) {
+         const minPctile = 1.0/(divStatsField.size);
+         const buildPctile = (arrSize: number) => Math.max(minPctile, (arrSize + 1)*minPctile); //(see getPercentile, old code)
+         const vals: [number, number][] = _.chain(divStatsField.lut).toPairs().map(keyVal => {
+            const arr = keyVal[1];
+            const numericKeyVsPctile: [ number, number ] = arr.length > 1 ? 
+               [ arr[1]!, buildPctile(arr[0]!) ]: [ -1, -1 ];
+            //(arr[1] is the first entry hence was the numeric value used to build the LUT key)
+
+            return numericKeyVsPctile;
+         }).filter(kv => kv[1] >= 0).value();
+         return treeFromPairs(vals)
+      } else {
+         return emptyTree();
+      }
+   }
+
    /** Calculate the percentile of a given field */
-   static getPercentile(divStats: DivisionStatistics, field: string, val: number): Statistic | undefined {
+   static getPercentile(divStats: DivisionStatistics, field: string, val: number, buildLutMissCache: boolean = false): Statistic | undefined {
       const divStatsField = divStats.tier_lut[field];
       if (divStatsField) {
          const lookupKey = (divStatsField.isPct ? (val*100) : val).toFixed(0);
@@ -230,16 +251,30 @@ export class GradeUtils {
          if (!lutArray && (val <= (divStatsField.min + 0.001))) {
             return { value: minPctile, samples: divStatsField.size } as Statistic; //1st percentile
          } else if (!lutArray) {
-            // Either it's a split stat so doesn't appear in the LUT, or it's off the end of the chart
-            // (slow may need/want to speed this up)
-            const closestLutArray = _.find(divStatsField.lut, (arr, key) => {
-               return (arr.length > 1) && arr[1]! > val;
-            });
-            if (closestLutArray) {
-               return { value: Math.max(minPctile, (closestLutArray[0]! + 1)*minPctile), samples: divStatsField.size };
-                  //(+1 because we don't want index we want rank)               
-            } else {
-               return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
+            const spacesBetween = divStatsField.spaces_between || (
+               buildLutMissCache ? GradeUtils.buildSpacesBetween(divStats, field) : undefined
+            );
+            if (buildLutMissCache && !divStatsField.spaces_between) { //(ugly: mutate divStats)
+               divStatsField.spaces_between = spacesBetween;
+            }
+            if (spacesBetween) {
+               const spaceBetween = treeFind("gt", val, spacesBetween); //smallest entry which is bigger than val
+               return _.isUndefined(spaceBetween) ? 
+                  { value: 1.00, samples: divStatsField.size } as Statistic : //100% percentile
+                  { value: spaceBetween.value, samples: divStatsField.size }
+                  ;
+            } else { //(OLD CODE, runs if haven't specified pre-build spaces_between - acts as FF on legacy code)
+               // Either it's a split stat so doesn't appear in the LUT, or it's off the end of the chart
+               // (slow may need/want to speed this up)
+               const closestLutArray = _.find(divStatsField.lut, (arr, unusedKey) => {
+                  return (arr.length > 1) && arr[1]! > val;
+               });
+               if (closestLutArray) {
+                  return { value: Math.max(minPctile, (closestLutArray[0]! + 1)*minPctile), samples: divStatsField.size };
+                     //(+1 because we don't want index we want rank)               
+               } else {
+                  return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
+               }
             }
          } else { //lutArray
             const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1); //(minPctile is lowest)
@@ -266,7 +301,7 @@ export class GradeUtils {
    } as Record<string, boolean>;
 
    /** Calculate the percentile of all fields within a stat set */
-   static buildTeamPercentiles = (divStats: DivisionStatistics, team: PureStatSet, fieldList: string[], supportRank: boolean): PureStatSet => {
+   static buildTeamPercentiles = (divStats: DivisionStatistics, team: PureStatSet, fieldList: string[], supportRank: boolean, buildLutMissCache: boolean = false): PureStatSet => {
       const format = (f: string, s: Statistic | undefined) => {
          const isDef = f.startsWith("def_");
          const isInverted = GradeUtils.fieldsToInvert[f] || false;
@@ -284,7 +319,7 @@ export class GradeUtils {
          const adjustedKey = (key == "def_net" ? "off_raw_net" : key);
          const teamVal = team[adjustedKey]?.value;
          return [ key, _.isNumber(teamVal) ? 
-            format(key, GradeUtils.getPercentile(divStats, key, teamVal)) 
+            format(key, GradeUtils.getPercentile(divStats, key, teamVal, buildLutMissCache)) 
             : undefined ];
       }).fromPairs().omitBy(_.isNil).value() as PureStatSet;
    }

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "./stats/LuckUtils";
 import { ORtgDiagnostics, DRtgDiagnostics } from "./stats/RatingUtils";
+import { RedBlackTree } from '@collectable/red-black-tree';
 
 export type DivisionStatistics = {
   /** The number of teams in the tier (includes teams in multiple tiers) */
@@ -18,10 +19,8 @@ export type DivisionStatistics = {
     size: number, //(total number of samples in the LUT)
     min: number, //(don't need max, if value missed LUT and is >max then %ile==100, else 1)
     lut: Record<string, Array<number>> //([0] of the entry is the offset)
+    spaces_between?: RedBlackTree.Instance<number, number> //(if not in the LUT use an optimized binary chop)
   }>,
-
-  /** Adds a sorted array of lookup keys */
-  mutable_secondary_lookup?: Record<string, number[]>,
 
   /* Sorted list of samples by field name (only teams in their "natural" tier) */
   dedup_samples: Record<string, Array<number>>,
