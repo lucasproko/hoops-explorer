@@ -70,12 +70,12 @@ export type GameFilterParams = {
   onQueryFilters?: string, //(missing iff empty)
   offQueryFilters?: string, //(missing iff empty)
   autoOffQuery?: boolean
+  showGrades?: string,
   // Team view
   teamDiffs?: boolean,
   showExtraInfo?: boolean,
   showTeamPlayTypes?: boolean,
   showRoster?: boolean,
-  showGrades?: string,
   // Manual override:
   manual?: ManualOverride[],
   showPlayerManual?: boolean,
@@ -256,7 +256,6 @@ export class ParamDefaults {
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultTeamShowPlayTypes = false;
   static readonly defaultTeamShowRoster = false;
-  static readonly defaultTeamEnabledGrade = "rank:Combo";
   static readonly defaultPlayerShowPlayTypes = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
@@ -323,6 +322,7 @@ export class ParamDefaults {
   static readonly defaultFilterGarbage = false;
   static readonly defaultQueryFilters = "";
   static readonly defaultLuckConfig: LuckParams = { base: "season" };
+  static readonly defaultEnabledGrade = "rank:Combo";
 };
 
 export type FilterParamsType = GameFilterParams | LineupFilterParams | TeamReportFilterParams;

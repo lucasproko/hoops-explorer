@@ -79,7 +79,7 @@ describe("TeamStatsTable", () => {
         gameFilterParams={{ 
           year: ParamDefaults.defaultYear,
           onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, 
-          showExtraInfo: true, showTeamPlayTypes: true, showGrades: ParamDefaults.defaultTeamEnabledGrade }}
+          showExtraInfo: true, showTeamPlayTypes: true, showGrades: ParamDefaults.defaultEnabledGrade }}
         dataEvent={{
           teamStats: testData,
           rosterStats: testRosterData,

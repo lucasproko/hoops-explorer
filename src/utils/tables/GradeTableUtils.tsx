@@ -21,6 +21,7 @@ import { GenericTableOps, GenericTableRow } from "../../components/GenericTable"
 import { DivisionStatistics, TeamStatSet } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 import { ParamDefaults, CommonFilterParams } from '../FilterModels';
+import { DateUtils } from '../DateUtils';
 
 type Props = {
    setName: "on" | "off" | "baseline",
@@ -91,17 +92,37 @@ export type DivisionStatsCache = {
 export class GradeTableUtils {
 
   /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
-  static readonly populateDivisionStatsCache = (
+  static readonly populateTeamDivisionStatsCache = (
      filterParams: CommonFilterParams,
      setCache: (s: DivisionStatsCache) => void,
      tierOverride: string | undefined = undefined
    ) => {
+      GradeTableUtils.populateDivisionStatsCache("team", filterParams, setCache, tierOverride);
+   };
+
+   /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
+   static readonly populatePlayerDivisionStatsCache = (
+      filterParams: CommonFilterParams,
+      setCache: (s: DivisionStatsCache) => void,
+      tierOverride: string | undefined = undefined
+   ) => {
+      GradeTableUtils.populateDivisionStatsCache("player", filterParams, setCache, tierOverride);
+   }
+
+   /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
+   static readonly populateDivisionStatsCache = (
+      type: "player" | "team",
+      filterParams: CommonFilterParams,
+      setCache: (s: DivisionStatsCache) => void,
+      tierOverride: string | undefined = undefined
+   ) => {
+      const urlInFix = type == "player" ? "players_" : "";
       const getUrl = (inGender: string, inYear: string, inTier: string) => {
          const subYear = inYear.substring(0, 4);
-         if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
-            return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}`;
+         if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+            return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}&type=${type}`;
          } else { //archived
-            return `/leaderboards/lineups/stats_all_${inGender}_${subYear}_${inTier}.json`;
+            return `/leaderboards/lineups/stats_${urlInFix}all_${inGender}_${subYear}_${inTier}.json`;
          }
       }
 
@@ -113,19 +134,19 @@ export class GradeTableUtils {
          });
       });
       Promise.all(fetchAll).then((jsons: any[]) => {
-      setCache({
-         year: inYear, gender: inGender, //(so know when to refresh cache)
-         Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0], //(if using tierOverride, it goes in here)
-         High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
-         Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
-         Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
-      });
+         setCache({
+            year: inYear, gender: inGender, //(so know when to refresh cache)
+            Combo: _.isEmpty(jsons[0]) ? undefined : jsons[0], //(if using tierOverride, it goes in here)
+            High: _.isEmpty(jsons[1]) ? undefined : jsons[1],
+            Medium: _.isEmpty(jsons[2]) ? undefined : jsons[2],
+            Low: _.isEmpty(jsons[3]) ? undefined : jsons[3],
+         });
       });
    };
 
 
    /** Build the rows containing the grade information for a team */
-   static readonly buildGradeTableRows: (p: Props) => GenericTableRow[] = ({
+   static readonly buildTeamGradeTableRows: (p: Props) => GenericTableRow[] = ({
       setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
       const nameAsId = setName.replace(/[^A-Za-z0-9_]/g, '');
