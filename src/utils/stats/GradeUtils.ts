@@ -25,8 +25,8 @@ export class GradeUtils {
       // Assists, TOs, steals, blocks, fouls
       "off_ast": undefined,
       "off_to": undefined,
-      "def_stl": undefined,
-      "def_blk": undefined,
+      "def_to": undefined, //(actually def_stl)
+      "def_2prim": undefined, //(actually def_blk)
       "def_ftr": undefined, // (FC/50) TODO invert
       // Rebounding:
       "off_drb": undefined,
@@ -50,8 +50,26 @@ export class GradeUtils {
       //TODO
    };
 
+   /** Player fields has a few fields with very low dynamic range, so we'll treat these differently 
+    * TODO: decide whether to do this, or have fewer giant arrays which get compressed down?
+   */
+   static readonly unusualMultiplier = (field: string, player: boolean) => {
+      if (player) {
+         if ((field == "def_2prim") || (field == "def_to") || (field == "off_usage")) {
+            return 1000;
+         } else if (_.endsWith(field, "_adj_rtg") || _.endsWith(field, "_prod") || _.endsWith(field, "_rapm")) {
+            return 10;
+         } else {
+            return undefined;
+         }
+      } else {
+         return undefined; //(not currently using non-standard multipliers for team division stats)
+      }
+   };
+
+
    /** Fields to record that are part of the query response (apart from "net", which is derived) */
-   static readonly fieldsToRecord = [ 
+   static readonly teamFieldsToRecord = [ 
       "net", "ppp", "adj_ppp", 
       "efg", "to", "orb", "ftr", "assist", "3pr", "2pmidr", "2primr", 
       "3p", "2p", "2pmid", "2prim", "adj_opp",
@@ -61,7 +79,7 @@ export class GradeUtils {
     ];
 
    /* Fields derived in DerivedStatsUtils */
-   static readonly derivedFields = [
+   static readonly teamDerivedFields = [
        "scramble", "scramble_per_orb", "scramble_ppp", "scramble_delta_ppp",
        "trans", "trans_ppp", "trans_delta_ppp",
        "scramble_to", "scramble_ftr", "scramble_3pr", "scramble_3p", "scramble_2p",
@@ -72,7 +90,7 @@ export class GradeUtils {
     ];
 
    /** Add a team's stats to the divison stats collection  */
-   static buildAndInjectDivisionStats = (teamBaseline: PureStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
+   static buildAndInjectTeamDivisionStats = (teamBaseline: PureStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
       //TODO: more complex: also style-based fields
       mutableDivisionStats.tier_sample_size += 1;
       if (inNaturalTier) {
@@ -95,9 +113,9 @@ export class GradeUtils {
          }
       }
       if (_.isNil(fields)) {
-         _.chain(GradeUtils.fieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ])
+         _.chain(GradeUtils.teamFieldsToRecord).flatMap(field => [ `off_${field}`, `def_${field}` ])
             .forEach(f => updateForField(f, teamBaseline)).value();
-         _.chain(GradeUtils.derivedFields).flatMap(field => [ `off_${field}`, `def_${field}` ]).concat([ "tempo" ])
+         _.chain(GradeUtils.teamDerivedFields).flatMap(field => [ `off_${field}`, `def_${field}` ]).concat([ "tempo" ])
             .forEach(f => updateForField(f, derivedStats)).value();
       } else { // manually specified fields
          _.chain(fields).forEach(f => updateForField(f, teamBaseline)).value();
@@ -105,8 +123,9 @@ export class GradeUtils {
    };
 
    /** Add a team's stats to the divison stats collection  */
-   static buildAndInjectPlayerDivisionStats = (playerStats: PureStatSet, derivedStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
-      const possPct = playerStats?.off_team_poss_pct?.value || 0;
+   static buildAndInjectPlayerDivisionStats = (playerStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
+      const possPct = playerStats.off_team_poss_pct?.value || 0;
+
       if (possPct >= GradeUtils.minPossPctForInclusion) {
          mutableDivisionStats.tier_sample_size += 1;
          if (inNaturalTier) {
@@ -146,22 +165,48 @@ export class GradeUtils {
       }
    }
 
+   /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
+   static buildAndInjectTeamDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics) => {
+      return GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats);
+   }
+
+   /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
+   static buildAndInjectPlayerDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics) => {
+      return GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats, true);
+   }
+   
    /** Convert an unsorted list of samples into an LUT for Divison Stats */
-   static buildAndInjectDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics) => {
-      const sort = (samples: Record<string, Array<number>>) => {
+   private static buildAndInjectDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics, player: boolean = false) => {
+      const sort = (samples: Record<string, Array<number>>, comp_factor: number | undefined) => {
          return _.transform(samples, (acc, value, key) => {
-           acc[key] = _.sortBy(value);
+           acc[key] = _.chain(value).sortBy().tap(samples => {
+            if (comp_factor) {
+               return _.filter(samples, (__, index) => (index % comp_factor) == 0)
+            } else {
+               return samples;
+            }
+         }).value();
          }, {} as Record<string, Array<number>>);  
       }
-      mutableUnsortedDivisionStats.dedup_samples = sort(mutableUnsortedDivisionStats.dedup_samples);
-      //(this is a waste of cycles since will sort again in "Combo", but useful for debugging and not on performance critical path)
+      const compression_factor = player ? 5 : undefined; //(too many players so reducing granularity to keep size down)
+      const tier_compression_factor = _.isEmpty(mutableUnsortedDivisionStats.dedup_samples) ? undefined : compression_factor;
+         //(if dedup samples is empty, we're combining tier_samples and it has already been downscaled)
 
-      const tier_samples = sort(mutableUnsortedDivisionStats.tier_samples);
+      mutableUnsortedDivisionStats.compression_factor = compression_factor;
+
+      // Dedup samples: used to build the combined stats
+      mutableUnsortedDivisionStats.dedup_samples = sort(mutableUnsortedDivisionStats.dedup_samples, compression_factor);
+      //(this is a waste of cycles since will sort again in "Combo", but useful for debugging and not on performance critical path)
+      //(sorting sorted arrays will likely be faster anyway, so we get some of that back)
+
+      const tier_samples = sort(mutableUnsortedDivisionStats.tier_samples, tier_compression_factor);
       mutableUnsortedDivisionStats.tier_lut = _.transform(tier_samples, (acc, sample_set, field) => {
         const last_val = sample_set[sample_set.length - 1];
+        const maybeMultiplier = GradeUtils.unusualMultiplier(field, player);
         acc[field] = _.transform(sample_set, (lutObj, val) => {
      
-         const lutKey = (lutObj.isPct ? 100*val : val).toFixed(0);
+         const lutMult = lutObj.lutMult || (lutObj.isPct ? 100 : 1);
+         const lutKey = (lutMult*val).toFixed(0);
          const currLutVal = lutObj.lut[lutKey];
          if (_.isNil(currLutVal)) { // New entry
            lutObj.lut[lutKey] = [ lutObj.size , val ];
@@ -170,7 +215,10 @@ export class GradeUtils {
             }
            lutObj.size = lutObj.size + 1;
          }, {
-           isPct: (sample_set[0] >= -1) && (sample_set[0] <= 1) && (last_val >= -1) && (last_val <= 1),
+           lutMult: maybeMultiplier,
+           isPct: maybeMultiplier ? //(don't fill in if using a non-standard multiplier)
+               undefined :
+               ((sample_set[0] >= -1) && (sample_set[0] <= 1) && (last_val >= -1) && (last_val <= 1)),
            min: sample_set[0],
            size: 0, //(will mutate this to size during the loop)
            lut: {} as Record<string, Array<number>>
@@ -178,6 +226,8 @@ export class GradeUtils {
        }, {} as Record<string, any>);
      
        mutableUnsortedDivisionStats.tier_samples = {}; //(replace this by LUT)       
+
+       return mutableUnsortedDivisionStats;
    };
 
    private static readonly MIN = -10000;
@@ -244,7 +294,8 @@ export class GradeUtils {
    static getPercentile(divStats: DivisionStatistics, field: string, val: number, buildLutMissCache: boolean = false): Statistic | undefined {
       const divStatsField = divStats.tier_lut[field];
       if (divStatsField) {
-         const lookupKey = (divStatsField.isPct ? (val*100) : val).toFixed(0);
+         const lutMult = divStatsField.lutMult || (divStatsField.isPct ? 100 : 1);
+         const lookupKey = (lutMult*val).toFixed(0);
          const lutArray = divStatsField.lut[lookupKey];
          const minPctile = 1.0/(divStatsField.size);
 

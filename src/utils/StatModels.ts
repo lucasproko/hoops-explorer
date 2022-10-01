@@ -15,14 +15,17 @@ export type DivisionStatistics = {
 
   /** Lets you do faster search of what percentile you are in by first looking up with .toFixed(0), or (100*).toFixed*/
   tier_lut: Record<string, {
-    isPct: boolean, //(whether you need to *100 before applying .toFixed(0))
+    isPct?: boolean, //(whether you need to *100 before applying .toFixed(0))
+    lutMult?: number, //(alternative to isPct, let's you specify *10, *100)
     size: number, //(total number of samples in the LUT)
     min: number, //(don't need max, if value missed LUT and is >max then %ile==100, else 1)
     lut: Record<string, Array<number>> //([0] of the entry is the offset)
     spaces_between?: RedBlackTree.Instance<number, number> //(if not in the LUT use an optimized binary chop)
   }>,
 
-  /* Sorted list of samples by field name (only teams in their "natural" tier) */
+  compression_factor?: number, //(defaults to 1, else we compress tier_lut[field].lut[lookup] by this number)
+
+  /* Sorted list of samples by field name (only teams in their "natural" tier) - used to build the combined files */
   dedup_samples: Record<string, Array<number>>,
 };
 

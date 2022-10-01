@@ -410,7 +410,7 @@ export async function main() {
           const extraFields = DerivedStatsUtils.injectTeamDerivedStats(teamBaseline, {});
 
           // Build all the samples ready for percentiles:
-          GradeUtils.buildAndInjectDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
+          GradeUtils.buildAndInjectTeamDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
 
           // Apply luck so we have both lucky and non-luck versions
           const teamBaselineWithLuck = _.cloneDeep(teamBaseline);
@@ -553,7 +553,7 @@ export async function main() {
         })();
 
         const playerPossPct = player.off_team_poss_pct?.value || 0;
-        const playerPoss = player.off_team_poss?.value || 0; //(despite it's name this is the player possessions, not team possessions)
+        const playerPoss = player.off_team_poss?.value || 0; //(despite its name this is the player possessions, not team possessions)
 
         // For teams that have played fewer possessions than others we still have a lower limit
         //TODO: fix the secondary filter _during_ the year
@@ -602,7 +602,7 @@ export async function main() {
               )
             ).fromPairs().value()
           )
-        };
+        } as IndivStatSet;
       });
 
       const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
@@ -660,6 +660,12 @@ export async function main() {
         });
       } //(end RAPM)
 
+      // Player grades:
+      if ("all" == label) {
+        enrichedAndFilteredPlayers.forEach(p => {
+          GradeUtils.buildAndInjectPlayerDivisionStats(p, mutablePlayerDivisionStats, inNaturalTier);
+        });
+      }
       const tableData = _.take(preRapmTableData, 5).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)
         const lineup =
@@ -769,14 +775,6 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
   return rankedLineups;
 }
 
-/** Optimizes the data format from D1 stats (export for test only) */
-export function completeDivisionStats(mutableUnsortedDivisionStats: DivisionStatistics) {
-  // Build LUT  
-  GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats);
-
-  return mutableUnsortedDivisionStats; //(for chaining purposes)
-};
-
 /** If all 3 exist, combines stats for High/Medium/Low tiers */
 export async function combineDivisionStatsFiles() {
   const tiers = [ "High", "Medium", "Low"];
@@ -805,7 +803,7 @@ export async function combineDivisionStatsFiles() {
     }, {} as Record<string, Array<number>>);
 
     // Build LUT from presorted samples
-    return completeDivisionStats({
+    return GradeUtils.buildAndInjectTeamDivisionStatsLUT({
       tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
       tier_samples: combinedSamples,
       tier_lut: {},
@@ -914,14 +912,28 @@ if (!testMode) {
           :
           Promise.resolve();
 
+        // Division stats
+        const writeDivisionStats = "all" == kv[0];
 
-        // Division stats:
-        if ("all" == kv[0]) completeDivisionStats(mutableDivisionStats);
+        // Team division stats:
+        if (writeDivisionStats) GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
         const divisionStatsFilename = `./public/leaderboards/lineups/stats_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
         const divisionStatsWritePromise = ("all" == kv[0]) ? 
           fs.writeFile(divisionStatsFilename, JSON.stringify(mutableDivisionStats, reduceNumberSize)) : Promise.resolve();
 
-        return [lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise];
+        // Player division stats:
+        if (writeDivisionStats) GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePlayerDivisionStats);
+        const playerDivisionStatsFilename = `./public/leaderboards/lineups/stats_players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        const playerDivisionStatsWritePromise = ("all" == kv[0]) ? 
+          fs.writeFile(playerDivisionStatsFilename, JSON.stringify(mutablePlayerDivisionStats, reduceNumberSize)) : Promise.resolve();
+
+        if (writeDivisionStats) {
+          console.log(
+            `Writing division stats: teams:[${mutableDivisionStats.tier_sample_size}]/dedup=[${mutableDivisionStats.dedup_sample_size}] ` +
+              `players:[${mutablePlayerDivisionStats.tier_sample_size}]/dedup=[${mutablePlayerDivisionStats.dedup_sample_size}]`
+            );
+        }
+        return [lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise, playerDivisionStatsWritePromise];
 
       //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
       // zlib.gzip(sortedLineupsStr, (_, result) => {

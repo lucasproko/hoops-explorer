@@ -5,8 +5,10 @@ import { toArray as treeToArray } from '@collectable/red-black-tree';
 
 describe("GradeUtils", () => {
    //TODO: add unit tests anyway:
-   //GradeUtils.buildAndInjectDivisionStats tested by src/__tests__/buildLeaderboards.test.ts
-   //GradeUtils.buildAndInjectDivisionStatsLUT tested by src/__tests__/buildLeaderboards.test.ts
+   //GradeUtils.buildAndInjectTeamDivisionStats tested by src/__tests__/buildLeaderboards.test.ts
+   //GradeUtils.buildAndInjectTeamDivisionStatsLUT tested by src/__tests__/buildLeaderboards.test.ts
+   //GradeUtils.buildAndInjectPlayerivisionStats tested by src/__tests__/buildLeaderboards.test.ts
+   //GradeUtils.buildAndInjectPlayerDivisionStatsLUT tested by src/__tests__/buildLeaderboards.test.ts
 
    test("GradeUtils.binaryChop", () => {
       const test1 = [ 129, 0, 10, 20, 30, 40, 50 ]; //(eg 0-10 is 129, 40-50 is 133)
