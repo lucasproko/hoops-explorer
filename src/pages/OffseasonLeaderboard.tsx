@@ -86,7 +86,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       (rawParams.sortBy == "net") ? [ "sortBy" ] : [],
 
     ]));
-    if (rawParams.year && (rawParams.year != DateUtils.inSeasonYear) && !rawParams.evalMode && !rawParams.transferInOutMode) { //TODO: un-hardwire this
+    if (rawParams.year && (rawParams.year != DateUtils.offseasonPredictionYear) && !rawParams.evalMode && !rawParams.transferInOutMode) { //TODO: un-hardwire this
       const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
       if (typeof window !== `undefined`) window.location.href = newUrl;
 
