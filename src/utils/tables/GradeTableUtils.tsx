@@ -189,7 +189,7 @@ export class GradeTableUtils {
       </Tooltip>;
       const helpOverlay = <OverlayTrigger placement="auto" overlay={helpTooltip}><b>(?)</b></OverlayTrigger>;
 
-      const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team, GradeUtils.fieldsToRecord, gradeFormat == "rank")  : {};
+      const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, team, GradeUtils.teamFieldsToRecord, gradeFormat == "rank")  : {};
 
       const tempoObj = DerivedStatsUtils.injectPaceStats(team, {}, false);
       const tempoGrade = tierToUse ? GradeUtils.buildTeamPercentiles(tierToUse, tempoObj, [ "tempo" ], gradeFormat == "rank")  : {};
