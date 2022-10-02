@@ -15,6 +15,7 @@ export class GradeUtils {
    /** Fields to be used for player grades, _plus_ "qualifying" criteria for including them */
    static readonly playerFields: Record<string, QualifyingCriterion | undefined> = { //(qualifying possessions will always be 40% for consistency with KenPom?)
       //TODO: poss%, poss count, SoS
+      "off_team_poss_pct": undefined,
       // Overall production
       "off_rtg": undefined, "def_rtg": undefined,
       "off_adj_rtg": undefined, "def_adj_rtg": undefined,
@@ -36,7 +37,7 @@ export class GradeUtils {
       "off_3p": [ "total_off_3p_attempts", 60 ],
       "off_2p": [ "total_off_2p_attempts", 60 ],
       "off_2pmid": [ "total_off_2pmid_attempts", 60 ],
-      "off_2prim": [ "total_off_2pim_attempts", 60 ],
+      "off_2prim": [ "total_off_2prim_attempts", 60 ],
       // Shooting style
       "off_3pr": undefined,
       "off_2pmidr": undefined,
@@ -127,11 +128,13 @@ export class GradeUtils {
       const possPct = playerStats.off_team_poss_pct?.value || 0;
 
       if (possPct >= GradeUtils.minPossPctForInclusion) {
-         mutableDivisionStats.tier_sample_size += 1;
-         if (inNaturalTier) {
-           mutableDivisionStats.dedup_sample_size += 1;
+         if (fields == undefined) { //(else we're calling it for secondary fields, so we don't want to increment the global counters)
+            mutableDivisionStats.tier_sample_size += 1;
+            if (inNaturalTier) {
+               mutableDivisionStats.dedup_sample_size += 1;
+            }
+            //^(this will be inaccurate for fields with additional criteria but it's only used for display anyway)
          }
-         //(this will be inaccurate for fields with addition criteria but it's only used for display anyway)
          const updateForField = (field: string, dataSet: PureStatSet) => {
             const maybeStat = dataSet[field]?.value;
             if (!_.isNil(maybeStat)) {
@@ -158,7 +161,7 @@ export class GradeUtils {
                return [ key ];
             } else { // Check if the qualifying criteria are met for each field
                const [ field, criterion ] = value;
-               return ((playerStats?.[field]?.value || 0) >= criterion) ? [ field ] : [];
+               return ((playerStats[field]?.value || 0) >= criterion) ? [ key ] : [];
             }
          });
          fieldChain.forEach(f => updateForField(f, playerStats)).value();
@@ -167,7 +170,7 @@ export class GradeUtils {
 
    /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
    static buildAndInjectTeamDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics) => {
-      return GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats);
+      return GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats, false);
    }
 
    /** Convert an unsorted list of samples into an LUT for Team Divison Stats */
@@ -176,26 +179,27 @@ export class GradeUtils {
    }
    
    /** Convert an unsorted list of samples into an LUT for Divison Stats */
-   private static buildAndInjectDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics, player: boolean = false) => {
+   private static buildAndInjectDivisionStatsLUT = (mutableUnsortedDivisionStats: DivisionStatistics, player: boolean) => {
       const sort = (samples: Record<string, Array<number>>, comp_factor: number | undefined) => {
          return _.transform(samples, (acc, value, key) => {
-           acc[key] = _.chain(value).sortBy().tap(samples => {
+           acc[key] = _.chain(value).sortBy().thru(samples => {
             if (comp_factor) {
-               return _.filter(samples, (__, index) => (index % comp_factor) == 0)
+               return _.filter(samples, (__, index) => (index % comp_factor) == 0);
             } else {
                return samples;
             }
          }).value();
          }, {} as Record<string, Array<number>>);  
       }
-      const compression_factor = player ? 5 : undefined; //(too many players so reducing granularity to keep size down)
-      const tier_compression_factor = _.isEmpty(mutableUnsortedDivisionStats.dedup_samples) ? undefined : compression_factor;
+      const player_compression_factor = 3;
+      const dedup_compression_factor = player ? player_compression_factor : undefined; //(too many players so reducing granularity to keep size down)
+      mutableUnsortedDivisionStats.compression_factor = dedup_compression_factor;
+
+      const tier_compression_factor = _.isEmpty(mutableUnsortedDivisionStats.dedup_samples) ? undefined : dedup_compression_factor;
          //(if dedup samples is empty, we're combining tier_samples and it has already been downscaled)
 
-      mutableUnsortedDivisionStats.compression_factor = compression_factor;
-
       // Dedup samples: used to build the combined stats
-      mutableUnsortedDivisionStats.dedup_samples = sort(mutableUnsortedDivisionStats.dedup_samples, compression_factor);
+      mutableUnsortedDivisionStats.dedup_samples = sort(mutableUnsortedDivisionStats.dedup_samples, dedup_compression_factor);
       //(this is a waste of cycles since will sort again in "Combo", but useful for debugging and not on performance critical path)
       //(sorting sorted arrays will likely be faster anyway, so we get some of that back)
 
@@ -353,6 +357,21 @@ export class GradeUtils {
 
    /** Calculate the percentile of all fields within a stat set */
    static buildTeamPercentiles = (divStats: DivisionStatistics, team: PureStatSet, fieldList: string[], supportRank: boolean, buildLutMissCache: boolean = false): PureStatSet => {
+      const offDefFieldList = _.chain(fieldList).flatMap(
+         field => GradeUtils.combinedStat[field] ? [ field ] : [`off_${field}`, `def_${field}` ]
+      ).map(key => {
+         return (key == "def_net" ? "off_raw_net" : key);
+      }).value();      
+      return GradeUtils.buildPercentiles(divStats, team, offDefFieldList, supportRank, buildLutMissCache);
+   }
+
+   /** Calculate the percentile of all fields within a stat set */
+   static buildPlayerPercentiles = (divStats: DivisionStatistics, team: PureStatSet, fieldList: string[], supportRank: boolean, buildLutMissCache: boolean = true): PureStatSet => {
+      return GradeUtils.buildPercentiles(divStats, team, fieldList, supportRank, buildLutMissCache);
+   }
+
+   /** Calculate the percentile of all fields within a stat set */
+   static buildPercentiles = (divStats: DivisionStatistics, statSet: PureStatSet, fieldList: string[], supportRank: boolean, buildLutMissCache: boolean = false): PureStatSet => {
       const format = (f: string, s: Statistic | undefined) => {
          const isDef = f.startsWith("def_");
          const isInverted = GradeUtils.fieldsToInvert[f] || false;
@@ -363,14 +382,10 @@ export class GradeUtils {
             : { value: s?.value, samples: supportRank ? s?.samples : 0 };
          return maybeInvert;
       }
-      const offDefFieldList = _.flatMap(
-         fieldList, field => GradeUtils.combinedStat[field] ? [ field ] : [`off_${field}`, `def_${field}` ]
-      );
-      return _.chain(offDefFieldList).map(key => {
-         const adjustedKey = (key == "def_net" ? "off_raw_net" : key);
-         const teamVal = team[adjustedKey]?.value;
-         return [ key, _.isNumber(teamVal) ? 
-            format(key, GradeUtils.getPercentile(divStats, key, teamVal, buildLutMissCache)) 
+      return _.chain(fieldList).map(key => {
+         const playerVal = statSet[key]?.value;
+         return [ key, _.isNumber(playerVal) ? 
+            format(key, GradeUtils.getPercentile(divStats, key, playerVal, buildLutMissCache)) 
             : undefined ];
       }).fromPairs().omitBy(_.isNil).value() as PureStatSet;
    }

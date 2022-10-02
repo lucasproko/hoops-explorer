@@ -691,6 +691,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] : [],
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
+        showGrades && p.baseline? 
+          GradeTableUtils.buildPlayerGradeTableRows({
+            title: "baseline",
+            config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            player: p.baseline,
+            expandedView, possAsPct, factorMins, includeRapm: calcRapm
+          }) : [],
         showDiagMode && p.baseline?.diag_off_rtg && p.baseline?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?

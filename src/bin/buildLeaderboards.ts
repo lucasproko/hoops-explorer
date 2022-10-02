@@ -579,7 +579,10 @@ export async function main() {
               "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages";
           });
         }
-
+        if ("all" == label) {
+          // Everything except RAPM (we do it here because we need total_*, which get removed below)
+          GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier);
+        }
         return {
           key: kv[0],
           conf: conference,
@@ -643,7 +646,11 @@ export async function main() {
               override: rapmP.rapm?.def_adj_ppp?.override,
               extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
             };
-
+            const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod", "adj_rapm_prod"  ], k => [ `off_${k}`, `def_${k}` ]);
+            if ("all" == label) {
+              GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
+            }
+    
             // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
             [ "off_adj_rapm", "off_adj_rapm_prod" ].forEach(field => {
               const maybeRapm = player[field];
@@ -660,12 +667,6 @@ export async function main() {
         });
       } //(end RAPM)
 
-      // Player grades:
-      if ("all" == label) {
-        enrichedAndFilteredPlayers.forEach(p => {
-          GradeUtils.buildAndInjectPlayerDivisionStats(p, mutablePlayerDivisionStats, inNaturalTier);
-        });
-      }
       const tableData = _.take(preRapmTableData, 5).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)
         const lineup =
@@ -776,22 +777,23 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
 }
 
 /** If all 3 exist, combines stats for High/Medium/Low tiers */
-export async function combineDivisionStatsFiles() {
-  const tiers = [ "High", "Medium", "Low"];
+export async function combineDivisionStatsFiles(player: Boolean = false) {
+  const playerInfix = player ? "players_" : "";
+  const tiers = [ "High", "Medium", "Low" ];
   const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(tier => {
-    const divisionStatsInFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+    const divisionStatsInFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
     const statsPromise: Promise<[String, DivisionStatistics[]]> = fs.readFile(divisionStatsInFilename).then(buffer => {
       return [
         tier,
         [ JSON.parse(buffer.toString()) as DivisionStatistics ]
       ] as [ string, DivisionStatistics[] ];
-    }).catch(err => [ tier,  [] as DivisionStatistics[] ]);
+    }).catch(err => [ tier, [] as DivisionStatistics[] ]);
     return statsPromise;
   });
   const resolvedFilesAwait = await Promise.all(filesToCombine);
   const resolvedFiles: Record<string, DivisionStatistics> = 
     _.chain(resolvedFilesAwait)
-      .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(makes this method idempotent)
+      .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(if hot has dedup_samples - makes this method idempotent-ish)
       .fromPairs().mapValues(array => array[0]!).value();
 
   const combineDivisionStats = (toCombine: DivisionStatistics[]) => {
@@ -803,7 +805,13 @@ export async function combineDivisionStatsFiles() {
     }, {} as Record<string, Array<number>>);
 
     // Build LUT from presorted samples
-    return GradeUtils.buildAndInjectTeamDivisionStatsLUT({
+    return player ? GradeUtils.buildAndInjectPlayerDivisionStatsLUT({
+      tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
+      tier_samples: combinedSamples,
+      tier_lut: {},
+      dedup_sample_size: 0,
+      dedup_samples: {}
+    }) : GradeUtils.buildAndInjectTeamDivisionStatsLUT({
       tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
       tier_samples: combinedSamples,
       tier_lut: {},
@@ -812,7 +820,7 @@ export async function combineDivisionStatsFiles() {
     });
   };
 
-  const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
+  const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
   const combinedFilesPromise = (_.keys(resolvedFiles).length == 3) ? 
     fs.writeFile(
       divisionStatsComboFilename,
@@ -822,20 +830,22 @@ export async function combineDivisionStatsFiles() {
   await combinedFilesPromise; //(so we'll error out if this step fails - otherwise could lose dedup_samples before using them)
 
   const filesToOutput =  _.map(resolvedFiles, (stats, tier) => {
-    const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+    const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
     // Remove the dedup_samples since it's now been calculated
     return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ ...stats, dedup_samples: {} }, reduceNumberSize));
   });
 
   await Promise.all(filesToOutput);
 
-  console.log(`Completed combining stats for [${_.keys(resolvedFiles)}]`);
+  console.log(`Completed combining stats for [${_.keys(resolvedFiles)}] (player=${player})`);
 }
 
 if (!testMode) {
 
   if (inTier == "Combo") {
-    combineDivisionStatsFiles().then(async dummy => {
+    combineDivisionStatsFiles(false).then(async dummy => {
+      return combineDivisionStatsFiles(true); //(team==false then players==true)
+    }).then(async dummy => {
       console.log("File creation Complete!");
       if (!testMode) { //(ie always)
         console.log("(exiting process)");

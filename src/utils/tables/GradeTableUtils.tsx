@@ -17,13 +17,13 @@ import { CbbColors } from "../../utils/CbbColors";
 import { GradeUtils } from "../../utils/stats/GradeUtils";
 
 // Component imports
-import { GenericTableOps, GenericTableRow } from "../../components/GenericTable";
-import { DivisionStatistics, TeamStatSet } from '../../utils/StatModels';
+import { GenericTableColProps, GenericTableOps, GenericTableRow } from "../../components/GenericTable";
+import { DivisionStatistics, IndivStatSet, TeamStatSet } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 import { DateUtils } from '../DateUtils';
 
-type Props = {
+type TeamProps = {
    setName: "on" | "off" | "baseline",
    config: string,
    setConfig: (newConfig: string) => void,
@@ -35,49 +35,68 @@ type Props = {
    team: TeamStatSet
 };
 
-/** Version of CommonTableDefs.onOffTable for percentils */
-const onOffTable = { //accessors vs column metadata
-   "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
-   "sep0": GenericTableOps.addColSeparator(),
-   "net": GenericTableOps.addDataCol("Net Rtg", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-     CbbColors.offOnlyPicker(...CbbColors.pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "ppp": GenericTableOps.addDataCol("P/100", "Points per 100 possessions", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "adj_ppp": GenericTableOps.addDataCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "sep1": GenericTableOps.addColSeparator(),
-   "efg": GenericTableOps.addDataCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "to": GenericTableOps.addDataCol("TO%", "Turnover % for selected lineups", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "orb": GenericTableOps.addDataCol("OR%", "Offensive rebounding % for selected lineups", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "ftr": GenericTableOps.addDataCol("FTR", "Free throw rate for selected lineups", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "sep2a": GenericTableOps.addColSeparator(),
-   "assist": GenericTableOps.addDataCol("A%", "Assist % for selected lineups", 
-      CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
-   "sep2b": GenericTableOps.addColSeparator(0.05),
-   "3pr": GenericTableOps.addDataCol("3PR", "Percentage of 3 pointers taken against all field goals", 
-      CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
-   "2pmidr": GenericTableOps.addDataCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", 
-      CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
-   "2primr": GenericTableOps.addDataCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", 
-      CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
-   "sep3": GenericTableOps.addColSeparator(),
-   "3p": GenericTableOps.addDataCol("3P%", "3 point field goal percentage", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "2p": GenericTableOps.addDataCol("2P%", "2 point field goal percentage", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "2pmid": GenericTableOps.addDataCol("2P% mid", "2 point field goal percentage (mid range)", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "2prim": GenericTableOps.addDataCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "poss": GenericTableOps.addDataCol("Tempo", "Unadjusted possessions/game", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   "sep4": GenericTableOps.addColSeparator(),
-   "adj_opp": GenericTableOps.addDataCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", 
-      CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
+type PlayerProps = {
+   title: string,
+   config: string,
+   setConfig: (newConfig: string) => void,
+   comboTier?: DivisionStatistics,
+   highTier?: DivisionStatistics,
+   mediumTier?: DivisionStatistics,
+   lowTier?: DivisionStatistics,
+
+   player: IndivStatSet,
+   expandedView: boolean, possAsPct: boolean, factorMins: boolean, includeRapm: boolean
+};
+
+type TableBuilderInfo = {
+   custom: Record<string, (val: any, valMeta: string) => string | undefined>,
+   all_pct: Set<string>
+   // all others are off_pct_qual
+};
+
+/** Builds the team and player grade tables based on their config */
+const buildOnOffTable = (table: Record<string, GenericTableColProps>, config: TableBuilderInfo) => _.chain(table)
+   .map((val, key) => {
+      if (key == "title") {
+         return [ key, GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter) ];
+      } else if (_.startsWith(key, "sep")) {
+         return [ key, val] as [string, GenericTableColProps];
+      } else if (config.all_pct.has(key)) {
+         return [ key, GenericTableOps.addDataCol(val.colName, "", 
+            CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter)
+         ];
+       } else { // "falls back" to CbbColors.off_pctile_qual
+         const picker = config.custom[key];
+         if (!_.isNil(picker)) {
+            return [ key, GenericTableOps.addDataCol(val.colName, "", 
+               picker, GenericTableOps.gradeOrHtmlFormatter)
+            ];
+         } else {
+            return [ key, GenericTableOps.addDataCol(val.colName, "", 
+              CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter)
+            ];
+         }
+      }
+   }).fromPairs().value();
+
+/** Controls the formatting of the team grade table */
+const teamBuilderInfo = {
+   custom: {
+      "net": CbbColors.offOnlyPicker(...CbbColors.pctile_qual)
+   },
+   all_pct: new Set(["assist", "3pr", "2pmidr", "2primr" ])
+};
+
+/** Controls the formatting of the team grade table */
+const playerBuilderInfo = {
+   custom: {
+      "adj_rtg": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
+      "adj_rapm": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
+      "adj_prod": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
+      "adj_rapm_margin": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
+      "adj_rapm_prod_margin": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
+   },
+   all_pct: new Set(["usage", "assist", "3pr", "2pmidr", "2primr" ])
 };
 
 export type DivisionStatsCache = {
@@ -146,7 +165,7 @@ export class GradeTableUtils {
 
 
    /** Build the rows containing the grade information for a team */
-   static readonly buildTeamGradeTableRows: (p: Props) => GenericTableRow[] = ({
+   static readonly buildTeamGradeTableRows: (p: TeamProps) => GenericTableRow[] = ({
       setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
       const nameAsId = setName.replace(/[^A-Za-z0-9_]/g, '');
@@ -258,12 +277,114 @@ export class GradeTableUtils {
       const offCellMetaFn = (key: string, val: any) => "off";
       const defPrefixFn = (key: string) => "def_" + key;
       const defCellMetaFn = (key: string, val: any) => "def";
+      const tableConfig = buildOnOffTable(CommonTableDefs.onOffTable, teamBuilderInfo);
       const tableData = [
          GenericTableOps.buildTextRow(<span><small>Team Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
-         GenericTableOps.buildDataRow(teamPercentiles, offPrefixFn, offCellMetaFn, onOffTable),
-         GenericTableOps.buildDataRow(teamPercentiles, defPrefixFn, defCellMetaFn, onOffTable),
+         GenericTableOps.buildDataRow(teamPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
+         GenericTableOps.buildDataRow(teamPercentiles, defPrefixFn, defCellMetaFn, tableConfig),
          GenericTableOps.buildRowSeparator()
       ];
+      return tableData;
+   };
+
+   /** Build the rows containing the grade information for a team 
+    * (see buildTeamGradeTableRows for why there aren't OverlayTriggers)
+   */
+   static readonly buildPlayerGradeTableRows: (p: PlayerProps) => GenericTableRow[] = ({
+      title, config, setConfig, comboTier, highTier, mediumTier, lowTier, player,
+      expandedView, possAsPct, factorMins, includeRapm
+   }) => {
+      const nameAsId = title.replace(/[^A-Za-z0-9_]/g, '');
+      const tiers = { //(handy LUT)
+         High: highTier,
+         Medium: mediumTier,
+         Low: lowTier,
+         Combo: comboTier
+      } as Record<string, DivisionStatistics | undefined>;
+
+      const gradeFormat = config.split(":")[0];
+      const tierStrTmp = config.split(":")?.[1] || "Combo";
+      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
+         //(if set tier doesn't exist just fallback)
+      const tierToUse = tiers[tierStr]; 
+
+      const linkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
+         onClick={(event) => { event.preventDefault(); setConfig(`${gradeFormat}:${tier}`); }}
+      >
+         {tier == "Combo" ? "D1" : tier}{tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
+      </a>;
+
+      const tooltipMap = {
+         Combo: <Tooltip id={`comboTooltip${nameAsId}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
+         High: <Tooltip id={`highTooltip${nameAsId}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
+         Medium: <Tooltip id={`mediumTooltip${nameAsId}`}>Compare each stat against the "medium tier" of D1 (mid/mid-high/mid-low majors, if in the T275)</Tooltip>,
+         Low: <Tooltip id={`lowTooltip${nameAsId}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
+      } as Record<string, any>;
+
+      const link = (tier: string) => (tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier);
+      
+      const topLine = <span className="small">{link("Combo")} | {link("High")} | {link("Medium")} | {link("Low")}</span>;
+
+      const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${nameAsId}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
+      const percentileShowTooltip = <Tooltip id={`percentileShowTooltip${nameAsId}`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+
+      const maybeBold = (bold: boolean, html: React.ReactNode) => bold ? <b>{html}</b> : html;
+      const bottomLine = <span className="small">
+         {maybeBold(gradeFormat == "rank", 
+               <a href={"#"} onClick={(event) => { event.preventDefault(); setConfig(`rank:${tierStrTmp}`); }}>Ranks</a>
+            )}
+         &nbsp;| {maybeBold(gradeFormat == "pct", 
+               <a href="#" onClick={(event) => { event.preventDefault(); setConfig(`pct:${tierStrTmp}`); }}>Pctiles</a>
+         )}
+      </span>;
+
+      const helpTooltip = <Tooltip id={`helpTooltip${nameAsId}`}>
+         High Tier: high majors, mid-high majors, plus any team in the T150<br/>
+         Medium Tier: mid/mid-high/mid-low majors, if in the T275<br/>
+         Low Tier: low/mid-low majors, or if outside the T250
+      </Tooltip>;
+      const helpOverlay = <OverlayTrigger placement="auto" overlay={helpTooltip}><b>(?)</b></OverlayTrigger>;
+
+      const playerPercentiles = tierToUse ? GradeUtils.buildPlayerPercentiles(tierToUse, player, _.keys(GradeUtils.playerFields), gradeFormat == "rank")  : {};
+
+      // Special field formatting:
+      const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
+      const percentileTooltip = <Tooltip id={`percentileTooltip${nameAsId}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+
+      (playerPercentiles as any).off_title = gradeFormat == "pct" ? 
+         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
+            <small><b>Off Pctiles</b></small>
+         </OverlayTrigger> 
+         :
+         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
+            <small><b>Off Equiv Ranks</b></small>
+         </OverlayTrigger>
+         ;
+      (playerPercentiles as any).def_title = gradeFormat == "pct" ? 
+         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
+            <small><b>Def Pctiles</b></small>
+         </OverlayTrigger> 
+         :
+         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
+            <small><b>Def Equiv Ranks</b></small>
+         </OverlayTrigger>
+         ;
+
+      const offPrefixFn = (key: string) => "off_" + key;
+      const offCellMetaFn = (key: string, val: any) => "off";
+      const defPrefixFn = (key: string) => "def_" + key;
+      const defCellMetaFn = (key: string, val: any) => "def";
+      const tableConfig = buildOnOffTable(CommonTableDefs.onOffIndividualTable(
+         expandedView, possAsPct, factorMins, includeRapm
+      ), playerBuilderInfo);
+      const tableData = [
+         GenericTableOps.buildTextRow(<span><small>Player Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
+         GenericTableOps.buildDataRow(playerPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
+      ].concat(expandedView ?
+         GenericTableOps.buildDataRow(playerPercentiles, defPrefixFn, defCellMetaFn, tableConfig) : []
+      ).concat([
+         GenericTableOps.buildRowSeparator()
+      ]);
       return tableData;
    };
 };
