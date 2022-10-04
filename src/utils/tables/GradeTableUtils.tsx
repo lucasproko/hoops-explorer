@@ -55,25 +55,26 @@ type TableBuilderInfo = {
 };
 
 /** Builds the team and player grade tables based on their config */
-const buildOnOffTable = (table: Record<string, GenericTableColProps>, config: TableBuilderInfo) => _.chain(table)
+const buildOnOffTable = (table: Record<string, GenericTableColProps>, config: TableBuilderInfo, player: boolean) => _.chain(table)
    .map((val, key) => {
+      const formatter = player ? GenericTableOps.approxRankOrHtmlFormatter : GenericTableOps.gradeOrHtmlFormatter;
       if (key == "title") {
-         return [ key, GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter) ];
+         return [ key, GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", formatter) ];
       } else if (_.startsWith(key, "sep")) {
          return [ key, val] as [string, GenericTableColProps];
       } else if (config.all_pct.has(key)) {
          return [ key, GenericTableOps.addDataCol(val.colName, "", 
-            CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter)
+            CbbColors.varPicker(CbbColors.all_pctile_freq), formatter)
          ];
        } else { // "falls back" to CbbColors.off_pctile_qual
          const picker = config.custom[key];
          if (!_.isNil(picker)) {
             return [ key, GenericTableOps.addDataCol(val.colName, "", 
-               picker, GenericTableOps.gradeOrHtmlFormatter)
+               picker, formatter)
             ];
          } else {
             return [ key, GenericTableOps.addDataCol(val.colName, "", 
-              CbbColors.varPicker(CbbColors.off_pctile_qual), GenericTableOps.gradeOrHtmlFormatter)
+              CbbColors.varPicker(CbbColors.off_pctile_qual), formatter)
             ];
          }
       }
@@ -90,11 +91,6 @@ const teamBuilderInfo = {
 /** Controls the formatting of the team grade table */
 const playerBuilderInfo = {
    custom: {
-      "adj_rtg": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
-      "adj_rapm": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
-      "adj_prod": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
-      "adj_rapm_margin": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
-      "adj_rapm_prod_margin": CbbColors.offOnlyPicker(...CbbColors.pctile_qual),
    },
    all_pct: new Set(["usage", "assist", "3pr", "2pmidr", "2primr" ])
 };
@@ -277,7 +273,7 @@ export class GradeTableUtils {
       const offCellMetaFn = (key: string, val: any) => "off";
       const defPrefixFn = (key: string) => "def_" + key;
       const defCellMetaFn = (key: string, val: any) => "def";
-      const tableConfig = buildOnOffTable(CommonTableDefs.onOffTable, teamBuilderInfo);
+      const tableConfig = buildOnOffTable(CommonTableDefs.onOffTable, teamBuilderInfo, false);
       const tableData = [
          GenericTableOps.buildTextRow(<span><small>Team Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
          GenericTableOps.buildDataRow(teamPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
@@ -353,20 +349,20 @@ export class GradeTableUtils {
 
       (playerPercentiles as any).off_title = gradeFormat == "pct" ? 
          <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-            <small><b>Off Pctiles</b></small>
+            <small><b>Pctiles</b></small>
          </OverlayTrigger> 
          :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <small><b>Off Equiv Ranks</b></small>
+            <small><b>Equiv Ranks</b></small>
          </OverlayTrigger>
          ;
       (playerPercentiles as any).def_title = gradeFormat == "pct" ? 
          <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-            <small><b>Def Pctiles</b></small>
+            <small></small>
          </OverlayTrigger> 
          :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <small><b>Def Equiv Ranks</b></small>
+            <small></small>
          </OverlayTrigger>
          ;
 
@@ -376,7 +372,7 @@ export class GradeTableUtils {
       const defCellMetaFn = (key: string, val: any) => "def";
       const tableConfig = buildOnOffTable(CommonTableDefs.onOffIndividualTable(
          expandedView, possAsPct, factorMins, includeRapm
-      ), playerBuilderInfo);
+      ), playerBuilderInfo, true);
       const tableData = [
          GenericTableOps.buildTextRow(<span><small>Player Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
          GenericTableOps.buildDataRow(playerPercentiles, offPrefixFn, offCellMetaFn, tableConfig),

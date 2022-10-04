@@ -24,14 +24,14 @@ export class GradeUtils {
       "off_adj_rapm_prod": undefined, "def_adj_rapm_prod": undefined,
       "off_usage": undefined,
       // Assists, TOs, steals, blocks, fouls
-      "off_ast": undefined,
+      "off_assist": undefined,
       "off_to": undefined,
       "def_to": undefined, //(actually def_stl)
       "def_2prim": undefined, //(actually def_blk)
       "def_ftr": undefined, // (FC/50) TODO invert
       // Rebounding:
-      "off_drb": undefined,
-      "def_drb": undefined,
+      "off_orb": undefined,
+      "def_orb": undefined,
       // Shooting % stats
       "off_efg": [ "off_team_poss_pct", 0.6 ],
       "off_3p": [ "total_off_3p_attempts", 60 ],
@@ -42,15 +42,18 @@ export class GradeUtils {
       "off_3pr": undefined,
       "off_2pmidr": undefined,
       "off_2primr": undefined,
-      "def_3pr": [ "total_off_3p_attempts", 60 ], //(assisted %s)
-      "def_2pmidr": [ "total_off_2pmid_attempts", 60 ],
-      "def_2primr": [ "total_off_2pim_attempts", 60 ],
-      //TODO: assisted% (will want so min criteria for that)
-      "off_ftr": [ "off_team_poss_pct", 0.6 ], //TODO: handle %
+      "off_3p_ast": [ "total_off_3p_attempts", 60 ], //(assisted %s)
+      "off_2prim_ast": [ "total_off_2pim_attempts", 60 ],
+      "off_ftr": [ "off_team_poss_pct", 0.6 ], //TODO: handle FT%
       // Other stylistic grades: assist breakdowns, transition, scramble etc
       //TODO
    };
 
+   // The totals we do want to keep because they are useful in deciding if grades are good
+   static readonly playerTotalsToKeep = new Set([
+      "total_off_3p_attempts", "total_off_2p_attempts", "total_off_2pmid_attempts", "total_off_2prim_attempts"
+   ]);
+ 
    /** Player fields has a few fields with very low dynamic range, so we'll treat these differently 
     * TODO: decide whether to do this, or have fewer giant arrays which get compressed down?
    */
@@ -258,13 +261,13 @@ export class GradeUtils {
             return array[0]! + midIndex - 1; //(as above but one back)
          } else if (val == midValMinus1) {
             return array[0]! + midIndex - 2;
-         } else if (val < midVal) { // Need a bigger jump downwards
+         } else if (val < midVal) { // (val < midValMinus1) ... Need a bigger jump downwards 
             if (midIndex == index2) {
                return array[0]!; // never go lower (by construction - we'd hit the previous LUT element)
             } else {
                return GradeUtils.binaryChop(array, val, index1, midIndex);
             }
-         } else { // Need a bigfer jump upwards
+         } else { // (val > midValPlus1)... Need a bigger jump upwards 
             if (midIndex == index1) { //(can't go any higher)
                return array[0]! + index2; 
             } else {
@@ -297,14 +300,17 @@ export class GradeUtils {
    /** Calculate the percentile of a given field */
    static getPercentile(divStats: DivisionStatistics, field: string, val: number, buildLutMissCache: boolean = false): Statistic | undefined {
       const divStatsField = divStats.tier_lut[field];
+      const compressionFactor = divStats.compression_factor || 1.0;
       if (divStatsField) {
          const lutMult = divStatsField.lutMult || (divStatsField.isPct ? 100 : 1);
          const lookupKey = (lutMult*val).toFixed(0);
          const lutArray = divStatsField.lut[lookupKey];
-         const minPctile = 1.0/(divStatsField.size);
+
+         const adjDivStatsFieldSize = compressionFactor*divStatsField.size;
+         const minPctile = 1.0/divStatsField.size;
 
          if (!lutArray && (val <= (divStatsField.min + 0.001))) {
-            return { value: minPctile, samples: divStatsField.size } as Statistic; //1st percentile
+            return { value: minPctile, samples: adjDivStatsFieldSize } as Statistic; //1st percentile
          } else if (!lutArray) {
             const spacesBetween = divStatsField.spaces_between || (
                buildLutMissCache ? GradeUtils.buildSpacesBetween(divStats, field) : undefined
@@ -315,8 +321,8 @@ export class GradeUtils {
             if (spacesBetween) {
                const spaceBetween = treeFind("gt", val, spacesBetween); //smallest entry which is bigger than val
                return _.isUndefined(spaceBetween) ? 
-                  { value: 1.00, samples: divStatsField.size } as Statistic : //100% percentile
-                  { value: spaceBetween.value, samples: divStatsField.size }
+                  { value: 1.00, samples: adjDivStatsFieldSize } as Statistic : //100% percentile
+                  { value: spaceBetween.value, samples: adjDivStatsFieldSize }
                   ;
             } else { //(OLD CODE, runs if haven't specified pre-build spaces_between - acts as FF on legacy code)
                // Either it's a split stat so doesn't appear in the LUT, or it's off the end of the chart
@@ -325,15 +331,15 @@ export class GradeUtils {
                   return (arr.length > 1) && arr[1]! > val;
                });
                if (closestLutArray) {
-                  return { value: Math.max(minPctile, (closestLutArray[0]! + 1)*minPctile), samples: divStatsField.size };
+                  return { value: Math.max(minPctile, (closestLutArray[0]! + 1)*minPctile), samples: adjDivStatsFieldSize };
                      //(+1 because we don't want index we want rank)               
                } else {
-                  return { value: 1.00, samples: divStatsField.size } as Statistic; //100% percentile
+                  return { value: 1.00, samples: adjDivStatsFieldSize } as Statistic; //100% percentile
                }
             }
          } else { //lutArray
             const offsetIndex = GradeUtils.binaryChop(lutArray, val, 1, lutArray.length - 1); //(minPctile is lowest)
-            return { value: Math.max(minPctile, (offsetIndex + 1)*minPctile), samples: divStatsField.size };
+            return { value: Math.max(minPctile, (offsetIndex + 1)*minPctile), samples: adjDivStatsFieldSize };
                //(+1 because we don't want index we want rank)
          }
       } else {
@@ -341,7 +347,7 @@ export class GradeUtils {
       }
    };
 
-   static readonly fieldsToInvert = {
+   static readonly teamFieldsToInvert = {
       off_to: true, def_to: true, 
       off_scramble_to: true, def_scramble_to: true, off_trans_to: true, def_trans_to: true, 
       // The higher the defensive SoS the higher the rank should be:
@@ -349,6 +355,10 @@ export class GradeUtils {
       // Frequency:
       def_net: true, def_assist: true, def_3pr: true, def_2pmidr: true, def_2primr: true,
       def_trans_3pr: true, def_scramble_3pr: true, 
+   } as Record<string, boolean>;
+
+   static readonly playerFieldsToInvert = {
+      off_to: true, def_to: true, def_orb: true, def_2prim: true
    } as Record<string, boolean>;
 
    static readonly combinedStat = { //(no off/def)
@@ -362,19 +372,21 @@ export class GradeUtils {
       ).map(key => {
          return (key == "def_net" ? "off_raw_net" : key);
       }).value();      
-      return GradeUtils.buildPercentiles(divStats, team, offDefFieldList, supportRank, buildLutMissCache);
+      return GradeUtils.buildPercentiles(divStats, team, offDefFieldList, GradeUtils.teamFieldsToInvert, supportRank, buildLutMissCache);
    }
 
    /** Calculate the percentile of all fields within a stat set */
    static buildPlayerPercentiles = (divStats: DivisionStatistics, team: PureStatSet, fieldList: string[], supportRank: boolean, buildLutMissCache: boolean = true): PureStatSet => {
-      return GradeUtils.buildPercentiles(divStats, team, fieldList, supportRank, buildLutMissCache);
+      const playerGrades = GradeUtils.buildPercentiles(divStats, team, fieldList, GradeUtils.playerFieldsToInvert, supportRank, buildLutMissCache);
+      playerGrades.off_drb = playerGrades.def_orb;
+      return playerGrades;
    }
 
    /** Calculate the percentile of all fields within a stat set */
-   static buildPercentiles = (divStats: DivisionStatistics, statSet: PureStatSet, fieldList: string[], supportRank: boolean, buildLutMissCache: boolean = false): PureStatSet => {
+   static buildPercentiles = (divStats: DivisionStatistics, statSet: PureStatSet, fieldList: string[], fieldsToInvert: Record<string, boolean>, supportRank: boolean, buildLutMissCache: boolean = false): PureStatSet => {
       const format = (f: string, s: Statistic | undefined) => {
          const isDef = f.startsWith("def_");
-         const isInverted = GradeUtils.fieldsToInvert[f] || false;
+         const isInverted = fieldsToInvert[f] || false;
          const invert = (!isDef && isInverted) || (isDef && !isInverted);
          const maxPct = 1 + 1.0/(s?.samples || 1); //(since 100% is rank 1)
          const maybeInvert = (invert) ?
