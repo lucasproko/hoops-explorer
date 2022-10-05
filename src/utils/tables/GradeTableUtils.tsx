@@ -50,7 +50,7 @@ type PlayerProps = {
 
 type TableBuilderInfo = {
    custom: Record<string, (val: any, valMeta: string) => string | undefined>,
-   all_pct: Set<string>
+   freq_pct: Set<string>
    // all others are off_pct_qual
 };
 
@@ -62,7 +62,7 @@ const buildOnOffTable = (table: Record<string, GenericTableColProps>, config: Ta
          return [ key, GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", formatter) ];
       } else if (_.startsWith(key, "sep")) {
          return [ key, val] as [string, GenericTableColProps];
-      } else if (config.all_pct.has(key)) {
+      } else if (config.freq_pct.has(key)) {
          return [ key, GenericTableOps.addDataCol(val.colName, "", 
             CbbColors.varPicker(CbbColors.all_pctile_freq), formatter)
          ];
@@ -85,14 +85,17 @@ const teamBuilderInfo = {
    custom: {
       "net": CbbColors.offOnlyPicker(...CbbColors.pctile_qual)
    },
-   all_pct: new Set(["assist", "3pr", "2pmidr", "2primr" ])
+   freq_pct: new Set(["assist", "3pr", "2pmidr", "2primr" ])
 };
 
 /** Controls the formatting of the team grade table */
 const playerBuilderInfo = {
    custom: {
+      "3pr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq), 
+      "2pmidr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq),
+      "2primr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq)
    },
-   all_pct: new Set(["usage", "assist", "3pr", "2pmidr", "2primr" ])
+   freq_pct: new Set([ "usage", "assist" ])
 };
 
 export type DivisionStatsCache = {
@@ -259,14 +262,14 @@ export class GradeTableUtils {
          ;
 
       if (gradeFormat == "pct") {
-         (teamPercentiles as any).def_net = _.isNumber(teamPercentiles.def_net?.value) 
-         ?  <small style={CommonTableDefs.getTextShadow(teamPercentiles.def_net, CbbColors.off_pctile_qual)}>
-               <i>{(100*teamPercentiles.def_net!.value!).toFixed(1)}</i>
+         (teamPercentiles as any).def_net = _.isNumber(teamPercentiles.off_raw_net?.value) 
+         ?  <small style={CommonTableDefs.getTextShadow(teamPercentiles.off_raw_net, CbbColors.off_pctile_qual)}>
+               <i>({(100*teamPercentiles.off_raw_net!.value!).toFixed(1)}%)</i>
             </small> : undefined;
       } else { //Rank
-         (teamPercentiles as any).def_net = _.isNumber(teamPercentiles.def_net?.value) 
-         ?  <span style={CommonTableDefs.getTextShadow(teamPercentiles.def_net, CbbColors.off_pctile_qual)}>
-               <i><small>(</small>{GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.def_net)}<small>)</small></i>
+         (teamPercentiles as any).def_net = _.isNumber(teamPercentiles.off_raw_net?.value) 
+         ?  <span style={CommonTableDefs.getTextShadow(teamPercentiles.off_raw_net, CbbColors.off_pctile_qual)}>
+               <i><small>(</small>{GenericTableOps.gradeOrHtmlFormatter(teamPercentiles.off_raw_net)}<small>)</small></i>
             </span> : undefined;
       }
 
@@ -344,6 +347,23 @@ export class GradeTableUtils {
 
       const playerPercentiles = tierToUse ? GradeUtils.buildPlayerPercentiles(tierToUse, player, _.keys(GradeUtils.playerFields), gradeFormat == "rank")  : {};
 
+      const maybeSmall = (node: React.ReactNode) => {
+         return gradeFormat == "pct" ? <small>{node}</small> : node;
+      }
+
+      if (playerPercentiles.off_3p_ast) {
+         const shadow = CommonTableDefs.getTextShadow(playerPercentiles.off_3p_ast, CbbColors.pctile_freq[0]);
+         (playerPercentiles as any).def_3pr = 
+            maybeSmall(<i style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_3p_ast)}</i>)
+      }
+      if (playerPercentiles.off_2prim_ast) {
+         const shadow = CommonTableDefs.getTextShadow(playerPercentiles.off_2prim_ast, CbbColors.pctile_freq[0]);
+         (playerPercentiles as any).def_2primr = 
+            maybeSmall(<i style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_2prim_ast)}</i>)
+      }
+
+      // Convert some fields
+
       // Special field formatting:
       const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
       const percentileTooltip = <Tooltip id={`percentileTooltip${nameAsId}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
@@ -357,15 +377,18 @@ export class GradeTableUtils {
             <small><b>Equiv Ranks</b></small>
          </OverlayTrigger>
          ;
-      (playerPercentiles as any).def_title = gradeFormat == "pct" ? 
-         <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-            <small></small>
-         </OverlayTrigger> 
-         :
-         <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <small></small>
-         </OverlayTrigger>
-         ;
+         
+      if (expandedView) {
+         const netRapmField = factorMins ? "off_adj_rapm_prod_margin" : "off_adj_rapm_margin";
+         const rapmMargin = playerPercentiles[netRapmField];
+         const shadow = CommonTableDefs.getTextShadow(rapmMargin, CbbColors.off_pctile_qual, "20px", 4);
+         const rapmText = rapmMargin ?
+            <span><small><b>net</b>: </small>
+               {maybeSmall(<span style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}{gradeFormat == "pct" ? "%": ""}</span>)}               
+            </span>
+            : null;
+         (playerPercentiles as any).def_title = rapmText;
+      }
 
       const offPrefixFn = (key: string) => "off_" + key;
       const offCellMetaFn = (key: string, val: any) => "off";
@@ -380,6 +403,7 @@ export class GradeTableUtils {
          GenericTableOps.buildDataRow(playerPercentiles, defPrefixFn, defCellMetaFn, tableConfig) : []
       ).concat([
          GenericTableOps.buildTextRow(<span><small>{title} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
+         GenericTableOps.buildRowSeparator(),
       ]);
       return tableData;
    };

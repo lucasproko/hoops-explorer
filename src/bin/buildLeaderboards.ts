@@ -662,13 +662,13 @@ export async function main() {
               extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
             };
             const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod" ], k => [ `off_${k}`, `def_${k}` ]);
-            const otherRapmFields = [ "adj_rapm_margin", "adj_rapm_prod_margin" ];
+            const otherRapmFields = [ "off_adj_rapm_margin", "off_adj_rapm_prod_margin" ];
             if ("all" == label) {
               GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
               GradeUtils.buildAndInjectPlayerDivisionStats({
                 off_team_poss_pct: { value: player.off_team_poss_pct?.value || 0 },
-                adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
-                adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
+                off_adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
+                off_adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
               }, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
             }
     

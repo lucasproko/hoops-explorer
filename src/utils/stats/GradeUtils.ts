@@ -22,7 +22,7 @@ export class GradeUtils {
       "off_adj_prod": undefined, "def_adj_prod": undefined,
       "off_adj_rapm": undefined, "def_adj_rapm": undefined,
       "off_adj_rapm_prod": undefined, "def_adj_rapm_prod": undefined,
-      "adj_rapm_margin": undefined, "adj_rapm_prod_margin": undefined, 
+      "off_adj_rapm_margin": undefined, "off_adj_rapm_prod_margin": undefined, //(when writing from build_leaderboards)
       "off_usage": undefined,
       // Assists, TOs, steals, blocks, fouls
       "off_assist": undefined,
@@ -44,7 +44,7 @@ export class GradeUtils {
       "off_2pmidr": undefined,
       "off_2primr": undefined,
       "off_3p_ast": [ "total_off_3p_attempts", 60 ], //(assisted %s)
-      "off_2prim_ast": [ "total_off_2pim_attempts", 60 ],
+      "off_2prim_ast": [ "total_off_2prim_attempts", 60 ],
       "off_ftr": [ "off_team_poss_pct", 0.6 ], //TODO: handle FT%
       // Other stylistic grades: assist breakdowns, transition, scramble etc
       //TODO
@@ -359,7 +359,7 @@ export class GradeUtils {
    } as Record<string, boolean>;
 
    static readonly playerFieldsToInvert = {
-      off_to: true, def_to: true, def_orb: true, def_2prim: true
+      off_to: true, def_to: true, def_orb: true, def_2prim: true, off_3p_ast: true, off_2prim_ast: true,
    } as Record<string, boolean>;
 
    static readonly combinedStat = { //(no off/def)
@@ -373,6 +373,10 @@ export class GradeUtils {
       ).map(key => {
          return (key == "def_net" ? "off_raw_net" : key);
       }).value();      
+
+      //(hack to fix field naming funkiness)      
+      divStats.tier_lut.off_raw_net = divStats.tier_lut.def_net;
+
       return GradeUtils.buildPercentiles(divStats, team, offDefFieldList, GradeUtils.teamFieldsToInvert, supportRank, buildLutMissCache);
    }
 

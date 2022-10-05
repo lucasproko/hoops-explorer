@@ -539,7 +539,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             //(note don't copy override across for defense, currently there are no defensive overrides and on-ball adjustments are shown elsewhere)
 
-            if (!expandedView) {
+            if (!expandedView || showGrades) {
               const adjRapmMargin: Statistic | undefined = (rapm.off_adj_rapm && rapm.def_adj_rapm) ? { 
                   value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) 
               } : undefined;
