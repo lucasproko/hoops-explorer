@@ -618,7 +618,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       (_.isNil(p.on?.off_title) ? 0 : 1) +
       (_.isNil(p.off?.off_title) ? 0 : 1) +
       ((skipBaseline || _.isNil(p.baseline?.off_title)) ? 0 : 1);
-    const currentRowInc = entriesPerPlayer*(expandedView ? 2 : 1); //(row or pair-of-rows)
+    const gradesMult = showGrades ? (expandedView ? 2 : 3) : 1;
+    const currentRowInc = gradesMult*entriesPerPlayer*(expandedView ? 2 : 1); //(row or pair-of-rows)
     if ((currentRowCount < 10) && (currentRowCount + currentRowInc >= 10)) {
       currentRowCount = 10; // always lock to start of new player
     } else {
