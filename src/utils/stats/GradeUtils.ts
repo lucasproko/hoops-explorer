@@ -22,6 +22,7 @@ export class GradeUtils {
       "off_adj_prod": undefined, "def_adj_prod": undefined,
       "off_adj_rapm": undefined, "def_adj_rapm": undefined,
       "off_adj_rapm_prod": undefined, "def_adj_rapm_prod": undefined,
+      "adj_rapm_margin": undefined, "adj_rapm_prod_margin": undefined, 
       "off_usage": undefined,
       // Assists, TOs, steals, blocks, fouls
       "off_assist": undefined,

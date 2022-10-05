@@ -633,6 +633,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] : [],
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
+        showGrades && p.on? 
+          GradeTableUtils.buildPlayerGradeTableRows({
+            title: `A Lineups [${p.key}] Grades`,
+            config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            player: p.on,
+            expandedView, possAsPct, factorMins, includeRapm: calcRapm
+          }) : [],
         showDiagMode && p.on?.diag_off_rtg && p.on?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -662,6 +671,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] : [],
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
+        showGrades && p.off? 
+          GradeTableUtils.buildPlayerGradeTableRows({
+            title: `B Lineups [${p.key}] Grades`,
+            config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            player: p.off,
+            expandedView, possAsPct, factorMins, includeRapm: calcRapm
+          }) : [],
         showDiagMode && p.off?.diag_off_rtg && p.off?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -693,7 +711,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.baseline? 
           GradeTableUtils.buildPlayerGradeTableRows({
-            title: "baseline",
+            title: `Baseline [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
             mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,

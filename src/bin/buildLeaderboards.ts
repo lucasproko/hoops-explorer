@@ -163,7 +163,7 @@ const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "VCU" ]) //, "Dayton", "Fordham" ]);
+//const testTeamFilter = new Set([ "Kansas St." ]) //, "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -190,6 +190,23 @@ const averagePossInCompletedYear = (inYear == DateUtils.covidSeason) ? 1000 : 16
 /** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
 const injectAllRapmForNbaFolks = false;
 
+/** Handy filename util */
+const getTeamFilename = (team: string) => {
+  return encodeURIComponent(team).replace(/%20/g, "+").replace(/[(]/g, "%28").replace(/[)]/g, "%29").replace(/'/g, "%27");
+  //RequestUtils.fixRosterUrl(team, false);
+};
+/** Handy filename util - roster */
+const getRosterFilename = (team: string, teamYear: string) => {
+  return `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${getTeamFilename(team)}.json`;
+};
+const getOnBallDefenseFilename = (team: string, teamYear: string) => {
+  return `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(teamYear || "").substring(0, 4)}/${getTeamFilename(team)}.txt`;
+};
+
+const teamListChain = (inYear == "Extra") ?
+  _.chain(AvailableTeams.extraTeamsBase) :
+  _.chain(AvailableTeams.byName).values().flatten();
+
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
   const globalGenderYearKey = `${inGender}_${inYear}`;
@@ -210,10 +227,6 @@ export async function main() {
   bubbleDefenseInfo = bubbleRankInfo.map(o => o["stats.adj_def.value"] || 0);
   eliteOffenseInfo = eliteRankInfo.map(o => o["stats.adj_off.value"] || 0);
   eliteDefenseInfo = eliteRankInfo.map(o => o["stats.adj_def.value"] || 0);
-
-  const teamListChain = (inYear == "Extra") ?
-    _.chain(AvailableTeams.extraTeamsBase) :
-    _.chain(AvailableTeams.byName).values().flatten();
 
   /** If any teams aren't in the conf then */
   const mutableIncompleteConfs = new Set() as Set<string>;
@@ -343,9 +356,11 @@ export async function main() {
 
       // Also we're going to try fetching the roster
 
+      const rosterInfoFile = getRosterFilename(team, teamYear);
       const rosterInfoJson = await fs.readFile(
-        `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.json`
+        rosterInfoFile
       ).then((s: any) => JSON.parse(s)).catch((err: any) => {
+        console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
         return undefined;
       });
       //(don't use height_in for women)
@@ -500,7 +515,7 @@ export async function main() {
       // Ready in on-ball defense if it exists
       var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
       if (("all" == label) && (inGender == "Men")) {
-        const onBallDefenseLoc = `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.txt`;
+        const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);        
         const onBallDefenseText = await fs.readFile(
           onBallDefenseLoc
         ).then((s: any) => s.toString()).catch((err: any) => {
@@ -599,7 +614,7 @@ export async function main() {
                 !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
                 !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
-                !_.startsWith(t2[0], "total_") &&
+                !(_.startsWith(t2[0], "total_") && !GradeUtils.playerTotalsToKeep.has(t2[0])) &&
                 !_.endsWith(t2[0], "_target") && !_.endsWith(t2[0], "_source") &&
                 (t2[0] != "player_array") && (t2[0] != "roster")
               )
@@ -646,9 +661,15 @@ export async function main() {
               override: rapmP.rapm?.def_adj_ppp?.override,
               extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
             };
-            const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod", "adj_rapm_prod"  ], k => [ `off_${k}`, `def_${k}` ]);
+            const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod" ], k => [ `off_${k}`, `def_${k}` ]);
+            const otherRapmFields = [ "adj_rapm_margin", "adj_rapm_prod_margin" ];
             if ("all" == label) {
               GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
+              GradeUtils.buildAndInjectPlayerDivisionStats({
+                off_team_poss_pct: { value: player.off_team_poss_pct?.value || 0 },
+                adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
+                adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
+              }, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
             }
     
             // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
@@ -843,6 +864,35 @@ export async function combineDivisionStatsFiles(player: Boolean = false) {
 if (!testMode) {
 
   if (inTier == "Combo") {
+
+    // Check files:
+    const checkOnBall = true; //(normally false because we don't always expect it)
+    console.log(`(Checking roster and maybe [${checkOnBall}] on-ball filenames)`);
+    teamListChain.filter(
+      team => ((testTeamFilter == undefined) || testTeamFilter.has(team.team))
+    ).filter(team => {
+      return team.gender == inGender &&
+        ((inYear == "Extra") || (team.year == inYear));
+    }).forEach(async (team: AvailableTeamMeta, index: number) => {
+      if (inTier == "Combo") {
+        // For info check roster and on-ball defense:
+        const rosterInfoFile = getRosterFilename(team.team, team.year);
+        await fs.readFile(
+          rosterInfoFile
+        ).catch((err: any) => {
+          console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
+        });
+        const onBallDefenseFile = getOnBallDefenseFilename(team.team, team.year);
+        await fs.readFile(
+          onBallDefenseFile
+        ).catch((err: any) => {
+          console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
+        });
+      }
+    }).value();
+  
+    // Now actual processing:
+    console.log(`(Combining different tiers' stats)`);
     combineDivisionStatsFiles(false).then(async dummy => {
       return combineDivisionStatsFiles(true); //(team==false then players==true)
     }).then(async dummy => {

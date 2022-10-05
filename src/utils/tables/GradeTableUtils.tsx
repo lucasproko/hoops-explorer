@@ -165,6 +165,7 @@ export class GradeTableUtils {
       setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
       const nameAsId = setName.replace(/[^A-Za-z0-9_]/g, '');
+      const title = setName == "on" ? "A Lineups" : (setName == "off" ? "B Lineups" : "Baseline");
       const tiers = { //(handy LUT)
          High: highTier,
          Medium: mediumTier,
@@ -275,10 +276,10 @@ export class GradeTableUtils {
       const defCellMetaFn = (key: string, val: any) => "def";
       const tableConfig = buildOnOffTable(CommonTableDefs.onOffTable, teamBuilderInfo, false);
       const tableData = [
-         GenericTableOps.buildTextRow(<span><small>Team Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
+         GenericTableOps.buildRowSeparator(),
          GenericTableOps.buildDataRow(teamPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
          GenericTableOps.buildDataRow(teamPercentiles, defPrefixFn, defCellMetaFn, tableConfig),
-         GenericTableOps.buildRowSeparator()
+         GenericTableOps.buildTextRow(<span><small>{title} Team Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
       ];
       return tableData;
    };
@@ -374,12 +375,11 @@ export class GradeTableUtils {
          expandedView, possAsPct, factorMins, includeRapm
       ), playerBuilderInfo, true);
       const tableData = [
-         GenericTableOps.buildTextRow(<span><small>Player Grades {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
          GenericTableOps.buildDataRow(playerPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
       ].concat(expandedView ?
          GenericTableOps.buildDataRow(playerPercentiles, defPrefixFn, defCellMetaFn, tableConfig) : []
       ).concat([
-         GenericTableOps.buildRowSeparator()
+         GenericTableOps.buildTextRow(<span><small>{title} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
       ]);
       return tableData;
    };
