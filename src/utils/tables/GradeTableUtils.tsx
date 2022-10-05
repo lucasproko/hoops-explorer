@@ -355,7 +355,7 @@ export class GradeTableUtils {
       }
       GradeUtils.playerFieldsWithExtraCriteria.forEach(field => {
          const criteriaInfo = GradeUtils.playerFields[field];
-         if (criteriaInfo && !GradeUtils.meetsExtraCriterion(player, criteriaInfo)) {
+         if (criteriaInfo && playerPercentiles[field] && !GradeUtils.meetsExtraCriterion(player, criteriaInfo)) {
             const criteriaField = criteriaInfo[0];
             const criteriaVal = criteriaInfo[1];
             const actualVal = player[criteriaField]?.value || 0;
