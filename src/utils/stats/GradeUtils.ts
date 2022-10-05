@@ -22,7 +22,7 @@ export class GradeUtils {
       "off_adj_prod": undefined, "def_adj_prod": undefined,
       "off_adj_rapm": undefined, "def_adj_rapm": undefined,
       "off_adj_rapm_prod": undefined, "def_adj_rapm_prod": undefined,
-      "off_adj_rapm_margin": undefined, "off_adj_rapm_prod_margin": undefined, //(when writing from build_leaderboards)
+      "off_adj_rapm_margin": undefined, "off_adj_rapm_prod_margin": undefined,
       "off_usage": undefined,
       // Assists, TOs, steals, blocks, fouls
       "off_assist": undefined,
@@ -49,6 +49,14 @@ export class GradeUtils {
       // Other stylistic grades: assist breakdowns, transition, scramble etc
       //TODO
    };
+   /** Subset of playerFields which have extra criteria */
+   static readonly playerFieldsWithExtraCriteria = [ "off_efg", "off_3p", "off_2p", "off_2prim", "off_3p_ast", "off_2prim_ast", "off_ftr" ];
+
+   /** Quick util to check if player stats  */
+   static readonly meetsExtraCriterion = (playerStats: PureStatSet, criterionInfo: QualifyingCriterion) => {
+      const [ field, criterion ] = criterionInfo;
+      return ((playerStats[field]?.value || 0) >= criterion);
+   }
 
    // The totals we do want to keep because they are useful in deciding if grades are good
    static readonly playerTotalsToKeep = new Set([
@@ -164,8 +172,7 @@ export class GradeUtils {
             if (!value) {
                return [ key ];
             } else { // Check if the qualifying criteria are met for each field
-               const [ field, criterion ] = value;
-               return ((playerStats[field]?.value || 0) >= criterion) ? [ key ] : [];
+               return GradeUtils.meetsExtraCriterion(playerStats, value) ? [ key ] : [];
             }
          });
          fieldChain.forEach(f => updateForField(f, playerStats)).value();

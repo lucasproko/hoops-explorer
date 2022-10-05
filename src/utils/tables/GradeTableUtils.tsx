@@ -347,19 +347,55 @@ export class GradeTableUtils {
 
       const playerPercentiles = tierToUse ? GradeUtils.buildPlayerPercentiles(tierToUse, player, _.keys(GradeUtils.playerFields), gradeFormat == "rank")  : {};
 
+      // Check whether fields have sufficient info to be displayed without a warning
+      const possPct = player.off_team_poss_pct?.value || 0;
+      if (playerPercentiles.off_team_poss_pct && (possPct < GradeUtils.minPossPctForInclusion)) {
+         playerPercentiles.off_team_poss_pct.extraInfo = `Player poss% sits under qualifying criteria of [${(100*GradeUtils.minPossPctForInclusion).toFixed(0)}%], ` +
+            `treat all fields' ranks/percentiles as unreliable.`;
+      }
+      GradeUtils.playerFieldsWithExtraCriteria.forEach(field => {
+         const criteriaInfo = GradeUtils.playerFields[field];
+         if (criteriaInfo && !GradeUtils.meetsExtraCriterion(player, criteriaInfo)) {
+            const criteriaField = criteriaInfo[0];
+            const criteriaVal = criteriaInfo[1];
+            const actualVal = player[criteriaField]?.value || 0;
+            const criteriaIsPct = criteriaVal <= 1.0;
+            const criteriaValStr = (criteriaIsPct ? (criteriaVal*100) : criteriaVal).toFixed(0) + (criteriaIsPct ? "%" : "");
+            const actualValStr = (criteriaIsPct ? (actualVal*100) : actualVal).toFixed(0) + (criteriaIsPct ? "%" : "");
+            playerPercentiles[field].extraInfo = `This grade is based on insufficient data ([${criteriaField}]: [${actualValStr}] < [${criteriaValStr}]), treat as unreliable.`;
+         }
+      })
+
       const maybeSmall = (node: React.ReactNode) => {
          return gradeFormat == "pct" ? <small>{node}</small> : node;
+      }
+      const maybeWithExtraInfo = (node: React.ReactElement, field: string) => {
+         const extraInfo = playerPercentiles[field]?.extraInfo;
+         if (extraInfo) {
+            const extraInfoTooltip = <Tooltip id={`extraInfo${field}${nameAsId}`}>{extraInfo}</Tooltip>;
+            return <OverlayTrigger placement="auto" overlay={extraInfoTooltip}>
+               <span>{node}<small><sup className="infoBadge"></sup></small></span>
+            </OverlayTrigger>; 
+         } else {
+            return node;
+         }
       }
 
       if (playerPercentiles.off_3p_ast) {
          const shadow = CommonTableDefs.getTextShadow(playerPercentiles.off_3p_ast, CbbColors.pctile_freq[0]);
          (playerPercentiles as any).def_3pr = 
-            maybeSmall(<i style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_3p_ast)}</i>)
+            _.chain(<i style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_3p_ast)}</i>)
+            .thru(n => maybeWithExtraInfo(n, "off_3p_ast"))
+            .thru(n => maybeSmall(n))
+            .value()
       }
       if (playerPercentiles.off_2prim_ast) {
          const shadow = CommonTableDefs.getTextShadow(playerPercentiles.off_2prim_ast, CbbColors.pctile_freq[0]);
          (playerPercentiles as any).def_2primr = 
-            maybeSmall(<i style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_2prim_ast)}</i>)
+            _.chain(<i style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(playerPercentiles.off_2prim_ast)}</i>)
+            .thru(n => maybeWithExtraInfo(n, "off_2prim_ast"))
+            .thru(n => maybeSmall(n))
+            .value()
       }
 
       // Convert some fields
