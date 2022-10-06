@@ -55,11 +55,15 @@ type TableBuilderInfo = {
 };
 
 /** Builds the team and player grade tables based on their config */
-const buildOnOffTable = (table: Record<string, GenericTableColProps>, config: TableBuilderInfo, player: boolean) => _.chain(table)
+const buildGradesTable = (table: Record<string, GenericTableColProps>, config: TableBuilderInfo, player: boolean, expandedView: boolean = false) => _.chain(table)
    .map((val, key) => {
       const formatter = player ? GenericTableOps.approxRankOrHtmlFormatter : GenericTableOps.gradeOrHtmlFormatter;
       if (key == "title") {
-         return [ key, GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", formatter) ];
+         return [ key, 
+            (expandedView && player) ?
+               GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "", formatter) 
+               : GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", formatter) 
+         ];
       } else if (_.startsWith(key, "sep")) {
          return [ key, val] as [string, GenericTableColProps];
       } else if (config.freq_pct.has(key)) {
@@ -277,7 +281,7 @@ export class GradeTableUtils {
       const offCellMetaFn = (key: string, val: any) => "off";
       const defPrefixFn = (key: string) => "def_" + key;
       const defCellMetaFn = (key: string, val: any) => "def";
-      const tableConfig = buildOnOffTable(CommonTableDefs.onOffTable, teamBuilderInfo, false);
+      const tableConfig = buildGradesTable(CommonTableDefs.onOffTable, teamBuilderInfo, false);
       const tableData = [
          GenericTableOps.buildRowSeparator(),
          GenericTableOps.buildDataRow(teamPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
@@ -404,35 +408,36 @@ export class GradeTableUtils {
       const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
       const percentileTooltip = <Tooltip id={`percentileTooltip${nameAsId}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
 
+
+      const netInfo = _.thru(expandedView, (__) => {
+         if (expandedView) {
+            const netRapmField = factorMins ? "off_adj_rapm_prod_margin" : "off_adj_rapm_margin";
+            const rapmMargin = playerPercentiles[netRapmField];
+            const shadow = CommonTableDefs.getTextShadow(rapmMargin, CbbColors.off_pctile_qual, "20px", 4);
+            return rapmMargin ?
+               <span><small><b>net</b>: </small>
+                  {maybeSmall(<span style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}{gradeFormat == "pct" ? "%": ""}</span>)}               
+               </span>
+               : null;
+         }
+      });
       (playerPercentiles as any).off_title = gradeFormat == "pct" ? 
          <OverlayTrigger placement="auto" overlay={percentileTooltip}>
-            <small><b>Pctiles</b></small>
+            <div><small><b>Pctiles</b></small>{netInfo ? <br/> : null}{netInfo}</div>
          </OverlayTrigger> 
          :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <small><b>Equiv Ranks</b></small>
+            <div><small><b>Equiv Ranks</b></small>{netInfo ? <br/> : null}{netInfo}</div>
          </OverlayTrigger>
          ;
          
-      if (expandedView) {
-         const netRapmField = factorMins ? "off_adj_rapm_prod_margin" : "off_adj_rapm_margin";
-         const rapmMargin = playerPercentiles[netRapmField];
-         const shadow = CommonTableDefs.getTextShadow(rapmMargin, CbbColors.off_pctile_qual, "20px", 4);
-         const rapmText = rapmMargin ?
-            <span><small><b>net</b>: </small>
-               {maybeSmall(<span style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}{gradeFormat == "pct" ? "%": ""}</span>)}               
-            </span>
-            : null;
-         (playerPercentiles as any).def_title = rapmText;
-      }
-
       const offPrefixFn = (key: string) => "off_" + key;
       const offCellMetaFn = (key: string, val: any) => "off";
       const defPrefixFn = (key: string) => "def_" + key;
       const defCellMetaFn = (key: string, val: any) => "def";
-      const tableConfig = buildOnOffTable(CommonTableDefs.onOffIndividualTable(
+      const tableConfig = buildGradesTable(CommonTableDefs.onOffIndividualTable(
          expandedView, possAsPct, factorMins, includeRapm
-      ), playerBuilderInfo, true);
+      ), playerBuilderInfo, true, expandedView);
       const tableData = [
          GenericTableOps.buildDataRow(playerPercentiles, offPrefixFn, offCellMetaFn, tableConfig),
       ].concat(expandedView ?

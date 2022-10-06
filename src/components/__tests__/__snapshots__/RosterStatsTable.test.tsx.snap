@@ -26108,11 +26108,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -26767,11 +26769,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -27429,11 +27433,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -28091,11 +28097,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -34125,7 +34133,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -34137,11 +34144,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -34466,7 +34475,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -34478,11 +34486,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -35357,7 +35367,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -35369,11 +35378,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -35698,7 +35709,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -35710,11 +35720,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -36592,7 +36604,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -36604,11 +36615,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -36933,7 +36946,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -36945,11 +36957,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -37827,7 +37841,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -37839,11 +37852,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
@@ -38168,7 +38183,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
-                  "def_title": null,
                   "off_title": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38180,11 +38194,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                     }
                     placement="auto"
                   >
-                    <small>
-                      <b>
-                        Equiv Ranks
-                      </b>
-                    </small>
+                    <div>
+                      <small>
+                        <b>
+                          Equiv Ranks
+                        </b>
+                      </small>
+                    </div>
                   </OverlayTrigger>,
                 },
                 "kind": "data-row",
