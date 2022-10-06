@@ -620,7 +620,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
           <b
             style={
               Object {
-                "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
+                "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
               }
             }
           >
@@ -634,7 +634,7 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
             <b
               style={
                 Object {
-                  "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                  "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
                 }
               }
             >

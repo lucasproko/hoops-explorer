@@ -1021,7 +1021,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -1627,7 +1627,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -2236,7 +2236,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -2832,7 +2832,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -3431,7 +3431,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -4027,7 +4027,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -4626,7 +4626,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
                                         }
                                       }
                                     >
@@ -5222,7 +5222,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
                                         }
                                       }
                                     >
@@ -5821,7 +5821,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -6414,7 +6414,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -7025,7 +7025,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -7627,7 +7627,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -8232,7 +8232,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -8835,7 +8835,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -9441,7 +9441,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -10059,7 +10059,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -10680,7 +10680,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #168b16,0px 0px 10px #168b16",
+                                          "textShadow": "0px 0px 15px #168b16,0px 0px 15px #168b16,0px 0px 15px #168b16",
                                         }
                                       }
                                     >
@@ -11278,7 +11278,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #168b16,0px 0px 10px #168b16",
+                                          "textShadow": "0px 0px 15px #168b16,0px 0px 15px #168b16,0px 0px 15px #168b16",
                                         }
                                       }
                                     >
@@ -11879,7 +11879,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -12475,7 +12475,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -14295,7 +14295,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -14910,7 +14910,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -15528,7 +15528,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -16137,7 +16137,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -16749,7 +16749,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -17354,7 +17354,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -17962,7 +17962,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #1d8e1d,0px 0px 10px #1d8e1d",
+                                          "textShadow": "0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d",
                                         }
                                       }
                                     >
@@ -18564,7 +18564,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #1d8e1d,0px 0px 10px #1d8e1d",
+                                          "textShadow": "0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d",
                                         }
                                       }
                                     >
@@ -19169,7 +19169,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -19774,7 +19774,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -20397,7 +20397,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
                                         }
                                       }
                                     >
@@ -21002,7 +21002,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
                                         }
                                       }
                                     >
@@ -21610,7 +21610,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -22212,7 +22212,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -22817,7 +22817,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #269326,0px 0px 10px #269326",
+                                          "textShadow": "0px 0px 15px #269326,0px 0px 15px #269326,0px 0px 15px #269326",
                                         }
                                       }
                                     >
@@ -23429,7 +23429,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #269326,0px 0px 10px #269326",
+                                          "textShadow": "0px 0px 15px #269326,0px 0px 15px #269326,0px 0px 15px #269326",
                                         }
                                       }
                                     >
@@ -24044,7 +24044,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3fa03f,0px 0px 10px #3fa03f",
+                                          "textShadow": "0px 0px 15px #3fa03f,0px 0px 15px #3fa03f,0px 0px 15px #3fa03f",
                                         }
                                       }
                                     >
@@ -24652,7 +24652,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3fa03f,0px 0px 10px #3fa03f",
+                                          "textShadow": "0px 0px 15px #3fa03f,0px 0px 15px #3fa03f,0px 0px 15px #3fa03f",
                                         }
                                       }
                                     >
@@ -25263,7 +25263,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #379b37,0px 0px 10px #379b37",
+                                          "textShadow": "0px 0px 15px #379b37,0px 0px 15px #379b37,0px 0px 15px #379b37",
                                         }
                                       }
                                     >
@@ -25865,7 +25865,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #379b37,0px 0px 10px #379b37",
+                                          "textShadow": "0px 0px 15px #379b37,0px 0px 15px #379b37,0px 0px 15px #379b37",
                                         }
                                       }
                                     >
@@ -26485,7 +26485,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #2c962c,0px 0px 10px #2c962c",
+                                          "textShadow": "0px 0px 15px #2c962c,0px 0px 15px #2c962c,0px 0px 15px #2c962c",
                                         }
                                       }
                                     >
@@ -27100,7 +27100,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #2c962c,0px 0px 10px #2c962c",
+                                          "textShadow": "0px 0px 15px #2c962c,0px 0px 15px #2c962c,0px 0px 15px #2c962c",
                                         }
                                       }
                                     >
@@ -27718,7 +27718,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #359a35,0px 0px 10px #359a35",
+                                          "textShadow": "0px 0px 15px #359a35,0px 0px 15px #359a35,0px 0px 15px #359a35",
                                         }
                                       }
                                     >
@@ -28324,7 +28324,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #359a35,0px 0px 10px #359a35",
+                                          "textShadow": "0px 0px 15px #359a35,0px 0px 15px #359a35,0px 0px 15px #359a35",
                                         }
                                       }
                                     >
@@ -28933,7 +28933,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ac57,0px 0px 10px #57ac57",
+                                          "textShadow": "0px 0px 15px #57ac57,0px 0px 15px #57ac57,0px 0px 15px #57ac57",
                                         }
                                       }
                                     >
@@ -29535,7 +29535,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ac57,0px 0px 10px #57ac57",
+                                          "textShadow": "0px 0px 15px #57ac57,0px 0px 15px #57ac57,0px 0px 15px #57ac57",
                                         }
                                       }
                                     >
@@ -30140,7 +30140,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #158a15,0px 0px 10px #158a15",
+                                          "textShadow": "0px 0px 15px #158a15,0px 0px 15px #158a15,0px 0px 15px #158a15",
                                         }
                                       }
                                     >
@@ -30739,7 +30739,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #158a15,0px 0px 10px #158a15",
+                                          "textShadow": "0px 0px 15px #158a15,0px 0px 15px #158a15,0px 0px 15px #158a15",
                                         }
                                       }
                                     >
@@ -31341,7 +31341,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #6eb76e,0px 0px 10px #6eb76e",
+                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
                                         }
                                       }
                                     >
@@ -31940,7 +31940,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #6eb76e,0px 0px 10px #6eb76e",
+                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
                                         }
                                       }
                                     >
@@ -33763,7 +33763,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -34369,7 +34369,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -35013,7 +35013,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -35609,7 +35609,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -36243,7 +36243,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -36839,7 +36839,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -37473,7 +37473,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
                                         }
                                       }
                                     >
@@ -38069,7 +38069,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #3c9e3c,0px 0px 10px #3c9e3c",
+                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
                                         }
                                       }
                                     >
@@ -38703,7 +38703,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -39296,7 +39296,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -39927,7 +39927,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -40529,7 +40529,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -41169,7 +41169,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -41772,7 +41772,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -42413,7 +42413,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -43031,7 +43031,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -43687,7 +43687,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #168b16,0px 0px 10px #168b16",
+                                          "textShadow": "0px 0px 15px #168b16,0px 0px 15px #168b16,0px 0px 15px #168b16",
                                         }
                                       }
                                     >
@@ -44285,7 +44285,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #168b16,0px 0px 10px #168b16",
+                                          "textShadow": "0px 0px 15px #168b16,0px 0px 15px #168b16,0px 0px 15px #168b16",
                                         }
                                       }
                                     >
@@ -44921,7 +44921,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >
@@ -45517,7 +45517,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                         }
                                       }
                                     >

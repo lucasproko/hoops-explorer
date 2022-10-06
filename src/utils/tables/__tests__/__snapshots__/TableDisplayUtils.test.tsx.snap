@@ -491,7 +491,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
   def_2pmidr: <small
     style={
       Object {
-        "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+        "textShadow": "0px 0px 15px #add8e6,0px 0px 15px #add8e6,0px 0px 15px #add8e6",
       }
     }
   >
@@ -504,7 +504,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
   def_2primr: <small
     style={
       Object {
-        "textShadow": "0px 0px 10px #e0f0f5,0px 0px 10px #e0f0f5",
+        "textShadow": "0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5",
       }
     }
   >
@@ -517,7 +517,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
   def_3pr: <small
     style={
       Object {
-        "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
       }
     }
   >
@@ -590,7 +590,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
   def_2pmidr: <small
     style={
       Object {
-        "textShadow": "0px 0px 10px #add8e6,0px 0px 10px #add8e6",
+        "textShadow": "0px 0px 15px #add8e6,0px 0px 15px #add8e6,0px 0px 15px #add8e6",
       }
     }
   >
@@ -603,7 +603,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
   def_2primr: <small
     style={
       Object {
-        "textShadow": "0px 0px 10px #e0f0f5,0px 0px 10px #e0f0f5",
+        "textShadow": "0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5",
       }
     }
   >
@@ -616,7 +616,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
   def_3pr: <small
     style={
       Object {
-        "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
       }
     }
   >
