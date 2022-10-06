@@ -3297,6 +3297,409 @@ Array [
 ]
 `;
 
+exports[`buildLeaderboards buildLeaderboards - main / division player stats 1`] = `
+Object {
+  "compression_factor": 3,
+  "dedup_sample_size": 2,
+  "dedup_samples": Object {
+    "def_2prim": Array [
+      0.005065856129685917,
+    ],
+    "def_adj_prod": Array [
+      -1.93392724437384,
+    ],
+    "def_adj_rtg": Array [
+      -2.7010084533838667,
+    ],
+    "def_ftr": Array [
+      0.022550335570469794,
+    ],
+    "def_orb": Array [
+      0.096,
+    ],
+    "def_rtg": Array [
+      93.54860666651514,
+    ],
+    "def_to": Array [
+      0.01675977653631285,
+    ],
+    "off_2p": Array [
+      0.45112781954887216,
+    ],
+    "off_2pmid": Array [
+      0.24324324324324326,
+    ],
+    "off_2pmidr": Array [
+      0.18258426966292135,
+    ],
+    "off_2prim": Array [
+      0.5555555555555556,
+    ],
+    "off_2prim_ast": Array [
+      0.26153846153846155,
+    ],
+    "off_2primr": Array [
+      0.19666666666666666,
+    ],
+    "off_3p": Array [
+      0.31736526946107785,
+    ],
+    "off_3p_ast": Array [
+      0.625,
+    ],
+    "off_3pr": Array [
+      0.4887640449438202,
+    ],
+    "off_adj_prod": Array [
+      -0.5033100013198395,
+    ],
+    "off_adj_rtg": Array [
+      -0.697381502829424,
+    ],
+    "off_assist": Array [
+      0.10185185185185185,
+    ],
+    "off_efg": Array [
+      0.465,
+    ],
+    "off_ftr": Array [
+      0.2,
+    ],
+    "off_orb": Array [
+      0.017276422764227643,
+    ],
+    "off_rtg": Array [
+      89.9518234710886,
+    ],
+    "off_team_poss_pct": Array [
+      0.7217140105922003,
+    ],
+    "off_to": Array [
+      0.1528291588331615,
+    ],
+    "off_usage": Array [
+      0.22812810965108538,
+    ],
+  },
+  "tier_lut": Object {
+    "def_2prim": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "5": Array [
+          0,
+          0.005065856129685917,
+        ],
+      },
+      "lutMult": 1000,
+      "min": 0.005065856129685917,
+      "size": 1,
+    },
+    "def_adj_prod": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-19": Array [
+          0,
+          -1.93392724437384,
+        ],
+      },
+      "lutMult": 10,
+      "min": -1.93392724437384,
+      "size": 1,
+    },
+    "def_adj_rtg": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-27": Array [
+          0,
+          -2.7010084533838667,
+        ],
+      },
+      "lutMult": 10,
+      "min": -2.7010084533838667,
+      "size": 1,
+    },
+    "def_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.022550335570469794,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.022550335570469794,
+      "size": 1,
+    },
+    "def_orb": Object {
+      "isPct": true,
+      "lut": Object {
+        "10": Array [
+          0,
+          0.096,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.096,
+      "size": 1,
+    },
+    "def_rtg": Object {
+      "isPct": false,
+      "lut": Object {
+        "94": Array [
+          0,
+          93.54860666651514,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 93.54860666651514,
+      "size": 1,
+    },
+    "def_to": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "17": Array [
+          0,
+          0.01675977653631285,
+        ],
+      },
+      "lutMult": 1000,
+      "min": 0.01675977653631285,
+      "size": 1,
+    },
+    "off_2p": Object {
+      "isPct": true,
+      "lut": Object {
+        "45": Array [
+          0,
+          0.45112781954887216,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.45112781954887216,
+      "size": 1,
+    },
+    "off_2pmid": Object {
+      "isPct": true,
+      "lut": Object {
+        "24": Array [
+          0,
+          0.24324324324324326,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.24324324324324326,
+      "size": 1,
+    },
+    "off_2pmidr": Object {
+      "isPct": true,
+      "lut": Object {
+        "18": Array [
+          0,
+          0.18258426966292135,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.18258426966292135,
+      "size": 1,
+    },
+    "off_2prim": Object {
+      "isPct": true,
+      "lut": Object {
+        "56": Array [
+          0,
+          0.5555555555555556,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.5555555555555556,
+      "size": 1,
+    },
+    "off_2prim_ast": Object {
+      "isPct": true,
+      "lut": Object {
+        "26": Array [
+          0,
+          0.26153846153846155,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.26153846153846155,
+      "size": 1,
+    },
+    "off_2primr": Object {
+      "isPct": true,
+      "lut": Object {
+        "20": Array [
+          0,
+          0.19666666666666666,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.19666666666666666,
+      "size": 1,
+    },
+    "off_3p": Object {
+      "isPct": true,
+      "lut": Object {
+        "32": Array [
+          0,
+          0.31736526946107785,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.31736526946107785,
+      "size": 1,
+    },
+    "off_3p_ast": Object {
+      "isPct": true,
+      "lut": Object {
+        "63": Array [
+          0,
+          0.625,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.625,
+      "size": 1,
+    },
+    "off_3pr": Object {
+      "isPct": true,
+      "lut": Object {
+        "49": Array [
+          0,
+          0.4887640449438202,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.4887640449438202,
+      "size": 1,
+    },
+    "off_adj_prod": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-5": Array [
+          0,
+          -0.5033100013198395,
+        ],
+      },
+      "lutMult": 10,
+      "min": -0.5033100013198395,
+      "size": 1,
+    },
+    "off_adj_rtg": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-7": Array [
+          0,
+          -0.697381502829424,
+        ],
+      },
+      "lutMult": 10,
+      "min": -0.697381502829424,
+      "size": 1,
+    },
+    "off_assist": Object {
+      "isPct": true,
+      "lut": Object {
+        "10": Array [
+          0,
+          0.10185185185185185,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.10185185185185185,
+      "size": 1,
+    },
+    "off_efg": Object {
+      "isPct": true,
+      "lut": Object {
+        "47": Array [
+          0,
+          0.465,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.465,
+      "size": 1,
+    },
+    "off_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "20": Array [
+          0,
+          0.2,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.2,
+      "size": 1,
+    },
+    "off_orb": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.017276422764227643,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.017276422764227643,
+      "size": 1,
+    },
+    "off_rtg": Object {
+      "isPct": false,
+      "lut": Object {
+        "90": Array [
+          0,
+          89.9518234710886,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 89.9518234710886,
+      "size": 1,
+    },
+    "off_team_poss_pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "72": Array [
+          0,
+          0.7217140105922003,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.7217140105922003,
+      "size": 1,
+    },
+    "off_to": Object {
+      "isPct": true,
+      "lut": Object {
+        "15": Array [
+          0,
+          0.1528291588331615,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.1528291588331615,
+      "size": 1,
+    },
+    "off_usage": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "228": Array [
+          0,
+          0.22812810965108538,
+        ],
+      },
+      "lutMult": 1000,
+      "min": 0.22812810965108538,
+      "size": 1,
+    },
+  },
+  "tier_sample_size": 2,
+  "tier_samples": Object {},
+}
+`;
+
 exports[`buildLeaderboards buildLeaderboards - main / division team stats 1`] = `
 Object {
   "compression_factor": undefined,

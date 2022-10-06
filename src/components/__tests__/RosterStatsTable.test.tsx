@@ -2,13 +2,37 @@
 import RosterStatsTable from '../RosterStatsTable';
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
-import { GameFilterParams } from "../../utils/FilterModels";
+import { GameFilterParams, ParamDefaults } from "../../utils/FilterModels";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import _ from "lodash";
 import { StatModels, IndivStatSet } from '../../utils/StatModels';
+import fs from 'fs';
+
+//@ts-nocheck
+import fetchMock from 'isomorphic-unfetch';
 
 describe("RosterStatsTable", () => {
+
+  const testYear = "2021/22";
+
+  const sampleData = JSON.parse(
+    fs.readFileSync("./public/leaderboards/lineups/stats_players_all_Men_2020_High.json", { encoding: "UTF-8"})
+  );  
+
+  // Mock the URL calls needed to get the stats
+  [ "Combo", "High", "Medium", "Low"].forEach(tier => {
+    //(old files)
+    (fetchMock as any).mock(`/leaderboards/lineups/stats_players_all_Men_${testYear.substring(0, 4)}_${tier}.json`, {
+      status: 200,
+      body: tier == "High" ? sampleData : { }
+    });
+    //(new files)
+    (fetchMock as any).mock(`/api/getStats?&gender=Men&year=${testYear.substring(0, 4)}&tier=${tier}&type=player`, {
+      status: 200,
+      body: tier == "High" ? sampleData : { }
+    });
+  });
 
   // Tidy up snapshot rendering:
   expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
@@ -180,6 +204,66 @@ describe("RosterStatsTable", () => {
           { rowId: "Wiggins, Aaron / Baseline", newVal: 0.6, statName: "off_2pmid", use: true }, //(overwrites the above)
         ],
         showPlayerManual: true
+       }}
+      dataEvent={{
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), 
+          global: _.assign(StatModels.emptyTeam(), { doc_count: 1000 }), 
+          onOffMode: true, baseline: StatModels.emptyTeam()
+        },
+        rosterStats: testData,
+        lineupStats: []
+      }}
+      onChangeState={(newParams: GameFilterParams) => {}}
+    />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("RosterStatsTable (grades, expanded) - should create snapshot", () => {
+    const testData = {
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
+      error_code: undefined
+    };
+
+    const wrapper = shallow(
+    <RosterStatsTable
+      gameFilterParams={{onOffLuck: false,
+        showPlayerOnOffLuckDiags: false, showDiag: true, showPosDiag: false, showPlayerPlayTypes: false,
+        showGrades: ParamDefaults.defaultEnabledGrade, showExpanded: true
+       }}
+      dataEvent={{
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), 
+          global: _.assign(StatModels.emptyTeam(), { doc_count: 1000 }), 
+          onOffMode: true, baseline: StatModels.emptyTeam()
+        },
+        rosterStats: testData,
+        lineupStats: []
+      }}
+      onChangeState={(newParams: GameFilterParams) => {}}
+    />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+ 
+  test("RosterStatsTable (grades, !expanded) - should create snapshot", () => {
+    const testData = {
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
+      error_code: undefined
+    };
+
+    const wrapper = shallow(
+    <RosterStatsTable
+      gameFilterParams={{onOffLuck: false,
+        showPlayerOnOffLuckDiags: false, showDiag: true, showPosDiag: false, showPlayerPlayTypes: false,
+        showGrades: ParamDefaults.defaultEnabledGrade
        }}
       dataEvent={{
         teamStats: {
