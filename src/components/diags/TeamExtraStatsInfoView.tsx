@@ -108,7 +108,7 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
 
     // And now maybe build ranks/%iles:
     const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(
-         tierToUse, extraStats, GradeUtils.derivedFields, gradeFormat == "rank"
+         tierToUse, extraStats, GradeUtils.teamDerivedFields, gradeFormat == "rank"
     )  : {};
 
     const scrambleTooltip = <Tooltip id={`scrambleDef${nameAsId}`}>Possessions finishing after an ORB, but not counting plays where the offense resets</Tooltip>;

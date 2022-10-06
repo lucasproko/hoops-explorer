@@ -45,6 +45,7 @@ import { OnBallDefenseUtils } from '../utils/stats/OnBallDefenseUtils';
 import { OnBallDefenseModel } from '../utils/stats/RatingUtils';
 import { DateUtils } from '../utils/DateUtils';
 import { LuckUtils } from '../utils/stats/LuckUtils';
+import { PositionUtils } from '../utils/stats/PositionUtils';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -115,14 +116,28 @@ var eliteDefenseInfo: number[] = [];
 /** Exported for test only */
 export const teamStatInfo = [] as Array<TeamStatInfo>;
 
+const buildEmptyDivisionStats = () => {
+  return { 
+    tier_sample_size: 0,
+    dedup_sample_size: 0,
+    tier_samples: {},
+    tier_lut: {},
+    dedup_samples: {}
+   };
+};
+
 /** Exported for test only */
-export const mutableDivisionStats: DivisionStatistics = { 
-  tier_sample_size: 0,
-  dedup_sample_size: 0,
-  tier_samples: {},
-  tier_lut: {},
-  dedup_samples: {}
- };
+export const mutableDivisionStats: DivisionStatistics = buildEmptyDivisionStats(); 
+
+/** Exported for test only */
+export const mutablePlayerDivisionStats: DivisionStatistics = buildEmptyDivisionStats(); 
+
+/** Exported for test only */
+//TODO
+// export const mutablePlayerDivisionStats_byPosGroup: Record<string, DivisionStatistics> =
+//  _.chain(PositionUtils.idToPosition).keys()
+//   .filter(pos => !pos.endsWith("?")).map(pos => [ pos, buildEmptyDivisionStats() ])
+//   .fromPairs().value()
 
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
@@ -148,7 +163,7 @@ const testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "VCU" ]) //, "Dayton", "Fordham" ]);
+//const testTeamFilter = new Set([ "Kansas St." ]) //, "Dayton", "Fordham" ]);
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -175,6 +190,23 @@ const averagePossInCompletedYear = (inYear == DateUtils.covidSeason) ? 1000 : 16
 /** Enable this to pass a subfield called 'rapm' to the player objects (just for export, then re-disable) */
 const injectAllRapmForNbaFolks = false;
 
+/** Handy filename util */
+const getTeamFilename = (team: string) => {
+  return encodeURIComponent(team).replace(/%20/g, "+").replace(/[(]/g, "%28").replace(/[)]/g, "%29").replace(/'/g, "%27");
+  //RequestUtils.fixRosterUrl(team, false);
+};
+/** Handy filename util - roster */
+const getRosterFilename = (team: string, teamYear: string) => {
+  return `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${getTeamFilename(team)}.json`;
+};
+const getOnBallDefenseFilename = (team: string, teamYear: string) => {
+  return `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(teamYear || "").substring(0, 4)}/${getTeamFilename(team)}.txt`;
+};
+
+const teamListChain = (inYear == "Extra") ?
+  _.chain(AvailableTeams.extraTeamsBase) :
+  _.chain(AvailableTeams.byName).values().flatten();
+
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
   const globalGenderYearKey = `${inGender}_${inYear}`;
@@ -195,10 +227,6 @@ export async function main() {
   bubbleDefenseInfo = bubbleRankInfo.map(o => o["stats.adj_def.value"] || 0);
   eliteOffenseInfo = eliteRankInfo.map(o => o["stats.adj_off.value"] || 0);
   eliteDefenseInfo = eliteRankInfo.map(o => o["stats.adj_def.value"] || 0);
-
-  const teamListChain = (inYear == "Extra") ?
-    _.chain(AvailableTeams.extraTeamsBase) :
-    _.chain(AvailableTeams.byName).values().flatten();
 
   /** If any teams aren't in the conf then */
   const mutableIncompleteConfs = new Set() as Set<string>;
@@ -328,9 +356,11 @@ export async function main() {
 
       // Also we're going to try fetching the roster
 
+      const rosterInfoFile = getRosterFilename(team, teamYear);
       const rosterInfoJson = await fs.readFile(
-        `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.json`
+        rosterInfoFile
       ).then((s: any) => JSON.parse(s)).catch((err: any) => {
+        console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
         return undefined;
       });
       //(don't use height_in for women)
@@ -395,7 +425,7 @@ export async function main() {
           const extraFields = DerivedStatsUtils.injectTeamDerivedStats(teamBaseline, {});
 
           // Build all the samples ready for percentiles:
-          GradeUtils.buildAndInjectDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
+          GradeUtils.buildAndInjectTeamDivisionStats(teamBaseline, extraFields, mutableDivisionStats, inNaturalTier);
 
           // Apply luck so we have both lucky and non-luck versions
           const teamBaselineWithLuck = _.cloneDeep(teamBaseline);
@@ -485,7 +515,7 @@ export async function main() {
       // Ready in on-ball defense if it exists
       var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
       if (("all" == label) && (inGender == "Men")) {
-        const onBallDefenseLoc = `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.txt`;
+        const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);        
         const onBallDefenseText = await fs.readFile(
           onBallDefenseLoc
         ).then((s: any) => s.toString()).catch((err: any) => {
@@ -538,7 +568,7 @@ export async function main() {
         })();
 
         const playerPossPct = player.off_team_poss_pct?.value || 0;
-        const playerPoss = player.off_team_poss?.value || 0; //(despite it's name this is the player possessions, not team possessions)
+        const playerPoss = player.off_team_poss?.value || 0; //(despite its name this is the player possessions, not team possessions)
 
         // For teams that have played fewer possessions than others we still have a lower limit
         //TODO: fix the secondary filter _during_ the year
@@ -564,7 +594,10 @@ export async function main() {
               "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages";
           });
         }
-
+        if ("all" == label) {
+          // Everything except RAPM (we do it here because we need total_*, which get removed below)
+          GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier);
+        }
         return {
           key: kv[0],
           conf: conference,
@@ -581,13 +614,13 @@ export async function main() {
                 !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
                 !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
-                !_.startsWith(t2[0], "total_") &&
+                !(_.startsWith(t2[0], "total_") && !GradeUtils.playerTotalsToKeep.has(t2[0])) &&
                 !_.endsWith(t2[0], "_target") && !_.endsWith(t2[0], "_source") &&
                 (t2[0] != "player_array") && (t2[0] != "roster")
               )
             ).fromPairs().value()
           )
-        };
+        } as IndivStatSet;
       });
 
       const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
@@ -628,7 +661,17 @@ export async function main() {
               override: rapmP.rapm?.def_adj_ppp?.override,
               extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
             };
-
+            const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod" ], k => [ `off_${k}`, `def_${k}` ]);
+            const otherRapmFields = [ "off_adj_rapm_margin", "off_adj_rapm_prod_margin" ];
+            if ("all" == label) {
+              GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
+              GradeUtils.buildAndInjectPlayerDivisionStats({
+                off_team_poss_pct: { value: player.off_team_poss_pct?.value || 0 },
+                off_adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
+                off_adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
+              }, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
+            }
+    
             // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
             [ "off_adj_rapm", "off_adj_rapm_prod" ].forEach(field => {
               const maybeRapm = player[field];
@@ -754,31 +797,24 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
   return rankedLineups;
 }
 
-/** Optimizes the data format from D1 stats (export for test only) */
-export function completeDivisionStats(mutableUnsortedDivisionStats: DivisionStatistics) {
-  // Build LUT  
-  GradeUtils.buildAndInjectDivisionStatsLUT(mutableUnsortedDivisionStats);
-
-  return mutableUnsortedDivisionStats; //(for chaining purposes)
-};
-
 /** If all 3 exist, combines stats for High/Medium/Low tiers */
-export async function combineDivisionStatsFiles() {
-  const tiers = [ "High", "Medium", "Low"];
+export async function combineDivisionStatsFiles(player: Boolean = false) {
+  const playerInfix = player ? "players_" : "";
+  const tiers = [ "High", "Medium", "Low" ];
   const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(tier => {
-    const divisionStatsInFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+    const divisionStatsInFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
     const statsPromise: Promise<[String, DivisionStatistics[]]> = fs.readFile(divisionStatsInFilename).then(buffer => {
       return [
         tier,
         [ JSON.parse(buffer.toString()) as DivisionStatistics ]
       ] as [ string, DivisionStatistics[] ];
-    }).catch(err => [ tier,  [] as DivisionStatistics[] ]);
+    }).catch(err => [ tier, [] as DivisionStatistics[] ]);
     return statsPromise;
   });
   const resolvedFilesAwait = await Promise.all(filesToCombine);
   const resolvedFiles: Record<string, DivisionStatistics> = 
     _.chain(resolvedFilesAwait)
-      .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(makes this method idempotent)
+      .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(if hot has dedup_samples - makes this method idempotent-ish)
       .fromPairs().mapValues(array => array[0]!).value();
 
   const combineDivisionStats = (toCombine: DivisionStatistics[]) => {
@@ -790,7 +826,13 @@ export async function combineDivisionStatsFiles() {
     }, {} as Record<string, Array<number>>);
 
     // Build LUT from presorted samples
-    return completeDivisionStats({
+    return player ? GradeUtils.buildAndInjectPlayerDivisionStatsLUT({
+      tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
+      tier_samples: combinedSamples,
+      tier_lut: {},
+      dedup_sample_size: 0,
+      dedup_samples: {}
+    }) : GradeUtils.buildAndInjectTeamDivisionStatsLUT({
       tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
       tier_samples: combinedSamples,
       tier_lut: {},
@@ -799,7 +841,7 @@ export async function combineDivisionStatsFiles() {
     });
   };
 
-  const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
+  const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
   const combinedFilesPromise = (_.keys(resolvedFiles).length == 3) ? 
     fs.writeFile(
       divisionStatsComboFilename,
@@ -809,20 +851,51 @@ export async function combineDivisionStatsFiles() {
   await combinedFilesPromise; //(so we'll error out if this step fails - otherwise could lose dedup_samples before using them)
 
   const filesToOutput =  _.map(resolvedFiles, (stats, tier) => {
-    const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+    const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
     // Remove the dedup_samples since it's now been calculated
     return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ ...stats, dedup_samples: {} }, reduceNumberSize));
   });
 
   await Promise.all(filesToOutput);
 
-  console.log(`Completed combining stats for [${_.keys(resolvedFiles)}]`);
+  console.log(`Completed combining stats for [${_.keys(resolvedFiles)}] (player=${player})`);
 }
 
 if (!testMode) {
 
   if (inTier == "Combo") {
-    combineDivisionStatsFiles().then(async dummy => {
+
+    // Check files:
+    const checkOnBall = true; //(normally false because we don't always expect it)
+    console.log(`(Checking roster and maybe [${checkOnBall}] on-ball filenames)`);
+    teamListChain.filter(
+      team => ((testTeamFilter == undefined) || testTeamFilter.has(team.team))
+    ).filter(team => {
+      return team.gender == inGender &&
+        ((inYear == "Extra") || (team.year == inYear));
+    }).forEach(async (team: AvailableTeamMeta, index: number) => {
+      if (inTier == "Combo") {
+        // For info check roster and on-ball defense:
+        const rosterInfoFile = getRosterFilename(team.team, team.year);
+        await fs.readFile(
+          rosterInfoFile
+        ).catch((err: any) => {
+          console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
+        });
+        const onBallDefenseFile = getOnBallDefenseFilename(team.team, team.year);
+        await fs.readFile(
+          onBallDefenseFile
+        ).catch((err: any) => {
+          console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
+        });
+      }
+    }).value();
+  
+    // Now actual processing:
+    console.log(`(Combining different tiers' stats)`);
+    combineDivisionStatsFiles(false).then(async dummy => {
+      return combineDivisionStatsFiles(true); //(team==false then players==true)
+    }).then(async dummy => {
       console.log("File creation Complete!");
       if (!testMode) { //(ie always)
         console.log("(exiting process)");
@@ -899,14 +972,28 @@ if (!testMode) {
           :
           Promise.resolve();
 
+        // Division stats
+        const writeDivisionStats = "all" == kv[0];
 
-        // Division stats:
-        if ("all" == kv[0]) completeDivisionStats(mutableDivisionStats);
+        // Team division stats:
+        if (writeDivisionStats) GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
         const divisionStatsFilename = `./public/leaderboards/lineups/stats_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
         const divisionStatsWritePromise = ("all" == kv[0]) ? 
           fs.writeFile(divisionStatsFilename, JSON.stringify(mutableDivisionStats, reduceNumberSize)) : Promise.resolve();
 
-        return [lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise];
+        // Player division stats:
+        if (writeDivisionStats) GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePlayerDivisionStats);
+        const playerDivisionStatsFilename = `./public/leaderboards/lineups/stats_players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+        const playerDivisionStatsWritePromise = ("all" == kv[0]) ? 
+          fs.writeFile(playerDivisionStatsFilename, JSON.stringify(mutablePlayerDivisionStats, reduceNumberSize)) : Promise.resolve();
+
+        if (writeDivisionStats) {
+          console.log(
+            `Writing division stats: teams:[${mutableDivisionStats.tier_sample_size}]/dedup=[${mutableDivisionStats.dedup_sample_size}] ` +
+              `players:[${mutablePlayerDivisionStats.tier_sample_size}]/dedup=[${mutablePlayerDivisionStats.dedup_sample_size}]`
+            );
+        }
+        return [lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise, playerDivisionStatsWritePromise];
 
       //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
       // zlib.gzip(sortedLineupsStr, (_, result) => {

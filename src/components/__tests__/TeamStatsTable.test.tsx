@@ -19,6 +19,8 @@ import fetchMock from 'isomorphic-unfetch';
 
 describe("TeamStatsTable", () => {
 
+  const testYear = "2021/22";
+
   afterEach(() => {
     (fetchMock as any).restore();
     (fetchMock as any).reset();
@@ -66,20 +68,26 @@ describe("TeamStatsTable", () => {
     );  
 
     // Mock the URL calls needed to get the stats
-    [ "Combo", "High", "Medium", "Low"].forEach(tier => 
-      (fetchMock as any).mock(`/api/getStats?&gender=Men&year=${ParamDefaults.defaultYear.substring(0, 4)}&tier=${tier}`, {
+    [ "Combo", "High", "Medium", "Low"].forEach(tier => {
+      //(old files)
+      (fetchMock as any).mock(`/leaderboards/lineups/stats_all_Men_${testYear.substring(0, 4)}_${tier}.json`, {
         status: 200,
         body: tier == "High" ? sampleData : { }
-      })
-    );
+      });
+      //(new files)
+      (fetchMock as any).mock(`/api/getStats?&gender=Men&year=${testYear.substring(0, 4)}&tier=${tier}`, {
+        status: 200,
+        body: tier == "High" ? sampleData : { }
+      });
+    });
 
     var component: ReactTestRenderer;
     await act(async () => {
       component = renderer.create(<TeamStatsTable
         gameFilterParams={{ 
-          year: ParamDefaults.defaultYear,
+          year: testYear,
           onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, 
-          showExtraInfo: true, showTeamPlayTypes: true, showGrades: ParamDefaults.defaultTeamEnabledGrade }}
+          showExtraInfo: true, showTeamPlayTypes: true, showGrades: ParamDefaults.defaultEnabledGrade }}
         dataEvent={{
           teamStats: testData,
           rosterStats: testRosterData,

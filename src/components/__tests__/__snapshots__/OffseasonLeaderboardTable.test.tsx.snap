@@ -16633,6 +16633,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   onChangeState={[Function]}
                   overrideGrades={
                     Object {
+                      "compression_factor": undefined,
                       "dedup_sample_size": 106,
                       "dedup_samples": Object {
                         "def_adj_ppp": Array [
@@ -17083,6 +17084,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                               96.33780336582598,
                             ],
                           },
+                          "lutMult": undefined,
                           "min": 93.697698419283,
                           "size": 106,
                         },
@@ -17208,6 +17210,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                               117.2239440674,
                             ],
                           },
+                          "lutMult": undefined,
                           "min": 101.938436664,
                           "size": 106,
                         },
@@ -17333,9 +17336,11 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                               23.526245648116998,
                             ],
                           },
+                          "lutMult": undefined,
                           "min": -3.0437912407900005,
                           "size": 106,
                         },
+                        "off_raw_net": undefined,
                       },
                       "tier_sample_size": 106,
                       "tier_samples": Object {},

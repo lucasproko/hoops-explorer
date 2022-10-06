@@ -288,7 +288,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-    GradeTableUtils.populateDivisionStatsCache(params, statsCache => {
+    GradeTableUtils.populateTeamDivisionStatsCache(params, statsCache => {
       setDivisionStatsCache(statsCache);
     }, usePreseasonRanks ? "Preseason" : undefined);
   }, [ year, gender, evalMode, offSeasonMode ]);

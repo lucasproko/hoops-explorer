@@ -9,7 +9,7 @@ export class DateUtils {
 
    //////////////////////////////////////
 
-   /** This year is being written to GCS daily, others are statically part of the website */
+   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
    static readonly inSeasonYear = "2022/23";
 
    /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season */

@@ -308,6 +308,18 @@ Array [
     ],
     "roster": undefined,
     "team": "Maryland",
+    "total_off_2p_attempts": Object {
+      "value": 182,
+    },
+    "total_off_2pmid_attempts": Object {
+      "value": 65,
+    },
+    "total_off_2prim_attempts": Object {
+      "value": 117,
+    },
+    "total_off_3p_attempts": Object {
+      "value": 174,
+    },
     "year": "2020/21",
   },
   Object {
@@ -621,6 +633,18 @@ Array [
       "year_class": "Jr",
     },
     "team": "Maryland",
+    "total_off_2p_attempts": Object {
+      "value": 133,
+    },
+    "total_off_2pmid_attempts": Object {
+      "value": 74,
+    },
+    "total_off_2prim_attempts": Object {
+      "value": 59,
+    },
+    "total_off_3p_attempts": Object {
+      "value": 167,
+    },
     "year": "2020/21",
   },
 ]
@@ -934,6 +958,18 @@ Array [
     ],
     "roster": undefined,
     "team": "Maryland",
+    "total_off_2p_attempts": Object {
+      "value": 182,
+    },
+    "total_off_2pmid_attempts": Object {
+      "value": 65,
+    },
+    "total_off_2prim_attempts": Object {
+      "value": 117,
+    },
+    "total_off_3p_attempts": Object {
+      "value": 174,
+    },
     "year": "2020/21",
   },
 ]
@@ -3261,8 +3297,412 @@ Array [
 ]
 `;
 
+exports[`buildLeaderboards buildLeaderboards - main / division player stats 1`] = `
+Object {
+  "compression_factor": 3,
+  "dedup_sample_size": 2,
+  "dedup_samples": Object {
+    "def_2prim": Array [
+      0.005065856129685917,
+    ],
+    "def_adj_prod": Array [
+      -1.93392724437384,
+    ],
+    "def_adj_rtg": Array [
+      -2.7010084533838667,
+    ],
+    "def_ftr": Array [
+      0.022550335570469794,
+    ],
+    "def_orb": Array [
+      0.096,
+    ],
+    "def_rtg": Array [
+      93.54860666651514,
+    ],
+    "def_to": Array [
+      0.01675977653631285,
+    ],
+    "off_2p": Array [
+      0.45112781954887216,
+    ],
+    "off_2pmid": Array [
+      0.24324324324324326,
+    ],
+    "off_2pmidr": Array [
+      0.18258426966292135,
+    ],
+    "off_2prim": Array [
+      0.5555555555555556,
+    ],
+    "off_2prim_ast": Array [
+      0.26153846153846155,
+    ],
+    "off_2primr": Array [
+      0.19666666666666666,
+    ],
+    "off_3p": Array [
+      0.31736526946107785,
+    ],
+    "off_3p_ast": Array [
+      0.625,
+    ],
+    "off_3pr": Array [
+      0.4887640449438202,
+    ],
+    "off_adj_prod": Array [
+      -0.5033100013198395,
+    ],
+    "off_adj_rtg": Array [
+      -0.697381502829424,
+    ],
+    "off_assist": Array [
+      0.10185185185185185,
+    ],
+    "off_efg": Array [
+      0.465,
+    ],
+    "off_ftr": Array [
+      0.2,
+    ],
+    "off_orb": Array [
+      0.017276422764227643,
+    ],
+    "off_rtg": Array [
+      89.9518234710886,
+    ],
+    "off_team_poss_pct": Array [
+      0.7217140105922003,
+    ],
+    "off_to": Array [
+      0.1528291588331615,
+    ],
+    "off_usage": Array [
+      0.22812810965108538,
+    ],
+  },
+  "tier_lut": Object {
+    "def_2prim": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "5": Array [
+          0,
+          0.005065856129685917,
+        ],
+      },
+      "lutMult": 1000,
+      "min": 0.005065856129685917,
+      "size": 1,
+    },
+    "def_adj_prod": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-19": Array [
+          0,
+          -1.93392724437384,
+        ],
+      },
+      "lutMult": 10,
+      "min": -1.93392724437384,
+      "size": 1,
+    },
+    "def_adj_rtg": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-27": Array [
+          0,
+          -2.7010084533838667,
+        ],
+      },
+      "lutMult": 10,
+      "min": -2.7010084533838667,
+      "size": 1,
+    },
+    "def_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.022550335570469794,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.022550335570469794,
+      "size": 1,
+    },
+    "def_orb": Object {
+      "isPct": true,
+      "lut": Object {
+        "10": Array [
+          0,
+          0.096,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.096,
+      "size": 1,
+    },
+    "def_rtg": Object {
+      "isPct": false,
+      "lut": Object {
+        "94": Array [
+          0,
+          93.54860666651514,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 93.54860666651514,
+      "size": 1,
+    },
+    "def_to": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "17": Array [
+          0,
+          0.01675977653631285,
+        ],
+      },
+      "lutMult": 1000,
+      "min": 0.01675977653631285,
+      "size": 1,
+    },
+    "off_2p": Object {
+      "isPct": true,
+      "lut": Object {
+        "45": Array [
+          0,
+          0.45112781954887216,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.45112781954887216,
+      "size": 1,
+    },
+    "off_2pmid": Object {
+      "isPct": true,
+      "lut": Object {
+        "24": Array [
+          0,
+          0.24324324324324326,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.24324324324324326,
+      "size": 1,
+    },
+    "off_2pmidr": Object {
+      "isPct": true,
+      "lut": Object {
+        "18": Array [
+          0,
+          0.18258426966292135,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.18258426966292135,
+      "size": 1,
+    },
+    "off_2prim": Object {
+      "isPct": true,
+      "lut": Object {
+        "56": Array [
+          0,
+          0.5555555555555556,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.5555555555555556,
+      "size": 1,
+    },
+    "off_2prim_ast": Object {
+      "isPct": true,
+      "lut": Object {
+        "26": Array [
+          0,
+          0.26153846153846155,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.26153846153846155,
+      "size": 1,
+    },
+    "off_2primr": Object {
+      "isPct": true,
+      "lut": Object {
+        "20": Array [
+          0,
+          0.19666666666666666,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.19666666666666666,
+      "size": 1,
+    },
+    "off_3p": Object {
+      "isPct": true,
+      "lut": Object {
+        "32": Array [
+          0,
+          0.31736526946107785,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.31736526946107785,
+      "size": 1,
+    },
+    "off_3p_ast": Object {
+      "isPct": true,
+      "lut": Object {
+        "63": Array [
+          0,
+          0.625,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.625,
+      "size": 1,
+    },
+    "off_3pr": Object {
+      "isPct": true,
+      "lut": Object {
+        "49": Array [
+          0,
+          0.4887640449438202,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.4887640449438202,
+      "size": 1,
+    },
+    "off_adj_prod": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-5": Array [
+          0,
+          -0.5033100013198395,
+        ],
+      },
+      "lutMult": 10,
+      "min": -0.5033100013198395,
+      "size": 1,
+    },
+    "off_adj_rtg": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "-7": Array [
+          0,
+          -0.697381502829424,
+        ],
+      },
+      "lutMult": 10,
+      "min": -0.697381502829424,
+      "size": 1,
+    },
+    "off_assist": Object {
+      "isPct": true,
+      "lut": Object {
+        "10": Array [
+          0,
+          0.10185185185185185,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.10185185185185185,
+      "size": 1,
+    },
+    "off_efg": Object {
+      "isPct": true,
+      "lut": Object {
+        "47": Array [
+          0,
+          0.465,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.465,
+      "size": 1,
+    },
+    "off_ftr": Object {
+      "isPct": true,
+      "lut": Object {
+        "20": Array [
+          0,
+          0.2,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.2,
+      "size": 1,
+    },
+    "off_orb": Object {
+      "isPct": true,
+      "lut": Object {
+        "2": Array [
+          0,
+          0.017276422764227643,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.017276422764227643,
+      "size": 1,
+    },
+    "off_rtg": Object {
+      "isPct": false,
+      "lut": Object {
+        "90": Array [
+          0,
+          89.9518234710886,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 89.9518234710886,
+      "size": 1,
+    },
+    "off_team_poss_pct": Object {
+      "isPct": true,
+      "lut": Object {
+        "72": Array [
+          0,
+          0.7217140105922003,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.7217140105922003,
+      "size": 1,
+    },
+    "off_to": Object {
+      "isPct": true,
+      "lut": Object {
+        "15": Array [
+          0,
+          0.1528291588331615,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 0.1528291588331615,
+      "size": 1,
+    },
+    "off_usage": Object {
+      "isPct": undefined,
+      "lut": Object {
+        "228": Array [
+          0,
+          0.22812810965108538,
+        ],
+      },
+      "lutMult": 1000,
+      "min": 0.22812810965108538,
+      "size": 1,
+    },
+  },
+  "tier_sample_size": 2,
+  "tier_samples": Object {},
+}
+`;
+
 exports[`buildLeaderboards buildLeaderboards - main / division team stats 1`] = `
 Object {
+  "compression_factor": undefined,
   "dedup_sample_size": 80,
   "dedup_samples": Object {
     "def_2p": Array [
@@ -4585,6 +5025,7 @@ Object {
           0.44483671668137686,
         ],
       },
+      "lutMult": undefined,
       "min": 0.44483671668137686,
       "size": 1,
     },
@@ -4596,6 +5037,7 @@ Object {
           0.30671506352087113,
         ],
       },
+      "lutMult": undefined,
       "min": 0.30671506352087113,
       "size": 1,
     },
@@ -4607,6 +5049,7 @@ Object {
           0.3009284543965046,
         ],
       },
+      "lutMult": undefined,
       "min": 0.3009284543965046,
       "size": 1,
     },
@@ -4618,6 +5061,7 @@ Object {
           0.5756013745704467,
         ],
       },
+      "lutMult": undefined,
       "min": 0.5756013745704467,
       "size": 1,
     },
@@ -4629,6 +5073,7 @@ Object {
           0.3178590933915893,
         ],
       },
+      "lutMult": undefined,
       "min": 0.3178590933915893,
       "size": 1,
     },
@@ -4640,6 +5085,7 @@ Object {
           0.32521489971346706,
         ],
       },
+      "lutMult": undefined,
       "min": 0.32521489971346706,
       "size": 1,
     },
@@ -4651,6 +5097,7 @@ Object {
           32.98939828080229,
         ],
       },
+      "lutMult": undefined,
       "min": 32.98939828080229,
       "size": 1,
     },
@@ -4662,6 +5109,7 @@ Object {
           0.3812124522119061,
         ],
       },
+      "lutMult": undefined,
       "min": 0.3812124522119061,
       "size": 1,
     },
@@ -4673,6 +5121,7 @@ Object {
           96.96167549350024,
         ],
       },
+      "lutMult": undefined,
       "min": 96.96167549350024,
       "size": 1,
     },
@@ -4684,6 +5133,7 @@ Object {
           91.58495122584529,
         ],
       },
+      "lutMult": undefined,
       "min": 91.58495122584529,
       "size": 1,
     },
@@ -4695,6 +5145,7 @@ Object {
           0.5471956224350205,
         ],
       },
+      "lutMult": undefined,
       "min": 0.5471956224350205,
       "size": 1,
     },
@@ -4706,6 +5157,7 @@ Object {
           0.4612233752048061,
         ],
       },
+      "lutMult": undefined,
       "min": 0.4612233752048061,
       "size": 1,
     },
@@ -4717,6 +5169,7 @@ Object {
           0.24249044238121245,
         ],
       },
+      "lutMult": undefined,
       "min": 0.24249044238121245,
       "size": 1,
     },
@@ -4728,6 +5181,7 @@ Object {
           11.114221640321887,
         ],
       },
+      "lutMult": undefined,
       "min": 11.114221640321887,
       "size": 1,
     },
@@ -4739,6 +5193,7 @@ Object {
           0.26252158894645944,
         ],
       },
+      "lutMult": undefined,
       "min": 0.26252158894645944,
       "size": 1,
     },
@@ -4750,6 +5205,7 @@ Object {
           96.05958673714561,
         ],
       },
+      "lutMult": undefined,
       "min": 96.05958673714561,
       "size": 1,
     },
@@ -4914,6 +5370,7 @@ Object {
           0.08527071563674632,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -4925,6 +5382,7 @@ Object {
           0.4766355140186916,
         ],
       },
+      "lutMult": undefined,
       "min": 0.4766355140186916,
       "size": 1,
     },
@@ -4936,6 +5394,7 @@ Object {
           0.42857142857142855,
         ],
       },
+      "lutMult": undefined,
       "min": 0.42857142857142855,
       "size": 1,
     },
@@ -4947,6 +5406,7 @@ Object {
           0.24647887323943662,
         ],
       },
+      "lutMult": undefined,
       "min": 0.24647887323943662,
       "size": 1,
     },
@@ -5111,6 +5571,7 @@ Object {
           8.196096883864556,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -5122,6 +5583,7 @@ Object {
           0.4507042253521127,
         ],
       },
+      "lutMult": undefined,
       "min": 0.4507042253521127,
       "size": 1,
     },
@@ -5286,6 +5748,7 @@ Object {
           0.583711708026543,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -5450,6 +5913,7 @@ Object {
           104.25568362101016,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -5461,6 +5925,7 @@ Object {
           0.14088605894731104,
         ],
       },
+      "lutMult": undefined,
       "min": 0.14088605894731104,
       "size": 1,
     },
@@ -5472,6 +5937,7 @@ Object {
           0.17443536761172512,
         ],
       },
+      "lutMult": undefined,
       "min": 0.17443536761172512,
       "size": 1,
     },
@@ -5636,6 +6102,7 @@ Object {
           0.19610764055742433,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -5647,6 +6114,7 @@ Object {
           0.5286624203821656,
         ],
       },
+      "lutMult": undefined,
       "min": 0.5286624203821656,
       "size": 1,
     },
@@ -5658,6 +6126,7 @@ Object {
           0.35294117647058826,
         ],
       },
+      "lutMult": undefined,
       "min": 0.35294117647058826,
       "size": 1,
     },
@@ -5669,6 +6138,7 @@ Object {
           0.4311594202898551,
         ],
       },
+      "lutMult": undefined,
       "min": 0.4311594202898551,
       "size": 1,
     },
@@ -5833,6 +6303,7 @@ Object {
           0,
         ],
       },
+      "lutMult": undefined,
       "min": -5.395533808941735,
       "size": 151,
     },
@@ -5844,6 +6315,7 @@ Object {
           0.42028985507246375,
         ],
       },
+      "lutMult": undefined,
       "min": 0.42028985507246375,
       "size": 1,
     },
@@ -6008,6 +6480,7 @@ Object {
           90.66405292820387,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -6019,6 +6492,7 @@ Object {
           0.18867924528301885,
         ],
       },
+      "lutMult": undefined,
       "min": 0.18867924528301885,
       "size": 1,
     },
@@ -6030,6 +6504,7 @@ Object {
           0.5014866204162537,
         ],
       },
+      "lutMult": undefined,
       "min": 0.5014866204162537,
       "size": 1,
     },
@@ -6041,6 +6516,7 @@ Object {
           0.28895184135977336,
         ],
       },
+      "lutMult": undefined,
       "min": 0.28895184135977336,
       "size": 1,
     },
@@ -6052,6 +6528,7 @@ Object {
           0.19898534385569336,
         ],
       },
+      "lutMult": undefined,
       "min": 0.19898534385569336,
       "size": 1,
     },
@@ -6063,6 +6540,7 @@ Object {
           0.6158536585365854,
         ],
       },
+      "lutMult": undefined,
       "min": 0.6158536585365854,
       "size": 1,
     },
@@ -6074,6 +6552,7 @@ Object {
           0.3697857948139797,
         ],
       },
+      "lutMult": undefined,
       "min": 0.3697857948139797,
       "size": 1,
     },
@@ -6085,6 +6564,7 @@ Object {
           0.3111111111111111,
         ],
       },
+      "lutMult": undefined,
       "min": 0.3111111111111111,
       "size": 1,
     },
@@ -6096,6 +6576,7 @@ Object {
           0.43122886133032695,
         ],
       },
+      "lutMult": undefined,
       "min": 0.43122886133032695,
       "size": 1,
     },
@@ -6107,6 +6588,7 @@ Object {
           107.58303700144161,
         ],
       },
+      "lutMult": undefined,
       "min": 107.58303700144161,
       "size": 1,
     },
@@ -6118,6 +6600,7 @@ Object {
           113.24062028551026,
         ],
       },
+      "lutMult": undefined,
       "min": 113.24062028551026,
       "size": 1,
     },
@@ -6129,6 +6612,7 @@ Object {
           0.5497311827956989,
         ],
       },
+      "lutMult": undefined,
       "min": 0.5497311827956989,
       "size": 1,
     },
@@ -6140,6 +6624,7 @@ Object {
           0.48647125140924463,
         ],
       },
+      "lutMult": undefined,
       "min": 0.48647125140924463,
       "size": 1,
     },
@@ -6151,6 +6636,7 @@ Object {
           0.37711386696730553,
         ],
       },
+      "lutMult": undefined,
       "min": 0.37711386696730553,
       "size": 1,
     },
@@ -6162,6 +6648,7 @@ Object {
           21.655669059664973,
         ],
       },
+      "lutMult": undefined,
       "min": 21.655669059664973,
       "size": 1,
     },
@@ -6173,6 +6660,7 @@ Object {
           0.31216457960644006,
         ],
       },
+      "lutMult": undefined,
       "min": 0.31216457960644006,
       "size": 1,
     },
@@ -6184,6 +6672,7 @@ Object {
           107.1738083774675,
         ],
       },
+      "lutMult": undefined,
       "min": 107.1738083774675,
       "size": 1,
     },
@@ -6348,6 +6837,7 @@ Object {
           0.10780838866433026,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -6359,6 +6849,7 @@ Object {
           0.5755395683453237,
         ],
       },
+      "lutMult": undefined,
       "min": 0.5755395683453237,
       "size": 1,
     },
@@ -6370,6 +6861,7 @@ Object {
           0.28888888888888886,
         ],
       },
+      "lutMult": undefined,
       "min": 0.28888888888888886,
       "size": 1,
     },
@@ -6381,6 +6873,7 @@ Object {
           0.24456521739130435,
         ],
       },
+      "lutMult": undefined,
       "min": 0.24456521739130435,
       "size": 1,
     },
@@ -6545,6 +7038,7 @@ Object {
           8.046930109156818,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -6556,6 +7050,7 @@ Object {
           0.47282608695652173,
         ],
       },
+      "lutMult": undefined,
       "min": 0.47282608695652173,
       "size": 1,
     },
@@ -6720,6 +7215,7 @@ Object {
           0.6415989205037649,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -6884,6 +7380,7 @@ Object {
           115.22073848662431,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -6895,6 +7392,7 @@ Object {
           0.12057984260228126,
         ],
       },
+      "lutMult": undefined,
       "min": 0.12057984260228126,
       "size": 1,
     },
@@ -6906,6 +7404,7 @@ Object {
           0.16947520462205104,
         ],
       },
+      "lutMult": undefined,
       "min": 0.16947520462205104,
       "size": 1,
     },
@@ -7070,6 +7569,7 @@ Object {
           0.24058738565238325,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -7081,6 +7581,7 @@ Object {
           0.6779661016949152,
         ],
       },
+      "lutMult": undefined,
       "min": 0.6779661016949152,
       "size": 1,
     },
@@ -7092,6 +7593,7 @@ Object {
           0.30935251798561153,
         ],
       },
+      "lutMult": undefined,
       "min": 0.30935251798561153,
       "size": 1,
     },
@@ -7103,6 +7605,7 @@ Object {
           0.439873417721519,
         ],
       },
+      "lutMult": undefined,
       "min": 0.439873417721519,
       "size": 1,
     },
@@ -7267,6 +7770,7 @@ Object {
           0.0905502377016063,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -7278,6 +7782,7 @@ Object {
           0.6708860759493671,
         ],
       },
+      "lutMult": undefined,
       "min": 0.6708860759493671,
       "size": 1,
     },
@@ -7442,6 +7947,7 @@ Object {
           107.2643586151691,
         ],
       },
+      "lutMult": undefined,
       "min": 0,
       "size": 151,
     },
@@ -7453,6 +7959,7 @@ Object {
           0.16609965979587754,
         ],
       },
+      "lutMult": undefined,
       "min": 0.16609965979587754,
       "size": 1,
     },
@@ -7464,6 +7971,7 @@ Object {
           83.16,
         ],
       },
+      "lutMult": undefined,
       "min": 83.16,
       "size": 1,
     },

@@ -2,11 +2,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import _ from "lodash";
 
-import { main, completeLineupLeaderboard, completePlayerLeaderboard, completeDivisionStats, savedLineups, savedPlayers, teamInfo, mutableDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
+import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, teamInfo, mutableDivisionStats, mutablePlayerDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
 
 import { sampleLineupStatsResponse } from "../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../sample-data/sampleTeamStatsResponse";
 import { samplePlayerStatsResponse } from "../sample-data/samplePlayerStatsResponse";
+import { GradeUtils } from '../utils/stats/GradeUtils';
 
 const mockSampleLineupStatsResponse = sampleLineupStatsResponse;
 const mockSampleTeamStatsResponse = sampleTeamStatsResponse;
@@ -72,7 +73,12 @@ describe("buildLeaderboards", () => {
 
     // (only works if run after test above)
 
-    expect(completeDivisionStats(mutableDivisionStats)).toMatchSnapshot();
+    expect(GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats)).toMatchSnapshot();
   });
 
+  test("buildLeaderboards - main / division player stats", async () => {
+
+    // (only works if run after test above)
+    expect(GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePlayerDivisionStats)).toMatchSnapshot();
+  });
 });

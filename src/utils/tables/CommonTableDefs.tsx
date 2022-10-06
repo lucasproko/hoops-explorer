@@ -108,9 +108,10 @@ export class CommonTableDefs {
   // ON/OFF - INDIVIDUAL
 
   /** Utility to put a faint colored backing to text */
-  static readonly getTextShadow = (stat: { value?: number }, colorMapper: (val: number) => string) => {
+  static readonly getTextShadow = (stat: { value?: number }, colorMapper: (val: number) => string, radius: string = "15px", strength = 3) => {
+    const shadow = _.range(0, strength).map(__ => `0px 0px ${radius} ${colorMapper(stat?.value || 0)}`).join(",");
     return {
-      textShadow: `0px 0px 10px ${colorMapper(stat?.value || 0)},0px 0px 10px ${colorMapper(stat?.value || 0)}`
+      textShadow: shadow
     };
   };
 

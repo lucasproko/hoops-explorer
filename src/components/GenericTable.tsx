@@ -130,6 +130,9 @@ export class GenericTableOps {
   static readonly rankFormatter = (val: any) => {
     return <small>{(val.value as number).toFixed(0)}<sup>{GenericTableOps.rankSuffix(val.value as number)}</sup></small>;
   };
+  static readonly approxRankFormatter = (val: any) => {
+    return <small>T{(val.value as number).toFixed(0)}</small>;
+  };
   static readonly percentFormatter = (val: any) => {
     return (val.value >= 1) ?
         ((val.value as number)*100.0).toFixed(0) //(remove the .0 in the 100% case)
@@ -150,6 +153,27 @@ export class GenericTableOps {
       const pcile = val.value || 0;
       const rank = 1 + Math.round((1 - pcile)*numSamples); //(+1, since 100% is rank==1)
       return GenericTableOps.rankFormatter({ value: rank });
+    } else {
+      return GenericTableOps.percentFormatter(val);
+    }
+  }
+  static readonly approxRankOrHtmlFormatter = (val: any) => {
+    if (React.isValidElement(val)) {
+      return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else if (val.samples) {
+      const numSamples = val.samples || 0;
+      const pcile = val.value || 0;
+      const rank = 1 + Math.round((1 - pcile)*numSamples); //(+1, since 100% is rank==1)
+
+      // How granular we are depends on how highly ranked we are:
+      const approxRank = _.thru(rank, r => {
+        if (r <= 250) {
+          return 10*Math.ceil(r/10)
+        } else {
+          return 50*Math.ceil(r/50)
+        }
+      });
+      return GenericTableOps.approxRankFormatter({ value: approxRank });
     } else {
       return GenericTableOps.percentFormatter(val);
     }

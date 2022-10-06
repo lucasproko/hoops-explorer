@@ -99,6 +99,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     false : gameFilterParams.showExtraInfo
   );
 
+  /** Show team and individual grades */
   const [ showGrades, setShowGrades ] = useState(_.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades);
 
   /** (placeholder for positional info)*/
@@ -109,12 +110,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
-  useEffect(() => { //(keep luck up to date between the two views)
+  useEffect(() => { //(keep luck and grades up to date between the two views)
     setAdjustForLuck(_.isNil(gameFilterParams.onOffLuck) ?
         ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
     );
     setLuckConfig(_.isNil(gameFilterParams.luck) ?
       ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+    );
+    setShowGrades(_.isNil(gameFilterParams.showGrades) ?
+      "" : gameFilterParams.showGrades
     );
   }, [ gameFilterParams ]);
 
@@ -130,7 +134,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
         (gameFilterParams.gender != divisionStatsCache.gender) ||
         _.isEmpty(divisionStatsCache)) {
           if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-          GradeTableUtils.populateDivisionStatsCache(gameFilterParams, setDivisionStatsCache);
+          GradeTableUtils.populateTeamDivisionStatsCache(gameFilterParams, setDivisionStatsCache);
         }
       }
   }, [ gameFilterParams, showGrades ]);
@@ -281,7 +285,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.on?.doc_count ? 
-        GradeTableUtils.buildGradeTableRows({
+        GradeTableUtils.buildTeamGradeTableRows({
           setName: "on",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
@@ -339,7 +343,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.off?.doc_count ? 
-        GradeTableUtils.buildGradeTableRows({
+        GradeTableUtils.buildTeamGradeTableRows({
           setName: "off",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
@@ -397,7 +401,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.baseline?.doc_count ? 
-        GradeTableUtils.buildGradeTableRows({
+        GradeTableUtils.buildTeamGradeTableRows({
           setName: "baseline",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
@@ -518,7 +522,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   label: "Grades",
                   tooltip: showGrades ? "Hide team ranks/percentiles" : "Show team ranks/percentiles",
                   toggled: (showGrades != ""),
-                  onClick: () => setShowGrades(showGrades ? "" : ParamDefaults.defaultTeamEnabledGrade)
+                  onClick: () => setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)
                 },
                 {
                   label: "Style",
@@ -557,7 +561,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             <GenericTogglingMenuItem
               text="Show Team Ranks/Percentiles"
               truthVal={showGrades != ""}
-              onSelect={() => setShowGrades(showGrades ? "" : ParamDefaults.defaultTeamEnabledGrade)}
+              onSelect={() => setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)}
             />
             <GenericTogglingMenuItem
               text="Show Play Style Breakdowns"

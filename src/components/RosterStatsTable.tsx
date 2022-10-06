@@ -57,6 +57,7 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
+import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>,
@@ -95,6 +96,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const teamSeasonLookup = `${commonParams.gender}_${commonParams.team}_${commonParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
+  /** Show team and individual grades */
+  const [ showGrades, setShowGrades ] = useState(_.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades);
+
   /** Splits out offensive and defensive metrics into separate rows */
   const [ expandedView, setExpandedView ] = useState(_.isNil(gameFilterParams.showExpanded) ?
     ParamDefaults.defaultPlayerShowExpanded : gameFilterParams.showExpanded
@@ -109,6 +113,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const [ showDiagMode, setShowDiagMode ] = useState(_.isNil(gameFilterParams.showDiag) ?
     ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
   );
+
 
   /** Show a diagnostics mode explaining the positional evaluation */
   const [ showPositionDiags, setShowPositionDiags ] = useState(_.isNil(gameFilterParams.showPosDiag) ?
@@ -136,12 +141,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(gameFilterParams.showInfoSubHeader || false);
 
   const [ showRepeatingHeader, setShowRepeatingHeader ] = useState(true as boolean); //(always defaults to on)
-
-  /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
-  const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
-
-  /** Switches usage to an offset "[Adj] Eq ORtg" */
-  const [ showEquivORtgAtUsage, setShowEquivORtgAtUsage ] = useState("" as string);
 
   /** Which players to filter */
   const [ filterStr, setFilterStr ] = useState(_.isNil(gameFilterParams.filter) ?
@@ -203,12 +202,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
-  useEffect(() => { //(keep luck and manual up to date between the two views)
+  useEffect(() => { //(keep luck and grades and manual up to date between the two views)
     setAdjustForLuck(_.isNil(gameFilterParams.onOffLuck) ?
         ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
     );
     setLuckConfig(_.isNil(gameFilterParams.luck) ?
       ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+    );
+    setShowGrades(_.isNil(gameFilterParams.showGrades) ?
+      "" : gameFilterParams.showGrades
     );
     setManualOverrides(gameFilterParams.manual || []);
 
@@ -232,6 +234,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       calcRapm: calcRapm,
       factorMins: factorMins,
       onOffLuck: adjustForLuck,
+      showGrades: showGrades,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
       showPlayerManual: showManualOverrides,
       showOnBallConfig: showOnBallConfig,
@@ -241,9 +244,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
       showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, showOnBallConfig, 
-      manualOverrides, calcRapm, factorMins, showInfoSubHeader
+      manualOverrides, calcRapm, factorMins, showInfoSubHeader, showGrades
     ]);
 
+  // Events that trigger building or rebuilding the division stats cache
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  useEffect(() => {
+    if (showGrades) {
+      if ((gameFilterParams.year != divisionStatsCache.year) ||
+        (gameFilterParams.gender != divisionStatsCache.gender) ||
+        _.isEmpty(divisionStatsCache)) {
+          if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+          GradeTableUtils.populatePlayerDivisionStatsCache(gameFilterParams, setDivisionStatsCache);
+        }
+      }
+  }, [ gameFilterParams, showGrades ]);
+  
   // 2] Data Model
 
   const allTableFields = CommonTableDefs.onOffIndividualTableAllFields(expandedView);
@@ -523,7 +539,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             //(note don't copy override across for defense, currently there are no defensive overrides and on-ball adjustments are shown elsewhere)
 
-            if (!expandedView) {
+            if (!expandedView || showGrades) {
               const adjRapmMargin: Statistic | undefined = (rapm.off_adj_rapm && rapm.def_adj_rapm) ? { 
                   value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) 
               } : undefined;
@@ -602,7 +618,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       (_.isNil(p.on?.off_title) ? 0 : 1) +
       (_.isNil(p.off?.off_title) ? 0 : 1) +
       ((skipBaseline || _.isNil(p.baseline?.off_title)) ? 0 : 1);
-    const currentRowInc = entriesPerPlayer*(expandedView ? 2 : 1); //(row or pair-of-rows)
+    const gradesMult = showGrades ? (expandedView ? 2 : 3) : 1;
+    const currentRowInc = gradesMult*entriesPerPlayer*(expandedView ? 2 : 1); //(row or pair-of-rows)
     if ((currentRowCount < 10) && (currentRowCount + currentRowInc >= 10)) {
       currentRowCount = 10; // always lock to start of new player
     } else {
@@ -617,6 +634,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] : [],
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
+        showGrades && p.on? 
+          GradeTableUtils.buildPlayerGradeTableRows({
+            title: `A Lineups [${p.key}] Grades`,
+            config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            player: p.on,
+            expandedView, possAsPct, factorMins, includeRapm: calcRapm
+          }) : [],
         showDiagMode && p.on?.diag_off_rtg && p.on?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -646,6 +672,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] : [],
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
+        showGrades && p.off? 
+          GradeTableUtils.buildPlayerGradeTableRows({
+            title: `B Lineups [${p.key}] Grades`,
+            config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            player: p.off,
+            expandedView, possAsPct, factorMins, includeRapm: calcRapm
+          }) : [],
         showDiagMode && p.off?.diag_off_rtg && p.off?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -675,6 +710,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] : [],
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
+        showGrades && p.baseline? 
+          GradeTableUtils.buildPlayerGradeTableRows({
+            title: `Baseline [${p.key}] Grades`,
+            config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
+            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            player: p.baseline,
+            expandedView, possAsPct, factorMins, includeRapm: calcRapm
+          }) : [],
         showDiagMode && p.baseline?.diag_off_rtg && p.baseline?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -911,6 +955,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => toggleFactorMins()}
             />
             <GenericTogglingMenuItem
+              text="Show Player Ranks/Percentiles"
+              truthVal={showGrades != ""}
+              onSelect={() => setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)}
+            />
+            <GenericTogglingMenuItem
               text={<span>Calculate RAPM metric (<span className="badge badge-pill badge-info">alpha!</span>, slow)</span>}
               truthVal={calcRapm}
               onSelect={() => setCalcRapm(!calcRapm)}
@@ -992,6 +1041,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               toggled: factorMins,
               onClick: () => toggleFactorMins()
+            },
+            {
+              label: "Grades",
+              tooltip: showGrades ? "Hide player ranks/percentiles" : "Show player ranks/percentiles",
+              toggled: (showGrades != ""),
+              onClick: () => setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)
             },
             {
               label: "RAPM",

@@ -1054,7 +1054,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   <small
                     style={
                       Object {
-                        "textShadow": "0px 0px 10px #a1d0a1,0px 0px 10px #a1d0a1",
+                        "textShadow": "0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1,0px 0px 15px #a1d0a1",
                       }
                     }
                   >
@@ -2049,7 +2049,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   <small
                     style={
                       Object {
-                        "textShadow": "0px 0px 10px #dbeddb,0px 0px 10px #dbeddb",
+                        "textShadow": "0px 0px 15px #dbeddb,0px 0px 15px #dbeddb,0px 0px 15px #dbeddb",
                       }
                     }
                   >
@@ -3044,7 +3044,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   <small
                     style={
                       Object {
-                        "textShadow": "0px 0px 10px #aed7ae,0px 0px 10px #aed7ae",
+                        "textShadow": "0px 0px 15px #aed7ae,0px 0px 15px #aed7ae,0px 0px 15px #aed7ae",
                       }
                     }
                   >
@@ -4549,7 +4549,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <small
                         style={
                           Object {
-                            "textShadow": "0px 0px 10px #a9d4a9,0px 0px 10px #a9d4a9",
+                            "textShadow": "0px 0px 15px #a9d4a9,0px 0px 15px #a9d4a9,0px 0px 15px #a9d4a9",
                           }
                         }
                       >
@@ -4989,77 +4989,33 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td
-                  className=""
-                  colSpan={24}
-                >
-                  <span>
-                    <small>
-                      Team Grades 
-                      <div>
-                        <b>
-                          (?)
-                        </b>
-                      </div>
-                    </small>
-                    : 
-                    <span
-                      className="small"
-                    >
-                      <a
-                        onClick={[Function]}
-                      >
-                        D1
-                        
-                      </a>
-                       | 
-                      <b>
-                        <a
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          High
-                           (151)
-                        </a>
-                      </b>
-                       | 
-                      <a
-                        onClick={[Function]}
-                      >
-                        Medium
-                        
-                      </a>
-                       | 
-                      <a
-                        onClick={[Function]}
-                      >
-                        Low
-                        
-                      </a>
-                    </span>
-                     // 
-                    <span
-                      className="small"
-                    >
-                      <b>
-                        <a
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          Ranks
-                        </a>
-                      </b>
-                       | 
-                      <a
-                        href="#"
-                        onClick={[Function]}
-                      >
-                        Pctiles
-                      </a>
-                    </span>
-                  </span>
-                </td>
+              <tr
+                className="divider"
+              >
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
               </tr>
               <tr>
                 <td
@@ -5617,7 +5573,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <span
                     style={
                       Object {
-                        "textShadow": "0px 0px 10px #63b163,0px 0px 10px #63b163",
+                        "textShadow": "0px 0px 15px #63b163,0px 0px 15px #63b163,0px 0px 15px #63b163",
                       }
                     }
                   >
@@ -6061,33 +6017,78 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   </small>
                 </td>
               </tr>
-              <tr
-                className="divider"
-              >
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
+              <tr>
+                <td
+                  className=""
+                  colSpan={24}
+                >
+                  <span>
+                    <small>
+                      A Lineups
+                       Team Grades 
+                      <div>
+                        <b>
+                          (?)
+                        </b>
+                      </div>
+                    </small>
+                    : 
+                    <span
+                      className="small"
+                    >
+                      <a
+                        onClick={[Function]}
+                      >
+                        D1
+                        
+                      </a>
+                       | 
+                      <b>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          High
+                           (151)
+                        </a>
+                      </b>
+                       | 
+                      <a
+                        onClick={[Function]}
+                      >
+                        Medium
+                        
+                      </a>
+                       | 
+                      <a
+                        onClick={[Function]}
+                      >
+                        Low
+                        
+                      </a>
+                    </span>
+                     // 
+                    <span
+                      className="small"
+                    >
+                      <b>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          Ranks
+                        </a>
+                      </b>
+                       | 
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Pctiles
+                      </a>
+                    </span>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td
@@ -8940,7 +8941,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               <b
                                 style={
                                   Object {
-                                    "textShadow": "0px 0px 10px #fff7f7,0px 0px 10px #fff7f7",
+                                    "textShadow": "0px 0px 15px #fff7f7,0px 0px 15px #fff7f7,0px 0px 15px #fff7f7",
                                   }
                                 }
                               >
@@ -8956,7 +8957,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #4ea74e,0px 0px 10px #4ea74e",
+                                      "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
                                     }
                                   }
                                 >
@@ -8978,7 +8979,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <b
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                      "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
                                     }
                                   }
                                 >
@@ -10836,7 +10837,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffc7c7,0px 0px 10px #ffc7c7",
+                                      "textShadow": "0px 0px 15px #ffc7c7,0px 0px 15px #ffc7c7,0px 0px 15px #ffc7c7",
                                     }
                                   }
                                 >
@@ -10906,7 +10907,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -10976,7 +10977,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                      "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                     }
                                   }
                                 >
@@ -11233,7 +11234,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -11303,7 +11304,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -11373,7 +11374,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -13691,7 +13692,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffd3d3,0px 0px 10px #ffd3d3",
+                                      "textShadow": "0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3",
                                     }
                                   }
                                 >
@@ -13815,7 +13816,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #71b871,0px 0px 10px #71b871",
+                                      "textShadow": "0px 0px 15px #71b871,0px 0px 15px #71b871,0px 0px 15px #71b871",
                                     }
                                   }
                                 >
@@ -18839,7 +18840,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <small
                         style={
                           Object {
-                            "textShadow": "0px 0px 10px #cae4ca,0px 0px 10px #cae4ca",
+                            "textShadow": "0px 0px 15px #cae4ca,0px 0px 15px #cae4ca,0px 0px 15px #cae4ca",
                           }
                         }
                       >
@@ -19279,77 +19280,33 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td
-                  className=""
-                  colSpan={24}
-                >
-                  <span>
-                    <small>
-                      Team Grades 
-                      <div>
-                        <b>
-                          (?)
-                        </b>
-                      </div>
-                    </small>
-                    : 
-                    <span
-                      className="small"
-                    >
-                      <a
-                        onClick={[Function]}
-                      >
-                        D1
-                        
-                      </a>
-                       | 
-                      <b>
-                        <a
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          High
-                           (151)
-                        </a>
-                      </b>
-                       | 
-                      <a
-                        onClick={[Function]}
-                      >
-                        Medium
-                        
-                      </a>
-                       | 
-                      <a
-                        onClick={[Function]}
-                      >
-                        Low
-                        
-                      </a>
-                    </span>
-                     // 
-                    <span
-                      className="small"
-                    >
-                      <b>
-                        <a
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          Ranks
-                        </a>
-                      </b>
-                       | 
-                      <a
-                        href="#"
-                        onClick={[Function]}
-                      >
-                        Pctiles
-                      </a>
-                    </span>
-                  </span>
-                </td>
+              <tr
+                className="divider"
+              >
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
               </tr>
               <tr>
                 <td
@@ -19907,7 +19864,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <span
                     style={
                       Object {
-                        "textShadow": "0px 0px 10px #cfe7cf,0px 0px 10px #cfe7cf",
+                        "textShadow": "0px 0px 15px #cfe7cf,0px 0px 15px #cfe7cf,0px 0px 15px #cfe7cf",
                       }
                     }
                   >
@@ -20351,33 +20308,78 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   </small>
                 </td>
               </tr>
-              <tr
-                className="divider"
-              >
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
+              <tr>
+                <td
+                  className=""
+                  colSpan={24}
+                >
+                  <span>
+                    <small>
+                      B Lineups
+                       Team Grades 
+                      <div>
+                        <b>
+                          (?)
+                        </b>
+                      </div>
+                    </small>
+                    : 
+                    <span
+                      className="small"
+                    >
+                      <a
+                        onClick={[Function]}
+                      >
+                        D1
+                        
+                      </a>
+                       | 
+                      <b>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          High
+                           (151)
+                        </a>
+                      </b>
+                       | 
+                      <a
+                        onClick={[Function]}
+                      >
+                        Medium
+                        
+                      </a>
+                       | 
+                      <a
+                        onClick={[Function]}
+                      >
+                        Low
+                        
+                      </a>
+                    </span>
+                     // 
+                    <span
+                      className="small"
+                    >
+                      <b>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          Ranks
+                        </a>
+                      </b>
+                       | 
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Pctiles
+                      </a>
+                    </span>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td
@@ -23230,7 +23232,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               <b
                                 style={
                                   Object {
-                                    "textShadow": "0px 0px 10px #e4f1e4,0px 0px 10px #e4f1e4",
+                                    "textShadow": "0px 0px 15px #e4f1e4,0px 0px 15px #e4f1e4,0px 0px 15px #e4f1e4",
                                   }
                                 }
                               >
@@ -23246,7 +23248,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #038203,0px 0px 10px #038203",
+                                      "textShadow": "0px 0px 15px #038203,0px 0px 15px #038203,0px 0px 15px #038203",
                                     }
                                   }
                                 >
@@ -23268,7 +23270,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <b
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                      "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
                                     }
                                   }
                                 >
@@ -25126,7 +25128,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffc7c7,0px 0px 10px #ffc7c7",
+                                      "textShadow": "0px 0px 15px #ffc7c7,0px 0px 15px #ffc7c7,0px 0px 15px #ffc7c7",
                                     }
                                   }
                                 >
@@ -25196,7 +25198,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -25266,7 +25268,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                      "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                     }
                                   }
                                 >
@@ -25523,7 +25525,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -25593,7 +25595,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -25663,7 +25665,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -27981,7 +27983,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffd3d3,0px 0px 10px #ffd3d3",
+                                      "textShadow": "0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3",
                                     }
                                   }
                                 >
@@ -28105,7 +28107,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #71b871,0px 0px 10px #71b871",
+                                      "textShadow": "0px 0px 15px #71b871,0px 0px 15px #71b871,0px 0px 15px #71b871",
                                     }
                                   }
                                 >
@@ -33129,7 +33131,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <small
                         style={
                           Object {
-                            "textShadow": "0px 0px 10px #b0d8b0,0px 0px 10px #b0d8b0",
+                            "textShadow": "0px 0px 15px #b0d8b0,0px 0px 15px #b0d8b0,0px 0px 15px #b0d8b0",
                           }
                         }
                       >
@@ -33569,77 +33571,33 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td
-                  className=""
-                  colSpan={24}
-                >
-                  <span>
-                    <small>
-                      Team Grades 
-                      <div>
-                        <b>
-                          (?)
-                        </b>
-                      </div>
-                    </small>
-                    : 
-                    <span
-                      className="small"
-                    >
-                      <a
-                        onClick={[Function]}
-                      >
-                        D1
-                        
-                      </a>
-                       | 
-                      <b>
-                        <a
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          High
-                           (151)
-                        </a>
-                      </b>
-                       | 
-                      <a
-                        onClick={[Function]}
-                      >
-                        Medium
-                        
-                      </a>
-                       | 
-                      <a
-                        onClick={[Function]}
-                      >
-                        Low
-                        
-                      </a>
-                    </span>
-                     // 
-                    <span
-                      className="small"
-                    >
-                      <b>
-                        <a
-                          href="#"
-                          onClick={[Function]}
-                        >
-                          Ranks
-                        </a>
-                      </b>
-                       | 
-                      <a
-                        href="#"
-                        onClick={[Function]}
-                      >
-                        Pctiles
-                      </a>
-                    </span>
-                  </span>
-                </td>
+              <tr
+                className="divider"
+              >
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
               </tr>
               <tr>
                 <td
@@ -34197,7 +34155,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <span
                     style={
                       Object {
-                        "textShadow": "0px 0px 10px #85c285,0px 0px 10px #85c285",
+                        "textShadow": "0px 0px 15px #85c285,0px 0px 15px #85c285,0px 0px 15px #85c285",
                       }
                     }
                   >
@@ -34641,33 +34599,78 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   </small>
                 </td>
               </tr>
-              <tr
-                className="divider"
-              >
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
+              <tr>
+                <td
+                  className=""
+                  colSpan={24}
+                >
+                  <span>
+                    <small>
+                      Baseline
+                       Team Grades 
+                      <div>
+                        <b>
+                          (?)
+                        </b>
+                      </div>
+                    </small>
+                    : 
+                    <span
+                      className="small"
+                    >
+                      <a
+                        onClick={[Function]}
+                      >
+                        D1
+                        
+                      </a>
+                       | 
+                      <b>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          High
+                           (151)
+                        </a>
+                      </b>
+                       | 
+                      <a
+                        onClick={[Function]}
+                      >
+                        Medium
+                        
+                      </a>
+                       | 
+                      <a
+                        onClick={[Function]}
+                      >
+                        Low
+                        
+                      </a>
+                    </span>
+                     // 
+                    <span
+                      className="small"
+                    >
+                      <b>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                        >
+                          Ranks
+                        </a>
+                      </b>
+                       | 
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Pctiles
+                      </a>
+                    </span>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td
@@ -37520,7 +37523,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               <b
                                 style={
                                   Object {
-                                    "textShadow": "0px 0px 10px #ffffff,0px 0px 10px #ffffff",
+                                    "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
                                   }
                                 }
                               >
@@ -37536,7 +37539,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #299429,0px 0px 10px #299429",
+                                      "textShadow": "0px 0px 15px #299429,0px 0px 15px #299429,0px 0px 15px #299429",
                                     }
                                   }
                                 >
@@ -37558,7 +37561,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <b
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffa500,0px 0px 10px #ffa500",
+                                      "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
                                     }
                                   }
                                 >
@@ -39416,7 +39419,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffc7c7,0px 0px 10px #ffc7c7",
+                                      "textShadow": "0px 0px 15px #ffc7c7,0px 0px 15px #ffc7c7,0px 0px 15px #ffc7c7",
                                     }
                                   }
                                 >
@@ -39486,7 +39489,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -39556,7 +39559,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #008000,0px 0px 10px #008000",
+                                      "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
                                     }
                                   }
                                 >
@@ -39813,7 +39816,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -39883,7 +39886,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -39953,7 +39956,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ff0000,0px 0px 10px #ff0000",
+                                      "textShadow": "0px 0px 15px #ff0000,0px 0px 15px #ff0000,0px 0px 15px #ff0000",
                                     }
                                   }
                                 >
@@ -42271,7 +42274,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #ffd3d3,0px 0px 10px #ffd3d3",
+                                      "textShadow": "0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3,0px 0px 15px #ffd3d3",
                                     }
                                   }
                                 >
@@ -42395,7 +42398,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                 <span
                                   style={
                                     Object {
-                                      "textShadow": "0px 0px 10px #71b871,0px 0px 10px #71b871",
+                                      "textShadow": "0px 0px 15px #71b871,0px 0px 15px #71b871,0px 0px 15px #71b871",
                                     }
                                   }
                                 >

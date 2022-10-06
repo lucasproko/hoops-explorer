@@ -326,7 +326,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          const confLookupToUse = efficiencyInfo[`${gender}_${yearWithStats}`] || efficiencyInfo[`${gender}_Latest`];
          const confStr = offseasonConfChanges[t] || (confLookupToUse?.[0]?.[t]?.conf || "???");
 
-         GradeUtils.buildAndInjectDivisionStats(
+         GradeUtils.buildAndInjectTeamDivisionStats(
             { off_adj_ppp: { value: okTotals.off + avgEff }, def_adj_ppp: { value: okTotals.def + avgEff }, off_net: { value: okTotals.net } },
             {}, mutableDivisionStats, true, [ "off_adj_ppp", "def_adj_ppp", "off_net" ]
          );
@@ -406,7 +406,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       const actualNetEffToRankMap = evalMode ? 
          _.chain(teamRanks).sortBy(t => -(t.actualNet || 0)).map((t, rank) => [t.actualNet || 0, rank]).fromPairs().value() : undefined;
 
-      GradeUtils.buildAndInjectDivisionStatsLUT(mutableDivisionStats);
+      GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
 
       //Useful for building late off-season grade lists (copy to public/lineups/stats_all_Men_YYYY_Preseason.json) 
       //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)

@@ -9,6 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const parsed: Record<string, any> = queryString.parse(url.query, {parseBooleans: true}) as any;
     //tier: High, Medium, Low, Combo
     //gender: Men, Women
+    //type: player, team
+    const urlInFix = parsed.type == "player" ? "players_" : "";
 
     // Check the request is cacheable: ie GET, no Authorization header, no Range header, no _vercel_no_cache
     // and no _vercel_no_cache cookie
@@ -21,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return undefined;
     } else {
         try {
-            const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/stats_all_${parsed.gender}_${parsed.year}_${parsed.tier}.json`, {
+            const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/stats_${urlInFix}all_${parsed.gender}_${parsed.year}_${parsed.tier}.json`, {
                 method: 'get'
             });
             const respJson = await resp.json();

@@ -773,7 +773,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #51a851,0px 0px 10px #51a851",
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
                                         }
                                       }
                                     >
@@ -1235,7 +1235,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #51a851,0px 0px 10px #51a851",
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
                                         }
                                       }
                                     >
@@ -1700,7 +1700,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ab57,0px 0px 10px #57ab57",
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
                                         }
                                       }
                                     >
@@ -2162,7 +2162,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ab57,0px 0px 10px #57ab57",
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
                                         }
                                       }
                                     >
@@ -2627,7 +2627,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #48a448,0px 0px 10px #48a448",
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
                                         }
                                       }
                                     >
@@ -3089,7 +3089,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #48a448,0px 0px 10px #48a448",
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
                                         }
                                       }
                                     >
@@ -4569,7 +4569,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #61b061,0px 0px 10px #61b061",
+                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
                                         }
                                       }
                                     >
@@ -4887,7 +4887,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #61b061,0px 0px 10px #61b061",
+                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
                                         }
                                       }
                                     >
@@ -5243,7 +5243,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #6eb76e,0px 0px 10px #6eb76e",
+                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
                                         }
                                       }
                                     >
@@ -5561,7 +5561,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #6eb76e,0px 0px 10px #6eb76e",
+                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
                                         }
                                       }
                                     >
@@ -5917,7 +5917,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #70b870,0px 0px 10px #70b870",
+                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
                                         }
                                       }
                                     >
@@ -6235,7 +6235,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #70b870,0px 0px 10px #70b870",
+                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
                                         }
                                       }
                                     >
@@ -7546,7 +7546,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #51a851,0px 0px 10px #51a851",
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
                                         }
                                       }
                                     >
@@ -8022,7 +8022,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #51a851,0px 0px 10px #51a851",
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
                                         }
                                       }
                                     >
@@ -8501,7 +8501,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ab57,0px 0px 10px #57ab57",
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
                                         }
                                       }
                                     >
@@ -8977,7 +8977,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ab57,0px 0px 10px #57ab57",
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
                                         }
                                       }
                                     >
@@ -9456,7 +9456,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #48a448,0px 0px 10px #48a448",
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
                                         }
                                       }
                                     >
@@ -9932,7 +9932,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #48a448,0px 0px 10px #48a448",
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
                                         }
                                       }
                                     >
@@ -11402,7 +11402,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #51a851,0px 0px 10px #51a851",
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
                                         }
                                       }
                                     >
@@ -11878,7 +11878,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #51a851,0px 0px 10px #51a851",
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
                                         }
                                       }
                                     >
@@ -12357,7 +12357,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ab57,0px 0px 10px #57ab57",
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
                                         }
                                       }
                                     >
@@ -12833,7 +12833,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #57ab57,0px 0px 10px #57ab57",
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
                                         }
                                       }
                                     >
@@ -13312,7 +13312,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #48a448,0px 0px 10px #48a448",
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
                                         }
                                       }
                                     >
@@ -13788,7 +13788,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #48a448,0px 0px 10px #48a448",
+                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
                                         }
                                       }
                                     >
