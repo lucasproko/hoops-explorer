@@ -5035,7 +5035,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     <small>
                       <b>
-                        Off Equiv Ranks
+                        Off 
+                        Equiv 
+                        Ranks
                       </b>
                     </small>
                   </div>
@@ -5533,7 +5535,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     <small>
                       <b>
-                        Def Equiv Ranks
+                        Def 
+                        Equiv 
+                        Ranks
                       </b>
                     </small>
                   </div>
@@ -19326,7 +19330,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     <small>
                       <b>
-                        Off Equiv Ranks
+                        Off 
+                        Equiv 
+                        Ranks
                       </b>
                     </small>
                   </div>
@@ -19824,7 +19830,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     <small>
                       <b>
-                        Def Equiv Ranks
+                        Def 
+                        Equiv 
+                        Ranks
                       </b>
                     </small>
                   </div>
@@ -33617,7 +33625,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     <small>
                       <b>
-                        Off Equiv Ranks
+                        Off 
+                        
+                        Ranks
                       </b>
                     </small>
                   </div>
@@ -34115,7 +34125,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <div>
                     <small>
                       <b>
-                        Def Equiv Ranks
+                        Def 
+                        
+                        Ranks
                       </b>
                     </small>
                   </div>

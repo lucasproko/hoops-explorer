@@ -24,6 +24,7 @@ import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 import { DateUtils } from '../DateUtils';
 
 type TeamProps = {
+   isFullSelection?: boolean,
    selectionType: "on" | "off" | "baseline",
    config: string,
    setConfig: (newConfig: string) => void,
@@ -36,6 +37,7 @@ type TeamProps = {
 };
 
 type PlayerProps = {
+   isFullSelection?: boolean,
    selectionTitle: string,
    config: string,
    setConfig: (newConfig: string) => void,
@@ -170,8 +172,10 @@ export class GradeTableUtils {
 
    /** Build the rows containing the grade information for a team */
    static readonly buildTeamGradeTableRows: (p: TeamProps) => GenericTableRow[] = ({
+      isFullSelection,
       selectionType, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
+      const maybeEquiv = isFullSelection ? "" : "Equiv ";
       const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, '');
       const title = selectionType == "on" ? "A Lineups" : (selectionType == "off" ? "B Lineups" : "Baseline");
       const tiers = { //(handy LUT)
@@ -253,7 +257,7 @@ export class GradeTableUtils {
          </OverlayTrigger> 
          :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <small><b>Off Equiv Ranks</b></small>
+            <small><b>Off {maybeEquiv}Ranks</b></small>
          </OverlayTrigger>
          ;
       (teamPercentiles as any).def_title = gradeFormat == "pct" ? 
@@ -262,7 +266,7 @@ export class GradeTableUtils {
          </OverlayTrigger> 
          :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <small><b>Def Equiv Ranks</b></small>
+            <small><b>Def {maybeEquiv}Ranks</b></small>
          </OverlayTrigger>
          ;
 
@@ -296,9 +300,11 @@ export class GradeTableUtils {
     * (see buildTeamGradeTableRows for why there aren't OverlayTriggers)
    */
    static readonly buildPlayerGradeTableRows: (p: PlayerProps) => GenericTableRow[] = ({
+      isFullSelection,
       selectionTitle, config, setConfig, comboTier, highTier, mediumTier, lowTier, player,
       expandedView, possAsPct, factorMins, includeRapm, leaderboardMode
    }) => {
+      const equivOrApprox = isFullSelection ? "Approx" : "Equiv";
       const nameAsId = selectionTitle.replace(/[^A-Za-z0-9_]/g, '');
       const tiers = { //(handy LUT)
          High: highTier,
@@ -433,7 +439,7 @@ export class GradeTableUtils {
          </OverlayTrigger> 
          :
          <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
-            <div><small><b>Equiv Ranks</b></small>{netInfo ? <br/> : null}{netInfo}</div>
+            <div><small><b>{equivOrApprox} Ranks</b></small>{netInfo ? <br/> : null}{netInfo}</div>
          </OverlayTrigger>
          ;
          

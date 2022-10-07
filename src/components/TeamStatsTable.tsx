@@ -402,6 +402,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.baseline?.doc_count ? 
         GradeTableUtils.buildTeamGradeTableRows({
+          isFullSelection: !gameFilterParams.baseQuery && !gameFilterParams.queryFilters,
           selectionType: "baseline",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,

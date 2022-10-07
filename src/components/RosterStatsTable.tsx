@@ -625,7 +625,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     } else {
       currentRowCount = currentRowCount + currentRowInc;
     }
-
     return _.flatten([
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         (!firstRowIsOn && showEveryLine) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small") ] : [],
@@ -712,6 +711,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.baseline? 
           GradeTableUtils.buildPlayerGradeTableRows({
+            isFullSelection: !gameFilterParams.baseQuery && !gameFilterParams.queryFilters,
             selectionTitle: `Baseline [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
