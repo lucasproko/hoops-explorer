@@ -707,7 +707,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
         (showGrades && playerIndex < 50) ? GradeTableUtils.buildPlayerGradeTableRows({
-          title: `[${player.key}] Grades`,
+          selectionTitle: `[${player.key}] Grades`,
           config: showGrades, 
           setConfig: (newConfig:string) => { friendlyChange(() => setShowGrades(newConfig), newConfig != showGrades) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,

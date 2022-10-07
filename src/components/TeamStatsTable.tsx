@@ -286,7 +286,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.on?.doc_count ? 
         GradeTableUtils.buildTeamGradeTableRows({
-          setName: "on",
+          selectionType: "on",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
           mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
@@ -344,7 +344,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.off?.doc_count ? 
         GradeTableUtils.buildTeamGradeTableRows({
-          setName: "off",
+          selectionType: "off",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
           mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
@@ -402,7 +402,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
       (showGrades != "") && teamStats.baseline?.doc_count ? 
         GradeTableUtils.buildTeamGradeTableRows({
-          setName: "baseline",
+          selectionType: "baseline",
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
           mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,

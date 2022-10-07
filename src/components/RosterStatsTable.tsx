@@ -636,7 +636,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.on? 
           GradeTableUtils.buildPlayerGradeTableRows({
-            title: `A Lineups [${p.key}] Grades`,
+            selectionTitle: `A Lineups [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
             mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
@@ -674,7 +674,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.off? 
           GradeTableUtils.buildPlayerGradeTableRows({
-            title: `B Lineups [${p.key}] Grades`,
+            selectionTitle: `B Lineups [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
             mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
@@ -712,7 +712,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.baseline? 
           GradeTableUtils.buildPlayerGradeTableRows({
-            title: `Baseline [${p.key}] Grades`,
+            selectionTitle: `Baseline [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
             mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,

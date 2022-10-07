@@ -24,7 +24,7 @@ import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 import { DateUtils } from '../DateUtils';
 
 type TeamProps = {
-   setName: "on" | "off" | "baseline",
+   selectionType: "on" | "off" | "baseline",
    config: string,
    setConfig: (newConfig: string) => void,
    comboTier?: DivisionStatistics,
@@ -36,7 +36,7 @@ type TeamProps = {
 };
 
 type PlayerProps = {
-   title: string,
+   selectionTitle: string,
    config: string,
    setConfig: (newConfig: string) => void,
    comboTier?: DivisionStatistics,
@@ -170,10 +170,10 @@ export class GradeTableUtils {
 
    /** Build the rows containing the grade information for a team */
    static readonly buildTeamGradeTableRows: (p: TeamProps) => GenericTableRow[] = ({
-      setName, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
+      selectionType, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
    }) => {
-      const nameAsId = setName.replace(/[^A-Za-z0-9_]/g, '');
-      const title = setName == "on" ? "A Lineups" : (setName == "off" ? "B Lineups" : "Baseline");
+      const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, '');
+      const title = selectionType == "on" ? "A Lineups" : (selectionType == "off" ? "B Lineups" : "Baseline");
       const tiers = { //(handy LUT)
          High: highTier,
          Medium: mediumTier,
@@ -296,10 +296,10 @@ export class GradeTableUtils {
     * (see buildTeamGradeTableRows for why there aren't OverlayTriggers)
    */
    static readonly buildPlayerGradeTableRows: (p: PlayerProps) => GenericTableRow[] = ({
-      title, config, setConfig, comboTier, highTier, mediumTier, lowTier, player,
+      selectionTitle, config, setConfig, comboTier, highTier, mediumTier, lowTier, player,
       expandedView, possAsPct, factorMins, includeRapm, leaderboardMode
    }) => {
-      const nameAsId = title.replace(/[^A-Za-z0-9_]/g, '');
+      const nameAsId = selectionTitle.replace(/[^A-Za-z0-9_]/g, '');
       const tiers = { //(handy LUT)
          High: highTier,
          Medium: mediumTier,
@@ -449,7 +449,7 @@ export class GradeTableUtils {
       ].concat(expandedView ?
          GenericTableOps.buildDataRow(playerPercentiles, defPrefixFn, defCellMetaFn, tableConfig) : []
       ).concat([
-         GenericTableOps.buildTextRow(<span><small>{title} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),         
+         GenericTableOps.buildTextRow(<span><small>{selectionTitle} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),         
       ]).concat(leaderboardMode ? [] : [  GenericTableOps.buildRowSeparator() ]);
       return tableData;
    };
