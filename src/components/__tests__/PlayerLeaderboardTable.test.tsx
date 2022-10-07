@@ -10,6 +10,9 @@ import toJson from 'enzyme-to-json';
 import _ from "lodash";
 import fs from 'fs';
 
+//@ts-nocheck
+import fetchMock from 'isomorphic-unfetch';
+
 describe("PlayerLeaderboardTable", () => {
   // Load in data sample:
   const sampleData = JSON.parse(
@@ -33,6 +36,41 @@ describe("PlayerLeaderboardTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+  test("PlayerLeaderboardTable - should create snapshot (show grades)", () => {
+
+    const testYear = "2019/20";
+
+    const sampleData = JSON.parse(
+      fs.readFileSync("./public/leaderboards/lineups/stats_players_all_Men_2020_High.json", { encoding: "UTF-8"})
+    );  
+  
+    // Mock the URL calls needed to get the stats
+    [ "Combo", "High", "Medium", "Low"].forEach(tier => {
+      //(old files)
+      (fetchMock as any).mock(`/leaderboards/lineups/stats_players_all_Men_${testYear.substring(0, 4)}_${tier}.json`, {
+        status: 200,
+        body: tier == "High" ? sampleData : { }
+      });
+      //(new files)
+      (fetchMock as any).mock(`/api/getStats?&gender=Men&year=${testYear.substring(0, 4)}&tier=${tier}&type=player`, {
+        status: 200,
+        body: tier == "High" ? sampleData : { }
+      });
+    });
+  
+
+    const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
+    const wrapper = shallow(
+      <PlayerLeaderboardTable
+        startingState={{ year: "2019/20" , useRapm: false, showGrades: ParamDefaults.defaultEnabledGrade}}
+        dataEvent={sampleData}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
   test("PlayerLeaderboardTable - should create snapshot (prod not /100)", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(

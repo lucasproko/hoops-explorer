@@ -32038,6 +32038,1472 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 </Container>
 `;
 
+exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot (show grades) 1`] = `
+<Container
+  fluid={false}
+>
+  <LoadingOverlay
+    active={true}
+    spinner={true}
+    text="Loading Player Leaderboard..."
+  >
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "displayName": "Row",
+          "render": [Function],
+        }
+      }
+    >
+      <Col
+        lg={2}
+        md={3}
+        sm={6}
+        xs={6}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isSearchable={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "Men",
+                "value": "Men",
+              },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "Men",
+              "value": "Men",
+            }
+          }
+        />
+      </Col>
+      <Col
+        lg={2}
+        md={3}
+        sm={6}
+        xs={6}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isSearchable={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "2018/9",
+                "value": "2018/9",
+              },
+              Object {
+                "label": "2019/20",
+                "value": "2019/20",
+              },
+              Object {
+                "label": "2020/21",
+                "value": "2020/21",
+              },
+              Object {
+                "label": "2021/22",
+                "value": "2021/22",
+              },
+              Object {
+                "label": "All",
+                "value": "All",
+              },
+              Object {
+                "label": "Extra",
+                "value": "Extra",
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "2019/20",
+              "value": "2019/20",
+            }
+          }
+        />
+      </Col>
+      <Col
+        bsPrefix="d-lg-none d-md-none"
+        className="w-100"
+      />
+      <Col
+        lg={6}
+        md={6}
+        sm={12}
+        xs={12}
+      >
+        <ConferenceSelector
+          confStr=""
+          emptyLabel="All Teams in High Tier"
+          onChangeConf={[Function]}
+          tier="High"
+        />
+      </Col>
+      <Col
+        className="mt-1"
+        lg={1}
+      >
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="copyLinkTooltip"
+              placement="right"
+            >
+              Copies URL to clipboard
+            </ForwardRef>
+          }
+          placement="auto"
+        >
+          <Button
+            active={false}
+            className="float-left"
+            disabled={false}
+            id="copyLink_playerLeaderboard"
+            size="sm"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    512,
+                    512,
+                    Array [],
+                    "f0c1",
+                    "M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z",
+                  ],
+                  "iconName": "link",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Button>
+        </OverlayTrigger>
+      </Col>
+    </FormGroup>
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="7"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filter"
+            >
+              <OverlayTrigger
+                overlay={
+                  <ForwardRef
+                    id="basicFilterTooltip"
+                    placement="right"
+                  >
+                    Simple text match for each of the ";"-separated list against a line of text with the player, team and year in various formats, in a format like 
+                    <br />
+                    <br />
+                    Honor, Nick Sr_NiHonor+Nick:Clemson_2021/22 Sr_NiHonor:Clemson_2021/22
+                    <br />
+                    <br />
+                    (Note text match is case-insensitive if the filter string is all lower case.)
+                    <br />
+                    <br />
+                    For more complex filtering enable Linq below. 
+                  </ForwardRef>
+                }
+                placement="auto"
+              >
+                <div>
+                  Filter
+                  <sup>
+                    *
+                  </sup>
+                </div>
+              </OverlayTrigger>
+            </InputGroupText>
+          </InputGroupPrepend>
+          <AsyncFormControl
+            onChange={[Function]}
+            placeholder="See 'Filter' tooltip for details"
+            startingVal=""
+            timeout={500}
+          />
+        </InputGroup>
+      </FormGroup>
+      <Col
+        lg={4}
+        md={4}
+        sm={12}
+        xs={12}
+      >
+        <StateManager
+          components={
+            Object {
+              "MultiValueContainer": [Function],
+            }
+          }
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isClearable={true}
+          isMulti={true}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "Pure PG",
+                "value": "Pure PG",
+              },
+              Object {
+                "label": "Scoring PG",
+                "value": "Scoring PG",
+              },
+              Object {
+                "label": "Combo Guard",
+                "value": "Combo Guard",
+              },
+              Object {
+                "label": "(All Ballhandlers)",
+                "value": "(All Ballhandlers)",
+              },
+              Object {
+                "label": "Wing Guard",
+                "value": "Wing Guard",
+              },
+              Object {
+                "label": "(All Guards)",
+                "value": "(All Guards)",
+              },
+              Object {
+                "label": "Wing Forward",
+                "value": "Wing Forward",
+              },
+              Object {
+                "label": "(All Wings)",
+                "value": "(All Wings)",
+              },
+              Object {
+                "label": "Stretch PF",
+                "value": "Stretch PF",
+              },
+              Object {
+                "label": "Power Forward/Center",
+                "value": "Power Forward/Center",
+              },
+              Object {
+                "label": "(All PFs)",
+                "value": "(All PFs)",
+              },
+              Object {
+                "label": "Center",
+                "value": "Center",
+              },
+              Object {
+                "label": "(All Post Players)",
+                "value": "(All Post Players)",
+              },
+              Object {
+                "label": "(All Frontcourt)",
+                "value": "(All Frontcourt)",
+              },
+            ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
+          value={
+            Object {
+              "label": "All Positions",
+            }
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="3"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="maxPlayers"
+            >
+              Max Players
+            </InputGroupText>
+          </InputGroupPrepend>
+          <AsyncFormControl
+            onChange={[Function]}
+            placeholder="eg 100"
+            startingVal="100"
+            timeout={400}
+            validate={[Function]}
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="sortBy"
+            >
+              Sort By
+            </InputGroupText>
+          </InputGroupPrepend>
+          <StateManager
+            className="w-75"
+            defaultInputValue=""
+            defaultMenuIsOpen={false}
+            defaultValue={null}
+            formatGroupLabel={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Most useful",
+                  "options": Array [
+                    Object {
+                      "label": "Adj+ Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rtg",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rapm",
+                    },
+                    Object {
+                      "label": "Adj+ Rtg (Desc. / Offensive)",
+                      "value": "desc:off_adj_rtg",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm",
+                    },
+                    Object {
+                      "label": "Adj+ Rtg (Asc. / Defensive)",
+                      "value": "asc:def_adj_rtg",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Defensive)",
+                      "value": "asc:def_adj_rapm",
+                    },
+                  ],
+                },
+                Object {
+                  "label": "Other",
+                  "options": Array [
+                    Object {
+                      "label": "Box Rtg (Desc. / Offensive)",
+                      "value": "desc:off_rtg",
+                    },
+                    Object {
+                      "label": "Box Rtg (Asc. / Offensive)",
+                      "value": "asc:off_rtg",
+                    },
+                    Object {
+                      "label": "Box Rtg (Desc. / Defensive)",
+                      "value": "desc:def_rtg",
+                    },
+                    Object {
+                      "label": "Box Rtg (Asc. / Defensive)",
+                      "value": "asc:def_rtg",
+                    },
+                    Object {
+                      "label": "Box Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_rtg",
+                    },
+                    Object {
+                      "label": "Box Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_rtg",
+                    },
+                    Object {
+                      "label": "Usage (Desc. / Offensive)",
+                      "value": "desc:off_usage",
+                    },
+                    Object {
+                      "label": "Usage (Asc. / Offensive)",
+                      "value": "asc:off_usage",
+                    },
+                    Object {
+                      "label": "Adj+ Rtg (Asc. / Offensive)",
+                      "value": "asc:off_adj_rtg",
+                    },
+                    Object {
+                      "label": "Adj+ Rtg (Desc. / Defensive)",
+                      "value": "desc:def_adj_rtg",
+                    },
+                    Object {
+                      "label": "Adj+ Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rtg",
+                    },
+                    Object {
+                      "label": "Adj+ Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_prod",
+                    },
+                    Object {
+                      "label": "Adj+ Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_prod",
+                    },
+                    Object {
+                      "label": "Adj+ Prod (Desc. / Defensive)",
+                      "value": "desc:def_adj_prod",
+                    },
+                    Object {
+                      "label": "Adj+ Prod (Asc. / Defensive)",
+                      "value": "asc:def_adj_prod",
+                    },
+                    Object {
+                      "label": "Adj+ Prod (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_prod",
+                    },
+                    Object {
+                      "label": "Adj+ Prod (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_prod",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Defensive)",
+                      "value": "desc:def_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Defensive)",
+                      "value": "desc:def_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Defensive)",
+                      "value": "asc:def_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Defensive)",
+                      "value": "desc:def_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Defensive)",
+                      "value": "asc:def_efg",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Offensive)",
+                      "value": "desc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Offensive)",
+                      "value": "asc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Defensive)",
+                      "value": "desc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Defensive)",
+                      "value": "asc:def_assist",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Offensive)",
+                      "value": "desc:off_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Offensive)",
+                      "value": "asc:off_to",
+                    },
+                    Object {
+                      "label": "Stl% (Desc. / Defensive)",
+                      "value": "desc:def_to",
+                    },
+                    Object {
+                      "label": "Stl% (Asc. / Defensive)",
+                      "value": "asc:def_to",
+                    },
+                    Object {
+                      "label": "RB% (Desc. / Offensive)",
+                      "value": "desc:off_orb",
+                    },
+                    Object {
+                      "label": "RB% (Asc. / Offensive)",
+                      "value": "asc:off_orb",
+                    },
+                    Object {
+                      "label": "RB% (Desc. / Defensive)",
+                      "value": "desc:def_orb",
+                    },
+                    Object {
+                      "label": "RB% (Asc. / Defensive)",
+                      "value": "asc:def_orb",
+                    },
+                    Object {
+                      "label": "DR% (Desc. / Defensive)",
+                      "value": "desc:off_drb",
+                    },
+                    Object {
+                      "label": "DR% (Asc. / Defensive)",
+                      "value": "asc:off_drb",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr",
+                    },
+                    Object {
+                      "label": "FC/50 (Desc. / Defensive)",
+                      "value": "desc:def_ftr",
+                    },
+                    Object {
+                      "label": "FC/50 (Asc. / Defensive)",
+                      "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Defensive)",
+                      "value": "desc:def_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Defensive)",
+                      "value": "asc:def_3pr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Defensive)",
+                      "value": "desc:def_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Defensive)",
+                      "value": "asc:def_2primr",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Defensive)",
+                      "value": "desc:def_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Defensive)",
+                      "value": "asc:def_3p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Defensive)",
+                      "value": "desc:def_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Defensive)",
+                      "value": "asc:def_2p",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmid",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim",
+                    },
+                    Object {
+                      "label": "Blk% (Desc. / Defensive)",
+                      "value": "desc:def_2prim",
+                    },
+                    Object {
+                      "label": "Blk% (Asc. / Defensive)",
+                      "value": "asc:def_2prim",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_team_poss",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Desc. / Defensive)",
+                      "value": "desc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "Poss% (Asc. / Defensive)",
+                      "value": "asc:def_team_poss_pct",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Defensive)",
+                      "value": "desc:def_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Defensive)",
+                      "value": "asc:def_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "Year",
+                      "value": "desc:year",
+                    },
+                  ],
+                },
+              ]
+            }
+            value={
+              Object {
+                "label": "Adj+ Rtg (Desc. / Offensive)",
+                "value": "desc:off_adj_rtg",
+              }
+            }
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        className="mt-2"
+        sm="1"
+      >
+        <FormCheck
+          checked={false}
+          id="linq"
+          label={
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="linqEnableTooltip"
+                  placement="right"
+                >
+                  Enable the Linq filter editor, click on "?" for a guide on using Linq
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <span>
+                Linq
+                <sup>
+                  <a
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                    target="_blank"
+                  >
+                    ?
+                  </a>
+                </sup>
+              </span>
+            </OverlayTrigger>
+          }
+          onChange={[Function]}
+          type="switch"
+        />
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
+      >
+        <Dropdown
+          alignRight={true}
+          navbar={false}
+          style={
+            Object {
+              "maxHeight": "2.4rem",
+            }
+          }
+        >
+          <DropdownToggle
+            variant="outline-secondary"
+          >
+            <OverlayTrigger
+              overlay={
+                <ForwardRef
+                  id="advancedFilterPresets"
+                  placement="right"
+                >
+                  Preset player type advanced filters
+                </ForwardRef>
+              }
+              placement="auto"
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={false}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [
+                      512,
+                      512,
+                      Array [],
+                      "f0b0",
+                      "M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z",
+                    ],
+                    "iconName": "filter",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
+              />
+            </OverlayTrigger>
+          </DropdownToggle>
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+          >
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text={
+                <i>
+                  Clear filter
+                </i>
+              }
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Pass-first ball handlers"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Dribble-driving guards"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Off-the-dribble 3P-shooting guards"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="3+D wings"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Safe-pair-of-hands wings"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Floor-stretching centers"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Elite passing centers"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Defensive-minded centers"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Tall ball-handlers"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Tall wings"
+              truthVal={false}
+            />
+          </DropdownMenu>
+        </Dropdown>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <i
+                className="text-secondary"
+              >
+                Adjust for Luck
+              </i>
+            }
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Factor minutes % into Adjusted Rating+
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
+            onSelect={[Function]}
+            text={
+              <span>
+                Use RAPM (vs Adj Rtg) when displaying rankings
+              </span>
+            }
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Show possessions as count
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show extra info sub-header"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </FormRow>
+    <div />
+    <Row
+      noGutters={false}
+    >
+      <Col
+        lg={8}
+        md={12}
+        sm={12}
+        xs={12}
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Statistics always adjusted for luck",
+              },
+              Object {
+                "label": "T100",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Leaderboard of players vs T100 opposition",
+              },
+              Object {
+                "label": "Conf",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Leaderboard of players vs conference opposition",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header",
+              },
+            ]
+          }
+        />
+      </Col>
+      <Col
+        lg={4}
+        md={12}
+        sm={12}
+        xs={12}
+      >
+        <div
+          className="float-right"
+        >
+          <small>
+            (Qualifying players in tier: 
+            <b>
+              0
+            </b>
+            )
+          </small>
+        </div>
+      </Col>
+    </Row>
+    <Row
+      className="mt-2"
+      noGutters={false}
+    >
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
+        <GenericTable
+          cellTooltipMode="none"
+          tableCopyId="playerLeaderboardTable"
+          tableData={Array []}
+          tableFields={
+            Object {
+              "2p": GenericTableColProps {
+                "className": "",
+                "colName": "2P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "2pmid": GenericTableColProps {
+                "className": "",
+                "colName": "2P% mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (mid range)",
+                "widthUnits": 2,
+              },
+              "2pmidr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of mid range 2 pointers taken against all field goals (assisted% below)",
+                "widthUnits": 2,
+              },
+              "2prim": GenericTableColProps {
+                "className": "",
+                "colName": <div>
+                  Rim%
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   Blk%
+                </div>,
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (off) and Block% (def)",
+                "widthUnits": 2,
+              },
+              "2primr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of layup/dunk/etc 2 pointers taken against all field goals (assisted% below)",
+                "widthUnits": 2,
+              },
+              "3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "3 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "3pr": GenericTableColProps {
+                "className": "",
+                "colName": "3PR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of 3 pointers taken against all field goals (assisted% below)",
+                "widthUnits": 2,
+              },
+              "adj_opp": GenericTableColProps {
+                "className": "",
+                "colName": "SoS",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Weighted average of the offensive or defensive efficiencies of the player's opponents",
+                "widthUnits": 2,
+              },
+              "adj_rapm": GenericTableColProps {
+                "className": "",
+                "colName": "RAPM",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Adjusted Plus-Minus vs D1 average",
+                "widthUnits": 2,
+              },
+              "adj_rtg": GenericTableColProps {
+                "className": "",
+                "colName": "Adj+ Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "widthUnits": 2,
+              },
+              "assist": GenericTableColProps {
+                "className": "",
+                "colName": "A%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Assist % for player in selected lineups",
+                "widthUnits": 2,
+              },
+              "efg": GenericTableColProps {
+                "className": "",
+                "colName": "eFG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) in selected lineups",
+                "widthUnits": 2,
+              },
+              "ftr": GenericTableColProps {
+                "className": "",
+                "colName": <div>
+                  FTR
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   F/50
+                </div>,
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups",
+                "widthUnits": 2,
+              },
+              "orb": GenericTableColProps {
+                "className": "",
+                "colName": "RB%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive/Defensive rebounding % in selected lineups",
+                "widthUnits": 2,
+              },
+              "rtg": GenericTableColProps {
+                "className": "",
+                "colName": "Box Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
+                "widthUnits": 2,
+              },
+              "sep0": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep4": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "team_poss_pct": GenericTableColProps {
+                "className": "",
+                "colName": "Poss%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of team possessions in selected lineups that player was on the floor",
+                "widthUnits": 2,
+              },
+              "title": GenericTableColProps {
+                "className": "small",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 8,
+              },
+              "to": GenericTableColProps {
+                "className": "",
+                "colName": <div>
+                  TO%
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   Stl%
+                </div>,
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Turnover % / Steal % in selected lineups",
+                "widthUnits": 2,
+              },
+              "usage": GenericTableColProps {
+                "className": "",
+                "colName": <div>
+                  Usg
+                  <hr
+                    style={
+                      Object {
+                        "backgroundColor": "#aaa",
+                        "border": "none",
+                        "height": "1px",
+                        "marginBottom": 0,
+                        "marginTop": "2px",
+                        "padding": 0,
+                      }
+                    }
+                  />
+                   Pos
+                </div>,
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of team possessions used in selected lineups, plus the position category for this player",
+                "widthUnits": 2,
+              },
+            }
+          }
+        />
+      </Col>
+    </Row>
+  </LoadingOverlay>
+</Container>
+`;
+
 exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 1`] = `
 <Container
   fluid={false}
