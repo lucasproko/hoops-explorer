@@ -46,10 +46,11 @@ import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTra
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
-import { StatModels, IndivStatSet } from '../utils/StatModels';
+import { StatModels, IndivStatSet, Statistic } from '../utils/StatModels';
 import { TransferModel } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
 import ConferenceSelector from './shared/ConferenceSelector';
+import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -228,6 +229,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ParamDefaults.defaultPlayerLboardUseRapm : startingState.useRapm
   );
 
+  /** Show team and individual grades */
+  const [ showGrades, setShowGrades ] = useState(_.isNil(startingState.showGrades) ? "" : startingState.showGrades);
+
   /** Set this to be true on expensive operations */
   const [ loadingOverride, setLoadingOverride ] = useState(false);
 
@@ -358,6 +362,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       possAsPct: possAsPct,
       factorMins: factorMins,
       useRapm: useRapm,
+      showGrades: showGrades,
       // Misc filters
       minPoss: minPoss,
       maxTableSize: maxTableSize,
@@ -371,9 +376,22 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   }, [ minPoss, maxTableSize, sortBy, filterStr, advancedFilterStr,
       isT100, isConfOnly, possAsPct, factorMins,
       showInfoSubHeader,
-      useRapm,
+      useRapm, showGrades,
       posClasses,
       confs, year, gender, tier ]);
+
+  // Events that trigger building or rebuilding the division stats cache
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  useEffect(() => {
+    if (showGrades) {
+      if ((year != divisionStatsCache.year) ||
+        (gender != divisionStatsCache.gender) ||
+        _.isEmpty(divisionStatsCache)) {
+          if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+          GradeTableUtils.populatePlayerDivisionStatsCache({ year, gender }, setDivisionStatsCache);
+        }
+      }
+  }, [ year, gender, showGrades ]);
 
   // 3] Utils
 
@@ -657,7 +675,25 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
-      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % 5))
+      const showGradesFactor = showGrades ? 2 : 5;
+      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % showGradesFactor))
+
+      if (showGrades && (sortBy != "desc:diff_adj_rapm") && (sortBy != "desc:diff_adj_rapm_prod")) {
+        const adjRapmMargin: Statistic | undefined = (player.off_adj_rapm && player.def_adj_rapm) ? { 
+            value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) 
+        } : undefined;
+
+        if (adjRapmMargin) {
+          player.off_adj_rapm_margin = adjRapmMargin;
+          player.off_adj_rapm_prod_margin = { 
+            value: adjRapmMargin.value!*player.off_team_poss_pct.value!,
+            override: adjRapmMargin.override
+          };
+        }
+      } else {
+        player.off_adj_rapm_margin = undefined;
+        player.off_adj_rapm_prod_margin = undefined;
+      }
 
       return isDup ? _.flatten([
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
@@ -670,6 +706,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         ] : [],
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
+        (showGrades && playerIndex < 50) ? GradeTableUtils.buildPlayerGradeTableRows({
+          title: `[${player.key}] Grades`,
+          config: showGrades, 
+          setConfig: (newConfig:string) => { friendlyChange(() => setShowGrades(newConfig), newConfig != showGrades) },
+          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+          player,
+          expandedView: true, possAsPct, factorMins, includeRapm: true, leaderboardMode: true
+        }) : []
       ]);
     });
 
@@ -1028,6 +1073,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               onSelect={() => friendlyChange(() => toggleFactorMins(), true)}
             />
             <GenericTogglingMenuItem
+              text="Show Player Ranks/Percentiles"
+              truthVal={showGrades != ""}
+              onSelect={() => friendlyChange(() => setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade), true)}
+            />
+            <GenericTogglingMenuItem
               text={<span>Use RAPM (vs Adj Rtg) when displaying rankings</span>}
               truthVal={useRapm}
               onSelect={() => friendlyChange(() => toggleUseRapm(), true)}
@@ -1105,6 +1155,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               toggled: factorMins,
               onClick: () => friendlyChange(() => toggleFactorMins(), true)
+            },
+            {
+              label: "Grades",
+              tooltip: showGrades ? "Hide player ranks/percentiles" : "Show player ranks/percentiles",
+              toggled: (showGrades != ""),
+              onClick: () => friendlyChange(() => setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade), true)
             },
             {
               label: "RAPM",

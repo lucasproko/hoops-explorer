@@ -97,6 +97,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
       (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],
       (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
       (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],
+      (rawParams.showGrades == "") ? [ 'showGrades' ] : [],
 
       (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
 

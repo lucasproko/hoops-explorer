@@ -45,7 +45,8 @@ type PlayerProps = {
    lowTier?: DivisionStatistics,
 
    player: IndivStatSet,
-   expandedView: boolean, possAsPct: boolean, factorMins: boolean, includeRapm: boolean
+   expandedView: boolean, possAsPct: boolean, factorMins: boolean, includeRapm: boolean,
+   leaderboardMode?: boolean
 };
 
 type TableBuilderInfo = {
@@ -296,7 +297,7 @@ export class GradeTableUtils {
    */
    static readonly buildPlayerGradeTableRows: (p: PlayerProps) => GenericTableRow[] = ({
       title, config, setConfig, comboTier, highTier, mediumTier, lowTier, player,
-      expandedView, possAsPct, factorMins, includeRapm
+      expandedView, possAsPct, factorMins, includeRapm, leaderboardMode
    }) => {
       const nameAsId = title.replace(/[^A-Za-z0-9_]/g, '');
       const tiers = { //(handy LUT)
@@ -360,13 +361,18 @@ export class GradeTableUtils {
       GradeUtils.playerFieldsWithExtraCriteria.forEach(field => {
          const criteriaInfo = GradeUtils.playerFields[field];
          if (criteriaInfo && playerPercentiles[field] && !GradeUtils.meetsExtraCriterion(player, criteriaInfo)) {
-            const criteriaField = criteriaInfo[0];
-            const criteriaVal = criteriaInfo[1];
-            const actualVal = player[criteriaField]?.value || 0;
-            const criteriaIsPct = criteriaVal <= 1.0;
-            const criteriaValStr = (criteriaIsPct ? (criteriaVal*100) : criteriaVal).toFixed(0) + (criteriaIsPct ? "%" : "");
-            const actualValStr = (criteriaIsPct ? (actualVal*100) : actualVal).toFixed(0) + (criteriaIsPct ? "%" : "");
-            playerPercentiles[field].extraInfo = `This grade is based on insufficient data ([${criteriaField}]: [${actualValStr}] < [${criteriaValStr}]), treat as unreliable.`;
+            const hasAnySamplesAtAll = (player[criteriaInfo[0]]?.value || 0) > 0
+            if (hasAnySamplesAtAll) {
+               const criteriaField = criteriaInfo[0];
+               const criteriaVal = criteriaInfo[1];
+               const actualVal = player[criteriaField]?.value || 0;
+               const criteriaIsPct = criteriaVal <= 1.0;
+               const criteriaValStr = (criteriaIsPct ? (criteriaVal*100) : criteriaVal).toFixed(0) + (criteriaIsPct ? "%" : "");
+               const actualValStr = (criteriaIsPct ? (actualVal*100) : actualVal).toFixed(0) + (criteriaIsPct ? "%" : "");
+               playerPercentiles[field].extraInfo = `This grade is based on insufficient data ([${criteriaField}]: [${actualValStr}] < [${criteriaValStr}]), treat as unreliable.`;
+            } else {
+               delete playerPercentiles[field]; //(no data at all, just show nothing)
+            }
          }
       })
 
@@ -443,9 +449,8 @@ export class GradeTableUtils {
       ].concat(expandedView ?
          GenericTableOps.buildDataRow(playerPercentiles, defPrefixFn, defCellMetaFn, tableConfig) : []
       ).concat([
-         GenericTableOps.buildTextRow(<span><small>{title} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),
-         GenericTableOps.buildRowSeparator(),
-      ]);
+         GenericTableOps.buildTextRow(<span><small>{title} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),         
+      ]).concat(leaderboardMode ? [] : [  GenericTableOps.buildRowSeparator() ]);
       return tableData;
    };
 };

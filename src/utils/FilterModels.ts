@@ -188,6 +188,7 @@ export type PlayerLeaderboardParams = {
   possAsPct?: boolean,
   factorMins?: boolean,
   useRapm?: boolean,
+  showGrades?: string,
   // Filtering:
   filter?: string,
   advancedFilter?: string,

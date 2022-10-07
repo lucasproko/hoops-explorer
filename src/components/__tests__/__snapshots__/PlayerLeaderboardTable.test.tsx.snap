@@ -1020,6 +1020,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -1096,6 +1101,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
               },
               Object {
                 "label": "RAPM",
@@ -1255,6 +1266,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5468,
                                     "value": 5.5468,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -1537,6 +1552,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5468,
                                     "value": 5.5468,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -1823,6 +1842,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -2104,6 +2127,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5048,
                                     "value": 5.5048,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2389,6 +2416,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2671,6 +2702,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2956,6 +2991,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4767,
                                     "value": 6.4767,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3238,6 +3277,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4767,
                                     "value": 6.4767,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3523,6 +3566,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.21,
                                     "value": 6.21,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3805,6 +3852,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.21,
                                     "value": 6.21,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -4112,6 +4163,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 4.7211,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -4394,6 +4449,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 4.7211,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -4679,6 +4738,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.376,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -4961,6 +5024,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.376,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -5246,6 +5313,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.3532,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -5528,6 +5599,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.3532,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -5813,6 +5888,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 7.203,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -6094,6 +6173,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.203,
                                     "value": 7.203,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -6380,6 +6463,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4648,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -6661,6 +6748,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4648,
                                     "value": 6.4648,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8194,6 +8285,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -8270,6 +8366,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
               },
               Object {
                 "label": "RAPM",
@@ -8429,6 +8531,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5468,
                                     "value": 5.5468,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8711,6 +8817,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5468,
                                     "value": 5.5468,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8997,6 +9107,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 7.203,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -9278,6 +9392,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.203,
                                     "value": 7.203,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9563,6 +9681,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.7211,
                                     "value": 4.7211,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9845,6 +9967,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.7211,
                                     "value": 4.7211,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10130,6 +10256,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10412,6 +10542,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10697,6 +10831,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.376,
                                     "value": 6.376,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10979,6 +11117,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.376,
                                     "value": 6.376,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -11286,6 +11428,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.21,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -11568,6 +11714,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.21,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -11853,6 +12003,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -12135,6 +12289,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -12420,6 +12578,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4648,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -12702,6 +12864,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4648,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -12987,6 +13153,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.3532,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -13268,6 +13438,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.3532,
                                     "value": 5.3532,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -13554,6 +13728,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4767,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -13835,6 +14013,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4767,
                                     "value": 6.4767,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -15372,6 +15554,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -15448,6 +15635,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
               },
               Object {
                 "label": "RAPM",
@@ -15607,6 +15800,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 9.0184,
                                     "value": 9.0184,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -15897,6 +16094,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 9.0184,
                                     "value": 9.0184,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -16191,6 +16392,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 9.316,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -16480,6 +16685,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 9.316,
                                     "value": 9.316,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -16773,6 +16982,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.4651,
                                     "value": 7.4651,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -17063,6 +17276,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.4651,
                                     "value": 7.4651,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -17356,6 +17573,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -17646,6 +17867,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -17939,6 +18164,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.8371,
                                     "value": 7.8371,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -18229,6 +18458,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.8371,
                                     "value": 7.8371,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -18544,6 +18777,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 8.3712,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -18834,6 +19071,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 8.3712,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -19127,6 +19368,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.21,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -19417,6 +19662,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.21,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -19710,6 +19959,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4767,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -20000,6 +20253,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4767,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -20293,6 +20550,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -20582,6 +20843,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5048,
                                     "value": 5.5048,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -20876,6 +21141,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5468,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -21165,6 +21434,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5468,
                                     "value": 5.5468,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -21479,6 +21752,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.6653,
                                     "value": 4.6653,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -21758,6 +22035,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.6653,
                                     "value": 4.6653,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -22040,6 +22321,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.393,
                                     "value": 4.393,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -22319,6 +22604,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.393,
                                     "value": 4.393,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -22601,6 +22890,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 3.3067,
                                     "value": 3.3067,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -22880,6 +23173,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 3.3067,
                                     "value": 3.3067,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -23154,6 +23451,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 3.8491,
                                     "value": 3.8491,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -23425,6 +23726,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 3.8491,
                                     "value": 3.8491,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -23699,6 +24004,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 3.6946,
                                     "value": 3.6946,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -23970,6 +24279,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 3.6946,
                                     "value": 3.6946,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -25500,6 +25813,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={true}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -25576,6 +25894,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
               },
               Object {
                 "label": "RAPM",
@@ -25735,6 +26059,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.203,
                                     "value": 7.203,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -26016,6 +26344,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.203,
                                     "value": 7.203,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -26301,6 +26633,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 8.1838,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -26581,6 +26917,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -26865,6 +27205,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.21,
                                     "value": 6.21,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -27146,6 +27490,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.21,
                                     "value": 6.21,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -27430,6 +27778,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.376,
                                     "value": 6.376,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -27711,6 +28063,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.376,
                                     "value": 6.376,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -27995,6 +28351,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4648,
                                     "value": 6.4648,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -28276,6 +28636,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4648,
                                     "value": 6.4648,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -28582,6 +28946,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4767,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -28863,6 +29231,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4767,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -29147,6 +29519,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5468,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -29428,6 +29804,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5468,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -29712,6 +30092,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 4.7211,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -29993,6 +30377,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 4.7211,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -30277,6 +30665,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.3532,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -30557,6 +30949,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.3532,
                                     "value": 5.3532,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -30842,6 +31238,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -31122,6 +31522,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5048,
                                     "value": 5.5048,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -32654,6 +33058,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Player Ranks/Percentiles"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
             onSelect={[Function]}
             text={
@@ -32730,6 +33139,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
               },
               Object {
                 "label": "RAPM",
@@ -32889,6 +33304,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -33170,6 +33589,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 8.1838,
                                     "value": 8.1838,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -33455,6 +33878,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 7.203,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -33735,6 +34162,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 7.203,
                                     "value": 7.203,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -34019,6 +34450,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.21,
                                     "value": 6.21,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -34300,6 +34735,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.21,
                                     "value": 6.21,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -34584,6 +35023,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4767,
                                     "value": 6.4767,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -34865,6 +35308,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.4767,
                                     "value": 6.4767,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -35149,6 +35596,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.376,
                                     "value": 6.376,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -35430,6 +35881,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 6.376,
                                     "value": 6.376,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -35736,6 +36191,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4648,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -36017,6 +36476,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 6.4648,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -36301,6 +36764,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -36582,6 +37049,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5048,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -36866,6 +37337,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.3532,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -37147,6 +37622,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.3532,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -37431,6 +37910,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 5.5468,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -37711,6 +38194,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 5.5468,
                                     "value": 5.5468,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -37996,6 +38483,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 4.7211,
                                   }
 
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
+
                   off_assist: Object {
                                     "extraInfo": <span>
                                       Assist breakdown:
@@ -38276,6 +38767,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "old_value": 4.7211,
                                     "value": 4.7211,
                                   }
+
+                  off_adj_rapm_margin: undefined
+
+                  off_adj_rapm_prod_margin: undefined
 
                   off_assist: Object {
                                     "extraInfo": <span>

@@ -131,7 +131,9 @@ export class GenericTableOps {
     return <small>{(val.value as number).toFixed(0)}<sup>{GenericTableOps.rankSuffix(val.value as number)}</sup></small>;
   };
   static readonly approxRankFormatter = (val: any) => {
-    return <small>T{(val.value as number).toFixed(0)}</small>;
+    const valToRender = (val.value as number);
+    return valToRender < 1000 ? <small>T{valToRender.toFixed(0)}</small> : 
+      <small><small>T{valToRender.toFixed(0)}</small></small>;
   };
   static readonly percentFormatter = (val: any) => {
     return (val.value >= 1) ?
