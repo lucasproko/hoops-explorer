@@ -32,6 +32,7 @@ describe("TeamPlayTypeDiagView", () => {
   test("TeamPlayTypeDiagView - should create snapshot (!details, help)", () => {
     const wrapper = shallow(
       <TeamPlayTypeDiagView
+        title={"Title"}
         players={players}
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamData}
@@ -43,6 +44,7 @@ describe("TeamPlayTypeDiagView", () => {
   test("TeamPlayTypeDiagView - should create snapshot (!help)", () => {
     const wrapper = shallow(
       <TeamPlayTypeDiagView
+        title={"Title"}
         players={players}
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamData}

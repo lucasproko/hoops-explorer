@@ -77,7 +77,7 @@ export class CommonTableDefs {
   };
 
   static readonly onOffTable = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", ""),
+    "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
     "sep0": GenericTableOps.addColSeparator(),
     "net": GenericTableOps.addDataCol(
       "Net Rtg", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",

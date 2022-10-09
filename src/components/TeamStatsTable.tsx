@@ -163,8 +163,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const maybeOn = teamStats.onOffMode ? "On ('A')" : "'A'"
-  const maybeOff = teamStats.onOffMode ? "Off ('B')" : "'B'"
+  const maybeOnStr = teamStats.onOffMode ? "On ('A')" : "'A'";
+  const maybeOn = TableDisplayUtils.addQueryInfo(maybeOnStr, gameFilterParams, "on");
+  const maybeOffStr = teamStats.onOffMode ? "Off ('B')" : "'B'";
+  const maybeOff = TableDisplayUtils.addQueryInfo(maybeOffStr, gameFilterParams, "off");
+  const maybeBase = TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline");
 
   // Luck calculations:
 
@@ -264,16 +267,20 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   // Last stage before building the table: inject titles into the stats:
   const teamStatsOn = {
-    off_title: `${maybeOn} Offense`,
-    def_title: `${maybeOn} Defense`,
+    off_title: <b>{maybeOn} Offense</b>,
+    def_title: <b>{maybeOn} Defense</b>,
     ...teamStats.on
   };
   const teamStatsOff = {
-    off_title: `${maybeOff} Offense`,
-    def_title: `${maybeOff} Defense`,
+    off_title: <b>{maybeOff} Offense</b>,
+    def_title: <b>{maybeOff} Defense</b>,
     ...teamStats.off
   };
-  const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
+  const teamStatsBaseline = { 
+    off_title: <b>{maybeBase} Offense</b>,
+    def_title: <b>{maybeBase} Defense</b>,
+    ...teamStats.baseline 
+  };
 
   /** If true, then repeat the table headers */
   const showingSomeDiags = showExtraInfo || showGrades || showRoster || showPlayTypes || showLuckAdjDiags;
@@ -329,6 +336,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
           <TeamPlayTypeDiagView
+            title={maybeOnStr}
             players={rosterStats.on || []}
             rosterStatsByCode={globalRosterStatsByCode}
             teamStats={teamStatsOn}
@@ -387,6 +395,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
           <TeamPlayTypeDiagView
+            title={maybeOffStr}
             players={rosterStats.off || []}
             rosterStatsByCode={globalRosterStatsByCode}
             teamStats={teamStatsOff}
@@ -446,6 +455,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
           <TeamPlayTypeDiagView
+            title={"Baseline"}
             players={rosterStats.baseline || []}
             rosterStatsByCode={globalRosterStatsByCode}
             teamStats={teamStatsBaseline}

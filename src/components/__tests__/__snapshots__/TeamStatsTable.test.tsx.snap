@@ -525,16 +525,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    On ('A') Offense
-                  </div>
+                  <b>
+                    On ('A')
+                     Offense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -1008,16 +1009,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    On ('A') Defense
-                  </div>
+                  <b>
+                    On ('A')
+                     Defense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -1520,16 +1522,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Off ('B') Offense
-                  </div>
+                  <b>
+                    Off ('B')
+                     Offense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -2003,16 +2006,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Off ('B') Defense
-                  </div>
+                  <b>
+                    Off ('B')
+                     Defense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -2515,16 +2519,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Baseline Offense
-                  </div>
+                  <b>
+                    Baseline
+                     Offense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -2998,16 +3003,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Baseline Defense
-                  </div>
+                  <b>
+                    Baseline
+                     Defense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -4008,16 +4014,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    On ('A') Offense
-                  </div>
+                  <b>
+                    On ('A')
+                     Offense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -4501,16 +4508,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    On ('A') Defense
-                  </div>
+                  <b>
+                    On ('A')
+                     Defense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -18303,16 +18311,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Off ('B') Offense
-                  </div>
+                  <b>
+                    Off ('B')
+                     Offense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -18796,16 +18805,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Off ('B') Defense
-                  </div>
+                  <b>
+                    Off ('B')
+                     Defense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -32598,16 +32608,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Baseline Offense
-                  </div>
+                  <b>
+                    Baseline
+                     Offense
+                  </b>
                 </td>
                 <td
                   className=""
@@ -33091,16 +33102,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   style={
                     Object {
                       "backgroundColor": undefined,
-                      "fontWeight": "bold",
+                      "fontWeight": "normal",
                       "textAlign": "right",
                       "verticalAlign": "middle",
                       "width": "18.0%",
                     }
                   }
                 >
-                  <div>
-                    Baseline Defense
-                  </div>
+                  <b>
+                    Baseline
+                     Defense
+                  </b>
                 </td>
                 <td
                   className=""

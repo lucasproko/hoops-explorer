@@ -24,7 +24,7 @@ export class TableDisplayUtils {
 
 
   /** Very simple query/filter summary */
-  static addQueryInfo(n: React.ReactElement, gameFilterParams: GameFilterParams, type: OnOffBaselineEnum, numPoss: number | undefined = undefined) {
+  static addQueryInfo(n: React.ReactNode, gameFilterParams: GameFilterParams, type: OnOffBaselineEnum, numPoss: number | undefined = undefined) {
     const queryDisplayInfo = QueryUtils.queryDisplayStrs(gameFilterParams);
     const queryForType = queryDisplayInfo[type];
     const baselineQuery = type == "baseline" ? '' : queryDisplayInfo.baseline;

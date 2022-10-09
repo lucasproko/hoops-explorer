@@ -39,13 +39,14 @@ const tidyNumbers = (k: string, v: any) => {
 }
 
 type Props = {
+  title: string,
   players: Array<Record<string, any>>,
   rosterStatsByCode: Record<string, any>,
   teamStats: Record<string, any>,
   teamSeasonLookup: string,
   showHelp: boolean
 };
-const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp}) => {
+const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({title, players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp}) => {
   // Repeat the logic in PlayerTypeTypeDiagView:
 
   const teamScoringPossessions =
@@ -219,7 +220,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
     {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
     <br/>
     <span>
-      <b>Scoring Analysis: [{(teamStats.off_title || "").replace(" Offense", "")}]</b>
+      <b>Scoring Analysis: [{title}]</b>
     </span>
     <br/>
     <br/>
