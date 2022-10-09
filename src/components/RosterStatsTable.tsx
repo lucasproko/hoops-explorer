@@ -58,6 +58,7 @@ import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
+import { HistoryManager } from '../utils/HistoryManager';
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>,
@@ -416,6 +417,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           <small>{pos} - </small>
       </OverlayTrigger>;
 
+    const numTeamPoss = possAsPct ? teamStats[type]?.off_poss?.value : undefined;
+
     return singleLineCase ?
       <span>
         <span className="d-none d-xl-block"><b>{playerName}</b> {posIfNotExpanded1}</span>
@@ -423,8 +426,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       </span> :
       <span>
         <span><b>{playerName}</b></span>
-        <span className="d-none d-xl-block">{posIfNotExpanded2}<b>{sub}</b> lineups</span>
-        <span className="d-block d-xl-none"><b>{sub}</b> set</span>
+        <span className="d-none d-xl-block">{
+          TableDisplayUtils.addQueryInfo(<span>{posIfNotExpanded2}<b>{sub}</b> lineups</span>, gameFilterParams, type, numTeamPoss)
+        }</span>
+        <span className="d-block d-xl-none">{
+          TableDisplayUtils.addQueryInfo(<span><b>{sub}</b> set</span>, gameFilterParams, type)
+        }</span>
       </span>;
   };
 

@@ -3,7 +3,7 @@
 import _ from 'lodash';
 
 import { CommonFilterType, CommonFilterTypeSimple, QueryUtils, CommonFilterCustomDate } from '../QueryUtils';
-import { CommonFilterParams } from "../FilterModels";
+import { CommonFilterParams, GameFilterParams } from '../FilterModels';
 
 describe("QueryUtils", () => {
   test("QueryUtils - parse/stringify", () => {
@@ -278,4 +278,37 @@ describe("QueryUtils", () => {
     expect(QueryUtils.invertedQueryMode({invertBase: "test"})).toEqual(true);
     expect(QueryUtils.invertedQueryMode({invertBaseQueryFilters: "test"})).toEqual(true);
   });
+  test("QueryUtils - queryDisplayStrs", () => {
+    const test1: GameFilterParams = { onQuery: `OQ1`, autoOffQuery: true };
+    expect(QueryUtils.queryDisplayStrs(test1)).toEqual({ baseline: ``, off: `NOT [query: 'OQ1']`, on: `query: 'OQ1'` });
+    const test1b: GameFilterParams = { onQuery: `OQ1`, offQuery: 'IGNORE ME', autoOffQuery: true };
+    expect(QueryUtils.queryDisplayStrs(test1b)).toEqual({ baseline: ``, off: `NOT [query: 'OQ1']`, on: `query: 'OQ1'` });
+    const test1c: GameFilterParams = { onQuery: `OQ1`, offQuery: 'IGNORE ME', offQueryFilters: 'IGNORE ME 2', autoOffQuery: true };
+    expect(QueryUtils.queryDisplayStrs(test1c)).toEqual({ baseline: ``, off: `NOT [query: 'OQ1']`, on: `query: 'OQ1'` });
+    const test1d: GameFilterParams = { onQueryFilters: `OF1`, offQuery: 'IGNORE ME', offQueryFilters: 'IGNORE ME 2', autoOffQuery: true };
+    expect(QueryUtils.queryDisplayStrs(test1c)).toEqual({ baseline: ``, off: `NOT [query: 'OQ1']`, on: `query: 'OQ1'` });
+    const test1e: GameFilterParams = { onQuery: `OQ1`, onQueryFilters: `OF1`, autoOffQuery: true };
+    expect(QueryUtils.queryDisplayStrs(test1e)).toEqual({ baseline: ``, off: `NOT [query: 'OQ1', filters: 'OF1']`, on: `query: 'OQ1', filters: 'OF1'` });
+    const test1f: GameFilterParams = { onQuery: `OQ1`, onQueryFilters: `OF1`, autoOffQuery: true, baseQuery: 'BQ1' };
+    expect(QueryUtils.queryDisplayStrs(test1f)).toEqual({ baseline: `query: 'BQ1'`, off: `NOT [query: 'OQ1', filters: 'OF1']`, on: `query: 'OQ1', filters: 'OF1'` });
+
+    const test2: GameFilterParams = { onQuery: `OQ2`, offQuery: 'OffQ2' };
+    expect(QueryUtils.queryDisplayStrs(test2)).toEqual({ baseline: ``, off: `query: 'OffQ2'`, on: `query: 'OQ2'` });
+    const test2a: GameFilterParams = { baseQuery: 'BQ2', onQuery: `OQ2`, offQuery: 'OffQ2' };
+    expect(QueryUtils.queryDisplayStrs(test2a)).toEqual({ baseline: `query: 'BQ2'`, off: `query: 'OffQ2'`, on: `query: 'OQ2'` });
+    const test2b: GameFilterParams = { queryFilters: 'BF2', onQuery: `OQ2`, offQuery: 'OffQ2' };
+    expect(QueryUtils.queryDisplayStrs(test2b)).toEqual({ baseline: `filters: 'BF2'`, off: `query: 'OffQ2'`, on: `query: 'OQ2'` });
+    const test2c: GameFilterParams = { baseQuery: 'BQ2', queryFilters: 'BF2', onQuery: `OQ2`, offQuery: 'OffQ2' };
+    expect(QueryUtils.queryDisplayStrs(test2c)).toEqual({ baseline: `query: 'BQ2', filters: 'BF2'`, off: `query: 'OffQ2'`, on: `query: 'OQ2'` });
+
+    const test3: GameFilterParams = { onQueryFilters: `OF3`, offQueryFilters: 'OffF3' };
+    expect(QueryUtils.queryDisplayStrs(test3)).toEqual({ baseline: ``, off: `filters: 'OffF3'`, on: `filters: 'OF3'` });
+    const test3b: GameFilterParams = { baseQuery: 'BQ3', onQueryFilters: `OF3`, offQueryFilters: 'OffF3'};
+    expect(QueryUtils.queryDisplayStrs(test3b)).toEqual({ baseline: `query: 'BQ3'`, off: `filters: 'OffF3'`, on: `filters: 'OF3'`});
+
+    const test4: GameFilterParams = { onQuery: 'OQ4', onQueryFilters: `OF4`, offQuery: 'OffQ4', offQueryFilters: 'OffF4' };
+    expect(QueryUtils.queryDisplayStrs(test4)).toEqual({ baseline: ``, off: `query: 'OffQ4', filters: 'OffF4'`, on: `query: 'OQ4', filters: 'OF4'` });
+    const test4b: GameFilterParams = { baseQuery: 'BQ4', queryFilters: 'BF4', onQuery: 'OQ4', onQueryFilters: `OF4`, offQuery: 'OffQ4', offQueryFilters: 'OffF4' };
+    expect(QueryUtils.queryDisplayStrs(test4b)).toEqual({ baseline: `query: 'BQ4', filters: 'BF4'`, off: `query: 'OffQ4', filters: 'OffF4'`, on: `query: 'OQ4', filters: 'OF4'` });
+  })
 });

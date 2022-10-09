@@ -134,4 +134,8 @@ describe("TableDisplayUtils", () => {
       true, true
     )).toMatchSnapshot();
   });
+
+  test("addQueryInfo", () => {
+    //TODO
+  });
 });

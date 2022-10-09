@@ -14,12 +14,31 @@ import { PositionUtils } from "../stats/PositionUtils";
 
 import { CommonTableDefs } from "../tables/CommonTableDefs";
 import "./TableDisplayUtils.css";
-import { TeamStatSet, LineupStatSet, PureStatSet, Statistic, IndivStatSet, LineupEnrichment, TeamEnrichment } from '../StatModels';
+import { TeamStatSet, LineupStatSet, PureStatSet, Statistic, IndivStatSet, LineupEnrichment, TeamEnrichment, OnOffBaselineEnum } from '../StatModels';
 import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
+import { GameFilterParams } from '../FilterModels';
+import { QueryUtils } from '../QueryUtils';
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
 
+
+  /** Very simple query/filter summary */
+  static addQueryInfo(n: React.ReactElement, gameFilterParams: GameFilterParams, type: OnOffBaselineEnum, numPoss: number | undefined = undefined) {
+    const queryDisplayInfo = QueryUtils.queryDisplayStrs(gameFilterParams);
+    const queryForType = queryDisplayInfo[type];
+    const baselineQuery = type == "baseline" ? '' : queryDisplayInfo.baseline;
+    const query = baselineQuery ? (`${queryForType} AND BASE:[${baselineQuery}]`) : queryForType;
+    const possInfo = _.isNil(numPoss) ? "" : ` ([${numPoss}] team possessions)`;
+    if (query) { //(don't display possInfo unless there is a query)
+      const tooltip = <Tooltip id={`${type}QueryInfo`}>{query + possInfo}</Tooltip>
+      return <OverlayTrigger placement="auto" overlay={tooltip}>
+        <u style={{textDecorationStyle: "dotted"}}>{n}</u>
+      </OverlayTrigger>;          
+    } else {
+      return n;
+    }
+  }
 
   /** Adds a tooltip to the position code */
   static buildPositionTooltip(pos: string, typeStr: string) {

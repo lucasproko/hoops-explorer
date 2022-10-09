@@ -95,7 +95,7 @@ describe("RosterStatsTable", () => {
     };
     const wrapper = shallow(
     <RosterStatsTable
-      gameFilterParams={{}}
+      gameFilterParams={{onQuery: 'testQon', offQuery: `testQoff`}}
       dataEvent={{
         teamStats: {
           on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()

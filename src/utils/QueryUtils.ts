@@ -309,6 +309,24 @@ export class QueryUtils {
     );
   }
 
+  // Handy display feature for on/off query
+
+  static queryDisplayStrs(params: GameFilterParams): { off: string, on: string, baseline: string } {
+    const queryFilterSummary = (query: string | undefined, filters: string | undefined) => {
+      const queryStr = query ? `query: '${_.trim(query)}'` : ``;
+      const filterStr = filters ? `${queryStr ? ", " : ""}filters: '${filters}'` : ``;
+      return queryStr + filterStr;
+    };
+    const onQuery = queryFilterSummary(params.onQuery, params.onQueryFilters);
+    const offQuery = params.autoOffQuery ?
+      (onQuery ? `NOT [${onQuery}]` : ``)
+      : queryFilterSummary(params.offQuery, params.offQueryFilters);
+    const baselineQuery = queryFilterSummary(params.baseQuery, params.queryFilters);
+
+    return { on: onQuery, off: offQuery, baseline: baselineQuery };
+  }
+
+
   // A bunch of utils to handle some of the logic surrounding combined query strings and filters
 
   /** One of some overloaded checks for whether a query type is doing anything */
