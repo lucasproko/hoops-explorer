@@ -135,7 +135,24 @@ describe("TableDisplayUtils", () => {
     )).toMatchSnapshot();
   });
 
-  test("addQueryInfo", () => {
+  test("addQueryInfo", () => { //(note order of tests matters because of snapshotting)
+    // does nothing if no query
+    expect(TableDisplayUtils.addQueryInfo(<div/>, {}, "baseline", 100)).toMatchSnapshot();
     //TODO
+
+    // only baseline query - baseline view
+    expect(TableDisplayUtils.addQueryInfo(<div/>, { baseQuery: "BQ", queryFilters: "QF" }, "baseline", 100)).toMatchSnapshot();
+    // only baseline query - on view
+    expect(TableDisplayUtils.addQueryInfo(<div/>, { baseQuery: "BQ", queryFilters: "QF" }, "on", 100)).toMatchSnapshot();
+
+    // on view - no baseline
+    expect(TableDisplayUtils.addQueryInfo(<div/>, { onQuery: "OQ" }, "on", 100)).toMatchSnapshot();
+    // on view - baseline
+    expect(TableDisplayUtils.addQueryInfo(<div/>, { onQueryFilters: "OF", baseQuery: "BQ" }, "on")).toMatchSnapshot();
+
+    // off view - no baseline
+    expect(TableDisplayUtils.addQueryInfo(<div/>, { offQuery: "OffQ", offQueryFilters: "OffF"}, "off", 200)).toMatchSnapshot();
+    // off view - baseline
+    expect(TableDisplayUtils.addQueryInfo(<div/>, { offQuery: "OffQ", queryFilters: "QF" }, "off")).toMatchSnapshot();
   });
 });

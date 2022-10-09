@@ -28,7 +28,7 @@ export class TableDisplayUtils {
     const queryDisplayInfo = QueryUtils.queryDisplayStrs(gameFilterParams);
     const queryForType = queryDisplayInfo[type];
     const baselineQuery = type == "baseline" ? '' : queryDisplayInfo.baseline;
-    const query = baselineQuery ? (`${queryForType} AND BASE:[${baselineQuery}]`) : queryForType;
+    const query = baselineQuery ? (`${queryForType}${queryForType ? ' AND ' : ''}BASE:[${baselineQuery}]`) : queryForType;
     const possInfo = _.isNil(numPoss) ? "" : ` ([${numPoss}] team possessions)`;
     if (query) { //(don't display possInfo unless there is a query)
       const tooltip = <Tooltip id={`${type}QueryInfo`}>{query + possInfo}</Tooltip>

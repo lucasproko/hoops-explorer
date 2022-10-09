@@ -1,5 +1,151 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TableDisplayUtils addQueryInfo 1`] = `<div />`;
+
+exports[`TableDisplayUtils addQueryInfo 2`] = `
+<OverlayTrigger
+  overlay={
+    <ForwardRef
+      id="baselineQueryInfo"
+      placement="right"
+    >
+      query: 'BQ', filters: 'QF' ([100] team possessions)
+    </ForwardRef>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 3`] = `
+<OverlayTrigger
+  overlay={
+    <ForwardRef
+      id="onQueryInfo"
+      placement="right"
+    >
+      BASE:[query: 'BQ', filters: 'QF'] ([100] team possessions)
+    </ForwardRef>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 4`] = `
+<OverlayTrigger
+  overlay={
+    <ForwardRef
+      id="onQueryInfo"
+      placement="right"
+    >
+      query: 'OQ' ([100] team possessions)
+    </ForwardRef>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 5`] = `
+<OverlayTrigger
+  overlay={
+    <ForwardRef
+      id="onQueryInfo"
+      placement="right"
+    >
+      filters: 'OF' AND BASE:[query: 'BQ']
+    </ForwardRef>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 6`] = `
+<OverlayTrigger
+  overlay={
+    <ForwardRef
+      id="offQueryInfo"
+      placement="right"
+    >
+      query: 'OffQ', filters: 'OffF' ([200] team possessions)
+    </ForwardRef>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 7`] = `
+<OverlayTrigger
+  overlay={
+    <ForwardRef
+      id="offQueryInfo"
+      placement="right"
+    >
+      query: 'OffQ' AND BASE:[filters: 'QF']
+    </ForwardRef>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
 exports[`TableDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
 <span>
   <div
