@@ -59,10 +59,10 @@ export const NonP6Conferences =
 export const latestConfChanges = {
 
   // Sun Belt
-  "James Madison": "Sun Belt Conference",
-  "Marshall": "Sun Belt Conference",
-  "Old Dominion": "Sun Belt Conference",
-  "Southern Miss.": "Sun Belt Conference",
+  "James Madison": "Sun Belt Conference", //(CAA)
+  "Marshall": "Sun Belt Conference", //(C-USA)
+  "Old Dominion": "Sun Belt Conference", //(C-USA)
+  "Southern Miss.": "Sun Belt Conference", //(C-USA)
 
   // Conference USA
   //2023: "Jacksonville St.": "Conference USA",
@@ -71,30 +71,31 @@ export const latestConfChanges = {
   //2023: "Sam Houston": "Conference USA",
 
   // Atlantic Sun
-  "Austin Peay": "ASUN Conference",
+  "Austin Peay": "ASUN Conference", //(OVC)
   // (Queens from D2)
 
   // Western Athletic Conference
-  "UIW": "Western Athletic Conference",
-  "Southern Utah": "Western Athletic Conference",
-  "UT Arlington": "Western Athletic Conference",
+  
+  "Southern Utah": "Western Athletic Conference", //(bigsky)
+  "UT Arlington": "Western Athletic Conference", //(sunbelt)
+  // 2023?: "UIW": "Western Athletic Conference", //(southland)
 
   // Colonial Athletic Association
-  "Hampton": "Colonial Athletic Association",
-  "Monmouth": "Colonial Athletic Association",
-  "N.C. A&T": "Colonial Athletic Association",
-  "Stony Brook": "Colonial Athletic Association",
+  "Hampton": "Colonial Athletic Association", //(bigsouth)
+  "Monmouth": "Colonial Athletic Association", //(maac)
+  "N.C. A&T": "Colonial Athletic Association", //(bigsouth)
+  "Stony Brook": "Colonial Athletic Association", //(americaeast)
 
   // Missouri Valley Conference
-  "Belmont": "Missouri Valley Conference",
-  "UIC": "Missouri Valley Conference",
-  "Murray St.": "Missouri Valley Conference",
+  "Belmont": "Missouri Valley Conference", //(ovc)
+  "UIC": "Missouri Valley Conference", //(horizon)
+  "Murray St.": "Missouri Valley Conference", //(ovc)
 
   // Atlantic 10 Conference
-  "Loyola Chicago": "Atlantic 10 Conference",
+  "Loyola Chicago": "Atlantic 10 Conference", //(mvc)
 
   // Ohio Valley Conference
-  "Little Rock": "Ohio Valley Conference",
+  "Little Rock": "Ohio Valley Conference", //(sunbelt)
   // (Lindenwood, Southern Indiana from D2)
 
   //Southland
@@ -102,10 +103,10 @@ export const latestConfChanges = {
   // (Texas A&M-Commerce from D2)  
 
   //Metro Atlantic Athletic Conference
-  "Mount St. Mary's": "Metro Atlantic Athletic Conference",
+  "Mount St. Mary's": "Metro Atlantic Athletic Conference", //(nec)
 
   // America East Conference
-  "Bryant": "America East Conference",
+  "Bryant": "America East Conference", //(nec)
 
   // Northeast Conference
   // (Stonehill from D2)
