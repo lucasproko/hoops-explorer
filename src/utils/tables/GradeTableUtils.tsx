@@ -144,9 +144,9 @@ export class GradeTableUtils {
       const urlInFix = type == "player" ? "players_" : "";
       const getUrl = (inGender: string, inYear: string, inTier: string) => {
          const subYear = inYear.substring(0, 4);
-         if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+         if ((tierOverride != "Preseason") && DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
             return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}&type=${type}`;
-         } else { //archived
+         } else { //archived (+ preseason - this requires manual intervention anyway so might as well store locally)
             return `/leaderboards/lineups/stats_${urlInFix}all_${inGender}_${subYear}_${inTier}.json`;
          }
       }
