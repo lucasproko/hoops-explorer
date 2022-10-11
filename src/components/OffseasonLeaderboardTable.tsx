@@ -33,7 +33,7 @@ import ConferenceSelector, { ConfSelectorConstants } from './shared/ConferenceSe
 import { TeamEditorParams, OffseasonLeaderboardParams } from '../utils/FilterModels';
 import { GoodBadOkTriple, TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 
-import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic, TeamStatInfo } from '../utils/StatModels';
+import { StatModels, IndivStatSet, PureStatSet, DivisionStatistics, Statistic, TeamStatInfo, RosterEntry } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { UrlRouting } from '../utils/UrlRouting';
@@ -49,6 +49,9 @@ import { TeamEditorManualFixes, TeamEditorManualFixModel } from '../utils/stats/
 import { InputGroup } from 'react-bootstrap';
 import AsyncFormControl from './shared/AsyncFormControl';
 
+// Library imports:
+import fetch from 'isomorphic-unfetch';
+import { RequestUtils } from '../utils/RequestUtils';
 
 type Props = {
    startingState: OffseasonLeaderboardParams,
@@ -84,6 +87,35 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
    const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
    const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
+
+   const diagnosticCompareWithRosters = false;
+   const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
+
+   if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
+      const fetchRosterJson = (teamName: string, encodeEncodePrefix: boolean) => {
+         const rosterJsonUri = (encodeEncodePrefix: boolean) =>
+           `/rosters/${gender}_${(yearWithStats || "").substring(0, 4)}`
+           + `/${RequestUtils.fixRosterUrl(teamName, encodeEncodePrefix)}.json`;
+         return fetch(
+           rosterJsonUri(encodeEncodePrefix)
+         ).then(
+           (resp: any) => resp.json()
+         ).then((json: any) => [ teamName, json ] as [ string, Record<string, RosterEntry> ]);
+      };
+      const rosterPromises: Promise<[string, Record<string, RosterEntry>]>[] = _.flatMap(AvailableTeams.byName, (teams, __) => {
+         const maybeTeam = teams.find(t => (t.year == yearWithStats) && (t.gender == gender));
+         return maybeTeam ? [ 
+            fetchRosterJson(maybeTeam.team, false).catch( //(carry on error, eg if the file doesn't exist)
+               (err: any) => fetchRosterJson(maybeTeam.team, true)
+             ).catch(
+               (err: any) => [ maybeTeam.team, {} ]
+             )                
+         ] : []
+      });
+      Promise.all(rosterPromises).then((rosterInfo: [string, Record<string, RosterEntry>][]) => {
+         setRostersPerTeam(_.fromPairs(rosterInfo));
+      });
+   }
 
    /** Converts a list of params to their team's key/value params  */
    const buildOverrides = (inOverrides: Record<string, string>) => {
@@ -189,7 +221,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const table = React.useMemo(() => {
       const tableDefs = CommonTableDefs.offseasonLeaderboardTable(evalMode, transferInOutMode);
 
-      if (_.isEmpty(dataEvent.players)) {
+      const waitForRosterDiagMode = diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam);
+      if (waitForRosterDiagMode || _.isEmpty(dataEvent.players)) {
          // If we don't have players we're not done loading yet, so put up a loading screen:
          return <div>
                <GenericTable       
@@ -588,7 +621,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          cellTooltipMode={undefined}
       />;
    }, [
-      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode, sortBy, queryFilters
+      gender, year, confs, teamView, dataEvent, teamOverrides, transferInOutMode, evalMode, sortBy, queryFilters, rostersPerTeam
    ]);
 
    // 3] View
