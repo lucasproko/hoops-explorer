@@ -156,19 +156,19 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    /** This grovelling is needed to ensure that clipboard is only loaded client side */
    function initClipboard() {
       if (null == clipboard) {
-      var newClipboard = new ClipboardJS(`#copyLink_offSeasonTeamLeaderboard`, {
-         text: function(trigger) {
-            return window.location.href;
-         }
-      });
-      newClipboard.on('success', (event: ClipboardJS.Event) => {
-         //(unlike other tables, don't add to history)
-         // Clear the selection in some visually pleasing way
-         setTimeout(function() {
-            event.clearSelection();
-         }, 150);
-      });
-      setClipboard(newClipboard);
+         var newClipboard = new ClipboardJS(`#copyLink_offSeasonTeamLeaderboard`, {
+            text: function(trigger) {
+               return window.location.href;
+            }
+         });
+         newClipboard.on('success', (event: ClipboardJS.Event) => {
+            //(unlike other tables, don't add to history)
+            // Clear the selection in some visually pleasing way
+            setTimeout(function() {
+               event.clearSelection();
+            }, 150);
+         });
+         setClipboard(newClipboard);
       }
    }
  
@@ -187,7 +187,21 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const editTooltip = <Tooltip id="editTooltip">Show/Hide the inline Team Viewer and Editor </Tooltip>;
 
    const table = React.useMemo(() => {
-      setLoadingOverride(false);
+      const tableDefs = CommonTableDefs.offseasonLeaderboardTable(evalMode, transferInOutMode);
+
+      if (_.isEmpty(dataEvent.players)) {
+         // If we don't have players we're not done loading yet, so put up a loading screen:
+         return <div>
+               <GenericTable       
+                  tableCopyId="teamTable"
+                  tableFields={tableDefs}
+                  tableData={_.range(0, 5).map(__ => GenericTableOps.buildRowSeparator())}
+                  cellTooltipMode={undefined}
+               />
+            </div>;
+      } else {
+         setLoadingOverride(false);
+      }
 
       const avgEff = efficiencyAverages[`${gender}_${yearWithStats}`] || efficiencyAverages.fallback;
          //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
@@ -414,91 +428,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       if (logDivisionStatsToConsole && server == "localhost") {
          console.log(JSON.stringify(mutableDivisionStats));
       }
-
-      const tableDefs = _.omit({
-         title: GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 10),
-         "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-         "sep0": GenericTableOps.addColSeparator(),
-
-         net: GenericTableOps.addPtsCol("Net", "Net Adjusted Pts/100 above an average D1 team, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)),
-         net_grade: GenericTableOps.addDataCol("Rank", 
-            "Net Adjusted Pts/100 ranking, for 'Balanced' projections",
-            CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-         actual_grade: GenericTableOps.addDataCol("Act.", 
-            "Ranking based on the team's actual Net Adjusted Pts/100 above an average D1 team",
-            CbbColors.varPicker(CbbColors.net_guess), GenericTableOps.gradeOrHtmlFormatter),
-
-         // Txfer in/out
-         "sepInOut1": GenericTableOps.addColSeparator(),
-         dev_margin: GenericTableOps.addDataCol(
-            "Dev", "For efficiency margin, expected increase in production from returning players",
-            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
-         ),
-         inout_margin: GenericTableOps.addDataCol(
-            "I-O", "For efficiency margin, in-from-transfers minus out-from-transfers/NBA/Sr (using projected production for 'in')",
-            CbbColors.picker(...CbbColors.diff35_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
-         ),
-         "sepInOut1.5": GenericTableOps.addColSeparator(0.25),
-         in_margin: GenericTableOps.addDataCol(
-            "TxIn", "For efficiency margin, projected production from incoming transfers",
-            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
-         ),
-         out_margin: GenericTableOps.addDataCol(
-            "TxOut", "For efficiency margin, lost production from last season due to transfers",
-            CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
-         ),
-         "sepInOut1.6": GenericTableOps.addColSeparator(0.25),
-         fr_margin: GenericTableOps.addDataCol(
-            "FrIn", "For efficiency margin, projected production from Freshmen",
-            CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
-         ),
-         nba_margin: GenericTableOps.addDataCol(
-            "NBA", "For efficiency margin, lost production from last season due to early NBA departures",
-            CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
-         ),
-         sr_margin: GenericTableOps.addDataCol(
-            "SrOut", "For efficiency margin, lost production from last season due to graduation",
-            CbbColors.picker(...CbbColors.diff35_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
-         ),
-
-         "sep1": GenericTableOps.addColSeparator(),
-
-         off: GenericTableOps.addPtsCol("Off", "Offensive Adjusted Pts/100 above an average D1 team, for 'Balanced' projections", CbbColors.varPicker(CbbColors.off_pp100)),
-         off_grade: GenericTableOps.addDataCol(
-            "Rank", "Offensive Adjusted Pts/100 ranking, for 'Balanced' projections", 
-            CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-
-         "sep2": GenericTableOps.addColSeparator(),
-
-         def: GenericTableOps.addPtsCol("Def", "Defensive Adjusted Pts/100 above an average D1 team, for 'Balanced' projections", CbbColors.varPicker(CbbColors.def_pp100)),
-         def_grade: GenericTableOps.addDataCol(
-            "Rank", "Defensive Adjusted Pts/100 ranking, for 'Balanced' projections", 
-            CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-
-         "sep3": GenericTableOps.addColSeparator(),
-
-         high_grade: GenericTableOps.addDataCol(
-            "Good", "Optimistic net ranking", 
-            CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-         low_grade: GenericTableOps.addDataCol(
-            "Bad", "Pessimistic net ranking", 
-            CbbColors.varPicker(CbbColors.high_pctile_qual), GenericTableOps.gradeOrHtmlFormatter),
-   
-         "sep4": GenericTableOps.addColSeparator(),
-
-         roster: GenericTableOps.addDataCol("Roster", "Projected of (high major) Superstars / Stars / Starters / Rotation players on the team", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-
-         "sep5": GenericTableOps.addColSeparator(),
-
-         edit: GenericTableOps.addDataCol("", "Edit the team projections", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-      }, ([] as string[]).concat(
-            evalMode ? [] : [ "actual_grade" ]
-         ).concat(
-            transferInOutMode ? [ "high_grade", "low_grade" ] : [
-               "sepInOut1", "dev_margin", "inout_margin", "sepInOut1.5", "sepInOut1.6", "in_margin", "out_margin", "nba_margin", "fr_margin", "sr_margin"
-            ]
-         )
-      ) as Record<string, GenericTableColProps>;
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
