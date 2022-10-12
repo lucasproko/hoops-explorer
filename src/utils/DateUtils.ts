@@ -7,6 +7,9 @@ export class DateUtils {
 
    // Constants
 
+   static readonly AllYears = "All";
+   static readonly ExtraYears = "Extra";
+
    //////////////////////////////////////
 
    /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */

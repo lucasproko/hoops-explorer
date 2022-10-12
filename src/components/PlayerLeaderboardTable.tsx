@@ -207,8 +207,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = teamEditorMode
-    ? (startingState.year == "All")
-    : (year == "Extra") || (year == "All");
+    ? (startingState.year == DateUtils.AllYears)
+    : (year == DateUtils.ExtraYears) || (year == DateUtils.AllYears);
 
   const [ tier, setTier ] = useState(startingState.tier || ParamDefaults.defaultTier);
 
@@ -299,7 +299,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const groupedOptions = [
     {
       label: "Most useful",
-      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value().concat(startingState.year == "All" ? [ yearOpt ] : [])
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value().concat(startingState.year == DateUtils.AllYears ? [ yearOpt ] : [])
     },
     {
       label: "Other",
@@ -380,17 +380,32 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       posClasses,
       confs, year, gender, tier ]);
 
-  // Events that trigger building or rebuilding the division stats cache
-  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as Record<string, DivisionStatsCache>);
   useEffect(() => {
     if (showGrades) {
-      if ((year != divisionStatsCache.year) ||
-        (gender != divisionStatsCache.gender) ||
-        _.isEmpty(divisionStatsCache)) {
-          if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-          GradeTableUtils.populatePlayerDivisionStatsCache({ year, gender }, setDivisionStatsCache);
+      const yearsToCheck = (year == DateUtils.AllYears) ? DateUtils.coreYears : [ year ];
+      yearsToCheck.forEach(yearToCheck => {
+        const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
+        if (_.isEmpty(currCacheForThisYear) ||
+            (yearToCheck != currCacheForThisYear.year) ||
+           (gender != currCacheForThisYear.gender))
+        {
+          if (!_.isEmpty(currCacheForThisYear)) {
+            setDivisionStatsCache(currCache => ({
+              ...currCache,
+              [yearToCheck]: {}
+            })); //unset if set
+          }
+          GradeTableUtils.populatePlayerDivisionStatsCache({ year: yearToCheck, gender }, newCache => {
+            setDivisionStatsCache(currCache => ({
+              ...currCache,
+              [yearToCheck]: newCache
+            })); 
+          });
         }
-      }
+      });
+    }
   }, [ year, gender, showGrades ]);
 
   // 3] Utils
@@ -473,7 +488,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         )
         ;
     }).sortBy(
-      (year != "All") && (tier != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
+      (year != DateUtils.AllYears) && (tier != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
         ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
       )) ? [] : //(can save on a sort if using the generated sort-order)
         [ LineupTableUtils.sorter(sortBy) , (p) => p.baseline?.off_team_poss?.value || 0, (p) => p.key ]
@@ -507,7 +522,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ||
       isFiltered
       ||
-      (year == "All");
+      (year == DateUtils.AllYears);
 
     /** Compresses number/height/year into 1 double-width column */
     const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
@@ -569,7 +584,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       );
       const playerLeaderboardParams = {
         tier: "All",
-        year: "All",
+        year: DateUtils.AllYears,
         filter: `${player.key}:;`,
         sortBy: "desc:year",
         showInfoSubHeader: true
@@ -695,6 +710,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         player.off_adj_rapm_prod_margin = undefined;
       }
 
+      const divisionStatesCacheByYear: DivisionStatsCache = divisionStatsCache[player.year || year] || {};
+
       return isDup ? _.flatten([
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
       ])
@@ -711,8 +728,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           selectionTitle: `[${player.key}] Grades`,
           config: showGrades, 
           setConfig: (newConfig:string) => { friendlyChange(() => setShowGrades(newConfig), newConfig != showGrades) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+          comboTier: divisionStatesCacheByYear.Combo, highTier: divisionStatesCacheByYear.High,
+          mediumTier: divisionStatesCacheByYear.Medium, lowTier: divisionStatesCacheByYear.Low,
           player,
           expandedView: true, possAsPct, factorMins, includeRapm: true, leaderboardMode: true
         }) : []
