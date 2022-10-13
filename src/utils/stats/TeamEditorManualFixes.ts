@@ -328,6 +328,9 @@ export class TeamEditorManualFixes {
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "MoMathis::" ]),
             },
+            "TCU": {
+               superSeniorsReturning: new Set([ "ChO'bannon::" ]),
+            },
             "Texas": {
                superSeniorsReturning: new Set([ "MaCarr::", "TiAllen::", "ChBishop::" ]),
             },
