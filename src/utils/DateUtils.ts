@@ -129,7 +129,7 @@ export class DateUtils {
    };
    /** Next season if we have data for it else  */
    static readonly getLastSeasonWithDataFrom = (y: string) => {
-      return ((y > DateUtils.mostRecentYearWithData)) ? DateUtils.mostRecentYearWithData : y;
+      return ((y > DateUtils.mostRecentYearWithData)|| (y == DateUtils.AllYears)) ? DateUtils.mostRecentYearWithData : y;
    };
          
    /** Get the offseason of the current season */

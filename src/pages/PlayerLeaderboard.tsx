@@ -198,7 +198,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
     </Row>
     <Row className="border-bottom">
       <HeaderBar
-        common={{ gender: currGender, year: (currYear == "All") ? undefined : currYear }}
+        common={{ gender: currGender, year: DateUtils.getLastSeasonWithDataFrom(currYear) }}
         thisPage={`${ParamPrefixes.player}_leaderboard`}
         />
     </Row>
