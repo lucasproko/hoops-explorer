@@ -53,10 +53,41 @@ export const NonP6Conferences =
   _.chain(ConferenceToNickname).flatMap((confNick, conf) => 
     (confNick == "MM" || confNick == "P6" || HighMajorConfs.has(conf)) ? [] : [ conf ]).value();
 
+/** high / midhigh / mid / midlow / low doesn't seem quite granular enough in practice, plus  */    
+export const confAdjustments = {
+  "horizon": -1, //"mid" seems way too high
+};
+export const getConfAdjustment = (confStr: string, year: string) => {
+  if (confStr == "horizon") {
+    return -1; //"mid" seems way too high
+  } else if (confStr == "atlanticsun") {
+    return +0.5; //"low" seems harsh, has often been better than that
+  }else if (confStr == "wac") {
+    return +0.5; //"midlow" seems too low, has been mad but also in mid territory often
+  } else if (confStr == "americaeast") {
+    return +0.5; //"low" seems too low, pretty close to horizon
+  } else if (confStr == "socon") {
+    return +1.0; //"midlow" - socon have beeen reasonably middle of the road mid major for a while
+  } else if (confStr == "maac") {
+    return +0.5; //"midlow" - have had some bad years but also decent
+  } else if (confStr == "sunbelt") {
+    return -0.5; //"mid", one of the weaker mid majors
+  } else if (confStr == "ivy") {
+    return -0.5; //"mid", one of the weaker mid majors
+  } else if (confStr == "bigwest") {
+    return -0.5; //"mid", one of the weaker mid majors
+  } else if (confStr == "summit") {
+    return -0.5; //"mid", one of the weaker mid majors
+  }
+  return 0;
+}
+
 /** Currently for 22/23 offseason - conf changes that I won't pick up until I build the pre-season ingest lineup 
  * h/t Jun 2022: https://medium.com/run-it-back-with-zach/conference-realignment-all-the-moves-coming-in-2022-25-130ef706da55
 */
 export const latestConfChanges = {
+
+//TODO: need to make this per year
 
   // Sun Belt
   "James Madison": "Sun Belt Conference", //(CAA)

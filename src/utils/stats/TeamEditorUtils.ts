@@ -8,6 +8,7 @@ import { PositionUtils } from "./PositionUtils";
 import { TeamEditorManualFixes, TeamEditorManualFixModel } from "./TeamEditorManualFixes";
 import { DateUtils } from "../DateUtils";
 import { TeamEditorTableUtils } from '../tables/TeamEditorTableUtils';
+import { getConfAdjustment } from "../public-data/ConferenceInfo";
 
 /** Possibly ways we change projections */
 type DiagCodes = 
@@ -852,9 +853,13 @@ export class TeamEditorUtils {
          //TODO: (I'd like to try to calculate some sort of baseline for last year's team and what's returning and use that)
          const offSosDeltaForTxfers = teamSosOff - (basePlayer.off_adj_opp?.value || (avgEff + 4));
          const defLevelJump = _.isNil(maybeLevelJump) ? ((offSosDeltaForTxfers > 4) ? 2 : 0) : maybeLevelJump;
+
          //(basically the idea here is that if a transfer gets taken by a high major, their defense probably isn't unplayably bad,
          // and if RAPM says it is, then it's likely a team-effect vs a player-effect)
-         const minDefAdj = (defLevelJump >= 3) ? 1 : ((defLevelJump >= 2) ? 0.75 : 0); //(the bigger the jump, the worse we'll allow the defender to be, numbers are pretty arbitrary)
+         //(the lower the level player comes from, the worse they likely are)
+         const minDefAdj = defLevelJump >= 1.5 ?
+            (0.625 + Math.max(defLevelJump - 1.5, 0)*0.25) //(1.5=0.625, 2=0.75, 2.5=0.875, 3=1, 3.5=1.125 etc)
+            : 0;
          const minDef = -TeamEditorUtils.getBenchLevelScoring(team, year) + minDefAdj;
          const currDef = TeamEditorUtils.getDef(basePlayer);
          const adjustedCurrDef = currDef - ((defLevelJump >= 2) ? 0.5 : 0); //(bonus help defense for players coming up from low majors)
@@ -1784,7 +1789,7 @@ export class TeamEditorUtils {
             const txferDeltaDiff = sosNet - teamSosNet;
 
             //Diag:
-            //console.log(`${p.key} SoS: [${sosNet.toFixed(1)}], diff = [${txferDeltaDiff.toFixed(1)}]`);
+            //console.log(`${p.key} (curr=[${currPossPct.toFixed(1)}]) SoS: [${sosNet.toFixed(1)}], diff = [${txferDeltaDiff.toFixed(1)}]`);
 
             if (txferDeltaDiff > 6) { // moving way down
                return 1.5*currPossPct;
@@ -1930,11 +1935,18 @@ export class TeamEditorUtils {
             default: return undefined;
          }
       }
-      const getLevel = (team: string) => _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) 
+      const getConfInfo = (team: string) => 
+         _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) 
          || AvailableTeams.byName[team]?.[0] 
-         || { category: "unknown"};
+         || { category: "unknown", index_template: "unknown" };
 
-      return levelToNumber(getLevel(team).category || "unknown");
+      const confInfo = getConfInfo(team);
+      const levelToNumberVal = levelToNumber(confInfo.category || "unknown")
+
+      return _.isUndefined(levelToNumberVal) ? undefined
+         : (levelToNumberVal
+            + getConfAdjustment(confInfo.index_template || "unknown", year)
+            + TeamEditorUtils.getTeamLevelAboveConf(team, year));
    }
 
    /** Switches a team/profile level to a number so they can be compared */
@@ -2003,9 +2015,7 @@ export class TeamEditorUtils {
    static getAvFrProduction(team: string, year: string) {
       const level = _.find(AvailableTeams.byName[team] || [], teamInfo => teamInfo.year == year) || { category: "unknown"};
       const getAvgLevel = () => {
-         if (team == "Gonzaga") { // Treat as high major
-            return 2.5;            
-         } else if (level.category == "high") {
+         if (level.category == "high") {
             return 2.5;            
          } else if (level.category == "midhigh") {
             return 1.5;
@@ -2019,7 +2029,19 @@ export class TeamEditorUtils {
             return 0;
          } 
       }
-      return getAvgLevel();
+      return getAvgLevel() + TeamEditorUtils.getTeamLevelAboveConf(team, year);
+   }
+
+   /** There's a few teams who look more like high major teams despite playing in mid majors (etc): 0-1 range */
+   static getTeamLevelAboveConf(team: string, year: string) {
+      if (team == "Gonzaga") { 
+         return 1.0;
+      } else if (team == "San Diego St.") {
+         return 0.5;
+      } else if (team == "Saint Mary's (CA)") {
+         return 0.5;
+      }
+      return 0;
    }
 
    /** Builds the list of players to calculate the actual season prediction over */
