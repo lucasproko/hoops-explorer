@@ -857,15 +857,19 @@ export class TeamEditorUtils {
          //(basically the idea here is that if a transfer gets taken by a high major, their defense probably isn't unplayably bad,
          // and if RAPM says it is, then it's likely a team-effect vs a player-effect)
          //(the lower the level player comes from, the worse they likely are)
-         const minDefAdj = defLevelJump >= 1.5 ?
-            (0.625 + Math.max(defLevelJump - 1.5, 0)*0.25) //(1.5=0.625, 2=0.75, 2.5=0.875, 3=1, 3.5=1.125 etc)
+         const minDefLevelJump = 1.5; //(below this, too close in level)
+         const minDefAdj = defLevelJump >= minDefLevelJump ? //(1.5=0.625, 2=0.75, 2.5=0.875, 3+=1, etc)
+            Math.min(1.0, (0.625 + Math.max(defLevelJump - minDefLevelJump, 0)*0.25)) 
             : 0;
          const minDef = -TeamEditorUtils.getBenchLevelScoring(team, year) + minDefAdj;
          const currDef = TeamEditorUtils.getDef(basePlayer);
-         const adjustedCurrDef = currDef - ((defLevelJump >= 2) ? 0.5 : 0); //(bonus help defense for players coming up from low majors)
-         const defTxferUpBetterHelpBump = (
-            ((adjustedCurrDef > minDef) && (defLevelJump >= 2)) ? minDef : adjustedCurrDef
-         ) - currDef;
+         const bonusHelpDef = defLevelJump >= minDefLevelJump ? //(1.5=0.375, 2=0.5, 2.5=0.625, 3+=0.75 etc)
+            Math.min(0.875, (0.375 + Math.max(defLevelJump - minDefLevelJump, 0)*0.25))
+            : 0;
+         const adjustedCurrDef = currDef - bonusHelpDef; //(bonus help defense for players coming up from low majors)
+         const defTxferUpBetterHelpBump = (defLevelJump >= minDefLevelJump) ? (
+            Math.min(minDef, adjustedCurrDef) - currDef
+         ) : 0;
          //(end ugly heuristic defense adjustment)
 
          const defHeightPenaltyFactor = (defLevelJump == 1) ? 0.75 : (defLevelJump >= 2 ? 1.0 : 0);
