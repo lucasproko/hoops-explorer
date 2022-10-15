@@ -388,6 +388,25 @@ export class TeamEditorUtils {
          }        
       });
 
+      // Get an idea of the team's bench level
+
+      const prevSeasonBench = teamStats ? 
+         TeamEditorUtils.calcActualBenchProduction(teamStats, lastSeasonTeam.map(p => {
+            return {
+               orig: p,
+               //(these are just needed for typing)
+               key: p.code,
+               good: p, bad: p, ok: p,
+            } as GoodBadOkTriple;
+         }), avgEff) : undefined;
+
+      const benchEstimates = 
+         [  TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ].map(key => {
+            return TeamEditorUtils.buildBenchEfficiency(
+               team, year, key, "N/A", "N/A", 0.5, prevSeasonBench, unpausedOverrides
+            ).ok;
+         });
+
       //////////////
 
       // Most of the math occurs here:
@@ -401,7 +420,7 @@ export class TeamEditorUtils {
       ) || !_.isEmpty(allDeletedPlayers); //(or have deleted players)
 
       TeamEditorUtils.calcAndInjectYearlyImprovement(
-         basePlayersPlusHypos, team, year, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode
+         basePlayersPlusHypos, team, year, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode, benchEstimates
       );
       TeamEditorUtils.calcAndInjectMinsAssignment(
          basePlayersPlusHypos, team, year, disabledPlayersIn, unpausedOverrides, hasDeletedPlayersOrTransfersIn, teamSosNet, avgEff, offSeasonMode
@@ -474,16 +493,6 @@ export class TeamEditorUtils {
       //////////////
 
       // Build bench minutes:
-
-      const prevSeasonBench = teamStats ? 
-         TeamEditorUtils.calcActualBenchProduction(teamStats, lastSeasonTeam.map(p => {
-            return {
-               orig: p,
-               //(these are just needed for typing)
-               key: p.code,
-               good: p, bad: p, ok: p,
-            } as GoodBadOkTriple;
-         }), avgEff) : undefined;
 
       const [ maybeBenchGuard, maybeBenchWing, maybeBenchBig ] = _.isEmpty(basePlayersPlusHypos) ?
          [ undefined, undefined, undefined ]
@@ -801,7 +810,8 @@ export class TeamEditorUtils {
       roster: GoodBadOkTriple[], 
       team: string, year: string, teamSosOff: number, teamSosDef: number, avgEff: number,
       overrides: Record<string, PlayerEditModel>, 
-      offSeasonMode: boolean
+      offSeasonMode: boolean,
+      benchEstimates: IndivStatSet[]
    ) {
       /** Handy a util to make the diagnostics mode a bit more readable */
       const tidy = (inJson: TeamEditorDiagObject) => {
@@ -811,6 +821,13 @@ export class TeamEditorUtils {
          });
          return inJson;
       };
+
+      const baseBenchDefense = -0.5*TeamEditorUtils.getBenchLevelScoring(team, year);
+      const benchDefence = _.chain(benchEstimates).map(b => {
+         const def: Statistic = b.def_adj_rapm || {};
+         return _.isNil(def.value) ? baseBenchDefense : Math.min(baseBenchDefense, def.value);
+      }).min().value();
+
       const calcBasicAdjustments = (
          basePlayer: IndivStatSet, basePlayerPrevYear: IndivStatSet | undefined, override: PlayerEditModel | undefined
       ) => {
@@ -861,7 +878,7 @@ export class TeamEditorUtils {
          const minDefAdj = defLevelJump >= minDefLevelJump ? //(1.5=0.625, 2=0.75, 2.5=0.875, 3+=1, etc)
             Math.min(1.0, (0.625 + Math.max(defLevelJump - minDefLevelJump, 0)*0.25)) 
             : 0;
-         const minDef = -TeamEditorUtils.getBenchLevelScoring(team, year) + minDefAdj;
+         const minDef = benchDefence + minDefAdj;
          const currDef = TeamEditorUtils.getDef(basePlayer);
          const bonusHelpDef = defLevelJump >= minDefLevelJump ? //(1.5=0.375, 2=0.5, 2.5=0.625, 3+=0.75 etc)
             Math.min(0.875, (0.375 + Math.max(defLevelJump - minDefLevelJump, 0)*0.25))
@@ -1560,6 +1577,85 @@ export class TeamEditorUtils {
       });
    }
 
+   /** Calculates the expected efficiency of the bench for a team/year */
+   static buildBenchEfficiency = (
+      team: string, year: string, 
+      key: string, name: string, posClass: string, minsPctIn: number,
+      lastYearBenchStats: IndivStatSet | undefined, overrides: Record<string, PlayerEditModel>,
+   ) => {
+      const defaultBenchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
+
+      const regressedBenchFactorOff = lastYearBenchStats ? //0.5 if played 20mpg
+         Math.min(3*(lastYearBenchStats.off_team_poss_pct?.value || 0), 0.5) : 0;
+      const regressedBenchFactorDef = lastYearBenchStats ? 
+         Math.min(3*(lastYearBenchStats.def_team_poss_pct?.value || 0), 0.5) : 0;
+         //(the 3x is because we divided the mins by 3 earlier on to portion across the 3 position groups)
+
+      const maybeOverrides = overrides[key];
+      const benchLevelOverride = maybeOverrides?.profile;
+      const benchLevel = 0.5*(benchLevelOverride ? 
+         TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel);
+
+      //TODO: want 0.6 and -0.3 to be constants (for average yearly growth)
+      const regressedBenchLevelOff = lastYearBenchStats ?
+         (regressedBenchFactorOff*(TeamEditorUtils.getOff(lastYearBenchStats) + 0.6) + (1.0 - regressedBenchFactorOff)*benchLevel)
+         : benchLevel;
+
+      const regressedBenchLevelDef = lastYearBenchStats ?
+         (regressedBenchFactorDef*(TeamEditorUtils.getDef(lastYearBenchStats) - 0.3) - (1.0 - regressedBenchFactorDef)*benchLevel)
+         : -benchLevel;
+         
+      const minsPct = 
+         !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
+      const offAdj = maybeOverrides?.global_off_adj || 0;
+      const defAdj = maybeOverrides?.global_def_adj || 0;
+
+      const baseBench = {
+         key: name,
+         off_team_poss_pct: { value: minsPct },
+         def_team_poss_pct: { value: minsPct },
+         off_adj_rapm: { value: regressedBenchLevelOff + offAdj },
+         def_adj_rapm: { value: regressedBenchLevelDef + defAdj },
+         posClass: posClass
+      };
+      return {
+         key: key,
+         good: {
+            ...baseBench,
+            off_adj_rapm: { value: regressedBenchLevelOff + TeamEditorUtils.optimisticBenchOrFr + offAdj },
+            def_adj_rapm: { value: regressedBenchLevelDef - TeamEditorUtils.optimisticBenchOrFr + defAdj }
+         },
+         ok: {
+            ...baseBench,
+         },
+         bad: {
+            ...baseBench,
+            off_adj_rapm: { value: regressedBenchLevelOff - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
+            def_adj_rapm: { value: regressedBenchLevelDef + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
+         },
+         orig: baseBench,
+         diag: {
+            off_rtg: { good: {}, bad: {}, ok: {} },
+            off_usage: { good: {}, bad: {}, ok: {} },
+            off: { good: {
+               incorp_prev_season: regressedBenchLevelOff - benchLevel
+            }, bad: {
+               incorp_prev_season: regressedBenchLevelOff - benchLevel
+            }, ok: {
+               incorp_prev_season: regressedBenchLevelOff - benchLevel
+            } },
+            def: { good: {
+               incorp_prev_season: regressedBenchLevelDef + benchLevel
+            }, bad: {
+               incorp_prev_season: regressedBenchLevelDef + benchLevel
+            }, ok: {
+               incorp_prev_season: regressedBenchLevelDef + benchLevel
+            } }
+         }
+      } as GoodBadOkTriple;
+   };
+
+
    /** Inserts unused minutes */
    static getBenchMinutes(
       team: string, year: string, 
@@ -1584,79 +1680,6 @@ export class TeamEditorUtils {
       //(if auto-calc need for bench minutes, or if any minutes overrides are in place)
       if ((deltaMins > 0.0) || hasBenchOverrides || alwaysBuildBench) {
 
-         const defaultBenchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
-
-         const regressedBenchFactorOff = lastYearBenchStats ? //0.5 if played 20mpg
-            Math.min(3*(lastYearBenchStats.off_team_poss_pct?.value || 0), 0.5) : 0;
-         const regressedBenchFactorDef = lastYearBenchStats ? 
-            Math.min(3*(lastYearBenchStats.def_team_poss_pct?.value || 0), 0.5) : 0;
-            //(the 3x is because we divided the mins by 3 earlier on to portion across the 3 position groups)
-
-         const buildBench = (key: string, name: string, posClass: string, minsPctIn: number) => {
-            const maybeOverrides = overrides[key];
-            const benchLevelOverride = maybeOverrides?.profile;
-            const benchLevel = 0.5*(benchLevelOverride ? 
-               TeamEditorUtils.getBenchLevelScoringByProfile(benchLevelOverride) : defaultBenchLevel);
-
-            //TODO: want 0.6 and -0.3 to be constants (for average yearly growth)
-            const regressedBenchLevelOff = lastYearBenchStats ?
-               (regressedBenchFactorOff*(TeamEditorUtils.getOff(lastYearBenchStats) + 0.6) + (1.0 - regressedBenchFactorOff)*benchLevel)
-               : benchLevel;
-
-            const regressedBenchLevelDef = lastYearBenchStats ?
-               (regressedBenchFactorDef*(TeamEditorUtils.getDef(lastYearBenchStats) - 0.3) - (1.0 - regressedBenchFactorDef)*benchLevel)
-               : -benchLevel;
-               
-            const minsPct = 
-               !_.isNil(maybeOverrides?.mins) ? (maybeOverrides.mins/40.0) : (minsPctIn*5);
-            const offAdj = maybeOverrides?.global_off_adj || 0;
-            const defAdj = maybeOverrides?.global_def_adj || 0;
-
-            const baseBench = {
-               key: name,
-               off_team_poss_pct: { value: minsPct },
-               def_team_poss_pct: { value: minsPct },
-               off_adj_rapm: { value: regressedBenchLevelOff + offAdj },
-               def_adj_rapm: { value: regressedBenchLevelDef + defAdj },
-               posClass: posClass
-            };
-            return {
-               key: key,
-               good: {
-                  ...baseBench,
-                  off_adj_rapm: { value: regressedBenchLevelOff + TeamEditorUtils.optimisticBenchOrFr + offAdj },
-                  def_adj_rapm: { value: regressedBenchLevelDef - TeamEditorUtils.optimisticBenchOrFr + defAdj }
-               },
-               ok: {
-                  ...baseBench,
-               },
-               bad: {
-                  ...baseBench,
-                  off_adj_rapm: { value: regressedBenchLevelOff - TeamEditorUtils.pessimisticBenchOrFr + offAdj }, 
-                  def_adj_rapm: { value: regressedBenchLevelDef + TeamEditorUtils.pessimisticBenchOrFr + defAdj }
-               },
-               orig: baseBench,
-               diag: {
-                  off_rtg: { good: {}, bad: {}, ok: {} },
-                  off_usage: { good: {}, bad: {}, ok: {} },
-                  off: { good: {
-                     incorp_prev_season: regressedBenchLevelOff - benchLevel
-                  }, bad: {
-                     incorp_prev_season: regressedBenchLevelOff - benchLevel
-                  }, ok: {
-                     incorp_prev_season: regressedBenchLevelOff - benchLevel
-                  } },
-                  def: { good: {
-                     incorp_prev_season: regressedBenchLevelDef + benchLevel
-                  }, bad: {
-                     incorp_prev_season: regressedBenchLevelDef + benchLevel
-                  }, ok: {
-                     incorp_prev_season: regressedBenchLevelDef + benchLevel
-                  } }
-               }
-            } as GoodBadOkTriple;
-         };
-
          const benchGuardMins = hasGuardOverride ? (guardPct - guardPctIn) :
             Math.min(Math.max(0, (0.30 - guardPct)), deltaMins); // wings can play 50% of SG minutes
          const nonOverriddenBenchGuardMins = hasGuardOverride ? 0 : benchGuardMins;
@@ -1671,6 +1694,11 @@ export class TeamEditorUtils {
          // Diagnostics
          // console.log(`Bench ${deltaMins.toFixed(3)} [${hasGuardOverride}/${hasWingOverride}/${hasBigOverride}] = ${guardPct.toFixed(3)}/${benchGuardMins.toFixed(3)} ${wingPct.toFixed(3)}/${benchWingMins.toFixed(3)} ${bigPct.toFixed(3)}/${benchBigMins.toFixed(3)}`)
 
+         const buildBench = (key: string, name: string, posClass: string, minsPctIn: number,) => {
+            return TeamEditorUtils.buildBenchEfficiency(
+               team, year, key, name, posClass, minsPctIn, lastYearBenchStats, overrides
+            );
+         }
          return [ 
             (benchGuardMins > 0) || alwaysBuildBench ? buildBench(
                TeamEditorUtils.benchGuardKey, "Bench & Fr Guards", "G?", benchGuardMins
