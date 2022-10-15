@@ -4561,11 +4561,11 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     WCC
                   </small>,
                   "def": Object {
-                    "value": 98.56920000000001,
+                    "value": 98.7192,
                   },
                   "def_grade": Object {
                     "samples": 106,
-                    "value": 0.9339622641509434,
+                    "value": 0.9245283018867925,
                   },
                   "dev_margin": Object {
                     "value": 0,
@@ -4622,7 +4622,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </ForwardRef>
                   </OverlayTrigger>,
                   "fr_margin": Object {
-                    "value": 4.546599999999999,
+                    "value": 4.321599999999998,
                   },
                   "high_grade": Object {
                     "samples": 106,
@@ -4632,7 +4632,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 4.546599999999999,
+                    "value": 4.321599999999998,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -4642,14 +4642,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 6.8416,
+                    "value": 6.641599999999999,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9339622641509434,
                   },
                   "off": Object {
-                    "value": 105.41080000000001,
+                    "value": 105.36080000000001,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -4716,7 +4716,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "def_grade": Object {
                     "samples": 106,
-                    "value": 0.9245283018867925,
+                    "value": 0.9339622641509434,
                   },
                   "dev_margin": Object {
                     "value": 0,
