@@ -59,6 +59,9 @@ type Props = {
    onChangeState: (newParams: OffseasonLeaderboardParams) => void
 }
 
+/** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
+const logDivisionStatsToConsole = false;
+
 const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
      "server" : window.location.hostname
@@ -455,9 +458,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
 
-      //Useful for building late off-season grade lists (copy to public/lineups/stats_all_Men_YYYY_Preseason.json) 
+      //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json) 
       //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)
-      const logDivisionStatsToConsole = false;
       if (logDivisionStatsToConsole && server == "localhost") {
          console.log(JSON.stringify(mutableDivisionStats));
       }
