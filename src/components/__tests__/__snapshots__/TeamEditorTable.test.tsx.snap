@@ -23661,32 +23661,32 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 114.2149,
                   },
                   "bad_def": Object {
-                    "value": 90.46277618260359,
+                    "value": 90.25953713865212,
                   },
                   "bad_net": Object {
-                    "value": 24.00138513046913,
+                    "value": 24.24995944257191,
                   },
                   "bad_off": Object {
-                    "value": 114.46416131307272,
+                    "value": 114.50949658122403,
                   },
                   "good_def": Object {
-                    "value": 88.40737873069413,
+                    "value": 88.13633925598509,
                   },
                   "good_net": Object {
-                    "value": 30.521266296143047,
+                    "value": 30.895123581462496,
                   },
                   "good_off": Object {
-                    "value": 118.92864502683717,
+                    "value": 119.03146283744758,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 89.31291582557566,
+                    "value": 89.07663288745931,
                   },
                   "ok_net": Object {
-                    "value": 27.442402482404873,
+                    "value": 27.74558058865388,
                   },
                   "ok_off": Object {
-                    "value": 116.75531830798053,
+                    "value": 116.82221347611319,
                   },
                   "title": <OverlayTrigger
                     overlay={
@@ -24094,10 +24094,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.665215927842298,
+                    "value": -1.6739424266924332,
                   },
                   "bad_net": Object {
-                    "value": 6.5410184252685655,
+                    "value": 6.5497449241187,
                   },
                   "bad_off": Object {
                     "value": 4.8758024974262675,
@@ -24205,10 +24205,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -2.089222084147312,
+                    "value": -2.107297764163041,
                   },
                   "good_net": Object {
-                    "value": 8.527872084147312,
+                    "value": 8.54594776416304,
                   },
                   "good_off": Object {
                     "value": 6.43865,
@@ -24218,17 +24218,17 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -1.994811095499151,
+                    "value": -2.008088884102441,
                   },
                   "ok_net": Object {
-                    "value": 7.470613592925418,
+                    "value": 7.483891381528708,
                   },
                   "ok_off": Object {
                     "value": 5.475802497426267,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 116.83972813329962,
+                    "value": 116.79282868442051,
                   },
                   "pos": <span
                     style={
@@ -24271,7 +24271,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.2535207230100147,
+                    "value": 0.25389591860104754,
                   },
                 },
                 "kind": "data-row",
@@ -24295,10 +24295,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 4.7276,
                   },
                   "bad_def": Object {
-                    "value": -2.301785783455098,
+                    "value": -2.3105122823052335,
                   },
                   "bad_net": Object {
-                    "value": 3.016735783455098,
+                    "value": 3.0254622823052335,
                   },
                   "bad_off": Object {
                     "value": 0.71495,
@@ -24406,30 +24406,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -2.746876131559451,
+                    "value": -2.7649518115751803,
                   },
                   "good_net": Object {
-                    "value": 5.1147367596619135,
+                    "value": 5.132812439677643,
                   },
                   "good_off": Object {
                     "value": 2.3678606281024623,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 25.8860921980291,
+                    "value": 23.594454317558586,
                   },
                   "ok_def": Object {
-                    "value": -2.4352749985240907,
+                    "value": -2.4485527871273804,
                   },
                   "ok_net": Object {
-                    "value": 4.203135626626553,
+                    "value": 4.216413415229843,
                   },
                   "ok_off": Object {
                     "value": 1.7678606281024627,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 106.16023236540471,
+                    "value": 106.10395302674978,
                   },
                   "pos": <span
                     style={
@@ -24472,7 +24472,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.18562912509311308,
+                    "value": 0.18600432068414594,
                   },
                 },
                 "kind": "data-row",
@@ -24565,7 +24565,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 1,
                   },
                   "mpg": Object {
-                    "value": 0.11390780197089168,
+                    "value": 2.405545682441401,
                   },
                   "ok_def": Object {
                     "value": -0.25,
@@ -24596,7 +24596,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       Wings
                     </b>
                      (
-                    43
+                    44
                     %)
                   </div>,
                   <div />,
@@ -24629,10 +24629,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 3.7957,
                   },
                   "bad_def": Object {
-                    "value": -3.6944157834550984,
+                    "value": -3.7031422823052336,
                   },
                   "bad_net": Object {
-                    "value": 5.004065783455099,
+                    "value": 5.0127922823052335,
                   },
                   "bad_off": Object {
                     "value": 1.30965,
@@ -24740,30 +24740,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -4.31925766978963,
+                    "value": -4.337333349805359,
                   },
                   "good_net": Object {
-                    "value": 7.925323139364694,
+                    "value": 7.943398819380422,
                   },
                   "good_off": Object {
                     "value": 3.6060654695750634,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 30.0034948800266,
+                    "value": 32.17425588757989,
                   },
                   "ok_def": Object {
-                    "value": -4.00765653675427,
+                    "value": -4.02093432535756,
                   },
                   "ok_net": Object {
-                    "value": 7.013722006329334,
+                    "value": 7.026999794932624,
                   },
                   "ok_off": Object {
                     "value": 3.0060654695750637,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 102.76208237343963,
+                    "value": 102.71518292456052,
                   },
                   "pos": <span
                     style={
@@ -24806,7 +24806,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.2002296660741269,
+                    "value": 0.20060486166515976,
                   },
                 },
                 "kind": "data-row",
@@ -24830,10 +24830,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 0.8234,
                   },
                   "bad_def": Object {
-                    "value": -1.4990490348815104,
+                    "value": -1.507775533731646,
                   },
                   "bad_net": Object {
-                    "value": 1.9093490348815103,
+                    "value": 1.918075533731646,
                   },
                   "bad_off": Object {
                     "value": 0.4103,
@@ -24941,30 +24941,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -1.883792084147312,
+                    "value": -1.901867764163041,
                   },
                   "good_net": Object {
-                    "value": 3.84535794552521,
+                    "value": 3.8634336255409387,
                   },
                   "good_off": Object {
                     "value": 1.961565861377898,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 25.657142452483054,
+                    "value": 23.594454317558586,
                   },
                   "ok_def": Object {
-                    "value": -1.8286442025383638,
+                    "value": -1.8419219911416536,
                   },
                   "ok_net": Object {
-                    "value": 3.1902100639162616,
+                    "value": 3.2034878525195514,
                   },
                   "ok_off": Object {
                     "value": 1.3615658613778978,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 102.68392618796784,
+                    "value": 102.62764684931291,
                   },
                   "pos": <span
                     style={
@@ -25007,7 +25007,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.19680795670343973,
+                    "value": 0.19718315229447259,
                   },
                 },
                 "kind": "data-row",
@@ -25031,10 +25031,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 3.753,
                   },
                   "bad_def": Object {
-                    "value": -2.436513781855098,
+                    "value": -2.445240280705234,
                   },
                   "bad_net": Object {
-                    "value": 2.621713781855098,
+                    "value": 2.630440280705234,
                   },
                   "bad_off": Object {
                     "value": 0.1852,
@@ -25142,30 +25142,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -4.655702084147311,
+                    "value": -4.673777764163041,
                   },
                   "good_net": Object {
-                    "value": 8.12015208414731,
+                    "value": 8.138227764163041,
                   },
                   "good_off": Object {
                     "value": 3.46445,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 30.0034948800266,
+                    "value": 32.17425588757989,
                   },
                   "ok_def": Object {
-                    "value": -3.555104950311951,
+                    "value": -3.568382738915241,
                   },
                   "ok_net": Object {
-                    "value": 4.940304950311951,
+                    "value": 4.953582738915241,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 119.78432577406889,
+                    "value": 119.72804643541396,
                   },
                   "pos": <span
                     style={
@@ -25208,7 +25208,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.14718681500070005,
+                    "value": 0.1475620105917329,
                   },
                 },
                 "kind": "data-row",
@@ -25666,7 +25666,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       Bigs
                     </b>
                      (
-                    27
+                    26
                     %)
                   </div>,
                   <div />,
@@ -25691,10 +25691,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.7786557834550987,
+                    "value": -2.787382282305234,
                   },
                   "bad_net": Object {
-                    "value": 7.427855783455099,
+                    "value": 7.436582282305235,
                   },
                   "bad_off": Object {
                     "value": 4.6492,
@@ -25802,10 +25802,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -3.4198520841473123,
+                    "value": -3.437927764163041,
                   },
                   "good_net": Object {
-                    "value": 9.698502084147313,
+                    "value": 9.716577764163041,
                   },
                   "good_off": Object {
                     "value": 6.27865,
@@ -25815,17 +25815,17 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.108250951111951,
+                    "value": -3.1215287397152407,
                   },
                   "ok_net": Object {
-                    "value": 8.35745095111195,
+                    "value": 8.37072873971524,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 122.19857861950409,
+                    "value": 122.15167917062499,
                   },
                   "pos": <span
                     style={
@@ -25868,7 +25868,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.22548681500070009,
+                    "value": 0.22586201059173294,
                   },
                 },
                 "kind": "data-row",
@@ -26137,7 +26137,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     "value": 1,
                   },
                   "mpg": Object {
-                    "value": 20.335867787463748,
+                    "value": 18.057033907281618,
                   },
                   "ok_def": Object {
                     "value": -0.25,
@@ -28165,32 +28165,32 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": 91.1627761826036,
+                    "value": 90.95953713865212,
                   },
                   "bad_net": Object {
-                    "value": 24.00138513046913,
+                    "value": 24.24995944257191,
                   },
                   "bad_off": Object {
-                    "value": 115.16416131307273,
+                    "value": 115.20949658122403,
                   },
                   "good_def": Object {
-                    "value": 89.10737873069414,
+                    "value": 88.8363392559851,
                   },
                   "good_net": Object {
-                    "value": 30.521266296143047,
+                    "value": 30.895123581462496,
                   },
                   "good_off": Object {
-                    "value": 119.62864502683718,
+                    "value": 119.73146283744758,
                   },
                   "mpg": undefined,
                   "ok_def": Object {
-                    "value": 90.01291582557566,
+                    "value": 89.77663288745931,
                   },
                   "ok_net": Object {
-                    "value": 27.442402482404873,
+                    "value": 27.74558058865388,
                   },
                   "ok_off": Object {
-                    "value": 117.45531830798053,
+                    "value": 117.5222134761132,
                   },
                   "title": <OverlayTrigger
                     overlay={
@@ -28594,10 +28594,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.665215927842298,
+                    "value": -1.6739424266924332,
                   },
                   "bad_net": Object {
-                    "value": 6.5410184252685655,
+                    "value": 6.5497449241187,
                   },
                   "bad_off": Object {
                     "value": 4.8758024974262675,
@@ -28705,10 +28705,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -2.089222084147312,
+                    "value": -2.107297764163041,
                   },
                   "good_net": Object {
-                    "value": 8.527872084147312,
+                    "value": 8.54594776416304,
                   },
                   "good_off": Object {
                     "value": 6.43865,
@@ -28718,17 +28718,17 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -1.994811095499151,
+                    "value": -2.008088884102441,
                   },
                   "ok_net": Object {
-                    "value": 7.470613592925418,
+                    "value": 7.483891381528708,
                   },
                   "ok_off": Object {
                     "value": 5.475802497426267,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 116.83972813329962,
+                    "value": 116.79282868442051,
                   },
                   "pos": <span
                     style={
@@ -28771,7 +28771,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.2535207230100147,
+                    "value": 0.25389591860104754,
                   },
                 },
                 "kind": "data-row",
@@ -28787,10 +28787,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.301785783455098,
+                    "value": -2.3105122823052335,
                   },
                   "bad_net": Object {
-                    "value": 3.016735783455098,
+                    "value": 3.0254622823052335,
                   },
                   "bad_off": Object {
                     "value": 0.71495,
@@ -28898,30 +28898,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -2.746876131559451,
+                    "value": -2.7649518115751803,
                   },
                   "good_net": Object {
-                    "value": 5.1147367596619135,
+                    "value": 5.132812439677643,
                   },
                   "good_off": Object {
                     "value": 2.3678606281024623,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 25.8860921980291,
+                    "value": 23.594454317558586,
                   },
                   "ok_def": Object {
-                    "value": -2.4352749985240907,
+                    "value": -2.4485527871273804,
                   },
                   "ok_net": Object {
-                    "value": 4.203135626626553,
+                    "value": 4.216413415229843,
                   },
                   "ok_off": Object {
                     "value": 1.7678606281024627,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 106.16023236540471,
+                    "value": 106.10395302674978,
                   },
                   "pos": <span
                     style={
@@ -28964,7 +28964,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.18562912509311308,
+                    "value": 0.18600432068414594,
                   },
                 },
                 "kind": "data-row",
@@ -29049,7 +29049,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 1,
                   },
                   "mpg": Object {
-                    "value": 0.11390780197089168,
+                    "value": 2.405545682441401,
                   },
                   "ok_def": Object {
                     "value": -0.25,
@@ -29078,7 +29078,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       Wings
                     </b>
                      (
-                    43
+                    44
                     %)
                   </div>,
                   <div />,
@@ -29101,10 +29101,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -3.6944157834550984,
+                    "value": -3.7031422823052336,
                   },
                   "bad_net": Object {
-                    "value": 5.004065783455099,
+                    "value": 5.0127922823052335,
                   },
                   "bad_off": Object {
                     "value": 1.30965,
@@ -29212,30 +29212,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -4.31925766978963,
+                    "value": -4.337333349805359,
                   },
                   "good_net": Object {
-                    "value": 7.925323139364694,
+                    "value": 7.943398819380422,
                   },
                   "good_off": Object {
                     "value": 3.6060654695750634,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 30.0034948800266,
+                    "value": 32.17425588757989,
                   },
                   "ok_def": Object {
-                    "value": -4.00765653675427,
+                    "value": -4.02093432535756,
                   },
                   "ok_net": Object {
-                    "value": 7.013722006329334,
+                    "value": 7.026999794932624,
                   },
                   "ok_off": Object {
                     "value": 3.0060654695750637,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 102.76208237343963,
+                    "value": 102.71518292456052,
                   },
                   "pos": <span
                     style={
@@ -29278,7 +29278,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.2002296660741269,
+                    "value": 0.20060486166515976,
                   },
                 },
                 "kind": "data-row",
@@ -29294,10 +29294,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -1.4990490348815104,
+                    "value": -1.507775533731646,
                   },
                   "bad_net": Object {
-                    "value": 1.9093490348815103,
+                    "value": 1.918075533731646,
                   },
                   "bad_off": Object {
                     "value": 0.4103,
@@ -29405,30 +29405,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -1.883792084147312,
+                    "value": -1.901867764163041,
                   },
                   "good_net": Object {
-                    "value": 3.84535794552521,
+                    "value": 3.8634336255409387,
                   },
                   "good_off": Object {
                     "value": 1.961565861377898,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 25.657142452483054,
+                    "value": 23.594454317558586,
                   },
                   "ok_def": Object {
-                    "value": -1.8286442025383638,
+                    "value": -1.8419219911416536,
                   },
                   "ok_net": Object {
-                    "value": 3.1902100639162616,
+                    "value": 3.2034878525195514,
                   },
                   "ok_off": Object {
                     "value": 1.3615658613778978,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 102.68392618796784,
+                    "value": 102.62764684931291,
                   },
                   "pos": <span
                     style={
@@ -29471,7 +29471,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.19680795670343973,
+                    "value": 0.19718315229447259,
                   },
                 },
                 "kind": "data-row",
@@ -29487,10 +29487,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.436513781855098,
+                    "value": -2.445240280705234,
                   },
                   "bad_net": Object {
-                    "value": 2.621713781855098,
+                    "value": 2.630440280705234,
                   },
                   "bad_off": Object {
                     "value": 0.1852,
@@ -29598,30 +29598,30 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -4.655702084147311,
+                    "value": -4.673777764163041,
                   },
                   "good_net": Object {
-                    "value": 8.12015208414731,
+                    "value": 8.138227764163041,
                   },
                   "good_off": Object {
                     "value": 3.46445,
                   },
                   "mpg": Object {
                     "extraInfo": undefined,
-                    "value": 30.0034948800266,
+                    "value": 32.17425588757989,
                   },
                   "ok_def": Object {
-                    "value": -3.555104950311951,
+                    "value": -3.568382738915241,
                   },
                   "ok_net": Object {
-                    "value": 4.940304950311951,
+                    "value": 4.953582738915241,
                   },
                   "ok_off": Object {
                     "value": 1.3852,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 119.78432577406889,
+                    "value": 119.72804643541396,
                   },
                   "pos": <span
                     style={
@@ -29664,7 +29664,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.14718681500070005,
+                    "value": 0.1475620105917329,
                   },
                 },
                 "kind": "data-row",
@@ -29760,7 +29760,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       Bigs
                     </b>
                      (
-                    27
+                    26
                     %)
                   </div>,
                   <div />,
@@ -29783,10 +29783,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "actual_net": undefined,
                   "actual_off": undefined,
                   "bad_def": Object {
-                    "value": -2.7786557834550987,
+                    "value": -2.787382282305234,
                   },
                   "bad_net": Object {
-                    "value": 7.427855783455099,
+                    "value": 7.436582282305235,
                   },
                   "bad_off": Object {
                     "value": 4.6492,
@@ -29894,10 +29894,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </ForwardRef>
                   </OverlayTrigger>,
                   "good_def": Object {
-                    "value": -3.4198520841473123,
+                    "value": -3.437927764163041,
                   },
                   "good_net": Object {
-                    "value": 9.698502084147313,
+                    "value": 9.716577764163041,
                   },
                   "good_off": Object {
                     "value": 6.27865,
@@ -29907,17 +29907,17 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 34,
                   },
                   "ok_def": Object {
-                    "value": -3.108250951111951,
+                    "value": -3.1215287397152407,
                   },
                   "ok_net": Object {
-                    "value": 8.35745095111195,
+                    "value": 8.37072873971524,
                   },
                   "ok_off": Object {
                     "value": 5.2492,
                   },
                   "ortg": Object {
                     "old_value": undefined,
-                    "value": 122.19857861950409,
+                    "value": 122.15167917062499,
                   },
                   "pos": <span
                     style={
@@ -29960,7 +29960,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   </span>,
                   "usage": Object {
                     "old_value": undefined,
-                    "value": 0.22548681500070009,
+                    "value": 0.22586201059173294,
                   },
                 },
                 "kind": "data-row",
@@ -30045,7 +30045,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     "value": 1,
                   },
                   "mpg": Object {
-                    "value": 20.335867787463748,
+                    "value": 18.057033907281618,
                   },
                   "ok_def": Object {
                     "value": -0.25,

@@ -34,6 +34,17 @@ type TeamEditorDiags = {
    def: { good: TeamEditorDiagObject, ok: TeamEditorDiagObject, bad: TeamEditorDiagObject, }
 };
 
+/** Used to clump together players of similar skill in a given team for minutes assignment */
+type NetClump = {
+   min: number, 
+   max: number,
+   avg: number,
+   prevMin: number,
+   size: number,
+   acc: number
+};
+
+
 /** Different possible HS profiles used to build Fr projections */
 export type Profiles = "5*/Lotto" | "5*" | "5+4*s" | "4*/T40ish" | "4*" | "3.5*/T150ish" | "3*" | "3+2*s" | "2*" | "Auto" | "UR";
 
@@ -423,7 +434,8 @@ export class TeamEditorUtils {
          basePlayersPlusHypos, team, year, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode, benchEstimates
       );
       TeamEditorUtils.calcAndInjectMinsAssignment(
-         basePlayersPlusHypos, team, year, disabledPlayersIn, unpausedOverrides, hasDeletedPlayersOrTransfersIn, teamSosNet, avgEff, offSeasonMode
+         basePlayersPlusHypos, team, year, disabledPlayersIn, unpausedOverrides, hasDeletedPlayersOrTransfersIn, 
+         teamSosNet, avgEff, offSeasonMode, benchEstimates
       );
       if (offSeasonMode) { //(else not projecting, just describing)
          TeamEditorUtils.calcAdvancedAdjustments(basePlayersPlusHypos, team, year, disabledPlayersIn);
@@ -1411,7 +1423,7 @@ export class TeamEditorUtils {
       roster: GoodBadOkTriple[], 
       team: string, year: string, disabledPlayers: Record<string, boolean>, overrides: Record<string, PlayerEditModel>,
       hasDeletedPlayersOrTransfersIn: boolean,
-      teamSosNet: number, avgEff: number, offSeasonMode: boolean
+      teamSosNet: number, avgEff: number, offSeasonMode: boolean, benchEstimates: IndivStatSet[]
    ) {
       const getOffRapm = (s: PureStatSet) => (s.off_adj_rapm || s.off_adj_rtg)?.value || 0;
       const getDefRapm = (s: PureStatSet) => (s.def_adj_rapm || s.def_adj_rtg)?.value || 0;
@@ -1424,22 +1436,36 @@ export class TeamEditorUtils {
 
       const benchProfileLevel = TeamEditorUtils.teamToProfileLevel(team, year);
       const benchLevelScoring = TeamEditorUtils.getBenchLevelScoring(team, year);
-      const benchGuardOverride = overrides[TeamEditorUtils.benchGuardKey]?.profile;
-      const benchWingOverride = overrides[TeamEditorUtils.benchWingKey]?.profile;
-      const benchBigOverride = overrides[TeamEditorUtils.benchBigKey]?.profile;
-      const netRatings = _.sortBy(filteredRoster.map(p => getNet(p.ok)).concat(
-         [benchGuardOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchGuardOverride) : benchLevelScoring, 
-            benchWingOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchWingOverride) : benchLevelScoring, 
-            benchBigOverride ? TeamEditorUtils.getBenchLevelScoringByProfile(benchBigOverride) : benchLevelScoring, 
-         ].map(n => 0.5*n)) //(add one bench player per pos group)
-      );
-      const tierSize = (Math.ceil(_.size(netRatings)/3) || 1);
-      const avgLowerTierNetTmp = _.sum(_.take(netRatings, tierSize))/tierSize;
-      const avgUpperTierNet = _.sum(_.take(_.reverse(netRatings), tierSize))/tierSize;
-      // middle tier is unreliable if the team size is small, but we don't really care about that so just do something vaguely sane:
-      const avgMidTierNetTmp = _.sum(_.take(_.drop(netRatings, tierSize - 1), tierSize + 1))/(tierSize + 2);
-      const avgMidTierNet = (avgMidTierNetTmp < avgLowerTierNetTmp) ? (2*avgLowerTierNetTmp + avgUpperTierNet)/3 : avgMidTierNetTmp;
-      const avgLowerTierNet = Math.min(avgMidTierNet - 1.5, avgLowerTierNetTmp); //(can't really determine pecking order with less granularity than that...)
+      const benchScoringEstimates = _.range(0, 3).map(keyIndex => {
+         return _.isNil(benchEstimates?.[keyIndex]) ? benchLevelScoring : getNet(benchEstimates[keyIndex]);
+      });
+      const netRatings = _.orderBy(filteredRoster.map(p => getNet(p.ok)).concat(
+         benchScoringEstimates //(add one bench player per pos group)
+      ), undefined, "desc");
+
+      const avgUpperTierNet = _.chain(netRatings).take(3).sum().value()/3; // top 3 players
+      const avgMidTierNet = _.chain(netRatings).drop(3).take(4).sum().value()/4; // next 4 players
+      const lowerTierSize = netRatings.length - 7; // (everyone else)
+      const avgLowerTierNet =  (lowerTierSize > 0) ? 
+         _.chain(netRatings).drop(7).sum().value()/lowerTierSize : 
+         _.sum(benchScoringEstimates)/3;
+
+      //(we use these to look for big jumps in rating that require minutes slashing on deep teams)
+      const netClumps = _.transform(netRatings, (acc, net) => {
+         const currClump = _.isEmpty(acc) ? undefined : acc[acc.length - 1];
+         if (!currClump || (currClump.min - net > 0.5)) { // new clump
+            const clumpAcc = (currClump?.acc || 0) + (currClump?.size || 0); //(how many players are in front)
+            const prevMin = currClump ? currClump.min : net;
+            acc.push({ avg: net, min: net, max: net, size: 1, acc: clumpAcc, prevMin });
+         } else { // update existing clump
+            currClump.min = net;
+            currClump.avg = (currClump.size*currClump.avg + net)/(1 + currClump.size);
+            currClump.size = currClump.size + 1;
+         }
+      }, [] as Array<NetClump>);
+      const top3rdNetClump = _.find(netClumps, clump => {
+         return (clump.acc < 3) && ((clump.acc + clump.size) >= 3);
+      }) || netClumps[1]!;
 
       const maxMinsPerKey = _.chain(filteredRoster).map(p => {
          const maybeOverride = overrides[p.key]?.mins;
@@ -1452,8 +1478,9 @@ export class TeamEditorUtils {
          return [ p.key, Math.min(minMins, maxMinsPerKey[p.key] || minMins) ]; //(prevent min>max)
       }).fromPairs().value();
 
-      const debugMode = false; 
+      const debugMode = false && !_.isEmpty(filteredRoster); 
       if (debugMode) { // Diagnostics
+         console.log(`NET CLUMPS: ${JSON.stringify(netClumps)} top3rd=[${JSON.stringify(top3rdNetClump)}]`);
          console.log(`NET TIERS: [${avgLowerTierNet.toFixed(1)}] - [${avgMidTierNet.toFixed(1)}] - [${avgUpperTierNet.toFixed(1)}] (SoS: [${teamSosNet.toFixed(3)}])`);
          _.keys(maxMinsPerKey).forEach(p => {
             console.log(`${p}: [${(minMinsPerKey[p] || 0).toFixed(3)}] to [${(maxMinsPerKey[p] || 0).toFixed(3)}]`)
@@ -1483,7 +1510,6 @@ export class TeamEditorUtils {
 
       // First pass - calc minutes purely based on tier:
       filteredRoster.forEach(p => {
-         //(TODO: calc mins differently per tier?)
          const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
          const calcMins = (somethingChanged || hasMinsOverride); //(since overrides are enforced using min/max)
 
@@ -1493,7 +1519,11 @@ export class TeamEditorUtils {
                //(for Fr we apply an additional penalty if they aren't significantly better than the bench scoring level)
 
          const baseMins = calcMins ?
-            frFactor*TeamEditorUtils.netTierToBaseMins(okNet, [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ])
+            frFactor*(
+               TeamEditorUtils.netClumpsToBaseMins(okNet, top3rdNetClump, netClumps) 
+               ||
+                  TeamEditorUtils.netTierToBaseMins(okNet, [ avgLowerTierNet, avgMidTierNet, avgUpperTierNet ])
+            )
             :
             (p.orig.off_team_poss_pct?.value || 0) //(in-season mode, just described minutes played)
             ;
@@ -1566,9 +1596,22 @@ export class TeamEditorUtils {
             filteredRoster.forEach(p => {
                const hasMinsOverride = !_.isNil(overrides[p.key]?.mins);
                const finalFactor = isFrontCourt(p) ? frontCourtFactor : backCourtFactor;
+
+               const playerProd = getNet(p.ok);
+               const adjustedFinalFactor = _.thru(finalFactor, factorToAdj => {
+                  if ((factorToAdj > 1.0) || (step == finalStep)) { //(Scale minutes up normally / final step no adjustments)
+                     return factorToAdj; 
+                  } else if (playerProd > top3rdNetClump.avg - 0.5) { //we try to keep the best players' minutes high
+                     return step < 3 ? 1.0 : factorToAdj*1.3; 
+                  } else if (playerProd < avgLowerTierNet + 0.5) { //(reduce the worst players' min even further)
+                     return 0.8*factorToAdj;
+                  } else {
+                     return factorToAdj; //(adjust everyone else similarly)
+                  }
+               });
                if (!hasMinsOverride) {  //(can't override players with fixed numbers)
                   const prevMins = p.good.off_team_poss_pct?.value || 0;
-                  assignMins(prevMins*finalFactor, p, emergencyMeasures);
+                  assignMins(prevMins*adjustedFinalFactor, p, emergencyMeasures);
                }
             });
          } else { // done, stop
@@ -1815,27 +1858,11 @@ export class TeamEditorUtils {
          const currPossPct = p.orig.off_team_poss_pct?.value || 0.25;
          if ((p.orig.team == team) && (p.orig.roster?.year_class == "Fr")) { // Fr always increase their minutes
             return currPossPct;
-         } else if (p.orig.team != team) { //TODO transfer up vs transfer down
-            // Transfers ... are we transferring up or down?
-            const sosNet = (p.orig.off_adj_opp?.value || avgEff) - (p.orig.def_adj_opp?.value || avgEff);
-            const txferDeltaDiff = sosNet - teamSosNet;
-
-            //Diag:
-            //console.log(`${p.key} (curr=[${currPossPct.toFixed(1)}]) SoS: [${sosNet.toFixed(1)}], diff = [${txferDeltaDiff.toFixed(1)}]`);
-
-            if (txferDeltaDiff > 6) { // moving way down
-               return 1.5*currPossPct;
-            } else if (txferDeltaDiff > 3) { // moving down
-               return currPossPct;
-            } else if (txferDeltaDiff < -6) { // moving way up
-               return 0.5*currPossPct;
-            } else if (txferDeltaDiff < -3) { // moving up
-               return 0.66*currPossPct;
-            } else { //about the same, treat same as returner, see below
-               return currPossPct*0.80;
-            }
+         } else if (p.orig.team != team) { 
+            // If you are a transfer then all bets are off:
+            return 0.15;
          } else { // team member
-            return currPossPct*0.80; //(at most a 20% drop in numbers)
+            return currPossPct*0.75; //(at most a 25% drop in numbers)
          }
       }
    }
@@ -1881,6 +1908,22 @@ export class TeamEditorUtils {
       else if (s == "Jr") return "Sr";
       else if (s == "Sr") return "Sr*";
       else return "So?";
+   }
+
+   /** An alternative minute allocation to netTierToBaseMins - clump nearby nets */
+   static netClumpsToBaseMins(
+      playerNet: number, 
+      top3rdClump: NetClump, 
+      clumps: NetClump[]) : number | undefined
+   {
+      if (playerNet > top3rdClump.max) {
+         return 0.85;
+      } else if (playerNet >= top3rdClump.min) {
+         return 0.75;
+      } else {
+         //TODO finish this off - until then just fall back to netTierToBaseMins (works OK)
+         return undefined;
+      }
    }
 
    /** Assign a fairly abitrary minute total based on where you sit in the team pecking order... */
