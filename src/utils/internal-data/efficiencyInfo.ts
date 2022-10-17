@@ -13,6 +13,8 @@ import { publicKenpomEfficiency2019_20 } from "../../utils/public-data/publicKen
 // @ts-ignore
 import { publicKenpomEfficiency2020_21 } from "../../utils/public-data/publicKenpomEfficiency2020_21";
 // @ts-ignore
+import { publicKenpomEfficiency2021_22 } from "../../utils/public-data/publicKenpomEfficiency2021_22";
+// @ts-ignore
 import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/public-data/publicHerhoopstatsEfficiency2018_9";
 // @ts-ignore
 import { publicHerhoopstatsEfficiency2019_20 } from "../../utils/public-data/publicHerhoopstatsEfficiency2019_20";
@@ -29,11 +31,14 @@ export const efficiencyInfo: Record<string, [ Record<string, any>, Record<string
   "Men_2018/9": [ publicKenpomEfficiency2018_9, {} ],
   "Men_2019/20": [ publicKenpomEfficiency2019_20, {} ],
   "Men_2020/21": [ publicKenpomEfficiency2020_21, {} ],
-  //"Men_2021/22" - calculated on the fly
-  "Men_Latest": [ publicKenpomEfficiency2020_21, {} ],
+  "Men_2021/22": [ publicKenpomEfficiency2021_22, {} ],
+  //"Men_2022/23" - calculated on the fly
+  "Men_Latest": [ publicKenpomEfficiency2021_22, {} ],
+
   "Women_2018/9": [ publicHerhoopstatsEfficiency2018_9, {} ], //(herhoopstats uses NCAA team names)
   "Women_2019/20": [ publicHerhoopstatsEfficiency2019_20, {} ],
   "Women_2020/21": [ publicNcaawMassey2020_21, {} ],  //(Massey, convert the names at source)
   "Women_2021/22": [ publicNcaawMassey2021_22, {} ],  //(Massey, convert the names at source)
+  //"Women_2022/23" - TODO
   "Women_Latest": [ publicNcaawMassey2021_22, {} ],  //(Massey, convert the names at source)
 };
