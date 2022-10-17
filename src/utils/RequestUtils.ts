@@ -36,6 +36,13 @@ export class RequestUtils {
     }).replace(/[%]20/g, "%2B"); //(encoded as + on file, which needs to be URL encoded since + == " " in URL)
     return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
   }
+  /** Handles the rather ugly URL conversion needed to fetch URL encoded files
+   * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
+   */
+   static fixLocalhostRosterUrl(str: string, encodeEncodePrefix: boolean): string {
+    const stage1 = encodeURIComponent(str).replace(/%20/g, "+").replace(/[(]/g, "%28").replace(/[)]/g, "%29").replace(/'/g, "%27");
+    return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
+  }
   static mutateRosterJsonForWomen(json: any, gender: string | undefined) {
     if (json && (gender == "Women")) { // Remove height_in because all the fns that use it are trained on men
       _.chain(json).mapValues(rosterEntry => {

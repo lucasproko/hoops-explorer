@@ -62,6 +62,9 @@ type Props = {
 /** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
 const logDivisionStatsToConsole = false;
 
+/** Will dump out some possible manual overrides to be made */
+const diagnosticCompareWithRosters = false;
+
 const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
      "server" : window.location.hostname
@@ -91,16 +94,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
    const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
 
-   const diagnosticCompareWithRosters = false;
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
    if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
-      const fetchRosterJson = (teamName: string, encodeEncodePrefix: boolean) => {
+      const fetchRosterJson = (teamName: string) => {
          const rosterJsonUri = (encodeEncodePrefix: boolean) =>
-           `/rosters/${gender}_${(yearWithStats || "").substring(0, 4)}`
-           + `/${RequestUtils.fixRosterUrl(teamName, encodeEncodePrefix)}.json`;
+           `/rosters/${gender}_${(year || "").substring(0, 4)}`
+           + `/${RequestUtils.fixLocalhostRosterUrl(teamName, encodeEncodePrefix)}.json`;
          return fetch(
-           rosterJsonUri(encodeEncodePrefix)
+           rosterJsonUri(true)
          ).then(
            (resp: any) => resp.json()
          ).then((json: any) => [ teamName, json ] as [ string, Record<string, RosterEntry> ]);
@@ -108,16 +110,18 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       const rosterPromises: Promise<[string, Record<string, RosterEntry>]>[] = _.flatMap(AvailableTeams.byName, (teams, __) => {
          const maybeTeam = teams.find(t => (t.year == yearWithStats) && (t.gender == gender));
          return maybeTeam ? [ 
-            fetchRosterJson(maybeTeam.team, false).catch( //(carry on error, eg if the file doesn't exist)
-               (err: any) => fetchRosterJson(maybeTeam.team, true)
-             ).catch(
+            fetchRosterJson(maybeTeam.team).catch( //(carry on error, eg if the file doesn't exist)
                (err: any) => [ maybeTeam.team, {} ]
-             )                
+            )                
          ] : []
       });
-      Promise.all(rosterPromises).then((rosterInfo: [string, Record<string, RosterEntry>][]) => {
-         setRostersPerTeam(_.fromPairs(rosterInfo));
-      });
+      if (_.isEmpty(rosterPromises)) {
+         setRostersPerTeam({});
+      } else {
+         Promise.all(rosterPromises).then((rosterInfo: [string, Record<string, RosterEntry>][]) => {
+            setRostersPerTeam(_.fromPairs(rosterInfo));
+         });
+      }
    }
 
    /** Converts a list of params to their team's key/value params  */
@@ -312,6 +316,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          dedup_samples: {}
         };
 
+      /** (for diagnosticCompareWithRosters) */
+      const superSeniorsReturning: Record<string, string[]> = {}
+
       const teamRanks = _.chain(teamList).map(t => {
 
          const maybeOverride = teamOverrides[t] || {};
@@ -335,6 +342,32 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          );
          const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(pxResults, disabledPlayers);
          
+         if (diagnosticCompareWithRosters && !_.isEmpty(rostersPerTeam)) {
+            const roster = rostersPerTeam[t] || {};
+            // Some analysis vs actual rosters:
+
+            const superSrsOnTeam = pxResults.basePlayersPlusHypos.filter(player => {
+               return (player.orig?.roster?.year_class == "Sr") && (player.orig?.team == t);
+            }).map(p => `${p.orig?.code || ""}::`);
+            
+            // 1) Super seniors
+            const superSrsOnRoster = _.uniq((playerPartition[t] || []).filter(p => {
+               return (p.team == t) && ((p.year || year) < year) && (p.roster?.year_class == "Sr") 
+                  && roster[p.code || ""] //(players who were Srs last year on this year's roster)
+            }).map(p => `${p.code || ""}::`));
+            
+            if (!_.isEmpty(superSrsOnRoster)) {
+               superSeniorsReturning[t] = superSrsOnRoster;
+            }
+            // Log if we had
+            const superSrsOnTeamNotOnRoster = _.difference(superSrsOnTeam, superSrsOnRoster);
+            if (!_.isEmpty(superSrsOnTeamNotOnRoster)) {
+                console.log(`[${t}]!: team=[${superSrsOnTeam}] vs roster=[${superSrsOnRoster}] (full team: [${pxResults.basePlayersPlusHypos.map(p => p.key)}])`);
+            }
+
+            // 2) Players who left team
+         }
+
          const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", depthBonus: {off: number, def: number}, adj: number = 0) => {
             const { off, def, net } = TeamEditorUtils.buildTotals(triples, range, depthBonus, adj);
 
@@ -448,6 +481,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                return -t.net;
          }
       }).value();
+
+      if (diagnosticCompareWithRosters && !_.isEmpty(superSeniorsReturning)) {
+         console.log(`export const superSeniors${year.replace("/", "_")} = \n${JSON.stringify(superSeniorsReturning, null, 3)}`);
+      }
 
       // Lookups
       const offEffToRankMap = _.chain(teamRanks).sortBy(t => -t.off).map((t, rank) => [t.off, rank]).fromPairs().value();

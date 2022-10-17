@@ -192,8 +192,7 @@ const injectAllRapmForNbaFolks = false;
 
 /** Handy filename util */
 const getTeamFilename = (team: string) => {
-  return encodeURIComponent(team).replace(/%20/g, "+").replace(/[(]/g, "%28").replace(/[)]/g, "%29").replace(/'/g, "%27");
-  //RequestUtils.fixRosterUrl(team, false);
+  return RequestUtils.fixLocalhostRosterUrl(team, false);
 };
 /** Handy filename util - roster */
 const getRosterFilename = (team: string, teamYear: string) => {
