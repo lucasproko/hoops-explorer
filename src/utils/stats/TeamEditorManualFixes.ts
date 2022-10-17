@@ -31,7 +31,7 @@ export class TeamEditorManualFixes {
    //TODO: move this into TeamEditorUtils
    private static readonly buildOverrides = (recruits: Record<string, any>)  => {
       return _.transform(recruits, (acc, override, team) => {
-         const typedOverrides: Record<string, {pr: string, pos:string, c:string, h:string, r?:number}> = override;
+         const typedOverrides: Record<string, {pr: string, pos:string, c:string, h:string, r?:number, o?:number, d?:number}> = override;
          const playerOverrides = _.transform(typedOverrides, ((acc2, over, player) => {
             const adjRtg = (over.r || 0)*0.01;
             const fourStarSuperFactor = ((over.pr == "4*") && (adjRtg >= 0.8)) ? 
@@ -41,15 +41,16 @@ export class TeamEditorManualFixes {
             const fiveStarFactor = 0.5; //(5* gets bigger range of penalties because values assigned are pretty higher)
             const factor = (over.pr >= "5*") ? fiveStarFactor : fourStarSuperFactor; 
 
-            const factorTimeRating = parseFloat((factor*adjRtg).toFixed(2));
+            const factorTimeRatingOff = parseFloat((factor*adjRtg + (over.o || 0)).toFixed(2));
+            const factorTimeRatingDef = -parseFloat((factor*adjRtg + (over.d || 0)).toFixed(2));
 
             acc2[`${over.c}`] = { //(index by code not key)
                name: player,
                profile: over.pr as Profiles,
                pos: over.pos,
                height: over.h,
-               global_off_adj: adjRtg ? factorTimeRating : undefined, //apportion out bonus/penalty if there is one
-               global_def_adj: adjRtg ? -factorTimeRating : undefined,
+               global_off_adj: factorTimeRatingOff ? factorTimeRatingOff : undefined, //apportion out bonus/penalty if there is one
+               global_def_adj: factorTimeRatingDef ? factorTimeRatingDef : undefined,
                fromFrList: true
             }
          }), {} as Record<string, PlayerEditModel>);
@@ -201,6 +202,30 @@ export class TeamEditorManualFixes {
                   },
                }})[""])
             },
+            "Florida": { 
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "Lane, Niels": {
+                     "pos": "WG", "pr": "3*", "c": "NiLane", "h": "6-5", "r": 0, "o": 1, "d": 2.5
+                  },
+                  "Jitoboh, Jason": {
+                     "pos": "C", "pr": "3*", "c": "JaJitoboh", "h": "6-11", "r": 0, "o": 2, "d": 2
+                  },
+               }})[""])
+            },
+            "Florida St.": { 
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "McLeod, Naheem": {
+                     "pos": "C", "pr": "3*", "c": "NaMcleod", "h": "7-4", "r": 0, "o": 2.5, "d": 1
+                  },
+               }})[""])
+            },
+            "Illinois": { 
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "Melendez, RJ": {
+                     "pos": "WF", "pr": "4*", "c": "RjMelendez", "h": "6-7", "r": 0, "o": 1.5, "d": 1.5
+                  },
+               }})[""])
+            },
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ],
             },
@@ -218,9 +243,30 @@ export class TeamEditorManualFixes {
             "Ole Miss": {
                superSeniorsReturning: new Set([ "TyFagan::" ]), //KEEPME 
             },
+            "Oklahoma": { 
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "Cortes, Bijan": {
+                     "pos": "s-PG", "pr": "3*", "c": "BiCortes", "h": "6-3", "r": 0, "o": 0.5, "d": 2
+                  },
+               }})[""])
+            },
             "Seton Hall": {
                superSeniorsReturning: new Set([ "JaHarris::" ]), //KEEPME
                leftTeam: [ "Aiken, Bryce" ], //(manual override from a previous year with this key)
+            },
+            "Saint Mary's (CA)": { 
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "Saxen, Mitchell": {
+                     "pos": "C", "pr": "3*", "c": "MiSaxen", "h": "6-10", "r": 0, "o": 1.5, "d": 1.5
+                  },
+               }})[""])
+            },
+            "South Carolina": { 
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "Gray, Josh": {
+                     "pos": "C", "pr": "3*", "c": "JoGray", "h": "7-0", "r": 0, "o": 0.75, "d": 3.25
+                  },
+               }})[""])
             },
             "UNLV": {
                leftTeam: [ "DoWilliams::" ],

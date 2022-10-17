@@ -301,7 +301,8 @@ export class TeamEditorUtils {
       );
       const redshirtishFr = (_.isEmpty(prevYearFrList) || _.isEmpty(candidatePlayersList)) 
          ? {} : TeamEditorUtils.addRedShirtishFreshmen(
-            team, year, prevYearFrList, transfers, new Set(basePlayers.map(triple => triple.orig.code || "")), allDeletedPlayers
+            team, year, prevYearFrList, transfers, new Set(basePlayers.map(triple => triple.orig.code || "")), 
+            allDeletedPlayers, teamOverrides.overrides || {}
          ); //(if base players is empty assume it's because we haven't loaded the data yet)
 
       // Merge team overrides and user overrides
@@ -786,7 +787,8 @@ export class TeamEditorUtils {
       prevYearFrList: Record<string, TeamEditorManualFixModel>, //(indexed by team) 
       transfers: Record<string, Array<TransferModel>>[], 
       dupCodes: Set<string>, 
-      deletedCodes: Record<string, string>
+      deletedCodes: Record<string, string>,
+      manualOverrides: Record<string, PlayerEditModel>
    ): Record<string, PlayerEditModel> {
       return _.chain(prevYearFrList).flatMap((fr, frTeam) => {
          if (team == frTeam) {
@@ -814,7 +816,7 @@ export class TeamEditorUtils {
                }
             });
          }
-      }).fromPairs().value();
+      }).filter(keyVal => !manualOverrides[keyVal[0] as string]).fromPairs().value();
    }
 
    /** Give players their year-on-year improvement */
