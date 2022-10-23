@@ -5,6 +5,7 @@ import { freshmenMen2020_21 } from "../public-data/freshmenMen2020_21";
 import { freshmenMen2021_22 } from "../public-data/freshmenMen2021_22";
 import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
+import { leftTeam2022_23 } from "../public-data/leftTeam2022_23";
 
 /** Note string keys are TeamEditorUtils.getKey, string val in leftTeam is player id (aka name) */
 export type TeamEditorManualFixModel = {
@@ -64,7 +65,8 @@ export class TeamEditorManualFixes {
       (
          mutableRecruits: Record<string, TeamEditorManualFixModel>, 
          manual: Record<string, TeamEditorManualFixModel>,
-         superSeniors: Record<string, string[]> = {}
+         superSeniors: Record<string, string[]> = {},
+         leftTeam: Record<string, string[]> = {}
       ) => 
    {
       const phase1 = _.transform(manual, (acc, override, team) => {
@@ -85,7 +87,18 @@ export class TeamEditorManualFixes {
          }
       }, phase1);
 
-      return phase2;
+      const phase3 = _.transform(leftTeam, (acc, override, team) => {
+         if (!acc[team]) {
+            acc[team] = {};
+         } 
+         if (acc[team].leftTeam) {
+            acc[team].leftTeam = acc[team].leftTeam!.concat(override);
+         } else {
+            acc[team].leftTeam = override;
+         }
+      }, phase2);
+
+      return phase3;
    };
 
    static readonly fixes: (genderYear: string) => Record<string, TeamEditorManualFixModel> = _.memoize((genderYear: string) => {
@@ -166,12 +179,12 @@ export class TeamEditorManualFixes {
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2022_23:  Record<string, TeamEditorManualFixModel> = { 
             "Arizona": {
-               ...(TeamEditorManualFixes.buildOverrides({"": {
+               ...(TeamEditorManualFixes.buildOverrides({"": { //(some foreign players worth HS T100 rankings)
                   "Veesaar, Henri": {
                      "pos": "PF/C", "pr": "4*/T40ish", "c": "HeVeesaar", "h": "6-11", "r": 54
                   },
-                  "Borovicanin, Filip": {
-                     "pos": "WF", "pr": "3.5*/T150ish", "c": "FiBorovicani", "h": "6-8", "r": 72
+                  "Borvicanin, Filip": {
+                     "pos": "WF", "pr": "3.5*/T150ish", "c": "FiBorvicanin", "h": "6-8", "r": 72
                   },
                   "Boswell, Kylan": {
                      "pos": "PG", "pr": "4*/T40ish", "c": "KyBoswell", "h": "6-1", "r": 90
@@ -179,7 +192,6 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "Baylor": {
-               superSeniorsReturning: new Set([ "FlThamba::" ]), //KEEPME
                ...(TeamEditorManualFixes.buildOverrides({"": {
                   "Ojianwuna, Joshua": {
                      "pos": "C", "pr": "4*", "c": "JoOjianwuna", "h": "6-10", "r": 0
@@ -187,13 +199,7 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "BYU": {
-               leftTeam: [ "CoChandler" ], //(Fr on mission - Fr hence no ::)
-            },
-            "Colorado St.": {
-               leftTeam: [ "DaRoddy::" ],
-            },
-            "Creighton": {
-               leftTeam: [ "RaAndronikas::" ],
+               leftTeam: [ "CoChandler" ], //KEEPME, (Fr on mission - Fr hence no ::)
             },
             "Duke": {
                ...(TeamEditorManualFixes.buildOverrides({"": {
@@ -227,18 +233,14 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "Kentucky": {
-               leftTeam: [ "ShSharpe::" ],
+               leftTeam: [ "ShSharpe::" ], //KEEPME (NBA draft)
             },
             "Marquette": {
-               ...(TeamEditorManualFixes.buildOverrides({"": {
+               ...(TeamEditorManualFixes.buildOverrides({"": { //Very strong JUCO
                   "Wrightsil, Zach": {
                      "pos": "S-PF", "pr": "4*", "c": "ZaWrightsil", "h": "6-7", "r": 0
                   },
                }})[""])
-            },
-            "Ohio St.": {
-               superSeniorsReturning: new Set([ "JuSueing::" ]), //KEEPME
-               leftTeam: [ "MaBranham::", "EjLiddell::" ],
             },
             "Ole Miss": {
                superSeniorsReturning: new Set([ "TyFagan::" ]), //KEEPME 
@@ -249,10 +251,6 @@ export class TeamEditorManualFixes {
                      "pos": "s-PG", "pr": "3*", "c": "BiCortes", "h": "6-3", "r": 0, "o": 0.5, "d": 2
                   },
                }})[""])
-            },
-            "Seton Hall": {
-               superSeniorsReturning: new Set([ "JaHarris::" ]), //KEEPME
-               leftTeam: [ "Aiken, Bryce" ], //(manual override from a previous year with this key)
             },
             "Saint Mary's (CA)": { 
                ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
@@ -268,17 +266,10 @@ export class TeamEditorManualFixes {
                   },
                }})[""])
             },
-            "UNLV": {
-               leftTeam: [ "DoWilliams::" ],
-            },
-            "Washington St.": {
-               leftTeam: [ "EfAbogidi::" ], //(joined a G-League team, which doesn't count as declaring)
-            },
-            "Xavier": {
-               superSeniorsReturning: new Set([ "AdKunkel::" ]), //KEEPME
-            },
          };
-         return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2022_23, superSeniors2022_23);
+         return TeamEditorManualFixes.combineOverrides(
+            mutableToRet, manualOverrides_Men_2022_23, superSeniors2022_23, leftTeam2022_23
+         );
       } else {
          return {} as Record<string, TeamEditorManualFixModel>;
       }

@@ -64,6 +64,7 @@ const logDivisionStatsToConsole = false;
 
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
+const diagnosticCompareWithRostersDebugOnly = false;
 
 const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
@@ -317,7 +318,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
         };
 
       /** (for diagnosticCompareWithRosters) */
-      const superSeniorsReturning: Record<string, string[]> = {}
+      const superSeniorsReturning: Record<string, string[]> = {};
+      const leftTeamUnexpectedly: Record<string, string[]> = {};
 
       const teamRanks = _.chain(teamList).map(t => {
 
@@ -346,26 +348,58 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             const roster = rostersPerTeam[t] || {};
             // Some analysis vs actual rosters:
 
-            const superSrsOnTeam = pxResults.basePlayersPlusHypos.filter(player => {
-               return (player.orig?.roster?.year_class == "Sr") && (player.orig?.team == t);
-            }).map(p => `${p.orig?.code || ""}::`);
-            
             // 1) Super seniors
+            const ignoreExistingSSrOverrides = false;
+
+            const onTeamSet = new Set(
+               pxResults.basePlayersPlusHypos.map(p => `${p.orig?.code || ""}::`)
+            );
+            
             const superSrsOnRoster = _.uniq((playerPartition[t] || []).filter(p => {
                return (p.team == t) && ((p.year || year) < year) && (p.roster?.year_class == "Sr") 
                   && roster[p.code || ""] //(players who were Srs last year on this year's roster)
-            }).map(p => `${p.code || ""}::`));
+            }).map(
+               p => `${p.code || ""}::`)
+            ).filter(
+               code => ignoreExistingSSrOverrides || !onTeamSet.has(code)
+            );
             
             if (!_.isEmpty(superSrsOnRoster)) {
                superSeniorsReturning[t] = superSrsOnRoster;
             }
-            // Log if we had
-            const superSrsOnTeamNotOnRoster = _.difference(superSrsOnTeam, superSrsOnRoster);
-            if (!_.isEmpty(superSrsOnTeamNotOnRoster)) {
-                console.log(`[${t}]!: team=[${superSrsOnTeam}] vs roster=[${superSrsOnRoster}] (full team: [${pxResults.basePlayersPlusHypos.map(p => p.key)}])`);
-            }
-
+         
             // 2) Players who left team
+
+            // Players on the team but not
+            const rosterCodes = new Set(_.keys(roster));
+            if (rosterCodes.size >= 10) {
+               const notOnTeamNonTransfers = 
+                  pxResults.basePlayersPlusHypos
+                     .filter(p => (p.orig.team == t) && !rosterCodes.has(p.orig.code || "")).map(p => p.key);
+               //(for transfers we just assume the player got missed off the roster)
+
+               const notOnTeamFreshhmen = 
+                  pxResults.basePlayersPlusHypos
+                     .filter(p => !p.orig.team && !rosterCodes.has(p.key.split(":")[0])).map(p => p.key);
+
+               if (!_.isEmpty(notOnTeamFreshhmen)) {
+                  // For freshmen this normally indicates there is a naming diff between the 247 list/NCAA 
+                  // so we log but don't include the "leftTeam"
+                  if (diagnosticCompareWithRostersDebugOnly) {
+                     console.log(`[${t}]: unexpected_Fr=[${notOnTeamFreshhmen}] from team=[${pxResults.basePlayersPlusHypos.map(p => p.orig.code)}] / roster=[${_.keys(roster)}]`);               
+                  }
+               }
+               if (!_.isEmpty(notOnTeamNonTransfers)) {
+                  if (diagnosticCompareWithRostersDebugOnly) {
+                     console.log(`${t}: unexpected=[${notOnTeamNonTransfers}] from team=[${pxResults.basePlayersPlusHypos.map(p => p.orig.code)}] / roster=[${_.keys(roster)}]`);               
+                  }
+                  leftTeamUnexpectedly[t] = notOnTeamNonTransfers;
+               }       
+            } else {
+               if (diagnosticCompareWithRostersDebugOnly) {
+                  console.log(`Skip [${t}] since roster size too small ([${rosterCodes.size}])`);
+               }
+            }
          }
 
          const buildTotals = (triples: GoodBadOkTriple[], range: "good" | "bad" | "ok" | "orig", depthBonus: {off: number, def: number}, adj: number = 0) => {
@@ -482,8 +516,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          }
       }).value();
 
-      if (diagnosticCompareWithRosters && !_.isEmpty(superSeniorsReturning)) {
+      if (diagnosticCompareWithRosters && !_.isEmpty(superSeniorsReturning) && !diagnosticCompareWithRostersDebugOnly) {
          console.log(`export const superSeniors${year.replace("/", "_")} = \n${JSON.stringify(superSeniorsReturning, null, 3)}`);
+      }
+      if (diagnosticCompareWithRosters && !_.isEmpty(leftTeamUnexpectedly) && !diagnosticCompareWithRostersDebugOnly) {
+         console.log(`export const leftTeam${year.replace("/", "_")} = \n${JSON.stringify(leftTeamUnexpectedly, null, 3)}`);
       }
 
       // Lookups

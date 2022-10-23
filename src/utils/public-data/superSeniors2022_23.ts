@@ -1,5 +1,4 @@
-export const superSeniors2022_23 = 
-{
+export const superSeniors2022_23 = {
    "A&M-Corpus Christi": [
       "DeKeys::",
       "SiFryer::"
@@ -33,9 +32,16 @@ export const superSeniors2022_23 =
    "Ball St.": [
       "DeJacobs::"
    ],
+   "Baylor": [
+      "FlThamba::"
+   ],
    "Bellarmine": [
       "JuBetz::",
       "GaTipton::"
+   ],
+   "Bethune-Cookman": [
+      "KeDavis::",
+      "DyRobertson::"
    ],
    "Binghamton": [
       "ChHinckson::"
@@ -188,11 +194,18 @@ export const superSeniors2022_23 =
    "LMU (CA)": [
       "CaShelton::"
    ],
+   "La Salle": [
+      "MaDoucoure::"
+   ],
    "Liberty": [
       "DaMcghee::"
    ],
    "Little Rock": [
       "CjWhite::"
+   ],
+   "Longwood": [
+      "DeWade::",
+      "ZaWatson::"
    ],
    "Loyola Maryland": [
       "JaAndrews::",
@@ -265,6 +278,9 @@ export const superSeniors2022_23 =
    "Ohio": [
       "DwWilson::"
    ],
+   "Ohio St.": [
+      "JuSueing::"
+   ],
    "Oklahoma": [
       "TaGroves::"
    ],
@@ -293,6 +309,9 @@ export const superSeniors2022_23 =
       "JaGodfrey::",
       "BoPlanutis::",
       "DaChongQui::"
+   ],
+   "Quinnipiac": [
+      "TyWilliams::"
    ],
    "Radford": [
       "JoJeffers::",
@@ -347,6 +366,9 @@ export const superSeniors2022_23 =
    ],
    "Santa Clara": [
       "KeJustice::"
+   ],
+   "Seton Hall": [
+      "JaHarris::"
    ],
    "Siena": [
       "JaStormo::",
@@ -454,11 +476,15 @@ export const superSeniors2022_23 =
       "LuFrampton::"
    ],
    "Winthrop": [
+      "MiAnumba::",
       "CoHightower::"
    ],
    "Wyoming": [
       "HuMaldonado::",
       "HuThompson::"
+   ],
+   "Xavier": [
+      "AdKunkel::"
    ],
    "Youngstown St.": [
       "GaCovington::"
