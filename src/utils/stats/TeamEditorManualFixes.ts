@@ -246,7 +246,7 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "Florida St.": { 
-               leftTeam: [ "DaGreen:UCF:", "JaGainey:Brown:" ], //(injury)
+               leftTeam: [ "JaGainey:Brown:" ], //(injury)
                ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
                   "McLeod, Naheem": {
                      "pos": "C", "pr": "3*", "c": "NaMcleod", "h": "7-4", "r": 0, "o": 2.5, "d": 1
