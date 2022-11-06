@@ -177,7 +177,15 @@ export class TeamEditorManualFixes {
          return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2021_22);
 
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
+
+         // Add significant injury information from https://www.covers.com/sport/basketball/ncaab/injuries
+
          const manualOverrides_Men_2022_23:  Record<string, TeamEditorManualFixModel> = { 
+            "Alabama": {
+               overrides: {
+                  "JaQuinerly::": { mins: 20 } //(injury)
+               }
+            },
             "Arizona": {
                ...(TeamEditorManualFixes.buildOverrides({"": { //(some foreign players worth HS T100 rankings)
                   "Veesaar, Henri": {
@@ -191,6 +199,9 @@ export class TeamEditorManualFixes {
                   },
                }})[""])
             },
+            "Arizona St.": {
+               leftTeam: [ "JaNeal::" ], //(injury)
+            },
             "Baylor": {
                ...(TeamEditorManualFixes.buildOverrides({"": {
                   "Ojianwuna, Joshua": {
@@ -201,7 +212,23 @@ export class TeamEditorManualFixes {
             "BYU": {
                leftTeam: [ "CoChandler" ], //KEEPME, (Fr on mission - Fr hence no ::)
             },
+            "Clemson": {
+               overrides: {
+                  "PjHall::": { mins: 25 } //(injury)
+               }
+            },
+            "Colorado St.": {
+               overrides: {
+                  "IsStevens::": { mins: 10 } //(injury)
+               }
+            },
+            "Drake": {
+               overrides: {
+                  "DjWilkins::": { mins: 15 } //(injury)
+               }
+            },
             "Duke": {
+               //(injuries, see below)
                ...(TeamEditorManualFixes.buildOverrides({"": {
                   "Proctor, Tyrese": {
                      "pos": "PG", "pr": "5*", "c": "TyProctor", "h": "6-4", "r": -100
@@ -219,11 +246,20 @@ export class TeamEditorManualFixes {
                }})[""])
             },
             "Florida St.": { 
+               leftTeam: [ "DaGreen:UCF:", "JaGainey:Brown:" ], //(injury)
                ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
                   "McLeod, Naheem": {
                      "pos": "C", "pr": "3*", "c": "NaMcleod", "h": "7-4", "r": 0, "o": 2.5, "d": 1
                   },
                }})[""])
+            },
+            "Georgia": {
+               overrides: {
+                  "TeRoberts:Bradley:": { mins: 15 } //(injury)
+               }
+            },
+            "Iowa St.": {
+               leftTeam: [ "JeWilliams:Temple:" ] //(injury)
             },
             "Illinois": { 
                ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
@@ -234,6 +270,9 @@ export class TeamEditorManualFixes {
             },
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ], //KEEPME (NBA draft)
+               overrides: {
+                  "OsTshiebwe::": { mins: 25 } //(injury)
+               }
             },
             "Marquette": {
                ...(TeamEditorManualFixes.buildOverrides({"": { //Very strong JUCO
@@ -241,6 +280,14 @@ export class TeamEditorManualFixes {
                      "pos": "S-PF", "pr": "4*", "c": "ZaWrightsil", "h": "6-7", "r": 0
                   },
                }})[""])
+            },
+            "Minnesota": {
+               leftTeam: [ "IsIhnen::" ], //(injury)
+            },
+            "Nevada": {
+               overrides: {
+                  "HuMcintosh:Elon:": { mins: 5 } //(injury)
+               }
             },
             "Ole Miss": {
                superSeniorsReturning: new Set([ "TyFagan::" ]), //KEEPME 
@@ -251,6 +298,19 @@ export class TeamEditorManualFixes {
                      "pos": "s-PG", "pr": "3*", "c": "BiCortes", "h": "6-3", "r": 0, "o": 0.5, "d": 2
                   },
                }})[""])
+            },
+            "Oregon": {
+               overrides: {
+                  "JeCouisnard:South Carolina:": { mins: 15 } //(injury)
+               }
+            },
+            "Oregon St.": {
+               overrides: {
+                  "ChWright:Georgia:": { mins: 15 } //(injury)
+               }
+            },
+            "Pittsburgh": {
+               leftTeam: [ "DiJohnson" ], //(suspension)               
             },
             "Saint Mary's (CA)": { 
                ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
@@ -266,10 +326,42 @@ export class TeamEditorManualFixes {
                   },
                }})[""])
             },
+            "Texas A&M": {
+               overrides: {
+                  "EtHenderson::": { mins: 5 } //(suspension)
+               }
+            },
+            "Texas Tech": {
+               overrides: {
+                  "FaAimaq:Utah Valley:": { mins: 20 } //(injury)
+               }
+            },
+            "Villanova": {
+               overrides: {
+                  "JuMoore::": { mins: 20 } //(injury)
+               }
+            },
+            "Wichita St.": {
+               overrides: {
+                  "CoRogers:Siena:": { mins: 25 } //(elig)
+               }               
+            },
+            "Wyoming": {
+               overrides: {
+                  "GrIke::": { mins: 15 } //(injury)
+               }               
+            }
          };
-         return TeamEditorManualFixes.combineOverrides(
+         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
             mutableToRet, manualOverrides_Men_2022_23, superSeniors2022_23, leftTeam2022_23
          );
+
+         // Duke injury:
+         combinedOverrides["Duke"]!.overrides!["DaWhitehead"]!.mins = 25.0; //(injury)
+         // Kansas injury
+         combinedOverrides["Kansas"]!.overrides!["MjRice"]!.mins = 5.0; //(injury)
+
+         return combinedOverrides;
       } else {
          return {} as Record<string, TeamEditorManualFixModel>;
       }
