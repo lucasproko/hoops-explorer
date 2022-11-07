@@ -289,6 +289,11 @@ export class TeamEditorManualFixes {
                   "HuMcintosh:Elon:": { mins: 5 } //(injury)
                }
             },
+            "New Mexico St.": {
+               overrides: {
+                  "KiAiken:Arizona:": { mins: 20 }, //(elig.)
+               }
+            },
             "Ole Miss": {
                superSeniorsReturning: new Set([ "TyFagan::" ]), //KEEPME 
             },
@@ -345,6 +350,9 @@ export class TeamEditorManualFixes {
                overrides: {
                   "CoRogers:Siena:": { mins: 25 } //(elig)
                }               
+            },
+            "Winthrop": {
+               leftTeam: [ "MiAnumba::" ], //(injury)
             },
             "Wyoming": {
                overrides: {
