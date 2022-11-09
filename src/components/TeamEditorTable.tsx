@@ -119,7 +119,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   )
 
   // Data source
-  const [ year, setYear ] = useState(startingState.year || DateUtils.offseasonPredictionYear);
+  const [ year, setYear ] = useState(startingState.year || DateUtils. offseasonPredictionYear);
   /** The first year containing stats used for projection (note in eval mode we also use the current year's stats) */
   const yearWithStats = offSeasonMode ? DateUtils.getPrevYear(year) : year;
 

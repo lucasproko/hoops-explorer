@@ -3,12 +3,15 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.rank": 1,
       "conf": "Southeastern Conference",
       "stats.adj_margin.value": 29.85,
-      "stats.adj_off.value": 114.6,
+      "stats.adj_off.value": 114.5,
       "stats.adj_off.rank": 2,
       "stats.adj_def.value": 84.7,
       "stats.adj_def.rank": 3,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 45.8
    },
    "Gonzaga": {
       "stats.adj_margin.rank": 2,
@@ -16,10 +19,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 28.06,
       "stats.adj_off.value": 117.4,
       "stats.adj_off.rank": 1,
-      "stats.adj_def.value": 89.4,
+      "stats.adj_def.value": 89.3,
       "stats.adj_def.rank": 21,
       "stats.adj_tempo.value": 76,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 41.6
    },
    "Texas": {
       "stats.adj_margin.rank": 3,
@@ -27,10 +33,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 27.72,
       "stats.adj_off.value": 111.4,
       "stats.adj_off.rank": 10,
-      "stats.adj_def.value": 83.7,
+      "stats.adj_def.value": 83.6,
       "stats.adj_def.rank": 1,
       "stats.adj_tempo.value": 68.7,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 28.5
    },
    "Tennessee": {
       "stats.adj_margin.rank": 4,
@@ -41,7 +50,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 84,
       "stats.adj_def.rank": 2,
       "stats.adj_tempo.value": 70.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 31.8
    },
    "Baylor": {
       "stats.adj_margin.rank": 5,
@@ -52,40 +64,52 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 88,
       "stats.adj_def.rank": 13,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 41.1
    },
    "Houston": {
       "stats.adj_margin.rank": 6,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 25.56,
-      "stats.adj_off.value": 111.3,
+      "stats.adj_off.value": 111.2,
       "stats.adj_off.rank": 11,
       "stats.adj_def.value": 85.7,
       "stats.adj_def.rank": 4,
       "stats.adj_tempo.value": 67.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 37.9
    },
    "Virginia": {
       "stats.adj_margin.rank": 7,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 24.66,
-      "stats.adj_off.value": 111.5,
+      "stats.adj_off.value": 111.4,
       "stats.adj_off.rank": 9,
       "stats.adj_def.value": 86.8,
       "stats.adj_def.rank": 8,
       "stats.adj_tempo.value": 64,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 59,
+      "stats.off._3p_pct.value": 44
    },
    "Kansas": {
       "stats.adj_margin.rank": 8,
       "conf": "Big 12 Conference",
       "stats.adj_margin.value": 23.96,
-      "stats.adj_off.value": 111.2,
+      "stats.adj_off.value": 111.1,
       "stats.adj_off.rank": 13,
       "stats.adj_def.value": 87.2,
       "stats.adj_def.rank": 10,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 40.9
    },
    "Indiana": {
       "stats.adj_margin.rank": 9,
@@ -96,7 +120,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 86.4,
       "stats.adj_def.rank": 7,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 36.3
    },
    "Arizona": {
       "stats.adj_margin.rank": 10,
@@ -107,18 +134,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 89.4,
       "stats.adj_def.rank": 23,
       "stats.adj_tempo.value": 77,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 87,
+      "stats.off._3p_pct.value": 61.1
    },
    "North Carolina": {
       "stats.adj_margin.rank": 11,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 23.32,
-      "stats.adj_off.value": 111.7,
+      "stats.adj_off.value": 111.6,
       "stats.adj_off.rank": 8,
       "stats.adj_def.value": 88.3,
       "stats.adj_def.rank": 14,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 20
    },
    "Auburn": {
       "stats.adj_margin.rank": 12,
@@ -129,7 +162,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 87.5,
       "stats.adj_def.rank": 11,
       "stats.adj_tempo.value": 73.3,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 16
    },
    "UCLA": {
       "stats.adj_margin.rank": 13,
@@ -137,21 +173,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 23.19,
       "stats.adj_off.value": 112,
       "stats.adj_off.rank": 7,
-      "stats.adj_def.value": 88.9,
+      "stats.adj_def.value": 88.8,
       "stats.adj_def.rank": 19,
       "stats.adj_tempo.value": 69.7,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 60
    },
    "Duke": {
       "stats.adj_margin.rank": 14,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 23.12,
-      "stats.adj_off.value": 113.9,
+      "stats.adj_off.value": 113.8,
       "stats.adj_off.rank": 3,
       "stats.adj_def.value": 90.7,
       "stats.adj_def.rank": 36,
       "stats.adj_tempo.value": 70.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 60,
+      "stats.off._3p_pct.value": 34.4
    },
    "Arkansas": {
       "stats.adj_margin.rank": 15,
@@ -162,7 +204,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 86.3,
       "stats.adj_def.rank": 5,
       "stats.adj_tempo.value": 74.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 40
    },
    "Alabama": {
       "stats.adj_margin.rank": 16,
@@ -170,10 +215,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 20.73,
       "stats.adj_off.value": 110.3,
       "stats.adj_off.rank": 21,
-      "stats.adj_def.value": 89.6,
+      "stats.adj_def.value": 89.5,
       "stats.adj_def.rank": 25,
-      "stats.adj_tempo.value": 76.2,
-      "is_high_major": 1
+      "stats.adj_tempo.value": 76.3,
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 10.7
    },
    "San Diego St.": {
       "stats.adj_margin.rank": 17,
@@ -181,21 +229,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 20.64,
       "stats.adj_off.value": 107,
       "stats.adj_off.rank": 46,
-      "stats.adj_def.value": 86.4,
+      "stats.adj_def.value": 86.3,
       "stats.adj_def.rank": 6,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 44.4
    },
    "Virginia Tech": {
       "stats.adj_margin.rank": 18,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 20.15,
-      "stats.adj_off.value": 110.6,
+      "stats.adj_off.value": 110.5,
       "stats.adj_off.rank": 17,
       "stats.adj_def.value": 90.4,
       "stats.adj_def.rank": 33,
       "stats.adj_tempo.value": 68.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 50
    },
    "Villanova": {
       "stats.adj_margin.rank": 19,
@@ -206,7 +260,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91,
       "stats.adj_def.rank": 40,
       "stats.adj_tempo.value": 69.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 61,
+      "stats.off._3p_pct.value": 65
    },
    "Iowa": {
       "stats.adj_margin.rank": 20,
@@ -217,18 +274,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.2,
       "stats.adj_def.rank": 68,
       "stats.adj_tempo.value": 73.6,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 33.3
    },
    "Purdue": {
       "stats.adj_margin.rank": 21,
       "conf": "Big Ten Conference",
       "stats.adj_margin.value": 19.39,
-      "stats.adj_off.value": 111.1,
+      "stats.adj_off.value": 111,
       "stats.adj_off.rank": 14,
-      "stats.adj_def.value": 91.7,
+      "stats.adj_def.value": 91.6,
       "stats.adj_def.rank": 45,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 35.2
    },
    "Texas Tech": {
       "stats.adj_margin.rank": 22,
@@ -239,7 +302,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 86.9,
       "stats.adj_def.rank": 9,
       "stats.adj_tempo.value": 69.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 38.8
    },
    "Michigan": {
       "stats.adj_margin.rank": 23,
@@ -247,10 +313,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 19.38,
       "stats.adj_off.value": 110.3,
       "stats.adj_off.rank": 20,
-      "stats.adj_def.value": 91,
+      "stats.adj_def.value": 90.9,
       "stats.adj_def.rank": 38,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 31
    },
    "Dayton": {
       "stats.adj_margin.rank": 24,
@@ -261,29 +330,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 89.4,
       "stats.adj_def.rank": 22,
       "stats.adj_tempo.value": 68.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 26.3
    },
    "UConn": {
       "stats.adj_margin.rank": 25,
       "conf": "Big East Conference",
       "stats.adj_margin.value": 19.13,
-      "stats.adj_off.value": 108.5,
+      "stats.adj_off.value": 108.4,
       "stats.adj_off.rank": 30,
       "stats.adj_def.value": 89.3,
       "stats.adj_def.rank": 20,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 20.8
    },
    "Oregon": {
       "stats.adj_margin.rank": 26,
       "conf": "Pac 12 Conference",
       "stats.adj_margin.value": 18.56,
-      "stats.adj_off.value": 110.4,
+      "stats.adj_off.value": 110.3,
       "stats.adj_off.rank": 18,
       "stats.adj_def.value": 91.8,
       "stats.adj_def.rank": 50,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 24
    },
    "Ohio St.": {
       "stats.adj_margin.rank": 27,
@@ -294,18 +372,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91.8,
       "stats.adj_def.rank": 49,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 47.6
    },
    "Memphis": {
       "stats.adj_margin.rank": 28,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 18.48,
-      "stats.adj_off.value": 107.3,
+      "stats.adj_off.value": 107.2,
       "stats.adj_off.rank": 42,
-      "stats.adj_def.value": 88.8,
+      "stats.adj_def.value": 88.7,
       "stats.adj_def.rank": 18,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 26.3
    },
    "Creighton": {
       "stats.adj_margin.rank": 29,
@@ -313,10 +397,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 18.42,
       "stats.adj_off.value": 107.9,
       "stats.adj_off.rank": 35,
-      "stats.adj_def.value": 89.5,
+      "stats.adj_def.value": 89.4,
       "stats.adj_def.rank": 24,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 23.5
    },
    "TCU": {
       "stats.adj_margin.rank": 30,
@@ -324,32 +411,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 18.33,
       "stats.adj_off.value": 107.1,
       "stats.adj_off.rank": 45,
-      "stats.adj_def.value": 88.8,
+      "stats.adj_def.value": 88.7,
       "stats.adj_def.rank": 17,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 19
    },
    "Florida": {
       "stats.adj_margin.rank": 31,
       "conf": "Southeastern Conference",
       "stats.adj_margin.value": 18.03,
-      "stats.adj_off.value": 107.9,
+      "stats.adj_off.value": 107.8,
       "stats.adj_off.rank": 36,
       "stats.adj_def.value": 89.8,
       "stats.adj_def.rank": 29,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 40
    },
    "Michigan St.": {
       "stats.adj_margin.rank": 32,
       "conf": "Big Ten Conference",
       "stats.adj_margin.value": 17.98,
-      "stats.adj_off.value": 109,
+      "stats.adj_off.value": 108.9,
       "stats.adj_off.rank": 26,
-      "stats.adj_def.value": 91,
+      "stats.adj_def.value": 90.9,
       "stats.adj_def.rank": 39,
       "stats.adj_tempo.value": 70.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 33.3
    },
    "Illinois": {
       "stats.adj_margin.rank": 33,
@@ -360,7 +456,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 89.7,
       "stats.adj_def.rank": 27,
       "stats.adj_tempo.value": 72.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 34.6
    },
    "Oklahoma St.": {
       "stats.adj_margin.rank": 34,
@@ -371,18 +470,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 89.8,
       "stats.adj_def.rank": 28,
       "stats.adj_tempo.value": 73.1,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 24
    },
    "Saint Louis": {
       "stats.adj_margin.rank": 35,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 17.09,
-      "stats.adj_off.value": 110.2,
+      "stats.adj_off.value": 110.1,
       "stats.adj_off.rank": 22,
-      "stats.adj_def.value": 93.1,
+      "stats.adj_def.value": 93,
       "stats.adj_def.rank": 65,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 32.2
    },
    "Oklahoma": {
       "stats.adj_margin.rank": 36,
@@ -390,43 +495,55 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 17.03,
       "stats.adj_off.value": 105.8,
       "stats.adj_off.rank": 60,
-      "stats.adj_def.value": 88.8,
+      "stats.adj_def.value": 88.7,
       "stats.adj_def.rank": 16,
       "stats.adj_tempo.value": 69.5,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 26.3
    },
    "St. John's (NY)": {
       "stats.adj_margin.rank": 37,
       "conf": "Big East Conference",
       "stats.adj_margin.value": 16.88,
-      "stats.adj_off.value": 107.3,
+      "stats.adj_off.value": 107.2,
       "stats.adj_off.rank": 41,
-      "stats.adj_def.value": 90.4,
+      "stats.adj_def.value": 90.3,
       "stats.adj_def.rank": 31,
       "stats.adj_tempo.value": 78.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 85,
+      "stats.off._3p_pct.value": 38.4
    },
    "Penn St.": {
       "stats.adj_margin.rank": 38,
       "conf": "Big Ten Conference",
       "stats.adj_margin.value": 16.38,
-      "stats.adj_off.value": 109.2,
+      "stats.adj_off.value": 109.1,
       "stats.adj_off.rank": 25,
-      "stats.adj_def.value": 92.8,
+      "stats.adj_def.value": 92.7,
       "stats.adj_def.rank": 62,
       "stats.adj_tempo.value": 68.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 47.3
    },
    "Xavier": {
       "stats.adj_margin.rank": 39,
       "conf": "Big East Conference",
       "stats.adj_margin.value": 16.32,
-      "stats.adj_off.value": 108.3,
+      "stats.adj_off.value": 108.2,
       "stats.adj_off.rank": 32,
-      "stats.adj_def.value": 92,
+      "stats.adj_def.value": 91.9,
       "stats.adj_def.rank": 54,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 81,
+      "stats.off._3p_pct.value": 35.7
    },
    "Texas A&M": {
       "stats.adj_margin.rank": 40,
@@ -437,7 +554,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 88.6,
       "stats.adj_def.rank": 15,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 46.1
    },
    "LSU": {
       "stats.adj_margin.rank": 41,
@@ -445,10 +565,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 16.24,
       "stats.adj_off.value": 107.9,
       "stats.adj_off.rank": 34,
-      "stats.adj_def.value": 91.7,
+      "stats.adj_def.value": 91.6,
       "stats.adj_def.rank": 46,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Notre Dame": {
       "stats.adj_margin.rank": 42,
@@ -459,18 +582,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.5,
       "stats.adj_def.rank": 73,
       "stats.adj_tempo.value": 70.3,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Rutgers": {
       "stats.adj_margin.rank": 43,
       "conf": "Big Ten Conference",
       "stats.adj_margin.value": 15.79,
-      "stats.adj_off.value": 103.5,
+      "stats.adj_off.value": 103.4,
       "stats.adj_off.rank": 96,
-      "stats.adj_def.value": 87.7,
+      "stats.adj_def.value": 87.6,
       "stats.adj_def.rank": 12,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 40
    },
    "Wisconsin": {
       "stats.adj_margin.rank": 44,
@@ -481,18 +610,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91.1,
       "stats.adj_def.rank": 43,
       "stats.adj_tempo.value": 69.7,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 46.1
    },
    "Miami (FL)": {
       "stats.adj_margin.rank": 45,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 15.28,
-      "stats.adj_off.value": 107.5,
+      "stats.adj_off.value": 107.4,
       "stats.adj_off.rank": 38,
-      "stats.adj_def.value": 92.2,
+      "stats.adj_def.value": 92.1,
       "stats.adj_def.rank": 55,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 29.4
    },
    "Seton Hall": {
       "stats.adj_margin.rank": 46,
@@ -500,10 +635,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 15.26,
       "stats.adj_off.value": 105.9,
       "stats.adj_off.rank": 56,
-      "stats.adj_def.value": 90.7,
+      "stats.adj_def.value": 90.6,
       "stats.adj_def.rank": 34,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "UAB": {
       "stats.adj_margin.rank": 47,
@@ -514,29 +652,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.1,
       "stats.adj_def.rank": 67,
       "stats.adj_tempo.value": 74.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 86,
+      "stats.off._3p_pct.value": 42.8
    },
    "Saint Mary's (CA)": {
       "stats.adj_margin.rank": 48,
       "conf": "West Coast Conference",
       "stats.adj_margin.value": 15.13,
-      "stats.adj_off.value": 104.8,
-      "stats.adj_off.rank": 70,
+      "stats.adj_off.value": 104.7,
+      "stats.adj_off.rank": 71,
       "stats.adj_def.value": 89.6,
       "stats.adj_def.rank": 26,
       "stats.adj_tempo.value": 68.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 30.7
    },
    "Maryland": {
       "stats.adj_margin.rank": 49,
       "conf": "Big Ten Conference",
       "stats.adj_margin.value": 14.97,
-      "stats.adj_off.value": 107.2,
+      "stats.adj_off.value": 107.1,
       "stats.adj_off.rank": 43,
       "stats.adj_def.value": 92.2,
       "stats.adj_def.rank": 56,
       "stats.adj_tempo.value": 69.3,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 57,
+      "stats.off._3p_pct.value": 45
    },
    "Mississippi St.": {
       "stats.adj_margin.rank": 50,
@@ -544,21 +691,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 14.93,
       "stats.adj_off.value": 105.3,
       "stats.adj_off.rank": 65,
-      "stats.adj_def.value": 90.4,
+      "stats.adj_def.value": 90.3,
       "stats.adj_def.rank": 30,
       "stats.adj_tempo.value": 69.6,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 24
    },
    "Cincinnati": {
       "stats.adj_margin.rank": 51,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 14.92,
-      "stats.adj_off.value": 106.9,
+      "stats.adj_off.value": 106.8,
       "stats.adj_off.rank": 49,
       "stats.adj_def.value": 91.9,
       "stats.adj_def.rank": 53,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 40
    },
    "Missouri": {
       "stats.adj_margin.rank": 52,
@@ -569,7 +722,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.5,
       "stats.adj_def.rank": 74,
       "stats.adj_tempo.value": 73.3,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 81,
+      "stats.off._3p_pct.value": 25
    },
    "Ole Miss": {
       "stats.adj_margin.rank": 53,
@@ -577,10 +733,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 14.59,
       "stats.adj_off.value": 105.4,
       "stats.adj_off.rank": 63,
-      "stats.adj_def.value": 90.9,
+      "stats.adj_def.value": 90.8,
       "stats.adj_def.rank": 37,
       "stats.adj_tempo.value": 69.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 36
    },
    "Syracuse": {
       "stats.adj_margin.rank": 54,
@@ -591,7 +750,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 94.1,
       "stats.adj_def.rank": 85,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 50
    },
    "BYU": {
       "stats.adj_margin.rank": 55,
@@ -602,7 +764,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 90.7,
       "stats.adj_def.rank": 35,
       "stats.adj_tempo.value": 73.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 18.7
    },
    "Southern California": {
       "stats.adj_margin.rank": 56,
@@ -613,18 +778,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91.8,
       "stats.adj_def.rank": 51,
       "stats.adj_tempo.value": 70.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 15.7
    },
    "Iowa St.": {
       "stats.adj_margin.rank": 57,
       "conf": "Big 12 Conference",
       "stats.adj_margin.value": 12.99,
-      "stats.adj_off.value": 103.4,
+      "stats.adj_off.value": 103.3,
       "stats.adj_off.rank": 97,
       "stats.adj_def.value": 90.4,
       "stats.adj_def.rank": 32,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 31.5
    },
    "Colorado": {
       "stats.adj_margin.rank": 58,
@@ -635,7 +806,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91,
       "stats.adj_def.rank": 42,
       "stats.adj_tempo.value": 72.9,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 46.1
    },
    "Stanford": {
       "stats.adj_margin.rank": 59,
@@ -643,10 +817,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 12.92,
       "stats.adj_off.value": 105.7,
       "stats.adj_off.rank": 61,
-      "stats.adj_def.value": 92.8,
+      "stats.adj_def.value": 92.7,
       "stats.adj_def.rank": 63,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 36.3
    },
    "Tulane": {
       "stats.adj_margin.rank": 60,
@@ -657,7 +834,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 94.1,
       "stats.adj_def.rank": 86,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 36.3
    },
    "Washington St.": {
       "stats.adj_margin.rank": 61,
@@ -665,32 +845,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 12.54,
       "stats.adj_off.value": 104.4,
       "stats.adj_off.rank": 76,
-      "stats.adj_def.value": 91.9,
+      "stats.adj_def.value": 91.8,
       "stats.adj_def.rank": 52,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 45
    },
    "Utah St.": {
       "stats.adj_margin.rank": 62,
       "conf": "Mountain West Conference",
       "stats.adj_margin.value": 12.51,
-      "stats.adj_off.value": 104.3,
+      "stats.adj_off.value": 104.2,
       "stats.adj_off.rank": 82,
       "stats.adj_def.value": 91.7,
       "stats.adj_def.rank": 48,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 42.1
    },
    "Clemson": {
       "stats.adj_margin.rank": 63,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 12.48,
-      "stats.adj_off.value": 105.9,
+      "stats.adj_off.value": 105.8,
       "stats.adj_off.rank": 57,
       "stats.adj_def.value": 93.4,
       "stats.adj_def.rank": 70,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 31.8
    },
    "Wyoming": {
       "stats.adj_margin.rank": 64,
@@ -701,7 +890,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 94.6,
       "stats.adj_def.rank": 92,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 82,
+      "stats.off._3p_pct.value": 37.8
    },
    "Providence": {
       "stats.adj_margin.rank": 65,
@@ -709,21 +901,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 12.27,
       "stats.adj_off.value": 104.8,
       "stats.adj_off.rank": 69,
-      "stats.adj_def.value": 92.6,
+      "stats.adj_def.value": 92.5,
       "stats.adj_def.rank": 59,
       "stats.adj_tempo.value": 69,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 21
    },
    "Utah": {
       "stats.adj_margin.rank": 66,
       "conf": "Pac 12 Conference",
       "stats.adj_margin.value": 12.2,
-      "stats.adj_off.value": 105.9,
+      "stats.adj_off.value": 105.8,
       "stats.adj_off.rank": 58,
-      "stats.adj_def.value": 93.7,
+      "stats.adj_def.value": 93.6,
       "stats.adj_def.rank": 78,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 31.8
    },
    "North Texas": {
       "stats.adj_margin.rank": 67,
@@ -731,10 +929,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 11.93,
       "stats.adj_off.value": 104.5,
       "stats.adj_off.rank": 75,
-      "stats.adj_def.value": 92.6,
+      "stats.adj_def.value": 92.5,
       "stats.adj_def.rank": 60,
       "stats.adj_tempo.value": 66.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 54,
+      "stats.off._3p_pct.value": 18.1
    },
    "Northwestern": {
       "stats.adj_margin.rank": 68,
@@ -745,7 +946,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91.7,
       "stats.adj_def.rank": 47,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 47.6
    },
    "Furman": {
       "stats.adj_margin.rank": 69,
@@ -756,7 +960,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 95.7,
       "stats.adj_def.rank": 102,
       "stats.adj_tempo.value": 70.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 82,
+      "stats.off._3p_pct.value": 20
    },
    "NC State": {
       "stats.adj_margin.rank": 70,
@@ -767,7 +974,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 95.5,
       "stats.adj_def.rank": 98,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 39.2
    },
    "West Virginia": {
       "stats.adj_margin.rank": 71,
@@ -778,29 +988,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 92.2,
       "stats.adj_def.rank": 58,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 30
    },
    "Loyola Chicago": {
       "stats.adj_margin.rank": 72,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 11.56,
-      "stats.adj_off.value": 104.4,
+      "stats.adj_off.value": 104.3,
       "stats.adj_off.rank": 78,
       "stats.adj_def.value": 92.8,
       "stats.adj_def.rank": 64,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 22.2
    },
    "Kansas St.": {
       "stats.adj_margin.rank": 73,
       "conf": "Big 12 Conference",
       "stats.adj_margin.value": 11.45,
-      "stats.adj_off.value": 103.7,
+      "stats.adj_off.value": 103.6,
       "stats.adj_off.rank": 91,
       "stats.adj_def.value": 92.2,
       "stats.adj_def.rank": 57,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 44.4
    },
    "Vanderbilt": {
       "stats.adj_margin.rank": 74,
@@ -811,7 +1030,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.8,
       "stats.adj_def.rank": 80,
       "stats.adj_tempo.value": 70.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 40
    },
    "Drake": {
       "stats.adj_margin.rank": 75,
@@ -819,10 +1041,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 10.65,
       "stats.adj_off.value": 106.8,
       "stats.adj_off.rank": 51,
-      "stats.adj_def.value": 96.2,
+      "stats.adj_def.value": 96.1,
       "stats.adj_def.rank": 107,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Marquette": {
       "stats.adj_margin.rank": 76,
@@ -833,18 +1058,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.6,
       "stats.adj_def.rank": 76,
       "stats.adj_tempo.value": 74.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 26.3
    },
    "Wake Forest": {
       "stats.adj_margin.rank": 77,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 10.13,
-      "stats.adj_off.value": 105.7,
+      "stats.adj_off.value": 105.6,
       "stats.adj_off.rank": 62,
       "stats.adj_def.value": 95.5,
       "stats.adj_def.rank": 99,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 27.2
    },
    "Arizona St.": {
       "stats.adj_margin.rank": 78,
@@ -855,7 +1086,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91,
       "stats.adj_def.rank": 41,
       "stats.adj_tempo.value": 74.2,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 25
    },
    "Boston College": {
       "stats.adj_margin.rank": 79,
@@ -866,18 +1100,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.3,
       "stats.adj_def.rank": 69,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 83,
+      "stats.off._3p_pct.value": 23.5
    },
    "Wichita St.": {
       "stats.adj_margin.rank": 80,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 9.71,
-      "stats.adj_off.value": 102.5,
+      "stats.adj_off.value": 102.4,
       "stats.adj_off.rank": 109,
       "stats.adj_def.value": 92.7,
       "stats.adj_def.rank": 61,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 28.5
    },
    "Liberty": {
       "stats.adj_margin.rank": 81,
@@ -888,7 +1128,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 94.8,
       "stats.adj_def.rank": 94,
       "stats.adj_tempo.value": 69,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 36.3
    },
    "Pittsburgh": {
       "stats.adj_margin.rank": 82,
@@ -899,7 +1142,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 94.1,
       "stats.adj_def.rank": 87,
       "stats.adj_tempo.value": 70.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 26.8
    },
    "Toledo": {
       "stats.adj_margin.rank": 83,
@@ -910,7 +1156,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 97.5,
       "stats.adj_def.rank": 135,
       "stats.adj_tempo.value": 73.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 40
    },
    "Southern Ill.": {
       "stats.adj_margin.rank": 84,
@@ -921,29 +1170,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.6,
       "stats.adj_def.rank": 75,
       "stats.adj_tempo.value": 68.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 42.8
    },
    "Boise St.": {
       "stats.adj_margin.rank": 85,
       "conf": "Mountain West Conference",
       "stats.adj_margin.value": 9.01,
-      "stats.adj_off.value": 102.5,
+      "stats.adj_off.value": 102.4,
       "stats.adj_off.rank": 108,
-      "stats.adj_def.value": 93.5,
+      "stats.adj_def.value": 93.4,
       "stats.adj_def.rank": 71,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Florida St.": {
       "stats.adj_margin.rank": 86,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 8.9,
-      "stats.adj_off.value": 106.2,
+      "stats.adj_off.value": 106.1,
       "stats.adj_off.rank": 55,
-      "stats.adj_def.value": 97.3,
+      "stats.adj_def.value": 97.2,
       "stats.adj_def.rank": 127,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 42.8
    },
    "South Carolina": {
       "stats.adj_margin.rank": 87,
@@ -951,10 +1209,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 8.68,
       "stats.adj_off.value": 102.3,
       "stats.adj_off.rank": 112,
-      "stats.adj_def.value": 93.7,
+      "stats.adj_def.value": 93.6,
       "stats.adj_def.rank": 77,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 35
    },
    "Fla. Atlantic": {
       "stats.adj_margin.rank": 88,
@@ -965,40 +1226,52 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96,
       "stats.adj_def.rank": 106,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 33.3
    },
    "Richmond": {
       "stats.adj_margin.rank": 89,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 8.22,
-      "stats.adj_off.value": 102.8,
+      "stats.adj_off.value": 102.7,
       "stats.adj_off.rank": 105,
       "stats.adj_def.value": 94.5,
       "stats.adj_def.rank": 90,
       "stats.adj_tempo.value": 70.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 25
    },
    "DePaul": {
       "stats.adj_margin.rank": 90,
       "conf": "Big East Conference",
       "stats.adj_margin.value": 8.18,
-      "stats.adj_off.value": 103.6,
+      "stats.adj_off.value": 103.5,
       "stats.adj_off.rank": 93,
       "stats.adj_def.value": 95.4,
       "stats.adj_def.rank": 97,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 29.6
    },
    "Louisville": {
       "stats.adj_margin.rank": 91,
       "conf": "Atlantic Coast Conference",
       "stats.adj_margin.value": 8.18,
-      "stats.adj_off.value": 102,
+      "stats.adj_off.value": 101.9,
       "stats.adj_off.rank": 118,
-      "stats.adj_def.value": 93.8,
+      "stats.adj_def.value": 93.7,
       "stats.adj_def.rank": 79,
-      "stats.adj_tempo.value": 71.6,
-      "is_high_major": 1
+      "stats.adj_tempo.value": 71.7,
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "VCU": {
       "stats.adj_margin.rank": 92,
@@ -1009,29 +1282,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 91.6,
       "stats.adj_def.rank": 44,
       "stats.adj_tempo.value": 72.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 33.3
    },
    "Georgia": {
       "stats.adj_margin.rank": 93,
       "conf": "Southeastern Conference",
       "stats.adj_margin.value": 7.83,
-      "stats.adj_off.value": 103.8,
+      "stats.adj_off.value": 103.7,
       "stats.adj_off.rank": 90,
       "stats.adj_def.value": 95.9,
       "stats.adj_def.rank": 104,
       "stats.adj_tempo.value": 70.3,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 30
    },
    "UCF": {
       "stats.adj_margin.rank": 94,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 7.64,
-      "stats.adj_off.value": 103.4,
+      "stats.adj_off.value": 103.3,
       "stats.adj_off.rank": 99,
       "stats.adj_def.value": 95.7,
       "stats.adj_def.rank": 101,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 84,
+      "stats.off._3p_pct.value": 30.3
    },
    "Western Ky.": {
       "stats.adj_margin.rank": 95,
@@ -1039,32 +1321,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 7.53,
       "stats.adj_off.value": 103.9,
       "stats.adj_off.rank": 86,
-      "stats.adj_def.value": 96.4,
+      "stats.adj_def.value": 96.3,
       "stats.adj_def.rank": 114,
       "stats.adj_tempo.value": 72.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Grand Canyon": {
       "stats.adj_margin.rank": 96,
       "conf": "Western Athletic Conference",
       "stats.adj_margin.value": 7.42,
-      "stats.adj_off.value": 101.8,
+      "stats.adj_off.value": 101.7,
       "stats.adj_off.rank": 123,
       "stats.adj_def.value": 94.3,
       "stats.adj_def.rank": 89,
       "stats.adj_tempo.value": 68.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 61,
+      "stats.off._3p_pct.value": 28.5
    },
    "Vermont": {
       "stats.adj_margin.rank": 97,
       "conf": "America East Conference",
       "stats.adj_margin.value": 7.33,
-      "stats.adj_off.value": 103.6,
+      "stats.adj_off.value": 103.5,
       "stats.adj_off.rank": 94,
       "stats.adj_def.value": 96.2,
       "stats.adj_def.rank": 109,
       "stats.adj_tempo.value": 69.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 43.4
    },
    "Iona": {
       "stats.adj_margin.rank": 98,
@@ -1075,7 +1366,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 94.3,
       "stats.adj_def.rank": 88,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 32
    },
    "San Francisco": {
       "stats.adj_margin.rank": 99,
@@ -1083,123 +1377,142 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 7.06,
       "stats.adj_off.value": 104.5,
       "stats.adj_off.rank": 74,
-      "stats.adj_def.value": 97.5,
+      "stats.adj_def.value": 97.4,
       "stats.adj_def.rank": 132,
       "stats.adj_tempo.value": 73.8,
-      "is_high_major": 0
-   },
-   "Georgetown": {
-      "stats.adj_margin.rank": 100,
-      "conf": "Big East Conference",
-      "stats.adj_margin.value": 6.9,
-      "stats.adj_off.value": 104.6,
-      "stats.adj_off.rank": 71,
-      "stats.adj_def.value": 97.7,
-      "stats.adj_def.rank": 141,
-      "stats.adj_tempo.value": 73.7,
-      "is_high_major": 1
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 47.8
    },
    "Kent St.": {
-      "stats.adj_margin.rank": 101,
+      "stats.adj_margin.rank": 100,
       "conf": "Mid American Conference",
       "stats.adj_margin.value": 6.87,
       "stats.adj_off.value": 104.5,
       "stats.adj_off.rank": 73,
-      "stats.adj_def.value": 97.7,
+      "stats.adj_def.value": 97.6,
       "stats.adj_def.rank": 140,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 54.1
    },
    "UNC Greensboro": {
-      "stats.adj_margin.rank": 102,
+      "stats.adj_margin.rank": 101,
       "conf": "Southern Conference",
       "stats.adj_margin.value": 6.72,
-      "stats.adj_off.value": 101.3,
+      "stats.adj_off.value": 101.2,
       "stats.adj_off.rank": 134,
       "stats.adj_def.value": 94.5,
       "stats.adj_def.rank": 91,
       "stats.adj_tempo.value": 67.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 29
    },
    "Colorado St.": {
-      "stats.adj_margin.rank": 103,
+      "stats.adj_margin.rank": 102,
       "conf": "Mountain West Conference",
       "stats.adj_margin.value": 6.71,
-      "stats.adj_off.value": 104.3,
+      "stats.adj_off.value": 104.2,
       "stats.adj_off.rank": 81,
-      "stats.adj_def.value": 97.6,
+      "stats.adj_def.value": 97.5,
       "stats.adj_def.rank": 136,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 53.8
    },
    "Davidson": {
-      "stats.adj_margin.rank": 104,
+      "stats.adj_margin.rank": 103,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 6.62,
-      "stats.adj_off.value": 105.2,
+      "stats.adj_off.value": 105.1,
       "stats.adj_off.rank": 66,
-      "stats.adj_def.value": 98.6,
-      "stats.adj_def.rank": 156,
+      "stats.adj_def.value": 98.5,
+      "stats.adj_def.rank": 155,
       "stats.adj_tempo.value": 70.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 44.1
    },
    "UC Santa Barbara": {
-      "stats.adj_margin.rank": 105,
+      "stats.adj_margin.rank": 104,
       "conf": "Big West Conference",
       "stats.adj_margin.value": 6.54,
-      "stats.adj_off.value": 104,
+      "stats.adj_off.value": 103.9,
       "stats.adj_off.rank": 83,
       "stats.adj_def.value": 97.4,
       "stats.adj_def.rank": 131,
-      "stats.adj_tempo.value": 69.9,
-      "is_high_major": 0
+      "stats.adj_tempo.value": 70,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 39.1
    },
    "Towson": {
-      "stats.adj_margin.rank": 106,
+      "stats.adj_margin.rank": 105,
       "conf": "Colonial Athletic Association",
       "stats.adj_margin.value": 6.46,
-      "stats.adj_off.value": 103.4,
+      "stats.adj_off.value": 103.3,
       "stats.adj_off.rank": 98,
       "stats.adj_def.value": 96.9,
       "stats.adj_def.rank": 120,
       "stats.adj_tempo.value": 69.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 25
    },
    "Washington": {
-      "stats.adj_margin.rank": 107,
+      "stats.adj_margin.rank": 106,
       "conf": "Pac 12 Conference",
       "stats.adj_margin.value": 6.44,
       "stats.adj_off.value": 100.5,
       "stats.adj_off.rank": 145,
-      "stats.adj_def.value": 94.1,
+      "stats.adj_def.value": 94,
       "stats.adj_def.rank": 84,
-      "stats.adj_tempo.value": 71.6,
-      "is_high_major": 1
+      "stats.adj_tempo.value": 71.7,
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 31.5
    },
    "George Mason": {
-      "stats.adj_margin.rank": 108,
+      "stats.adj_margin.rank": 107,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 6.39,
       "stats.adj_off.value": 100.2,
       "stats.adj_off.rank": 151,
-      "stats.adj_def.value": 93.9,
+      "stats.adj_def.value": 93.8,
       "stats.adj_def.rank": 82,
       "stats.adj_tempo.value": 69.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 35
    },
    "Fresno St.": {
-      "stats.adj_margin.rank": 109,
+      "stats.adj_margin.rank": 108,
       "conf": "Mountain West Conference",
-      "stats.adj_margin.value": 6.39,
-      "stats.adj_off.value": 100.5,
+      "stats.adj_margin.value": 6.38,
+      "stats.adj_off.value": 100.4,
       "stats.adj_off.rank": 146,
-      "stats.adj_def.value": 94.1,
+      "stats.adj_def.value": 94,
       "stats.adj_def.rank": 83,
       "stats.adj_tempo.value": 68.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 23.8
    },
    "Temple": {
-      "stats.adj_margin.rank": 110,
+      "stats.adj_margin.rank": 109,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 6.05,
       "stats.adj_off.value": 102.4,
@@ -1207,18 +1520,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96.3,
       "stats.adj_def.rank": 111,
       "stats.adj_tempo.value": 69.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 25
+   },
+   "Georgetown": {
+      "stats.adj_margin.rank": 110,
+      "conf": "Big East Conference",
+      "stats.adj_margin.value": 6.03,
+      "stats.adj_off.value": 104.8,
+      "stats.adj_off.rank": 70,
+      "stats.adj_def.value": 98.7,
+      "stats.adj_def.rank": 159,
+      "stats.adj_tempo.value": 73.9,
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 86,
+      "stats.off._3p_pct.value": 38.8
    },
    "Santa Clara": {
       "stats.adj_margin.rank": 111,
       "conf": "West Coast Conference",
       "stats.adj_margin.value": 6.01,
-      "stats.adj_off.value": 101.4,
+      "stats.adj_off.value": 101.3,
       "stats.adj_off.rank": 133,
       "stats.adj_def.value": 95.3,
       "stats.adj_def.rank": 96,
       "stats.adj_tempo.value": 75,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 32.1
    },
    "SMU": {
       "stats.adj_margin.rank": 112,
@@ -1229,7 +1562,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 95.9,
       "stats.adj_def.rank": 105,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 16.6
    },
    "Akron": {
       "stats.adj_margin.rank": 113,
@@ -1237,10 +1573,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 5.65,
       "stats.adj_off.value": 102,
       "stats.adj_off.rank": 117,
-      "stats.adj_def.value": 96.4,
+      "stats.adj_def.value": 96.3,
       "stats.adj_def.rank": 113,
       "stats.adj_tempo.value": 68,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 35.4
    },
    "Nebraska": {
       "stats.adj_margin.rank": 114,
@@ -1251,18 +1590,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96.7,
       "stats.adj_def.rank": 116,
       "stats.adj_tempo.value": 73.9,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 31.8
    },
    "Georgia Tech": {
       "stats.adj_margin.rank": 115,
       "conf": "Atlantic Coast Conference",
-      "stats.adj_margin.value": 5.28,
-      "stats.adj_off.value": 100,
+      "stats.adj_margin.value": 5.27,
+      "stats.adj_off.value": 99.9,
       "stats.adj_off.rank": 156,
-      "stats.adj_def.value": 94.7,
+      "stats.adj_def.value": 94.6,
       "stats.adj_def.rank": 93,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 35
    },
    "Colgate": {
       "stats.adj_margin.rank": 116,
@@ -1271,42 +1616,54 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 103.1,
       "stats.adj_off.rank": 101,
       "stats.adj_def.value": 97.9,
-      "stats.adj_def.rank": 146,
+      "stats.adj_def.rank": 145,
       "stats.adj_tempo.value": 73.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 81,
+      "stats.off._3p_pct.value": 33.3
    },
    "Abilene Christian": {
       "stats.adj_margin.rank": 117,
       "conf": "Western Athletic Conference",
       "stats.adj_margin.value": 5.02,
-      "stats.adj_off.value": 98.9,
+      "stats.adj_off.value": 98.8,
       "stats.adj_off.rank": 176,
       "stats.adj_def.value": 93.8,
       "stats.adj_def.rank": 81,
       "stats.adj_tempo.value": 73.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 28.5
    },
    "Oral Roberts": {
       "stats.adj_margin.rank": 118,
       "conf": "Summit League",
       "stats.adj_margin.value": 4.94,
-      "stats.adj_off.value": 107.4,
+      "stats.adj_off.value": 107.3,
       "stats.adj_off.rank": 39,
       "stats.adj_def.value": 102.4,
       "stats.adj_def.rank": 254,
       "stats.adj_tempo.value": 73.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 40
    },
    "St. Bonaventure": {
       "stats.adj_margin.rank": 119,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 4.87,
-      "stats.adj_off.value": 101.2,
+      "stats.adj_off.value": 101.1,
       "stats.adj_off.rank": 135,
       "stats.adj_def.value": 96.3,
       "stats.adj_def.rank": 110,
       "stats.adj_tempo.value": 68.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 63,
+      "stats.off._3p_pct.value": 21
    },
    "Minnesota": {
       "stats.adj_margin.rank": 120,
@@ -1317,7 +1674,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 97.4,
       "stats.adj_def.rank": 130,
       "stats.adj_tempo.value": 69,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 63,
+      "stats.off._3p_pct.value": 44.4
    },
    "UNLV": {
       "stats.adj_margin.rank": 121,
@@ -1328,51 +1688,66 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 93.5,
       "stats.adj_def.rank": 72,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 15.3
    },
    "Duquesne": {
       "stats.adj_margin.rank": 122,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": 4.65,
-      "stats.adj_off.value": 102,
+      "stats.adj_off.value": 101.9,
       "stats.adj_off.rank": 119,
       "stats.adj_def.value": 97.3,
       "stats.adj_def.rank": 129,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 41.6
    },
    "Butler": {
       "stats.adj_margin.rank": 123,
       "conf": "Big East Conference",
       "stats.adj_margin.value": 4.64,
-      "stats.adj_off.value": 101.7,
+      "stats.adj_off.value": 101.6,
       "stats.adj_off.rank": 127,
       "stats.adj_def.value": 97,
       "stats.adj_def.rank": 122,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 16.6
    },
    "Portland": {
       "stats.adj_margin.rank": 124,
       "conf": "West Coast Conference",
-      "stats.adj_margin.value": 4.61,
+      "stats.adj_margin.value": 4.6,
       "stats.adj_off.value": 102.2,
       "stats.adj_off.rank": 115,
       "stats.adj_def.value": 97.6,
       "stats.adj_def.rank": 138,
       "stats.adj_tempo.value": 73,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 36.6
    },
    "Middle Tenn.": {
       "stats.adj_margin.rank": 125,
       "conf": "Conference USA",
-      "stats.adj_margin.value": 4.58,
+      "stats.adj_margin.value": 4.57,
       "stats.adj_off.value": 99.8,
       "stats.adj_off.rank": 157,
-      "stats.adj_def.value": 95.3,
+      "stats.adj_def.value": 95.2,
       "stats.adj_def.rank": 95,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 27.7
    },
    "Bradley": {
       "stats.adj_margin.rank": 126,
@@ -1381,9 +1756,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 101.7,
       "stats.adj_off.rank": 125,
       "stats.adj_def.value": 97.7,
-      "stats.adj_def.rank": 142,
+      "stats.adj_def.rank": 141,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 50
    },
    "UNI": {
       "stats.adj_margin.rank": 127,
@@ -1394,7 +1772,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96.7,
       "stats.adj_def.rank": 117,
       "stats.adj_tempo.value": 70.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 40.6
    },
    "James Madison": {
       "stats.adj_margin.rank": 128,
@@ -1402,10 +1783,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 3.74,
       "stats.adj_off.value": 102.7,
       "stats.adj_off.rank": 106,
-      "stats.adj_def.value": 99,
+      "stats.adj_def.value": 98.9,
       "stats.adj_def.rank": 162,
       "stats.adj_tempo.value": 73.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 63.6
    },
    "South Dakota St.": {
       "stats.adj_margin.rank": 129,
@@ -1413,10 +1797,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 3.62,
       "stats.adj_off.value": 105.8,
       "stats.adj_off.rank": 59,
-      "stats.adj_def.value": 102.2,
+      "stats.adj_def.value": 102.1,
       "stats.adj_def.rank": 244,
       "stats.adj_tempo.value": 72.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 26.6
    },
    "Belmont": {
       "stats.adj_margin.rank": 130,
@@ -1424,32 +1811,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 3.14,
       "stats.adj_off.value": 102.4,
       "stats.adj_off.rank": 110,
-      "stats.adj_def.value": 99.3,
+      "stats.adj_def.value": 99.2,
       "stats.adj_def.rank": 166,
       "stats.adj_tempo.value": 72.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 28
    },
    "Nevada": {
       "stats.adj_margin.rank": 131,
       "conf": "Mountain West Conference",
       "stats.adj_margin.value": 3.05,
-      "stats.adj_off.value": 102.2,
+      "stats.adj_off.value": 102.1,
       "stats.adj_off.rank": 116,
       "stats.adj_def.value": 99.1,
       "stats.adj_def.rank": 163,
       "stats.adj_tempo.value": 73.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 30
    },
    "Utah Valley": {
       "stats.adj_margin.rank": 132,
       "conf": "Western Athletic Conference",
       "stats.adj_margin.value": 2.91,
-      "stats.adj_off.value": 99.3,
+      "stats.adj_off.value": 99.2,
       "stats.adj_off.rank": 167,
-      "stats.adj_def.value": 96.4,
+      "stats.adj_def.value": 96.3,
       "stats.adj_def.rank": 112,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 15.7
    },
    "Indiana St.": {
       "stats.adj_margin.rank": 133,
@@ -1460,18 +1856,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96.9,
       "stats.adj_def.rank": 118,
       "stats.adj_tempo.value": 73.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 48.2
    },
    "Hofstra": {
       "stats.adj_margin.rank": 134,
       "conf": "Colonial Athletic Association",
       "stats.adj_margin.value": 2.85,
-      "stats.adj_off.value": 104.4,
+      "stats.adj_off.value": 104.3,
       "stats.adj_off.rank": 79,
       "stats.adj_def.value": 101.5,
-      "stats.adj_def.rank": 225,
+      "stats.adj_def.rank": 226,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 41.1
    },
    "Murray St.": {
       "stats.adj_margin.rank": 135,
@@ -1480,53 +1882,68 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 101,
       "stats.adj_off.rank": 138,
       "stats.adj_def.value": 98.2,
-      "stats.adj_def.rank": 150,
+      "stats.adj_def.rank": 149,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 31.8
    },
    "Missouri St.": {
       "stats.adj_margin.rank": 136,
       "conf": "Missouri Valley Conference",
       "stats.adj_margin.value": 2.66,
-      "stats.adj_off.value": 101.6,
+      "stats.adj_off.value": 101.5,
       "stats.adj_off.rank": 129,
       "stats.adj_def.value": 98.9,
       "stats.adj_def.rank": 161,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Long Beach St.": {
       "stats.adj_margin.rank": 137,
       "conf": "Big West Conference",
       "stats.adj_margin.value": 2.62,
-      "stats.adj_off.value": 100.7,
+      "stats.adj_off.value": 100.6,
       "stats.adj_off.rank": 141,
       "stats.adj_def.value": 98,
-      "stats.adj_def.rank": 149,
+      "stats.adj_def.rank": 148,
       "stats.adj_tempo.value": 73.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 40
    },
    "New Mexico": {
       "stats.adj_margin.rank": 138,
       "conf": "Mountain West Conference",
       "stats.adj_margin.value": 2.44,
-      "stats.adj_off.value": 104,
+      "stats.adj_off.value": 103.9,
       "stats.adj_off.rank": 84,
       "stats.adj_def.value": 101.5,
-      "stats.adj_def.rank": 226,
+      "stats.adj_def.rank": 227,
       "stats.adj_tempo.value": 74.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 36.8
    },
    "Sam Houston": {
       "stats.adj_margin.rank": 139,
       "conf": "Western Athletic Conference",
       "stats.adj_margin.value": 2.3,
-      "stats.adj_off.value": 95.4,
-      "stats.adj_off.rank": 240,
-      "stats.adj_def.value": 93.1,
+      "stats.adj_off.value": 95.3,
+      "stats.adj_off.rank": 239,
+      "stats.adj_def.value": 93,
       "stats.adj_def.rank": 66,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 26
    },
    "Louisiana Tech": {
       "stats.adj_margin.rank": 140,
@@ -1535,9 +1952,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 100.3,
       "stats.adj_off.rank": 148,
       "stats.adj_def.value": 98,
-      "stats.adj_def.rank": 148,
+      "stats.adj_def.rank": 147,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 31
    },
    "New Mexico St.": {
       "stats.adj_margin.rank": 141,
@@ -1547,30 +1967,39 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.rank": 170,
       "stats.adj_def.value": 96.9,
       "stats.adj_def.rank": 121,
-      "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "stats.adj_tempo.value": 71.4,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 36.1
    },
    "San Diego": {
       "stats.adj_margin.rank": 142,
       "conf": "West Coast Conference",
       "stats.adj_margin.value": 2.13,
-      "stats.adj_off.value": 100.4,
+      "stats.adj_off.value": 100.3,
       "stats.adj_off.rank": 147,
       "stats.adj_def.value": 98.2,
-      "stats.adj_def.rank": 152,
-      "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "stats.adj_def.rank": 151,
+      "stats.adj_tempo.value": 72.7,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 43.4
    },
    "LMU (CA)": {
       "stats.adj_margin.rank": 143,
       "conf": "West Coast Conference",
       "stats.adj_margin.value": 1.92,
-      "stats.adj_off.value": 100.3,
+      "stats.adj_off.value": 100.2,
       "stats.adj_off.rank": 150,
       "stats.adj_def.value": 98.3,
-      "stats.adj_def.rank": 154,
+      "stats.adj_def.rank": 153,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 36.1
    },
    "Massachusetts": {
       "stats.adj_margin.rank": 144,
@@ -1578,21 +2007,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 1.74,
       "stats.adj_off.value": 101.8,
       "stats.adj_off.rank": 120,
-      "stats.adj_def.value": 100.1,
-      "stats.adj_def.rank": 186,
+      "stats.adj_def.value": 100,
+      "stats.adj_def.rank": 187,
       "stats.adj_tempo.value": 74.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 47.3
    },
    "Marshall": {
       "stats.adj_margin.rank": 145,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": 1.68,
-      "stats.adj_off.value": 102.9,
+      "stats.adj_off.value": 102.8,
       "stats.adj_off.rank": 102,
       "stats.adj_def.value": 101.2,
-      "stats.adj_def.rank": 215,
+      "stats.adj_def.rank": 217,
       "stats.adj_tempo.value": 75.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 35.4
    },
    "Louisiana": {
       "stats.adj_margin.rank": 146,
@@ -1603,7 +2038,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 99.4,
       "stats.adj_def.rank": 169,
       "stats.adj_tempo.value": 73.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 42.8
    },
    "Wofford": {
       "stats.adj_margin.rank": 147,
@@ -1612,53 +2050,68 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 101.7,
       "stats.adj_off.rank": 124,
       "stats.adj_def.value": 100.1,
-      "stats.adj_def.rank": 189,
+      "stats.adj_def.rank": 190,
       "stats.adj_tempo.value": 69.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 50
    },
    "Seattle U": {
       "stats.adj_margin.rank": 148,
       "conf": "Western Athletic Conference",
       "stats.adj_margin.value": 1.57,
-      "stats.adj_off.value": 99.5,
+      "stats.adj_off.value": 99.4,
       "stats.adj_off.rank": 162,
-      "stats.adj_def.value": 97.9,
-      "stats.adj_def.rank": 145,
+      "stats.adj_def.value": 97.8,
+      "stats.adj_def.rank": 144,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 41.1
    },
    "UC Irvine": {
       "stats.adj_margin.rank": 149,
       "conf": "Big West Conference",
       "stats.adj_margin.value": 1.39,
-      "stats.adj_off.value": 98.5,
+      "stats.adj_off.value": 98.4,
       "stats.adj_off.rank": 183,
       "stats.adj_def.value": 97.1,
       "stats.adj_def.rank": 124,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 50
    },
    "Princeton": {
       "stats.adj_margin.rank": 150,
       "conf": "Ivy League",
       "stats.adj_margin.value": 0.88,
-      "stats.adj_off.value": 102.8,
+      "stats.adj_off.value": 102.7,
       "stats.adj_off.rank": 104,
       "stats.adj_def.value": 101.9,
-      "stats.adj_def.rank": 236,
+      "stats.adj_def.rank": 237,
       "stats.adj_tempo.value": 70.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 25
    },
    "Old Dominion": {
       "stats.adj_margin.rank": 151,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": 0.86,
-      "stats.adj_off.value": 98.4,
+      "stats.adj_off.value": 98.3,
       "stats.adj_off.rank": 185,
       "stats.adj_def.value": 97.5,
       "stats.adj_def.rank": 134,
       "stats.adj_tempo.value": 68.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 29.4
    },
    "Hawaii": {
       "stats.adj_margin.rank": 152,
@@ -1666,10 +2119,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 0.85,
       "stats.adj_off.value": 98.5,
       "stats.adj_off.rank": 182,
-      "stats.adj_def.value": 97.7,
+      "stats.adj_def.value": 97.6,
       "stats.adj_def.rank": 139,
       "stats.adj_tempo.value": 70.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Chattanooga": {
       "stats.adj_margin.rank": 153,
@@ -1677,10 +2133,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": 0.74,
       "stats.adj_off.value": 101.7,
       "stats.adj_off.rank": 126,
-      "stats.adj_def.value": 101,
-      "stats.adj_def.rank": 208,
+      "stats.adj_def.value": 100.9,
+      "stats.adj_def.rank": 209,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 34.6
    },
    "Rhode Island": {
       "stats.adj_margin.rank": 154,
@@ -1691,7 +2150,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96.2,
       "stats.adj_def.rank": 108,
       "stats.adj_tempo.value": 70.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 11.7
    },
    "Purdue Fort Wayne": {
       "stats.adj_margin.rank": 155,
@@ -1702,7 +2164,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 99.6,
       "stats.adj_def.rank": 172,
       "stats.adj_tempo.value": 72.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 23.6
    },
    "SFA": {
       "stats.adj_margin.rank": 156,
@@ -1713,7 +2178,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 97.6,
       "stats.adj_def.rank": 137,
       "stats.adj_tempo.value": 73.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 85,
+      "stats.off._3p_pct.value": 41.6
    },
    "Yale": {
       "stats.adj_margin.rank": 157,
@@ -1724,29 +2192,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 97.2,
       "stats.adj_def.rank": 126,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 39.2
    },
    "Tulsa": {
       "stats.adj_margin.rank": 158,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": 0.44,
       "stats.adj_off.value": 99,
-      "stats.adj_off.rank": 172,
-      "stats.adj_def.value": 98.6,
-      "stats.adj_def.rank": 157,
+      "stats.adj_off.rank": 171,
+      "stats.adj_def.value": 98.5,
+      "stats.adj_def.rank": 156,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 37.5
    },
    "Samford": {
       "stats.adj_margin.rank": 159,
       "conf": "Southern Conference",
       "stats.adj_margin.value": 0.36,
-      "stats.adj_off.value": 103.8,
+      "stats.adj_off.value": 103.7,
       "stats.adj_off.rank": 89,
       "stats.adj_def.value": 103.4,
       "stats.adj_def.rank": 276,
       "stats.adj_tempo.value": 73.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 88,
+      "stats.off._3p_pct.value": 28.1
    },
    "California": {
       "stats.adj_margin.rank": 160,
@@ -1757,7 +2234,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 96.9,
       "stats.adj_def.rank": 119,
       "stats.adj_tempo.value": 69.3,
-      "is_high_major": 1
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 28.5
    },
    "Longwood": {
       "stats.adj_margin.rank": 161,
@@ -1766,20 +2246,26 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 98.1,
       "stats.adj_off.rank": 194,
       "stats.adj_def.value": 98.3,
-      "stats.adj_def.rank": 153,
+      "stats.adj_def.rank": 152,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 38.4
    },
    "Pepperdine": {
       "stats.adj_margin.rank": 162,
       "conf": "West Coast Conference",
       "stats.adj_margin.value": -0.28,
-      "stats.adj_off.value": 101.8,
+      "stats.adj_off.value": 101.7,
       "stats.adj_off.rank": 121,
-      "stats.adj_def.value": 102.1,
+      "stats.adj_def.value": 102,
       "stats.adj_def.rank": 243,
       "stats.adj_tempo.value": 74.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 50
    },
    "Mercer": {
       "stats.adj_margin.rank": 163,
@@ -1788,9 +2274,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 100.6,
       "stats.adj_off.rank": 143,
       "stats.adj_def.value": 101,
-      "stats.adj_def.rank": 209,
+      "stats.adj_def.rank": 210,
       "stats.adj_tempo.value": 69.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 42.8
    },
    "Montana St.": {
       "stats.adj_margin.rank": 164,
@@ -1799,9 +2288,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 99.7,
       "stats.adj_off.rank": 159,
       "stats.adj_def.value": 100.1,
-      "stats.adj_def.rank": 188,
+      "stats.adj_def.rank": 189,
       "stats.adj_tempo.value": 69.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 23
    },
    "Saint Joseph's": {
       "stats.adj_margin.rank": 165,
@@ -1810,31 +2302,40 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 98.1,
       "stats.adj_off.rank": 193,
       "stats.adj_def.value": 98.5,
-      "stats.adj_def.rank": 155,
+      "stats.adj_def.rank": 154,
       "stats.adj_tempo.value": 73,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "UC Davis": {
       "stats.adj_margin.rank": 166,
       "conf": "Big West Conference",
       "stats.adj_margin.value": -0.51,
-      "stats.adj_off.value": 96.7,
+      "stats.adj_off.value": 96.6,
       "stats.adj_off.rank": 216,
-      "stats.adj_def.value": 97.2,
+      "stats.adj_def.value": 97.1,
       "stats.adj_def.rank": 125,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 42.8
    },
    "UMass Lowell": {
       "stats.adj_margin.rank": 167,
       "conf": "America East Conference",
       "stats.adj_margin.value": -0.51,
-      "stats.adj_off.value": 98.2,
+      "stats.adj_off.value": 98.1,
       "stats.adj_off.rank": 191,
-      "stats.adj_def.value": 98.7,
-      "stats.adj_def.rank": 159,
-      "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "stats.adj_def.value": 98.6,
+      "stats.adj_def.rank": 158,
+      "stats.adj_tempo.value": 72.3,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 38.7
    },
    "Southern Utah": {
       "stats.adj_margin.rank": 168,
@@ -1845,7 +2346,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 101.9,
       "stats.adj_def.rank": 239,
       "stats.adj_tempo.value": 73.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 34.3
    },
    "Norfolk St.": {
       "stats.adj_margin.rank": 169,
@@ -1854,9 +2358,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 97.7,
       "stats.adj_off.rank": 201,
       "stats.adj_def.value": 98.2,
-      "stats.adj_def.rank": 151,
+      "stats.adj_def.rank": 150,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 39.3
    },
    "California Baptist": {
       "stats.adj_margin.rank": 170,
@@ -1864,21 +2371,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -0.56,
       "stats.adj_off.value": 99.3,
       "stats.adj_off.rank": 166,
-      "stats.adj_def.value": 99.9,
-      "stats.adj_def.rank": 178,
+      "stats.adj_def.value": 99.8,
+      "stats.adj_def.rank": 179,
       "stats.adj_tempo.value": 70.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 22.8
    },
    "UTEP": {
       "stats.adj_margin.rank": 171,
       "conf": "Conference USA",
       "stats.adj_margin.value": -0.74,
       "stats.adj_off.value": 95,
-      "stats.adj_off.rank": 250,
-      "stats.adj_def.value": 95.8,
+      "stats.adj_off.rank": 249,
+      "stats.adj_def.value": 95.7,
       "stats.adj_def.rank": 103,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 33.3
    },
    "Delaware": {
       "stats.adj_margin.rank": 172,
@@ -1886,21 +2399,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -0.87,
       "stats.adj_off.value": 98.8,
       "stats.adj_off.rank": 177,
-      "stats.adj_def.value": 99.7,
+      "stats.adj_def.value": 99.6,
       "stats.adj_def.rank": 175,
       "stats.adj_tempo.value": 70.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 33.3
    },
    "South Dakota": {
       "stats.adj_margin.rank": 173,
       "conf": "Summit League",
       "stats.adj_margin.value": -0.92,
-      "stats.adj_off.value": 102.9,
+      "stats.adj_off.value": 102.8,
       "stats.adj_off.rank": 103,
-      "stats.adj_def.value": 103.8,
+      "stats.adj_def.value": 103.7,
       "stats.adj_def.rank": 284,
       "stats.adj_tempo.value": 70.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 13.3
    },
    "Rider": {
       "stats.adj_margin.rank": 174,
@@ -1909,9 +2428,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 99.4,
       "stats.adj_off.rank": 164,
       "stats.adj_def.value": 100.3,
-      "stats.adj_def.rank": 191,
+      "stats.adj_def.rank": 193,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 64.2
    },
    "UNC Asheville": {
       "stats.adj_margin.rank": 175,
@@ -1919,13 +2441,30 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -1.06,
       "stats.adj_off.value": 100.2,
       "stats.adj_off.rank": 154,
-      "stats.adj_def.value": 101.3,
-      "stats.adj_def.rank": 219,
+      "stats.adj_def.value": 101.2,
+      "stats.adj_def.rank": 220,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 85,
+      "stats.off._3p_pct.value": 37.9
+   },
+   "Charlotte": {
+      "stats.adj_margin.rank": 176,
+      "conf": "Conference USA",
+      "stats.adj_margin.value": -1.08,
+      "stats.adj_off.value": 98.9,
+      "stats.adj_off.rank": 174,
+      "stats.adj_def.value": 100,
+      "stats.adj_def.rank": 185,
+      "stats.adj_tempo.value": 69,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 34.4
    },
    "Winthrop": {
-      "stats.adj_margin.rank": 176,
+      "stats.adj_margin.rank": 177,
       "conf": "Big South Conference",
       "stats.adj_margin.value": -1.13,
       "stats.adj_off.value": 98.7,
@@ -1933,51 +2472,52 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 99.8,
       "stats.adj_def.rank": 177,
       "stats.adj_tempo.value": 73,
-      "is_high_major": 0
-   },
-   "Charlotte": {
-      "stats.adj_margin.rank": 177,
-      "conf": "Conference USA",
-      "stats.adj_margin.value": -1.15,
-      "stats.adj_off.value": 98.9,
-      "stats.adj_off.rank": 174,
-      "stats.adj_def.value": 100.1,
-      "stats.adj_def.rank": 185,
-      "stats.adj_tempo.value": 69,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 44
    },
    "Coastal Carolina": {
       "stats.adj_margin.rank": 178,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -1.28,
-      "stats.adj_off.value": 98.3,
+      "stats.adj_off.value": 98.2,
       "stats.adj_off.rank": 189,
       "stats.adj_def.value": 99.5,
       "stats.adj_def.rank": 171,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 47.6
    },
    "Jacksonville": {
       "stats.adj_margin.rank": 179,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -1.39,
-      "stats.adj_off.value": 97.9,
+      "stats.adj_off.value": 97.8,
       "stats.adj_off.rank": 199,
-      "stats.adj_def.value": 99.3,
+      "stats.adj_def.value": 99.2,
       "stats.adj_def.rank": 165,
       "stats.adj_tempo.value": 66.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 59,
+      "stats.off._3p_pct.value": 13
    },
    "Northern Ky.": {
       "stats.adj_margin.rank": 180,
       "conf": "Horizon League",
       "stats.adj_margin.value": -1.47,
-      "stats.adj_off.value": 100.3,
+      "stats.adj_off.value": 100.2,
       "stats.adj_off.rank": 149,
       "stats.adj_def.value": 101.7,
-      "stats.adj_def.rank": 231,
+      "stats.adj_def.rank": 232,
       "stats.adj_tempo.value": 68.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 18.5
    },
    "Buffalo": {
       "stats.adj_margin.rank": 181,
@@ -1986,9 +2526,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 99.4,
       "stats.adj_off.rank": 163,
       "stats.adj_def.value": 100.9,
-      "stats.adj_def.rank": 207,
+      "stats.adj_def.rank": 208,
       "stats.adj_tempo.value": 76.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 84,
+      "stats.off._3p_pct.value": 28.5
    },
    "Penn": {
       "stats.adj_margin.rank": 182,
@@ -1996,10 +2539,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -1.63,
       "stats.adj_off.value": 100.2,
       "stats.adj_off.rank": 152,
-      "stats.adj_def.value": 101.9,
-      "stats.adj_def.rank": 235,
+      "stats.adj_def.value": 101.8,
+      "stats.adj_def.rank": 236,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 12
    },
    "Lipscomb": {
       "stats.adj_margin.rank": 183,
@@ -2010,7 +2556,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.6,
       "stats.adj_def.rank": 259,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "La Salle": {
       "stats.adj_margin.rank": 184,
@@ -2019,75 +2568,96 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 98.6,
       "stats.adj_off.rank": 179,
       "stats.adj_def.value": 100.5,
-      "stats.adj_def.rank": 196,
+      "stats.adj_def.rank": 197,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 40
    },
    "Gardner-Webb": {
       "stats.adj_margin.rank": 185,
       "conf": "Big South Conference",
       "stats.adj_margin.value": -2.04,
-      "stats.adj_off.value": 94.6,
-      "stats.adj_off.rank": 264,
+      "stats.adj_off.value": 94.5,
+      "stats.adj_off.rank": 263,
       "stats.adj_def.value": 96.6,
       "stats.adj_def.rank": 115,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 31.8
    },
    "South Fla.": {
       "stats.adj_margin.rank": 186,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": -2.34,
-      "stats.adj_off.value": 93.4,
+      "stats.adj_off.value": 93.3,
       "stats.adj_off.rank": 294,
       "stats.adj_def.value": 95.7,
       "stats.adj_def.rank": 100,
       "stats.adj_tempo.value": 69.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 21
    },
    "Col. of Charleston": {
       "stats.adj_margin.rank": 187,
       "conf": "Colonial Athletic Association",
       "stats.adj_margin.value": -2.38,
-      "stats.adj_off.value": 99.4,
+      "stats.adj_off.value": 99.3,
       "stats.adj_off.rank": 165,
       "stats.adj_def.value": 101.7,
-      "stats.adj_def.rank": 232,
+      "stats.adj_def.rank": 233,
       "stats.adj_tempo.value": 75.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 31
    },
    "Texas St.": {
       "stats.adj_margin.rank": 188,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -2.44,
-      "stats.adj_off.value": 98.1,
+      "stats.adj_off.value": 98,
       "stats.adj_off.rank": 196,
       "stats.adj_def.value": 100.5,
-      "stats.adj_def.rank": 195,
+      "stats.adj_def.rank": 196,
       "stats.adj_tempo.value": 67.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 25
    },
    "Fairfield": {
       "stats.adj_margin.rank": 189,
       "conf": "Metro Atlantic Athletic Conference",
       "stats.adj_margin.value": -2.65,
       "stats.adj_off.value": 95.2,
-      "stats.adj_off.rank": 243,
-      "stats.adj_def.value": 97.9,
-      "stats.adj_def.rank": 144,
+      "stats.adj_off.rank": 242,
+      "stats.adj_def.value": 97.8,
+      "stats.adj_def.rank": 143,
       "stats.adj_tempo.value": 68.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 27.5
    },
    "Navy": {
       "stats.adj_margin.rank": 190,
       "conf": "Patriot League",
       "stats.adj_margin.value": -2.73,
       "stats.adj_off.value": 95.3,
-      "stats.adj_off.rank": 242,
+      "stats.adj_off.rank": 241,
       "stats.adj_def.value": 98,
-      "stats.adj_def.rank": 147,
+      "stats.adj_def.rank": 146,
       "stats.adj_tempo.value": 67.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 47.6
    },
    "Quinnipiac": {
       "stats.adj_margin.rank": 191,
@@ -2096,9 +2666,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 97.9,
       "stats.adj_off.rank": 198,
       "stats.adj_def.value": 100.7,
-      "stats.adj_def.rank": 203,
+      "stats.adj_def.rank": 204,
       "stats.adj_tempo.value": 72.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 30
    },
    "Ohio": {
       "stats.adj_margin.rank": 192,
@@ -2107,9 +2680,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 97.7,
       "stats.adj_off.rank": 202,
       "stats.adj_def.value": 100.6,
-      "stats.adj_def.rank": 201,
+      "stats.adj_def.rank": 202,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 45
    },
    "UNCW": {
       "stats.adj_margin.rank": 193,
@@ -2118,42 +2694,54 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 97.3,
       "stats.adj_off.rank": 206,
       "stats.adj_def.value": 100.3,
-      "stats.adj_def.rank": 192,
+      "stats.adj_def.rank": 194,
       "stats.adj_tempo.value": 69,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 63,
+      "stats.off._3p_pct.value": 25
    },
    "Campbell": {
       "stats.adj_margin.rank": 194,
       "conf": "Big South Conference",
       "stats.adj_margin.value": -3.06,
-      "stats.adj_off.value": 96.1,
+      "stats.adj_off.value": 96,
       "stats.adj_off.rank": 228,
       "stats.adj_def.value": 99.1,
       "stats.adj_def.rank": 164,
       "stats.adj_tempo.value": 68.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 37.5
    },
    "Cornell": {
       "stats.adj_margin.rank": 195,
       "conf": "Ivy League",
       "stats.adj_margin.value": -3.1,
-      "stats.adj_off.value": 98.6,
+      "stats.adj_off.value": 98.5,
       "stats.adj_off.rank": 181,
-      "stats.adj_def.value": 101.7,
-      "stats.adj_def.rank": 229,
+      "stats.adj_def.value": 101.6,
+      "stats.adj_def.rank": 230,
       "stats.adj_tempo.value": 76.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 83,
+      "stats.off._3p_pct.value": 36.1
    },
    "Eastern Wash.": {
       "stats.adj_margin.rank": 196,
       "conf": "Big Sky Conference",
       "stats.adj_margin.value": -3.1,
-      "stats.adj_off.value": 99.2,
+      "stats.adj_off.value": 99.1,
       "stats.adj_off.rank": 169,
-      "stats.adj_def.value": 102.3,
+      "stats.adj_def.value": 102.2,
       "stats.adj_def.rank": 247,
       "stats.adj_tempo.value": 74.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 81,
+      "stats.off._3p_pct.value": 23.8
    },
    "Northern Colo.": {
       "stats.adj_margin.rank": 197,
@@ -2161,10 +2749,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -3.11,
       "stats.adj_off.value": 100.9,
       "stats.adj_off.rank": 139,
-      "stats.adj_def.value": 104.1,
+      "stats.adj_def.value": 104,
       "stats.adj_def.rank": 294,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 61,
+      "stats.off._3p_pct.value": 23.8
    },
    "Tarleton St.": {
       "stats.adj_margin.rank": 198,
@@ -2172,10 +2763,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -3.14,
       "stats.adj_off.value": 93.9,
       "stats.adj_off.rank": 282,
-      "stats.adj_def.value": 97.1,
+      "stats.adj_def.value": 97,
       "stats.adj_def.rank": 123,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 14.2
    },
    "Cal St. Fullerton": {
       "stats.adj_margin.rank": 199,
@@ -2186,51 +2780,66 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 99.3,
       "stats.adj_def.rank": 167,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 18.1
    },
    "Wright St.": {
       "stats.adj_margin.rank": 200,
       "conf": "Horizon League",
-      "stats.adj_margin.value": -3.29,
-      "stats.adj_off.value": 99,
+      "stats.adj_margin.value": -3.3,
+      "stats.adj_off.value": 98.9,
       "stats.adj_off.rank": 173,
-      "stats.adj_def.value": 102.3,
+      "stats.adj_def.value": 102.2,
       "stats.adj_def.rank": 249,
       "stats.adj_tempo.value": 72.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "App State": {
       "stats.adj_margin.rank": 201,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -3.3,
-      "stats.adj_off.value": 96.6,
+      "stats.adj_off.value": 96.5,
       "stats.adj_off.rank": 219,
-      "stats.adj_def.value": 99.9,
-      "stats.adj_def.rank": 179,
+      "stats.adj_def.value": 99.8,
+      "stats.adj_def.rank": 178,
       "stats.adj_tempo.value": 69.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 104,
+      "stats.off._3p_pct.value": 41.6
    },
    "Youngstown St.": {
       "stats.adj_margin.rank": 202,
       "conf": "Horizon League",
       "stats.adj_margin.value": -3.31,
-      "stats.adj_off.value": 101.8,
+      "stats.adj_off.value": 101.7,
       "stats.adj_off.rank": 122,
-      "stats.adj_def.value": 105.1,
+      "stats.adj_def.value": 105,
       "stats.adj_def.rank": 311,
       "stats.adj_tempo.value": 73,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 50
    },
    "Troy": {
       "stats.adj_margin.rank": 203,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -3.43,
       "stats.adj_off.value": 94.4,
-      "stats.adj_off.rank": 270,
+      "stats.adj_off.rank": 269,
       "stats.adj_def.value": 97.8,
-      "stats.adj_def.rank": 143,
+      "stats.adj_def.rank": 142,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 36.6
    },
    "North Dakota St.": {
       "stats.adj_margin.rank": 204,
@@ -2239,20 +2848,26 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 97.5,
       "stats.adj_off.rank": 204,
       "stats.adj_def.value": 101,
-      "stats.adj_def.rank": 210,
+      "stats.adj_def.rank": 211,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 23.8
    },
    "Saint Peter's": {
       "stats.adj_margin.rank": 205,
       "conf": "Metro Atlantic Athletic Conference",
       "stats.adj_margin.value": -3.53,
-      "stats.adj_off.value": 93.8,
+      "stats.adj_off.value": 93.7,
       "stats.adj_off.rank": 286,
       "stats.adj_def.value": 97.3,
       "stats.adj_def.rank": 128,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 27.2
    },
    "Drexel": {
       "stats.adj_margin.rank": 206,
@@ -2260,32 +2875,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -3.56,
       "stats.adj_off.value": 97.3,
       "stats.adj_off.rank": 207,
-      "stats.adj_def.value": 100.9,
-      "stats.adj_def.rank": 205,
+      "stats.adj_def.value": 100.8,
+      "stats.adj_def.rank": 206,
       "stats.adj_tempo.value": 70.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "UC Riverside": {
       "stats.adj_margin.rank": 207,
       "conf": "Big West Conference",
       "stats.adj_margin.value": -3.6,
       "stats.adj_off.value": 96.3,
-      "stats.adj_off.rank": 224,
+      "stats.adj_off.rank": 223,
       "stats.adj_def.value": 99.9,
       "stats.adj_def.rank": 181,
       "stats.adj_tempo.value": 71.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 19
    },
    "Bryant": {
       "stats.adj_margin.rank": 208,
       "conf": "America East Conference",
       "stats.adj_margin.value": -3.6,
-      "stats.adj_off.value": 98.9,
+      "stats.adj_off.value": 98.8,
       "stats.adj_off.rank": 175,
-      "stats.adj_def.value": 102.5,
+      "stats.adj_def.value": 102.4,
       "stats.adj_def.rank": 256,
-      "stats.adj_tempo.value": 75.1,
-      "is_high_major": 0
+      "stats.adj_tempo.value": 75.2,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 90,
+      "stats.off._3p_pct.value": 52.7
    },
    "FGCU": {
       "stats.adj_margin.rank": 209,
@@ -2294,42 +2918,54 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 97.6,
       "stats.adj_off.rank": 203,
       "stats.adj_def.value": 101.3,
-      "stats.adj_def.rank": 220,
+      "stats.adj_def.rank": 221,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 29.6
    },
    "Montana": {
       "stats.adj_margin.rank": 210,
       "conf": "Big Sky Conference",
       "stats.adj_margin.value": -3.77,
-      "stats.adj_off.value": 97.5,
+      "stats.adj_off.value": 97.4,
       "stats.adj_off.rank": 205,
       "stats.adj_def.value": 101.2,
-      "stats.adj_def.rank": 218,
+      "stats.adj_def.rank": 219,
       "stats.adj_tempo.value": 69.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 30
    },
    "Harvard": {
       "stats.adj_margin.rank": 211,
       "conf": "Ivy League",
       "stats.adj_margin.value": -3.87,
-      "stats.adj_off.value": 95.8,
-      "stats.adj_off.rank": 232,
-      "stats.adj_def.value": 99.7,
+      "stats.adj_off.value": 95.7,
+      "stats.adj_off.rank": 231,
+      "stats.adj_def.value": 99.6,
       "stats.adj_def.rank": 174,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 30.7
    },
    "Fordham": {
       "stats.adj_margin.rank": 212,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": -3.9,
-      "stats.adj_off.value": 93.6,
+      "stats.adj_off.value": 93.5,
       "stats.adj_off.rank": 290,
-      "stats.adj_def.value": 97.5,
+      "stats.adj_def.value": 97.4,
       "stats.adj_def.rank": 133,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 40
    },
    "Kennesaw St.": {
       "stats.adj_margin.rank": 213,
@@ -2340,21 +2976,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102,
       "stats.adj_def.rank": 241,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 38.4
+   },
+   "San Jose St.": {
+      "stats.adj_margin.rank": 214,
+      "conf": "Mountain West Conference",
+      "stats.adj_margin.value": -3.99,
+      "stats.adj_off.value": 96.2,
+      "stats.adj_off.rank": 224,
+      "stats.adj_def.value": 100.2,
+      "stats.adj_def.rank": 192,
+      "stats.adj_tempo.value": 69.5,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 26.3
    },
    "High Point": {
-      "stats.adj_margin.rank": 214,
+      "stats.adj_margin.rank": 215,
       "conf": "Big South Conference",
       "stats.adj_margin.value": -4.14,
       "stats.adj_off.value": 95.5,
-      "stats.adj_off.rank": 237,
+      "stats.adj_off.rank": 236,
       "stats.adj_def.value": 99.6,
       "stats.adj_def.rank": 173,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 83,
+      "stats.off._3p_pct.value": 28
    },
    "Jacksonville St.": {
-      "stats.adj_margin.rank": 215,
+      "stats.adj_margin.rank": 216,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -4.39,
       "stats.adj_off.value": 98,
@@ -2362,10 +3018,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.4,
       "stats.adj_def.rank": 252,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 54.8
    },
    "Oregon St.": {
-      "stats.adj_margin.rank": 216,
+      "stats.adj_margin.rank": 217,
       "conf": "Pac 12 Conference",
       "stats.adj_margin.value": -4.42,
       "stats.adj_off.value": 98.4,
@@ -2373,95 +3032,108 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.8,
       "stats.adj_def.rank": 263,
       "stats.adj_tempo.value": 70.7,
-      "is_high_major": 1
-   },
-   "Ga. Southern": {
-      "stats.adj_margin.rank": 217,
-      "conf": "Sun Belt Conference",
-      "stats.adj_margin.value": -4.43,
-      "stats.adj_off.value": 95.9,
-      "stats.adj_off.rank": 229,
-      "stats.adj_def.value": 100.3,
-      "stats.adj_def.rank": 193,
-      "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 1,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 37.5
    },
    "Valparaiso": {
       "stats.adj_margin.rank": 218,
       "conf": "Missouri Valley Conference",
       "stats.adj_margin.value": -4.51,
-      "stats.adj_off.value": 96.4,
-      "stats.adj_off.rank": 222,
-      "stats.adj_def.value": 100.9,
-      "stats.adj_def.rank": 206,
+      "stats.adj_off.value": 96.3,
+      "stats.adj_off.rank": 221,
+      "stats.adj_def.value": 100.8,
+      "stats.adj_def.rank": 207,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 42.8
    },
    "South Alabama": {
       "stats.adj_margin.rank": 219,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -4.52,
       "stats.adj_off.value": 95.4,
-      "stats.adj_off.rank": 238,
+      "stats.adj_off.rank": 237,
       "stats.adj_def.value": 99.9,
       "stats.adj_def.rank": 182,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
-   "Queens": {
+   "Queens (NC)": {
       "stats.adj_margin.rank": 220,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -4.55,
       "stats.adj_off.value": 101.4,
       "stats.adj_off.rank": 131,
-      "stats.adj_def.value": 106,
-      "stats.adj_def.rank": 328,
+      "stats.adj_def.value": 105.9,
+      "stats.adj_def.rank": 329,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 42.3
    },
    "A&M-Corpus Christi": {
       "stats.adj_margin.rank": 221,
       "conf": "Southland Conference",
       "stats.adj_margin.value": -4.55,
-      "stats.adj_off.value": 94.3,
-      "stats.adj_off.rank": 276,
+      "stats.adj_off.value": 94.2,
+      "stats.adj_off.rank": 275,
       "stats.adj_def.value": 98.8,
       "stats.adj_def.rank": 160,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 30
    },
    "George Washington": {
       "stats.adj_margin.rank": 222,
       "conf": "Atlantic 10 Conference",
       "stats.adj_margin.value": -4.65,
-      "stats.adj_off.value": 95.9,
-      "stats.adj_off.rank": 230,
+      "stats.adj_off.value": 95.8,
+      "stats.adj_off.rank": 229,
       "stats.adj_def.value": 100.5,
-      "stats.adj_def.rank": 197,
+      "stats.adj_def.rank": 198,
       "stats.adj_tempo.value": 72.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 33.3
    },
    "FIU": {
       "stats.adj_margin.rank": 223,
       "conf": "Conference USA",
       "stats.adj_margin.value": -4.7,
       "stats.adj_off.value": 96.4,
-      "stats.adj_off.rank": 221,
+      "stats.adj_off.rank": 220,
       "stats.adj_def.value": 101.1,
-      "stats.adj_def.rank": 213,
+      "stats.adj_def.rank": 214,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 18.7
    },
    "Oakland": {
       "stats.adj_margin.rank": 224,
       "conf": "Horizon League",
       "stats.adj_margin.value": -4.71,
       "stats.adj_off.value": 99,
-      "stats.adj_off.rank": 171,
+      "stats.adj_off.rank": 172,
       "stats.adj_def.value": 103.7,
       "stats.adj_def.rank": 281,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 38.4
    },
    "North Florida": {
       "stats.adj_margin.rank": 225,
@@ -2472,18 +3144,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 104,
       "stats.adj_def.rank": 293,
       "stats.adj_tempo.value": 73.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 81,
+      "stats.off._3p_pct.value": 26.6
    },
    "ETSU": {
       "stats.adj_margin.rank": 226,
       "conf": "Southern Conference",
-      "stats.adj_margin.value": -4.86,
-      "stats.adj_off.value": 100.1,
+      "stats.adj_margin.value": -4.87,
+      "stats.adj_off.value": 100,
       "stats.adj_off.rank": 155,
       "stats.adj_def.value": 104.9,
       "stats.adj_def.rank": 308,
       "stats.adj_tempo.value": 70.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 39.1
    },
    "Ball St.": {
       "stats.adj_margin.rank": 227,
@@ -2494,65 +3172,69 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 103.5,
       "stats.adj_def.rank": 278,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 23.5
    },
    "Loyola Maryland": {
       "stats.adj_margin.rank": 228,
       "conf": "Patriot League",
       "stats.adj_margin.value": -4.88,
       "stats.adj_off.value": 94.9,
-      "stats.adj_off.rank": 254,
-      "stats.adj_def.value": 99.8,
+      "stats.adj_off.rank": 253,
+      "stats.adj_def.value": 99.7,
       "stats.adj_def.rank": 176,
       "stats.adj_tempo.value": 69.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 41.6
    },
    "Texas Southern": {
       "stats.adj_margin.rank": 229,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_margin.value": -5.16,
       "stats.adj_off.value": 94.8,
-      "stats.adj_off.rank": 256,
+      "stats.adj_off.rank": 255,
       "stats.adj_def.value": 100,
       "stats.adj_def.rank": 184,
       "stats.adj_tempo.value": 74.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 83,
+      "stats.off._3p_pct.value": 40
    },
    "Georgia St.": {
       "stats.adj_margin.rank": 230,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -5.25,
       "stats.adj_off.value": 94.7,
-      "stats.adj_off.rank": 258,
-      "stats.adj_def.value": 100,
+      "stats.adj_off.rank": 257,
+      "stats.adj_def.value": 99.9,
       "stats.adj_def.rank": 183,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 36
    },
    "Morehead St.": {
       "stats.adj_margin.rank": 231,
       "conf": "Ohio Valley Conference",
       "stats.adj_margin.value": -5.29,
-      "stats.adj_off.value": 94.9,
-      "stats.adj_off.rank": 255,
-      "stats.adj_def.value": 100.2,
-      "stats.adj_def.rank": 190,
+      "stats.adj_off.value": 94.8,
+      "stats.adj_off.rank": 254,
+      "stats.adj_def.value": 100.1,
+      "stats.adj_def.rank": 191,
       "stats.adj_tempo.value": 70.3,
-      "is_high_major": 0
-   },
-   "San Jose St.": {
-      "stats.adj_margin.rank": 232,
-      "conf": "Mountain West Conference",
-      "stats.adj_margin.value": -5.38,
-      "stats.adj_off.value": 96.5,
-      "stats.adj_off.rank": 220,
-      "stats.adj_def.value": 101.9,
-      "stats.adj_def.rank": 238,
-      "stats.adj_tempo.value": 70.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 30
    },
    "Rice": {
-      "stats.adj_margin.rank": 233,
+      "stats.adj_margin.rank": 232,
       "conf": "Conference USA",
       "stats.adj_margin.value": -5.38,
       "stats.adj_off.value": 98.1,
@@ -2560,65 +3242,83 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 103.5,
       "stats.adj_def.rank": 277,
       "stats.adj_tempo.value": 73,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 31.2
    },
    "Illinois St.": {
-      "stats.adj_margin.rank": 234,
+      "stats.adj_margin.rank": 233,
       "conf": "Missouri Valley Conference",
       "stats.adj_margin.value": -5.49,
-      "stats.adj_off.value": 96.2,
+      "stats.adj_off.value": 96.1,
       "stats.adj_off.rank": 225,
-      "stats.adj_def.value": 101.7,
-      "stats.adj_def.rank": 228,
+      "stats.adj_def.value": 101.6,
+      "stats.adj_def.rank": 229,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 26.3
    },
    "Boston U.": {
-      "stats.adj_margin.rank": 235,
+      "stats.adj_margin.rank": 234,
       "conf": "Patriot League",
       "stats.adj_margin.value": -5.51,
-      "stats.adj_off.value": 96.8,
+      "stats.adj_off.value": 96.7,
       "stats.adj_off.rank": 214,
-      "stats.adj_def.value": 102.3,
+      "stats.adj_def.value": 102.2,
       "stats.adj_def.rank": 248,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 34.7
    },
    "Weber St.": {
-      "stats.adj_margin.rank": 236,
+      "stats.adj_margin.rank": 235,
       "conf": "Big Sky Conference",
       "stats.adj_margin.value": -5.58,
       "stats.adj_off.value": 95,
-      "stats.adj_off.rank": 249,
+      "stats.adj_off.rank": 248,
       "stats.adj_def.value": 100.6,
-      "stats.adj_def.rank": 202,
+      "stats.adj_def.rank": 203,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 17.3
    },
    "Niagara": {
-      "stats.adj_margin.rank": 237,
+      "stats.adj_margin.rank": 236,
       "conf": "Metro Atlantic Athletic Conference",
       "stats.adj_margin.value": -5.66,
       "stats.adj_off.value": 95.5,
-      "stats.adj_off.rank": 236,
+      "stats.adj_off.rank": 235,
       "stats.adj_def.value": 101.2,
-      "stats.adj_def.rank": 217,
+      "stats.adj_def.rank": 218,
       "stats.adj_tempo.value": 66.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 58,
+      "stats.off._3p_pct.value": 0
    },
    "Air Force": {
-      "stats.adj_margin.rank": 238,
+      "stats.adj_margin.rank": 237,
       "conf": "Mountain West Conference",
       "stats.adj_margin.value": -5.76,
       "stats.adj_off.value": 92.9,
       "stats.adj_off.rank": 304,
-      "stats.adj_def.value": 98.7,
-      "stats.adj_def.rank": 158,
+      "stats.adj_def.value": 98.6,
+      "stats.adj_def.rank": 157,
       "stats.adj_tempo.value": 67.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 35.2
    },
    "Siena": {
-      "stats.adj_margin.rank": 239,
+      "stats.adj_margin.rank": 238,
       "conf": "Metro Atlantic Athletic Conference",
       "stats.adj_margin.value": -5.77,
       "stats.adj_off.value": 93.6,
@@ -2626,51 +3326,80 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 99.4,
       "stats.adj_def.rank": 168,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 41.1
    },
-   "Southern Indiana": {
+   "Ga. Southern": {
+      "stats.adj_margin.rank": 239,
+      "conf": "Sun Belt Conference",
+      "stats.adj_margin.value": -5.82,
+      "stats.adj_off.value": 94.2,
+      "stats.adj_off.rank": 276,
+      "stats.adj_def.value": 100,
+      "stats.adj_def.rank": 186,
+      "stats.adj_tempo.value": 69.7,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 26.6
+   },
+   "Southern Ind.": {
       "stats.adj_margin.rank": 240,
       "conf": "Ohio Valley Conference",
       "stats.adj_margin.value": -5.85,
       "stats.adj_off.value": 96.3,
-      "stats.adj_off.rank": 223,
+      "stats.adj_off.rank": 222,
       "stats.adj_def.value": 102.2,
       "stats.adj_def.rank": 245,
       "stats.adj_tempo.value": 74.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 82,
+      "stats.off._3p_pct.value": 50
    },
    "Howard": {
       "stats.adj_margin.rank": 241,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_margin.value": -5.91,
-      "stats.adj_off.value": 95.7,
-      "stats.adj_off.rank": 234,
-      "stats.adj_def.value": 101.6,
-      "stats.adj_def.rank": 227,
+      "stats.adj_off.value": 95.6,
+      "stats.adj_off.rank": 233,
+      "stats.adj_def.value": 101.5,
+      "stats.adj_def.rank": 228,
       "stats.adj_tempo.value": 74.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 28
    },
    "N.C. Central": {
       "stats.adj_margin.rank": 242,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_margin.value": -6.05,
       "stats.adj_off.value": 95.7,
-      "stats.adj_off.rank": 233,
+      "stats.adj_off.rank": 232,
       "stats.adj_def.value": 101.7,
-      "stats.adj_def.rank": 233,
+      "stats.adj_def.rank": 234,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 59,
+      "stats.off._3p_pct.value": 42.1
    },
    "Pacific": {
       "stats.adj_margin.rank": 243,
       "conf": "West Coast Conference",
       "stats.adj_margin.value": -6.07,
-      "stats.adj_off.value": 96.7,
+      "stats.adj_off.value": 96.6,
       "stats.adj_off.rank": 215,
       "stats.adj_def.value": 102.7,
       "stats.adj_def.rank": 261,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 36.6
    },
    "Bellarmine": {
       "stats.adj_margin.rank": 244,
@@ -2681,7 +3410,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 104.4,
       "stats.adj_def.rank": 301,
       "stats.adj_tempo.value": 68.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Mount St. Mary's": {
       "stats.adj_margin.rank": 245,
@@ -2689,21 +3421,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -6.09,
       "stats.adj_off.value": 94,
       "stats.adj_off.rank": 281,
-      "stats.adj_def.value": 100.1,
-      "stats.adj_def.rank": 187,
+      "stats.adj_def.value": 100,
+      "stats.adj_def.rank": 188,
       "stats.adj_tempo.value": 68.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 47.6
    },
    "Brown": {
       "stats.adj_margin.rank": 246,
       "conf": "Ivy League",
       "stats.adj_margin.value": -6.18,
-      "stats.adj_off.value": 97,
+      "stats.adj_off.value": 96.9,
       "stats.adj_off.rank": 208,
       "stats.adj_def.value": 103.1,
-      "stats.adj_def.rank": 270,
+      "stats.adj_def.rank": 269,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 33.3
    },
    "Northeastern": {
       "stats.adj_margin.rank": 247,
@@ -2712,20 +3450,26 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 94.2,
       "stats.adj_off.rank": 277,
       "stats.adj_def.value": 100.4,
-      "stats.adj_def.rank": 194,
+      "stats.adj_def.rank": 195,
       "stats.adj_tempo.value": 70.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 30.4
    },
    "East Carolina": {
       "stats.adj_margin.rank": 248,
       "conf": "American Athletic Conference",
       "stats.adj_margin.value": -6.2,
-      "stats.adj_off.value": 94.6,
-      "stats.adj_off.rank": 266,
-      "stats.adj_def.value": 100.8,
-      "stats.adj_def.rank": 204,
+      "stats.adj_off.value": 94.5,
+      "stats.adj_off.rank": 265,
+      "stats.adj_def.value": 100.7,
+      "stats.adj_def.rank": 205,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 34.4
    },
    "Austin Peay": {
       "stats.adj_margin.rank": 249,
@@ -2734,9 +3478,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 96.9,
       "stats.adj_off.rank": 209,
       "stats.adj_def.value": 103.2,
-      "stats.adj_def.rank": 271,
+      "stats.adj_def.rank": 270,
       "stats.adj_tempo.value": 70.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 12.5
    },
    "Cal Poly": {
       "stats.adj_margin.rank": 250,
@@ -2747,18 +3494,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 99.9,
       "stats.adj_def.rank": 180,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 82,
+      "stats.off._3p_pct.value": 30.4
    },
    "Monmouth": {
       "stats.adj_margin.rank": 251,
       "conf": "Colonial Athletic Association",
-      "stats.adj_margin.value": -6.81,
+      "stats.adj_margin.value": -6.82,
       "stats.adj_off.value": 93.8,
       "stats.adj_off.rank": 285,
       "stats.adj_def.value": 100.6,
-      "stats.adj_def.rank": 200,
+      "stats.adj_def.rank": 201,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Western Mich.": {
       "stats.adj_margin.rank": 252,
@@ -2766,32 +3519,41 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -6.84,
       "stats.adj_off.value": 96.1,
       "stats.adj_off.rank": 227,
-      "stats.adj_def.value": 103,
+      "stats.adj_def.value": 102.9,
       "stats.adj_def.rank": 264,
       "stats.adj_tempo.value": 69.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 64,
+      "stats.off._3p_pct.value": 23.5
    },
-   "Nicholls St.": {
+   "Nicholls": {
       "stats.adj_margin.rank": 253,
       "conf": "Southland Conference",
       "stats.adj_margin.value": -6.92,
       "stats.adj_off.value": 95.1,
-      "stats.adj_off.rank": 248,
+      "stats.adj_off.rank": 247,
       "stats.adj_def.value": 102,
       "stats.adj_def.rank": 242,
       "stats.adj_tempo.value": 75.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 89,
+      "stats.off._3p_pct.value": 38.8
    },
    "Binghamton": {
       "stats.adj_margin.rank": 254,
       "conf": "America East Conference",
       "stats.adj_margin.value": -7.04,
-      "stats.adj_off.value": 94.4,
-      "stats.adj_off.rank": 271,
+      "stats.adj_off.value": 94.3,
+      "stats.adj_off.rank": 270,
       "stats.adj_def.value": 101.4,
-      "stats.adj_def.rank": 223,
+      "stats.adj_def.rank": 224,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 31.5
    },
    "Presbyterian": {
       "stats.adj_margin.rank": 255,
@@ -2799,10 +3561,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -7.06,
       "stats.adj_off.value": 93.5,
       "stats.adj_off.rank": 291,
-      "stats.adj_def.value": 100.6,
-      "stats.adj_def.rank": 198,
+      "stats.adj_def.value": 100.5,
+      "stats.adj_def.rank": 199,
       "stats.adj_tempo.value": 69.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 18.1
    },
    "Denver": {
       "stats.adj_margin.rank": 256,
@@ -2813,7 +3578,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 103.9,
       "stats.adj_def.rank": 287,
       "stats.adj_tempo.value": 70.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 37.5
    },
    "Detroit Mercy": {
       "stats.adj_margin.rank": 257,
@@ -2824,7 +3592,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 106.9,
       "stats.adj_def.rank": 337,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 36.1
    },
    "UT Arlington": {
       "stats.adj_margin.rank": 258,
@@ -2832,21 +3603,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -7.35,
       "stats.adj_off.value": 92.1,
       "stats.adj_off.rank": 315,
-      "stats.adj_def.value": 99.5,
+      "stats.adj_def.value": 99.4,
       "stats.adj_def.rank": 170,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 23.5
    },
    "Dartmouth": {
       "stats.adj_margin.rank": 259,
       "conf": "Ivy League",
       "stats.adj_margin.value": -7.37,
       "stats.adj_off.value": 95,
-      "stats.adj_off.rank": 251,
+      "stats.adj_off.rank": 250,
       "stats.adj_def.value": 102.4,
-      "stats.adj_def.rank": 250,
+      "stats.adj_def.rank": 251,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 45.8
    },
    "The Citadel": {
       "stats.adj_margin.rank": 260,
@@ -2854,54 +3631,69 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -7.52,
       "stats.adj_off.value": 96.9,
       "stats.adj_off.rank": 210,
-      "stats.adj_def.value": 104.5,
+      "stats.adj_def.value": 104.4,
       "stats.adj_def.rank": 303,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 44
    },
    "Wagner": {
       "stats.adj_margin.rank": 261,
       "conf": "Northeast Conference",
       "stats.adj_margin.value": -7.55,
       "stats.adj_off.value": 94.9,
-      "stats.adj_off.rank": 253,
-      "stats.adj_def.value": 102.5,
+      "stats.adj_off.rank": 252,
+      "stats.adj_def.value": 102.4,
       "stats.adj_def.rank": 257,
       "stats.adj_tempo.value": 69.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 28
    },
    "Northern Ariz.": {
       "stats.adj_margin.rank": 262,
       "conf": "Big Sky Conference",
       "stats.adj_margin.value": -7.6,
-      "stats.adj_off.value": 96.7,
+      "stats.adj_off.value": 96.6,
       "stats.adj_off.rank": 217,
-      "stats.adj_def.value": 104.3,
-      "stats.adj_def.rank": 297,
+      "stats.adj_def.value": 104.2,
+      "stats.adj_def.rank": 298,
       "stats.adj_tempo.value": 68.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 26.6
    },
    "ULM": {
       "stats.adj_margin.rank": 263,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -7.61,
       "stats.adj_off.value": 94.3,
-      "stats.adj_off.rank": 273,
+      "stats.adj_off.rank": 272,
       "stats.adj_def.value": 101.9,
       "stats.adj_def.rank": 240,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 10
    },
    "Eastern Ky.": {
       "stats.adj_margin.rank": 264,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -7.69,
-      "stats.adj_off.value": 95.6,
-      "stats.adj_off.rank": 235,
+      "stats.adj_off.value": 95.5,
+      "stats.adj_off.rank": 234,
       "stats.adj_def.value": 103.2,
       "stats.adj_def.rank": 273,
       "stats.adj_tempo.value": 75.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 93,
+      "stats.off._3p_pct.value": 47.5
    },
    "Utah Tech": {
       "stats.adj_margin.rank": 265,
@@ -2910,31 +3702,40 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 94.1,
       "stats.adj_off.rank": 279,
       "stats.adj_def.value": 101.9,
-      "stats.adj_def.rank": 237,
+      "stats.adj_def.rank": 238,
       "stats.adj_tempo.value": 74.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Army West Point": {
       "stats.adj_margin.rank": 266,
       "conf": "Patriot League",
       "stats.adj_margin.value": -7.91,
       "stats.adj_off.value": 94.3,
-      "stats.adj_off.rank": 275,
+      "stats.adj_off.rank": 274,
       "stats.adj_def.value": 102.2,
       "stats.adj_def.rank": 246,
       "stats.adj_tempo.value": 72.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 35.8
    },
    "CSU Bakersfield": {
       "stats.adj_margin.rank": 267,
       "conf": "Big West Conference",
       "stats.adj_margin.value": -8.02,
-      "stats.adj_off.value": 93.2,
+      "stats.adj_off.value": 93.1,
       "stats.adj_off.rank": 298,
       "stats.adj_def.value": 101.2,
       "stats.adj_def.rank": 216,
       "stats.adj_tempo.value": 69.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 42.1
    },
    "Southern U.": {
       "stats.adj_margin.rank": 268,
@@ -2942,12 +3743,15 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -8.05,
       "stats.adj_off.value": 93.3,
       "stats.adj_off.rank": 295,
-      "stats.adj_def.value": 101.4,
-      "stats.adj_def.rank": 221,
+      "stats.adj_def.value": 101.3,
+      "stats.adj_def.rank": 222,
       "stats.adj_tempo.value": 73.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 28.5
    },
-   "St. Thomas": {
+   "St. Thomas (MN)": {
       "stats.adj_margin.rank": 269,
       "conf": "Summit League",
       "stats.adj_margin.value": -8.11,
@@ -2956,95 +3760,122 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 108.6,
       "stats.adj_def.rank": 351,
       "stats.adj_tempo.value": 69.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 40.9
    },
    "UMBC": {
       "stats.adj_margin.rank": 270,
       "conf": "America East Conference",
       "stats.adj_margin.value": -8.39,
       "stats.adj_off.value": 94.6,
-      "stats.adj_off.rank": 262,
+      "stats.adj_off.rank": 261,
       "stats.adj_def.value": 103,
       "stats.adj_def.rank": 265,
       "stats.adj_tempo.value": 73,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 26.6
    },
    "Cleveland St.": {
       "stats.adj_margin.rank": 271,
       "conf": "Horizon League",
       "stats.adj_margin.value": -8.4,
       "stats.adj_off.value": 94.7,
-      "stats.adj_off.rank": 259,
+      "stats.adj_off.rank": 258,
       "stats.adj_def.value": 103.1,
-      "stats.adj_def.rank": 269,
+      "stats.adj_def.rank": 268,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 146,
+      "stats.off._3p_pct.value": 25.7
    },
    "UIC": {
       "stats.adj_margin.rank": 272,
       "conf": "Missouri Valley Conference",
       "stats.adj_margin.value": -8.52,
-      "stats.adj_off.value": 93.9,
+      "stats.adj_off.value": 93.8,
       "stats.adj_off.rank": 283,
-      "stats.adj_def.value": 102.4,
-      "stats.adj_def.rank": 251,
+      "stats.adj_def.value": 102.3,
+      "stats.adj_def.rank": 250,
       "stats.adj_tempo.value": 72.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 25.9
    },
    "N.C. A&T": {
       "stats.adj_margin.rank": 273,
       "conf": "Colonial Athletic Association",
       "stats.adj_margin.value": -8.59,
-      "stats.adj_off.value": 93.9,
+      "stats.adj_off.value": 93.8,
       "stats.adj_off.rank": 284,
       "stats.adj_def.value": 102.4,
       "stats.adj_def.rank": 255,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 50
    },
    "Stetson": {
       "stats.adj_margin.rank": 274,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -8.81,
       "stats.adj_off.value": 95.2,
-      "stats.adj_off.rank": 244,
+      "stats.adj_off.rank": 243,
       "stats.adj_def.value": 104,
       "stats.adj_def.rank": 290,
       "stats.adj_tempo.value": 69,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 40
    },
    "Bowling Green": {
       "stats.adj_margin.rank": 275,
       "conf": "Mid American Conference",
       "stats.adj_margin.value": -8.91,
       "stats.adj_off.value": 95.8,
-      "stats.adj_off.rank": 231,
-      "stats.adj_def.value": 104.8,
+      "stats.adj_off.rank": 230,
+      "stats.adj_def.value": 104.7,
       "stats.adj_def.rank": 306,
       "stats.adj_tempo.value": 74.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 30
    },
    "Arkansas St.": {
       "stats.adj_margin.rank": 276,
       "conf": "Sun Belt Conference",
-      "stats.adj_margin.value": -8.96,
+      "stats.adj_margin.value": -8.97,
       "stats.adj_off.value": 94.4,
-      "stats.adj_off.rank": 268,
-      "stats.adj_def.value": 103.4,
+      "stats.adj_off.rank": 267,
+      "stats.adj_def.value": 103.3,
       "stats.adj_def.rank": 275,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 47.6
    },
    "Western Ill.": {
       "stats.adj_margin.rank": 277,
       "conf": "Summit League",
-      "stats.adj_margin.value": -9.09,
+      "stats.adj_margin.value": -9.1,
       "stats.adj_off.value": 95.3,
-      "stats.adj_off.rank": 241,
+      "stats.adj_off.rank": 240,
       "stats.adj_def.value": 104.4,
       "stats.adj_def.rank": 302,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 30.7
    },
    "Miami (OH)": {
       "stats.adj_margin.rank": 278,
@@ -3052,10 +3883,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -9.12,
       "stats.adj_off.value": 96.6,
       "stats.adj_off.rank": 218,
-      "stats.adj_def.value": 105.8,
+      "stats.adj_def.value": 105.7,
       "stats.adj_def.rank": 323,
-      "stats.adj_tempo.value": 72.3,
-      "is_high_major": 0
+      "stats.adj_tempo.value": 72.4,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 26
    },
    "Sacramento St.": {
       "stats.adj_margin.rank": 279,
@@ -3066,40 +3900,52 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.6,
       "stats.adj_def.rank": 258,
       "stats.adj_tempo.value": 68.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 11.1
    },
    "UC San Diego": {
       "stats.adj_margin.rank": 280,
       "conf": "Big West Conference",
       "stats.adj_margin.value": -9.16,
-      "stats.adj_off.value": 98.3,
+      "stats.adj_off.value": 98.2,
       "stats.adj_off.rank": 188,
       "stats.adj_def.value": 107.4,
       "stats.adj_def.rank": 345,
       "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 25
    },
-   "Albany (NY)": {
+   "UAlbany": {
       "stats.adj_margin.rank": 281,
       "conf": "America East Conference",
       "stats.adj_margin.value": -9.18,
-      "stats.adj_off.value": 91.9,
+      "stats.adj_off.value": 91.8,
       "stats.adj_off.rank": 317,
       "stats.adj_def.value": 101,
-      "stats.adj_def.rank": 211,
+      "stats.adj_def.rank": 212,
       "stats.adj_tempo.value": 69.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Lehigh": {
       "stats.adj_margin.rank": 282,
       "conf": "Patriot League",
       "stats.adj_margin.value": -9.23,
       "stats.adj_off.value": 94.8,
-      "stats.adj_off.rank": 257,
+      "stats.adj_off.rank": 256,
       "stats.adj_def.value": 104,
       "stats.adj_def.rank": 291,
       "stats.adj_tempo.value": 72.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 38
    },
    "SIUE": {
       "stats.adj_margin.rank": 283,
@@ -3110,40 +3956,52 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.8,
       "stats.adj_def.rank": 262,
       "stats.adj_tempo.value": 72.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 34.7
    },
    "Tennessee St.": {
       "stats.adj_margin.rank": 284,
       "conf": "Ohio Valley Conference",
       "stats.adj_margin.value": -9.38,
       "stats.adj_off.value": 94.4,
-      "stats.adj_off.rank": 269,
-      "stats.adj_def.value": 103.8,
+      "stats.adj_off.rank": 268,
+      "stats.adj_def.value": 103.7,
       "stats.adj_def.rank": 285,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 40.7
    },
    "Western Caro.": {
       "stats.adj_margin.rank": 285,
       "conf": "Southern Conference",
       "stats.adj_margin.value": -9.44,
       "stats.adj_off.value": 94.3,
-      "stats.adj_off.rank": 274,
-      "stats.adj_def.value": 103.8,
+      "stats.adj_off.rank": 273,
+      "stats.adj_def.value": 103.7,
       "stats.adj_def.rank": 282,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 33.3
    },
    "Manhattan": {
       "stats.adj_margin.rank": 286,
       "conf": "Metro Atlantic Athletic Conference",
       "stats.adj_margin.value": -9.69,
-      "stats.adj_off.value": 91.8,
+      "stats.adj_off.value": 91.7,
       "stats.adj_off.rank": 320,
-      "stats.adj_def.value": 101.5,
-      "stats.adj_def.rank": 224,
+      "stats.adj_def.value": 101.4,
+      "stats.adj_def.rank": 225,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 35.7
    },
    "Radford": {
       "stats.adj_margin.rank": 287,
@@ -3152,31 +4010,40 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 91.3,
       "stats.adj_off.rank": 323,
       "stats.adj_def.value": 101.1,
-      "stats.adj_def.rank": 212,
+      "stats.adj_def.rank": 213,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 20
    },
    "Bucknell": {
       "stats.adj_margin.rank": 288,
       "conf": "Patriot League",
       "stats.adj_margin.value": -9.92,
       "stats.adj_off.value": 95.2,
-      "stats.adj_off.rank": 245,
+      "stats.adj_off.rank": 244,
       "stats.adj_def.value": 105.1,
       "stats.adj_def.rank": 312,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 53.8
    },
-   "Northern Ill.": {
+   "NIU": {
       "stats.adj_margin.rank": 289,
       "conf": "Mid American Conference",
       "stats.adj_margin.value": -10.02,
-      "stats.adj_off.value": 94.4,
-      "stats.adj_off.rank": 272,
+      "stats.adj_off.value": 94.3,
+      "stats.adj_off.rank": 271,
       "stats.adj_def.value": 104.4,
       "stats.adj_def.rank": 300,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Merrimack": {
       "stats.adj_margin.rank": 290,
@@ -3185,20 +4052,26 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 91.1,
       "stats.adj_off.rank": 329,
       "stats.adj_def.value": 101.4,
-      "stats.adj_def.rank": 222,
-      "stats.adj_tempo.value": 70.5,
-      "is_high_major": 0
+      "stats.adj_def.rank": 223,
+      "stats.adj_tempo.value": 70.6,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 85,
+      "stats.off._3p_pct.value": 20.6
    },
    "Southeast Mo. St.": {
       "stats.adj_margin.rank": 291,
       "conf": "Ohio Valley Conference",
       "stats.adj_margin.value": -10.3,
       "stats.adj_off.value": 95.4,
-      "stats.adj_off.rank": 239,
+      "stats.adj_off.rank": 238,
       "stats.adj_def.value": 105.7,
       "stats.adj_def.rank": 322,
       "stats.adj_tempo.value": 73.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 38.4
    },
    "UTSA": {
       "stats.adj_margin.rank": 292,
@@ -3206,10 +4079,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -10.41,
       "stats.adj_off.value": 92.8,
       "stats.adj_off.rank": 306,
-      "stats.adj_def.value": 103.3,
+      "stats.adj_def.value": 103.2,
       "stats.adj_def.rank": 274,
       "stats.adj_tempo.value": 73.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 16.6
    },
    "Portland St.": {
       "stats.adj_margin.rank": 293,
@@ -3218,20 +4094,26 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 91.2,
       "stats.adj_off.rank": 327,
       "stats.adj_def.value": 101.7,
-      "stats.adj_def.rank": 230,
+      "stats.adj_def.rank": 231,
       "stats.adj_tempo.value": 74.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Sacred Heart": {
       "stats.adj_margin.rank": 294,
       "conf": "Northeast Conference",
       "stats.adj_margin.value": -10.57,
       "stats.adj_off.value": 94.6,
-      "stats.adj_off.rank": 261,
-      "stats.adj_def.value": 105.2,
+      "stats.adj_off.rank": 260,
+      "stats.adj_def.value": 105.1,
       "stats.adj_def.rank": 314,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 31.2
    },
    "Kansas City": {
       "stats.adj_margin.rank": 295,
@@ -3242,18 +4124,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 103.8,
       "stats.adj_def.rank": 286,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 20
    },
    "VMI": {
       "stats.adj_margin.rank": 296,
       "conf": "Southern Conference",
       "stats.adj_margin.value": -10.69,
       "stats.adj_off.value": 95.1,
-      "stats.adj_off.rank": 247,
+      "stats.adj_off.rank": 246,
       "stats.adj_def.value": 105.8,
       "stats.adj_def.rank": 325,
       "stats.adj_tempo.value": 71.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 21.2
    },
    "Morgan St.": {
       "stats.adj_margin.rank": 297,
@@ -3264,40 +4152,52 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.4,
       "stats.adj_def.rank": 253,
       "stats.adj_tempo.value": 75.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 81,
+      "stats.off._3p_pct.value": 29.4
    },
    "Stony Brook": {
       "stats.adj_margin.rank": 298,
       "conf": "Colonial Athletic Association",
       "stats.adj_margin.value": -10.87,
       "stats.adj_off.value": 94.5,
-      "stats.adj_off.rank": 267,
-      "stats.adj_def.value": 105.4,
+      "stats.adj_off.rank": 266,
+      "stats.adj_def.value": 105.3,
       "stats.adj_def.rank": 318,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 21.4
    },
    "American": {
       "stats.adj_margin.rank": 299,
       "conf": "Patriot League",
       "stats.adj_margin.value": -10.98,
-      "stats.adj_off.value": 93.1,
+      "stats.adj_off.value": 93,
       "stats.adj_off.rank": 301,
       "stats.adj_def.value": 104,
       "stats.adj_def.rank": 292,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Marist": {
       "stats.adj_margin.rank": 300,
       "conf": "Metro Atlantic Athletic Conference",
       "stats.adj_margin.value": -11.03,
-      "stats.adj_off.value": 90.8,
+      "stats.adj_off.value": 90.7,
       "stats.adj_off.rank": 334,
       "stats.adj_def.value": 101.8,
-      "stats.adj_def.rank": 234,
+      "stats.adj_def.rank": 235,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "UT Martin": {
       "stats.adj_margin.rank": 301,
@@ -3308,18 +4208,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 103.6,
       "stats.adj_def.rank": 280,
       "stats.adj_tempo.value": 75.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 15.7
    },
    "USC Upstate": {
       "stats.adj_margin.rank": 302,
       "conf": "Big South Conference",
       "stats.adj_margin.value": -11.04,
       "stats.adj_off.value": 94.9,
-      "stats.adj_off.rank": 252,
-      "stats.adj_def.value": 106,
-      "stats.adj_def.rank": 329,
+      "stats.adj_off.rank": 251,
+      "stats.adj_def.value": 105.9,
+      "stats.adj_def.rank": 328,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 52.9
    },
    "Elon": {
       "stats.adj_margin.rank": 303,
@@ -3330,7 +4236,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 104.3,
       "stats.adj_def.rank": 299,
       "stats.adj_tempo.value": 70.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 33.3
    },
    "Canisius": {
       "stats.adj_margin.rank": 304,
@@ -3338,21 +4247,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -11.16,
       "stats.adj_off.value": 92.8,
       "stats.adj_off.rank": 307,
-      "stats.adj_def.value": 104,
+      "stats.adj_def.value": 103.9,
       "stats.adj_def.rank": 288,
       "stats.adj_tempo.value": 74.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 33.3
    },
    "Central Mich.": {
       "stats.adj_margin.rank": 305,
       "conf": "Mid American Conference",
       "stats.adj_margin.value": -11.17,
       "stats.adj_off.value": 94.7,
-      "stats.adj_off.rank": 259,
-      "stats.adj_def.value": 105.9,
+      "stats.adj_off.rank": 258,
+      "stats.adj_def.value": 105.8,
       "stats.adj_def.rank": 326,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Robert Morris": {
       "stats.adj_margin.rank": 306,
@@ -3360,21 +4275,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -11.28,
       "stats.adj_off.value": 93.6,
       "stats.adj_off.rank": 289,
-      "stats.adj_def.value": 104.9,
+      "stats.adj_def.value": 104.8,
       "stats.adj_def.rank": 307,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 16.6
    },
    "Prairie View": {
       "stats.adj_margin.rank": 307,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_margin.value": -11.74,
-      "stats.adj_off.value": 91.3,
+      "stats.adj_off.value": 91.2,
       "stats.adj_off.rank": 325,
       "stats.adj_def.value": 103,
       "stats.adj_def.rank": 266,
       "stats.adj_tempo.value": 73.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 82,
+      "stats.off._3p_pct.value": 11.7
    },
    "UMES": {
       "stats.adj_margin.rank": 308,
@@ -3385,7 +4306,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 102.7,
       "stats.adj_def.rank": 260,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 43.4
    },
    "Bethune-Cookman": {
       "stats.adj_margin.rank": 309,
@@ -3396,7 +4320,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 104.7,
       "stats.adj_def.rank": 304,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 31.2
    },
    "Jackson St.": {
       "stats.adj_margin.rank": 310,
@@ -3404,21 +4331,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -11.83,
       "stats.adj_off.value": 89.3,
       "stats.adj_off.rank": 350,
-      "stats.adj_def.value": 101.2,
-      "stats.adj_def.rank": 214,
+      "stats.adj_def.value": 101.1,
+      "stats.adj_def.rank": 215,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 10.5
    },
    "Texas A&M Commerce": {
       "stats.adj_margin.rank": 311,
       "conf": "Southland Conference",
       "stats.adj_margin.value": -11.94,
-      "stats.adj_off.value": 95.2,
-      "stats.adj_off.rank": 246,
+      "stats.adj_off.value": 95.1,
+      "stats.adj_off.rank": 245,
       "stats.adj_def.value": 107.1,
       "stats.adj_def.rank": 340,
       "stats.adj_tempo.value": 69.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Eastern Mich.": {
       "stats.adj_margin.rank": 312,
@@ -3426,21 +4359,27 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -12.06,
       "stats.adj_off.value": 94.2,
       "stats.adj_off.rank": 278,
-      "stats.adj_def.value": 106.3,
+      "stats.adj_def.value": 106.2,
       "stats.adj_def.rank": 333,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 38.8
    },
    "Lafayette": {
       "stats.adj_margin.rank": 313,
       "conf": "Patriot League",
       "stats.adj_margin.value": -12.11,
-      "stats.adj_off.value": 92.9,
+      "stats.adj_off.value": 92.8,
       "stats.adj_off.rank": 305,
-      "stats.adj_def.value": 105,
+      "stats.adj_def.value": 104.9,
       "stats.adj_def.rank": 309,
       "stats.adj_tempo.value": 69.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 29.4
    },
    "CSUN": {
       "stats.adj_margin.rank": 314,
@@ -3451,7 +4390,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 105.9,
       "stats.adj_def.rank": 327,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 41.6
    },
    "Houston Christian": {
       "stats.adj_margin.rank": 315,
@@ -3462,43 +4404,69 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 105.5,
       "stats.adj_def.rank": 319,
       "stats.adj_tempo.value": 73.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Saint Francis (PA)": {
       "stats.adj_margin.rank": 316,
       "conf": "Northeast Conference",
       "stats.adj_margin.value": -12.36,
       "stats.adj_off.value": 94.6,
-      "stats.adj_off.rank": 263,
-      "stats.adj_def.value": 107,
+      "stats.adj_off.rank": 262,
+      "stats.adj_def.value": 106.9,
       "stats.adj_def.rank": 338,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 63,
+      "stats.off._3p_pct.value": 21
+   },
+   "Coppin St.": {
+      "stats.adj_margin.rank": 317,
+      "conf": "Mid-Eastern Athletic Conference",
+      "stats.adj_margin.value": -12.61,
+      "stats.adj_off.value": 90.6,
+      "stats.adj_off.rank": 338,
+      "stats.adj_def.value": 103.2,
+      "stats.adj_def.rank": 272,
+      "stats.adj_tempo.value": 74.8,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 158,
+      "stats.off._3p_pct.value": 26.6
    },
    "North Ala.": {
-      "stats.adj_margin.rank": 317,
+      "stats.adj_margin.rank": 318,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -12.83,
       "stats.adj_off.value": 91.1,
       "stats.adj_off.rank": 328,
-      "stats.adj_def.value": 104,
+      "stats.adj_def.value": 103.9,
       "stats.adj_def.rank": 289,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 36
    },
    "Little Rock": {
-      "stats.adj_margin.rank": 318,
+      "stats.adj_margin.rank": 319,
       "conf": "Ohio Valley Conference",
       "stats.adj_margin.value": -12.84,
       "stats.adj_off.value": 92.7,
       "stats.adj_off.rank": 309,
-      "stats.adj_def.value": 105.6,
+      "stats.adj_def.value": 105.5,
       "stats.adj_def.rank": 320,
       "stats.adj_tempo.value": 72,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 16.6
    },
    "Charleston So.": {
-      "stats.adj_margin.rank": 319,
+      "stats.adj_margin.rank": 320,
       "conf": "Big South Conference",
       "stats.adj_margin.value": -13.09,
       "stats.adj_off.value": 92,
@@ -3506,76 +4474,97 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 105.1,
       "stats.adj_def.rank": 313,
       "stats.adj_tempo.value": 72.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 23.5
    },
    "Southern Miss.": {
-      "stats.adj_margin.rank": 320,
+      "stats.adj_margin.rank": 321,
       "conf": "Sun Belt Conference",
       "stats.adj_margin.value": -13.12,
       "stats.adj_off.value": 91.1,
       "stats.adj_off.rank": 330,
-      "stats.adj_def.value": 104.3,
-      "stats.adj_def.rank": 298,
+      "stats.adj_def.value": 104.2,
+      "stats.adj_def.rank": 297,
       "stats.adj_tempo.value": 71,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 20
    },
    "Columbia": {
-      "stats.adj_margin.rank": 321,
+      "stats.adj_margin.rank": 322,
       "conf": "Ivy League",
       "stats.adj_margin.value": -13.16,
-      "stats.adj_off.value": 92.2,
+      "stats.adj_off.value": 92.1,
       "stats.adj_off.rank": 314,
       "stats.adj_def.value": 105.3,
       "stats.adj_def.rank": 317,
       "stats.adj_tempo.value": 73.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 4.7
    },
    "Evansville": {
-      "stats.adj_margin.rank": 322,
+      "stats.adj_margin.rank": 323,
       "conf": "Missouri Valley Conference",
       "stats.adj_margin.value": -13.19,
-      "stats.adj_off.value": 90.5,
-      "stats.adj_off.rank": 339,
+      "stats.adj_off.value": 90.4,
+      "stats.adj_off.rank": 340,
       "stats.adj_def.value": 103.6,
       "stats.adj_def.rank": 279,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 30.4
    },
    "Grambling": {
-      "stats.adj_margin.rank": 323,
+      "stats.adj_margin.rank": 324,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_margin.value": -13.21,
       "stats.adj_off.value": 90,
-      "stats.adj_off.rank": 343,
+      "stats.adj_off.rank": 344,
       "stats.adj_def.value": 103.2,
-      "stats.adj_def.rank": 272,
+      "stats.adj_def.rank": 271,
       "stats.adj_tempo.value": 73.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 31.2
    },
    "Omaha": {
-      "stats.adj_margin.rank": 324,
+      "stats.adj_margin.rank": 325,
       "conf": "Summit League",
       "stats.adj_margin.value": -13.32,
       "stats.adj_off.value": 94,
       "stats.adj_off.rank": 280,
-      "stats.adj_def.value": 107.4,
+      "stats.adj_def.value": 107.3,
       "stats.adj_def.rank": 344,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 23.8
    },
    "Alabama A&M": {
-      "stats.adj_margin.rank": 325,
+      "stats.adj_margin.rank": 326,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_margin.value": -13.33,
-      "stats.adj_off.value": 87.3,
+      "stats.adj_off.value": 87.2,
       "stats.adj_off.rank": 356,
-      "stats.adj_def.value": 100.6,
-      "stats.adj_def.rank": 199,
+      "stats.adj_def.value": 100.5,
+      "stats.adj_def.rank": 200,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "New Hampshire": {
-      "stats.adj_margin.rank": 326,
+      "stats.adj_margin.rank": 327,
       "conf": "America East Conference",
       "stats.adj_margin.value": -13.33,
       "stats.adj_off.value": 90.8,
@@ -3583,29 +4572,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 104.1,
       "stats.adj_def.rank": 295,
       "stats.adj_tempo.value": 68.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 46.4
    },
    "Holy Cross": {
-      "stats.adj_margin.rank": 327,
+      "stats.adj_margin.rank": 328,
       "conf": "Patriot League",
       "stats.adj_margin.value": -13.35,
-      "stats.adj_off.value": 90.9,
+      "stats.adj_off.value": 90.8,
       "stats.adj_off.rank": 332,
       "stats.adj_def.value": 104.2,
       "stats.adj_def.rank": 296,
       "stats.adj_tempo.value": 72.3,
-      "is_high_major": 0
-   },
-   "Coppin St.": {
-      "stats.adj_margin.rank": 328,
-      "conf": "Mid-Eastern Athletic Conference",
-      "stats.adj_margin.value": -13.42,
-      "stats.adj_off.value": 89.6,
-      "stats.adj_off.rank": 347,
-      "stats.adj_def.value": 103,
-      "stats.adj_def.rank": 267,
-      "stats.adj_tempo.value": 74.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 20
    },
    "Alcorn": {
       "stats.adj_margin.rank": 329,
@@ -3616,18 +4600,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 104.7,
       "stats.adj_def.rank": 305,
       "stats.adj_tempo.value": 71.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 46.6
    },
    "Milwaukee": {
       "stats.adj_margin.rank": 330,
       "conf": "Horizon League",
       "stats.adj_margin.value": -13.53,
       "stats.adj_off.value": 90.2,
-      "stats.adj_off.rank": 341,
-      "stats.adj_def.value": 103.8,
+      "stats.adj_off.rank": 342,
+      "stats.adj_def.value": 103.7,
       "stats.adj_def.rank": 283,
       "stats.adj_tempo.value": 72.2,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 142,
+      "stats.off._3p_pct.value": 30.5
    },
    "North Dakota": {
       "stats.adj_margin.rank": 331,
@@ -3638,7 +4628,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 106.3,
       "stats.adj_def.rank": 334,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 60,
+      "stats.off._3p_pct.value": 25
    },
    "New Orleans": {
       "stats.adj_margin.rank": 332,
@@ -3649,7 +4642,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 105.8,
       "stats.adj_def.rank": 324,
       "stats.adj_tempo.value": 75.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 78,
+      "stats.off._3p_pct.value": 37.5
    },
    "UTRGV": {
       "stats.adj_margin.rank": 333,
@@ -3660,18 +4656,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 106.7,
       "stats.adj_def.rank": 336,
       "stats.adj_tempo.value": 75.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 26.6
    },
    "Central Ark.": {
       "stats.adj_margin.rank": 334,
       "conf": "ASUN Conference",
       "stats.adj_margin.value": -14.28,
-      "stats.adj_off.value": 94.6,
-      "stats.adj_off.rank": 265,
+      "stats.adj_off.value": 94.5,
+      "stats.adj_off.rank": 264,
       "stats.adj_def.value": 108.8,
       "stats.adj_def.rank": 355,
       "stats.adj_tempo.value": 74.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "Idaho St.": {
       "stats.adj_margin.rank": 335,
@@ -3680,9 +4682,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_off.value": 88.7,
       "stats.adj_off.rank": 352,
       "stats.adj_def.value": 103,
-      "stats.adj_def.rank": 268,
+      "stats.adj_def.rank": 267,
       "stats.adj_tempo.value": 70.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 32
    },
    "Hampton": {
       "stats.adj_margin.rank": 336,
@@ -3693,18 +4698,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 106.2,
       "stats.adj_def.rank": 332,
       "stats.adj_tempo.value": 73.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 0,
+      "stats.off._3p_pct.value": 0
    },
    "William & Mary": {
       "stats.adj_margin.rank": 337,
       "conf": "Colonial Athletic Association",
       "stats.adj_margin.value": -14.8,
-      "stats.adj_off.value": 93.1,
+      "stats.adj_off.value": 93,
       "stats.adj_off.rank": 302,
-      "stats.adj_def.value": 107.9,
+      "stats.adj_def.value": 107.8,
       "stats.adj_def.rank": 348,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 62,
+      "stats.off._3p_pct.value": 28.5
    },
    "Tennessee Tech": {
       "stats.adj_margin.rank": 338,
@@ -3715,29 +4726,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 106.2,
       "stats.adj_def.rank": 331,
       "stats.adj_tempo.value": 71.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 29.4
    },
    "Central Conn. St.": {
       "stats.adj_margin.rank": 339,
       "conf": "Northeast Conference",
       "stats.adj_margin.value": -15.04,
       "stats.adj_off.value": 90.5,
-      "stats.adj_off.rank": 338,
+      "stats.adj_off.rank": 339,
       "stats.adj_def.value": 105.6,
       "stats.adj_def.rank": 321,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 31
    },
    "NJIT": {
       "stats.adj_margin.rank": 340,
       "conf": "America East Conference",
       "stats.adj_margin.value": -15.07,
       "stats.adj_off.value": 90,
-      "stats.adj_off.rank": 342,
-      "stats.adj_def.value": 105.1,
+      "stats.adj_off.rank": 343,
+      "stats.adj_def.value": 105,
       "stats.adj_def.rank": 310,
       "stats.adj_tempo.value": 70.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 18.1
    },
    "McNeese": {
       "stats.adj_margin.rank": 341,
@@ -3745,10 +4765,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -15.52,
       "stats.adj_off.value": 92.5,
       "stats.adj_off.rank": 311,
-      "stats.adj_def.value": 108.1,
+      "stats.adj_def.value": 108,
       "stats.adj_def.rank": 349,
       "stats.adj_tempo.value": 73.3,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 35.4
    },
    "LIU": {
       "stats.adj_margin.rank": 342,
@@ -3759,18 +4782,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 105.2,
       "stats.adj_def.rank": 315,
       "stats.adj_tempo.value": 73.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 76,
+      "stats.off._3p_pct.value": 23
    },
    "Hartford": {
       "stats.adj_margin.rank": 343,
       "conf": "Independents",
       "stats.adj_margin.value": -16.37,
-      "stats.adj_off.value": 90.8,
+      "stats.adj_off.value": 90.7,
       "stats.adj_off.rank": 335,
       "stats.adj_def.value": 107.1,
       "stats.adj_def.rank": 341,
       "stats.adj_tempo.value": 71.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 73,
+      "stats.off._3p_pct.value": 25
    },
    "Southeastern La.": {
       "stats.adj_margin.rank": 344,
@@ -3781,18 +4810,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 107.8,
       "stats.adj_def.rank": 347,
       "stats.adj_tempo.value": 73.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 43.7
    },
    "South Carolina St.": {
       "stats.adj_margin.rank": 345,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_margin.value": -16.48,
-      "stats.adj_off.value": 90.7,
+      "stats.adj_off.value": 90.6,
       "stats.adj_off.rank": 336,
-      "stats.adj_def.value": 107.2,
+      "stats.adj_def.value": 107.1,
       "stats.adj_def.rank": 342,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 42.3
    },
    "Alabama St.": {
       "stats.adj_margin.rank": 346,
@@ -3800,54 +4835,69 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -16.84,
       "stats.adj_off.value": 89.5,
       "stats.adj_off.rank": 349,
-      "stats.adj_def.value": 106.4,
+      "stats.adj_def.value": 106.3,
       "stats.adj_def.rank": 335,
       "stats.adj_tempo.value": 75,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 83,
+      "stats.off._3p_pct.value": 37.5
    },
    "St. Francis Brooklyn": {
       "stats.adj_margin.rank": 347,
       "conf": "Northeast Conference",
       "stats.adj_margin.value": -16.94,
-      "stats.adj_off.value": 91.9,
+      "stats.adj_off.value": 91.8,
       "stats.adj_off.rank": 318,
       "stats.adj_def.value": 108.8,
       "stats.adj_def.rank": 354,
       "stats.adj_tempo.value": 71.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 32.3
    },
    "Fairleigh Dickinson": {
       "stats.adj_margin.rank": 348,
       "conf": "Northeast Conference",
       "stats.adj_margin.value": -18.33,
       "stats.adj_off.value": 90.4,
-      "stats.adj_off.rank": 340,
-      "stats.adj_def.value": 108.8,
+      "stats.adj_off.rank": 341,
+      "stats.adj_def.value": 108.7,
       "stats.adj_def.rank": 353,
       "stats.adj_tempo.value": 72.7,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 80,
+      "stats.off._3p_pct.value": 25
    },
    "Lindenwood": {
       "stats.adj_margin.rank": 349,
       "conf": "Ohio Valley Conference",
       "stats.adj_margin.value": -18.53,
-      "stats.adj_off.value": 90.7,
+      "stats.adj_off.value": 90.6,
       "stats.adj_off.rank": 337,
       "stats.adj_def.value": 109.2,
       "stats.adj_def.rank": 358,
       "stats.adj_tempo.value": 71.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 20
    },
    "Idaho": {
       "stats.adj_margin.rank": 350,
       "conf": "Big Sky Conference",
       "stats.adj_margin.value": -18.62,
-      "stats.adj_off.value": 90,
-      "stats.adj_off.rank": 344,
-      "stats.adj_def.value": 108.6,
+      "stats.adj_off.value": 89.9,
+      "stats.adj_off.rank": 345,
+      "stats.adj_def.value": 108.5,
       "stats.adj_def.rank": 350,
       "stats.adj_tempo.value": 72.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 20
    },
    "Maine": {
       "stats.adj_margin.rank": 351,
@@ -3858,7 +4908,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 107,
       "stats.adj_def.rank": 339,
       "stats.adj_tempo.value": 70.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 70,
+      "stats.off._3p_pct.value": 41.3
    },
    "Stonehill": {
       "stats.adj_margin.rank": 352,
@@ -3869,18 +4922,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 107.3,
       "stats.adj_def.rank": 343,
       "stats.adj_tempo.value": 72.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 75,
+      "stats.off._3p_pct.value": 29.4
    },
    "Northwestern St.": {
       "stats.adj_margin.rank": 353,
       "conf": "Southland Conference",
       "stats.adj_margin.value": -19.17,
       "stats.adj_off.value": 89.8,
-      "stats.adj_off.rank": 345,
-      "stats.adj_def.value": 109,
+      "stats.adj_off.rank": 346,
+      "stats.adj_def.value": 108.9,
       "stats.adj_def.rank": 356,
-      "stats.adj_tempo.value": 72,
-      "is_high_major": 0
+      "stats.adj_tempo.value": 72.1,
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 66,
+      "stats.off._3p_pct.value": 27.7
    },
    "Eastern Ill.": {
       "stats.adj_margin.rank": 354,
@@ -3891,7 +4950,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 105.2,
       "stats.adj_def.rank": 316,
       "stats.adj_tempo.value": 71.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 77,
+      "stats.off._3p_pct.value": 20
    },
    "Green Bay": {
       "stats.adj_margin.rank": 355,
@@ -3902,29 +4964,38 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 108.7,
       "stats.adj_def.rank": 352,
       "stats.adj_tempo.value": 69.9,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 72,
+      "stats.off._3p_pct.value": 27.7
    },
    "Florida A&M": {
       "stats.adj_margin.rank": 356,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_margin.value": -21.87,
-      "stats.adj_off.value": 84.2,
+      "stats.adj_off.value": 84.1,
       "stats.adj_off.rank": 360,
-      "stats.adj_def.value": 106.1,
+      "stats.adj_def.value": 106,
       "stats.adj_def.rank": 330,
       "stats.adj_tempo.value": 70,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 16.6
    },
    "Ark.-Pine Bluff": {
       "stats.adj_margin.rank": 357,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_margin.value": -21.89,
       "stats.adj_off.value": 89.7,
-      "stats.adj_off.rank": 346,
+      "stats.adj_off.rank": 347,
       "stats.adj_def.value": 111.6,
       "stats.adj_def.rank": 363,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 74,
+      "stats.off._3p_pct.value": 44.8
    },
    "UIW": {
       "stats.adj_margin.rank": 358,
@@ -3935,7 +5006,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 109.9,
       "stats.adj_def.rank": 360,
       "stats.adj_tempo.value": 68.5,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 65,
+      "stats.off._3p_pct.value": 15
    },
    "Lamar University": {
       "stats.adj_margin.rank": 359,
@@ -3946,7 +5020,10 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 107.8,
       "stats.adj_def.rank": 346,
       "stats.adj_tempo.value": 71.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 67,
+      "stats.off._3p_pct.value": 25
    },
    "Chicago St.": {
       "stats.adj_margin.rank": 360,
@@ -3954,10 +5031,13 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -22.98,
       "stats.adj_off.value": 88.5,
       "stats.adj_off.rank": 354,
-      "stats.adj_def.value": 111.5,
+      "stats.adj_def.value": 111.4,
       "stats.adj_def.rank": 362,
       "stats.adj_tempo.value": 70.6,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 69,
+      "stats.off._3p_pct.value": 26.4
    },
    "Mississippi Val.": {
       "stats.adj_margin.rank": 361,
@@ -3968,18 +5048,24 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_def.value": 110.2,
       "stats.adj_def.rank": 361,
       "stats.adj_tempo.value": 72.1,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 79,
+      "stats.off._3p_pct.value": 23
    },
    "Delaware St.": {
       "stats.adj_margin.rank": 362,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_margin.value": -26.81,
-      "stats.adj_off.value": 82.3,
+      "stats.adj_off.value": 82.2,
       "stats.adj_off.rank": 362,
-      "stats.adj_def.value": 109.1,
+      "stats.adj_def.value": 109,
       "stats.adj_def.rank": 357,
       "stats.adj_tempo.value": 72.4,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 68,
+      "stats.off._3p_pct.value": 25
    },
    "IUPUI": {
       "stats.adj_margin.rank": 363,
@@ -3987,9 +5073,12 @@ export const publicKenpomEfficiency2022_23: Record<string, any> = {
       "stats.adj_margin.value": -28.75,
       "stats.adj_off.value": 80.5,
       "stats.adj_off.rank": 363,
-      "stats.adj_def.value": 109.3,
+      "stats.adj_def.value": 109.2,
       "stats.adj_def.rank": 359,
       "stats.adj_tempo.value": 68.8,
-      "is_high_major": 0
+      "is_high_major": 0,
+      "team_season.year": 2023,
+      "total_poss": 71,
+      "stats.off._3p_pct.value": 15.3
    }
-}
+};

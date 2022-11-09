@@ -204,7 +204,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // Data source
   const [ confs, setConfs ] = useState(startingState.conf || "");
-  const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
+  const [ year, setYear ] = useState(startingState.year || DateUtils.mostRecentYearWithLboardData);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = teamEditorMode
     ? (startingState.year == DateUtils.AllYears)

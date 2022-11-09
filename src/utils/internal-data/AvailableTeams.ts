@@ -481,7 +481,9 @@ export class AvailableTeams {
      ],
     "Dixie St.": [
         { team: "Dixie St.", year: "2021/22", gender: "Men", index_template: "wac", category: "midlow" },
-        { team: "Dixie St.", year: "2022/23", gender: "Men", index_template: "wac", category: "midlow" },
+     ],
+     "Utah Tech": [
+        { team: "Utah Tech", year: "2021/22", gender: "Men", index_template: "wac", category: "midlow" },
      ],
     "Drake": [
         { team: "Drake", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
@@ -769,7 +771,9 @@ export class AvailableTeams {
     "Houston Baptist": [
         { team: "Houston Baptist", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
         { team: "Houston Baptist", year: "2021/22", gender: "Men", index_template: "southland", category: "low" },
-        { team: "Houston Baptist", year: "2022/23", gender: "Men", index_template: "southland", category: "low" },
+     ],
+     "Houston Christian": [
+        { team: "Houston Christian", year: "2022/23", gender: "Men", index_template: "southland", category: "low" },
      ],
     "Howard": [
         { team: "Howard", year: "2020/21", gender: "Men", index_template: "meac", category: "low" },
