@@ -251,7 +251,11 @@ const ncaaToKenpomLookup_2021_22: Record<string, Record<string, string>> = {
    }
 };
 
+//TODO: need to check what names have changed in KP/NCAA for 2022/23
+const ncaaToKenpomLookup_2022_23: Record<string, Record<string, string>> = ncaaToKenpomLookup_2021_22;
+
 /** Contains NCAA/KP lookups for gender/years where we want to retrieve efficiency from the cache (current year only) */
 export const ncaaToKenpomLookup: Record<string, Record<string, Record<string, string>>> = {
-   "Men_2021/22": ncaaToKenpomLookup_2021_22
+   "Men_2021/22": ncaaToKenpomLookup_2021_22, //TODO: when can I remove this?
+   "Men_2022/23": ncaaToKenpomLookup_2022_23,
 };

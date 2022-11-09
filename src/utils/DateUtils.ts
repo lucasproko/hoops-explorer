@@ -19,7 +19,7 @@ export class DateUtils {
    static readonly offseasonYear = "2021/22";
 
    /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
-   static readonly coreYears = [ "2018/9", "2019/20", "2020/21", "2021/22" ];
+   static readonly coreYears = [ "2018/9", "2019/20", "2020/21", "2021/22", "2022/23" ];
 
    /** The final year in which a player/lineup/team might coem from the "Extra" bucket */
    static readonly lastExtraYear = "2017/8";
@@ -40,7 +40,7 @@ export class DateUtils {
    static readonly firstYearWithData = DateUtils.coreYears[0];
 
    /** Used for defaults for everything but leaderboards (which get updated later) */
-   static readonly mostRecentYearWithData = "2021/22";
+   static readonly mostRecentYearWithData = "2022/23";
 
    /** The year to use if making off-season predictions */
    static readonly offseasonPredictionYear = "2022/23";
@@ -63,7 +63,7 @@ export class DateUtils {
 
    /** All years supported by the leaderboard - with handy flags to control extra options */
    private static readonly lboardYearListOptions = (withNextYear: boolean, withAll: boolean, withExtra: boolean) => 
-      DateUtils.coreYears.concat(withNextYear ? [ "2022/23" ] : [])
+      DateUtils.coreYears.filter(y => y <= DateUtils.mostRecentYearWithLboardData).concat(withNextYear ? [ "2022/23" ] : [])
          .concat(withAll ? [ "All" ] : []).concat(withExtra ? ["Extra"] : []);
 
    /** For team editing, we can go into the offseason (unless in "what-if" mode), but can't have the first season because

@@ -54,16 +54,22 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
 
   const hasMidMajors = (!common.year || (common.year >= DateUtils.yearFromWhichAllMenD1Imported));
 
+  const currYearLboard = common.year || DateUtils.mostRecentYearWithLboardData;
+  const commonWithCorrectedYearLboard = (currYearLboard <= DateUtils.mostRecentYearWithLboardData) ? common : {
+    ...common,
+    year: DateUtils.mostRecentYearWithLboardData
+  };
+
   // Lineup Leaderboard
   function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low") {
     return UrlRouting.getLineupLeaderboardUrl(
-      getCommonLboardFilterParams(common, tier) as LineupLeaderboardParams
+      getCommonLboardFilterParams(commonWithCorrectedYearLboard, tier) as LineupLeaderboardParams
     );
   }
   // Player Leaderboard
   function getPlayerLeaderboardUrl(tier: "High" | "Medium" | "Low" | "All") {
     return UrlRouting.getPlayerLeaderboardUrl(
-      getCommonLboardFilterParams(common, tier) as PlayerLeaderboardParams
+      getCommonLboardFilterParams(commonWithCorrectedYearLboard, tier) as PlayerLeaderboardParams
     );
   }
   function getPlayerLeaderboardTrackingUrl(trackingList: string) {
@@ -72,7 +78,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
         gender: "Men",
         tier: "All",
-        year: ParamDefaults.defaultLeaderboardYear,
+        year: DateUtils.mostRecentYearWithLboardData,
         filter: trackingList
       }
     );
