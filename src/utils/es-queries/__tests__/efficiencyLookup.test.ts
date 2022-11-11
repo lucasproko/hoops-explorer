@@ -151,7 +151,7 @@ describe("efficiencyLookup", () => {
         }]
       }
     }
-    expect(formatEfficiencyLookupResponse(input)).toMatchSnapshot();
+    expect(formatEfficiencyLookupResponse(input, "2022")).toMatchSnapshot();
   });
 
 });

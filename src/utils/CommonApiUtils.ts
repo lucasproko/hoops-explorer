@@ -50,7 +50,7 @@ export class CommonApiUtils {
         },
     });
     const transform = (x: any) => {
-      const toRet = formatEfficiencyLookupResponse(x || {});
+      const toRet = formatEfficiencyLookupResponse(x || {}, year);
       return toRet;
     };
     const toCache = transform(await effFetch.json());
@@ -152,7 +152,7 @@ export class CommonApiUtils {
       const [ tmpEfficiency, lookup ] = efficiencyInfo[genderYearKey] || [ undefined, {} ];
       const getEfficiency = async () => {
         const lookupForQuery = ncaaToKenpomLookup[genderYearKey];
-        if (lookupForQuery) {
+        if (!_.isUndefined(lookupForQuery)) {
           const cachedEff = CommonApiUtils.efficiencyCache.get(genderYearKey);
           if (cachedEff) {
             return cachedEff;
@@ -161,6 +161,8 @@ export class CommonApiUtils {
             const newEff = await CommonApiUtils.buildCurrentMenEfficiency(
               genderYearKey, year.toString(), lookupForQuery
             );
+/**/
+console.log(JSON.stringify(newEff, null, 3));            
             return newEff;
           }
         } else { //(the data is not available in the ES store, so this just falls through to having no efficiency stats)

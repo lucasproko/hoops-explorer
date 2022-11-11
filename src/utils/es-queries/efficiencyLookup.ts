@@ -67,25 +67,28 @@ export const efficiencyLookup = function(
      }
 } 
 
-export const formatEfficiencyLookupResponse = function(response: any) {
+export const formatEfficiencyLookupResponse = function(response: any, year: String) {
     return _.chain(response?.hits?.hits || []).map(team => {
         const teamSource = team._source || {};
         const teamFields = team.fields || {};
         const conf = teamSource?.conf || "";
+        const dottedFields = year >= "2023" ? teamSource : {
+         "conf": conf,
+         "team_season.year": teamSource?.team_season?.year || "",
+         "stats.adj_off.rank": teamSource?.stats?.adj_off?.rank || 0,
+         "stats.adj_off.value": teamSource?.stats?.adj_off?.value || 0,
+         "stats.adj_def.rank": teamSource?.stats?.adj_def?.rank || 0,
+         "stats.adj_def.value": teamSource?.stats?.adj_def?.value || 0,
+         "stats.adj_margin.rank": teamSource?.stats?.adj_margin?.rank || 0,
+         "stats.adj_margin.value": teamSource?.stats?.adj_margin?.value || 0,
+         "stats.adj_tempo.rank": teamSource?.stats?.adj_tempo?.rank || 0,
+         "stats.adj_tempo.value": teamSource?.stats?.adj_tempo?.value || 0,
+         "stats.off._3p_pct.value": teamSource?.stats?.off?._3p_pct?.value || 0,
+         "total_poss": teamFields?.total_poss?.[0] || 0,
+         "ncaa_seed": teamSource?.ncaa_seed || undefined,
+        };
         return [teamFields?.ncaa_name?.[0] || "unknown", {
-            "team_season.year": teamSource?.team_season?.year || "",
-            "conf": conf,
-            "stats.adj_off.rank": teamSource?.stats?.adj_off?.rank || 0,
-            "stats.adj_off.value": teamSource?.stats?.adj_off?.value || 0,
-            "stats.adj_def.rank": teamSource?.stats?.adj_def?.rank || 0,
-            "stats.adj_def.value": teamSource?.stats?.adj_def?.value || 0,
-            "stats.adj_margin.rank": teamSource?.stats?.adj_margin?.rank || 0,
-            "stats.adj_margin.value": teamSource?.stats?.adj_margin?.value || 0,
-            "stats.adj_tempo.rank": teamSource?.stats?.adj_tempo?.rank || 0,
-            "stats.adj_tempo.value": teamSource?.stats?.adj_tempo?.value || 0,
-            "stats.off._3p_pct.value": teamSource?.stats?.off?._3p_pct?.value || 0,
-            "total_poss": teamFields?.total_poss?.[0] || 0,
-            "ncaa_seed": teamSource?.ncaa_seed || undefined,
+           ...dottedFields,
             "is_high_major": HighMajorConfs.has(conf) ? 1 : 0 
         }];
     }).fromPairs().value();

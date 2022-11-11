@@ -211,7 +211,7 @@ export async function main() {
   const globalGenderYearKey = `${inGender}_${inYear}`;
   const lookupForQuery = ncaaToKenpomLookup[globalGenderYearKey];
   var fallbackConfMapInfo: any = undefined;
-  if (lookupForQuery) {
+  if (!_.isUndefined(lookupForQuery)) {
     console.log("Getting dynamic efficiency info (needed for conference map)");
     //(also will cache it for subsequent requests)
     const efficiencyYear = (parseInt(inYear.substring(0, 4)) + 1).toString(); //(+1 from the input year)
