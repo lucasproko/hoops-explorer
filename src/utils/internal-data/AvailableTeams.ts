@@ -73,7 +73,9 @@ export class AvailableTeams {
     "Albany (NY)": [
         { team: "Albany (NY)", year: "2020/21", gender: "Men", index_template: "americaeast", category: "low" },
         { team: "Albany (NY)", year: "2021/22", gender: "Men", index_template: "americaeast", category: "low" },
-        { team: "Albany (NY)", year: "2022/23", gender: "Men", index_template: "americaeast", category: "low" },
+     ],
+     "UAlbany": [
+        { team: "UAlbany", year: "2022/23", gender: "Men", index_template: "americaeast", category: "low" },
      ],
     "Alcorn": [
         { team: "Alcorn", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -310,12 +312,10 @@ export class AvailableTeams {
         { team: "Canisius", year: "2021/22", gender: "Men", index_template: "maac", category: "midlow" },
         { team: "Canisius", year: "2022/23", gender: "Men", index_template: "maac", category: "midlow" },
      ],
-    "Central Ark": [
-        { team: "Central Ark", year: "2021/22", gender: "Men", index_template: "atlanticsun", category: "low" },
-        { team: "Central Ark", year: "2022/23", gender: "Men", index_template: "atlanticsun", category: "low" },
-     ],
     "Central Ark.": [
         { team: "Central Ark.", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
+        { team: "Central Ark.", year: "2021/22", gender: "Men", index_template: "atlanticsun", category: "low" },
+        { team: "Central Ark.", year: "2022/23", gender: "Men", index_template: "atlanticsun", category: "low" },
      ],
     "Central Conn. St.": [
         { team: "Central Conn. St.", year: "2020/21", gender: "Men", index_template: "nec", category: "low" },
@@ -1372,7 +1372,9 @@ export class AvailableTeams {
     "Northern Ill.": [
         { team: "Northern Ill.", year: "2020/21", gender: "Men", index_template: "mac", category: "mid" },
         { team: "Northern Ill.", year: "2021/22", gender: "Men", index_template: "mac", category: "mid" },
-        { team: "Northern Ill.", year: "2022/23", gender: "Men", index_template: "mac", category: "mid" },
+     ],
+     "NIU": [
+        { team: "NIU", year: "2022/23", gender: "Men", index_template: "mac", category: "mid" },
      ],
     "Northern Ky.": [
         { team: "Northern Ky.", year: "2020/21", gender: "Men", index_template: "horizon", category: "mid" },
