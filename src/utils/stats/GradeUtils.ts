@@ -401,14 +401,21 @@ export class GradeUtils {
          const isInverted = fieldsToInvert[f] || false;
          const invert = (!isDef && isInverted) || (isDef && !isInverted);
          const maxPct = 1 + 1.0/(s?.samples || 1); //(since 100% is rank 1)
-         const maybeInvert = (invert) ?
-            (s && _.isNumber(s.value) ? { value: maxPct - s.value, samples: supportRank ? s.samples : 0 } : s)
-            : { value: s?.value, samples: supportRank ? s?.samples : 0 };
-         return maybeInvert;
+         const numSamples = s?.samples || 0;
+         if ((numSamples > 0) || !supportRank) {
+            const maybeInvert = (invert) ?
+               (s && _.isNumber(s.value) ? 
+               { value: maxPct - s.value, samples: supportRank ? numSamples : 0 } : s)
+               : { value: s?.value, samples: supportRank ? numSamples : 0 };
+
+            return maybeInvert;
+         } else {
+            return undefined;
+         }
       }
       return _.chain(fieldList).map(key => {
          const playerVal = statSet[key]?.value;
-         return [ key, _.isNumber(playerVal) ? 
+         return [ key, playerVal && _.isFinite(playerVal) ? 
             format(key, GradeUtils.getPercentile(divStats, key, playerVal, buildLutMissCache)) 
             : undefined ];
       }).fromPairs().omitBy(_.isNil).value() as PureStatSet;

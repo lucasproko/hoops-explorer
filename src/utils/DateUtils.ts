@@ -16,13 +16,10 @@ export class DateUtils {
    static readonly inSeasonYear = "2022/23";
 
    /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season */
-   static readonly offseasonYear = "2021/22";
+   static readonly offseasonYear = "2022/23";
 
    /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
    static readonly coreYears = [ "2018/9", "2019/20", "2020/21", "2021/22", "2022/23" ];
-
-   /** The final year in which a player/lineup/team might coem from the "Extra" bucket */
-   static readonly lastExtraYear = "2017/8";
 
    /** Note should include all 3 formats */
    private static readonly seasonNotFinished: Record<string, boolean> = {
@@ -46,7 +43,12 @@ export class DateUtils {
    static readonly offseasonPredictionYear = "2022/23";
 
    /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
-   static readonly mostRecentYearWithLboardData = "2021/22";
+   static readonly mostRecentYearWithLboardData = "2022/23";
+
+   // These are old years in which the normal rules don't apply:
+
+   /** The final year in which a player/lineup/team might coem from the "Extra" bucket */
+   static readonly lastExtraYear = "2017/8";
 
    /** Don't want to use current year for test logic, so pick a recent previous year - changing this will need all the test artefacts to be changed */
    static readonly yearToUseForTests = "2020/21";
@@ -63,8 +65,10 @@ export class DateUtils {
 
    /** All years supported by the leaderboard - with handy flags to control extra options */
    private static readonly lboardYearListOptions = (withNextYear: boolean, withAll: boolean, withExtra: boolean) => 
-      DateUtils.coreYears.filter(y => y <= DateUtils.mostRecentYearWithLboardData).concat(withNextYear ? [ "2022/23" ] : [])
-         .concat(withAll ? [ "All" ] : []).concat(withExtra ? ["Extra"] : []);
+      DateUtils.coreYears.filter(y => y <= DateUtils.mostRecentYearWithLboardData).concat(
+         (withNextYear && (DateUtils.offseasonPredictionYear > DateUtils.mostRecentYearWithLboardData)) 
+            ? [ DateUtils.offseasonPredictionYear ] : []
+      ).concat(withAll ? [ "All" ] : []).concat(withExtra ? ["Extra"] : []);
 
    /** For team editing, we can go into the offseason (unless in "what-if" mode), but can't have the first season because
     * then we'd have no history to use for projections
@@ -134,7 +138,9 @@ export class DateUtils {
          
    /** Get the offseason of the current season */
    static readonly getOffseasonOfYear = (y: string) => {
-      if (y == "2021/22") { //TODO: can calculate programmatically
+      if (y == "2022/23") { //TODO: can calculate programmatically
+         return "2023";
+      } else if (y == "2021/22") { //TODO: can calculate programmatically
          return "2022";
       } else if (y == "2020/21") {
          return "2021";

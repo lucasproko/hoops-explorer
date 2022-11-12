@@ -379,6 +379,8 @@ export class GradeTableUtils {
             } else {
                delete playerPercentiles[field]; //(no data at all, just show nothing)
             }
+         } else {
+            delete playerPercentiles[field]; //(nothing worth showing)
          }
       })
 
@@ -442,7 +444,7 @@ export class GradeTableUtils {
             <div><small><b>{equivOrApprox} Ranks</b></small>{netInfo ? <br/> : null}{netInfo}</div>
          </OverlayTrigger>
          ;
-         
+
       const offPrefixFn = (key: string) => "off_" + key;
       const offCellMetaFn = (key: string, val: any) => "off";
       const defPrefixFn = (key: string) => "def_" + key;
