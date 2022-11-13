@@ -37,7 +37,7 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { AvailableTeams, AvailableTeamMeta } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
-import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup';
+import { ncaaToEfficiencyLookup } from '../utils/public-data/ncaaToEfficiencyLookup';
 import { TeamEvalUtils } from '../utils/stats/TeamEvalUtils';
 import { GradeUtils } from '../utils/stats/GradeUtils';
 import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
@@ -209,13 +209,13 @@ const teamListChain = (inYear == "Extra") ?
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
   const globalGenderYearKey = `${inGender}_${inYear}`;
-  const lookupForQuery = ncaaToKenpomLookup[globalGenderYearKey];
+  const lookupForQuery = ncaaToEfficiencyLookup[globalGenderYearKey];
   var fallbackConfMapInfo: any = undefined;
   if (!_.isUndefined(lookupForQuery)) {
     console.log("Getting dynamic efficiency info (needed for conference map)");
     //(also will cache it for subsequent requests)
     const efficiencyYear = (parseInt(inYear.substring(0, 4)) + 1).toString(); //(+1 from the input year)
-    fallbackConfMapInfo = await CommonApiUtils.buildCurrentMenEfficiency(globalGenderYearKey, efficiencyYear, lookupForQuery);
+    fallbackConfMapInfo = await CommonApiUtils.buildCurrentEfficiency(globalGenderYearKey, efficiencyYear, inGender, lookupForQuery);
   }
   const completedEfficiencyInfo = (efficiencyInfo?.[globalGenderYearKey]?.[0] || fallbackConfMapInfo);
 

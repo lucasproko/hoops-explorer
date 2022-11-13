@@ -39,6 +39,6 @@ export const efficiencyInfo: Record<string, [ Record<string, any>, Record<string
   "Women_2019/20": [ publicHerhoopstatsEfficiency2019_20, {} ],
   "Women_2020/21": [ publicNcaawMassey2020_21, {} ],  //(Massey, convert the names at source)
   "Women_2021/22": [ publicNcaawMassey2021_22, {} ],  //(Massey, convert the names at source)
-  //"Women_2022/23" - TODO
+  //"Women_2022/23" - calculated on the fly
   "Women_Latest": [ publicNcaawMassey2021_22, {} ],  //(Massey, convert the names at source)
 };

@@ -10,7 +10,7 @@ import { AvailableTeams } from './internal-data/AvailableTeams';
 import { efficiencyInfo } from './internal-data/efficiencyInfo';
 import { efficiencyLookup, formatEfficiencyLookupResponse } from './es-queries/efficiencyLookup';
 import { efficiencyAverages } from './public-data/efficiencyAverages';
-import { ncaaToKenpomLookup } from './public-data/ncaaToKenpomLookup';
+import { ncaaToEfficiencyLookup } from './public-data/ncaaToEfficiencyLookup';
 import { ServerRequestCache } from './ServerRequestCache';
 import { dataLastUpdated } from './internal-data/dataLastUpdated';
 import { ParamDefaults, CommonFilterParams } from './FilterModels';
@@ -37,11 +37,13 @@ export class CommonApiUtils {
     'Basic ' + Buffer.from(`${process.env.CLUSTER_USER}:${process.env.CLUSTER_PASS}`).toString('base64');
   
   /** Retrieve and cache the current men's efficiency */
-  static async buildCurrentMenEfficiency(cacheKey: string, year: string, nameLookup: Record<string, Record<string, string>>)
+  static async buildCurrentEfficiency(cacheKey: string, year: string, gender: string, nameLookup: Record<string, Record<string, string>>)
   {
-    console.log(`Refreshing men's efficiency cache for year=[${year}]`);
+    console.log(`Refreshing efficiency cache for gender=[${gender}] year=[${year}]`);
 
-    const effFetch = await fetch(`${process.env.CLUSTER_ID}/kenpom_all/_search`, {
+    const index = (gender == "Women") ? "massey_all" : "kenpom_all";
+
+    const effFetch = await fetch(`${process.env.CLUSTER_ID}/${index}/_search`, {
         method: 'post',
         body:    JSON.stringify(efficiencyLookup(year, nameLookup)),
         headers: { 
@@ -53,7 +55,9 @@ export class CommonApiUtils {
       const toRet = formatEfficiencyLookupResponse(x || {}, year);
       return toRet;
     };
-    const toCache = transform(await effFetch.json());
+    const bodyJson = await effFetch.json()
+    const toCache = transform(bodyJson);
+
     CommonApiUtils.efficiencyCache.set(cacheKey, toCache);
     return toCache;
   }
@@ -151,18 +155,16 @@ export class CommonApiUtils {
       const genderYearKey = `${params.gender}_${params.year}`;
       const [ tmpEfficiency, lookup ] = efficiencyInfo[genderYearKey] || [ undefined, {} ];
       const getEfficiency = async () => {
-        const lookupForQuery = ncaaToKenpomLookup[genderYearKey];
+        const lookupForQuery = ncaaToEfficiencyLookup[genderYearKey];
         if (!_.isUndefined(lookupForQuery)) {
           const cachedEff = CommonApiUtils.efficiencyCache.get(genderYearKey);
           if (cachedEff) {
             return cachedEff;
           } else {
             const year = parseInt((params.year as string).substring(0, 4)) + 1; //(KP uses final year of season)
-            const newEff = await CommonApiUtils.buildCurrentMenEfficiency(
-              genderYearKey, year.toString(), lookupForQuery
+            const newEff = await CommonApiUtils.buildCurrentEfficiency(
+              genderYearKey, year.toString(), gender, lookupForQuery
             );
-/**/
-console.log(JSON.stringify(newEff, null, 3));            
             return newEff;
           }
         } else { //(the data is not available in the ES store, so this just falls through to having no efficiency stats)
