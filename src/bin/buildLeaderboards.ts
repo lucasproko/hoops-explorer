@@ -553,7 +553,14 @@ export async function main() {
 
       // Merge ratings and position, and filter based on offensive possessions played
       const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
-        const minThreshold = 0.25;
+
+        //TODO: need to keep the file sizes below 5GB down for the "in season players"
+        // should fix this with compression later
+        const minThresholdHighMed = (inYear == DateUtils.mostRecentYearWithLboardData) ? 0.35 : 0.25;
+        const minThresholdLow = (inYear == DateUtils.mostRecentYearWithLboardData) ? 0.40 : 0.25;
+        const minThreshold = (inTier == "Low") ? minThresholdLow : minThresholdHighMed;
+        //(Low tier is largest so need to be a bit more aggressive with timescales until fix 5MB problem)
+
         const player = kv[1];
 
         const extraPossFactor = (() => {
