@@ -29,11 +29,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${parsed.src}_${parsed.oppo}_${parsed.gender}_${parsed.year}_${parsed.tier}.json.gz?cacheId=${cacheId}`, {
                     method: 'get'
                 });
-                res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
-                res.setHeader("Content-Encoding", "gzip");
-
-                res.setHeader("Content-Type", "application/json");
-                res.status(200).send(resp.body);
+                if (resp.status >= 400) {
+                    res.status(resp.status).json({ error: `status code error [${resp.status}]` });
+                } else {
+                    res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
+                    res.setHeader("Content-Encoding", "gzip");
+                    res.setHeader("Content-Type", "application/json");
+                    res.status(200).send(resp.body);
+                }
             } catch (e) {
                 res.status(500).json({ error: "Unknown error"});
             }

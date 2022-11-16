@@ -45,6 +45,9 @@ export class DateUtils {
    /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
    static readonly mostRecentYearWithLboardData = "2022/23";
 
+   /** Don't bother trying to display NET after this year */
+   static readonly mostRecentYearWithNetAvailable = "2021/22";
+
    // These are old years in which the normal rules don't apply:
 
    /** The final year in which a player/lineup/team might coem from the "Extra" bucket */

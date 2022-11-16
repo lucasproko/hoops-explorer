@@ -65,12 +65,13 @@ const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
     if (typeof window !== `undefined`) window.location.href = newUrl;
     return <span>(redirecting old link)</span>;
   }
-  if (!testMode && ((allParams.indexOf("year=2022/23") >= 0) || (allParams.indexOf("year=") < 0))) {
-    //TODO: this needs to get un-hardwired, but for now ... 
-    const newUrl = UrlRouting.getOffseasonLeaderboard({});
-    if (typeof window !== `undefined`) window.location.href = newUrl;
-    return <span>(retrieving offseason predictions)</span>;
-  }
+  //TODO: in off-season mode:
+  // if (!testMode && ((allParams.indexOf("year=2022/23") >= 0) || (allParams.indexOf("year=") < 0))) {
+  //   //TODO: this needs to get un-hardwired, but for now ... 
+  //   const newUrl = UrlRouting.getOffseasonLeaderboard({});
+  //   if (typeof window !== `undefined`) window.location.href = newUrl;
+  //   return <span>(retrieving offseason predictions)</span>;
+  // }
 
   // Team Stats interface
 
@@ -116,12 +117,14 @@ const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
     ]));
 
-    if (!testMode && (rawParams.year == "2022/23")) { //TODO: un-hardwire this
-      //Switch to off-season predictions
-      const newUrl = UrlRouting.getOffseasonLeaderboard({});
-      if (typeof window !== `undefined`) window.location.href = newUrl;
+    //TODO: in off-season mode:
+    // if (!testMode && (rawParams.year == "2022/23")) { //TODO: un-hardwire this
+    //   //Switch to off-season predictions
+    //   const newUrl = UrlRouting.getOffseasonLeaderboard({});
+    //   if (typeof window !== `undefined`) window.location.href = newUrl;
   
-    } else if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
+    // } else 
+    if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

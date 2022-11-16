@@ -616,6 +616,20 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   // 4] View
 
+  /** Switch to pre-season button */
+  const getPreseasonButton = () => {
+    const tooltip = (
+      <Tooltip id="preseasonLeaderboard">Switch to pre-season leaderboard</Tooltip>
+    );
+    return <OverlayTrigger placement="auto" overlay={tooltip}>
+      <Button variant="outline-secondary" size="sm" onClick={e => {
+        window.location.href = UrlRouting.getOffseasonLeaderboard({ year });
+      }}>
+        PRE
+      </Button>
+    </OverlayTrigger>;
+  };
+
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
@@ -858,8 +872,10 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
             }}
           />
         </Col>
-        <Col lg={1} className="mt-1">
+        <Col lg={2} className="mt-1">
           {getCopyLinkButton()}
+          &nbsp;&nbsp;&nbsp;
+          {getPreseasonButton()}
         </Col>
       </Form.Group>
       <Row className="mt-2 sticky-top" style={{backgroundColor: "white", opacity: "85%", zIndex: 1}}>

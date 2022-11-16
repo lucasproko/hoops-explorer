@@ -6,6 +6,7 @@ import LRUCache from 'lru-cache';
 import queryString from "query-string";
 import { Tabletojson } from 'tabletojson';
 import { ParamDefaults } from '../../utils/FilterModels';
+import { DateUtils } from '../../utils/DateUtils';
 
 const rankingCache = new LRUCache<string, Record<string, any>>({
    max: 20, 
@@ -20,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
    const cacheKey = `${parsed.year}_${parsed.name}_${parsed.gender || "Men"}`;
 
    if (parsed.name == "NET") {
-      if (parsed.year == ParamDefaults.defaultLeaderboardYear) {
+      if (parsed.year <= DateUtils.mostRecentYearWithNetAvailable) {
          const maybeCachedVal = rankingCache.get(cacheKey);
          if (!maybeCachedVal) {
             console.log(`getRankings: Retrieving and caching [${cacheKey}]`);
