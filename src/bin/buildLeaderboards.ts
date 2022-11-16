@@ -554,12 +554,7 @@ export async function main() {
       // Merge ratings and position, and filter based on offensive possessions played
       const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
 
-        //TODO: need to keep the file sizes below 5GB down for the "in season players"
-        // should fix this with compression later
-        const minThresholdHighMed = (inYear == DateUtils.mostRecentYearWithLboardData) ? 0.35 : 0.25;
-        const minThresholdLow = (inYear == DateUtils.mostRecentYearWithLboardData) ? 0.40 : 0.25;
-        const minThreshold = (inTier == "Low") ? minThresholdLow : minThresholdHighMed;
-        //(Low tier is largest so need to be a bit more aggressive with timescales until fix 5MB problem)
+        const minThreshold = 0.25;
 
         const player = kv[1];
 
@@ -617,6 +612,8 @@ export async function main() {
               ) || (
                 (t2[0] != "diag_off_rtg") &&
                 (t2[0] != "diag_def_rtg") &&
+                (t2[0] != "off_luck") &&
+                (t2[0] != "def_luck") &&
                 !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
                 !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
@@ -760,7 +757,6 @@ export async function main() {
 }
 /** Adds some handy default sortings */
 export function completePlayerLeaderboard(key: string, leaderboard: any[], topTableSize: number) {
-  //TODO: RAPM
   // Take T300 by possessions
   const topByPoss =
     _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
@@ -911,8 +907,7 @@ if (!testMode) {
   } else {
     main().then(async dummy => {
       const topLineupSize = onlyHasTopConferences ? 300 : 400;
-      const topPlayersSize = 1250; //(at 1500 essentially just means the 10mpg is only qualifier)
-//TODO: got >5MB body with low tier for 1500 (picked up 1400)      
+      const topPlayersSize = 1500; //(at 1500 essentially just means the 10mpg is only qualifier)
 
       console.log("Processing Complete!");
 

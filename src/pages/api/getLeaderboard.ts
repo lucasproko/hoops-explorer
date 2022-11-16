@@ -3,6 +3,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 import queryString from "query-string";
+import { Writable } from 'stream';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const url = require('url').parse(req.url);
@@ -22,17 +23,28 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(400).json({ error: "Request must be cacheable" });
         return undefined;
     } else {
-        try {
-            const cacheId = process.env.NEXT_PUBLIC_VERCEL_URL || "default_cache_control";
-            const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${parsed.src}_${parsed.oppo}_${parsed.gender}_${parsed.year}_${parsed.tier}.json?cacheId=${cacheId}`, {
-                method: 'get'
-            });
-            const respJson = await resp.json();
-            res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
-            res.status(200).json(respJson);
-        } catch (e) {
-            res.status(500).json({ error: "Unknown error"});
+        if (req.headers?.['accept-encoding']?.includes("gzip")) {
+            try {
+                const cacheId = process.env.NEXT_PUBLIC_VERCEL_URL || "default_cache_control";
+                const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${parsed.src}_${parsed.oppo}_${parsed.gender}_${parsed.year}_${parsed.tier}.json.gz?cacheId=${cacheId}`, {
+                    method: 'get'
+                });
+                res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
+                res.setHeader("Content-Encoding", "gzip");
+
+                res.setHeader("Content-Type", "application/json");
+                res.status(200).send(resp.body);
+            } catch (e) {
+                res.status(500).json({ error: "Unknown error"});
+            }
+        } else {
+            res.status(400).json({ error: "Client must support accept-encoding: gzip"});
         }
     }    
   }
   
+  export const config = {
+    api: {
+      bodyParser: false,
+    },
+  }
