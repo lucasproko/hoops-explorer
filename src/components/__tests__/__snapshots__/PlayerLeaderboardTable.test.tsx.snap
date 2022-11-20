@@ -84,6 +84,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "2021/22",
               },
               Object {
+                "label": "2022/23",
+                "value": "2022/23",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -7349,6 +7353,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "2021/22",
               },
               Object {
+                "label": "2022/23",
+                "value": "2022/23",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -14612,6 +14620,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "2021/22",
                 "value": "2021/22",
+              },
+              Object {
+                "label": "2022/23",
+                "value": "2022/23",
               },
               Object {
                 "label": "All",
@@ -24877,6 +24889,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "2021/22",
               },
               Object {
+                "label": "2022/23",
+                "value": "2022/23",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -32122,6 +32138,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "2021/22",
               },
               Object {
+                "label": "2022/23",
+                "value": "2022/23",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -33586,6 +33606,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "2021/22",
                 "value": "2021/22",
+              },
+              Object {
+                "label": "2022/23",
+                "value": "2022/23",
               },
               Object {
                 "label": "All",
