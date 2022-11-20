@@ -66,6 +66,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
       position: "WG"
     },
   },
+  "Men_Maryland_2022/23": {
+    "Young, Jahmir": { //(such rebounding!)
+      position: "s-PG"
+    },
+  },
   "Men_Michigan St._2020/21": {
     "Hauser, Joey": {
       position: "S-PF"
