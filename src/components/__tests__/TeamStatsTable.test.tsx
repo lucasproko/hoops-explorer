@@ -100,4 +100,49 @@ describe("TeamStatsTable", () => {
     const tree = component!.toJSON();
     expect(tree).toMatchSnapshot();
   });
+  test("TeamStatsTable - should create snapshot, positional override + diagnostics + grades shown", async () => {
+
+    const sampleData = JSON.parse(
+      fs.readFileSync("./public/leaderboards/lineups/stats_all_Men_2020_High.json", { encoding: "UTF-8"})
+    );  
+
+    // Mock the URL calls needed to get the stats
+    [ "Combo", "High", "Medium", "Low"].forEach(tier => {
+      //(old files)
+      (fetchMock as any).mock(`/leaderboards/lineups/stats_all_Men_${testYear.substring(0, 4)}_${tier}.json`, {
+        status: 200,
+        body: tier == "High" ? sampleData : { }
+      });
+      //(new files)
+      (fetchMock as any).mock(`/api/getStats?&gender=Men&year=${testYear.substring(0, 4)}&tier=${tier}`, {
+        status: 200,
+        body: tier == "High" ? sampleData : { }
+      });
+    });
+
+    var component: ReactTestRenderer;
+    await act(async () => {
+      component = renderer.create(<TeamStatsTable
+        gameFilterParams={{ 
+          year: testYear,        
+          showGrades: ParamDefaults.defaultEnabledGrade,
+          manual: [{
+            rowId: "Cowan, Anthony / Baseline",
+            statName: "off_3p",
+            newVal: 0.5,
+            use: true
+          }]
+        }}
+        dataEvent={{
+          teamStats: testData,
+          rosterStats: testRosterData,
+          lineupStats: [ ] //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
+        }}
+        onChangeState={(newParams: GameFilterParams) => {}}
+      />);
+      return new Promise((resolve) => setTimeout(resolve, 50));
+    });
+    const tree = component!.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

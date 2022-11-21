@@ -46,6 +46,7 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
+import { OverrideUtils } from '../utils/stats/OverrideUtils';
 
 export type TeamStatsModel = {
   on: TeamStatSet,
@@ -200,8 +201,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
     if (teamStats[k]?.doc_count) {
+      // Before applying luck, reset any changes due to manual player overrides or earlier iterations of luck
+      OverrideUtils.clearTeamManualOrLuckOverrides(teamStats[k]);
+
       // Extra mutable set, build net margin column:
       LineupUtils.buildEfficiencyMargins(teamStats[k]);
+
       // Mutate stats object to inject luck
       LuckUtils.injectLuck(teamStats[k]!, luckAdj?.[0], luckAdj?.[1]);
     }
@@ -228,6 +233,44 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const positionFromPlayerIdOff =
     showRoster && rosterStats.off?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.off, teamSeasonLookup, globalRosterInfo) : {};
 
+  // Enrich player stats and handle manual overrides (needs to come before 
+  // injectPlayTypeInfo)
+
+  // If manual overrides specified we have some more work to do:
+  const manualOverridesAsMap = _.isNil(gameFilterParams.manual) ? 
+    undefined : OverrideUtils.buildOverrideAsMap(gameFilterParams.manual);
+
+  // If building roster info then enrich player stats:
+  const playerInfoByIdBy0AB = (showRoster || manualOverridesAsMap) ? 
+    ([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map(queryKey => {
+      const playerStatsBy0AB = rosterStats[queryKey] || [];
+      const teamStatsBy0AB = teamStats[queryKey] || StatModels.emptyTeam();
+      if (teamStatsBy0AB.doc_count) {
+        /** Need player info for tooltip view/lineup decoration */
+        const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+          playerStatsBy0AB, globalRosterStatsByCode, teamStats.baseline, avgEfficiency, adjustForLuck, 
+          luckConfig.base, manualOverridesAsMap || {}
+        );
+        return playerInfo;
+      } else {
+        return undefined;
+      }
+    }) : [];
+
+  // Also apply any manual overrides to the _team_ stats
+  // TOOD: currently not supported if luck enabled, it gets a bit fiddly but still possible I think?
+
+  if (!adjustForLuck) {
+    ([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map((queryKey, index) => {
+      const playerStats = playerInfoByIdBy0AB[index] || {};
+      OverrideUtils.applyPlayerOverridesToTeam(
+        queryKey, gameFilterParams.manual || [], playerStats, teamStats[queryKey] || {}, avgEfficiency
+      );
+    });
+  } //(if adjusting for luck then have already rewritten old_value back to value, so nothing to do here)
+
+
+
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
   const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
     const aMinusB = (teamStats.on?.doc_count && teamStats.off?.doc_count) ? LineupUtils.getStatsDiff(
@@ -249,21 +292,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach(k => {
     TableDisplayUtils.injectPlayTypeInfo(teamStats[k] || StatModels.emptyTeam(), false, false, teamSeasonLookup);
   });
-
-  // If building roster info then enrich player stats:
-  const playerInfoByIdBy0AB = showRoster ? ([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map(queryKey => {
-    const playerStatsBy0AB = rosterStats[queryKey] || [];
-    const teamStatsBy0AB = teamStats[queryKey] || StatModels.emptyTeam();
-    if (teamStatsBy0AB.doc_count) {
-      /** Need player info for tooltip view/lineup decoration */
-      const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        playerStatsBy0AB, globalRosterStatsByCode, teamStats.baseline, avgEfficiency, adjustForLuck, luckConfig.base
-      );
-      return playerInfo;
-    } else {
-      return undefined;
-    }
-  }) : [];
 
   // Last stage before building the table: inject titles into the stats:
   const teamStatsOn = {
