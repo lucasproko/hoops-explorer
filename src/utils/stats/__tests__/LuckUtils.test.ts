@@ -41,6 +41,33 @@ describe("LuckUtils", () => {
     // Now copy the snapshot here:
     expect(offTeamLuckAdj).toEqual(sampleOffOnOffLuckDiagnostics);
   });
+  test("LuckUtils - calcOffTeamLuckAdj (+manual overrides)", () => {
+      const overrides = [
+        {
+        rowId: "Cowan, Anthony", //(the query key has already been stripped away at this point)
+        statName: "off_3p",
+        newVal: 0.5,
+        use: true
+      }
+    ];
+    const adjSampleTeamOn = _.cloneDeep(sampleTeamOn);
+    adjSampleTeamOn.off_to = {
+      value: 0.10,
+      old_value: sampleTeamOn.off_to!.value!
+    };
+    adjSampleTeamOn.off_2p = {
+      value: 0.80,
+      old_value: sampleTeamOn.off_2p!.value!
+    };
+    adjSampleTeamOn.off_ft = {
+      value: 0.0,
+      old_value: sampleTeamOn.off_ft!.value!
+    };
+    const offTeamLuckAdj = LuckUtils.calcOffTeamLuckAdj(
+      adjSampleTeamOn, samplePlayersOn, baseTeam, basePlayersMap, 100.0, undefined, overrides
+    );
+    expect(offTeamLuckAdj).toMatchSnapshot("Offensive Luck Adjustments");
+  });
   test("LuckUtils - calcOffPlayerLuckAdj", () => {
     // (just check it's a straight translation of the team version)
     const offTeamLuckAdj = LuckUtils.calcOffTeamLuckAdj(

@@ -37,90 +37,92 @@ describe("OverrideUtils", () => {
       "test2": { "testStat2": 0.3 }
     });
   });
-  test("OverrideUtils - applyPlayerOverridesToTeam", () => {
-    expect(_.chain(OverrideUtils.applyPlayerOverridesToTeam(
-      "baseline", [
+  [ true, false ].forEach(luckAdj => {
+    test(`OverrideUtils - applyPlayerOverridesToTeam (luckAdj=[${luckAdj}])`, () => {
+      expect(_.chain(OverrideUtils.applyPlayerOverridesToTeam(
+        "baseline", [
+            {
+            rowId: "Cowan, Anthony / Baseline",
+            statName: "off_3p",
+            newVal: 0.5,
+            use: true
+          },
           {
-          rowId: "Cowan, Anthony / Baseline",
-          statName: "off_3p",
-          newVal: 0.5,
-          use: true
-        },
-        {
-          rowId: "Cowan, Anthony / Baseline",
-          statName: "off_2pmid",
-          newVal: 0.5,
-          use: false
-        },
-        {
-          rowId: "Cowan, Anthony / On",
-          statName: "off_2p",
-          newVal: 0.5,
-          use: false
-        },
-      ], {
-        "Cowan, Anthony": {
-          off_rtg: { value: 120, old_value: 110 },
-          off_usage: { value: 0.25 },
-          off_team_poss_pct: { value: 0.9 },
-          off_3p: { value: 0.4 },
-          total_off_3p_attempts: { value: 10 },
-          off_2pmid: { value: 0.5 },
-          total_off_2pmid_attempts: { value: 20 },
-          off_efg: { value: 0.6 },
-          total_off_fga: { value: 30 },
-          def_adj_opp: { value: 90 },
-        } as unknown as IndivStatSet
-      }, {
-        off_3p: { value: 0.3 },
+            rowId: "Cowan, Anthony / Baseline",
+            statName: "off_2pmid",
+            newVal: 0.5,
+            use: false
+          },
+          {
+            rowId: "Cowan, Anthony / On",
+            statName: "off_2p",
+            newVal: 0.5,
+            use: false
+          },
+        ], {
+          "Cowan, Anthony": {
+            off_rtg: { value: 120, old_value: 110 },
+            off_usage: { value: 0.25 },
+            off_team_poss_pct: { value: 0.9 },
+            off_3p: { value: 0.4 },
+            total_off_3p_attempts: { value: 10 },
+            off_2pmid: { value: 0.5 },
+            total_off_2pmid_attempts: { value: 20 },
+            off_efg: { value: 0.6 },
+            total_off_fga: { value: 30 },
+            def_adj_opp: { value: 90 },
+          } as unknown as IndivStatSet
+        }, {
+          off_3p: { value: 0.3 },
+          total_off_3p_attempts: { value: 100 },
+          off_2pmid: { value: 0.4 },
+          total_off_2pmid_attempts: { value: 200 },
+          off_efg: { value: 0.5 },
+          total_off_fga: { value: 300 },
+          off_ppp: { value: 110 },
+          off_adj_ppp: { value: 110 },
+          off_net: { value: 10 },
+          off_raw_net: { value: 10 },
+      } as unknown as TeamStatSet, 100.0, luckAdj
+      )).mapValues(p => { return _.isNil(p.old_value) ? p : { 
+        value: parseFloat(p.value!.toFixed(2)), old_value: parseFloat(p.old_value?.toFixed(2)), override: p.override
+      }}).value()).toEqual({
         total_off_3p_attempts: { value: 100 },
         off_2pmid: { value: 0.4 },
         total_off_2pmid_attempts: { value: 200 },
-        off_efg: { value: 0.5 },
         total_off_fga: { value: 300 },
-        off_ppp: { value: 110 },
-        off_adj_ppp: { value: 110 },
-        off_net: { value: 10 },
-        off_raw_net: { value: 10 },
-    } as unknown as TeamStatSet, 100.0
-    )).mapValues(p => { return _.isNil(p.old_value) ? p : { 
-      value: parseFloat(p.value!.toFixed(2)), old_value: parseFloat(p.old_value?.toFixed(2)), override: p.override
-    }}).value()).toEqual({
-      total_off_3p_attempts: { value: 100 },
-      off_2pmid: { value: 0.4 },
-      total_off_2pmid_attempts: { value: 200 },
-      total_off_fga: { value: 300 },
-    
-      off_3p: { 
-        value: 0.34,
-        old_value: 0.3,
-        override: "Adjusted by [4.0] for [Cowan, Anthony] override of [off_3p] to [50]%"
-      },
-      off_efg: { 
-        value: 0.56,
-        old_value: 0.5, 
-        override: "Adjusted by [6.0] for [Cowan, Anthony] override of [off_3p] to [50]%"
-      },
-      off_ppp: { 
-        value: 112.25, 
-        old_value: 110, 
-        override: "Adjusted by [2.3] for [Cowan, Anthony] override of [off_3p] to [50]%"
-      },
-      off_adj_ppp: { 
-        value: 112.5, 
-        old_value: 110, 
-        override: "Adjusted by [2.5] for [Cowan, Anthony] override of [off_3p] to [50]%"
-      },
-      off_net: { 
-        value: 12.5, 
-        old_value: 10, 
-        override: "Adjusted by [2.5] for [Cowan, Anthony] override of [off_3p] to [50]%"
-      },
-      off_raw_net: { 
-        value: 12.25, 
-        old_value: 10, 
-        override: "Adjusted by [2.3] for [Cowan, Anthony] override of [off_3p] to [50]%"
-      },
+      
+        off_3p: { 
+          value: 0.34,
+          old_value: 0.3,
+          override: "Adjusted by [4.0] for [Cowan, Anthony] override of [off_3p] to [50]%"
+        },
+        off_efg: { 
+          value: luckAdj ? 0.5 : 0.56,
+          old_value: luckAdj ? undefined : 0.5, 
+          override: "Adjusted by [6.0] for [Cowan, Anthony] override of [off_3p] to [50]%"
+        },
+        off_ppp: { 
+          value: luckAdj ? 110 : 112.25, 
+          old_value: luckAdj ? undefined : 110, 
+          override: "Adjusted by [2.3] for [Cowan, Anthony] override of [off_3p] to [50]%"
+        },
+        off_adj_ppp: { 
+          value: luckAdj ? 110 : 112.5, 
+          old_value: luckAdj ? undefined : 110, 
+          override: "Adjusted by [2.5] for [Cowan, Anthony] override of [off_3p] to [50]%"
+        },
+        off_net: { 
+          value: luckAdj ? 10 : 12.5, 
+          old_value: luckAdj ? undefined : 10, 
+          override: "Adjusted by [2.5] for [Cowan, Anthony] override of [off_3p] to [50]%"
+        },
+        off_raw_net: { 
+          value: luckAdj ? 10 : 12.25, 
+          old_value: luckAdj ? undefined : 10, 
+          override: "Adjusted by [2.3] for [Cowan, Anthony] override of [off_3p] to [50]%"
+        },
+      });
     });
   });
   test("OverrideUtils - overrideMutableVal", () => {

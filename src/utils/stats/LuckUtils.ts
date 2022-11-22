@@ -3,6 +3,7 @@ import _, { forEach } from "lodash";
 import { OverrideUtils } from "./OverrideUtils";
 import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, IndivStatSet } from "../StatModels";
 import { LineupUtils } from './LineupUtils';
+import { ManualOverride } from '../FilterModels';
 
 /** Whether to calculate the luck adjustment over the baseline or the entire season
     Baseline will be subject to more noise but enables luck to be reduced in cases
@@ -148,9 +149,13 @@ export class LuckUtils {
     sampleTeam: TeamStatSet | LineupStatSet | IndivStatSet, samplePlayers: Array<IndivStatSet>,
     baseTeam: TeamStatSet | LineupStatSet | IndivStatSet, basePlayersMap: Record<PlayerId, IndivStatSet>,
     avgEff: number,
-    sample3PAOverride? : number 
+    sample3PAOverride? : number,
+    manualOverrides?: ManualOverride[]
       //(when calc'ing luck on lineups, each lineup gets the total sample as its regression so its average is right over the set)
   ) => {
+    const manual3pPct = _.chain(manualOverrides || []).filter(row => row.statName == "off_3p").map(row => {
+      return [ row.rowId, row.newVal ] as [ string, number ];
+    }).fromPairs().value();
 
     // Number of 3P shots taken in sample
 
@@ -201,9 +206,16 @@ export class LuckUtils {
       if (playerInfo) {
         //(we use the sample size but the expected 3P% based on base3P% and sample distribution)        
         varTotal3PA += playerInfo.shot_info_total;
-        const totalTimes3P = LuckUtils.buildExp3P(playerInfo)
-        playerInfo.expected3P = totalTimes3P/(playerInfo.shot_info_total || 1)
-        varTotal3P += totalTimes3P;
+        
+        const manual3pOver = manual3pPct[player.key];
+        if (_.isNil(manual3pOver)) {
+          const totalTimes3P = LuckUtils.buildExp3P(playerInfo);
+          playerInfo.expected3P = totalTimes3P/(playerInfo.shot_info_total || 1);
+          varTotal3P += totalTimes3P;
+        } else { // Use the manual override (eg player's career stats as their expected shooting %)
+          playerInfo.expected3P = manual3pOver;
+          varTotal3P += playerInfo.shot_info_total*manual3pOver;
+        }
 
         return (playerInfo.shot_info_total > 0) ? //(don't bother with any players who didn't take a 3P shot)
           [ [ player.key, playerInfo  ] ] : [];
@@ -225,6 +237,7 @@ export class LuckUtils {
     // Calculate effects similarly to calcDefTeamLuckAdj
     const sampleOff3PRate = LuckUtils.get(sampleTeam?.off_3pr, 0);
     const sampleOffFGA = LuckUtils.get(sampleTeam?.total_off_2p_attempts, 0) + LuckUtils.get(sampleTeam?.total_off_3p_attempts, 0);
+    const sampleOffFTA = LuckUtils.get(sampleTeam?.total_off_fta, 0);
     const rawSampleOffOrb = LuckUtils.get(sampleTeam?.off_orb, 0);
     const sampleOffOrb = rawSampleOffOrb > 0.66 ? 0.66 : rawSampleOffOrb;
 
@@ -232,15 +245,29 @@ export class LuckUtils {
     const sampleOffPpp = LuckUtils.get(sampleTeam?.off_ppp, 0);
     const sampleDefSos = LuckUtils.get(sampleTeam?.def_adj_opp, 0);
 
+    // Team only (check on manual overrides which is unset for player by construction)
+    const adjustedTO = (sampleTeam.off_to?.value || 0); 
+    const deltaTO = manualOverrides ? (adjustedTO - (sampleTeam.off_to?.old_value || adjustedTO)) : 0; 
+
+    // Team only (check on manual overrides which is unset for player by construction)
+    const adjusted2P = (sampleTeam.off_2p?.value || 0); //(to start with use the raw value post manual adjustments)
+    const delta2P = manualOverrides ? (adjusted2P - (sampleTeam.off_2p?.old_value || adjusted2P)) : 0;
+
+    // Team only (check on manual overrides which is unset for player by construction)
+    const adjustedFT = (sampleTeam.off_ft?.value || 0);
+    const deltaFT = manualOverrides ? (adjustedFT - (sampleTeam.off_ft?.old_value || adjustedFT)) : 0;
+
     const delta3P = regress3P - sample3P;
-    const deltaOffEfg = 1.5*delta3P*sampleOff3PRate;
-    const deltaMissesPct = -1*delta3P*sampleOff3PRate;
-    const deltaOffPppNoOrb = 200*deltaOffEfg*sampleOffFGA/(samplePoss || 1);
+    const deltaOffEfg = 1.5*delta3P*sampleOff3PRate + delta2P*(1 - sampleOff3PRate);
+    const deltaMissesPct = -1*(delta3P*sampleOff3PRate + delta2P*(1 - sampleOff3PRate));
+    const deltaOffPppNoOrb = (200*deltaOffEfg*sampleOffFGA + 100*deltaFT*sampleOffFTA)/(samplePoss || 1);
     // pts_off_misses = delta_misses*ORB*(ppp_no_orb + pts_off_misses)
     // ie pts_off_misses = delta_misses*ORB*ppp_no_orb/(1 - delta_misses*ORB)
     const deltaOffOrbFactor = deltaMissesPct*sampleOffOrb/(1 - deltaMissesPct*sampleOffOrb);
     const deltaPtsOffMisses = deltaOffOrbFactor*(sampleOffPpp + deltaOffPppNoOrb);
-    const deltaOffPpp = deltaOffPppNoOrb + deltaPtsOffMisses;
+    const deltaOffPppPreTo = deltaOffPppNoOrb + deltaPtsOffMisses;
+    const deltaPtsLostFromTos = deltaTO*((sampleTeam.off_ppp?.value || 0) + deltaOffPppPreTo);
+    const deltaOffPpp = deltaOffPppPreTo - deltaPtsLostFromTos;
     const deltaOffAdjEff = deltaOffPpp*avgEff/(sampleDefSos || 1);
 
     return {

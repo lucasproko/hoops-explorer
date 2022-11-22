@@ -170,52 +170,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const maybeOff = TableDisplayUtils.addQueryInfo(maybeOffStr, gameFilterParams, "off");
   const maybeBase = TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline");
 
-  // Luck calculations:
-
   const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
   const teamSeasonLookup = `${gameFilterParams.gender}_${gameFilterParams.team}_${gameFilterParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
-
-  // The luck baseline can either be the user-selecteed baseline or the entire season
-  const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
-    if (adjustForLuck) {
-      switch (luckConfig.base) {
-        case "baseline":
-          return [
-            teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
-          ];
-        default: //("season")
-          return [
-            teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
-          ];
-      }
-    } else return [ StatModels.emptyTeam(), {} ]; //(not used)
-  };
-  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
-
-  // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
-  const luckAdjustment = _.fromPairs(([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).map(k => {
-    const luckAdj = (adjustForLuck && teamStats[k]?.doc_count) ? [
-      LuckUtils.calcOffTeamLuckAdj(teamStats[k]!, rosterStats[k] || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency),
-      LuckUtils.calcDefTeamLuckAdj(teamStats[k]!, baseOrSeasonTeamStats, avgEfficiency),
-    ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
-
-    if (teamStats[k]?.doc_count) {
-      // Before applying luck, reset any changes due to manual player overrides or earlier iterations of luck
-      OverrideUtils.clearTeamManualOrLuckOverrides(teamStats[k]);
-
-      // Extra mutable set, build net margin column:
-      LineupUtils.buildEfficiencyMargins(teamStats[k]);
-
-      // Mutate stats object to inject luck
-      LuckUtils.injectLuck(teamStats[k]!, luckAdj?.[0], luckAdj?.[1]);
-    }
-    return [ k, luckAdj ];
-  })) as {
-    [P in OnOffBaselineEnum]: [ OffLuckAdjustmentDiags, DefLuckAdjustmentDiags ] | undefined
-  };
-
-  //(end luck calcs)
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
   const globalRosterInfo = teamStats.global?.roster
@@ -232,9 +189,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     showRoster && rosterStats.on?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.on, teamSeasonLookup, globalRosterInfo) : {};
   const positionFromPlayerIdOff =
     showRoster && rosterStats.off?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.off, teamSeasonLookup, globalRosterInfo) : {};
-
-  // Enrich player stats and handle manual overrides (needs to come before 
-  // injectPlayTypeInfo)
 
   // If manual overrides specified we have some more work to do:
   const manualOverridesAsMap = _.isNil(gameFilterParams.manual) ? 
@@ -257,19 +211,67 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       }
     }) : [];
 
-  // Also apply any manual overrides to the _team_ stats
-  // TOOD: currently not supported if luck enabled, it gets a bit fiddly but still possible I think?
+  // Luck calculations and manual overrides
 
-  if (!adjustForLuck) {
-    ([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map((queryKey, index) => {
-      const playerStats = playerInfoByIdBy0AB[index] || {};
-      OverrideUtils.applyPlayerOverridesToTeam(
-        queryKey, gameFilterParams.manual || [], playerStats, teamStats[queryKey] || {}, avgEfficiency
-      );
-    });
-  } //(if adjusting for luck then have already rewritten old_value back to value, so nothing to do here)
+  // The luck baseline can either be the user-selecteed baseline or the entire season
+  const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
+    if (adjustForLuck) {
+      switch (luckConfig.base) {
+        case "baseline":
+          return [
+            teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
+          ];
+        default: //("season")
+          return [
+            teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
+          ];
+      }
+    } else return [ StatModels.emptyTeam(), {} ]; //(not used)
+  };
+  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
 
+  // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
+  const luckAdjustment = _.fromPairs(([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map((k, ii) => {
+    if (teamStats[k]?.doc_count) {
+      const playerStats = playerInfoByIdBy0AB[ii] || {};
 
+      // Before applying luck, reset any changes due to manual player overrides or earlier iterations of luck
+      OverrideUtils.clearTeamManualOrLuckOverrides(teamStats[k]);
+
+      if (adjustForLuck) { //(calculate expected numbers which then get incorporated into luck calcs)
+        OverrideUtils.applyPlayerOverridesToTeam(
+          k, gameFilterParams.manual || [], playerStats, teamStats[k] || {}, avgEfficiency, adjustForLuck
+        );
+      }
+
+      const luckAdj = adjustForLuck ? [
+        LuckUtils.calcOffTeamLuckAdj(
+          teamStats[k]!, rosterStats[k] || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency,
+          undefined, OverrideUtils.filterManualOverrides(k, gameFilterParams.manual)
+        ),
+        LuckUtils.calcDefTeamLuckAdj(teamStats[k]!, baseOrSeasonTeamStats, avgEfficiency),
+      ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
+
+      // Extra mutable set, build net margin column:
+      LineupUtils.buildEfficiencyMargins(teamStats[k]);
+
+      // Mutate stats object to inject luck
+      LuckUtils.injectLuck(teamStats[k]!, luckAdj?.[0], luckAdj?.[1]);
+
+      if (!adjustForLuck) { //(else called above and incorporated into the luck adjustments)
+        OverrideUtils.applyPlayerOverridesToTeam(
+          k, gameFilterParams.manual || [], playerStats, teamStats[k] || {}, avgEfficiency, adjustForLuck
+        );
+      }
+      return [ k, luckAdj ];
+    } else { //(no docs)
+      return [ k, undefined ]
+    }
+  })) as {
+    [P in OnOffBaselineEnum]: [ OffLuckAdjustmentDiags, DefLuckAdjustmentDiags ] | undefined
+  };
+
+  //(end luck/manual overrides calcs)
 
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
   const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
