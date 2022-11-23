@@ -253,6 +253,7 @@ export class TeamEditorUtils {
       
       // Build lots of handy lists
 
+      // (in in evalMode then playerList has the season following the prediction dataset - split it back out)
       const [ rawTeamCorrectYear, rawTeamNextYear ] = evalMode ? 
          _.partition(playerList, p => (p.year || "") <= year) : [ playerList, [] ];
 
@@ -424,8 +425,12 @@ export class TeamEditorUtils {
       // Most of the math occurs here:
 
       const [ teamSosNet, teamSosOff, teamSosDef ] = 
-         teamStats ? TeamEditorUtils.calcApproxTeamSoS(teamStats, avgEff)
-          : TeamEditorUtils.calcApproxTeamSoSLegacy(basePlayers.filter(p => p.orig.team == team).map(p => p.orig), avgEff);
+         teamStats ? 
+            TeamEditorUtils.calcApproxTeamSoS(teamStats, avgEff) 
+            : 
+            TeamEditorUtils.calcApproxTeamSoSLegacy(
+               basePlayers.filter(p => p.orig.team == team).map(p => p.orig), avgEff
+            );
 
       const hasDeletedPlayersOrTransfersIn = !_.isEmpty( //(used to decide if we need to recalc all the minutes)
          _.omit(addedPlayers, _.keys(disabledPlayersIn)) // have added transfers in (and they aren't disabled)
@@ -1319,7 +1324,6 @@ export class TeamEditorUtils {
 
             const mins = indivStatSet.off_team_poss_pct?.value || 0;
             const usg = (indivStatSet.off_usage?.value || TeamEditorUtils.genericFrUsage); // (Fr-ish get a baseline of 0.18)
-
             acc.minUsgSum += mins*usg;
             acc.minSum += mins;
 
@@ -1334,7 +1338,6 @@ export class TeamEditorUtils {
 
          const weightedUsg = (minUsgSumIncBench/totalMins);
          const deltaUsg = 0.20 - weightedUsg;
-
          //Debugging
          //console.log(`AVG_USG [${proj}] = ${weightedUsg.toFixed(4)} .. player_mins[${usgInfo.minSum.toFixed(2)}] total=[${totalMins}]`)
 

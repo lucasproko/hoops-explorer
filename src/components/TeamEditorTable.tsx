@@ -128,7 +128,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
 
   const usePreseasonRanks = 
-    !evalMode && offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${year}`];
+    offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${year}`];
 
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : yearWithStats, gender);
@@ -270,7 +270,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   /** The year from which we're taking the grades - other averages need to come from that season */
   const gradeYear = (yearIn: string, evalModeIn: boolean, offSeasonModeIn: boolean) => {
-    const yearToUse = (evalModeIn || !offSeasonModeIn) ? yearIn : DateUtils.getPrevYear(yearIn);
+    const yearToUse = (!offSeasonModeIn) ? yearIn : DateUtils.getPrevYear(yearIn);
       //(basically if we're in prediction mode, we use the year before - ie what it would have looked like
       // before the season started. In "review" mode we obv use the data from that year)
     const firstYearWithFullD1Grades = DateUtils.yearFromWhichAllMenD1Imported;
@@ -370,7 +370,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Processing - various pxResults are used in the buildXxx functions below
 
-    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode, offSeasonMode)}`; //(use whatever year we're taking grades for)
+    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode, offSeasonMode)}`; 
+      //(the year for which we are getting the grades)
     const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
 
     const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(yearWithStats)}` : "NO MATCH"; //(for Fr)
@@ -948,7 +949,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               if (usePreseasonRanks) {
                 return "(preseason)";
               } else {
-                return  ((divisionStatsCache.year != ((evalMode || !offSeasonMode) ? year : prevYear)) ?
+                return  ((divisionStatsCache.year != ((!offSeasonMode) ? year : prevYear)) ?
                 "(generic)"
                 : `(${divisionStatsCache.year.substring(2)})`);
               }
