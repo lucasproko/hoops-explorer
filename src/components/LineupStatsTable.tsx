@@ -197,22 +197,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
 
     // Build a list of all the opponents:
-    function isGameInfoStatSet(l: (GameInfoStatSet | undefined) | Array<GameInfoStatSet>): l is (GameInfoStatSet | undefined) {
-      return !(l instanceof Array);
-    };
-    const mutableOppoList = {} as Record<string, GameInfoStatSet>;
-    if (showGameInfo) { // (calculate this before doing the table filter)
-      lineups.forEach((l) => {
-        if (isGameInfoStatSet(l.game_info)) {
-          LineupUtils.getGameInfo(l.game_info || {}, mutableOppoList);
-        }
-      });
-    }
-    const orderedMutableOppoList = {} as Record<string, GameInfoStatSet>;
-    _.chain(mutableOppoList).keys().sort().each((key) => {
-      orderedMutableOppoList[key] = mutableOppoList[key];
-    }).value();
-    // (ordered list of opponents built!)
+    const orderedMutableOppoList = LineupUtils.buildOpponentList(lineups, showGameInfo);
 
     if (aggregateByPos == "") {
       const filteredLineups = LineupTableUtils.buildFilteredLineups(
@@ -267,7 +252,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={isGameInfoStatSet(lineup.game_info) ?
+              oppoList={LineupUtils.isGameInfoStatSet(lineup.game_info) ?
                 LineupUtils.getGameInfo(lineup.game_info || {}) :
                 lineup.game_info  //(total lineups - this is already an array, see LineupStatSet in StatModels)
               }
