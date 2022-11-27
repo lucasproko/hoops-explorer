@@ -114,6 +114,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes) ? [ 'showTeamPlayTypes' ] : [],
       (rawParams.showExtraInfo == false) ? [ 'showExtraInfo' ] : [],
       (rawParams.showRoster == ParamDefaults.defaultTeamShowRoster) ? [ 'showRoster' ] : [],
+      (rawParams.showGameInfo == ParamDefaults.defaultTeamShowGameInfo) ? [ 'showGameInfo' ] : [],
       (rawParams.showGrades == "") ? [ 'showGrades' ] : [],
       // RosterStatsTable
       (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
@@ -136,6 +137,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       if (params.showRoster != gameFilterParamsRef.current?.showRoster) {
+        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+      }
+      if (params.showGameInfo != gameFilterParamsRef.current?.showGameInfo) {
         setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       // Because changing the params in one table merges that table's params with the last set

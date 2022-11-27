@@ -47,6 +47,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
     showRoster: startShowRoster,
+    showGameInfo: startShowGameInfo,
     showGrades: startShowGrades,
     showExtraInfo: startShowExtraInfo,
     //(common visualization fields across all tables)
@@ -158,6 +159,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           teamDiffs: startTeamDiffs,
           showTeamPlayTypes: startShowTeamPlayTypes,
           showRoster: startShowRoster,
+          showGameInfo: startShowGameInfo,
           showGrades: startShowGrades,
           showExtraInfo: startShowExtraInfo,
           // Common luck stats across all tables:
@@ -197,7 +199,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
     // (ie and just ignore the on-off portion)
 
-    const alsoPullLineups = (startCalcRapm || startShowRoster);
+    const alsoPullLineups = (startCalcRapm || startShowRoster || startShowGameInfo);
 
     const [ baseQuery, maybeAdvBaseQuery ] = alsoPullLineups ?
       QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];

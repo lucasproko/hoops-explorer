@@ -169,6 +169,8 @@ export class HistoryManager {
       _.isNil(p.teamDiffs) ? false : p.teamDiffs;
     const showRoster =
       _.isNil(p.showRoster) ? ParamDefaults.defaultTeamShowRoster : p.showRoster;
+    const showGameInfo =
+    _.isNil(p.showRoster) ? ParamDefaults.defaultTeamShowGameInfo : p.showGameInfo;
     const showTeamPlayTypes =
       _.isNil(p.showTeamPlayTypes) ? ParamDefaults.defaultTeamShowPlayTypes : p.showTeamPlayTypes;
     const showExtraInfo =
@@ -178,6 +180,7 @@ export class HistoryManager {
       showOnOffLuckDiags ? [ `show-on-off-luck-diags` ] : [],
       showDiffs ? [ "show-diffs" ] : [],
       showRoster ? [ "show-roster" ] : [],
+      showGameInfo ? [ "show-games" ] : [],
       showTeamPlayTypes ? [ "show-play-types" ] : [],
       showExtraInfo ? [ "show-extra-info" ] : [],
     ]);
@@ -247,6 +250,7 @@ export class HistoryManager {
     const otherParamArray = _.flatMap([
       _.isNil(p.decorate) || p.decorate ? [ ] : [ `plain` ],
       p.showTotal ? [ `show-total` ] : [],
+      p.showGameInfo ? [ `show-games` ] : [],
       p.sortBy && (p.sortBy != ParamDefaults.defaultLineupSortBy) ? [ `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}` ] : [],
       p.filter ? [ `filter:'${tidyQuery(p.filter)}'` ] : [],
       p.aggByPos ? [ `agg-by-${p.aggByPos.toLowerCase()}` ] : []

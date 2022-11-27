@@ -82,6 +82,7 @@ describe("HistoryManager", () => {
       showTeamPlayTypes: true,
       showExtraInfo: true,
       showRoster: true,
+      showGameInfo: true,
       year: "2019/20", gender: "Men",
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
@@ -92,7 +93,7 @@ describe("HistoryManager", () => {
       filterGarbage: true, queryFilters: "Conf"
     };
     expect(HistoryManager.filterSummary("game-", game3)).toBe(
-      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn'/[+Home], auto-off, base:'testBase', luck:[baseline], [overrides], team:[on-off-luck,show-roster,show-play-types,show-extra-info]`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn'/[+Home], auto-off, base:'testBase', luck:[baseline], [overrides], team:[on-off-luck,show-roster,show-games,show-play-types,show-extra-info]`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => { //(need to change this every season)
@@ -122,13 +123,14 @@ describe("HistoryManager", () => {
       minRank: "1", maxRank: "370",
       decorate: false,
       showTotal: true,
+      showGameInfo: true,
       minPoss: "10", sortBy: "test-sort",
       filter: "Test'Filter",
       lineupLuck: true,
       aggByPos: "PG"
     };
     expect(HistoryManager.filterSummary("lineup-", lineup3)).toBe(
-      `Lineups: 2018/19 team2 (W): query:'test ""', lineup-luck (max:11, min-poss:10, plain, show-total, sort:test-sort, filter:'Test"Filter', agg-by-pg)`
+      `Lineups: 2018/19 team2 (W): query:'test ""', lineup-luck (max:11, min-poss:10, plain, show-total, show-games, sort:test-sort, filter:'Test"Filter', agg-by-pg)`
     );
   });
   test("HistoryManager - teamReportFilterSummary", () => {

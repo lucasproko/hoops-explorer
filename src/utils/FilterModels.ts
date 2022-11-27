@@ -76,6 +76,7 @@ export type GameFilterParams = {
   showExtraInfo?: boolean,
   showTeamPlayTypes?: boolean,
   showRoster?: boolean,
+  showGameInfo?: boolean,
   // Manual override:
   manual?: ManualOverride[],
   showPlayerManual?: boolean,
@@ -257,6 +258,7 @@ export class ParamDefaults {
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultTeamShowPlayTypes = false;
   static readonly defaultTeamShowRoster = false;
+  static readonly defaultTeamShowGameInfo = false;
   static readonly defaultPlayerShowPlayTypes = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
