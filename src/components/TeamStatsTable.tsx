@@ -356,21 +356,33 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const showingOn = teamStats.on?.doc_count ? true : false;
   const showingOnOrOff = showingOn || (teamStats.off?.doc_count ? true : false);
 
-  const tableData = _.flatMap([
-    (teamStats.on?.doc_count) ? _.flatten([
-      [ GenericTableOps.buildDataRow(teamStatsByQuery.on, offPrefixFn, offCellMetaFn) ],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery.on, defPrefixFn, defCellMetaFn) ],
-      (showGrades != "") && teamStats.on?.doc_count ? 
+  /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
+  const buildTableEntries = (queryKey: OnOffBaselineEnum, displayKey: string) => {
+    const queryIndex = (queryKey == "baseline") ? 0 : (
+      (queryKey == "on") ? 1 : 2
+    );
+    const hasData = (teamStats[queryKey]?.doc_count || 0) > 0;
+
+    const showExtraHeader = (queryKey == "off") ? (showingSomeDiags && showingOn) : (
+      (queryKey == "baseline") ? (showingSomeDiags && showingOnOrOff) : false
+    );
+
+    return hasData ? _.flatten([
+      showExtraHeader ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
+      [ GenericTableOps.buildDataRow(teamStatsByQuery[queryKey], offPrefixFn, offCellMetaFn) ],
+      [ GenericTableOps.buildDataRow(teamStatsByQuery[queryKey], defPrefixFn, defCellMetaFn) ],
+      (showGrades != "") ? 
         GradeTableUtils.buildTeamGradeTableRows({
-          selectionType: "on",
+          selectionType: queryKey,
           config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
           comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
           mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team:teamStats.on
+          team: teamStats[queryKey]
         }) : [],
-      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-          name="On ('A')"
-          teamStatSet={teamStats.on}
+      showExtraInfo ? [ GenericTableOps.buildTextRow(<span>
+        <TeamExtraStatsInfoView
+          name={displayKey}
+          teamStatSet={teamStats[queryKey]}
           showGrades={showGrades}
           grades={showGrades ? {
             comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
@@ -378,194 +390,61 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           } : undefined}
         /></span>, "small pt-2")
       ] : [],
-      showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+      showRoster ? [ GenericTableOps.buildTextRow(<span>
         <TeamRosterDiagView
           positionInfoGlobal={LineupTableUtils.getPositionalInfo(
-            lineupStats[1]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
+            lineupStats[queryIndex]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
           )}
-          positionInfoSample={(teamStats.on.doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
-            lineupStats[1]?.lineups || [], positionFromPlayerId.on, teamSeasonLookup
+          positionInfoSample={(teamStats[queryKey].doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
+            lineupStats[queryIndex]?.lineups || [], positionFromPlayerId[queryKey], teamSeasonLookup
           ) : undefined}
-          rosterStatsByPlayerId={playerInfoByIdBy0AB[1] || {}}
+          rosterStatsByPlayerId={playerInfoByIdBy0AB[queryIndex] || {}}
           positionFromPlayerId={positionFromPlayerIdGlobal}
           teamSeasonLookup={teamSeasonLookup}
           showHelp={showHelp}
         />
       </span>, "small pt-2"
       )] : [],
-      showGameInfo && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(
+      showGameInfo ? [ GenericTableOps.buildTextRow(
         <GameInfoDiagView
-          oppoList={LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey.on.game_info) ?
-            LineupUtils.getGameInfo(totalLineupsByQueryKey.on.game_info || {}) :
-            totalLineupsByQueryKey.on.game_info  //(total lineups - this is already an array, see LineupStatSet in StatModels)
+          oppoList={
+            LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey[queryKey].game_info) ?
+              LineupUtils.getGameInfo(totalLineupsByQueryKey[queryKey].game_info || {}) 
+              :
+              (totalLineupsByQueryKey[queryKey].game_info as GameInfoStatSet[])
           }
-          orderedOppoList={_.clone(orderedMutableOppoList.on)}
+          orderedOppoList={_.clone(orderedMutableOppoList[queryKey])}
           params={{}}
           maxOffPoss={-1}
         />, "small pt-2"
       )] : [],
-      showLuckAdjDiags && luckAdjustment.on ? [ GenericTableOps.buildTextRow(
-      <LuckAdjDiagView
-        name="On ('A')"
-        offLuck={luckAdjustment.on[0]}
-        defLuck={luckAdjustment.on[1]}
-        baseline={luckConfig.base}
-        showHelp={showHelp}
-      />, "small pt-2"
-      ) ] : [] ,
-      showPlayTypes ?
-        [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView
-            title={maybeOnStr}
-            players={rosterStats.on || []}
-            rosterStatsByCode={globalRosterStatsByCode}
-            teamStats={teamStatsByQuery.on}
-            teamSeasonLookup={teamSeasonLookup}
-            showHelp={showHelp}
-            />, "small"
-        ) ] : [],
-      [ GenericTableOps.buildRowSeparator() ]
-    ]) : [],
-    (teamStats.off?.doc_count) ? _.flatten([
-      (showingSomeDiags && showingOn) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery.off, offPrefixFn, offCellMetaFn) ],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery.off, defPrefixFn, defCellMetaFn) ],
-      (showGrades != "") && teamStats.off?.doc_count ? 
-        GradeTableUtils.buildTeamGradeTableRows({
-          selectionType: "off",
-          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team:teamStats.off
-        }) : [],
-        showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-            name="Off ('B')"
-            teamStatSet={teamStats.off}
-            showGrades={showGrades}
-            grades={showGrades ? {
-              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,  
-            } : undefined}
-          /></span>, "small pt-2")
-        ] : [],
-        showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
-          <TeamRosterDiagView
-            positionInfoGlobal={LineupTableUtils.getPositionalInfo(
-              lineupStats[2]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
-            )}
-            positionInfoSample={(teamStats.off.doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
-              lineupStats[2]?.lineups || [], positionFromPlayerIdOff, teamSeasonLookup
-            ) : undefined}
-            rosterStatsByPlayerId={playerInfoByIdBy0AB[2] || {}}
-            positionFromPlayerId={positionFromPlayerIdGlobal}
-            teamSeasonLookup={teamSeasonLookup}
-            showHelp={showHelp}
-          />
-        </span>, "small pt-2"
-      )] : [],
-      showGameInfo && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(
-        <GameInfoDiagView
-          oppoList={LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey.off.game_info) ?
-            LineupUtils.getGameInfo(totalLineupsByQueryKey.off.game_info || {}) :
-            totalLineupsByQueryKey.off.game_info  //(total lineups - this is already an array, see LineupStatSet in StatModels)
-          }
-          orderedOppoList={_.clone(orderedMutableOppoList.off)}
-          params={{}}
-          maxOffPoss={-1}
-        />, "small pt-2"
-      )] : [],
-      showLuckAdjDiags && luckAdjustment.off ? [ GenericTableOps.buildTextRow(
+      showLuckAdjDiags && luckAdjustment[queryKey] ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
-          name="Off ('B')"
-          offLuck={luckAdjustment.off[0]}
-          defLuck={luckAdjustment.off[1]}
-          baseline={luckConfig.base}
-          showHelp={showHelp}
+            name={displayKey}
+            offLuck={luckAdjustment[queryKey]![0]}
+            defLuck={luckAdjustment[queryKey]![1]}
+            baseline={luckConfig.base}
+            showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
-      showPlayTypes ?
-        [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView
-            title={maybeOffStr}
-            players={rosterStats.off || []}
-            rosterStatsByCode={globalRosterStatsByCode}
-            teamStats={teamStatsByQuery.off}
-            teamSeasonLookup={teamSeasonLookup}
-            showHelp={showHelp}
-            />, "small"
-        ) ] : [],
-      [ GenericTableOps.buildRowSeparator() ]
-    ]) : [],
-    _.flatten([
-      (showingSomeDiags && showingOnOrOff) ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery.baseline, offPrefixFn, offCellMetaFn) ],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery.baseline, defPrefixFn, defCellMetaFn) ],
-      (showGrades != "") && teamStats.baseline?.doc_count ? 
-        GradeTableUtils.buildTeamGradeTableRows({
-          isFullSelection: !gameFilterParams.baseQuery && !gameFilterParams.queryFilters,
-          selectionType: "baseline",
-          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team:teamStats.baseline
-        }) : [],
-      showExtraInfo ? [ GenericTableOps.buildTextRow(<span><TeamExtraStatsInfoView
-          name="Baseline"
-          teamStatSet={teamStats.baseline}
-          showGrades={showGrades}
-          grades={showGrades ? {
-            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,  
-          } : undefined}
-        /></span>, "small pt-2")
-      ] : [],
-      showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
-        <TeamRosterDiagView
-          positionInfoGlobal={LineupTableUtils.getPositionalInfo(
-            lineupStats[0]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
-          )}
-          positionInfoSample={(teamStats.baseline.doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
-            lineupStats[0]?.lineups || [], positionFromPlayerId.baseline, teamSeasonLookup
-          ) : undefined}
-          rosterStatsByPlayerId={playerInfoByIdBy0AB[0] || {}}
-          positionFromPlayerId={positionFromPlayerIdGlobal}
+      showPlayTypes ?[ GenericTableOps.buildTextRow(
+        <TeamPlayTypeDiagView
+          title={displayKey}
+          players={rosterStats[queryKey] || []}
+          rosterStatsByCode={globalRosterStatsByCode}
+          teamStats={teamStatsByQuery[queryKey]}
           teamSeasonLookup={teamSeasonLookup}
           showHelp={showHelp}
-        />
-        </span>, "small pt-2"
-      )] : [],
-      showGameInfo && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(
-        <GameInfoDiagView
-          oppoList={LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey.baseline.game_info) ?
-            LineupUtils.getGameInfo(totalLineupsByQueryKey.baseline.game_info || {}) :
-            totalLineupsByQueryKey.baseline.game_info  //(total lineups - this is already an array, see LineupStatSet in StatModels)
-          }
-          orderedOppoList={_.clone(orderedMutableOppoList.baseline)}
-          params={{}}
-          maxOffPoss={-1}
-        />, "small pt-2"
-      )] : [],
-      showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
-        <LuckAdjDiagView
-          name="Baseline"
-          offLuck={luckAdjustment.baseline[0]}
-          defLuck={luckAdjustment.baseline[1]}
-          baseline={luckConfig.base}
-          showHelp={showHelp}
-        />, "small pt-2"
-      ) ] : [] ,
-      showPlayTypes ?
-        [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView
-            title={"Baseline"}
-            players={rosterStats.baseline || []}
-            rosterStatsByCode={globalRosterStatsByCode}
-            teamStats={teamStatsByQuery.baseline}
-            teamSeasonLookup={teamSeasonLookup}
-            showHelp={showHelp}
-            />, "small"
+          />, "small"
         ) ] : [],
-    ]),
+      (queryKey == "baseline") ? [] : [ GenericTableOps.buildRowSeparator() ]
+    ]) : [];
+  };
+
+  const tableData = _.flatMap([
+    buildTableEntries("on", "On ('A')"),
+    buildTableEntries("off", "Off ('B')"),
+    buildTableEntries("baseline", "Baseline"),
     // Diffs if showing:
     showDiffs ? [ GenericTableOps.buildRowSeparator() ] : [],
     aMinusB ? _.flatten([

@@ -33664,7 +33664,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <small>
                       <b>
                         Off 
-                        
+                        Equiv 
                         Ranks
                       </b>
                     </small>
@@ -34164,7 +34164,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <small>
                       <b>
                         Def 
-                        
+                        Equiv 
                         Ranks
                       </b>
                     </small>
@@ -52992,7 +52992,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <small>
                       <b>
                         Off 
-                        
+                        Equiv 
                         Ranks
                       </b>
                     </small>
@@ -53492,7 +53492,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <small>
                       <b>
                         Def 
-                        
+                        Equiv 
                         Ranks
                       </b>
                     </small>
