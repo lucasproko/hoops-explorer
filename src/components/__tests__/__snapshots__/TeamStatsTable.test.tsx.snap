@@ -100,6 +100,19 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 </div>
                   
               </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Games
+                  </button>
+                </div>
+                  
+              </span>
             </div>
           </div>
         </div>
@@ -3585,6 +3598,19 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     type="button"
                   >
                     Roster
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Games
                   </button>
                 </div>
                   
@@ -46650,6 +46676,19 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     type="button"
                   >
                     Roster
+                  </button>
+                </div>
+                  
+              </span>
+              <span>
+                <div>
+                  <button
+                    className="btn btn-outline-secondary btn-sm"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Games
                   </button>
                 </div>
                   
