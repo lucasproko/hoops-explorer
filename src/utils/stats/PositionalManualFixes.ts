@@ -70,6 +70,15 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
     "Young, Jahmir": { //(such rebounding!)
       position: "s-PG"
     },
+    "Batchelor, Noah": {
+      position: "WF"
+    },
+    "Martinez, Ian": {
+      position: "CG"
+    },
+    "Cornish, Ike": {
+      position: "WG"
+    }
   },
   "Men_Michigan St._2020/21": {
     "Hauser, Joey": {
@@ -209,4 +218,19 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       undefined
     ]
   }],  
+  "Men_Maryland_2022/23": [{
+    key: [ undefined, undefined, "HaHart", "DoCarey", undefined ],
+    rule: [ undefined, undefined,
+      { code: "DoCarey", id: "Carey, Donald" },
+      { code: "HaHart", id: "Hart, Hakim" },
+      undefined
+    ]
+  }, {
+    key: [ undefined, "HaHart", "DoCarey", undefined, undefined ],
+    rule: [ undefined, 
+      { code: "DoCarey", id: "Carey, Donald" },
+      { code: "HaHart", id: "Hart, Hakim" },
+      undefined, undefined
+    ]
+  }]
 };
