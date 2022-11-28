@@ -78,6 +78,9 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
     },
     "Cornish, Ike": {
       position: "WG"
+    },
+    "Emilien, Patrick": {
+      position: "PF/C" //(pretty debatable but since he's playing >50% of his minutes there)
     }
   },
   "Men_Michigan St._2020/21": {
