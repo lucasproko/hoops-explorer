@@ -22,6 +22,7 @@ export class OnBallDefenseUtils {
 
   /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
   static parseInput(stats: OnBallDefenseModel[]): string {
+   //TODO fix this
    const st = stats[0]!;
    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
    const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
@@ -31,13 +32,142 @@ export class OnBallDefenseUtils {
    });
 
    return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
- };
+  };
+  /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
+  static parseInputLegacy(stats: OnBallDefenseModel[]): string {
+   const st = stats[0]!;
+   const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
+   const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
 
- static parseContents(players: Array<IndivStatSet>, contents: string) {
+   const rows = stats.map(s => {
+     return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},${s.fgMade},-,-,-,${s.tovPct},-,${s.sfPct},${s.scorePct}`.replace(",", "\t");
+   });
+
+   return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
+  };
+
+  /** Util to parse a nd csv file, remove headers and corrupted lines */
+  private static getRowCols(contents: string): string[][] {
+      const rowsCols: string[][] =
+      contents
+         .split("\n").filter(line => !_.startsWith(line, "#"))
+         .map(line => line.split(",")).filter(cols => cols.length > 5);
+      return rowsCols;
+  }
+
+   /** Combine team and player CSVs from Synergy */
+   static combineTeamAndPlayerFiles(contents1: string, contents2: string) {
+
+      // Phase 1: which is player and which is team?
+
+      const rowsCols1 = OnBallDefenseUtils.getRowCols(contents1);
+      const rowsCols2 = OnBallDefenseUtils.getRowCols(contents2);
+
+      const numCols1 = _.chain(rowsCols1).take(1).map(row => row.length).max().value();
+      const numCols2 = _.chain(rowsCols2).take(1).map(row => row.length).max().value();
+
+      const playerRowsCols = numCols1 > numCols2 ? rowsCols1 : rowsCols2; 
+      const teamRowsCols = numCols1 > numCols2 ? rowsCols2 : rowsCols1; //(players has extra col)
+
+      // Phase 2: find the line corresponding to the team
+
+      const teamName = playerRowsCols[0]?.[2] || "NOT FOUND TEAM";
+      const teamRow = teamRowsCols.find(row => (row?.[1] == teamName));
+      const transformTeamRow = (row: string[]) => {
+         return [ row?.[0] || "", "Team", ...(_.drop(row, 1)) ];
+      }
+      return transformTeamRow(teamRow || []).join(",") + "\n" + (numCols1 > numCols2 ? contents1 : contents2);
+   }
+
+   /** Parse a combined team/player file */
+   static parseContents(players: Array<IndivStatSet>, contents: string) {
+      const playersByFullName = _.fromPairs(players.map(p => {
+         return [ p.key, p ];
+      }));
+
+      const rowsCols = OnBallDefenseUtils.getRowCols(contents);
+
+      const parseFloatOrMissing = (s: string | undefined) => {
+         const tmp = parseFloat(s || "-");
+         return _.isNaN(tmp) ? 0 : tmp;
+      };
+      /** For now very simple name transformer */   
+      const transformName = (n: string) => {
+         const n1 = (n[0] == '"') ? n.substr(1, n.length - 2) : n;
+         const names = n1.split(/ +/);
+         const reformattedName = `${_.last(names)}, ${_.take(names, names.length - 1).join(" ")}`;
+         return reformattedName;
+      };
+      const parseRow = (code: string, row: string[]) => {
+         const res: OnBallDefenseModel = {
+            code: code,
+            title: transformName(row[1]),
+   
+            pts: parseFloatOrMissing(row[6]),
+            plays: parseFloatOrMissing(row[5]),
+            scorePct: parseFloatOrMissing(row[15]),
+            tovPct: parseFloatOrMissing(row[13]),
+            fgMiss: parseFloatOrMissing(row[9]),
+   
+            // New algo:
+            fgMade: parseFloatOrMissing(row[10]),
+            sfPct: parseFloatOrMissing(row[16]),
+   
+            // Fill these in later:
+            totalPts: -1, totalScorePct: -1, totalPlays: -1,
+            uncatPts: -1, uncatPlays: -1,
+            uncatScorePct: -1,  uncatPtsPerScPlay: -1,
+   
+            // New algo:
+            totalSfPlays: -1, totalTos: -1, totalFgMade: -1, totalFgMiss: -1,
+            uncatSfPlays: -1, uncatTos: -1, uncatFgMade: -1, uncatFgMiss: -1,    
+         };
+         return res;
+      };
+
+      const mutableMatchFound: number[] = [];
+      const mutableMatchNotFound: number[] = [];
+      const matchedPlayerStats = _.chain(rowsCols).flatMap((row, ii) => {
+         const playerName = transformName(row[1]);
+         const matchingPlayer = playersByFullName[playerName];
+         if (matchingPlayer?.code) {
+            mutableMatchFound.push(ii);
+            return [ parseRow(matchingPlayer.code, row) ];
+         } else {
+            mutableMatchNotFound.push(ii);
+            return [];
+         }
+      }).value();
+      const unmatchedPlayerStats: OnBallDefenseModel[] = []; //TODO
+      // If there's a totals row we can now add team stats (otherwise do nothing)
+      const maybeTotals = _.find(rowsCols, row => row[1] == "Team");
+      if (maybeTotals) {
+         const totalStats = parseRow("totals", maybeTotals);
+         RatingUtils.injectUncatOnBallDefenseStats(totalStats, _.concat(matchedPlayerStats, unmatchedPlayerStats));
+         //(mutates the objects in these array)
+      }
+      const res: OnBallDefenseAnalysisResults = {
+         rowsCols,
+   
+         matchedPlayers: { found: mutableMatchFound, notFound: mutableMatchNotFound, matchedCols: [] },
+         matchedPlayerStats,
+         unmatchedPlayerStats: [],
+   
+         maybeTotals,
+         playerNumberToCol: {},
+   
+         dupColMatches: [],
+         colsNotMatched: [],
+      };
+      return res;
+   }
+
+ /** No longer in-use */
+ static parseContentsLegacy(players: Array<IndivStatSet>, contents: string) {
    const rowsCols: string[][] =
-   contents
-     .split("\n").filter(line => _.endsWith(line, "%"))
-     .map(line => line.split("\t")).filter(cols => cols.length > 5);
+      contents
+         .split("\n").filter(line => _.endsWith(line, "%"))
+         .map(line => line.split("\t")).filter(cols => cols.length > 5);
 
    const maybeTotals = _.startsWith(rowsCols?.[0]?.[0] || "", "#") ? undefined : rowsCols[0];
 
@@ -127,7 +257,7 @@ export class OnBallDefenseUtils {
    //(Use to generate unit test artefact sampleOnBallDefenseStats)
    // console.log(JSON.stringify([ parseRow("totals", maybeTotals!),  matchedPlayerStats ], null, 3));
 
-   // If there's a totals row we can now add team stats (can still do something otherwise)
+   // If there's a totals row we can now add team stats (otherwise do nothing)
    if (maybeTotals) {
       const totalStats = parseRow("totals", maybeTotals);
       RatingUtils.injectUncatOnBallDefenseStats(totalStats, _.concat(matchedPlayerStats, unmatchedPlayerStats));

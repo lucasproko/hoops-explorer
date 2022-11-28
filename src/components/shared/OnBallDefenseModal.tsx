@@ -26,6 +26,7 @@ import { CbbColors } from "../../utils/CbbColors";
 import { OnBallDefenseModel } from "../../utils/stats/RatingUtils";
 import { OnBallDefenseUtils } from "../../utils/stats/OnBallDefenseUtils";
 import { IndivStatSet, PureStatSet } from '../../utils/StatModels';
+import Input from 'react-select/src/components/Input';
 
 // External Data Model
 
@@ -70,10 +71,11 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         <span>
           <li>Import succeeded, with possible issues: </li>
           <ul>
-            {_.isEmpty(res.dupColMatches) ? null
+            {// Legacy - don't use this any more
+            /*_.isEmpty(res.dupColMatches) ? null
               :
               <li>Duplicate player numbers in roster. This will likely mess up the stats, so remove one of each pair: [{res.dupColMatches.join(", ")}].</li>
-            }
+            */}
             {res.maybeTotals ? null
               :
               <li>Couldn't find team stats, first row was [{res.rowsCols[0]?.join("|")}] - <b>team stats are needed so ignoring everything else</b></li>
@@ -212,6 +214,27 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     o => GenericTableOps.buildDataRow(o, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
   ).value();
 
+  const asyncReadFile = (file: any) => {
+    return new Promise<string>((onResolve, onReject) => {
+      var fileReader = new FileReader();  
+      fileReader.onload = () => {
+        onResolve((fileReader.result as string) || "")
+      };
+      fileReader.onerror = onReject;
+      fileReader.readAsText(file);
+    });
+  };
+  const onUpload = (e: any) => {
+    const firstTwoFiles = _.take(e.target?.files || [], 2);
+    Promise.all(firstTwoFiles.map(asyncReadFile)).then(contents => {
+      const combinedContents = 
+        OnBallDefenseUtils.combineTeamAndPlayerFiles(contents?.[0] || "", contents?.[1] || "");
+      setInputChanged(true); 
+      setInputContents(combinedContents);        
+      onApply(combinedContents);
+    });
+  };
+
   return <div><Modal size="xl" {...props}
     onEntered={() => {
       document.body.style.overflow = "scroll";
@@ -227,19 +250,41 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         <Card.Header className="small">Input</Card.Header>
         <Card.Body>
           <Form>
+            { _.isEmpty(inputContents) ? 
+              <Form.Row className="mb-2">
+                <Form.Label>
+                  <li>In Synergy:</li>
+                  <ul>
+                    <li>Select <i>Leaderboards {'>'} Player Leaderboards {'>'} Player Defensive</i>; Select Possessions 'Total'; Filter on 'Team'; Export to CSV</li>
+                    <li>Select <i>Leaderboards {'>'} Team Leaderboards {'>'} Team Defensive</i>; Select Possessions 'Total'; (Don't have to Filter); Export to CSV</li>
+                  </ul>
+                  <li>Then, Choose Files below, and select both exported files (order doesn't matter)</li>
+                  <ul>
+                    <li>After upload, you will be able to hand edit the combined contents (eg to handle differences in player naming)</li>
+                  </ul>
+                </Form.Label>
+              </Form.Row> : undefined
+            }
             <Form.Row>
-              <Form.Group as={Col} sm="12">
-                <InputGroup>
-                  <FormControl as="textarea"
-                    value={inputContents}
-                    onPaste={(ev: any) => { onApply(ev.clipboardData.getData('Text')); }}
-                    onChange={(ev: any) => { setInputChanged(true); setInputContents(ev.target.value); }}
-                    onKeyUp={(ev: any) => { setInputChanged(true); setInputContents(ev.target.value); }}
-                    placeholder="Paste on-ball defense table from web page or Google Sheets"
-                  />
-                </InputGroup>
+              <Form.Group as={Col} sm="12" controlId="formFile" className="mb-2">
+                <Form.Control type="file" accept="*.csv" multiple onChange={onUpload}/>
               </Form.Group>
             </Form.Row>
+            { _.isEmpty(inputContents) ? undefined :
+              <Form.Row>
+                <Form.Group as={Col} sm="12">
+                  <InputGroup>
+                    <FormControl as="textarea"
+                      value={inputContents}
+                      onPaste={(ev: any) => { onApply(ev.clipboardData.getData('Text')); }}
+                      onChange={(ev: any) => { setInputChanged(true); setInputContents(ev.target.value); }}
+                      onKeyUp={(ev: any) => { setInputChanged(true); setInputContents(ev.target.value); }}
+                      placeholder="Edit names as needed following upload"
+                    /> 
+                  </InputGroup>
+                </Form.Group>
+              </Form.Row>
+            }
           </Form>
         </Card.Body>
       </Card>
