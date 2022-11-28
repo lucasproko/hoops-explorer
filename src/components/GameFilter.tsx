@@ -21,7 +21,7 @@ import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
-import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
+import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults, LineupFilterParams } from "../utils/FilterModels";
 import AutoSuggestText from './shared/AutoSuggestText';
 
 // Utils
@@ -47,6 +47,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     teamDiffs: startTeamDiffs,
     showTeamPlayTypes: startShowTeamPlayTypes,
     showRoster: startShowRoster,
+    showGameInfo: startShowGameInfo,
     showGrades: startShowGrades,
     showExtraInfo: startShowExtraInfo,
     //(common visualization fields across all tables)
@@ -158,6 +159,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           teamDiffs: startTeamDiffs,
           showTeamPlayTypes: startShowTeamPlayTypes,
           showRoster: startShowRoster,
+          showGameInfo: startShowGameInfo,
           showGrades: startShowGrades,
           showExtraInfo: startShowExtraInfo,
           // Common luck stats across all tables:
@@ -197,7 +199,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
     // (ie and just ignore the on-off portion)
 
-    const alsoPullLineups = (startCalcRapm || startShowRoster);
+    const alsoPullLineups = (startCalcRapm || startShowRoster || startShowGameInfo);
 
     const [ baseQuery, maybeAdvBaseQuery ] = alsoPullLineups ?
       QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];
@@ -211,10 +213,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
       return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
     };
-    const lineupRequests = alsoPullLineups ? [ QueryUtils.cleanseQuery({
+    const lineupRequests: LineupFilterParams[] = alsoPullLineups ? [ QueryUtils.cleanseQuery({
       ...commonParams
     }) ].concat(QueryUtils.nonEmptyQuery(onQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
-        ...commonParams,
+        ...commonParams,        
         baseQuery: getLineupQuery(onQuery || "*"),
         queryFilters: QueryUtils.buildFilterStr(onQueryFilters.concat(
             QueryUtils.parseFilter(
@@ -241,7 +243,12 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       invertBase: getLineupQuery(onQuery || "*", true),
       invertBaseQueryFilters: QueryUtils.buildFilterStr(onQueryFilters)
         //(ie will be * once inverted, ie ignore this clause if missing)
-    }) ] : []) : [];
+    }) ] : []).map(l => {
+      return startShowGameInfo ? {
+        ...l,
+        showGameInfo: startShowGameInfo
+      } : l;
+    }) : [];
     // (note only one of the last 2 clauses can be present at once)
 
     const makeGlobalRequest = !_.isEqual(entireSeasonRequest, primaryRequest);

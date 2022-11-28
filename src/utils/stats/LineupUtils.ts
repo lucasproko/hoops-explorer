@@ -783,4 +783,29 @@ export class LineupUtils {
     }
   }
 
+  /** Part of game info building, determines which of the 2 forms the input takes */
+  static isGameInfoStatSet(l: (GameInfoStatSet | undefined) | Array<GameInfoStatSet>): l is (GameInfoStatSet | undefined) {
+    return !(l instanceof Array);
+  };
+
+  /** Builds a map of game info vs opponent */
+  static buildOpponentList(
+    lineups: LineupStatSet[],
+    showGameInfo: boolean,
+  ): Record<string, GameInfoStatSet> {
+    const mutableOppoList = {} as Record<string, GameInfoStatSet>;
+    if (showGameInfo) { // (calculate this before doing the table filter)
+      lineups.forEach((l) => {
+        if (LineupUtils.isGameInfoStatSet(l.game_info)) {
+          LineupUtils.getGameInfo(l.game_info || {}, mutableOppoList);
+        }
+      });
+    }
+    const orderedMutableOppoList = {} as Record<string, GameInfoStatSet>;
+    _.chain(mutableOppoList).keys().sort().each((key) => {
+      orderedMutableOppoList[key] = mutableOppoList[key];
+    }).value();
+    return orderedMutableOppoList;
+  }
+
 };
