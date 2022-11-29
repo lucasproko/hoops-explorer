@@ -44,7 +44,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
 
   // State:
 
-  const [ inputContents, setInputContents ] = useState(_.isEmpty(onBallDefense) ? "" : OnBallDefenseUtils.parseInput(onBallDefense));
+  const [ inputContents, setInputContents ] = useState("");
   const [ inputChanged, setInputChanged ] = useState(false);
 
   const [ parseStatus, setParseStatus ] = useState(<span>
@@ -85,26 +85,41 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
               :
               <li>Didn't match these players: {res.matchedPlayers.notFound.map(index => {
                 const player = players[index];
-                return `[#${player.roster?.number || "??"} / ${player.code}]`;
+                return `[${player.key || "??"}]`;
+                //Legacy
+                // return `[#${player.roster?.number || "??"} / ${player.code}]`;
               }).join(", ")}</li>
             }
             {_.isEmpty(res.matchedPlayers.notFound) ?
               null :
               <ul>
-                <li><i>Try changing the number to match - if that works, contact me and I'll update my database.</i></li>
+                  <li><i>Edit the names above to match and "Apply Changes" below; or increase "Min Possessions" in Synergy and re-export/upload.</i></li>
+                  <li><i>(Or, ignore if they are walk-ons or deep bench players)</i></li>
+                {
+                //Legacy
+                //<li><i>Try changing the number to match - if that works, contact me and I'll update my database.</i></li>
+                }
               </ul>
             }
-            <li>Didn't match these entries from the input: {res.colsNotMatched.map(key => {
+            {
+            //Legacy
+            /*<li>Didn't match these entries from the input: {res.colsNotMatched.map(key => {
               const col = res.playerNumberToCol[key];
               return `[${col[0]}]`;
-            }).join(", ")}</li>
-            {_.isEmpty(res.matchedPlayers.notFound) ?
+            }).join(", ")}</li>*/
+            _.isEmpty(res.colsNotMatched) ? null 
+            :
+            <li>Didn't match these entries from the input: {res.colsNotMatched.map(p => `[${p}]`).join(", ")}</li>
+            }
+            {_.isEmpty(res.colsNotMatched) ? null : (_.isEmpty(res.matchedPlayers.notFound) ?
               <ul>
                 <li><i>(Likely just walk-ons, you can ignore them)</i></li>
               </ul>
               :
-              null
-            }
+              <ul>
+                <li><i>Edit the names above to match and "Apply Changes" below</i></li>
+              </ul>
+            )}
           </ul>
         </span>
       );

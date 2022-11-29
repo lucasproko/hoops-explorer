@@ -21,19 +21,6 @@ type OnBallDefenseAnalysisResults = {
 export class OnBallDefenseUtils {
 
   /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
-  static parseInput(stats: OnBallDefenseModel[]): string {
-   //TODO fix this
-   const st = stats[0]!;
-   const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
-   const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
-
-   const rows = stats.map(s => {
-     return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},${s.fgMade},-,-,-,${s.tovPct},-,${s.sfPct},${s.scorePct}`.replace(",", "\t");
-   });
-
-   return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
-  };
-  /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
   static parseInputLegacy(stats: OnBallDefenseModel[]): string {
    const st = stats[0]!;
    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
@@ -81,10 +68,6 @@ export class OnBallDefenseUtils {
 
    /** Parse a combined team/player file */
    static parseContents(players: Array<IndivStatSet>, contents: string) {
-      const playersByFullName = _.fromPairs(players.map(p => {
-         return [ p.key, p ];
-      }));
-
       const rowsCols = OnBallDefenseUtils.getRowCols(contents);
 
       const parseFloatOrMissing = (s: string | undefined) => {
@@ -95,8 +78,12 @@ export class OnBallDefenseUtils {
       const transformName = (n: string) => {
          const n1 = (n[0] == '"') ? n.substr(1, n.length - 2) : n;
          const names = n1.split(/ +/);
-         const reformattedName = `${_.last(names)}, ${_.take(names, names.length - 1).join(" ")}`;
-         return reformattedName;
+         if (names.length == 1) {
+            return n1;
+         } else {
+            const reformattedName = `${_.last(names)}, ${_.take(names, names.length - 1).join(" ")}`;
+            return reformattedName;
+         }
       };
       const parseRow = (code: string, row: string[]) => {
          const res: OnBallDefenseModel = {
@@ -126,19 +113,28 @@ export class OnBallDefenseUtils {
       };
 
       const mutableMatchFound: number[] = [];
-      const mutableMatchNotFound: number[] = [];
-      const matchedPlayerStats = _.chain(rowsCols).flatMap((row, ii) => {
+      const mutableMatchNotFound: string[] = [];
+      const playersByFullName = _.fromPairs(players.map(p => {
+         return [ p.key, p ];
+      }));
+      const mutablePlayersNotFound = _.fromPairs(players.map((p, ii) => [p.key, ii]));
+      const [ matchedPlayerStats, unmatchedPlayerStats] = _.chain(rowsCols).flatMap((row, ii) => {
          const playerName = transformName(row[1]);
          const matchingPlayer = playersByFullName[playerName];
          if (matchingPlayer?.code) {
             mutableMatchFound.push(ii);
+            _.unset(mutablePlayersNotFound, matchingPlayer.key || "");
             return [ parseRow(matchingPlayer.code, row) ];
          } else {
-            mutableMatchNotFound.push(ii);
-            return [];
+            if ((playerName != "") && (playerName != "Team")) {
+               mutableMatchNotFound.push(playerName);
+               return [ parseRow("", row) ];
+            } else {
+               return [];
+            }
          }
-      }).value();
-      const unmatchedPlayerStats: OnBallDefenseModel[] = []; //TODO
+      }).partition(stats => stats.code).value();
+
       // If there's a totals row we can now add team stats (otherwise do nothing)
       const maybeTotals = _.find(rowsCols, row => row[1] == "Team");
       if (maybeTotals) {
@@ -149,15 +145,19 @@ export class OnBallDefenseUtils {
       const res: OnBallDefenseAnalysisResults = {
          rowsCols,
    
-         matchedPlayers: { found: mutableMatchFound, notFound: mutableMatchNotFound, matchedCols: [] },
+         matchedPlayers: { 
+            found: mutableMatchFound, 
+            notFound: _.values(mutablePlayersNotFound),
+            matchedCols: [] //TODO
+         },
          matchedPlayerStats,
-         unmatchedPlayerStats: [],
+         unmatchedPlayerStats,
    
          maybeTotals,
-         playerNumberToCol: {},
+         playerNumberToCol: {}, //(not used any more)
    
-         dupColMatches: [],
-         colsNotMatched: [],
+         dupColMatches: [], //(not used any more)
+         colsNotMatched: mutableMatchNotFound,
       };
       return res;
    }

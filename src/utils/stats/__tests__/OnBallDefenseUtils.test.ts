@@ -1,7 +1,9 @@
 import { OnBallDefenseUtils } from "../OnBallDefenseUtils";
 
 describe("OnBallDefenseUtils", () => {
-   //(Currently adequately tested by OnBallDefenseModal)
+   //(TODO: add unit tests)
    test("parseInput", () => {});
    test("parseContents", () => {});
+   test("combineTeamAndPlayerFiles", () => {});
+   //(don't add tests for parseInputLegacy and parseContentsLegacy)
 });
