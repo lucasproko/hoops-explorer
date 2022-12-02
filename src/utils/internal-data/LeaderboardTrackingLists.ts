@@ -9,7 +9,7 @@ export const PlayerLeaderboardTracking = {
     ["-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,DeMims,AmHarris,JaBynum,AnHiggs,DiZdor,DoToatley,BrSlater,XaJohnson:Pitt,XaJohnson:Indiana,PrHubb,SaBey,MyDead,TrWood+Tre,DeFlowers,RiLindo"],
     ["-YEAR2019,JuMoore:Villanova,JaBishop,OlNkamhoua,JaYoung+Jahmir,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice+Marvin,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro"],
     ["-YEAR2020,EaTimberlake,HuDickinson,JuLewis+Justin,WoNewton,ChEvans,AdBaldwin,MaDockery,DiStevens,JoSmith:Seton,DaN'guessan,ElWood,DwKoroma,JaWest+Jamal,TeWilliams+Terrance,DaMiles+Darius,ChHarris+Chuck,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman+Josiah,AnGill+Anwar"],
-    ["-YEAR2021,JoHawkins,JuReese,IkCornish,JaRobinson,RyConway,JaMiller,ErReynolds,AbSamb,QuAllen,MaDread,TrKeels,DaJohnson+Darius,BrMurray+Brandon,BeWilliams+Benny,BrFreeman+Brayon,ElHawkins+Elijah"],
+    ["-YEAR2021,JoHawkins,JuReese,IkCornish,JaRobinson+Jakai,RyConway,JaMiller,ErReynolds,AbSamb,QuAllen,MaDread,TrKeels,DaJohnson+Darius,BrMurray+Brandon,BeWilliams+Benny,BrFreeman+Brayon,ElHawkins+Elijah"],
     ["-YEAR2022,ChWatson+Christian,JaTurner+Jared,DeDinkins+Devin,CaWhitmore+Cam,TyWard+Tyrell,RoRice+Rodney,FaAire+Favour,MaTraore+Mady,ChWinbourne+Christian,JuMintz+Judah,DuMcdaniel,PaLewis+Paul,DaOnanina,JaWalker+Jarace,NoBatchelor"],
   ]).join(","),
 
@@ -36,18 +36,22 @@ export const PlayerLeaderboardTracking = {
       "JeEdwards+Jesse,ToEvbuomwan,EtPrice+Ethan,AjMitchell+Ajay",
       // By hand from CBB_Europe twitter (12/12):
       "AuMarciulion+Augustus,AlCardenas+Alvaro,SeForsling+Seb",
-      // By hand from discussion with CBB_Europe (2022: 30/11)
-      "CaHildreth,EmSharp:Houston",
-      // By hand from CBB_Europe twitter (01/12):
-      "JaDelaire,MePissis,SaPissis,MiMoshkovitz,AmWilliams+Amari,RiTutic,QuDiboundje,AnBrzovic,JuBelo+Jubrile,CaFuller+Caleb,AlMukeba,DaN'guessan,StVerplancke,JoBrown:Montana,MoKancleris,GeJuozapait,KyHouinsou,MaMarsh+Matthew,KaKlaczek",
+      // By hand from discussion with CBB_Europe (2022: 30/11, 2/12)
+      "CaHildreth,EmSharp:Houston,NeQuinn:Richmond,WiBreidenbac",
+      // By hand from CBB_Europe twitter (01/12, 02/12):
+      "JaDelaire,MePissis,SaPissis,MiMoshkovitz,AmWilliams+Amari,RiTutic,QuDiboundje,AnBrzovic,JuBelo+Jubrile,CaFuller+Caleb,AlMukeba,DaN'guessan,StVerplancke,JoBrown:Montana,MoKancleris,GeJuozapait,KyHouinsou,MaMarsh+Matthew,KaKlaczekm,MaLukic+Marko,ToLawal",
     ]
   ]).join(","),
 
   "__CANADA_2017__":
   _.flatten([
     [
-      // Built from https://docs.google.com/spreadsheets/d/1UcS-f0yhEg1xzJKOZfZdqZn6T2_BefjrLooZMJdMnyQ/edit#gid=879295464
-      "EmAkot,MaMoncreiffe,KeAmbrose-Hy,FaAimaq,JaBlair,OSBrissett,IgBrazdeikis,JaBediako,R.Barrett,JoBrown,ChBediako,KhBennett,KeBarthelemy,MaBailey,DaBanton,JaBrown,JoBascoe,EnBoakye,MaCalloo,MaCarr,MaCase,NaCayo,KoCharles,AlChristie,JaColley,AlComanita,IvCucak,ShDaniel,ChDavid,DaDeAveiro,AjEdu,DaDjuricic,LuDort,ChDuarte,KyDuke-Simps,ZaEdey,TrEdwards,KoElvis,KaEzeagu,JuFarquhar,KyFilewich,SaGasana,ShGilgeous-A,ThGilgeous-A,MaGrace,ClGriffith,QuGuerrier,BaHaidara,BeHendriks,JaHenry,RjEytle-Rock,CaHoustan,ElIfejeh,NaJack,FaJenneto,JoKabongo,AbKigab,NoKirkwood,JeKoulibaly,BeKrikke,AjLawson,GeLefebvre,BeLi,JaLlewellyn,AnLongpre,AdMakuoi,BeMathurin,LiMcChesney,EmMiller,SeMiller-Moo,TrMinott,JdMuila,MaNdur,JaNeath,AnNembhard,RyNembhard,MiNenadic,BrNewton,ElNsoseme,AlNwagha,PrOduro,MiOkafor,GaOsabuohien,NaOwusu-Anan,WhPanzo,AdPatterson,JoPrimo,OlProsper,JaPryce-Noel,DaQuest,ViRadocaj,ShRathan-May,SaRautins,DaSackey,LuSakota,TySamuel,KeSaunders,JeScott,ThShelton-Sz,SiShittu,TaSimms,StSmith,DaSquire,ShStevenson,CoStucke,BrTalbot,JaTelfort,TaTodd,MiTomley,NaTshimanga,AnVernon,JoVrankic,NiAlexander-,JaWarren,HoWashington,LiWigginton",
+      // Built from: (https://docs.google.com/spreadsheets/d/1UcS-f0yhEg1xzJKOZfZdqZn6T2_BefjrLooZMJdMnyQ/edit#gid=879295464)
+      // while IFS=$'\t' read -r col1; do echo "getting $col1"; htmltab --select table.tablesaw "https://basketball.realgm.com/ncaa/birth-countries/23/Canada/$col1" | grep -v 'Current Team' | tr -d '\r' > CAN_$col1.csv; done < alphabet.tsv
+      // cat CAN_*.csv | grep -E '",(2017|2018|2019|2020|2021|2022),' > ../CAN_all.csv
+      //java -cp "$PBP_SRC_ROOT/target/scala-2.12/cbb-explorer-assembly-0.1-deps.jar:$PBP_SRC_ROOT/target/scala-2.12/cbb-explorer_2.12-0.1.jar" org.piggottfamily.cbb_explorer.BuildPlayerLists --in=/Users/alex/personal/github/cbb-data/cbb/CAN_all.csv --rosters=$HOOPEXP_SRC_DIR/public/rosters
+      // hand edits: JoBrown+Joel, JoDavis+Josiah, JaBrown+Javonte
+      "EmAkot,KeAmbrose-hy,FaAimaq,MaBailey,DaBanton,RjBarrett,KeBarthelemy,JoBascoe,ChBediako,JaBediako,JaBlair,EnBoakye,IgBrazdeikis,OsBrissett,JaBrown+Javonte,JoBrown+Joel,MaCalloo,MaCarr,MaCase,NaCayo,KoCharles,AlChristie,JaClayton,ShDaniel,ChDavid,JoDavis+Josiah,DaDeaveiro,JeDesrosiers,LuDort,ChDuarte,JeMonegro,ZaEdey,TrEdwards,KoElvis,WiExacte,KaEzeagu,KyFilewich,ElFisher,MaGrace,QuGuerrier,BaHaidara,JoHemmings,BeHendriks,JaHenry,ScHitchon,CaHoustan,LuHunger,KcIbekwe,ElIfejeh,NaJack,DjJackson,JaJean-marie,FaJenneto,KuJongkuch,JoKabongo,AbKigab,JaKirkwood,NoKirkwood,JeKoulibaly,BeKrikke,AjLawson,JaLlewellyn,AnLongpre,BeMathurin,LiMcchesney,EmMiller,SeMiller-moo,TrMinott,MaMoncrieffe,JdMuila,AnNembhard,ElNsoseme,MaNdur,AlNwagha,RyNembhard,JaNeath,MiNenadic,BrNewton,PrOduro,OsOkojie,GaOsabuohien,NaOwusu-anan,WhPanzo,JoPrimo,OlProsper,JaPrice-noel,ShRathan-may,TyRowell,DaSackey,LuSakota,TySamuel,KeSaunders,JeScott,SiShittu,TaSimms,StSmith,DaSquire,ShStevenson,CoStucke,CaSwanton-ro,BrTalbot,JaTelfort,TaTodd,MiTomley,NaTshimanga,AnVernon,JoVrankic,NiAlexander-,JaWarren,HoWashington,LiWigginton,AnWrzeszcz,RyYoung",      
       // By hand from eg CanBallReport twitter (11/24):
       "NiDjogo+Nikola,KuJongkuch+Kur,JaJean-marie,StIngo+Stephane",
       // By hand from eg CanBallReport twitter (12/5):
@@ -64,7 +68,7 @@ export const PlayerLeaderboardTracking = {
   "__SUPER_SR_2022__": "GiGeorge:BYU;ZeJasper:Auburn;TyFagan:Ole Miss;CoCastleton:Florida;MyJones:Florida;KeObanor:Texas Tech;BrSlater:Villanova;CaDaniels:Villanova;DaSingleton:UCLA;SeTowns:Ohio St.;JuSueing:Ohio St.;DrPeterson:Southern California;YoAnei:DePaul;MaCarr:Texas;TiAllen:Texas;ChBishop:Texas;ReChaney:Houston;TaGroves:Oklahoma;ElHarkless:Oklahoma;DeWalker:Nebraska;LeBlack:North Carolina;KiClark:Virginia;JaGardner:Virginia;NoGurley:Alabama;JuMutts:Virginia Tech;DaQuisenberr:Fordham;BeStanley:Xavier;AdKunkel:Xavier;RaThompson:Indiana;MiKopp:Indiana;XaJohnson:Indiana;LiRobbins:Vanderbilt;QuMillora-br:Vanderbilt;FlThamba:Baylor;MoMathis:St. John's (NY);CoRyan:Notre Dame;DaGoodwin:Notre Dame;NaLaszewski:Notre Dame;JaBurton:Pittsburgh;JaPickett:Penn St.;MyDread:Penn St.;WiRichardson:Oregon;MaShaver:Boise St.;JoHauser:Michigan St.;MaAshton-lan:Boston College;KeMoore:Colorado St.;HuTyson:Clemson;DeJohnson:Cleveland St.;DjWilkins:Drake;RoPenn:Drake;GaSturtz:Drake;DaBrodie:Drake;MiBothwell:Furman;JaSlawson:Furman;RaBolton:Gonzaga;FiRebraca:Iowa;CoMccaffery:Iowa;GaKalscheur:Iowa St.;AlKunc:Iowa St.;TyGreene:Jacksonville;SiCarry:Kent St.;DaMcGhee:Liberty;DeWilliams:Memphis;DaKountz:Northern Colo.;EdCroswell:Providence;MaGrace:Richmond;DwMurray:Rider;AuHyatt:Rutgers;CaMcconnell:Rutgers;JaPerkins:Saint Louis;LoJohnson:Saint Mary's (CA);MaEarlington:San Diego;AdSeiko:San Diego St.;AgArop:San Diego St.;MaBradley:San Diego St.;NaMensah:San Diego St.;KhShabazz:San Francisco;JaHarris:Seton Hall;TeJones:Southern Utah;MaFausett:Southern Utah;DaWilliamson:Wake Forest;JsHamilton:Western Ky.;LuFrampton:Western Ky.;HuThompson:Wyoming;HuMaldonado:Wyoming",
 
   // Tracking transfer targets
-  "__TERPS_TAMPER_TARGETS__": "AdBaldwin;JoOduro;BeWilliams;EaTimberlake;IsLeggett;BrMurray;DrPember;JaBishop;AkAkok;EjJarvis",
+  "__TERPS_TAMPER_TARGETS__": "AdBaldwin;JoOduro;BeWilliams;EaTimberlake;IsLeggett;BrMurray;DrPember;JaBishop;AkAkok;EjJarvis;ErReynolds;MeLong+Mekhi",
 
   // Archived:
 
