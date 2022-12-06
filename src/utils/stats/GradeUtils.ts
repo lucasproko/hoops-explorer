@@ -37,7 +37,7 @@ export class GradeUtils {
       "off_efg": [ "off_team_poss_pct", 0.6 ],
       "off_3p": [ "total_off_3p_attempts", 60 ],
       "off_2p": [ "total_off_2p_attempts", 60 ],
-      "off_2pmid": [ "total_off_2pmid_attempts", 60 ],
+      "off_2pmid": [ "total_off_2pmid_attempts", 45 ], //(less frequent so have a slightly lower threshold)
       "off_2prim": [ "total_off_2prim_attempts", 60 ],
       // Shooting style
       "off_3pr": undefined,
@@ -50,12 +50,12 @@ export class GradeUtils {
       //TODO
    };
    /** Subset of playerFields which have extra criteria */
-   static readonly playerFieldsWithExtraCriteria = [ "off_efg", "off_3p", "off_2p", "off_2prim", "off_3p_ast", "off_2prim_ast", "off_ftr" ];
+   static readonly playerFieldsWithExtraCriteria = [ "off_efg", "off_3p", "off_2p", "off_2prim", "off_2pmid", "off_3p_ast", "off_2prim_ast", "off_ftr" ];
 
    /** Quick util to check if player stats  */
-   static readonly meetsExtraCriterion = (playerStats: PureStatSet, criterionInfo: QualifyingCriterion) => {
+   static readonly meetsExtraCriterion = (playerStats: PureStatSet, criterionInfo: QualifyingCriterion, mult: number = 1.0) => {
       const [ field, criterion ] = criterionInfo;
-      return ((playerStats[field]?.value || 0) >= criterion);
+      return ((playerStats[field]?.value || 0) >= (criterion*mult));
    }
 
    // The totals we do want to keep because they are useful in deciding if grades are good
@@ -136,7 +136,10 @@ export class GradeUtils {
    };
 
    /** Add a team's stats to the divison stats collection  */
-   static buildAndInjectPlayerDivisionStats = (playerStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, fields: Array<string> | undefined = undefined) => {
+   static buildAndInjectPlayerDivisionStats = (
+      playerStats: PureStatSet, mutableDivisionStats: DivisionStatistics, inNaturalTier: boolean, 
+      fields: Array<string> | undefined = undefined, criteriaMult: number = 1.0
+   ) => {
       const possPct = playerStats.off_team_poss_pct?.value || 0;
 
       if (possPct >= GradeUtils.minPossPctForInclusion) {
@@ -172,7 +175,7 @@ export class GradeUtils {
             if (!value) {
                return [ key ];
             } else { // Check if the qualifying criteria are met for each field
-               return GradeUtils.meetsExtraCriterion(playerStats, value) ? [ key ] : [];
+               return GradeUtils.meetsExtraCriterion(playerStats, value, criteriaMult) ? [ key ] : [];
             }
          });
          fieldChain.forEach(f => updateForField(f, playerStats)).value();

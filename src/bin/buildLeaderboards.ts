@@ -596,8 +596,17 @@ export async function main() {
           });
         }
         if ("all" == label) {
+          // Apply different criteria depending on how far through the season we are
+          const offPoss = teamBaseline.off_poss?.value || 2000;
+          const criteriaMult = (offPoss < 500) ? 0.25 : (
+            (offPoss < 1000) ? 0.5 : (
+              offPoss < 1500 ? 0.75 : 1
+            ));
+
           // Everything except RAPM (we do it here because we need total_*, which get removed below)
-          GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier);
+          GradeUtils.buildAndInjectPlayerDivisionStats(
+            player, mutablePlayerDivisionStats, inNaturalTier, undefined, criteriaMult
+          );
         }
         return {
           key: kv[0],
