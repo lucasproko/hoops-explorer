@@ -21,33 +21,21 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import LoadingOverlay from 'react-loading-overlay';
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import GenericTable, { GenericTableOps } from "./GenericTable"
 import { RosterStatsModel } from './RosterStatsTable';
 import { LineupStatsModel } from './LineupStatsTable';
 import LuckConfigModal from "./shared/LuckConfigModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import LuckAdjDiagView from "./diags/LuckAdjDiagView";
-import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
-import TeamRosterDiagView from "./diags/TeamRosterDiagView";
-import TeamExtraStatsInfoView from "./diags/TeamExtraStatsInfoView";
 
 // Util imports
-import { StatModels, DivisionStatistics, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, IndivPosInfo, GameInfoStatSet } from '../utils/StatModels';
-import { CbbColors } from "../utils/CbbColors";
+import { TeamStatSet } from '../utils/StatModels';
 import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
-import { LineupUtils } from "../utils/stats/LineupUtils";
-import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
-import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
-import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 import { DivisionStatsCache, GradeTableUtils } from "../utils/tables/GradeTableUtils";
-import { OverrideUtils } from '../utils/stats/OverrideUtils';
-import GameInfoDiagView from './diags/GameInfoDiagView';
+import { TeamStatsTableUtils, TeamStatsBreakdown } from '../utils/tables/TeamStatsTableUtils';
 
 export type TeamStatsModel = {
   on: TeamStatSet,
@@ -164,304 +152,40 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showExtraInfo, 
         showPlayTypes, showRoster, showGameInfo, showGrades ]);
 
-  // 2] Data View
+  const tableInfo = TeamStatsTableUtils.buildRows(
+    gameFilterParams, teamStats, rosterStats, lineupStats,
 
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
+    // Page control
+    {
+      showPlayTypes, showRoster,
+      adjustForLuck, showDiffs,
+      showGameInfo, showExtraInfo,
+      showGrades, showLuckAdjDiags,
+      showHelp,
+    },
+    {
+      setShowGrades: (showGrades: string) => setShowGrades(showGrades)
+    },
 
-  const maybeOnStr = teamStats.onOffMode ? "On ('A')" : "'A'";
-  const maybeOn = TableDisplayUtils.addQueryInfo(maybeOnStr, gameFilterParams, "on");
-  const maybeOffStr = teamStats.onOffMode ? "Off ('B')" : "'B'";
-  const maybeOff = TableDisplayUtils.addQueryInfo(maybeOffStr, gameFilterParams, "off");
-  const maybeBase = TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline");
+    luckConfig, divisionStatsCache,
+  );
 
-  const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
-  const teamSeasonLookup = `${gameFilterParams.gender}_${gameFilterParams.team}_${gameFilterParams.year}`;
-  const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
-
-  /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterInfo = teamStats.global?.roster
-  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
-    rosterStats.global || [], globalRosterInfo, showPlayTypes, teamSeasonLookup
-  ); //TODO: which set do I actually want to use for positional calcs here?
-
-  const baselineOnOffKeys = [ "baseline", "on", "off" ] as OnOffBaselineEnum[];
-
-  //TODO: need to do a better job of deciding which one to use (or possibly a blend?)
-  const positionFromPlayerIdGlobal =
-    showRoster ? LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup) : {};
-
-  const positionFromPlayerId = _.chain(baselineOnOffKeys).map(k => {
-    const retVal: [ OnOffBaselineEnum, Record<string, IndivPosInfo> ] = [ k,
-      (showRoster && rosterStats[k]?.length) ? 
-        LineupTableUtils.buildPositionPlayerMap(rosterStats[k], teamSeasonLookup, globalRosterInfo) : 
-        {}
-    ];
-    return retVal;
-  }).fromPairs().value();
-  const positionFromPlayerIdOff =
-    showRoster && rosterStats.off?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.off, teamSeasonLookup, globalRosterInfo) : {};
-
-  // If manual overrides specified we have some more work to do:
-  const manualOverridesAsMap = _.isNil(gameFilterParams.manual) ? 
-    undefined : OverrideUtils.buildOverrideAsMap(gameFilterParams.manual);
-
-  // If building roster info then enrich player stats:
-  const playerInfoByIdBy0AB = (showRoster || manualOverridesAsMap) ? 
-    baselineOnOffKeys.map(queryKey => {
-      const playerStatsBy0AB = rosterStats[queryKey] || [];
-      const teamStatsBy0AB = teamStats[queryKey] || StatModels.emptyTeam();
-      if (teamStatsBy0AB.doc_count) {
-        /** Need player info for tooltip view/lineup decoration */
-        const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-          playerStatsBy0AB, globalRosterStatsByCode, teamStats.baseline, avgEfficiency, adjustForLuck, 
-          luckConfig.base, manualOverridesAsMap || {}
-        );
-        return playerInfo;
-      } else {
-        return undefined;
-      }
-    }) : [];
-
-  // Luck calculations and manual overrides
-
-  // The luck baseline can either be the user-selecteed baseline or the entire season
-  const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
-    if (adjustForLuck) {
-      switch (luckConfig.base) {
-        case "baseline":
-          return [
-            teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
-          ];
-        default: //("season")
-          return [
-            teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
-          ];
-      }
-    } else return [ StatModels.emptyTeam(), {} ]; //(not used)
-  };
-  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
-
-  // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
-  const luckAdjustment = _.fromPairs(baselineOnOffKeys.map((k, ii) => {
-    if (teamStats[k]?.doc_count) {
-      const playerStats = playerInfoByIdBy0AB[ii] || {};
-
-      // Before applying luck, reset any changes due to manual player overrides or earlier iterations of luck
-      OverrideUtils.clearTeamManualOrLuckOverrides(teamStats[k]);
-
-      if (adjustForLuck) { //(calculate expected numbers which then get incorporated into luck calcs)
-        OverrideUtils.applyPlayerOverridesToTeam(
-          k, gameFilterParams.manual || [], playerStats, teamStats[k] || {}, avgEfficiency, adjustForLuck
-        );
-      }
-
-      const luckAdj = adjustForLuck ? [
-        LuckUtils.calcOffTeamLuckAdj(
-          teamStats[k]!, rosterStats[k] || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency,
-          undefined, OverrideUtils.filterManualOverrides(k, gameFilterParams.manual)
-        ),
-        LuckUtils.calcDefTeamLuckAdj(teamStats[k]!, baseOrSeasonTeamStats, avgEfficiency),
-      ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
-
-      // Extra mutable set, build net margin column:
-      LineupUtils.buildEfficiencyMargins(teamStats[k]);
-
-      // Mutate stats object to inject luck
-      LuckUtils.injectLuck(teamStats[k]!, luckAdj?.[0], luckAdj?.[1]);
-
-      if (!adjustForLuck) { //(else called above and incorporated into the luck adjustments)
-        OverrideUtils.applyPlayerOverridesToTeam(
-          k, gameFilterParams.manual || [], playerStats, teamStats[k] || {}, avgEfficiency, adjustForLuck
-        );
-      }
-      return [ k, luckAdj ];
-    } else { //(no docs)
-      return [ k, undefined ]
-    }
-  })) as {
-    [P in OnOffBaselineEnum]: [ OffLuckAdjustmentDiags, DefLuckAdjustmentDiags ] | undefined
+  const buildRows = (stats: TeamStatsBreakdown | undefined, withSeparator: boolean) => {
+    return stats ? _.flatten([
+      stats.teamStatsRows,
+      stats.teamRosterRows,
+      stats.teamDiagRows,
+      withSeparator ? [ GenericTableOps.buildRowSeparator() ] : []
+    ]) : []
   };
 
-  //(end luck/manual overrides calcs)
-
-  // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
-  const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
-    const aMinusB = (teamStats.on?.doc_count && teamStats.off?.doc_count) ? LineupUtils.getStatsDiff(
-      teamStats.on, teamStats.off, "A - B diffs"
-    ) : undefined;
-    const aMinusBase = (teamStats.on?.doc_count && teamStats.baseline?.doc_count) ? LineupUtils.getStatsDiff(
-      teamStats.on, teamStats.baseline, "A - Baseline diffs"
-    ) : undefined;
-    const bMinusBase = (teamStats.off?.doc_count && teamStats.baseline?.doc_count) ? LineupUtils.getStatsDiff(
-      teamStats.off, teamStats.baseline,  "B - Baseline diffs"
-    ) : undefined;
-
-    [ aMinusB, aMinusBase, bMinusBase ].forEach((statSet) => {
-      if (statSet) TableDisplayUtils.injectPlayTypeInfo(statSet, false, false, teamSeasonLookup)
-    });
-    return [ aMinusB, aMinusBase, bMinusBase ];
-  })() : [ undefined, undefined, undefined ] as [ any, any, any ];
-
-  baselineOnOffKeys.forEach(k => {
-    TableDisplayUtils.injectPlayTypeInfo(teamStats[k] || StatModels.emptyTeam(), false, false, teamSeasonLookup);
-  });
-
-  // Show game info logic:
-  const totalLineupsByQueryKey = _.chain(baselineOnOffKeys).map((k, ii) => {
-    if (showGameInfo) {
-      const lineups = lineupStats?.[ii]?.lineups || [];
-      const totalLineup = _.assign(LineupUtils.calculateAggregatedLineupStats(lineups), {
-        key: LineupTableUtils.totalLineupId,
-        doc_count: lineups.length //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
-      });   
-      return [ k, totalLineup ]
-    } else {
-      return [ k, {} ]
-    }
-  }).fromPairs().value() as {
-    [P in OnOffBaselineEnum]: LineupStatSet
-  };
-
-  const orderedMutableOppoList = _.chain(baselineOnOffKeys).map((k, ii) => {
-    if (showGameInfo && totalLineupsByQueryKey[k]) {
-      return [ k, LineupUtils.buildOpponentList([ totalLineupsByQueryKey[k] ], showGameInfo) ];
-    } else {
-      return [ k, {} ];
-    } 
-  }).fromPairs().value() as {
-    [P in OnOffBaselineEnum]: Record<string, GameInfoStatSet>
-  };
-  //(end show game info logic)
-
-  // Last stage before building the table: inject titles into the stats:
-  const teamStatsKeys = _.zip(baselineOnOffKeys, [ maybeBase, maybeOn, maybeOff ]);
-  const teamStatsByQuery = _.chain(teamStatsKeys).map(keyDesc => {
-    const queryKey = keyDesc[0]!;
-    const desc = keyDesc[1];
-    const retVal: [OnOffBaselineEnum, any] = [ queryKey, {
-      off_title: <b>{desc} Offense</b>,
-      def_title: <b>{desc} Defense</b>,
-      ...teamStats[queryKey]
-    } ];
-    return retVal;
-  }).fromPairs().value()  as {
-    [P in OnOffBaselineEnum]: any
-  };
-
-  /** If true, then repeat the table headers */
-  const showingSomeDiags = showExtraInfo || showGrades || showRoster || showGameInfo || showPlayTypes || showLuckAdjDiags;
-  const showingOn = teamStats.on?.doc_count ? true : false;
-  const showingOnOrOff = showingOn || (teamStats.off?.doc_count ? true : false);
-
-  /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
-  const buildTableEntries = (queryKey: OnOffBaselineEnum, displayKey: string) => {
-    const queryIndex = (queryKey == "baseline") ? 0 : (
-      (queryKey == "on") ? 1 : 2
-    );
-    const hasData = (teamStats[queryKey]?.doc_count || 0) > 0;
-
-    const showExtraHeader = (queryKey == "off") ? (showingSomeDiags && showingOn) : (
-      (queryKey == "baseline") ? (showingSomeDiags && showingOnOrOff) : false
-    );
-
-    return hasData ? _.flatten([
-      showExtraHeader ? [ GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffHeaderFields, "small") ] : [],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery[queryKey], offPrefixFn, offCellMetaFn) ],
-      [ GenericTableOps.buildDataRow(teamStatsByQuery[queryKey], defPrefixFn, defCellMetaFn) ],
-      (showGrades != "") ? 
-        GradeTableUtils.buildTeamGradeTableRows({
-          selectionType: queryKey,
-          config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-          comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-          mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
-          team: teamStats[queryKey]
-        }) : [],
-      showExtraInfo ? [ GenericTableOps.buildTextRow(<span>
-        <TeamExtraStatsInfoView
-          name={displayKey}
-          teamStatSet={teamStats[queryKey]}
-          showGrades={showGrades}
-          grades={showGrades ? {
-            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,  
-          } : undefined}
-        /></span>, "small pt-2")
-      ] : [],
-      showRoster ? [ GenericTableOps.buildTextRow(<span>
-        <TeamRosterDiagView
-          positionInfoGlobal={LineupTableUtils.getPositionalInfo(
-            lineupStats[queryIndex]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
-          )}
-          positionInfoSample={(teamStats[queryKey].doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
-            lineupStats[queryIndex]?.lineups || [], positionFromPlayerId[queryKey], teamSeasonLookup
-          ) : undefined}
-          rosterStatsByPlayerId={playerInfoByIdBy0AB[queryIndex] || {}}
-          positionFromPlayerId={positionFromPlayerIdGlobal}
-          teamSeasonLookup={teamSeasonLookup}
-          showHelp={showHelp}
-        />
-      </span>, "small pt-2"
-      )] : [],
-      showGameInfo ? [ GenericTableOps.buildTextRow(
-        <GameInfoDiagView
-          oppoList={
-            LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey[queryKey].game_info) ?
-              LineupUtils.getGameInfo(totalLineupsByQueryKey[queryKey].game_info || {}) 
-              :
-              (totalLineupsByQueryKey[queryKey].game_info as GameInfoStatSet[])
-          }
-          orderedOppoList={_.clone(orderedMutableOppoList[queryKey])}
-          params={{}}
-          maxOffPoss={-1}
-        />, "small pt-2"
-      )] : [],
-      showLuckAdjDiags && luckAdjustment[queryKey] ? [ GenericTableOps.buildTextRow(
-        <LuckAdjDiagView
-            name={displayKey}
-            offLuck={luckAdjustment[queryKey]![0]}
-            defLuck={luckAdjustment[queryKey]![1]}
-            baseline={luckConfig.base}
-            showHelp={showHelp}
-        />, "small pt-2"
-      ) ] : [] ,
-      showPlayTypes ?[ GenericTableOps.buildTextRow(
-        <TeamPlayTypeDiagView
-          title={displayKey}
-          players={rosterStats[queryKey] || []}
-          rosterStatsByCode={globalRosterStatsByCode}
-          teamStats={teamStatsByQuery[queryKey]}
-          teamSeasonLookup={teamSeasonLookup}
-          showHelp={showHelp}
-          />, "small"
-        ) ] : [],
-      (queryKey == "baseline") ? [] : [ GenericTableOps.buildRowSeparator() ]
-    ]) : [];
-  };
-
-  const tableData = _.flatMap([
-    buildTableEntries("on", "On ('A')"),
-    buildTableEntries("off", "Off ('B')"),
-    buildTableEntries("baseline", "Baseline"),
+  const tableData = _.flatten([
+    buildRows(tableInfo.on, true),
+    buildRows(tableInfo.off, true),
+    buildRows(tableInfo.baseline, false),
     // Diffs if showing:
     showDiffs ? [ GenericTableOps.buildRowSeparator() ] : [],
-    aMinusB ? _.flatten([
-      [ GenericTableOps.buildDataRow(aMinusB, offPrefixFn, offCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
-      [ GenericTableOps.buildDataRow(aMinusB, defPrefixFn, defCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
-      [ GenericTableOps.buildRowSeparator() ],
-    ] ) : [],
-    aMinusBase ? _.flatten([
-      [ GenericTableOps.buildDataRow(aMinusBase, offPrefixFn, offCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
-      [ GenericTableOps.buildDataRow(aMinusBase, defPrefixFn, defCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
-      [ GenericTableOps.buildRowSeparator() ],
-    ] ) : [],
-    bMinusBase ? _.flatten([
-      [ GenericTableOps.buildDataRow(bMinusBase, offPrefixFn, offCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
-      [ GenericTableOps.buildDataRow(bMinusBase, defPrefixFn, defCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
-      [ GenericTableOps.buildRowSeparator() ],
-    ] ) : [],
+    tableInfo.diffs
   ]);
 
   // 3] Utils
