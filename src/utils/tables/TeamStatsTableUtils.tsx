@@ -12,7 +12,7 @@ import { RosterStatsModel } from "../../components/RosterStatsTable";
 import { TeamStatsModel } from "../../components/TeamStatsTable";
 import { GameFilterParams, LuckParams } from "../FilterModels";
 import { efficiencyAverages } from "../public-data/efficiencyAverages";
-import { GameInfoStatSet, IndivPosInfo, IndivStatSet, LineupStatSet, OnOffBaselineEnum, PlayerId, StatModels, TeamStatSet } from "../StatModels";
+import { GameInfoStatSet, IndivPosInfo, IndivStatSet, LineupStatSet, OnOffBaselineEnum, PlayerId, StatModels, TeamStatSet } from '../StatModels';
 import { LineupUtils } from "../stats/LineupUtils";
 import { DefLuckAdjustmentDiags, LuckUtils, OffLuckAdjustmentDiags } from "../stats/LuckUtils";
 import { OverrideUtils } from "../stats/OverrideUtils";
@@ -227,6 +227,7 @@ export class TeamStatsTableUtils {
       });
     
       // Show game info logic:
+      const orderedMutableOppoList: Record<string, GameInfoStatSet> = {};
       const totalLineupsByQueryKey = _.chain(baselineOnOffKeys).map((k, ii) => {
         if (showGameInfo) {
           const lineups = lineupStats?.[ii]?.lineups || [];
@@ -234,22 +235,17 @@ export class TeamStatsTableUtils {
             key: LineupTableUtils.totalLineupId,
             doc_count: lineups.length //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
           });   
+          //(for reasons I don't understand the logic is different to the LineupStatsTable ... 
+          // the game_info isn't sorted but "orderedMutableOppoList" shouldn't be set
+          //TODO: at some point i need to refactor/doc this game info code, but for now this works
+          totalLineup.game_info = _.sortBy((totalLineup.game_info as Array<GameInfoStatSet>) || [], g => g.date)
+          orderedMutableOppoList[k] = {};
           return [ k, totalLineup ]
         } else {
           return [ k, {} ]
         }
       }).fromPairs().value() as {
         [P in OnOffBaselineEnum]: LineupStatSet
-      };
-    
-      const orderedMutableOppoList = _.chain(baselineOnOffKeys).map((k, ii) => {
-        if (showGameInfo && totalLineupsByQueryKey[k]) {
-          return [ k, LineupUtils.buildOpponentList([ totalLineupsByQueryKey[k] ], showGameInfo) ];
-        } else {
-          return [ k, {} ];
-        } 
-      }).fromPairs().value() as {
-        [P in OnOffBaselineEnum]: Record<string, GameInfoStatSet>
       };
       //(end show game info logic)
     

@@ -3,7 +3,7 @@ import _ from "lodash";
 
 import { TeamReportStatsModel } from "../../components/TeamReportStatsTable";
 import { LineupStatsModel } from "../../components/LineupStatsTable";
-import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, GameInfoStatSet } from "../StatModels";
+import { StatModels, PureStatSet, PlayerCode, PlayerId, TeamStatSet, LineupStatSet, GameInfoStatSet } from "../StatModels";
 
 //TODO: duration_mins and scramble/transition combos...
 
@@ -791,7 +791,7 @@ export class LineupUtils {
   /** Builds a map of game info vs opponent */
   static buildOpponentList(
     lineups: LineupStatSet[],
-    showGameInfo: boolean,
+    showGameInfo: boolean
   ): Record<string, GameInfoStatSet> {
     const mutableOppoList = {} as Record<string, GameInfoStatSet>;
     if (showGameInfo) { // (calculate this before doing the table filter)
