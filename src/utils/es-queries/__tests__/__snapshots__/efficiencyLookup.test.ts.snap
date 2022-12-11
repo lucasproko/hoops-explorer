@@ -68,8 +68,8 @@ exports[`efficiencyLookup efficiencyLookup 1`] = `
 exports[`efficiencyLookup formatEfficiencyLookupResponse 1`] = `
 {
    "Gonzaga": {
-      "team_season.year": 2021,
       "conf": "West Coast Conference",
+      "team_season.year": 2021,
       "stats.adj_off.rank": 1,
       "stats.adj_off.value": 126.4,
       "stats.adj_def.rank": 11,
@@ -84,8 +84,8 @@ exports[`efficiencyLookup formatEfficiencyLookupResponse 1`] = `
       "is_high_major": 0
    },
    "Baylor": {
-      "team_season.year": 2021,
       "conf": "Big 12 Conference",
+      "team_season.year": 2021,
       "stats.adj_off.rank": 2,
       "stats.adj_off.value": 125,
       "stats.adj_def.rank": 22,
@@ -99,8 +99,8 @@ exports[`efficiencyLookup formatEfficiencyLookupResponse 1`] = `
       "is_high_major": 1
    },
    "Michigan": {
-      "team_season.year": 2021,
       "conf": "Big Ten Conference",
+      "team_season.year": 2021,
       "stats.adj_off.rank": 9,
       "stats.adj_off.value": 117.6,
       "stats.adj_def.rank": 4,

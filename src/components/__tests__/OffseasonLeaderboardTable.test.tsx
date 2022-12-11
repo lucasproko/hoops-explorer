@@ -1,14 +1,13 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 
-import { ParamPrefixes, ParamDefaults, TeamEditorParams, OffseasonLeaderboardParams } from '../../utils/FilterModels';
+import { TeamEditorParams, OffseasonLeaderboardParams } from '../../utils/FilterModels';
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import _ from "lodash";
 import fs from 'fs';
-import { teamStatInfo } from '../../bin/buildLeaderboards';
 import OffSeasonLeaderboardTable from '../OffseasonLeaderboardTable';
 
 describe("OffseasonLeaderboardTable", () => {
@@ -54,16 +53,6 @@ describe("OffseasonLeaderboardTable", () => {
   expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
     sampleData.players[0]
   ));
-
-     //TODO startingState
-   // year?: string,
-   // teamView?: string,
-   // confs?: string,
-   // evalMode?: boolean,
-   // transferInOutMode?: boolean,
-   // sortBy?: string, //(for transferInOutMode)
-   // queryFilters?: string
- 
 
   test("OffseasonLeaderboardTable - should create snapshot", () => {
 

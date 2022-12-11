@@ -1111,20 +1111,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -1264,20 +1258,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -1417,20 +1405,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -1570,20 +1552,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -1723,20 +1699,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -1876,20 +1846,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2029,20 +1993,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2182,20 +2140,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2335,20 +2287,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2488,20 +2434,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2641,20 +2581,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2794,20 +2728,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -2947,20 +2875,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -12160,7 +12082,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 1.96,
+                    "colorOverride": 0.98,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -12231,20 +12153,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -12311,7 +12227,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2,
+                    "colorOverride": 0.9795918367346939,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -12382,20 +12298,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -12462,7 +12372,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.0434782608695654,
+                    "colorOverride": 0.9791666666666666,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -12533,20 +12443,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -12613,7 +12517,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.090909090909091,
+                    "colorOverride": 0.9787234042553191,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -12684,20 +12588,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -12764,7 +12662,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.142857142857143,
+                    "colorOverride": 0.9782608695652174,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -12835,20 +12733,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -12915,7 +12807,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.2,
+                    "colorOverride": 0.9777777777777777,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -12986,20 +12878,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13066,7 +12952,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.263157894736842,
+                    "colorOverride": 0.9772727272727273,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -13137,20 +13023,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13217,7 +13097,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.3333333333333335,
+                    "colorOverride": 0.9767441860465116,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -13288,20 +13168,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13368,7 +13242,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.411764705882353,
+                    "colorOverride": 0.9761904761904762,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -13439,20 +13313,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13519,7 +13387,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.5,
+                    "colorOverride": 0.975609756097561,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -13590,20 +13458,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13670,7 +13532,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.6,
+                    "colorOverride": 0.975,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -13741,20 +13603,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13821,7 +13677,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.7142857142857144,
+                    "colorOverride": 0.9743589743589743,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -13892,20 +13748,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -13972,7 +13822,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 2.8461538461538463,
+                    "colorOverride": 0.9736842105263158,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -14043,20 +13893,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -14123,7 +13967,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 3,
+                    "colorOverride": 0.972972972972973,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -14194,20 +14038,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -14274,7 +14112,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 3.1818181818181817,
+                    "colorOverride": 0.9722222222222222,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -14345,20 +14183,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -14425,7 +14257,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 3.4,
+                    "colorOverride": 0.9714285714285714,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -14496,20 +14328,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -14576,7 +14402,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 3.6666666666666665,
+                    "colorOverride": 0.9705882352941176,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -14647,20 +14473,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -14727,7 +14547,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 4,
+                    "colorOverride": 0.9696969696969697,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -14798,20 +14618,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.2358490566037736,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -17575,20 +17389,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -17722,20 +17530,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -17869,20 +17671,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18016,20 +17812,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18163,20 +17953,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18310,20 +18094,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18457,20 +18235,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18604,20 +18376,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18751,20 +18517,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -18898,20 +18658,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19045,20 +18799,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19192,20 +18940,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19339,20 +19081,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19486,20 +19222,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19633,20 +19363,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19780,20 +19504,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -19927,20 +19645,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20074,20 +19786,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20221,20 +19927,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20368,20 +20068,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20515,20 +20209,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20662,20 +20350,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20809,20 +20491,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -20956,20 +20632,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -21122,20 +20792,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -21269,20 +20933,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -21416,20 +21074,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -21563,20 +21215,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -21710,20 +21356,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -21857,20 +21497,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22004,20 +21638,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22151,20 +21779,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22298,20 +21920,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22464,20 +22080,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22611,20 +22221,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22758,20 +22362,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -22905,20 +22503,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23052,20 +22644,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23199,20 +22785,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23346,20 +22926,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23493,20 +23067,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23640,20 +23208,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23787,20 +23349,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -23934,20 +23490,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24081,20 +23631,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24228,20 +23772,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24375,20 +23913,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24522,20 +24054,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24669,20 +24195,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24816,20 +24336,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -24963,20 +24477,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -25110,20 +24618,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -25257,20 +24759,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -25423,20 +24919,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -25570,20 +25060,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -25717,20 +25201,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -25864,20 +25342,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26011,20 +25483,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26158,20 +25624,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26305,20 +25765,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26452,20 +25906,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26599,20 +26047,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26746,20 +26188,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -26893,20 +26329,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27040,20 +26470,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27187,20 +26611,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27334,20 +26752,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27481,20 +26893,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27628,20 +27034,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27775,20 +27175,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -27922,20 +27316,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -28069,20 +27457,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -28216,20 +27598,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -29120,20 +28496,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -29267,20 +28637,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -29414,20 +28778,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -29561,20 +28919,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -29708,20 +29060,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -29855,20 +29201,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30002,20 +29342,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30149,20 +29483,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30296,20 +29624,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30443,20 +29765,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30590,20 +29906,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30737,20 +30047,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -30884,20 +30188,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31031,20 +30329,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31178,20 +30470,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31325,20 +30611,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31472,20 +30752,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31619,20 +30893,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31766,20 +31034,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -31913,20 +31175,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32060,20 +31316,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32207,20 +31457,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32354,20 +31598,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32501,20 +31739,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32667,20 +31899,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32814,20 +32040,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -32961,20 +32181,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -33108,20 +32322,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -33255,20 +32463,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -33402,20 +32604,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -33549,20 +32745,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -33696,20 +32886,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -33843,20 +33027,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34009,20 +33187,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34156,20 +33328,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34303,20 +33469,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34450,20 +33610,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34597,20 +33751,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34744,20 +33892,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -34891,20 +34033,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35038,20 +34174,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35185,20 +34315,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35332,20 +34456,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35479,20 +34597,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35626,20 +34738,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35773,20 +34879,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -35920,20 +35020,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36067,20 +35161,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36214,20 +35302,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36361,20 +35443,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36508,20 +35584,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36655,20 +35725,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36802,20 +35866,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -36968,20 +36026,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37115,20 +36167,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37262,20 +36308,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37409,20 +36449,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37556,20 +36590,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37703,20 +36731,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37850,20 +36872,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -37997,20 +37013,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -38144,20 +37154,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -38291,20 +37295,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -38438,20 +37436,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -38585,20 +37577,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -38732,20 +37718,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -38879,20 +37859,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -39026,20 +38000,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -39173,20 +38141,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -39320,20 +38282,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -39467,20 +38423,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -39614,20 +38564,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },
@@ -39761,20 +38705,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "fr_margin": Object {
                     "value": 0,
                   },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "high_grade": undefined,
                   "in_margin": Object {
                     "value": 0,
                   },
                   "inout_margin": Object {
                     "value": 0,
                   },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.49056603773584906,
-                  },
+                  "low_grade": undefined,
                   "nba_margin": Object {
                     "value": 0,
                   },

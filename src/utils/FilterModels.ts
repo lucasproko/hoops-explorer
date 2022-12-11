@@ -61,6 +61,13 @@ export function getCommonLboardFilterParams(p: CommonFilterParams, tier?: string
   };
 }
 
+/** Combined params for analyzing game match-ups */
+export type MatchupFilterParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  oppoTeam?: string
+};
+
 /** Combined params for game filtering */
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
