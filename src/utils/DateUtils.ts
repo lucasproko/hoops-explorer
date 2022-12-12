@@ -46,7 +46,7 @@ export class DateUtils {
    static readonly mostRecentYearWithLboardData = "2022/23";
 
    /** Don't bother trying to display NET after this year */
-   static readonly mostRecentYearWithNetAvailable = "2021/22";
+   static readonly mostRecentYearWithNetAvailable = "2022/23";
 
    // These are old years in which the normal rules don't apply:
 
