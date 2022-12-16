@@ -1,4 +1,5 @@
 import { DateUtils } from "./DateUtils";
+import PlayerSeasonComparisonChart from '../components/PlayerSeasonComparisonChart';
 
 /** Typescript limitations - also have to repeat this for ParamPrefixesType */
 export class ParamPrefixes {
@@ -181,7 +182,17 @@ export type OffseasonLeaderboardParams = {
   transferInOutMode?: boolean,
   sortBy?: string, //(for transferInOutMode)
   queryFilters?: string
-} & Record<string, string>;
+} & Record<string, string>; //(for teamOverrides)
+
+export type PlayerSeasonComparisonParams = {
+  year?: string,
+  gender?: string,
+  confs?: string,
+  queryFilters?: string,
+  transfersOnly?: boolean,
+  xAxis?: string,
+  yAxis?: string
+};
 
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
@@ -309,6 +320,10 @@ export class ParamDefaults {
   static readonly defaultTeamLboardWabWeight = "0.5"; //(don't have decimal places for comparison with "" + 1.0)
   static readonly defaultTeamLboardWaeWeight = "0.25";
   static readonly defaultTeamLboardTimeWeight = "0"; //(don't have decimal places for comparison with "" + 0.0)
+  // Player comparison charts
+  static readonly defaultPlayerComparisonXAxis = "delta:off_adj_rapm";
+  static readonly defaultPlayerComparisonYAxis = "delta:def_adj_rapm";
+  static readonly defaultPlayerComparisonTransfersOnly = true;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";
