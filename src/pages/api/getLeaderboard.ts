@@ -3,9 +3,15 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 import queryString from "query-string";
-import { Writable } from 'stream';
+import { Readable, Writable } from 'stream';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+// Ran into some strange 
+const pxIsDebug = (process.env.NODE_ENV !== 'production');
+if (pxIsDebug) {
+    console.log(`Running locally: use node v18+ constructs for streaming`);
+  }
+  
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const url = require('url').parse(req.url);
     const parsed: Record<string, any> = queryString.parse(url.query, {parseBooleans: true}) as any;
     //src: players|lineups
@@ -35,9 +41,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
                     res.setHeader("Content-Encoding", "gzip");
                     res.setHeader("Content-Type", "application/json");
-                    res.status(200).send(resp.body);
+
+                    res.status(200);
+                    if (pxIsDebug) {
+                        //@ts-ignore
+                        Readable.fromWeb(resp.body).pipe(res)
+                    } else {
+                        res.send(resp.body)
+                    }
                 }
             } catch (e) {
+                //console.log(e.message);                
                 res.status(500).json({ error: "Unknown error"});
             }
         } else {
