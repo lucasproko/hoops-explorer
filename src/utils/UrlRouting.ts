@@ -88,7 +88,7 @@ export class UrlRouting {
   }
 
   /** The URL to use to view the "Player/Season Comparison" page */
-  static getPlayerSeasonComparison(params: PlayerSeasonComparisonParams) {
+  static getPlayerSeasonComparisonUrl(params: PlayerSeasonComparisonParams) {
     return `/PlayerSeasonComparison?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
     })}`;

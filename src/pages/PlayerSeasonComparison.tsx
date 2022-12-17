@@ -65,7 +65,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
   // Game filter
 
   function getRootUrl(params: PlayerSeasonComparisonParams) {
-    return UrlRouting.getPlayerSeasonComparison(params);
+    return UrlRouting.getPlayerSeasonComparisonUrl(params);
   }
 
   const [ playerSeasonComparisonParams, setPlayerSeasonComparisonParams ] = useState(
@@ -81,11 +81,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
 
     ]));
-    if (rawParams.year && (rawParams.year != DateUtils.offseasonPredictionYear)) { //TODO: un-hardwire this
-      const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
-      if (typeof window !== `undefined`) window.location.href = newUrl;
-
-    } else if (!_.isEqual(params, playerSeasonComparisonParamsRef.current)) { //(to avoid recursion)
+    if (!_.isEqual(params, playerSeasonComparisonParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

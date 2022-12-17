@@ -52,6 +52,7 @@ import { OffseasonLeaderboardUtils } from '../utils/stats/OffseasonLeaderboardUt
 import { ReferenceArea, ResponsiveContainer, Tooltip as RechartTooltip, ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Label, Cell } from 'recharts';
 import { GoodBadOkTriple } from '../utils/stats/TeamEditorUtils';
 import { CbbColors } from '../utils/CbbColors';
+import { NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
@@ -220,16 +221,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          console.log(JSON.stringify(derivedDivisionStats));
       }
 
-      const confFilter = (t: {team: string, conf: string}) => {
-         return (confs == "") || (confs.indexOf(t.conf) >= 0) 
-            || (((confs.indexOf("P6") >= 0) && confs.indexOf(ConfSelectorConstants.nonHighMajorConfsName) < 0) 
-                     && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0))
-            || ((confs.indexOf(ConfSelectorConstants.nonHighMajorConfsName) >= 0) 
-                     && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0))
-            || (hasCustomFilter && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
-            ;
-      }
-
       const fieldValExtractor = (field: string) => {
          return (p: PureStatSet | undefined) => {
             if ((field[0] == 'o') || (field[0] == 'd')) {
@@ -256,7 +247,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             if (fieldType == "delta") {
                return fieldExtractor(p.actualResults) - fieldExtractor(p.ok);
             } else if (fieldType == "deltaHistory") {
-               return fieldExtractor(p.actualResults) - fieldExtractor(p.prevYear);
+               return fieldExtractor(p.actualResults) - fieldExtractor(p.orig);
             } else {
                return fieldExtractor(tripleAsMap[fieldType]);
             }
@@ -298,7 +289,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   <span>Usage: <b>{(fieldValExtractor("off_usage")(data?.p?.actualResults)*100).toFixed(1)}</b>%</span><br/>
                   <span><i>({bOrW(100*deltaUsage)})</i></span><br/>
                   <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data?.p?.actualResults)*40).toFixed(1)}</b></span><br/>
-                  <span><i>({bOrW(40*deltaMpg)})</i></span><br/>
+                  <span><i>({bOrW(40*deltaMpg)})</i></span><br/><br/>
+                  <span><i>(Previous school: {data?.p?.orig.team})</i></span>
                </p>
             </small></div>
            );
@@ -331,10 +323,43 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const zAxisExtractor = extractBubbleAttr("off_team_poss_pct");
       const colorExtractor = extractBubbleAttr("adj_rapm");
 
-      const mainChart = _.chain(teamRanks)
-         .flatMap(t => t.players || []) //TODO filter teams/confs etc
+      const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
+      const specialCases = {
+         "P6": Power6Conferences,
+         "MM": NonP6Conferences
+       } as Record<string, any>;
+       const confSet = confs ? new Set(
+         _.flatMap((confs || "").split(","), c => specialCases[c] || [ NicknameToConference[c] || c ])
+       ) : undefined;
+
+       const subChart = _.isEmpty(confs) ? undefined : _.chain(teamRanks)
+         .flatMap(t => t.players || []) 
          .filter(p => 
-            (p.actualResults || false) && (p.prevYear || false) && (p.actualResults.team != p.prevYear.team)
+            !_.isEmpty(p.orig.team) && (
+               (p.actualResults || false) && (p.orig || false) && (p.actualResults.team != p.orig.team)
+            )
+         )
+         .filter(p => {
+            return (confSet?.has(p.actualResults?.conf || "???")|| false) 
+            || (hasCustomFilter && ((queryFilters || "").indexOf(`${p.actualResults?.team || ""};`) >= 0));
+         })
+         .map(p => {
+            return {
+               x: xAxisExtractor(p),
+               y: -yAxisExtractor(p),
+               z: zAxisExtractor(p),
+               p: p
+            }
+         }).value();
+
+      var inSubChart = new Set(subChart?.map(p => p.p.key) || []);
+         
+      const mainChart = _.chain(teamRanks)
+         .flatMap(t => t.players || []) 
+         .filter(p => 
+            !_.isEmpty(p.orig.team) && !inSubChart.has(p.key) && (
+               (p.actualResults || false) && (p.orig || false) && (p.actualResults.team != p.orig.team)
+            )
          )
          .map(p => {
             return {
@@ -348,36 +373,36 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const [ minX, maxX, minY, maxY ] = _.transform(mainChart, (acc, v) => {
          if (v.x < acc[0]!) {
             acc[0] = v.x;
+         } else if ((v.x > 0) && (-v.x < acc[0])) {
+            acc[0] = -v.x;
          } else if (v.x > acc[1]!) {
             acc[1] = v.x;
+         } else if ((v.x < 0) && (-v.x > acc[1])) {
+            acc[1] = -v.x;
          }
          if (v.y < acc[2]!) {
             acc[2] = v.y;
+         } else if ((v.y > 0) && (-v.y < acc[2])) {
+            acc[2] = -v.y;
          } else if (v.y > acc[3]!) {
             acc[3] = v.y;
+         } else if ((v.y < 0) && (-v.y > acc[3])) {
+            acc[3] = -v.y;
          }
       }, [1000, -1000, 1000, -1000]);
 
-      //TODO: improve chart
-
-      const CustomizedLabel: React.FunctionComponent<{}> = ({}) => {
-         return <div className="custom-tooltip" style={{
-            background: 'rgba(255, 255, 255, 0.9)',
-          }}><small>FFFFFF</small></div>;
-      };
-       
       return  <ResponsiveContainer width={"100%"} height={512}>
          <ScatterChart>
-            <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={1.1*maxY} fillOpacity={0}>
+            <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={maxY} fillOpacity={0}>
                <Label position="insideTopRight" value="Better offense, better defense"/>
             </ReferenceArea>
-            <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={1.1*minY} fillOpacity={0}>
+            <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={minY} fillOpacity={0}>
                <Label position="insideBottomRight" value="Better offense, worse defense"/>
             </ReferenceArea>
-            <ReferenceArea x1={1.1*minX} x2={0} y1={0} y2={1.1*maxY} fillOpacity={0}>
+            <ReferenceArea x1={1.1*minX} x2={0} y1={0} y2={maxY} fillOpacity={0}>
                <Label position="insideTopLeft" value="Worse offense, better defense"/>
             </ReferenceArea>
-            <ReferenceArea x1={1.1*minX} x2={0} y1={0} y2={1.1*minY} fillOpacity={0}>
+            <ReferenceArea x1={1.1*minX} x2={0} y1={0} y2={minY} fillOpacity={0}>
                <Label position="insideBottomLeft" value="Worse offense, worse defense"/>
             </ReferenceArea>
             <CartesianGrid />
@@ -388,11 +413,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                <Label angle={-90} value={extractTitle("delta:def_adj_rapm")} position='insideLeft' style={{textAnchor: 'middle'}} />
             </YAxis>
             <ZAxis type="number" dataKey="z" range={[10, 100]}/>
-            <Scatter data={mainChart} fill="green">
+            <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
                {mainChart.map((p, index) => {
                   return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(colorExtractor(p.p))}/>
                })};
             </Scatter>
+            {subChart ? <Scatter data={subChart} fill="green">
+               {subChart.map((p, index) => {
+                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(colorExtractor(p.p))}/>
+               })}</Scatter> : null
+            };         
             <RechartTooltip
               content={(<CustomTooltip />)}
               wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
@@ -447,12 +477,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          </Col>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
-               isDisabled={true}
                value={stringToOption(year)}
-               options={DateUtils.lboardYearListWithNextYear(tier == "High").map(r => stringToOption(r))}
+               options={[stringToOption("2021/22"), stringToOption("2022/23")]}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
-                  /* currently only support 2022/23 - but lets other years be specified to jump between off-season predictions and previous results */
                   setYear((option as any)?.value);
                }}}
             />
