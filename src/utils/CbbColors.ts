@@ -38,6 +38,7 @@ export class CbbColors {
 
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);
   private static readonly greenToRed = chroma.scale(["green", "#ffFFff", "red"]);
+  private static readonly redBlackGreen = chroma.scale(["red", "grey", "green"]);
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
   private static readonly orangeToBlue = chroma.scale(["orange", "#ffFFff", "lightblue"]);
   private static readonly whiteToOrange = chroma.scale(["#ffFFff", "orange"]);
@@ -136,6 +137,8 @@ export class CbbColors {
   public static readonly def_diff10_p100_redGreen = (val: number) => CbbColors.greenToRed.domain(CbbColors.diff10Domainp100RedGreen)(val).toString();
   public static readonly diff10_p100_redGreen: CbbColorTuple = [ CbbColors.off_diff10_p100_redGreen, CbbColors.def_diff10_p100_redGreen ];
   public static readonly diff10_p100_greenRed: CbbColorTuple = [ CbbColors.def_diff10_p100_redGreen, CbbColors.off_diff10_p100_redGreen ];
+  // For use in fills:
+  public static readonly off_diff10_p100_redBlackGreen = (val: number) => CbbColors.redBlackGreen.domain(CbbColors.diff10Domainp100RedGreen)(val).toString();
   // Around 0, team pp100 (red/green):
   private static readonly diff35Domainp100RedGreen = [ -35, 0, 35 ];
   public static readonly off_diff35_p100_redGreen = (val: number) => CbbColors.redToGreen.domain(CbbColors.diff35Domainp100RedGreen)(val).toString();
