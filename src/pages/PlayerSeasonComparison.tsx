@@ -148,6 +148,9 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
     />
   }, [dataSubEvent]);
 
+  const gender = playerSeasonComparisonParams.gender || ParamDefaults.defaultGender;
+  const year = playerSeasonComparisonParams.year || DateUtils.mostRecentYearWithLboardData;
+
   const thumbnailUrl = `${(server != "localhost") ? `https://${server}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
   return <Container>
     <Head>
@@ -168,7 +171,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
     <Row className="mt-3">
       {table}
     </Row>
-    <Footer dateOverride={dataSubEvent.lastUpdated} year={playerSeasonComparisonParams.year} gender={playerSeasonComparisonParams.gender} server={server}/>
+    <Footer year={year} gender={gender} server={server}/>
   </Container>;
 }
 export default PlayerSeasonComparison;

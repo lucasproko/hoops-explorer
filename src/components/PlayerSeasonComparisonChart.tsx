@@ -132,7 +132,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          year: year, confs, 
          queryFilters: queryFilters,
 
-         xAxis, yAxis, transfersOnly,
+         //xAxis, yAxis, transfersOnly,
       });
    }, [ confs, year, queryFilters ]);
 

@@ -161,6 +161,9 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     />
   }, [dataSubEvent]);
 
+  const gender = offseasonLeaderboardParams.gender || ParamDefaults.defaultGender;
+  const year = offseasonLeaderboardParams.year || DateUtils.mostRecentYearWithLboardData;
+
   const thumbnailUrl = `${(server != "localhost") ? `https://${server}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
   return <Container>
     <Head>
@@ -181,7 +184,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     <Row className="mt-3">
       {table}
     </Row>
-    <Footer dateOverride={dataSubEvent.lastUpdated} year={offseasonLeaderboardParams.year} gender={offseasonLeaderboardParams.gender} server={server}/>
+    <Footer year={year} gender={gender} server={server}/>
   </Container>;
 }
 export default OffseasonLeaderboardPage;

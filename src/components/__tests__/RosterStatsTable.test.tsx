@@ -17,7 +17,7 @@ describe("RosterStatsTable", () => {
   const testYear = "2021/22";
 
   const sampleData = JSON.parse(
-    fs.readFileSync("./public/leaderboards/lineups/stats_players_all_Men_2020_High.json", { encoding: "UTF-8"})
+    fs.readFileSync("./public/leaderboards/lineups/stats_players_all_Men_2020_High.json", { encoding: "utf-8"})
   );  
 
   // Mock the URL calls needed to get the stats
