@@ -92,6 +92,19 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
+   const [height, setHeight] = useState<number>(400);
+   useEffect(() => {
+     function handleResize() {
+         setTimeout(() => {
+            setHeight(window.innerHeight);
+         }, 250);
+     }
+ 
+     window.addEventListener('resize', handleResize);
+     setHeight(window.innerHeight);
+     return () => window.removeEventListener('resize', handleResize);
+   }, []);
+ 
    // Chart control
    const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
    const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
@@ -298,9 +311,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          return null;
        };
        
-      //TODO: build data sets
-
-
       const extractTitle = (fieldDef: string) => {
          const typeAndField = fieldDef.split(":");
          const fieldType = typeAndField.length > 1 ? typeAndField[0] : "actualResults";
@@ -391,7 +401,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          }
       }, [1000, -1000, 1000, -1000]);
 
-      return  <ResponsiveContainer width={"100%"} height={512}>
+      return  <ResponsiveContainer width={"100%"} height={0.75*height}>
          <ScatterChart>
             <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={maxY} fillOpacity={0}>
                <Label position="insideTopRight" value="Better offense, better defense"/>
@@ -434,7 +444,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </ResponsiveContainer>
       ;
    }, [
-      gender, year, confs, dataEvent, queryFilters, rostersPerTeam
+      gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height
    ]);
 
    // 3] View
