@@ -92,7 +92,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
-   const [height, setHeight] = useState<number>(400);
+   const [height, setHeight] = useState<number>(512);
    useEffect(() => {
      function handleResize() {
          setTimeout(() => {
