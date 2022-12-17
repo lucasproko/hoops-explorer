@@ -6,6 +6,7 @@ import { QueryUtils } from "./QueryUtils";
 
 // Utils
 import { GameFilterParams, LineupFilterParams, LineupLeaderboardParams, OffseasonLeaderboardParams, PlayerLeaderboardParams, TeamEditorParams, TeamReportFilterParams } from '../utils/FilterModels';
+import { PlayerSeasonComparisonParams } from './FilterModels';
 
 /** Url routing utils */
 export class UrlRouting {
@@ -67,13 +68,13 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params
     })}`;
   }
-  /** The URL to use to view the "Tem Editor" page */
+  /** The URL to use to view the "Team Editor" page */
   static getTeamEditorUrl(params: TeamEditorParams) {
     return `/TeamEditor?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
     })}`;
   }
-  /** The URL to use to view the "Tem Editor" page */
+  /** The URL to use to view the "Offseason Leaderboard" page */
   static getOffseasonLeaderboard(params: OffseasonLeaderboardParams) {
     return `/OffseasonLeaderboard?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
@@ -82,6 +83,13 @@ export class UrlRouting {
   /** The URL to use to view the "Team Report" page */
   static getTeamReportUrl(params: TeamReportFilterParams) {
     return `/TeamReport?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params
+    })}`;
+  }
+
+  /** The URL to use to view the "Player/Season Comparison" page */
+  static getPlayerSeasonComparisonUrl(params: PlayerSeasonComparisonParams) {
+    return `/PlayerSeasonComparison?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
     })}`;
   }

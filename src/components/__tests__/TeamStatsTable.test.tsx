@@ -64,7 +64,7 @@ describe("TeamStatsTable", () => {
   test("TeamStatsTable - should create snapshot, luck enabled + diagnostics + grades shown", async () => {
 
     const sampleData = JSON.parse(
-      fs.readFileSync("./public/leaderboards/lineups/stats_all_Men_2020_High.json", { encoding: "UTF-8"})
+      fs.readFileSync("./public/leaderboards/lineups/stats_all_Men_2020_High.json", { encoding: "utf-8"})
     );  
 
     // Mock the URL calls needed to get the stats
@@ -103,7 +103,7 @@ describe("TeamStatsTable", () => {
   test("TeamStatsTable - should create snapshot, positional override + diagnostics + grades shown", async () => {
 
     const sampleData = JSON.parse(
-      fs.readFileSync("./public/leaderboards/lineups/stats_all_Men_2020_High.json", { encoding: "UTF-8"})
+      fs.readFileSync("./public/leaderboards/lineups/stats_all_Men_2020_High.json", { encoding: "utf-8"})
     );  
 
     // Mock the URL calls needed to get the stats

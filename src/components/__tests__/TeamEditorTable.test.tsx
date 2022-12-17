@@ -15,16 +15,16 @@ import { teamStatInfo } from '../../bin/buildLeaderboards';
 describe("TeamEditorTable", () => {
   // Load in data sample:
   const sampleData = JSON.parse(
-    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2019_High.json", { encoding: "UTF-8"})
+    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2019_High.json", { encoding: "utf-8"})
   );
   const sampleDataMore = JSON.parse(
-    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2018_High.json", { encoding: "UTF-8"})
+    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2018_High.json", { encoding: "utf-8"})
   );
   const sampleDataEvenMore = JSON.parse(
-    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2020_High.json", { encoding: "UTF-8"})
+    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2020_High.json", { encoding: "utf-8"})
   );
   const sampleTeamData = JSON.parse(
-    fs.readFileSync("./public/leaderboards/lineups/team_stats_all_Men_2020_High.json", { encoding: "UTF-8"})
+    fs.readFileSync("./public/leaderboards/lineups/team_stats_all_Men_2020_High.json", { encoding: "utf-8"})
   );
   const transfers = [
     { 

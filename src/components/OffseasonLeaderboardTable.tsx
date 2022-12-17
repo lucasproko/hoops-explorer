@@ -59,7 +59,6 @@ const logDivisionStatsToConsole = false;
 
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
-const diagnosticCompareWithRostersDebugOnly = false;
 
 const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
@@ -252,6 +251,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             confs, year, gender,
             sortBy, 
             evalMode,
+            diagnosticCompareWithRosters
          },
          teamOverrides, rostersPerTeam, avgEff,
       );

@@ -31,7 +31,9 @@ export type OffseasonTeamInfo = {
    // Some transfer diags
    in_off: number, in_def: number, out_off: number, out_def: number, 
    nba_off: number, nba_def: number, sr_off: number, sr_def: number, 
-   dev_off: number, dev_def: number, fr_net: number
+   dev_off: number, dev_def: number, fr_net: number,
+
+   players?: Array<GoodBadOkTriple>
 };
 
 export type OffseasonLeaderboardsStats = {
@@ -53,11 +55,11 @@ export type OffseasonLeaderboardReadOnlyState = {
    queryFilters?: string
 
    evalMode: boolean,
+
+   diagnosticCompareWithRosters: boolean
 };
 
-/** Will dump out some possible manual overrides to be made */
-const diagnosticCompareWithRosters = false;
-/** Will dump out some possible manual overrides to be made */
+/** Will dump out some possible manual overrides to be made - needs diagnosticCompareWithRosters to be set in calling component  */
 const diagnosticCompareWithRostersDebugOnly = false;
 
 /** Logic for building off-season predictions (etc) across all teams */
@@ -72,11 +74,14 @@ export class OffseasonLeaderboardUtils {
       teamOverrides: Record<string, TeamEditorParams>,
       rostersPerTeam: Record<string, Record<string, RosterEntry>>,
       avgEff: number,
+
+      includeTeams: boolean = false
    ): OffseasonLeaderboardsStats {
       const {
          confs, year, gender,
          sortBy, 
          evalMode,
+         diagnosticCompareWithRosters
       } = readOnlyState;
       const yearWithStats = DateUtils.getPrevYear(year);
 
@@ -317,7 +322,9 @@ export class OffseasonLeaderboardUtils {
             // Some transfer diags
             in_off: pxResults.in_off, in_def: pxResults.in_def, out_off: pxResults.out_off, out_def: pxResults.out_def, 
             nba_off: pxResults.nba_off, nba_def: pxResults.nba_def, sr_off: pxResults.sr_off, sr_def: pxResults.sr_def, 
-            dev_off: pxResults.dev_off, dev_def: pxResults.dev_def, fr_net: pxResults.fr_net
+            dev_off: pxResults.dev_off, dev_def: pxResults.dev_def, fr_net: pxResults.fr_net,
+
+            players: includeTeams ? pxResults.basePlayersPlusHypos : undefined
          };
       }).sortBy(t => {
          // For net transfer purposes, cap the benefit you can get from losing players

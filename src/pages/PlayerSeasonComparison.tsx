@@ -18,7 +18,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, OffseasonLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
+import { ParamPrefixes, OffseasonLeaderboardParams, ParamDefaults, PlayerSeasonComparisonParams } from '../utils/FilterModels';
 import { TeamEditorStatsModel } from '../components/TeamEditorTable';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
@@ -29,11 +29,12 @@ import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import OffSeasonLeaderboardTable from '../components/OffseasonLeaderboardTable';
 import { DateUtils } from '../utils/DateUtils';
+import PlayerSeasonComparisonChart from '../components/PlayerSeasonComparisonChart';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
 };
-const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
+const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
 
   const isServer = () => typeof window === `undefined`;    
   if (isServer() && !testMode) return null; //(don't render server-side)
@@ -60,37 +61,27 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as TeamEditorStatsModel);
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
-  const [ currTier, setCurrTier ] = useState("");
-  const [ currEvalMode, setCurrEvalMode ] = useState(false);
 
   // Game filter
 
-  function getRootUrl(params: OffseasonLeaderboardParams) {
-    return UrlRouting.getOffseasonLeaderboard(params);
+  function getRootUrl(params: PlayerSeasonComparisonParams) {
+    return UrlRouting.getPlayerSeasonComparisonUrl(params);
   }
 
-  const [ offseasonLeaderboardParams, setOffseasonLeaderboardParams ] = useState(
-    UrlRouting.removedSavedKeys(allParams) as OffseasonLeaderboardParams
+  const [ playerSeasonComparisonParams, setPlayerSeasonComparisonParams ] = useState(
+    UrlRouting.removedSavedKeys(allParams) as PlayerSeasonComparisonParams
   )
-  const offseasonLeaderboardParamsRef = useRef<OffseasonLeaderboardParams>();
-  offseasonLeaderboardParamsRef.current = offseasonLeaderboardParams;
+  const playerSeasonComparisonParamsRef = useRef<PlayerSeasonComparisonParams>();
+  playerSeasonComparisonParamsRef.current = playerSeasonComparisonParams;
 
-  const onOffseasonLeaderboardParamsChange = (rawParams: OffseasonLeaderboardParams) => {
+  const onPlayerSeasonComparisonParamsChange = (rawParams: PlayerSeasonComparisonParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
 
-      (!rawParams.transferInOutMode) ? [ "transferInOutMode" ] : [],
-      (!rawParams.evalMode) ? [ "evalMode" ] : [],
-      (!rawParams.teamView) ? [ "teamView" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
-      (rawParams.sortBy == "net") ? [ "sortBy" ] : [],
 
     ]));
-    if (rawParams.year && (rawParams.year != DateUtils.offseasonPredictionYear) && !rawParams.evalMode && !rawParams.transferInOutMode) { //TODO: un-hardwire this
-      const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
-      if (typeof window !== `undefined`) window.location.href = newUrl;
-
-    } else if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) { //(to avoid recursion)
+    if (!_.isEqual(params, playerSeasonComparisonParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -99,19 +90,17 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       // (need to figure out how to detect inter-page)
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
-      setOffseasonLeaderboardParams(params); // (to ensure the new params are included in links)
+      setPlayerSeasonComparisonParams(params); // (to ensure the new params are included in links)
     }
   }
 
   useEffect(() => { // Process data selection change
-    const paramObj = offseasonLeaderboardParams;
+    const paramObj = playerSeasonComparisonParams;
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear =  paramObj.evalMode ?
-      (paramObj.year || DateUtils.offseasonYear) : //(first year we can do a review)
-      (paramObj.year || DateUtils.offseasonPredictionYear); 
+    const fullYear =  (paramObj.year || DateUtils.offseasonYear);
     const prevYear = DateUtils.getPrevYear(fullYear)
-    const tier = (paramObj.tier || "All");
+    const tier = "All";
 
     const transferYear = fullYear.substring(0, 4);
     const transferYearPrev = prevYear.substring(0, 4);
@@ -120,18 +109,16 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
     const transferYears = [ transferYear, transferYearPrev ];
 
-    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (paramObj.evalMode != currEvalMode)) { // Only need to do this if the data source has changed
+    if ((fullYear != currYear) || (gender != currGender)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
-      setCurrTier(tier);
-      setCurrEvalMode(paramObj.evalMode || false);
 
       const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
         "all", gender, yearWithStats, tier, transferYears, 
-        paramObj.evalMode ? [ fullYear, prevYearWithStats ] : [ prevYearWithStats ]
+        [ fullYear, prevYearWithStats ]
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
-        gender, yearWithStats, tier, paramObj.evalMode ? [ fullYear ] : []
+        gender, yearWithStats, tier, [ fullYear ]
       );
       const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
 
@@ -148,21 +135,21 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
         });
       });
     }
-  }, [ offseasonLeaderboardParams ]);
+  }, [ playerSeasonComparisonParams ]);
 
   // View
 
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
-    return <OffSeasonLeaderboardTable
-      startingState={offseasonLeaderboardParamsRef.current || {}}
+    return <PlayerSeasonComparisonChart
+      startingState={playerSeasonComparisonParamsRef.current || {}}
       dataEvent={dataSubEvent}
-      onChangeState={onOffseasonLeaderboardParamsChange}
+      onChangeState={onPlayerSeasonComparisonParamsChange}
     />
   }, [dataSubEvent]);
 
-  const gender = offseasonLeaderboardParams.gender || ParamDefaults.defaultGender;
-  const year = offseasonLeaderboardParams.year || DateUtils.mostRecentYearWithLboardData;
+  const gender = playerSeasonComparisonParams.gender || ParamDefaults.defaultGender;
+  const year = playerSeasonComparisonParams.year || DateUtils.mostRecentYearWithLboardData;
 
   const thumbnailUrl = `${(server != "localhost") ? `https://${server}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
   return <Container>
@@ -172,7 +159,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     </Head>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>Off-Season Leaderboard <span className="badge badge-pill badge-info">IN DEV!</span></h3>
+        <h3>Transfer Prediction Analysis <span className="badge badge-pill badge-info">IN DEV!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">
@@ -187,4 +174,4 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     <Footer year={year} gender={gender} server={server}/>
   </Container>;
 }
-export default OffseasonLeaderboardPage;
+export default PlayerSeasonComparison;
