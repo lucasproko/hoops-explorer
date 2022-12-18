@@ -274,7 +274,8 @@ export class LineupTableUtils {
       const luckAdj = (
         (lineup.key != LineupTableUtils.totalLineupId) && adjustForLuck && lineup?.doc_count
       ) ? [
-        LuckUtils.calcOffTeamLuckAdj(
+          //(the totalLineupId check needed because enrichLineups is called separately on totalLineup once calculated below)
+          LuckUtils.calcOffTeamLuckAdj(
           lineup, codesAndIds.map(cid => perLineupPlayerLuckMap[cid.id]), baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency,
           baselineTeamStats?.total_off_3p_attempts?.value  
             //(ensure that the aggregation of the 3P-luck-adjusted lineups are equal to the 3P-adjusted set)
@@ -287,15 +288,12 @@ export class LineupTableUtils {
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
       if (lineup?.doc_count) {
-        LineupUtils.buildEfficiencyMargins(lineup); //(just used for display in the lineup table)
 
         if (lineup.key != LineupTableUtils.totalLineupId) {
-          // don't inject luck into the total lineup calcs - a) empirically it's wrong so
-          // probably I'm doing something stupid, b) it seems wrong anyway, eg aggregating
-          // the per-lineup players is not correct, (for team we have the actual 3PA numbers)
-          // but it's better than assuming all players play in their season poss ratios, which
-          // is what this appears to do...
-          // (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/100)
+          LineupUtils.buildEfficiencyMargins(lineup); //(just used for display in the lineup table)
+            //(already calculated for totalLineup)
+
+          //(check needed because enrichLineups is called separately on totalLineup once calculated below)
           LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
           lineup.off_luck_diags = luckAdj?.[0];
           lineup.def_luck_diags = luckAdj?.[1];
@@ -303,11 +301,11 @@ export class LineupTableUtils {
       }
       return lineup;
     };
-
     const enrichedLineups = filteredLineups.map(lineup => enrichLineup(lineup));
     const totalLineup = showTotalLineups ? [
       // Have to do this last in order to get the luck-mutated lineups
-      // TODO: luck adjusted lineups seemed completely wrong so I pulled it :(, see above
+      // TODO: Note the luck adjusted lineup totals are wrong because I'm averaging a bunch of low regression 
+      //       samples, which != regressing over a bigger sample. Plus the 3PAs might not be right?
       // (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/100)
       enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
         key: LineupTableUtils.totalLineupId,
