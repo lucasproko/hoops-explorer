@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Lodash:
 import _ from "lodash";
@@ -92,14 +92,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
-   const [height, setHeight] = useState<number>(512);
+   const [height, setHeight] = useState(512);
+   const latestHeight = useRef(height);
    useEffect(() => {
      function handleResize() {
          setTimeout(() => {
             setHeight(window.innerHeight);
          }, 250);
      }
- 
      window.addEventListener('resize', handleResize);
      setHeight(window.innerHeight);
      return () => window.removeEventListener('resize', handleResize);
@@ -437,7 +437,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
               content={(<CustomTooltip />)}
               wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
               formatter={(value: number, name: string, props: any) => value.toFixed(0)}
-              allowEscapeViewBox={{x: true, y: true}}
+              allowEscapeViewBox={{x: true, y: false}}
               itemSorter={(item: any) => item.value}
             />
          </ScatterChart>
