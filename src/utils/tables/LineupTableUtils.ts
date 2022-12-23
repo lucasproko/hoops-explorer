@@ -308,7 +308,7 @@ export class LineupTableUtils {
 
       if (lineup?.doc_count) {
 
-        if (lineup.key != LineupTableUtils.totalLineupId) {
+        if ((lineup.key != LineupTableUtils.totalLineupId) && (lineup.key != LineupTableUtils.droppedLineupId)) {
           LineupUtils.buildEfficiencyMargins(lineup); //(just used for display in the lineup table)
             //(already calculated for totalLineup)
 
@@ -333,7 +333,7 @@ export class LineupTableUtils {
     const offLineup = droppedLineups && !_.isEmpty(droppedLineups) ? [
       // Have to do this last in order to get the luck-mutated lineups
       // (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/100)
-      enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(droppedLineups), {
+      enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(droppedLineups.map(enrichLineup)), {
         key: LineupTableUtils.droppedLineupId,
         doc_count: droppedLineups.length //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
       }))
