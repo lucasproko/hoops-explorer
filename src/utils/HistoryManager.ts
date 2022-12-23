@@ -250,6 +250,7 @@ export class HistoryManager {
     const otherParamArray = _.flatMap([
       _.isNil(p.decorate) || p.decorate ? [ ] : [ `plain` ],
       p.showTotal ? [ `show-total` ] : [],
+      p.showOff ? [ `show-off` ] : [],
       p.showGameInfo ? [ `show-games` ] : [],
       p.sortBy && (p.sortBy != ParamDefaults.defaultLineupSortBy) ? [ `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}` ] : [],
       p.filter ? [ `filter:'${tidyQuery(p.filter)}'` ] : [],

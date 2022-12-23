@@ -123,6 +123,7 @@ describe("HistoryManager", () => {
       minRank: "1", maxRank: "370",
       decorate: false,
       showTotal: true,
+      showOff: true,
       showGameInfo: true,
       minPoss: "10", sortBy: "test-sort",
       filter: "Test'Filter",
@@ -130,7 +131,7 @@ describe("HistoryManager", () => {
       aggByPos: "PG"
     };
     expect(HistoryManager.filterSummary("lineup-", lineup3)).toBe(
-      `Lineups: 2018/19 team2 (W): query:'test ""', lineup-luck (max:11, min-poss:10, plain, show-total, show-games, sort:test-sort, filter:'Test"Filter', agg-by-pg)`
+      `Lineups: 2018/19 team2 (W): query:'test ""', lineup-luck (max:11, min-poss:10, plain, show-total, show-off, show-games, sort:test-sort, filter:'Test"Filter', agg-by-pg)`
     );
   });
   test("HistoryManager - teamReportFilterSummary", () => {

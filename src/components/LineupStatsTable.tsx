@@ -94,7 +94,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   );
 
   /** Whether to show the weighted combo of all visible lineups */
-  const [ showDropped, setShowDropped ] = useState<boolean>(false); //TODO: enable this via UI
+  const [ showDropped, setShowDropped ] = useState(_.isNil(startingState.showOff) ?
+  ParamDefaults.defaultLineupShowDropped : startingState.showOff
+);
 
   const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
 
@@ -150,13 +152,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       // Misc filters
       decorate: decorateLineups,
       showTotal: showTotals,
+      showOff: showDropped,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
     };
     onChangeState(newState);
-  }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
+  }, [ decorateLineups, showTotals, showDropped, minPoss, maxTableSize, sortBy, filterStr,
         luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos, showGameInfo ]);
 
   // 3] Utils
@@ -207,7 +210,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         lineups,
         filterStr, sortBy, minPoss, maxTableSize,
         teamSeasonLookup, positionFromPlayerKey,
-        showDropped
+        showDropped,
       );
       const globalMaxPoss = _.chain(filteredLineups)
         .flatMap(l => LineupUtils.getGameInfo(l.game_info || {}))
@@ -233,10 +236,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           }));
 
         const lineupTitleKey = "" + lineupIndex;
-        const title = sortedCodesAndIds ?
-          TableDisplayUtils.buildDecoratedLineup(
-            lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
-          ) : "Weighted Total";
+        const title = _.thru("", (__) => {
+          if (lineup.key == LineupTableUtils.totalLineupId) {
+            return "Weighted Total";
+          } else if (lineup.key == LineupTableUtils.droppedLineupId) {
+            return "'Off' Lineups";
+          } else {
+            return TableDisplayUtils.buildDecoratedLineup(
+              lineupTitleKey, sortedCodesAndIds || [], perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups  
+            )
+          }
+        });
 
         const stats = { off_title: title, def_title: "", ...lineup };
 
@@ -408,7 +418,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       />
     }
 
-  }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
+  }, [ decorateLineups, showTotals, showDropped, minPoss, maxTableSize, sortBy, filterStr,
       luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos, showGameInfo, showRepeatingHeader,
       dataEvent ]);
 
@@ -531,6 +541,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               onSelect={() => friendlyChange(() => setShowTotals(!showTotals), true)}
             />
             <GenericTogglingMenuItem
+              text="Show Weighted Combo of All Filtered-Out Lineups"
+              truthVal={showDropped}
+              onSelect={() => friendlyChange(() => setShowDropped(!showDropped), true)}
+            />
+            <GenericTogglingMenuItem
               text={<span>Adjust for Luck <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={adjustForLuck}
               onSelect={() => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)}
@@ -616,6 +631,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               tooltip: showTotals ? "Hide Weighted Combo of All Lineups" : "Show Weighted Combo of All Lineups",
               toggled: showTotals,
               onClick: () => friendlyChange(() => setShowTotals(!showTotals), true)
+            },
+            {
+              label: "Off",
+              tooltip: showDropped ? "Hide Weighted Combo of All Filtered-Out Lineups" : "Show Weighted Combo of All Filtered-Out Lineups",
+              toggled: showDropped,
+              onClick: () => friendlyChange(() => setShowDropped(!showDropped), true)
             },
             {
               label: "Luck",

@@ -81,6 +81,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       (rawParams.decorate == ParamDefaults.defaultLineupDecorate) ? [ 'decorate' ] : [],
       (rawParams.showTotal == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
+      (rawParams.showOff == ParamDefaults.defaultLineupShowDropped) ? [ 'showOff' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.lineupLuck ? [ 'lineupLuck' ] : [],
       (rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],

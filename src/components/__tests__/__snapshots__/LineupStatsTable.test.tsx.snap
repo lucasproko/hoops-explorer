@@ -71,6 +71,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Filtered-Out Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
@@ -636,6 +641,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Off",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Filtered-Out Lineups",
               },
               Object {
                 "label": "Luck",
@@ -3843,6 +3854,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Filtered-Out Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
@@ -4408,6 +4424,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Off",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Filtered-Out Lineups",
               },
               Object {
                 "label": "Luck",
@@ -6844,6 +6866,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Filtered-Out Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
@@ -7409,6 +7436,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Off",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Filtered-Out Lineups",
               },
               Object {
                 "label": "Luck",
@@ -10700,6 +10733,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Filtered-Out Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text={
@@ -11265,6 +11303,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Off",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Filtered-Out Lineups",
               },
               Object {
                 "label": "Luck",

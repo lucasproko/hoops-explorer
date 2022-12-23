@@ -18,6 +18,9 @@ export class LineupTableUtils {
   /** Key of "total" fake lineuo */
   static readonly totalLineupId = "TOTAL";
 
+  /** Key of "off" fake lineuo */
+  static readonly droppedLineupId = "DROPPED";
+
   /** Handy accessor for picking the player codes out of the lineup */
   static buildCodesAndIds(lineup: LineupStatSet): Array<PlayerCodeId> {
     return lineup.players_array ?
@@ -196,7 +199,7 @@ export class LineupTableUtils {
     filterStr: string, sortBy: string | undefined, minPoss: string, maxTableSize: string,
     teamSeasonLookup: string | undefined, positionFromPlayerKey: Record<string, any> | undefined,
     alsoReturnDroppedLineups: boolean = false
-  ) {
+  ): [ LineupStatSet[], LineupStatSet[] | undefined ] {
     const [
       filterFragmentsPve, filterFragmentsNve, filterOnPosition
     ] = PositionUtils.buildPositionalAwareFilter(filterStr);
@@ -240,7 +243,7 @@ export class LineupTableUtils {
       const [ filteredLineups, droppedLineups ] = _.chain(lineups).partition(passLineup).value();    
       return [ sortAndTruncLineups(_.chain(filteredLineups)), droppedLineups];
     } else { // more efficient if we don't need dropped lineups
-      return [ sortAndTruncLineups(_.chain(lineups).filter(passLineup)), []];
+      return [ sortAndTruncLineups(_.chain(lineups).filter(passLineup)), undefined];
     }
   }
 
@@ -253,7 +256,8 @@ export class LineupTableUtils {
     adjustForLuck: boolean, luckConfigBase: "baseline" | "season", avgEfficiency: number,
     // Derived objects:
     showTotalLineups: boolean, teamSeasonLookup: string,
-    positionFromPlayerKey: Record<PlayerId, any>, baselinePlayerInfo: Record<PlayerId, IndivStatSet>
+    positionFromPlayerKey: Record<PlayerId, any>, baselinePlayerInfo: Record<PlayerId, IndivStatSet>,
+    droppedLineups?: LineupStatSet[]
   ): Array<LineupStatSet> {
     // The luck baseline can either be the user-selecteed baseline or the entire season
     const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
@@ -326,7 +330,16 @@ export class LineupTableUtils {
       }))
     ] : [];
 
-    return totalLineup.concat(enrichedLineups);
+    const offLineup = droppedLineups && !_.isEmpty(droppedLineups) ? [
+      // Have to do this last in order to get the luck-mutated lineups
+      // (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/100)
+      enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(droppedLineups), {
+        key: LineupTableUtils.droppedLineupId,
+        doc_count: droppedLineups.length //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
+      }))
+    ] : []
+
+    return totalLineup.concat(offLineup).concat(enrichedLineups);
   }
 
   /** Builds the list of where players play based on their lineup */

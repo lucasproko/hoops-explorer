@@ -120,6 +120,7 @@ export type LineupFilterParams = {
   // For sorting in the generated table:
   decorate?: boolean,
   showTotal?: boolean,
+  showOff?: boolean,
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string,
@@ -287,6 +288,7 @@ export class ParamDefaults {
   static readonly defaultPlayerCalcRapm = false;
   // Lineup
   static readonly defaultLineupShowTotal = false;
+  static readonly defaultLineupShowDropped = false;
   static readonly defaultLineupDecorate = true;
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";
