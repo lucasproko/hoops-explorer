@@ -222,7 +222,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         filteredLineups,
         teamStats.global, rosterStats.global, teamStats.baseline,
         adjustForLuck, luckConfig.base, avgEfficiency,
-        showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+        showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo,
+        droppedLineups
       ).flatMap((lineup, lineupIndex) => {
         TableDisplayUtils.injectPlayTypeInfo(lineup, false, false, teamSeasonLookup); //(inject assist numbers)
 

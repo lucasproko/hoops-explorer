@@ -3783,6 +3783,3301 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 </Container>
 `;
 
+exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off) 1`] = `
+<Container
+  fluid={false}
+>
+  <LoadingOverlay
+    active={false}
+    text="Press 'Submit' to view results"
+  >
+    <LuckConfigModal
+      luck={
+        Object {
+          "base": "season",
+        }
+      }
+      onHide={[Function]}
+      onSave={[Function]}
+      show={false}
+      showHelp={true}
+    />
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="8"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filter"
+            >
+              Filter
+            </InputGroupText>
+          </InputGroupPrepend>
+          <AsyncFormControl
+            onChange={[Function]}
+            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+            startingVal=""
+            timeout={500}
+          />
+        </InputGroup>
+      </FormGroup>
+      <Col
+        sm="3"
+      />
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Filtered-Out Lineups"
+            truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            onSelect={[Function]}
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Minimal Game Info for All Lineups"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show repeating header every 10 rows"
+            truthVal={true}
+          />
+        </GenericTogglingMenu>
+      </FormGroup>
+    </FormRow>
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="3"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="maxLineups"
+            >
+              Max Lineups
+            </InputGroupText>
+          </InputGroupPrepend>
+          <AsyncFormControl
+            onChange={[Function]}
+            placeholder="eg 50"
+            startingVal="2"
+            timeout={200}
+            validate={[Function]}
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="3"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="minPossessions"
+            >
+              Min Poss #
+            </InputGroupText>
+          </InputGroupPrepend>
+          <AsyncFormControl
+            onChange={[Function]}
+            placeholder="eg 20"
+            startingVal="5"
+            timeout={200}
+            validate={[Function]}
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="sortBy"
+            >
+              Sort By
+            </InputGroupText>
+          </InputGroupPrepend>
+          <StateManager
+            className="w-75"
+            defaultInputValue=""
+            defaultMenuIsOpen={false}
+            defaultValue={null}
+            formatGroupLabel={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Most useful",
+                  "options": Array [
+                    Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_poss",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Desc. / Offensive)",
+                      "value": "desc:off_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Asc. / Defensive)",
+                      "value": "asc:def_adj_ppp",
+                    },
+                  ],
+                },
+                Object {
+                  "label": "Other",
+                  "options": Array [
+                    Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
+                    Object {
+                      "label": "P/100 (Desc. / Offensive)",
+                      "value": "desc:off_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Asc. / Offensive)",
+                      "value": "asc:off_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Desc. / Defensive)",
+                      "value": "desc:def_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Asc. / Defensive)",
+                      "value": "asc:def_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Asc. / Offensive)",
+                      "value": "asc:off_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Desc. / Defensive)",
+                      "value": "desc:def_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_ppp",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Defensive)",
+                      "value": "desc:def_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Defensive)",
+                      "value": "asc:def_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Off-Def)",
+                      "value": "desc:diff_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Off-Def)",
+                      "value": "asc:diff_efg",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Offensive)",
+                      "value": "desc:off_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Offensive)",
+                      "value": "asc:off_to",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Defensive)",
+                      "value": "desc:def_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Defensive)",
+                      "value": "asc:def_to",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Off-Def)",
+                      "value": "desc:diff_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Off-Def)",
+                      "value": "asc:diff_to",
+                    },
+                    Object {
+                      "label": "OR% (Desc. / Offensive)",
+                      "value": "desc:off_orb",
+                    },
+                    Object {
+                      "label": "OR% (Asc. / Offensive)",
+                      "value": "asc:off_orb",
+                    },
+                    Object {
+                      "label": "OR% (Desc. / Defensive)",
+                      "value": "desc:def_orb",
+                    },
+                    Object {
+                      "label": "OR% (Asc. / Defensive)",
+                      "value": "asc:def_orb",
+                    },
+                    Object {
+                      "label": "OR% (Desc. / Off-Def)",
+                      "value": "desc:diff_orb",
+                    },
+                    Object {
+                      "label": "OR% (Asc. / Off-Def)",
+                      "value": "asc:diff_orb",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Defensive)",
+                      "value": "desc:def_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Defensive)",
+                      "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Off-Def)",
+                      "value": "desc:diff_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Off-Def)",
+                      "value": "asc:diff_ftr",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Offensive)",
+                      "value": "desc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Offensive)",
+                      "value": "asc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Defensive)",
+                      "value": "desc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Defensive)",
+                      "value": "asc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Defensive)",
+                      "value": "desc:def_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Defensive)",
+                      "value": "asc:def_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Off-Def)",
+                      "value": "desc:diff_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Off-Def)",
+                      "value": "asc:diff_3pr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Defensive)",
+                      "value": "desc:def_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Defensive)",
+                      "value": "asc:def_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2primr",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Defensive)",
+                      "value": "desc:def_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Defensive)",
+                      "value": "asc:def_3p",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Off-Def)",
+                      "value": "desc:diff_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Off-Def)",
+                      "value": "asc:diff_3p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Defensive)",
+                      "value": "desc:def_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Defensive)",
+                      "value": "asc:def_2p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Off-Def)",
+                      "value": "desc:diff_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Off-Def)",
+                      "value": "asc:diff_2p",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmid",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Defensive)",
+                      "value": "desc:def_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Defensive)",
+                      "value": "asc:def_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2prim",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Off-Def)",
+                      "value": "desc:diff_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Off-Def)",
+                      "value": "asc:diff_poss",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Defensive)",
+                      "value": "desc:def_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Defensive)",
+                      "value": "asc:def_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_opp",
+                    },
+                  ],
+                },
+              ]
+            }
+            value={
+              Object {
+                "label": "Poss (Desc. / Offensive)",
+                "value": "desc:off_poss",
+              }
+            }
+          />
+        </InputGroup>
+      </FormGroup>
+    </FormRow>
+    <FormRow>
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Totals",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Weighted Combo of All Filtered-Out Lineups",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Games",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show per-lineup game info",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| Combos: ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Aggregate lineups over the specified position/position group combos",
+              },
+              Object {
+                "label": "PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different PG combos",
+              },
+              Object {
+                "label": "Backcourt",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different Backcourt combos",
+              },
+              Object {
+                "label": "PG+C",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different PG/C pairs",
+              },
+              Object {
+                "label": "Frontcourt",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different Frontcourt combos",
+              },
+              Object {
+                "label": "C",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different C combos",
+              },
+              Object {
+                "label": "Pairs",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 2-player combos",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <Row
+      className="mt-2"
+      noGutters={false}
+    >
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
+        <GenericTable
+          cellTooltipMode="none"
+          tableCopyId="lineupStatsTable"
+          tableData={
+            Array [
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": {
+                  all_lineups: {
+                                    all_lineups: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    def_luck_diags: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    def_net: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    off_luck_diags: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    off_net: Object {
+                                                      "value": 35.926741939135,
+                                                    }
+                  
+                                    off_raw_net: Object {
+                                                      "value": 23.615130713609005,
+                                                    }}
+
+                  def_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      27% assisted
+                                    </span>,
+                                    "value": 0.3179190751445087,
+                                  }
+
+                  def_2primr: Object {
+                                    "extraInfo": <span>
+                                      41% assisted
+                                    </span>,
+                                    "value": 0.3063583815028902,
+                                  }
+
+                  def_3pr: Object {
+                                    "extraInfo": <span>
+                                      89% assisted
+                                    </span>,
+                                    "value": 0.37572254335260113,
+                                  }
+
+                  def_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        50
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        14
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        36
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5178948007221641,
+                                  }
+
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.2
+                                      %
+                                    </span>,
+                                    "value": 0.2543352601156069,
+                                  }
+
+                  def_luck_diags: Object {
+                                    "value": 0,
+                                  }
+
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.7
+                                      </i>
+                                    </small>,
+                                  }
+
+                  def_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        17.2
+                                        % transition:
+                                        <br />
+                                        +
+                                        0.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        32.8
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 90.01663893510815,
+                                  }
+
+                  def_title: ""
+
+                  off_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      15% assisted
+                                    </span>,
+                                    "value": 0.1891348088531187,
+                                  }
+
+                  off_2primr: Object {
+                                    "extraInfo": <span>
+                                      43% assisted
+                                    </span>,
+                                    "value": 0.3702213279678068,
+                                  }
+
+                  off_3pr: Object {
+                                    "extraInfo": <span>
+                                      84% assisted
+                                    </span>,
+                                    "value": 0.44064386317907445,
+                                  }
+
+                  off_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        50
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        3
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        48
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5309887493977952,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.9
+                                      %
+                                    </span>,
+                                    "value": 0.545271629778672,
+                                  }
+
+                  off_luck_diags: Object {
+                                    "value": 0,
+                                  }
+
+                  off_net: Object {
+                                    "value": 36.00138175892046,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": <span>
+                                      69.1
+                                       poss/g
+                                    </span>,
+                                    "value": 612,
+                                  }
+
+                  off_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.5
+                                        % transition:
+                                        <br />
+                                        +
+                                        15.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        16.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 113.72549019607843,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.708851260970278,
+                                  }
+
+                  off_title: "Weighted Total"},
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": {
+                  all_lineups: {
+                                    all_lineups: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    def_luck_diags: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    def_net: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    off_luck_diags: Object {
+                                                      "value": 0,
+                                                    }
+                  
+                                    off_net: Object {
+                                                      "value": 35.926741939135,
+                                                    }
+                  
+                                    off_raw_net: Object {
+                                                      "value": 23.615130713609005,
+                                                    }}
+
+                  def_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      27% assisted
+                                    </span>,
+                                    "value": 0.3179190751445087,
+                                  }
+
+                  def_2primr: Object {
+                                    "extraInfo": <span>
+                                      41% assisted
+                                    </span>,
+                                    "value": 0.3063583815028902,
+                                  }
+
+                  def_3pr: Object {
+                                    "extraInfo": <span>
+                                      89% assisted
+                                    </span>,
+                                    "value": 0.37572254335260113,
+                                  }
+
+                  def_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        50
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        14
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        36
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5178948007221641,
+                                  }
+
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.2
+                                      %
+                                    </span>,
+                                    "value": 0.2543352601156069,
+                                  }
+
+                  def_luck_diags: Object {
+                                    "value": 0,
+                                  }
+
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.7
+                                      </i>
+                                    </small>,
+                                  }
+
+                  def_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        17.2
+                                        % transition:
+                                        <br />
+                                        +
+                                        0.7
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        32.8
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 90.01663893510815,
+                                  }
+
+                  def_title: ""
+
+                  off_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      15% assisted
+                                    </span>,
+                                    "value": 0.1891348088531187,
+                                  }
+
+                  off_2primr: Object {
+                                    "extraInfo": <span>
+                                      43% assisted
+                                    </span>,
+                                    "value": 0.3702213279678068,
+                                  }
+
+                  off_3pr: Object {
+                                    "extraInfo": <span>
+                                      84% assisted
+                                    </span>,
+                                    "value": 0.44064386317907445,
+                                  }
+
+                  off_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        50
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        3
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        48
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5309887493977952,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.9
+                                      %
+                                    </span>,
+                                    "value": 0.545271629778672,
+                                  }
+
+                  off_luck_diags: Object {
+                                    "value": 0,
+                                  }
+
+                  off_net: Object {
+                                    "value": 36.00138175892046,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": <span>
+                                      69.1
+                                       poss/g
+                                    </span>,
+                                    "value": 612,
+                                  }
+
+                  off_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.5
+                                        % transition:
+                                        <br />
+                                        +
+                                        15.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        10.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        16.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 113.72549019607843,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.708851260970278,
+                                  }
+
+                  off_title: "Weighted Total"},
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": {
+                  def_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      23% assisted
+                                    </span>,
+                                    "value": 0.2997032640949555,
+                                  }
+
+                  def_2primr: Object {
+                                    "extraInfo": <span>
+                                      45% assisted
+                                    </span>,
+                                    "value": 0.3056379821958457,
+                                  }
+
+                  def_3pr: Object {
+                                    "extraInfo": <span>
+                                      88% assisted
+                                    </span>,
+                                    "value": 0.39465875370919884,
+                                  }
+
+                  def_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        52
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        10
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        37
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5275590551181102,
+                                  }
+
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
+                  def_luck_diags: undefined
+
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
+                  def_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 93.29896907216495,
+                                  }
+
+                  def_title: ""
+
+                  off_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      21% assisted
+                                    </span>,
+                                    "value": 0.17956656346749225,
+                                  }
+
+                  off_2primr: Object {
+                                    "extraInfo": <span>
+                                      43% assisted
+                                    </span>,
+                                    "value": 0.3653250773993808,
+                                  }
+
+                  off_3pr: Object {
+                                    "extraInfo": <span>
+                                      78% assisted
+                                    </span>,
+                                    "value": 0.4551083591331269,
+                                  }
+
+                  off_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        47
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        4
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        49
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5211267605633803,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
+                                  }
+
+                  off_luck_diags: undefined
+
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": <span>
+                                      71.7
+                                       poss/g
+                                    </span>,
+                                    "value": 401,
+                                  }
+
+                  off_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
+                                  }
+
+                  off_title: <OverlayTrigger
+                                    overlay={
+                                      <ForwardRef
+                                        id="10_info"
+                                        placement="right"
+                                      >
+                                        <span>
+                                          Wiggins, Aaron: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Morsell, Darryl: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Smith, Jalen: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Ayala, Eric: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Cowan, Anthony: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                      </ForwardRef>
+                                    }
+                                    placement="auto"
+                                  >
+                                    <div>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AaWiggins
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              DaMorsell
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              JaSmith
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              ErAyala
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AnCowan
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </OverlayTrigger>},
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": {
+                  def_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      23% assisted
+                                    </span>,
+                                    "value": 0.2997032640949555,
+                                  }
+
+                  def_2primr: Object {
+                                    "extraInfo": <span>
+                                      45% assisted
+                                    </span>,
+                                    "value": 0.3056379821958457,
+                                  }
+
+                  def_3pr: Object {
+                                    "extraInfo": <span>
+                                      88% assisted
+                                    </span>,
+                                    "value": 0.39465875370919884,
+                                  }
+
+                  def_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        52
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        10
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        37
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5275590551181102,
+                                  }
+
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
+                  def_luck_diags: undefined
+
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
+                  def_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        20.6
+                                        % transition:
+                                        <br />
+                                        +
+                                        6.9
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.3
+                                        % scramble:
+                                        <br />
+                                        +
+                                        9.3
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 93.29896907216495,
+                                  }
+
+                  def_title: ""
+
+                  off_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      21% assisted
+                                    </span>,
+                                    "value": 0.17956656346749225,
+                                  }
+
+                  off_2primr: Object {
+                                    "extraInfo": <span>
+                                      43% assisted
+                                    </span>,
+                                    "value": 0.3653250773993808,
+                                  }
+
+                  off_3pr: Object {
+                                    "extraInfo": <span>
+                                      78% assisted
+                                    </span>,
+                                    "value": 0.4551083591331269,
+                                  }
+
+                  off_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        47
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        4
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        49
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5211267605633803,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
+                                  }
+
+                  off_luck_diags: undefined
+
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": <span>
+                                      71.7
+                                       poss/g
+                                    </span>,
+                                    "value": 401,
+                                  }
+
+                  off_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.3
+                                        % transition:
+                                        <br />
+                                        +
+                                        16.6
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        9.6
+                                        % scramble:
+                                        <br />
+                                        +
+                                        8.1
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
+                                  }
+
+                  off_title: <OverlayTrigger
+                                    overlay={
+                                      <ForwardRef
+                                        id="10_info"
+                                        placement="right"
+                                      >
+                                        <span>
+                                          Wiggins, Aaron: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Morsell, Darryl: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Smith, Jalen: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Ayala, Eric: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Cowan, Anthony: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                      </ForwardRef>
+                                    }
+                                    placement="auto"
+                                  >
+                                    <div>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AaWiggins
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              DaMorsell
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              JaSmith
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              ErAyala
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AnCowan
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </OverlayTrigger>},
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": {
+                  def_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      35% assisted
+                                    </span>,
+                                    "value": 0.3516483516483517,
+                                  }
+
+                  def_2primr: Object {
+                                    "extraInfo": <span>
+                                      35% assisted
+                                    </span>,
+                                    "value": 0.3076923076923077,
+                                  }
+
+                  def_3pr: Object {
+                                    "extraInfo": <span>
+                                      94% assisted
+                                    </span>,
+                                    "value": 0.34065934065934067,
+                                  }
+
+                  def_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        47
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        21
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        32
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5,
+                                  }
+
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
+                  def_luck_diags: undefined
+
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
+                  def_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 84.03755868544602,
+                                  }
+
+                  def_title: ""
+
+                  off_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      0% assisted
+                                    </span>,
+                                    "value": 0.20689655172413793,
+                                  }
+
+                  off_2primr: Object {
+                                    "extraInfo": <span>
+                                      42% assisted
+                                    </span>,
+                                    "value": 0.3793103448275862,
+                                  }
+
+                  off_3pr: Object {
+                                    "extraInfo": <span>
+                                      95% assisted
+                                    </span>,
+                                    "value": 0.41379310344827586,
+                                  }
+
+                  off_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        54
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        0
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        46
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5492957746478874,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
+                                  }
+
+                  off_luck_diags: undefined
+
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": <span>
+                                      64.7
+                                       poss/g
+                                    </span>,
+                                    "value": 211,
+                                  }
+
+                  off_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
+                                  }
+
+                  off_title: <OverlayTrigger
+                                    overlay={
+                                      <ForwardRef
+                                        id="20_info"
+                                        placement="right"
+                                      >
+                                        <span>
+                                          Wiggins, Aaron: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Morsell, Darryl: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Smith, Jalen: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Scott, Donta: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Cowan, Anthony: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                      </ForwardRef>
+                                    }
+                                    placement="auto"
+                                  >
+                                    <div>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AaWiggins
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              DaMorsell
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              JaSmith
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              DoScott
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AnCowan
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </OverlayTrigger>},
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": {
+                  def_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      35% assisted
+                                    </span>,
+                                    "value": 0.3516483516483517,
+                                  }
+
+                  def_2primr: Object {
+                                    "extraInfo": <span>
+                                      35% assisted
+                                    </span>,
+                                    "value": 0.3076923076923077,
+                                  }
+
+                  def_3pr: Object {
+                                    "extraInfo": <span>
+                                      94% assisted
+                                    </span>,
+                                    "value": 0.34065934065934067,
+                                  }
+
+                  def_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        47
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        21
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        32
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5,
+                                  }
+
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
+                  def_luck_diags: undefined
+
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
+                  def_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        11.3
+                                        % transition:
+                                        <br />
+                                        
+                                        -25.8
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        8.2
+                                        % scramble:
+                                        <br />
+                                        +
+                                        75.5
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 84.03755868544602,
+                                  }
+
+                  def_title: ""
+
+                  off_2pmidr: Object {
+                                    "extraInfo": <span>
+                                      0% assisted
+                                    </span>,
+                                    "value": 0.20689655172413793,
+                                  }
+
+                  off_2primr: Object {
+                                    "extraInfo": <span>
+                                      42% assisted
+                                    </span>,
+                                    "value": 0.3793103448275862,
+                                  }
+
+                  off_3pr: Object {
+                                    "extraInfo": <span>
+                                      95% assisted
+                                    </span>,
+                                    "value": 0.41379310344827586,
+                                  }
+
+                  off_assist: Object {
+                                    "extraInfo": <span>
+                                      Assist breakdown:
+                                      <li>
+                                        54
+                                        % for 3P
+                                      </li>
+                                      <li>
+                                        0
+                                        % for mid-range
+                                      </li>
+                                      <li>
+                                        46
+                                        % at the rim
+                                      </li>
+                                    </span>,
+                                    "value": 0.5492957746478874,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
+                                  }
+
+                  off_luck_diags: undefined
+
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": <span>
+                                      64.7
+                                       poss/g
+                                    </span>,
+                                    "value": 211,
+                                  }
+
+                  off_ppp: Object {
+                                    "extraInfo": <span>
+                                      Play category breakdown:
+                                      <li>
+                                        25.7
+                                        % transition:
+                                        <br />
+                                        +
+                                        14.5
+                                         pts/100
+                                      </li>
+                                      <li>
+                                        11.4
+                                        % scramble:
+                                        <br />
+                                        +
+                                        30.6
+                                         pts/100
+                                      </li>
+                                    </span>,
+                                    "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
+                                  }
+
+                  off_title: <OverlayTrigger
+                                    overlay={
+                                      <ForwardRef
+                                        id="20_info"
+                                        placement="right"
+                                      >
+                                        <span>
+                                          Wiggins, Aaron: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Morsell, Darryl: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Smith, Jalen: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Scott, Donta: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                        <span>
+                                          Cowan, Anthony: ??
+                                          <br />
+                                        </span>
+                                        <span>
+                                          ORtg 0 on 0%, DRB 0%
+                                          <br />
+                                        </span>
+                                        <span>
+                                          
+                                          <br />
+                                        </span>
+                                      </ForwardRef>
+                                    }
+                                    placement="auto"
+                                  >
+                                    <div>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AaWiggins
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              DaMorsell
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              JaSmith
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              DoScott
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "opacity": 0,
+                                            }
+                                          }
+                                        >
+                                           ; 
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span
+                                          style={
+                                            Object {
+                                              "whiteSpace": "nowrap",
+                                            }
+                                          }
+                                        >
+                                          <ForwardRef
+                                            pill={false}
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#cccccc80",
+                                              }
+                                            }
+                                            variant="light"
+                                          >
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "small",
+                                                  "fontWeight": 500,
+                                                }
+                                              }
+                                            >
+                                              AnCowan
+                                            </span>
+                                          </ForwardRef>
+                                          <span
+                                            style={Object {}}
+                                          />
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </OverlayTrigger>},
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "2p": GenericTableColProps {
+                "className": "",
+                "colName": "2P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "2pmid": GenericTableColProps {
+                "className": "",
+                "colName": "2P% mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (mid range)",
+                "widthUnits": 2,
+              },
+              "2pmidr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of mid range 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "2prim": GenericTableColProps {
+                "className": "",
+                "colName": "2P% rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (layup/dunk/etc)",
+                "widthUnits": 2,
+              },
+              "2primr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "3 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "3pr": GenericTableColProps {
+                "className": "",
+                "colName": "3PR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of 3 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "adj_opp": GenericTableColProps {
+                "className": "",
+                "colName": "SoS",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
+                "widthUnits": 2,
+              },
+              "adj_ppp": GenericTableColProps {
+                "className": "",
+                "colName": "Adj P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Approximate schedule-adjusted Points per 100 possessions",
+                "widthUnits": 2,
+              },
+              "assist": GenericTableColProps {
+                "className": "",
+                "colName": "A%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Assist % for selected lineups",
+                "widthUnits": 2,
+              },
+              "efg": GenericTableColProps {
+                "className": "",
+                "colName": "eFG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) for selected lineups",
+                "widthUnits": 2,
+              },
+              "ftr": GenericTableColProps {
+                "className": "",
+                "colName": "FTR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Free throw rate for selected lineups",
+                "widthUnits": 2,
+              },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
+              "orb": GenericTableColProps {
+                "className": "",
+                "colName": "OR%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive rebounding % for selected lineups",
+                "widthUnits": 2,
+              },
+              "poss": GenericTableColProps {
+                "className": "",
+                "colName": "Poss",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Total number of possessions for selected lineups",
+                "widthUnits": 2,
+              },
+              "ppp": GenericTableColProps {
+                "className": "",
+                "colName": "P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Points per 100 possessions",
+                "widthUnits": 2,
+              },
+              "sep0": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
+              },
+              "sep2a": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep2b": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
+              },
+              "sep4": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
+              },
+              "title": GenericTableColProps {
+                "className": "small",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 20,
+              },
+              "to": GenericTableColProps {
+                "className": "",
+                "colName": "TO%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Turnover % for selected lineups",
+                "widthUnits": 2,
+              },
+            }
+          }
+        />
+      </Col>
+    </Row>
+  </LoadingOverlay>
+</Container>
+`;
+
 exports[`LineupStatsTable LineupStatsTable - should create snapshot (with individual data - plain, luck, luck diags) 1`] = `
 <Container
   fluid={false}

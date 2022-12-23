@@ -39,6 +39,27 @@ describe("LineupStatsTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test("LineupStatsTable - should create snapshot (totals/off)", () => {
+    const testData = {
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
+    };
+    const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
+    const wrapper = shallow(
+      <LineupStatsTable
+        startingState={{ maxTableSize: "2", showTotal: true, showOff: true }}
+        dataEvent={{
+          teamStats: { 
+            on:StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), 
+            global: StatModels.emptyTeam(), onOffMode: true 
+          },
+          rosterStats: { on: [], off: [], baseline: [], global: [] },
+          lineupStats: testData
+        }}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
   test("LineupStatsTable - should create snapshot (with individual data)", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[]
