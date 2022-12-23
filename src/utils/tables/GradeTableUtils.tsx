@@ -422,20 +422,24 @@ export class GradeTableUtils {
       // Convert some fields
 
       // Special field formatting:
-      const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
-      const percentileTooltip = <Tooltip id={`percentileTooltip${nameAsId}`}>The percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
+      const netRapmField = factorMins ? "off_adj_rapm_prod_margin" : "off_adj_rapm_margin";
+      const rapmMargin = playerPercentiles[netRapmField];
+      const extraMsg = (expandedView && !rapmMargin) ? 
+         <span><br/><br/>Enable RAPM to see a net production ranking for this player</span> : null;
 
+      const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season{extraMsg}</Tooltip>;
+      const percentileTooltip = <Tooltip id={`percentileTooltip${nameAsId}`}>The percentile of each stat against the "tier" (D1/High/etc){extraMsg}</Tooltip>;
 
       const netInfo = _.thru(expandedView, (__) => {
          if (expandedView) {
-            const netRapmField = factorMins ? "off_adj_rapm_prod_margin" : "off_adj_rapm_margin";
-            const rapmMargin = playerPercentiles[netRapmField];
             const shadow = CommonTableDefs.getTextShadow(rapmMargin, CbbColors.off_pctile_qual, "20px", 4);
             return rapmMargin ?
                <span><small><b>net</b>: </small>
                   {maybeSmall(<span style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}{gradeFormat == "pct" ? "%": ""}</span>)}               
                </span>
-               : null;
+               :  
+               <small><i>(net rank: NA)<sup>*</sup></i></small>
+               ;
          }
       });
       (playerPercentiles as any).off_title = gradeFormat == "pct" ? 

@@ -35176,6 +35176,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -35186,6 +35191,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -35519,6 +35533,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -35529,6 +35548,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -36420,6 +36448,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -36430,6 +36463,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -36763,6 +36805,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -36773,6 +36820,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -37667,6 +37723,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -37677,6 +37738,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -38010,6 +38080,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -38020,6 +38095,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -38914,6 +38998,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -38924,6 +39013,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
@@ -39257,6 +39355,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         placement="right"
                       >
                         The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season
+                        <span>
+                          <br />
+                          <br />
+                          Enable RAPM to see a net production ranking for this player
+                        </span>
                       </ForwardRef>
                     }
                     placement="auto"
@@ -39267,6 +39370,15 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                           Equiv
                            Ranks
                         </b>
+                      </small>
+                      <br />
+                      <small>
+                        <i>
+                          (net rank: NA)
+                          <sup>
+                            *
+                          </sup>
+                        </i>
                       </small>
                     </div>
                   </OverlayTrigger>,
