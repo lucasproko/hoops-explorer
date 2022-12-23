@@ -55,6 +55,7 @@ import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '.
 
 import ReactDOMServer from 'react-dom/server'
 import { DateUtils } from '../utils/DateUtils';
+import { LineupStatSet, IndivPosInfo } from '../utils/StatModels';
 
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>,
@@ -229,16 +230,16 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
     ) : undefined;
 
-    const dataEventLineups = (dataEvent?.lineups || []);
+    const dataEventLineups = (dataEvent?.lineups || []) as unknown as LineupStatSet[];
     const minPossNum = parseInt(minPoss) || 0;
     const confDataEventLineups = dataEventLineups.filter(lineup => {
-      return (!confSet || confSet.has(lineup.conf || "Unknown")) && (lineup.off_poss?.value >= minPossNum);
+      return (!confSet || confSet.has(lineup.conf || "Unknown")) && ((lineup.off_poss?.value || 0) >= minPossNum);
         //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
     }).filter((lineup) => { //Positional filters
       if (lineupFilters.size > 0) {
         const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${lineup.year}`;
-        const perLineupBaselinePlayerMap = lineup.player_info;
-        const positionFromPlayerKey = lineup.player_info;
+        const perLineupBaselinePlayerMap = lineup.player_info || {};
+        const positionFromPlayerKey = lineup.player_info || {};
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
@@ -273,13 +274,13 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       }
       return true;
     });
-    const lineups = LineupTableUtils.buildFilteredLineups(
+    const [ lineups, ignoreDroppedLineups ] = LineupTableUtils.buildFilteredLineups(
       confDataEventLineups,
       filterStr,
       (year != "All") && (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
       minPoss, maxTableSize, undefined, undefined //<-calc from lineup
     );
-
+    
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter = ((sortBy != ParamDefaults.defaultLineupLboardSortBy) &&
       (sortBy != "desc:off_adj_ppp") && (sortBy != "asc:def_adj_ppp"))
@@ -303,8 +304,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       }
       TableDisplayUtils.injectPlayTypeInfo(lineup, false, false, teamSeasonLookup); //(inject assist+tempo numbers)
 
-      const perLineupBaselinePlayerMap = lineup.player_info;
-      const positionFromPlayerKey = lineup.player_info;
+      const perLineupBaselinePlayerMap = lineup.player_info || {};
+      const positionFromPlayerKey = lineup.player_info || {};
       const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
       const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
@@ -328,13 +329,13 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const marginRank = (sortBy == "desc:diff_adj_ppp") ? <b><big>#{lineup.adj_margin_rank}</big></b> : `#${lineup.adj_margin_rank}`;
       const offRank = (sortBy == "desc:off_adj_ppp") ? <b><big>#{lineup.off_adj_ppp_rank}</big></b> : `#${lineup.off_adj_ppp_rank}`;
       const defRank = (sortBy == "asc:def_adj_ppp") ? <b><big>#{lineup.def_adj_ppp_rank}</big></b> : `#${lineup.def_adj_ppp_rank}`;
-      const seasonRankings = (year == "All") && !fullDataSetSeasons.has(lineup.year) ?
+      const seasonRankings = (year == "All") && !fullDataSetSeasons.has(lineup.year || "") ?
         "(no ranking)" : <span>{marginRank} ({offRank} / {defRank})</span>;
       const rankings = <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
         <span>{generalRank}<small>{seasonRankings}</small></span>
       </OverlayTrigger>;
 
-      const confNickname = ConferenceToNickname[lineup.conf] || "???";
+      const confNickname = ConferenceToNickname[lineup.conf || "???"] || "???";
 
       const teamTooltip = (
         <Tooltip id={`team_${lineupIndex}`}>Open new tab with all lineups for this team</Tooltip>
@@ -345,7 +346,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         queryFilters: isConfOnly ? "Conf" : undefined,
         lineupLuck: true
       };
-      const maybeYrStr = isMultiYr ? ` '${lineup.year.substring(2, 4)}+` : ``;
+      const maybeYrStr = isMultiYr ? ` '${(lineup.year || "").substring(2, 4)}+` : ``;
       const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
         <a target="_blank" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}{maybeYrStr}</b></a>
       </OverlayTrigger>;
@@ -374,7 +375,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         ] : [ ],
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-        showLuckAdjDiags && lineup.off_luck_diags ? [ GenericTableOps.buildTextRow(
+        showLuckAdjDiags && lineup.off_luck_diags && lineup.def_luck_diags ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
             name="lineup"
             offLuck={lineup.off_luck_diags}

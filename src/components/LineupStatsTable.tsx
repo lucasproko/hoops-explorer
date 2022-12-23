@@ -93,6 +93,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     ParamDefaults.defaultLineupShowTotal : startingState.showTotal
   );
 
+  /** Whether to show the weighted combo of all visible lineups */
+  const [ showDropped, setShowDropped ] = useState<boolean>(false); //TODO: enable this via UI
+
   const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
 
   const startingMinPoss = startingState.minPoss || ParamDefaults.defaultLineupMinPos;
@@ -200,10 +203,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     const orderedMutableOppoList = LineupUtils.buildOpponentList(lineups, showGameInfo);
 
     if (aggregateByPos == "") {
-      const filteredLineups = LineupTableUtils.buildFilteredLineups(
+      const [ filteredLineups, droppedLineups ] = LineupTableUtils.buildFilteredLineups(
         lineups,
         filterStr, sortBy, minPoss, maxTableSize,
-        teamSeasonLookup, positionFromPlayerKey
+        teamSeasonLookup, positionFromPlayerKey,
+        showDropped
       );
       const globalMaxPoss = _.chain(filteredLineups)
         .flatMap(l => LineupUtils.getGameInfo(l.game_info || {}))
@@ -282,7 +286,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         cellTooltipMode="none"
       />
     } else { // First we aggregate the lineups into common position groups, then render that
-      const filteredLineups = LineupTableUtils.buildFilteredLineups(
+      const [ filteredLineups, droppedLineups ] = LineupTableUtils.buildFilteredLineups(
         lineups,
         filterStr, sortBy, "0", "1000",
         teamSeasonLookup, positionFromPlayerKey
@@ -351,8 +355,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       }).value();
 
       const maybeTotal = enrichedLineups?.[LineupTableUtils.totalLineupId];
-      const otherLineups = _.chain(enrichedLineups).omit([ LineupTableUtils.totalLineupId ]).values().value();
-      const refilteredLineupsNotTotal = LineupTableUtils.buildFilteredLineups(
+      const otherLineups = _.chain(enrichedLineups)
+        .omit([ LineupTableUtils.totalLineupId ]).values().value() as LineupStatSet[];
+      const [ refilteredLineupsNotTotal, ignoreTheseLineups ] = LineupTableUtils.buildFilteredLineups(
         otherLineups,
         "", sortBy, minPoss, maxTableSize,
         teamSeasonLookup, positionFromPlayerKey

@@ -16,7 +16,7 @@ import zlib from 'zlib';
 import _ from "lodash";
 
 // Models
-import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics, TeamStatInfo, PureStatSet } from '../utils/StatModels';
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, TeamInfo, DivisionStatistics, TeamStatInfo, PureStatSet, IndivPosInfo } from '../utils/StatModels';
 
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
@@ -545,7 +545,7 @@ export async function main() {
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
-      const sortedLineups = LineupTableUtils.buildFilteredLineups(
+      const [ sortedLineups, ignoreDroppedLineups ] = LineupTableUtils.buildFilteredLineups(
         lineups,
         "", "desc:off_poss", "0", "500", //take all players (sorted by off_pos) with no min poss - will filter later
         teamSeasonLookup, positionFromPlayerKey
@@ -729,7 +729,7 @@ export async function main() {
               // Both these are needed to order the players within the lineup
               posClass: positionFromPlayerKey[playerSubset.key]?.posClass,
               posConfidences: positionFromPlayerKey[playerSubset.key]?.posConfidences,
-            } as IndivStatSet
+            } as IndivStatSet & IndivPosInfo
           ];
         }));
         //(now don't need this:)

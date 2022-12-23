@@ -1,5 +1,5 @@
 // Lodash
-import _ from "lodash";
+import _, { chain } from "lodash";
 
 // Util imports
 import { StatModels, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, IndivPosInfo, RosterEntry } from '../StatModels';
@@ -192,43 +192,56 @@ export class LineupTableUtils {
 
   /** Builds a filtered sorted list of lineups */
   static buildFilteredLineups(
-    lineups: any[],
+    lineups: LineupStatSet[],
     filterStr: string, sortBy: string | undefined, minPoss: string, maxTableSize: string,
     teamSeasonLookup: string | undefined, positionFromPlayerKey: Record<string, any> | undefined,
+    alsoReturnDroppedLineups: boolean = false
   ) {
     const [
       filterFragmentsPve, filterFragmentsNve, filterOnPosition
     ] = PositionUtils.buildPositionalAwareFilter(filterStr);
 
-    const filteredLineups = _.chain(lineups).filter((lineup) => {
-      const minPossInt = parseInt(minPoss);
+    const minPossInt = parseInt(minPoss);
+    const passLineup = (lineup: LineupStatSet) => {
+
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
-      return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
-    }).filter((lineup) => {
+      const phase1Pass = offPos >= minPossInt || defPos >= minPossInt;
 
-      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      if (phase1Pass) {
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
 
-      const lineupPosFromPlayerKey = positionFromPlayerKey || lineup.player_info; //(leaderboard version, calc from lineup)
-      const lineupTeamSeason = teamSeasonLookup ||
-        `${lineup.gender}_${lineup.team}_${lineup.year}`; //(leaderboard version, calc from lineup)
+        const lineupPosFromPlayerKey = positionFromPlayerKey || lineup.player_info || {}; //(leaderboard version, calc from lineup)
+        const lineupTeamSeason = teamSeasonLookup ||
+          `${lineup.gender}_${lineup.team}_${lineup.year}`; //(leaderboard version, calc from lineup)
 
-      const namesToTest = filterOnPosition ?
-        PositionUtils.orderLineup(codesAndIds, lineupPosFromPlayerKey, lineupTeamSeason) : codesAndIds;
-      const teamFilter = lineup.team ? [ { id: `${lineup.team}_${lineup.year}`, code: lineup.team } ] : []; //(leaderboard version)
+        const namesToTest = filterOnPosition ?
+          PositionUtils.orderLineup(codesAndIds, lineupPosFromPlayerKey, lineupTeamSeason) : codesAndIds;
+        const teamFilter = lineup.team ? [ { id: `${lineup.team}_${lineup.year}`, code: lineup.team } ] : []; //(leaderboard version)
 
-      const playerFilter = PositionUtils.testPositionalAwareFilter(
-        namesToTest.concat(teamFilter), filterFragmentsPve, filterFragmentsNve
-      );
+        const playerFilter = PositionUtils.testPositionalAwareFilter(
+          namesToTest.concat(teamFilter), filterFragmentsPve, filterFragmentsNve
+        );
 
-     return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
-    }).sortBy(
-       sortBy ? [ LineupTableUtils.sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
-    ).take(
-      parseInt(maxTableSize)
-    ).value();
+       return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
+      } else {
+        return false;
+      }
+    }
 
-    return filteredLineups;
+    const sortAndTruncLineups = (lineupChain: _.CollectionChain<LineupStatSet>) => 
+      lineupChain.sortBy(
+          sortBy ? [ LineupTableUtils.sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
+        ).take(
+          parseInt(maxTableSize)
+        ).value()
+
+    if (alsoReturnDroppedLineups) {
+      const [ filteredLineups, droppedLineups ] = _.chain(lineups).partition(passLineup).value();    
+      return [ sortAndTruncLineups(_.chain(filteredLineups)), droppedLineups];
+    } else { // more efficient if we don't need dropped lineups
+      return [ sortAndTruncLineups(_.chain(lineups).filter(passLineup)), []];
+    }
   }
 
   /** Builds a filtered sorted list of lineups */

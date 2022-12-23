@@ -225,7 +225,7 @@ export type LineupMetadata = {
   team?: string,
   year?: string,
   /** Injected info about players for lineup leaderboards */
-  player_info?: Record<PlayerId, IndivStatSet>,
+  player_info?: Record<PlayerId, IndivPosInfo & IndivStatSet>,
 };
 
 /** Derived stats we add to the individual's stat set */
