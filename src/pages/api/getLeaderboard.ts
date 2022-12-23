@@ -5,11 +5,12 @@ import fetch from 'isomorphic-unfetch';
 import queryString from "query-string";
 import { Readable, Writable } from 'stream';
 
-// Ran into some strange 
+// My existing streaming code didn't work in node10
+// production is an earlier version so doesn't have this issue, but I can't share the code
 const pxIsDebug = (process.env.NODE_ENV !== 'production');
 if (pxIsDebug) {
-    console.log(`Running locally: use node v18+ constructs for streaming`);
-  }
+    console.log(`Running locally (getLeaderboard): use node v18+ constructs for streaming`);
+}
   
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const url = require('url').parse(req.url);
@@ -64,4 +65,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     api: {
       bodyParser: false,
     },
-  }
+  };
