@@ -75,6 +75,7 @@ interface Props<PARAMS> {
   /** Note there needs to be an intermediate 1-up in the parent filter, see LineupFilter for an example */
   forceReload1Up?: number; //force submits a new set of parameters if true
   matchupMode?: boolean;
+  blockSubmit?: boolean;
 }
 
 /** Used to pass the submitListener to child components */
@@ -96,7 +97,8 @@ const CommonFilter: CommonFilterI = ({
     tablePrefix, buildParamsFromState, childHandleResponse,
     majorParamsDisabled,
     forceReload1Up,
-    matchupMode
+    matchupMode,
+    blockSubmit
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -152,6 +154,7 @@ const CommonFilter: CommonFilterI = ({
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
   const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
+  const canSubmit = () => !submitDisabled && !(blockSubmit || false);
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -170,13 +173,13 @@ const CommonFilter: CommonFilterI = ({
       return inAutoSuggest || notFromAutoSuggest(event);
     };
     if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
-      if (!submitDisabled && allowKeypress()) {
+      if (canSubmit() && allowKeypress()) {
         onSubmit();
       } else if (event && event.preventDefault) {
         event.preventDefault();
       }
     } else if (event.code == "Escape" || event.keyCode == 27) {
-      if (!submitDisabled && allowKeypress()) {
+      if (canSubmit() && allowKeypress()) {
         document.body.click(); //closes any overlays (like history) that have rootClick
       }
     }
@@ -723,7 +726,7 @@ const CommonFilter: CommonFilterI = ({
       </Col>
     </Form.Group>}
     <Col>
-      <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
+      <Button disabled={!canSubmit()} variant="primary" onClick={onSubmit}>Submit</Button>
       {getExampleButtonsIfNoTeam()}
     </Col>
   </Form></LoadingOverlay>;

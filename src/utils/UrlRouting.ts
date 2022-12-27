@@ -6,7 +6,7 @@ import { QueryUtils } from "./QueryUtils";
 
 // Utils
 import { GameFilterParams, LineupFilterParams, LineupLeaderboardParams, OffseasonLeaderboardParams, PlayerLeaderboardParams, TeamEditorParams, TeamReportFilterParams } from '../utils/FilterModels';
-import { PlayerSeasonComparisonParams } from './FilterModels';
+import { PlayerSeasonComparisonParams, MatchupFilterParams } from './FilterModels';
 
 /** Url routing utils */
 export class UrlRouting {
@@ -86,11 +86,16 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params
     })}`;
   }
-
   /** The URL to use to view the "Player/Season Comparison" page */
   static getPlayerSeasonComparisonUrl(params: PlayerSeasonComparisonParams) {
     return `/PlayerSeasonComparison?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params
+    })}`;
+  }
+  /** The URL to use to view the "Matchup Analyzer" page */
+  static getMatchupUrl(params: MatchupFilterParams) {
+    return `/MatchupAnalyzer?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
 

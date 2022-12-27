@@ -93,9 +93,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   matchupFilterParamsRef.current = matchupFilterParams;
 
   function getRootUrl(params: MatchupFilterParams) {
-    //return UrlRouting.getGameUrl(params, {});
-    //TODO
-    return "";
+    return UrlRouting.getMatchupUrl(params);
   }
   const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
 
@@ -109,10 +107,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
     // Omit all the defaults
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      // TeamStatsTable
-      //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
-      //TODO: handle manual override
-      //yearTeamGenderChange(rawParams, gameFilterParamsRef.current || {}) ? [ 'manual' ] : [],
+      !rawParams.oppoTeam ? [ 'oppoTeam' ] : [],
     ]));
     if (!_.isEqual(params, matchupFilterParamsRef.current)) { //(to avoid recursion)
 
