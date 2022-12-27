@@ -34,6 +34,7 @@ import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, Pla
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from '../utils/HistoryManager';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
+import MatchupFilter from '../components/MatchupFilter';
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
 
@@ -53,16 +54,16 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const [ dataEvent, setDataEvent ] = useState({
     teamAStats: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
     rosterAStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
-    lineupAStats: [] as LineupStatsModel[],
+    lineupAStats: { lineups: [] } as LineupStatsModel,
 
     teamBStats: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
     rosterBStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
-    lineupBStats: [] as LineupStatsModel[]
+    lineupBStats: { lineups: [] } as LineupStatsModel,
   });
 
-  const injectStats = (
-    teamAStats: TeamStatsModel, rosterAStats: RosterStatsModel, lineupAStats: LineupStatsModel[],
-    teamBStats: TeamStatsModel, rosterBStats: RosterStatsModel, lineupBStats: LineupStatsModel[],
+  const  injectStats = (
+    lineupAStats: LineupStatsModel, teamAStats: TeamStatsModel, rosterAStats: RosterStatsModel, 
+    lineupBStats: LineupStatsModel, teamBStats: TeamStatsModel, rosterBStats: RosterStatsModel, 
   ) => {
     setDataEvent({teamAStats, rosterAStats, lineupAStats, teamBStats, rosterBStats, lineupBStats});
   }
@@ -144,6 +145,19 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       <Col xs={12} className="text-center">
         <h3>CBB Match-up Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
+    </Row>
+    <Row>
+      <GenericCollapsibleCard
+        minimizeMargin={false}
+        title="Team and Game Filter"
+        summary={HistoryManager.lineupFilterSummary(matchupFilterParams)}
+      >
+        <MatchupFilter
+          onStats={injectStats}
+          startingState={matchupFilterParams}
+          onChangeState={onMatchupFilterParamsChange}
+        />
+      </GenericCollapsibleCard>
     </Row>
     <Row>
       {/* TODO */}

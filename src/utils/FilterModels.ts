@@ -8,8 +8,9 @@ export class ParamPrefixes {
   static readonly report = "report-"; //(not used currrently, we re-use lineup)
   static readonly roster = "roster-";
   static readonly player = "player-";
+  static readonly gameInfo = "gameInfo-";
 }
-export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-" | "player-";
+export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-" | "player-" | "gameInfo-";
 
 /** The common luck config */
 export type LuckParams = {

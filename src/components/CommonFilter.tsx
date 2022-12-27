@@ -74,6 +74,7 @@ interface Props<PARAMS> {
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
   /** Note there needs to be an intermediate 1-up in the parent filter, see LineupFilter for an example */
   forceReload1Up?: number; //force submits a new set of parameters if true
+  matchupMode?: boolean;
 }
 
 /** Used to pass the submitListener to child components */
@@ -94,7 +95,8 @@ const CommonFilter: CommonFilterI = ({
     startingState, onChangeState, onChangeCommonState,
     tablePrefix, buildParamsFromState, childHandleResponse,
     majorParamsDisabled,
-    forceReload1Up
+    forceReload1Up,
+    matchupMode
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -634,7 +636,7 @@ const CommonFilter: CommonFilterI = ({
     <GlobalKeypressManager.Provider value={submitListenerFactory(true)}>
       {children}
     </GlobalKeypressManager.Provider>
-    <Form.Group as={Row}>
+    {matchupMode ? null : <Form.Group as={Row}>
       <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
       <Col sm="8">
         <Container>
@@ -669,8 +671,8 @@ const CommonFilter: CommonFilterI = ({
           : null}
         </Container>
       </Col>
-    </Form.Group>
-    <Form.Group as={Row} controlId="oppositionFilter">
+    </Form.Group>}
+    {matchupMode ? null : <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
       <Col sm="2">
         <InputGroup>
@@ -719,7 +721,7 @@ const CommonFilter: CommonFilterI = ({
           </div>
         </OverlayTrigger>
       </Col>
-    </Form.Group>
+    </Form.Group>}
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
       {getExampleButtonsIfNoTeam()}
