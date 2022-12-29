@@ -14,6 +14,7 @@ const weirdNameChanges: Record<string, string> = {
    "USF": "South Fla.",
    "Saint Mary's": "Saint Mary's (CA)",
    "Miami (Fl.)": "Miami (FL)",
+   "Miami (Fla.)": "Miami (FL)",
    "St. John's": "St. John's (NY)",
 };
 const fixName = (t: string) => weirdNameChanges[t] || t;
@@ -63,37 +64,37 @@ const apPollMen_2021_22: () => Record<string, number> = () => _.chain(`
    ).value();
 /** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
 const apPollMen_2022_23: () => Record<string, number> = () => _.chain(`
-1	Purdue (40)	11-0	1,502	1
-2	UConn (21)	12-0	1,482	3
-3	Houston	11-1	1,374	5
-4	Kansas	10-1	1,290	8
-5	Arizona	10-1	1,269	9
-6	Virginia	8-1	1,195	2
-7	Texas	9-1	1,064	7
-8	Tennessee	9-2	1,024	6
-9	Alabama	9-2	1,021	4
-10	Arkansas	10-1	1,004	10
-11	Gonzaga	9-3	895	15
-12	Baylor	7-2	873	11
-13	UCLA	10-2	871	16
-14	Duke	10-2	819	12
-15	Mississippi State	11-0	623	17
-16	Illinois	8-3	528	18
-17	Wisconsin	9-2	432	22
-18	Indiana	8-3	408	14
-19	Kentucky	7-3	370	13
-20	TCU	9-1	358	21
-21	Virginia Tech	11-1	297	24
-22	Miami (Fl.)	11-1	208	25
-23	Auburn	9-2	118	19
-24	Marquette	9-3	116	NR
-25	Arizona State	11-1	98	NR
+1	Purdue (40)	12-0	1,478	1
+2	UConn (20)	13-0	1,459	2
+3	Houston	12-1	1,351	3
+4	Kansas	11-1	1,299	4
+5	Arizona	12-1	1,274	5
+6	Texas	10-1	1,144	7
+7	Tennessee	10-2	1,068	8
+8	Alabama	10-2	1,067	9
+9	Arkansas	11-1	1,017	10
+10	Gonzaga	10-3	940	11
+11	UCLA	11-2	906	13
+12	Baylor	9-2	888	12
+13	Virginia	8-2	861	6
+14	Miami (Fla.)	12-1	658	22
+15	Wisconsin	9-2	570	17
+16	Indiana	10-3	513	18
+17	Duke	10-3	500	14
+18	TCU	10-1	480	20
+19	Kentucky	8-3	439	19
+20	Auburn	10-2	237	23
+21	Mississippi State	11-1	215	15
+T-22	New Mexico	12-0	147	NR
+T-22	Xavier	10-3	147	NR
+24	West Virginia	10-2	126	NR
+25	North Carolina	9-4	112	NR
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "")
    .replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
    ), parseInt(ab[0].replace("T-", "")) ];}).fromPairs()
    .assign(
       {
-         __week__: 7
+         __week__: 8
       }
    ).value();
 
@@ -133,37 +134,37 @@ const apPollWomen_2021_22: () => Record<string, number> = () => _.chain(`
 
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
 const apPollWomen_2022_23: () => Record<string, number> = () => _.chain(`
-1	South Carolina (28)	11-0	700	1
-2	Stanford	11-1	672	2
-3	Ohio State	11-0	627	3
-4	Indiana	11-0	619	4
-5	Notre Dame	9-1	594	5
-6	North Carolina	9-1	529	7
-7	NC State	11-1	514	8
-8	Virginia Tech	10-1	481	6
-9	UConn	8-2	470	9
-10	LSU	11-0	422	11
-11	UCLA	11-1	420	10
-12	Utah	10-0	372	13
-13	Iowa	9-3	370	12
-14	Iowa State	8-2	341	14
-15	Maryland	9-3	296	15
-16	Oregon	9-1	280	T-16
-17	Arkansas	13-0	256	21
-18	Arizona	9-1	217	20
-19	Michigan	10-1	210	19
-20	Kansas	10-0	187	22
-21	Creighton	8-2	133	T-16
-22	Gonzaga	10-2	114	23
-23	Oklahoma	9-1	86	24
-24	Baylor	8-3	67	18
-25	St. John's	11-0	27	NR
+1	South Carolina (28)	12-0	700	1
+2	Stanford	13-1	672	2
+3	Ohio State	13-0	632	3
+4	Indiana	12-0	620	4
+5	Notre Dame	10-1	591	5
+6	NC State	11-1	531	7
+7	Virginia Tech	11-1	508	8
+8	UConn	9-2	499	9
+9	LSU	12-0	442	10
+10	UCLA	12-1	433	11
+11	Utah	12-0	398	12
+12	Iowa	10-3	374	13
+13	North Carolina	9-2	373	6
+14	Michigan	11-1	342	19
+15	Iowa State	8-2	337	14
+16	Maryland	10-3	304	15
+17	Oregon	10-2	260	16
+18	Arizona	10-1	238	18
+19	Gonzaga	12-2	155	22
+20	Oklahoma	10-1	139	23
+21	Creighton	8-3	108	21
+22	Kansas	10-1	94	20
+23	Baylor	9-3	93	24
+24	Arkansas	13-2	90	17
+25	St. John's	12-0	75	25
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "")
    .replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
 ), parseInt(ab[0].replace("T-", "")) ];}).fromPairs()
    .assign(
       {
-         __week__: 7
+         __week__: 8
       }
    ).value();
 
