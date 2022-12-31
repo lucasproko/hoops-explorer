@@ -1,6 +1,8 @@
 // React imports:
 import _ from 'lodash';
 import React, { useState, useEffect } from 'react';
+import { Cell, Label, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
+import { CbbColors } from '../utils/CbbColors';
 
 import { getCommonFilterParams, MatchupFilterParams, ParamDefaults } from "../utils/FilterModels";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
@@ -43,28 +45,33 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
       ParamDefaults.defaultLuckConfig : startingState.luck
    );
 
-   const [ cachedRapm, setCachedRapm ] = useState<{a: Record<string, any>, b: Record<string, any> }>({ a: {}, b: {} });
+   const [ cachedStats, setCachedStats ] = useState<{a: any[], b: any[] }>({ a: [], b: [] });
    useEffect(() => {
+      //TODO: something weird happens with this being called lots of time on page load
+      // (some issue with CommonFilter / MatchupFilter?)
+
       //ensure we never show the _wrong_ RAPM
-      setCachedRapm({ a: {}, b: {} });
+      setCachedStats({ a: [], b: [] });
    }, [ dataEvent, adjustForLuck ]);
    useEffect(() => {
-      setCachedRapm({
-         a: buildRapm(
-            lineupStatsA, teamStatsA, rosterStatsA, 
-         ),
-         b: buildRapm(
-            lineupStatsB, teamStatsB, rosterStatsB, 
-         ),
-      })
-   }, [ cachedRapm ]);
+      if (_.isEmpty(cachedStats.a)) {
+         setCachedStats({
+            a: buildStats(
+               lineupStatsA, teamStatsA, rosterStatsA, 
+            ),
+            b: buildStats(
+               lineupStatsB, teamStatsB, rosterStatsB, 
+            ),
+         })
+      }
+   }, [ cachedStats ]);
    
    // Calcs
 
    //TODO: build RAPM
 
    /** For a given lineup set, calculate RAPM as quickly as possible */
-   const buildRapm = (
+   const buildStats = (
      lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel,
    ) => {
       const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
@@ -86,15 +93,36 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
          preRapmTableData, playerInfo,
          adjustForLuck, avgEfficiency, genderYearLookup
       );
-      return _.fromPairs(
-         (rapmInfo?.enrichedPlayers || []).map(
-            p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }]
-         )
+      return (rapmInfo?.enrichedPlayers || []).map(
+         p => ({ 
+            x: p.rapm?.off_adj_ppp?.value || 0, 
+            y: p.rapm?.def_adj_ppp?.value || 0,
+            color: (p.rapm?.off_adj_ppp?.value || 0) - (p.rapm?.def_adj_ppp?.value || 0),
+            p: p,
+            off_adj_rapm: p.rapm?.off_adj_ppp, 
+            def_adj_rapm: p.rapm?.def_adj_ppp 
+         })
       );
    };
 
+   //TODO; +-12, incorp mins by default, labels etc
 
-   return null;
+   return  _.isEmpty(cachedStats.a) ? <div>(Loading)</div> :
+      <ResponsiveContainer width={"100%"} height={400}>
+         <ScatterChart>
+            <XAxis type="number" dataKey="x">
+               <Label value={"Offensive RAPM"} position='top' style={{textAnchor: 'middle'}} />
+            </XAxis>
+            <YAxis type="number" dataKey="y">
+               <Label angle={-90} value={"Defensive RAPM"} position='insideLeft' style={{textAnchor: 'middle'}} />
+            </YAxis>
+            <Scatter data={cachedStats.a} fill="green">
+               {_.values(cachedStats.a).map((p, index) => {
+                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/>
+               })};
+            </Scatter>
+         </ScatterChart>
+      </ResponsiveContainer>;
 }
 export default SingleGameRapmChart;
 

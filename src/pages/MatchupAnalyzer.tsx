@@ -35,6 +35,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from '../utils/HistoryManager';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import MatchupFilter from '../components/MatchupFilter';
+import SingleGameRapmChart from '../components/SingleGameRapmChart';
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
 
@@ -52,20 +53,20 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
-    teamAStats: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
-    rosterAStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
-    lineupAStats: { lineups: [] } as LineupStatsModel,
+    teamStatsA: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
+    rosterStatsA: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
+    lineupStatsA: { lineups: [] } as LineupStatsModel,
 
-    teamBStats: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
-    rosterBStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
-    lineupBStats: { lineups: [] } as LineupStatsModel,
+    teamStatsB: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
+    rosterStatsB: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
+    lineupStatsB: { lineups: [] } as LineupStatsModel,
   });
 
   const  injectStats = (
-    lineupAStats: LineupStatsModel, teamAStats: TeamStatsModel, rosterAStats: RosterStatsModel, 
-    lineupBStats: LineupStatsModel, teamBStats: TeamStatsModel, rosterBStats: RosterStatsModel, 
+    lineupStatsA: LineupStatsModel, teamStatsA: TeamStatsModel, rosterStatsA: RosterStatsModel, 
+    lineupStatsB: LineupStatsModel, teamStatsB: TeamStatsModel, rosterStatsB: RosterStatsModel, 
   ) => {
-    setDataEvent({teamAStats, rosterAStats, lineupAStats, teamBStats, rosterBStats, lineupBStats});
+    setDataEvent({teamStatsA, rosterStatsA, lineupStatsA, rosterStatsB, teamStatsB, lineupStatsB});
   }
 
   // Game and Lineup filters
@@ -98,8 +99,6 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
 
   const onMatchupFilterParamsChange = (rawParams: MatchupFilterParams) => {
-/**/
-console.log(`?? ${JSON.stringify(rawParams)}`)  
 
     /** We're going to want to remove the manual options if the year changes */
     const yearTeamGenderChange = (rawParams: MatchupFilterParams, currParams: MatchupFilterParams) => {
@@ -136,7 +135,18 @@ console.log(`?? ${JSON.stringify(rawParams)}`)
     }
   }
 
-  /** Only rebuild the table if the data changes, or if luck changes (see above) */
+  /** Only rebuild the chart if the data changes, or if one of the filter params changes */
+
+  /** Only rebuild the table if the data changes */
+  const chart = React.useMemo(() => {
+    return  <GenericCollapsibleCard minimizeMargin={true} title="Single-Game RAPM" helpLink={maybeShowDocs()}>
+      <SingleGameRapmChart
+        startingState={matchupFilterParamsRef.current || {}}
+        dataEvent={dataEvent}
+        onChangeState={onMatchupFilterParamsChange}
+      />
+    </GenericCollapsibleCard>
+  }, [ dataEvent ]);
 
   return <Container>
     <Row>
@@ -158,7 +168,7 @@ console.log(`?? ${JSON.stringify(rawParams)}`)
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      {/* TODO */}
+      {chart}
     </Row>
     <Footer year={matchupFilterParams.year} gender={matchupFilterParams.gender} server={server}/>
   </Container>;
