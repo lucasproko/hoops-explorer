@@ -45,6 +45,9 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
   // Data model
 
   const {
+    oppoTeam: startOppoTeam,
+    onOffLuck: startOnOffLuck,
+    luck: startLuck,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -63,6 +66,13 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
   const [ game, setGame ] = useState(startingState.oppoTeam || "");
 
   // Utils
+
+  useEffect(() => {
+    // On load, 
+    if (_.isEmpty(opponentList) && commonParams.team) {
+      fetchOpponents(commonParams);
+    }
+  }, []);
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
@@ -151,14 +161,25 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
   */
   function buildParamsFromState(includeFilterParams: Boolean): [ LineupFilterParams, FilterRequestInfo[] ]
   {
-    const oppoQueryInfo = buildOppoFilter(game)!;
+    const oppoQueryInfo = buildOppoFilter(game);
+    if (!oppoQueryInfo) {
+      return [ {}, [] ];
+    }
     const baseQueryA = `opponent.team:"${oppoQueryInfo.team}" AND date:${oppoQueryInfo.dateStr}`;
     const baseQueryB = `opponent.team:"${team}" AND date:${oppoQueryInfo.dateStr}`;
     
-    const primaryRequestA: CommonFilterParams = {
-        ...commonParams,
-        baseQuery: baseQueryA,
-      };
+    const primaryRequestA: MatchupFilterParams = {
+      ...commonParams,
+      baseQuery: baseQueryA,
+
+      // Hacky: because of how this logic works, the primary request needs to have all the 
+      // filter and query params:
+      oppoTeam: game,
+      ...(includeFilterParams ? {
+        luck: startLuck,
+        onOffLuck: startOnOffLuck
+      } : {})
+    };
     const primaryRequestB: CommonFilterParams = {
       ...commonParams,
       team: oppoQueryInfo.team,

@@ -67,7 +67,9 @@ export function getCommonLboardFilterParams(p: CommonFilterParams, tier?: string
 export type MatchupFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  oppoTeam?: string
+  oppoTeam?: string,
+  luck?: LuckParams, //(missing iff default)
+  onOffLuck?: boolean,
 };
 
 /** Combined params for game filtering */

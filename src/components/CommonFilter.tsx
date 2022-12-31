@@ -286,6 +286,9 @@ const CommonFilter: CommonFilterI = ({
 
   /** If the params match the last request, disable submit */
   function shouldSubmitBeDisabled() {
+    // If parent is blocking then short-circuit this:
+    if (blockSubmit) { return true }
+
     const newParams = buildParamsFromState(false)[0];
     const moreSpecialCaseKeys = ["onQueryFilters", "offQueryFilters"];
       //(we remove these GameFilterParams from the query if they are null, handle that here)

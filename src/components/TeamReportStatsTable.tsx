@@ -353,10 +353,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       };
       const statsOff = {
         off_title: <span><b>{player.off.key}</b><br/>{offSuffix}<br/>
-        <OverlayTrigger placement="auto" overlay={playerOnOffTooltip}>
-          <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
-        </OverlayTrigger>
-      </span>,
+          <OverlayTrigger placement="auto" overlay={playerOnOffTooltip}>
+            <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+          </OverlayTrigger>
+        </span>,
         def_title: "", ...player.off
       };
 

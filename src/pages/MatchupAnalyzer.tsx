@@ -98,6 +98,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
 
   const onMatchupFilterParamsChange = (rawParams: MatchupFilterParams) => {
+/**/
+console.log(`?? ${JSON.stringify(rawParams)}`)  
+
     /** We're going to want to remove the manual options if the year changes */
     const yearTeamGenderChange = (rawParams: MatchupFilterParams, currParams: MatchupFilterParams) => {
       return (rawParams.year != currParams.year) ||
