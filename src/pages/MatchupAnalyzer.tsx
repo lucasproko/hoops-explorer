@@ -36,6 +36,7 @@ import { HistoryManager } from '../utils/HistoryManager';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import MatchupFilter from '../components/MatchupFilter';
 import SingleGameRapmChart from '../components/SingleGameRapmChart';
+import { buildOppoFilter } from '../components/MatchupFilter';
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
 
@@ -140,11 +141,14 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const chart = React.useMemo(() => {
     return  <GenericCollapsibleCard minimizeMargin={true} title="Single-Game RAPM" helpLink={maybeShowDocs()}>
+        <Col xs={12} className="text-center d-flex justify-content-center">
       <SingleGameRapmChart
         startingState={matchupFilterParamsRef.current || {}}
+        opponent={buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""}
         dataEvent={dataEvent}
         onChangeState={onMatchupFilterParamsChange}
       />
+      </Col>
     </GenericCollapsibleCard>
   }, [ dataEvent ]);
 
@@ -153,6 +157,12 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       <Col xs={12} className="text-center">
         <h3>CBB Match-up Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
+    </Row>
+    <Row>
+      <HeaderBar
+        common={matchupFilterParams}
+        thisPage={ParamPrefixes.lineup}
+        />
     </Row>
     <Row>
       <GenericCollapsibleCard

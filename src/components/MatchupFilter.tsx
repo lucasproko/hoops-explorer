@@ -39,6 +39,17 @@ type Props = {
   onChangeState: (newParams: MatchupFilterParams) => void;
 }
 
+/** Convert from the menu string into team + date */
+export const buildOppoFilter = (menuItemStr: string): { team: string, dateStr: string } | undefined => {
+  const regexExtractor = /^(?:@|vs)? *(.*) [(]([^)]*).*$/;
+  const regexResult = regexExtractor.exec(menuItemStr);
+  if (regexResult && (regexResult.length >= 3)) {
+    return { team: regexResult[1], dateStr: regexResult[2] };
+  } else {
+    return undefined;
+  }
+}
+
 const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
   //console.log("Loading LineupFilter " + JSON.stringify(startingState));
 
@@ -102,17 +113,6 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
       .replace(/^A:/, "@ ").replace(/^H:/, "").replace(/^N:/, "vs ");
 
     return `${oppoAndLocation} (${buildDateStr(gameInfoObj)}): ${buildScoreInfo(gameInfoObj)}`;
-  }
-
-  /** Convert from the menu string into team + date */
-  const buildOppoFilter = (menuItemStr: string): { team: string, dateStr: string } | undefined => {
-    const regexExtractor = /^(?:@|vs)? *(.*) [(]([^)]*).*$/;
-    const regexResult = regexExtractor.exec(menuItemStr);
-    if (regexResult && (regexResult.length >= 3)) {
-      return { team: regexResult[1], dateStr: regexResult[2] };
-    } else {
-      return undefined;
-    }
   }
 
   /** Makes an API call to elasticsearch to get the roster */
@@ -206,12 +206,12 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
     const entireSeasonRequestA = { // Get the entire season of players for things like luck adjustments
       team: primaryRequestA.team, year: primaryRequestA.year, gender: primaryRequestA.gender,
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
-      baseQuery: baseQueryA, onQuery: "", offQuery: ""
+      baseQuery: "", onQuery: "", offQuery: ""
     };
     const entireSeasonRequestB = { // Get the entire season of players for things like luck adjustments
       team: primaryRequestB.team, year: primaryRequestB.year, gender: primaryRequestB.gender,
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
-      baseQuery: baseQueryB, onQuery: "", offQuery: ""
+      baseQuery: "", onQuery: "", offQuery: ""
     };
 
     return [ primaryRequestA, [{
@@ -225,6 +225,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
       }, {
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequestB, includeRoster: false
       }, { //(don't make a spurious call)
+//TODO: includeRoster is maybe broken here, assume it's the team from the primary request?
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequestB, includeRoster: true
       }]
     ];
@@ -245,8 +246,8 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
     const lineupJsonB = jsonResps?.[4]?.responses?.[0] || {};
     const teamJsonB = jsonResps?.[5]?.responses?.[0] || {};
     const rosterStatsJsonB = jsonResps?.[6]?.responses?.[0] || {};
-    const globalRosterStatsJsonB = jsonResps?.[7]?.responses?.[0] || rosterStatsJsonA;
-    const globalTeamB = teamJsonA?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam();
+    const globalRosterStatsJsonB = jsonResps?.[7]?.responses?.[0] || rosterStatsJsonB;
+    const globalTeamB = teamJsonB?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam();
     const rosterInfoB = jsonResps?.[7]?.roster;
     globalTeamB.roster = rosterInfoB;
 

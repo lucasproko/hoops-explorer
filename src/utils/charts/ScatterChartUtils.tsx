@@ -114,6 +114,7 @@ export class ScatterChartUtils {
    
          return _.orderBy(_.flatMap(_.range(1, 4), i => { return [ // Lots of combos:
                [ i*dx1, 0 ], [ i*dx2, 0], 
+               [ i*0.5*dx1, i*0.5*dy1 ], [ i*0.5*dx1, i*0.5*dy2 ], [ i*0.5*dx2, i*0.5*dy1 ], [ i*0.5*dx2, i*0.5*dy2 ],
                [ i*dx1, i*dy1 ], [ i*dx1, i*dy2 ], [ i*dx2, i*dy1 ], [ i*dx2, i*dy2 ]
             ] }), (dXdY: number[]) => (dXdY[0]!*dXdY[0]! + dXdY[1]!*dXdY[1]!)
          ).filter((dXdY: number[]) => {
@@ -141,10 +142,10 @@ export class ScatterChartUtils {
             return rectangle;
          }
          // Otherwise we have some overlap
-         const minCoveringRectange = generateSmallestCoveringRectangle(overlappingRectangles);
-         const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectange);
+         const minCoveringRectangle = generateSmallestCoveringRectangle(overlappingRectangles);
+         const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectangle);
    
-         // console.log(`${JSON.stringify(rectangle)} -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectange)} (${JSON.stringify(overlappingRectangles)})`);
+         // console.log(`${JSON.stringify(rectangle)} -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
    
          // Pick the closest rectangle that hits none of the others
          const rectangeToReturn = _.find(candidateRectangles || [], rect => {

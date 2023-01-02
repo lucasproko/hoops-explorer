@@ -1,13 +1,13 @@
 // React imports:
 import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react';
-import { CartesianGrid, Cell, Label, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
+import { Tooltip as RechartTooltip, CartesianGrid, Cell, Label, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
 import { CbbColors } from '../utils/CbbColors';
 import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
 
 import { getCommonFilterParams, MatchupFilterParams, ParamDefaults } from "../utils/FilterModels";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { PlayerId, IndivStatSet, IndivPosInfo } from '../utils/StatModels';
+import { PureStatSet } from '../utils/StatModels';
 import { LineupTableUtils } from '../utils/tables/LineupTableUtils';
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamReportTableUtils } from '../utils/tables/TeamReportTableUtils';
@@ -17,6 +17,7 @@ import { TeamStatsModel } from "./TeamStatsTable";
 
 type Props = {
    startingState: MatchupFilterParams,
+   opponent: string,
    dataEvent: {
      lineupStatsA: LineupStatsModel,
      teamStatsA: TeamStatsModel,
@@ -31,14 +32,13 @@ type Props = {
 
 const graphLimit = 10.0;
 
-const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opponent, dataEvent, onChangeState}) => {
    const { lineupStatsA, teamStatsA, rosterStatsA, lineupStatsB, teamStatsB, rosterStatsB } = dataEvent;
 
    // Model
 
    const commonParams = getCommonFilterParams(startingState);
    const genderYearLookup = `${commonParams.gender}_${commonParams.year}`;
-   const teamSeasonLookup = `${commonParams.gender}_${commonParams.team}_${commonParams.year}`;
    const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
  
    // Luck:
@@ -72,19 +72,15 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
 
    const [ cachedStats, setCachedStats ] = useState<{a: any[], b: any[] }>({ a: [], b: [] });
    useEffect(() => {
-      //TODO: something weird happens with this being called lots of time on page load
-      // (some issue with CommonFilter / MatchupFilter?)
-
-      //ensure we never show the _wrong_ RAPM
       setCachedStats({ a: [], b: [] });
    }, [ dataEvent, adjustForLuck ]);
    useEffect(() => {
-      if (_.isEmpty(cachedStats.a)) {
+      if (_.isEmpty(cachedStats.a) && !_.isEmpty(lineupStatsA.lineups)) {
          setCachedStats({
-            a: buildStats(
+            a: buildStats(commonParams.team || "",
                lineupStatsA, teamStatsA, rosterStatsA, 
             ),
-            b: buildStats(
+            b: buildStats(opponent,
                lineupStatsB, teamStatsB, rosterStatsB, 
             ),
          })
@@ -95,11 +91,13 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
 
    /** For a given lineup set, calculate RAPM as quickly as possible */
    const buildStats = (
-     lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel,
+      team: string,
+      lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel,
    ) => {
       if (!lineupStats.lineups) {
          return [];
       }
+      const teamSeasonLookup = `${commonParams.gender}_${team}_${commonParams.year}`;
       const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
          rosterStats.global || [], teamStats.global?.roster, false, teamSeasonLookup
       );
@@ -122,7 +120,6 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
       return _.orderBy(rapmInfo?.enrichedPlayers || [], p => -p.playerCode.length).map(
          p => { 
             const statObj = playerInfo[p.playerId];
-
             const offPoss = statObj.off_team_poss_pct?.value || 0;
             const defPoss = statObj.def_team_poss_pct?.value || 0;
             const offRapmProd = (p.rapm?.off_adj_ppp?.value || 0)*offPoss;
@@ -132,6 +129,7 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
                y: -Math.min(graphLimit, Math.max(-graphLimit, defRapmProd)),
                color: offRapmProd - defRapmProd,
                name: p.playerCode,
+               posClass: positionFromPlayerKey[p.playerId]?.posClass,
                stats: statObj,
                off_adj_rapm: p.rapm?.off_adj_ppp, 
                def_adj_rapm: p.rapm?.def_adj_ppp 
@@ -140,11 +138,54 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
       );
    };
 
-   //TODO; +-12, incorp mins by default, labels etc
+   // Tooltip:
+
+   const fieldValExtractor = (field: string) => {
+      return (p: PureStatSet | undefined) => {
+         if ((field[0] == 'o') || (field[0] == 'd')) {
+            return p?.[field]?.value || 0;
+         } else {
+            return (p?.[`off_${field}`]?.value || 0) - (p?.[`def_${field}`]?.value || 0);
+         }
+      }
+   };
+   type CustomTooltipProps = {
+      active?: boolean,
+      payload?: any,
+      label?: string,
+    };
+   const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
+      const bOrW = (f: number) => {
+         return `${Math.abs(f).toFixed(1)} ${f > 0 ? "better" : "worse"} than expected`;
+      };
+      if (active) {
+        const data = payload?.[0].payload || {};
+        const net = data.x + data.y;
+        return (
+          <div className="custom-tooltip" style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+          }}><small>
+            <p className="label"><b>
+            {`${data.stats?.key}`}</b><br/>
+            <i>{`${data.posClass || "??"}`}
+            {` ${data.stats?.roster?.height || "?-?"}`}
+            </i></p>
+            <p className="desc">
+               <span>Net RAPM: <b>{net.toFixed(1)}</b> pts/100</span><br/>
+               <span>Off RAPM: <b>{data.x.toFixed(1)}</b> pts/100</span><br/>
+               <span>Def RAPM: <b>{(-data.y).toFixed(1)}</b> pts/100</span><br/>
+               <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data.stats).toFixed(1)}</b></span><br/>
+               <span>Usage: <b>{(fieldValExtractor("off_usage")(data.stats)*100).toFixed(1)}</b>%</span><br/>
+               <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data.stats)*40).toFixed(1)}</b></span><br/>
+            </p>
+         </small></div>
+        );
+      }
+      return null;
+    };
+    
    const scoreLines = [ -6, -2, 2, 6 ];
-
    const labelState = ScatterChartUtils.buildEmptyLabelState(); 
-
    return  _.isEmpty(cachedStats.a) ? <div>(Loading...)</div> :
       <ResponsiveContainer width={screenWidth} height={screenHeight}>
          <ScatterChart>
@@ -164,7 +205,7 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
                   return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/>
                })};
             </Scatter>
-            <Scatter data={cachedStats.a} fill="green">
+            <Scatter data={cachedStats.a} fill="green" shape="triangle">
                {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight, maxWidth: screenWidth, textColorOverride: "black", mutableState: labelState,
                   dataKey: "name"
@@ -173,6 +214,12 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, dat
                   return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/>
                })};
             </Scatter>
+            <RechartTooltip
+              content={(<CustomTooltip />)}
+              wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
+              allowEscapeViewBox={{x: true, y: false}}
+              itemSorter={(item: any) => item.value}
+            />
          </ScatterChart>
       </ResponsiveContainer>;
 }
