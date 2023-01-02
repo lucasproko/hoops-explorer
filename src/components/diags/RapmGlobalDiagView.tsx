@@ -267,7 +267,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef})
             </ReferenceLine>
             <Tooltip
               wrapperStyle={{ opacity: "0.8", zIndex: 1000 }}
-              formatter={(value: number, name: string, props: any) => value.toFixed(3)}
+              formatter={(value: any, name: string, props: any) => value.toFixed(3)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => -item.value}
             />
@@ -287,7 +287,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef})
             </ReferenceLine>
             <Tooltip
               wrapperStyle={{ opacity: "0.8", zIndex: 1000 }}
-              formatter={(value: number, name: string, props: any) => value.toFixed(3)}
+              formatter={(value: any, name: string, props: any) => value.toFixed(3)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => item.value}
             />
