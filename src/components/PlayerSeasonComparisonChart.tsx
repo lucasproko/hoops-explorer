@@ -436,7 +436,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             <RechartTooltip
               content={(<CustomTooltip />)}
               wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
-              formatter={(value: number, name: string, props: any) => value.toFixed(0)}
               allowEscapeViewBox={{x: true, y: false}}
               itemSorter={(item: any) => item.value}
             />

@@ -100,7 +100,6 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
             <Tooltip
               content={(<CustomTooltip />)}
               wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
-              formatter={(value: number, name: string, props: any) => value.toFixed(0)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => item.value}
             />
