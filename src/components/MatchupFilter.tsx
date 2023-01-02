@@ -133,7 +133,10 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
         paramStr, ParamPrefixes.gameInfo, currentJsonEpoch, isDebug
       );
       if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
-          setOpponentList(_.sortBy(cachedJson?.responses?.[0]?.aggregations?.game_info?.buckets || [], buildDateStr));
+          setOpponentList(_.orderBy(
+            cachedJson?.responses?.[0]?.aggregations?.game_info?.buckets || [], 
+            buildDateStr, "desc"
+          ));
       } else {  
         fetch(`/api/getGameInfo?${paramStr}`).then(function(response: fetch.IsomorphicResponse) {
           response.json().then(function(json: any) {
@@ -148,7 +151,9 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
                 paramStr, ParamPrefixes.gameInfo, json, currentJsonEpoch, isDebug
               );
             }
-            setOpponentList(_.sortBy(json?.responses?.[0]?.aggregations?.game_info?.buckets || [], buildDateStr));
+            setOpponentList(_.orderBy(
+              json?.responses?.[0]?.aggregations?.game_info?.buckets || [], buildDateStr, "desc"
+            ));
           });
         })
       }
