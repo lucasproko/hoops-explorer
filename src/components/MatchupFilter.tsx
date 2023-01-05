@@ -91,6 +91,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
     if ((params.team != commonParams.team) || (params.year != commonParams.year) || (params.gender != commonParams.gender)) {
       if (params.team && params.year && params.gender) {
         setOpponentList([]);
+        setGame("");
         fetchOpponents(params);
       }
     }
@@ -222,10 +223,11 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequestA, includeRoster: true
       }, {
         context: ParamPrefixes.lineup as ParamPrefixesType, paramsObj: primaryRequestB
+      },{
+        context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequestB
       }, {
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequestB, includeRoster: false
       }, { //(don't make a spurious call)
-//TODO: includeRoster is maybe broken here, assume it's the team from the primary request?
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequestB, includeRoster: true
       }]
     ];

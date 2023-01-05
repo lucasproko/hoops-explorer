@@ -1,7 +1,7 @@
 // React imports:
 import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react';
-import { Tooltip as RechartTooltip, CartesianGrid, Cell, Label, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
+import { ReferenceLine, ReferenceArea, Legend, Tooltip as RechartTooltip, CartesianGrid, Cell, Label, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
 import { CbbColors } from '../utils/CbbColors';
 import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
 
@@ -70,20 +70,22 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
 
    // RAPM building
 
-   const [ cachedStats, setCachedStats ] = useState<{a: any[], b: any[] }>({ a: [], b: [] });
+   const [ cachedStats, setCachedStats ] = useState<{ ab: any[] }>({ ab: [] });
    useEffect(() => {
-      setCachedStats({ a: [], b: [] });
+      setCachedStats({ ab: [] });
    }, [ dataEvent, adjustForLuck ]);
    useEffect(() => {
-      if (_.isEmpty(cachedStats.a) && !_.isEmpty(lineupStatsA.lineups)) {
+      if (_.isEmpty(cachedStats.ab) && !_.isEmpty(lineupStatsA.lineups)) {
+         const aStats = buildStats(commonParams.team!, "black",
+            lineupStatsA, teamStatsA, rosterStatsA, 
+         );
+         const bStats = buildStats(opponent, "purple",
+            lineupStatsB, teamStatsB, rosterStatsB, 
+         );
          setCachedStats({
-            a: buildStats(commonParams.team || "",
-               lineupStatsA, teamStatsA, rosterStatsA, 
-            ),
-            b: buildStats(opponent,
-               lineupStatsB, teamStatsB, rosterStatsB, 
-            ),
-         })
+            ab: _.orderBy(aStats.concat(bStats), p => -(p.x*p.x + p.y*p.y))
+               // (render the players around the edge first, who are likely to be less congested)
+      })
       }
    }, [ cachedStats ]);
    
@@ -91,7 +93,7 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
 
    /** For a given lineup set, calculate RAPM as quickly as possible */
    const buildStats = (
-      team: string,
+      team: string, labelColor: string,
       lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel,
    ) => {
       if (!lineupStats.lineups) {
@@ -117,7 +119,7 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
          preRapmTableData, playerInfo,
          adjustForLuck, avgEfficiency, genderYearLookup
       );
-      return _.orderBy(rapmInfo?.enrichedPlayers || [], p => -p.playerCode.length).map(
+      return _.chain(rapmInfo?.enrichedPlayers || []).map(
          p => { 
             const statObj = playerInfo[p.playerId];
             const offPoss = statObj.off_team_poss_pct?.value || 0;
@@ -125,6 +127,8 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
             const offRapmProd = (p.rapm?.off_adj_ppp?.value || 0)*offPoss;
             const defRapmProd = (p.rapm?.def_adj_ppp?.value || 0)*defPoss;
             return { 
+               seriesId: team,
+               labelColor,
                x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)), 
                y: -Math.min(graphLimit, Math.max(-graphLimit, defRapmProd)),
                color: offRapmProd - defRapmProd,
@@ -135,7 +139,7 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
                def_adj_rapm: p.rapm?.def_adj_ppp 
             };
          }
-      );
+      ).value(); 
    };
 
    // Tooltip:
@@ -154,64 +158,116 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
       payload?: any,
       label?: string,
     };
+
    const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
       const bOrW = (f: number) => {
          return `${Math.abs(f).toFixed(1)} ${f > 0 ? "better" : "worse"} than expected`;
       };
       if (active) {
-        const data = payload?.[0].payload || {};
-        const net = data.x + data.y;
-        return (
-          <div className="custom-tooltip" style={{
-            background: 'rgba(255, 255, 255, 0.9)',
-          }}><small>
-            <p className="label"><b>
-            {`${data.stats?.key}`}</b><br/>
-            <i>{`${data.posClass || "??"}`}
-            {` ${data.stats?.roster?.height || "?-?"}`}
-            </i></p>
-            <p className="desc">
-               <span>Net RAPM: <b>{net.toFixed(1)}</b> pts/100</span><br/>
-               <span>Off RAPM: <b>{data.x.toFixed(1)}</b> pts/100</span><br/>
-               <span>Def RAPM: <b>{(-data.y).toFixed(1)}</b> pts/100</span><br/>
-               <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data.stats).toFixed(1)}</b></span><br/>
-               <span>Usage: <b>{(fieldValExtractor("off_usage")(data.stats)*100).toFixed(1)}</b>%</span><br/>
-               <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data.stats)*40).toFixed(1)}</b></span><br/>
-            </p>
-         </small></div>
-        );
+         const data = payload?.[0].payload || {};
+         const net = data.x + data.y;
+
+         // Info needed for the performance breakdown
+         const _3pa = data.stats.total_off_3p_attempts?.value || 0;        
+         const _3pm = data.stats.total_off_3p_made?.value || 0;        
+         const _2pmida = data.stats.total_off_2pmid_attempts?.value || 0;        
+         const _2pmidm = data.stats.total_off_2pmid_made?.value || 0;        
+         const _2prima = data.stats.total_off_2prim_attempts?.value || 0;        
+         const _2primm = data.stats.total_off_2prim_made?.value || 0;        
+         const fta = data.stats.total_off_fta?.value || 0;        
+         const ftm = data.stats.total_off_ftm?.value || 0;        
+         const assists = data.stats.total_off_assist?.value || 0;
+         const tos = data.stats.total_off_to?.value || 0;
+         const orbs = data.stats.total_off_orb?.value || 0;
+         const drbs = data.stats.total_off_drb?.value || 0;
+         const pts = 3*_3pm + 2*(_2pmidm + _2primm) + ftm;
+         const trbs = orbs + drbs;
+
+         return (
+            <div className="custom-tooltip" style={{
+               background: 'rgba(255, 255, 255, 0.9)',
+            }}><small>
+               <p className="label">
+                  <b>{`${data.stats?.key}`}</b><br/>
+                  <b>{`${data.seriesId}`}</b><br/>
+                  <i>
+                     {`${data.stats?.roster?.height || "?-?"} `}
+                     {`${data.posClass || "??"}`}
+                  </i>
+               </p>
+               <p className="desc">
+                  <span><b>{pts}</b> pt{pts == 1 ? "" : "s"} // <b>{trbs}</b> RB{trbs == 1 ? "" : "s"} </span><br/>
+                  <br/>
+                  <span>Net RAPM: <b>{net.toFixed(1)}</b> pts/100</span><br/>
+                  <span>Off RAPM: <b>{data.x.toFixed(1)}</b> pts/100</span><br/>
+                  <span>Def RAPM: <b>{(-data.y).toFixed(1)}</b> pts/100</span><br/>
+                  <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data.stats).toFixed(1)}</b></span><br/>
+                  <span>Usage: <b>{(fieldValExtractor("off_usage")(data.stats)*100).toFixed(1)}</b>%</span><br/>
+                  <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data.stats)*40).toFixed(1)}</b></span><br/>
+                  <br/>
+                  <span>3P=[<b>{_3pm}/{_3pa}</b>] mid=[<b>{_2pmidm}/{_2pmida}</b>]</span><br/>
+                  <span>rim=[<b>{_2primm}/{_2prima}</b>] FT=[<b>{ftm}/{fta}</b>]</span><br/>
+                  <span>A:TO=[<b>{assists}</b>]:[<b>{tos}</b>]</span><br/>
+                  <span>ORBs=[<b>{orbs}</b>] DRBs=[<b>{drbs}</b>]</span><br/>
+               </p>
+            </small></div>
+         );
       }
       return null;
     };
-    
-   const scoreLines = [ -6, -2, 2, 6 ];
+
    const labelState = ScatterChartUtils.buildEmptyLabelState(); 
-   return  _.isEmpty(cachedStats.a) ? <div>(Loading...)</div> :
+   return  _.isEmpty(cachedStats.ab) ? <div/> :
       <ResponsiveContainer width={screenWidth} height={screenHeight}>
          <ScatterChart>
-            <XAxis type="number" dataKey="x" domain={[-graphLimit, graphLimit]}>
+            <defs>
+               <linearGradient id="xAxisGradient" x1="0" y1="0" x2={screenWidth} y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}/>
+                  <stop offset="100%" stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)} stopOpacity={1}/>
+               </linearGradient>
+               <linearGradient id="yAxisGradient" x1="0" y1="0" x2="0" y2={screenHeight} gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}/>
+                  <stop offset="100%" stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)} stopOpacity={1}/>
+               </linearGradient>
+            </defs>
+
+            <ReferenceLine y={0} strokeWidth={1}/>
+            <ReferenceLine x={0} strokeWidth={1}/>
+
+            <Legend verticalAlign="bottom" align="center" iconSize={8}/>
+            <XAxis 
+               type="number" dataKey="x" domain={[-graphLimit, graphLimit]}
+               axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
+            >
                <Label value={"Offensive RAPM"} position='top' style={{textAnchor: 'middle'}} />
             </XAxis>
-            <YAxis type="number" dataKey="y" domain={[-graphLimit, graphLimit]}>
+            <YAxis 
+               type="number" dataKey="y" domain={[-graphLimit, graphLimit]}
+               axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
+            >               
                <Label angle={-90} value={"Defensive RAPM"} position='insideLeft' style={{textAnchor: 'middle'}} />
             </YAxis>
             <CartesianGrid strokeDasharray="4"/>
-            <Scatter data={cachedStats.b} fill="green">
+            <Scatter data={cachedStats.ab} fill="black" shape="triangle" name={commonParams.team!}>
                {ScatterChartUtils.buildTidiedLabelList({
-                  maxHeight: screenHeight, maxWidth: screenWidth, textColorOverride: "purple", mutableState: labelState,
-                  dataKey: "name"
+                  maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
+                  dataKey: "name", series: cachedStats.ab
                })}
-               {_.values(cachedStats.b).map((p, index) => {
-                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/>
+               {_.values(cachedStats.ab).map((p, index) => {
+                  return p.seriesId == commonParams.team! ?
+                     <Cell key={`cellA-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/> :
+                     <Cell key={`cellA-${index}`} opacity={0}/>;
                })};
             </Scatter>
-            <Scatter data={cachedStats.a} fill="green" shape="triangle">
+            <Scatter data={cachedStats.ab} fill="purple" name={opponent}>
                {ScatterChartUtils.buildTidiedLabelList({
-                  maxHeight: screenHeight, maxWidth: screenWidth, textColorOverride: "black", mutableState: labelState,
-                  dataKey: "name"
+                  maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
+                  dataKey: "name", series: cachedStats.ab
                })}
-               {_.values(cachedStats.a).map((p, index) => {
-                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/>
+               {_.values(cachedStats.ab).map((p, index) => {
+                  return p.seriesId == opponent ?
+                     <Cell key={`cellB-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}/> :
+                     <Cell key={`cellB-${index}`} opacity={0}/>;
                })};
             </Scatter>
             <RechartTooltip

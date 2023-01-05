@@ -13,6 +13,8 @@ interface Rectangle {
    top: number;
    /** the lower number, ie the _higher_ value on the screen! */
    bottom: number; 
+
+   revalidatedPlacement?: boolean;
 };
 export interface LabelMoveState {
    labels: Rectangle[];
@@ -21,8 +23,11 @@ export interface LabelMoveState {
 export type TidyLabelListProps = LabelListProps<Record<string, any>> & {
    maxHeight: number,
    maxWidth: number,
-   textColorOverride?: string,
-   mutableState: LabelMoveState
+   mutableState: LabelMoveState, 
+   /** This is _all_ the series in the scatter chart, differentiated by labelColor property 
+    *  the points will be rendered 2nd time through
+   */
+   series: any[], 
 };
 
 export class ScatterChartUtils {
@@ -30,62 +35,128 @@ export class ScatterChartUtils {
       labels: [], dataPointSet: {}
    });
    
+   /** Builds 1 of >1 LabelLists (need >1 or the labels won't render) 
+    *  Note that the parent Scatter needs all series (same as props.series)
+    * and then you use Cell to make the "wrong" series points not be visible  
+   */
    static buildTidiedLabelList = (props: TidyLabelListProps) => {
       const renderCustomizedLabel = (labelProps: any, state: LabelMoveState) => {
          //console.log(labelProps); 
+         //console.log(`${labelProps.value} vs ${props.series[labelProps.index]?.name}`);
          const { index, x, y, cx, cy, width, height, value, fill } = labelProps;
-   
-         const approxTextWidth = (1 + 0.8*value.length)*width;
-         const approxTextHeight = 2.5*height;
-         const boxHeight = 3.5*height;
-         const offLeftOfScreen = x + approxTextWidth > props.maxWidth;
-         const offTopOfScreen = (y < approxTextHeight);
+         const dataPointObj = props.series[labelProps.index];
+         
+         const approxTextWidth = 6*value.length;  //(1 + 0.8*value.length)*width;
+         const approxTextHeight = 14; //2.5*height;
+         const boxHeight = height + approxTextHeight; //(add width/height padding)
+         const boxWidth = width + approxTextWidth;
+         const offRightOfScreen = x + approxTextWidth > props.maxWidth;
+         const toLeftMiddleOfScreen = (x >= 0.25*props.maxWidth) && (x <= 0.5*props.maxWidth);
+         const leftJustifyLabel = offRightOfScreen || toLeftMiddleOfScreen;
+         const offTopOfScreen = (y < (approxTextHeight + 0.5*height));
          const labelRectangle = {
             name: value,
-            left: offLeftOfScreen ? x - approxTextWidth : x, 
-            right: offLeftOfScreen ? x : x + approxTextWidth,
+            left: leftJustifyLabel ? x - approxTextWidth - 0.5*width : x, 
+            right: leftJustifyLabel ? x + 0.5*width : x + approxTextWidth + width,
    
-            top: offTopOfScreen ? (y + boxHeight) : (y + height), 
-            bottom: offTopOfScreen ? y : (y - approxTextHeight),
+            top: offTopOfScreen ? (y + approxTextHeight + height) : (y + 0.5*height), 
+            bottom: offTopOfScreen ? y : (y - (approxTextHeight + 0.5*height)),
          };
-         const rectangleOfIcon = { name: "dot", left: cx - width, right: cx + width, top: cy + height, bottom: cy - height };
-         const buildRect = _.thru(state.dataPointSet[value], rect => {
-            if (rect) {
+         const rectangleOfIcon = { 
+            name: `${value}-dot`, 
+            left: cx - 0.5*width, right: cx + 0.5*width, 
+            top: cy + 0.5*height, bottom: cy - 0.5*height
+         };
+         const cacheKey = `${dataPointObj?.seriesId}-${value}-${index}`;    
+         const buildRect = _.thru(state.dataPointSet[cacheKey], rect => {
+            // if (value == "XXX") console.log(`cacheLookup: ${cacheKey}: ${JSON.stringify(rect)} (state: ${state.labels.length})`);            
+            if (rect && rect.revalidatedPlacement) { //(probably third+ time through)
                return rect;
-            } else {
-               const adjustedRect = moveRectangle(labelRectangle, state.labels);
+            } else if (rect) { //(second time through)
+               // Double check placement now we've placed both teams
+               const iconRect = state.labels.find(rect1 => {
+                  return (`${rect.name}-dot` == rect1.name);
+               });
+               const adjustedRect = moveRectangle(rect, state.labels.filter(rect1 => {
+                  return rect1.name != iconRect?.name;
+               }), iconRect ? [ iconRect ] : []);
+       
+               // Adjust position (if needed)
+               rect.bottom = adjustedRect.bottom;
+               rect.top = adjustedRect.top;
+               rect.left = adjustedRect.left;
+               rect.right = adjustedRect.right;
+               rect.revalidatedPlacement = true; // OK, no more checking!
+               return rect;
+            } else { //(first time through)
+               const adjustedRect = moveRectangle(labelRectangle, state.labels, [ rectangleOfIcon ]);
                // Mutuate the state
                state.labels.push(adjustedRect);
                state.labels.push(rectangleOfIcon);
-               state.dataPointSet[value] = adjustedRect;
+               state.dataPointSet[cacheKey] = adjustedRect;
                return adjustedRect;
             }
          });
-         const textBlock = <text 
-            fontSize="small"
-            className="recharts-text recharts-label"
-            key={`label-${index}`} textAnchor="start" 
-            x={buildRect.left + width} y={buildRect.top - height} 
-            fill={props.textColorOverride || fill} name={value}
-         >{value}</text>;
-   
-         const lineEdgeX = cx > (buildRect.left + 0.5*approxTextWidth) ? buildRect.right : buildRect.left;
-   
-         const line = ((buildRect == labelRectangle) || doRectanglesOverlap(buildRect, rectangleOfIcon)) 
-            ? null :
-            <path 
-               d={`M${cx},${cy}L${lineEdgeX},${buildRect.top - 0.5*approxTextHeight}`} 
-               stroke="grey" fill="none" 
-               strokeDasharray="3,1"
-               />;
-         const debugRect = true ? null : 
-           <rect fill={"purple"} opacity={0.25} x={buildRect.left} y={buildRect.bottom} height={boxHeight} width={approxTextWidth}/>;
-   
-         return (<g>
-            {line}
-            {debugRect}
-            {textBlock}
-         </g>);
+
+         // The above code needs to be applied to all series' data points
+         // But now we only render elements for this series
+
+         if (buildRect.revalidatedPlacement) {
+            const showDebugRects = false;
+            const textBlock = <svg x={buildRect.left} y={buildRect.bottom} height={boxHeight} width={boxWidth}>
+               {showDebugRects ? 
+                  <rect x="0" y="0" height={boxHeight} width={boxWidth} fill={"purple"} opacity={0.25}/>
+                  :
+                  null
+               }
+               <text 
+                  fontSize="12px"
+                  className="recharts-text recharts-label"
+                  key={`label-${index}`} 
+                  x="50%" y="50%" dominantBaseline="middle" textAnchor="middle"
+                  fill={dataPointObj.labelColor || fill} name={value}
+               >{value}</text>
+            </svg>;
+         
+            const [ lineOtherEndX, lineOtherEndY ] = _.thru(buildRect, __ => {
+               const deltaX = Math.min(Math.abs(cx - buildRect.right), Math.abs(cx - buildRect.left));
+               const deltaY = buildRect.bottom - cy; //(recall bottom is lower y ie higher up screen)
+               const halfwayX = 0.5*(buildRect.left + buildRect.right);
+               const topToBottomLine = [ halfwayX, buildRect.bottom ];
+               const bottomToTopLine = [ halfwayX, buildRect.top ];
+               const verticalLine = deltaY > 0 ? topToBottomLine : bottomToTopLine;
+
+               if (deltaY >= 1.25*deltaX) { // label is below icon more than to the side
+                  // Line goes up/down, join to the top/middle of label
+                  return verticalLine;
+               } else if ((cx >= buildRect.left) && (cx <= buildRect.right)) {
+                  //(special case: icon is directly above label)
+                  return verticalLine;
+               } else {
+                  // Line goes left/right, join to the side of label
+                  const lineEdgeX = cx > halfwayX ? buildRect.right : buildRect.left;
+                  return [ lineEdgeX, 0.5*(buildRect.bottom + buildRect.top) ];
+               }
+            });
+
+            const line = ((buildRect == labelRectangle) || doRectanglesOverlap(buildRect, rectangleOfIcon)) 
+               ? null :
+               <path 
+                  d={`M${cx},${cy}L${lineOtherEndX},${lineOtherEndY}`} 
+                  stroke="grey" fill="none" 
+                  strokeDasharray="3,1"
+                  />;
+            const debugRectIcon = !showDebugRects ? null : 
+            <rect fill={"blue"} opacity={0.25} x={rectangleOfIcon.left} y={rectangleOfIcon.bottom} height={height} width={width}/>;
+      
+            return (<g>
+               {line}
+               {debugRectIcon}
+               {textBlock}
+            </g>);
+         } else { // (hasn't finalized its position yet, don't render)
+            return null;
+         }
       };
    
       // CHAT GPT CODE (j/k I had to rewrite it all, ChatGPT is not the best!)
@@ -106,17 +177,25 @@ export class ScatterChartUtils {
          return { name: "overlap", left, right, top, bottom };
       };
       function buildNonOverlappingRectangles(rect: Rectangle, overlappers: Rectangle): Rectangle[] {
-         const [ dx1, dx2 ] = getOverlap(rect.left, rect.right, overlappers.left, overlappers.right);
+         const [ dxPre1, dxPre2 ] = getOverlap(rect.left, rect.right, overlappers.left, overlappers.right);
          const [ dyPre1, dyPre2 ] = getOverlap(rect.top, rect.bottom, overlappers.top, overlappers.bottom);
    
+         //if (rect.name == "XXX") console.log(`name=[${rect.name}] DX=[${dxPre1}, ${dxPre2}] DY=[${dyPre1}, ${dyPre2}]`)
+
+         const dx1 = dxPre1 || dyPre1;
+         const dx2 = dxPre2 || dyPre2; //(handle the case where x is 0, just to give the rectangle some wiggle room)
+
          const dy1 = 0.5*(dyPre1 + dx1); //(y adjustments are normally too small compared to x)
          const dy2 = 0.5*(dyPre2 + dx2); //(y adjustments are normally too small compared to x)
    
-         return _.orderBy(_.flatMap(_.range(1, 4), i => { return [ // Lots of combos:
-               [ i*dx1, 0 ], [ i*dx2, 0], 
-               [ i*0.5*dx1, i*0.5*dy1 ], [ i*0.5*dx1, i*0.5*dy2 ], [ i*0.5*dx2, i*0.5*dy1 ], [ i*0.5*dx2, i*0.5*dy2 ],
-               [ i*dx1, i*dy1 ], [ i*dx1, i*dy2 ], [ i*dx2, i*dy1 ], [ i*dx2, i*dy2 ]
-            ] }), (dXdY: number[]) => (dXdY[0]!*dXdY[0]! + dXdY[1]!*dXdY[1]!)
+         //(in the list of scalars below, empirically 1 was too low, the labels were still too close)
+         return _.orderBy(_.flatMap([ 1.2, 2, 3, 4 ], i => { return [ // Lots of combos:
+               [ i*dx1, 0 ], [ i*dx2, 0 ], 
+               [ 0, i*dyPre1 ], [ 0, i*dyPre2 ], //(do allow the smaller vertical jumps as well)
+               [ 0, i*dy1 ], [ 0, i*dy2 ], 
+               [ i*dx1, i*dy1 ], [ i*dx1, i*dy2 ], [ i*dx2, i*dy1 ], [ i*dx2, i*dy2 ],
+               [ i*dy1, i*dx1 ], [ i*dy1, i*dx2 ], [ i*dy2, i*dx1 ], [ i*dy2, i*dx2 ] // rotate allowed jumps by 90deg
+            ] }), (dXdY: number[]) => (dXdY[0]!*dXdY[0]! + dXdY[1]!*dXdY[1]!) //(try closest first)
          ).filter((dXdY: number[]) => {
             const [ dx, dy ] = dXdY;
             return (rect.left + dx >= 0) && (rect.bottom + dy >= 0) 
@@ -132,27 +211,28 @@ export class ScatterChartUtils {
             };
          });
       }
-      function moveRectangle(rectangle: Rectangle, rectangles: Rectangle[]): Rectangle {
+      function moveRectangle(rectangle: Rectangle, rectangles: Rectangle[], iconRect: Rectangle[]): Rectangle {
          // Create a list of all the rectangles that overlap with my rectangle
          const overlappingRectangles = rectangles.filter(rect1 => {
-           return rect1 !== rectangle && doRectanglesOverlap(rect1, rectangle);
+           return (rect1.name != rectangle.name) && doRectanglesOverlap(rect1, rectangle);
          });
          if (_.isEmpty(overlappingRectangles)) {
             // console.log(`No match for ${JSON.stringify(rectangle)} vs ${JSON.stringify(rectangles)}`)         
             return rectangle;
          }
          // Otherwise we have some overlap
-         const minCoveringRectangle = generateSmallestCoveringRectangle(overlappingRectangles);
+         const minCoveringRectangle = generateSmallestCoveringRectangle(overlappingRectangles.concat(iconRect));
          const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectangle);
    
-         // console.log(`${JSON.stringify(rectangle)} -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
+         // if (rectangle.name == "TeWilliams")console.log(`${JSON.stringify(rectangle)} -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
    
-         // Pick the closest rectangle that hits none of the others
+         // Pick the closest rectangle that hits none of the others      
+         const rectanglesPlusLabel = rectangles.concat(iconRect);
          const rectangeToReturn = _.find(candidateRectangles || [], rect => {
-            const overlapping = rectangles.find(rect1 => {
+            const overlapping = rectanglesPlusLabel.find(rect1 => {
                const doOverlap = doRectanglesOverlap(rect1, rect)
-               //if (rectangle.name == "XXX") console.log(`CMP ${JSON.stringify(rect)} vs ${JSON.stringify(rect1)}: ${doOverlap}`)
-               return (rect1 !== rectangle) && doOverlap;
+               //if (doOverlap && (rectangle.name == "TeWilliams")) console.log(`CMP ${JSON.stringify(rect)} vs ${JSON.stringify(rect1)}: ${doOverlap}`)
+               return (rect1.name != rectangle.name) && doOverlap;
              });
             //  if (!overlapping) {
             //    console.log(`2nd check: ${JSON.stringify(rect)}: overlaps: [${JSON.stringify(overlapping)}]`)
@@ -184,6 +264,8 @@ export class ScatterChartUtils {
          return cmp(rectA, rectB) || cmp(rectB, rectA);
        }
        
+      //(for comparison:)
+      //return <LabelList {...props} position="insideBottomLeft"/>;
       return <LabelList {...props} content={(p) => renderCustomizedLabel(p, props.mutableState)}/>;
    };
 };

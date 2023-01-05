@@ -84,6 +84,11 @@ export class RequestUtils {
             const rosterJsonUri = (encodeEncodePrefix: boolean) =>
               `/rosters/${req.paramsObj.gender}_${(req.paramsObj.year || "").substring(0, 4)}`
               + `/${RequestUtils.fixRosterUrl(req.paramsObj.team || "", encodeEncodePrefix)}.json`;
+
+            if (isDebug) {
+              console.log(`Attaching roster from ${rosterJsonUri(encodeEncodePrefix)}`);
+            }
+
             return fetch(
               rosterJsonUri(encodeEncodePrefix)
             ).then(

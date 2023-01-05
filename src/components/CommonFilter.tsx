@@ -216,7 +216,8 @@ const CommonFilter: CommonFilterI = ({
     }
 
     const fetchUrl = (url: string, force: boolean) => {
-      return !onLoad || force ? //(if onLoad - JSON cache, or wait for user to hit submit)
+      const alwaysAllow = true; //used to force submit, but we now we just always load page
+      return (!onLoad || force) || alwaysAllow ? //(if onLoad - JSON cache, or wait for user to hit submit)
         fetchWithRetry(url).then((response: fetch.IsomorphicResponse) => {
           return response.json().then((json: any) => [json, response.ok, response]);
         }) :
