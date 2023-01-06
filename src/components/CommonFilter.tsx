@@ -69,6 +69,7 @@ interface Props<PARAMS> {
   onChangeState: (newParams: PARAMS) => void;
   onChangeCommonState: (newCommonParams: CommonFilterParams) => void;
   tablePrefix: ParamPrefixesType,
+  tablePrefixForPrimaryRequest?: ParamPrefixesType, //(goes with primary request, normally same as tablePrefix)
   buildParamsFromState: (includeFilterParams: Boolean) => [ PARAMS, FilterRequestInfo[] ];
   childHandleResponse: (json: any, wasError: Boolean) => void;
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
@@ -94,7 +95,7 @@ type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
 const CommonFilter: CommonFilterI = ({
     children,
     startingState, onChangeState, onChangeCommonState,
-    tablePrefix, buildParamsFromState, childHandleResponse,
+    tablePrefix, tablePrefixForPrimaryRequest, buildParamsFromState, childHandleResponse,
     majorParamsDisabled,
     forceReload1Up,
     matchupMode,
@@ -190,10 +191,12 @@ const CommonFilter: CommonFilterI = ({
 
   /** Was the session active recently enough that we'll auto-load? */
   const isSessionActive = () => {
-    const thresholdMs = 24*3600*1000; //(1 day)
-    const lastActive = parseInt((ls as any).get(sessionActiveKey));
-    const now = new Date().getTime();
-    return (now - lastActive) < thresholdMs; //4hrs
+    // const thresholdMs = 24*3600*1000; //(1 day)
+    // const lastActive = parseInt((ls as any).get(sessionActiveKey));
+    // const now = new Date().getTime();
+    // return (now - lastActive) < thresholdMs; //4hrs
+    // Let's just start auto-loading everything
+    return true;
   }
   /** Update session activity */
   const registerSessionActivity = (sessionActive: boolean) => {
@@ -211,13 +214,12 @@ const CommonFilter: CommonFilterI = ({
     const sessionActive = isSessionActive();
     const onLoad = onLoadIn && !sessionActive; //(ie always false if session active)
     if (!onLoadIn) registerSessionActivity(sessionActive); //(pressed button => session active)
-    if (onLoadIn && !onLoad) { // (user visited page but we're going to load it anyway)
+    if (onLoadIn && !onLoad) { // (user visited page but we're going to load it anyway)      
       setQueryIsLoading(true);
     }
 
     const fetchUrl = (url: string, force: boolean) => {
-      const alwaysAllow = true; //used to force submit, but we now we just always load page
-      return (!onLoad || force) || alwaysAllow ? //(if onLoad - JSON cache, or wait for user to hit submit)
+      return (!onLoad || force) ? //(if onLoad - JSON cache, or wait for user to hit submit)
         fetchWithRetry(url).then((response: fetch.IsomorphicResponse) => {
           return response.json().then((json: any) => [json, response.ok, response]);
         }) :
@@ -226,7 +228,7 @@ const CommonFilter: CommonFilterI = ({
     const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
     const allPromises = Promise.all(
       RequestUtils.requestHandlingLogic(
-        primaryRequest, tablePrefix, otherRequests,
+        primaryRequest, tablePrefixForPrimaryRequest || tablePrefix, otherRequests,
         fetchUrl,
         currentJsonEpoch, isDebug
       )
@@ -394,8 +396,20 @@ const CommonFilter: CommonFilterI = ({
           return [
             [ "LineupAnalyzer", newUrl ],
           ];
+        } 
+      } else if (tablePrefix == ParamPrefixes.gameInfo) {
+        if (gender == "Women") {
+          const newUrl = `${PreloadedDataSamples.womenSingleGames}`;
+          return [
+            [ "MatchupAnalyzer", newUrl ],
+          ];
+        } else { //(default is men)
+          const newUrl = `${PreloadedDataSamples.menSingleGames}`;
+          return [
+            [ "MatchupAnalyzer", newUrl ],
+          ];
         }
-      }
+      } 
       return [ ["", ""] ];
     })();
     const pageAndParam = prefixesAndParamStrs[0] as [ string, string ];
@@ -497,6 +511,8 @@ const CommonFilter: CommonFilterI = ({
           return UrlRouting.getLineupUrl({}, {});
         } else if (tablePrefix == ParamPrefixes.report) {
           return UrlRouting.getTeamReportUrl({});
+        } else if (tablePrefix == ParamPrefixes.gameInfo) {
+          return UrlRouting.getMatchupUrl({});
         } else {
           return undefined;
         }

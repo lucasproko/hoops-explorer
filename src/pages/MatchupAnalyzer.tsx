@@ -35,7 +35,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from '../utils/HistoryManager';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import MatchupFilter from '../components/MatchupFilter';
-import SingleGameRapmChart from '../components/SingleGameRapmChart';
+import PlayerImpactChart from '../components/PlayerImpactChart';
 import { buildOppoFilter } from '../components/MatchupFilter';
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
@@ -140,9 +140,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   /** Only rebuild the table if the data changes */
   const chart = React.useMemo(() => {
-    return  <GenericCollapsibleCard minimizeMargin={true} title="Single-Game RAPM" helpLink={maybeShowDocs()}>
+    return  <GenericCollapsibleCard minimizeMargin={true} title="Player Impact Chart" helpLink={maybeShowDocs()}>
         <Col xs={12} className="text-center d-flex justify-content-center">
-      <SingleGameRapmChart
+      <PlayerImpactChart
         startingState={matchupFilterParamsRef.current || {}}
         opponent={buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""}
         dataEvent={dataEvent}
@@ -151,6 +151,30 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       </Col>
     </GenericCollapsibleCard>
   }, [ dataEvent ]);
+
+  const gameParams = (team: string, subFor?: string): GameFilterParams => ({
+    team,
+    minRank: "1", maxRank: "400",
+    gender: matchupFilterParams.gender,
+    year: matchupFilterParams.year,
+    baseQuery: subFor ? 
+      (matchupFilterParams.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+      : matchupFilterParams.baseQuery,
+    showRoster: true,
+    calcRapm: true,
+    showExpanded: true
+  });
+  const lineupParams = (team: string, subFor?: string): LineupFilterParams => ({
+    team,
+    minRank: "1", maxRank: "400",
+    gender: matchupFilterParams.gender,
+    year: matchupFilterParams.year,
+    minPoss: "0",
+    baseQuery: subFor ? 
+      (matchupFilterParams.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+      : matchupFilterParams.baseQuery,
+  });
+  const opponentName = buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team;
 
   return <Container>
     <Row>
@@ -161,20 +185,31 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     <Row>
       <HeaderBar
         common={matchupFilterParams}
-        thisPage={ParamPrefixes.lineup}
+        thisPage={ParamPrefixes.gameInfo}
         />
     </Row>
     <Row>
       <GenericCollapsibleCard
         minimizeMargin={false}
         title="Team and Game Filter"
-        summary={HistoryManager.lineupFilterSummary(matchupFilterParams)}
+        summary={HistoryManager.gameReportFilterSummary(matchupFilterParams)}
       >
         <MatchupFilter
           onStats={injectStats}
           startingState={matchupFilterParams}
           onChangeState={onMatchupFilterParamsChange}
         />
+        {(dataEvent.lineupStatsA.lineups.length && 
+          matchupFilterParams.team && opponentName
+          ) ? <Col className="text-center w-100">
+            <small>Links: &nbsp;
+              <a target="_blank" href={UrlRouting.getGameUrl(gameParams(matchupFilterParams.team), {})}>Team stats</a> /&nbsp;
+              <a target="_blank" href={UrlRouting.getLineupUrl(lineupParams(matchupFilterParams.team), {})}>Team lineups</a> /&nbsp;
+              <a target="_blank" href={UrlRouting.getGameUrl(gameParams(opponentName, matchupFilterParams.team), {})}>Opponent stats</a> /&nbsp;
+              <a target="_blank" href={UrlRouting.getLineupUrl(lineupParams(opponentName, matchupFilterParams.team), {})}>Opponent lineups</a>
+            </small>
+          </Col> : null
+        }
       </GenericCollapsibleCard>
     </Row>
     <Row>

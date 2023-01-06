@@ -32,7 +32,7 @@ type Props = {
 
 const graphLimit = 10.0;
 
-const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opponent, dataEvent, onChangeState}) => {
+const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, opponent, dataEvent, onChangeState}) => {
    const { lineupStatsA, teamStatsA, rosterStatsA, lineupStatsB, teamStatsB, rosterStatsB } = dataEvent;
 
    // Model
@@ -297,5 +297,5 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
          </ScatterChart>
       </ResponsiveContainer>;
 }
-export default SingleGameRapmChart;
+export default PlayerImpactChart;
 

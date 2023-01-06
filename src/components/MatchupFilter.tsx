@@ -72,8 +72,6 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
-  const cacheKeyPrefix = ParamPrefixes.lineup;
-
   const [ game, setGame ] = useState(startingState.oppoTeam || "");
 
   // Utils
@@ -295,7 +293,8 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
       startingState={startingState}
       onChangeState={onChangeState}
       onChangeCommonState={updateCommonParams}
-      tablePrefix = {cacheKeyPrefix}
+      tablePrefix={ParamPrefixes.gameInfo}
+      tablePrefixForPrimaryRequest = {ParamPrefixes.lineup}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       matchupMode={true}

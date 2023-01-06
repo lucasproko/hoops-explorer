@@ -146,7 +146,6 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     if (rosterInfo) {
       globalTeam.roster = rosterInfo;
     }
-
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined

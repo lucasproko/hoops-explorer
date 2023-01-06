@@ -9,6 +9,7 @@ import LZUTF8 from 'lzutf8';
 import { QueryUtils } from "./QueryUtils";
 
 import { ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from "../utils/FilterModels";
+import { MatchupFilterParams } from './FilterModels';
 
 /** Wraps the local storage based cache of recent requests */
 export class HistoryManager {
@@ -323,7 +324,15 @@ export class HistoryManager {
       ;
     return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery}${luckCfgParams}${luckParams} (${otherParams})`;
   }
+
+  /** Returns a summary string for the game filter */
+  static gameReportFilterSummary(p: MatchupFilterParams) {
+    const oppoTeam = p.oppoTeam || "";
+    const prefixForOppoTeam = (_.startsWith(oppoTeam, "vs" ) || _.startsWith(oppoTeam, "@")) ? "" : "- ";
+    return `Game Report: ${p.team} ${prefixForOppoTeam} ${p.oppoTeam}`;
+  }
 }
+
 /** (handy util) */
 function tidyQuery(q: string | undefined | null): string {
   return (q || "").replace(/'/g, '"');

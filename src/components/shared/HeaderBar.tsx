@@ -19,7 +19,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults, TeamLeaderboardParams, TeamEditorParams } from '../../utils/FilterModels';
+import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, MatchupFilterParams, TeamLeaderboardParams, TeamEditorParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 import { DateUtils } from '../../utils/DateUtils';
@@ -202,6 +202,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const chartTooltip = (
     <Tooltip id="lastReportTooltip">View a gallery of interesting basketball analytics charts</Tooltip>
   );
+  const gameReportTooltip = (
+    <Tooltip id="gameReportTooltip">Charts and tables for individual games</Tooltip>
+  );
   const transferAnalysisTooltip = (
     <Tooltip id="lastReportTooltip">Analyze transfers' performance vs predicted</Tooltip>
   );
@@ -256,6 +259,29 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem("Last", lastTooltip, lastUrl)}
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>;
+  };
+
+  /** Build a nice looking nav dropdown */
+  const buildReportDropdown = () => {
+    //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
+    return <Dropdown
+    >
+        <Dropdown.Toggle id={getBaseReportUrl()} as={StyledDropdown as unknown as undefined}>{"Reports"}</Dropdown.Toggle>
+        <Dropdown.Menu style={dropdownStyle}>
+        <Dropdown.Item>
+            {buildNavItem("Game Reports", gameReportTooltip, UrlRouting.getMatchupUrl(
+              getCommonFilterParams(common) as MatchupFilterParams)
+            )}
+          </Dropdown.Item>
+          <Dropdown.Divider/>
+          <Dropdown.Item>
+            {buildNavItem("Base", baseReportTooltip, getBaseReportUrl())}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem("Last", lastReportTooltip, getLastReportUrl())}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>;
@@ -354,12 +380,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             // <Dropdown.Item>
             //   {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
             // </Dropdown.Item>
+
+            //TODO: would be nice to resurrect this one
+            // <Dropdown.Item>
+            //   {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+            // </Dropdown.Item>
             }
             <Dropdown.Item>
               {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
-            </Dropdown.Item>
-            <Dropdown.Item>
-              {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
             </Dropdown.Item>
           </Dropdown.Menu>
         }
@@ -396,12 +424,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
               {buildNavDropdown("Lineups", baseLineupTooltip, getBaseLineupUrl(), lastLineupTooltip, getLastLineupUrl())}
             </Col> : null
         }
-        {(thisPage != ParamPrefixes.report) ?
+        {true /*(thisPage != ParamPrefixes.report)*/ ? // always show this because we have game reports and team reports
           <Col className="text-center small">
-            {buildNavDropdown("Reports", baseReportTooltip, getBaseReportUrl(), lastReportTooltip, getLastReportUrl())}
+              
+            {buildReportDropdown()
+            //used to be
+            //buildNavDropdown("Reports", baseReportTooltip, getBaseReportUrl(), lastReportTooltip, getLastReportUrl())
+            }
           </Col> : null
         }
-        {(thisPage != "charts") ?
+        {(thisPage != "charts") ? 
           <Col className="text-center small">
             {buildChartDropdown()}
           </Col> : null

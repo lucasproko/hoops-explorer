@@ -27,6 +27,11 @@ export class PreloadedDataSamples {
   static readonly womenLineupOnOffSeason =
     'baseQuery=&gender=Women&maxRank=400&minRank=0&offQuery=&onQuery=&team=Maryland&year=2018%2F9';
 
+  static readonly menSingleGames =
+    'baseQuery=opponent.team%3A%22North%20Carolina%22%20AND%20date%3A2022-04-04&gender=Men&maxRank=400&minRank=0&oppoTeam=vs%20North%20Carolina%20%282022-04-04%29%3A%20W%2072-69&team=Kansas&year=2021%2F22&';
+  static readonly womenSingleGames =
+    'baseQuery=opponent.team%3A%22Louisville%22%20AND%20date%3A2022-04-01&gender=Women&maxRank=400&minRank=0&oppoTeam=vs%20Louisville%20%282022-04-01%29%3A%20W%2072-59&team=South%20Carolina&year=2021%2F22&';
+
   //(menLineup and womenLineup re-used for pre-loaded Team On/Off Report samples)
 }
 
