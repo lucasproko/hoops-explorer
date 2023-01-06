@@ -13,11 +13,28 @@ export class TeamReportTableUtils {
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   static buildOrInjectRapm(
-    enrichedLineups: Array<LineupStatSet>, playerInfo: Record<PlayerId, IndivStatSet>,
+    enrichedLineups: Array<LineupStatSet>, playerInfoIn: Record<PlayerId, IndivStatSet>,
     adjustForLuck: Boolean, avgEfficiency: number, genderYearLookup: string, 
     preCalcTeamReport: undefined | Record<string, any> = undefined, //(can calculate this in advance if using anyway)
     rapmPriorMode: number = -1, rapmDiagMode: string = ""
   ): RapmInfo | undefined {
+
+    //TODO: an attempt to fix [Invalid matrix: m < n] error in single game RAPM
+    // (eg see http://localhost:3000/MatchupAnalyzer?baseQuery=opponent.team%3A%22Purdue%22%20AND%20date%3A2023-01-05&gender=Men&maxRank=400&minRank=0&oppoTeam=Purdue%20%282023-01-05%29%3A%20L%2069-71&team=Ohio%20St.&year=2022%2F23&)
+    // This didn't work at all, so needs more analysis
+    // Problem is 'RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext)'
+    //
+    // Math doesn't work, so we pull out the players with the least possessions first:
+    // const maxMatrixDiff = 1;
+    // const playerInfo = (_.size(playerInfoIn) < (enrichedLineups.length + maxMatrixDiff)) ? _.chain(playerInfoIn)
+    //   .values()
+    //   .orderBy(p => -(p.off_team_poss?.value || 0))
+    //   .take(enrichedLineups.length - maxMatrixDiff)
+    //   .map(p => [ p.key, p ] as [ PlayerId, IndivStatSet ]).fromPairs()
+    //   .value() : playerInfoIn;
+
+    const playerInfo = playerInfoIn;
+
     //TODO (#4): manual edits don't show as override (so can't see original value) - fix at some point
     // but not worth delaying over
 
@@ -78,7 +95,8 @@ export class TeamReportTableUtils {
           defInputs: defRapmInputs
         };
       } catch (err) {
-        console.log(`Error calculating RAPM for [${valueKey}]: [${err.message}]`);
+        console.log(`Error calculating RAPM for [${valueKey}]: [${err.message}] (players=[${_.size(playerInfoIn)}]->[${_.size(playerInfo)}] vs [${_.size(enrichedLineups)}])`);
+        //console.log(`Error calculating RAPM for [${valueKey}]: [${err.message}] (players=[${_.size(playerInfoIn)}]->[${_.size(playerInfo)}] vs [${_.size(enrichedLineups)}])`, err);
         return undefined;
       }
     });

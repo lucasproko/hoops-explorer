@@ -9312,12 +9312,51 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 >
                   <span>
                     <br />
-                    <span>
+                    <span
+                      style={
+                        Object {
+                          "display": "flex",
+                        }
+                      }
+                    >
                       <b>
                         Scoring Analysis: [
                         On ('A')
                         ]
                       </b>
+                      <div
+                        style={
+                          Object {
+                            "display": "flex",
+                          }
+                        }
+                      >
+                         | 
+                        <i>
+                          quick-toggles:
+                        </i>
+                         
+                        <div>
+                          [
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Off ('B')
+                          </a>
+                          ] 
+                        </div>
+                        <div>
+                          [
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Baseline
+                          </a>
+                          ] 
+                        </div>
+                      </div>
                     </span>
                     <br />
                     <br />
@@ -23609,12 +23648,51 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 >
                   <span>
                     <br />
-                    <span>
+                    <span
+                      style={
+                        Object {
+                          "display": "flex",
+                        }
+                      }
+                    >
                       <b>
                         Scoring Analysis: [
                         Off ('B')
                         ]
                       </b>
+                      <div
+                        style={
+                          Object {
+                            "display": "flex",
+                          }
+                        }
+                      >
+                         | 
+                        <i>
+                          quick-toggles:
+                        </i>
+                         
+                        <div>
+                          [
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            On ('A')
+                          </a>
+                          ] 
+                        </div>
+                        <div>
+                          [
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Baseline
+                          </a>
+                          ] 
+                        </div>
+                      </div>
                     </span>
                     <br />
                     <br />
@@ -37906,12 +37984,51 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 >
                   <span>
                     <br />
-                    <span>
+                    <span
+                      style={
+                        Object {
+                          "display": "flex",
+                        }
+                      }
+                    >
                       <b>
                         Scoring Analysis: [
                         Baseline
                         ]
                       </b>
+                      <div
+                        style={
+                          Object {
+                            "display": "flex",
+                          }
+                        }
+                      >
+                         | 
+                        <i>
+                          quick-toggles:
+                        </i>
+                         
+                        <div>
+                          [
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            On ('A')
+                          </a>
+                          ] 
+                        </div>
+                        <div>
+                          [
+                          <a
+                            href="#"
+                            onClick={[Function]}
+                          >
+                            Off ('B')
+                          </a>
+                          ] 
+                        </div>
+                      </div>
                     </span>
                     <br />
                     <br />

@@ -269,6 +269,23 @@ export class TeamStatsTableUtils {
       const showingOn = teamStats.on?.doc_count ? true : false;
       const showingOnOrOff = showingOn || (teamStats.off?.doc_count ? true : false);
     
+      const teamPlayTypeQuickSwitchOptions = [{
+        title: "On ('A')", players: rosterStats["on"] || [],
+        rosterStatsByCode: globalRosterStatsByCode,
+        teamStats: teamStatsByQuery["on"],
+        teamSeasonLookup: teamSeasonLookup, showHelp
+      },{
+        title: "Off ('B')", players: rosterStats["off"] || [],
+        rosterStatsByCode: globalRosterStatsByCode,
+        teamStats: teamStatsByQuery["off"],
+        teamSeasonLookup: teamSeasonLookup, showHelp
+      },{
+        title: "Baseline", players: rosterStats["baseline"] || [],
+        rosterStatsByCode: globalRosterStatsByCode,
+        teamStats: teamStatsByQuery["baseline"],
+        teamSeasonLookup: teamSeasonLookup, showHelp
+      }].filter(opt => (opt.teamStats.doc_count || 0) > 0 );
+
       /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
       const buildTableEntries = (queryKey: OnOffBaselineEnum, displayKey: string): TeamStatsBreakdown | undefined => {
         const queryIndex = (queryKey == "baseline") ? 0 : (
@@ -327,15 +344,15 @@ export class TeamStatsTableUtils {
             const teamDiagRows = _.flatten([
                showGameInfo ? [ GenericTableOps.buildTextRow(
                   <GameInfoDiagView
-                  oppoList={
-                     LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey[queryKey].game_info) ?
-                        LineupUtils.getGameInfo(totalLineupsByQueryKey[queryKey].game_info || {}) 
-                        :
-                        (totalLineupsByQueryKey[queryKey].game_info as GameInfoStatSet[])
-                  }
-                  orderedOppoList={_.clone(orderedMutableOppoList[queryKey])}
-                  params={{}}
-                  maxOffPoss={-1}
+                    oppoList={
+                      LineupUtils.isGameInfoStatSet(totalLineupsByQueryKey[queryKey].game_info) ?
+                          LineupUtils.getGameInfo(totalLineupsByQueryKey[queryKey].game_info || {}) 
+                          :
+                          (totalLineupsByQueryKey[queryKey].game_info as GameInfoStatSet[])
+                    }
+                    orderedOppoList={_.clone(orderedMutableOppoList[queryKey])}
+                    params={{}}
+                    maxOffPoss={-1}
                   />, "small pt-2"
                )] : [],
                showLuckAdjDiags && luckAdjustment[queryKey] ? [ GenericTableOps.buildTextRow(
@@ -349,12 +366,15 @@ export class TeamStatsTableUtils {
                ) ] : [] ,
                showPlayTypes ?[ GenericTableOps.buildTextRow(
                   <TeamPlayTypeDiagView
-                  title={displayKey}
-                  players={rosterStats[queryKey] || []}
-                  rosterStatsByCode={globalRosterStatsByCode}
-                  teamStats={teamStatsByQuery[queryKey]}
-                  teamSeasonLookup={teamSeasonLookup}
-                  showHelp={showHelp}
+                    title={displayKey}
+                    players={rosterStats[queryKey] || []}
+                    rosterStatsByCode={globalRosterStatsByCode}
+                    teamStats={teamStatsByQuery[queryKey]}
+                    teamSeasonLookup={teamSeasonLookup}
+                    quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(opt =>
+                      opt.title != displayKey
+                    )}
+                    showHelp={showHelp}
                   />, "small"
                   ) ] : [],
             ]);

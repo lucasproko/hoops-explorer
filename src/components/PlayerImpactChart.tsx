@@ -214,7 +214,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
                   </i>
                </p>
                <p className="desc">
-                  <span><b>{pts}</b> pt{pts == 1 ? "" : "s"} // <b>{trbs}</b> RB{trbs == 1 ? "" : "s"} </span><br/>
+                  <span><b>{pts}</b> pt{pts == 1 ? "" : "s"} / <b>{trbs}</b> RB{trbs == 1 ? "" : "s"} </span><br/>
                   <br/>
                   <span>Net RAPM: <b>{net.toFixed(1)}</b> pts/100</span><br/>
                   <span>Off RAPM: <b>{data.x.toFixed(1)}</b> pts/100</span><br/>

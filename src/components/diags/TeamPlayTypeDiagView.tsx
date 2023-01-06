@@ -44,9 +44,20 @@ type Props = {
   rosterStatsByCode: Record<string, any>,
   teamStats: Record<string, any>,
   teamSeasonLookup: string,
+  quickSwitchOptions?: Props[]
   showHelp: boolean
 };
-const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({title, players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp}) => {
+const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
+  title, players: playersIn, rosterStatsByCode, teamStats: teamStatsIn, teamSeasonLookup, quickSwitchOptions, showHelp
+}) => {
+  const [ quickSwitch, setQuickSwitch ] = useState<string | undefined>(undefined);
+  const players = (quickSwitch ? 
+    _.find(quickSwitchOptions || [], opt => opt.title == quickSwitch)?.players
+    : playersIn) || [];
+  const teamStats = (quickSwitch ? 
+    _.find(quickSwitchOptions || [], opt => opt.title == quickSwitch)?.teamStats
+    : teamStatsIn) || [];
+
   // Repeat the logic in PlayerTypeTypeDiagView:
 
   const teamScoringPossessions =
@@ -156,6 +167,13 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({title, players, r
       <Tooltip id={id + "Tooltip"}>{tooltip}</Tooltip>
     }><i>{title}</i></OverlayTrigger>;
 
+  const quickSwitchBuilder = _.map(quickSwitchOptions || [], opt => opt.title).map((t, index) => {
+    return <div key={`quickSwitch-${index}`}>[<a href="#" onClick={e => {
+      e.preventDefault();
+      setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+    }}>{t}</a>]&nbsp;</div>
+  });
+
   const rawAssistTableData = [
     GenericTableOps.buildTextRow(
       <Row>
@@ -219,8 +237,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({title, players, r
   return <span>
     {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
     <br/>
-    <span>
-      <b>Scoring Analysis: [{title}]</b>
+    <span style={{ display: "flex" }}>
+      <b>Scoring Analysis: [{quickSwitch || title}]</b>
+      {_.isEmpty(quickSwitchOptions) ? null : <div style={{ display: "flex" }}>&nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;{quickSwitchBuilder}</div>}
     </span>
     <br/>
     <br/>
