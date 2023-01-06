@@ -56,19 +56,24 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
    //(would only need these if using dynamic sizing)
    // const latestScreenHeight = useRef(screenHeight);
    // const latestScreenWidth = useRef(screenWidth);
+   const calcWidthHeight = (): [ number, number ] => {
+      const baseHeight = Math.max(0.5*window.innerHeight, 400);
+      const baseWidth = Math.max(baseHeight, Math.max(0.5*window.innerWidth, 400));
+      return [ baseWidth, baseHeight ];
+   };
    useEffect(() => {
      function handleResize() {
          setTimeout(() => {
-            const baseHeight = Math.max(0.5*window.innerHeight, 400);
-            const baseWidth = Math.max(baseHeight, Math.max(0.5*window.innerWidth, 400));
+            const [ baseWidth, baseHeight ] = calcWidthHeight();
             setScreenHeight(baseHeight);
             setScreenWidth(baseWidth);
          }, 250);
      }
      window.addEventListener('resize', handleResize);
-     setScreenHeight(0.5*window.innerHeight);
-     setScreenWidth(0.5*window.innerWidth);
-     return () => window.removeEventListener('resize', handleResize);
+     const [ baseWidth, baseHeight ] = calcWidthHeight();
+     setScreenHeight(baseHeight);
+     setScreenWidth(baseWidth);
+      return () => window.removeEventListener('resize', handleResize);
    }, []);
 
    // RAPM building
@@ -266,7 +271,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
                <Label angle={-90} value={"Defensive RAPM"} position='insideLeft' style={{textAnchor: 'middle'}} />
             </YAxis>
             <CartesianGrid strokeDasharray="4"/>
-            <Scatter data={cachedStats.ab} fill="black" shape="triangle" name={commonParams.team!}>
+            <Scatter data={cachedStats.ab} fill="black" shape="triangle" name={commonParams.team!} legendType="triangle">
                {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
                   dataKey: "name", series: cachedStats.ab
@@ -277,7 +282,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
                      <Cell key={`cellA-${index}`} opacity={0}/>;
                })};
             </Scatter>
-            <Scatter data={cachedStats.ab} fill="purple" name={opponent}>
+            <Scatter data={cachedStats.ab} fill="purple" name={opponent} legendType="circle">
                {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
                   dataKey: "name", series: cachedStats.ab
