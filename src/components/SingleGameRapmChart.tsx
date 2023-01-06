@@ -53,13 +53,16 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
 
    const [ screenHeight, setScreenHeight ] = useState(512);
    const [ screenWidth, setScreenWidth ] = useState(512);
-   const latestScreenHeight = useRef(screenHeight);
-   const latestScreenWidth = useRef(screenWidth);
+   //(would only need these if using dynamic sizing)
+   // const latestScreenHeight = useRef(screenHeight);
+   // const latestScreenWidth = useRef(screenWidth);
    useEffect(() => {
      function handleResize() {
          setTimeout(() => {
-            setScreenHeight(0.5*window.innerHeight);
-            setScreenWidth(0.5*window.innerWidth);
+            const baseHeight = Math.max(0.5*window.innerHeight, 400);
+            const baseWidth = Math.max(baseHeight, Math.max(0.5*window.innerWidth, 400));
+            setScreenHeight(baseHeight);
+            setScreenWidth(baseWidth);
          }, 250);
      }
      window.addEventListener('resize', handleResize);
