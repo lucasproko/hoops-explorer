@@ -40,6 +40,10 @@ export class ScatterChartUtils {
     * and then you use Cell to make the "wrong" series points not be visible  
    */
    static buildTidiedLabelList = (props: TidyLabelListProps) => {
+      //TODO: these aren't quite right because of the margins to left and bottom
+      const xOrigin = 60 + 0.5*(props.maxWidth - 60);
+      const yOrigin = 0.5*(props.maxHeight - 60);
+
       const renderCustomizedLabel = (labelProps: any, state: LabelMoveState) => {
          //console.log(labelProps); 
          //console.log(`${labelProps.value} vs ${props.series[labelProps.index]?.name}`);
@@ -176,7 +180,24 @@ export class ScatterChartUtils {
          });
          return { name: "overlap", left, right, top, bottom };
       };
-      function buildNonOverlappingRectangles(rect: Rectangle, overlappers: Rectangle): Rectangle[] {
+      function isInSameQuadrant(rect: Rectangle, candidateRect: Rectangle): Boolean {
+         // Give a decent amount of grace so in the middle we don't care too much
+         const topLeft = (r: Rectangle, loose: number) => (r.left <= (1 + loose)*xOrigin) && (r.bottom <= (1 + loose)*yOrigin); 
+         const topRight = (r: Rectangle, loose: number) => (r.right >= (1 - loose)*xOrigin) && (r.bottom <= (1 + loose)*yOrigin); 
+         const bottomRight = (r: Rectangle, loose: number) => (r.right >= (1 - loose)*xOrigin) && (r.bottom >= (1 - loose)*yOrigin); 
+         const bottomLeft = (r: Rectangle, loose: number) => (r.right <= (1 + loose)*xOrigin) && (r.bottom >= (1 - loose)*yOrigin); 
+
+         // if (candidateRect.name == "XXX") console.log(`(${xOrigin}, ${yOrigin}) ${JSON.stringify(
+         //    _.map([
+         //       topLeft, topRight, bottomRight, bottomLeft
+         //    ], f => f(rect, 0.20) && f(candidateRect, 0))
+         // )}: ${JSON.stringify(candidateRect)}`);
+
+         return _.some([
+            topLeft, topRight, bottomRight, bottomLeft
+         ], f => f(rect, 0.20) && f(candidateRect, 0));
+      }
+      function buildNonOverlappingRectangles(rect: Rectangle, overlappers: Rectangle, strictAttemptRect?: Rectangle): Rectangle[] {
          const [ dxPre1, dxPre2 ] = getOverlap(rect.left, rect.right, overlappers.left, overlappers.right);
          const [ dyPre1, dyPre2 ] = getOverlap(rect.top, rect.bottom, overlappers.top, overlappers.bottom);
    
@@ -189,13 +210,16 @@ export class ScatterChartUtils {
          const dy2 = 0.5*(dyPre2 + dx2); //(y adjustments are normally too small compared to x)
    
          //(in the list of scalars below, empirically 1 was too low, the labels were still too close)
-         return _.orderBy(_.flatMap([ 1.2, 2, 3, 4 ], i => { return [ // Lots of combos:
+         const attemptList = [ 1.2, 2, 3, 4 ];
+         return _.orderBy(_.flatMap(attemptList, i => { return [ // Lots of combos:
                [ i*dx1, 0 ], [ i*dx2, 0 ], 
                [ 0, i*dyPre1 ], [ 0, i*dyPre2 ], //(do allow the smaller vertical jumps as well)
                [ 0, i*dy1 ], [ 0, i*dy2 ], 
                [ i*dx1, i*dy1 ], [ i*dx1, i*dy2 ], [ i*dx2, i*dy1 ], [ i*dx2, i*dy2 ],
                [ i*dy1, i*dx1 ], [ i*dy1, i*dx2 ], [ i*dy2, i*dx1 ], [ i*dy2, i*dx2 ] // rotate allowed jumps by 90deg
             ] }), (dXdY: number[]) => (dXdY[0]!*dXdY[0]! + dXdY[1]!*dXdY[1]!) //(try closest first)
+            //TODO: in calculating distance, it would be nice to give a bonus to arrows that "radiated from the origin"
+
          ).filter((dXdY: number[]) => {
             const [ dx, dy ] = dXdY;
             return (rect.left + dx >= 0) && (rect.bottom + dy >= 0) 
@@ -209,7 +233,7 @@ export class ScatterChartUtils {
                left: rect.left + dx, right: rect.right + dx, 
                top: rect.top + dy, bottom: rect.bottom + dy, 
             };
-         });
+         }).filter(candidateRect => !strictAttemptRect || isInSameQuadrant(strictAttemptRect, candidateRect));
       }
       function moveRectangle(rectangle: Rectangle, rectangles: Rectangle[], iconRect: Rectangle[]): Rectangle {
          // Create a list of all the rectangles that overlap with my rectangle
@@ -222,27 +246,31 @@ export class ScatterChartUtils {
          }
          // Otherwise we have some overlap
          const minCoveringRectangle = generateSmallestCoveringRectangle(overlappingRectangles.concat(iconRect));
-         const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectangle);
-   
-         // if (rectangle.name == "TeWilliams")console.log(`${JSON.stringify(rectangle)} -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
-   
-         // Pick the closest rectangle that hits none of the others      
-         const rectanglesPlusLabel = rectangles.concat(iconRect);
-         const rectangeToReturn = _.find(candidateRectangles || [], rect => {
-            const overlapping = rectanglesPlusLabel.find(rect1 => {
-               const doOverlap = doRectanglesOverlap(rect1, rect)
-               //if (doOverlap && (rectangle.name == "TeWilliams")) console.log(`CMP ${JSON.stringify(rect)} vs ${JSON.stringify(rect1)}: ${doOverlap}`)
-               return (rect1.name != rectangle.name) && doOverlap;
-             });
-            //  if (!overlapping) {
-            //    console.log(`2nd check: ${JSON.stringify(rect)}: overlaps: [${JSON.stringify(overlapping)}]`)
-            //  }
-             return !overlapping;
-         });
-         // if (!rectangeToReturn) {
-         //    console.log(`Giving up and falling back to ${JSON.stringify(candidateRectangles[0])}`)
-         // }
-         return rectangeToReturn || candidateRectangles[0];
+
+         // 2 phases: strict (same quadrant) then anything goes
+         const getRectangleToReturn = (maybeIconRect?: Rectangle) => {
+            const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectangle, maybeIconRect);         
+            //if (rectangle.name == "XXX") console.log(`${JSON.stringify(rectangle)} (${JSON.stringify(maybeIconRect)}) -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
+
+            // Pick the closest rectangle that hits none of the others      
+            const rectanglesPlusLabel = rectangles.concat(iconRect);
+            const rectangeToReturn = _.find(candidateRectangles || [], rect => {
+               const overlapping = rectanglesPlusLabel.find(rect1 => {
+                  const doOverlap = doRectanglesOverlap(rect1, rect)
+                  //if (doOverlap && (rectangle.name == "XXX")) console.log(`CMP ${JSON.stringify(rect)} vs ${JSON.stringify(rect1)}: ${doOverlap}`)
+                  return (rect1.name != rectangle.name) && doOverlap;
+               });
+               //  if (!overlapping) {
+               //    if (rectangle.name == "XXX") console.log(`2nd check: ${JSON.stringify(rect)}: overlaps: [${JSON.stringify(overlapping)}]`)
+               //  }
+               return !overlapping;
+            });
+            // if (!rectangeToReturn && !maybeIconRect) {
+            //    console.log(`Giving up and falling back to ${JSON.stringify(candidateRectangles[0])}`)
+            // }
+            return rectangeToReturn || (maybeIconRect ? undefined : candidateRectangles[0]);
+         }   
+         return getRectangleToReturn(iconRect?.[0]) || getRectangleToReturn()!;
        }
        
        // Returns the amount that two intervals overlap, or 0 if they don't overlap
