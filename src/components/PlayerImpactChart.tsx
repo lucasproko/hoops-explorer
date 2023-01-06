@@ -8,6 +8,7 @@ import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
 import { getCommonFilterParams, MatchupFilterParams, ParamDefaults } from "../utils/FilterModels";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { PureStatSet } from '../utils/StatModels';
+import { RapmInfo } from '../utils/stats/RapmUtils';
 import { LineupTableUtils } from '../utils/tables/LineupTableUtils';
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamReportTableUtils } from '../utils/tables/TeamReportTableUtils';
@@ -126,7 +127,16 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
       const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
          preRapmTableData, playerInfo,
          adjustForLuck, avgEfficiency, genderYearLookup
-      );
+      ) || {
+         enrichedPlayers: _.values(playerInfo).map(p => ({
+            playerId: p.key || "",
+            playerCode: p.code || "",
+            rapm: {
+               off_adj_ppp: p.off_adj_rtg,
+               def_adj_ppp: p.def_adj_rtg,
+            }
+         }))
+      } as unknown as RapmInfo;
       return _.chain(rapmInfo?.enrichedPlayers || []).map(
          p => { 
             const statObj = playerInfo[p.playerId];
