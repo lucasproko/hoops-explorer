@@ -219,6 +219,21 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
       return null;
     };
 
+   // Calculate the x/y limits:
+   const [ xMin, xMax, yMin, yMax ] = _.transform(cachedStats.ab, (acc, v) => {
+      acc[0] = Math.min(acc[0], v.x);
+      acc[1] = Math.max(acc[1], v.x);
+      acc[2] = Math.min(acc[2], v.y);
+      acc[3] = Math.max(acc[3], v.y);
+   }, [1000, -1000, 1000, -1000]); 
+
+   const calcGraphLimit = (min: number, max: number) => {
+      const factor = _.find([0.6, 0.8], factor => ((min > -factor*graphLimit) && (max < factor*graphLimit)));
+      return factor ? factor*graphLimit : graphLimit;
+   };
+   const graphLimitX = calcGraphLimit(xMin, xMax);
+   const graphLimitY = calcGraphLimit(yMin, yMax);
+
    const labelState = ScatterChartUtils.buildEmptyLabelState(); 
    return  _.isEmpty(cachedStats.ab) ? <div/> :
       <ResponsiveContainer width={screenWidth} height={screenHeight}>
@@ -239,13 +254,13 @@ const SingleGameRapmChart: React.FunctionComponent<Props> = ({startingState, opp
 
             <Legend verticalAlign="bottom" align="center" iconSize={8}/>
             <XAxis 
-               type="number" dataKey="x" domain={[-graphLimit, graphLimit]}
+               type="number" dataKey="x" domain={[-graphLimitX, graphLimitX]}
                axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
             >
                <Label value={"Offensive RAPM"} position='top' style={{textAnchor: 'middle'}} />
             </XAxis>
             <YAxis 
-               type="number" dataKey="y" domain={[-graphLimit, graphLimit]}
+               type="number" dataKey="y" domain={[-graphLimitY, graphLimitY]}
                axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
             >               
                <Label angle={-90} value={"Defensive RAPM"} position='insideLeft' style={{textAnchor: 'middle'}} />
