@@ -236,6 +236,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           tempTeamReport, {
             ...defaultRapmConfig,
             priorMode: rapmPriorMode,
+            //TODO: wire fixed regression up to RAPM config dialog
           }, rapmDiagMode
         );
         if (rapmInfo) setRapmInfo(rapmInfo);

@@ -209,6 +209,7 @@ export class RapmUtils {
   /** Builds priors for all the supported fields for all players */
   static buildPriors(
     playersBaseline: Record<PlayerId, IndivStatSet>,
+    avgEfficiency: number,
     colToPlayer: Array<string>,
     priorMode: number, //(-1 for adaptive mode, -2 for no prior)
     valueKey: ValueKey = "value" //(allows use of luck adjusted parameters)
@@ -245,9 +246,16 @@ export class RapmUtils {
       playersWeak: colToPlayer.map(player => {
         const stats = playersBaseline[player] || {};
         if (stats) {
+          // Build alternative rating using usage differently, on which to fallback
+          const oRtgFactor = avgEfficiency / (getVal(stats.def_adj_opp) || avgEfficiency);
+          const offUsage = getVal(stats.off_usage);
+          const altOffRating = offUsage*(getVal(stats.off_rtg)*oRtgFactor - avgEfficiency);
+
           return {
             off_adj_ppp: getVal(stats.off_adj_rtg) + offBasis,
             def_adj_ppp: getVal(stats.def_adj_rtg) + defBasis,
+            off_adj_ppp_alt: altOffRating + offBasis,
+            off_usage: offUsage
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
@@ -374,7 +382,7 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers, config.priorMode, aggValueKey
+        playersBaseline, avgEfficiency, sortedPlayers, config.priorMode, aggValueKey
       ),
       config
     };
@@ -656,24 +664,63 @@ export class RapmUtils {
     priorInfo: RapmPriorInfo,
     debugMode: Boolean,
   ) {
+    const isOff = field == "off_adj_ppp";
+
+    // It's often the case that the prior of the starters' performance doesn't match the error well, eg:
+    // 1] priorSum = -7.2, error = -5.2: priorSum would make the offense works when the error => should be made better
+    // 2] priorSum = 0.66, error = -4.5: priorSum has the right sign, but is so small you'd have to expand way too high to remove the error
+    // The likely worst offender here is that adj_rtg has a usage adjustment which, esp on small samples like
+    // single-game RAPM can make the prior sum a stupid value compared to the team efficiency
+    // For now I just have an alternate rating that doesn't give a bonus/penalty for efficiency, it just 
+    // weights it so it's guaranteed to hit the team rating (though not the "sum of all the lineups" rating,
+    // so it's not perfect)
+
     const priorSum =
-      _.chain(priorInfo.playersWeak).map((p, ii) => (p[field] || 0)*playerPossPcts[ii]!).sum().value();
+      _.chain(priorInfo.playersWeak).map((p, ii) => {
+        return (p[field] || 0)*playerPossPcts[ii]!
+      }).sum().value();
+
+    const priorSumAlt = isOff ?
+      _.chain(priorInfo.playersWeak).map((p, ii) => {
+        //(the idea here is that we'll increase the positive or negative impact of players who have taken more shots)
+        //(can only do offensively, but the def_rtg should point in the right direction)
+        return (p.off_adj_ppp_alt|| 0)*playerPossPcts[ii]!
+      }).sum().value() : priorSum;
+      
+    const maxMultiplier = -0.5; //(accept an error rather than multiply the raw RAPMs by too large a number)
 
     return (error: number, baseResults: Array<number>) => {
       const priorSumInv = priorSum != 0 ? 1/priorSum: 0;
-      const errorTimesSumInv = Math.min(0, Math.max(-0.5, error*priorSumInv));
+      const errorTimesSumInv = Math.min(0, Math.max(maxMultiplier, error*priorSumInv));
+      const approxErrWithPrior = Math.abs(Math.abs(error) - Math.abs(priorSum*priorSumInv));
       //(if the error is -ve, the actual eff is > RAPM, so need to add to RAPM (ie more +ve), hence errorTimesSumInv must be -ve, else ignore)
       //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM (ie move -ve), hence errorsTimesSunInv ~must~ should be
       // .... still -ve ...! Because of priorInv factor (which will on average same sign as errorTimesSumInv)
       //(because it's -error*errorTimesSumInv*prior[player] below)
+      // Same for alt:
+      const priorSumInvAlt = priorSumAlt != 0 ? 1/priorSumAlt: 0;
+      const errorTimesSumInvAlt = Math.min(0, Math.max(maxMultiplier, error*priorSumInvAlt));
+      const approxErrWithPriorAlt = Math.abs(Math.abs(error) - Math.abs(priorSumAlt*errorTimesSumInvAlt));
+
+      // Pick the best 
+      const useAltRating = isOff 
+        && ((errorTimesSumInv == 0) || (errorTimesSumInv == maxMultiplier))
+          //(only consider the alt if the base value can't make the adjustment perfectly)
+        && (approxErrWithPriorAlt < approxErrWithPrior);
+
+      const priorSumToUse = useAltRating ? priorSumAlt : priorSum;
+      const errorTimesSumInvToUse = useAltRating ? errorTimesSumInvAlt : errorTimesSumInv;
+      const priorSumInvToUse = useAltRating ? priorSumInvAlt : priorSumInv;
 
       // ... And then also can only take a <50% chunk of the priors
 
       //USEFUL DEBUG:
-      if (debugMode) console.log(`prior=[${priorSum}] error=[${error}] tot=[${error*priorSumInv}] => [${errorTimesSumInv}]`);
+      if (debugMode) console.log(`prior=[${priorSumToUse.toFixed(2)}](alts: [${priorSum.toFixed(2)}] vs [${priorSumAlt.toFixed(2)}]) error=[${error.toFixed(2)}] tot=[${error*priorSumInvToUse}] => [${errorTimesSumInvToUse}]`);
 
       return baseResults.map((r, ii) => {
-        return r - errorTimesSumInv*(priorInfo.playersWeak[ii]![field] || 0);
+        const weakPrior = useAltRating ? 
+          (priorInfo.playersWeak[ii]!.off_adj_ppp_alt || 0) : (priorInfo.playersWeak[ii]![field] || 0);
+        return r - errorTimesSumInvToUse*weakPrior;
       });
     };
   }
@@ -819,8 +866,8 @@ export class RapmUtils {
     };
     const pickRidgeThresh = { off: 0.061, def: 0.091 }; //(more confident in offensive priors)
     const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4.0 ];
+    const firstNonDiagLambdaIndex = 3;
     const usedLambdaRange = _.thru(ctx.config.fixedRegression, fixedRegression => {
-      const firstNonDiagLambdaIndex = 3;
       if (fixedRegression < 0) {
         return _.drop(lambdaRange, diagMode ? 0 : firstNonDiagLambdaIndex)
       } else {
@@ -923,16 +970,23 @@ export class RapmUtils {
             acc.output.rapmRawAdjPpp = resultsPrePrior.map(n => n - ctx.priorInfo.basis[offOrDef]);
             acc.output.solnMatrix = solver;
 
-            const lastError = (acc.lastAttempt.adjEffErr || adjEffErr) as number;
+            const lastError = Math.abs((acc.lastAttempt.adjEffErr || adjEffErr) as number);
             const errorExitThresh = 1.05;
 
-            if ((adjEffErr >= errorExitThresh) && notFirstStep && (adjEffErr >= lastError)) {
+            // (if in diag mode we're injecting some extra steps at the start - can't actually pick them though)
+            const canPickPrev = !diagMode || (lambda > lambdaRange[firstNonDiagLambdaIndex]);
+            const canPick = !diagMode || (lambda >= lambdaRange[firstNonDiagLambdaIndex]);
+
+            if (canPickPrev && (adjEffErr >= errorExitThresh) && notFirstStep && (Math.abs(adjEffErr) >= lastError)) {
+              //TODO: I have seen the error reduce down again, so what would be nice to pick the global min
+              // instead of just exiting here
+
               if (debugMode) console.log(`-!!!!!!!!!!- DONE [ERROR EXCEEDED=${adjEffErr.toFixed(2)}] PICK PREVIOUS [${acc.lastAttempt?.ridgeLambda?.toFixed(2)}]`);
               acc.foundLambda = true;
               // Roll back to previous
               acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
               acc.output.ridgeLambda = acc.lastAttempt.ridgeLambda;
-            } else if ((meanDiff >= 0) && (meanDiff < pickRidgeThresh[offOrDef])) {
+            } else if (canPick && (meanDiff >= 0) && (meanDiff < pickRidgeThresh[offOrDef])) {
               if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
               acc.foundLambda = true;
             } else {
