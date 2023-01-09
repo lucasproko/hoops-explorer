@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { RapmUtils, RapmPlayerContext, RapmPreProcDiagnostics } from "../RapmUtils";
+import { RapmUtils, RapmPlayerContext, RapmPreProcDiagnostics, defaultRapmConfig } from "../RapmUtils";
 import { LuckUtils } from "../LuckUtils";
 import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../../StatModels";
 // @ts-ignore
@@ -25,7 +25,7 @@ export const semiRealRapmResults = {
 
   reducedFilteredLineups: reducedFilteredLineups,
 
-  testContext: {"unbiasWeight":2,"removalPct":0.1,
+  testContext: {"unbiasWeight":2,
     removedPlayers: {
       "Mitchell, Makhel":[0.210, 0.01, StatModels.emptyIndiv()],
       "Tomaic, Joshua":[0.149, 0.02, StatModels.emptyIndiv()],
@@ -52,7 +52,11 @@ export const semiRealRapmResults = {
     filteredLineups: reducedFilteredLineups,
     teamInfo: {
       key: "teamInfo", doc_count: 1, off_adj_ppp: { value: 112.4 }, def_adj_ppp: { value: 82.4 }, off_poss: { value: 101 }, def_poss: { value : 99 }
-    } as LineupStatSet
+    } as LineupStatSet,
+    config: {
+      ...defaultRapmConfig,
+      removalPct: 0.1,      
+    }
   } as RapmPlayerContext
   //(defense picked to be more extreme so that it will trigger the "eff error too high" vs the "results stable")
 
@@ -113,7 +117,10 @@ describe("RapmUtils", () => {
     [ 0.0, 0.20 ].forEach((threshold) => {
       const results = RapmUtils.buildPlayerContext(
         onOffReport.players || [], lineupReportWithExtra.lineups || [], playersInfoByKey, 100.0,
-        "value", undefined, threshold,
+        "value", {
+          ...defaultRapmConfig,
+          removalPct: threshold
+        }
       );
       expect(_.omit(results, ["filteredLineups", "teamInfo"])).toMatchSnapshot();
       expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 5 : 5); //(filtering now v rare)
@@ -126,7 +133,10 @@ describe("RapmUtils", () => {
     [ 0.0, 2.0 ].forEach((unbiasWeight) => { //(we don't really support unbiasWeight any more but keept his test for now)
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       var context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", undefined, 0.0
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", {
+          ...defaultRapmConfig,
+          removalPct: 0.0
+        } 
       );
       context.unbiasWeight = unbiasWeight;
       const results = RapmUtils.calcPlayerWeights(context);
@@ -154,7 +164,11 @@ describe("RapmUtils", () => {
     [ -1, 0.5 ].forEach((strongWeight) => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", strongWeight, 0.0
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", {
+          ...defaultRapmConfig,
+          priorMode: strongWeight,
+          removalPct: 0.0
+        }
       );
       expect(context.priorInfo.basis).toEqual(
         { off: 0.6000000000000001, def: -0.6000000000000001 }
@@ -304,8 +318,7 @@ describe("RapmUtils", () => {
     ]);
 
     const dummyContext = {
-      avgEfficiency: 100.0,
-      removalPct: 0.0,
+      avgEfficiency: 100.0,    
       removedPlayers: {},
       playerToCol: { "PlayerB": 1, "PlayerC": 2, "PlayerA": 0 },
       colToPlayer: [ "PlayerA", "PlayerB", "PlayerC" ],
@@ -325,6 +338,10 @@ describe("RapmUtils", () => {
         playersStrong: [],
         keyUsed: "value" as "value",
         basis: { off: 0, def: 0 }
+      },
+      config: {
+        ...defaultRapmConfig,
+        removalPct: 0.0,
       }
     };
 

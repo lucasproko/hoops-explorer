@@ -103,7 +103,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef})
 
     // Player removal
 
-    const playerThreshold = ctx.removalPct;
+    const playerThreshold = ctx.config.removalPct;
     const playerRemovalTidy = (playerList: Array<[string, [number, number, Record<string, any>]]>, phase: "p1" | "p2") => {
       return _.sortBy(
         playerList, [ (playerPoss: [string, [number, number, Record<string, any>]]) => -playerPoss[1][0] ]
@@ -114,7 +114,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef})
     };
     const tmpRemovedPlayersPhase1 = playerRemovalTidy(
       _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number, Record<string, any>]]) =>
-        playerPoss[1][0] <= ctx.removalPct
+        playerPoss[1][0] <= ctx.config.removalPct
     ), "p1");
 
     // Collinearity analysis

@@ -120,8 +120,6 @@ const getStrongWeight = (prior: RapmPriorInfo, maybeAdaptiveFallback: number | u
 export type RapmPlayerContext = {
   /** If true, then adds an additional row with the desired final result */
   unbiasWeight: number;
-  /** The threshold of %s at which a player should be removed */
-  removalPct: number;
 
   /** Players that have been removed */
   removedPlayers: Record<string, [number, number, IndivStatSet]>;
@@ -142,6 +140,20 @@ export type RapmPlayerContext = {
   defLineupPoss: number;
   // Prios:
   priorInfo: RapmPriorInfo;
+  // Config:
+  config: RapmConfig
+};
+
+export type RapmConfig = {
+  priorMode: number; // -1 for adaptive prior, or 0-1 for fixed strong prior
+  removalPct: number;
+  fixedRegression: number; //-1 to calculate, or 0-1 for less/more regression
+};
+
+export const defaultRapmConfig = {
+  priorMode: -1,
+  removalPct: 0.06,
+  fixedRegression: -1
 };
 
 /** Holds the multi-collinearity info */
@@ -284,8 +296,7 @@ export class RapmUtils {
     ,
     aggValueKey: ValueKey = "value" //(allows use of luck adjusted parameters, note applies to prior calcs only)
     ,
-    priorMode: number = -1, //(or 0-1 for fixed strong prior)
-    removalPct: number = 0.06,
+    config: RapmConfig = defaultRapmConfig
     // REMOVED CODE:
 //    unbiasWeight: number = 0.0, //TODO; with the new prior code, don't use this (used to be 2.0)
   ): RapmPlayerContext {
@@ -297,7 +308,7 @@ export class RapmUtils {
     const totalLineups =
       (players?.[0]?.on?.off_poss?.value || 0) + (players?.[0]?.off?.off_poss?.value || 0) +
       (players?.[0]?.on?.def_poss?.value || 0) + (players?.[0]?.off?.def_poss?.value || 0);
-    const removalThreshold = removalPct*totalLineups || 1;
+    const removalThreshold = config.removalPct*totalLineups || 1;
 
     // Calculate while players do not have enough possessions to use their RAPM:
 
@@ -344,8 +355,7 @@ export class RapmUtils {
     return {
       unbiasWeight: unbiasWeight
       ,
-      removedPlayers: removedPlayersSet,
-      removalPct: removalPct
+      removedPlayers: removedPlayersSet
       ,
       playerToCol: _.chain(sortedPlayers).map((playerId, index) => {
         return [ playerId, index ]
@@ -364,8 +374,9 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers, priorMode, aggValueKey
-      )
+        playersBaseline, sortedPlayers, config.priorMode, aggValueKey
+      ),
+      config
     };
   }
 
@@ -808,7 +819,16 @@ export class RapmUtils {
     };
     const pickRidgeThresh = { off: 0.061, def: 0.091 }; //(more confident in offensive priors)
     const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4.0 ];
-    const usedLambdaRange = _.drop(lambdaRange, diagMode ? 0 : 3)
+    const usedLambdaRange = _.thru(ctx.config.fixedRegression, fixedRegression => {
+      const firstNonDiagLambdaIndex = 3;
+      if (fixedRegression < 0) {
+        return _.drop(lambdaRange, diagMode ? 0 : firstNonDiagLambdaIndex)
+      } else {
+        const lowerBound = lambdaRange[firstNonDiagLambdaIndex];
+        const upperBound = _.last(lambdaRange)!;
+        return [  lowerBound + fixedRegression*(upperBound - lowerBound) ];
+      }
+    });
     const testResults = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") =>
       _.transform(usedLambdaRange, (acc, lambda) => {
         const notFirstStep = lambda > usedLambdaRange[0];

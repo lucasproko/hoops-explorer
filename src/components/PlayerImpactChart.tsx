@@ -1,6 +1,7 @@
 // React imports:
 import _ from 'lodash';
 import React, { useState, useEffect, useRef } from 'react';
+import { Col } from 'react-bootstrap';
 import { ReferenceLine, ReferenceArea, Legend, Tooltip as RechartTooltip, CartesianGrid, Cell, Label, ResponsiveContainer, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
 import { CbbColors } from '../utils/CbbColors';
 import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
@@ -8,7 +9,7 @@ import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
 import { getCommonFilterParams, MatchupFilterParams, ParamDefaults } from "../utils/FilterModels";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { PureStatSet } from '../utils/StatModels';
-import { RapmInfo } from '../utils/stats/RapmUtils';
+import { defaultRapmConfig, RapmInfo } from '../utils/stats/RapmUtils';
 import { LineupTableUtils } from '../utils/tables/LineupTableUtils';
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 import { TeamReportTableUtils } from '../utils/tables/TeamReportTableUtils';
@@ -126,7 +127,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
       );
       const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
          preRapmTableData, playerInfo,
-         adjustForLuck, avgEfficiency, genderYearLookup
+         adjustForLuck, avgEfficiency, genderYearLookup, undefined,
+         {
+            ...defaultRapmConfig,
+            fixedRegression: 0.8
+         }
       ) || {
          enrichedPlayers: _.values(playerInfo).map(p => ({
             playerId: p.key || "",
@@ -183,7 +188,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
       };
       if (active) {
          const data = payload?.[0].payload || {};
-         const net = data.x + data.y;
+         const net = (data.off_adj_rapm?.value || 0) - (data.def_adj_rapm?.value || 0);
 
          // Info needed for the performance breakdown
          const _3pa = data.stats.total_off_3p_attempts?.value || 0;        
@@ -217,8 +222,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
                   <span><b>{pts}</b> pt{pts == 1 ? "" : "s"} / <b>{trbs}</b> RB{trbs == 1 ? "" : "s"} </span><br/>
                   <br/>
                   <span>Net RAPM: <b>{net.toFixed(1)}</b> pts/100</span><br/>
-                  <span>Off RAPM: <b>{data.x.toFixed(1)}</b> pts/100</span><br/>
-                  <span>Def RAPM: <b>{(-data.y).toFixed(1)}</b> pts/100</span><br/>
+                  <span>Off RAPM: <b>{(data.off_adj_rapm?.value || 0).toFixed(1)}</b> pts/100</span><br/>
+                  <span>Def RAPM: <b>{(data.def_adj_rapm?.value || 0).toFixed(1)}</b> pts/100</span><br/>
                   <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data.stats).toFixed(1)}</b></span><br/>
                   <span>Usage: <b>{(fieldValExtractor("off_usage")(data.stats)*100).toFixed(1)}</b>%</span><br/>
                   <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data.stats)*40).toFixed(1)}</b></span><br/>
@@ -250,7 +255,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
    const graphLimitY = calcGraphLimit(yMin, yMax);
 
    const labelState = ScatterChartUtils.buildEmptyLabelState(); 
-   return  _.isEmpty(cachedStats.ab) ? <div/> :
+   return  _.isEmpty(cachedStats.ab) ? <Col className="text-center w-100"><i>(No Data)</i></Col> :
       <ResponsiveContainer width={screenWidth} height={screenHeight}>
          <ScatterChart>
             <defs>

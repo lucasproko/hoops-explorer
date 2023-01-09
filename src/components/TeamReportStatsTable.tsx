@@ -41,7 +41,7 @@ import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic,
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 import { PlayerOnOffStats, LineupUtils } from '../utils/stats/LineupUtils';
 import { RatingUtils } from '../utils/stats/RatingUtils';
-import { RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
+import { defaultRapmConfig, RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { CbbColors } from "../utils/CbbColors";
@@ -233,7 +233,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         const rapmInfo = TeamReportTableUtils.buildOrInjectRapm( //(mutates tempTeamReport)
           enrichedLineups, rapmPriorsBaseline,
           adjustForLuck, avgEfficiency, genderYearLookup,
-          tempTeamReport, rapmPriorMode, rapmDiagMode
+          tempTeamReport, {
+            ...defaultRapmConfig,
+            priorMode: rapmPriorMode,
+          }, rapmDiagMode
         );
         if (rapmInfo) setRapmInfo(rapmInfo);
       }

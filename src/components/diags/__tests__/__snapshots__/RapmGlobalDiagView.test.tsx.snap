@@ -73067,6 +73067,11 @@ Object {
     "Player, Other",
     "Data, Dummy",
   ],
+  "config": Object {
+    "fixedRegression": -1,
+    "priorMode": -1,
+    "removalPct": 0,
+  },
   "defLineupPoss": 944,
   "numLineups": 5,
   "numPlayers": 8,
@@ -73152,7 +73157,6 @@ Object {
     "strongWeight": -1,
     "useRecursiveWeakPrior": false,
   },
-  "removalPct": 0,
   "removedPlayers": Object {},
   "unbiasWeight": 0,
 }
@@ -73169,6 +73173,11 @@ Object {
     "Ayala, Eric",
     "Scott, Donta",
   ],
+  "config": Object {
+    "fixedRegression": -1,
+    "priorMode": -1,
+    "removalPct": 0.2,
+  },
   "defLineupPoss": 944,
   "numLineups": 5,
   "numPlayers": 6,
@@ -73238,7 +73247,6 @@ Object {
     "strongWeight": -1,
     "useRecursiveWeakPrior": false,
   },
-  "removalPct": 0.2,
   "removedPlayers": Object {
     "Data, Dummy": Array [
       0.05254860746190226,

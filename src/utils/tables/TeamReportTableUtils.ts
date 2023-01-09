@@ -3,7 +3,7 @@ import _ from "lodash";
 
 // Util imports
 import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
-import { RapmInfo, RapmUtils } from "../stats/RapmUtils";
+import { RapmInfo, RapmUtils, defaultRapmConfig, RapmConfig } from "../stats/RapmUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { averageStatsInfo } from "../internal-data/averageStatsInfo";
 import { DateUtils } from "../DateUtils";
@@ -16,7 +16,7 @@ export class TeamReportTableUtils {
     enrichedLineups: Array<LineupStatSet>, playerInfoIn: Record<PlayerId, IndivStatSet>,
     adjustForLuck: Boolean, avgEfficiency: number, genderYearLookup: string, 
     preCalcTeamReport: undefined | Record<string, any> = undefined, //(can calculate this in advance if using anyway)
-    rapmPriorMode: number = -1, rapmDiagMode: string = ""
+    rapmConfig?: RapmConfig, rapmDiagMode: string = ""
   ): RapmInfo | undefined {
 
     //TODO: an attempt to fix [Invalid matrix: m < n] error in single game RAPM
@@ -64,7 +64,7 @@ export class TeamReportTableUtils {
           playerInfo,
           avgEfficiency,
           valueKey, //<- with or without luck adjustment, only applies to priors
-          rapmPriorMode
+          rapmConfig || defaultRapmConfig
         );
 
         const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
