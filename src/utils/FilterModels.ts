@@ -258,6 +258,7 @@ export type TeamReportFilterParams = {
   incRapm?: boolean,
   rapmDiagMode?: string, //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
   rapmPriorMode?: string, //(-1==default==adapative, else the prior weight as 0->1)
+  rapmRegressMode?: string, //0-1 to force the regression, or -1 to auto-choose (default: -1)
   // Luck adjustments
   luck?: LuckParams, //(missing iff default)
   teamLuck?: boolean
@@ -341,6 +342,7 @@ export class ParamDefaults {
   static readonly defaultTeamReportRepOnOffDiagModeIfEnabled = [ "20", "-1", "lineup.off_poss.value" ];
   static readonly defaultTeamReportRapmDiagMode = "";
   static readonly defaultTeamReportRapmPriorMode = "-1";
+  static readonly defaultTeamReportRapmRegressMode = "-1";
   static readonly defaultTeamReportLuckAdjust = false;
   // Common
   static readonly defaultTeam = "";

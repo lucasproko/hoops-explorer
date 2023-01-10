@@ -289,6 +289,10 @@ export class HistoryManager {
       _.isNil(p.rapmPriorMode) ? ParamDefaults.defaultTeamReportRapmPriorMode : (p.rapmPriorMode);
     const rapmPriorStr =
       (rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode) ? '' : (':prior=' + rapmPriorMode);
+    const rapmRegressMode =
+      _.isNil(p.rapmRegressMode) ? ParamDefaults.defaultTeamReportRapmRegressMode : (p.rapmRegressMode);
+    const rapmRegressStr =
+      (rapmRegressMode == ParamDefaults.defaultTeamReportRapmRegressMode) ? '' : (':regress=' + rapmRegressMode);
 
     // Luck config
 
@@ -312,7 +316,7 @@ export class HistoryManager {
       showOnOff ? [] : [ "!on/off" ],
       showComps ? [ "comps" ] : [],
       incRepOnOff ? [ "r:on-off" + regressStr ] : [],
-      incRapm ? [ "rapm" + rapmPriorStr ] : [],
+      incRapm ? [ "rapm" + rapmPriorStr + rapmRegressStr ] : [],
       repOnOffDiagMode ? [ "r:on-off:diag" ] : [],
       rapmDiagMode ? [ "rapm:diag" ] : [],
     ]);

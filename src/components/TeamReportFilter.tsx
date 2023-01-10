@@ -50,6 +50,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     repOnOffDiagMode: startingRepOnOffDiagMode,
     rapmDiagMode: startingRapmDiagMode,
     rapmPriorMode: startingRapmPriorMode,
+    rapmRegressMode: startingRapmRegressMode,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -91,6 +92,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
         repOnOffDiagMode: startingRepOnOffDiagMode,
         rapmDiagMode: startingRapmDiagMode,
         rapmPriorMode: startingRapmPriorMode,
+        rapmRegressMode: startingRapmRegressMode,
       }) : {
         ...commonParams
       };

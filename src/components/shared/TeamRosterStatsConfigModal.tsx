@@ -21,6 +21,7 @@ import { LuckParams } from '../../utils/FilterModels';
 
 export type TeamRosterStatsConfig = {
   rapmPriorMode: number,
+  rapmRegressMode: number,
   regressDiffs: number,
   showRapmDiag: boolean
 };
@@ -30,9 +31,11 @@ type Props = {
   onHide: () => void,
   onSave: (config: TeamRosterStatsConfig) => void,
   config: TeamRosterStatsConfig,
+  onlyRapm?: boolean,
+  noRapmDiagMode?: boolean,
   showHelp: boolean
 };
-const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, config, showHelp, ...props}) => {
+const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, config, onlyRapm, noRapmDiagMode, showHelp, ...props}) => {
 
   useEffect(() => { // Update config when the settings change:
     setSavedConfig(config);
@@ -51,7 +54,7 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
     }}
   >
     <Modal.Header closeButton>
-      <Modal.Title>Advanced On/Off Stats Config</Modal.Title>&nbsp;{showHelp ?
+      <Modal.Title>Advanced Stats Config</Modal.Title>&nbsp;{showHelp ?
         <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html">(?)</a> : null
       }
     </Modal.Header>
@@ -90,6 +93,39 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
           </Form>
           <hr/>
           <Form inline>
+            <Form.Label>RAPM Regress Mode&nbsp;&nbsp;</Form.Label>
+            <Form.Control as="select"
+              onChange={(newVal: any) => {
+                const mutableNewConfig = getBase();
+                if (newVal.target?.value == "Adapative Regression") {
+                  mutableNewConfig.rapmRegressMode = -1;
+                } else if (newVal.target?.value == "No Regression") {
+                  mutableNewConfig.rapmRegressMode = 0;
+                } else if (newVal.target?.value == "Weak Regression") {
+                  mutableNewConfig.rapmRegressMode = 0.2;
+                } else if (newVal.target?.value == "Weakish Regression") {
+                  mutableNewConfig.rapmRegressMode = 0.4;
+                } else if (newVal.target?.value == "Strongish Regression") {
+                  mutableNewConfig.rapmRegressMode = 0.6;
+                } else if (newVal.target?.value == "Strong Regression") {
+                  mutableNewConfig.rapmRegressMode = 0.8;
+                } else if (newVal.target?.value == "Maximum Regression") {
+                  mutableNewConfig.rapmRegressMode = 0.8;
+                }
+                onSave(mutableNewConfig);
+              }}
+            >
+              <option selected={config.rapmRegressMode==-1}>Adapative Regression</option>
+              <option selected={config.rapmRegressMode==0}>No Regression</option>
+              <option selected={config.rapmRegressMode==0.2}>Weak Regression</option>
+              <option selected={config.rapmRegressMode==0.4}>Weakish Regression</option>
+              <option selected={config.rapmRegressMode==0.6}>Strongish Regression</option>
+              <option selected={config.rapmRegressMode==0.8}>Strong Regression</option>
+              <option selected={config.rapmRegressMode==1.0}>Maximum Regression</option>
+            </Form.Control>
+          </Form>
+          <hr/>
+          {noRapmDiagMode ? null : <Form inline>
             <Form.Check
               checked={config.showRapmDiag} type="checkbox" label="Show RAPM diag mode"
               onChange={(evt: any) => {
@@ -100,11 +136,11 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
                  onSave(newConfig);
               }}
             />
-          </Form>
+          </Form>}
         </Card.Body>
       </Card>
 
-      <Card className="w-100">
+      {onlyRapm ? null : <Card className="w-100">
         <Card.Header className="small">Replacement On-Off ("Same-4")</Card.Header>
         <Card.Body>
 
@@ -165,7 +201,7 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
             </Col>
           </Row>
         </Card.Body>
-      </Card>
+      </Card>}
 
     </Modal.Body>
     <Modal.Footer>

@@ -24,6 +24,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
         config={
           Object {
             "rapmPriorMode": -1,
+            "rapmRegressMode": -1,
             "regressDiffs": -2000,
             "showRapmDiag": false,
           }
@@ -1340,7 +1341,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -9945,6 +9946,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         config={
           Object {
             "rapmPriorMode": -1,
+            "rapmRegressMode": -1,
             "regressDiffs": -2000,
             "showRapmDiag": false,
           }
@@ -11645,7 +11647,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -24834,6 +24836,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         config={
           Object {
             "rapmPriorMode": -1,
+            "rapmRegressMode": -1,
             "regressDiffs": -2000,
             "showRapmDiag": false,
           }
@@ -26534,7 +26537,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -38583,6 +38586,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         config={
           Object {
             "rapmPriorMode": -1,
+            "rapmRegressMode": -1,
             "regressDiffs": -2000,
             "showRapmDiag": false,
           }
@@ -40283,7 +40287,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -57354,6 +57358,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         config={
           Object {
             "rapmPriorMode": -1,
+            "rapmRegressMode": -1,
             "regressDiffs": -2000,
             "showRapmDiag": false,
           }
@@ -59054,7 +59059,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -61876,6 +61881,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         config={
           Object {
             "rapmPriorMode": -1,
+            "rapmRegressMode": -1,
             "regressDiffs": -2000,
             "showRapmDiag": false,
           }
@@ -63192,7 +63198,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
             />
             <DropdownDivider

@@ -130,7 +130,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   function maybeShowDocs() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return "https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html";
+      return "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM";
     } else {
       return undefined;
     }

@@ -134,6 +134,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   const [ rapmPriorMode, setRapmPriorMode ] = useState(
     parseFloat(_.isNil(startingState.rapmPriorMode) ? ParamDefaults.defaultTeamReportRapmPriorMode : startingState.rapmPriorMode)
   );
+  const [ rapmRegressMode, setRapmRegresssMode ] = useState(
+    parseFloat(_.isNil(startingState.rapmRegressMode) ? ParamDefaults.defaultTeamReportRapmRegressMode : startingState.rapmRegressMode)
+  );
   const [ regressDiffs, setRegressDiffs ] = useState(
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
@@ -179,10 +182,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       repOnOffDiagMode: repOnOffDiagMode,
       rapmDiagMode: rapmDiagMode,
       rapmPriorMode: rapmPriorMode.toString(),
+      rapmRegressMode: rapmRegressMode.toString(),
     };
     onChangeState(newState);
   }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm,
-        regressDiffs, repOnOffDiagMode, rapmDiagMode, rapmPriorMode,
+        regressDiffs, repOnOffDiagMode, rapmDiagMode, rapmPriorMode, rapmRegressMode,
         luckConfig, adjustForLuck ]);
 
   // (cache this below)
@@ -196,7 +200,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing + 1);
 
-  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode, rapmPriorMode,
+  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode, rapmPriorMode, rapmRegressMode,
         luckConfig, adjustForLuck ] );
 
   /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required) */
@@ -236,7 +240,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           tempTeamReport, {
             ...defaultRapmConfig,
             priorMode: rapmPriorMode,
-            //TODO: wire fixed regression up to RAPM config dialog
+            fixedRegression: rapmRegressMode,
           }, rapmDiagMode
         );
         if (rapmInfo) setRapmInfo(rapmInfo);
@@ -579,10 +583,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         onSave={(config: TeamRosterStatsConfig) => {
           setRegressDiffs(config.regressDiffs);
           setRapmPriorMode(config.rapmPriorMode);
+          setRapmRegresssMode(config.rapmRegressMode);
           setRapmDiagMode(config.showRapmDiag ? "base" : "");
         }}
         config={{
-          rapmPriorMode: rapmPriorMode, regressDiffs: regressDiffs, showRapmDiag: rapmDiagMode != ""
+          rapmPriorMode, rapmRegressMode, 
+          regressDiffs, showRapmDiag: rapmDiagMode != ""
         }}
         showHelp={showHelp}
       />
@@ -655,7 +661,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
               onSelect={() => setShowLuckConfig(true)}
             />
             <GenericTogglingMenuItem
-              text="Configure Advanced On/Off Stats..."
+              text="Configure Advanced Stats..."
               truthVal={false}
               onSelect={() => setShowTeamRosterStatsConfig(true)}
             />
