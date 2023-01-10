@@ -1969,38 +1969,51 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         </OverlayTrigger>
       </Col>
     </FormGroup>
-    <Col>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="primary"
-      >
-        Submit
-      </Button>
-      <Shake
-        className="float-right"
-        fixed={true}
-        h={20}
-        int={25}
-        q={5}
-        r={5}
-        v={5}
+    <Row
+      noGutters={false}
+    >
+      <Col
+        sm={2}
       >
         <Button
           active={false}
           disabled={false}
           onClick={[Function]}
-          variant="warning"
+          variant="primary"
         >
-          <b>
-            Example (
-            Men
-            )!
-          </b>
+          Submit
         </Button>
-      </Shake>
-    </Col>
+      </Col>
+      <Col
+        className="text-center w-100 pt-2"
+      />
+      <Col
+        sm={2}
+      >
+        <Shake
+          className="float-right"
+          fixed={true}
+          h={20}
+          int={25}
+          q={5}
+          r={5}
+          v={5}
+        >
+          <Button
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            variant="warning"
+          >
+            <b>
+              Example (
+              Men
+              )!
+            </b>
+          </Button>
+        </Shake>
+      </Col>
+    </Row>
   </Form>
 </LoadingOverlay>
 `;
@@ -2952,69 +2965,82 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         </OverlayTrigger>
       </Col>
     </FormGroup>
-    <Col>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="primary"
-      >
-        Submit
-      </Button>
-      <OverlayTrigger
-        overlay={
-          <ForwardRef
-            id="copyLinkTooltip"
-            placement="right"
-          >
-            Clears and empties the page
-          </ForwardRef>
-        }
-        placement="auto"
+    <Row
+      noGutters={false}
+    >
+      <Col
+        sm={2}
       >
         <Button
           active={false}
-          className="float-right"
           disabled={false}
-          id="clearQuery_lineup-"
           onClick={[Function]}
-          size="sm"
-          variant="outline-secondary"
+          variant="primary"
         >
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={false}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [
-                  448,
-                  512,
-                  Array [],
-                  "f2ed",
-                  "M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z",
-                ],
-                "iconName": "trash-alt",
-                "prefix": "fas",
-              }
-            }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          />
+          Submit
         </Button>
-      </OverlayTrigger>
-    </Col>
+      </Col>
+      <Col
+        className="text-center w-100 pt-2"
+      />
+      <Col
+        sm={2}
+      >
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="copyLinkTooltip"
+              placement="right"
+            >
+              Clears and empties the page
+            </ForwardRef>
+          }
+          placement="auto"
+        >
+          <Button
+            active={false}
+            className="float-right"
+            disabled={false}
+            id="clearQuery_lineup-"
+            onClick={[Function]}
+            size="sm"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    448,
+                    512,
+                    Array [],
+                    "f2ed",
+                    "M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z",
+                  ],
+                  "iconName": "trash-alt",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Button>
+        </OverlayTrigger>
+      </Col>
+    </Row>
   </Form>
 </LoadingOverlay>
 `;

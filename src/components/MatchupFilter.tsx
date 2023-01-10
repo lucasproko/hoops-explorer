@@ -22,13 +22,14 @@ import { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
-import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo, getCommonFilterParams, MatchupFilterParams } from "../utils/FilterModels";
+import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo, getCommonFilterParams, MatchupFilterParams, GameFilterParams } from "../utils/FilterModels";
 
 // Utils
 import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { QueryUtils } from '../utils/QueryUtils';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
+import { UrlRouting } from '../utils/UrlRouting';
 
 type Props = {
   onStats: (
@@ -289,6 +290,30 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
     return (game == "") ? { label: 'Choose Game...' } : stringToOption(game);
   }
 
+  // Link building
+  const gameParams = (params: MatchupFilterParams, team: string, subFor?: string): GameFilterParams => ({
+    team,
+    minRank: "1", maxRank: "400",
+    gender: params.gender,
+    year: params.year,
+    baseQuery: subFor ? 
+      (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+      : params.baseQuery,
+    showRoster: true,
+    calcRapm: true,
+    showExpanded: true
+  });
+  const lineupParams = (params: MatchupFilterParams, team: string, subFor?: string): LineupFilterParams => ({
+    team,
+    minRank: "1", maxRank: "400",
+    gender: params.gender,
+    year: params.year,
+    minPoss: "0",
+    baseQuery: subFor ? 
+      (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+      : params.baseQuery,
+  });
+
   return <CommonFilter //(generic type inferred)
       startingState={startingState}
       onChangeState={onChangeState}
@@ -299,6 +324,15 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
       childHandleResponse={handleResponse}
       matchupMode={true}
       blockSubmit={game == ""}
+      buildLinks={params => {
+        const opponentName = buildOppoFilter(params.oppoTeam || "")?.team;
+        return (params.team && opponentName) ? [
+          <a target="_blank" href={UrlRouting.getGameUrl(gameParams(params, params.team), {})}>Team stats</a>,
+          <a target="_blank" href={UrlRouting.getLineupUrl(lineupParams(params, params.team), {})}>Team lineups</a>,
+          <a target="_blank" href={UrlRouting.getGameUrl(gameParams(params, opponentName, params.team), {})}>Opponent stats</a>,
+          <a target="_blank" href={UrlRouting.getLineupUrl(lineupParams(params, opponentName, params.team), {})}>Opponent lineups</a>
+        ] : [];
+      }}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <Form.Group as={Row}>
         <Col xs={0} sm={0} md={0} lg={4}/>

@@ -199,17 +199,6 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           startingState={matchupFilterParams}
           onChangeState={onMatchupFilterParamsChange}
         />
-        {(dataEvent.lineupStatsA.lineups.length && 
-          matchupFilterParams.team && opponentName
-          ) ? <Col className="text-center w-100">
-            <small>Links: &nbsp;
-              <a target="_blank" href={UrlRouting.getGameUrl(gameParams(matchupFilterParams.team), {})}>Team stats</a> /&nbsp;
-              <a target="_blank" href={UrlRouting.getLineupUrl(lineupParams(matchupFilterParams.team), {})}>Team lineups</a> /&nbsp;
-              <a target="_blank" href={UrlRouting.getGameUrl(gameParams(opponentName, matchupFilterParams.team), {})}>Opponent stats</a> /&nbsp;
-              <a target="_blank" href={UrlRouting.getLineupUrl(lineupParams(opponentName, matchupFilterParams.team), {})}>Opponent lineups</a>
-            </small>
-          </Col> : null
-        }
       </GenericCollapsibleCard>
     </Row>
     <Row>

@@ -72,6 +72,7 @@ interface Props<PARAMS> {
   tablePrefixForPrimaryRequest?: ParamPrefixesType, //(goes with primary request, normally same as tablePrefix)
   buildParamsFromState: (includeFilterParams: Boolean) => [ PARAMS, FilterRequestInfo[] ];
   childHandleResponse: (json: any, wasError: Boolean) => void;
+  buildLinks?: (params: PARAMS) => React.ReactNode[];
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
   /** Note there needs to be an intermediate 1-up in the parent filter, see LineupFilter for an example */
   forceReload1Up?: number; //force submits a new set of parameters if true
@@ -96,6 +97,7 @@ const CommonFilter: CommonFilterI = ({
     children,
     startingState, onChangeState, onChangeCommonState,
     tablePrefix, tablePrefixForPrimaryRequest, buildParamsFromState, childHandleResponse,
+    buildLinks,
     majorParamsDisabled,
     forceReload1Up,
     matchupMode,
@@ -533,7 +535,7 @@ const CommonFilter: CommonFilterI = ({
   }
 
   /** If no team is specified, add the option to jump to an example */
-  const getExampleButtonsIfNoTeam = () => {
+  const getExampleButtonsIfNoTeamElseClear = () => {
     if (team == "") {
       return <Shake
         h={20} v={5} r={5} q={5} int={25} fixed={true}
@@ -745,10 +747,26 @@ const CommonFilter: CommonFilterI = ({
         </OverlayTrigger>
       </Col>
     </Form.Group>}
-    <Col>
-      <Button disabled={!canSubmit()} variant="primary" onClick={onSubmit}>Submit</Button>
-      {getExampleButtonsIfNoTeam()}
-    </Col>
+    <Row>
+      <Col sm={2}>
+        <Button disabled={!canSubmit()} variant="primary" onClick={onSubmit}>Submit</Button>
+      </Col>
+      <Col className="text-center w-100 pt-2">
+        {_.thru(buildLinks, __ => {
+        if (buildLinks && !canSubmit()) { 
+            const links = buildLinks(startingState);
+            return _.isEmpty(links) ? null : <small className="text-center">
+              Links: {links.map((l, i) => <span>{l}{(i < links.length - 1) ? <span> | </span> : ""}</span>)}
+            </small>;
+          } else { 
+            return null;
+          }       
+        })}
+        </Col>
+        <Col sm={2}>
+        {getExampleButtonsIfNoTeamElseClear()}
+      </Col>
+    </Row>      
   </Form></LoadingOverlay>;
 }
 
