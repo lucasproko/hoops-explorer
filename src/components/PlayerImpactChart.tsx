@@ -272,6 +272,13 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
             <ReferenceLine y={0} strokeWidth={1}/>
             <ReferenceLine x={0} strokeWidth={1}/>
 
+            <ReferenceArea x1={-graphLimitX} x2={0} y1={graphLimitY} y2={0} fillOpacity={0}>
+               <Label position="insideTopLeft" value="Negative=Good D"/>
+            </ReferenceArea>
+            <ReferenceArea x1={0} x2={graphLimitX} y1={0} y2={-graphLimitY} fillOpacity={0}>
+               <Label position="insideBottomRight" value="Positive=Good 0"/>
+            </ReferenceArea>
+
             <Legend verticalAlign="bottom" align="center" iconSize={8}/>
             <XAxis 
                type="number" dataKey="x" domain={[-graphLimitX, graphLimitX]}
@@ -282,6 +289,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({startingState, oppon
             <YAxis 
                type="number" dataKey="y" domain={[-graphLimitY, graphLimitY]}
                axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
+               tickFormatter={s => `-${s}`.replace("--", "")}
             >               
                <Label angle={-90} value={"Defensive RAPM"} position='insideLeft' style={{textAnchor: 'middle'}} />
             </YAxis>
