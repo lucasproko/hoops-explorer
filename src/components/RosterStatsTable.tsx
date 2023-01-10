@@ -59,6 +59,7 @@ import { QueryUtils } from "../utils/QueryUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
 import { HistoryManager } from '../utils/HistoryManager';
+import { defaultRapmConfig } from '../utils/stats/RapmUtils';
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>,
@@ -114,7 +115,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const [ showDiagMode, setShowDiagMode ] = useState(_.isNil(gameFilterParams.showDiag) ?
     ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
   );
-
 
   /** Show a diagnostics mode explaining the positional evaluation */
   const [ showPositionDiags, setShowPositionDiags ] = useState(_.isNil(gameFilterParams.showPosDiag) ?
@@ -190,6 +190,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
 
+  // Advanced stats config:
+  const [ rapmPriorMode, setRapmPriorMode ] = useState(
+    parseFloat(_.isNil(gameFilterParams.rapmPriorMode) ? ParamDefaults.defaultTeamReportRapmPriorMode : gameFilterParams.rapmPriorMode)
+  );
+  const [ rapmRegressMode, setRapmRegresssMode ] = useState(
+    parseFloat(_.isNil(gameFilterParams.rapmRegressMode) ? ParamDefaults.defaultTeamReportRapmRegressMode : gameFilterParams.rapmRegressMode)
+  );
+
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showPlayerPlayTypes) ?
     ParamDefaults.defaultPlayerShowPlayTypes : gameFilterParams.showPlayerPlayTypes
@@ -233,6 +241,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       // Luck:
       luck: luckConfig,
       calcRapm: calcRapm,
+      rapmPriorMode: rapmPriorMode.toString(),
+      rapmRegressMode: rapmRegressMode.toString(),
       factorMins: factorMins,
       onOffLuck: adjustForLuck,
       showGrades: showGrades,
@@ -306,8 +316,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     );
     const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
       preRapmTableData, playerInfo,
-      adjustForLuck, avgEfficiency, genderYearLookup
-    );
+      adjustForLuck, avgEfficiency, genderYearLookup, undefined, {
+        ...defaultRapmConfig,
+        priorMode: rapmPriorMode,
+        fixedRegression: rapmRegressMode,
+      });
     return _.fromPairs(
       (rapmInfo?.enrichedPlayers || []).map(
         p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }]

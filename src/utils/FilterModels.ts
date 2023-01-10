@@ -110,7 +110,10 @@ export type GameFilterParams = {
   possAsPct?: boolean,
   factorMins?: boolean,
   showPosDiag?: boolean,
+  // RAPM
   calcRapm?: boolean,
+  rapmPriorMode?: string, //(-1==default==adapative, else the prior weight as 0->1)
+  rapmRegressMode?: string, //0-1 to force the regression, or -1 to auto-choose (default: -1)
   // For leaderboard building:
   getGames?: boolean
 };

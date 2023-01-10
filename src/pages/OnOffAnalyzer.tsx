@@ -129,6 +129,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
       (rawParams.showOnBallConfig == false) ? [ 'showOnBallConfig' ] : [],
       (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
+      (rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode) ? [ 'rapmPriorMode' ] : [],
+      (rawParams.rapmRegressMode == ParamDefaults.defaultTeamReportRapmRegressMode) ? [ 'rapmRegressMode' ] : [],
       (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
     ]));
     if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)

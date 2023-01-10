@@ -301,6 +301,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({onStats, startingState, 
       : params.baseQuery,
     showRoster: true,
     calcRapm: true,
+    rapmRegressMode: "0.8",
     showExpanded: true
   });
   const lineupParams = (params: MatchupFilterParams, team: string, subFor?: string): LineupFilterParams => ({
