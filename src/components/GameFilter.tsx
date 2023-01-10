@@ -21,7 +21,7 @@ import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
-import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults, LineupFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults, LineupFilterParams } from '../utils/FilterModels';
 import AutoSuggestText from './shared/AutoSuggestText';
 
 // Utils
@@ -30,6 +30,7 @@ import { QueryUtils, CommonFilterType, CommonFilterCustomDate } from '../utils/Q
 import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
 import QueryFilterDropdown from './shared/QueryFilterDropdown';
 import DateRangeModal from './shared/DateRangeModal';
+import { UrlRouting } from '../utils/UrlRouting';
 
 type Props = {
   onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]) => void;
@@ -144,6 +145,57 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     setCommonParams(params);
   }
 
+  /** Builds lineup queries for on/off queries */
+  function buildLineupQueriesFromOnOffQueries(): { on?: CommonFilterParams, off?: CommonFilterParams } {
+    //TODO: should tidy this up so can just make get lineups back from on/off query
+    //      but for now we'll just hack a workaround
+    const [ baseQuery, maybeAdvBaseQuery ] = QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "");
+
+    const getLineupQuery = (onOrOffQuery: string, ignoreBase: boolean = false) => {
+      const [ onOrOff, maybeAdvOnOrOff ] = QueryUtils.extractAdvancedQuery(onOrOffQuery);
+      const baseToUse = ignoreBase ? "*" : maybeAdvBaseQuery || baseQuery || "";
+      const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
+      return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
+    };
+    return { 
+      on: QueryUtils.nonEmptyQuery(onQuery, onQueryFilters) ? {
+        baseQuery: getLineupQuery(onQuery || "*"),
+        queryFilters: QueryUtils.buildFilterStr(onQueryFilters.concat(
+            QueryUtils.parseFilter(
+              commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
+              commonParams.year || ParamDefaults.defaultYear
+            )
+          ))
+        } : undefined,
+
+      off: _.thru(QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters), autoOff => {
+         const nonEmptyOff = QueryUtils.nonEmptyQuery(offQuery, offQueryFilters);
+         
+         if (!autoOff && nonEmptyOff) {
+           return {
+            baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
+            queryFilters: QueryUtils.buildFilterStr(offQueryFilters.concat(
+              QueryUtils.parseFilter(
+                commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
+                commonParams.year || ParamDefaults.defaultYear
+              )  
+            ))
+           };
+         } else if (autoOff) { 
+           return {
+            baseQuery: commonParams.baseQuery,
+            queryFilters: commonParams.queryFilters,
+            invertBase: getLineupQuery(onQuery || "*", true),
+            invertBaseQueryFilters: QueryUtils.buildFilterStr(onQueryFilters)
+              //(ie will be * once inverted, ie ignore this clause if missing)    
+           };
+         } else {
+           return undefined
+         }
+      })
+    };
+  }
+
   /** Builds a game filter from the various state elements, and also any secondary filters
    * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
   */
@@ -205,55 +257,28 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
     const alsoPullLineups = (startCalcRapm || startShowRoster || startShowGameInfo);
 
-    const [ baseQuery, maybeAdvBaseQuery ] = alsoPullLineups ?
-      QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];
-
-    // RAPM calculations:
+    // Lineups (eg for RAPM) calculations:
     //TODO: should tidy this up so can just make get lineups back from on/off query
     //      but for now we'll just hack a workaround
-    const getLineupQuery = (onOrOffQuery: string, ignoreBase: boolean = false) => {
-      const [ onOrOff, maybeAdvOnOrOff ] = QueryUtils.extractAdvancedQuery(onOrOffQuery);
-      const baseToUse = ignoreBase ? "*" : maybeAdvBaseQuery || baseQuery || "";
-      const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
-      return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
-    };
-    const lineupRequests: LineupFilterParams[] = alsoPullLineups ? [ QueryUtils.cleanseQuery({
-      ...commonParams
-    }) ].concat(QueryUtils.nonEmptyQuery(onQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
-        ...commonParams,        
-        baseQuery: getLineupQuery(onQuery || "*"),
-        queryFilters: QueryUtils.buildFilterStr(onQueryFilters.concat(
-            QueryUtils.parseFilter(
-              commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
-              primaryRequest.year || ParamDefaults.defaultYear
-            )
-          )),
-      }) ] : []
-    ).concat(
-      (!QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) && QueryUtils.nonEmptyQuery(offQuery, offQueryFilters)
-        // (if autoOffQuery is specified AND using filters then goto special mode below)
-      ) ? [ QueryUtils.cleanseQuery({ 
-        ...commonParams,
-        baseQuery: getLineupQuery(offQuery || "*"), //(this is actually "B" not "off" if we're here and offQuery == "")
-        queryFilters: QueryUtils.buildFilterStr(offQueryFilters.concat(
-          QueryUtils.parseFilter(
-            commonParams.queryFilters || ParamDefaults.defaultQueryFilters,
-            primaryRequest.year || ParamDefaults.defaultYear
-           )
-        )),
-      }) ] : []
-    ).concat(QueryUtils.autoOffAndFilters(autoOffQuery, onQueryFilters) ? [ QueryUtils.cleanseQuery({
-      ...commonParams,
-      invertBase: getLineupQuery(onQuery || "*", true),
-      invertBaseQueryFilters: QueryUtils.buildFilterStr(onQueryFilters)
-        //(ie will be * once inverted, ie ignore this clause if missing)
-    }) ] : []).map(l => {
-      return startShowGameInfo ? {
-        ...l,
-        showGameInfo: startShowGameInfo
-      } : l;
+    const lineupRequests: LineupFilterParams[] = alsoPullLineups ? _.thru(alsoPullLineups, __ => {
+      const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries();
+      return [ QueryUtils.cleanseQuery({
+        ...commonParams
+      }) ].concat(_.isEmpty(lineupQueriesAndFilters.on) ? [] : [ QueryUtils.cleanseQuery({
+          ...commonParams,       
+          ...(lineupQueriesAndFilters.on)
+        }) ]
+      ).concat(_.isEmpty(lineupQueriesAndFilters.off) ? [] : [ QueryUtils.cleanseQuery({ 
+          ...commonParams,
+          ...(lineupQueriesAndFilters.off)
+        }) ]
+      ).map(l => {
+        return startShowGameInfo ? {
+          ...l,
+          showGameInfo: startShowGameInfo
+        } : l;
+      })
     }) : [];
-    // (note only one of the last 2 clauses can be present at once)
 
     const makeGlobalRequest = !_.isEqual(entireSeasonRequest, primaryRequest);
 
@@ -353,6 +378,25 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const maybeOn = autoOffQuery ? "On ('A')" : "'A'";
   const maybeOff = autoOffQuery ? "Off ('B')" : "'B'";
 
+  // Link building:
+
+  const buildLineups = (params: GameFilterParams, overrides: CommonFilterParams) => {
+
+    return {
+      gender: params.gender, year: params.year, team: params.team,
+      minRank: params.minRank, maxRank: params.maxRank,
+      filterGarbage: params.filterGarbage,
+      // Query filters and base query:
+      ...overrides,
+      // Game info
+      showGameInfo: params.showGameInfo,
+      // Luck:
+      luck: params.luck,
+      lineupLuck: params.onOffLuck,
+      showLineupLuckDiags: params.onOffLuck,
+    };
+  };
+
   // Visual components:
 
   return <CommonFilter //(generic type inferred)
@@ -362,6 +406,23 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
+      buildLinks={params => {
+        const lineupOnOffQueries = buildLineupQueriesFromOnOffQueries(); 
+          //(don't this is built from state instead of params)       
+        return [
+          <a target="_blank" href={UrlRouting.getLineupUrl(buildLineups(params, {
+            baseQuery: params.baseQuery, queryFilters: params.queryFilters
+          }), {})}>Base Lineups</a>
+        ].concat(lineupOnOffQueries.on ? [
+          <a target="_blank" href={UrlRouting.getLineupUrl(buildLineups(params, lineupOnOffQueries.on), {})}>'A' Lineups</a>
+        ] : []).concat(lineupOnOffQueries.off ? [
+          <a target="_blank" href={UrlRouting.getLineupUrl(buildLineups(params, lineupOnOffQueries.off), {})}>'B' Lineups</a>
+        ] : []).concat().concat([
+          <a target="_blank" href={UrlRouting.getMatchupUrl({
+            gender: params.gender, year: params.year, team: params.team
+          })}>Game Reports</a>,
+        ])
+      }}
       forceReload1Up={internalForceReload1Up}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <DateRangeModal

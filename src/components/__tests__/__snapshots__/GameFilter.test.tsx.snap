@@ -2,6 +2,7 @@
 
 exports[`GameFilter GameFilter - should create snapshot 1`] = `
 <CommonFilter
+  buildLinks={[Function]}
   buildParamsFromState={[Function]}
   childHandleResponse={[Function]}
   forceReload1Up={0}

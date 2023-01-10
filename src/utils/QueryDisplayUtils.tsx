@@ -53,4 +53,13 @@ export class QueryDisplayUtils {
       </OverlayTrigger>;
     };
   
+    /** Handles  */
+    public static showInvertedQueryAndFilters(baseQuery?: string, baseFilters?: string) {
+        const tooltip = <Tooltip id={`invertedBase`}>Inverted query generated via "auto-off" in On/Off pages - see there for more details</Tooltip>
+        return <OverlayTrigger placement="auto" overlay={tooltip}>
+          <span className="badge badge-pill badge-secondary">QUERY:({baseQuery || ""}) OR FILTERS:({baseFilters || ""})</span>
+        </OverlayTrigger>;
+    }
+
+
 };

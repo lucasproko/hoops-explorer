@@ -690,8 +690,12 @@ const CommonFilter: CommonFilterI = ({
           { queryFilters.length > 0 ?
           <Row>&nbsp;
             {queryFilters.map(
-              (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, gender, year)}&nbsp;&nbsp;</span>)
-            }
+              (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, gender, year)}&nbsp;&nbsp;</span>
+            ).concat((startingState.invertBase || startingState.invertBaseQueryFilters) ? [
+              <span key="invertBase"><small>AND NOT </small>
+              {QueryDisplayUtils.showInvertedQueryAndFilters(startingState.invertBase, startingState.invertBaseQueryFilters)}
+              </span>
+            ] : [])}
           </Row> 
           : null}
         </Container>

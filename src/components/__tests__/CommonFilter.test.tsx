@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonFilter from '../CommonFilter';
-import { CommonFilterParams, LineupFilterParams } from "../utils/FilterModels";
+import { CommonFilterParams, LineupFilterParams } from "../../utils/FilterModels";
 import { LineupStatsModel } from '../LineupStatsTable';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
@@ -30,6 +30,39 @@ describe("CommonFilter", () => {
     const dummySubmitRequest = (a: string, b: (r: fetch.IsomorphicResponse) => void) => {};
     const wrapper = shallow(<CommonFilter
       startingState={{ team: "Maryland", gender: "Men", year: "2018/9" }}
+      onChangeState={dummyChangeStateCallback}
+      onChangeCommonState={dummyChangeCommonStateCallback}
+      tablePrefix = {"lineup-"}
+      buildParamsFromState={() => [{}, []]}
+      childHandleResponse={dummyHandleResponse}
+    />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+  test("CommonFilter - should create snapshot (filter badges)", () => {
+    const dummySubmitCallback = (stats: LineupStatsModel) => {};
+    const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
+    const dummyChangeCommonStateCallback = (stats: CommonFilterParams) => {};
+    const dummyHandleResponse = (a: any, b: Boolean) => {};
+    const dummySubmitRequest = (a: string, b: (r: fetch.IsomorphicResponse) => void) => {};
+    const wrapper = shallow(<CommonFilter
+      startingState={{ team: "Maryland", gender: "Men", year: "2018/9", queryFilters: "Home,Away" }}
+      onChangeState={dummyChangeStateCallback}
+      onChangeCommonState={dummyChangeCommonStateCallback}
+      tablePrefix = {"lineup-"}
+      buildParamsFromState={() => [{}, []]}
+      childHandleResponse={dummyHandleResponse}
+    />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+  test("CommonFilter - should create snapshot (special inverted base case)", () => {
+    const dummySubmitCallback = (stats: LineupStatsModel) => {};
+    const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
+    const dummyChangeCommonStateCallback = (stats: CommonFilterParams) => {};
+    const dummyHandleResponse = (a: any, b: Boolean) => {};
+    const dummySubmitRequest = (a: string, b: (r: fetch.IsomorphicResponse) => void) => {};
+    const wrapper = shallow(<CommonFilter
+      startingState={{ team: "Maryland", gender: "Men", year: "2018/9", queryFilters: "Conf", 
+      invertBase: "TEST", invertBaseQueryFilters: "Home" }}
       onChangeState={dummyChangeStateCallback}
       onChangeCommonState={dummyChangeCommonStateCallback}
       tablePrefix = {"lineup-"}
