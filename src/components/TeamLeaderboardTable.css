@@ -1,0 +1,72 @@
+a.bigwin {
+  color: green; 
+  background-color: transparent; 
+  text-decoration: none;
+}
+
+a.bigwin:hover {
+  color: green;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a.bigwin:active {
+  color: green;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a.win {
+   color: black; 
+   background-color: transparent; 
+   text-decoration: none;
+ }
+ 
+ a.win:hover {
+   color: black;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+ a.win:active {
+   color: black;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+
+ a.loss {
+   color: darkorange; 
+   background-color: transparent; 
+   text-decoration: none;
+ }
+ 
+ a.loss:hover {
+   color: darkorange;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+ a.loss:active {
+   color: darkorange;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+ a.bigloss {
+   color: red; 
+   background-color: transparent; 
+   text-decoration: none;
+ }
+ 
+ a.bigloss:hover {
+   color: red;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 
+ a.bigloss:active {
+   color: red;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ 

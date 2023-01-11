@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 // Lodash:
 import _ from "lodash";
 
+import "./TeamLeaderboardTable.css";
+
 // mathjs
 // @ts-ignore
 import { mean, mode } from 'mathjs';
@@ -212,6 +214,77 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
     const rankingDeltaColorScale = (val: number) => chroma.scale(["green", "orange", "red"])(val).toString();
 
+    const buildLastGamesElement = (t: TeamInfo, lastN: number) => {
+      return _.chain(t.opponents).drop(t.opponents.length - lastN).map(g => {
+        const ptsScored = g.team_scored;
+        const ptsAgainst = g.oppo_scored;
+        const avgLead = g.avg_lead;
+        const gameWab = g.wab;
+        const locationStr = _.thru(g.location_type || "Neutral", loc => {
+          if (loc == "Home") {
+            return "";
+          } else if (loc == "Neutral") {
+            return "vs ";
+          } else {
+            return "@ ";
+          }
+        });
+        const winOrLoss = ptsScored > ptsAgainst ? "W": "L";
+        const scoreStr = `${winOrLoss} ${ptsScored}-${ptsAgainst}`
+        const gameStr = `${locationStr}${g.oppo_name} (${(g.date_str).substring(0, 10)}): ${scoreStr}`;
+
+        const colorClass = _.thru(winOrLoss, __ => {
+          if (ptsScored > ptsAgainst) {
+            if (avgLead > 8.0) {
+              return "bigwin";
+            } else {
+              return "win";
+            }
+          } else {
+            if (avgLead < -8.0) {
+              return "bigloss";
+            } else {
+              return "loss";
+            }
+          }
+        });
+        const [ description, weight ] = _.thru((g.team_scored > g.oppo_scored ? g.wab : g.wab - 1), wab => {
+          if (wab > 0.6) {
+            return [ "Great win!", 800 ];
+          } else if (wab > 0.5) {
+            return [ "Good win", 600 ];
+          } else if (wab <= -0.7) {
+            return [ "Bad loss", 600 ];
+          } else if (wab <= -0.6) {
+            return [ "Awful loss!", 800 ];
+          } else {
+            return [ "", 400 ];
+          }
+        });
+
+        const tooltip = <Tooltip id={(t.team_name + g.oppo_name).replace(/[^a-zA-Z]/g, "")}>
+          {gameStr}<br/>
+          {description ? <span>{description}<br/></span> : null}<br/>
+          Click to view a game report in a new tab. 
+        </Tooltip>;
+
+          return <OverlayTrigger placement="auto" overlay={tooltip}>
+          <a style={{ 
+              //@ts-ignore
+              fontWeight: weight 
+            }} 
+            className={colorClass} target="_blank" href={UrlRouting.getMatchupUrl({
+            team: t.team_name,
+            year: year,
+            gender: gender,
+            oppoTeam: gameStr,
+            minRank: "0", maxRank: "400"
+          })}>{winOrLoss}</a>
+        </OverlayTrigger>
+
+      }).value();
+    };
+
     /** If buildPin then don't do any mutable operations */
     const buildTable = (buildPin: boolean, 
       qualityWeightIn: number, wabWeightIn: number, waeWeightIn: number, domWeightIn: number, timeWeightIn: number,
@@ -354,22 +427,35 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           const teamTooltip = (
             <Tooltip id={`team_${team.team_name}`}>Open new tab with detailed team and individual stats, plus on/off analysis</Tooltip>
           );
+          
     
           // Build table entry
           const cell =  [ {
-            titleStr: team.team_name,
-            title: <OverlayTrigger placement="auto" overlay={teamTooltip}>
-              <a target="_blank" href={UrlRouting.getGameUrl({
-                minRank: "0",
-                maxRank: "400",
-                showRoster: true,
-                calcRapm: true,
-                showExpanded: true,
-                year: year,
-                gender: gender,
-                team: team.team_name,
-              }, {})}><b>{team.team_name}</b></a>
-            </OverlayTrigger>,
+            lastGames: <span>
+                <small className="d-none d-xl-block"><sup>
+                  {buildLastGamesElement(team, 5) /*TODO: this should depend on mobile vs desktop*/}
+                </sup></small>
+                <small className="d-block d-xl-none"><sup>
+                  {buildLastGamesElement(team, 2) /*TODO: this should depend on mobile vs desktop*/}
+                </sup></small>
+              </span>,
+            titleStr: team.team_name,            
+            title: 
+              <span>
+                  <OverlayTrigger placement="auto" overlay={teamTooltip}>
+                    <a target="_blank" href={UrlRouting.getGameUrl({
+                      minRank: "0",
+                      maxRank: "400",
+                      showRoster: true,
+                      calcRapm: true,
+                      showExpanded: true,
+                      year: year,
+                      gender: gender,
+                      team: team.team_name,
+                    }, {})}><b>{team.team_name}</b></a>
+                </OverlayTrigger>
+              </span>
+            ,
             confStr: ConferenceToNickname[team.conf],
             conf: <small>{ConferenceToNickname[team.conf] || "??"}</small>,
             rank: null as any,
@@ -569,7 +655,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       (val: { value: number }, valMeta: string) => CbbColors.getBlueToOrange().domain([mutableLimitState.minTime, 0, mutableLimitState.maxTime])(val.value).toString();
 
     const teamLeaderboard = _.omit({
-        "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
+        "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 6),
         "conf": GenericTableOps.addDataCol("Conf", "The team's conference", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
         "rankDiff": GenericTableOps.addDataCol(<b>&Delta;</b>, "The difference vs pinned rank", GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
         "sep0": GenericTableOps.addColSeparator(),
@@ -587,7 +673,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         "games": GenericTableOps.addIntCol("Games", `Number of games played (D1-D1 only; all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`, GenericTableOps.defaultColorPicker),
         "ap": GenericTableOps.addDataCol(`AP${apPoll?.__week__}`, `The team's AP ranking in week [${apPoll?.__week__}]`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
         "NET": GenericTableOps.addDataCol(`NET`, `The team's NET ranking`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
-        "S": GenericTableOps.addDataCol(`S`, `The S-Curve for the top seeds, at-larges, and first 4 out`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter)
+        "S": GenericTableOps.addDataCol(`S`, `The S-Curve for the top seeds, at-larges, and first 4 out`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter),
+        "lastGames": GenericTableOps.addDataCol(
+          <span>
+                <b className="d-none d-xl-block">L5</b>
+                <b className="d-block d-xl-none">L2</b>
+            </span>, 
+          `Most recent games (including game report links), right = most recent`, GenericTableOps.defaultColorPicker, GenericTableOps.htmlFormatter)
       }, 
       (anyPinDeltas ? [] : [ "rankDiff" ])
         .concat((apPoll) ? [] : [ "ap" ])
