@@ -254,9 +254,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           } else if (wab > 0.5) {
             return [ "Good win", 600 ];
           } else if (wab <= -0.7) {
-            return [ "Bad loss", 600 ];
-          } else if (wab <= -0.6) {
             return [ "Awful loss!", 800 ];
+          } else if (wab <= -0.6) {
+            return [ "Bad loss", 600 ];
           } else {
             return [ "", 400 ];
           }
