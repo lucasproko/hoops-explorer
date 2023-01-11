@@ -233,15 +233,17 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         const scoreStr = `${winOrLoss} ${ptsScored}-${ptsAgainst}`
         const gameStr = `${locationStr}${g.oppo_name} (${(g.date_str).substring(0, 10)}): ${scoreStr}`;
 
+        const endLead = ptsScored - ptsAgainst;
         const colorClass = _.thru(winOrLoss, __ => {
-          if (ptsScored > ptsAgainst) {
-            if (avgLead > 8.0) {
+          const bigResultThresh = 8.0;
+          if (endLead >= 0) {
+            if ((avgLead > bigResultThresh) && (endLead > bigResultThresh)) {
               return "bigwin";
             } else {
               return "win";
             }
           } else {
-            if (avgLead < -8.0) {
+            if ((avgLead < -bigResultThresh) && (endLead < -bigResultThresh)) {
               return "bigloss";
             } else {
               return "loss";
@@ -262,8 +264,11 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           }
         });
 
+        const unexpectedResultStr = endLead*avgLead <= 0 ? " (!) " : "";
+
         const tooltip = <Tooltip id={(t.team_name + g.oppo_name).replace(/[^a-zA-Z]/g, "")}>
           {gameStr}<br/>
+          Average {avgLead >= 0 ? "lead" : "deficit"}{unexpectedResultStr} of {Math.abs(avgLead).toFixed(1)} pts<br/>
           {description ? <span>{description}<br/></span> : null}<br/>
           Click to view a game report in a new tab. 
         </Tooltip>;
