@@ -45,7 +45,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, PureStatSet } from '../utils/StatModels';
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
-import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
+import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from '../utils/FilterModels';
 import { ORtgDiagnostics, RatingUtils, OnBallDefenseModel } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
@@ -60,6 +60,8 @@ import { LineupUtils } from "../utils/stats/LineupUtils";
 import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
 import { HistoryManager } from '../utils/HistoryManager';
 import { defaultRapmConfig } from '../utils/stats/RapmUtils';
+import TeamRosterStatsConfigModal, { TeamRosterStatsConfig } from './shared/TeamRosterStatsConfigModal';
+import { UrlRouting } from '../utils/UrlRouting';
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>,
@@ -197,6 +199,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const [ rapmRegressMode, setRapmRegresssMode ] = useState(
     parseFloat(_.isNil(gameFilterParams.rapmRegressMode) ? ParamDefaults.defaultTeamReportRapmRegressMode : gameFilterParams.rapmRegressMode)
   );
+  /** Whether we are showing the advanced on/off stats config modal */
+  const [ showTeamRosterStatsConfig, setShowTeamRosterStatsConfig ] = useState(false);
 
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showPlayerPlayTypes) ?
@@ -255,7 +259,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
       showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, showOnBallConfig, 
-      manualOverrides, calcRapm, factorMins, showInfoSubHeader, showGrades
+      manualOverrides, calcRapm, factorMins, showInfoSubHeader, showGrades, rapmPriorMode, rapmRegressMode
     ]);
 
   // Events that trigger building or rebuilding the division stats cache
@@ -907,6 +911,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         luck={luckConfig}
         showHelp={showHelp}
       />
+      <TeamRosterStatsConfigModal
+        show={showTeamRosterStatsConfig}
+        onlyRapm={true}
+        noRapmDiagMode={true}
+        onHide={() => setShowTeamRosterStatsConfig(false)}
+        onSave={(config: TeamRosterStatsConfig) => {
+          setRapmPriorMode(config.rapmPriorMode);
+          setRapmRegresssMode(config.rapmRegressMode);
+        }}
+        config={{
+          rapmPriorMode, rapmRegressMode, 
+          showRapmDiag: false,
+          regressDiffs: 0
+        }}
+        showHelp={showHelp}
+      />
       <OnBallDefenseModal
         show={showOnBallConfig}
         players={rosterStats.baseline || []}
@@ -1002,6 +1022,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => setShowLuckConfig(true)}
             />
             <GenericTogglingMenuItem
+              text="Configure Advanced Stats..."
+              truthVal={false}
+              onSelect={() => setShowTeamRosterStatsConfig(true)}
+            />
+            <GenericTogglingMenuItem
               text={<span>Upload On-Ball Defense... <span className="badge badge-pill badge-info">pre-alpha!</span></span>}
               truthVal={showOnBallConfig}
               onSelect={() => setShowOnBallConfig(true)}
@@ -1027,6 +1052,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}
               onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+            />
+            <GenericTogglingMenuItem
+              text={<a target="_blank" href={UrlRouting.getTeamReportUrl({
+                ...(getCommonFilterParams(gameFilterParams)),
+                filter: gameFilterParams.filter,
+                showOnOff: false,
+                showComps: false,
+                incRepOnOff: false,
+                incRapm: true,
+                rapmDiagMode: "team",
+                rapmPriorMode: rapmPriorMode.toString(), rapmRegressMode: rapmRegressMode.toString(),
+                luck: luckConfig,
+                teamLuck: adjustForLuck
+              })}>Show RAPM diagnostrics (new tab)</a>}
+              truthVal={false}
+              onSelect={() => false}
             />
             <GenericTogglingMenuItem
               text={"Show extra info sub-header"}

@@ -4895,6 +4895,22 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -5926,6 +5942,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -5969,6 +5990,18 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -8912,6 +8945,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -9921,6 +9970,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -9964,6 +10018,18 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -11986,6 +12052,22 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -12929,6 +13011,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -12972,6 +13059,18 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -17834,6 +17933,22 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -18797,6 +18912,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -18840,6 +18960,18 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -25565,6 +25697,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -26624,6 +26772,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -26667,6 +26820,18 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -33598,6 +33763,22 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -34589,6 +34770,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -34632,6 +34818,18 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -44911,6 +45109,22 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -45982,6 +46196,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -46026,6 +46245,18 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
             truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=true&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -53725,6 +53956,22 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -54824,6 +55071,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -54868,6 +55120,18 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
             truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=true&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
@@ -65607,6 +65871,22 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
       show={false}
       showHelp={true}
     />
+    <TeamRosterStatsConfigModal
+      config={
+        Object {
+          "rapmPriorMode": -1,
+          "rapmRegressMode": -1,
+          "regressDiffs": 0,
+          "showRapmDiag": false,
+        }
+      }
+      noRapmDiagMode={true}
+      onHide={[Function]}
+      onSave={[Function]}
+      onlyRapm={true}
+      show={false}
+      showHelp={true}
+    />
     <OnBallDefenseModal
       onBallDefense={Array []}
       onHide={[Function]}
@@ -66674,6 +66954,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Configure Advanced Stats..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text={
               <span>
                 Upload On-Ball Defense... 
@@ -66718,6 +67003,18 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
             truthVal={true}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <a
+                href="/TeamReport?incRapm=true&incRepOnOff=false&luck.base=season&rapmDiagMode=team&rapmPriorMode=-1&rapmRegressMode=-1&showComps=false&showOnOff=false&teamLuck=false&"
+                target="_blank"
+              >
+                Show RAPM diagnostrics (new tab)
+              </a>
+            }
+            truthVal={false}
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
