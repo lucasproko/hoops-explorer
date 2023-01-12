@@ -44,7 +44,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { TeamLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks, NonP6Nick, P6Nick } from '../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname } from '../utils/public-data/ConferenceInfo';
 import { TeamInfo } from '../utils/StatModels';
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
@@ -55,11 +55,7 @@ import { apPolls, sCurves } from '../utils/public-data/rankingInfo';
 import chroma from 'chroma-js';
 import { GenericTableColProps } from './GenericTable';
 import { DateUtils } from '../utils/DateUtils';
-
-const highMajorConfsName = "Power 6 Conferences";
-const nonHighMajorConfsName = "Outside The P6";
-const queryFiltersName = "From URL";
-const powerSixConfsStr = Power6ConferencesNicks.join(",");
+import ConferenceSelector, { ConfSelectorConstants } from './shared/ConferenceSelector';
 
 export type TeamLeaderboardStatsModel = {
   year?: string,
@@ -97,6 +93,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
   // Data source
   const [confs, setConfs] = useState(startingState.conf || "");
+  const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
+  const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
+
   const [year, setYear] = useState(startingState.year || ParamDefaults.defaultLeaderboardYear);
   const [gender, setGender] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = (year == "Extra") || (year == "All");
@@ -152,12 +151,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       pinWabWeight: "" + pinnedWabWeight, pinWaeWeight: "" + pinnedWaeWeight, pinQualityWeight: "" + pinnedQualityWeight, 
       pinDomWeight: "" + pinnedDomWeight, pinTimeWeight: "" + pinnedTimeWeight,
       conf: confs, gender: gender, year: year,
+      queryFilters: queryFilters
     };
     onChangeState(newState);
   }, [ 
     wabWeight, waeWeight, qualityWeight, dominanceWeight, timeWeight,
     pinnedWabWeight, pinnedWaeWeight, pinnedQualityWeight, pinnedDomWeight,pinnedTimeWeight,
-    confs, year, gender 
+    confs, year, gender, queryFilters
   ]);
 
   useEffect(() => {
@@ -585,11 +585,14 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
     const confFilter = (t: {titleStr: string, confStr: string}) => {
       return (confs == "") || (confs.indexOf(t.confStr) >= 0) 
-        || ((confs.indexOf(NonP6Nick) >= 0) && (powerSixConfsStr.indexOf(t.confStr) < 0))
-        || ((confs.indexOf(P6Nick) >= 0) && (powerSixConfsStr.indexOf(t.confStr) >= 0))
-        || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.titleStr};`) >= 0))
-        ;
-    }
+         || ((confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0) 
+                  && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.confStr) >= 0))
+         || ((confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0) 
+                  && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.confStr) < 0))
+         || (hasCustomFilter && ((startingState.queryFilters || "").indexOf(`${t.titleStr};`) >= 0))
+         ;
+   };
+
     const mainTable = tableDataTmp.filter(t => (t.games.value > 0.5*gameBasis)).filter(t => confFilter(t)).map((t, ii) => {
       if (confs != "") {
         t.title = <span><sup><small>{1 + ii}</small>&nbsp;</sup>{t.title}</span>
@@ -699,7 +702,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       tableData={tableData}
       cellTooltipMode="missing"
     />
-  }, [ confs, dataEvent, wabWeight, waeWeight, qualityWeight, dominanceWeight, 
+  }, [ confs, queryFilters, dataEvent, wabWeight, waeWeight, qualityWeight, dominanceWeight, 
       pinnedWabWeight, pinnedWaeWeight, pinnedQualityWeight, pinnedDomWeight, timeWeight, pinnedTimeWeight, netRankings ]);
 
   // 3] Utils
@@ -828,39 +831,6 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     }
   });
 
-  // Conference filter
-
-  function getCurrentConfsOrPlaceholder() {
-    return (confs == "") ?
-      { label: year < "2020/21" ? `All High Tier Teams` : `All Teams` } :
-      confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
-  }
-
-  /** Slightly hacky code to render the conference nick names */
-  const ConferenceValueContainer = (props: any) => {
-    const oldText = props.children[0];
-    const fullConfname = oldText.props.children;
-    const newText = {
-      ...oldText,
-      props: {
-        ...oldText.props,
-        children: [ConferenceToNickname[fullConfname] || fullConfname]
-      }
-    }
-    const newProps = {
-      ...props,
-      children: [newText, props.children[1]]
-    }
-    return <components.MultiValueContainer {...newProps} />
-  };
-
-  /** The sub-header builder */
-  const formatGroupLabel = (data: any) => (
-    <div>
-    <span>{data.label}</span>
-    </div>
-  );
-
   /** At the expense of some time makes it easier to see when changes are happening */
   const friendlyChange = (change: () => void, guard: boolean, timeout: number = 250) => {
     if (guard) {
@@ -870,12 +840,6 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
       }, timeout)
     }
   };
-
-  const confsWithTeams = dataEvent?.confMap ?
-    _.toPairs(dataEvent?.confMap || {}).map(kv => {
-      const teams = kv[1] || [];
-      return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
-    }) : (dataEvent?.confs || []);
 
   // Handle slicker slider dragging
 
@@ -946,29 +910,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
         <Col xs={12} sm={12} md={6} lg={6} style={{zIndex: 10}}>
-          <Select
-            isClearable={true}
-            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-            isMulti
-            components={{ MultiValueContainer: ConferenceValueContainer }}
-            value={getCurrentConfsOrPlaceholder()}
-            options={[
-              { label: "Groups", options: [highMajorConfsName, nonHighMajorConfsName, queryFiltersName].map(stringToOption) },
-              { label: "Confs", options: _.sortBy(confsWithTeams).map(stringToOption) },
-            ]}
-            formatGroupLabel={formatGroupLabel}
-            filterOption={createFilter({
-              ignoreCase: true, ignoreAccents: true, matchFrom: 'any', trim: true,
-              stringify: (option: any) => `${option.value} ${ConferenceToNickname[option.value]}`
-            })}
-            onChange={(optionsIn) => {
-              const options = optionsIn as Array<any>;
-              const selection = (options || [])
-                .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
-              const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-              friendlyChange(() => setConfs(confStr), confs != confStr);
-            }}
-          />
+        <ConferenceSelector
+               emptyLabel={year < DateUtils.yearFromWhichAllMenD1Imported ? `All High Tier Teams` : `All Teams`}
+               confStr={confs}
+               confMap={dataEvent?.confMap}
+               confs={dataEvent?.confs}
+               onChangeConf={confStr => friendlyChange(() => setConfs(confStr), confs != confStr)}
+            />
         </Col>
         <Col lg={2} className="mt-1">
           {getCopyLinkButton()}
@@ -976,6 +924,24 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
           {getPreseasonButton()}
         </Col>
       </Form.Group>
+      {hasCustomFilter ? <Form.Group as={Row}>
+         <Col xs={12} sm={12} md={8} lg={8}>
+            <InputGroup>
+               <InputGroup.Prepend>
+                  <InputGroup.Text id="filter">Filter:</InputGroup.Text>
+               </InputGroup.Prepend>
+               <AsyncFormControl
+                  startingVal={queryFilters}
+                  onChange={(t: string) => {
+                     const newStr = t.endsWith(";") ? t : t + ";";
+                     friendlyChange(() => setQueryFilters(newStr), newStr != queryFilters);
+                  }}
+                  timeout={500}
+                  placeholder = ";-separated list of teams"
+               />
+            </InputGroup>
+         </Col>
+      </Form.Group> : null}
       <Row className="mt-2 sticky-top" style={{backgroundColor: "white", opacity: "85%", zIndex: 1}}>
         <Col xs={11}>
         <Row>

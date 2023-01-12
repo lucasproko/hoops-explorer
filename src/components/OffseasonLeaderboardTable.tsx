@@ -76,6 +76,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
    const [confs, setConfs] = useState(startingState.confs || "");
    const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
+   const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
 
    const [year, setYear] = useState(startingState.year || DateUtils.offseasonPredictionYear);
    const yearWithStats = DateUtils.getPrevYear(year);
@@ -87,7 +88,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
 
    const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
-   const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
 
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
