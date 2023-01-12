@@ -264,9 +264,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
 
       const confFilter = (t: {team: string, conf: string}) => {
          return (confs == "") || (confs.indexOf(t.conf) >= 0) 
-            || (((confs.indexOf("P6") >= 0) && confs.indexOf(ConfSelectorConstants.nonHighMajorConfsName) < 0) 
+            || ((confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0) 
                      && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0))
-            || ((confs.indexOf(ConfSelectorConstants.nonHighMajorConfsName) >= 0) 
+            || ((confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0) 
                      && (ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0))
             || (hasCustomFilter && ((startingState.queryFilters || "").indexOf(`${t.team};`) >= 0))
             ;

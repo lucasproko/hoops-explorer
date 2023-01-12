@@ -1,10 +1,13 @@
 
 import _ from "lodash";
 
+export const NonP6Nick = "MM";
+export const P6Nick = "P6"
+
 /** Note these use the KenPom naming conventions */
 export const ConferenceToNickname: Record<string, string> = {
-  "Power 6 Conferences": "P6",
-  "Outside The P6": "MM",
+  "Power 6 Conferences": P6Nick,
+  "Outside The P6": NonP6Nick,
   "American Athletic Conference": "AAC",
   "America East Conference": "AE",
   "Atlantic Coast Conference": "ACC",
@@ -51,7 +54,7 @@ export const Power6Conferences = Power6ConferencesNicks.map(c => NicknameToConfe
 
 export const NonP6Conferences = 
   _.chain(ConferenceToNickname).flatMap((confNick, conf) => 
-    (confNick == "MM" || confNick == "P6" || HighMajorConfs.has(conf)) ? [] : [ conf ]).value();
+    (confNick == NonP6Nick || confNick == P6Nick || HighMajorConfs.has(conf)) ? [] : [ conf ]).value();
 
 /** high / midhigh / mid / midlow / low doesn't seem quite granular enough in practice, plus  */    
 export const confAdjustments = {

@@ -44,7 +44,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { TeamLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks } from '../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks, NonP6Nick, P6Nick } from '../utils/public-data/ConferenceInfo';
 import { TeamInfo } from '../utils/StatModels';
 
 import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
@@ -585,7 +585,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
 
     const confFilter = (t: {titleStr: string, confStr: string}) => {
       return (confs == "") || (confs.indexOf(t.confStr) >= 0) 
-        || ((confs.indexOf(nonHighMajorConfsName) >= 0) && (powerSixConfsStr.indexOf(t.confStr) < 0))
+        || ((confs.indexOf(NonP6Nick) >= 0) && (powerSixConfsStr.indexOf(t.confStr) < 0))
+        || ((confs.indexOf(P6Nick) >= 0) && (powerSixConfsStr.indexOf(t.confStr) >= 0))
         || ((confs.indexOf(queryFiltersName) >= 0) && ((startingState.queryFilters || "").indexOf(`${t.titleStr};`) >= 0))
         ;
     }

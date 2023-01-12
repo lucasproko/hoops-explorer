@@ -342,8 +342,22 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          _.flatMap((confs || "").split(","), c => specialCases[c] || [ NicknameToConference[c] || c ])
        ) : undefined;
 
+
        const subChart = _.isEmpty(confs) ? undefined : _.chain(teamRanks)
          .flatMap(t => t.players || []) 
+         .map((p, ii) => {
+            // Add custom stats in here
+            //Debug:
+            // if (ii < 100) {
+            //    console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`)
+            // }
+            // Example query - super seniors with a rotation+ RAPM
+            // (only useful is also set maybeOverride.superSeniorsBack in OffseasonLeaderboardUtils.buildAllTeamStats)
+            // if ((p.orig.roster?.year_class == "Sr") && 
+            //    (fieldValExtractor("adj_rapm")(p.orig) > 2)) {
+            //    }
+            return p;
+         })
          .filter(p => 
             !_.isEmpty(p.orig.team) && (
                (p.actualResults || false) && (p.orig || false) && (p.actualResults.team != p.orig.team)

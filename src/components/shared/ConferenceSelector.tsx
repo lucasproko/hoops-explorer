@@ -9,11 +9,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Additional components:
 import Select, { components, createFilter} from "react-select"
-import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks } from '../../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname, NicknameToConference, Power6ConferencesNicks, P6Nick, NonP6Nick } from '../../utils/public-data/ConferenceInfo';
 
 export class ConfSelectorConstants {
    static readonly highMajorConfsName = "Power 6 Conferences";
+   static readonly highMajorConfsNick = P6Nick;
    static readonly nonHighMajorConfsName = "Outside The P6";
+   static readonly nonHighMajorConfsNick = NonP6Nick;
    static readonly queryFiltersName = "Manual Filter";
    static readonly multiName = "Multi";
    static readonly powerSixConfsStr = Power6ConferencesNicks.join(",");   
