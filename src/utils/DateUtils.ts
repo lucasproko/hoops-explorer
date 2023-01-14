@@ -104,7 +104,9 @@ export class DateUtils {
 
    /** Get the previous season */
    static readonly getPrevYear = (y: string) => {
-      if (y == "2022/23") {
+      if (y == "2023/24") {
+         return "2022/23";
+      } else if (y == "2022/23") {
          return "2021/22";
       } else if (y == "2021/22") { //TODO: From 2020/21 onwards can calculate
          return "2020/21";
