@@ -17,6 +17,7 @@ const weirdNameChanges: Record<string, string> = {
    "Miami (Fla.)": "Miami (FL)",
    "St. John's": "St. John's (NY)",
    "Charleston": "Col. of Charleston",
+   "Florida Atlantic": "Fla. Atlantic"
 };
 const fixName = (t: string) => weirdNameChanges[t] || t;
 
@@ -65,37 +66,37 @@ const apPollMen_2021_22: () => Record<string, number> = () => _.chain(`
    ).value();
 /** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
 const apPollMen_2022_23: () => Record<string, number> = () => _.chain(`
-1	Houston (34)	16-1	1,457	2
-2	Kansas (22)	14-1	1,440	3
-3	Purdue (4)	15-1	1,386	1
-4	Alabama	13-2	1,288	7
-5	Tennessee	13-2	1,231	8
-6	UConn	15-2	1,206	4
-7	UCLA	14-2	1,108	10
-8	Gonzaga	14-3	1,070	9
-9	Arizona	14-2	1,049	5
-10	Texas	13-2	940	6
-11	Kansas State	14-1	818	NR
-12	Xavier	13-3	793	18
-13	Virginia	11-3	712	11
-14	Iowa State	12-2	697	25
-15	Arkansas	12-3	613	13
-16	Miami (Fla.)	13-2	604	12
-17	TCU	13-2	553	17
-18	Wisconsin	11-3	448	14
-19	Providence	14-3	358	NR
-20	Missouri	13-2	317	20
-21	Auburn	12-3	256	22
-22	Charleston	16-1	246	23
-23	San Diego State	12-3	222	NR
-24	Duke	12-4	221	16
-25	Marquette	13-4	131	NR
+1	Houston (34)	17-1	1,460	1
+2	Kansas (23)	16-1	1,446	2
+3	Purdue (3)	16-1	1,382	3
+4	Alabama	15-2	1,347	4
+5	UCLA	16-2	1,237	7
+6	Gonzaga	16-3	1,178	8
+7	Texas	15-2	1,122	10
+8	Xavier	15-3	1,047	12
+9	Tennessee	14-3	1,019	5
+10	Virginia	13-3	926	13
+11	Arizona	15-3	838	9
+12	Iowa State	13-3	795	14
+13	Kansas State	15-2	771	11
+14	TCU	14-3	753	17
+15	UConn	15-4	668	6
+16	Auburn	14-3	553	21
+17	Miami (Fla.)	14-3	487	16
+18	Charleston	18-1	351	22
+19	Clemson	15-3	339	NR
+20	Marquette	14-5	306	25
+21	Baylor	12-5	267	NR
+22	Providence	14-4	262	19
+23	Rutgers	13-5	131	NR
+24	Florida Atlantic	16-1	126	NR
+25	Arkansas	12-5	115	15
 `).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "")
    .replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
    ), parseInt(ab[0].replace("T-", "")) ];}).fromPairs()
    .assign(
       {
-         __week__: 9
+         __week__: 10
       }
    ).value();
 
@@ -165,7 +166,7 @@ const apPollWomen_2022_23: () => Record<string, number> = () => _.chain(`
 ), parseInt(ab[0].replace("T-", "")) ];}).fromPairs()
    .assign(
       {
-         __week__: 9
+         __week__: 10
       }
    ).value();
 
