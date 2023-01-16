@@ -1,6 +1,7 @@
 
 // Utils:
 import _ from 'lodash'
+import { PlayerCode } from '../StatModels';
 
 export type PosFamily = "ballhandler" | "wing" | "big";
 export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
@@ -9,8 +10,10 @@ export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
 export type PlayerStyleInfo = {
   unassisted: Record<string, any>,
   assisted: Record<string, any>,
-  scramble: Record<string, any>,
-  transition: Record<string, any>,
+  scramble: Record<string, any>, //(totals, asssisted + unassisted)
+  transition: Record<string, any>, //(totals, asssisted + unassisted)
+  scrambleAssisted: Record<string, any>,
+  transitionAssisted: Record<string, any>,
   totalScoringPlaysMade: number,
   totalAssists: number
 };
@@ -20,8 +23,21 @@ const shotTypes = [ "3p", "mid", "rim" ];
 const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
 const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
 
+export type TopLevelPlayTypes = 
+  "Rim Attack" | "Attack & Kick" | "Attack & Dish" | "Dribble Jumper" |
+  "Spread" |
+  "Cut & Roll" | "Post-Ups" | "Post-Up Collapse" | "Pick & Pop" | "High-Low" |
+  "Transition" | "Put-Back";
+
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
+
+  static topTevelPlayTypes: TopLevelPlayTypes[] = [
+    "Rim Attack" , "Attack & Kick" , "Attack & Dish" , "Dribble Jumper" ,
+    "Spread" ,
+    "Cut & Roll" , "Post-Ups" , "Post-Up Collapse", "Pick & Pop" , "High-Low" ,
+    "Transition" , "Put-Back"
+  ]
 
   /** Gives % of ball-handler /  wing / big vs position name */
   private static posToFamilyScore = {
@@ -61,15 +77,21 @@ export class PlayTypeUtils {
     }).uniq().value();
   }
 
-  /** Decomposes a player stats into unassisted/assisted and half-court/scramble/transition */
+  /** Decomposes a player stats into unassisted/assisted _totals_ and half-court/scramble/transition */
   static buildPlayerStyle(
-    player: Record<string, any>, countNotPctScorePoss?: number, countNotPctAssists?: number
+    player: Record<string, any>, countNotPctScorePoss?: number, countNotPctAssists?: number, separateHafCourt?: boolean
   ): PlayerStyleInfo {
 
     // Some types and globals
 
     const ftaMult = 0.475;
-    const totalAssistsCalc = player[`total_off_assist`]?.value || 0; // (don't render if 0)
+    const totalAssistsCalc = (player[`total_off_assist`]?.value || 0)
+    const totalAssistsCalcHalfCourt = totalAssistsCalc
+      - (player[`total_off_scramble_assist`]?.value || 0)
+      - (player[`total_off_trans_assist`]?.value || 0)
+      ; // (don't render if 0)
+    const totalAssistsCalcToUse = separateHafCourt ? totalAssistsCalcHalfCourt : totalAssistsCalc;
+
     const totalAssists = countNotPctAssists ? countNotPctAssists : totalAssistsCalc;
 
     const totalShotsMade = player[`total_off_fgm`]?.value || 0;
@@ -86,66 +108,76 @@ export class PlayTypeUtils {
     })) as Record<string, number[]>; };
 
     /** (util method, see below) */
-    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number, assists: number) => {
+    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number, assists: number, assistedOnly: boolean) => {
       return _.toPairs(totalInfo).map(kv => {
         const key = kv[0];
-        const total = kv[1][0]!;
+        const total = kv[1][0]!; //total unassisted + assisted
+        const assisted = kv[1][1]!; 
         return [ `source_${key}_ast`, total > 0 ? {
-          value: total/totalScoringPlaysMade
+          value: (assistedOnly ? assisted : total)/totalScoringPlaysMade
         } : null ]
-      }).concat([
+      }).concat(assistedOnly ? [] : [
         [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ],
         [ `target_ast`, assists > 0 ? { value: assists/totalScoringPlaysMade } : null ],
       ]);
     }
 
-    // Scramble and transitiob
+    // Scramble and transition
 
     const scrambleTotal = buildTotal("scramble");
     const scrambleFtTrips = ftaMult*(player[`total_off_scramble_fta`]?.value || 0);
     const scrambleAssists = player[`total_off_scramble_assist`]?.value || 0;
-    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists);
+    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, false);
+    const scrambleRowAssistedOnly = separateHafCourt ? 
+      buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, true) : [];
 
     const transitionTotal = buildTotal("trans");
     const transitionFtTrips = ftaMult*(player[`total_off_trans_fta`]?.value || 0);
     const transitionAssists = player[`total_off_trans_assist`]?.value || 0;
-    const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists);
+    const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists, false);
+    const transitionRowAssistedOnly = separateHafCourt ? 
+      buildRow(transitionTotal, transitionFtTrips, transitionAssists, true) : [];
 
     // Half court:
 
-    //const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
+    const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
+    const totalFtTripsToUse = separateHafCourt ? totalFtTripsMadeHalfCourt : totalFtTripsMade;
 
-    //const unassistedHalfCourtRow = shotTypes.map((key) => {
-    const unassistedRow = shotTypes.map((key) => {
+    const unassistedToUseRow = shotTypes.map((key) => {
       const shots = player[`total_off_${shotMap[key]!}_made`]?.value || 0; //(half court/transition/scramble)
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
       const unassisted = (shots - assisted);
-      //const unassistedHalfCourt =  unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
+      const unassistedHalfCourt =  unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
+      const unassistedToUse = separateHafCourt ? unassistedHalfCourt : unassisted;
 
-      return [ `source_${key}_ast`, unassisted > 0 ? {
-        value: unassisted/totalScoringPlaysMade
+      return [ `source_${key}_ast`, unassistedToUse > 0 ? {
+        value: unassistedToUse/totalScoringPlaysMade
       } : null ];
     }).concat([
-      [ `source_sf`, totalFtTripsMade > 0 ? { value: totalFtTripsMade/totalScoringPlaysMade } : null ]
+      [ `source_sf`, totalFtTripsToUse > 0 ? { value: totalFtTripsToUse/totalScoringPlaysMade } : null ]
     ]);
 
-    const assistTotalsRow = shotTypes.map((key) => {
+    const assistToUseTotalsRow = shotTypes.map((key) => {
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
-      //const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
-      return [ `source_${key}_ast`, assisted > 0 ? {
-        value: assisted/totalScoringPlaysMade
+      const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
+      const assistedToUse = separateHafCourt ? assistedHalfCourt : assisted;
+
+      return [ `source_${key}_ast`, assistedToUse > 0 ? {
+        value: assistedToUse/totalScoringPlaysMade
       } : null];
     }).concat([
-      [ `target_ast`, totalAssistsCalc > 0 ? {
-        value: totalAssistsCalc/totalScoringPlaysMade
+      [ `target_ast`, totalAssistsCalcToUse > 0 ? {
+        value: totalAssistsCalcToUse/totalScoringPlaysMade
       } : null ]
     ]);
 
     return {
-      unassisted: _.fromPairs(unassistedRow),
-      assisted: _.fromPairs(assistTotalsRow),
+      unassisted: _.fromPairs(unassistedToUseRow),
+      assisted: _.fromPairs(assistToUseTotalsRow),
       scramble: _.fromPairs(scrambleRow),
       transition: _.fromPairs(transitionRow),
+      scrambleAssisted: _.fromPairs(scrambleRowAssistedOnly),
+      transitionAssisted: _.fromPairs(transitionRowAssistedOnly),
       totalScoringPlaysMade: totalScoringPlaysMade,
       totalAssists: totalAssists
     };
@@ -263,7 +295,7 @@ export class PlayTypeUtils {
       });
       // Aggregate the different stats across the different player weights vs the category
       _.transform(infos, (acc, statSet) => {
-        const maybeFill = (key: string, examples?: Array<Array<string>>) => {
+        const maybeFill = (key: string, examples?: Array<string>) => {
           if (!acc[key]) {
             acc[key] = { value: 0, extraInfo: examples };
           }
@@ -299,6 +331,7 @@ export class PlayTypeUtils {
 
             const statKey = `${loc}_${shotType}_ast`;
             const statVal = statSet[statKey];
+
             if (statVal?.value) { // (do nothing on 0)
               maybeFill(statKey, playTypeExamples);
               acc[statKey].value! += weight * statVal.value;
@@ -325,80 +358,105 @@ export class PlayTypeUtils {
     }).orderBy(["order"], ["asc"]).value();
   }
 
+  static buildPlayTypesLookup = _.memoize(() => {
+    return _.chain(PlayTypeUtils.playTypesByFamily).values().map(o => {
+      return [ o.examples.join(":"), o.topLevel ];
+    }).concat([
+      [ "trans", { "Transition": 1.0 } as Record<TopLevelPlayTypes, number> ],
+      [ "scramble", { "Put-Back": 1.0 }  as Record<TopLevelPlayTypes, number> ],
+    ])
+    .fromPairs().value() as Record<string, Record<TopLevelPlayTypes, number>>;
+  });
+
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */
-  private static playTypesByFamily = {
+  private static playTypesByFamily: 
+    Record<string, { source: string, examples: string[], topLevel: Record<TopLevelPlayTypes, number>}> = 
+  {
     // 1] Ball handler:
 
     // 1.0] SF
     "ballhandler_sf": {
       source: "Shooting Foul",
-      examples: [ "fouled driving to the rim", "fouled in the bonus", "fouled cutting" ]
+      examples: [ "fouled driving to the rim", "fouled in the bonus", "fouled cutting" ],
+      topLevel: { "Rim Attack": 0.8, "Cut": 0.2  }
     },
 
     // 1.1] 3P
 
     "ballhandler_3p": {
       source: "3P Unassisted",
-      examples: [ "dribble jumper off misc action", "off ball-screen", "dribble jumper off ISO" ]
+      examples: [ "dribble jumper off misc action", "off ball-screen", "dribble jumper off ISO" ],
+      topLevel: { "Dribble Jumper": 1.0 }
     },
     "ballhandler_3p_ballhandler": {
       source: "3P Assisted by a ballhandler",
       target: "Pass to ballhandler for 3P",
-      examples: [ "drive-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+      examples: [ "drive-and-kick", "hockey assist after defense collapses inside", "misc action" ],
+      topLevel: { "Attack & Kick": 1.0 }
     },
     "ballhandler_3p_wing": {
       source: "3P Assisted by a wing",
       target: "Pass to ballhandler for 3P",
-      examples: [ "slash-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+      examples: [ "slash-and-kick", "hockey assist after defense collapses inside", "misc action" ],
+      topLevel: { "Attack & Kick": 1.0 }
     },
     "ballhandler_3p_big": {
       source: "3P Assisted by frontcourt",
       target: "Pass to ballhandler for 3P",
-      examples: [ "kick-out after an ORB", "pass out of a post-up" ]
+      examples: [ "kick-out after an ORB", "pass out of a post-up" ],
+      topLevel: { "Post-Up Collapse": 1.0 }
     },
 
     // 1.2] mid
 
     "ballhandler_mid": {
       source: "Mid Range Unassisted",
-      examples: [ "drive and pull-up off ball-screen or ISO", "misc action" ]
+      examples: [ "drive and pull-up off ball-screen or ISO", "misc action" ],
+      topLevel: { "Rim Attack": 0.6, "Spread": 0.4 } 
     },
     "ballhandler_mid_ballhandler": {
       source: "Mid Range Assisted by ballhandler",
       target: "Pass to ballhandler for mid-range",
-      examples: [ "spread offense", "misc action" ]
+      examples: [ "spread offense", "misc action" ],
+      topLevel: { "Spread": 1.0 } 
     },
     "ballhandler_mid_wing": {
       source: "Mid Range Assisted by wing",
       target: "Pass to ballhandler for mid-range",
-      examples: [ "spread offense", "misc action" ]
+      examples: [ "spread offense", "misc action" ],
+      topLevel: { "Spread": 1.0 } 
     },
     "ballhandler_mid_big": {
       source: "Mid Range Assisted from frontcourt",
       target: "Pass to ballhandler for mid-range",
-      examples: [ "(usually sub-optimal) pass out of a post-up" ]
+      examples: [ "(usually sub-optimal) pass out of a post-up" ],
+      topLevel: { "Post-Up Collapse": 1.0 } 
     },
 
     // 1.3] rim
 
     "ballhandler_rim": {
       source: "Drive Unassisted",
-      examples: [ "attacks the rim off pick-and-roll", "ISO" ]
+      examples: [ "attacks the rim off pick-and-roll", "ISO" ],
+      topLevel: { "Rim Attack": 1.0 } 
     },
     "ballhandler_rim_ballhandler": {
       source: "Layup Assisted by ballhandler",
       target: "Pass to ballhandler for a layup",
-      examples: [ "cut" ]
+      examples: [ "cut" ],
+      topLevel: { "Cut": 1.0 } 
     },
     "ballhandler_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to ballhandler for a layup",
-      examples: [ "cut" ]
+      examples: [ "cut" ],
+      topLevel: { "Cut": 1.0 } 
     },
     "ballhandler_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to ballhandler for a layup",
-      examples: [ "cut" ]
+      examples: [ "cut" ],
+      topLevel: { "Cut": 1.0 } 
     },
 
     // 2] Wing:
@@ -406,73 +464,86 @@ export class PlayTypeUtils {
     // 2.0] SF
     "wing_sf": {
       source: "Shooting Foul",
-      examples: [ "fouled slashing to the rim", "fouled in the bonus", "fouled cutting" ]
+      examples: [ "fouled slashing to the rim", "fouled in the bonus", "fouled cutting" ],
+      topLevel: { "Rim Attack": 0.8, "Cut": 0.2  }
     },
 
     // 2.1] 3P
 
     "wing_3p": {
       source: "3P Unassisted",
-      examples: [ "off ball-screen", "dribble jumper off misc action", "dribble jumper off ISO" ]
+      examples: [ "off ball-screen", "dribble jumper off misc action", "dribble jumper off ISO" ],
+      topLevel: { "Dribble Jumper": 1.0 }
     },
     "wing_3p_ballhandler": {
       source: "3P Assisted by a ballhandler",
       target: "Pass to wing for 3P",
-      examples: [ "drive-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+      examples: [ "drive-and-kick", "hockey assist after defense collapses inside", "misc action" ],
+      topLevel: { "Attack & Kick": 1.0 }
     },
     "wing_3p_wing": {
       source: "3P Assisted by a wing",
       target: "Pass to wing for 3P",
-      examples: [ "slash-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+      examples: [ "slash-and-kick", "hockey assist after defense collapses inside", "misc action" ],
+      topLevel: { "Attack & Kick": 1.0 }
     },
     "wing_3p_big": {
       source: "3P Assisted by frontcourt",
       target: "Pass to wing for 3P",
-      examples: [ "kick-out after an ORB", "pass out of a post-up" ]
+      examples: [ "kick-out after an ORB", "pass out of a post-up" ],
+      topLevel: { "Post-Up Collapse": 1.0 } 
     },
 
     // 2.2] mid
 
     "wing_mid": {
       source: "Mid Range Unassisted",
-      examples: [ "drive and pull-up off ball-screen or ISO", "misc action" ]
+      examples: [ "drive and pull-up off ball-screen or ISO", "misc action" ],
+      topLevel: { "Rim Attack": 0.6, "Spread": 0.4 } 
     },
     "wing_mid_ballhandler": {
       source: "Mid Range Assisted by ballhandler",
       target: "Pass to wing for mid-range",
-      examples: [ "spread offense", "misc action", "zone buster" ]
+      examples: [ "spread offense", "misc action", "zone buster" ],
+      topLevel: { "Spread": 1.0 } 
     },
     "wing_mid_wing": {
       source: "Mid Range Assisted by wing",
       target: "Pass to wing for mid-range",
-      examples: [ "spread offense, misc action", "zone buster" ]
+      examples: [ "spread offense, misc action", "zone buster" ],
+      topLevel: { "Spread": 1.0 } 
     },
     "wing_mid_big": {
       source: "Mid Range Assisted from frontcourt",
       target: "Pass to wing for mid-range",
-      examples: [ "(usually sub-optimal) pass out of a post-up" ]
+      examples: [ "(usually sub-optimal) pass out of a post-up" ],
+      topLevel: { "Post-Up Collapse": 1.0 } 
     },
 
     // 2.3] rim
 
     "wing_rim": {
       source: "Drive Unassisted",
-      examples: [ "attacks the rim off pick-and-roll", "ISO" ]
+      examples: [ "attacks the rim off pick-and-roll", "ISO" ],
+      topLevel: { "Rim Attack": 1.0 } 
     },
     "wing_rim_ballhandler": {
       source: "Layup Assisted by ballhandler",
       target: "Pass to wing for a layup",
-      examples: [ "cut" ]
+      examples: [ "cut" ],
+      topLevel: { "Cut": 1.0 } 
     },
     "wing_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to wing for a layup",
-      examples: [ "cut" ]
+      examples: [ "cut" ],
+      topLevel: { "Cut": 1.0 } 
     },
     "wing_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to wing for a layup",
-      examples: [ "cut" ]
+      examples: [ "cut" ],
+      topLevel: { "Cut": 1.0 } 
     },
 
     // 3] Frontcourt:
@@ -480,73 +551,86 @@ export class PlayTypeUtils {
     // 2.0] SF
     "big_sf": {
       source: "Shooting Foul",
-      examples: [ "fouled on a rebound", "fouled posting up", "fouled rolling", "fouled in the bonus", "fouled cutting" ]
+      examples: [ "fouled on a rebound", "fouled posting up", "fouled rolling", "fouled in the bonus", "fouled cutting" ],
+      topLevel: { "Post-Up": 0.7, "Cut & Roll": 0.3 } 
     },
 
     // 3.1] 3P
 
     "big_3p": {
       source: "3P Unassisted",
-      examples: [ "dribble jumper off misc action", "dribble jumper off ISO", "off ball-screen" ]
+      examples: [ "dribble jumper off misc action", "dribble jumper off ISO", "off ball-screen" ],
+      topLevel: { "Dribble Jumper": 1.0 } 
     },
     "big_3p_ballhandler": {
       source: "3P Assisted by a ballhandler",
       target: "Pass to frontcourt for 3P",
-      examples: [ "pick-and-pop", "misc action" ]
+      examples: [ "pick-and-pop", "misc action" ],
+      topLevel: { "Pick & Pop": 1.0 } 
     },
     "big_3p_wing": {
       source: "3P Assisted by a wing",
       target: "Pass to frontcourt for 3P",
-      examples: [ "pick-and-pop", "misc action" ]
+      examples: [ "pick-and-pop", "misc action" ],
+      topLevel: { "Pick & Pop": 1.0 } 
     },
     "big_3p_big": {
       source: "3P Assisted by frontcourt",
       target: "Pass to frontcourt for 3P",
-      examples: [ "kick-out after an ORB", "pass out of a post-up" ]
+      examples: [ "kick-out after an ORB", "pass out of a post-up" ],
+      topLevel: { "Post-Up Collapse": 1.0 } 
     },
 
     // 3.2] mid
 
     "big_mid": {
       source: "Mid Range Unassisted",
-      exammples: [ "high post-up", "ISO", "misc action" ]
+      examples: [ "high post-up", "ISO", "misc action" ],
+      topLevel: { "Post-Up": 1.0 } 
     },
     "big_mid_ballhandler": {
       source: "Mid Range Assisted by ballhandler",
       target: "Pass to frontcourt for mid-range",
-      examples: [ "high post-up", "spread offense", "misc action" ]
+      examples: [ "high post-up", "spread offense", "misc action" ],
+      topLevel: { "Post-Up": 1.0 } 
     },
     "big_mid_wing": {
       source: "Mid Range Assisted by wing",
       target: "Pass to frontcourt for mid-range",
-      examples: [ "high post-up", "spread offense", "misc action" ]
+      examples: [ "high post-up", "spread offense", "misc action" ],
+      topLevel: { "Post-Up": 1.0 } 
     },
     "big_mid_big": {
       source: "Mid Range Assisted from frontcourt",
       target: "Pass to frontcourt for mid-range",
-      examples: [ "high-low action" ]
+      examples: [ "high-low action" ],
+      topLevel: { "High Low": 1.0 } 
     },
 
     // 3.3] rim
 
     "big_rim": {
       source: "Layup Unassisted",
-      examples: [ "post-up", "ISO" ]
+      examples: [ "post-up", "ISO" ],
+      topLevel: { "Post-Up": 1.0 } 
     },
     "big_rim_ballhandler": {
       source: "Layup Assisted by ballhandler",
       target: "Pass to frontcourt for layup",
-      examples: [ "roll", "cut", "sometimes post-up" ]
+      examples: [ "roll", "cut", "sometimes post-up" ],
+      topLevel: { "Cut & Roll": 1.0 } 
     },
     "big_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to frontcourt for layup",
-      examples: [ "roll", "cut", "sometimes post-up" ]
+      examples: [ "roll", "cut", "sometimes post-up" ],
+      topLevel: { "Cut & Roll": 1.0 } 
     },
     "big_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to frontcourt for layup",
-      examples: [ "roll", "cut", "sometimes post-up" ]
+      examples: [ "high-low action" ],
+      topLevel: { "High Low" : 0.8, "Cut & Roll": 0.2 } 
     }
   } as Record<string, any>;
 

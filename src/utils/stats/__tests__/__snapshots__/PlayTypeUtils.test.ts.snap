@@ -72,6 +72,7 @@ Object {
       "value": 0.025859839668994054,
     },
   },
+  "scrambleAssisted": Object {},
   "totalAssists": 147,
   "totalScoringPlaysMade": 386.7,
   "transition": Object {
@@ -91,6 +92,7 @@ Object {
       "value": 0.0982673907421774,
     },
   },
+  "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
       "value": 0.05430566330488751,
@@ -139,6 +141,7 @@ Object {
       "value": 0.025859839668994054,
     },
   },
+  "scrambleAssisted": Object {},
   "totalAssists": 147,
   "totalScoringPlaysMade": 386.7,
   "transition": Object {
@@ -158,6 +161,7 @@ Object {
       "value": 0.0982673907421774,
     },
   },
+  "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
       "value": 0.05430566330488751,
