@@ -75,7 +75,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
 
   const posCategoryAssistNetworkVsPlayer = _.chain(filteredPlayers).map((player, ix) => {
     const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
-    const playerStyle = PlayTypeUtils.buildPlayerStyle(
+    const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct",
       player, teamScoringPossessions, teamTotalAssists
     );
     const playerAssistNetwork = allPlayers.map((p) => {

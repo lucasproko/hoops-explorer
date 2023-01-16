@@ -1,7 +1,7 @@
 
 // Utils:
 import _ from 'lodash'
-import { PlayerCode } from '../StatModels';
+import { PlayerCode, IndivStatSet, TeamStatSet } from '../StatModels';
 
 export type PosFamily = "ballhandler" | "wing" | "big";
 export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
@@ -23,11 +23,14 @@ const shotTypes = [ "3p", "mid", "rim" ];
 const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
 const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
 
+type PlayStyleTypes = "scoringPlaysPct" | "pointsPer100" | "playsPct";
+
 export type TopLevelPlayTypes = 
   "Rim Attack" | "Attack & Kick" | "Attack & Dish" | "Dribble Jumper" |
   "Spread" |
   "Cut & Roll" | "Post-Ups" | "Post-Up Collapse" | "Pick & Pop" | "High-Low" |
-  "Transition" | "Put-Back";
+  "Transition" | "Put-Back" | "Misc";
+  //(currently "Misc" is just team turnovers, used to get the sum back to 100%)
 
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
@@ -37,7 +40,7 @@ export class PlayTypeUtils {
     "Spread" ,
     "Cut & Roll" , "Post-Ups" , "Post-Up Collapse", "Pick & Pop" , "High-Low" ,
     "Transition" , "Put-Back"
-  ]
+  ]; //(no Misc we don't rennder)
 
   /** Gives % of ball-handler /  wing / big vs position name */
   private static posToFamilyScore = {
@@ -79,7 +82,10 @@ export class PlayTypeUtils {
 
   /** Decomposes a player stats into unassisted/assisted _totals_ and half-court/scramble/transition */
   static buildPlayerStyle(
-    player: Record<string, any>, countNotPctScorePoss?: number, countNotPctAssists?: number, separateHafCourt?: boolean
+    playStyleType: PlayStyleTypes,
+    player: Record<string, any>, 
+    countNotPctScorePoss?: number, countNotPctAssists?: number, 
+    separateHalfCourt?: boolean
   ): PlayerStyleInfo {
 
     // Some types and globals
@@ -90,36 +96,46 @@ export class PlayTypeUtils {
       - (player[`total_off_scramble_assist`]?.value || 0)
       - (player[`total_off_trans_assist`]?.value || 0)
       ; // (don't render if 0)
-    const totalAssistsCalcToUse = separateHafCourt ? totalAssistsCalcHalfCourt : totalAssistsCalc;
+    const totalAssistsCalcToUse = separateHalfCourt ? totalAssistsCalcHalfCourt : totalAssistsCalc;
 
     const totalAssists = countNotPctAssists ? countNotPctAssists : totalAssistsCalc;
+    const maybeTurnovers = (playStyleType == "scoringPlaysPct") ? 0 : (player.total_off_to?.value || 0);
 
-    const totalShotsMade = player[`total_off_fgm`]?.value || 0;
+    const totalSuffix = (playStyleType == "scoringPlaysPct") ? "fgm" : "fga";
+    //(for pts/100 and % of plays we care about field goals made and missed)
+
+    const totalShotsCount = player[`total_off_${totalSuffix}`]?.value || 0;
     const totalFtTripsMade = ftaMult*(player[`total_off_fta`]?.value || 0);
-    const totalScoringPlaysMade = (countNotPctScorePoss ? countNotPctScorePoss :
-        (totalShotsMade + totalFtTripsMade + totalAssists)) || 1; //(always render so avoid NaN with default 1)
+    const totalPlaysMade = (countNotPctScorePoss ? countNotPctScorePoss :
+        (totalShotsCount + totalFtTripsMade + totalAssists + maybeTurnovers)
+      ) || 1; //(always render so avoid NaN with default 1)
+
+    const fieldGoalTypeSuffix = (playStyleType == "playsPct") ? "attempts" : "made";
+    //(if we care about scoring unless calculating the pure playsPct)
 
     /** (util method, see below) */
     const buildTotal = (prefix: string) => { return _.fromPairs(shotTypes.map((key) => {
-      const total = player[`total_off_${prefix}_${shotMap[key]!}_made`]?.value || 0;
+      const total = player[`total_off_${prefix}_${shotMap[key]!}_${fieldGoalTypeSuffix}`]?.value || 0;
       const assisted = player[`total_off_${prefix}_${shotMap[key]!}_ast`]?.value || 0;
       const unassisted = total - assisted;
       return [ key, [ total, assisted, unassisted ] ];
     })) as Record<string, number[]>; };
 
     /** (util method, see below) */
-    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number, assists: number, assistedOnly: boolean) => {
+    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number, assists: number, turnovers: number, assistedOnly: boolean) => {
       return _.toPairs(totalInfo).map(kv => {
         const key = kv[0];
         const total = kv[1][0]!; //total unassisted + assisted
         const assisted = kv[1][1]!; 
         return [ `source_${key}_ast`, total > 0 ? {
-          value: (assistedOnly ? assisted : total)/totalScoringPlaysMade
+          value: (assistedOnly ? assisted : total)/totalPlaysMade
         } : null ]
       }).concat(assistedOnly ? [] : [
-        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ],
-        [ `target_ast`, assists > 0 ? { value: assists/totalScoringPlaysMade } : null ],
-      ]);
+        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalPlaysMade } : null ],
+        [ `target_ast`, assists > 0 ? { value: assists/totalPlaysMade } : null ],
+      ]).concat(!assistedOnly && (maybeTurnovers > 0) ? [
+        [ `source_to`, turnovers > 0 ? { value: turnovers/totalPlaysMade } : null ],
+      ]: []);
     }
 
     // Scramble and transition
@@ -127,47 +143,52 @@ export class PlayTypeUtils {
     const scrambleTotal = buildTotal("scramble");
     const scrambleFtTrips = ftaMult*(player[`total_off_scramble_fta`]?.value || 0);
     const scrambleAssists = player[`total_off_scramble_assist`]?.value || 0;
-    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, false);
-    const scrambleRowAssistedOnly = separateHafCourt ? 
-      buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, true) : [];
+    const scrambleTo = player[`total_off_scramble_to`]?.value || 0;
+    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, scrambleTo, false);
+    const scrambleRowAssistedOnly = separateHalfCourt ? 
+      buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, 0, true) : [];
 
     const transitionTotal = buildTotal("trans");
     const transitionFtTrips = ftaMult*(player[`total_off_trans_fta`]?.value || 0);
     const transitionAssists = player[`total_off_trans_assist`]?.value || 0;
-    const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists, false);
-    const transitionRowAssistedOnly = separateHafCourt ? 
-      buildRow(transitionTotal, transitionFtTrips, transitionAssists, true) : [];
+    const transitionTo = player[`total_off_trans_to`]?.value || 0;
+    const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists, transitionTo, false);
+    const transitionRowAssistedOnly = separateHalfCourt ? 
+      buildRow(transitionTotal, transitionFtTrips, transitionAssists, 0, true) : [];
 
     // Half court:
 
     const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
-    const totalFtTripsToUse = separateHafCourt ? totalFtTripsMadeHalfCourt : totalFtTripsMade;
+    const totalFtTripsToUse = (separateHalfCourt ? totalFtTripsMadeHalfCourt : totalFtTripsMade);
+    const halfCourtTos = separateHalfCourt ? (maybeTurnovers - transitionTo - scrambleTo) : maybeTurnovers;
 
     const unassistedToUseRow = shotTypes.map((key) => {
-      const shots = player[`total_off_${shotMap[key]!}_made`]?.value || 0; //(half court/transition/scramble)
+      const shots = player[`total_off_${shotMap[key]!}_${fieldGoalTypeSuffix}`]?.value || 0; //(half court/transition/scramble)
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
       const unassisted = (shots - assisted);
       const unassistedHalfCourt =  unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
-      const unassistedToUse = separateHafCourt ? unassistedHalfCourt : unassisted;
+      const unassistedToUse = (separateHalfCourt ? unassistedHalfCourt : unassisted);
 
       return [ `source_${key}_ast`, unassistedToUse > 0 ? {
-        value: unassistedToUse/totalScoringPlaysMade
+        value: unassistedToUse/totalPlaysMade
       } : null ];
     }).concat([
-      [ `source_sf`, totalFtTripsToUse > 0 ? { value: totalFtTripsToUse/totalScoringPlaysMade } : null ]
-    ]);
+      [ `source_sf`, totalFtTripsToUse > 0 ? { value: totalFtTripsToUse/totalPlaysMade } : null ]
+    ]).concat((maybeTurnovers > 0) ? [
+      [ `source_to`, halfCourtTos > 0 ? { value: halfCourtTos/totalPlaysMade } : null ],
+    ]: []);
 
     const assistToUseTotalsRow = shotTypes.map((key) => {
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
       const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
-      const assistedToUse = separateHafCourt ? assistedHalfCourt : assisted;
+      const assistedToUse = separateHalfCourt ? assistedHalfCourt : assisted;
 
       return [ `source_${key}_ast`, assistedToUse > 0 ? {
-        value: assistedToUse/totalScoringPlaysMade
+        value: assistedToUse/totalPlaysMade
       } : null];
     }).concat([
       [ `target_ast`, totalAssistsCalcToUse > 0 ? {
-        value: totalAssistsCalcToUse/totalScoringPlaysMade
+        value: totalAssistsCalcToUse/totalPlaysMade
       } : null ]
     ]);
 
@@ -178,7 +199,7 @@ export class PlayTypeUtils {
       transition: _.fromPairs(transitionRow),
       scrambleAssisted: _.fromPairs(scrambleRowAssistedOnly),
       transitionAssisted: _.fromPairs(transitionRowAssistedOnly),
-      totalScoringPlaysMade: totalScoringPlaysMade,
+      totalScoringPlaysMade: totalPlaysMade,
       totalAssists: totalAssists
     };
   }
@@ -198,7 +219,7 @@ export class PlayTypeUtils {
     const info = (_.fromPairs([ "target", "source" ].flatMap((loc) => {
       const targetNotSource = loc == "target";
       var mutableAssistsAcrossShotTypes = 0;
-      return [ "3p", "mid", "rim" ].flatMap((key) => {
+      return shotTypes.flatMap((key) => {
         const assists = mainPlayer[`off_ast_${key}_${loc}`]?.value?.[p] || 0;
         mutableAssistsAcrossShotTypes += targetNotSource ? assists : 0;
         mutableTotal += assists;
@@ -216,7 +237,7 @@ export class PlayTypeUtils {
     return [ info, mutableTotal ];
   }
 
-  /** Adds example plays to the "extraInfo" of unassited stats */
+  /** Adds example plays to the "extraInfo" of unassisted stats */
   static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any> | number) {
     // Build main player's positional category:
     const mainPlayerCats = _.isNumber(mainPlayer) ?
@@ -243,6 +264,121 @@ export class PlayTypeUtils {
       }
     });
     return unassistedStats; //(for chaining)
+  }
+
+  /** Adds example plays to the "extraInfo" of non-half-court stats */
+  static enrichNonHalfCourtStats(transitionStats: Record<string, any>, scrambleStats: Record<string, any>) {
+    _.forEach(transitionStats, (oval, okey) => {
+      if (okey.startsWith("source_")) {
+        oval.extraInfo = [ "trans" ];
+      }
+    });
+    _.forEach(scrambleStats, (oval, okey) => {
+      if (okey.startsWith("source_")) {
+        oval.extraInfo = [ "scramble" ];
+      }
+    });
+  }
+
+  /** Comes up with an approximate set of half-court stats */
+  static convertAssistsToHalfCourtAssists(
+    mutableAssistInfo: Record<string, any>[],
+    nonHalfCourtInfoTrans: Record<string, any>,
+    nonHalfCourtInfoScramble: Record<string, any>
+  ) {
+    _.map(shotTypes, shotType => {
+      // const nonHalfCourtInfoTrans = otherInfo[4];
+      // const nonHalfCourtInfoScramble = otherInfo[5];
+      const nonHalfCourtInfoTransPct = nonHalfCourtInfoTrans[`source_${shotType}_ast`]?.value || 0;
+      const nonHalfCourtInfoScramblePct = nonHalfCourtInfoScramble[`source_${shotType}_ast`]?.value || 0;
+      const nonHalfCourtInfoPct = nonHalfCourtInfoTransPct + nonHalfCourtInfoScramblePct;
+
+      //console.log(`[*][${shotType}][${posTitle}] Need to distribute [${nonHalfCourtInfoPct.toFixed(4)}](=[${nonHalfCourtInfoTransPct.toFixed(4)}]+[${nonHalfCourtInfoScramblePct.toFixed(4)}]) to:`)
+
+      const totalAssistedPct = _.chain(PosFamilyNames).map((pos, ipos) => {
+        return (mutableAssistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0);
+      }).sum().value();
+
+      const reductionPct = (totalAssistedPct - Math.min(nonHalfCourtInfoPct, totalAssistedPct))/(totalAssistedPct || 1);
+
+      //console.log(`[*][${shotType}][${posTitle}] Approximate half-court assisted by keeping [${reductionPct.toFixed(2)}]%`);
+
+      _.map(PosFamilyNames, (pos, ipos) => {
+
+        //console.log(`[${pos}][${shotType}][${posTitle}]: [${(assistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0).toFixed(4)}]`);
+        
+        if (_.isNumber(mutableAssistInfo[ipos]?.[`source_${shotType}_ast`]?.value)) {
+          mutableAssistInfo[ipos][`source_${shotType}_ast`].value = mutableAssistInfo[ipos][`source_${shotType}_ast`].value*reductionPct;
+        }
+      });
+    });
+
+  }
+
+  /** Guess what happened when a TO occurred */
+  static apportionHalfCourtTurnovers(
+    pos: string, posIndex: number,
+    immutableHalfCourtAssistInfo: Record<string, { assists: Record<string, any>[] }>,
+    mutableHalfCourtAssistInfo: Record<string, { assists: Record<string, any>[] }>,
+    mutableUnassisted: Record<string, any>
+  ) {
+    // We take the % of half-court turnovers for each position group
+    // and apportion it out in the following ratios:
+    // unassisted rim: highest weight
+    // "my" assists: next highest weight
+    // (gap)
+    // assists to "me" inside: lower weight
+    // assists to "me" on the perimeter: lowest weight
+    const weights = [ 4.5, 3.5, 2, 1 ];
+
+    const adjStat = (stat: any, adj: number) => {
+      if (_.isNumber(stat?.value)) stat.value = stat.value + adj;
+    };
+    const toPctToUse = (mutableUnassisted.source_to?.value || 0);
+    var totalWeight = 0;
+    // 2 Phases, 1 to collect weight, 1 to mutate stats
+    [ 0, 1 ].forEach(phase =>{
+      const unassistedWeight = weights[0]*(mutableUnassisted.source_rim_ast?.value || 0);
+      if (phase == 0) totalWeight = totalWeight + unassistedWeight;
+      if (phase == 1) adjStat(mutableUnassisted.source_rim_ast, (unassistedWeight*toPctToUse)/(totalWeight || 1));
+      //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj [unassisted] by [${unassistedWeight}] -> [${toPctToUse*unassistedWeight/totalWeight}]`)
+
+      _.map(PosFamilyNames).map((otherPos, jpos) => {
+        const meToOtherPosAssists = immutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
+        const otherPosToMeAssists = immutableHalfCourtAssistInfo[otherPos]!.assists[posIndex]!;
+        const mutMeToOtherPosAssists = mutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
+        const mutOtherPosToMeAssists = mutableHalfCourtAssistInfo[otherPos]!.assists[posIndex]!;
+
+        shotTypes.map(shotType => {
+          const isInside = shotType == "rim";
+          const otherToMeAssistWeight = 
+            weights[isInside? 2 : 3]*(otherPosToMeAssists[`source_${shotType}_ast`]?.value || 0);
+          if (phase == 0) totalWeight = totalWeight + otherToMeAssistWeight;          
+          if (phase == 1) adjStat(mutOtherPosToMeAssists[`source_${shotType}_ast`], (otherToMeAssistWeight*toPctToUse)/(totalWeight || 1));
+          //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj me->other [ast/${shotType}] by [${meToOtherPosAssists}] -> [${toPctToUse*meToOtherPosAssists/totalWeight}]`)
+
+          const meToOtherAssistWeight = weights[1]*(meToOtherPosAssists[`source_${shotType}_ast`]?.value || 0);
+          if (phase == 0) totalWeight = totalWeight + meToOtherAssistWeight;
+          if (phase == 1) adjStat(mutMeToOtherPosAssists[`source_${shotType}_ast`], (meToOtherAssistWeight*toPctToUse)/(totalWeight || 1));
+          //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj me->other [ast/${shotType}] by [${meToOtherAssistWeight}] -> [${toPctToUse*meToOtherAssistWeight/totalWeight}]`)
+        });
+
+      });
+    });
+  }
+
+  /** Uncategorized TOs, for housekeeping purposes - half court, scramble, transition */
+  static calcTeamHalfCourtTos(players: IndivStatSet[], teamStats: TeamStatSet): [ number, number, number] {
+    //(7..half-court, 6..scramble/trans)
+
+    const teamTotalTos = (teamStats.total_off_to?.value || 0) 
+      - _.sumBy(players, player => (player.total_off_to?.value || 0));
+    const teamScrambleTos = (teamStats.total_off_scramble_to?.value || 0)
+      - _.sumBy(players, player => (player.total_off_scramble_to?.value || 0));
+    const teamTransitionTos = (teamStats.total_off_trans_to?.value || 0)
+      - _.sumBy(players, player => (player.total_off_trans_to?.value || 0));
+
+    return [ teamTotalTos -  teamScrambleTos - teamTransitionTos, teamScrambleTos, teamTransitionTos ];
   }
 
   /** Converts a player-grouped assist network into a positional category grouped one
@@ -306,7 +442,7 @@ export class PlayTypeUtils {
           const weight = statSet.score;
 
           // Handle misc sums:
-          const miscStats = sourceNotTarget ? [ "source_sf" ] : [ "target_ast" ];
+          const miscStats = sourceNotTarget ? [ "source_sf", "source_to" ] : [ "target_ast" ];
           miscStats.forEach(statKey => {
             const statVal = statSet[statKey];
             if (statVal?.value) { // (do nothing on 0)
@@ -357,6 +493,10 @@ export class PlayTypeUtils {
       return mutableObj;
     }).orderBy(["order"], ["asc"]).value();
   }
+
+  /////////////////////////////////////////////////////
+
+  // Different ways of represening play types
 
   static buildPlayTypesLookup = _.memoize(() => {
     return _.chain(PlayTypeUtils.playTypesByFamily).values().map(o => {

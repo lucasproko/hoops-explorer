@@ -24,7 +24,7 @@ import { LineupUtils } from "../../utils/stats/LineupUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
-import { PureStatSet, Statistic } from '../../utils/StatModels';
+import { PureStatSet, Statistic, IndivStatSet, TeamStatSet } from '../../utils/StatModels';
 
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -61,8 +61,15 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   // Repeat the logic in PlayerTypeTypeDiagView:
 
-  const teamScoringPossessions =
-    (teamStats.total_off_fgm?.value || 0) + 0.475*(teamStats.total_off_fta?.value || 0);
+ //START: code1 to move (plus can share this simply by switching between playsPct/teamPossessions and scoringPct/teamScoringPossessions)
+
+   //(use pure possessions and not + assists because the team is "closed" unlike one player)
+    const teamPossessions =
+    (teamStats.total_off_fga?.value || 0) + 0.475*(teamStats.total_off_fta?.value || 0) 
+      + (teamStats.total_off_to?.value || 0);
+
+    const teamScoringPossessions =
+      (teamStats.total_off_fgm?.value || 0) + 0.475*(teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
   const teamTotalAssists = teamStats.total_off_assist?.value || 0;
@@ -77,20 +84,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const posCategoryAssistNetworkVsPlayer = _.chain(filteredPlayers).map((player, ix) => {
     const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
     const separateHalfCourt = true; //(half court vs transition/scramble)
-    const playerStyle = PlayTypeUtils.buildPlayerStyle(
-      player, teamScoringPossessions, teamTotalAssists, separateHalfCourt
+    const playerStyle = PlayTypeUtils.buildPlayerStyle("playsPct",
+      player, teamPossessions, teamTotalAssists, separateHalfCourt
     );
     const playerAssistNetwork = allPlayers.map((p) => {
       const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(
         p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
         rosterStatsByCode
       );
-//TODO: is it maybe here where we have the 2 players in every asssist that we can remove
-// transition and scramble assists and turn this into half court
-// Say JaYoung -> HaHart for 10 assists in total (Young has 50 assists overall)
-// Things we also know:
-// JaYoung has (say) 15 assists in transition, we don't know to whom
-// HaHart has received (say) 5 assists in transition, we don't know from whom  
       return { code: p, ...info };
     });
     const posCategoryAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
@@ -119,8 +120,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       const posCategoryAssistNetwork = perPlayerInfo.posCategoryAssistNetwork;
         // ^ For each player, the stats to/from the position
 
-//TODO: aaaaaaah I think the issue is that this counts transition/scramble plays also
-
       // For each player: get a single pos category stats
       const posStats = posCategoryAssistNetwork.filter((net: any) => net?.order == ix)?.[0] || undefined;
       return posStats ? [ {
@@ -134,26 +133,22 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       perPlayer, rosterStatsByCode, ix,
     ); // pos vs <shot-type-stats> (order tells you which)
 
-//TODO: this includes both half court and transition numbers
-
 //console.log(`${pos} ... vs ... ${JSON.stringify(perPlayer, tidyNumbers, 3)}`);
 
     // Unassisted/scramble/transition: similar:
     const posVsPosOtherTypes = _.chain([ "unassisted", "assisted", "transition", "scramble", "transitionAssisted", "scrambleAssisted" ]).map(key => {
 
-      //TODO: need to weight each set of stats by the score
-
       const perPlayer = _.chain(posCategoryAssistNetworkVsPlayer).mapValues((perPlayerInfo, playerCode) => {
         const playerStyle = perPlayerInfo.playerStyle;
         return { ...(playerStyle[key] || {}), code: playerCode };
       }).values().value();
-      const posPosCatAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
+      const posOtherPosCatAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
         perPlayer, rosterStatsByCode, undefined,
       ); // pos vs <shot-type-stats> (order tells you which)
 
-//console.log(`${key}: ${JSON.stringify(perPlayer, tidyNumbers)} ... ${JSON.stringify(posPosCatAssistNetwork, tidyNumbers)}`);
+//console.log(`${key}: ${JSON.stringify(perPlayer, tidyNumbers)} ... ${JSON.stringify(posOtherPosCatAssistNetwork, tidyNumbers)}`);
 
-      return posPosCatAssistNetwork[ix];
+      return posOtherPosCatAssistNetwork[ix];
     }).value();
 
     return [ pos, { assists: posPosCatAssistNetwork, other: posVsPosOtherTypes} ];
@@ -166,64 +161,50 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const assists = _.chain(posVsPosAssistNetwork).values().map((assistNetwork, ix2) => {
       return { ...(assistNetwork.assists?.[ix] || {}), order: ix2 };
     }).value();
-    
+//END code1 to move    
+
 //console.log(`${pos} ... vs ... ${JSON.stringify(posVsPosAssistNetwork[pos], tidyNumbers, 3)}`);
 
     return [ pos, { assists: assists, other: other } ];
   }).fromPairs().value();
+
+//TODO: move this code2 to PlayTypeUtils
+  _.chain(reorderedPosVsPosAssistNetwork).toPairs().forEach((kv, ix) => {
+    // Some mutation that is needed
+    const assistInfo = kv[1].assists as Record<string, any>[];
+    const otherInfo = kv[1].other as Record<string, any>[]; 
+      //(unassisted, assisted <- DROP, transition, scramble)
+    const assistedTransitionInfo = otherInfo[4];
+    const assistedScrambleInfo = otherInfo[5];
+
+    // Unassisted:
+    PlayTypeUtils.enrichUnassistedStats(otherInfo[0], ix);
+    // Transition + Scramble:
+    PlayTypeUtils.enrichNonHalfCourtStats(otherInfo[2], otherInfo[3]);
+
+    // Now get an approximate half court number for all the assists by sensibly (if not correctly!)
+    // taking out the scramble and transition assisted numbers
+    PlayTypeUtils.convertAssistsToHalfCourtAssists(assistInfo, assistedTransitionInfo, assistedScrambleInfo);
+  }).value();
+
+  //(need a copy of this before we mutate it one final time in PlayTypeUtils.apportionHalfCourtTurnovers()
+  const copyOfReorderedPosVsPosAssistNetwork = _.cloneDeep(reorderedPosVsPosAssistNetwork);
 
   const flattenedNetwork = _.chain(reorderedPosVsPosAssistNetwork).toPairs().flatMap((kv, ix) => {
     const posTitle = kv[0];
     const assistInfo = kv[1].assists as Record<string, any>[];
     const otherInfo = kv[1].other as Record<string, any>[]; 
       //(unassisted, assisted <- DROP, transition, scramble)
+    const unassistedInfo = otherInfo[0];
+    const transitionInfo = otherInfo[2];
+    const scrambleInfo = otherInfo[3];
 
-    // Unassisted:
-    PlayTypeUtils.enrichUnassistedStats(otherInfo[0], ix);
-    // Transition:
-    _.forEach(otherInfo[2], (oval, okey) => {
-      if (okey.startsWith("source_")) {
-        oval.extraInfo = [ "trans" ];
-      }
-    });
-    // Scramble:
-    _.forEach(otherInfo[3], (oval, okey) => {
-      if (okey.startsWith("source_")) {
-        oval.extraInfo = [ "scramble" ];
-      }
-    });
-
-
-    // Now get an approximate half court number for all the assists by sensibly (if not correctly!)
-    // taking out the scramble and transition assisted numbers
-    _.map([ "3p", "mid", "rim" ], shotType => {
-      const nonHalfCourtInfoTrans = otherInfo[4];
-      const nonHalfCourtInfoScramble = otherInfo[5];
-      const nonHalfCourtInfoTransPct = nonHalfCourtInfoTrans[`source_${shotType}_ast`]?.value || 0;
-      const nonHalfCourtInfoScramblePct = nonHalfCourtInfoScramble[`source_${shotType}_ast`]?.value || 0;
-      const nonHalfCourtInfoPct = nonHalfCourtInfoTransPct + nonHalfCourtInfoScramblePct;
-
-      //console.log(`[*][${shotType}][${posTitle}] Need to distribute [${nonHalfCourtInfoPct.toFixed(4)}](=[${nonHalfCourtInfoTransPct.toFixed(4)}]+[${nonHalfCourtInfoScramblePct.toFixed(4)}]) to:`)
-
-      const totalAssistedPct = _.chain(PosFamilyNames).map((pos, ipos) => {
-        return (assistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0);
-      }).sum().value();
-
-      const reductionPct = (totalAssistedPct - Math.min(nonHalfCourtInfoPct, totalAssistedPct))/(totalAssistedPct || 1);
-
-      //console.log(`[*][${shotType}][${posTitle}] Approximate half-court assisted by keeping [${reductionPct.toFixed(2)}]%`);
-
-      _.map(PosFamilyNames, (pos, ipos) => {
-
-        //console.log(`[${pos}][${shotType}][${posTitle}]: [${(assistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0).toFixed(4)}]`);
-        
-        if (_.isNumber(assistInfo[ipos]?.[`source_${shotType}_ast`]?.value)) {
-          assistInfo[ipos][`source_${shotType}_ast`].value = assistInfo[ipos][`source_${shotType}_ast`].value*reductionPct;
-        }
-      });
-    });
-
-    return assistInfo.concat([otherInfo[0], otherInfo[2], otherInfo[3]]).flatMap((a, i) => {
+    // Distribute TOs into half court assist network
+    PlayTypeUtils.apportionHalfCourtTurnovers(
+      posTitle, ix, copyOfReorderedPosVsPosAssistNetwork, reorderedPosVsPosAssistNetwork, unassistedInfo
+    );
+  
+    return assistInfo.concat([unassistedInfo, transitionInfo, scrambleInfo]).flatMap((a, i) => {
       return _.keys(a).filter(ka => 
         _.startsWith(ka, "source_")
       ).map(ka => ({ key: `${posTitle}_${i}_${ka}`, stat: a[ka] }))
@@ -231,7 +212,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   }).groupBy(obj => (obj.stat.extraInfo || []).join(":")).mapValues(oo => _.sumBy(oo, o => (o.stat?.value || 0))).value();
   
-
   const playTypesLookup = PlayTypeUtils.buildPlayTypesLookup();
 
   const topLevelPlayTypeAnalysis = _.transform(flattenedNetwork, (acc, usage, key) => {
@@ -244,6 +224,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   }, {} as Record<TopLevelPlayTypes, number>);
 
+  // Uncategorized turnovers:
+  const [ uncatHalfCourtTos, uncatScrambleTos, uncatTransTos ] 
+    = PlayTypeUtils.calcTeamHalfCourtTos(players as IndivStatSet[], teamStats as TeamStatSet);
+  topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos/teamPossessions;
+  topLevelPlayTypeAnalysis["Put-Back"] += uncatScrambleTos/teamPossessions;
+  topLevelPlayTypeAnalysis["Transition"] += uncatTransTos/teamPossessions;
+//end code2 to move
   
   const tooltipBuilder = (id: string, title: string, tooltip: string) =>
     <OverlayTrigger placement="auto" overlay={

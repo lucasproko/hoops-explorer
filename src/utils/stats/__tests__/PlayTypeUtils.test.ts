@@ -19,16 +19,16 @@ describe("PlayTypeUtils", () => {
 
   test("PlayTypeUtils - buildPlayerStyle", () => {
 
-    const playStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
+    const playStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     //expect(playStyle).toEqual({});
     expect(playStyle).toMatchSnapshot();
 
-    const playStyleWithTotals = PlayTypeUtils.buildPlayerStyle(mainPlayer, 1, 1);
+    const playStyleWithTotals = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer, 1, 1);
     //expect(playStyleWithTotals).toEqual({});
     expect(playStyle).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildPlayerAssistNetwork", () => {
-    const playerStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
+    const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     const testPlayerCode = allPlayers.filter(p => rosterStatsByCode.hasOwnProperty(p))[0];
 
     const network = PlayTypeUtils.buildPlayerAssistNetwork(
@@ -39,7 +39,7 @@ describe("PlayTypeUtils", () => {
     expect(network).toMatchSnapshot();
   });
   test("PlayTypeUtils - enrichUnassistedStats", () => {
-    const playerStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
+    const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     const extraUnassistedInfo = PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, mainPlayer);
     //expect(extraUnassistedInfo).toEqual({});
     expect(extraUnassistedInfo).toMatchSnapshot();
@@ -49,7 +49,7 @@ describe("PlayTypeUtils", () => {
     expect(extraUnassistedInfoPos).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildPosCategoryAssistNetwork", () => {
-    const playerStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
+    const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     const playerAssistNetwork = allPlayers.map((p) => {
       const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(
         p, mainPlayer, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,

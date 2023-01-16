@@ -53,7 +53,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
 
   const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
 
-  const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
+  const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", player);
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) =>
     <OverlayTrigger placement="auto" overlay={
