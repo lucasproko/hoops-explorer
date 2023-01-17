@@ -4,7 +4,9 @@ import { PlayTypeUtils } from "../PlayTypeUtils";
 import { RosterTableUtils } from "../../tables/RosterTableUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
+import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
+import { TeamStatSet } from '../../StatModels';
 
 describe("PlayTypeUtils", () => {
 
@@ -17,15 +19,36 @@ describe("PlayTypeUtils", () => {
   const mainPlayer = players[0];
   const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(mainPlayer);
 
+  const baseTeam = sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline as TeamStatSet;
+
   test("PlayTypeUtils - buildPlayerStyle", () => {
 
-    const playStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
+    const playStyleScoring = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     //expect(playStyle).toEqual({});
-    expect(playStyle).toMatchSnapshot();
+    expect(playStyleScoring).toMatchSnapshot();
 
-    const playStyleWithTotals = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer, 1, 1);
+    const playStylePoss = PlayTypeUtils.buildPlayerStyle("playsPct", mainPlayer);
+    //expect(playStyle).toEqual({});
+    expect(playStylePoss).toMatchSnapshot();
+
+    const playStyleScoringWithTotals = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer, 1, 1);
     //expect(playStyleWithTotals).toEqual({});
-    expect(playStyle).toMatchSnapshot();
+    expect(playStyleScoringWithTotals).toMatchSnapshot();
+  });
+  test("PlayTypeUtils - buildCategorizedAssistNetworks", () => {
+    const assistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("scoringPlaysPct", false,
+      players, rosterStatsByCode, baseTeam
+    );
+    expect(assistNetwork).toMatchSnapshot();
+  });
+  test("PlayTypeUtils - buildTopLevelPlayStyles", () => {
+    const assistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("playsPct", true,
+      players, rosterStatsByCode, baseTeam
+    );
+    const topLevelPlayTypeAnalysis = PlayTypeUtils.buildTopLevelPlayStyles(
+      assistNetwork, players, baseTeam
+    );
+    expect(topLevelPlayTypeAnalysis).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildPlayerAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);

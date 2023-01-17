@@ -1,5 +1,464 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PlayTypeUtils PlayTypeUtils - buildCategorizedAssistNetworks 1`] = `
+Object {
+  "ballhandler": Object {
+    "assists": Array [
+      Object {
+        "order": 0,
+        "source_3p_ast": Object {
+          "extraInfo": Array [
+            "drive-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.005462550917096372,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense",
+            "misc action",
+          ],
+          "value": 0.0007534552989098443,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.001883638247274611,
+        },
+        "target_3p_ast": Object {
+          "extraInfo": Array [
+            "drive-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.014180929095354525,
+        },
+        "target_3p_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.4781305403461805,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.008099644463280826,
+        },
+        "target_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense",
+            "misc action",
+          ],
+          "value": 0.0019559902200489,
+        },
+        "target_mid_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.2432432432432432,
+        },
+        "target_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.004889975550122249,
+        },
+        "target_rim_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.6649717514124294,
+        },
+      },
+      Object {
+        "order": 1,
+        "source_3p_ast": Object {
+          "extraInfo": Array [
+            "slash-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.03673094582185492,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense",
+            "misc action",
+          ],
+          "value": 0.0003767276494549222,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.017706199524381343,
+        },
+        "target_3p_ast": Object {
+          "extraInfo": Array [
+            "drive-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.1677261613691932,
+        },
+        "target_3p_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.11103158115256369,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.13863577499941135,
+        },
+        "target_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense",
+            "misc action",
+            "zone buster",
+          ],
+          "value": 0.02444987775061125,
+        },
+        "target_mid_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.07783783783783783,
+        },
+        "target_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.16772616136919316,
+        },
+        "target_rim_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.05811138014527844,
+        },
+      },
+      Object {
+        "order": 2,
+      },
+    ],
+    "other": Array [
+      Object {
+        "order": 0,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.02053165689529326,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.019213110122201033,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.049539685903322264,
+        },
+        "source_sf": Object {
+          "extraInfo": undefined,
+          "value": 0.10020955475500928,
+        },
+      },
+      Object {
+        "order": 0,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.042193496738951286,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0011301829483647665,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.019589837771655953,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.1467354194626922,
+        },
+      },
+      Object {
+        "order": 0,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.009983282710555437,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0016952744225471497,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.018459654823291188,
+        },
+        "source_sf": Object {
+          "extraInfo": undefined,
+          "value": 0.04017329471874926,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.03786112877021968,
+        },
+      },
+      Object {
+        "order": 0,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.006027642391278755,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0011301829483647665,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.00527418709236891,
+        },
+        "source_sf": Object {
+          "extraInfo": undefined,
+          "value": 0.005815733088460361,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.009606555061100515,
+        },
+      },
+      Object {
+        "order": 0,
+      },
+      Object {
+        "order": 0,
+      },
+    ],
+  },
+  "big": Object {
+    "assists": Array [
+      Object {
+        "order": 0,
+      },
+      Object {
+        "order": 1,
+      },
+      Object {
+        "order": 2,
+      },
+    ],
+    "other": Array [
+      Object {
+        "order": 2,
+      },
+      Object {
+        "order": 2,
+      },
+      Object {
+        "order": 2,
+      },
+      Object {
+        "order": 2,
+      },
+      Object {
+        "order": 2,
+      },
+      Object {
+        "order": 2,
+      },
+    ],
+  },
+  "wing": Object {
+    "assists": Array [
+      Object {
+        "order": 0,
+        "source_3p_ast": Object {
+          "extraInfo": Array [
+            "drive-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.015069105978196887,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense",
+            "misc action",
+            "zone buster",
+          ],
+          "value": 0.0030138211956393774,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.005274187092368911,
+        },
+        "target_3p_ast": Object {
+          "extraInfo": Array [
+            "slash-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.0176039119804401,
+        },
+        "target_3p_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.48275862068965514,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.009041463586918132,
+        },
+        "target_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.0058679706601467,
+        },
+        "target_rim_efg": Object {
+          "extraInfo": undefined,
+          "value": 0.5555555555555556,
+        },
+      },
+      Object {
+        "order": 1,
+        "source_3p_ast": Object {
+          "extraInfo": Array [
+            "slash-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.021850203668385484,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense, misc action",
+            "zone buster",
+          ],
+          "value": 0.0015069105978196887,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.009041463586918132,
+        },
+        "target_3p_ast": Object {
+          "extraInfo": Array [
+            "slash-and-kick",
+            "hockey assist after defense collapses inside",
+            "misc action",
+          ],
+          "value": 0.0254278728606357,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.024110569565115023,
+        },
+        "target_mid_ast": Object {
+          "extraInfo": Array [
+            "spread offense, misc action",
+            "zone buster",
+          ],
+          "value": 0.0078239608801956,
+        },
+        "target_rim_ast": Object {
+          "extraInfo": Array [
+            "cut",
+          ],
+          "value": 0.029339853300733493,
+        },
+      },
+      Object {
+        "order": 2,
+      },
+    ],
+    "other": Array [
+      Object {
+        "order": 1,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0030138211956393774,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.009041463586918132,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.01732947187492642,
+        },
+        "source_sf": Object {
+          "extraInfo": undefined,
+          "value": 0.021473476018930564,
+        },
+      },
+      Object {
+        "order": 1,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.036919309646582375,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.004520731793459066,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.014315650679287042,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.033152033152033154,
+        },
+      },
+      Object {
+        "order": 1,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.009794918885827977,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0030138211956393774,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.009794918885827977,
+        },
+        "source_sf": Object {
+          "extraInfo": undefined,
+          "value": 0.008589390407572225,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.008288008288008289,
+        },
+      },
+      Object {
+        "order": 1,
+        "source_3p_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0015069105978196887,
+        },
+        "source_mid_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0007534552989098443,
+        },
+        "source_rim_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.006027642391278755,
+        },
+        "source_sf": Object {
+          "extraInfo": undefined,
+          "value": 0.0017894563349108803,
+        },
+        "target_ast": Object {
+          "extraInfo": undefined,
+          "value": 0.0007534552989098443,
+        },
+      },
+      Object {
+        "order": 1,
+      },
+      Object {
+        "order": 1,
+      },
+    ],
+  },
+}
+`;
+
 exports[`PlayTypeUtils PlayTypeUtils - buildPlayerAssistNetwork 1`] = `
 Array [
   Object {
@@ -114,66 +573,144 @@ exports[`PlayTypeUtils PlayTypeUtils - buildPlayerStyle 2`] = `
 Object {
   "assisted": Object {
     "source_3p_ast": Object {
-      "value": 0.09050943884147919,
+      "value": 0.05202913631633715,
     },
     "source_mid_ast": null,
     "source_rim_ast": Object {
-      "value": 0.04396172743728989,
+      "value": 0.0252712947822209,
     },
     "target_ast": Object {
-      "value": 0.38013964313421256,
+      "value": 0.218522372528616,
     },
   },
   "scramble": Object {
     "source_3p_ast": Object {
-      "value": 0.015515903801396431,
+      "value": 0.01932510777463951,
     },
     "source_mid_ast": Object {
-      "value": 0.002585983966899405,
+      "value": 0.005946187007581388,
     },
     "source_rim_ast": Object {
-      "value": 0.01034393586759762,
+      "value": 0.007432733759476735,
     },
     "source_sf": Object {
-      "value": 0.01474010861132661,
+      "value": 0.008473316485803477,
+    },
+    "source_to": Object {
+      "value": 0.002973093503790694,
     },
     "target_ast": Object {
-      "value": 0.025859839668994054,
+      "value": 0.01486546751895347,
     },
   },
   "scrambleAssisted": Object {},
   "totalAssists": 147,
-  "totalScoringPlaysMade": 386.7,
+  "totalScoringPlaysMade": 672.7,
   "transition": Object {
     "source_3p_ast": Object {
-      "value": 0.02068787173519524,
+      "value": 0.034190575293592984,
     },
     "source_mid_ast": Object {
-      "value": 0.002585983966899405,
+      "value": 0.002973093503790694,
     },
     "source_rim_ast": Object {
-      "value": 0.04396172743728989,
+      "value": 0.04459640255686041,
     },
     "source_sf": Object {
-      "value": 0.10440910266356349,
+      "value": 0.060019325107774635,
+    },
+    "source_to": Object {
+      "value": 0.02973093503790694,
     },
     "target_ast": Object {
-      "value": 0.0982673907421774,
+      "value": 0.05648877657202318,
     },
   },
   "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
-      "value": 0.05430566330488751,
+      "value": 0.20662999851345323,
     },
     "source_mid_ast": Object {
-      "value": 0.0465477114041893,
+      "value": 0.09662553887319755,
     },
     "source_rim_ast": Object {
-      "value": 0.12412723041117145,
+      "value": 0.1486546751895347,
     },
     "source_sf": Object {
-      "value": 0.2604085854667701,
+      "value": 0.14969525791586144,
+    },
+    "source_to": Object {
+      "value": 0.10257172588077894,
+    },
+  },
+}
+`;
+
+exports[`PlayTypeUtils PlayTypeUtils - buildPlayerStyle 3`] = `
+Object {
+  "assisted": Object {
+    "source_3p_ast": Object {
+      "value": 35,
+    },
+    "source_mid_ast": null,
+    "source_rim_ast": Object {
+      "value": 17,
+    },
+    "target_ast": Object {
+      "value": 147,
+    },
+  },
+  "scramble": Object {
+    "source_3p_ast": Object {
+      "value": 6,
+    },
+    "source_mid_ast": Object {
+      "value": 1,
+    },
+    "source_rim_ast": Object {
+      "value": 4,
+    },
+    "source_sf": Object {
+      "value": 5.699999999999999,
+    },
+    "target_ast": Object {
+      "value": 10,
+    },
+  },
+  "scrambleAssisted": Object {},
+  "totalAssists": 1,
+  "totalScoringPlaysMade": 1,
+  "transition": Object {
+    "source_3p_ast": Object {
+      "value": 8,
+    },
+    "source_mid_ast": Object {
+      "value": 1,
+    },
+    "source_rim_ast": Object {
+      "value": 17,
+    },
+    "source_sf": Object {
+      "value": 40.375,
+    },
+    "target_ast": Object {
+      "value": 38,
+    },
+  },
+  "transitionAssisted": Object {},
+  "unassisted": Object {
+    "source_3p_ast": Object {
+      "value": 21,
+    },
+    "source_mid_ast": Object {
+      "value": 18,
+    },
+    "source_rim_ast": Object {
+      "value": 48,
+    },
+    "source_sf": Object {
+      "value": 100.69999999999999,
     },
   },
 }
@@ -358,6 +895,19 @@ Array [
     "order": 2,
   },
 ]
+`;
+
+exports[`PlayTypeUtils PlayTypeUtils - buildTopLevelPlayStyles 1`] = `
+Object {
+  "Attack & Kick": 0.03601708389933508,
+  "Cut": 0.01917384483743767,
+  "Dribble Jumper": 0.0773393622571636,
+  "Misc": 0.06465407003508915,
+  "Put-Back": 0.03399453714028501,
+  "Rim Attack": 0.10525116633173048,
+  "Spread": 0.02138724683081238,
+  "Transition": 0.10752831173082629,
+}
 `;
 
 exports[`PlayTypeUtils PlayTypeUtils - enrichUnassistedStats 1`] = `
