@@ -1,19 +1,38 @@
 
 // Utils:
 import _ from 'lodash'
-import { PlayerCode, IndivStatSet, TeamStatSet } from '../StatModels';
+import { PlayerCode, IndivStatSet, TeamStatSet, Statistic, RosterStatsByCode } from '../StatModels';
 
 export type PosFamily = "ballhandler" | "wing" | "big";
 export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
 
+type SourceAssistInfo = {
+  order: number,
+  source_sf: Statistic,
+  source_to: Statistic,
+  source_3p_ast: Statistic,
+  source_mid_ast: Statistic,
+  source_rim_ast: Statistic,
+  target_ast: Statistic,
+};
+type TargetAssistInfo = SourceAssistInfo & {
+  target_3p_ast: Statistic,
+  target_3p_efg: Statistic,
+  target_mid_ast: Statistic,
+  target_mid_efg: Statistic,
+  target_rim_ast: Statistic,
+  target_rim_efg: Statistic,
+  code?: string
+};
+
 /** Data for a given player broken down */
 export type PlayerStyleInfo = {
-  unassisted: Record<string, any>,
-  assisted: Record<string, any>,
-  scramble: Record<string, any>, //(totals, asssisted + unassisted)
-  transition: Record<string, any>, //(totals, asssisted + unassisted)
-  scrambleAssisted: Record<string, any>,
-  transitionAssisted: Record<string, any>,
+  unassisted: SourceAssistInfo,
+  assisted: SourceAssistInfo,
+  scramble: SourceAssistInfo, //(totals, asssisted + unassisted)
+  transition: SourceAssistInfo, //(totals, asssisted + unassisted)
+  scrambleAssisted: SourceAssistInfo,
+  transitionAssisted: SourceAssistInfo,
   totalScoringPlaysMade: number,
   totalAssists: number
 };
@@ -25,7 +44,7 @@ const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string,
 
 type PlayStyleTypes = "scoringPlaysPct" | "pointsPer100" | "playsPct";
 
-export type TopLevelPlayTypes = 
+export type TopLevelPlayType = 
   "Rim Attack" | "Attack & Kick" | "Dribble Jumper" |
   "Spread" |
   "Cut & Roll" | "Post-Ups" | "Post-Up Collapse" | "Pick & Pop" | "High-Low" |
@@ -35,7 +54,7 @@ export type TopLevelPlayTypes =
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
 
-  static topTevelPlayTypes: TopLevelPlayTypes[] = [
+  static topTevelPlayTypes: TopLevelPlayType[] = [
     "Rim Attack" , "Attack & Kick" , "Dribble Jumper" ,
     "Spread" ,
     "Cut & Roll" , "Post-Ups" , "Post-Up Collapse", "Pick & Pop" , "High-Low" ,
@@ -55,7 +74,9 @@ export class PlayTypeUtils {
     "G?": [ 0.75, 0.25, 0 ],
     "F/C?": [ 0, 0.5, 0.5 ]
   } as Record<string, [ number, number, number ]>;
-  private static posClassToFamilyScore = [
+
+  /** (currently unused, search for usage for more details) */
+  private static posConfidenceToFamilyScore = [
     [ 1.00, 0.66, 0.15, 0.00, 0.00 ], // ballhandler
     [ 0.00, 0.34, 0.85, 0.66, 0.00 ], // wing
     [ 0.00, 0.00, 0.00, 0.34, 1.00 ], // big
@@ -73,9 +94,9 @@ export class PlayTypeUtils {
   static buildCategorizedAssistNetworks(
     playStyleType: PlayStyleTypes,
     separateHalfCourt: boolean, 
-    players: Array<Record<string, any>>,
-    rosterStatsByCode: Record<string, any>,
-    teamStats: Record<string, any>
+    players: Array<IndivStatSet>,
+    rosterStatsByCode: RosterStatsByCode,
+    teamStats: TeamStatSet
   ) {
     //(use pure possessions and not + assists because the team is "closed" unlike one player)
     const teamPossessions =
@@ -185,14 +206,14 @@ export class PlayTypeUtils {
 
   /** Builds a higher level view of the assist network, with lots of guessing */
   static buildTopLevelPlayStyles(
-    assistNetwork: Record<string, { assists:  Record<string, any>[], other: Record<string, any>[] }>,
-    players: Array<Record<string, any>>,
-    teamStats: Record<string, any>
-  ): Record<TopLevelPlayTypes, number> {
+    assistNetwork: Record<string, { assists:  TargetAssistInfo[], other: SourceAssistInfo[] }>,
+    players: Array<IndivStatSet>,
+    teamStats: TeamStatSet
+  ): Record<TopLevelPlayType, number> {
     _.chain(assistNetwork).toPairs().forEach((kv, ix) => {
       // Some mutation that is needed
-      const assistInfo = kv[1].assists as Record<string, any>[];
-      const otherInfo = kv[1].other as Record<string, any>[]; 
+      const assistInfo = kv[1].assists;
+      const otherInfo = kv[1].other; 
         //(unassisted, assisted <- DROP, transition, scramble)
       const assistedTransitionInfo = otherInfo[4];
       const assistedScrambleInfo = otherInfo[5];
@@ -237,12 +258,12 @@ export class PlayTypeUtils {
     const topLevelPlayTypeAnalysis = _.transform(flattenedNetwork, (acc, usage, key) => {
       const playTypesCombo = playTypesLookup[key];
       _.toPairs(playTypesCombo).forEach(kv => {
-        const playType = kv[0] as TopLevelPlayTypes;
+        const playType = kv[0] as TopLevelPlayType;
         const weight = kv[1];
         acc[playType] = (acc[playType] || 0) + weight*usage;
       });
   
-    }, {} as Record<TopLevelPlayTypes, number>);
+    }, {} as Record<TopLevelPlayType, number>);
   
     // Uncategorized turnovers:
     const teamPossessions =
@@ -265,7 +286,7 @@ export class PlayTypeUtils {
   /** Decomposes a player stats into unassisted/assisted _totals_ and half-court/scramble/transition */
   static buildPlayerStyle(
     playStyleType: PlayStyleTypes,
-    player: Record<string, any>, 
+    player: IndivStatSet, 
     countNotPctScorePoss?: number, countNotPctAssists?: number, 
     separateHalfCourt?: boolean
   ): PlayerStyleInfo {
@@ -375,12 +396,12 @@ export class PlayTypeUtils {
     ]);
 
     return {
-      unassisted: _.fromPairs(unassistedToUseRow),
-      assisted: _.fromPairs(assistToUseTotalsRow),
-      scramble: _.fromPairs(scrambleRow),
-      transition: _.fromPairs(transitionRow),
-      scrambleAssisted: _.fromPairs(scrambleRowAssistedOnly),
-      transitionAssisted: _.fromPairs(transitionRowAssistedOnly),
+      unassisted: _.fromPairs(unassistedToUseRow) as SourceAssistInfo,
+      assisted: _.fromPairs(assistToUseTotalsRow) as SourceAssistInfo,
+      scramble: _.fromPairs(scrambleRow) as SourceAssistInfo,
+      transition: _.fromPairs(transitionRow) as SourceAssistInfo,
+      scrambleAssisted: _.fromPairs(scrambleRowAssistedOnly) as SourceAssistInfo,
+      transitionAssisted: _.fromPairs(transitionRowAssistedOnly) as SourceAssistInfo,
       totalScoringPlaysMade: totalPlaysMade,
       totalAssists: totalAssists
     };
@@ -392,21 +413,21 @@ export class PlayTypeUtils {
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
    */
   static buildPlayerAssistNetwork(
-    playerOrPos: string, mainPlayer: Record<string, any>,
+    playerOrPos: string, mainPlayer: IndivStatSet,
     totalScoringPlaysMade: number, totalAssists: number,
-    rosterStatsByCode: Record<string, any>
-  ): [ Record<string, any>, number ] {
+    rosterStatsByCode: RosterStatsByCode
+  ): [ TargetAssistInfo, number ] {
     const p = playerOrPos;
     var mutableTotal = 0;
     const info = (_.fromPairs([ "target", "source" ].flatMap((loc) => {
       const targetNotSource = loc == "target";
       var mutableAssistsAcrossShotTypes = 0;
       return shotTypes.flatMap((key) => {
-        const assists = mainPlayer[`off_ast_${key}_${loc}`]?.value?.[p] || 0;
+        const assists = (mainPlayer[`off_ast_${key}_${loc}`]?.value as any)?.[p] || 0;
         mutableAssistsAcrossShotTypes += targetNotSource ? assists : 0;
         mutableTotal += assists;
         const denominator = targetNotSource ? (totalAssists || 1) : totalScoringPlaysMade;
-        const eFG = (key == "3p" ? 1.5 : 1) * rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0;
+        const eFG = (key == "3p" ? 1.5 : 1) * (rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0);
 
         return assists > 0 ? [
           [`${loc}_${key}_ast`, { value: assists/(denominator || 1) }],
@@ -416,7 +437,7 @@ export class PlayTypeUtils {
         [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalScoringPlaysMade } ] ]: []
       );
     })));
-    return [ info, mutableTotal ];
+    return [ info as TargetAssistInfo, mutableTotal ];
   }
 
   /** Converts a player-grouped assist network into a positional category grouped one
@@ -425,9 +446,9 @@ export class PlayTypeUtils {
    * (if mainPlayer is undefined then is called for team calcs)
    */
    static buildPosCategoryAssistNetwork(
-    playerAssistNetwork: Array<Record<string, any>>,
-    rosterStatsByCode: Record<string, any>,
-    mainPlayer: Record<string, any> | number | undefined
+    playerAssistNetwork: Array<TargetAssistInfo>,
+    rosterStatsByCode: RosterStatsByCode,
+    mainPlayer: IndivStatSet | number | undefined
   ): Array<Record<string, any>> {
     // Build main player's positional category:
     // (this is just for injecting examples - if you don't want examples just set mainPlayer to undefined)
@@ -435,7 +456,7 @@ export class PlayTypeUtils {
       _.isNumber(mainPlayer) ?
         [ { order: mainPlayer, score: 0 }  ]
         :
-        _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+        _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role!, mainPlayer.posConfidences!).flatMap((catScore, ix) => {
          return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
        }), ["score"], ["desc"])
     ) : undefined;
@@ -443,8 +464,8 @@ export class PlayTypeUtils {
     return _.chain(playerAssistNetwork).flatMap(playerStats => {
       const playerCode = playerStats.code!;
       const role = rosterStatsByCode[playerCode]?.role || "??";
-      const posClass = rosterStatsByCode[playerCode]?.posClass || [];
-      return PlayTypeUtils.buildPosFamily(role, posClass).flatMap((catScore, ix) => {
+      const posConfidence = rosterStatsByCode[playerCode]?.posConfidences || [];
+      return PlayTypeUtils.buildPosFamily(role, posConfidence).flatMap((catScore, ix) => {
         return catScore > 0 ? [ {
           ...playerStats,
           title: null, order: ix,
@@ -537,19 +558,19 @@ export class PlayTypeUtils {
   // Some utils
 
   /** Goes from all 5 position classes to a smaller/simple position family */
-  private static buildPosFamily(pos: string, posClass: number[]): [ number, number, number ] {
+  private static buildPosFamily(pos: string, posConfidences: number[]): [ number, number, number ] {
     return PlayTypeUtils.posToFamilyScore[pos] || [ 0, 1.0, 0 ];
     //TODO: this uses the raw numbers, which empiricially didn't work particularly well
     // eg for centers it tended to <<comment never finished, I think it was going to say it gave bigs too wing-like possessions>>
     // (one idea was to use the roster analysis to figure out which archetypes played where and then use the combined
     //  position + position-family to be more definite)
-    // return PlayTypeUtils.posClassToFamilyScore.map((scores: number[]) => {
+    // return PlayTypeUtils.posConfidenceToFamilyScore.map((scores: number[]) => {
     //   return _.sumBy(_.zip(scores, posClass), xy => xy[0]!*xy[1]!);
     // });
   }
 
   /** Builds a list of all the team-mate codes who assist or are assisted by the specified player */
-  static buildPlayerAssistCodeList(player: Record<string, any>) {
+  static buildPlayerAssistCodeList(player: IndivStatSet): string[] {
     return _.chain(targetSource).flatMap((loc) => {
       return shotTypes.flatMap((key) => {
         return _.keys(player[`off_ast_${key}_${loc}`]?.value || {});
@@ -558,12 +579,14 @@ export class PlayTypeUtils {
   }
 
   /** Adds example plays to the "extraInfo" of unassisted stats */
-  static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any> | number) {
+  static enrichUnassistedStats(
+    mutableUnassistedStats: SourceAssistInfo, mainPlayer: IndivStatSet | number
+  ): SourceAssistInfo {
     // Build main player's positional category:
     const mainPlayerCats = _.isNumber(mainPlayer) ?
       [ { order: mainPlayer, score: 0 }  ]
       :
-      _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+      _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role!, mainPlayer.posConfidences!).flatMap((catScore, ix) => {
         return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
       }), ["score"], ["desc"]);
 
@@ -579,44 +602,44 @@ export class PlayTypeUtils {
         return PlayTypeUtils.playTypesByFamily[exampleKey]?.examples || [];
       }).flatten().uniq().value();
 
-      if (unassistedStats[statKey]) {
-        unassistedStats[statKey].extraInfo = playTypeExamples;
+      if ((mutableUnassistedStats as any)[statKey]) {
+        (mutableUnassistedStats as any)[statKey].extraInfo = playTypeExamples;
       }
     });
-    return unassistedStats; //(for chaining)
+    return mutableUnassistedStats; //(for chaining)
   }
 
   /** Adds example plays to the "extraInfo" of non-half-court stats */
-  static enrichNonHalfCourtStats(transitionStats: Record<string, any>, scrambleStats: Record<string, any>) {
-    _.forEach(transitionStats, (oval, okey) => {
+  static enrichNonHalfCourtStats(mutableTransitionStats: SourceAssistInfo, mutableScrambleStats: SourceAssistInfo) {
+    _.forEach(mutableTransitionStats, (oval, okey) => {
       if (okey.startsWith("source_")) {
-        oval.extraInfo = [ "trans" ];
+        (oval as Statistic).extraInfo = [ "trans" ];
       }
     });
-    _.forEach(scrambleStats, (oval, okey) => {
+    _.forEach(mutableScrambleStats, (oval, okey) => {
       if (okey.startsWith("source_")) {
-        oval.extraInfo = [ "scramble" ];
+        (oval as Statistic).extraInfo = [ "scramble" ];
       }
     });
   }
 
   /** Comes up with an approximate set of half-court stats */
   static convertAssistsToHalfCourtAssists(
-    mutableAssistInfo: Record<string, any>[],
-    nonHalfCourtInfoTrans: Record<string, any>,
-    nonHalfCourtInfoScramble: Record<string, any>
+    mutableAssistInfo: TargetAssistInfo[],
+    nonHalfCourtInfoTrans: SourceAssistInfo,
+    nonHalfCourtInfoScramble: SourceAssistInfo
   ) {
     _.map(shotTypes, shotType => {
       // const nonHalfCourtInfoTrans = otherInfo[4];
       // const nonHalfCourtInfoScramble = otherInfo[5];
-      const nonHalfCourtInfoTransPct = nonHalfCourtInfoTrans[`source_${shotType}_ast`]?.value || 0;
-      const nonHalfCourtInfoScramblePct = nonHalfCourtInfoScramble[`source_${shotType}_ast`]?.value || 0;
+      const nonHalfCourtInfoTransPct = (nonHalfCourtInfoTrans as any)[`source_${shotType}_ast`]?.value || 0;
+      const nonHalfCourtInfoScramblePct = (nonHalfCourtInfoScramble as any)[`source_${shotType}_ast`]?.value || 0;
       const nonHalfCourtInfoPct = nonHalfCourtInfoTransPct + nonHalfCourtInfoScramblePct;
 
       //console.log(`[*][${shotType}][${posTitle}] Need to distribute [${nonHalfCourtInfoPct.toFixed(4)}](=[${nonHalfCourtInfoTransPct.toFixed(4)}]+[${nonHalfCourtInfoScramblePct.toFixed(4)}]) to:`)
 
       const totalAssistedPct = _.chain(PosFamilyNames).map((pos, ipos) => {
-        return (mutableAssistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0);
+        return ((mutableAssistInfo as any)[ipos]?.[`source_${shotType}_ast`]?.value || 0);
       }).sum().value();
 
       const reductionPct = (totalAssistedPct - Math.min(nonHalfCourtInfoPct, totalAssistedPct))/(totalAssistedPct || 1);
@@ -627,8 +650,9 @@ export class PlayTypeUtils {
 
         //console.log(`[${pos}][${shotType}][${posTitle}]: [${(assistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0).toFixed(4)}]`);
         
-        if (_.isNumber(mutableAssistInfo[ipos]?.[`source_${shotType}_ast`]?.value)) {
-          mutableAssistInfo[ipos][`source_${shotType}_ast`].value = mutableAssistInfo[ipos][`source_${shotType}_ast`].value*reductionPct;
+        if (_.isNumber((mutableAssistInfo[ipos] as any)?.[`source_${shotType}_ast`]?.value)) {
+          (mutableAssistInfo[ipos] as any)[`source_${shotType}_ast`].value = 
+            (mutableAssistInfo[ipos] as any)[`source_${shotType}_ast`].value*reductionPct;
         }
       });
     });
@@ -638,8 +662,8 @@ export class PlayTypeUtils {
   /** Guess what happened when a TO occurred */
   static apportionHalfCourtTurnovers(
     pos: string, posIndex: number,
-    immutableHalfCourtAssistInfo: Record<string, { assists: Record<string, any>[] }>,
-    mutableHalfCourtAssistInfo: Record<string, { assists: Record<string, any>[] }>,
+    immutableHalfCourtAssistInfo: Record<string, { assists: TargetAssistInfo[] }>,
+    mutableHalfCourtAssistInfo: Record<string, { assists: TargetAssistInfo[] }>,
     mutableUnassisted: Record<string, any>
   ) {
     // We take the % of half-court turnovers for each position group
@@ -664,22 +688,22 @@ export class PlayTypeUtils {
       //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj [unassisted] by [${unassistedWeight}] -> [${toPctToUse*unassistedWeight/totalWeight}]`)
 
       _.map(PosFamilyNames).map((otherPos, jpos) => {
-        const meToOtherPosAssists = immutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
         const otherPosToMeAssists = immutableHalfCourtAssistInfo[otherPos]!.assists[posIndex]!;
-        const mutMeToOtherPosAssists = mutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
         const mutOtherPosToMeAssists = mutableHalfCourtAssistInfo[otherPos]!.assists[posIndex]!;
+        const meToOtherPosAssists = immutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
+        const mutMeToOtherPosAssists = mutableHalfCourtAssistInfo[pos]!.assists[jpos]!;
 
         shotTypes.map(shotType => {
           const isInside = shotType == "rim";
           const otherToMeAssistWeight = 
-            weights[isInside? 2 : 3]*(otherPosToMeAssists[`source_${shotType}_ast`]?.value || 0);
+            weights[isInside? 2 : 3]*((otherPosToMeAssists as any)[`source_${shotType}_ast`]?.value || 0);
           if (phase == 0) totalWeight = totalWeight + otherToMeAssistWeight;          
-          if (phase == 1) adjStat(mutOtherPosToMeAssists[`source_${shotType}_ast`], (otherToMeAssistWeight*toPctToUse)/(totalWeight || 1));
+          if (phase == 1) adjStat((mutOtherPosToMeAssists as any)[`source_${shotType}_ast`], (otherToMeAssistWeight*toPctToUse)/(totalWeight || 1));
           //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj me->other [ast/${shotType}] by [${meToOtherPosAssists}] -> [${toPctToUse*meToOtherPosAssists/totalWeight}]`)
 
-          const meToOtherAssistWeight = weights[1]*(meToOtherPosAssists[`source_${shotType}_ast`]?.value || 0);
+          const meToOtherAssistWeight = weights[1]*((meToOtherPosAssists as any)[`source_${shotType}_ast`]?.value || 0);
           if (phase == 0) totalWeight = totalWeight + meToOtherAssistWeight;
-          if (phase == 1) adjStat(mutMeToOtherPosAssists[`source_${shotType}_ast`], (meToOtherAssistWeight*toPctToUse)/(totalWeight || 1));
+          if (phase == 1) adjStat((mutMeToOtherPosAssists as any)[`source_${shotType}_ast`], (meToOtherAssistWeight*toPctToUse)/(totalWeight || 1));
           //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj me->other [ast/${shotType}] by [${meToOtherAssistWeight}] -> [${toPctToUse*meToOtherAssistWeight/totalWeight}]`)
         });
 
@@ -709,15 +733,15 @@ export class PlayTypeUtils {
     return _.chain(PlayTypeUtils.playTypesByFamily).values().map(o => {
       return [ o.examples.join(":"), o.topLevel ];
     }).concat([
-      [ "trans", { "Transition": 1.0 } as Record<TopLevelPlayTypes, number> ],
-      [ "scramble", { "Put-Back": 1.0 }  as Record<TopLevelPlayTypes, number> ],
+      [ "trans", { "Transition": 1.0 } as Record<TopLevelPlayType, number> ],
+      [ "scramble", { "Put-Back": 1.0 }  as Record<TopLevelPlayType, number> ],
     ])
-    .fromPairs().value() as Record<string, Record<TopLevelPlayTypes, number>>;
+    .fromPairs().value() as Record<string, Record<TopLevelPlayType, number>>;
   });
 
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */
   private static playTypesByFamily: 
-    Record<string, { source: string, examples: string[], topLevel: Record<TopLevelPlayTypes, number>}> = 
+    Record<string, { source: string, examples: string[], topLevel: Record<TopLevelPlayType, number>}> = 
   {
     // 1] Ball handler:
 

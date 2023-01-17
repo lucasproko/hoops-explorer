@@ -15,35 +15,20 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { PosFamilyNames, PlayTypeUtils, TopLevelPlayTypes } from "../../utils/stats/PlayTypeUtils";
-import { PositionUtils } from "../../utils/stats/PositionUtils";
+import { PosFamilyNames, PlayTypeUtils, TopLevelPlayType } from "../../utils/stats/PlayTypeUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { CbbColors } from "../../utils/CbbColors";
-import { LineupUtils } from "../../utils/stats/LineupUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
-import { PureStatSet, Statistic, IndivStatSet, TeamStatSet } from '../../utils/StatModels';
-
-const tidyNumbers = (k: string, v: any) => {
-  if (_.isNumber(v)) {
-    const numStr = v.toFixed(3);
-    if (_.endsWith(numStr, ".000")) {
-      return numStr.split(".")[0];
-    } else {
-      return parseFloat(numStr);
-    }
-  } else {
-    return v;
-  }
-}
+import { PureStatSet, Statistic, IndivStatSet, TeamStatSet, RosterStatsByCode, StatModels } from '../../utils/StatModels';
 
 type Props = {
   title: string,
-  players: Array<Record<string, any>>,
-  rosterStatsByCode: Record<string, any>,
-  teamStats: Record<string, any>,
+  players: Array<IndivStatSet>,
+  rosterStatsByCode: RosterStatsByCode,
+  teamStats: TeamStatSet,
   teamSeasonLookup: string,
   quickSwitchOptions?: Props[]
   showHelp: boolean
@@ -57,7 +42,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     : playersIn) || [];
   const teamStats = (quickSwitch ? 
     _.find(quickSwitchOptions || [], opt => opt.title == quickSwitch)?.teamStats
-    : teamStatsIn) || [];
+    : teamStatsIn) || StatModels.emptyTeam();
 
   const reorderedPosVsPosAssistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("playsPct", true,
     players, rosterStatsByCode, teamStats

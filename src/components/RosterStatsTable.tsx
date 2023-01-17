@@ -42,7 +42,7 @@ import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, PureStatSet } from '../utils/StatModels';
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, PureStatSet, RosterStatsByCode } from '../utils/StatModels';
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from '../utils/FilterModels';
@@ -284,10 +284,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // Needed for a few things, including RAPM and play type analysis
 
-  type RosterStatsByCode = {
-    [key in OnOffBaselineGlobalEnum]: Record<PlayerCode, IndivStatSet>
+  type OnOffRosterStatsByCode = {
+    [key in OnOffBaselineGlobalEnum]: RosterStatsByCode
   };
-  const rosterStatsByCode: RosterStatsByCode = 
+    const rosterStatsByCode: OnOffRosterStatsByCode = 
     _.chain([ "on", "off", "global", "baseline" ] as OnOffBaselineGlobalEnum[]).transform((acc, key) => {
       if (teamStats[key]?.doc_count) {
         acc[key]= RosterTableUtils.buildRosterTableByCode(
@@ -296,7 +296,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       }
     }, {
       on: {}, off: {}, global: {}, baseline: {}
-    } as RosterStatsByCode).value();
+    } as OnOffRosterStatsByCode).value();
     
   // 3.0] RAPM
 
@@ -683,7 +683,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         showPlayTypes ?
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
-              player={{...p.on, posClass: p.global?.posClass || "??"}}
+              player={{...p.on, posClass: p.global?.posClass || "??"} as IndivStatSet}
               rosterStatsByCode={rosterStatsByCode.global}
               teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
@@ -721,7 +721,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         showPlayTypes ?
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
-              player={{...p.off, posClass: p.global?.posClass || "??"}}
+              player={{...p.off, posClass: p.global?.posClass || "??"} as IndivStatSet}
               rosterStatsByCode={rosterStatsByCode.global}
               teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
@@ -760,7 +760,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         showPlayTypes ?
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
-              player={{...p.baseline, posClass: p.global?.posClass || "??"}}
+              player={{...p.baseline, posClass: p.global?.posClass || "??"} as IndivStatSet}
               rosterStatsByCode={rosterStatsByCode.global}
               teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],

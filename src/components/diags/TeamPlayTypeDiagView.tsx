@@ -22,12 +22,13 @@ import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
+import { IndivStatSet, RosterStatsByCode, StatModels, TeamStatSet } from '../../utils/StatModels';
 
 type Props = {
   title: string,
-  players: Array<Record<string, any>>,
-  rosterStatsByCode: Record<string, any>,
-  teamStats: Record<string, any>,
+  players: Array<IndivStatSet>,
+  rosterStatsByCode: RosterStatsByCode,
+  teamStats: TeamStatSet,
   teamSeasonLookup: string,
   quickSwitchOptions?: Props[]
   showHelp: boolean
@@ -41,7 +42,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
     : playersIn) || [];
   const teamStats = (quickSwitch ? 
     _.find(quickSwitchOptions || [], opt => opt.title == quickSwitch)?.teamStats
-    : teamStatsIn) || [];
+    : teamStatsIn) || StatModels.emptyTeam();
 
   const reorderedPosVsPosAssistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("scoringPlaysPct", false,
     players, rosterStatsByCode, teamStats

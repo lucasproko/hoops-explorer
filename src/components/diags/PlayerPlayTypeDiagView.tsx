@@ -24,6 +24,7 @@ import { LineupUtils } from "../../utils/stats/LineupUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
+import { IndivStatSet, RosterStatsByCode } from '../../utils/StatModels';
 
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -39,8 +40,8 @@ const tidyNumbers = (k: string, v: any) => {
 }
 
 type Props = {
-  player: Record<string, any>,
-  rosterStatsByCode: Record<string, any>,
+  player: IndivStatSet,
+  rosterStatsByCode: RosterStatsByCode,
   teamSeasonLookup: string,
   showHelp: boolean,
   showDetailsOverride?: boolean

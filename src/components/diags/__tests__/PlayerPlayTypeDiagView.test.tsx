@@ -6,6 +6,7 @@ import { GameFilterParams } from "../../../utils/FilterModels";
 import { RosterTableUtils } from "../../../utils/tables/RosterTableUtils";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import { IndivStatSet } from '../../../utils/StatModels';
 
 describe("PlayerPlayTypeDiagView", () => {
   const testData = {
@@ -19,7 +20,7 @@ describe("PlayerPlayTypeDiagView", () => {
   test("PlayerPlayTypeDiagView - should create snapshot (!details, help)", () => {
     const wrapper = shallow(
       <PlayerPlayTypeDiagView
-        player={{  ...(testData.on[0]), posClass: "WG"}}
+        player={{  ...(testData.on[0]), posClass: "WG"} as unknown as IndivStatSet}
         rosterStatsByCode={rosterStatsByCode}
         teamSeasonLookup={teamSeasonLookup} showHelp={true}
       />
@@ -29,7 +30,7 @@ describe("PlayerPlayTypeDiagView", () => {
   test("PlayerPlayTypeDiagView - should create snapshot (details, !help)", () => {
     const wrapper = shallow(
       <PlayerPlayTypeDiagView
-        player={{  ...(testData.on[0]), posClass: "WG"}}
+        player={{  ...(testData.on[0]), posClass: "WG"} as unknown as IndivStatSet}
         rosterStatsByCode={rosterStatsByCode}
         teamSeasonLookup={teamSeasonLookup} showHelp={false}
         showDetailsOverride={true}

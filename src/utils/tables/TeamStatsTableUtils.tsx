@@ -5,6 +5,7 @@ import GameInfoDiagView from "../../components/diags/GameInfoDiagView";
 import LuckAdjDiagView from "../../components/diags/LuckAdjDiagView";
 import TeamExtraStatsInfoView from "../../components/diags/TeamExtraStatsInfoView";
 import TeamPlayTypeDiagView from "../../components/diags/TeamPlayTypeDiagView";
+import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
 import TeamRosterDiagView from "../../components/diags/TeamRosterDiagView";
 import { GenericTableOps, GenericTableRow } from "../../components/GenericTable";
 import { LineupStatsModel } from "../../components/LineupStatsTable";

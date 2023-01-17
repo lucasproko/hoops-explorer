@@ -305,6 +305,8 @@ export type TeamStatInfo = {
   stats: PureStatSet
 };
 
+/** Useful type */
+export type RosterStatsByCode = Record<PlayerCode, IndivStatSet>;
 
 //////////////////////////////////////
 
