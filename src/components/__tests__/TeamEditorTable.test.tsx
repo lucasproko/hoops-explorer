@@ -56,12 +56,15 @@ describe("TeamEditorTable", () => {
     sampleData.players[0]
   ));
 
+  const minYearToUseWhatIfMode = "2020/21"; //(before)
+  const minYearToUseOffseasonMode = "2021/22"; //(before)
+
   test("TeamEditorTable - should create snapshot", () => {
     const dummyChangeStateCallback = (stats: TeamEditorParams) => {};
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode,
           offSeason: true, evalMode: false,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -78,7 +81,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode,
           offSeason: true, evalMode: true,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -94,7 +97,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode,
           offSeason: true, evalMode: true,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -110,7 +113,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: minYearToUseWhatIfMode, 
           offSeason: false, evalMode: false,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false
@@ -129,7 +132,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode,
           offSeason: true, evalMode: false,
           alwaysShowBench: true, superSeniorsBack: true, 
           showOnlyTransfers: false, showOnlyCurrentYear: true
@@ -145,7 +148,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode,
           offSeason: true, evalMode: true,
           alwaysShowBench: true, superSeniorsBack: true, 
           showOnlyTransfers: false, showOnlyCurrentYear: true
@@ -161,7 +164,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: minYearToUseWhatIfMode, 
           offSeason: false, evalMode: false,
           factorMins: true,
           alwaysShowBench: true, superSeniorsBack: true, 
@@ -194,7 +197,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode, 
           offSeason: true, evalMode: false,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false,
@@ -211,7 +214,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2020/21", 
+          team: "Maryland", year: minYearToUseOffseasonMode, 
           offSeason: true, evalMode: true,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false,
@@ -228,7 +231,7 @@ describe("TeamEditorTable", () => {
     const wrapper = shallow(
       <TeamEditorTable
         startingState={{ 
-          team: "Maryland", year: "2019/20", 
+          team: "Maryland", year: minYearToUseWhatIfMode, 
           offSeason: false, evalMode: false,
           alwaysShowBench: false, superSeniorsBack: false, 
           showOnlyTransfers: true, showOnlyCurrentYear: false,

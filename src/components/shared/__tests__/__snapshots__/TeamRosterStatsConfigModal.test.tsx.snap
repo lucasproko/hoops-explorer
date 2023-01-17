@@ -6,6 +6,7 @@ exports[`TeamRosterStatsConfigModal TeamRosterStatsConfigModal - should create s
     config={
       Object {
         "rapmPriorMode": -1,
+        "rapmRegressMode": -1,
         "regressDiffs": -2000,
         "showRapmDiag": false,
       }
@@ -24,6 +25,7 @@ exports[`TeamRosterStatsConfigModal TeamRosterStatsConfigModal - should create s
     config={
       Object {
         "rapmPriorMode": 0,
+        "rapmRegressMode": -1,
         "regressDiffs": 0,
         "showRapmDiag": true,
       }
@@ -42,6 +44,7 @@ exports[`TeamRosterStatsConfigModal TeamRosterStatsConfigModal - should create s
     config={
       Object {
         "rapmPriorMode": 0.5,
+        "rapmRegressMode": -1,
         "regressDiffs": 2000,
         "showRapmDiag": true,
       }

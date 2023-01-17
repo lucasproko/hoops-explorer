@@ -373,7 +373,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode, offSeasonMode)}`; 
       //(the year for which we are getting the grades)
     const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
-
     const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(yearWithStats)}` : "NO MATCH"; //(for Fr)
 
     const teamLastSeason = _.find(dataEvent.teamStats, t => (t.team_name == team) && (t.year == yearWithStats));
