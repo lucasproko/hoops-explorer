@@ -72,6 +72,15 @@ const assistDetailsTable = {
     "ast_mid": GenericTableOps.addPctCol("Mid", "% of assists for mid-range 2P", CommonTableDefs.picker(...CbbColors.fgr)),
     "ast_rim": GenericTableOps.addPctCol("Rim", "% of assists for 2PAs at the rim", CommonTableDefs.picker(...CbbColors.fgr)),
 };
+const assistDetailGradesTable = {
+    "title": GenericTableOps.addTitle("", "", GenericTableOps.defaultRowSpanCalculator, "", GenericTableOps.htmlFormatter),
+    "sep1": GenericTableOps.addColSeparator(), 
+    "3p_ast": GenericTableOps.addDataCol("3P", "% of assists for 3P", CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
+    "rim_ast": GenericTableOps.addDataCol("Rim", "% of assists for 2PAs at the rim", CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
+    "sep2": GenericTableOps.addColSeparator(), 
+    "ast_3p": GenericTableOps.addDataCol("3P", "% of assists for 3P", CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
+    "ast_rim": GenericTableOps.addDataCol("Rim", "% of assists for 2PAs at the rim", CbbColors.varPicker(CbbColors.all_pctile_freq), GenericTableOps.gradeOrHtmlFormatter),
+};
 
 type GradeProps = {
     comboTier?: DivisionStatistics,
@@ -103,12 +112,21 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
     const tierToUse = tiers[tierStr]; 
 
     // Build derived stats and inject into extraStats
-    const extraStats = { def_3p_opp: teamStatSet.def_3p_opp  } as PureStatSet;
+    const extraStats = { 
+        // Opponent stats 
+        def_3p_opp: teamStatSet.def_3p_opp,
+        // Assist stats
+        off_3p_ast: teamStatSet.off_3p_ast, def_3p_ast: teamStatSet.def_3p_ast, 
+        off_2prim_ast: teamStatSet.off_2prim_ast, def_2prim_ast: teamStatSet.def_2prim_ast, 
+        off_ast_3p: teamStatSet.off_ast_3p, def_ast_3p: teamStatSet.def_ast_3p, 
+        off_ast_rim: teamStatSet.off_ast_rim, def_ast_rim: teamStatSet.def_ast_rim, 
+    } as PureStatSet;
     DerivedStatsUtils.injectTeamDerivedStats(teamStatSet, extraStats);
 
     // And now maybe build ranks/%iles:
+    const extraOriginalFields = [ "3p_ast", "2prim_ast", "ast_3p", "ast_rim" ];
     const teamPercentiles = tierToUse ? GradeUtils.buildTeamPercentiles(
-         tierToUse, extraStats, GradeUtils.teamDerivedFields, gradeFormat == "rank"
+         tierToUse, extraStats, GradeUtils.teamDerivedFields.concat(extraOriginalFields), gradeFormat == "rank"
     )  : {};
 
     const scrambleTooltip = <Tooltip id={`scrambleDef${nameAsId}`}>Possessions finishing after an ORB, but not counting plays where the offense resets</Tooltip>;
@@ -194,17 +212,35 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({name, teamStatS
             
         }, offNotDef ? offPrefixFn : defPrefixFn, offNotDef ? offCellMetaFn : defCellMetaFn);
     };
+    const buildAssistGradeRow = (offDef: "off" | "def") => {
+        const offNotDef = offDef == "off";
+        return GenericTableOps.buildDataRow({
+            [`${offDef}_title`]: <small>Equivalent {gradeFormat == "pct" ? "percentile" : "rank"}</small>,
 
-    const assistTableData = [
-        GenericTableOps.buildSubHeaderRow([
+            ...(
+                _.chain([ "3p", "rim" ]).flatMap(field => {
+                    return [
+                        [ `${offDef}_${field}_ast`, teamPercentiles[`${offDef}_ast_${field}`] ],
+                        [ `${offDef}_ast_${field}`, teamPercentiles[`${offDef}_${field == "3p" ? field : `2p${field}`}_ast`] ],
+                    ];
+                }).fromPairs().value()
+            )
+            
+        }, offNotDef ? offPrefixFn : defPrefixFn, offNotDef ? offCellMetaFn : defCellMetaFn, assistDetailGradesTable);
+    }
+
+    const assistTableData = _.flatten([
+        [ GenericTableOps.buildSubHeaderRow([
             ["", 2],
             [<i>Assist distribution</i>, 3],
             ["", 1],
             [<i>% of these shots assisted</i>, 3]
-        ] as [string, number][], "text-center"),
-        buildAssistDataRow("off"),
-        buildAssistDataRow("def")
-    ];
+        ] as [string, number][], "text-center") ],
+        [ buildAssistDataRow("off") ],
+        tierToUse ? [ buildAssistGradeRow("off"), GenericTableOps.buildRowSeparator() ] : [],
+        [ buildAssistDataRow("def") ],
+        tierToUse ? [ buildAssistGradeRow("def"), GenericTableOps.buildRowSeparator() ] : [],
+    ]);
 
     const possPer40 = extraStats[`tempo`]?.value || 0;
     const tempoHtml = possPer40 > 0 ? 

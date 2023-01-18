@@ -8804,6 +8804,184 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "right",
+                                          "verticalAlign": "middle",
+                                          "width": "38.1%",
+                                        }
+                                      }
+                                    >
+                                      <small>
+                                        Equivalent 
+                                        rank
+                                      </small>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    className="divider"
+                                  >
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
                                           "fontWeight": "bold",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
@@ -8959,6 +9137,184 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         43.9
                                       </div>
                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "right",
+                                          "verticalAlign": "middle",
+                                          "width": "38.1%",
+                                        }
+                                      }
+                                    >
+                                      <small>
+                                        Equivalent 
+                                        rank
+                                      </small>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    className="divider"
+                                  >
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
                                   </tr>
                                 </tbody>
                               </table>
@@ -23140,6 +23496,184 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "right",
+                                          "verticalAlign": "middle",
+                                          "width": "38.1%",
+                                        }
+                                      }
+                                    >
+                                      <small>
+                                        Equivalent 
+                                        rank
+                                      </small>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    className="divider"
+                                  >
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
                                           "fontWeight": "bold",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
@@ -23295,6 +23829,184 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         48.8
                                       </div>
                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "right",
+                                          "verticalAlign": "middle",
+                                          "width": "38.1%",
+                                        }
+                                      }
+                                    >
+                                      <small>
+                                        Equivalent 
+                                        rank
+                                      </small>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    className="divider"
+                                  >
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
                                   </tr>
                                 </tbody>
                               </table>
@@ -37476,6 +38188,184 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       style={
                                         Object {
                                           "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "right",
+                                          "verticalAlign": "middle",
+                                          "width": "38.1%",
+                                        }
+                                      }
+                                    >
+                                      <small>
+                                        Equivalent 
+                                        rank
+                                      </small>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    className="divider"
+                                  >
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
                                           "fontWeight": "bold",
                                           "textAlign": "right",
                                           "verticalAlign": "middle",
@@ -37631,6 +38521,184 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         45.1
                                       </div>
                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "right",
+                                          "verticalAlign": "middle",
+                                          "width": "38.1%",
+                                        }
+                                      }
+                                    >
+                                      <small>
+                                        Equivalent 
+                                        rank
+                                      </small>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "2.4%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                    <td
+                                      className=""
+                                      colSpan={1}
+                                      rowSpan={1}
+                                      style={
+                                        Object {
+                                          "backgroundColor": undefined,
+                                          "fontWeight": "normal",
+                                          "textAlign": "center",
+                                          "verticalAlign": "middle",
+                                          "width": "9.5%",
+                                        }
+                                      }
+                                    >
+                                      <div>
+                                        
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr
+                                    className="divider"
+                                  >
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
+                                    <td />
                                   </tr>
                                 </tbody>
                               </table>

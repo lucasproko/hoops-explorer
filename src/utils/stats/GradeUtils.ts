@@ -85,6 +85,7 @@ export class GradeUtils {
    static readonly teamFieldsToRecord = [ 
       "net", "ppp", "adj_ppp", 
       "efg", "to", "orb", "ftr", "assist", "3pr", "2pmidr", "2primr", 
+      "3p_ast", "2prim_ast", "ast_3p", "ast_rim", //(don't bother with mid)
       "3p", "2p", "2pmid", "2prim", "adj_opp",
 
       // Not in table
