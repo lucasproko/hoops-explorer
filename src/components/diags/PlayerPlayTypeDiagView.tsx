@@ -94,8 +94,8 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   // (note that the interaction between this logic and the innards of the PlayTypeUtils is a bit tangled currently)
   const playerAssistNetwork = _.orderBy(allPlayers.map((p) => {
     var mutableTotal = 0;
-    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerAssistNetwork(
-      p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerAssistNetwork("scoringPlaysPct",
+      p, player, playerStyle.totalPlaysMade, playerStyle.totalAssists,
       rosterStatsByCode
     );
     mutableTotal += mutableTmpTotal;

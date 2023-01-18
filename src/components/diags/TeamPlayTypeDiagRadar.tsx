@@ -24,6 +24,9 @@ import { CbbColors } from "../../utils/CbbColors";
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
 import { PureStatSet, Statistic, IndivStatSet, TeamStatSet, RosterStatsByCode, StatModels } from '../../utils/StatModels';
 
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
+
+
 type Props = {
   title: string,
   players: Array<IndivStatSet>,
@@ -44,12 +47,15 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     _.find(quickSwitchOptions || [], opt => opt.title == quickSwitch)?.teamStats
     : teamStatsIn) || StatModels.emptyTeam();
 
-  const reorderedPosVsPosAssistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("playsPct", true,
-    players, rosterStatsByCode, teamStats
-  );
-  const topLevelPlayTypeAnalysis = PlayTypeUtils.buildTopLevelPlayStyles(
-    reorderedPosVsPosAssistNetwork, players, teamStats
-  );
+  const topLevelPlayTypeStyles = PlayTypeUtils.buildTopLevelPlayStyles(players, rosterStatsByCode, teamStats);
+
+  const data = _.map(topLevelPlayTypeStyles, (stat, playType) => {
+    return {
+      name: playType,
+      pct: (stat.possPct.value || 0)*100,
+      pts: stat.pts.value,
+    };
+  })
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) =>
     <OverlayTrigger placement="auto" overlay={
@@ -73,11 +79,49 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     <br/>
     <br/>
     <Container>
-      <Col xs={10}>
-        {_.toPairs(topLevelPlayTypeAnalysis).map(o => <span>{o[0]}: {(o[1]*100).toFixed(1)}<br/></span>)}
-        SUM = [{_.chain(topLevelPlayTypeAnalysis).values().sum().value()}]
-      </Col>
+      <Row>
+        <Col xs={10}>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart
+              height={400}
+              data={data}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis domain={[0, 35]} />
+              <RechartsTooltip />
+              <Bar dataKey="pct" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={10}>
+          {_.toPairs(topLevelPlayTypeStyles).map(o => <span>{JSON.stringify(o, tidyNumbers)}<br/></span>)}
+        </Col>
+      </Row>
     </Container>
   </span>;
 };
 export default TeamPlayTypeDiagRadar;
+
+/** Util for console log */
+const tidyNumbers = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const numStr = v.toFixed(3);
+    if (_.endsWith(numStr, ".000")) {
+      return numStr.split(".")[0];
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+};
+

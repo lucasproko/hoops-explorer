@@ -33,7 +33,7 @@ export type PlayerStyleInfo = {
   transition: SourceAssistInfo, //(totals, asssisted + unassisted)
   scrambleAssisted: SourceAssistInfo,
   transitionAssisted: SourceAssistInfo,
-  totalScoringPlaysMade: number,
+  totalPlaysMade: number,
   totalAssists: number
 };
 
@@ -42,22 +42,26 @@ const shotTypes = [ "3p", "mid", "rim" ];
 const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
 const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
 
-type PlayStyleTypes = "scoringPlaysPct" | "pointsPer100" | "playsPct";
+type PlayStyleType = "scoringPlaysPct" | "pointsPer100" | "playsPct";
 
 export type TopLevelPlayType = 
   "Rim Attack" | "Attack & Kick" | "Dribble Jumper" |
-  "Spread" |
-  "Cut & Roll" | "Post-Ups" | "Post-Up Collapse" | "Pick & Pop" | "High-Low" |
+  "Spread" | "Backdoor Cut" |
+  "Big Cut & Roll" | "Post-Up" | "Post-Up Collapse" | "Pick & Pop" | "High-Low" |
   "Transition" | "Put-Back" | "Misc";
   //(currently "Misc" is just team turnovers, used to get the sum back to 100%)
+
+export type TopLevelPlayAnalysis = Record<TopLevelPlayType, {
+  possPct: Statistic, pts: Statistic
+}>;
 
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
 
   static topTevelPlayTypes: TopLevelPlayType[] = [
     "Rim Attack" , "Attack & Kick" , "Dribble Jumper" ,
-    "Spread" ,
-    "Cut & Roll" , "Post-Ups" , "Post-Up Collapse", "Pick & Pop" , "High-Low" ,
+    "Spread" , "Backdoor Cut",
+    "Big Cut & Roll" , "Post-Up" , "Post-Up Collapse", "Pick & Pop" , "High-Low" ,
     "Transition" , "Put-Back"
   ]; //(no Misc we don't rennder)
 
@@ -84,6 +88,9 @@ export class PlayTypeUtils {
 
   //////////////////////////////////////////////////////////////
 
+  //TODO: 
+  // Some % of misses need to go to assisted numbers (probably under player for 3P shooting at least) 
+
   // Top Level Logic
 
   /** Builds per-player assist networks and then groups players into weighted categories and re-aggregates the assist networks 
@@ -92,7 +99,7 @@ export class PlayTypeUtils {
    * assist info out of the assist networks is in buildTopLevelPlayStyles
   */
   static buildCategorizedAssistNetworks(
-    playStyleType: PlayStyleTypes,
+    playStyleType: PlayStyleType,
     separateHalfCourt: boolean, 
     players: Array<IndivStatSet>,
     rosterStatsByCode: RosterStatsByCode,
@@ -124,8 +131,8 @@ export class PlayTypeUtils {
         player, teamPossessionsToUse, teamTotalAssists, separateHalfCourt
       );
       const playerAssistNetwork = allPlayers.map((p) => {
-        const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(
-          p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+        const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(playStyleType,
+          p, player, playerStyle.totalPlaysMade, playerStyle.totalAssists,
           rosterStatsByCode
         );
         return { code: p, ...info };
@@ -204,8 +211,45 @@ export class PlayTypeUtils {
     return reorderedPosVsPosAssistNetwork;
   }
 
-  /** Builds a higher level view of the assist network, with lots of guessing */
+  /** Builds usage and efficiency numbers for the top level play styles */
   static buildTopLevelPlayStyles(
+    players: Array<IndivStatSet>,
+    rosterStatsByCode: RosterStatsByCode,
+    teamStats: TeamStatSet
+  ): TopLevelPlayAnalysis {
+
+    const posVsPosAssistNetworkPoss = PlayTypeUtils.buildCategorizedAssistNetworks("playsPct", true,
+      players, rosterStatsByCode, teamStats
+    );
+    const topLevelPlayTypeAnalysisPoss = PlayTypeUtils.aggregateToTopLevelPlayStyles(
+      posVsPosAssistNetworkPoss, players, teamStats
+    );
+    const posVsPosAssistNetworkPts = PlayTypeUtils.buildCategorizedAssistNetworks("pointsPer100", true,
+      players, rosterStatsByCode, teamStats
+    );
+    const topLevelPlayTypeAnalysisPts = PlayTypeUtils.aggregateToTopLevelPlayStyles(
+      posVsPosAssistNetworkPts, players, teamStats
+    );
+
+    return _.chain(PlayTypeUtils.topTevelPlayTypes).map(type => {
+
+      const poss = topLevelPlayTypeAnalysisPoss[type] || 0;
+      const pts = topLevelPlayTypeAnalysisPts[type] || 0;
+
+      return [ type, {
+        possPct: { value: poss },
+        pts: { value: ((poss > 0) && (pts > 0)) ? pts/poss : 0 } 
+      }];
+
+    }).fromPairs().value() as TopLevelPlayAnalysis;
+  }
+
+  //////////////////////////////////////////////////////////////
+
+  // The main builders 
+
+  /** Builds a higher level view of the assist network, with lots of guessing */
+  static aggregateToTopLevelPlayStyles(
     assistNetwork: Record<string, { assists:  TargetAssistInfo[], other: SourceAssistInfo[] }>,
     players: Array<IndivStatSet>,
     teamStats: TeamStatSet
@@ -279,13 +323,9 @@ export class PlayTypeUtils {
     return topLevelPlayTypeAnalysis;
   }
 
-  //////////////////////////////////////////////////////////////
-
-  // The main builders 
-
   /** Decomposes a player stats into unassisted/assisted _totals_ and half-court/scramble/transition */
   static buildPlayerStyle(
-    playStyleType: PlayStyleTypes,
+    playStyleType: PlayStyleType,
     player: IndivStatSet, 
     countNotPctScorePoss?: number, countNotPctAssists?: number, 
     separateHalfCourt?: boolean
@@ -306,15 +346,21 @@ export class PlayTypeUtils {
 
     const totalSuffix = (playStyleType == "scoringPlaysPct") ? "fgm" : "fga";
     //(for pts/100 and % of plays we care about field goals made and missed)
+    //(note always use FTA*ftaMult though, scoring plays == plays in this case - later on for the numerator we use FTM in some cases)
 
     const totalShotsCount = player[`total_off_${totalSuffix}`]?.value || 0;
-    const totalFtTripsMade = ftaMult*(player[`total_off_fta`]?.value || 0);
+    const totalFtTripsMadeForDenom = ftaMult*(player[`total_off_fta`]?.value || 0);
     const totalPlaysMade = (countNotPctScorePoss ? countNotPctScorePoss :
-        (totalShotsCount + totalFtTripsMade + totalAssists + maybeTurnovers)
+        (totalShotsCount + totalFtTripsMadeForDenom + totalAssists + maybeTurnovers)
       ) || 1; //(always render so avoid NaN with default 1)
 
     const fieldGoalTypeSuffix = (playStyleType == "playsPct") ? "attempts" : "made";
+    const freeThrowSuffix = (playStyleType == "pointsPer100") ? "ftm" : "fta";
     //(if we care about scoring unless calculating the pure playsPct)
+
+    const ptsMultiplier = (shotType: string) => (playStyleType == "pointsPer100") ? (
+      (shotType == "3p") ? 3 : 2
+    ) : 1; 
 
     /** (util method, see below) */
     const buildTotal = (prefix: string) => { return _.fromPairs(shotTypes.map((key) => {
@@ -330,8 +376,8 @@ export class PlayTypeUtils {
         const key = kv[0];
         const total = kv[1][0]!; //total unassisted + assisted
         const assisted = kv[1][1]!; 
-        return [ `source_${key}_ast`, total > 0 ? {
-          value: (assistedOnly ? assisted : total)/totalPlaysMade
+        return [ `source_${key}_ast`, (total > 0) ? {
+          value: (assistedOnly ? assisted : total)*ptsMultiplier(key)/totalPlaysMade
         } : null ]
       }).concat(assistedOnly ? [] : [
         [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalPlaysMade } : null ],
@@ -343,8 +389,10 @@ export class PlayTypeUtils {
 
     // Scramble and transition
 
+    const maybeFtaMult = (playStyleType == "pointsPer100") ? 1 : ftaMult;
+
     const scrambleTotal = buildTotal("scramble");
-    const scrambleFtTrips = ftaMult*(player[`total_off_scramble_fta`]?.value || 0);
+    const scrambleFtTrips = maybeFtaMult*(player[`total_off_scramble_${freeThrowSuffix}`]?.value || 0);
     const scrambleAssists = player[`total_off_scramble_assist`]?.value || 0;
     const scrambleTo = player[`total_off_scramble_to`]?.value || 0;
     const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, scrambleTo, false);
@@ -352,7 +400,7 @@ export class PlayTypeUtils {
       buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists, 0, true) : [];
 
     const transitionTotal = buildTotal("trans");
-    const transitionFtTrips = ftaMult*(player[`total_off_trans_fta`]?.value || 0);
+    const transitionFtTrips = maybeFtaMult*(player[`total_off_trans_${freeThrowSuffix}`]?.value || 0);
     const transitionAssists = player[`total_off_trans_assist`]?.value || 0;
     const transitionTo = player[`total_off_trans_to`]?.value || 0;
     const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists, transitionTo, false);
@@ -361,8 +409,9 @@ export class PlayTypeUtils {
 
     // Half court:
 
-    const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
-    const totalFtTripsToUse = (separateHalfCourt ? totalFtTripsMadeHalfCourt : totalFtTripsMade);
+    const totalFtTripsForNum = maybeFtaMult*(player[`total_off_${freeThrowSuffix}`]?.value || 0);
+    const totalFtTripsMadeHalfCourt = totalFtTripsForNum - transitionFtTrips - scrambleFtTrips;
+    const totalFtTripsToUse = (separateHalfCourt ? totalFtTripsMadeHalfCourt : totalFtTripsForNum);
     const halfCourtTos = separateHalfCourt ? (maybeTurnovers - transitionTo - scrambleTo) : maybeTurnovers;
 
     const unassistedToUseRow = shotTypes.map((key) => {
@@ -373,7 +422,7 @@ export class PlayTypeUtils {
       const unassistedToUse = (separateHalfCourt ? unassistedHalfCourt : unassisted);
 
       return [ `source_${key}_ast`, unassistedToUse > 0 ? {
-        value: unassistedToUse/totalPlaysMade
+        value: unassistedToUse*ptsMultiplier(key)/totalPlaysMade
       } : null ];
     }).concat([
       [ `source_sf`, totalFtTripsToUse > 0 ? { value: totalFtTripsToUse/totalPlaysMade } : null ]
@@ -387,7 +436,7 @@ export class PlayTypeUtils {
       const assistedToUse = separateHalfCourt ? assistedHalfCourt : assisted;
 
       return [ `source_${key}_ast`, assistedToUse > 0 ? {
-        value: assistedToUse/totalPlaysMade
+        value: assistedToUse*ptsMultiplier(key)/totalPlaysMade
       } : null];
     }).concat([
       [ `target_ast`, totalAssistsCalcToUse > 0 ? {
@@ -402,21 +451,29 @@ export class PlayTypeUtils {
       transition: _.fromPairs(transitionRow) as SourceAssistInfo,
       scrambleAssisted: _.fromPairs(scrambleRowAssistedOnly) as SourceAssistInfo,
       transitionAssisted: _.fromPairs(transitionRowAssistedOnly) as SourceAssistInfo,
-      totalScoringPlaysMade: totalPlaysMade,
+      totalPlaysMade: totalPlaysMade,
       totalAssists: totalAssists
     };
   }
 
   /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network
    * relative to the main player (ie assisting or assisted by) for each shot type
-   * note totalScoringPlaysMade/totalAssists is relative to "mainPlayer"
+   * If playStyleType=="pointsPer100" then the assist is multiplied by its pt value)
+   * 
+   * note totalPlaysMade/totalAssists is relative to "mainPlayer"
+   * (totalPlaysMade is either scoring if "scoringPlaysPct", or total plays otherwise)
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
    */
   static buildPlayerAssistNetwork(
+    playStyleType: PlayStyleType,
     playerOrPos: string, mainPlayer: IndivStatSet,
-    totalScoringPlaysMade: number, totalAssists: number,
+    totalPlaysMade: number, totalAssists: number,
     rosterStatsByCode: RosterStatsByCode
   ): [ TargetAssistInfo, number ] {
+    const ptsMultiplier = (shotType: string) => (playStyleType == "pointsPer100") ? (
+      (shotType == "3p") ? 3 : 2
+    ) : 1; 
+
     const p = playerOrPos;
     var mutableTotal = 0;
     const info = (_.fromPairs([ "target", "source" ].flatMap((loc) => {
@@ -426,15 +483,15 @@ export class PlayTypeUtils {
         const assists = (mainPlayer[`off_ast_${key}_${loc}`]?.value as any)?.[p] || 0;
         mutableAssistsAcrossShotTypes += targetNotSource ? assists : 0;
         mutableTotal += assists;
-        const denominator = targetNotSource ? (totalAssists || 1) : totalScoringPlaysMade;
+        const denominator = targetNotSource ? (totalAssists || 1) : totalPlaysMade;
         const eFG = (key == "3p" ? 1.5 : 1) * (rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0);
 
         return assists > 0 ? [
-          [`${loc}_${key}_ast`, { value: assists/(denominator || 1) }],
+          [`${loc}_${key}_ast`, { value: ptsMultiplier(key)*assists/(denominator || 1) }],
           [`${loc}_${key}_efg`, { value: eFG } ]
         ] : [];
       }).concat( (targetNotSource && (mutableAssistsAcrossShotTypes > 0)) ?
-        [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalScoringPlaysMade } ] ]: []
+        [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalPlaysMade } ] ]: []
       );
     })));
     return [ info as TargetAssistInfo, mutableTotal ];
@@ -749,7 +806,7 @@ export class PlayTypeUtils {
     "ballhandler_sf": {
       source: "Shooting Foul",
       examples: [ "fouled driving to the rim", "fouled in the bonus", "fouled cutting" ],
-      topLevel: { "Rim Attack": 0.8, "Cut": 0.2  }
+      topLevel: { "Rim Attack": 0.8, "Backdoor Cut": 0.2  }
     },
 
     // 1.1] 3P
@@ -815,19 +872,19 @@ export class PlayTypeUtils {
       source: "Layup Assisted by ballhandler",
       target: "Pass to ballhandler for a layup",
       examples: [ "cut" ],
-      topLevel: { "Cut": 1.0 } 
+      topLevel: { "Backdoor Cut": 1.0 } 
     },
     "ballhandler_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to ballhandler for a layup",
       examples: [ "cut" ],
-      topLevel: { "Cut": 1.0 } 
+      topLevel: { "Backdoor Cut": 1.0 } 
     },
     "ballhandler_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to ballhandler for a layup",
       examples: [ "cut" ],
-      topLevel: { "Cut": 1.0 } 
+      topLevel: { "Backdoor Cut": 1.0 } 
     },
 
     // 2] Wing:
@@ -836,7 +893,7 @@ export class PlayTypeUtils {
     "wing_sf": {
       source: "Shooting Foul",
       examples: [ "fouled slashing to the rim", "fouled in the bonus", "fouled cutting" ],
-      topLevel: { "Rim Attack": 0.8, "Cut": 0.2  }
+      topLevel: { "Rim Attack": 0.8, "Backdoor Cut": 0.2  }
     },
 
     // 2.1] 3P
@@ -902,19 +959,19 @@ export class PlayTypeUtils {
       source: "Layup Assisted by ballhandler",
       target: "Pass to wing for a layup",
       examples: [ "cut" ],
-      topLevel: { "Cut": 1.0 } 
+      topLevel: { "Backdoor Cut": 1.0 } 
     },
     "wing_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to wing for a layup",
       examples: [ "cut" ],
-      topLevel: { "Cut": 1.0 } 
+      topLevel: { "Backdoor Cut": 1.0 } 
     },
     "wing_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to wing for a layup",
       examples: [ "cut" ],
-      topLevel: { "Cut": 1.0 } 
+      topLevel: { "Backdoor Cut": 1.0 } 
     },
 
     // 3] Frontcourt:
@@ -923,7 +980,7 @@ export class PlayTypeUtils {
     "big_sf": {
       source: "Shooting Foul",
       examples: [ "fouled on a rebound", "fouled posting up", "fouled rolling", "fouled in the bonus", "fouled cutting" ],
-      topLevel: { "Post-Up": 0.7, "Cut & Roll": 0.3 } 
+      topLevel: { "Post-Up": 0.7, "Big Cut & Roll": 0.3 } 
     },
 
     // 3.1] 3P
@@ -989,19 +1046,19 @@ export class PlayTypeUtils {
       source: "Layup Assisted by ballhandler",
       target: "Pass to frontcourt for layup",
       examples: [ "roll", "cut", "sometimes post-up" ],
-      topLevel: { "Cut & Roll": 1.0 } 
+      topLevel: { "Big Cut & Roll": 1.0 } 
     },
     "big_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to frontcourt for layup",
       examples: [ "roll", "cut", "sometimes post-up" ],
-      topLevel: { "Cut & Roll": 1.0 } 
+      topLevel: { "Big Cut & Roll": 1.0 } 
     },
     "big_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to frontcourt for layup",
       examples: [ "high-low action" ],
-      topLevel: { "High Low" : 0.8, "Cut & Roll": 0.2 } 
+      topLevel: { "High Low" : 0.8, "Big Cut & Roll": 0.2 } 
     }
   } as Record<string, any>;
 }

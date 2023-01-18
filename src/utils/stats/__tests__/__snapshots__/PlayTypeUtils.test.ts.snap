@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 1`] = `
+Object {
+  "Attack & Kick": 0.03601708389933508,
+  "Cut": 0.01917384483743767,
+  "Dribble Jumper": 0.0773393622571636,
+  "Misc": 0.06465407003508915,
+  "Put-Back": 0.03399453714028501,
+  "Rim Attack": 0.10525116633173048,
+  "Spread": 0.02138724683081238,
+  "Transition": 0.10752831173082629,
+}
+`;
+
+exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 2`] = `
+Object {
+  "Attack & Kick": 0.09197465826076066,
+  "Cut": 0.03160661595348259,
+  "Dribble Jumper": 0.02455217849433765,
+  "Misc": 0.06465407003508915,
+  "Put-Back": 0.038055876666223364,
+  "Rim Attack": 0.09499120847682335,
+  "Spread": 0.012217995155707356,
+  "Transition": 0.1248069073462164,
+}
+`;
+
 exports[`PlayTypeUtils PlayTypeUtils - buildCategorizedAssistNetworks 1`] = `
 Object {
   "ballhandler": Object {
@@ -500,6 +526,47 @@ Array [
 ]
 `;
 
+exports[`PlayTypeUtils PlayTypeUtils - buildPlayerAssistNetwork 2`] = `
+Array [
+  Object {
+    "source_3p_ast": Object {
+      "value": 0.06982156710628394,
+    },
+    "source_3p_efg": Object {
+      "value": 0.4760479041916168,
+    },
+    "source_rim_ast": Object {
+      "value": 0.015515903801396431,
+    },
+    "source_rim_efg": Object {
+      "value": 0.711864406779661,
+    },
+    "target_3p_ast": Object {
+      "value": 0.40816326530612246,
+    },
+    "target_3p_efg": Object {
+      "value": 0.4760479041916168,
+    },
+    "target_ast": Object {
+      "value": 0.08016550297388156,
+    },
+    "target_mid_ast": Object {
+      "value": 0.05442176870748299,
+    },
+    "target_mid_efg": Object {
+      "value": 0.24324324324324326,
+    },
+    "target_rim_ast": Object {
+      "value": 0.09523809523809523,
+    },
+    "target_rim_efg": Object {
+      "value": 0.711864406779661,
+    },
+  },
+  43,
+]
+`;
+
 exports[`PlayTypeUtils PlayTypeUtils - buildPlayerStyle 1`] = `
 Object {
   "assisted": Object {
@@ -533,7 +600,7 @@ Object {
   },
   "scrambleAssisted": Object {},
   "totalAssists": 147,
-  "totalScoringPlaysMade": 386.7,
+  "totalPlaysMade": 386.7,
   "transition": Object {
     "source_3p_ast": Object {
       "value": 0.02068787173519524,
@@ -605,7 +672,7 @@ Object {
   },
   "scrambleAssisted": Object {},
   "totalAssists": 147,
-  "totalScoringPlaysMade": 672.7,
+  "totalPlaysMade": 672.7,
   "transition": Object {
     "source_3p_ast": Object {
       "value": 0.034190575293592984,
@@ -680,7 +747,7 @@ Object {
   },
   "scrambleAssisted": Object {},
   "totalAssists": 1,
-  "totalScoringPlaysMade": 1,
+  "totalPlaysMade": 1,
   "transition": Object {
     "source_3p_ast": Object {
       "value": 8,
@@ -711,6 +778,84 @@ Object {
     },
     "source_sf": Object {
       "value": 100.69999999999999,
+    },
+  },
+}
+`;
+
+exports[`PlayTypeUtils PlayTypeUtils - buildPlayerStyle 4`] = `
+Object {
+  "assisted": Object {
+    "source_3p_ast": Object {
+      "value": 0.15608740894901144,
+    },
+    "source_mid_ast": null,
+    "source_rim_ast": Object {
+      "value": 0.0505425895644418,
+    },
+    "target_ast": Object {
+      "value": 0.218522372528616,
+    },
+  },
+  "scramble": Object {
+    "source_3p_ast": Object {
+      "value": 0.026757841534116245,
+    },
+    "source_mid_ast": Object {
+      "value": 0.002973093503790694,
+    },
+    "source_rim_ast": Object {
+      "value": 0.011892374015162776,
+    },
+    "source_sf": Object {
+      "value": 0.016352014270848817,
+    },
+    "source_to": Object {
+      "value": 0.002973093503790694,
+    },
+    "target_ast": Object {
+      "value": 0.01486546751895347,
+    },
+  },
+  "scrambleAssisted": Object {},
+  "totalAssists": 147,
+  "totalPlaysMade": 672.7,
+  "transition": Object {
+    "source_3p_ast": Object {
+      "value": 0.03567712204548833,
+    },
+    "source_mid_ast": Object {
+      "value": 0.002973093503790694,
+    },
+    "source_rim_ast": Object {
+      "value": 0.0505425895644418,
+    },
+    "source_sf": Object {
+      "value": 0.1040582726326743,
+    },
+    "source_to": Object {
+      "value": 0.02973093503790694,
+    },
+    "target_ast": Object {
+      "value": 0.05648877657202318,
+    },
+  },
+  "transitionAssisted": Object {},
+  "unassisted": Object {
+    "source_3p_ast": Object {
+      "value": 0.09365244536940687,
+    },
+    "source_mid_ast": Object {
+      "value": 0.05351568306823249,
+    },
+    "source_rim_ast": Object {
+      "value": 0.1427084881819533,
+    },
+    "source_sf": Object {
+      "value": 0.2556860413259997,
+    },
+    "source_to": Object {
+      "value": 0.10257172588077894,
     },
   },
 }
@@ -895,19 +1040,6 @@ Array [
     "order": 2,
   },
 ]
-`;
-
-exports[`PlayTypeUtils PlayTypeUtils - buildTopLevelPlayStyles 1`] = `
-Object {
-  "Attack & Kick": 0.03601708389933508,
-  "Cut": 0.01917384483743767,
-  "Dribble Jumper": 0.0773393622571636,
-  "Misc": 0.06465407003508915,
-  "Put-Back": 0.03399453714028501,
-  "Rim Attack": 0.10525116633173048,
-  "Spread": 0.02138724683081238,
-  "Transition": 0.10752831173082629,
-}
 `;
 
 exports[`PlayTypeUtils PlayTypeUtils - enrichUnassistedStats 1`] = `

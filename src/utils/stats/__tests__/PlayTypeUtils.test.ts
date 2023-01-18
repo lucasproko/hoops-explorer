@@ -35,6 +35,10 @@ describe("PlayTypeUtils", () => {
     const playStyleScoringWithTotals = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer, 1, 1);
     //expect(playStyleWithTotals).toEqual({});
     expect(playStyleScoringWithTotals).toMatchSnapshot();
+
+    const playStyleScoringPtsPer = PlayTypeUtils.buildPlayerStyle("pointsPer100", mainPlayer);
+    //expect(playStyleWithTotals).toEqual({});
+    expect(playStyleScoringPtsPer).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildCategorizedAssistNetworks", () => {
     const assistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("scoringPlaysPct", false,
@@ -42,25 +46,40 @@ describe("PlayTypeUtils", () => {
     );
     expect(assistNetwork).toMatchSnapshot();
   });
-  test("PlayTypeUtils - buildTopLevelPlayStyles", () => {
+  test("PlayTypeUtils - aggregateToTopLevelPlayStyles", () => {
     const assistNetwork = PlayTypeUtils.buildCategorizedAssistNetworks("playsPct", true,
       players, rosterStatsByCode, baseTeam
     );
-    const topLevelPlayTypeAnalysis = PlayTypeUtils.buildTopLevelPlayStyles(
+    const topLevelPlayTypeAnalysis = PlayTypeUtils.aggregateToTopLevelPlayStyles(
       assistNetwork, players, baseTeam
     );
     expect(topLevelPlayTypeAnalysis).toMatchSnapshot();
+
+    const assistNetworkPts = PlayTypeUtils.buildCategorizedAssistNetworks("pointsPer100", true,
+      players, rosterStatsByCode, baseTeam
+    );
+    const topLevelPlayTypeAnalysisPts = PlayTypeUtils.aggregateToTopLevelPlayStyles(
+      assistNetworkPts, players, baseTeam
+    );
+    expect(topLevelPlayTypeAnalysisPts).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildPlayerAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     const testPlayerCode = allPlayers.filter(p => rosterStatsByCode.hasOwnProperty(p))[0];
 
-    const network = PlayTypeUtils.buildPlayerAssistNetwork(
-      testPlayerCode, mainPlayer, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+    const network = PlayTypeUtils.buildPlayerAssistNetwork("scoringPlaysPct",
+      testPlayerCode, mainPlayer, playerStyle.totalPlaysMade, playerStyle.totalAssists,
       rosterStatsByCode
     );
     //expect(network).toEqual({});
     expect(network).toMatchSnapshot();
+
+    const networkPtsPer = PlayTypeUtils.buildPlayerAssistNetwork("pointsPer100",
+      testPlayerCode, mainPlayer, playerStyle.totalPlaysMade, playerStyle.totalAssists,
+      rosterStatsByCode
+    );
+    //expect(network).toEqual({});
+    expect(networkPtsPer).toMatchSnapshot();
   });
   test("PlayTypeUtils - enrichUnassistedStats", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
@@ -75,8 +94,8 @@ describe("PlayTypeUtils", () => {
   test("PlayTypeUtils - buildPosCategoryAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle("scoringPlaysPct", mainPlayer);
     const playerAssistNetwork = allPlayers.map((p) => {
-      const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(
-        p, mainPlayer, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+      const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork("scoringPlaysPct",
+        p, mainPlayer, playerStyle.totalPlaysMade, playerStyle.totalAssists,
         rosterStatsByCode
       );
       return info;
