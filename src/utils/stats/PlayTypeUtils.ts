@@ -6,7 +6,7 @@ import { PlayerCode, IndivStatSet, TeamStatSet, Statistic, RosterStatsByCode } f
 export type PosFamily = "ballhandler" | "wing" | "big";
 export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
 
-type SourceAssistInfo = {
+export type SourceAssistInfo = {
   order: number,
   source_sf: Statistic,
   source_to: Statistic,
@@ -208,6 +208,26 @@ export class PlayTypeUtils {
       return [ pos, { assists: assists, other: other } ];
     }).fromPairs().value();
 
+    if (separateHalfCourt) {
+      _.chain(reorderedPosVsPosAssistNetwork).toPairs().forEach((kv, ix) => {
+        // Some mutation that is needed
+        const assistInfo = kv[1].assists;
+        const otherInfo = kv[1].other; 
+          //(unassisted, assisted <- DROP, transition, scramble)
+        const assistedTransitionInfo = otherInfo[4];
+        const assistedScrambleInfo = otherInfo[5];
+    
+        // Unassisted:
+        PlayTypeUtils.enrichUnassistedStats(otherInfo[0], ix);
+        // Transition + Scramble:
+        PlayTypeUtils.enrichNonHalfCourtStats(otherInfo[2], otherInfo[3]);
+    
+        // Now get an approximate half court number for all the assists by sensibly (if not correctly!)
+        // taking out the scramble and transition assisted numbers
+        PlayTypeUtils.convertAssistsToHalfCourtAssists(assistInfo, assistedTransitionInfo, assistedScrambleInfo);
+      }).value();  
+    }
+
     return reorderedPosVsPosAssistNetwork;
   }
 
@@ -254,23 +274,6 @@ export class PlayTypeUtils {
     players: Array<IndivStatSet>,
     teamStats: TeamStatSet
   ): Record<TopLevelPlayType, number> {
-    _.chain(assistNetwork).toPairs().forEach((kv, ix) => {
-      // Some mutation that is needed
-      const assistInfo = kv[1].assists;
-      const otherInfo = kv[1].other; 
-        //(unassisted, assisted <- DROP, transition, scramble)
-      const assistedTransitionInfo = otherInfo[4];
-      const assistedScrambleInfo = otherInfo[5];
-  
-      // Unassisted:
-      PlayTypeUtils.enrichUnassistedStats(otherInfo[0], ix);
-      // Transition + Scramble:
-      PlayTypeUtils.enrichNonHalfCourtStats(otherInfo[2], otherInfo[3]);
-  
-      // Now get an approximate half court number for all the assists by sensibly (if not correctly!)
-      // taking out the scramble and transition assisted numbers
-      PlayTypeUtils.convertAssistsToHalfCourtAssists(assistInfo, assistedTransitionInfo, assistedScrambleInfo);
-    }).value();
   
     //(need a copy of this before we mutate it one final time in PlayTypeUtils.apportionHalfCourtTurnovers()
     const copyOfAssistNetwork = _.cloneDeep(assistNetwork);

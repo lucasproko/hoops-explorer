@@ -15,7 +15,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
+import { PosFamilyNames, PlayTypeUtils, SourceAssistInfo } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
@@ -137,7 +137,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   })).concat(
     [ GenericTableOps.buildRowSeparator() ]
   ).concat(
-    posCategoryAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info)).map((info) =>
+    posCategoryAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info as unknown as SourceAssistInfo)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )
   ).concat(

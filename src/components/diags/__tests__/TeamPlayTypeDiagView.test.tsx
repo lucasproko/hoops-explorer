@@ -8,6 +8,7 @@ import { GameFilterParams } from "../../../utils/FilterModels";
 import { RosterTableUtils } from "../../../utils/tables/RosterTableUtils";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import { IndivStatSet, TeamStatSet } from '../../../utils/StatModels';
 
 describe("TeamPlayTypeDiagView", () => {
   const testData = {
@@ -19,7 +20,7 @@ describe("TeamPlayTypeDiagView", () => {
   const teamData = _.assign(
     sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
     { global: {}, onOffMode: true }
-  );
+  ) as unknown as TeamStatSet;
   const teamSeasonLookup = "Men_Maryland_2018/9";
   const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, undefined, true, teamSeasonLookup);
   const players = testData.on.map(p => { //inject pos class into data
@@ -28,7 +29,7 @@ describe("TeamPlayTypeDiagView", () => {
       ...p,
       posClass: code ? rosterStatsByCode[code]?.posClass || "WG" : "WG"
     }
-  });
+  }) as unknown as IndivStatSet[];
   test("TeamPlayTypeDiagView - should create snapshot (!details, help)", () => {
     const wrapper = shallow(
       <TeamPlayTypeDiagView

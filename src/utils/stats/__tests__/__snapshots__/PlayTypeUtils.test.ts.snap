@@ -3,7 +3,7 @@
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 1`] = `
 Object {
   "Attack & Kick": 0.03601708389933508,
-  "Cut": 0.01917384483743767,
+  "Backdoor Cut": 0.01917384483743767,
   "Dribble Jumper": 0.0773393622571636,
   "Misc": 0.06465407003508915,
   "Put-Back": 0.03399453714028501,
@@ -16,7 +16,7 @@ Object {
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 2`] = `
 Object {
   "Attack & Kick": 0.09197465826076066,
-  "Cut": 0.03160661595348259,
+  "Backdoor Cut": 0.03160661595348259,
   "Dribble Jumper": 0.02455217849433765,
   "Misc": 0.06465407003508915,
   "Put-Back": 0.038055876666223364,

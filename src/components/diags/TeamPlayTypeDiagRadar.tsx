@@ -24,7 +24,7 @@ import { CbbColors } from "../../utils/CbbColors";
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
 import { PureStatSet, Statistic, IndivStatSet, TeamStatSet, RosterStatsByCode, StatModels } from '../../utils/StatModels';
 
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Text, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 type Props = {
@@ -51,9 +51,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   const data = _.map(topLevelPlayTypeStyles, (stat, playType) => {
     return {
-      name: playType,
+      name: playType.replace("-", " - "),
       pct: (stat.possPct.value || 0)*100,
-      pts: stat.pts.value,
+      pts: stat.pts.value || 0,
     };
   })
 
@@ -68,6 +68,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
     }}>{t}</a>]&nbsp;</div>
   });
+
+  const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
+    const {x, y, payload } = props;    
+    return <Text x={x} y={y} width={40} textAnchor="middle" verticalAnchor="start">{payload.value}</Text>
+  };
 
   return <span>
     {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
@@ -89,14 +94,18 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 top: 5,
                 right: 30,
                 left: 20,
-                bottom: 5,
+                bottom: 40,
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" interval={0} tick={<CustomizedAxisTick />} />
               <YAxis domain={[0, 35]} />
               <RechartsTooltip />
-              <Bar dataKey="pct" fill="#8884d8" />
+              <Bar dataKey="pct" fill="#8884d8">
+                {data.map((p, index) => {
+                    return <Cell key={`cell-${index}`} fill={CbbColors.off_pp100_redBlackGreen(p.pts*100)}/>
+                })};
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         </Col>

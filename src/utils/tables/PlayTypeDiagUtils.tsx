@@ -15,7 +15,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
+import { PosFamilyNames, PlayTypeUtils, SourceAssistInfo } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
@@ -29,48 +29,71 @@ const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string,
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../../components/GenericTable";
+import { Statistic, IndivStatSet } from '../StatModels';
 
 /** Encapsulates some of the logic used to build the diag visualiations in XxxPlayTypeDiags */
 export class PlayTypeDiagUtils {
 
   // Couple of utils for decorating the background eFG
-  private static buildInfoStat = (stat: any) =>
+  private static buildInfoStat = (stat: Statistic) =>
     <span style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
       <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
     </span>;
-  private static enrichExtraInfo = (stat: any) => {
+  private static enrichExtraInfo = (stat: Statistic) => {
     if (stat.extraInfo) {
       stat.extraInfo = <div>
         Example play types:<br/>
-        {stat.extraInfo.map((ex: string, i: number) => <li key={`ex${i}`}>{ex}</li>)}
+        {(stat.extraInfo as string[]).map((ex: string, i: number) => <li key={`ex${i}`}>{ex}</li>)}
       </div>;
     }
     return stat;
   };
-  static buildInfoRow = (statSet: any) => {
-    return _.mapValues(statSet, (valObj, key) => { // Decorate eFG
-      if (valObj) {
-        return _.endsWith(key, "_efg") ? PlayTypeDiagUtils.buildInfoStat(valObj) : PlayTypeDiagUtils.enrichExtraInfo(valObj);
-      } else return valObj;
+  static buildInfoRow = (statSet: SourceAssistInfo, maybeScoring?: IndivStatSet) => {
+    const enrichedMaybeScoring = _.thru(maybeScoring, __ => {
+      if (maybeScoring) {
+        return _.mapKeys(maybeScoring, (valObj, key) => {
+          const isNumericKey = !_.isNil(valObj.value) && !_.endsWith(key, "_to");
+          if (isNumericKey) { //(remove - incorrectly formatted anyway - extra info)
+            const possStat = (statSet as any)[key]?.value || 1;
+            valObj.value = 0.01*(valObj.value || 0)/possStat;
+            valObj.extraInfo = undefined;
+          }
+          return isNumericKey ? key.replace("_ast", "_ppp").replace("_sf", "_sf_ppp") : key;
+        });
+      } else {
+        return {};
+      }
     });
+    return _.merge(
+        _.mapValues(statSet, (valObj, key) => { // Decorate eFG
+        if (valObj && (key != "order")) {
+          return _.endsWith(key, "_efg") ? 
+            PlayTypeDiagUtils.buildInfoStat(valObj as Statistic) : 
+            PlayTypeDiagUtils.enrichExtraInfo(valObj as Statistic);
+        } else return valObj;
+      }),
+      enrichedMaybeScoring
+    );
   }
 
   // Build raw assist table:
 
-  static rawAssistTableFields = (hasPlayers: boolean, teamTotals: boolean) => {
+  static rawAssistTableFields = (hasPlayers: boolean, teamTotals: boolean, sourceOnlyMode: boolean = false) => {
     const rowMeans = hasPlayers ? "team-mate / positional role" : "positional role";
     const denomMeans = teamTotals ? "team scoring possessions" : "player scoring possessions + assists";
+    const descriptionEfg = `The season eFG% of this shot type / row (${rowMeans})`;
+    const descriptionPpp = `The season pts-per-play (not including rebounds or turnovers) of this shot type / row (${rowMeans})`;
     return {
       "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
-      ...(_.fromPairs(targetSource.flatMap((loc) => {
+      ...(_.fromPairs(targetSource.filter(loc => (loc == "source") || !sourceOnlyMode).flatMap((loc) => {
           const targetNotSource = loc == "target";
-          return [
+          const descriptionAst = targetNotSource ?
+            `% of total assists to the specified row (${rowMeans}) for this shot type` : `% of ${denomMeans} of this shot type assisted BY the specified row (${rowMeans})`;            
+          
+            return [
             [`sep${loc}`, GenericTableOps.addColSeparator(0.75) ],
           ].concat(
             shotTypes.flatMap((key) => {
-              const descriptionAst = targetNotSource ?
-                `% of total assists to the specified row (${rowMeans}) for this shot type` : `% of ${denomMeans} of this shot type assisted BY the specified row (${rowMeans})`;
-              const descriptionEfg = `The season eFG% of this shot type / row (${rowMeans})`;
               return [
                 [
                   `${loc}_${key}_ast`, GenericTableOps.addPctCol(`${shotNameMap[key]!}${targetNotSource ? " AST%" : ""} `,
@@ -86,7 +109,14 @@ export class PlayTypeDiagUtils {
                   ],
                   [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.125) ],
                 ] : []
-              );
+              ).concat((targetNotSource || !sourceOnlyMode) ? [] : [
+                [
+                  `${loc}_${key}_ppp`, GenericTableOps.addDataCol(`PPP`,
+                    descriptionPpp, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
+                  )
+                ],
+                [ `sep${loc}ppp${key}`, GenericTableOps.addColSeparator(0.125) ],
+              ]);
             }).concat(targetNotSource ? [] : [
               [
                 `source_sf`, GenericTableOps.addPctCol(`SF`,
@@ -94,11 +124,26 @@ export class PlayTypeDiagUtils {
                 )
               ],
               [`sep${loc}ast`, GenericTableOps.addColSeparator(0.25) ],
+            ]).concat((targetNotSource || !sourceOnlyMode) ? [] : [
+              [
+                `${loc}_sf_ppp`, GenericTableOps.addDataCol(`PPP`,
+                  descriptionPpp, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
+                )
+              ],
+              [ `sep${loc}ppp_sf`, GenericTableOps.addColSeparator(0.125) ],
+            ]).concat([
               [
                 `target_ast`, GenericTableOps.addPctCol(`AST`,
                   `% of ${denomMeans} ending with an assist FOR the specified row (${rowMeans})`, CbbColors.varPicker(CbbColors.p_ast_breakdown),
                 )
               ]
+            ]).concat((targetNotSource || !sourceOnlyMode) ? [] : [
+              [
+                `${loc}_ppp`, GenericTableOps.addDataCol(`PPP`,
+                  descriptionPpp, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
+                )
+              ],
+              [ `sep${loc}ppp_ast`, GenericTableOps.addColSeparator(0.125) ],
             ])
           );
         })))
