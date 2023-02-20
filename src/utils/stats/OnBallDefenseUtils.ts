@@ -23,11 +23,11 @@ export class OnBallDefenseUtils {
   /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
   static parseInputLegacy(stats: OnBallDefenseModel[]): string {
    const st = stats[0]!;
-   const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
-   const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
+   const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
+   const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,${st.totalFgMiss},${st.totalFgMade},-,-,-,-,-,-,${(st.totalTos/(st.totalPlays || 1))},-,${(st.totalSfPlays/(st.totalPlays || 1))},${st.totalScorePct}`.replace(",", "\t");
 
    const rows = stats.map(s => {
-     return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},${s.fgMade},-,-,-,${s.tovPct},-,${s.sfPct},${s.scorePct}`.replace(",", "\t");
+     return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},${s.fgMade},-,-,-,-,-,-,${s.tovPct},-,${s.sfPct},${s.scorePct}`.replace(",", "\t");
    });
 
    return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
@@ -92,13 +92,13 @@ export class OnBallDefenseUtils {
    
             pts: parseFloatOrMissing(row[6]),
             plays: parseFloatOrMissing(row[5]),
-            scorePct: parseFloatOrMissing(row[15]),
-            tovPct: parseFloatOrMissing(row[13]),
+            scorePct: parseFloatOrMissing(row[18]),
+            tovPct: parseFloatOrMissing(row[16]),
             fgMiss: parseFloatOrMissing(row[9]),
    
             // New algo:
             fgMade: parseFloatOrMissing(row[10]),
-            sfPct: parseFloatOrMissing(row[16]),
+            sfPct: parseFloatOrMissing(row[19]),
    
             // Fill these in later:
             totalPts: -1, totalScorePct: -1, totalPlays: -1,
