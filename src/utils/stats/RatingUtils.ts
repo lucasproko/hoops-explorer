@@ -915,6 +915,11 @@ export class RatingUtils {
     // Represents (approx) how much of the Hoop Explorer sample is present in Synergy
     const approxOnBallPlaysWhileOnFloor = (player.def_team_poss_pct?.value || 0)*onBallStats.totalPlays;
     const completeness = Math.min(1.0, approxOnBallPlaysWhileOnFloor/(teamDefPlays || 1));
+    // For weighting classic DRtg vs adjusted DRtg on incomplete samples, we weight up the on-ball stats
+    // since it is somewhat predictive in nature
+    const weightedCompleteness = Math.min(1.0, 
+      2.0*approxOnBallPlaysWhileOnFloor/((teamDefPlays + approxOnBallPlaysWhileOnFloor) || 1)
+    )
 
     // Diags:
     if (showConsoleDiag) {
@@ -928,11 +933,12 @@ export class RatingUtils {
     // Player on-ball calcs
 
     const targetedPct = (onBallStats.plays/(onBallStats.totalPlays || 1)) / (player.def_team_poss_pct?.value || 1);
-    const onBallPlays = targetedPct*teamDefPlays;
+    const onBallPlays = targetedPct*completeness*teamDefPlays;
     const onBallPts = onBallPlays*onBallStats.pts/(onBallStats.plays || 1);
 
     const onBallAdjFgMiss = diags.teamDvsRebCredit*(onBallStats.fgMiss/(onBallStats.plays || 1))*onBallPlays;
     const onBallFgMade = (onBallStats.fgMade/(onBallStats.plays || 1))*onBallPlays;
+
     const onBallFtPoss = (0.01*onBallStats.sfPct)*onBallPlays;
     const onBallTo = (0.01*onBallStats.tovPct)*onBallPlays;
     const onBallAdjPlays = onBallAdjFgMiss + onBallFgMade + onBallFtPoss + onBallTo;
@@ -965,9 +971,6 @@ export class RatingUtils {
     // (possessions seemed to be closer to correct)
     // (would expect an error due to team rebounds, sum(0.2*player + 0.8*(0.2*team))=0.2*sum(player)+0.8*team = 0.2*(team-team_drb)+0.8*team = team-team_drb)
     // This will sort itself out in the phase 2 adjustment
-
-    //TODO: offBallPts is calculated based on the "_team_ pts scored against while player was on the floor"
-    //BUT ... if the Synergy sample is incomplete this will be wrong
 
     const offBallPts = Math.max(0, completeness*teamPts - onBallPts);
     const offBallAdjFgMiss = Math.max(0, completeness*teamAdjFgMissAgainst - onBallAdjFgMiss);
@@ -1046,7 +1049,7 @@ export class RatingUtils {
     const unadjSampleDRtg = 100*weightedPts/((normalizedPlayerNonRebPoss + drbVsOrbAdjustment) || 1);
 
     // If the on-ball sample is incomplete then mix-in a good amount of the original DRtg
-    const unadjDRtg = completeness*unadjSampleDRtg + (1.0 - completeness)*diags.dRtg;
+    const unadjDRtg = weightedCompleteness*unadjSampleDRtg + (1.0 - weightedCompleteness)*diags.dRtg;
 
     // Some other DRtgs for display purposes:
     // w1*Plays1 + w2*Plays2 + delta == normalizedPlayerNonRebPoss
@@ -1064,7 +1067,7 @@ export class RatingUtils {
     // Diags:
     if (showConsoleDiag) {
       console.log(`Sample DRtg [${unadjSampleDRtg.toFixed(1)}] = ${weightedPts.toFixed(1)}/(${normalizedPlayerNonRebPoss.toFixed(1)} + ${adjDefRebPoss.toFixed(1)} - ${orbAdjustment.toFixed(1)})`);
-      console.log(`DRtg [${unadjDRtg.toFixed(1)}] = ${completeness.toFixed(2)}*${unadjSampleDRtg.toFixed(1)} + ${(1 - completeness).toFixed(2)}*${diags.dRtg.toFixed(1)}`);
+      console.log(`DRtg [${unadjDRtg.toFixed(1)}] = ${weightedCompleteness.toFixed(2)}*${unadjSampleDRtg.toFixed(1)} + ${(1 - weightedCompleteness).toFixed(2)}*${diags.dRtg.toFixed(1)}`);
     }  
 
     // Calculate these in phase 2:

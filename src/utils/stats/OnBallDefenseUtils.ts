@@ -20,7 +20,9 @@ type OnBallDefenseAnalysisResults = {
 /** All the actual math lives in RatingUtils, this is just the common table parsing logic */
 export class OnBallDefenseUtils {
 
-  /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
+  /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted 
+   * (see also parseContentsLegacy)
+   */
   static parseInputLegacy(stats: OnBallDefenseModel[]): string {
    const st = stats[0]!;
    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
@@ -96,10 +98,10 @@ export class OnBallDefenseUtils {
             plays: parseFloatOrMissing(row[5]),
             scorePct: parseFloatOrMissing(row[15 + scoreQualityOffset]),
             tovPct: parseFloatOrMissing(row[13 + scoreQualityOffset]),
-            fgMiss: parseFloatOrMissing(row[9]),
+            fgMiss: parseFloatOrMissing(row[8]),
    
             // New algo:
-            fgMade: parseFloatOrMissing(row[10]),
+            fgMade: parseFloatOrMissing(row[9]),
             sfPct: parseFloatOrMissing(row[16 + scoreQualityOffset]),
    
             // Fill these in later:
@@ -164,7 +166,9 @@ export class OnBallDefenseUtils {
       return res;
    }
 
- /** No longer in-use */
+ /** No longer in-use 
+   * (see also parseContentsLegacy)
+   */
  static parseContentsLegacy(players: Array<IndivStatSet>, contents: string) {
    const rowsCols: string[][] =
       contents
@@ -218,13 +222,17 @@ export class OnBallDefenseUtils {
       return _.isNaN(tmp) ? 0 : tmp;
    };
    const parseRow = (code: string, row: string[]) => {
+
+      // Needs to be consistent with parseInputLegacy
+      //const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,FGM,-,-,-,TOV%,-,SF%,score%".replace(",", "\t");
+
       const res: OnBallDefenseModel = {
          code: code,
          title: row[0],
 
          pts: parseFloatOrMissing(row[3]),
          plays: parseFloatOrMissing(row[2]),
-         scorePct: parseFloatOrMissing(row[12]),
+         scorePct: parseFloatOrMissing(row[15]),
          tovPct: parseFloatOrMissing(row[12]),
          fgMiss: parseFloatOrMissing(row[7]),
 

@@ -141,12 +141,12 @@ exports[`RatingUtils RatingUtils - buildORtg 1`] = `
 
 exports[`RatingUtils RatingUtils - buildOnBallDefenseAdjustmentsPhase1 1`] = `
 {
-   "targetedPct": 0.07934131736526946,
+   "targetedPct": 0.3967065868263473,
    "effectivePpp": 0.9420547533250715,
-   "onBallDRtg": 92.26668697186186,
-   "offBallDRtg": 98.0008165232174,
-   "reboundDRtgBonus": -1.890866151521692,
-   "unadjDRtg": 95.16294976708932,
+   "onBallDRtg": 92.93245812362909,
+   "offBallDRtg": 95.59553266047733,
+   "reboundDRtgBonus": -1.8547697356205646,
+   "unadjDRtg": 97.58800096195723,
    "weightedClassicDRtgMean": 0,
    "weightedUnadjDRtgMean": 0,
    "uncategorizedAdjustment": 0,
@@ -159,19 +159,19 @@ exports[`RatingUtils RatingUtils - buildOnBallDefenseAdjustmentsPhase1 1`] = `
 
 exports[`RatingUtils RatingUtils - injectOnBallDefenseAdjustmentsPhase2 1`] = `
 {
-   "targetedPct": 0.07934131736526946,
+   "targetedPct": 0.3967065868263473,
    "effectivePpp": 0.9420547533250715,
-   "onBallDRtg": 92.20428617964434,
-   "offBallDRtg": 97.93841573099988,
-   "reboundDRtgBonus": -1.890866151521692,
-   "unadjDRtg": 95.16294976708932,
+   "onBallDRtg": 93.06930220889606,
+   "offBallDRtg": 95.7323767457443,
+   "reboundDRtgBonus": -1.8547697356205646,
+   "unadjDRtg": 97.58800096195723,
    "weightedClassicDRtgMean": 98.84955759282161,
-   "weightedUnadjDRtgMean": 99.62956749554058,
-   "uncategorizedAdjustment": -0.06240079221751786,
+   "weightedUnadjDRtgMean": 97.13900652698453,
+   "uncategorizedAdjustment": 0.13684408526696645,
    "adjustedPossPct": 0.08000000000000002,
-   "dRtg": 95.1005489748718,
-   "adjDRtg": 88.0236901620708,
-   "adjDRtgPlus": -2.3952619675858386
+   "dRtg": 97.7248450472242,
+   "adjDRtg": 90.45270058163553,
+   "adjDRtgPlus": -1.9094598836728949
 }
 `;
 
