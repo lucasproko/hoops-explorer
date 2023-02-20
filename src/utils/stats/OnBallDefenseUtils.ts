@@ -86,19 +86,21 @@ export class OnBallDefenseUtils {
          }
       };
       const parseRow = (code: string, row: string[]) => {
+         const scoreQualityOffset = row.length > 17 ? 3 : 0;
+
          const res: OnBallDefenseModel = {
             code: code,
             title: transformName(row[1]),
    
             pts: parseFloatOrMissing(row[6]),
             plays: parseFloatOrMissing(row[5]),
-            scorePct: parseFloatOrMissing(row[18]),
-            tovPct: parseFloatOrMissing(row[16]),
+            scorePct: parseFloatOrMissing(row[15 + scoreQualityOffset]),
+            tovPct: parseFloatOrMissing(row[13 + scoreQualityOffset]),
             fgMiss: parseFloatOrMissing(row[9]),
    
             // New algo:
             fgMade: parseFloatOrMissing(row[10]),
-            sfPct: parseFloatOrMissing(row[19]),
+            sfPct: parseFloatOrMissing(row[16 + scoreQualityOffset]),
    
             // Fill these in later:
             totalPts: -1, totalScorePct: -1, totalPlays: -1,
@@ -222,7 +224,7 @@ export class OnBallDefenseUtils {
 
          pts: parseFloatOrMissing(row[3]),
          plays: parseFloatOrMissing(row[2]),
-         scorePct: parseFloatOrMissing(row[15]),
+         scorePct: parseFloatOrMissing(row[12]),
          tovPct: parseFloatOrMissing(row[12]),
          fgMiss: parseFloatOrMissing(row[7]),
 

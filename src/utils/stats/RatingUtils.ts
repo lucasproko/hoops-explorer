@@ -912,15 +912,19 @@ export class RatingUtils {
     const teamDefPlays = teamDefPoss + teamOrbAllowed;
     const normalizedPlayerNonRebPoss = 0.2*(teamFgMadeAgainst + teamAdjFgMissAgainst + teamDefTo + teamFtaPossCalc);
 
+    // Represents (approx) how much of the Hoop Explorer sample is present in Synergy
+    const approxOnBallPlaysWhileOnFloor = (player.def_team_poss_pct?.value || 0)*onBallStats.totalPlays;
+    const completeness = Math.min(1.0, approxOnBallPlaysWhileOnFloor/(teamDefPlays || 1));
+
     // Diags:
     if (showConsoleDiag) {
-      console.log(`PLAYER ${player.key}: TEAM: ${sampleTeamDefPoss.toFixed(1)} NORM_NON_REB ${normalizedPlayerNonRebPoss.toFixed(1)}`)
+      console.log(`PLAYER ${player.key}: TEAM: poss=${sampleTeamDefPoss.toFixed(1)} plays=${teamDefPlays.toFixed(1)} on_ball_plays=${approxOnBallPlaysWhileOnFloor.toFixed(1)} completeness=${(completeness*100).toFixed(1)} NORM_NON_REB ${normalizedPlayerNonRebPoss.toFixed(1)}`)
       console.log(
         `TEAM: [${teamPts.toFixed(1)} / ${teamDefPoss.toFixed(1)}] = (${teamFgMadeAgainst.toFixed(1)}+${teamAdjFgMissAgainst.toFixed(1)}+${teamAdjReb.toFixed(1)}) `
         + ` + ${teamDefTo.toFixed(1)} + ${teamFtaPossCalc.toFixed(1)} - ${teamOrbAllowed.toFixed(1)} (${diags.teamDvsRebCredit.toFixed(1)}, ${(teamFtaPossCalc/(diags.oppoFta || 1)).toFixed(1)})`
       );
     }
-  
+
     // Player on-ball calcs
 
     const targetedPct = (onBallStats.plays/(onBallStats.totalPlays || 1)) / (player.def_team_poss_pct?.value || 1);
@@ -962,11 +966,14 @@ export class RatingUtils {
     // (would expect an error due to team rebounds, sum(0.2*player + 0.8*(0.2*team))=0.2*sum(player)+0.8*team = 0.2*(team-team_drb)+0.8*team = team-team_drb)
     // This will sort itself out in the phase 2 adjustment
 
-    const offBallPts = teamPts - onBallPts;
-    const offBallAdjFgMiss = teamAdjFgMissAgainst - onBallAdjFgMiss;
-    const offBallFgMade = teamFgMadeAgainst - onBallFgMade;    
-    const offBallFtPoss = teamFtaPossCalc - onBallFtPoss;
-    const offBallTo = teamDefTo - onBallTo;
+    //TODO: offBallPts is calculated based on the "_team_ pts scored against while player was on the floor"
+    //BUT ... if the Synergy sample is incomplete this will be wrong
+
+    const offBallPts = Math.max(0, completeness*teamPts - onBallPts);
+    const offBallAdjFgMiss = Math.max(0, completeness*teamAdjFgMissAgainst - onBallAdjFgMiss);
+    const offBallFgMade = Math.max(0, completeness*teamFgMadeAgainst - onBallFgMade);    
+    const offBallFtPoss = Math.max(0, completeness*teamFtaPossCalc - onBallFtPoss);
+    const offBallTo = Math.max(0, completeness*teamDefTo - onBallTo);
     const offBallAdjPlays = offBallAdjFgMiss + offBallFgMade + offBallFtPoss + offBallTo;
 
     // Diags:
@@ -981,7 +988,7 @@ export class RatingUtils {
     // so we can just weighted sum DRtg+poss% together and get something close to the team DRtg
 
     const uncatTargetedPct = (onBallStats.uncatPlays/(onBallStats.totalPlays || 1)) / (player.def_team_poss_pct?.value || 1);
-    const uncatPlays = uncatTargetedPct*teamDefPlays;
+    const uncatPlays = uncatTargetedPct*completeness*teamDefPlays;
     const uncatPts = uncatPlays*onBallStats.uncatPts/(onBallStats.uncatPlays || 1);
 
     const uncatAdjFgMiss = diags.teamDvsRebCredit*(onBallStats.uncatFgMiss/(onBallStats.uncatPlays || 1))*uncatPlays;
@@ -1036,7 +1043,10 @@ export class RatingUtils {
     const adjDefRebPoss = calcRegressedDrbCredit(diags.reboundCredit);
     const zeroRebPoss = calcRegressedDrbCredit(0);
     const drbVsOrbAdjustment = adjDefRebPoss - orbAdjustment;
-    const unadjDRtg = 100*weightedPts/((normalizedPlayerNonRebPoss + drbVsOrbAdjustment) || 1);
+    const unadjSampleDRtg = 100*weightedPts/((normalizedPlayerNonRebPoss + drbVsOrbAdjustment) || 1);
+
+    // If the on-ball sample is incomplete then mix-in a good amount of the original DRtg
+    const unadjDRtg = completeness*unadjSampleDRtg + (1.0 - completeness)*diags.dRtg;
 
     // Some other DRtgs for display purposes:
     // w1*Plays1 + w2*Plays2 + delta == normalizedPlayerNonRebPoss
@@ -1048,12 +1058,13 @@ export class RatingUtils {
     const onBallDRtg = 100*(onBallPts + deltaPtsDividedUp)/(onBallAdjPlays + deltaDividedUp + onBallRebPoss);
     const offBallRebPoss = drbVsOrbAdjustment * (offBallAdjPlays + deltaDividedUp)/normalizedPlayerNonRebPoss;
     const offBallDRtg = 100*(offBallPts + deltaPtsDividedUp)/(offBallAdjPlays + deltaDividedUp + offBallRebPoss);
-    const reboundDRtgBonus = unadjDRtg - 
+    const reboundDRtgBonus = unadjSampleDRtg - 
       100*weightedPts/((normalizedPlayerNonRebPoss + zeroRebPoss - orbAdjustment) || 1);
 
     // Diags:
     if (showConsoleDiag) {
-      console.log(`DRtg [${unadjDRtg.toFixed(1)}] = ${weightedPts.toFixed(1)}/(${normalizedPlayerNonRebPoss.toFixed(1)} + ${adjDefRebPoss.toFixed(1)} - ${orbAdjustment.toFixed(1)})`);
+      console.log(`Sample DRtg [${unadjSampleDRtg.toFixed(1)}] = ${weightedPts.toFixed(1)}/(${normalizedPlayerNonRebPoss.toFixed(1)} + ${adjDefRebPoss.toFixed(1)} - ${orbAdjustment.toFixed(1)})`);
+      console.log(`DRtg [${unadjDRtg.toFixed(1)}] = ${completeness.toFixed(2)}*${unadjSampleDRtg.toFixed(1)} + ${(1 - completeness).toFixed(2)}*${diags.dRtg.toFixed(1)}`);
     }  
 
     // Calculate these in phase 2:
@@ -1176,7 +1187,16 @@ export class RatingUtils {
         onBallDiags.dRtg = onBallDiags.unadjDRtg + uncategorizedAdjustment; 
 
         //DEBUG
-        //console.log(stat.key + ": " + JSON.stringify(onBallDiags));
+        if (showConsoleDiag) {
+          console.log(stat.key + ": " + JSON.stringify({
+            unadjDRtg: onBallDiags.unadjDRtg.toFixed(1),
+            finalDRtg: onBallDiags.dRtg.toFixed(1),
+            weightedClassicDRtgMean: weightedClassicDRtgMean.toFixed(1),
+            weightedUnadjDRtgMean: weightedUnadjDRtgMean.toFixed(1),
+            uncategorizedAdjustment: uncategorizedAdjustment.toFixed(1),
+            adjustedPossPct: adjustedPossPct.toFixed(1)
+          }));
+        }
 
         // Apply the result to the player stats:
 
