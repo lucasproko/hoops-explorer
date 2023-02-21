@@ -132,12 +132,13 @@ export const mutableDivisionStats: DivisionStatistics = buildEmptyDivisionStats(
 /** Exported for test only */
 export const mutablePlayerDivisionStats: DivisionStatistics = buildEmptyDivisionStats(); 
 
+const positionGroups = [  ]
+
 /** Exported for test only */
-//TODO
-// export const mutablePlayerDivisionStats_byPosGroup: Record<string, DivisionStatistics> =
-//  _.chain(PositionUtils.idToPosition).keys()
-//   .filter(pos => !pos.endsWith("?")).map(pos => [ pos, buildEmptyDivisionStats() ])
-//   .fromPairs().value()
+export const mutablePlayerDivisionStats_byPosGroup: Record<string, DivisionStatistics> =
+ _.chain(PositionUtils.positionGroupings)
+  .map(pos => [ pos, buildEmptyDivisionStats() ])
+  .fromPairs().value()
 
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
@@ -607,6 +608,15 @@ export async function main() {
           GradeUtils.buildAndInjectPlayerDivisionStats(
             player, mutablePlayerDivisionStats, inNaturalTier, undefined, criteriaMult
           );
+          // Also per position grouping:
+          (PositionUtils.positionsToGroup[posInfo.posClass] || []).forEach(posGroup => {
+            const mutablePosGroupDivStats = mutablePlayerDivisionStats_byPosGroup[posGroup];
+            if (mutablePosGroupDivStats) {
+              GradeUtils.buildAndInjectPlayerDivisionStats(
+                player, mutablePosGroupDivStats, inNaturalTier, undefined, criteriaMult
+              );    
+            }
+          });
         }
         return {
           key: kv[0],
@@ -677,11 +687,25 @@ export async function main() {
             const otherRapmFields = [ "off_adj_rapm_margin", "off_adj_rapm_prod_margin" ];
             if ("all" == label) {
               GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
-              GradeUtils.buildAndInjectPlayerDivisionStats({
+              const otherRapmValues = {
                 off_team_poss_pct: { value: player.off_team_poss_pct?.value || 0 },
                 off_adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
                 off_adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
-              }, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
+              }
+              GradeUtils.buildAndInjectPlayerDivisionStats(otherRapmValues, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
+
+              // Again, per position grouping:
+              (PositionUtils.positionsToGroup[player.posClass] || []).forEach(posGroup => {
+                const mutablePosGroupDivStats = mutablePlayerDivisionStats_byPosGroup[posGroup];
+                if (mutablePosGroupDivStats) {
+                  GradeUtils.buildAndInjectPlayerDivisionStats(
+                    player, mutablePosGroupDivStats, inNaturalTier, rapmFields
+                  );    
+                  GradeUtils.buildAndInjectPlayerDivisionStats(
+                    otherRapmValues, mutablePosGroupDivStats, inNaturalTier, otherRapmFields
+                  );    
+                }
+              });                  
             }
     
             // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
@@ -986,16 +1010,39 @@ if (!testMode) {
         const writeDivisionStats = "all" == kv[0];
 
         // Team division stats:
-        if (writeDivisionStats) GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
+        if (writeDivisionStats) {
+          GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
+        }
         const divisionStatsFilename = `./public/leaderboards/lineups/stats_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-        const divisionStatsWritePromise = ("all" == kv[0]) ? 
-          fs.writeFile(divisionStatsFilename, JSON.stringify(mutableDivisionStats, reduceNumberSize)) : Promise.resolve();
+        const divisionStatsWritePromise = (writeDivisionStats) ? 
+          fs.writeFile(divisionStatsFilename, JSON.stringify(mutableDivisionStats, reduceNumberSize)) : 
+          Promise.resolve();
 
         // Player division stats:
-        if (writeDivisionStats) GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePlayerDivisionStats);
+        if (writeDivisionStats) {
+          GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePlayerDivisionStats);
+          PositionUtils.positionGroupings.forEach(posGroup => {
+            const mutablePosGroupDivStats = mutablePlayerDivisionStats_byPosGroup[posGroup];
+            if (mutablePosGroupDivStats) {
+              GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePosGroupDivStats);
+            }
+          });
+        }
         const playerDivisionStatsFilename = `./public/leaderboards/lineups/stats_players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-        const playerDivisionStatsWritePromise = ("all" == kv[0]) ? 
-          fs.writeFile(playerDivisionStatsFilename, JSON.stringify(mutablePlayerDivisionStats, reduceNumberSize)) : Promise.resolve();
+        const playerDivisionStatsWritePromise = writeDivisionStats ? 
+          fs.writeFile(playerDivisionStatsFilename, JSON.stringify(mutablePlayerDivisionStats, reduceNumberSize)) : 
+          Promise.resolve();
+
+        const posGroupPromises = writeDivisionStats ? 
+          PositionUtils.positionGroupings.map(posGroup => {
+            const mutablePosGroupDivStats = mutablePlayerDivisionStats_byPosGroup[posGroup];
+            if (mutablePosGroupDivStats) {
+              const playerDivisionStatsFilename = `./public/leaderboards/lineups/stats_players_pos${posGroup}_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+              return fs.writeFile(playerDivisionStatsFilename, JSON.stringify(mutablePosGroupDivStats, reduceNumberSize));
+            } else {
+              return Promise.resolve();
+            }
+          }) : [];
 
         if (writeDivisionStats) {
           console.log(
@@ -1003,7 +1050,10 @@ if (!testMode) {
               `players:[${mutablePlayerDivisionStats.tier_sample_size}]/dedup=[${mutablePlayerDivisionStats.dedup_sample_size}]`
             );
         }
-        return [lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise, playerDivisionStatsWritePromise];
+        
+        return [
+          lineupsWritePromise, playersWritePromise, teamWritePromise, teamWriteStatPromise, divisionStatsWritePromise, playerDivisionStatsWritePromise
+        ].concat(posGroupPromises);
 
       //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
       // zlib.gzip(sortedLineupsStr, (_, result) => {

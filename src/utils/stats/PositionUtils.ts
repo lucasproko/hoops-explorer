@@ -255,6 +255,16 @@ export class PositionUtils {
     return mutableState.scores.map((v, i) => confs[i]!*v / (mutableState.sumProduct || 1));
   }
 
+  /** Ballhandlers, All Guards, All Wings, All 4s, All 5s, Frontcourt */
+  static readonly positionGroupings = [ "BH", "G", "W", "PF", "C", "FC" ];
+
+  /** Maps position ids to position groupings */
+  static readonly positionsToGroup: Record<string, string[]> = {
+    "PG": [ "BH", "G" ], "s-PG": [ "BH", "G" ], "CG": [ "BH", "G" ],
+    "WG": [ "G", "W" ], "WF": [ "W", "PF", "FC" ],
+    "S-PF": [ "PF", "FC" ], "PF/C": [ "PF", "C", "FC" ], "C": [ "C", "FC" ]
+  }
+
   /** Description of the different roles */
   static readonly idToPosition = {
     "PG": "Pure PG",

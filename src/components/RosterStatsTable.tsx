@@ -661,8 +661,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           GradeTableUtils.buildPlayerGradeTableRows({
             selectionTitle: `A Lineups [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            playerStats: {
+              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            },
+            playerPosStats: {},
             player: p.on,
             expandedView, possAsPct, factorMins, includeRapm: calcRapm
           }) : [],
@@ -699,8 +702,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           GradeTableUtils.buildPlayerGradeTableRows({
             selectionTitle: `B Lineups [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            playerStats: {
+              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            },
+            playerPosStats: {},
             player: p.off,
             expandedView, possAsPct, factorMins, includeRapm: calcRapm
           }) : [],
@@ -738,8 +744,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             isFullSelection: !gameFilterParams.baseQuery && !gameFilterParams.queryFilters,
             selectionTitle: `Baseline [${p.key}] Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
-            comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-            mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            playerStats: {
+              comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+              mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+            },
+            playerPosStats: {},
             player: p.baseline,
             expandedView, possAsPct, factorMins, includeRapm: calcRapm
           }) : [],

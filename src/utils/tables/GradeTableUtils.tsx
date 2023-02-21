@@ -23,15 +23,21 @@ import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 import { DateUtils } from '../DateUtils';
 
+type StatsCaches = {
+   comboTier?: DivisionStatistics,
+   highTier?: DivisionStatistics,
+   mediumTier?: DivisionStatistics,
+   lowTier?: DivisionStatistics
+};
+
+type PositionStatsCache = Record<string, StatsCaches>;
+
 type TeamProps = {
    isFullSelection?: boolean,
    selectionType: "on" | "off" | "baseline",
    config: string,
    setConfig: (newConfig: string) => void,
-   comboTier?: DivisionStatistics,
-   highTier?: DivisionStatistics,
-   mediumTier?: DivisionStatistics,
-   lowTier?: DivisionStatistics
+   teamStats: StatsCaches,
 
    team: TeamStatSet
 };
@@ -41,10 +47,8 @@ type PlayerProps = {
    selectionTitle: string,
    config: string,
    setConfig: (newConfig: string) => void,
-   comboTier?: DivisionStatistics,
-   highTier?: DivisionStatistics,
-   mediumTier?: DivisionStatistics,
-   lowTier?: DivisionStatistics,
+   playerStats: StatsCaches,
+   playerPosStats: PositionStatsCache,
 
    player: IndivStatSet,
    expandedView: boolean, possAsPct: boolean, factorMins: boolean, includeRapm: boolean,
@@ -141,15 +145,15 @@ export class GradeTableUtils {
       setCache: (s: DivisionStatsCache) => void,
       tierOverride: string | undefined = undefined
    ) => {
-      const urlInFix = type == "player" ? "players_" : "";
+      const urlInfix = type == "player" ? "players_" : "";
       const getUrl = (inGender: string, inYear: string, inTier: string) => {
          const subYear = inYear.substring(0, 4);
          if ((tierOverride != "Preseason") && DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
             return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}&type=${type}`;
          } else { //archived (+ preseason - this requires manual intervention anyway so might as well store locally)
-            return `/leaderboards/lineups/stats_${urlInFix}all_${inGender}_${subYear}_${inTier}.json`;
+            return `/leaderboards/lineups/stats_${urlInfix}all_${inGender}_${subYear}_${inTier}.json`;
          }
-      }
+      };
 
       const inGender = filterParams.gender || ParamDefaults.defaultGender;
       const inYear = filterParams.year || ParamDefaults.defaultYear;
@@ -169,11 +173,12 @@ export class GradeTableUtils {
       });
    };
 
-
-   /** Build the rows containing the grade information for a team */
+   /** Build the rows containing the grade information for a team 
+    * TODO: merge this and buildPlayerGradeTableRows
+    */
    static readonly buildTeamGradeTableRows: (p: TeamProps) => GenericTableRow[] = ({
       isFullSelection,
-      selectionType, config, setConfig, comboTier, highTier, mediumTier, lowTier, team
+      selectionType, config, setConfig, teamStats: { comboTier, highTier, mediumTier, lowTier }, team
    }) => {
       const maybeEquiv = isFullSelection ? "" : "Equiv ";
       const nameAsId = selectionType.replace(/[^A-Za-z0-9_]/g, '');
@@ -185,18 +190,6 @@ export class GradeTableUtils {
          Combo: comboTier
       } as Record<string, DivisionStatistics | undefined>;
 
-      const gradeFormat = config.split(":")[0];
-      const tierStrTmp = config.split(":")?.[1] || "Combo";
-      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
-         //(if set tier doesn't exist just fallback)
-      const tierToUse = tiers[tierStr]; 
-
-      const linkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
-         onClick={(event) => { event.preventDefault(); setConfig(`${gradeFormat}:${tier}`); }}
-      >
-         {tier == "Combo" ? "D1" : tier}{tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
-      </a>;
-
       const tooltipMap = {
          Combo: <Tooltip id={`comboTooltip${nameAsId}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
          High: <Tooltip id={`highTooltip${nameAsId}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
@@ -204,14 +197,34 @@ export class GradeTableUtils {
          Low: <Tooltip id={`lowTooltip${nameAsId}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
       } as Record<string, any>;
 
+      const configStr = config.split(":")
+      const gradeFormat = configStr[0];
+      const tierStrTmp = configStr?.[1] || "Combo";
+      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
+         //(if set tier doesn't exist just fallback)
+      const tierToUse = tiers[tierStr]; 
+      const posGroup = configStr?.[2] || "All";
+
+      const configParams = (newTier: string) => {
+         const configParamBase = `${gradeFormat}:${newTier}`;
+         if (posGroup == "All") {
+            return configParamBase;
+         } else {
+            return `${configParamBase}:${posGroup}`;
+         }
+      };
+      const tierLinkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
+         onClick={(event) => { event.preventDefault(); setConfig(configParams(tier)); }}
+         >
+         {tier == "Combo" ? "D1" : tier}{tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
+      </a>;
+      const tierLink = (tier: string) => (tier == tierStr) ? <b>{tierLinkTmp(tier)}</b> : tierLinkTmp(tier);
 //TODO: I think the event.preventDefault stops the OverlayTrigger from working (on mobile specifically), so removing it for now      
-      const link = (tier: string) => (tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier);
 //      <OverlayTrigger placement="auto" overlay={tooltipMap[tier]!}>
 //         {(tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier)}
 //      </OverlayTrigger>;    
       
-
-      const topLine = <span className="small">{link("Combo")} | {link("High")} | {link("Medium")} | {link("Low")}</span>;
+      const topLine = <span className="small">{tierLink("Combo")} | {tierLink("High")} | {tierLink("Medium")} | {tierLink("Low")}</span>;
 
       const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${nameAsId}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
       const percentileShowTooltip = <Tooltip id={`percentileShowTooltip${nameAsId}`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
@@ -297,34 +310,19 @@ export class GradeTableUtils {
    };
 
    /** Build the rows containing the grade information for a team 
+    * TODO: merge this and buildTeamGradeTableRows
     * (see buildTeamGradeTableRows for why there aren't OverlayTriggers)
-   */
+    */
    static readonly buildPlayerGradeTableRows: (p: PlayerProps) => GenericTableRow[] = ({
       isFullSelection,
-      selectionTitle, config, setConfig, comboTier, highTier, mediumTier, lowTier, player,
+      selectionTitle, config, setConfig, 
+      playerStats: { comboTier, highTier, mediumTier, lowTier },
+      playerPosStats,
+      player,
       expandedView, possAsPct, factorMins, includeRapm, leaderboardMode
    }) => {
       const equivOrApprox = isFullSelection ? "Approx" : "Equiv";
       const nameAsId = selectionTitle.replace(/[^A-Za-z0-9_]/g, '');
-      const tiers = { //(handy LUT)
-         High: highTier,
-         Medium: mediumTier,
-         Low: lowTier,
-         Combo: comboTier
-      } as Record<string, DivisionStatistics | undefined>;
-
-      const gradeFormat = config.split(":")[0];
-      const tierStrTmp = config.split(":")?.[1] || "Combo";
-      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
-         //(if set tier doesn't exist just fallback)
-      const tierToUse = tiers[tierStr]; 
-
-      const linkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
-         onClick={(event) => { event.preventDefault(); setConfig(`${gradeFormat}:${tier}`); }}
-      >
-         {tier == "Combo" ? "D1" : tier}{tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
-      </a>;
-
       const tooltipMap = {
          Combo: <Tooltip id={`comboTooltip${nameAsId}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
          High: <Tooltip id={`highTooltip${nameAsId}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
@@ -332,9 +330,49 @@ export class GradeTableUtils {
          Low: <Tooltip id={`lowTooltip${nameAsId}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
       } as Record<string, any>;
 
-      const link = (tier: string) => (tier == tierStr) ? <b>{linkTmp(tier)}</b> : linkTmp(tier);
+      const configStr = config.split(":")
+      const gradeFormat = configStr[0];
+      const tierStrTmp = configStr?.[1] || "Combo";
+         //(if set tier doesn't exist just fallback)
+      const posGroup = configStr?.[2] || "All";
+
+      const tiers = (posGroup == "All" ? { //(handy LUT)
+         High: highTier,
+         Medium: mediumTier,
+         Low: lowTier,
+         Combo: comboTier
+      } : (playerPosStats[posGroup] || {})) as Record<string, DivisionStatistics | undefined>;
+
+      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
+      const tierToUse = tiers[tierStr]; 
+
+      const configParams = (newTier: string, newPosGroup: string) => {
+         const configParamBase = `${gradeFormat}:${newTier}`;
+         if (newPosGroup == "All") {
+            return configParamBase;
+         } else {
+            return `${configParamBase}:${newPosGroup}`;
+         }
+      };
+      const posLinkTmp = (newPosGroupTitle: string, newPosGroup: string) => <a href={tiers[tierStr] ? "#" : undefined}
+         onClick={(event) => { event.preventDefault(); setConfig(configParams(tierStr, newPosGroup)); }}
+      >
+         {newPosGroupTitle}{tiers[tierStr] ? ` (${(playerPosStats[newPosGroup] as any)?.[tierStr]?.tier_sample_size || "???"})` : ""}
+      </a>;
+      const posGroupLink = (newPosGroupTitle: string, newPosGroup: string) => 
+         (newPosGroup == posGroup) ? <b>{posLinkTmp(newPosGroupTitle, newPosGroup)}</b> : posLinkTmp(newPosGroupTitle, newPosGroup);
+
+      const tierLinkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
+         onClick={(event) => { event.preventDefault(); setConfig(configParams(tier, posGroup)); }}
+      >
+         {tier == "Combo" ? "D1" : tier}{tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
+      </a>;
+      const tierLink = (tier: string) => (tier == tierStr) ? <b>{tierLinkTmp(tier)}</b> : tierLinkTmp(tier);
       
-      const topLine = <span className="small">{link("Combo")} | {link("High")} | {link("Medium")} | {link("Low")}</span>;
+      //TODO: add the positional groups here via posGroupLink
+      const topLine = <span className="small">
+         {tierLink("Combo")} | {tierLink("High")} | {tierLink("Medium")} | {tierLink("Low")}
+      </span>;
 
       const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${nameAsId}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
       const percentileShowTooltip = <Tooltip id={`percentileShowTooltip${nameAsId}`}>Show the percentile of each stat against the "tier" (D1/High/etc) </Tooltip>;
@@ -424,7 +462,7 @@ export class GradeTableUtils {
       // Special field formatting:
       const netRapmField = factorMins ? "off_adj_rapm_prod_margin" : "off_adj_rapm_margin";
       const rapmMargin = playerPercentiles[netRapmField];
-      const extraMsg = (expandedView && !rapmMargin) ? 
+      const extraMsg = (expandedView && !rapmMargin && !leaderboardMode) ? 
          <span><br/><br/>Enable RAPM to see a net production ranking for this player</span> : null;
 
       const eqRankTooltip = <Tooltip id={`eqRankTooltip${nameAsId}`}>The approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season{extraMsg}</Tooltip>;
@@ -438,7 +476,7 @@ export class GradeTableUtils {
                   {maybeSmall(<span style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(rapmMargin)}{gradeFormat == "pct" ? "%": ""}</span>)}               
                </span>
                :  
-               <small><i>(net rank: NA)<sup>*</sup></i></small>
+               (leaderboardMode ? null : <small><i>(net rank: NA)<sup>*</sup></i></small>)
                ;
          }
       });

@@ -307,8 +307,10 @@ export class TeamStatsTableUtils {
                GradeTableUtils.buildTeamGradeTableRows({
                   selectionType: queryKey,
                   config: showGrades, setConfig: (newConfig:string) => { persistNewState.setShowGrades(newConfig) },
-                  comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
-                  mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+                  teamStats: {
+                    comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
+                    mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
+                  },
                   team: teamStats[queryKey]
                }) : [],
                showExtraInfo ? [ GenericTableOps.buildTextRow(<span>

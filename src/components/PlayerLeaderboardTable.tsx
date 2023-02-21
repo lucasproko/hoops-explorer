@@ -728,8 +728,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           selectionTitle: `[${player.key}] Grades`,
           config: showGrades, 
           setConfig: (newConfig:string) => { friendlyChange(() => setShowGrades(newConfig), newConfig != showGrades) },
-          comboTier: divisionStatesCacheByYear.Combo, highTier: divisionStatesCacheByYear.High,
-          mediumTier: divisionStatesCacheByYear.Medium, lowTier: divisionStatesCacheByYear.Low,
+          playerStats: {
+            comboTier: divisionStatesCacheByYear.Combo, highTier: divisionStatesCacheByYear.High,
+            mediumTier: divisionStatesCacheByYear.Medium, lowTier: divisionStatesCacheByYear.Low,
+          },
+          playerPosStats: {},
           player,
           expandedView: true, possAsPct, factorMins, includeRapm: true, leaderboardMode: true
         }) : []
