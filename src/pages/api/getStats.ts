@@ -19,6 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     //gender: Men, Women
     //type: player, team
     const urlInFix = parsed.type == "player" ? "players_" : "";
+    const maybePosInfix = parsed.posGroup ? `pos${parsed.posGroup}_` : "";
 
     // Check the request is cacheable: ie GET, no Authorization header, no Range header, no _vercel_no_cache
     // and no _vercel_no_cache cookie
@@ -33,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         if (req.headers?.['accept-encoding']?.includes("gzip")) {
             try {
                 const cacheId = process.env.NEXT_PUBLIC_VERCEL_URL || "default_cache_control";
-                const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/stats_${urlInFix}all_${parsed.gender}_${parsed.year}_${parsed.tier}.json.gz?cacheId=${cacheId}`, {
+                const resp = await fetch(`https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/stats_${urlInFix}${maybePosInfix}all_${parsed.gender}_${parsed.year}_${parsed.tier}.json.gz?cacheId=${cacheId}`, {
                     method: 'get'
                 });
                 if (resp.status >= 400) {

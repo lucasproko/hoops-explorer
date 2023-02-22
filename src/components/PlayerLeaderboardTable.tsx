@@ -50,7 +50,7 @@ import { StatModels, IndivStatSet, Statistic } from '../utils/StatModels';
 import { TransferModel } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
 import ConferenceSelector from './shared/ConferenceSelector';
-import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
+import { DivisionStatsCache, GradeTableUtils, PositionStatsCache } from '../utils/tables/GradeTableUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -381,19 +381,30 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       confs, year, gender, tier ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
-  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as Record<string, DivisionStatsCache>);
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState<Record<string, DivisionStatsCache>>({});
+  const [ positionalStatsCache, setPositionalStatsCache ] = useState<Record<string, PositionStatsCache>>({}); 
+  const [ divisionStatsRefresh, setDivisionStatsRefresh ] = useState<number>(0);
+
   useEffect(() => {
     if (showGrades) {
       const yearsToCheck = (year == DateUtils.AllYears) ? DateUtils.coreYears : [ year ];
       yearsToCheck.forEach(yearToCheck => {
         const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
-        if (_.isEmpty(currCacheForThisYear) ||
-            (yearToCheck != currCacheForThisYear.year) ||
-           (gender != currCacheForThisYear.gender))
-        {
+        const currPosCacheForThisYear = positionalStatsCache[yearToCheck] || {};
+        const yearOrGenderChanged = 
+          (yearToCheck != currCacheForThisYear.year) ||
+          (gender != currCacheForThisYear.gender);
+
+        if (_.isEmpty(currCacheForThisYear) || yearOrGenderChanged) {
           if (!_.isEmpty(currCacheForThisYear)) {
             setDivisionStatsCache(currCache => ({
               ...currCache,
+              [yearToCheck]: {}
+            })); //unset if set
+          }
+          if (!_.isEmpty(currPosCacheForThisYear)) {
+            setPositionalStatsCache(currPosCache => ({
+              ...currPosCache,
               [yearToCheck]: {}
             })); //unset if set
           }
@@ -402,7 +413,30 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               ...currCache,
               [yearToCheck]: newCache
             })); 
+            setDivisionStatsRefresh(curr => curr + 1);
           });
+        }
+
+        const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
+        if (maybePosGroup && (maybePosGroup != "All")) {
+          const posGroupStats = currPosCacheForThisYear[maybePosGroup];
+          if (yearOrGenderChanged || !posGroupStats) {
+            GradeTableUtils.populatePlayerDivisionStatsCache({ year: yearToCheck, gender }, (s: DivisionStatsCache) => {
+              setPositionalStatsCache(currPosCache => ({
+                ...currPosCache,
+                [yearToCheck]: {
+                  ...(currPosCache[yearToCheck] || {}),
+                  [maybePosGroup]: {
+                    comboTier: s.Combo,
+                    highTier: s.High,
+                    mediumTier: s.Medium,
+                    lowTier: s.Low
+                  }  
+                }
+              }));
+              setDivisionStatsRefresh(curr => curr + 1);
+            }, undefined, maybePosGroup);
+          }
         }
       });
     }
@@ -691,9 +725,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
       const showGradesFactor = showGrades ? 2 : 5;
+      const showGradesPosGroup = showGrades.split(":")[2] || "All";
       const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % showGradesFactor))
 
-      if (showGrades && (sortBy != "desc:diff_adj_rapm") && (sortBy != "desc:diff_adj_rapm_prod")) {
+      if (showGrades && (
+        ((sortBy != "desc:diff_adj_rapm") && (sortBy != "desc:diff_adj_rapm_prod"))
+        ||
+        (showGradesPosGroup != "All")
+      ))
+      {
         const adjRapmMargin: Statistic | undefined = (player.off_adj_rapm && player.def_adj_rapm) ? { 
             value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) 
         } : undefined;
@@ -725,14 +765,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
         (showGrades && playerIndex < 50) ? GradeTableUtils.buildPlayerGradeTableRows({
           isFullSelection: !isT100 && !isConfOnly,
-          selectionTitle: `[${player.key}] Grades`,
+          selectionTitle: `Grades`,
           config: showGrades, 
           setConfig: (newConfig:string) => { friendlyChange(() => setShowGrades(newConfig), newConfig != showGrades) },
           playerStats: {
             comboTier: divisionStatesCacheByYear.Combo, highTier: divisionStatesCacheByYear.High,
             mediumTier: divisionStatesCacheByYear.Medium, lowTier: divisionStatesCacheByYear.Low,
           },
-          playerPosStats: {},
+          playerPosStats: positionalStatsCache[player.year || year] || {},
           player,
           expandedView: true, possAsPct, factorMins, includeRapm: true, leaderboardMode: true
         }) : []
@@ -757,6 +797,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       possAsPct, factorMins,
       useRapm,
+      showGrades, divisionStatsRefresh,
       confs, posClasses, showInfoSubHeader, showRepeatingHeader, tier,
       advancedFilterStr, 
       dataEvent ]);

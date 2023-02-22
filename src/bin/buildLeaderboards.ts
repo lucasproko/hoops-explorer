@@ -160,11 +160,20 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (inYear < DateUtils.yearFromWhichAllMenD1Imported);
 
-const testTeamFilter = undefined as Set<string> | undefined;
+var testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
-//const testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]);
+//testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//const testTeamFilter = new Set([ "Kansas St." ]) //, "Dayton", "Fordham" ]);
+//testTeamFilter = new Set([ "Kansas St." ]) //, "Dayton", "Fordham" ]);
+if (!_.find(commandLine, p => _.startsWith(p, "--debug")) && testTeamFilter) {
+  console.log(`************************************ ` + 
+  `WARNING: [testTeamFilter] set (=[${_.toArray(testTeamFilter)}]) but [--debug] not specified, unsetting [testTeamFilter]`
+  );
+  testTeamFilter = undefined;
+} 
+if (testTeamFilter) {
+  console.log(`INFO: using the following test filter: [${_.toArray(testTeamFilter)}]`);
+}
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -836,64 +845,77 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
 export async function combineDivisionStatsFiles(player: Boolean = false) {
   const playerInfix = player ? "players_" : "";
   const tiers = [ "High", "Medium", "Low" ];
-  const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(tier => {
-    const divisionStatsInFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
-    const statsPromise: Promise<[String, DivisionStatistics[]]> = fs.readFile(divisionStatsInFilename).then(buffer => {
-      return [
-        tier,
-        [ JSON.parse(buffer.toString()) as DivisionStatistics ]
-      ] as [ string, DivisionStatistics[] ];
-    }).catch(err => [ tier, [] as DivisionStatistics[] ]);
-    return statsPromise;
-  });
-  const resolvedFilesAwait = await Promise.all(filesToCombine);
-  const resolvedFiles: Record<string, DivisionStatistics> = 
-    _.chain(resolvedFilesAwait)
-      .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(if hot has dedup_samples - makes this method idempotent-ish)
-      .fromPairs().mapValues(array => array[0]!).value();
+  const posGroups = [ "" ].concat(player ? PositionUtils.positionGroupings.map(g => `pos${g}_`) : []);
 
-  const combineDivisionStats = (toCombine: DivisionStatistics[]) => {
-    const allKeys = _.chain(toCombine).flatMap(stats => _.keys(stats.dedup_samples)).value();
-    const combinedSamples = _.transform(allKeys, (acc, key) => {
-
-      acc[key] = _.flatMap(toCombine, stat => stat.dedup_samples[key] || []);//(gets re-sorted below)
-
-    }, {} as Record<string, Array<number>>);
-
-    // Build LUT from presorted samples
-    return player ? GradeUtils.buildAndInjectPlayerDivisionStatsLUT({
-      tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
-      tier_samples: combinedSamples,
-      tier_lut: {},
-      dedup_sample_size: 0,
-      dedup_samples: {}
-    }) : GradeUtils.buildAndInjectTeamDivisionStatsLUT({
-      tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
-      tier_samples: combinedSamples,
-      tier_lut: {},
-      dedup_sample_size: 0,
-      dedup_samples: {}
+  const allPosGroupsComplete = posGroups.map(async posInfix => {
+    const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(tier => {    
+      const divisionStatsInFilename = `./public/leaderboards/lineups/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+      const statsPromise: Promise<[String, DivisionStatistics[]]> = fs.readFile(divisionStatsInFilename).then(buffer => {
+        return [
+          tier,
+          [ JSON.parse(buffer.toString()) as DivisionStatistics ]
+        ] as [ string, DivisionStatistics[] ];
+      }).catch(err => [ tier, [] as DivisionStatistics[] ]);
+      return statsPromise;
     });
-  };
+    const resolvedFilesAwait = await Promise.all(filesToCombine);
+    const resolvedFiles: Record<string, DivisionStatistics> = 
+      _.chain(resolvedFilesAwait)
+        .filter(kv => (kv[1].length > 0) && !_.isEmpty(kv[1][0]!.dedup_samples)) //(if hot has dedup_samples - makes this method idempotent-ish)
+        .fromPairs().mapValues(array => array[0]!).value();
 
-  const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
-  const combinedFilesPromise = (_.keys(resolvedFiles).length == 3) ? 
-    fs.writeFile(
-      divisionStatsComboFilename,
-      JSON.stringify(combineDivisionStats(_.values(resolvedFiles)), reduceNumberSize)
-    ) : Promise.resolve();
-    
-  await combinedFilesPromise; //(so we'll error out if this step fails - otherwise could lose dedup_samples before using them)
+    const combineDivisionStats = (toCombine: DivisionStatistics[]) => {
+      const allKeys = _.chain(toCombine).flatMap(stats => _.keys(stats.dedup_samples)).value();
+      const combinedSamples = _.transform(allKeys, (acc, key) => {
 
-  const filesToOutput =  _.map(resolvedFiles, (stats, tier) => {
-    const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_${playerInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
-    // Remove the dedup_samples since it's now been calculated
-    return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ ...stats, dedup_samples: {} }, reduceNumberSize));
+        acc[key] = _.flatMap(toCombine, stat => stat.dedup_samples[key] || []);//(gets re-sorted below)
+
+      }, {} as Record<string, Array<number>>);
+
+      // Build LUT from presorted samples
+      return player ? GradeUtils.buildAndInjectPlayerDivisionStatsLUT({
+        tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
+        tier_samples: combinedSamples,
+        tier_lut: {},
+        dedup_sample_size: 0,
+        dedup_samples: {}
+      }) : GradeUtils.buildAndInjectTeamDivisionStatsLUT({
+        tier_sample_size: _.sumBy(toCombine, stats => stats.dedup_sample_size),
+        tier_samples: combinedSamples,
+        tier_lut: {},
+        dedup_sample_size: 0,
+        dedup_samples: {}
+      });
+    };
+
+    const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(0, 4)}_Combo.json`;
+    const combinedFilesPromise = (_.keys(resolvedFiles).length == 3) ? 
+      fs.writeFile(
+        divisionStatsComboFilename,
+        JSON.stringify(combineDivisionStats(_.values(resolvedFiles)), reduceNumberSize)
+      ) : Promise.resolve();
+      
+    await combinedFilesPromise; //(so we'll error out if this step fails - otherwise could lose dedup_samples before using them)
+
+    console.log(`Completed combining stats for [${_.keys(resolvedFiles)}] files (player=${player}), now need to tidy up component files`);
+
+    const filesToOutput =  _.map(resolvedFiles, (stats, tier) => {
+      const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(0, 4)}_${tier}.json`;
+      // Remove the dedup_samples since it's now been calculated
+      return fs.writeFile(divisionStatsOutFilename, JSON.stringify({ ...stats, dedup_samples: {} }, reduceNumberSize));
+    });
+
+    const filesToOutputComplete = Promise.all(filesToOutput);
+    await filesToOutputComplete;
+
+    console.log(`Completed combining stats and tidying up component stats in [${_.size(filesToOutput)}] files (player=${player})`);
+
+    return filesToOutputComplete;
   });
 
-  await Promise.all(filesToOutput);
+  await Promise.all(allPosGroupsComplete);
 
-  console.log(`Completed combining stats for [${_.keys(resolvedFiles)}] (player=${player})`);
+  console.log(`Completed combining stats and tidying up component stats in [${_.size(allPosGroupsComplete)}] position group(s) (player=${player})`);  
 }
 
 if (!testMode) {
@@ -921,7 +943,7 @@ if (!testMode) {
         await fs.readFile(
           onBallDefenseFile
         ).catch((err: any) => {
-          console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
+          console.log(`Couldn't load [${onBallDefenseFile}]: [${err}]`);
         });
       }
     }).value();

@@ -23,14 +23,14 @@ import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 import { DateUtils } from '../DateUtils';
 
-type StatsCaches = {
+export type StatsCaches = {
    comboTier?: DivisionStatistics,
    highTier?: DivisionStatistics,
    mediumTier?: DivisionStatistics,
    lowTier?: DivisionStatistics
 };
 
-type PositionStatsCache = Record<string, StatsCaches>;
+export type PositionStatsCache = Record<string, StatsCaches>;
 
 type TeamProps = {
    isFullSelection?: boolean,
@@ -133,9 +133,10 @@ export class GradeTableUtils {
    static readonly populatePlayerDivisionStatsCache = (
       filterParams: CommonFilterParams,
       setCache: (s: DivisionStatsCache) => void,
-      tierOverride: string | undefined = undefined
+      tierOverride: string | undefined = undefined,
+      posOverride: string | undefined = undefined
    ) => {
-      GradeTableUtils.populateDivisionStatsCache("player", filterParams, setCache, tierOverride);
+      GradeTableUtils.populateDivisionStatsCache("player", filterParams, setCache, tierOverride, posOverride);
    }
 
    /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
@@ -143,15 +144,18 @@ export class GradeTableUtils {
       type: "player" | "team",
       filterParams: CommonFilterParams,
       setCache: (s: DivisionStatsCache) => void,
-      tierOverride: string | undefined = undefined
+      tierOverride: string | undefined = undefined,
+      posOverride: string | undefined = undefined
    ) => {
       const urlInfix = type == "player" ? "players_" : "";
+      const maybePosParam = posOverride ? `&posGroup=${posOverride}` : "";
+      const maybePosInfix = posOverride ? `pos${posOverride}_` : "";
       const getUrl = (inGender: string, inYear: string, inTier: string) => {
          const subYear = inYear.substring(0, 4);
          if ((tierOverride != "Preseason") && DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
-            return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}&type=${type}`;
+            return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}&type=${type}${maybePosParam}`;
          } else { //archived (+ preseason - this requires manual intervention anyway so might as well store locally)
-            return `/leaderboards/lineups/stats_${urlInfix}all_${inGender}_${subYear}_${inTier}.json`;
+            return `/leaderboards/lineups/stats_${urlInfix}${maybePosInfix}all_${inGender}_${subYear}_${inTier}.json`;
          }
       };
 
@@ -322,7 +326,7 @@ export class GradeTableUtils {
       expandedView, possAsPct, factorMins, includeRapm, leaderboardMode
    }) => {
       const equivOrApprox = isFullSelection ? "Approx" : "Equiv";
-      const nameAsId = selectionTitle.replace(/[^A-Za-z0-9_]/g, '');
+      const nameAsId = (selectionTitle + (player.code || "unknown")).replace(/[^A-Za-z0-9_]/g, '');
       const tooltipMap = {
          Combo: <Tooltip id={`comboTooltip${nameAsId}`}>Compare each stat against the set of all available D1 teams</Tooltip>,
          High: <Tooltip id={`highTooltip${nameAsId}`}>Compare each stat against the "high tier" of D1 (high majors, mid-high majors, any team in the T150)</Tooltip>,
@@ -336,42 +340,57 @@ export class GradeTableUtils {
          //(if set tier doesn't exist just fallback)
       const posGroup = configStr?.[2] || "All";
 
-      const tiers = (posGroup == "All" ? { //(handy LUT)
+      const statsCacheToDivisionStats = (s: StatsCaches) => { return {
+         High: s.highTier,
+         Medium: s.mediumTier,
+         Low: s.lowTier,
+         Combo: s.comboTier
+      }};
+      const globalTiers = { //(handy LUT)
          High: highTier,
          Medium: mediumTier,
          Low: lowTier,
          Combo: comboTier
-      } : (playerPosStats[posGroup] || {})) as Record<string, DivisionStatistics | undefined>;
+      } as Record<string, DivisionStatistics | undefined>;
+      const tiers = ((posGroup == "All") ? globalTiers : 
+         (statsCacheToDivisionStats(playerPosStats[posGroup] || {}))) as Record<string, DivisionStatistics | undefined>;
 
       const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
       const tierToUse = tiers[tierStr]; 
 
-      const configParams = (newTier: string, newPosGroup: string) => {
-         const configParamBase = `${gradeFormat}:${newTier}`;
+      const configParams = (newGradeFormat: string, newTier: string, newPosGroup: string) => {
+         const configParamBase = `${newGradeFormat}:${newTier}`;
          if (newPosGroup == "All") {
             return configParamBase;
          } else {
             return `${configParamBase}:${newPosGroup}`;
          }
       };
-      const posLinkTmp = (newPosGroupTitle: string, newPosGroup: string) => <a href={tiers[tierStr] ? "#" : undefined}
-         onClick={(event) => { event.preventDefault(); setConfig(configParams(tierStr, newPosGroup)); }}
-      >
-         {newPosGroupTitle}{tiers[tierStr] ? ` (${(playerPosStats[newPosGroup] as any)?.[tierStr]?.tier_sample_size || "???"})` : ""}
-      </a>;
-      const posGroupLink = (newPosGroupTitle: string, newPosGroup: string) => 
-         (newPosGroup == posGroup) ? <b>{posLinkTmp(newPosGroupTitle, newPosGroup)}</b> : posLinkTmp(newPosGroupTitle, newPosGroup);
-
-      const tierLinkTmp = (tier: string) => <a href={tiers[tier] ? "#" : undefined}
-         onClick={(event) => { event.preventDefault(); setConfig(configParams(tier, posGroup)); }}
-      >
-         {tier == "Combo" ? "D1" : tier}{tiers[tier] ? ` (${tiers[tier]?.tier_sample_size})` : ""}
-      </a>;
-      const tierLink = (tier: string) => (tier == tierStr) ? <b>{tierLinkTmp(tier)}</b> : tierLinkTmp(tier);
+      const tierLinkTmp = (tier: string, showCount: boolean = false) => 
+         <a href={globalTiers[tier] ? "#" : undefined}
+            onClick={(event) => { event.preventDefault(); setConfig(configParams(gradeFormat, tier, posGroup)); }}
+         >
+            {tier == "Combo" ? "D1" : tier}{(showCount && globalTiers[tier]) ? ` (${globalTiers[tier]?.tier_sample_size})` : ""}
+         </a>;
+      const tierLink = (tier: string) => (tier == tierStr) ? <b>{tierLinkTmp(tier, true)}</b> : tierLinkTmp(tier);
       
-      //TODO: add the positional groups here via posGroupLink
       const topLine = <span className="small">
-         {tierLink("Combo")} | {tierLink("High")} | {tierLink("Medium")} | {tierLink("Low")}
+         {tierLink("Combo")} | {tierLink("High")} | {tierLink("Medium")} | {tierLink("Low")} 
+      </span>;
+
+      const posLinkTmp = (newPosGroupTitle: string, newPosGroup: string, showCount: boolean = false) => 
+         <a href={((newPosGroup == "All") || tiers[tierStr]) ? "#" : undefined}
+            onClick={(event) => { event.preventDefault(); setConfig(configParams(gradeFormat, tierStr, newPosGroup)); }}
+         >
+            {newPosGroupTitle}{(showCount && tiers[tierStr]) ? ` (${tiers[tierStr]?.tier_sample_size || "?"})` : ""}
+         </a>;
+      const posGroupLink = (newPosGroupTitle: string, newPosGroup: string) => 
+         (newPosGroup == posGroup) ? <b>{posLinkTmp(newPosGroupTitle, newPosGroup, newPosGroup != "All")}</b> : posLinkTmp(newPosGroupTitle, newPosGroup);
+
+      const midLine = <span className="small">
+         {posGroupLink("All", "All")} |&nbsp;
+         {posGroupLink("Handlers", "BH")} | {posGroupLink("Guards", "G")} | {posGroupLink("Wings", "W")} |&nbsp;
+         {posGroupLink("PFs", "PF")} | {posGroupLink("Centers", "C")} | {posGroupLink("Frontcourt", "FC")}
       </span>;
 
       const eqRankShowTooltip = <Tooltip id={`eqRankShowTooltip${nameAsId}`}>Show the approximate rank for each stat against the "tier" (D1/High/etc) as if it were over the entire season</Tooltip>;
@@ -379,11 +398,11 @@ export class GradeTableUtils {
 
       const maybeBold = (bold: boolean, html: React.ReactNode) => bold ? <b>{html}</b> : html;
       const bottomLine = <span className="small">
-         {maybeBold(gradeFormat == "rank", 
-               <a href={"#"} onClick={(event) => { event.preventDefault(); setConfig(`rank:${tierStrTmp}`); }}>Ranks</a>
+         {maybeBold(gradeFormat == "rank",
+               <a href={"#"} onClick={(event) => { event.preventDefault(); setConfig(configParams("rank", tierStr, posGroup)); }}>Ranks</a>
             )}
          &nbsp;| {maybeBold(gradeFormat == "pct", 
-               <a href="#" onClick={(event) => { event.preventDefault(); setConfig(`pct:${tierStrTmp}`); }}>Pctiles</a>
+               <a href="#" onClick={(event) => { event.preventDefault(); setConfig(configParams("pct", tierStr, posGroup)); }}>Pctiles</a>
          )}
       </span>;
 
@@ -502,7 +521,7 @@ export class GradeTableUtils {
       ].concat(expandedView ?
          GenericTableOps.buildDataRow(playerPercentiles, defPrefixFn, defCellMetaFn, tableConfig) : []
       ).concat([
-         GenericTableOps.buildTextRow(<span><small>{selectionTitle} {helpOverlay}</small>: {topLine} // {bottomLine}</span>, ""),         
+         GenericTableOps.buildTextRow(<span><small>{selectionTitle} {helpOverlay}</small>: {topLine} // {midLine} // {bottomLine}</span>, ""),         
       ]).concat(leaderboardMode ? [] : [  GenericTableOps.buildRowSeparator() ]);
       return tableData;
    };

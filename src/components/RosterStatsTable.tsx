@@ -57,7 +57,7 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
-import { DivisionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
+import { DivisionStatsCache, PositionStatsCache, GradeTableUtils } from '../utils/tables/GradeTableUtils';
 import { HistoryManager } from '../utils/HistoryManager';
 import { defaultRapmConfig } from '../utils/stats/RapmUtils';
 import TeamRosterStatsConfigModal, { TeamRosterStatsConfig } from './shared/TeamRosterStatsConfigModal';
@@ -263,16 +263,37 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ]);
 
   // Events that trigger building or rebuilding the division stats cache
-  const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  const [ divisionStatsCache, setDivisionStatsCache ] = useState<DivisionStatsCache>({});
+  const [ positionalStatsCache, setPositionalStatsCache ] = useState<PositionStatsCache>({});
   useEffect(() => {
     if (showGrades) {
-      if ((gameFilterParams.year != divisionStatsCache.year) ||
-        (gameFilterParams.gender != divisionStatsCache.gender) ||
-        _.isEmpty(divisionStatsCache)) {
-          if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-          GradeTableUtils.populatePlayerDivisionStatsCache(gameFilterParams, setDivisionStatsCache);
+      const yearOrGenderChanged = 
+        (gameFilterParams.year != divisionStatsCache.year) ||
+        (gameFilterParams.gender != divisionStatsCache.gender);
+
+      if (yearOrGenderChanged || _.isEmpty(divisionStatsCache)) {
+        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+        if (!_.isEmpty(positionalStatsCache)) setPositionalStatsCache({}); //unset if set
+        GradeTableUtils.populatePlayerDivisionStatsCache(gameFilterParams, setDivisionStatsCache);
+      }
+      const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
+      if (maybePosGroup && (maybePosGroup != "All")) {
+        const posGroupStats = positionalStatsCache[maybePosGroup];
+        if (yearOrGenderChanged || !posGroupStats) {
+          GradeTableUtils.populatePlayerDivisionStatsCache(gameFilterParams, (s: DivisionStatsCache) => {
+            setPositionalStatsCache(currPosCache => ({
+              ...currPosCache,
+              [maybePosGroup]: {
+                comboTier: s.Combo,
+                highTier: s.High,
+                mediumTier: s.Medium,
+                lowTier: s.Low
+              }
+            }));
+          }, undefined, maybePosGroup);
         }
       }
+    }
   }, [ gameFilterParams, showGrades ]);
   
   // 2] Data Model
@@ -659,13 +680,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.on? 
           GradeTableUtils.buildPlayerGradeTableRows({
-            selectionTitle: `A Lineups [${p.key}] Grades`,
+            selectionTitle: `A Lineups Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             playerStats: {
               comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
               mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
             },
-            playerPosStats: {},
+            playerPosStats: positionalStatsCache,
             player: p.on,
             expandedView, possAsPct, factorMins, includeRapm: calcRapm
           }) : [],
@@ -700,13 +721,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showGrades && p.off? 
           GradeTableUtils.buildPlayerGradeTableRows({
-            selectionTitle: `B Lineups [${p.key}] Grades`,
+            selectionTitle: `B Lineups Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             playerStats: {
               comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
               mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
             },
-            playerPosStats: {},
+            playerPosStats: positionalStatsCache,
             player: p.off,
             expandedView, possAsPct, factorMins, includeRapm: calcRapm
           }) : [],
@@ -742,13 +763,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         showGrades && p.baseline? 
           GradeTableUtils.buildPlayerGradeTableRows({
             isFullSelection: !gameFilterParams.baseQuery && !gameFilterParams.queryFilters,
-            selectionTitle: `Baseline [${p.key}] Grades`,
+            selectionTitle: `Baseline Grades`,
             config: showGrades, setConfig: (newConfig:string) => { setShowGrades(newConfig) },
             playerStats: {
               comboTier: divisionStatsCache.Combo, highTier: divisionStatsCache.High,
               mediumTier: divisionStatsCache.Medium, lowTier: divisionStatsCache.Low,
             },
-            playerPosStats: {},
+            playerPosStats: positionalStatsCache,
             player: p.baseline,
             expandedView, possAsPct, factorMins, includeRapm: calcRapm
           }) : [],
