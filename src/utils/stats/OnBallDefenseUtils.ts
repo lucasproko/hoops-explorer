@@ -121,10 +121,14 @@ export class OnBallDefenseUtils {
       const playersByFullName = _.fromPairs(players.map(p => {
          return [ p.key, p ];
       }));
+      const playersByCode = _.fromPairs(players.map(p => {
+         return [ p.code, p ];
+      }));
+
       const mutablePlayersNotFound = _.fromPairs(players.map((p, ii) => [p.key, ii]));
       const [ matchedPlayerStats, unmatchedPlayerStats] = _.chain(rowsCols).flatMap((row, ii) => {
          const playerName = transformName(row[1]);
-         const matchingPlayer = playersByFullName[playerName];
+         const matchingPlayer = playersByCode[row[1]] || playersByFullName[playerName];
          if (matchingPlayer?.code) {
             mutableMatchFound.push(ii);
             _.unset(mutablePlayersNotFound, matchingPlayer.key || "");
