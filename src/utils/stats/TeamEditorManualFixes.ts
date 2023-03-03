@@ -4,6 +4,7 @@ import _ from "lodash";
 import { freshmenMen2020_21 } from "../public-data/freshmenMen2020_21";
 import { freshmenMen2021_22 } from "../public-data/freshmenMen2021_22";
 import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
+import { freshmenMen2023_24 } from "../public-data/freshmenMen2023_24";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
 import { leftTeam2022_23 } from "../public-data/leftTeam2022_23";
 
@@ -18,12 +19,14 @@ export type TeamEditorManualFixModel = {
 export class TeamEditorManualFixes {
 
    static readonly getFreshmenForYear = _.memoize((genderYear: string) => {
-      if (genderYear == "Men_2019/20") { //(offseason of 19/20, ie team for 20/21)
+      if (genderYear == "Men_2019/20") { //(Fr for the following year given date)
          return TeamEditorManualFixes.buildOverrides(freshmenMen2020_21);
-      } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
+      } else if (genderYear == "Men_2020/21") { 
          return TeamEditorManualFixes.buildOverrides(freshmenMen2021_22);
-      } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
+      } else if (genderYear == "Men_2021/22") {  
          return TeamEditorManualFixes.buildOverrides(freshmenMen2022_23);
+      } else if (genderYear == "Men_2022/23") {  
+         return TeamEditorManualFixes.buildOverrides(freshmenMen2023_24);
       } else {
          return {};
       }
@@ -369,6 +372,13 @@ export class TeamEditorManualFixes {
          // Kansas injury
          combinedOverrides["Kansas"]!.overrides!["MjRice"]!.mins = 5.0; //(injury)
 
+         return combinedOverrides;
+      } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
+         const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {};
+
+         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
+            mutableToRet, manualOverrides_Men_2023_24, superSeniors2022_23, leftTeam2022_23
+         );
          return combinedOverrides;
       } else {
          return {} as Record<string, TeamEditorManualFixModel>;
