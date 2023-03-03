@@ -70,24 +70,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            },
-            Object {
-              "label": "2020/21",
-              "value": "2020/21",
-            },
-            Object {
               "label": "2021/22",
               "value": "2021/22",
             },
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
           ]
         }
@@ -718,24 +710,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            },
-            Object {
-              "label": "2020/21",
-              "value": "2020/21",
-            },
-            Object {
               "label": "2021/22",
               "value": "2021/22",
             },
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
           ]
         }
@@ -3231,24 +3215,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            },
-            Object {
-              "label": "2020/21",
-              "value": "2020/21",
-            },
-            Object {
               "label": "2021/22",
               "value": "2021/22",
             },
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
           ]
         }
@@ -14979,24 +14955,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            },
-            Object {
-              "label": "2020/21",
-              "value": "2020/21",
-            },
-            Object {
               "label": "2021/22",
               "value": "2021/22",
             },
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
           ]
         }
@@ -27948,24 +27916,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            },
-            Object {
-              "label": "2020/21",
-              "value": "2020/21",
-            },
-            Object {
               "label": "2021/22",
               "value": "2021/22",
             },
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
           ]
         }
@@ -39055,24 +39015,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
         options={
           Array [
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
-            },
-            Object {
-              "label": "2019/20",
-              "value": "2019/20",
-            },
-            Object {
-              "label": "2020/21",
-              "value": "2020/21",
-            },
-            Object {
               "label": "2021/22",
               "value": "2021/22",
             },
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
           ]
         }

@@ -14,6 +14,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 
 // Additional components:
 // @ts-ignore
@@ -51,6 +52,7 @@ import { TeamEditorManualFixes } from '../utils/stats/TeamEditorManualFixes';
 import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 import { ConferenceToNickname, latestConfChanges } from '../utils/public-data/ConferenceInfo';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
+import { FeatureFlags } from '../utils/stats/FeatureFlags';
 
 // Input params/models
 
@@ -117,6 +119,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const [ diffBasis, setDiffBasis ] = useState(
     (_.isNil(startingState.diffBasis) ? undefined : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj
   )
+  const [ enableNil, setEnableNil ] = useState(_.isNil(startingState.enableNil) ? 
+    FeatureFlags.isActiveWindow(FeatureFlags.enableNilView) : startingState.enableNil
+  );
 
   // Data source
   const [ year, setYear ] = useState(startingState.year || DateUtils. offseasonPredictionYear);
@@ -216,14 +221,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         superSeniorsBack: superSeniorsBack,
         evalMode: evalMode,
         allEditOpen: allEditOpen,
-        diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis)
+        diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis),
+        enableNil: enableNil
       };
       onChangeState(newState);
     }
   }, [ 
     year, gender, team,
     onlyTransfers, onlyThisYear, allEditOpen,
-    otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen, diffBasis,
+    otherPlayerCache, disabledPlayers, deletedPlayers, uiOverrides, editOpen, diffBasis, enableNil,
     lboardParams, showPrevSeasons, factorMins, offSeasonMode, alwaysShowBench, superSeniorsBack, evalMode
   ]);
 
@@ -239,7 +245,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       superSeniorsBack: superSeniorsBack,
       showPrevSeasons: showPrevSeasons,
       alwaysShowBench: alwaysShowBench,
-      diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis)
+      diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis),
+      enableNil: enableNil,
     }, ([] as string[]).concat(
         factorMins ? [ ] : [ "factorMins" ]
       ).concat(
@@ -514,6 +521,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const extraInfoNetObj = 
         _.isNil(maybeOverride?.global_off_adj) && _.isNil(maybeOverride?.global_def_adj) ? {} : { extraInfo: `Manually adjusted, see Player Editor tab` };
 
+      const nilToUse = _.isNil(maybeOverride?.nil) ? triple.nil : maybeOverride?.nil;
+
       const okNet = TeamEditorUtils.getNet(triple.ok, okProdFactor);
       const okOff = TeamEditorUtils.getOff(triple.ok, okProdFactor);
       const okDef = TeamEditorUtils.getDef(triple.ok, okProdFactor);
@@ -540,6 +549,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           value: (triple.ok.off_team_poss_pct?.value || 0)*40,
           extraInfo: _.isNil(maybeOverride?.mins) ? undefined : "Overridden, see Player Editor tab"
         },
+        nil: _.isNil(nilToUse) ? undefined : <small><i>{nilToUse.toFixed(0)}</i></small>,
         ortg: triple.ok.off_rtg,
         ptsPlus: factorMins ? { value: approxPtsCalc*0.70 } : undefined, //TODO, make this be the average team tempo
         usage: triple.ok.off_usage,
@@ -603,6 +613,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={false}
+              enableNil={enableNil}
               addNewPlayerMode={false}
               overrides={pxResults.allOverrides[triple.key]}
               onUpdate={(edit: PlayerEditModel | undefined) => {
@@ -676,6 +687,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const tableEl = {
         title: <b>{triple.orig.key}</b>,
         mpg: { value: mpg },
+        nil: _.isNil(triple.nil) ? undefined : <small><i>{triple.nil.toFixed(0)}</i></small>,
 
         ptsPlus: factorMins ? { value: (avgPts100*0.20*okProdFactor + okNet)*0.70 } : undefined, //TODO: calc poss/g
 
@@ -712,6 +724,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         [ GenericTableOps.buildTextRow(
             <TeamRosterEditor
               isBench={true}
+              enableNil={enableNil}
               addNewPlayerMode={false}
               overrides={benchOverrides}
               onUpdate={(edit: PlayerEditModel | undefined) => {
@@ -733,12 +746,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     };
     const buildPosHeaderRow = (posName: string, pct: number) => GenericTableOps.buildSubHeaderRow(
       evalMode ? [
-        [ <div/>, 6 ], 
+        [ <div/>, enableNil ? 7 : 6 ], 
         [ <div/>, 4 ], [ <div/>, 1 ], 
         [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], 
         [ <div/>, 12 ]
       ] : [ 
-        [ <div/>, 9 + (offSeasonMode ? 0 : 1) ], 
+        [ <div/>, (enableNil ? 10 : 9) + (offSeasonMode ? 0 : 1) ], 
         [ <div><b>{posName}</b> ({(100*pct).toFixed(0)}%)</div>, 4 ], [ <div/>, 1 ], 
         [ <div/>, 12 ], 
       ], "small text-center"
@@ -758,6 +771,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
       //(Diagnostic - will display if it's <0)
       const totalMins = _.sumBy(filteredPlayerSet, p => p.ok.off_team_poss_pct.value!)*0.2;
+      const totalNil = enableNil ? _.sumBy(filteredPlayerSet, triple => {
+        const maybeOverride: PlayerEditModel | undefined = pxResults.unpausedOverrides[triple.key];
+        const nilToUse = _.isNil(maybeOverride?.nil) ? triple.nil : maybeOverride?.nil;
+        return nilToUse || 0;
+      }) : 0;
       const totalActualMins = evalMode ? _.sumBy(actualResultsForReview, p => p.orig.off_team_poss_pct.value!)*0.2 : undefined;
       const finalActualEffAdj = totalActualMins ? 
         5.0*Math.max(0, 1.0 - totalActualMins)*TeamEditorUtils.getBenchLevelScoring(team, yearWithStats) : 0;
@@ -908,6 +926,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         title: teamLink,
         //(for diag only)
         mpg: totalMins < 0.99 ? { value: (totalMins - 1.0) } : undefined,
+        nil: <small><i>{totalNil.toFixed(0)}</i></small>,
 
         // Eval mode
         actual_mpg: totalActualMins && !actualBenchInfo && (totalActualMins < 0.99) ? { value: (totalActualMins - 1.0)*40*5 } : undefined,
@@ -987,7 +1006,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       };
 
       //TODO; centralize this conf logic (also used in OffseasonLeaderboardTable)
-      const offseasonConfChanges = (year > DateUtils.offseasonYear) ? latestConfChanges : {};
+      const offseasonConfChanges = latestConfChanges[year] || {};
       const confLookupToUse = efficiencyInfo[`${gender}_${yearWithStats}`] || efficiencyInfo[`${gender}_Latest`];
       const confStr = offseasonConfChanges[team] || (confLookupToUse?.[0]?.[team]?.conf || "");
       const confStrToUse = (confStr.length > 35) ? (ConferenceToNickname[confStr] || confStr) : confStr;
@@ -1039,7 +1058,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         GenericTableOps.buildSubHeaderRow(
           evalMode ? [
             [ <div className="text-right">{confEl}</div>, 1 ],
-            [ <div/>, 5 ], 
+            [ <div/>, enableNil ? 6 : 5 ], 
             [ <i><b>{`${actualResultsYear} results`}</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i><b>Balanced</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
@@ -1054,7 +1073,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           ]
            : [ 
             [ <div className="text-right">{confEl}</div>, 1 ],
-            [ <div/>, 8 ],  
+            [ <div/>, enableNil ? 9 : 8 ],  
             [ <i><b>Balanced</b></i>, 4 ], [ <div/>, 1 ], 
             [ <i>Optimistic</i>, 4 ], [ <div/>, 1 ], 
             [ <i>Pessimistic</i>, 4 ], [ <div/>, 1 ],
@@ -1157,7 +1176,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     return <GenericTable
       tableCopyId="rosterEditorTable"
-      tableFields={TeamEditorTableUtils.tableDef(evalMode, offSeasonMode, factorMins)}
+      tableFields={TeamEditorTableUtils.tableDef(evalMode, offSeasonMode, factorMins, enableNil)}
       tableData={
         teamRows.concat(rosterTableData)
       }
@@ -1165,7 +1184,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     />;
   }, [ dataEvent, year, team, 
       otherPlayerCache, deletedPlayers, disabledPlayers, uiOverrides, divisionStatsCache, debugMode, showPrevSeasons, factorMins,
-      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack, alwaysShowBench, diffBasis ]);
+      allEditOpen, editOpen, evalMode, offSeasonMode, superSeniorsBack, alwaysShowBench, diffBasis, enableNil ]);
 
   /////////////////////////////////////
   
@@ -1434,6 +1453,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   setEvalMode(false);
                 }, true)}
               />
+            { FeatureFlags.isActiveWindow(FeatureFlags.enableNilView) ?
+              <GenericTogglingMenuItem
+                text={<span>NIL mode enabled <Badge variant="dark">fictional!</Badge></span>}
+                truthVal={enableNil}
+                onSelect={() => friendlyChange(() => {
+                  setEnableNil(!enableNil);
+                }, true)}
+              /> : null        
+            }
           <Dropdown.Divider />
           <GenericTogglingMenuItem
               text={"Review mode"}
@@ -1491,7 +1519,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 setSuperSeniorsBack(!superSeniorsBack);
               }, true)
             }
-          ].concat(overrideGrades ? [] : [
+          ].concat(FeatureFlags.isActiveWindow(FeatureFlags.enableNilView) ? [{
+            label: "NIL",
+            tooltip: "If enabled, shows a totally made-up editable view of the team's NIL numbers",
+            toggled: enableNil,
+            onClick: () => friendlyChange(() => {
+              setEnableNil(!enableNil);
+            }, true)
+          }] : []).concat(overrideGrades ? [] : [
             {
               label: "What If?",
               tooltip: "Describes what actually happened for the selected season, and allows editing to explore different scenarios",
@@ -1601,6 +1636,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                 <Col>
                   <TeamRosterEditor
                     isBench={false}
+                    enableNil={enableNil}
                     addNewPlayerMode={true}
                     overrides={undefined}
                     onUpdate={(edit: PlayerEditModel | undefined) => {

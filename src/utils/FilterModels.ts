@@ -172,6 +172,7 @@ export type TeamEditorParams = {
   showOnlyTransfers?: boolean, //(defaults to true)
   showOnlyCurrentYear?: boolean, //(defaults to true)
   diffBasis?: string, //JSON representation of the starting point for showing diffs
+  enableNil?: boolean,
   // Editor state
   deletedPlayers?: string, //;-separated list
   disabledPlayers?: string,//;-separated list

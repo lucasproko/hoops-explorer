@@ -117,14 +117,11 @@ const TeamLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
     ]));
 
-    //TODO: in off-season mode:
-    // if (!testMode && (rawParams.year == "2022/23")) { //TODO: un-hardwire this
-    //   //Switch to off-season predictions
-    //   const newUrl = UrlRouting.getOffseasonLeaderboard({});
-    //   if (typeof window !== `undefined`) window.location.href = newUrl;
-  
-    // } else 
-    if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
+    if ((rawParams.year == DateUtils.offseasonPredictionYear) && !DateUtils.seasonNotFinished[rawParams.year]) {
+      //Switch to off-season predictions
+      const newUrl = UrlRouting.getOffseasonLeaderboard({});
+      if (typeof window !== `undefined`) window.location.href = newUrl;
+    } else if (!_.isEqual(params, TeamLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

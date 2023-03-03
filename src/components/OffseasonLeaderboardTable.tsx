@@ -81,6 +81,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
    const [year, setYear] = useState(startingState.year || DateUtils.offseasonPredictionYear);
    const yearWithStats = DateUtils.getPrevYear(year);
 
+   const [ yearBeforeSettingEvalMode, setYearBeforeSettingEvalMode ] = useState("");
+
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
    const [teamView,  setTeamView] = useState(startingState.teamView || "");
 
@@ -476,11 +478,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             <Select
                isDisabled={evalMode || transferInOutMode}
                value={stringToOption(year)}
-               options={DateUtils.lboardYearListWithNextYear(tier == "High").map(r => stringToOption(r))}
+               options={
+                  DateUtils.lboardYearListWithNextYear(tier == "High")
+                     .filter(y => y >= DateUtils.firstYearWithDecentRosterData).map(r => stringToOption(r))
+               }
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
                   /* currently only support 2022/23 - but lets other years be specified to jump between off-season predictions and previous results */
                   setYear((option as any)?.value);
+                  setYearBeforeSettingEvalMode("");
                }}}
             />
          </Col>
@@ -510,14 +516,21 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                   truthVal={evalMode}
                   disabled={transferInOutMode}
                   onSelect={() => friendlyChange(() => {
-                     if (evalMode) { // Switching off, go back to current year
-                        const onlySeasonSupported = DateUtils.offseasonPredictionYear; //TODO: support next season
-                        setYear(onlySeasonSupported);
-                        setEvalMode(false);  //(do this last so don't run into "redirect to in-season rankings")
-                     } else { //Switching on, 21/22 season is the only season we support
-                        const onlySeasonSupported = DateUtils.offseasonYear;
-                        setEvalMode(true); //(do this first so don't run into "redirect to in-season rankings")
-                        setYear(onlySeasonSupported);
+                     if (evalMode) { // Switching off, go back to year we were on
+                        if (yearBeforeSettingEvalMode) {
+                           setYear(yearBeforeSettingEvalMode);
+                           setYearBeforeSettingEvalMode("");
+                        } //(otherwise leave year along)
+                        setEvalMode(false); 
+                     } else { //Switching on, we only support 21/22 and 22/23
+                        setYearBeforeSettingEvalMode(year);
+                        if (year < DateUtils.firstYearWithDecentRosterData) { // Don't support leaderboard eval mode before here, rosters are too wrong
+                           setYear(DateUtils.firstYearWithDecentRosterData);
+                        } else if ((year == DateUtils.offseasonPredictionYear) && !DateUtils.seasonNotFinished[year]) {
+                           // season finished, so offseason year has no results to evalyate, jump back to previous year
+                           setYear(DateUtils.getPrevYear(year));
+                        } //(else no need to change year)
+                        setEvalMode(true); 
                      }
                   }, true)}
                />

@@ -10,5 +10,10 @@ export class FeatureFlags {
       }
    }
    // Feature flags themselves:
+
+   /** Some long term work on showing guesses as to the play types players and teams use */
    static readonly betterStyleAnalysis = false;
+
+   /** For team editor - short term work on allowing make-believe NIL estimates */
+   static readonly enableNilView = false;
 }

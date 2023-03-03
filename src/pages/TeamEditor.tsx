@@ -86,6 +86,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
       (!rawParams.factorMins) ? [ 'factorMins' ] : [],
       (!rawParams.alwaysShowBench)? [  'alwaysShowBench' ] : [],
       (!rawParams.superSeniorsBack)? [  'superSeniorsBack' ] : [],
+      (!rawParams.enableNil)? [  'enableNil' ] : [],
 
       (!rawParams.allEditOpen) ? [ 'allEditOpen' ] : [], 
         //(currently not used anywhere - will leave for now and decided whether to remove after more play testing)

@@ -1,7 +1,7 @@
 
 import _ from "lodash";
 import { AvailableTeams } from "../internal-data/AvailableTeams";
-import { IndivStatSet, PureStatSet, Statistic } from '../StatModels';
+import { IndivStatSet, PureStatSet, RosterEntry, Statistic } from '../StatModels';
 import { RatingUtils } from './RatingUtils';
 import { TransferModel } from '../LeaderboardUtils';
 import { PositionUtils } from "./PositionUtils";
@@ -52,6 +52,7 @@ export type Profiles = "5*/Lotto" | "5*" | "5+4*s" | "4*/T40ish" | "4*" | "3.5*/
 export type PlayerEditModel = {
    name?: string, //this determines if the override is a player in their own right
    mins?: number,
+   nil?: number,
    global_off_adj?: number,
    global_def_adj?: number,
    pause?: boolean,
@@ -70,6 +71,7 @@ export type GoodBadOkTriple = {
    orig: IndivStatSet,
    prevYear?: IndivStatSet,
    diag?: TeamEditorDiags,
+   nil?: number,
    actualResults?: IndivStatSet,
    isOnlyActualResults?: boolean,
    manualProfile?: PlayerEditModel // created by hand
@@ -126,12 +128,13 @@ export class TeamEditorUtils {
    /** Convert user overrides to a param string */
    static playerEditModelToUrlParams(key: string, model: PlayerEditModel): string {
       const maybeMins = _.isNil(model.mins) ? undefined : `m@${model.mins.toFixed(1)}`;
+      const maybeNil = _.isNil(model.nil) ? undefined : `n@${model.nil.toFixed(0)}`;
       const maybeOffAdj = _.isNil(model.global_off_adj) ? undefined : `go@${model.global_off_adj.toFixed(2)}`;
       const maybeDefAdj = _.isNil(model.global_def_adj) ? undefined : `gd@${model.global_def_adj.toFixed(2)}`;
       const maybePaused = _.isNil(model.pause) ? undefined : `p@${model.pause ? 1 : 0}`;
       const maybeProfile = _.isNil(model.profile) ? undefined : `b@${model.profile}`;
       const maybePos = _.isNil(model.pos) ? undefined : `P@${model.pos}`;
-      const toWrite = [  maybeMins, maybeOffAdj, maybeDefAdj, maybePaused, maybeProfile, maybePos ].filter(s => !_.isNil(s));
+      const toWrite = [  maybeMins, maybeNil, maybeOffAdj, maybeDefAdj, maybePaused, maybeProfile, maybePos ].filter(s => !_.isNil(s));
       return `${key}|${toWrite.join("|")}`;
    }
 
@@ -144,6 +147,8 @@ export class TeamEditorUtils {
             const vFrags = v.split("@");
             if (vFrags[0] == "m") {
                acc.mins = parseFloat(vFrags?.[1] || "");
+            } else if (vFrags[0] == "n") {
+               acc.nil = parseInt(vFrags?.[1] || "");
             } else if (vFrags[0] == "go") {
                acc.global_off_adj = parseFloat(vFrags?.[1] || "");
             } else if (vFrags[0] == "gd") {
@@ -375,6 +380,7 @@ export class TeamEditorUtils {
             }; };
             return {
                key: code,
+               nil: o.nil,
                good: indivStatSet(TeamEditorUtils.optimisticBenchOrFr),
                bad: indivStatSet(-TeamEditorUtils.pessimisticBenchOrFr),
                ok: indivStatSet(0),
@@ -524,6 +530,28 @@ export class TeamEditorUtils {
       const rosterGuardMins = rosterGuardMinsPreBench + 0.2*(maybeBenchGuard?.ok?.off_team_poss_pct?.value || 0);
       const rosterWingMins = rosterWingMinsPreBench + 0.2*(maybeBenchWing?.ok?.off_team_poss_pct?.value || 0);
       const rosterBigMins = rosterBigMinsPreBench + 0.2*(maybeBenchBig?.ok?.off_team_poss_pct?.value || 0);
+
+      //////////////
+
+      // NIL
+
+      basePlayersPlusHypos.forEach(triple => {
+         // Calculate an NIL as 66% what they did last year, 33% what they are expected to accomplish this year
+         if (!triple.manualProfile) {
+            const transferringIn = _.endsWith(triple.key, "::::");
+            triple.nil = 
+               0.66*TeamEditorUtils.getReturningPlayerNil(triple.orig, transferringIn, true, triple.orig.roster) +
+               0.12*TeamEditorUtils.getReturningPlayerNil(triple.ok, transferringIn, false, triple.orig.roster) +
+               0.11*TeamEditorUtils.getReturningPlayerNil(triple.good, transferringIn, false, triple.orig.roster) +
+               0.11*TeamEditorUtils.getReturningPlayerNil(triple.bad, transferringIn, false, triple.orig.roster);
+         } else { //Fr
+            triple.nil = 0.34*TeamEditorUtils.getReturningPlayerNil(triple.ok, false, false) +
+               0.33*TeamEditorUtils.getReturningPlayerNil(triple.good, false, false) +
+               0.3*TeamEditorUtils.getReturningPlayerNil(triple.bad, false, false);
+         }
+      });
+
+      //////////////
 
       // Useful diag for comparing TeamEditorTable and OffseasonLeaderboardTable
       //console.log(`TEAM [${year}]: ${basePlayersPlusHypos.map(t => `${t.key}/${(t.ok as PureStatSet).off_adj_rapm?.value}/${t.ok.off_team_poss_pct.value}`)}`)
@@ -1267,8 +1295,6 @@ export class TeamEditorUtils {
             });
             triple.diag = _.merge(triple.diag, balanceORtgDiag);
          }
-         // Calc SoS factor for diag mode
-
       });
    }
 
@@ -1668,6 +1694,7 @@ export class TeamEditorUtils {
       };
       return {
          key: key,
+         nil: maybeOverrides?.nil,
          good: {
             ...baseBench,
             off_adj_rapm: { value: regressedBenchLevelOff + TeamEditorUtils.optimisticBenchOrFr + offAdj },
@@ -2126,6 +2153,43 @@ export class TeamEditorUtils {
       }
       return 0;
    }
+
+   /** A very silly function that makes a guess at how coaches might value players */
+   static readonly getReturningPlayerNil = (player: IndivStatSet, transferringIn: boolean, isTrackRecord: boolean, roster?: RosterEntry) => {
+      const baseOffCost = 30; //(use 30K as a completely arbitrary factor to get "$")
+      const baseDefCost = 30; //(use 30K as a completely arbitrary factor to get "$")
+
+      const minPct = player.off_team_poss_pct?.value || 0;
+      const projOrActualOff = (isTrackRecord ? player.off_adj_rtg?.value : TeamEditorUtils.getOff(player)) || 0;
+
+      const slidingCostFactor = Math.sqrt(Math.min(Math.max(0, projOrActualOff - 5.5), 4)); //super stars get more money
+
+      const boxOffNil = Math.max(projOrActualOff|| 0, 0)*minPct*baseOffCost*(1 + slidingCostFactor); // 30K per +1/100
+
+      // Exceptional defenders get a bonus
+      const projOrActualDef = -TeamEditorUtils.getDef(player);
+      const defSlidingScaleBonus = Math.min(Math.max(0, projOrActualDef - 2.5), 2);
+      const defBonus = defSlidingScaleBonus*minPct*baseDefCost;
+
+      const classBonus = _.thru(roster?.year_class, val => {
+         if (val == "So") {
+            return 10;
+         } else if (val == "Jr") {
+            return 20;
+         } else if (val == "Sr") {
+            return 30;
+         }  else if (val == "Sr*") {
+            return 40;
+         } else {
+            return 25; //(Fr "signing bonus")
+         }
+      });
+      //(currently don't have a transfer bonus)
+
+      //console.log(`${player.code}: ${projOrActualOff.toFixed(1)} / ${TeamEditorUtils.getDef(player).toFixed(1)} .. ${boxOffNil.toFixed(1)} (x${slidingCostFactor.toFixed(2)}) ${defBonus.toFixed(1)} + ${classBonus}`)
+
+      return boxOffNil + defBonus + classBonus;
+   };
 
    /** Builds the list of players to calculate the actual season prediction over */
    static readonly getFilteredPlayersWithBench = (pxResults: TeamEditorProcessingResults, disabledPlayers: Record<string, boolean>) => {

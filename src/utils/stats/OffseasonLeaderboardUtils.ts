@@ -277,7 +277,7 @@ export class OffseasonLeaderboardUtils {
          const badDeltaNet = (badNet - okTotals.net)*stdDevFactor;
    
          //TODO; centralize this conf logic (also used in TeamEditorTable)
-         const offseasonConfChanges = (year > DateUtils.offseasonYear) ? latestConfChanges : {};
+         const offseasonConfChanges = latestConfChanges[year] || {};
          const confLookupToUse = efficiencyInfo[`${gender}_${yearWithStats}`] || efficiencyInfo[`${gender}_Latest`];
          const confStr = offseasonConfChanges[t] || (confLookupToUse?.[0]?.[t]?.conf || "???");
 

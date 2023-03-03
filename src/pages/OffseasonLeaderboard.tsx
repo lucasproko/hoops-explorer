@@ -81,16 +81,13 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       (!rawParams.transferInOutMode) ? [ "transferInOutMode" ] : [],
       (!rawParams.evalMode) ? [ "evalMode" ] : [],
       (!rawParams.teamView) ? [ "teamView" ] : [],
+      (!rawParams.enableNil) ? [ "enableNil" ] : [],
       (!rawParams.confs) ? [ "confs" ] : [],
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
       (rawParams.sortBy == "net") ? [ "sortBy" ] : [],
 
     ]));
-    if (rawParams.year && (rawParams.year != DateUtils.offseasonPredictionYear) && !rawParams.evalMode && !rawParams.transferInOutMode) { //TODO: un-hardwire this
-      const newUrl = UrlRouting.getTeamLeaderboardUrl({ year: rawParams.year });
-      if (typeof window !== `undefined`) window.location.href = newUrl;
-
-    } else if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) { //(to avoid recursion)
+    if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

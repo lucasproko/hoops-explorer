@@ -15,14 +15,14 @@ export class DateUtils {
    /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
    static readonly inSeasonYear = "2022/23";
 
-   /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season */
+   /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season (tbc: June 2023 offseason == 2022/23) */
    static readonly offseasonYear = "2022/23";
 
    /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
    static readonly coreYears = [ "2018/9", "2019/20", "2020/21", "2021/22", "2022/23" ];
 
    /** Note should include all 3 formats */
-   private static readonly seasonNotFinished: Record<string, boolean> = {
+   static readonly seasonNotFinished: Record<string, boolean> = {
       "2022/23": true,
       "Men_2022/23": true,
       "Women_2022/23": true
@@ -40,13 +40,16 @@ export class DateUtils {
    static readonly mostRecentYearWithData = "2022/23";
 
    /** The year to use if making off-season predictions */
-   static readonly offseasonPredictionYear = "2022/23";
+   static readonly offseasonPredictionYear = "2023/24";
 
    /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
    static readonly mostRecentYearWithLboardData = "2022/23";
 
    /** Don't bother trying to display NET after this year */
    static readonly mostRecentYearWithNetAvailable = "2022/23";
+
+   /** Can't do team leaderboard predictions before here (per-team projections are fine because it's easy to edit them) */
+   static readonly firstYearWithDecentRosterData = "2021/22";
 
    // These are old years in which the normal rules don't apply:
 

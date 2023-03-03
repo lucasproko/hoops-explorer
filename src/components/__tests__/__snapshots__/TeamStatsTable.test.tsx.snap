@@ -8840,7 +8840,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffe8be",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8848,9 +8848,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        57
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -8876,7 +8879,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffdfa3",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8884,9 +8887,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        49
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -8912,7 +8918,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#e3f1f6",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8920,9 +8926,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        102
+                                        <sup>
+                                          nd
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -8948,7 +8957,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffe5b4",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -8956,9 +8965,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        54
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                   </tr>
                                   <tr
@@ -9182,7 +9194,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#f2f9fb",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -9190,9 +9202,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        88
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -9218,7 +9233,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffd381",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -9226,9 +9241,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        39
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -9254,7 +9272,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#c9e6ef",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -9262,9 +9280,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        125
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -9290,7 +9311,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#eaf5f9",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -9298,9 +9319,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        95
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                   </tr>
                                   <tr
@@ -23532,7 +23556,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffc355",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23540,9 +23564,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        26
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -23568,7 +23595,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#eef7fa",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23576,9 +23603,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        92
+                                        <sup>
+                                          nd
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -23604,7 +23634,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffa90a",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23612,9 +23642,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        4
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -23640,7 +23673,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#d2eaf1",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23648,9 +23681,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        117
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                   </tr>
                                   <tr
@@ -23874,7 +23910,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#e3f1f6",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23882,9 +23918,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        102
+                                        <sup>
+                                          nd
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -23910,7 +23949,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#fff9ee",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23918,9 +23957,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        71
+                                        <sup>
+                                          st
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -23946,7 +23988,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#fff1d6",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23954,9 +23996,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        64
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -23982,7 +24027,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#c3e2ed",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -23990,9 +24035,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        131
+                                        <sup>
+                                          st
+                                        </sup>
+                                      </small>
                                     </td>
                                   </tr>
                                   <tr
@@ -38224,7 +38272,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffd78f",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38232,9 +38280,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        43
+                                        <sup>
+                                          rd
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -38260,7 +38311,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffeecf",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38268,9 +38319,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        62
+                                        <sup>
+                                          nd
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -38296,7 +38350,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#fdfefe",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38304,9 +38358,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        78
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -38332,7 +38389,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#fffbf5",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38340,9 +38397,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        73
+                                        <sup>
+                                          rd
+                                        </sup>
+                                      </small>
                                     </td>
                                   </tr>
                                   <tr
@@ -38566,7 +38626,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#f0f8fa",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38574,9 +38634,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        90
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -38602,7 +38665,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#ffdfa3",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38610,9 +38673,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        49
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -38638,7 +38704,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#d8ecf3",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38646,9 +38712,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        112
+                                        <sup>
+                                          th
+                                        </sup>
+                                      </small>
                                     </td>
                                     <td
                                       className=""
@@ -38674,7 +38743,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                       rowSpan={1}
                                       style={
                                         Object {
-                                          "backgroundColor": undefined,
+                                          "backgroundColor": "#e1f1f6",
                                           "fontWeight": "normal",
                                           "textAlign": "center",
                                           "verticalAlign": "middle",
@@ -38682,9 +38751,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                         }
                                       }
                                     >
-                                      <div>
-                                        
-                                      </div>
+                                      <small>
+                                        103
+                                        <sup>
+                                          rd
+                                        </sup>
+                                      </small>
                                     </td>
                                   </tr>
                                   <tr

@@ -83,7 +83,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [confs, setConfs] = useState(startingState.confs || "");
    const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
 
-   const [year, setYear] = useState(startingState.year || DateUtils.offseasonPredictionYear);
+   const [year, setYear] = useState(startingState.year || DateUtils.mostRecentYearWithData);
    const yearWithStats = DateUtils.getPrevYear(year);
 
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men

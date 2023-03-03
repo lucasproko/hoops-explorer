@@ -30,15 +30,17 @@ type Props = {
    onUpdate: (edit: PlayerEditModel | undefined) => void,
    isBench: boolean,
    addNewPlayerMode: boolean,
+   enableNil?: boolean
 };
 
-const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, onUpdate, isBench, addNewPlayerMode}) => {
+const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, onUpdate, isBench, addNewPlayerMode, enableNil}) => {
 
    // State
 
    // Starting values:
    const [ currName, setCurrName ] = useState(overrides?.name || "");
    const [ currMins, setCurrMins ] = useState(overrides?.mins?.toFixed(1) || "");
+   const [ currNil, setCurrNil ] = useState(overrides?.nil?.toFixed(0) || "");
    const [ currProfile, setCurrProfile ] = useState((overrides?.profile || (addNewPlayerMode ? "4*" : "Auto")) as Profiles);
    const [ currPos, setCurrPos ] = useState(overrides?.pos || "WG");
    const [ currOffAdj, setCurrOffAdj ] = useState((overrides?.global_off_adj || 0) as number | undefined);
@@ -96,6 +98,11 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
 
    const minsApplyTooltip = <Tooltip id="minsApplyTooltip">
       Override the minutes played per game for this player and recalculate the statistics.&nbsp;
+      Clear the field and apply to return to the automatically calculated version.
+   </Tooltip>;
+
+   const nilApplyTooltip = <Tooltip id="nilApplyTooltip">
+      Add a manual estimate for the player's NIL old_value.&nbsp;
       Clear the field and apply to return to the automatically calculated version.
    </Tooltip>;
 
@@ -168,21 +175,21 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                <Col xs={1}/>               
                <Col xs={3}>
                   <InputGroup>
-                  <InputGroup.Prepend>
-                     <InputGroup.Text id="minPct">Fix MPG</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control disabled={overrides?.pause}
-                     onChange={(ev: any) => {
-                        if (/^[0-9.]*$/.exec(ev.target.value || "")) {
-                           setCurrMins(ev.target.value || "")
-                        }
-                     }}
-                     placeholder = "eg 33.3"
-                     value={currMins}
-                  />
+                     <InputGroup.Prepend>
+                        <InputGroup.Text id="minPct">Fix MPG</InputGroup.Text>
+                     </InputGroup.Prepend>
+                     <Form.Control disabled={overrides?.pause}
+                        onChange={(ev: any) => {
+                           if (/^[0-9.]*$/.exec(ev.target.value || "")) {
+                              setCurrMins(ev.target.value || "")
+                           }
+                        }}
+                        placeholder = "eg 33.3"
+                        value={currMins}
+                     />
                   </InputGroup>
                </Col>
-               <Col xs={2} className="pt-1">
+               <Col xs={1} className="pt-1">
                   {addNewPlayerMode ? null :
                   <OverlayTrigger overlay={minsApplyTooltip} placement="auto">
                      <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
@@ -200,7 +207,42 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                      >+</Button>
                   </OverlayTrigger>}
                </Col>
-               <Col xs={3}/>
+               { enableNil ?
+               <Col xs={3}>
+                  <InputGroup>
+                     <InputGroup.Prepend>
+                        <InputGroup.Text id="minPct">NIL $</InputGroup.Text>
+                     </InputGroup.Prepend>
+                     <Form.Control disabled={overrides?.pause}
+                        onChange={(ev: any) => {
+                           if (/^[0-9]*$/.exec(ev.target.value || "")) {
+                              setCurrNil(ev.target.value || "")
+                           }
+                        }}
+                        placeholder = "eg 100"
+                        value={currNil}
+                     />
+                  </InputGroup>
+               </Col> :  <Col xs={3}/> }
+               { enableNil ?
+               <Col xs={1} className="pt-1">
+                  {addNewPlayerMode ? null :
+                  <OverlayTrigger overlay={nilApplyTooltip} placement="auto">
+                     <Button size="sm" variant="outline-secondary" disabled={overrides?.pause}
+                        onClick={() => {
+                           if (!((parseInt(currNil || "-1") == overrides?.nil) || (!currNil && _.isNil(overrides?.nil)))) {
+                              const currOverrides = overrides ? _.clone(overrides) : {};
+                              if (currNil == "") {
+                                 delete currOverrides.nil
+                              } else {
+                                 currOverrides.nil = parseInt(currNil);
+                              }
+                              onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
+                           }
+                        }}
+                     >+</Button>
+                  </OverlayTrigger>}
+               </Col> : <Col xs={1}/>}
                <Col xs={1} className="pt-1">
                   {addNewPlayerMode ? null :
                   <OverlayTrigger overlay={resetTooltip} placement="auto">
@@ -215,6 +257,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            onUpdate(currOverrides);
                         } else { // Else just clear the entire overrdes
                            setCurrMins("");
+                           setCurrNil("");
                            if (!isFr) setCurrProfile("Auto");
                            onUpdate(undefined);
                         }
@@ -235,8 +278,8 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({overrides, onDelete, 
                            }
                            onUpdate(_.isEmpty(currOverrides) ? undefined : currOverrides);
                         }
-                     })}
-                        ><FontAwesomeIcon icon={faPause} />
+                     })}>
+                        <FontAwesomeIcon icon={faPause} />
                      </Button>
                   </OverlayTrigger>}
                </Col>
