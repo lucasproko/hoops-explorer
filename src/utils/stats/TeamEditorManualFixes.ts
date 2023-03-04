@@ -38,10 +38,11 @@ export class TeamEditorManualFixes {
          const typedOverrides: Record<string, {pr: string, pos:string, c:string, h:string, r?:number, o?:number, d?:number}> = override;
          const playerOverrides = _.transform(typedOverrides, ((acc2, over, player) => {
             const adjRtg = (over.r || 0)*0.01;
-            const fourStarSuperFactor = ((over.pr == "4*") && (adjRtg >= 0.8)) ? 
-               (0.25 + ((adjRtg - 0.8)*5)*1.25) : 0.25;
-                //(0.5 for off/def, and * 0.5 so the total -1 to 1 range is RAPM of 1)
-                //(to make 4* lineup with T40 you start to get a bigger bonus at 75+, need o+d to get from 1.5 to 3 at adjRtg of 1.0
+            const fourStarSuperFactor = (((over.pr == "4*") && (adjRtg >= 0.8)) ? 
+                  (0.5 + ((adjRtg - 0.8)*5)*1.25) : //(to make 4* align with T40 you start to get a bigger bonus at 75+, need o+d to get from 1.5 to 3 at adjRtg of 1.0
+                  0.5 //(0.5 so the total -1 to 1 range is RAPM of 1)
+               )*0.5; //(*0.5 for off/def)
+
             const fiveStarFactor = 0.5; //(5* gets bigger range of penalties because values assigned are pretty higher)
             const factor = (over.pr >= "5*") ? fiveStarFactor : fourStarSuperFactor; 
 

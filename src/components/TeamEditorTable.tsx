@@ -1599,7 +1599,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                       }, 100);
                     }, 250);
                   }}
-                  label="Player builder mode"
+                  label="Manual Player Builder"
                 />
               </Form.Group>
               <Form.Group as={Col} xs="4" className="mt-2">

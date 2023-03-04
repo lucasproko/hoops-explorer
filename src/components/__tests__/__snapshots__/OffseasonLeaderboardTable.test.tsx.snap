@@ -6271,7 +6271,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     SEC
                   </small>,
                   "def": Object {
-                    "value": 99.74166875,
+                    "value": 99.75656875,
                   },
                   "def_grade": Object {
                     "samples": 106,
@@ -6332,7 +6332,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </ForwardRef>
                   </OverlayTrigger>,
                   "fr_margin": Object {
-                    "value": 2.3561624999999986,
+                    "value": 2.327862499999999,
                   },
                   "high_grade": Object {
                     "samples": 106,
@@ -6342,7 +6342,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 2.3561624999999986,
+                    "value": 2.327862499999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -6352,14 +6352,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 4.702662499999999,
+                    "value": 4.6748625,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.8207547169811321,
                   },
                   "off": Object {
-                    "value": 104.44433125,
+                    "value": 104.43143125,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -7030,7 +7030,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "def_grade": Object {
                     "samples": 106,
-                    "value": 0.7452830188679245,
+                    "value": 0.7547169811320755,
                   },
                   "dev_margin": Object {
                     "value": 0,
@@ -7439,7 +7439,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.7169811320754716,
+                    "value": 0.7264150943396226,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -7498,162 +7498,11 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 100.2316,
-                  },
-                  "def_grade": Object {
-                    "samples": 106,
-                    "value": 0.7547169811320755,
-                  },
-                  "dev_margin": Object {
-                    "value": 0,
-                  },
-                  "edit": <OverlayTrigger
-                    overlay={
-                      <ForwardRef
-                        id="editTooltip"
-                        placement="right"
-                      >
-                        Show/Hide the inline Team Viewer and Editor 
-                      </ForwardRef>
-                    }
-                    placement="auto"
-                  >
-                    <ForwardRef
-                      active={false}
-                      disabled={false}
-                      onClick={[Function]}
-                      size="sm"
-                      variant="outline-secondary"
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={false}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [
-                              576,
-                              512,
-                              Array [],
-                              "f06e",
-                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
-                            ],
-                            "iconName": "eye",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        swapOpacity={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      />
-                    </ForwardRef>
-                  </OverlayTrigger>,
-                  "fr_margin": Object {
-                    "value": 1.5412999999999992,
-                  },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.9433962264150944,
-                  },
-                  "in_margin": Object {
-                    "value": 0,
-                  },
-                  "inout_margin": Object {
-                    "value": 1.5412999999999992,
-                  },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.018867924528301886,
-                  },
-                  "nba_margin": Object {
-                    "value": 0,
-                  },
-                  "net": Object {
-                    "value": 3.9427999999999996,
-                  },
-                  "net_grade": Object {
-                    "samples": 106,
-                    "value": 0.7452830188679245,
-                  },
-                  "off": Object {
-                    "value": 104.1744,
-                  },
-                  "off_grade": Object {
-                    "samples": 106,
-                    "value": 0.7547169811320755,
-                  },
-                  "out_margin": Object {
-                    "value": 0,
-                  },
-                  "roster": <span
-                    style={
-                      Object {
-                        "whiteSpace": "nowrap",
-                      }
-                    }
-                  >
-                    <small>
-                      0 / 0 / 0 / 1
-                    </small>
-                  </span>,
-                  "sr_margin": Object {
-                    "value": 0,
-                  },
-                  "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <ForwardRef
-                          id="teamTooltip27"
-                          placement="right"
-                        >
-                          Open new tab with the detailed off-season predictions for this team
-                        </ForwardRef>
-                      }
-                      placement="auto"
-                    >
-                      <b>
-                        <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Xavier&year=2020%2F21&"
-                          target="_blank"
-                        >
-                          Xavier
-                        </a>
-                      </b>
-                    </OverlayTrigger>
-                  </span>,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "actual_grade": Object {
-                    "colorOverride": 1.0129870129870129,
-                    "samples": 106,
-                    "value": 0.009433962264150941,
-                  },
-                  "conf": <small>
-                    BE
-                  </small>,
-                  "def": Object {
                     "value": 100.32205625,
                   },
                   "def_grade": Object {
                     "samples": 106,
-                    "value": 0.7264150943396226,
+                    "value": 0.7452830188679245,
                   },
                   "dev_margin": Object {
                     "value": 0,
@@ -7734,14 +7583,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.7358490566037735,
+                    "value": 0.7452830188679245,
                   },
                   "off": Object {
                     "value": 104.14794375000001,
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.7358490566037735,
+                    "value": 0.7452830188679245,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -7764,7 +7613,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip28"
+                          id="teamTooltip27"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -7792,158 +7641,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 1.013157894736842,
-                    "samples": 106,
-                    "value": 0.009433962264150941,
-                  },
-                  "conf": <small>
-                    ACC
-                  </small>,
-                  "def": Object {
-                    "value": 100.302625,
-                  },
-                  "def_grade": Object {
-                    "samples": 106,
-                    "value": 0.7358490566037735,
-                  },
-                  "dev_margin": Object {
-                    "value": 0,
-                  },
-                  "edit": <OverlayTrigger
-                    overlay={
-                      <ForwardRef
-                        id="editTooltip"
-                        placement="right"
-                      >
-                        Show/Hide the inline Team Viewer and Editor 
-                      </ForwardRef>
-                    }
-                    placement="auto"
-                  >
-                    <ForwardRef
-                      active={false}
-                      disabled={false}
-                      onClick={[Function]}
-                      size="sm"
-                      variant="outline-secondary"
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={false}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [
-                              576,
-                              512,
-                              Array [],
-                              "f06e",
-                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
-                            ],
-                            "iconName": "eye",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        swapOpacity={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      />
-                    </ForwardRef>
-                  </OverlayTrigger>,
-                  "fr_margin": Object {
-                    "value": 1.380499999999999,
-                  },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 0.9433962264150944,
-                  },
-                  "in_margin": Object {
-                    "value": 0,
-                  },
-                  "inout_margin": Object {
-                    "value": 1.380499999999999,
-                  },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.018867924528301886,
-                  },
-                  "nba_margin": Object {
-                    "value": 0,
-                  },
-                  "net": Object {
-                    "value": 3.775749999999999,
-                  },
-                  "net_grade": Object {
-                    "samples": 106,
-                    "value": 0.7264150943396226,
-                  },
-                  "off": Object {
-                    "value": 104.07837500000001,
-                  },
-                  "off_grade": Object {
-                    "samples": 106,
-                    "value": 0.7075471698113207,
-                  },
-                  "out_margin": Object {
-                    "value": 0,
-                  },
-                  "roster": <span
-                    style={
-                      Object {
-                        "whiteSpace": "nowrap",
-                      }
-                    }
-                  >
-                    <small>
-                      0 / 0 / 0 / 1
-                    </small>
-                  </span>,
-                  "sr_margin": Object {
-                    "value": 0,
-                  },
-                  "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <ForwardRef
-                          id="teamTooltip29"
-                          placement="right"
-                        >
-                          Open new tab with the detailed off-season predictions for this team
-                        </ForwardRef>
-                      }
-                      placement="auto"
-                    >
-                      <b>
-                        <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Clemson&year=2020%2F21&"
-                          target="_blank"
-                        >
-                          Clemson
-                        </a>
-                      </b>
-                    </OverlayTrigger>
-                  </span>,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "actual_grade": Object {
-                    "colorOverride": 1.0133333333333334,
+                    "colorOverride": 1.0129870129870129,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -7955,7 +7653,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "def_grade": Object {
                     "samples": 106,
-                    "value": 0.7075471698113207,
+                    "value": 0.7358490566037735,
                   },
                   "dev_margin": Object {
                     "value": 0,
@@ -8036,14 +7734,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.7169811320754716,
+                    "value": 0.7358490566037735,
                   },
                   "off": Object {
                     "value": 104.15240625,
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.7452830188679245,
+                    "value": 0.7547169811320755,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -8066,7 +7764,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip30"
+                          id="teamTooltip28"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -8094,7 +7792,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 1.0135135135135136,
+                    "colorOverride": 1.013157894736842,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -8106,7 +7804,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "def_grade": Object {
                     "samples": 106,
-                    "value": 0.6981132075471698,
+                    "value": 0.7075471698113207,
                   },
                   "dev_margin": Object {
                     "value": 0,
@@ -8187,14 +7885,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.7075471698113207,
+                    "value": 0.7264150943396226,
                   },
                   "off": Object {
                     "value": 104.12896875,
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.7264150943396226,
+                    "value": 0.7358490566037735,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -8217,7 +7915,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip31"
+                          id="teamTooltip29"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -8245,7 +7943,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 1.0136986301369864,
+                    "colorOverride": 1.0133333333333334,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -8253,7 +7951,158 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     SEC
                   </small>,
                   "def": Object {
-                    "value": 100.38065,
+                    "value": 100.42002500000001,
+                  },
+                  "def_grade": Object {
+                    "samples": 106,
+                    "value": 0.7264150943396226,
+                  },
+                  "dev_margin": Object {
+                    "value": 0,
+                  },
+                  "edit": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="editTooltip"
+                        placement="right"
+                      >
+                        Show/Hide the inline Team Viewer and Editor 
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <ForwardRef
+                      active={false}
+                      disabled={false}
+                      onClick={[Function]}
+                      size="sm"
+                      variant="outline-secondary"
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={false}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [
+                              576,
+                              512,
+                              Array [],
+                              "f06e",
+                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
+                            ],
+                            "iconName": "eye",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        swapOpacity={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      />
+                    </ForwardRef>
+                  </OverlayTrigger>,
+                  "fr_margin": Object {
+                    "value": 1.1651999999999993,
+                  },
+                  "high_grade": Object {
+                    "samples": 106,
+                    "value": 0.9433962264150944,
+                  },
+                  "in_margin": Object {
+                    "value": 0,
+                  },
+                  "inout_margin": Object {
+                    "value": 1.1651999999999993,
+                  },
+                  "low_grade": Object {
+                    "samples": 106,
+                    "value": 0.018867924528301886,
+                  },
+                  "nba_margin": Object {
+                    "value": 0,
+                  },
+                  "net": Object {
+                    "value": 3.56695,
+                  },
+                  "net_grade": Object {
+                    "samples": 106,
+                    "value": 0.7169811320754716,
+                  },
+                  "off": Object {
+                    "value": 103.986975,
+                  },
+                  "off_grade": Object {
+                    "samples": 106,
+                    "value": 0.6981132075471698,
+                  },
+                  "out_margin": Object {
+                    "value": 0,
+                  },
+                  "roster": <span
+                    style={
+                      Object {
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    <small>
+                      0 / 0 / 0 / 0
+                    </small>
+                  </span>,
+                  "sr_margin": Object {
+                    "value": 0,
+                  },
+                  "title": <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="teamTooltip30"
+                          placement="right"
+                        >
+                          Open new tab with the detailed off-season predictions for this team
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <b>
+                        <a
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Alabama&year=2020%2F21&"
+                          target="_blank"
+                        >
+                          Alabama
+                        </a>
+                      </b>
+                    </OverlayTrigger>
+                  </span>,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "actual_grade": Object {
+                    "colorOverride": 1.0135135135135136,
+                    "samples": 106,
+                    "value": 0.009433962264150941,
+                  },
+                  "conf": <small>
+                    BE
+                  </small>,
+                  "def": Object {
+                    "value": 100.44535,
                   },
                   "def_grade": Object {
                     "samples": 106,
@@ -8314,7 +8163,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </ForwardRef>
                   </OverlayTrigger>,
                   "fr_margin": Object {
-                    "value": 1.243949999999999,
+                    "value": 1.113799999999999,
                   },
                   "high_grade": Object {
                     "samples": 106,
@@ -8324,7 +8173,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 1.243949999999999,
+                    "value": 1.113799999999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -8334,18 +8183,18 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 3.6456999999999997,
+                    "value": 3.5152999999999994,
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.6981132075471698,
+                    "value": 0.7075471698113207,
                   },
                   "off": Object {
-                    "value": 104.02635000000001,
+                    "value": 103.96065,
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.6792452830188679,
+                    "value": 0.6886792452830188,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -8358,7 +8207,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     }
                   >
                     <small>
-                      0 / 0 / 0 / 0
+                      0 / 0 / 0 / 1
                     </small>
                   </span>,
                   "sr_margin": Object {
@@ -8368,7 +8217,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip32"
+                          id="teamTooltip31"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -8378,10 +8227,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Alabama&year=2020%2F21&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Xavier&year=2020%2F21&"
                           target="_blank"
                         >
-                          Alabama
+                          Xavier
                         </a>
                       </b>
                     </OverlayTrigger>
@@ -8396,7 +8245,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 1.0138888888888888,
+                    "colorOverride": 1.0136986301369864,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -8489,14 +8338,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.6886792452830188,
+                    "value": 0.6981132075471698,
                   },
                   "off": Object {
                     "value": 104.03788750000001,
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.6886792452830188,
+                    "value": 0.7075471698113207,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -8519,7 +8368,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip33"
+                          id="teamTooltip32"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -8547,7 +8396,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 1.0140845070422535,
+                    "colorOverride": 1.0138888888888888,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -8640,14 +8489,165 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.6792452830188679,
+                    "value": 0.6886792452830188,
                   },
                   "off": Object {
                     "value": 104.03788750000001,
                   },
                   "off_grade": Object {
                     "samples": 106,
-                    "value": 0.6886792452830188,
+                    "value": 0.7075471698113207,
+                  },
+                  "out_margin": Object {
+                    "value": 0,
+                  },
+                  "roster": <span
+                    style={
+                      Object {
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    <small>
+                      0 / 0 / 0 / 1
+                    </small>
+                  </span>,
+                  "sr_margin": Object {
+                    "value": 0,
+                  },
+                  "title": <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="teamTooltip33"
+                          placement="right"
+                        >
+                          Open new tab with the detailed off-season predictions for this team
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <b>
+                        <a
+                          href="/TeamEditor?evalMode=true&gender=Men&team=UCLA&year=2020%2F21&"
+                          target="_blank"
+                        >
+                          UCLA
+                        </a>
+                      </b>
+                    </OverlayTrigger>
+                  </span>,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "actual_grade": Object {
+                    "colorOverride": 1.0140845070422535,
+                    "samples": 106,
+                    "value": 0.009433962264150941,
+                  },
+                  "conf": <small>
+                    ACC
+                  </small>,
+                  "def": Object {
+                    "value": 100.49950000000001,
+                  },
+                  "def_grade": Object {
+                    "samples": 106,
+                    "value": 0.6981132075471698,
+                  },
+                  "dev_margin": Object {
+                    "value": 0,
+                  },
+                  "edit": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="editTooltip"
+                        placement="right"
+                      >
+                        Show/Hide the inline Team Viewer and Editor 
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <ForwardRef
+                      active={false}
+                      disabled={false}
+                      onClick={[Function]}
+                      size="sm"
+                      variant="outline-secondary"
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={false}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [
+                              576,
+                              512,
+                              Array [],
+                              "f06e",
+                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
+                            ],
+                            "iconName": "eye",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        swapOpacity={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      />
+                    </ForwardRef>
+                  </OverlayTrigger>,
+                  "fr_margin": Object {
+                    "value": 0.9867499999999995,
+                  },
+                  "high_grade": Object {
+                    "samples": 106,
+                    "value": 0.9433962264150944,
+                  },
+                  "in_margin": Object {
+                    "value": 0,
+                  },
+                  "inout_margin": Object {
+                    "value": 0.9867499999999995,
+                  },
+                  "low_grade": Object {
+                    "samples": 106,
+                    "value": 0.018867924528301886,
+                  },
+                  "nba_margin": Object {
+                    "value": 0,
+                  },
+                  "net": Object {
+                    "value": 3.3819999999999992,
+                  },
+                  "net_grade": Object {
+                    "samples": 106,
+                    "value": 0.6792452830188679,
+                  },
+                  "off": Object {
+                    "value": 103.8815,
+                  },
+                  "off_grade": Object {
+                    "samples": 106,
+                    "value": 0.6792452830188679,
                   },
                   "out_margin": Object {
                     "value": 0,
@@ -8680,10 +8680,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     >
                       <b>
                         <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=UCLA&year=2020%2F21&"
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Clemson&year=2020%2F21&"
                           target="_blank"
                         >
-                          UCLA
+                          Clemson
                         </a>
                       </b>
                     </OverlayTrigger>

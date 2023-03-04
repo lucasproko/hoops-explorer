@@ -4321,7 +4321,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -9578,7 +9578,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -15215,7 +15215,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -21595,7 +21595,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -27796,7 +27796,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -34750,7 +34750,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -39970,7 +39970,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -43027,7 +43027,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -46351,7 +46351,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
@@ -49671,7 +49671,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               <FormCheck
                 checked={false}
                 id="addNewPlayerMode"
-                label="Player builder mode"
+                label="Manual Player Builder"
                 onChange={[Function]}
                 type="switch"
               />
