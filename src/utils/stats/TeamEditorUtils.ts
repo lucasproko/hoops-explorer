@@ -1344,7 +1344,7 @@ export class TeamEditorUtils {
 
       const balanceUsage = (proj: "good" | "bad" | "ok") => {
 
-         const usgInfo = _.transform(roster, (acc, triple) => {
+         const usgInfo = _.transform(filteredRoster, (acc, triple) => {
 
             const indivStatSet = (triple[proj] as PureStatSet);
 
@@ -1370,7 +1370,7 @@ export class TeamEditorUtils {
          const applyPlaymakingPenalty = (proj != "good") && (deltaUsg > 0);
 
          // In all cases want to fix the usg/org
-         if (deltaUsg != 0) roster.forEach(triple => {
+         if (deltaUsg != 0) filteredRoster.forEach(triple => {
             const indivStatSet = (triple[proj] as PureStatSet);
             const oRtgAdjustment = applyPlaymakingPenalty ? -deltaUsg*100 : 0; 
                //Arbitrary: 1 pt of ORtg per player per % of usage below 20
