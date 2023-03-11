@@ -728,12 +728,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const showGradesPosGroup = showGrades.split(":")[2] || "All";
       const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % showGradesFactor))
 
-      if (showGrades && (
-        ((sortBy != "desc:diff_adj_rapm") && (sortBy != "desc:diff_adj_rapm_prod"))
-        ||
-        (showGradesPosGroup != "All")
-      ))
-      {
+      if (showGrades) {
+        // Always show the overall grade, even though it's spurious in some cases - it's too hard
+        // to figure out when (eg even with totally default view - and there's a bunch of ways the user can add
+        // various filters - you still have H/M/L players)
+
         const adjRapmMargin: Statistic | undefined = (player.off_adj_rapm && player.def_adj_rapm) ? { 
             value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) 
         } : undefined;
