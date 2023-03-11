@@ -314,6 +314,18 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             <Dropdown.Item>
               {buildNavItem("Players - all tiers", playerLeaderboardTooltip("All"), getPlayerLeaderboardUrl("All"), true)}
             </Dropdown.Item>
+            {
+            // Keep until 2023/24
+            <Dropdown.Item>
+              {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true", true)}
+            </Dropdown.Item>
+            }
+            {/*
+            // Switch to this later in the season
+            <Dropdown.Item>
+              {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=2023&advancedFilter=transfer_dest%20%3D%3D%20%22%22", true)}
+            </Dropdown.Item>
+            */}
             <Dropdown.Divider/>
             <Dropdown.Item>
               {buildNavItem("Build your own team leaderboard!", teamLeaderboardTooltip, getTeamLeaderboardUrl(), true)}
@@ -321,12 +333,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             <Dropdown.Item>
               {buildNavItem("Build your own roster!", teamBuilderTooltip, getTeamBuilderUrl(), true)}
             </Dropdown.Item>
-            {
-            // Remove until 2023
-            // <Dropdown.Item>
-            //   {buildNavItem("Players - 2022 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=2022&advancedFilter=transfer_dest%20%3D%3D%20%22%22", true)}
-            // </Dropdown.Item>
-            }
             <Dropdown.Divider/>
             <Dropdown.Item>
               {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
