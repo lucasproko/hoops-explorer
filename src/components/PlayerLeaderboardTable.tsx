@@ -257,6 +257,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
 
+  /** If enabled we show a prediction for next year for the player */
+  const transferPredictionMode = 
+    (startingState.transferMode?.toString() == "true") && FeatureFlags.isActiveWindow(FeatureFlags.showTransferPredictions);
+
   /** Show the number of possessions as a % of total team count */
   const [ possAsPct, setPossAsPct ] = useState(_.isNil(startingState.possAsPct) ?
     ParamDefaults.defaultPlayerLboardPossAsPct : startingState.possAsPct
@@ -716,8 +720,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       const txfeEl = player.transfer_dest ? <span> (&gt;{player.transfer_dest})</span> : null;
 
-      const transferPredictionFeatureFlag = FeatureFlags.isActiveWindow(FeatureFlags.showTransferPredictions);
-      if (transferPredictionFeatureFlag && startingState.transferMode) {
+      if (transferPredictionMode) {
         const genderYearLookup = `${gender}_${player.year}`;
         const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;  
 
@@ -726,7 +729,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         )
         player.off_adj_rapm_pred = prediction.off_adj_rapm;
         player.def_adj_rapm_pred = prediction.def_adj_rapm;
+        player.off_rtg_pred = prediction.off_rtg;
+        player.off_usage_pred = prediction.off_usage;
       }
+      const predictionLine = _.thru(transferPredictionMode, __ => {
+        const offPred = (player.off_adj_rapm_pred?.value || 0);
+        const defPred = (player.def_adj_rapm_pred?.value || 0);
+        const netPred = offPred - defPred;
+        const offRtgPred = (player.off_rtg_pred?.value || 100);
+        const offUsagePred = (player.off_usage_pred?.value || 0.2)*100;
+        if (transferPredictionMode) {
+          return <span><small><b>Next year's RAPM predictions</b></small>
+            : net=[<b>{netPred.toFixed(1)}</b>] off=[<b>{offPred.toFixed(1)}</b>] def=[<b>{defPred.toFixed(1)}</b>]
+            <small> (off rating=[<b>{offRtgPred.toFixed(1)}</b>] usage=[<b>{offUsagePred.toFixed(1)}</b>]%)</small>
+          </span>;
+        } else {
+          return undefined;
+        }
+      });
 
       // Player display
 
@@ -781,11 +801,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         ] : [],
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
-        transferPredictionFeatureFlag ? [
-          GenericTableOps.buildTextRow(
-            <p>Predictions: off={player.off_adj_rapm_pred?.value} def={player.def_adj_rapm_pred?.value}</p>, "small"
-          )
-        ] : [],
+        predictionLine ? [ GenericTableOps.buildTextRow(predictionLine, "") ] : [],
         (showGrades && playerIndex < 50) ? GradeTableUtils.buildPlayerGradeTableRows({
           isFullSelection: !isT100 && !isConfOnly,
           selectionTitle: `Grades`,

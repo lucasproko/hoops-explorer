@@ -865,23 +865,26 @@ export class TeamEditorUtils {
       }];
 
       //(just using Maryland as a "random solid high major")
+      const fallbackTeam = player.team == "Maryland" ? "Oklahoma" : "Maryland";
 
       const benchEstimates = 
          [  TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ].map(key => {
             return TeamEditorUtils.buildBenchEfficiency(
-               destTeam || "Maryland", year, key, "N/A", "N/A", 0.5, undefined, {}
+               destTeam || fallbackTeam, year, key, "N/A", "N/A", 0.5, undefined, {}
             ).ok;
          });
 
       TeamEditorUtils.calcAndInjectYearlyImprovement(
-         rosterOfOne, destTeam || "Maryland", year,
-         player.off_sos?.value || avgEff, player.def_sos?.value || avgEff, avgEff,
-         {}, false, benchEstimates
+         rosterOfOne, destTeam || fallbackTeam, year,
+         player.off_adj_opp?.value || avgEff, player.def_adj_opp?.value || avgEff, avgEff,
+         {}, true, benchEstimates
       );
       const okPrediction = rosterOfOne[0]!.ok;
       return {
          off_adj_rapm: okPrediction.off_adj_rapm as unknown as Statistic,
          def_adj_rapm: okPrediction.def_adj_rapm as unknown as Statistic,
+         off_rtg: okPrediction.off_rtg,
+         off_usage: okPrediction.off_usage
       };
    }
 
