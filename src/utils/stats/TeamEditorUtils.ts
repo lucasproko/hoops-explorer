@@ -852,6 +852,39 @@ export class TeamEditorUtils {
       }).filter(keyVal => !manualOverrides[keyVal[0] as string]).fromPairs().value();
    }
 
+   /** For player leaderboard, estimate a player's value the following year */
+   static approxTransferPrediction(
+      player: IndivStatSet, destTeam: string | undefined, year: string, avgEff: number
+   ): PureStatSet {
+      const rosterOfOne: GoodBadOkTriple[] = [{
+         key: player.code || "",
+         good: _.clone(player),
+         ok: _.clone(player),
+         bad: _.clone(player),
+         orig: player
+      }];
+
+      //(just using Maryland as a "random solid high major")
+
+      const benchEstimates = 
+         [  TeamEditorUtils.benchGuardKey, TeamEditorUtils.benchWingKey, TeamEditorUtils.benchBigKey ].map(key => {
+            return TeamEditorUtils.buildBenchEfficiency(
+               destTeam || "Maryland", year, key, "N/A", "N/A", 0.5, undefined, {}
+            ).ok;
+         });
+
+      TeamEditorUtils.calcAndInjectYearlyImprovement(
+         rosterOfOne, destTeam || "Maryland", year,
+         player.off_sos?.value || avgEff, player.def_sos?.value || avgEff, avgEff,
+         {}, false, benchEstimates
+      );
+      const okPrediction = rosterOfOne[0]!.ok;
+      return {
+         off_adj_rapm: okPrediction.off_adj_rapm as unknown as Statistic,
+         def_adj_rapm: okPrediction.def_adj_rapm as unknown as Statistic,
+      };
+   }
+
    /** Give players their year-on-year improvement */
    static calcAndInjectYearlyImprovement(
       roster: GoodBadOkTriple[], 

@@ -51,6 +51,9 @@ import { TransferModel } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
 import ConferenceSelector from './shared/ConferenceSelector';
 import { DivisionStatsCache, GradeTableUtils, PositionStatsCache } from '../utils/tables/GradeTableUtils';
+import { TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { FeatureFlags } from '../utils/stats/FeatureFlags';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -709,7 +712,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         player.def_efg = <small><i className="text-secondary">{rosterInfoText}</i></small>;
       }
 
+      // Transfer info
+
       const txfeEl = player.transfer_dest ? <span> (&gt;{player.transfer_dest})</span> : null;
+
+      const transferPredictionFeatureFlag = FeatureFlags.isActiveWindow(FeatureFlags.showTransferPredictions);
+      if (transferPredictionFeatureFlag && startingState.transferMode) {
+        const genderYearLookup = `${gender}_${player.year}`;
+        const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;  
+
+        const prediction = TeamEditorUtils.approxTransferPrediction(
+          player, player.transfer_dest, player.year, avgEfficiency
+        )
+        player.off_adj_rapm_pred = prediction.off_adj_rapm;
+        player.def_adj_rapm_pred = prediction.def_adj_rapm;
+      }
+
+      // Player display
 
       player.off_title = <div>
         <span className="float-left">
@@ -762,6 +781,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         ] : [],
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
+        transferPredictionFeatureFlag ? [
+          GenericTableOps.buildTextRow(
+            <p>Predictions: off={player.off_adj_rapm_pred?.value} def={player.def_adj_rapm_pred?.value}</p>, "small"
+          )
+        ] : [],
         (showGrades && playerIndex < 50) ? GradeTableUtils.buildPlayerGradeTableRows({
           isFullSelection: !isT100 && !isConfOnly,
           selectionTitle: `Grades`,
