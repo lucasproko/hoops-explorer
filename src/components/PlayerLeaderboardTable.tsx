@@ -54,6 +54,7 @@ import { DivisionStatsCache, GradeTableUtils, PositionStatsCache } from '../util
 import { TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { FeatureFlags } from '../utils/stats/FeatureFlags';
+import { CbbColors } from '../utils/CbbColors';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -738,10 +739,31 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         const netPred = offPred - defPred;
         const offRtgPred = (player.off_rtg_pred?.value || 100);
         const offUsagePred = (player.off_usage_pred?.value || 0.2)*100;
+        const netPredWithShadow = <b
+          style={CommonTableDefs.getTextShadow({ value: netPred }, CbbColors.diff10_p100_redGreen[0], "15px", 6)}
+          >{netPred.toFixed(1)}
+          </b>;
+        const offPredWithShadow = <b
+          style={CommonTableDefs.getTextShadow({ value: offPred }, CbbColors.diff10_p100_redGreen[0], "15px", 6)}
+          >{offPred.toFixed(1)}
+          </b>;
+        const defPredWithShadow = <b
+          style={CommonTableDefs.getTextShadow({ value: defPred }, CbbColors.diff10_p100_redGreen[1], "15px", 6)}
+          >{defPred.toFixed(1)}
+          </b>;
+        const offRtgWithShadow = <b
+          style={CommonTableDefs.getTextShadow({ value: offRtgPred }, CbbColors.pp100[0], "15px", 6)}
+          >{offRtgPred.toFixed(1)}
+          </b>;
+        const usageWithShadow = <b
+          style={CommonTableDefs.getTextShadow({ value: offUsagePred*0.01 }, CbbColors.usg[0], "15px", 6)}
+          >{offUsagePred.toFixed(1)}
+          </b>;
+
         if (transferPredictionMode) {
           return <span><small><b>Next year's RAPM predictions</b></small>
-            : net=[<b>{netPred.toFixed(1)}</b>] off=[<b>{offPred.toFixed(1)}</b>] def=[<b>{defPred.toFixed(1)}</b>]
-            <small> (off rating=[<b>{offRtgPred.toFixed(1)}</b>] usage=[<b>{offUsagePred.toFixed(1)}</b>]%)</small>
+            : net=[{netPredWithShadow}] off=[{offPredWithShadow}] def=[{defPredWithShadow}]
+            <small> // off rating=[{offRtgWithShadow}] usage=[{usageWithShadow}]%</small>
           </span>;
         } else {
           return undefined;

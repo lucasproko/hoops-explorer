@@ -876,7 +876,7 @@ export class TeamEditorUtils {
 
       TeamEditorUtils.calcAndInjectYearlyImprovement(
          rosterOfOne, destTeam || fallbackTeam, year,
-         player.off_adj_opp?.value || avgEff, player.def_adj_opp?.value || avgEff, avgEff,
+         107.0, 98.0, avgEff, //(inject typical HM SoS)
          {}, true, benchEstimates
       );
       const okPrediction = rosterOfOne[0]!.ok;
