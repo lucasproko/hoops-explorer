@@ -317,7 +317,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             {
             // Keep until 2023/24
             <Dropdown.Item>
-              {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true", true)}
+              {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true&sortBy=desc%3Adiff_adj_rapm_pred", true)}
             </Dropdown.Item>
             }
             {/*

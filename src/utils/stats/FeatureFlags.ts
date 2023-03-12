@@ -16,7 +16,4 @@ export class FeatureFlags {
 
    /** For team editor - short term work on allowing make-believe NIL estimates */
    static readonly enableNilView = false;
-
-   /** For player leaderboard - show transfer predictions */
-   static readonly showTransferPredictions = false;
 }

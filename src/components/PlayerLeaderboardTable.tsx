@@ -259,8 +259,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
 
   /** If enabled we show a prediction for next year for the player */
-  const transferPredictionMode = 
-    (startingState.transferMode?.toString() == "true") && FeatureFlags.isActiveWindow(FeatureFlags.showTransferPredictions);
+  const transferPredictionMode = (startingState.transferMode?.toString() == "true");
 
   /** Show the number of possessions as a % of total team count */
   const [ possAsPct, setPossAsPct ] = useState(_.isNil(startingState.possAsPct) ?
@@ -272,7 +271,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const newSortBy = factorMins ?
       sortBy.replace("_rapm_prod", "_rapm").replace("_prod", "_rtg") :
       sortBy.replace("_rapm", "_rapm_prod").replace("_rtg", "_prod");
-    if (newSortBy != sortBy) {
+    if ((newSortBy != sortBy) && !_.endsWith(sortBy, "_pred")) {
       setSortBy(newSortBy);
     }
     setFactorMins(!factorMins);
@@ -303,11 +302,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     "asc:def_adj_rtg",
     "asc:def_adj_rapm"
   ]);
+  const transferPredictionSorters = {
+    "desc:diff_adj_rapm_pred": { label: "Predicted RAPM margin" , value: "desc:diff_adj_rapm_pred" },
+    "desc:off_adj_rapm_pred": { label: "Predicted RAPM offense" , value: "desc:off_adj_rapm_pred" },
+    "asc:def_adj_rapm_pred": { label: "Predicted RAPM defense" , value: "desc:def_adj_rapm_pred" },
+  } as Record<string, any>;
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
     {
       label: "Most useful",
-      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value().concat(startingState.year == DateUtils.AllYears ? [ yearOpt ] : [])
+      options: (transferPredictionMode ? _.values(transferPredictionSorters) : []).concat(
+        _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+        .concat(startingState.year == DateUtils.AllYears ? [ yearOpt ] : [])
+      )
     },
     {
       label: "Other",
@@ -515,6 +522,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const maybeTxfer = _.find(dataEvent?.transfers?.[player.code] || [], comp => (comp.f == player.team));
       if (maybeTxfer?.t) player.transfer_dest = maybeTxfer?.t;
 
+      if (transferPredictionMode) {
+        const genderYearLookup = `${gender}_${player.year}`;
+        const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;  
+
+        const prediction = TeamEditorUtils.approxTransferPrediction(
+          player, player.transfer_dest, player.year, avgEfficiency
+        )
+        player.off_adj_rapm_pred = prediction.off_adj_rapm;
+        player.def_adj_rapm_pred = prediction.def_adj_rapm;
+        player.off_rtg_pred = prediction.off_rtg;
+        player.off_usage_pred = prediction.off_usage;
+      }
+
       return (
         (
           _.isNil(dataEvent.transfers) || //(if not specified, don't care about transfers)
@@ -721,18 +741,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       const txfeEl = player.transfer_dest ? <span> (&gt;{player.transfer_dest})</span> : null;
 
-      if (transferPredictionMode) {
-        const genderYearLookup = `${gender}_${player.year}`;
-        const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;  
-
-        const prediction = TeamEditorUtils.approxTransferPrediction(
-          player, player.transfer_dest, player.year, avgEfficiency
-        )
-        player.off_adj_rapm_pred = prediction.off_adj_rapm;
-        player.def_adj_rapm_pred = prediction.def_adj_rapm;
-        player.off_rtg_pred = prediction.off_rtg;
-        player.off_usage_pred = prediction.off_usage;
-      }
       const predictionLine = _.thru(transferPredictionMode, __ => {
         const offPred = (player.off_adj_rapm_pred?.value || 0);
         const defPred = (player.def_adj_rapm_pred?.value || 0);
@@ -761,9 +769,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           </b>;
 
         if (transferPredictionMode) {
-          return <span><small><b>Next year's RAPM predictions</b></small>
-            : net=[{netPredWithShadow}] off=[{offPredWithShadow}] def=[{defPredWithShadow}]
-            <small> // off rating=[{offRtgWithShadow}] usage=[{usageWithShadow}]%</small>
+          const smallComp1 = <small><b>Next year's RAPM predictions</b></small>;
+          const smallComp2 = <small>//</small>;
+          const smallComp3 = <small> // off rating=[{offRtgWithShadow}] usage=[{usageWithShadow}]%</small>;
+          return <span>{smallComp1}
+            : net=[{netPredWithShadow}] {smallComp2} off=[{offPredWithShadow}] def=[{defPredWithShadow}]
+            {smallComp3}
           </span>;
         } else {
           return undefined;
@@ -880,7 +891,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   /** For use in selects */
   function sortStringToOption(s: string) {
-    return sortOptionsByValue[s];
+    return sortOptionsByValue[s] || transferPredictionSorters[s];
   }
   function stringToOption(s: string) {
     return { label: s, value: s};
