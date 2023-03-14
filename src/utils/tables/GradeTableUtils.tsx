@@ -18,7 +18,7 @@ import { GradeUtils } from "../../utils/stats/GradeUtils";
 
 // Component imports
 import { GenericTableColProps, GenericTableOps, GenericTableRow } from "../../components/GenericTable";
-import { DivisionStatistics, IndivStatSet, TeamStatSet } from '../../utils/StatModels';
+import { DivisionStatistics, IndivStatSet, Statistic, TeamStatSet } from '../../utils/StatModels';
 import { DerivedStatsUtils } from '../stats/DerivedStatsUtils';
 import { ParamDefaults, CommonFilterParams } from '../FilterModels';
 import { DateUtils } from '../DateUtils';
@@ -313,6 +313,41 @@ export class GradeTableUtils {
       return tableData;
    };
 
+   /** Builds some player specific tier info used for building player grades */
+   static readonly buildPlayerTierInfo = (gradeConfig: string, globalStats: StatsCaches, playerPosStats: PositionStatsCache) => {
+      const configStr = gradeConfig.split(":");
+      const gradeFormat = configStr[0];
+      const tierStrTmp = configStr?.[1] || "Combo";
+         //(if set tier doesn't exist just fallback)
+      const posGroup = configStr?.[2] || "All";
+
+      const statsCacheToDivisionStats = (s: StatsCaches) => { return {
+         High: s.highTier,
+         Medium: s.mediumTier,
+         Low: s.lowTier,
+         Combo: s.comboTier
+      }};
+      const globalTiers = { //(handy LUT)
+         High: globalStats.highTier,
+         Medium: globalStats.mediumTier,
+         Low: globalStats.lowTier,
+         Combo: globalStats.comboTier
+      } as Record<string, DivisionStatistics | undefined>;
+      const tiers = ((posGroup == "All") ? globalTiers : 
+         (statsCacheToDivisionStats(playerPosStats[posGroup] || {}))) as Record<string, DivisionStatistics | undefined>;
+
+      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
+      const tierToUse = tiers[tierStr]; 
+
+      return { tierStr, tierToUse, tiers, globalTiers, gradeFormat, posGroup };
+   }
+
+   /** Builds a text element with a shadow - TODO: apply to code in buildPlayerGradeTableRows */
+   static readonly buildPlayerGradeTextElement = (stat: Statistic, gradeFormat: string, colorPicker: (n: number) => string) => {
+      const shadow = CommonTableDefs.getTextShadow(stat, colorPicker, "20px", 4);
+      return <span style={shadow}>{GenericTableOps.approxRankOrHtmlFormatter(stat)}{gradeFormat == "pct" ? "%": ""}</span>;
+   };
+
    /** Build the rows containing the grade information for a team 
     * TODO: merge this and buildTeamGradeTableRows
     * (see buildTeamGradeTableRows for why there aren't OverlayTriggers)
@@ -320,7 +355,7 @@ export class GradeTableUtils {
    static readonly buildPlayerGradeTableRows: (p: PlayerProps) => GenericTableRow[] = ({
       isFullSelection,
       selectionTitle, config, setConfig, 
-      playerStats: { comboTier, highTier, mediumTier, lowTier },
+      playerStats,
       playerPosStats,
       player,
       expandedView, possAsPct, factorMins, includeRapm, leaderboardMode
@@ -334,29 +369,8 @@ export class GradeTableUtils {
          Low: <Tooltip id={`lowTooltip${nameAsId}`}>Compare each stat against the "low tier" of D1 (low/mid-low majors, if outside the T250)</Tooltip>
       } as Record<string, any>;
 
-      const configStr = config.split(":")
-      const gradeFormat = configStr[0];
-      const tierStrTmp = configStr?.[1] || "Combo";
-         //(if set tier doesn't exist just fallback)
-      const posGroup = configStr?.[2] || "All";
-
-      const statsCacheToDivisionStats = (s: StatsCaches) => { return {
-         High: s.highTier,
-         Medium: s.mediumTier,
-         Low: s.lowTier,
-         Combo: s.comboTier
-      }};
-      const globalTiers = { //(handy LUT)
-         High: highTier,
-         Medium: mediumTier,
-         Low: lowTier,
-         Combo: comboTier
-      } as Record<string, DivisionStatistics | undefined>;
-      const tiers = ((posGroup == "All") ? globalTiers : 
-         (statsCacheToDivisionStats(playerPosStats[posGroup] || {}))) as Record<string, DivisionStatistics | undefined>;
-
-      const tierStr = tiers[tierStrTmp] ? tierStrTmp : (tiers["Combo"] ? "Combo" : (tiers["High"] ? "High" : tierStrTmp));
-      const tierToUse = tiers[tierStr]; 
+      const { tierStr, tierToUse, tiers, globalTiers, gradeFormat, posGroup } = 
+         GradeTableUtils.buildPlayerTierInfo(config, playerStats, playerPosStats);
 
       const configParams = (newGradeFormat: string, newTier: string, newPosGroup: string) => {
          const configParamBase = `${newGradeFormat}:${newTier}`;

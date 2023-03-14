@@ -55,6 +55,7 @@ import { TeamEditorUtils } from '../utils/stats/TeamEditorUtils';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { FeatureFlags } from '../utils/stats/FeatureFlags';
 import { CbbColors } from '../utils/CbbColors';
+import { GradeUtils } from '../utils/stats/GradeUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -595,6 +596,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
       if (playerIndex == 0) setExampleForFilterStr(player);
 
+      const divisionStatesCacheByYear: DivisionStatsCache = divisionStatsCache[player.year || year] || {};
+
       const isDup = (tier == "All") && (playerIndex > 0) && 
         (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].team == player.team) && (players[playerIndex - 1].year == player.year);
 
@@ -742,38 +745,90 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const txfeEl = player.transfer_dest ? <span> (&gt;{player.transfer_dest})</span> : null;
 
       const predictionLine = _.thru(transferPredictionMode, __ => {
-        const offPred = (player.off_adj_rapm_pred?.value || 0);
-        const defPred = (player.def_adj_rapm_pred?.value || 0);
-        const netPred = offPred - defPred;
-        const offRtgPred = (player.off_rtg_pred?.value || 100);
-        const offUsagePred = (player.off_usage_pred?.value || 0.2)*100;
-        const netPredWithShadow = <b
-          style={CommonTableDefs.getTextShadow({ value: netPred }, CbbColors.diff10_p100_redGreen[0], "15px", 6)}
-          >{netPred.toFixed(1)}
-          </b>;
-        const offPredWithShadow = <b
-          style={CommonTableDefs.getTextShadow({ value: offPred }, CbbColors.diff10_p100_redGreen[0], "15px", 6)}
-          >{offPred.toFixed(1)}
-          </b>;
-        const defPredWithShadow = <b
-          style={CommonTableDefs.getTextShadow({ value: defPred }, CbbColors.diff10_p100_redGreen[1], "15px", 6)}
-          >{defPred.toFixed(1)}
-          </b>;
-        const offRtgWithShadow = <b
-          style={CommonTableDefs.getTextShadow({ value: offRtgPred }, CbbColors.pp100[0], "15px", 6)}
-          >{offRtgPred.toFixed(1)}
-          </b>;
-        const usageWithShadow = <b
-          style={CommonTableDefs.getTextShadow({ value: offUsagePred*0.01 }, CbbColors.usg[0], "15px", 6)}
-          >{offUsagePred.toFixed(1)}
-          </b>;
-
         if (transferPredictionMode) {
+          const offPred = (player.off_adj_rapm_pred?.value || 0);
+          const defPred = (player.def_adj_rapm_pred?.value || 0);
+          const netPred = offPred - defPred;
+          const offRtgPred = (player.off_rtg_pred?.value || 100);
+          const offUsagePred = (player.off_usage_pred?.value || 0.2)*100;
+          const netPredWithShadow = <b
+            style={CommonTableDefs.getTextShadow({ value: netPred }, CbbColors.diff10_p100_redGreen[0], "15px", 6)}
+            >{netPred.toFixed(1)}
+            </b>;
+          const offPredWithShadow = <b
+            style={CommonTableDefs.getTextShadow({ value: offPred }, CbbColors.diff10_p100_redGreen[0], "15px", 6)}
+            >{offPred.toFixed(1)}
+            </b>;
+          const defPredWithShadow = <b
+            style={CommonTableDefs.getTextShadow({ value: defPred }, CbbColors.diff10_p100_redGreen[1], "15px", 6)}
+            >{defPred.toFixed(1)}
+            </b>;
+          const offRtgWithShadow = <b
+            style={CommonTableDefs.getTextShadow({ value: offRtgPred }, CbbColors.pp100[0], "15px", 6)}
+            >{offRtgPred.toFixed(1)}
+            </b>;
+          const usageWithShadow = <b
+            style={CommonTableDefs.getTextShadow({ value: offUsagePred*0.01 }, CbbColors.usg[0], "15px", 6)}
+            >{offUsagePred.toFixed(1)}
+            </b>;
+
+          // Enrich with grade info
+          const { netGrade, offGrade, defGrade, offRtgGrade, usageGrade } = _.thru(showGrades, __ => {
+            if (showGrades && (playerIndex < 50)) {
+              const statsToGrade = {
+                off_adj_rapm: player.off_adj_rapm_pred,
+                def_adj_rapm: player.def_adj_rapm_pred,
+                off_adj_rapm_margin: { value: netPred },
+                off_rtg: player.off_rtg_pred,
+                off_usage: player.off_usage_pred
+              };
+
+              const { tierToUse, gradeFormat, ...unused } = 
+                GradeTableUtils.buildPlayerTierInfo(showGrades, {
+                    comboTier: divisionStatesCacheByYear.Combo, highTier: divisionStatesCacheByYear.High,
+                    mediumTier: divisionStatesCacheByYear.Medium, lowTier: divisionStatesCacheByYear.Low,
+                }, positionalStatsCache[player.year || year] || {});
+
+              const predictedGrades = tierToUse ? GradeUtils.buildPlayerPercentiles(
+                tierToUse, statsToGrade, _.keys(statsToGrade), gradeFormat == "rank"
+              ) : {};
+
+              const netGradeEl = predictedGrades.off_adj_rapm_margin ? <small>&nbsp;({GradeTableUtils.buildPlayerGradeTextElement(
+                predictedGrades.off_adj_rapm_margin, gradeFormat, CbbColors.off_pctile_qual
+              )})</small> : undefined;
+
+              const offGradeEl = predictedGrades.off_adj_rapm ? <small>&nbsp;({GradeTableUtils.buildPlayerGradeTextElement(
+                predictedGrades.off_adj_rapm, gradeFormat, CbbColors.off_pctile_qual
+              )})</small> : undefined;
+
+              const defGradeEl = predictedGrades.def_adj_rapm ? <small>&nbsp;({GradeTableUtils.buildPlayerGradeTextElement(
+                predictedGrades.def_adj_rapm, gradeFormat, CbbColors.off_pctile_qual
+              )})</small> : undefined;
+
+              const offRtgGradeEl = predictedGrades.off_rtg ? <small>&nbsp;({GradeTableUtils.buildPlayerGradeTextElement(
+                predictedGrades.off_rtg, gradeFormat, CbbColors.off_pctile_qual
+              )})</small> : undefined;
+
+              const usageGradeEl = predictedGrades.off_usage ? <small>&nbsp;({GradeTableUtils.buildPlayerGradeTextElement(
+                predictedGrades.off_usage, gradeFormat, CbbColors.all_pctile_freq
+              )})</small> : undefined;
+
+              return {
+                netGrade: netGradeEl, offGrade: offGradeEl, defGrade: defGradeEl, offRtgGrade: offRtgGradeEl, usageGrade: usageGradeEl
+              };
+
+            } else {
+              return {
+                netGrade: undefined, offGrade: undefined, defGrade: undefined, offRtgGrade: undefined, usageGrade: undefined
+              };
+            }
+          });
+
           const smallComp1 = <small><b>Next year's RAPM predictions</b></small>;
           const smallComp2 = <small>//</small>;
-          const smallComp3 = <small> // off rating=[{offRtgWithShadow}] usage=[{usageWithShadow}]%</small>;
+          const smallComp3 = <small> // off rating=[{offRtgWithShadow}]{offRtgGrade} usage=[{usageWithShadow}]%{usageGrade}</small>;
           return <span>{smallComp1}
-            : net=[{netPredWithShadow}] {smallComp2} off=[{offPredWithShadow}] def=[{defPredWithShadow}]
+            : net=[{netPredWithShadow}]{netGrade} {smallComp2} off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]{defGrade}
             {smallComp3}
           </span>;
         } else {
@@ -797,7 +852,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
       const showGradesFactor = showGrades ? 2 : 5;
-      const showGradesPosGroup = showGrades.split(":")[2] || "All";
       const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % showGradesFactor))
 
       if (showGrades) {
@@ -821,8 +875,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         player.off_adj_rapm_prod_margin = undefined;
       }
 
-      const divisionStatesCacheByYear: DivisionStatsCache = divisionStatsCache[player.year || year] || {};
-
       return isDup ? _.flatten([
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
       ])
@@ -835,7 +887,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
         predictionLine ? [ GenericTableOps.buildTextRow(predictionLine, "") ] : [],
-        (showGrades && playerIndex < 50) ? GradeTableUtils.buildPlayerGradeTableRows({
+        (showGrades && (playerIndex < 50)) ? GradeTableUtils.buildPlayerGradeTableRows({
           isFullSelection: !isT100 && !isConfOnly,
           selectionTitle: `Grades`,
           config: showGrades, 
