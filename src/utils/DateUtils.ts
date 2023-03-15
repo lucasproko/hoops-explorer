@@ -28,6 +28,9 @@ export class DateUtils {
       "Women_2022/23": true
    };
 
+   /** Up this once the portal gets active, even if it's before the season ends */
+   static readonly yearWithActiveTransferPortal = "2023/24"
+
    /** Use pre-season rankings instead of previous season's rankings - do once the pre-season ranks settle down (1st June?) */
    static readonly hasPreseasonRankings: Record<string, boolean> = {
       "Men_2022/23": true,

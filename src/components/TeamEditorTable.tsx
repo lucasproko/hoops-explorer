@@ -141,7 +141,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Handling various ways of uploading data
   const [ onlyTransfers, setOnlyTransfers ] = useState(_.isNil(startingState.showOnlyTransfers) ? true : startingState.showOnlyTransfers);
   /** (don't show "transfers-only" if this is the case - portalpalooza has not started yet) */
-  const nextYearWhileSeasonStillOngoing = (year == DateUtils.offseasonPredictionYear) && !DateUtils.seasonNotFinished[year];
+  const nextYearBeforePortalIsActive = (year < DateUtils.yearWithActiveTransferPortal);
 
   const [ onlyThisYear, setOnlyThisYear ] = useState(_.isNil(startingState.showOnlyCurrentYear) ? true : startingState.showOnlyCurrentYear);
   const [ reloadData, setReloadData ] = useState(false);
@@ -1212,7 +1212,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             players: (onlyThisYear && (year != "All"))? 
               (dataEvent.players || []).filter(p => p.year == yearWithStats) : 
               (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= yearWithStats) : dataEvent.players), 
-            transfers: (onlyTransfers && hasTransfers && (year != "All") && !nextYearWhileSeasonStillOngoing) ? dataEvent.transfers?.[0] : undefined 
+            transfers: (onlyTransfers && hasTransfers && (year != "All") && !nextYearBeforePortalIsActive) ? dataEvent.transfers?.[0] : undefined 
           }
         )
       }
@@ -1605,11 +1605,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               <Form.Group as={Col} xs="4" className="mt-2">
                 <Form.Check type="switch" 
                   disabled={
-                    !hasTransfers || addNewPlayerMode || (year == "All") || nextYearWhileSeasonStillOngoing
+                    !hasTransfers || addNewPlayerMode || (year == "All") || nextYearBeforePortalIsActive
                   }
                   id="onlyTransfers"
                   checked={
-                    onlyTransfers && hasTransfers && (year != "All") && !nextYearWhileSeasonStillOngoing
+                    onlyTransfers && hasTransfers && (year != "All") && !nextYearBeforePortalIsActive
                   }                  
                   onChange={() => {
                     setTimeout(() => {
