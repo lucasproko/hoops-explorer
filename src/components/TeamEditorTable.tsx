@@ -120,7 +120,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     (_.isNil(startingState.diffBasis) ? undefined : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj
   )
   const [ enableNil, setEnableNil ] = useState(_.isNil(startingState.enableNil) ? 
-    FeatureFlags.isActiveWindow(FeatureFlags.enableNilView) : startingState.enableNil
+    false : startingState.enableNil
   );
 
   // Data source
@@ -1456,15 +1456,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
                   setEvalMode(false);
                 }, true)}
               />
-            { FeatureFlags.isActiveWindow(FeatureFlags.enableNilView) ?
-              <GenericTogglingMenuItem
-                text={<span>NIL mode enabled <Badge variant="dark">fictional!</Badge></span>}
-                truthVal={enableNil}
-                onSelect={() => friendlyChange(() => {
-                  setEnableNil(!enableNil);
-                }, true)}
-              /> : null        
-            }
+          <GenericTogglingMenuItem
+            text={<span>NIL mode enabled <Badge variant="dark">fictional!</Badge></span>}
+            truthVal={enableNil}
+            onSelect={() => friendlyChange(() => {
+              setEnableNil(!enableNil);
+            }, true)}
+          />
           <Dropdown.Divider />
           <GenericTogglingMenuItem
               text={"Review mode"}
@@ -1521,15 +1519,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               onClick: () => friendlyChange(() => {
                 setSuperSeniorsBack(!superSeniorsBack);
               }, true)
+            },
+            {
+              label: "NIL",
+              tooltip: "If enabled, shows a totally made-up editable view of the team's NIL numbers",
+              toggled: enableNil,
+              onClick: () => friendlyChange(() => {
+                setEnableNil(!enableNil);
+              }, true)
             }
-          ].concat(FeatureFlags.isActiveWindow(FeatureFlags.enableNilView) ? [{
-            label: "NIL",
-            tooltip: "If enabled, shows a totally made-up editable view of the team's NIL numbers",
-            toggled: enableNil,
-            onClick: () => friendlyChange(() => {
-              setEnableNil(!enableNil);
-            }, true)
-          }] : []).concat(overrideGrades ? [] : [
+            ].concat(overrideGrades ? [] : [
             {
               label: "What If?",
               tooltip: "Describes what actually happened for the selected season, and allows editing to explore different scenarios",

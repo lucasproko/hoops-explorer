@@ -2192,6 +2192,12 @@ export class TeamEditorUtils {
 
    /** A very silly function that makes a guess at how coaches might value players */
    static readonly getReturningPlayerNil = (player: IndivStatSet, transferringIn: boolean, isTrackRecord: boolean, roster?: RosterEntry) => {
+      const leaveNilForUserEntry = true; 
+         //(seems safest!! TODO: note also Fr NIL not even calculated, so this can't really be enabled .. plus docs say it's user entered)
+      if (leaveNilForUserEntry) {
+         return 0;
+      }
+
       const baseOffCost = 30; //(use 30K as a completely arbitrary factor to get "$")
       const baseDefCost = 30; //(use 30K as a completely arbitrary factor to get "$")
 

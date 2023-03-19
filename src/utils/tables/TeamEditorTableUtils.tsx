@@ -16,7 +16,7 @@ export class TeamEditorTableUtils {
          "sep0": GenericTableOps.addColSeparator(0.5),
 
          pos: GenericTableOps.addDataCol("Pos", "Positional class of player (algorithmically generated)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
-         nil: GenericTableOps.addDataCol("NIL", "A made-up estimate of players' NIL value / team's NIL costs (based on their production the previous season)", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
+         nil: GenericTableOps.addDataCol("NIL", "User entered guess at players' NIL value / team's NIL costs", CbbColors.alwaysWhite, GenericTableOps.htmlFormatter),
          actual_mpg: GenericTableOps.addPtsCol("act. mpg", "Actual minutes per game (bench minutes are currently estimated)", CbbColors.alwaysWhite),
          mpg: GenericTableOps.addPtsCol("mpg", "Approximate expected minutes per game (missing minutes per team shown if there are any)", CbbColors.alwaysWhite),
          "sep0.6": GenericTableOps.addColSeparator(0.05), 
