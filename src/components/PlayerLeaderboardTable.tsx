@@ -402,7 +402,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ divisionStatsRefresh, setDivisionStatsRefresh ] = useState<number>(0);
 
   useEffect(() => {
-    if (showGrades) {
+    if (showGrades || transferPredictionMode) {
+      //(if transferPredictionMode we'd like some grades so we can show the ranks associated with predicted grades)
+
       const yearsToCheck = (year == DateUtils.AllYears) ? DateUtils.coreYears : [ year ];
       yearsToCheck.forEach(yearToCheck => {
         const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
@@ -433,25 +435,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           });
         }
 
-        const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
-        if (maybePosGroup && (maybePosGroup != "All")) {
-          const posGroupStats = currPosCacheForThisYear[maybePosGroup];
-          if (yearOrGenderChanged || !posGroupStats) {
-            GradeTableUtils.populatePlayerDivisionStatsCache({ year: yearToCheck, gender }, (s: DivisionStatsCache) => {
-              setPositionalStatsCache(currPosCache => ({
-                ...currPosCache,
-                [yearToCheck]: {
-                  ...(currPosCache[yearToCheck] || {}),
-                  [maybePosGroup]: {
-                    comboTier: s.Combo,
-                    highTier: s.High,
-                    mediumTier: s.Medium,
-                    lowTier: s.Low
-                  }  
-                }
-              }));
-              setDivisionStatsRefresh(curr => curr + 1);
-            }, undefined, maybePosGroup);
+        if (showGrades) { //(these are no use if we're just predicted transfer performance)
+          const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
+          if (maybePosGroup && (maybePosGroup != "All")) {
+            const posGroupStats = currPosCacheForThisYear[maybePosGroup];
+            if (yearOrGenderChanged || !posGroupStats) {
+              GradeTableUtils.populatePlayerDivisionStatsCache({ year: yearToCheck, gender }, (s: DivisionStatsCache) => {
+                setPositionalStatsCache(currPosCache => ({
+                  ...currPosCache,
+                  [yearToCheck]: {
+                    ...(currPosCache[yearToCheck] || {}),
+                    [maybePosGroup]: {
+                      comboTier: s.Combo,
+                      highTier: s.High,
+                      mediumTier: s.Medium,
+                      lowTier: s.Low
+                    }  
+                  }
+                }));
+                setDivisionStatsRefresh(curr => curr + 1);
+              }, undefined, maybePosGroup);
+            }
           }
         }
       });
@@ -774,7 +778,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
           // Enrich with grade info
           const { netGrade, offGrade, defGrade, offRtgGrade, usageGrade } = _.thru(showGrades, __ => {
-            if (showGrades && (playerIndex < 50)) {
+            if (playerIndex < 50) { //(since it can be slightly slow)
               const statsToGrade = {
                 off_adj_rapm: player.off_adj_rapm_pred,
                 def_adj_rapm: player.def_adj_rapm_pred,
@@ -784,7 +788,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               };
 
               const { tierToUse, gradeFormat, ...unused } = 
-                GradeTableUtils.buildPlayerTierInfo(showGrades, {
+                GradeTableUtils.buildPlayerTierInfo(showGrades || "rank:Combo", {
                     comboTier: divisionStatesCacheByYear.Combo, highTier: divisionStatesCacheByYear.High,
                     mediumTier: divisionStatesCacheByYear.Medium, lowTier: divisionStatesCacheByYear.Low,
                 }, positionalStatsCache[player.year || year] || {});
