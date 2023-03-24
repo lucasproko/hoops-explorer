@@ -65,6 +65,9 @@ export class AdvancedFilterUtils {
       // These need to be created by substitution:
       "def_stl", "def_blk", // (these don't exist: def_stl is def_2prim, def_blk is def_to)
       "def_fc", //(doesn't exist: def_ftr)
+
+      // Transfers only, predicted:
+      "off_adj_rapm_pred", "def_adj_rapm_pred", "off_rtg_pred", "off_usage_pred", "adj_rapm_margin_pred"
    ];
 
    static fixBoolOps(s: String) { return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ") };
@@ -148,6 +151,7 @@ export class AdvancedFilterUtils {
                adj_rtg_margin_rank: p.adj_rtg_margin_rank,
                adj_rapm_prod_margin_rank: p.adj_rapm_prod_margin_rank,
                adj_prod_margin_rank: p.adj_prod_margin_rank,
+               adj_rapm_margin_pred: (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
             }; 
             //DIAG:
             //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
