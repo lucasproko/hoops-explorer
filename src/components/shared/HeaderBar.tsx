@@ -297,7 +297,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             {buildNavItem("Player Positions", chartTooltip, "/Charts")}
           </Dropdown.Item>
           <Dropdown.Item>
-            {buildNavItem("Transfer Analysis", transferAnalysisTooltip, UrlRouting.getPlayerSeasonComparisonUrl({year: DateUtils.mostRecentYearWithLboardData}))}
+            {buildNavItem("Transfer Analysis", transferAnalysisTooltip, UrlRouting.getTransferRapmComparisonUrl({year: DateUtils.mostRecentYearWithLboardData}))}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>;

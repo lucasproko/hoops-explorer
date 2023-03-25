@@ -86,6 +86,12 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params
     })}`;
   }
+  /** The URL to use to view the simple prototype for the "Player/Season Comparison" page */
+  static getTransferRapmComparisonUrl(params: PlayerSeasonComparisonParams) {
+    return `/TransferRapmComparison?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params
+    })}`;
+  }
   /** The URL to use to view the "Player/Season Comparison" page */
   static getPlayerSeasonComparisonUrl(params: PlayerSeasonComparisonParams) {
     return `/PlayerSeasonComparison?${UrlRouting.getUrl({
