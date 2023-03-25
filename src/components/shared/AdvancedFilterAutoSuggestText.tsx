@@ -33,12 +33,13 @@ type Props = {
   readOnly: boolean,
   placeholder: string,
   initValue: string,
+  autocomplete: string[],
   onChange: (ev: any) => void,
   onKeyUp: (ev: any) => void
   onKeyDown: (ev: any) => void
 };
 const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = (
-  {readOnly, placeholder, initValue, onChange, onKeyUp, onKeyDown}
+  {readOnly, placeholder, initValue, autocomplete, onChange, onKeyUp, onKeyDown}
 ) => {
 
   // Data model
@@ -58,9 +59,7 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = (
     className="form-control auto-suggest"
     placeholder={placeholder}
     requestOnlyIfNoOptions={true} //(only requests if empty)
-    options={
-      AdvancedFilterUtils.playerLeaderBoardAutocomplete
-    }
+    options={autocomplete}      
     trigger=""
     regex='^[A-Za-z0-9\\-_"]+$'
     matchAny={true}

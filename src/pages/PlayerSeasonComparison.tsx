@@ -159,7 +159,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
     </Head>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>Transfer Prediction Analysis <span className="badge badge-pill badge-info">IN DEV!</span></h3>
+        <h3>Multi-Season Player Analysis <span className="badge badge-pill badge-info">IN DEV!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">

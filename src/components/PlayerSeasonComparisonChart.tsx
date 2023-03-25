@@ -19,7 +19,7 @@ import Button from 'react-bootstrap/Button';
 import LoadingOverlay from 'react-loading-overlay';
 import Select from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink, faPen, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faPen, faEye, faExclamation, faCheck } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -53,6 +53,8 @@ import { ReferenceArea, ResponsiveContainer, Tooltip as RechartTooltip, ScatterC
 import { GoodBadOkTriple } from '../utils/stats/TeamEditorUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
+import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './shared/AdvancedFilterAutoSuggestText';
+import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
@@ -104,13 +106,26 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
      setHeight(window.innerHeight);
      return () => window.removeEventListener('resize', handleResize);
    }, []);
- 
+
+
+   // All the complex config:
+
+   const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(true); //TODO make this an option
+
+   // Filter text:
+   const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
+   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
+   const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
+
    // Chart control
    const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
    const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
    const [ transfersOnly, setTransdersOnly ] = useState(
       _.isNil(startingState.transfersOnly) ? ParamDefaults.defaultPlayerComparisonTransfersOnly : startingState.transfersOnly
    );
+
+   // Go fetch the data
+
    if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
       const fetchRosterJson = (teamName: string) => {
          const rosterJsonUri = (encodeEncodePrefix: boolean) =>
@@ -148,6 +163,25 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          //xAxis, yAxis, transfersOnly,
       });
    }, [ confs, year, queryFilters ]);
+
+   /** Keyboard listener - handles global page overrides while supporting individual components */
+   const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
+      const allowKeypress = () => {
+         //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
+         return inAutoSuggest || notFromFilterAutoSuggest(event);
+      };
+      if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
+         if (allowKeypress() && (tmpAdvancedFilterStr != advancedFilterStr)) {
+            friendlyChange(() => setAdvancedFilterStr(tmpAdvancedFilterStr), true); //(will reclc the filter)
+         } else if (event && event.preventDefault) {
+            event.preventDefault();
+         }
+      } else if (event.code == "Escape" || event.keyCode == 27) {
+         if (allowKeypress()) {
+            document.body.click(); //closes any overlays (like history) that have rootClick
+         }
+      }
+   };
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -343,26 +377,25 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
        ) : undefined;
 
 
-       const subChart = _.isEmpty(confs) ? undefined : _.chain(teamRanks)
+      //TODO: add Linq query here
+      const filteredTeamRanks = teamRanks;
+
+      //TODO: surely we don't want to calculate this unless necessary?
+      const subChart = _.isEmpty(confs) ? undefined : _.chain(filteredTeamRanks)
          .flatMap(t => t.players || []) 
-         .map((p, ii) => {
-            // Add custom stats in here
-            //Debug:
-            // if (ii < 100) {
-            //    console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`)
-            // }
-            // Example query - super seniors with a rotation+ RAPM
-            // (only useful is also set maybeOverride.superSeniorsBack in OffseasonLeaderboardUtils.buildAllTeamStats)
-            // if ((p.orig.roster?.year_class == "Sr") && 
-            //    (fieldValExtractor("adj_rapm")(p.orig) > 2)) {
-            //    }
-            return p;
-         })
-         .filter(p => 
-            !_.isEmpty(p.orig.team) && (
-               (p.actualResults || false) && (p.orig || false) && (p.actualResults.team != p.orig.team)
-            )
-         )
+         // .map((p, ii) => {
+         //    //Add custom stats in here
+         //    //Debug:
+         //    if (ii < 100) {
+         //       console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`)
+         //    }
+         //    //Example query - super seniors with a rotation+ RAPM
+         //    //(only useful is also set maybeOverride.superSeniorsBack in OffseasonLeaderboardUtils.buildAllTeamStats)
+         //    if ((p.orig.roster?.year_class == "Sr") && 
+         //       (fieldValExtractor("adj_rapm")(p.orig) > 2)) {
+         //       }
+         //    return p;
+         // })
          .filter(p => {
             return (confSet?.has(p.actualResults?.conf || "???")|| false) 
             || (hasCustomFilter && ((queryFilters || "").indexOf(`${p.actualResults?.team || ""};`) >= 0));
@@ -378,13 +411,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       var inSubChart = new Set(subChart?.map(p => p.p.key) || []);
          
-      const mainChart = _.chain(teamRanks)
+      const mainChart = _.chain(filteredTeamRanks)
          .flatMap(t => t.players || []) 
-         .filter(p => 
-            !_.isEmpty(p.orig.team) && !inSubChart.has(p.key) && (
-               (p.actualResults || false) && (p.orig || false) && (p.actualResults.team != p.orig.team)
-            )
-         )
          .map(p => {
             return {
                x: xAxisExtractor(p),
@@ -462,6 +490,22 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    // 3] View
 
+  // Advanced filter text
+
+  const editingAdvFilterTooltip = (
+      <Tooltip id="editingAdvFilterTooltip">Press enter to apply this Linq filter</Tooltip>
+   );
+   const doneAdvFilterTooltip = (
+      <Tooltip id="doneAdvFilterTooltip">Filter successfully applied</Tooltip>
+   );
+   const errorAdvFilterTooltip = (
+      <Tooltip id="errorAdvFilterTooltip">Malformed Linq query: [{advancedFilterError || ""}]</Tooltip>
+   );
+   const editingAdvFilterText = <OverlayTrigger placement="auto" overlay={editingAdvFilterTooltip}><div>...</div></OverlayTrigger>;
+   const doneAdvFilterText = advancedFilterError ?
+      <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}><FontAwesomeIcon icon={faExclamation} /></OverlayTrigger> :
+      <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
+
    /** Sticks an overlay on top of the table if no query has ever been loaded */
    function needToLoadQuery() {
       return !dataEvent.error && (loadingOverride || ((dataEvent?.players || []).length == 0));
@@ -509,7 +553,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             />
          </Col>
          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-         <Col xs={12} sm={12} md={6} lg={6} style={{zIndex: 10}}>
+         <Col xs={12} sm={12} md={5} lg={5} style={{zIndex: 10}}>
             <ConferenceSelector
                emptyLabel={year < DateUtils.yearFromWhichAllMenD1Imported ? `All High Tier Teams` : `All Teams`}
                confStr={confs}
@@ -518,6 +562,17 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                onChangeConf={confStr => friendlyChange(() => setConfs(confStr), confs != confStr)}
             />
          </Col>
+         <Form.Group as={Col} sm="2" className="mt-2">
+          <Form.Check type="switch"
+              id="configOptions"
+              checked={showConfigOptions}
+              onChange={() => {
+                const isCurrentlySet = showConfigOptions;
+                setShowConfigOptions(!showConfigOptions)
+              }}
+              label="Configure"
+            />
+        </Form.Group>
          <Col lg={1} className="mt-1">
             {getCopyLinkButton()}
          </Col>
@@ -540,6 +595,27 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             </InputGroup>
          </Col> : null}
       </Form.Group> : null}       
+      { showConfigOptions ? <Form.Row>
+        <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
+          <InputGroup>
+            <InputGroup.Text style={{ maxHeight: "2.4rem" }}>Filter</InputGroup.Text>
+            <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
+              advancedFilterStr != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
+            }</InputGroup.Text>
+            <div className="flex-fill">
+              <AdvancedFilterAutoSuggestText
+                readOnly={false}
+                placeholder="eg ''"
+                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+                initValue={tmpAdvancedFilterStr}
+                onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
+                onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
+                onKeyDown={submitListenerFactory(true)}
+              />
+            </div>
+          </InputGroup>
+        </Col>
+      </Form.Row> : null }
       <Row>
          <Col>
             <LoadingOverlay

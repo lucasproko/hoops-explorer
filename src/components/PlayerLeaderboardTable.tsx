@@ -1305,6 +1305,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                 readOnly={false}
                 placeholder="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
                 initValue={tmpAdvancedFilterStr}
+                autocomplete={AdvancedFilterUtils.playerLeaderBoardAutocomplete}
                 onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
                 onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
                 onKeyDown={submitListenerFactory(true)}

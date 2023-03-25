@@ -10,9 +10,11 @@ type EnumToEnum = (e: Enumerable.IEnumerable<any>) => Enumerable.IEnumerable<any
 /** Utils to build LINQ filter/sort capabilities */
 export class AdvancedFilterUtils {
 
-   static readonly playerLeaderBoardAutocomplete = [
-      "&&", "||", "SORT_BY", "ASC", "DESC", "AND", "OR",
+   static readonly operators = [ "&&", "||", "SORT_BY", "ASC", "DESC", "AND", "OR" ];
 
+   static readonly operatorsSet = new Set<string>(AdvancedFilterUtils.operators);
+
+   static readonly playerLeaderBoardAutocomplete = AdvancedFilterUtils.operators.concat([
       // Basic metadata:
       "conf", "team", "year",
 
@@ -68,7 +70,17 @@ export class AdvancedFilterUtils {
 
       // Transfers only, predicted:
       "off_adj_rapm_pred", "def_adj_rapm_pred", "off_rtg_pred", "off_usage_pred", "adj_rapm_margin_pred"
-   ];
+   ]);
+
+   static playerSeasonComparisonAutocomplete = _.flatMap([ "prev_", "next_" ], prefix => {
+      return _.flatMap(AdvancedFilterUtils.playerLeaderBoardAutocomplete, field => {
+         if (AdvancedFilterUtils.operatorsSet.has(field)) {
+            return (prefix == "prev_") ? [ field ] : []; //(return operators just once)
+         } else {
+            return [ `${prefix}${field}` ];
+         }
+      });
+   });
 
    static fixBoolOps(s: String) { return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ") };
    static fieldReplacements(s: string) { 
@@ -76,14 +88,24 @@ export class AdvancedFilterUtils {
          .replace(/def_blk/g, "def_2prim").replace(/def_stl/g, "def_to").replace(/def_fc/g, "def_ftr")
          .replace(/(off|def)_poss/g, "$1_team_poss"); 
    }
-   static fixObjectFormat(s: string) { 
+   static singleYearfixObjectFormat(s: string) { 
       return s
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
-         .replace(/(?:^| )((?:adj)_[0-9a-zA-Z_]+)/g, "$.$1")
+         .replace(/(^| |[(])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/transfer_dest/g, "$.transfer_dest")
          .replace(/(^| |[(])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)")
+      ; 
+   }
+   static multiYearfixObjectFormat(s: string) { 
+      return s
+         .replace(/(prev|next)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1.p.$2?.value")
+         .replace(/(^| |[(])(prev|next)_(adj_[0-9a-zA-Z_]+)/g, "$1.$.$2.$3")
+         .replace(/(prev|next)_roster[.]height/g, "$.$1.normht")
+         .replace(/(prev|next)_transfer_dest/g, "$.$1.transfer_dest")
+         .replace(/(^| |[(])(prev|next)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2.$3")
+         .replace(/[$][.](prev|next)[.]def_ftr[?][.]value/g, "(100*$.$1.def_ftr?.value)")
       ; 
    }
    static avoidAssigmentOperator(s: string) {
@@ -93,29 +115,30 @@ export class AdvancedFilterUtils {
    static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/, "$1-0$2"); }
    static removeAscDesc(s: string) { return s.replace(/(ASC|DESC)/g, ""); }
 
-   static readonly tidyClauses: (s: string) => string = _.flow([
-      AdvancedFilterUtils.fixBoolOps,
-      AdvancedFilterUtils.avoidAssigmentOperator,
-      AdvancedFilterUtils.fieldReplacements,
-      AdvancedFilterUtils.fixObjectFormat,
-      AdvancedFilterUtils.normHeightInQuotes,
-      AdvancedFilterUtils.removeAscDesc,
-      _.trim,
-   ]);
+   static readonly tidyClauses: (s: string,  multiYear: boolean) => string = 
+      (s: string, multiYear: boolean) => _.flow([
+         AdvancedFilterUtils.fixBoolOps,
+         AdvancedFilterUtils.avoidAssigmentOperator,
+         AdvancedFilterUtils.fieldReplacements,
+         multiYear ? AdvancedFilterUtils.multiYearfixObjectFormat : AdvancedFilterUtils.singleYearfixObjectFormat,
+         AdvancedFilterUtils.normHeightInQuotes,
+         AdvancedFilterUtils.removeAscDesc,
+         _.trim,
+      ])(s, multiYear);
 
    /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
-   static applyFilter(inData: any[], filterStr: string): [any[], string | undefined] {
+   static applyFilter(inData: any[], filterStr: string, multiYear: boolean = false): [any[], string | undefined] {
       const filterFrags = filterStr.split("SORT_BY");
-      const where = AdvancedFilterUtils.tidyClauses(filterFrags[0]);
+      const where = AdvancedFilterUtils.tidyClauses(filterFrags[0], multiYear);
       
       const sortingFrags = _.drop(filterFrags, 1);
 
       //DIAG:
-      //console.log(`?Q = ${where}`);
+      console.log(`?Q = ${where} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
          const isAsc = sortingFrag.indexOf("ASC") >= 0;
-         const sortBy = AdvancedFilterUtils.tidyClauses(sortingFrag);   
+         const sortBy = AdvancedFilterUtils.tidyClauses(sortingFrag, multiYear);   
 
          if (index == 0) {
             return (enumerable: Enumerable.IEnumerable<any>) => {
@@ -133,7 +156,7 @@ export class AdvancedFilterUtils {
       });
       
       try {
-         const enumData = Enumerable.from(inData.map((p, index) => { 
+         const buildSingleYearRetVal = (p: any) => {
             const retVal = { 
                p: p,
                transfer_dest: p.transfer_dest || "",
@@ -156,11 +179,30 @@ export class AdvancedFilterUtils {
             //DIAG:
             //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
             return retVal;
+         };
+         const buildMultiYearRetVal = (p: any) => {
+            const retVal = {
+               p: p,
+               prev: buildSingleYearRetVal(p.orig),
+               next: buildSingleYearRetVal(p.actualResult),
+            };
+            //DIAG:
+            //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
+            return retVal;
+         };
+
+         const enumData = Enumerable.from(inData.map((p, index) => { 
+            return multiYear ? buildMultiYearRetVal(p) : buildSingleYearRetVal(p);
          }));
          const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
-         const sortedData = sortByFns.length > 0 ?
+         const sortedData = sortByFns.length > 0 ? 
             _.flow(sortByFns)(filteredData)
-               .thenBy((p: any) => p.p?.baseline?.off_team_poss?.value || 0)
+               .thenBy((p: any) => {
+                  const sortPoss = multiYear ?
+                     (p.p?.actualResults?.off_team_poss?.value || 0) :
+                     (p.p?.baseline?.off_team_poss?.value || 0);
+                  return sortPoss;
+               })
                .thenBy((p: any) => p.p?.key) //(ensure player duplicates follow each other)
             :
             filteredData
