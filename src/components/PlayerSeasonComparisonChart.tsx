@@ -377,12 +377,17 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
        ) : undefined;
 
 
-      //TODO: add Linq query here
-      const filteredTeamRanks = teamRanks;
+      const dataToFilter = _.flatMap(teamRanks, t => t.players || []);
+      const [ filteredData, tmpAvancedFilterError ] = advancedFilterStr ?
+         AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, true) : [ dataToFilter, undefined ];
+      setAdvancedFilterError(tmpAvancedFilterError);
+
+      //TODO:
+      // some of the entries seem like nonsense when displaying the JSON in applyFilter, plus entry far left is
+      // undefined, wut
 
       //TODO: surely we don't want to calculate this unless necessary?
-      const subChart = _.isEmpty(confs) ? undefined : _.chain(filteredTeamRanks)
-         .flatMap(t => t.players || []) 
+      const subChart = _.isEmpty(confs) ? undefined : _.chain(filteredData)
          // .map((p, ii) => {
          //    //Add custom stats in here
          //    //Debug:
@@ -411,8 +416,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       var inSubChart = new Set(subChart?.map(p => p.p.key) || []);
          
-      const mainChart = _.chain(filteredTeamRanks)
-         .flatMap(t => t.players || []) 
+      const mainChart = _.chain(filteredData)
          .map(p => {
             return {
                x: xAxisExtractor(p),
@@ -485,7 +489,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </ResponsiveContainer>
       ;
    }, [
-      gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height
+      gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, advancedFilterStr
    ]);
 
    // 3] View

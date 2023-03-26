@@ -100,12 +100,12 @@ export class AdvancedFilterUtils {
    }
    static multiYearfixObjectFormat(s: string) { 
       return s
-         .replace(/(prev|next)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1.p.$2?.value")
-         .replace(/(^| |[(])(prev|next)_(adj_[0-9a-zA-Z_]+)/g, "$1.$.$2.$3")
+         .replace(/(prev|next)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1.p?.$2?.value")
+         .replace(/(^| |[(])(prev|next)_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2.$3")
          .replace(/(prev|next)_roster[.]height/g, "$.$1.normht")
          .replace(/(prev|next)_transfer_dest/g, "$.$1.transfer_dest")
-         .replace(/(^| |[(])(prev|next)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2.$3")
-         .replace(/[$][.](prev|next)[.]def_ftr[?][.]value/g, "(100*$.$1.def_ftr?.value)")
+         .replace(/(^| |[(])(prev|next)_roster[.]([a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.roster?.$3")
+         .replace(/[$][.](prev|next)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)")
       ; 
    }
    static avoidAssigmentOperator(s: string) {
@@ -134,7 +134,7 @@ export class AdvancedFilterUtils {
       const sortingFrags = _.drop(filterFrags, 1);
 
       //DIAG:
-      console.log(`?Q = ${where} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
+      //console.log(`?Q = ${where} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
          const isAsc = sortingFrag.indexOf("ASC") >= 0;
@@ -156,7 +156,7 @@ export class AdvancedFilterUtils {
       });
       
       try {
-         const buildSingleYearRetVal = (p: any) => {
+         const buildSingleYearRetVal = (p: any, index: number) => {
             const retVal = { 
                p: p,
                transfer_dest: p.transfer_dest || "",
@@ -180,11 +180,11 @@ export class AdvancedFilterUtils {
             //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
             return retVal;
          };
-         const buildMultiYearRetVal = (p: any) => {
+         const buildMultiYearRetVal = (p: any, index: number) => {
             const retVal = {
                p: p,
-               prev: buildSingleYearRetVal(p.orig),
-               next: buildSingleYearRetVal(p.actualResult),
+               prev: p.orig ? buildSingleYearRetVal(p.orig, index) : undefined,
+               next: p.actualResults ? buildSingleYearRetVal(p.actualResults, index) : undefined,
             };
             //DIAG:
             //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
@@ -192,7 +192,7 @@ export class AdvancedFilterUtils {
          };
 
          const enumData = Enumerable.from(inData.map((p, index) => { 
-            return multiYear ? buildMultiYearRetVal(p) : buildSingleYearRetVal(p);
+            return multiYear ? buildMultiYearRetVal(p, index) : buildSingleYearRetVal(p, index);
          }));
          const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
          const sortedData = sortByFns.length > 0 ? 
