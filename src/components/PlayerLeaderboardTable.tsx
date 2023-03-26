@@ -251,6 +251,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ numFilteredStr, setNumFilteredStr ] = useState("" as string);
 
   const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
+  //TODO: next time need to make a change with this, replace with LinqExpressionBuilder
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
   const [ showAdvancedFilter, setShowAdvancedFilter ] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);

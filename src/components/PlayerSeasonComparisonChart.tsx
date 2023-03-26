@@ -53,8 +53,8 @@ import { ReferenceArea, ResponsiveContainer, Tooltip as RechartTooltip, ScatterC
 import { GoodBadOkTriple } from '../utils/stats/TeamEditorUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
-import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './shared/AdvancedFilterAutoSuggestText';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
+import LinqExpressionBuilder from './shared/LinqExpressionBuilder';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
@@ -112,10 +112,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(true); //TODO make this an option
 
-   // Filter text:
+   // Filter text (show/hide):
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
-   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
+   // Highlight text (show/hide):
+   const [ highlightFilterStr, setHighlightFilterStr ] = useState(startingState.highlightFilter || "");
+   const [ highlightFilterError, setHighlightFilterError ] = useState(undefined as string | undefined);
 
    // Chart control
    const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
@@ -159,29 +161,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       onChangeState({
          year: year, confs, 
          queryFilters: queryFilters,
+         advancedFilter: advancedFilterStr,
+         highlightFilter: highlightFilterStr,
 
          //xAxis, yAxis, transfersOnly,
       });
-   }, [ confs, year, queryFilters ]);
-
-   /** Keyboard listener - handles global page overrides while supporting individual components */
-   const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
-      const allowKeypress = () => {
-         //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
-         return inAutoSuggest || notFromFilterAutoSuggest(event);
-      };
-      if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
-         if (allowKeypress() && (tmpAdvancedFilterStr != advancedFilterStr)) {
-            friendlyChange(() => setAdvancedFilterStr(tmpAdvancedFilterStr), true); //(will reclc the filter)
-         } else if (event && event.preventDefault) {
-            event.preventDefault();
-         }
-      } else if (event.code == "Escape" || event.keyCode == 27) {
-         if (allowKeypress()) {
-            document.body.click(); //closes any overlays (like history) that have rootClick
-         }
-      }
-   };
+   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -203,7 +188,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    /** This grovelling is needed to ensure that clipboard is only loaded client side */
    function initClipboard() {
       if (null == clipboard) {
-         var newClipboard = new ClipboardJS(`#copyLink_offSeasonTeamLeaderboard`, {
+         var newClipboard = new ClipboardJS(`#copyLink_playerSeasonComparison`, {
             text: function(trigger) {
                return window.location.href;
             }
@@ -489,7 +474,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </ResponsiveContainer>
       ;
    }, [
-      gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, advancedFilterStr
+      gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
+      advancedFilterStr, highlightFilterStr
    ]);
 
    // 3] View
@@ -598,26 +584,29 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                />
             </InputGroup>
          </Col> : null}
-      </Form.Group> : null}       
+      </Form.Group> : null}
       { showConfigOptions ? <Form.Row>
         <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
-          <InputGroup>
-            <InputGroup.Text style={{ maxHeight: "2.4rem" }}>Filter</InputGroup.Text>
-            <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
-              advancedFilterStr != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
-            }</InputGroup.Text>
-            <div className="flex-fill">
-              <AdvancedFilterAutoSuggestText
-                readOnly={false}
-                placeholder="eg ''"
-                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
-                initValue={tmpAdvancedFilterStr}
-                onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
-                onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
-                onKeyDown={submitListenerFactory(true)}
-              />
-            </div>
-          </InputGroup>
+            <LinqExpressionBuilder
+               label="Filter"
+               prompt="TBD"
+               startingVal={advancedFilterStr}
+               error={advancedFilterError}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               callback={(newVal: string) => friendlyChange(() => setAdvancedFilterStr(newVal), true)}
+            />
+        </Col>
+      </Form.Row> : null }
+      { showConfigOptions ? <Form.Row>
+        <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
+           <LinqExpressionBuilder
+               label="Highlight"
+               prompt="TBD"
+               startingVal={highlightFilterStr}
+               error={highlightFilterError}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               callback={(newVal: string) => friendlyChange(() => setHighlightFilterStr(newVal), true)}
+           />
         </Col>
       </Form.Row> : null }
       <Row>
