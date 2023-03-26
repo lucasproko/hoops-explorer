@@ -104,8 +104,9 @@ export class AdvancedFilterUtils {
          .replace(/(^| |[(])(prev|next)_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2.$3")
          .replace(/(prev|next)_roster[.]height/g, "$.$1.normht")
          .replace(/(prev|next)_transfer_dest/g, "$.$1.transfer_dest")
-         .replace(/(^| |[(])(prev|next)_roster[.]([a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.roster?.$3")
+         .replace(/(^| |[(])(prev|next)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
          .replace(/[$][.](prev|next)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)")
+         .replace(/roster[.]/g, "roster?.")
       ; 
    }
    static avoidAssigmentOperator(s: string) {

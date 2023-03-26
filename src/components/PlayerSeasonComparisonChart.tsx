@@ -115,6 +115,15 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // Filter text (show/hide):
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
+   const advancedFilterPresets = [
+      [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr"` ],
+      [ "Sophomores -> Juniors", `prev_roster.year_class == "So"` ],
+      [ "Juniors -> Seniors", `prev_roster.year_class == "Jr"` ],
+      [ "Seniors -> Super-Seniors", `prev_roster.year_class == "Sr"` ],
+      [ "Rotation+ caliber previous year", `prev_adj_rapm_margin >= 2` ],
+      [ "Starter+ caliber previous year", `prev_adj_rapm_margin >= 3.5` ],
+   ] as Array<[string, string]>;
+    
    // Highlight text (show/hide):
    const [ highlightFilterStr, setHighlightFilterStr ] = useState(startingState.highlightFilter || "");
    const [ highlightFilterError, setHighlightFilterError ] = useState(undefined as string | undefined);
@@ -367,28 +376,29 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, true) : [ dataToFilter, undefined ];
       setAdvancedFilterError(tmpAvancedFilterError);
 
+      const [ highlightData, tmpHighlightFilterError ] = highlightFilterStr ?
+         AdvancedFilterUtils.applyFilter(filteredData, highlightFilterStr, true) : [ undefined, undefined ];
+      setHighlightFilterError(tmpHighlightFilterError);
+
       //TODO:
       // some of the entries seem like nonsense when displaying the JSON in applyFilter, plus entry far left is
       // undefined, wut
 
-      //TODO: surely we don't want to calculate this unless necessary?
-      const subChart = _.isEmpty(confs) ? undefined : _.chain(filteredData)
+      const subChart = (_.isEmpty(confs) && !highlightData) ? undefined : _.chain(highlightData || filteredData)
          // .map((p, ii) => {
-         //    //Add custom stats in here
          //    //Debug:
          //    if (ii < 100) {
-         //       console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`)
+         //       console.log(`??? ${JSON.stringify(p)}`);
+         //       console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`);
+         //       console.log(`??? CONF = ${p.actualResults?.conf} TEAM=${p.actualResults?.team}`);
          //    }
-         //    //Example query - super seniors with a rotation+ RAPM
-         //    //(only useful is also set maybeOverride.superSeniorsBack in OffseasonLeaderboardUtils.buildAllTeamStats)
-         //    if ((p.orig.roster?.year_class == "Sr") && 
-         //       (fieldValExtractor("adj_rapm")(p.orig) > 2)) {
-         //       }
          //    return p;
          // })
          .filter(p => {
-            return (confSet?.has(p.actualResults?.conf || "???")|| false) 
-            || (hasCustomFilter && ((queryFilters || "").indexOf(`${p.actualResults?.team || ""};`) >= 0));
+            return _.isEmpty(confs) ? true : (
+               (confSet?.has(p.actualResults?.conf || "???")|| false) 
+               || (hasCustomFilter && ((queryFilters || "").indexOf(`${p.actualResults?.team || ""};`) >= 0))
+            );
          })
          .map(p => {
             return {
@@ -399,6 +409,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             }
          }).value();
 
+      //TODO: this was supposed to block hover tooltips for main chart, need to try again
       var inSubChart = new Set(subChart?.map(p => p.p.key) || []);
          
       const mainChart = _.chain(filteredData)
@@ -586,25 +597,27 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          </Col> : null}
       </Form.Group> : null}
       { showConfigOptions ? <Form.Row>
-        <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
+        <Col xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
                label="Filter"
-               prompt="TBD"
+               prompt="Enter Linq: remove unfiltered players (see presets for ideas)"
                startingVal={advancedFilterStr}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               presets={advancedFilterPresets}
                callback={(newVal: string) => friendlyChange(() => setAdvancedFilterStr(newVal), true)}
             />
         </Col>
       </Form.Row> : null }
       { showConfigOptions ? <Form.Row>
-        <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
+        <Col xs={12} sm={12} md={12} lg={12}>
            <LinqExpressionBuilder
                label="Highlight"
-               prompt="TBD"
+               prompt="Enter Linq: unfiltered players are faded into the background"
                startingVal={highlightFilterStr}
                error={highlightFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               presets={advancedFilterPresets}
                callback={(newVal: string) => friendlyChange(() => setHighlightFilterStr(newVal), true)}
            />
         </Col>

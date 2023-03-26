@@ -6,13 +6,11 @@ import { NextPage } from 'next';
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card';
-import Collapse from 'react-bootstrap/Collapse';
-import Container from 'react-bootstrap/Container';
-import { InputGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Dropdown, Form, InputGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './AdvancedFilterAutoSuggestText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faExclamation, faFilter } from '@fortawesome/free-solid-svg-icons';
+import GenericTogglingMenuItem from './GenericTogglingMenuItem';
 
 type Props = {
   readonly label?: string,
@@ -20,10 +18,11 @@ type Props = {
   readonly startingVal: string,
   readonly error?: string,
   readonly autocomplete: string[],
+  readonly presets?: Array<[ string, string ]>,
   readonly callback: (newExpr: string) => void
 }
 
-const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, startingVal, error, autocomplete, callback}) => {
+const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, startingVal, error, autocomplete, presets, callback}) => {
 
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(startingVal);
 
@@ -45,7 +44,24 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, s
           document.body.click(); //closes any overlays (like history) that have rootClick
        }
     }
- };
+  };
+
+  const buildFilterPresetMenuItem = (name: string, advancedFilter: string) => {
+    return <GenericTogglingMenuItem
+      text={name}
+      truthVal={(advancedFilter == startingVal)}
+      onSelect={() => {
+        if (advancedFilter != startingVal) {
+          setTmpAdvancedFilterStr(advancedFilter);
+          callback(advancedFilter);
+        }
+      }}
+    />;
+  }
+
+  const tooltipForFilterPresets = (
+    <Tooltip id="advancedFilterPresets">Preset options</Tooltip>
+  );
 
   const editingAdvFilterTooltip = (
     <Tooltip id="editingAdvFilterTooltip">Press enter to apply this Linq filter</Tooltip>
@@ -77,6 +93,26 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, s
         onKeyDown={submitListenerFactory(true)}
       />
     </div>
+    {presets ? <Form.Group>
+      <Dropdown alignRight style={{maxHeight: "2.4rem"}}>
+        <Dropdown.Toggle variant="outline-secondary">
+          <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}><FontAwesomeIcon icon={faFilter}/></OverlayTrigger>            
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <GenericTogglingMenuItem
+            text={<i>Clear filter</i>}
+            truthVal={false}
+            onSelect={() => {
+              if (startingVal != "") {
+                setTmpAdvancedFilterStr("");
+                callback("");
+              }
+            }}
+          />
+          {presets.map(preset => buildFilterPresetMenuItem(...preset))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </Form.Group> : null }
   </InputGroup>;
 
 }

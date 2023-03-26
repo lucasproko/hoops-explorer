@@ -1024,19 +1024,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     <Tooltip id="advancedFilterPresets">Preset player type advanced filters</Tooltip>
   );
 
-  const buildFilterPresetMenuItem = (name: string, advancedFilter: string, possFilter: string) => {
+  const buildFilterPresetMenuItem = (name: string, advancedFilter: string, posFilter: string) => {
     return <GenericTogglingMenuItem
       text={name}
-      truthVal={(advancedFilter == advancedFilterStr) && (posClasses == possFilter)}
+      truthVal={(advancedFilter == advancedFilterStr) && (posClasses == posFilter)}
       onSelect={() => {
         friendlyChange(() => {
           setTmpAdvancedFilterStr(advancedFilter);
           setAdvancedFilterStr(advancedFilter);
-          setPosClasses(possFilter);
-        }, (advancedFilter != advancedFilterStr) || (posClasses != possFilter));
+          setPosClasses(posFilter);
+        }, (advancedFilter != advancedFilterStr) || (posClasses != posFilter));
       }}
     />;
-  }
+  };
 
   // Position filter
 

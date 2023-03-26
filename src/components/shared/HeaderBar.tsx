@@ -205,8 +205,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const gameReportTooltip = (
     <Tooltip id="gameReportTooltip">Charts and tables for individual games</Tooltip>
   );
+  const playerSeasonAnalysisTooltip = (
+    <Tooltip id="playerSeasonTooltip">Analyze players' year-vs-year statistics</Tooltip>
+  );
   const transferAnalysisTooltip = (
-    <Tooltip id="lastReportTooltip">Analyze transfers' performance vs predicted</Tooltip>
+    <Tooltip id="transferAnalysisTooltip">Analyze transfers' performance vs predicted</Tooltip>
   );
 
   /** Adds the current selection to history before navigating away */
@@ -295,6 +298,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
             {buildNavItem("Player Positions", chartTooltip, "/Charts")}
+          </Dropdown.Item>        
+          <Dropdown.Item>
+            {buildNavItem("Multi-Season Player Analysis", playerSeasonAnalysisTooltip, UrlRouting.getPlayerSeasonComparisonUrl({year: DateUtils.mostRecentYearWithLboardData}))}
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem("Transfer Analysis", transferAnalysisTooltip, UrlRouting.getTransferRapmComparisonUrl({year: DateUtils.mostRecentYearWithLboardData}))}
