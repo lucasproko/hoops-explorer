@@ -39,7 +39,7 @@ import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import TeamEditorTable, { TeamEditorStatsModel } from './TeamEditorTable';
 import { DateUtils } from '../utils/DateUtils';
-import { InputGroup } from 'react-bootstrap';
+import { InputGroup, ModalTitle } from 'react-bootstrap';
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Library imports:
@@ -94,6 +94,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
+   const [ title, setTitle ] = useState(startingState.title || "");
+
    const [height, setHeight] = useState(512);
    const latestHeight = useRef(height);
    useEffect(() => {
@@ -110,7 +112,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    // All the complex config:
 
-   const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(true); //TODO make this an option
+   // If there's a title show that, otherwise show the config
+   const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(!startingState.title);
 
    // Filter text (show/hide):
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
@@ -170,12 +173,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       onChangeState({
          year: year, confs, 
          queryFilters: queryFilters,
+         title: title,
          advancedFilter: advancedFilterStr,
          highlightFilter: highlightFilterStr,
 
          //xAxis, yAxis, transfersOnly,
       });
-   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr ]);
+   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -596,6 +600,23 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             </InputGroup>
          </Col> : null}
       </Form.Group> : null}
+      { showConfigOptions ? null :
+        <Form.Group as={Col} xs="12">
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text id="filter">Chart Title</InputGroup.Text>
+          </InputGroup.Prepend>
+          <AsyncFormControl
+            startingVal={title}
+            onChange={(newStr: string) => {
+              if (newStr != title) setTitle(newStr);
+            }}
+            timeout={500}
+            placeholder = "Enter a title for this chart"
+          />
+        </InputGroup>
+      </Form.Group>
+    }
       { showConfigOptions ? <Form.Row>
         <Col xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder

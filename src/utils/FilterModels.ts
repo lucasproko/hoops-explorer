@@ -195,6 +195,7 @@ export type PlayerSeasonComparisonParams = {
   year?: string,
   gender?: string,
   confs?: string,
+  title?: string,
   advancedFilter?: string,
   highlightFilter?: string,
   queryFilters?: string,
