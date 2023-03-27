@@ -119,6 +119,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
    const advancedFilterPresets = [
+      [ "Transfers", "(prev_team != next_team) && (prev_team != undefined) " ],
+      [ "Ranked Freshmen", `(prev_team == undefined) && next_roster.year_class == "Fr"` ],
       [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr"` ],
       [ "Sophomores -> Juniors", `prev_roster.year_class == "So"` ],
       [ "Juniors -> Seniors", `prev_roster.year_class == "Jr"` ],
@@ -134,9 +136,20 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // Chart control
    const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
    const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
-   const [ transfersOnly, setTransdersOnly ] = useState(
-      _.isNil(startingState.transfersOnly) ? ParamDefaults.defaultPlayerComparisonTransfersOnly : startingState.transfersOnly
-   );
+   const [ dotColor, setDotColor ] = useState(startingState.dotSize || "");
+   const [ dotSize, setDotSize ] = useState(startingState.dotColor || "");
+   //TODO: presets
+   const axisPresets = [
+      [ "Off RAPM: actual - predicted", "next_off_adj_rapm  - pred_ok_off_adj_rapm" ],
+      [ "Def RAPM: actual - predicted", "pred_ok_def_adj_rapm - next_def_adj_rapm" ],
+      [ "RAPM margin (prev)", "prev_adj_rapm_margin" ],
+      [ "RAPM margin (next)", "next_adj_rapm_margin" ],
+      [ "Min/game (prev)", "40*prev_off_team_poss_pct" ],
+      [ "Min/game (next)", "40*next_off_team_poss_pct" ],
+      [ "Possession% (off, prev)", "prev_off_team_poss_pct" ],
+      [ "Possession% (off, next)", "next_off_team_poss_pct" ],
+   ] as Array<[string, string]>;
+
 
    // Go fetch the data
 
@@ -176,10 +189,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          title: title,
          advancedFilter: advancedFilterStr,
          highlightFilter: highlightFilterStr,
-
-         //xAxis, yAxis, transfersOnly,
+         xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor
       });
-   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title ]);
+   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, dotColor, dotSize ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -360,11 +372,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          return `${(humanFieldMap[field] || field)} ${humanFieldTypeMap[fieldType] || ""}`;
       };
 
-      const xAxisExtractor = extractBubbleAttr("delta:off_adj_rapm");
-      const yAxisExtractor = extractBubbleAttr("delta:def_adj_rapm");
-      const zAxisExtractor = extractBubbleAttr("off_team_poss_pct");
-      const colorExtractor = extractBubbleAttr("adj_rapm");
-
       const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
       const specialCases = {
          "P6": Power6Conferences,
@@ -377,11 +384,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       const dataToFilter = _.flatMap(teamRanks, t => t.players || []);
       const [ filteredData, tmpAvancedFilterError ] = advancedFilterStr ?
-         AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, true) : [ dataToFilter, undefined ];
+         AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, {
+            "x": xAxis,
+            "y": yAxis,
+            "z": dotSize,
+            "color": dotColor,
+         }, true) : [ dataToFilter, undefined ];
       setAdvancedFilterError(tmpAvancedFilterError);
 
       const [ highlightData, tmpHighlightFilterError ] = highlightFilterStr ?
-         AdvancedFilterUtils.applyFilter(filteredData, highlightFilterStr, true) : [ undefined, undefined ];
+         AdvancedFilterUtils.applyFilter(filteredData, highlightFilterStr, {}, true) : [ undefined, undefined ];
       setHighlightFilterError(tmpHighlightFilterError);
 
       //TODO:
@@ -393,8 +405,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          //    //Debug:
          //    if (ii < 100) {
          //       console.log(`??? ${JSON.stringify(p)}`);
-         //       console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`);
-         //       console.log(`??? CONF = ${p.actualResults?.conf} TEAM=${p.actualResults?.team}`);
+         //       // console.log(`??? ${p.orig.roster?.year_class} - ${fieldValExtractor("adj_rapm")(p.orig)}`);
+         //       // console.log(`??? CONF = ${p.actualResults?.conf} TEAM=${p.actualResults?.team}`);
          //    }
          //    return p;
          // })
@@ -406,9 +418,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          })
          .map(p => {
             return {
-               x: xAxisExtractor(p),
-               y: -yAxisExtractor(p),
-               z: zAxisExtractor(p),
+               x: p.x,
+               y: p.y,
+               z: p.z,
                p: p
             }
          }).value();
@@ -419,9 +431,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const mainChart = _.chain(filteredData)
          .map(p => {
             return {
-               x: xAxisExtractor(p),
-               y: -yAxisExtractor(p),
-               z: zAxisExtractor(p),
+               x: p.x, 
+               y: p.y, 
+               z: p.z,
                p: p
             }
          }).value();
@@ -471,12 +483,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             <ZAxis type="number" dataKey="z" range={[10, 100]}/>
             <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
                {mainChart.map((p, index) => {
-                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(colorExtractor(p.p))}/>
+                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
                })};
             </Scatter>
             {subChart ? <Scatter data={subChart} fill="green">
                {subChart.map((p, index) => {
-                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(colorExtractor(p.p))}/>
+                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
                })}</Scatter> : null
             };         
             <RechartTooltip
@@ -490,7 +502,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       ;
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
-      advancedFilterStr, highlightFilterStr
+      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor
    ]);
 
    // 3] View
@@ -612,11 +624,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
               if (newStr != title) setTitle(newStr);
             }}
             timeout={500}
-            placeholder = "Enter a title for this chart"
+            placeholder = "Enter a title for this chart, toggle 'Configure' to build it"
           />
         </InputGroup>
-      </Form.Group>
-    }
+      </Form.Group>}
       { showConfigOptions ? <Form.Row>
         <Col xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
@@ -643,6 +654,56 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
            />
         </Col>
       </Form.Row> : null }
+      { showConfigOptions ? <Form.Row>
+        <Col xs={12} sm={6} md={6} lg={6}>
+            <LinqExpressionBuilder
+               label="X-Axis"
+               prompt="Linq expression for 'x' (see presets for ideas)"
+               startingVal={xAxis}
+               error={advancedFilterError}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               presets={axisPresets}
+               callback={(newVal: string) => friendlyChange(() => setXAxis(newVal), true)}
+            />
+        </Col>
+        <Col xs={12} sm={6} md={6} lg={6}>
+            <LinqExpressionBuilder
+               label="Y-Axis"
+               prompt="Linq expression for 'y' (see presets for ideas)"
+               startingVal={yAxis}
+               error={advancedFilterError}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               presets={axisPresets}
+               callback={(newVal: string) => friendlyChange(() => setYAxis(newVal), true)}
+            />
+        </Col>
+      </Form.Row> : null }
+      { showConfigOptions ? <Form.Row>
+         <Col xs={6} sm={5} md={5} lg={5}>
+            <LinqExpressionBuilder
+               label="Color"
+               prompt="Linq expression for color (see presets for ideas)"
+               startingVal={dotColor}
+               error={advancedFilterError}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               presets={axisPresets}
+               callback={(newVal: string) => friendlyChange(() => setDotColor(newVal), true)}
+            />
+        </Col>
+        <Col xs={6} sm={2} md={2} lg={2}>
+        </Col>
+        <Col xs={12} sm={5} md={5} lg={5}>
+            <LinqExpressionBuilder
+               label="Size"
+               prompt="Linq expression for size (see presets for ideas)"
+               startingVal={dotSize}
+               error={advancedFilterError}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               presets={axisPresets}
+               callback={(newVal: string) => friendlyChange(() => setDotSize(newVal), true)}
+            />
+        </Col>
+      </Form.Row> : null }      
       <Row>
          <Col>
             <LoadingOverlay

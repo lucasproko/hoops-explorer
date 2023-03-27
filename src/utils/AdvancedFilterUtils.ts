@@ -74,12 +74,21 @@ export class AdvancedFilterUtils {
 
    static playerSeasonComparisonAutocomplete = _.flatMap([ "prev_", "next_" ], prefix => {
       return _.flatMap(AdvancedFilterUtils.playerLeaderBoardAutocomplete, field => {
-         if (AdvancedFilterUtils.operatorsSet.has(field)) {
+         if (_.endsWith(field, "_pred")) {
+            return []; //(prediction strings are different with the player season comparison)
+         } else if (AdvancedFilterUtils.operatorsSet.has(field)) {
             return (prefix == "prev_") ? [ field ] : []; //(return operators just once)
          } else {
             return [ `${prefix}${field}` ];
          }
-      });
+      }).concat(
+         _.flatMap([ "pred_ok_", "pred_good_", "pred_bad_" ], prefix => {
+            //(a small subset of fields have good/bad/ok predictions for the following year)
+            return [ 
+               "off_rtg", "off_usage", "off_adj_rapm", "def_adj_rapm", "off_team_poss_pct", "adj_rapm_margin" 
+            ].map(field => `${prefix}${field}`);
+         })
+      );
    });
 
    static fixBoolOps(s: String) { return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ") };
@@ -91,22 +100,23 @@ export class AdvancedFilterUtils {
    static singleYearfixObjectFormat(s: string) { 
       return s
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
-         .replace(/(^| |[(])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
+         .replace(/(^| |[(*-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/transfer_dest/g, "$.transfer_dest")
-         .replace(/(^| |[(])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
-         .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)")
+         .replace(/(^| |[(*-])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
+         .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
+         .replace(/roster[.]/g, "roster?.") //(roster not always present)
       ; 
    }
    static multiYearfixObjectFormat(s: string) { 
       return s
-         .replace(/(prev|next)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1.p?.$2?.value")
-         .replace(/(^| |[(])(prev|next)_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2.$3")
-         .replace(/(prev|next)_roster[.]height/g, "$.$1.normht")
-         .replace(/(prev|next)_transfer_dest/g, "$.$1.transfer_dest")
-         .replace(/(^| |[(])(prev|next)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
-         .replace(/[$][.](prev|next)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)")
-         .replace(/roster[.]/g, "roster?.")
+         .replace(/(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1?.p.$2?.value")
+         .replace(/(^| |[(*-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2?.$3")
+         .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
+         .replace(/(prev|next|pred_[a-z]+)_transfer_dest/g, "$.$1?.transfer_dest")
+         .replace(/(^| |[(*-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
+         .replace(/[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)") //(fouls called/50)
+         .replace(/roster[.]/g, "roster?.") //(roster not always present)
       ; 
    }
    static avoidAssigmentOperator(s: string) {
@@ -128,14 +138,22 @@ export class AdvancedFilterUtils {
       ])(s, multiYear);
 
    /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
-   static applyFilter(inData: any[], filterStr: string, multiYear: boolean = false): [any[], string | undefined] {
+   static applyFilter(inData: any[], filterStr: string, extraParams: Record<string, string> = {}, multiYear: boolean = false): [any[], string | undefined] {
       const filterFrags = filterStr.split("SORT_BY");
       const where = AdvancedFilterUtils.tidyClauses(filterFrags[0], multiYear);
       
+      const wherePlusMaybeInsert = _.isEmpty(extraParams) ? where :
+         (
+            (where ? `( ${where} ) && ` : "") + //(inject extra params into "p")
+               _.chain(extraParams).toPairs().flatMap(kv => {
+                  return kv[1] ? [ `($.p.${kv[0]} = ( ${AdvancedFilterUtils.tidyClauses(kv[1], multiYear)} ))` ] : [];
+               }).join(" && ").value()
+         );
+
       const sortingFrags = _.drop(filterFrags, 1);
 
       //DIAG:
-      //console.log(`?Q = ${where} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
+      //console.log(`?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
          const isAsc = sortingFrag.indexOf("ASC") >= 0;
@@ -184,6 +202,9 @@ export class AdvancedFilterUtils {
          const buildMultiYearRetVal = (p: any, index: number) => {
             const retVal = {
                p: p,
+               pred_ok: p.ok ? buildSingleYearRetVal(p.ok, index) : undefined,
+               pred_good: p.good ? buildSingleYearRetVal(p.good, index) : undefined,
+               pred_bad: p.bad ? buildSingleYearRetVal(p.bad, index) : undefined,
                prev: p.orig ? buildSingleYearRetVal(p.orig, index) : undefined,
                next: p.actualResults ? buildSingleYearRetVal(p.actualResults, index) : undefined,
             };
@@ -195,7 +216,8 @@ export class AdvancedFilterUtils {
          const enumData = Enumerable.from(inData.map((p, index) => { 
             return multiYear ? buildMultiYearRetVal(p, index) : buildSingleYearRetVal(p, index);
          }));
-         const filteredData = where.length > 0 ? enumData.where(where as unknown as TypeScriptWorkaround1) : enumData;
+         const filteredData = wherePlusMaybeInsert.length > 0 ? 
+            enumData.where(wherePlusMaybeInsert as unknown as TypeScriptWorkaround1) : enumData;
          const sortedData = sortByFns.length > 0 ? 
             _.flow(sortByFns)(filteredData)
                .thenBy((p: any) => {
@@ -211,8 +233,12 @@ export class AdvancedFilterUtils {
 
          return [ sortedData.toArray().map((p: any) => p.p), undefined ];
       } catch (e) {
-         return [ inData, `${e.message} in ${where}` ];
+         if (_.isEmpty(extraParams)) {
+            return [ inData, `${e.message} in ${wherePlusMaybeInsert}` ];
+         } else { //for error parsing purposes, try without the extra params 
+            const [ filteredSortedData, errorMessage ] = AdvancedFilterUtils.applyFilter(inData, filterStr, {}, multiYear);
+            return [ filteredSortedData, errorMessage || `${e.message} in ${wherePlusMaybeInsert}` ];
+         }
       }
    }
-
 }

@@ -199,9 +199,10 @@ export type PlayerSeasonComparisonParams = {
   advancedFilter?: string,
   highlightFilter?: string,
   queryFilters?: string,
-  transfersOnly?: boolean,
   xAxis?: string,
-  yAxis?: string
+  yAxis?: string,
+  dotSize?: string,
+  dotColor?: string,
 };
 
 export type PlayerLeaderboardParams = {

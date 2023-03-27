@@ -108,9 +108,6 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // Chart control
    const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
    const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
-   const [ transfersOnly, setTransdersOnly ] = useState(
-      _.isNil(startingState.transfersOnly) ? ParamDefaults.defaultPlayerComparisonTransfersOnly : startingState.transfersOnly
-   );
    if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
       const fetchRosterJson = (teamName: string) => {
          const rosterJsonUri = (encodeEncodePrefix: boolean) =>
@@ -143,9 +140,7 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({startingSt
    useEffect(() => {
       onChangeState({
          year: year, confs, 
-         queryFilters: queryFilters,
-
-         //xAxis, yAxis, transfersOnly,
+         queryFilters: queryFilters
       });
    }, [ confs, year, queryFilters ]);
 
