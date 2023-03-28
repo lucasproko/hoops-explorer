@@ -375,7 +375,44 @@ export class TeamEditorManualFixes {
 
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
-         const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {};
+         const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
+            "App State": {
+               superSeniorsReturning: new Set([ "DoGregory::" ]),
+            },
+            "Arizona St.": {
+               superSeniorsReturning: new Set([ "JaThomas::" ]),
+            },
+            "Butler": {
+               superSeniorsReturning: new Set([ "JaYoung::" ]),
+            },
+            "George Mason": {
+               superSeniorsReturning: new Set([ "DaGaines::" ]),
+            },
+            "Iowa St.": {
+               superSeniorsReturning: new Set([ "RoJones::" ]),
+            },
+            "Liberty": {
+               superSeniorsReturning: new Set([ "KyRode::", "ShRobinson::" ]),
+            },
+            "Loyola Maryland": {
+               superSeniorsReturning: new Set([ "KeLeaupepe::" ]),
+            },
+            "Maryland": {
+               superSeniorsReturning: new Set([ "JaYoung::" ]),
+            },
+            "New Mexico": {
+               superSeniorsReturning: new Set([ "JaHouse::" ]),
+            },
+            "Oregon": {
+               superSeniorsReturning: new Set([ "JeCouisnard::" ]),
+            },
+            "Saint Joseph's": {
+               superSeniorsReturning: new Set([ "CaBrown::" ]),
+            },
+            "Southern California": {
+               superSeniorsReturning: new Set([ "JoMorgan::" ]),
+            },
+         };
 
          const combinedOverrides = TeamEditorManualFixes.combineOverrides(
             mutableToRet, manualOverrides_Men_2023_24, superSeniors2022_23, leftTeam2022_23
