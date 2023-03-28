@@ -136,8 +136,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // Chart control
    const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
    const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
-   const [ dotColor, setDotColor ] = useState(startingState.dotSize || "");
-   const [ dotSize, setDotSize ] = useState(startingState.dotColor || "");
+   const [ dotColor, setDotColor ] = useState(startingState.dotColor || "");
+   const [ dotSize, setDotSize ] = useState(startingState.dotSize || "");
    //TODO: presets
    const axisPresets = [
       [ "Off RAPM: actual - predicted", "next_off_adj_rapm  - pred_ok_off_adj_rapm" ],
@@ -356,20 +356,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
        };
        
       const extractTitle = (fieldDef: string) => {
-         const typeAndField = fieldDef.split(":");
-         const fieldType = typeAndField.length > 1 ? typeAndField[0] : "actualResults";
-         const field = typeAndField.length > 1 ? typeAndField[1] : typeAndField[0];
-
-         const humanFieldMap: Record<string, string> = {
-            "off_adj_rapm": "Off RAPM",
-            "def_adj_rapm": "Def RAPM",
-         };
-         const humanFieldTypeMap: Record<string, string> = {
-            "delta": "(actual - predicted)",
-            "deltaHistory": "(actual - last year)",
-            "actualResults": "(actual)"
-         };
-         return `${(humanFieldMap[field] || field)} ${humanFieldTypeMap[fieldType] || ""}`;
+         return axisPresets.find(kv => kv[1] == fieldDef)?.[0] || fieldDef;
       };
 
       const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
@@ -399,11 +386,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       //TODO:
       // some of the entries seem like nonsense when displaying the JSON in applyFilter, plus entry far left is
       // undefined, wut
-
-      
-      var avgX = 0; var avgY = 0; var weightAvgX = 0; var weightAvgY;
-      var avgCount = 0; var avgWeight = 0;
-
+   
       const subChart = (_.isEmpty(confs) && !highlightData) ? undefined : _.chain(highlightData || filteredData)
          // .map((p, ii) => {
          //    //Debug:
@@ -426,7 +409,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                y: p.y,
                z: p.z,
                p: p
-            }
+            };
          }).value();
 
       //TODO: this was supposed to block hover tooltips for main chart, need to try again
@@ -435,74 +418,98 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const mainChart = _.chain(filteredData)
          .map(p => {
             return {
-               x: p.x, 
-               y: p.y, 
+               x: p.x,
+               y: p.y,
                z: p.z,
                p: p
-            }
+            };
          }).value();
 
-      const [ minX, maxX, minY, maxY ] = _.transform(mainChart, (acc, v) => {
-         if (v.x < acc[0]!) {
-            acc[0] = v.x;
-         } else if ((v.x > 0) && (-v.x < acc[0])) {
-            acc[0] = -v.x;
-         } else if (v.x > acc[1]!) {
-            acc[1] = v.x;
-         } else if ((v.x < 0) && (-v.x > acc[1])) {
-            acc[1] = -v.x;
-         }
-         if (v.y < acc[2]!) {
-            acc[2] = v.y;
-         } else if ((v.y > 0) && (-v.y < acc[2])) {
-            acc[2] = -v.y;
-         } else if (v.y > acc[3]!) {
-            acc[3] = v.y;
-         } else if ((v.y < 0) && (-v.y > acc[3])) {
-            acc[3] = -v.y;
-         }
-      }, [1000, -1000, 1000, -1000]);
+      // (Some util logic associated with building averages and limits)
+      const mutAvgState = {
+         avgX: 0, avgY: 0, weightAvgX: 0, weightAvgY: 0,
+         varX: 0, varY: 0, weightVarX: 0, weightVarY: 0,
+         avgCount: 0, avgWeightX: 0, avgWeightY: 0
+      };
+      const xHasNext = xAxis.indexOf("next_") >= 0;
+      const yHasNext = yAxis.indexOf("next_") >= 0;
+      const updateAvgState = (p: any) => {
+         mutAvgState.avgX += p.x || 0;
+         mutAvgState.avgY += p.y || 0;
+         mutAvgState.varX += (p.x || 0)*(p.x || 0);
+         mutAvgState.varY += (p.y || 0)*(p.y || 0);
+         const weightX = xHasNext ? (p.p?.actualResults?.off_team_poss_pct?.value || 0) : (p.p?.orig?.off_team_poss_pct?.value || 0);
+         const weightY = yHasNext ? (p.p?.actualResults?.off_team_poss_pct?.value || 0) : (p.p?.orig?.off_team_poss_pct?.value || 0);
+         mutAvgState.weightAvgX += (p.x || 0)*weightX;
+         mutAvgState.weightAvgY += (p.y || 0)*weightY;
+         mutAvgState.weightVarX += (p.x || 0)*(p.x || 0)*weightX;
+         mutAvgState.weightVarY += (p.y || 0)*(p.y || 0)*weightY;
+         mutAvgState.avgWeightX += weightX;
+         mutAvgState.avgWeightY += weightY;
+         mutAvgState.avgCount += 1;
+      };
+      const completeAvgState = () => {
+         mutAvgState.avgX = mutAvgState.avgX/(mutAvgState.avgCount || 1);
+         mutAvgState.avgY = mutAvgState.avgY/(mutAvgState.avgCount || 1);
+         const avgX2 = mutAvgState.varX/(mutAvgState.avgCount || 1);
+         const avgY2 = mutAvgState.varY/(mutAvgState.avgCount || 1);
+         mutAvgState.varX = Math.sqrt(Math.abs(avgX2 - mutAvgState.avgX*mutAvgState.avgX))
+         mutAvgState.varY = Math.sqrt(Math.abs(avgY2 - mutAvgState.avgY*mutAvgState.avgY))
+         const avgWeightX2 = mutAvgState.weightVarX/(mutAvgState.avgWeightX || 1);
+         const avgWeightY2 = mutAvgState.weightVarY/(mutAvgState.avgWeightY || 1);
+         mutAvgState.weightAvgX = mutAvgState.weightAvgX/(mutAvgState.avgWeightX || 1);
+         mutAvgState.weightAvgY = mutAvgState.weightAvgY/(mutAvgState.avgWeightY || 1);
+         mutAvgState.weightVarX = Math.sqrt(Math.abs(avgWeightX2 - mutAvgState.weightAvgX*mutAvgState.weightAvgX));
+         mutAvgState.weightVarY = Math.sqrt(Math.abs(avgWeightY2 - mutAvgState.weightAvgY*mutAvgState.weightAvgY));
+      };
+      if (subChart) {
+         subChart.forEach(el => updateAvgState(el));
+      } else {
+         mainChart.forEach(el => updateAvgState(el));
+      }
+      //TODO: if the axis are the same except for next/prev then force the domains to be the same
+      completeAvgState();    
+      const renderAvgState = () => {
+         return <p>Average: [({mutAvgState.avgX.toFixed(2)}, {mutAvgState.avgY.toFixed(2)})]&nbsp;
+            (std: [{mutAvgState.varX.toFixed(2)}], [{mutAvgState.varY.toFixed(2)}]) //&nbsp;
+            Weighted: [({mutAvgState.weightAvgX.toFixed(2)}, {mutAvgState.weightAvgY.toFixed(2)})]&nbsp;
+            (std: [{mutAvgState.weightVarX.toFixed(2)}], [{mutAvgState.weightVarY.toFixed(2)}]) //&nbsp;
+            sample count=[{mutAvgState.avgCount}]
+         </p>;
+      };   
+      //(end averages and limits)     
 
-      return  <ResponsiveContainer width={"100%"} height={0.75*height}>
-         <ScatterChart>
-            <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={maxY} fillOpacity={0}>
-               <Label position="insideTopRight" value="Better offense, better defense"/>
-            </ReferenceArea>
-            <ReferenceArea x1={0} x2={1.1*maxX} y1={0} y2={minY} fillOpacity={0}>
-               <Label position="insideBottomRight" value="Better offense, worse defense"/>
-            </ReferenceArea>
-            <ReferenceArea x1={1.1*minX} x2={0} y1={0} y2={maxY} fillOpacity={0}>
-               <Label position="insideTopLeft" value="Worse offense, better defense"/>
-            </ReferenceArea>
-            <ReferenceArea x1={1.1*minX} x2={0} y1={0} y2={minY} fillOpacity={0}>
-               <Label position="insideBottomLeft" value="Worse offense, worse defense"/>
-            </ReferenceArea>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="x">
-               <Label value={extractTitle("delta:off_adj_rapm")} position='top' style={{textAnchor: 'middle'}} />
-            </XAxis>
-            <YAxis type="number" dataKey="y">
-               <Label angle={-90} value={extractTitle("delta:def_adj_rapm")} position='insideLeft' style={{textAnchor: 'middle'}} />
-            </YAxis>
-            <ZAxis type="number" dataKey="z" range={[10, 100]}/>
-            <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
-               {mainChart.map((p, index) => {
-                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
-               })};
-            </Scatter>
-            {subChart ? <Scatter data={subChart} fill="green">
-               {subChart.map((p, index) => {
-                  return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
-               })}</Scatter> : null
-            };         
-            <RechartTooltip
-              content={(<CustomTooltip />)}
-              wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
-              allowEscapeViewBox={{x: true, y: false}}
-              itemSorter={(item: any) => item.value}
-            />
-         </ScatterChart>
-      </ResponsiveContainer>
+      return  <div>
+         <ResponsiveContainer width={"100%"} height={0.75*height}>
+            <ScatterChart>
+               <CartesianGrid />
+               <XAxis type="number" dataKey="x" domain={["auto", "auto"]}>
+                  <Label value={extractTitle(xAxis)} position='top' style={{textAnchor: 'middle'}} />
+               </XAxis>
+               <YAxis type="number" dataKey="y" domain={["auto", "auto"]}>
+                  <Label angle={-90} value={extractTitle(yAxis)} position='insideLeft' style={{textAnchor: 'middle'}} />
+               </YAxis>
+               <ZAxis type="number" dataKey="z" range={[10, 100]}/>
+               <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
+                  {mainChart.map((p, index) => {
+                     return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
+                  })};
+               </Scatter>
+               {subChart ? <Scatter data={subChart} fill="green">
+                  {subChart.map((p, index) => {
+                     return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
+                  })}</Scatter> : null
+               };         
+               <RechartTooltip
+                  content={(<CustomTooltip />)}
+                  wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
+                  allowEscapeViewBox={{x: true, y: false}}
+                  itemSorter={(item: any) => item.value}
+               />
+            </ScatterChart>
+         </ResponsiveContainer>
+         <i><small>{renderAvgState()}</small></i>
+      </div>
       ;
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
