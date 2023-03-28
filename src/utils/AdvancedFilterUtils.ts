@@ -100,10 +100,10 @@ export class AdvancedFilterUtils {
    static singleYearfixObjectFormat(s: string) { 
       return s
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
-         .replace(/(^| |[(*-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
+         .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/transfer_dest/g, "$.transfer_dest")
-         .replace(/(^| |[(*-])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
+         .replace(/(^| |[(!*+/-])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
       ; 
@@ -111,10 +111,10 @@ export class AdvancedFilterUtils {
    static multiYearfixObjectFormat(s: string) { 
       return s
          .replace(/(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1?.p.$2?.value")
-         .replace(/(^| |[(*-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2?.$3")
+         .replace(/(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2?.$3")
          .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
          .replace(/(prev|next|pred_[a-z]+)_transfer_dest/g, "$.$1?.transfer_dest")
-         .replace(/(^| |[(*-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
+         .replace(/(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
          .replace(/[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
       ; 

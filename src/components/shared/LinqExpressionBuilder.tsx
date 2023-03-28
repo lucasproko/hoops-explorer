@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -15,17 +15,22 @@ import GenericTogglingMenuItem from './GenericTogglingMenuItem';
 type Props = {
   readonly label?: string,
   readonly prompt: string,
-  readonly startingVal: string,
+  readonly value: string,
   readonly error?: string,
   readonly autocomplete: string[],
   readonly presets?: Array<[ string, string ]>,
   readonly callback: (newExpr: string) => void
 }
 
-const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, startingVal, error, autocomplete, presets, callback}) => {
+const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, value, error, autocomplete, presets, callback}) => {
 
-  const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(startingVal);
+  const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(value);
 
+  useEffect(() => {
+    if (value != tmpAdvancedFilterStr) {
+      setTmpAdvancedFilterStr(value);
+    }
+  }, [ value ]);
 
    /** Keyboard listener - handles global page overrides while supporting individual components */
    const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
@@ -34,7 +39,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, s
        return inAutoSuggest || notFromFilterAutoSuggest(event);
     };
     if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
-       if (allowKeypress() && (tmpAdvancedFilterStr != startingVal)) {
+       if (allowKeypress() && (tmpAdvancedFilterStr != value)) {
           callback(tmpAdvancedFilterStr);
        } else if (event && event.preventDefault) {
           event.preventDefault();
@@ -49,9 +54,9 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, s
   const buildFilterPresetMenuItem = (name: string, advancedFilter: string) => {
     return <GenericTogglingMenuItem
       text={name}
-      truthVal={(advancedFilter == startingVal)}
+      truthVal={(advancedFilter == value)}
       onSelect={() => {
-        if (advancedFilter != startingVal) {
+        if (advancedFilter != value) {
           setTmpAdvancedFilterStr(advancedFilter);
           callback(advancedFilter);
         }
@@ -78,16 +83,16 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, s
     <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
 
  return <InputGroup>
-    {prompt ? <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{label}</InputGroup.Text> : null}
+    {label ? <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{label}</InputGroup.Text> : null}
     <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
-      startingVal != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
+      value != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
     }</InputGroup.Text>
     <div className="flex-fill">
       <AdvancedFilterAutoSuggestText
         readOnly={false}
         placeholder={prompt}
         autocomplete={autocomplete}
-        initValue={tmpAdvancedFilterStr}
+        value={tmpAdvancedFilterStr}
         onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
         onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
         onKeyDown={submitListenerFactory(true)}
@@ -103,7 +108,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, s
             text={<i>Clear filter</i>}
             truthVal={false}
             onSelect={() => {
-              if (startingVal != "") {
+              if (value != "") {
                 setTmpAdvancedFilterStr("");
                 callback("");
               }

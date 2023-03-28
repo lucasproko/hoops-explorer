@@ -32,15 +32,24 @@ export const notFromFilterAutoSuggest = (event: any) => {
 type Props = {
   readOnly: boolean,
   placeholder: string,
-  initValue: string,
+  value: string,
   autocomplete: string[],
   onChange: (ev: any) => void,
   onKeyUp: (ev: any) => void
   onKeyDown: (ev: any) => void
 };
 const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = (
-  {readOnly, placeholder, initValue, autocomplete, onChange, onKeyUp, onKeyDown}
+  {readOnly, placeholder, value, autocomplete, onChange, onKeyUp, onKeyDown}
 ) => {
+
+  const [ currText, setCurrText ] = useState(value);
+
+  useEffect(() => {
+    if (value != currText) {
+      setCurrText(value);
+    }
+  }, [ value ]);
+
 
   // Data model
 
@@ -54,7 +63,7 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = (
     ref={textRef}
     Component={"textarea"}
     style={{minHeight: "2.4rem", height: "2.4rem"}}
-    defaultValue={initValue}
+    value={currText}
     readOnly={readOnly}
     className="form-control auto-suggest"
     placeholder={placeholder}
@@ -65,7 +74,10 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = (
     matchAny={true}
     maxOptions={18}
     spaceRemovers={[';', ')', ':', ']']}
-    onChange={(eventText: string) => onChange({target: { value: eventText}})}
+    onChange={(eventText: string) => {
+      setCurrText(eventText);
+      onChange({target: { value: eventText}});
+    }}
     onBlur={(ev:any) => {
       const currentTextRef = textRef.current as any;
       setTimeout(() => { //(give out of order events a chance!)

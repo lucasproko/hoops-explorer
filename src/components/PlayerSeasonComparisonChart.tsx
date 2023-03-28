@@ -119,8 +119,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
    const advancedFilterPresets = [
-      [ "Transfers", "(prev_team != next_team) && (prev_team != undefined) " ],
-      [ "Ranked Freshmen", `(prev_team == undefined) && next_roster.year_class == "Fr"` ],
+      [ "Transfers", "(prev_team != next_team) && prev_team" ],
+      [ "Ranked Freshmen", `!prev_team && next_roster.year_class == "Fr"` ],
       [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr"` ],
       [ "Sophomores -> Juniors", `prev_roster.year_class == "So"` ],
       [ "Juniors -> Seniors", `prev_roster.year_class == "Jr"` ],
@@ -400,6 +400,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       // some of the entries seem like nonsense when displaying the JSON in applyFilter, plus entry far left is
       // undefined, wut
 
+      
+      var avgX = 0; var avgY = 0; var weightAvgX = 0; var weightAvgY;
+      var avgCount = 0; var avgWeight = 0;
+
       const subChart = (_.isEmpty(confs) && !highlightData) ? undefined : _.chain(highlightData || filteredData)
          // .map((p, ii) => {
          //    //Debug:
@@ -633,7 +637,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             <LinqExpressionBuilder
                label="Filter"
                prompt="Enter Linq: remove unfiltered players (see presets for ideas)"
-               startingVal={advancedFilterStr}
+               value={advancedFilterStr}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={advancedFilterPresets}
@@ -646,7 +650,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
            <LinqExpressionBuilder
                label="Highlight"
                prompt="Enter Linq: unfiltered players are faded into the background"
-               startingVal={highlightFilterStr}
+               value={highlightFilterStr}
                error={highlightFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={advancedFilterPresets}
@@ -655,22 +659,22 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         </Col>
       </Form.Row> : null }
       { showConfigOptions ? <Form.Row>
-        <Col xs={12} sm={6} md={6} lg={6}>
+        <Col xs={12} sm={12} md={6} lg={6}>
             <LinqExpressionBuilder
                label="X-Axis"
                prompt="Linq expression for 'x' (see presets for ideas)"
-               startingVal={xAxis}
+               value={xAxis}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
                callback={(newVal: string) => friendlyChange(() => setXAxis(newVal), true)}
             />
         </Col>
-        <Col xs={12} sm={6} md={6} lg={6}>
+        <Col xs={12} sm={12} md={6} lg={6}>
             <LinqExpressionBuilder
                label="Y-Axis"
                prompt="Linq expression for 'y' (see presets for ideas)"
-               startingVal={yAxis}
+               value={yAxis}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
@@ -679,24 +683,24 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         </Col>
       </Form.Row> : null }
       { showConfigOptions ? <Form.Row>
-         <Col xs={6} sm={5} md={5} lg={5}>
+         <Col xs={6} sm={6} md={5} lg={5}>
             <LinqExpressionBuilder
                label="Color"
                prompt="Linq expression for color (see presets for ideas)"
-               startingVal={dotColor}
+               value={dotColor}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
                callback={(newVal: string) => friendlyChange(() => setDotColor(newVal), true)}
             />
         </Col>
-        <Col xs={6} sm={2} md={2} lg={2}>
+        <Col xs={6} sm={6} md={2} lg={2}>
         </Col>
-        <Col xs={12} sm={5} md={5} lg={5}>
+        <Col xs={12} sm={12} md={5} lg={5}>
             <LinqExpressionBuilder
                label="Size"
                prompt="Linq expression for size (see presets for ideas)"
-               startingVal={dotSize}
+               value={dotSize}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}

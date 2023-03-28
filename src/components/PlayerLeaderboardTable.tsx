@@ -56,6 +56,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { FeatureFlags } from '../utils/stats/FeatureFlags';
 import { CbbColors } from '../utils/CbbColors';
 import { GradeUtils } from '../utils/stats/GradeUtils';
+import LinqExpressionBuilder from './shared/LinqExpressionBuilder';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -251,8 +252,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ numFilteredStr, setNumFilteredStr ] = useState("" as string);
 
   const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
-  //TODO: next time need to make a change with this, replace with LinqExpressionBuilder
-  const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(advancedFilterStr);
   const [ showAdvancedFilter, setShowAdvancedFilter ] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
   const [ exampleForFilterStr, setExampleForFilterStr ] = useState(undefined as undefined | IndivStatSet);
@@ -331,9 +330,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       return inAutoSuggest || notFromFilterAutoSuggest(event);
     };
     if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
-      if (allowKeypress() && (tmpAdvancedFilterStr != advancedFilterStr)) {
-          friendlyChange(() => setAdvancedFilterStr(tmpAdvancedFilterStr), true); //(will reclc the filter)
-      } else if (event && event.preventDefault) {
+      if (event && event.preventDefault) {
         event.preventDefault();
       }
     } else if (event.code == "Escape" || event.keyCode == 27) {
@@ -988,22 +985,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // Advanced filter text
 
-  const editingAdvFilterTooltip = (
-    <Tooltip id="editingAdvFilterTooltip">Press enter to apply this Linq filter</Tooltip>
-  );
-  const doneAdvFilterTooltip = (
-    <Tooltip id="doneAdvFilterTooltip">Filter successfully applied</Tooltip>
-  );
-  const errorAdvFilterTooltip = (
-    <Tooltip id="errorAdvFilterTooltip">Malformed Linq query: [{advancedFilterError || ""}]</Tooltip>
-  );
   const linqEnableTooltip = (
     <Tooltip id="linqEnableTooltip">Enable the Linq filter editor, click on "?" for a guide on using Linq</Tooltip>
   );
-  const editingAdvFilterText = <OverlayTrigger placement="auto" overlay={editingAdvFilterTooltip}><div>...</div></OverlayTrigger>;
-  const doneAdvFilterText = advancedFilterError ?
-    <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}><FontAwesomeIcon icon={faExclamation} /></OverlayTrigger> :
-    <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
   const linqEnableText = showHelp ?
     <OverlayTrigger placement="auto" overlay={linqEnableTooltip}><span>Linq<sup><a target="_blank" href="https://hoop-explorer.blogspot.com/2022/03/">?</a></sup></span></OverlayTrigger> :
     <span>Linq</span>
@@ -1030,7 +1014,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       truthVal={(advancedFilter == advancedFilterStr) && (posClasses == posFilter)}
       onSelect={() => {
         friendlyChange(() => {
-          setTmpAdvancedFilterStr(advancedFilter);
           setAdvancedFilterStr(advancedFilter);
           setPosClasses(posFilter);
         }, (advancedFilter != advancedFilterStr) || (posClasses != posFilter));
@@ -1240,7 +1223,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                 truthVal={false}
                 onSelect={() => {
                   friendlyChange(() => {
-                    setTmpAdvancedFilterStr("");
                     setAdvancedFilterStr("");  
                     setPosClasses("");
                   }, posClasses != "" || advancedFilterStr != "");
@@ -1297,22 +1279,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </Form.Row>
       {(showAdvancedFilter || (advancedFilterStr.length > 0)) ? <Form.Row>
         <Col xs={12} sm={12} md={12} lg={12} className="pb-4">
-          <InputGroup>
-            <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
-              advancedFilterStr != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
-            }</InputGroup.Text>
-            <div className="flex-fill">
-              <AdvancedFilterAutoSuggestText
-                readOnly={false}
-                placeholder="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
-                initValue={tmpAdvancedFilterStr}
-                autocomplete={AdvancedFilterUtils.playerLeaderBoardAutocomplete}
-                onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
-                onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
-                onKeyDown={submitListenerFactory(true)}
+          <LinqExpressionBuilder
+              prompt="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
+              value={advancedFilterStr}
+              error={advancedFilterError}
+              autocomplete={AdvancedFilterUtils.playerLeaderBoardAutocomplete}
+              callback={(newVal: string) => friendlyChange(() => setAdvancedFilterStr(newVal), true)}
               />
-            </div>
-          </InputGroup>
         </Col>
       </Form.Row> : null}
       <div></div>{/*(for some reason this div is needed to avoid the Row classnames getting confused)*/}<Row>
