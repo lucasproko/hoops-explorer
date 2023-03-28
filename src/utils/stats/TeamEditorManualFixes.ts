@@ -376,17 +376,35 @@ export class TeamEditorManualFixes {
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
+            "Alabama": {
+               leftTeam: [ "BrMiller::" ], //(NBA)
+            },
+            "Arkansas": {
+               leftTeam: [ "NiSmith::", "AnBlack::" ], //(NBA)
+            },
             "App State": {
                superSeniorsReturning: new Set([ "DoGregory::" ]),
             },
             "Arizona St.": {
                superSeniorsReturning: new Set([ "JaThomas::" ]),
             },
+            "Belmont": {
+               leftTeam: [ "BeSheppard::" ], //(NBA)
+            },
             "Butler": {
                superSeniorsReturning: new Set([ "JaYoung::" ]),
             },
+            "Dayton": {
+               leftTeam: [ "MiSharavjamt::" ], //(NBA)
+            },
             "George Mason": {
                superSeniorsReturning: new Set([ "DaGaines::" ]),
+            },
+            "Houston": {
+               leftTeam: [ "JaWalker::" ], //(NBA)
+            },
+            "Indiana": {
+               superSeniorsReturning: new Set([ "TrJackson-da::" ]),
             },
             "Iowa St.": {
                superSeniorsReturning: new Set([ "RoJones::" ]),
@@ -400,17 +418,38 @@ export class TeamEditorManualFixes {
             "Maryland": {
                superSeniorsReturning: new Set([ "JaYoung::" ]),
             },
+            "Michigan": {
+               leftTeam: [ "JeHoward::" ], //(NBA)
+            },
+            "NC State": {
+               leftTeam: [ "TeSmith::" ], //(NBA)
+            },
             "New Mexico": {
                superSeniorsReturning: new Set([ "JaHouse::" ]),
             },
             "Oregon": {
                superSeniorsReturning: new Set([ "JeCouisnard::" ]),
             },
+            "Penn St.": {
+               leftTeam: [ "SeLundy::" ], //(NBA)
+            },
+            "Pepperdine": {
+               leftTeam: [ "MaLewis::" ], //(NBA)
+            },
             "Saint Joseph's": {
                superSeniorsReturning: new Set([ "CaBrown::" ]),
             },
+            "Santa Clara": {
+               leftTeam: [ "BrPodziemski" ], //(NBA)
+            },
+            "South Carolina": {
+               leftTeam: [ 'Gr"gJackson::' ], //(NBA)
+            },
             "Southern California": {
                superSeniorsReturning: new Set([ "JoMorgan::" ]),
+            },
+            "UCF": {
+               leftTeam: [ "TaHendricks::" ], //(NBA)
             },
          };
 
