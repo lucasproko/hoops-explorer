@@ -154,6 +154,7 @@ export type IndivEnrichment = {
   /** Positional diag info - see also IndivPosInfo below */
   posClass?: string,
   posConfidences?: number[],
+  posFreqs?: number[],
 
   /** Luck diags */
   off_luck?: OffLuckAdjustmentDiags,

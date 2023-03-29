@@ -164,7 +164,7 @@ var testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set([ "Kansas St." ]) //, "Dayton", "Fordham" ]);
+//testTeamFilter = new Set([ "Maryland" ]) //, "Dayton", "Fordham", "Kansas St." ]);
 if (!_.find(commandLine, p => _.startsWith(p, "--debug")) && testTeamFilter) {
   console.log(`************************************ ` + 
   `WARNING: [testTeamFilter] set (=[${_.toArray(testTeamFilter)}]) but [--debug] not specified, unsetting [testTeamFilter]`
@@ -555,6 +555,11 @@ export async function main() {
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
+      // Using positional info, get the %s the players have at each position:
+      const rosterPositionalInfo = LineupTableUtils.getPositionalInfo(
+        lineups, positionFromPlayerKey, teamSeasonLookup
+      );
+
       const [ sortedLineups, ignoreDroppedLineups ] = LineupTableUtils.buildFilteredLineups(
         lineups,
         "", "desc:off_poss", "0", "500", //take all players (sorted by off_pos) with no min poss - will filter later
@@ -590,6 +595,13 @@ export async function main() {
       }).map((kv: [PlayerId, IndivStatSet]) => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         const player = kv[1];
+
+        // Calculate the % of the time they spend at each position
+        const countsPerPos = rosterPositionalInfo.map(playersPerPos => {
+          return _.sumBy(playersPerPos, posInfo => (posInfo.id == kv[0]) ? posInfo.numPoss : 0);
+        });
+        const totalPositionedPoss = _.sum(countsPerPos);
+        const posFreqs = countsPerPos.map(count => count/(totalPositionedPoss || 1));
 
         // Remove offensive luck apart from RAPM (everything else is normalized to data set)
         [ "off_rtg", "off_adj_rtg", "off_adj_prod", "off_efg", "off_3p" ].forEach(field => {
@@ -633,6 +645,7 @@ export async function main() {
           team: team,
           year: teamYear,
           ...posInfo,
+          posFreqs,
           ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
               (
                 (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||

@@ -19,8 +19,7 @@ export class AdvancedFilterUtils {
       "conf", "team", "year",
 
       // Advanced metadata:
-      "posClass",
-      "posConfidences", 
+      "posClass", "posConfidences", "posFreqs",
       "roster.number", "roster.height", "roster.year_class", "roster.pos",
       "tier", "transfer_dest",
 
@@ -103,7 +102,7 @@ export class AdvancedFilterUtils {
          .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
          .replace(/roster[.]height/g, "$.normht")
          .replace(/transfer_dest/g, "$.transfer_dest")
-         .replace(/(^| |[(!*+/-])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
+         .replace(/(^| |[(!*+/-])(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
          .replace(/(off|def)_reb/g, "$1_orb") //(nicer version of rebound name)
@@ -115,7 +114,7 @@ export class AdvancedFilterUtils {
          .replace(/(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2?.$3")
          .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
          .replace(/(prev|next|pred_[a-z]+)_transfer_dest/g, "$.$1?.transfer_dest")
-         .replace(/(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
+         .replace(/(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
          .replace(/[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
       ; 
@@ -123,6 +122,10 @@ export class AdvancedFilterUtils {
    static avoidAssigmentOperator(s: string) {
       return s.replace(/([^!<>])=[=]*/g, "$1==");
    }
+   static convertPositions(s: string) { return s
+      .replace(/\[(?:_PG_|_1_)\]/g, "[0]").replace(/\[(?:_SG_|_2_)\]/g, "[1]").replace(/\[(?:_SF_|_3_)\]/g, "[2]")
+      .replace(/\[(?:_PF_|_4_)\]/g, "[3]").replace(/\[(?:_C_|_5_)\]/g, "[4]");
+   } 
    static convertPercentages(s: string) { return s.replace(/([0-9.]+)[%]/g, "(($1)*0.01)"); } 
    static normHeightInQuotes(s: string) { return s.replace(/['"]([567])[-']([0-9])['"]/g, "'$1-0$2'"); }
    static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/g, "$1-0$2"); }
@@ -134,6 +137,7 @@ export class AdvancedFilterUtils {
          AdvancedFilterUtils.avoidAssigmentOperator,
          AdvancedFilterUtils.fieldReplacements,
          multiYear ? AdvancedFilterUtils.multiYearfixObjectFormat : AdvancedFilterUtils.singleYearfixObjectFormat,
+         AdvancedFilterUtils.convertPositions,
          AdvancedFilterUtils.convertPercentages,
          AdvancedFilterUtils.normHeightInQuotes,
          AdvancedFilterUtils.removeAscDesc,
