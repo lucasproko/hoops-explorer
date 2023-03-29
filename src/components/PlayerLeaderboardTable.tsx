@@ -605,8 +605,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       if (isDup) playerDuplicates++;
 
-      player.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(player.posClass, "Base")}>
-        <small>{player.posClass}</small>
+      const posBreakdown = (_.size(player.posFreqs) >= 5) ?
+        _.flatMap([ "PG", "SG", "SF", "PF", "C" ], (pos, index) => {
+          const freqOfPos = (player.posFreqs[index] || 0)*100;
+          return (freqOfPos >= 10) ? [ `${pos}: ${freqOfPos.toFixed(0)}%` ] : [];
+        }).join(", ") : undefined;
+
+      player.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(player.posClass, "season", true, posBreakdown)}>
+        <small>{player.posClass}{posBreakdown ? <sup>*</sup> : undefined}</small>
       </OverlayTrigger>;
 
       const confNickname = ConferenceToNickname[player.conf] || "???";

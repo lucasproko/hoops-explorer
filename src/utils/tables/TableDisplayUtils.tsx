@@ -41,12 +41,13 @@ export class TableDisplayUtils {
   }
 
   /** Adds a tooltip to the position code */
-  static buildPositionTooltip(pos: string, typeStr: string) {
+  static buildPositionTooltip(pos: string, typeStr: string, skipPosDiagInfo?: boolean, posBreakdown?: React.ReactNode) {
     const fullPos = PositionUtils.idToPosition[pos] || "Unknown"
     return <Tooltip id={pos + "Tooltip"}>
-      {fullPos}<br/><br/>
+      {fullPos}<br/>
+      {posBreakdown ? <div>{posBreakdown}<br/><br/></div> : <br/>}
       Algorithmically assigned via stats from {typeStr} lineups.
-      See "Show Positional diagnostics" (gear icon on right) for more details.
+      {skipPosDiagInfo ? "" : `See "Show Positional diagnostics" (gear icon on right) for more details.`}
     </Tooltip>;
   }
 
