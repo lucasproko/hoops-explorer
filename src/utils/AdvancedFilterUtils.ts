@@ -62,7 +62,7 @@ export class AdvancedFilterUtils {
       "off_trans_twopmid_ast", "off_trans_ft", "off_trans_ftr", "off_trans_twoprimr", "off_trans_twopmidr", "off_trans_threepr", "off_trans_assist",
 
       // Other:
-      "off_orb", "def_orb",
+      "off_orb", "def_orb", "off_reb", "def_reb", //(last 2: nicer version of rebounding stats)
 
       // These need to be created by substitution:
       "def_stl", "def_blk", // (these don't exist: def_stl is def_2prim, def_blk is def_to)
@@ -106,6 +106,7 @@ export class AdvancedFilterUtils {
          .replace(/(^| |[(!*+/-])(roster[.][a-z]+|posC[a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
+         .replace(/(off|def)_reb/g, "$1_orb") //(nicer version of rebound name)
       ; 
    }
    static multiYearfixObjectFormat(s: string) { 
@@ -122,6 +123,7 @@ export class AdvancedFilterUtils {
    static avoidAssigmentOperator(s: string) {
       return s.replace(/([^!<>])=[=]*/g, "$1==");
    }
+   static convertPercentages(s: string) { return s.replace(/([0-9.]+)[%]/g, "(($1)*0.01)"); } 
    static normHeightInQuotes(s: string) { return s.replace(/['"]([567])[-']([0-9])['"]/g, "'$1-0$2'"); }
    static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/g, "$1-0$2"); }
    static removeAscDesc(s: string) { return s.replace(/(ASC|DESC)/g, ""); }
@@ -132,6 +134,7 @@ export class AdvancedFilterUtils {
          AdvancedFilterUtils.avoidAssigmentOperator,
          AdvancedFilterUtils.fieldReplacements,
          multiYear ? AdvancedFilterUtils.multiYearfixObjectFormat : AdvancedFilterUtils.singleYearfixObjectFormat,
+         AdvancedFilterUtils.convertPercentages,
          AdvancedFilterUtils.normHeightInQuotes,
          AdvancedFilterUtils.removeAscDesc,
          _.trim,
@@ -152,9 +155,8 @@ export class AdvancedFilterUtils {
 
       const sortingFrags = _.drop(filterFrags, 1);
 
-      /**/
       //DIAG:
-      console.log(`?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
+      //console.log(`?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
          const isAsc = sortingFrag.indexOf("ASC") >= 0;

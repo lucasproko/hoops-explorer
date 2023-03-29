@@ -172,16 +172,16 @@ const expandedPosClasses = {
 
 const advancedFilterPresets = [
 
-  [ "Pass-first ball handlers", "off_usage <= 0.20 && off_assist >= 0.25", "BH*" ],
-  [ "Dribble-driving guards", "(1-off_2prim_ast)*off_2primr + 0.33*off_ftr > 0.4 SORT_BY (1-off_2prim_ast)*off_2primr + 0.33*off_ftr", "*G,WF" ],
-  [ "Off-the-dribble 3P-shooting guards", "off_3p_ast < 0.60 && off_3pr > 0.40 SORT_BY off_3p", "*G" ],
+  [ "Pass-first ball handlers", "off_usage <= 20% && off_assist >= 25%", "BH*" ],
+  [ "Dribble-driving guards", "(1-off_2prim_ast)*off_2primr + 0.33*off_ftr > 40% SORT_BY (1-off_2prim_ast)*off_2primr + 0.33*off_ftr", "*G,WF" ],
+  [ "Off-the-dribble 3P-shooting guards", "off_3p_ast < 60% && off_3pr > 40% SORT_BY off_3p", "*G" ],
 
-  [ "3+D wings" , "def_adj_rapm < -1.5 && off_3p > 0.35 && off_3pr >= 0.50", "WG,WF" ],
-  [ "Safe-pair-of-hands wings", "off_to < 0.14", "WG,WF" ],
+  [ "3+D wings" , "def_adj_rapm < -1.5 && off_3p > 35% && off_3pr >= 50%", "WG,WF" ],
+  [ "Safe-pair-of-hands wings", "off_to < 14%", "WG,WF" ],
 
-  [ "Floor-stretching centers", "off_3pr > 0.25 || (off_3pr >= 0.05 && off_2pmidr > 0.35 && off_2pmid > 0.40)", "PF/C,C" ],
-  [ "Elite passing centers", "off_assist > 0.10 && ((posClass == \"C\") || (posClass == \"PF/C\" && roster.height >= \"6-10\")) SORT_BY off_assist", "PF/C,C" ],
-  [ "Defensive-minded centers", "off_usage <= 0.15 && off_rtg > 105 && def_adj_rapm < -1", "C" ],
+  [ "Floor-stretching centers", "off_3pr > 25% || (off_3pr >= 5% && off_2pmidr > 35% && off_2pmid > 40%)", "PF/C,C" ],
+  [ "Elite passing centers", "off_assist > 10% && ((posClass == \"C\") || (posClass == \"PF/C\" && roster.height >= \"6-10\")) SORT_BY off_assist", "PF/C,C" ],
+  [ "Defensive-minded centers", "off_usage <= 15% && off_rtg > 105 && def_adj_rapm < -1", "C" ],
 
   [ "Tall ball-handlers", "roster.height >= \"6-6\"", "BH*" ],
   [ "Tall wings", "(roster.height >= \"6-9\") || (roster.height >= \"6-8\" && posClass == \"WG\")", "WG,WF" ],
