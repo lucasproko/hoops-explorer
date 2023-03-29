@@ -122,8 +122,8 @@ export class AdvancedFilterUtils {
    static avoidAssigmentOperator(s: string) {
       return s.replace(/([^!<>])=[=]*/g, "$1==");
    }
-   static normHeightInQuotes(s: string) { return s.replace(/['"]([567])[-']([0-9])['"]/, "'$1-0$2'"); }
-   static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/, "$1-0$2"); }
+   static normHeightInQuotes(s: string) { return s.replace(/['"]([567])[-']([0-9])['"]/g, "'$1-0$2'"); }
+   static normHeightString(s: string) { return s.replace(/^([567])-([0-9])$/g, "$1-0$2"); }
    static removeAscDesc(s: string) { return s.replace(/(ASC|DESC)/g, ""); }
 
    static readonly tidyClauses: (s: string,  multiYear: boolean) => string = 
@@ -152,8 +152,9 @@ export class AdvancedFilterUtils {
 
       const sortingFrags = _.drop(filterFrags, 1);
 
+      /**/
       //DIAG:
-      //console.log(`?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
+      console.log(`?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
 
       const sortByFns: Array<EnumToEnum> = sortingFrags.map((sortingFrag, index) => {
          const isAsc = sortingFrag.indexOf("ASC") >= 0;
