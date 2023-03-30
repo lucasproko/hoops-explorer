@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, Form, InputGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import AdvancedFilterAutoSuggestText, { notFromFilterAutoSuggest } from './AdvancedFilterAutoSuggestText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { faCheck, faExclamation, faFilter } from '@fortawesome/free-solid-svg-icons';
 import GenericTogglingMenuItem from './GenericTogglingMenuItem';
 
@@ -19,10 +20,11 @@ type Props = {
   readonly error?: string,
   readonly autocomplete: string[],
   readonly presets?: Array<[ string, string ]>,
+  readonly presetsIcon?: IconDefinition,
   readonly callback: (newExpr: string) => void
 }
 
-const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, value, error, autocomplete, presets, callback}) => {
+const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, value, error, autocomplete, presets, presetsIcon, callback}) => {
 
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(value);
 
@@ -62,7 +64,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, v
         }
       }}
     />;
-  }
+  };
 
   const tooltipForFilterPresets = (
     <Tooltip id="advancedFilterPresets">Preset options</Tooltip>
@@ -83,10 +85,12 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, v
     <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
 
  return <InputGroup>
-    {label ? <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{label}</InputGroup.Text> : null}
-    <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
-      value != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
-    }</InputGroup.Text>
+   <InputGroup.Prepend>
+      {label ? <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{label}</InputGroup.Text> : null}
+      <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
+        value != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
+      }</InputGroup.Text>
+    </InputGroup.Prepend>
     <div className="flex-fill">
       <AdvancedFilterAutoSuggestText
         readOnly={false}
@@ -98,14 +102,14 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, v
         onKeyDown={submitListenerFactory(true)}
       />
     </div>
-    {presets ? <Form.Group>
+    {presets ? <InputGroup.Append>
       <Dropdown alignRight style={{maxHeight: "2.4rem"}}>
         <Dropdown.Toggle variant="outline-secondary">
-          <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}><FontAwesomeIcon icon={faFilter}/></OverlayTrigger>            
+          <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}><FontAwesomeIcon icon={presetsIcon || faFilter}/></OverlayTrigger>            
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <GenericTogglingMenuItem
-            text={<i>Clear filter</i>}
+            text={<i>Clear selection</i>}
             truthVal={false}
             onSelect={() => {
               if (value != "") {
@@ -117,7 +121,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, v
           {presets.map(preset => buildFilterPresetMenuItem(...preset))}
         </Dropdown.Menu>
       </Dropdown>
-    </Form.Group> : null }
+    </InputGroup.Append> : null }
   </InputGroup>;
 
 }

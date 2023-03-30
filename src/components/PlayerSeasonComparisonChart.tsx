@@ -17,9 +17,9 @@ import Button from 'react-bootstrap/Button';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select from "react-select";
+import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink, faPen, faEye, faExclamation, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faPen, faEye, faExclamation, faCheck, faFilter, faList } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -39,7 +39,7 @@ import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import TeamEditorTable, { TeamEditorStatsModel } from './TeamEditorTable';
 import { DateUtils } from '../utils/DateUtils';
-import { InputGroup, ModalTitle } from 'react-bootstrap';
+import { Dropdown, InputGroup, ModalTitle } from 'react-bootstrap';
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Library imports:
@@ -55,6 +55,8 @@ import { CbbColors } from '../utils/CbbColors';
 import { NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import LinqExpressionBuilder from './shared/LinqExpressionBuilder';
+import { SelectComponents } from 'react-select/src/components';
+import { CommonTableDefs } from '../utils/tables/CommonTableDefs';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
@@ -95,6 +97,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
    const [ title, setTitle ] = useState(startingState.title || "");
+   const overallPresets = [
+      [ "Transfer predictions",  {
+         title: "How transfers fared compared to their predicted RAPM",
+         advancedFilter: "Transfers",
+         xAxis: "Off RAPM: actual - predicted",
+         yAxis: "Def RAPM: actual - predicted",
+         dotColor: "RAPM margin (next)",
+         dotSize: "Min/game (next)"
+      }]
+   ] as Array<[string, PlayerSeasonComparisonParams]>;
 
    const [height, setHeight] = useState(512);
    const latestHeight = useRef(height);
@@ -113,14 +125,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // All the complex config:
 
    // If there's a title show that, otherwise show the config
-   const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(!startingState.title);
+   const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(startingState.showConfig || !startingState.title);
 
    // Filter text (show/hide):
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
    const advancedFilterPresets = [
-      [ "Transfers", "(prev_team != next_team) && prev_team" ],
-      [ "Ranked Freshmen", `!prev_team && next_roster.year_class == "Fr"` ],
+      [ "Transfers", "(prev_team != next_team) AND prev_team" ],
+      [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr"` ],
       [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr"` ],
       [ "Sophomores -> Juniors", `prev_roster.year_class == "So"` ],
       [ "Juniors -> Seniors", `prev_roster.year_class == "Jr"` ],
@@ -138,7 +150,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
    const [ dotColor, setDotColor ] = useState(startingState.dotColor || "");
    const [ dotSize, setDotSize ] = useState(startingState.dotSize || "");
-   //TODO: presets
    const axisPresets = [
       [ "Off RAPM: actual - predicted", "next_off_adj_rapm  - pred_ok_off_adj_rapm" ],
       [ "Def RAPM: actual - predicted", "pred_ok_def_adj_rapm - next_def_adj_rapm" ],
@@ -189,9 +200,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          title: title,
          advancedFilter: advancedFilterStr,
          highlightFilter: highlightFilterStr,
-         xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor
+         xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor,
+         showConfig: showConfigOptions
       });
-   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, dotColor, dotSize ]);
+   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, dotColor, dotSize, showConfigOptions ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -555,8 +567,75 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       return { label: s, value: s };
    }
 
+   const isOverallPresetSelected = (preset: PlayerSeasonComparisonParams) => {
+      return (
+         ((advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "") == advancedFilterStr) &&
+         ((advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "") == highlightFilterStr) &&
+         ((axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "") == xAxis) &&
+         ((axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "") == yAxis) &&
+         ((axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "") == dotColor) &&
+         ((axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotColor || "") == dotSize)
+      );
+   };
+   const buildOverallPresetMenuItem = (name: string, preset: PlayerSeasonComparisonParams) => {
+      return <GenericTogglingMenuItem
+        text={name}
+        truthVal={isOverallPresetSelected(preset)}
+        onSelect={() => {
+           setTitle(preset.title || "");
+           setAdvancedFilterStr(advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "");
+           setHighlightFilterStr(advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
+           setXAxis(axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "");
+           setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
+           setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
+           setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
+        }}
+      />;
+    }
+   const getOverallPresets = () => {
+      const tooltipForFilterPresets = (
+         <Tooltip id="overallFilterPresets">Preset charts</Tooltip>
+       );   
+      return <Dropdown alignRight>
+        <Dropdown.Toggle variant="outline-secondary">
+          <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}><FontAwesomeIcon icon={faList}/></OverlayTrigger>            
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <GenericTogglingMenuItem
+            text={<i>Clear selection</i>}
+            truthVal={false}
+            onSelect={() => {
+               setTitle(""); 
+               setAdvancedFilterStr(""); setHighlightFilterStr("");
+               setXAxis(""); setYAxis("");
+               setDotColor(""); setDotSize("");
+            }}
+          />
+          {overallPresets.map(preset => buildOverallPresetMenuItem(preset[0], preset[1]))}
+        </Dropdown.Menu>
+      </Dropdown>
+   };
+   const colorMapOptions = {
+      "Black": undefined,
+      "Red/Green -10:+10": CbbColors.off_diff10_p100_redBlackGreen
+   } as Record<string, undefined | ((val: number) => string)>;
+   const ColorMapSingleValue = (props: any) => {
+      const colorMapPicker = colorMapOptions[props.data.label] || CbbColors.alwaysBlack;
+      const render = (s: string, n: number) => {
+         return <text style={CommonTableDefs.getTextShadow({ value: n }, colorMapPicker)}>{s}</text>
+      };
+      switch(props.data.label) {
+         case "Red/Green -10:+10":
+            return <components.SingleValue {...props}>
+               <div>{render("-10", -10)} / {render("10", 10)}</div>
+            </components.SingleValue>
+         default: 
+            return <components.SingleValue {...props}>{props.data.label}</components.SingleValue>
+      };
+   };
+
    return <Container>
-      <Form.Group as={Row}>
+      <Form.Row>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 12}}>
             <Select
                isDisabled={true}
@@ -590,7 +669,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                onChangeConf={confStr => friendlyChange(() => setConfs(confStr), confs != confStr)}
             />
          </Col>
-         <Form.Group as={Col} sm="2" className="mt-2">
+         <Form.Group as={Col} xs={1} className="mt-1">
+            {getCopyLinkButton()}
+         </Form.Group>
+         <Form.Group as={Col} xs={6} sm={6} md={6} lg={2} className="mt-2">
           <Form.Check type="switch"
               id="configOptions"
               checked={showConfigOptions}
@@ -598,14 +680,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                 const isCurrentlySet = showConfigOptions;
                 setShowConfigOptions(!showConfigOptions)
               }}
-              label="Configure"
+              label="Show Config"
             />
         </Form.Group>
-         <Col lg={1} className="mt-1">
-            {getCopyLinkButton()}
-         </Col>
-      </Form.Group>
-      {hasCustomFilter ? <Form.Group as={Row}>
+      </Form.Row>
+      {hasCustomFilter ? <Form.Row>
          {hasCustomFilter ? <Col xs={12} sm={12} md={8} lg={8}>
             <InputGroup>
                <InputGroup.Prepend>
@@ -622,28 +701,32 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                />
             </InputGroup>
          </Col> : null}
-      </Form.Group> : null}
-      { showConfigOptions ? null :
-        <Form.Group as={Col} xs="12">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text id="filter">Chart Title</InputGroup.Text>
-          </InputGroup.Prepend>
-          <AsyncFormControl
-            startingVal={title}
-            onChange={(newStr: string) => {
-              if (newStr != title) setTitle(newStr);
-            }}
-            timeout={500}
-            placeholder = "Enter a title for this chart, toggle 'Configure' to build it"
-          />
-        </InputGroup>
-      </Form.Group>}
-      { showConfigOptions ? <Form.Row>
+      </Form.Row> : null}
+      <Form.Row>
+         <Form.Group as={Col} xs="12">
+            <InputGroup>
+               <InputGroup.Prepend>
+                  <InputGroup.Text id="filter">Chart Title</InputGroup.Text>
+               </InputGroup.Prepend>
+               <AsyncFormControl
+                  startingVal={title}
+                  onChange={(newStr: string) => {
+                     if (newStr != title) setTitle(newStr);
+                  }}
+                  timeout={500}
+                  placeholder = "Enter a title for this chart, use 'Show Config' or select a preset"
+               />
+               <InputGroup.Append>
+                  {getOverallPresets()}
+               </InputGroup.Append>
+            </InputGroup>
+         </Form.Group>
+      </Form.Row>
+      { showConfigOptions ? <Form.Row className="mb-2">
         <Col xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
                label="Filter"
-               prompt="Enter Linq: remove unfiltered players (see presets for ideas)"
+               prompt="Enter Linq: remove unselected players (see presets for ideas)"
                value={advancedFilterStr}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
@@ -652,11 +735,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             />
         </Col>
       </Form.Row> : null }
-      { showConfigOptions ? <Form.Row>
+      { showConfigOptions ? <Form.Row className="mb-2">
         <Col xs={12} sm={12} md={12} lg={12}>
            <LinqExpressionBuilder
                label="Highlight"
-               prompt="Enter Linq: unfiltered players are faded into the background"
+               prompt="Enter Linq: unselected players are faded into the background"
                value={highlightFilterStr}
                error={highlightFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
@@ -665,7 +748,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
            />
         </Col>
       </Form.Row> : null }
-      { showConfigOptions ? <Form.Row>
+      { showConfigOptions ? <Form.Row className="mb-2">
         <Col xs={12} sm={12} md={6} lg={6}>
             <LinqExpressionBuilder
                label="X-Axis"
@@ -674,6 +757,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
+               presetsIcon={faList}
                callback={(newVal: string) => friendlyChange(() => setXAxis(newVal), true)}
             />
         </Col>
@@ -685,11 +769,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
+               presetsIcon={faList}
                callback={(newVal: string) => friendlyChange(() => setYAxis(newVal), true)}
             />
         </Col>
       </Form.Row> : null }
-      { showConfigOptions ? <Form.Row>
+      { showConfigOptions ? <Form.Row className="mb-2">
          <Col xs={6} sm={6} md={5} lg={5}>
             <LinqExpressionBuilder
                label="Color"
@@ -698,10 +783,25 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
+               presetsIcon={faList}
                callback={(newVal: string) => friendlyChange(() => setDotColor(newVal), true)}
             />
         </Col>
         <Col xs={6} sm={6} md={2} lg={2}>
+           <Select
+               value={stringToOption("Red/Green -10:+10")}
+               options={_.keys(colorMapOptions).map(
+                  (colorMap) => stringToOption(colorMap)
+               )}
+               components={
+                  //@ts-ignore
+                  {SingleValue: ColorMapSingleValue}
+               }
+               isSearchable={false}
+               onChange={(option) => { if ((option as any)?.value) {
+                  /* currently only support Men */
+               }}}
+            />
         </Col>
         <Col xs={12} sm={12} md={5} lg={5}>
             <LinqExpressionBuilder
@@ -711,6 +811,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
+               presetsIcon={faList}
                callback={(newVal: string) => friendlyChange(() => setDotSize(newVal), true)}
             />
         </Col>
