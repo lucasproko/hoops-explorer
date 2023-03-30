@@ -611,8 +611,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           return (freqOfPos >= 10) ? [ `${pos}: ${freqOfPos.toFixed(0)}%` ] : [];
         }).join(", ") : undefined;
 
+      const withNonBreakingHyphen = (s: string) => {
+        return <span style={{ whiteSpace: "nowrap" }}>{s}</span>;
+      };
+
       player.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(player.posClass, "season", true, posBreakdown)}>
-        <small>{player.posClass}{posBreakdown ? <sup>*</sup> : undefined}</small>
+        <small>{withNonBreakingHyphen(player.posClass)}{posBreakdown ? <sup>*</sup> : undefined}</small>
       </OverlayTrigger>;
 
       const confNickname = ConferenceToNickname[player.conf] || "???";
