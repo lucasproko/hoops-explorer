@@ -33,7 +33,7 @@ describe("PositionUtils", () => {
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0], undefined
     );
     expect(_.values(tidyObj(realConfidences))).toEqual(["0.76", "0.24", "0.00", "0.00", "0.00", ]);
-    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.19","0.07","-0.33","-0.61","-1.61"]);
+    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.19","0.07","-0.33","-0.61","-1.62"]);
     expect(tidyObj(realDiags.calculated)).toEqual({
       "calc_assist_per_fga": "0.41",
       "calc_ast_tov": "2.13",
@@ -48,7 +48,7 @@ describe("PositionUtils", () => {
     const [ realConfidences2, realDiags2 ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1], undefined
     );
-    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.37", "0.42", "0.19", "0.00", ]);
+    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.02", "0.39", "0.42", "0.18", "0.00", ]);
   });
   test("PositionUtils - buildPosition", () => {
     const sampleTeamSeason1 = "Men_Boston College_2019/20";
@@ -174,7 +174,8 @@ describe("PositionUtils", () => {
     const player = {
       total_off_3p_attempts: { value: 1 },
       total_off_2pmid_attempts: { value: 16 },
-      total_off_2prim_attempts: { value: 8 }
+      total_off_2prim_attempts: { value: 8 },
+      total_off_fga: { value: 25 },
     };
 
     // Case 1: Not one of the features we're regressing:
@@ -188,9 +189,19 @@ describe("PositionUtils", () => {
     expect(PositionUtils.regressShotQuality(10, 4, "calc_three_relative", player).toFixed(2)).toEqual("0.77");
     expect(PositionUtils.regressShotQuality(0, 3, "calc_three_relative", player).toFixed(2)).toEqual("1.03");
 
-    // Case 4: regression
+    // Case 4a: regression at low volumes
     expect(PositionUtils.regressShotQuality(100, 3, "calc_rim_relative", player).toFixed(2)).toEqual("53.92");
 
+    // Case 4b: regression at higher volumes
+    const player2 = {
+      total_off_3p_attempts: { value: 1 },
+      total_off_2pmid_attempts: { value: 20 }, //>15 but under 25% of total shot attempts
+      total_off_2prim_attempts: { value: 40 }, //>25% so won't regress
+      total_off_fga: { value: 100 }, //(obv this number is actually fake since it isn't the sum of the 3 above it!)
+    };
+    expect(PositionUtils.regressShotQuality(10, 4, "calc_three_relative", player2).toFixed(2)).toEqual("0.50");
+    expect(PositionUtils.regressShotQuality(-15.5, 2, "calc_mid_relative", player2).toFixed(2)).toEqual("-12.26");
+    expect(PositionUtils.regressShotQuality(100, 3, "calc_rim_relative", player2).toFixed(2)).toEqual("100.00");
   });
 
   test("PositionUtils - usingRosterPos", () => {

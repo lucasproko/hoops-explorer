@@ -38,19 +38,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
               "colSpanOverride": undefined,
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 1.1870453146996361e-8,
+                  "value": 1.1064434469557543e-8,
                 },
                 "pos_pf": Object {
-                  "value": 0.00025873437114051626,
+                  "value": 0.00027535707931342757,
                 },
                 "pos_pg": Object {
-                  "value": 0.7573493221063862,
+                  "value": 0.7573424501262946,
                 },
                 "pos_sf": Object {
-                  "value": 0.004535396666879756,
+                  "value": 0.004535415023586355,
                 },
                 "pos_sg": Object {
-                  "value": 0.23785653498514026,
+                  "value": 0.23784676670637114,
                 },
                 "title": "Scoring PG",
               },
@@ -203,19 +203,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               "colSpanOverride": undefined,
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 7.752418955526866e-9,
+                  "value": 7.055499757258406e-9,
                 },
                 "pos_pf": Object {
-                  "value": 0.00019043748354377016,
+                  "value": 0.0002057715835554099,
                 },
                 "pos_pg": Object {
-                  "value": 0.7608816899806605,
+                  "value": 0.760762422093867,
                 },
                 "pos_sf": Object {
-                  "value": 0.003893285388442086,
+                  "value": 0.0038957588300876787,
                 },
                 "pos_sg": Object {
-                  "value": 0.23503457939493452,
+                  "value": 0.2351360404369902,
                 },
                 "title": "Scoring PG",
               },
@@ -355,19 +355,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": -0.03291695250711689,
                   },
                   "contrib_pos_c": Object {
-                    "value": -1.639683941800146,
+                    "value": -1.6478061986462942,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.6287765086644861,
+                    "value": -0.6197347391687633,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.20051441012627544,
+                    "value": 0.20179622687804707,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.327008040395222,
+                    "value": -0.3256470366673683,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.08303988716847305,
+                    "value": 0.0843805393515611,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1084,19 +1084,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.6911712719,
                   },
                   "contrib_pos_c": Object {
-                    "value": 0.028234511893753606,
+                    "value": 0.020112255047605318,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.03143091300894121,
+                    "value": -0.0223891435132184,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.004455839184729959,
+                    "value": -0.0031740224329583275,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.004731108196824638,
+                    "value": -0.0033701044689709754,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.004660362350734768,
+                    "value": -0.0033197101676466848,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1961,19 +1961,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (use hei
               "colSpanOverride": undefined,
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 8.59013220789501e-8,
+                  "value": 8.006231868062543e-8,
                 },
                 "pos_pf": Object {
-                  "value": 0.001543505695546625,
+                  "value": 0.0016425430083743624,
                 },
                 "pos_pg": Object {
-                  "value": 0.5752853784512509,
+                  "value": 0.5752356430084162,
                 },
                 "pos_sf": Object {
-                  "value": 0.018322671990721153,
+                  "value": 0.018321328327386824,
                 },
                 "pos_sg": Object {
-                  "value": 0.4048483579611593,
+                  "value": 0.4048004055935039,
                 },
                 "title": "Scoring PG",
               },
@@ -1986,19 +1986,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (use hei
               "colSpanOverride": undefined,
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 1.1870453146996361e-8,
+                  "value": 1.1064434469557543e-8,
                 },
                 "pos_pf": Object {
-                  "value": 0.00025873437114051626,
+                  "value": 0.00027535707931342757,
                 },
                 "pos_pg": Object {
-                  "value": 0.7573493221063862,
+                  "value": 0.7573424501262946,
                 },
                 "pos_sf": Object {
-                  "value": 0.004535396666879756,
+                  "value": 0.004535415023586355,
                 },
                 "pos_sg": Object {
-                  "value": 0.23785653498514026,
+                  "value": 0.23784676670637114,
                 },
                 "title": "(Ignore Height) Scoring PG",
               },

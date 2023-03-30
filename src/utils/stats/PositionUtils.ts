@@ -155,9 +155,11 @@ export class PositionUtils {
         calc_mid_relative: "total_off_2pmid_attempts",
         calc_rim_relative: "total_off_2prim_attempts"
       };
-      const regressVol = 15;
+      const totalVolume = player.total_off_fga.value || 0;
+      const regressVol = Math.max(0.25*totalVolume, 15); //(for each position, regress to the position's average if you shoot under 25% of your shots from there)
       const regressVolInv = 1.0/regressVol;
       const volume = player[volumeIndex[feat]]?.value || 0;
+
       if (volume < regressVol) {
         // Special case: as a C if you've only taken 0-2 3s and hit none of them, we'll keep that
         // at 0 to avoid widespread changes
