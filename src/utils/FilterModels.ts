@@ -204,6 +204,7 @@ export type PlayerSeasonComparisonParams = {
   yAxis?: string,
   dotSize?: string,
   dotColor?: string,
+  dotColorMap?: string,
 };
 
 export type PlayerLeaderboardParams = {

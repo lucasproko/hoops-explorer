@@ -104,7 +104,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          xAxis: "Off RAPM: actual - predicted",
          yAxis: "Def RAPM: actual - predicted",
          dotColor: "RAPM margin (next)",
-         dotSize: "Min/game (next)"
+         dotSize: "Min/game (next)",
+         dotColorMap: "Red/Green -10:+10"
       }]
    ] as Array<[string, PlayerSeasonComparisonParams]>;
 
@@ -160,7 +161,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       [ "Possession% (off, prev)", "prev_off_team_poss_pct" ],
       [ "Possession% (off, next)", "next_off_team_poss_pct" ],
    ] as Array<[string, string]>;
-
+   const [ dotColorMap, setDotColorMap ] = useState(startingState.dotColorMap || "Black");
+   const colorMapOptions = {
+      "Black": undefined,
+      "RAPM": CbbColors.off_diff10_p100_redBlackGreen,
+      "Red/Green -10:+10": CbbColors.off_diff10_p100_redBlackGreen,
+   } as Record<string, undefined | ((val: number) => string)>;
 
    // Go fetch the data
 
@@ -201,9 +207,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          advancedFilter: advancedFilterStr,
          highlightFilter: highlightFilterStr,
          xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor,
-         showConfig: showConfigOptions
+         showConfig: showConfigOptions,
+         dotColorMap: dotColorMap
       });
-   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, dotColor, dotSize, showConfigOptions ]);
+   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, 
+      dotColor, dotColorMap, dotSize, showConfigOptions ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -491,6 +499,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       };   
       //(end averages and limits)     
 
+      const colorMapPicker = colorMapOptions[dotColorMap] || CbbColors.alwaysBlack;
       return  <div>
          <ResponsiveContainer width={"100%"} height={0.75*height}>
             <ScatterChart>
@@ -504,12 +513,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                <ZAxis type="number" dataKey="z" range={[10, 100]}/>
                <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
                   {mainChart.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
+                     return <Cell key={`cell-${index}`} fill={colorMapPicker(p.p.color)}/>
                   })};
                </Scatter>
                {subChart ? <Scatter data={subChart} fill="green">
                   {subChart.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={CbbColors.off_diff10_p100_redBlackGreen(p.p.color)}/>
+                     return <Cell key={`cell-${index}`} fill={colorMapPicker(p.p.color)}/>
                   })}</Scatter> : null
                };         
                <RechartTooltip
@@ -525,7 +534,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       ;
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
-      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor
+      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap
    ]);
 
    // 3] View
@@ -574,7 +583,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          ((axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "") == xAxis) &&
          ((axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "") == yAxis) &&
          ((axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "") == dotColor) &&
-         ((axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotColor || "") == dotSize)
+         ((axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotColor || "") == dotSize) &&
+         dotColorMap == preset.dotColorMap
       );
    };
    const buildOverallPresetMenuItem = (name: string, preset: PlayerSeasonComparisonParams) => {
@@ -589,6 +599,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
            setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
            setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
            setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
+           setDotColorMap(preset.dotColorMap || "Black");
         }}
       />;
     }
@@ -615,10 +626,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         </Dropdown.Menu>
       </Dropdown>
    };
-   const colorMapOptions = {
-      "Black": undefined,
-      "Red/Green -10:+10": CbbColors.off_diff10_p100_redBlackGreen
-   } as Record<string, undefined | ((val: number) => string)>;
    const ColorMapSingleValue = (props: any) => {
       const colorMapPicker = colorMapOptions[props.data.label] || CbbColors.alwaysBlack;
       const render = (s: string, n: number) => {
@@ -789,7 +796,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         </Col>
         <Col xs={6} sm={6} md={2} lg={2}>
            <Select
-               value={stringToOption("Red/Green -10:+10")}
+               value={stringToOption(dotColorMap)}
                options={_.keys(colorMapOptions).map(
                   (colorMap) => stringToOption(colorMap)
                )}
@@ -798,9 +805,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   {SingleValue: ColorMapSingleValue}
                }
                isSearchable={false}
-               onChange={(option) => { if ((option as any)?.value) {
-                  /* currently only support Men */
-               }}}
+               onChange={(option) => { 
+                  setDotColorMap((option as any)?.value || "Black")
+               }}
             />
         </Col>
         <Col xs={12} sm={12} md={5} lg={5}>
