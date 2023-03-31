@@ -33,13 +33,20 @@ export class CbbColors {
     };
   }
 
+  static toRgba(hex: string, opacity: number) {
+    const rgb = chroma(hex).rgb();
+    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
+  };
+
   static readonly malformedDataColor = "#ccCCcc";
   static readonly background = "#ffFFff";
 
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);
   private static readonly greenToRed = chroma.scale(["green", "#ffFFff", "red"]);
   private static readonly redBlackGreen = chroma.scale(["red", "grey", "green"]);
+  private static readonly greenBlackRed = chroma.scale(["green", "grey", "red"]);
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
+  private static readonly blueBlackOrange = chroma.scale(["lightblue", "grey", "orange"]);
   private static readonly orangeToBlue = chroma.scale(["orange", "#ffFFff", "lightblue"]);
   private static readonly whiteToOrange = chroma.scale(["#ffFFff", "orange"]);
 
@@ -48,6 +55,7 @@ export class CbbColors {
 
   public static readonly alwaysWhite = (val: number) => CbbColors.background;
   public static readonly alwaysBlack = (val: number) => "#000000";
+  public static readonly alwaysDarkGrey = (val: number) => "#555555";
 
   // %iles
   private static readonly pctileDomain = [ 0, 0.5, 1 ];
@@ -62,7 +70,6 @@ export class CbbColors {
   private static readonly pp100Domain = [ 80, 100, 120 ];
   public static readonly off_pp100 = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly def_pp100 = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val).toString();
-  public static readonly off_pp100_redBlackGreen = (val: number) => CbbColors.redBlackGreen.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly pp100: CbbColorTuple = [ CbbColors.off_pp100, CbbColors.def_pp100 ];
   public static readonly off_ppp = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val*100).toString();
   public static readonly def_ppp = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val*100).toString();
@@ -138,8 +145,6 @@ export class CbbColors {
   public static readonly def_diff10_p100_redGreen = (val: number) => CbbColors.greenToRed.domain(CbbColors.diff10Domainp100RedGreen)(val).toString();
   public static readonly diff10_p100_redGreen: CbbColorTuple = [ CbbColors.off_diff10_p100_redGreen, CbbColors.def_diff10_p100_redGreen ];
   public static readonly diff10_p100_greenRed: CbbColorTuple = [ CbbColors.def_diff10_p100_redGreen, CbbColors.off_diff10_p100_redGreen ];
-  // For use in fills:
-  public static readonly off_diff10_p100_redBlackGreen = (val: number) => CbbColors.redBlackGreen.domain(CbbColors.diff10Domainp100RedGreen)(val).toString();
   // Around 0, team pp100 (red/green):
   private static readonly diff35Domainp100RedGreen = [ -35, 0, 35 ];
   public static readonly off_diff35_p100_redGreen = (val: number) => CbbColors.redToGreen.domain(CbbColors.diff35Domainp100RedGreen)(val).toString();
@@ -203,4 +208,15 @@ export class CbbColors {
   // Frequency with which player is at given position
   private static readonly posFreqDomain = [ 0, 50, 100 ];
   public static readonly posFreq = (val: number) => CbbColors.whiteToOrange.domain(CbbColors.posFreqDomain)(val).toString();
+
+  // Chart versions of commonly colors:
+  public static readonly off_pp100_redBlackGreen = (val: number) => CbbColors.redBlackGreen.domain(CbbColors.pp100Domain)(val).toString();
+  public static readonly def_pp100_redBlackGreen = (val: number) => CbbColors.greenBlackRed.domain(CbbColors.pp100Domain)(val).toString();
+  public static readonly off_diff10_p100_redBlackGreen = (val: number) => CbbColors.redBlackGreen.domain(CbbColors.diff10Domainp100RedGreen)(val).toString();
+  public static readonly def_diff10_p100_redBlackGreen = (val: number) => CbbColors.greenBlackRed.domain(CbbColors.diff10Domainp100RedGreen)(val).toString();
+  public static readonly percentile_redBlackGreen = (val: number) => CbbColors.redBlackGreen.domain(CbbColors.rapmCorrelDomain)(val).toString();
+  public static readonly percentile_greenBlackRed = (val: number) => CbbColors.greenBlackRed.domain(CbbColors.rapmCorrelDomain)(val).toString();
+  public static readonly percentile_blueBlackOrange = (val: number) => CbbColors.blueBlackOrange.domain(CbbColors.rapmCorrelDomain)(val).toString();
+  public static readonly usg_offDef_blueBlackOrange = (val: number) => CbbColors.blueBlackOrange.domain(CbbColors.usgDomain)(val).toString();
+
 }

@@ -19,7 +19,7 @@ import Button from 'react-bootstrap/Button';
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink, faPen, faEye, faExclamation, faCheck, faFilter, faList } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faPen, faEye, faExclamation, faCheck, faFilter, faList, faTags } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
@@ -49,7 +49,7 @@ import { OffseasonLeaderboardUtils } from '../utils/stats/OffseasonLeaderboardUt
 
 // Recharts imports:
 //@ts-ignore
-import { ReferenceArea, ResponsiveContainer, Tooltip as RechartTooltip, ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Label, Cell } from 'recharts';
+import { ReferenceArea, ResponsiveContainer, Tooltip as RechartTooltip, ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Label, Cell, LabelList } from 'recharts';
 import { GoodBadOkTriple } from '../utils/stats/TeamEditorUtils';
 import { CbbColors } from '../utils/CbbColors';
 import { NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
@@ -103,9 +103,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          advancedFilter: "Transfers",
          xAxis: "Off RAPM: actual - predicted",
          yAxis: "Def RAPM: actual - predicted",
-         dotColor: "RAPM margin (next)",
-         dotSize: "Min/game (next)",
-         dotColorMap: "Red/Green -10:+10"
+         dotColor: "RAPM margin",
+         dotSize: "Possession% (off)",
+         dotColorMap: "RAPM"
       }]
    ] as Array<[string, PlayerSeasonComparisonParams]>;
 
@@ -155,18 +155,37 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       [ "Off RAPM: actual - predicted", "next_off_adj_rapm  - pred_ok_off_adj_rapm" ],
       [ "Def RAPM: actual - predicted", "pred_ok_def_adj_rapm - next_def_adj_rapm" ],
       [ "RAPM margin (prev)", "prev_adj_rapm_margin" ],
-      [ "RAPM margin (next)", "next_adj_rapm_margin" ],
+      [ "RAPM margin", "next_adj_rapm_margin" ],
       [ "Min/game (prev)", "40*prev_off_team_poss_pct" ],
-      [ "Min/game (next)", "40*next_off_team_poss_pct" ],
+      [ "Min/game", "40*next_off_team_poss_pct" ],
       [ "Possession% (off, prev)", "prev_off_team_poss_pct" ],
-      [ "Possession% (off, next)", "next_off_team_poss_pct" ],
+      [ "Possession% (off)", "next_off_team_poss_pct" ],
    ] as Array<[string, string]>;
    const [ dotColorMap, setDotColorMap ] = useState(startingState.dotColorMap || "Black");
    const colorMapOptions = {
       "Black": undefined,
+      "Red/Green Auto": CbbColors.percentile_redBlackGreen,
+      "Green/Red Auto": CbbColors.percentile_greenBlackRed,
+      "Blue/Orange Auto": CbbColors.percentile_blueBlackOrange,
+      "Off Rtg": CbbColors.off_pp100_redBlackGreen,
+      "Def Rtg": CbbColors.def_pp100_redBlackGreen,
       "RAPM": CbbColors.off_diff10_p100_redBlackGreen,
+      "oRAPM": CbbColors.off_diff10_p100_redBlackGreen,
+      "dRAPM": CbbColors.def_diff10_p100_redBlackGreen,
+      "Adj oRtg+": CbbColors.off_diff10_p100_redBlackGreen,
+      "Adj dRtg+": CbbColors.def_diff10_p100_redBlackGreen,
+      "Usage": CbbColors.usg_offDef_blueBlackOrange,
       "Red/Green -10:+10": CbbColors.off_diff10_p100_redBlackGreen,
+      "Green/Red -10:+10": CbbColors.def_diff10_p100_redBlackGreen,
+      "Red/Green 80:120": CbbColors.off_pp100_redBlackGreen,
+      "Green/Red 80:120": CbbColors.def_pp100_redBlackGreen,
+      "Blue/Orange 10%:30%": CbbColors.usg_offDef_blueBlackOrange,
+      "Red/Green %ile": CbbColors.percentile_redBlackGreen,
+      "Green/Red %ile": CbbColors.percentile_greenBlackRed,
+      "Blue/Orange %ile": CbbColors.percentile_blueBlackOrange,
    } as Record<string, undefined | ((val: number) => string)>;
+
+   const [ labelStrategy, setLabelStrategy ] = useState(startingState.labelStrategy || "None");
 
    // Go fetch the data
 
@@ -208,10 +227,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          highlightFilter: highlightFilterStr,
          xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor,
          showConfig: showConfigOptions,
-         dotColorMap: dotColorMap
+         dotColorMap: dotColorMap,
+         labelStrategy: labelStrategy
       });
    }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, 
-      dotColor, dotColorMap, dotSize, showConfigOptions ]);
+      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -428,6 +448,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                x: p.x,
                y: p.y,
                z: p.z,
+               label: p.actualResults.code,
                p: p
             };
          }).value();
@@ -435,21 +456,51 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       //TODO: this was supposed to block hover tooltips for main chart, need to try again
       var inSubChart = new Set(subChart?.map(p => p.p.key) || []);
          
+      var minColor = Number.MAX_SAFE_INTEGER;
+      var maxColor = -Number.MAX_SAFE_INTEGER;
       const mainChart = _.chain(filteredData)
          .map(p => {
+            if ((p.color || 0) < minColor) minColor = p.color || 0;
+            if ((p.color || 0) > maxColor) maxColor = p.color || 0;
             return {
                x: p.x,
                y: p.y,
                z: p.z,
+               label: p.actualResults.code,
                p: p
             };
          }).value();
+
+      // Labelling logic
+      const [ maxLabels, topAndBottom ]: [ number, boolean ] = _.thru(labelStrategy, () => {
+         if (labelStrategy == "None") return [ 0, true ];
+         else {
+            return [
+               parseInt(labelStrategy.replace(/^[^0-9]*([0-9]+)$/, "$1")), 
+               labelStrategy.indexOf("Bottom") >= 0 
+            ];
+         }
+      });
+      const chartToUseForLabels = subChart || mainChart;
+      const dataPointsToLabel = (maxLabels > 0) ? _.thru(topAndBottom, () => {
+         if (topAndBottom) {
+            if (2*maxLabels > _.size(chartToUseForLabels)) {
+               return chartToUseForLabels;
+            } else {
+               return _.take(chartToUseForLabels, maxLabels).concat(
+                  _.takeRight(chartToUseForLabels, maxLabels)
+               );
+            }
+         } else {
+            return _.take(chartToUseForLabels, maxLabels);
+         }
+      }) as any[]: undefined;
 
       // (Some util logic associated with building averages and limits)
       const mutAvgState = {
          avgX: 0, avgY: 0, weightAvgX: 0, weightAvgY: 0,
          varX: 0, varY: 0, weightVarX: 0, weightVarY: 0,
-         avgCount: 0, avgWeightX: 0, avgWeightY: 0
+         avgCount: 0, avgWeightX: 0, avgWeightY: 0,
       };
       const xHasNext = xAxis.indexOf("next_") >= 0;
       const yHasNext = yAxis.indexOf("next_") >= 0;
@@ -499,7 +550,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       };   
       //(end averages and limits)     
 
-      const colorMapPicker = colorMapOptions[dotColorMap] || CbbColors.alwaysBlack;
+      const colorMapPicker = colorMapOptions[dotColorMap] || CbbColors.alwaysDarkGrey;
+      const isAutoColorMap = dotColorMap.indexOf("Auto") >= 0;
+      const deltaColorInv = 1/((maxColor - minColor) || 1);
+      const colorMapTransformer = (n: number) => {
+         if (isAutoColorMap) {
+            return (n - minColor)*deltaColorInv;
+         } else return n;
+      };
       return  <div>
          <ResponsiveContainer width={"100%"} height={0.75*height}>
             <ScatterChart>
@@ -513,12 +571,18 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                <ZAxis type="number" dataKey="z" range={[10, 100]}/>
                <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
                   {mainChart.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={colorMapPicker(p.p.color)}/>
+                     return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
                   })};
                </Scatter>
                {subChart ? <Scatter data={subChart} fill="green">
                   {subChart.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={colorMapPicker(p.p.color)}/>
+                     return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
+                  })}</Scatter> : null
+               };         
+               {dataPointsToLabel ? <Scatter data={dataPointsToLabel} fill="green">
+                  <LabelList dataKey="label" />
+                  {dataPointsToLabel.map((p, index) => {
+                     return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
                   })}</Scatter> : null
                };         
                <RechartTooltip
@@ -534,14 +598,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       ;
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
-      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap
+      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy
    ]);
 
    // 3] View
 
-  // Advanced filter text
+   // Advanced filter text
 
-  const editingAdvFilterTooltip = (
+   const editingAdvFilterTooltip = (
       <Tooltip id="editingAdvFilterTooltip">Press enter to apply this Linq filter</Tooltip>
    );
    const doneAdvFilterTooltip = (
@@ -576,6 +640,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       return { label: s, value: s };
    }
 
+   // Overall presets
+
    const isOverallPresetSelected = (preset: PlayerSeasonComparisonParams) => {
       return (
          ((advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "") == advancedFilterStr) &&
@@ -592,14 +658,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         text={name}
         truthVal={isOverallPresetSelected(preset)}
         onSelect={() => {
-           setTitle(preset.title || "");
-           setAdvancedFilterStr(advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "");
-           setHighlightFilterStr(advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
-           setXAxis(axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "");
-           setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
-           setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
-           setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
-           setDotColorMap(preset.dotColorMap || "Black");
+           friendlyChange(() => {
+            setTitle(preset.title || "");
+            setAdvancedFilterStr(advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "");
+            setHighlightFilterStr(advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
+            setXAxis(axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "");
+            setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
+            setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
+            setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
+            setDotColorMap(preset.dotColorMap || "Black");
+           }, true);
         }}
       />;
     }
@@ -616,30 +684,54 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             text={<i>Clear selection</i>}
             truthVal={false}
             onSelect={() => {
-               setTitle(""); 
-               setAdvancedFilterStr(""); setHighlightFilterStr("");
-               setXAxis(""); setYAxis("");
-               setDotColor(""); setDotSize("");
+               friendlyChange(() => {
+                  setTitle(""); 
+                  setAdvancedFilterStr(""); setHighlightFilterStr("");
+                  setXAxis(""); setYAxis("");
+                  setDotColor(""); setDotSize("");
+               }, true);
             }}
           />
           {overallPresets.map(preset => buildOverallPresetMenuItem(preset[0], preset[1]))}
         </Dropdown.Menu>
       </Dropdown>
    };
+
+   // Color selector
+
    const ColorMapSingleValue = (props: any) => {
-      const colorMapPicker = colorMapOptions[props.data.label] || CbbColors.alwaysBlack;
-      const render = (s: string, n: number) => {
-         return <text style={CommonTableDefs.getTextShadow({ value: n }, colorMapPicker)}>{s}</text>
-      };
-      switch(props.data.label) {
-         case "Red/Green -10:+10":
-            return <components.SingleValue {...props}>
-               <div>{render("-10", -10)} / {render("10", 10)}</div>
-            </components.SingleValue>
-         default: 
-            return <components.SingleValue {...props}>{props.data.label}</components.SingleValue>
-      };
+      const label = props.data.label || "Black";
+      const labelToRender = label.replace(/[A-Za-z]+[/][A-Za-z]+\s+/, ""); //(remove leading colors)
+      const colorMapPicker = colorMapOptions[label] || CbbColors.alwaysDarkGrey;
+      const leftColorStr = CbbColors.toRgba(colorMapPicker(-Number.MAX_SAFE_INTEGER), 0.75); 
+      const rightColorStr = CbbColors.toRgba(colorMapPicker(Number.MAX_SAFE_INTEGER), 0.75);
+      return <components.SingleValue {...props}>
+         <div style={{
+            textAlign: "center",
+            background: (label == "Black") ? undefined : 
+               `linear-gradient(to right, ${leftColorStr}, 20%, white, 80%, ${rightColorStr})`,
+         }}>
+            {labelToRender}
+         </div>
+      </components.SingleValue>
    };
+
+   // Label strategy
+
+   const labelStrategyTooltip = (
+      <Tooltip id="labelStrategyTooltip">Label the top/bottom entries based on a SORT BY clause in either the 'Filter' or 'Highlight' Linq expressions</Tooltip>
+   );
+   const buildLabelStrategy = (name: string) => {
+      return <GenericTogglingMenuItem
+        text={name}
+        truthVal={name == labelStrategy}
+        onSelect={() => {
+           friendlyChange(() => {
+              setLabelStrategy(name);
+           }, true);
+        }}
+      />;
+   }
 
    return <Container>
       <Form.Row>
@@ -682,12 +774,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Form.Group as={Col} xs={6} sm={6} md={6} lg={2} className="mt-2">
           <Form.Check type="switch"
               id="configOptions"
-              checked={showConfigOptions}
+              checked={!showConfigOptions}
               onChange={() => {
                 const isCurrentlySet = showConfigOptions;
                 setShowConfigOptions(!showConfigOptions)
               }}
-              label="Show Config"
+              label="Hide Config"
             />
         </Form.Group>
       </Form.Row>
@@ -721,7 +813,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                      if (newStr != title) setTitle(newStr);
                   }}
                   timeout={500}
-                  placeholder = "Enter a title for this chart, use 'Show Config' or select a preset"
+                  placeholder = "Enter a title for this chart or select a preset"
                />
                <InputGroup.Append>
                   {getOverallPresets()}
@@ -743,7 +835,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         </Col>
       </Form.Row> : null }
       { showConfigOptions ? <Form.Row className="mb-2">
-        <Col xs={12} sm={12} md={12} lg={12}>
+        <Col xs={11} sm={11} md={11} lg={11}>
            <LinqExpressionBuilder
                label="Highlight"
                prompt="Enter Linq: unselected players are faded into the background"
@@ -753,7 +845,17 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                presets={advancedFilterPresets}
                callback={(newVal: string) => friendlyChange(() => setHighlightFilterStr(newVal), true)}
            />
-        </Col>
+         </Col>
+         <Col xs={1} sm={1} md={1} lg={1}>
+            <Dropdown alignRight style={{maxHeight: "2.4rem"}}>
+               <Dropdown.Toggle variant="outline-secondary">
+                  <OverlayTrigger placement="auto" overlay={labelStrategyTooltip}><FontAwesomeIcon icon={faTags}/></OverlayTrigger>            
+               </Dropdown.Toggle>
+               <Dropdown.Menu>
+                  {["None", "Top 5", "Top 10", "Top 25", "Top/Bottom 5", "Top/Bottom 10", "Top/Bottom 25"].map(buildLabelStrategy)}
+               </Dropdown.Menu>
+            </Dropdown>
+         </Col>
       </Form.Row> : null }
       { showConfigOptions ? <Form.Row className="mb-2">
         <Col xs={12} sm={12} md={6} lg={6}>
@@ -804,9 +906,18 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   //@ts-ignore
                   {SingleValue: ColorMapSingleValue}
                }
+               styles={{
+                  singleValue: (provided, __) => ({
+                     ...provided,
+                     width: "100%",                     
+                  })
+               }}
                isSearchable={false}
                onChange={(option) => { 
-                  setDotColorMap((option as any)?.value || "Black")
+                  const newColorMap = (option as any)?.value || "Black";
+                  friendlyChange(() => {
+                     setDotColorMap(newColorMap);
+                  }, newColorMap != dotColorMap);
                }}
             />
         </Col>

@@ -205,6 +205,7 @@ export type PlayerSeasonComparisonParams = {
   dotSize?: string,
   dotColor?: string,
   dotColorMap?: string,
+  labelStrategy?: string,
 };
 
 export type PlayerLeaderboardParams = {
