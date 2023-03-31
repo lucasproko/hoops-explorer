@@ -57,6 +57,7 @@ import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import LinqExpressionBuilder from './shared/LinqExpressionBuilder';
 import { SelectComponents } from 'react-select/src/components';
 import { CommonTableDefs } from '../utils/tables/CommonTableDefs';
+import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
@@ -278,6 +279,33 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       }, timeout)
       }
    };
+
+   // Viewport management
+
+   const [ screenHeight, setScreenHeight ] = useState(512);
+   const [ screenWidth, setScreenWidth ] = useState(512);
+   //(would only need these if using dynamic sizing)
+   // const latestScreenHeight = useRef(screenHeight);
+   // const latestScreenWidth = useRef(screenWidth);
+   const calcWidthHeight = (): [ number, number ] => {
+      const baseHeight = Math.max(0.75*window.innerHeight, 400);
+      const baseWidth = Math.max(baseHeight, Math.max(window.innerWidth, 400));
+      return [ baseWidth, baseHeight ];
+   };
+   useEffect(() => {
+     function handleResize() {
+         setTimeout(() => {
+            const [ baseWidth, baseHeight ] = calcWidthHeight();
+            setScreenHeight(baseHeight);
+            setScreenWidth(baseWidth);
+         }, 250);
+     }
+     window.addEventListener('resize', handleResize);
+     const [ baseWidth, baseHeight ] = calcWidthHeight();
+     setScreenHeight(baseHeight);
+     setScreenWidth(baseWidth);
+      return () => window.removeEventListener('resize', handleResize);
+   }, []);
 
    // 2] Processing
 
@@ -558,6 +586,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             return (n - minColor)*deltaColorInv;
          } else return n;
       };
+
+      const labelState = ScatterChartUtils.buildEmptyLabelState(); 
       return  <div>
          <ResponsiveContainer width={"100%"} height={0.75*height}>
             <ScatterChart>
@@ -570,17 +600,42 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                </YAxis>
                <ZAxis type="number" dataKey="z" range={[10, 100]}/>
                <Scatter data={mainChart} fill="green" opacity={subChart ? 0.25 : 1.0}>
+                  {subChart ? undefined : ScatterChartUtils.buildLabelColliders("mainChart", {
+                     maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
+                     dataKey: "label", series: mainChart
+                  })}
+
                   {mainChart.map((p, index) => {
                      return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
                   })};
                </Scatter>
                {subChart ? <Scatter data={subChart} fill="green">
+                  {ScatterChartUtils.buildLabelColliders("subChart", {
+                     maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
+                     dataKey: "label", series: subChart
+                  })}
+
                   {subChart.map((p, index) => {
                      return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
                   })}</Scatter> : null
                };         
                {dataPointsToLabel ? <Scatter data={dataPointsToLabel} fill="green">
-                  <LabelList dataKey="label" />
+                  {ScatterChartUtils.buildTidiedLabelList({
+                     maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
+                     dataKey: "label", series: dataPointsToLabel
+                  })}
+
+                  {dataPointsToLabel.map((p, index) => {
+                     return <Cell key={`cell-${index}`} opacity={0}/>;
+                  })}</Scatter> : null
+               };         
+               {/* Repeat the label subset again, to ensure that the labels get rendered, see buildTidiedLabelList docs */}
+               {dataPointsToLabel ? <Scatter data={dataPointsToLabel} fill="green">
+                  {ScatterChartUtils.buildTidiedLabelList({
+                     maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
+                     dataKey: "label", series: dataPointsToLabel
+                  })}
+
                   {dataPointsToLabel.map((p, index) => {
                      return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
                   })}</Scatter> : null

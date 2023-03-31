@@ -19,6 +19,7 @@ interface Rectangle {
 export interface LabelMoveState {
    labels: Rectangle[];
    dataPointSet: Record<string, Rectangle>;
+   blockers: Record<string, number>;
 };
 export type TidyLabelListProps = LabelListProps<Record<string, any>> & {
    maxHeight: number,
@@ -32,9 +33,43 @@ export type TidyLabelListProps = LabelListProps<Record<string, any>> & {
 
 export class ScatterChartUtils {
    static buildEmptyLabelState = (): LabelMoveState => ({
-      labels: [], dataPointSet: {}
+      labels: [], dataPointSet: {}, blockers: {}
    });
    
+
+   /** Allows unlabelled points to act as blocking rectangles for the labelled points */
+   static buildLabelColliders = (seriesName: string, props: TidyLabelListProps) => {
+
+      const insertLabelOfRectangle = (labelProps: any, state: LabelMoveState) => {
+         const { index, x, y, cx, cy, width, height, value, fill } = labelProps;
+         
+         const blocker = props.mutableState.blockers[seriesName] || -1;
+         if (index <= blocker) {
+            if (index == 0) {
+               // console.log(`SKIP DUP SERIES ${seriesName} [${_.size(props.series)}] vs blockers: [${JSON.stringify(props.mutableState.blockers)}] state: [${_.size(props.mutableState.labels)}]`);
+               console.log(`${_.chain(props.mutableState.labels.map(r => r.name)).groupBy(n => n).filter(ns => _.size(ns) > 1).value()}`)
+            }
+            return null;
+         } else {
+            if (index == 0) {
+               // console.log(`SERIES ${seriesName} [${_.size(props.series)}] vs blockers: [${JSON.stringify(props.mutableState.blockers)}] state: [${_.size(props.mutableState.labels)}]`);
+            }
+            props.mutableState.blockers[seriesName] = index;
+         }
+
+         const dataPointObj = props.series[labelProps.index];
+
+         const rectangleOfIcon = { 
+            name: `${value}-${seriesName}-dot`, 
+            left: cx - 0.5*width, right: cx + 0.5*width, 
+            top: cy + 0.5*height, bottom: cy - 0.5*height
+         };
+         state.labels.push(rectangleOfIcon);
+         return null;
+      };
+      return <LabelList {...props} content={(p) => insertLabelOfRectangle(p, props.mutableState)}/>;
+   };
+
    /** Builds 1 of >1 LabelLists (need >1 or the labels won't render) 
     *  Note that the parent Scatter needs all series (same as props.series)
     * and then you use Cell to make the "wrong" series points not be visible  
@@ -45,10 +80,13 @@ export class ScatterChartUtils {
       const yOrigin = 0.5*(props.maxHeight - 60);
 
       const renderCustomizedLabel = (labelProps: any, state: LabelMoveState) => {
-         //console.log(labelProps); 
-         //console.log(`${labelProps.value} vs ${props.series[labelProps.index]?.name}`);
+         // console.log(labelProps); 
+         // console.log(`${labelProps.value} vs ${props.series[labelProps.index]?.name}`);
+
          const { index, x, y, cx, cy, width, height, value, fill } = labelProps;
          const dataPointObj = props.series[labelProps.index];
+
+         //console.log(`LABEL ${value} vs state: [${_.size(state.labels)}]: (${cx},${cy})+(${width},${height})`);
          
          const approxTextWidth = 6*value.length;  //(1 + 0.8*value.length)*width;
          const approxTextHeight = 14; //2.5*height;
@@ -94,6 +132,7 @@ export class ScatterChartUtils {
                return rect;
             } else { //(first time through)
                const adjustedRect = moveRectangle(labelRectangle, state.labels, [ rectangleOfIcon ]);
+
                // Mutuate the state
                state.labels.push(adjustedRect);
                state.labels.push(rectangleOfIcon);
@@ -201,7 +240,7 @@ export class ScatterChartUtils {
          const [ dxPre1, dxPre2 ] = getOverlap(rect.left, rect.right, overlappers.left, overlappers.right);
          const [ dyPre1, dyPre2 ] = getOverlap(rect.top, rect.bottom, overlappers.top, overlappers.bottom);
    
-         //if (rect.name == "XXX") console.log(`name=[${rect.name}] DX=[${dxPre1}, ${dxPre2}] DY=[${dyPre1}, ${dyPre2}]`)
+         //if (rect.name == "XXX") console.log(`name=[${rect.name}] DX=[${dxPre1}, ${dxPre2}] DY=[${dyPre1}, ${dyPre2}] (rect=[${JSON.stringify(rect)}])`)
 
          const dx1 = dxPre1 || dyPre1;
          const dx2 = dxPre2 || dyPre2; //(handle the case where x is 0, just to give the rectangle some wiggle room)
@@ -219,11 +258,17 @@ export class ScatterChartUtils {
                [ i*dy1, i*dx1 ], [ i*dy1, i*dx2 ], [ i*dy2, i*dx1 ], [ i*dy2, i*dx2 ] // rotate allowed jumps by 90deg
             ] }), (dXdY: number[]) => (dXdY[0]!*dXdY[0]! + dXdY[1]!*dXdY[1]!) //(try closest first)
             //TODO: in calculating distance, it would be nice to give a bonus to arrows that "radiated from the origin"
+            //(do this by Lerping the center of gravity while calc'ing the blockers?)
 
          ).filter((dXdY: number[]) => {
             const [ dx, dy ] = dXdY;
-            return (rect.left + dx >= 0) && (rect.bottom + dy >= 0) 
-               && (rect.right + dx <= props.maxWidth) && (rect.top + dy <= props.maxHeight);
+
+            const isOnScreen = (rect.left + dx >= 0) && (rect.bottom + dy >= 0) 
+            && (rect.right + dx <= props.maxWidth) && (rect.top + dy <= props.maxHeight)
+
+            // if (rect.name == "XXX") console.log(`name=[${rect.name}] DX=[${dx}]+[${rect.right}] DY=[${dy}]+[${rect.top}] vs w=[${props.maxWidth}] h=[${props.maxHeight}], ONSCREEN=${isOnScreen}`)
+
+            return isOnScreen;
          }).filter(
             (dXdY: number[]) => (dXdY[0] != 0) || (dXdY[1] != 0)
          ).map((dXdY: number[]) => {
@@ -241,7 +286,7 @@ export class ScatterChartUtils {
            return (rect1.name != rectangle.name) && doRectanglesOverlap(rect1, rectangle);
          });
          if (_.isEmpty(overlappingRectangles)) {
-            // console.log(`No match for ${JSON.stringify(rectangle)} vs ${JSON.stringify(rectangles)}`)         
+            //console.log(`No match for ${JSON.stringify(rectangle)} vs ${JSON.stringify(rectangles)}`)         
             return rectangle;
          }
          // Otherwise we have some overlap
@@ -249,8 +294,8 @@ export class ScatterChartUtils {
 
          // 2 phases: strict (same quadrant) then anything goes
          const getRectangleToReturn = (maybeIconRect?: Rectangle) => {
-            const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectangle, maybeIconRect);         
-            //if (rectangle.name == "XXX") console.log(`${JSON.stringify(rectangle)} (${JSON.stringify(maybeIconRect)}) -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
+            const candidateRectangles = buildNonOverlappingRectangles(rectangle, minCoveringRectangle, maybeIconRect);  
+            // if (rectangle.name == "XXX") console.log(`${JSON.stringify(rectangle)} (${JSON.stringify(maybeIconRect)}) -> ${JSON.stringify(candidateRectangles[0])} vs ${JSON.stringify(minCoveringRectangle)} (${JSON.stringify(overlappingRectangles)})`);
 
             // Pick the closest rectangle that hits none of the others      
             const rectanglesPlusLabel = rectangles.concat(iconRect);
@@ -270,7 +315,7 @@ export class ScatterChartUtils {
             // }
             return rectangeToReturn || (maybeIconRect ? undefined : candidateRectangles[0]);
          }   
-         return getRectangleToReturn(iconRect?.[0]) || getRectangleToReturn()!;
+         return getRectangleToReturn(iconRect?.[0]) || getRectangleToReturn()! || rectangle;
        }
        
        // Returns the amount that two intervals overlap, or 0 if they don't overlap
