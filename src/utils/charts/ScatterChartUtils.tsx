@@ -109,7 +109,7 @@ export class ScatterChartUtils {
             left: cx - 0.5*width, right: cx + 0.5*width, 
             top: cy + 0.5*height, bottom: cy - 0.5*height
          };
-         const cacheKey = `${dataPointObj?.seriesId}-${value}-${index}`;    
+         const cacheKey = `${dataPointObj?.seriesId || "series"}-${value}-${index}`;    
          const buildRect = _.thru(state.dataPointSet[cacheKey], rect => {
             // if (value == "XXX") console.log(`cacheLookup: ${cacheKey}: ${JSON.stringify(rect)} (state: ${state.labels.length})`);            
             if (rect && rect.revalidatedPlacement) { //(probably third+ time through)
@@ -122,7 +122,9 @@ export class ScatterChartUtils {
                const adjustedRect = moveRectangle(rect, state.labels.filter(rect1 => {
                   return rect1.name != iconRect?.name;
                }), iconRect ? [ iconRect ] : []);
-       
+
+               //if (value == "SoBoum") console.log(`cacheLookup: ${cacheKey}: ${JSON.stringify(rect)} -> ${JSON.stringify(adjustedRect)}`);            
+
                // Adjust position (if needed)
                rect.bottom = adjustedRect.bottom;
                rect.top = adjustedRect.top;
@@ -283,10 +285,14 @@ export class ScatterChartUtils {
       function moveRectangle(rectangle: Rectangle, rectangles: Rectangle[], iconRect: Rectangle[]): Rectangle {
          // Create a list of all the rectangles that overlap with my rectangle
          const overlappingRectangles = rectangles.filter(rect1 => {
+
+         // if (rectangle.name == "XXX") if (rect1.name == "YYY") 
+         //    console.log(`No match for ${JSON.stringify(rectangle)} vs ${JSON.stringify(rect1)}: ${doRectanglesOverlap(rect1, rectangle)}`)         
+
            return (rect1.name != rectangle.name) && doRectanglesOverlap(rect1, rectangle);
          });
          if (_.isEmpty(overlappingRectangles)) {
-            //console.log(`No match for ${JSON.stringify(rectangle)} vs ${JSON.stringify(rectangles)}`)         
+            // if (rectangle.name == "XXX") console.log(`No match for ${JSON.stringify(rectangle)} vs ${JSON.stringify(rectangles)}`)         
             return rectangle;
          }
          // Otherwise we have some overlap
@@ -328,13 +334,11 @@ export class ScatterChartUtils {
        // Returns true if the two rectangles overlap, false otherwise
        function doRectanglesOverlap(rectA: Rectangle, rectB: Rectangle): boolean {
          const cmp = (rect1: Rectangle, rect2: Rectangle) => (
-            ((rect1.left <= rect2.right) && (rect1.left >= rect2.left) ||
-            (rect1.right <= rect2.right) && (rect1.right >= rect2.left))
+            ((rect1.left <= rect2.right) && (rect1.right >= rect2.left))
            &&          
-           ((rect1.top <= rect2.top) && (rect1.top >= rect2.bottom) ||
-           (rect1.bottom <= rect2.top) && (rect1.bottom >= rect2.bottom))
+           ((rect1.top >= rect2.bottom) && (rect1.bottom <= rect2.top))
          )
-         return cmp(rectA, rectB) || cmp(rectB, rectA);
+         return cmp(rectA, rectB) || cmp(rectB, rectA); //(not needed but gives me a warm safe glow!)
        }
        
       //(for comparison:)

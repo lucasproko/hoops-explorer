@@ -106,23 +106,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          yAxis: "Def RAPM: actual - predicted",
          dotColor: "RAPM margin",
          dotSize: "Possession% (off)",
-         dotColorMap: "RAPM"
+         dotColorMap: "RAPM",
+         labelStrategy: "Top/Bottom 10"
       }]
    ] as Array<[string, PlayerSeasonComparisonParams]>;
-
-   const [height, setHeight] = useState(512);
-   const latestHeight = useRef(height);
-   useEffect(() => {
-     function handleResize() {
-         setTimeout(() => {
-            setHeight(window.innerHeight);
-         }, 250);
-     }
-     window.addEventListener('resize', handleResize);
-     setHeight(window.innerHeight);
-     return () => window.removeEventListener('resize', handleResize);
-   }, []);
-
 
    // All the complex config:
 
@@ -133,7 +120,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
    const advancedFilterPresets = [
-      [ "Transfers", "(prev_team != next_team) AND prev_team" ],
+      [ "Transfers", "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC" ],
       [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr"` ],
       [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr"` ],
       [ "Sophomores -> Juniors", `prev_roster.year_class == "So"` ],
@@ -282,6 +269,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    // Viewport management
 
+   const [height, setHeight] = useState(512);
    const [ screenHeight, setScreenHeight ] = useState(512);
    const [ screenWidth, setScreenWidth ] = useState(512);
    //(would only need these if using dynamic sizing)
@@ -295,16 +283,21 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    useEffect(() => {
      function handleResize() {
          setTimeout(() => {
+            setHeight(window.innerHeight);
             const [ baseWidth, baseHeight ] = calcWidthHeight();
-            setScreenHeight(baseHeight);
-            setScreenWidth(baseWidth);
+            // Only bother setting these expensive vars if they chance enough
+            if ((Math.abs(baseHeight - screenHeight) > 25) || (Math.abs(baseWidth - screenWidth) > 25)) {
+               setScreenHeight(baseHeight);
+               setScreenWidth(baseWidth);
+            }
          }, 250);
      }
      window.addEventListener('resize', handleResize);
+     setHeight(window.innerHeight);
      const [ baseWidth, baseHeight ] = calcWidthHeight();
      setScreenHeight(baseHeight);
      setScreenWidth(baseWidth);
-      return () => window.removeEventListener('resize', handleResize);
+     return () => window.removeEventListener('resize', handleResize);
    }, []);
 
    // 2] Processing
@@ -653,7 +646,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       ;
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
-      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy
+      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
+      screenHeight, screenWidth
    ]);
 
    // 3] View
@@ -705,6 +699,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          ((axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "") == yAxis) &&
          ((axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "") == dotColor) &&
          ((axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotColor || "") == dotSize) &&
+         labelStrategy == preset.labelStrategy &&
          dotColorMap == preset.dotColorMap
       );
    };
@@ -722,6 +717,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
             setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
             setDotColorMap(preset.dotColorMap || "Black");
+            setLabelStrategy(preset.labelStrategy || "None");
            }, true);
         }}
       />;
@@ -743,7 +739,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   setTitle(""); 
                   setAdvancedFilterStr(""); setHighlightFilterStr("");
                   setXAxis(""); setYAxis("");
-                  setDotColor(""); setDotSize("");
+                  setDotColor("Black"); setDotSize("");
+                  setLabelStrategy("None");
                }, true);
             }}
           />
