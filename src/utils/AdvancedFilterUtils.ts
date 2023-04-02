@@ -16,12 +16,12 @@ export class AdvancedFilterUtils {
 
    static readonly playerLeaderBoardAutocomplete = AdvancedFilterUtils.operators.concat([
       // Basic metadata:
-      "conf", "team", "year",
+      "conf", "team", "year", "player_name", "player_code",
 
       // Advanced metadata:
       "posClass", "posConfidences", "posFreqs",
       "roster.number", "roster.height", "roster.year_class", "roster.pos",
-      "tier", "transfer_dest",
+      "tier", "transfer_src", "transfer_dest",
 
       // Opposition strength
       "off_adj_opp",
@@ -101,7 +101,8 @@ export class AdvancedFilterUtils {
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
          .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
          .replace(/roster[.]height/g, "$.normht")
-         .replace(/transfer_dest/g, "$.transfer_dest")
+         .replace(/transfer_(src|dest)/g, "$.transfer_$1")
+         .replace(/player_(name|code)/g, "$.player_$1")
          .replace(/(^| |[(!*+/-])(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g, "$1$.p.$2")
          .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
@@ -113,7 +114,7 @@ export class AdvancedFilterUtils {
          .replace(/(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1?.p.$2?.value")
          .replace(/(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2?.$3")
          .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
-         .replace(/(prev|next|pred_[a-z]+)_transfer_dest/g, "$.$1?.transfer_dest")
+         .replace(/(prev|next|pred_[a-z]+)_transfer_(src|dest)/g, "$.$1?.transfer_$1")
          .replace(/(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g, "$1$.$2?.p.$3")
          .replace(/[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g, "(100*$.$1?.p.def_ftr?.value)") //(fouls called/50)
          .replace(/roster[.]/g, "roster?.") //(roster not always present)
@@ -185,6 +186,9 @@ export class AdvancedFilterUtils {
          const buildSingleYearRetVal = (p: any, index: number) => {
             const retVal = { 
                p: p,
+               player_name: p.key,
+               player_code: p.code,
+               transfer_src: p.transfer_src || "",
                transfer_dest: p.transfer_dest || "",
                // Normalize so can do height comparisons 
                normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
@@ -209,6 +213,10 @@ export class AdvancedFilterUtils {
          const buildMultiYearRetVal = (p: any, index: number) => {
             const retVal = {
                p: p,
+               player_name: p.orig?.key || p.actualResults?.key,
+               player_code: p.orig?.code || p.actualResults?.code,
+               transfer_src: (p.orig?.team != p.actualResults?.team) ? p.orig?.team : undefined,
+               transfer_dest: (p.orig && (p.orig.team != p.actualResults?.team)) ? p.actualResults?.team : undefined,
                pred_ok: p.ok ? buildSingleYearRetVal(p.ok, index) : undefined,
                pred_good: p.good ? buildSingleYearRetVal(p.good, index) : undefined,
                pred_bad: p.bad ? buildSingleYearRetVal(p.bad, index) : undefined,

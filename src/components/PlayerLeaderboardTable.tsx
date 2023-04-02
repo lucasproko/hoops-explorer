@@ -523,6 +523,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const strToTest = caseInsensitiveSearch ? strToTestCase.toLowerCase() : strToTestCase;
 
       const maybeTxfer = _.find(dataEvent?.transfers?.[player.code] || [], comp => (comp.f == player.team));
+      if (maybeTxfer?.f) player.transfer_src = maybeTxfer?.f;
       if (maybeTxfer?.t) player.transfer_dest = maybeTxfer?.t;
 
       if (transferPredictionMode) {
