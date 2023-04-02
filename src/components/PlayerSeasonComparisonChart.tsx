@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Lodash:
-import _ from "lodash";
+import _, { isNumber } from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -64,6 +64,29 @@ type Props = {
    dataEvent: TeamEditorStatsModel,
    onChangeState: (newParams: PlayerSeasonComparisonParams) => void
 }
+
+type AxisDecomposition = {
+   linq: string,
+   label?: string,
+   limits?: [ string | number, string | number ],
+   ticks?: (string | number)[]
+};
+const decompAxis = (axis: string): AxisDecomposition => {
+   const decomp = axis.split("//");
+   const postAxis = _.drop(decomp, 1);
+   return {
+      linq: decomp[0],
+      label: _.filter(postAxis, l => _.startsWith(l, "LABEL ")).map(l => _.trim(l.substring(6)))[0],
+      limits: _.filter(postAxis, l => _.startsWith(l, "LIMITS ")).map(l => _.trim(l.substring(7)).split(",").map(numOrStr => {
+         const maybeNum = parseFloat(numOrStr);
+         return isNaN(maybeNum) ? numOrStr : maybeNum;
+      }) as [ string | number, string | number ])[0],
+      ticks: _.filter(postAxis, l => _.startsWith(l, "TICKS ")).map(l => _.trim(l.substring(6)).split(",").map(numOrStr => {
+         const maybeNum = parseFloat(numOrStr);
+         return isNaN(maybeNum) ? numOrStr : maybeNum;
+      }))[0]
+   };
+};
 
 /** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
 const logDivisionStatsToConsole = false;
@@ -499,13 +522,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
        };
        
       const extractTitle = (fieldDef: string) => {
-         const fieldTitle = fieldDef.split("//");
-         const field = fieldTitle[0];
-         if (fieldTitle[1]) {
-            return _.trim(fieldTitle[1]);
-         } else {
-            return axisPresets.find(kv => kv[1] == field)?.[0] || field;
-         }
+         const decomp = decompAxis(fieldDef);
+         return decomp.label || axisPresets.find(kv => kv[1] == decomp.linq)?.[0] || decomp.linq;
       };
 
       const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
@@ -521,8 +539,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const dataToFilter = _.flatMap(teamRanks, t => t.players || []);
       const [ filteredData, tmpAvancedFilterError ] = advancedFilterStr ?
          AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, {
-            "x": xAxis.split("//")[0],
-            "y": yAxis.split("//")[0],
+            "x": decompAxis(xAxis).linq,
+            "y": decompAxis(yAxis).linq,
             "z": dotSize,
             "color": dotColor,
          }, true) : [ dataToFilter, undefined ];
@@ -669,14 +687,18 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       };
 
       const labelState = ScatterChartUtils.buildEmptyLabelState(); 
+      const xAxisDecom = decompAxis(xAxis);
+      const yAxisDecom = decompAxis(yAxis);
       return  <div>
          <ResponsiveContainer width={"100%"} height={0.75*height}>
             <ScatterChart>
                <CartesianGrid />
-               <XAxis type="number" dataKey="x" domain={["auto", "auto"]}>
+               <XAxis type="number" dataKey="x" ticks={xAxisDecom.ticks}
+                     domain={xAxisDecom.limits || ["auto", "auto"]} allowDataOverflow={!_.isNil(xAxisDecom.limits)}>                     
                   <Label value={extractTitle(xAxis)} position='top' style={{textAnchor: 'middle'}} />
                </XAxis>
-               <YAxis type="number" dataKey="y" domain={["auto", "auto"]}>
+               <YAxis type="number" dataKey="y" ticks={yAxisDecom.ticks}
+                     domain={yAxisDecom.limits || ["auto", "auto"]} allowDataOverflow={!_.isNil(yAxisDecom.limits)}>
                   <Label angle={-90} value={extractTitle(yAxis)} position='insideLeft' style={{textAnchor: 'middle'}} />
                </YAxis>
                <ZAxis type="number" dataKey="z" range={[10, 100]}/>
