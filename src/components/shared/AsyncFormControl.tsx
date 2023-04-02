@@ -9,10 +9,11 @@ type Props = {
   onChange: (t: string) => void,
   timeout: number,
   placeholder?: string,
+  allowExternalChange?: boolean //(default(false), changing validate won't effect it, retained for legacy reasons - maybe make this forced later)
 };
 
 /** More responsive form control - must set if validate is set then startingVal is locked else just starting */
-const AsyncFormControl: React.FunctionComponent<Props> = ({startingVal, validate, timeout, onChange, placeholder, ...props}) => {
+const AsyncFormControl: React.FunctionComponent<Props> = ({startingVal, validate, timeout, onChange, placeholder, allowExternalChange, ...props}) => {
 
   var timeoutId = -1;
 
@@ -33,13 +34,13 @@ const AsyncFormControl: React.FunctionComponent<Props> = ({startingVal, validate
   };
   const internalValidateAndChange = (ev: any) => {
     const newVal = ev.target.value;
-    if (validate && validate(newVal)) {
+    if (!validate || validate(newVal)) {
       internalOnChange(ev);
       setInternalVal(newVal);
     }
   };
 
-  return validate ?
+  return (validate || allowExternalChange) ?
     <Form.Control
       onKeyUp={internalValidateAndChange}
       onChange={internalValidateAndChange}

@@ -108,7 +108,27 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          dotSize: "Possession% (off)",
          dotColorMap: "RAPM",
          labelStrategy: "Top/Bottom 10"
-      }]
+      }],
+      [ "Freshmen vs Rankings",  {
+         title: "How Freshmen fared compared to a prediction based on their HS ranking",
+         advancedFilter: "Ranked Freshmen",
+         xAxis: "Off RAPM: actual - predicted",
+         yAxis: "Def RAPM: actual - predicted",
+         dotColor: "RAPM margin",
+         dotSize: "Possession% (off)",
+         dotColorMap: "RAPM",
+         labelStrategy: "Top/Bottom 10"
+      }],
+      [ "Fr to Soph Jumps ",  {
+         title: "Increase in production from Freshman to Soph years",
+         advancedFilter: `prev_roster.year_class == "Fr" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
+         xAxis: "prev_adj_rapm_margin",
+         yAxis: "next_adj_rapm_margin",
+         dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
+         dotSize: "Possession% (off)",
+         dotColorMap: "RAPM",
+         labelStrategy: "Top/Bottom 10"
+      }],
    ] as Array<[string, PlayerSeasonComparisonParams]>;
 
    // All the complex config:
@@ -121,13 +141,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
    const advancedFilterPresets = [
       [ "Transfers", "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC" ],
-      [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr"` ],
-      [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr"` ],
-      [ "Sophomores -> Juniors", `prev_roster.year_class == "So"` ],
-      [ "Juniors -> Seniors", `prev_roster.year_class == "Jr"` ],
-      [ "Seniors -> Super-Seniors", `prev_roster.year_class == "Sr"` ],
-      [ "Rotation+ caliber previous year", `prev_adj_rapm_margin >= 2` ],
-      [ "Starter+ caliber previous year", `prev_adj_rapm_margin >= 3.5` ],
+      [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Sophomores -> Juniors", `prev_roster.year_class == "So" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Juniors -> Seniors", `prev_roster.year_class == "Jr" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Seniors -> Super-Seniors", `prev_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Rotation+ caliber previous year", `prev_adj_rapm_margin >= 2 SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Starter+ caliber previous year", `prev_adj_rapm_margin >= 3.5 SORT_BY next_adj_rapm_margin DESC` ],
    ] as Array<[string, string]>;
     
    // Highlight text (show/hide):
@@ -288,7 +308,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             // Only bother setting these expensive vars if they chance enough
             if ((Math.abs(baseHeight - screenHeight) > 25) || (Math.abs(baseWidth - screenWidth) > 25)) {
                setScreenHeight(baseHeight);
-               setScreenWidth(baseWidth);
+               setScreenWidth(baseWidth); 
             }
          }, 250);
      }
@@ -296,7 +316,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
      setHeight(window.innerHeight);
      const [ baseWidth, baseHeight ] = calcWidthHeight();
      setScreenHeight(baseHeight);
-     setScreenWidth(baseWidth);
+     setScreenWidth(baseWidth); 
      return () => window.removeEventListener('resize', handleResize);
    }, []);
 
@@ -339,6 +359,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          console.log(JSON.stringify(derivedDivisionStats));
       }
 
+      // Tooltip builder:
+
       const fieldValExtractor = (field: string) => {
          return (p: PureStatSet | undefined) => {
             if ((field[0] == 'o') || (field[0] == 'd')) {
@@ -348,12 +370,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             }
          }
       };
-
-      type CustomTooltipProps = {
-         active?: boolean,
-         payload?: any,
-         label?: string,
-       };
        const extractBubbleAttr = (fieldDef: string) => {
          const typeAndField = fieldDef.split(":");
          const fieldType = typeAndField.length > 1 ? typeAndField[0] : "actualResults";
@@ -371,21 +387,86 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             }
          };
       };
-      const oRtgExtractor = extractBubbleAttr("delta:off_rtg");
-      const usageExtractor = extractBubbleAttr("delta:off_usage");
-      const possExtractor = extractBubbleAttr("delta:off_team_poss_pct");
-      const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
-         const bOrW = (f: number) => {
-            return `${Math.abs(f).toFixed(1)} ${f > 0 ? "better" : "worse"} than expected`;
+      const bOrW = (f: number) => {
+         return `${Math.abs(f).toFixed(1)} ${f > 0 ? "better" : "worse"} than expected`;
+      };
+      const genericExtraInfo = (field: string, factor: number = 1.0) => {
+         const has = (target: string) => {
+            return _.find([xAxis, yAxis, dotColor, dotSize], axis => axis.indexOf(target) >= 0);
          };
+         const prevSeasonExtractor = extractBubbleAttr(`orig:${field}`);
+         const predictedSeasonExtractor = extractBubbleAttr(`ok:${field}`);
+         const predDeltaExtractor = extractBubbleAttr(`delta:${field}`);
+         const isFrPredictedField = _.endsWith(field, "adj_rapm") || _.endsWith(field, "off_team_poss_pct");
+         const offOrDefRapmSpecialCase = // user cares about predicted vs actual delta specifically
+            (_.startsWith(field, "off_") && has(`next_off_adj_rapm - pred_ok_off_adj_rapm`)) ||
+            (_.startsWith(field, "def_") && has(`next_def_adj_rapm - pred_ok_def_adj_rapm`));
+         const rapmMarginSpecialCase = // user cares about predicted vs actual delta for both off and def
+            (field == "adj_rapm") &&
+               has(`next_off_adj_rapm - pred_ok_off_adj_rapm`) && has(`next_def_adj_rapm - pred_ok_def_adj_rapm`);
+         const rapmSpecialCase = offOrDefRapmSpecialCase || rapmMarginSpecialCase;
+
+         return (data: any) => {
+            const triple = data.p;
+            const isFreshman = !triple.orig.off_rtg; //(filters out take Fr "prev" stats)
+            if ((rapmSpecialCase  && !isFreshman) || has(`next_${field} - pred_ok_${field}`)) { //(special case)
+               return <i>({bOrW(factor*predDeltaExtractor(triple))})</i>; 
+            } else {
+               const isRapmMargin = field == "adj_rapm";
+               const hasPrev = isRapmMargin || (triple.orig[field] && !isFreshman); 
+               const hasPred = isRapmMargin || triple.ok[field] && (!isFreshman || isFrPredictedField);
+               const shortForm = hasPrev && hasPrev;
+               const prev = hasPrev ? 
+                  <i>{shortForm ? "Prev." : "Previous"} [{(factor*prevSeasonExtractor(triple)).toFixed(1)}]</i> : undefined;
+               const pred = hasPred ? 
+                  <i>{shortForm ? "Pred." : "Predicted"} [{(factor*predictedSeasonExtractor(triple)).toFixed(1)}]</i> : undefined;
+
+               return (prev || pred) ?
+                  (
+                     <span>{prev}{(prev && pred) ? <i> / </i> : undefined}{pred}</span>
+                  ) : undefined;
+            }
+         };
+      };        
+      const netRapmExtraInfoExtractor = genericExtraInfo("adj_rapm"); //(special case handled in the fieldExtractor)
+      const getNetRapmExtraInfo = (data: any) => netRapmExtraInfoExtractor(data);
+
+      const offRapmExtraInfoExtractor = genericExtraInfo("off_adj_rapm");
+      const getOffRapmExtraInfo = (data: any) => offRapmExtraInfoExtractor(data);
+
+      const defRapmExtraInfoExtractor = genericExtraInfo("def_adj_rapm");
+      const getDefRapmExtraInfo = (data: any) => defRapmExtraInfoExtractor(data);
+
+      const offRtgExtraInfoExtractor = genericExtraInfo("off_rtg");
+      const getOffRtgExtraInfo = (data: any) => offRtgExtraInfoExtractor(data);
+
+      const offUsgExtraInfoExtractor = genericExtraInfo("off_usage", 100);
+      const getUsgExtraInfo = (data: any) => offUsgExtraInfoExtractor(data);
+
+      const mpgExtraInfoExtractor = genericExtraInfo("off_team_poss_pct", 40);
+      const getMpgExtraInfo = (data: any) => mpgExtraInfoExtractor(data);
+
+      type CustomTooltipProps = {
+         active?: boolean,
+         payload?: any,
+         label?: string,
+       };
+      const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
          if (active) {
-           const data = payload?.[0].payload || {};
-           const net = data.x + data.y;
-           const triple = data.p;
-           const deltaORtg = oRtgExtractor(triple);
-           const deltaUsage = usageExtractor(triple);
-           const deltaMpg = possExtractor(triple);
-           return (
+            const data = payload?.[0].payload || {};
+            if (!data.showTooltips) return null; //(if showing sub-chart don't show tooltips for main chart)
+
+            const net = data.x + data.y;
+            const triple = data.p;
+            const roster = (triple.actualResults?.roster || triple.orig?.roster);
+            const maybePrevSchool = ((data?.p?.orig.team) && (data?.p?.orig.team != data?.p?.actualResults.team))
+               ? <i>(Previous school: {data?.p?.orig.team})</i> : undefined;
+
+            // these 2 can be null:
+            const offRtgExtraInfo = getOffRtgExtraInfo(data);
+            const usageExtraInfo = getUsgExtraInfo(data);
+
+            return (
              <div className="custom-tooltip" style={{
                background: 'rgba(255, 255, 255, 0.9)',
              }}><small>
@@ -393,22 +474,23 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                {`${triple.actualResults?.key}`}<br/>
                {`${triple.actualResults?.team}`}</b><br/>
                <i>{`${triple.actualResults?.posClass}`}
-               {` ${triple.orig?.roster?.height || "?-?"}`}
+               {` ${roster?.height || "?-?"}`}
+               {` ${roster?.year_class || ""}`}
                </i></p>
                <p className="desc">
                   <span>Net RAPM: <b>{fieldValExtractor("adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
-                  <span><i>({bOrW(net)})</i></span><br/>
+                  <span>{getNetRapmExtraInfo(data)}</span><br/>
                   <span>Off RAPM: <b>{fieldValExtractor("off_adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
-                  <span><i>({bOrW(data.x)})</i></span><br/>
+                  <span>{getOffRapmExtraInfo(data)}</span><br/>
                   <span>Def RAPM: <b>{fieldValExtractor("def_adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
-                  <span><i>({bOrW(data.y)})</i></span><br/>
+                  <span>{getDefRapmExtraInfo(data)}</span><br/>
                   <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data?.p?.actualResults).toFixed(1)}</b></span><br/>
-                  <span><i>({bOrW(deltaORtg)})</i></span><br/>
+                  {offRtgExtraInfo ? <span>{offRtgExtraInfo}</span> : undefined }{offRtgExtraInfo ? <br/> : undefined}
                   <span>Usage: <b>{(fieldValExtractor("off_usage")(data?.p?.actualResults)*100).toFixed(1)}</b>%</span><br/>
-                  <span><i>({bOrW(100*deltaUsage)})</i></span><br/>
+                  {usageExtraInfo ? <span>{usageExtraInfo}</span> : undefined}{usageExtraInfo ? <br/> : undefined}
                   <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data?.p?.actualResults)*40).toFixed(1)}</b></span><br/>
-                  <span><i>({bOrW(40*deltaMpg)})</i></span><br/><br/>
-                  <span><i>(Previous school: {data?.p?.orig.team})</i></span>
+                  <span>{getMpgExtraInfo(data)}</span><br/><br/>
+                  <span>{maybePrevSchool}</span>
                </p>
             </small></div>
            );
@@ -417,7 +499,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
        };
        
       const extractTitle = (fieldDef: string) => {
-         return axisPresets.find(kv => kv[1] == fieldDef)?.[0] || fieldDef;
+         const fieldTitle = fieldDef.split("//");
+         const field = fieldTitle[0];
+         if (fieldTitle[1]) {
+            return _.trim(fieldTitle[1]);
+         } else {
+            return axisPresets.find(kv => kv[1] == field)?.[0] || field;
+         }
       };
 
       const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
@@ -433,8 +521,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const dataToFilter = _.flatMap(teamRanks, t => t.players || []);
       const [ filteredData, tmpAvancedFilterError ] = advancedFilterStr ?
          AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, {
-            "x": xAxis,
-            "y": yAxis,
+            "x": xAxis.split("//")[0],
+            "y": yAxis.split("//")[0],
             "z": dotSize,
             "color": dotColor,
          }, true) : [ dataToFilter, undefined ];
@@ -470,12 +558,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                y: p.y,
                z: p.z,
                label: p.actualResults.code,
+               showTooltips: true,
                p: p
             };
          }).value();
 
-      //TODO: this was supposed to block hover tooltips for main chart, need to try again
-      var inSubChart = new Set(subChart?.map(p => p.p.key) || []);
          
       var minColor = Number.MAX_SAFE_INTEGER;
       var maxColor = -Number.MAX_SAFE_INTEGER;
@@ -488,6 +575,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                y: p.y,
                z: p.z,
                label: p.actualResults.code,
+               showTooltips: subChart == undefined,
                p: p
             };
          }).value();
@@ -866,6 +954,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   }}
                   timeout={500}
                   placeholder = "Enter a title for this chart or select a preset"
+                  allowExternalChange={true}
                />
                <InputGroup.Append>
                   {getOverallPresets()}

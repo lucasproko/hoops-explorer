@@ -47,7 +47,7 @@ export class ScatterChartUtils {
          if (index <= blocker) {
             if (index == 0) {
                // console.log(`SKIP DUP SERIES ${seriesName} [${_.size(props.series)}] vs blockers: [${JSON.stringify(props.mutableState.blockers)}] state: [${_.size(props.mutableState.labels)}]`);
-               console.log(`${_.chain(props.mutableState.labels.map(r => r.name)).groupBy(n => n).filter(ns => _.size(ns) > 1).value()}`)
+               // console.log(`${_.chain(props.mutableState.labels.map(r => r.name)).groupBy(n => n).filter(ns => _.size(ns) > 1).value()}`)
             }
             return null;
          } else {
