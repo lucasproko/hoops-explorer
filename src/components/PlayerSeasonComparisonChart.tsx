@@ -71,6 +71,7 @@ type AxisDecomposition = {
    limits?: [ string | number, string | number ],
    ticks?: (string | number)[]
 };
+const extraAxisDecompKeywords = [ "//LABEL", "//LIMITS", "//TICKS" ];
 const decompAxis = (axis: string): AxisDecomposition => {
    const decomp = axis.split("//");
    const postAxis = _.drop(decomp, 1);
@@ -1027,7 +1028,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                prompt="Linq expression for 'x' (see presets for ideas)"
                value={xAxis}
                error={advancedFilterError}
-               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(extraAxisDecompKeywords)}
                presets={axisPresets}
                presetsIcon={faList}
                callback={(newVal: string) => friendlyChange(() => setXAxis(newVal), true)}
@@ -1039,7 +1040,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                prompt="Linq expression for 'y' (see presets for ideas)"
                value={yAxis}
                error={advancedFilterError}
-               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
+               autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(extraAxisDecompKeywords)}
                presets={axisPresets}
                presetsIcon={faList}
                callback={(newVal: string) => friendlyChange(() => setYAxis(newVal), true)}
