@@ -106,8 +106,6 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({startingSt
    }, []);
  
    // Chart control
-   const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
-   const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
    if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
       const fetchRosterJson = (teamName: string) => {
          const rosterJsonUri = (encodeEncodePrefix: boolean) =>

@@ -336,10 +336,6 @@ export class ParamDefaults {
   static readonly defaultTeamLboardWabWeight = "0.5"; //(don't have decimal places for comparison with "" + 1.0)
   static readonly defaultTeamLboardWaeWeight = "0.25";
   static readonly defaultTeamLboardTimeWeight = "0"; //(don't have decimal places for comparison with "" + 0.0)
-  // Player comparison charts
-  static readonly defaultPlayerComparisonXAxis = "delta:off_adj_rapm";
-  static readonly defaultPlayerComparisonYAxis = "delta:def_adj_rapm";
-  static readonly defaultPlayerComparisonTransfersOnly = true;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

@@ -21,12 +21,21 @@ type Props = {
   readonly autocomplete: string[],
   readonly presets?: Array<[ string, string ]>,
   readonly presetsIcon?: IconDefinition,
-  readonly callback: (newExpr: string) => void
+  readonly syncEvent?: number //(1-up this to apply the temp contents)
+  readonly callback: (newExpr: string, onSync?: boolean) => void, //(if onSync shouldn't set any sync events)
 }
 
-const LinqExpressionBuilder: React.FunctionComponent<Props> = ({label, prompt, value, error, autocomplete, presets, presetsIcon, callback}) => {
+const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
+  label, prompt, value, error, autocomplete, presets, presetsIcon, syncEvent, callback
+}) => {
 
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(value);
+
+  useEffect(() => {
+    if (value != tmpAdvancedFilterStr) {
+      callback(tmpAdvancedFilterStr, true);
+    }
+  }, [ syncEvent ]);
 
   useEffect(() => {
     if (value != tmpAdvancedFilterStr) {

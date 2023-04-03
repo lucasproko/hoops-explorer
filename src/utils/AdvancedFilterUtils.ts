@@ -10,7 +10,7 @@ type EnumToEnum = (e: Enumerable.IEnumerable<any>) => Enumerable.IEnumerable<any
 /** Utils to build LINQ filter/sort capabilities */
 export class AdvancedFilterUtils {
 
-   static readonly operators = [ "&&", "||", "SORT_BY", "ASC", "DESC", "AND", "OR" ];
+   static readonly operators = [ "&&", "||", "SORT_BY", "ASC", "DESC", "AND", "OR", "ALL" ];
 
    static readonly operatorsSet = new Set<string>(AdvancedFilterUtils.operators);
 
@@ -98,6 +98,7 @@ export class AdvancedFilterUtils {
    }
    static singleYearfixObjectFormat(s: string) { 
       return s
+         .replace(/ALL/g, "($.player_code)")
          .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
          .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
          .replace(/roster[.]height/g, "$.normht")
@@ -111,6 +112,7 @@ export class AdvancedFilterUtils {
    }
    static multiYearfixObjectFormat(s: string) { 
       return s
+         .replace(/ALL/g, "($.player_code)")
          .replace(/(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g, "$.$1?.p.$2?.value")
          .replace(/(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g, "$1$.$2?.$3")
          .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")

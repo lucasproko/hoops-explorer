@@ -89,6 +89,51 @@ const decompAxis = (axis: string): AxisDecomposition => {
    };
 };
 
+/** The list of pre-built player charts, exported so that other elements can list them */
+export const overallPlayerChartPresets = [
+   [ "Transfer predictions",  {
+      title: "How transfers fared compared to their predicted RAPM",
+      advancedFilter: "Transfers",
+      xAxis: "Off RAPM: actual - predicted",
+      yAxis: "Def RAPM: actual - predicted",
+      dotColor: "RAPM margin",
+      dotSize: "Possession% (off)",
+      dotColorMap: "RAPM",
+      labelStrategy: "Top/Bottom 10"
+   }],
+   [ "Freshmen vs Rankings",  {
+      title: "How Freshmen fared compared to a prediction based on their HS ranking",
+      advancedFilter: "Ranked Freshmen",
+      xAxis: "Off RAPM: actual - predicted",
+      yAxis: "Def RAPM: actual - predicted",
+      dotColor: "RAPM margin",
+      dotSize: "Possession% (off)",
+      dotColorMap: "RAPM",
+      labelStrategy: "Top/Bottom 10"
+   }],
+   [ "Fr to Soph Jumps",  {
+      title: "Increase in production from Freshman to Soph years",
+      advancedFilter: `prev_roster.year_class == "Fr" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
+      xAxis: "prev_adj_rapm_margin",
+      yAxis: "next_adj_rapm_margin",
+      dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
+      dotSize: "Possession% (off)",
+      dotColorMap: "RAPM",
+      labelStrategy: "Top/Bottom 10"
+   }],
+   [ "Super Senior Offense",  {
+      title: "Super Senior Off Rtg/Usage, ranked by offensive RAPM production",
+      advancedFilter: `ALL SORT_BY next_off_adj_rapm* next_off_team_poss_pct DESC`,
+      highlightFilter: `prev_roster.year_class == "Sr"`,
+      xAxis: `next_off_rtg //LABEL Off Rating //LIMITS auto,135`,
+      yAxis: "next_off_usage*100 //LABEL Usage%",
+      dotColor: "next_off_adj_rapm*next_off_team_poss_pct",
+      dotSize: "Possession% (off)",
+      dotColorMap: "oRAPM",
+      labelStrategy: "Top 25"
+   }],
+] as Array<[string, PlayerSeasonComparisonParams]>;
+
 /** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
 const logDivisionStatsToConsole = false;
 
@@ -122,40 +167,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
    const [ title, setTitle ] = useState(startingState.title || "");
-   const overallPresets = [
-      [ "Transfer predictions",  {
-         title: "How transfers fared compared to their predicted RAPM",
-         advancedFilter: "Transfers",
-         xAxis: "Off RAPM: actual - predicted",
-         yAxis: "Def RAPM: actual - predicted",
-         dotColor: "RAPM margin",
-         dotSize: "Possession% (off)",
-         dotColorMap: "RAPM",
-         labelStrategy: "Top/Bottom 10"
-      }],
-      [ "Freshmen vs Rankings",  {
-         title: "How Freshmen fared compared to a prediction based on their HS ranking",
-         advancedFilter: "Ranked Freshmen",
-         xAxis: "Off RAPM: actual - predicted",
-         yAxis: "Def RAPM: actual - predicted",
-         dotColor: "RAPM margin",
-         dotSize: "Possession% (off)",
-         dotColorMap: "RAPM",
-         labelStrategy: "Top/Bottom 10"
-      }],
-      [ "Fr to Soph Jumps ",  {
-         title: "Increase in production from Freshman to Soph years",
-         advancedFilter: `prev_roster.year_class == "Fr" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
-         xAxis: "prev_adj_rapm_margin",
-         yAxis: "next_adj_rapm_margin",
-         dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
-         dotSize: "Possession% (off)",
-         dotColorMap: "RAPM",
-         labelStrategy: "Top/Bottom 10"
-      }],
-   ] as Array<[string, PlayerSeasonComparisonParams]>;
 
    // All the complex config:
+
+   const [ linqExpressionSync, setLinqExpressionSync ] = useState<number>(0);
 
    // If there's a title show that, otherwise show the config
    const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(startingState.showConfig || !startingState.title);
@@ -164,6 +179,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
    const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
    const advancedFilterPresets = [
+      [ "All players", "ALL" ],
       [ "Transfers", "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC" ],
       [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
       [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
@@ -179,15 +195,29 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ highlightFilterError, setHighlightFilterError ] = useState(undefined as string | undefined);
 
    // Chart control
-   const [ xAxis, setXAxis ] = useState(startingState.xAxis || ParamDefaults.defaultPlayerComparisonXAxis);
-   const [ yAxis, setYAxis ] = useState(startingState.yAxis || ParamDefaults.defaultPlayerComparisonYAxis);
+   const [ xAxis, setXAxis ] = useState(startingState.xAxis || "");
+   const [ yAxis, setYAxis ] = useState(startingState.yAxis || "");
    const [ dotColor, setDotColor ] = useState(startingState.dotColor || "");
    const [ dotSize, setDotSize ] = useState(startingState.dotSize || "");
    const axisPresets = [
       [ "Off RAPM: actual - predicted", "next_off_adj_rapm  - pred_ok_off_adj_rapm" ],
       [ "Def RAPM: actual - predicted", "pred_ok_def_adj_rapm - next_def_adj_rapm" ],
+      [ "Off RAPM (prev)", "prev_off_adj_rapm" ],
+      [ "Off RAPM", "next_off_adj_rapm" ],
+      [ "Off RAPM Production (prev)", "prev_off_adj_rapm*prev_off_team_poss_pct" ],
+      [ "Off RAPM Production", "next_off_adj_rapm*next_off_team_poss_pct" ],
+      [ "Def RAPM (prev)", "prev_def_adj_rapm" ],
+      [ "Def RAPM", "next_def_adj_rapm" ],
+      [ "Def RAPM Production (prev)", "prev_def_adj_rapm*prev_def_team_poss_pct" ],
+      [ "Def RAPM Production", "next_def_adj_rapm*next_def_team_poss_pct" ],
+      [ "Off Rtg (prev)", "prev_off_rtg" ],
+      [ "Off Rtg", "next_off_rtg" ],
+      [ "Usage (prev)", "prev_off_usage" ],
+      [ "Usage", "next_off_usage" ],
       [ "RAPM margin (prev)", "prev_adj_rapm_margin" ],
       [ "RAPM margin", "next_adj_rapm_margin" ],
+      [ "RAPM production (prev)", "prev_adj_rapm_margin*prev_off_team_poss_pct" ],
+      [ "RAPM production", "next_adj_rapm_margin*next_off_team_poss_pct" ],
       [ "Min/game (prev)", "40*prev_off_team_poss_pct" ],
       [ "Min/game", "40*next_off_team_poss_pct" ],
       [ "Possession% (off, prev)", "prev_off_team_poss_pct" ],
@@ -248,6 +278,27 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          });
       }
    }
+
+   // On page load, if title is specified and the other params aren't then pre-load
+   const applyPresetChart = (preset: PlayerSeasonComparisonParams) => {
+      friendlyChange(() => {
+      setTitle(preset.title || "");
+      setAdvancedFilterStr(advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "");
+      setHighlightFilterStr(advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
+      setXAxis(axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "");
+      setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
+      setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
+      setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
+      setDotColorMap(preset.dotColorMap || "Black");
+      setLabelStrategy(preset.labelStrategy || "None");
+      }, true);
+    };   
+    useEffect(() => {
+      if (title && !xAxis && !yAxis) {
+         const maybePreset = _.find(overallPlayerChartPresets, kv => kv[0] == title);
+         if (maybePreset) applyPresetChart(maybePreset[1]);
+      }
+   }, []);
 
    /** When the params change */
    useEffect(() => {
@@ -422,12 +473,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          const predictedSeasonExtractor = extractBubbleAttr(`ok:${field}`);
          const predDeltaExtractor = extractBubbleAttr(`delta:${field}`);
          const isFrPredictedField = _.endsWith(field, "adj_rapm") || _.endsWith(field, "off_team_poss_pct");
+         const careAboutOffPrediction = has(`next_off_adj_rapm`) && has(`pred_ok_off_adj_rapm`);
+         const careAboutDefPrediction = has(`next_def_adj_rapm`) && has(`pred_ok_def_adj_rapm`);
          const offOrDefRapmSpecialCase = // user cares about predicted vs actual delta specifically
-            (_.startsWith(field, "off_") && has(`next_off_adj_rapm - pred_ok_off_adj_rapm`)) ||
-            (_.startsWith(field, "def_") && has(`next_def_adj_rapm - pred_ok_def_adj_rapm`));
+            (_.startsWith(field, "off_") && careAboutOffPrediction) ||
+            (_.startsWith(field, "def_") && careAboutDefPrediction);
          const rapmMarginSpecialCase = // user cares about predicted vs actual delta for both off and def
-            (field == "adj_rapm") &&
-               has(`next_off_adj_rapm - pred_ok_off_adj_rapm`) && has(`next_def_adj_rapm - pred_ok_def_adj_rapm`);
+            (field == "adj_rapm") && careAboutOffPrediction && careAboutDefPrediction;
          const rapmSpecialCase = offOrDefRapmSpecialCase || rapmMarginSpecialCase;
 
          return (data: any) => {
@@ -576,7 +628,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                x: p.x,
                y: p.y,
                z: p.z,
-               label: p.actualResults.code,
+               label: p.actualResults?.code || "Unknown player",
                showTooltips: true,
                p: p
             };
@@ -593,7 +645,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                x: p.x,
                y: p.y,
                z: p.z,
-               label: p.actualResults.code,
+               label: p.actualResults?.code || "Unknown player",
                showTooltips: subChart == undefined,
                p: p
             };
@@ -802,7 +854,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    // Overall presets
 
-   const isOverallPresetSelected = (preset: PlayerSeasonComparisonParams) => {
+   const isoverallPlayerChartPresetselected = (preset: PlayerSeasonComparisonParams) => {
       return (
          ((advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "") == advancedFilterStr) &&
          ((advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "") == highlightFilterStr) &&
@@ -817,23 +869,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const buildOverallPresetMenuItem = (name: string, preset: PlayerSeasonComparisonParams) => {
       return <GenericTogglingMenuItem
         text={name}
-        truthVal={isOverallPresetSelected(preset)}
-        onSelect={() => {
-           friendlyChange(() => {
-            setTitle(preset.title || "");
-            setAdvancedFilterStr(advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "");
-            setHighlightFilterStr(advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
-            setXAxis(axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "");
-            setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
-            setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
-            setDotSize(axisPresets.find(t => t[0] == preset.dotSize)?.[1] || preset.dotSize || "");
-            setDotColorMap(preset.dotColorMap || "Black");
-            setLabelStrategy(preset.labelStrategy || "None");
-           }, true);
-        }}
+        truthVal={isoverallPlayerChartPresetselected(preset)}
+        onSelect={() => applyPresetChart(preset)}
       />;
-    }
-   const getOverallPresets = () => {
+    };
+   const getoverallPlayerChartPresets = () => {
       const tooltipForFilterPresets = (
          <Tooltip id="overallFilterPresets">Preset charts</Tooltip>
        );   
@@ -855,7 +895,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                }, true);
             }}
           />
-          {overallPresets.map(preset => buildOverallPresetMenuItem(preset[0], preset[1]))}
+          {overallPlayerChartPresets.map(preset => buildOverallPresetMenuItem(preset[0], preset[1]))}
         </Dropdown.Menu>
       </Dropdown>
    };
@@ -980,7 +1020,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   allowExternalChange={true}
                />
                <InputGroup.Append>
-                  {getOverallPresets()}
+                  {getoverallPlayerChartPresets()}
                </InputGroup.Append>
             </InputGroup>
          </Form.Group>
@@ -989,12 +1029,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         <Col xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
                label="Filter"
-               prompt="Enter Linq: remove unselected players (see presets for ideas)"
+               prompt="Enter Linq: remove non-matching players (see presets for ideas)"
                value={advancedFilterStr}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={advancedFilterPresets}
-               callback={(newVal: string) => friendlyChange(() => setAdvancedFilterStr(newVal), true)}
+               syncEvent={linqExpressionSync}
+               callback={(newVal: string, onSync?: boolean) => {
+                  if (!onSync) setLinqExpressionSync(n => n + 1);
+                  friendlyChange(() => setAdvancedFilterStr(newVal), true);
+               }}
             />
         </Col>
       </Form.Row> : null }
@@ -1002,12 +1046,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         <Col xs={11} sm={11} md={11} lg={11}>
            <LinqExpressionBuilder
                label="Highlight"
-               prompt="Enter Linq: unselected players are faded into the background"
+               prompt="Enter Linq: non-matching players from 'Filter' are faded into the background"
                value={highlightFilterStr}
                error={highlightFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={advancedFilterPresets}
-               callback={(newVal: string) => friendlyChange(() => setHighlightFilterStr(newVal), true)}
+               syncEvent={linqExpressionSync}
+               callback={(newVal: string, onSync?: boolean) => {
+                  if (!onSync) setLinqExpressionSync(n => n + 1);
+                  friendlyChange(() => setHighlightFilterStr(newVal), true);
+               }}
            />
          </Col>
          <Col xs={1} sm={1} md={1} lg={1}>
@@ -1025,25 +1073,33 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         <Col xs={12} sm={12} md={6} lg={6}>
             <LinqExpressionBuilder
                label="X-Axis"
-               prompt="Linq expression for 'x' (see presets for ideas)"
+               prompt="Linq //LABEL //LIMITS //TICKS"
                value={xAxis}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(extraAxisDecompKeywords)}
                presets={axisPresets}
                presetsIcon={faList}
-               callback={(newVal: string) => friendlyChange(() => setXAxis(newVal), true)}
+               syncEvent={linqExpressionSync}
+               callback={(newVal: string, onSync?: boolean) => {
+                  if (!onSync) setLinqExpressionSync(n => n + 1);
+                  friendlyChange(() => setXAxis(newVal), true);
+               }}
             />
         </Col>
         <Col xs={12} sm={12} md={6} lg={6}>
             <LinqExpressionBuilder
                label="Y-Axis"
-               prompt="Linq expression for 'y' (see presets for ideas)"
+               prompt="Linq //LABEL //LIMITS //TICKS"
                value={yAxis}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(extraAxisDecompKeywords)}
                presets={axisPresets}
                presetsIcon={faList}
-               callback={(newVal: string) => friendlyChange(() => setYAxis(newVal), true)}
+               syncEvent={linqExpressionSync}
+               callback={(newVal: string, onSync?: boolean) => {
+                  if (!onSync) setLinqExpressionSync(n => n + 1);
+                  friendlyChange(() => setYAxis(newVal), true);
+               }}
             />
         </Col>
       </Form.Row> : null }
@@ -1051,13 +1107,17 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col xs={6} sm={6} md={5} lg={5}>
             <LinqExpressionBuilder
                label="Color"
-               prompt="Linq expression for color (see presets for ideas)"
+               prompt="Linq expression for color vs colormap selected to right"
                value={dotColor}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
                presetsIcon={faList}
-               callback={(newVal: string) => friendlyChange(() => setDotColor(newVal), true)}
+               syncEvent={linqExpressionSync}
+               callback={(newVal: string, onSync?: boolean) => {
+                  if (!onSync) setLinqExpressionSync(n => n + 1);
+                  friendlyChange(() => setDotColor(newVal), true);
+               }}
             />
         </Col>
         <Col xs={6} sm={6} md={2} lg={2}>
@@ -1088,13 +1148,17 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         <Col xs={12} sm={12} md={5} lg={5}>
             <LinqExpressionBuilder
                label="Size"
-               prompt="Linq expression for size (see presets for ideas)"
+               prompt="Linq expression for datapoint size"
                value={dotSize}
                error={advancedFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
                presetsIcon={faList}
-               callback={(newVal: string) => friendlyChange(() => setDotSize(newVal), true)}
+               syncEvent={linqExpressionSync}
+               callback={(newVal: string, onSync?: boolean) => {
+                  if (!onSync) setLinqExpressionSync(n => n + 1);
+                  friendlyChange(() => setDotSize(newVal), true);
+               }}
             />
         </Col>
       </Form.Row> : null }      

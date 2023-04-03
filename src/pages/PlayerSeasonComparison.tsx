@@ -79,6 +79,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
 
       (!rawParams.confs) ? [ "confs" ] : [],
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
+      //(all the other fields we'll just show their full value)
 
     ]));
     if (!_.isEqual(params, playerSeasonComparisonParamsRef.current)) { //(to avoid recursion)
