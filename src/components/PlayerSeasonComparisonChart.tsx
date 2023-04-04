@@ -121,6 +121,17 @@ export const overallPlayerChartPresets = [
       dotColorMap: "RAPM",
       labelStrategy: "Top/Bottom 10"
    }],
+   [ "Jr -> Sr Off Rating Jump",  {
+      title: "How the Jr->Sr Off Rating changes vs the Jr Off Rtg",
+      advancedFilter: `ALL SORT_BY (next_off_rtg - prev_off_rtg)  DESC`,
+      highlightFilter: `prev_roster.year_class == "Jr"`,
+      xAxis: `prev_off_rtg  //LABEL Previous Season Off Rating`,
+      yAxis: "next_off_rtg - prev_off_rtg //LABEL Off Rating Jump",
+      dotColor: "next_off_rtg",
+      dotSize: "Possession% (off)",
+      dotColorMap: "Off Rtg",
+      labelStrategy: "Top/Bottom 10"
+   }],
    [ "Super Senior Offense",  {
       title: "Super Senior Off Rtg/Usage, ranked by offensive RAPM production",
       advancedFilter: `ALL SORT_BY next_off_adj_rapm* next_off_team_poss_pct DESC`,
