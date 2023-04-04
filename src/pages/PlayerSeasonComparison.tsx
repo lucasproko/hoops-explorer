@@ -152,6 +152,9 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
   const gender = playerSeasonComparisonParams.gender || ParamDefaults.defaultGender;
   const year = playerSeasonComparisonParams.year || DateUtils.mostRecentYearWithLboardData;
 
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
   const thumbnailUrl = `${(server != "localhost") ? `https://${server}` : "http://localhost:3000"}/thumbnails/player_leaderboard_thumbnail.png`;
   return <Container>
     <Head>
@@ -160,7 +163,11 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
     </Head>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>Multi-Season Player Analysis <span className="badge badge-pill badge-info">IN DEV!</span></h3>
+        <h3>Multi-Season Player Analysis&nbsp;
+        {showHelp ?
+            <small><a target="_blank" href="https://hoop-explorer.blogspot.com/2023/04/multi-season-player-analysis-chart.html">(?)</a>&nbsp;</small>
+            : undefined}
+          <span className="badge badge-pill badge-info">IN DEV!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">

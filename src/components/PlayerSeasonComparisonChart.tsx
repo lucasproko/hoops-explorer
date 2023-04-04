@@ -335,7 +335,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
   
       if (typeof document !== `undefined`) {
         //(if we added a clipboard listener, then remove it on page close)
-        //(if we added a submitListener, then remove it on page close)
         return () => {
           if (clipboard) {
             clipboard.destroy();
@@ -344,6 +343,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
         };
       }
    });
+
    /** This grovelling is needed to ensure that clipboard is only loaded client side */
    function initClipboard() {
       if (null == clipboard) {
@@ -366,10 +366,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    /** At the expense of some time makes it easier to see when changes are happening */
    const friendlyChange = (change: () => void, guard: boolean, timeout: number = 250) => {
       if (guard) {
-      setLoadingOverride(true);
-      setTimeout(() => {
-         change()
-      }, timeout)
+         setLoadingOverride(true);
+         setTimeout(() => {
+            change()
+         }, timeout);
       }
    };
 
@@ -853,7 +853,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
       );
       return <OverlayTrigger placement="auto" overlay={tooltip}>
-      <Button className="float-left" id={`copyLink_offSeasonTeamLeaderboard`} variant="outline-secondary" size="sm">
+      <Button className="float-left" id={`copyLink_playerSeasonComparison`} variant="outline-secondary" size="sm">
          <FontAwesomeIcon icon={faLink} />
       </Button>
       </OverlayTrigger>;
@@ -889,7 +889,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Tooltip id="overallFilterPresets">Preset charts</Tooltip>
        );   
       return <Dropdown alignRight>
-        <Dropdown.Toggle variant="outline-secondary">
+        <Dropdown.Toggle variant={title == "" ? "warning" : "outline-secondary"}>
           <OverlayTrigger placement="auto" overlay={tooltipForFilterPresets}><FontAwesomeIcon icon={faList}/></OverlayTrigger>            
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -986,14 +986,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             {getCopyLinkButton()}
          </Form.Group>
          <Form.Group as={Col} xs={6} sm={6} md={6} lg={2} className="mt-2">
-          <Form.Check type="switch"
-              id="configOptions"
-              checked={!showConfigOptions}
-              onChange={() => {
-                const isCurrentlySet = showConfigOptions;
-                setShowConfigOptions(!showConfigOptions)
-              }}
-              label="Hide Config"
+            <Form.Check className="float-left" type="switch"
+               id="configOptions"
+               checked={!showConfigOptions}
+               onChange={() => {
+                  const isCurrentlySet = showConfigOptions;
+                  setShowConfigOptions(!showConfigOptions)
+               }}
+               label="Hide Config"
             />
         </Form.Group>
       </Form.Row>
@@ -1050,6 +1050,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   if (!onSync) setLinqExpressionSync(n => n + 1);
                   friendlyChange(() => setAdvancedFilterStr(newVal), true);
                }}
+               showHelp={showHelp}
             />
         </Col>
       </Form.Row> : null }
@@ -1067,6 +1068,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   if (!onSync) setLinqExpressionSync(n => n + 1);
                   friendlyChange(() => setHighlightFilterStr(newVal), true);
                }}
+               showHelp={showHelp}
            />
          </Col>
          <Col xs={1} sm={1} md={1} lg={1}>
@@ -1095,6 +1097,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   if (!onSync) setLinqExpressionSync(n => n + 1);
                   friendlyChange(() => setXAxis(newVal), true);
                }}
+               showHelp={showHelp}
             />
         </Col>
         <Col xs={12} sm={12} md={6} lg={6}>
@@ -1111,6 +1114,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   if (!onSync) setLinqExpressionSync(n => n + 1);
                   friendlyChange(() => setYAxis(newVal), true);
                }}
+               showHelp={showHelp}
             />
         </Col>
       </Form.Row> : null }
@@ -1129,6 +1133,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   if (!onSync) setLinqExpressionSync(n => n + 1);
                   friendlyChange(() => setDotColor(newVal), true);
                }}
+               showHelp={showHelp}
             />
         </Col>
         <Col xs={6} sm={6} md={2} lg={2}>
@@ -1170,18 +1175,28 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   if (!onSync) setLinqExpressionSync(n => n + 1);
                   friendlyChange(() => setDotSize(newVal), true);
                }}
+               showHelp={showHelp}
             />
         </Col>
       </Form.Row> : null }      
       <Row>
          <Col>
-            <LoadingOverlay
-               active={needToLoadQuery()}
-               spinner
-               text={"Loading Player Comparison Chart..."}
-            >
-               {chart}
-            </LoadingOverlay>
+            {((xAxis && yAxis) || loadingOverride) ?
+               <LoadingOverlay
+                  active={needToLoadQuery()}
+                  spinner
+                  text={"Loading Player Comparison Chart..."}
+               >
+                  {chart}
+               </LoadingOverlay>
+               :
+               <LoadingOverlay
+                  active={true}
+                  text={`Configure chart or select a preset from "Chart Title"`}
+               >
+                  {chart}
+               </LoadingOverlay>
+            }
          </Col>
       </Row>
    </Container>;

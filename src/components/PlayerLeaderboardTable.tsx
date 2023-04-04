@@ -1296,7 +1296,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               error={advancedFilterError}
               autocomplete={AdvancedFilterUtils.playerLeaderBoardAutocomplete}
               callback={(newVal: string) => friendlyChange(() => setAdvancedFilterStr(newVal), true)}
-              />
+              showHelp={showHelp}
+            />
         </Col>
       </Form.Row> : null}
       <div></div>{/*(for some reason this div is needed to avoid the Row classnames getting confused)*/}<Row>

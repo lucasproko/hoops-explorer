@@ -15,11 +15,14 @@ type Props = {
 /** More responsive form control - must set if validate is set then startingVal is locked else just starting */
 const AsyncFormControl: React.FunctionComponent<Props> = ({startingVal, validate, timeout, onChange, placeholder, allowExternalChange, ...props}) => {
 
-  var timeoutId = -1;
+//  var timeoutId = -1;
+  const [ timeoutId, setTimeoutId ] = useState(-1);
 
   const [ internalVal, setInternalVal ] = useState(startingVal || "");
   useEffect(() => {
-    setInternalVal(startingVal || "");
+    if ((internalVal != startingVal) && (timeoutId == -1)) {
+      setInternalVal(startingVal || "");
+    }
   }, [ startingVal ]);
 
   /** Handling filter change (/key presses to fix the select/delete on page load) */
@@ -28,10 +31,14 @@ const AsyncFormControl: React.FunctionComponent<Props> = ({startingVal, validate
     if (timeoutId != -1) {
       window.clearTimeout(timeoutId);
     }
-    timeoutId = (window.setTimeout(() => {
-      onChange(toSet);
-    }, timeout));
+    setTimeoutId(
+      (window.setTimeout(() => {
+        onChange(toSet);
+        setTimeoutId(-1);
+      }, timeout))
+    );
   };
+  /** Only allow validated characters */
   const internalValidateAndChange = (ev: any) => {
     const newVal = ev.target.value;
     if (!validate || validate(newVal)) {

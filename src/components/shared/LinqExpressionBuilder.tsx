@@ -23,10 +23,11 @@ type Props = {
   readonly presetsIcon?: IconDefinition,
   readonly syncEvent?: number //(1-up this to apply the temp contents)
   readonly callback: (newExpr: string, onSync?: boolean) => void, //(if onSync shouldn't set any sync events)
+  readonly showHelp?: boolean
 }
 
 const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
-  label, prompt, value, error, autocomplete, presets, presetsIcon, syncEvent, callback
+  label, prompt, value, error, autocomplete, presets, presetsIcon, syncEvent, callback, showHelp
 }) => {
 
   const [ tmpAdvancedFilterStr, setTmpAdvancedFilterStr ] = useState(value);
@@ -95,7 +96,10 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
 
  return <InputGroup>
    <InputGroup.Prepend>
-      {label ? <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{label}</InputGroup.Text> : null}
+      {label ? <InputGroup.Text style={{ maxHeight: "2.4rem" }}>
+        {label}
+        {showHelp ? <sup><a target="_blank" href="https://hoop-explorer.blogspot.com/2022/03/">?</a></sup> : undefined}
+        </InputGroup.Text> : null}
       <InputGroup.Text style={{ maxHeight: "2.4rem" }}>{
         value != tmpAdvancedFilterStr ? editingAdvFilterText : doneAdvFilterText
       }</InputGroup.Text>
