@@ -376,6 +376,7 @@ export class TeamEditorManualFixes {
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
+            //(through Apr 4)
             "Alabama": {
                leftTeam: [ "BrMiller::" ], //(NBA)
             },
@@ -388,8 +389,14 @@ export class TeamEditorManualFixes {
             "Arizona St.": {
                superSeniorsReturning: new Set([ "JaThomas::" ]),
             },
+            "Boise St.": {
+               superSeniorsReturning: new Set([ "MaRice::" ]),
+            },
             "Butler": {
                superSeniorsReturning: new Set([ "JaThomas::" ]),
+            },
+            "Cincinnati": {
+               superSeniorsReturning: new Set([ "OdOguama::" ]),
             },
             "Dayton": {
                leftTeam: [ "MiSharavjamt::" ], //(NBA)
@@ -406,14 +413,23 @@ export class TeamEditorManualFixes {
             "Liberty": {
                superSeniorsReturning: new Set([ "KyRode::", "ShRobinson::" ]),
             },
+            "Loyola Chicago": {
+               superSeniorsReturning: new Set([ "BrNorris::", "ToWelch::" ]),
+            },
             "Loyola Maryland": {
                superSeniorsReturning: new Set([ "KeLeaupepe::" ]),
             },
             "Maryland": {
                superSeniorsReturning: new Set([ "JaYoung::" ]),
             },
+            "Nevada": {
+               superSeniorsReturning: new Set([ "KeBlackshear::" ]),
+            },
             "New Mexico": {
                superSeniorsReturning: new Set([ "JaHouse::" ]),
+            },
+            "Oklahoma St.": {
+               superSeniorsReturning: new Set([ "JoWright::" ]),
             },
             "Oregon": {
                superSeniorsReturning: new Set([ "JeCouisnard::" ]),
@@ -421,15 +437,33 @@ export class TeamEditorManualFixes {
             "Penn St.": {
                leftTeam: [ "SeLundy::" ], //(NBA)
             },
+            "Richmond": {
+               superSeniorsReturning: new Set([ "NeQuinn::" ]),
+            },
             "Saint Joseph's": {
                superSeniorsReturning: new Set([ "CaBrown::" ]),
             },
             "Santa Clara": {
                leftTeam: [ "BrPodziemski" ], //(NBA)
             },
+            "SMU": {
+               superSeniorsReturning: new Set([ "SaWilliamson::" ]),
+            },
             "Southern California": {
                superSeniorsReturning: new Set([ "JoMorgan::" ]),
             },
+            "UCLA": {
+               superSeniorsReturning: new Set([ "KeNwuba::" ]),
+            },
+            "Villanova": {
+               superSeniorsReturning: new Set([ "JuMoore::" ]),
+            },
+            "West Virginia": {
+               superSeniorsReturning: new Set([ "JoPerez::" ]),
+            },
+            "Wisconsin": {
+               superSeniorsReturning: new Set([ "TyWahl::" ]),
+            }
          };
 
          const combinedOverrides = TeamEditorManualFixes.combineOverrides(
