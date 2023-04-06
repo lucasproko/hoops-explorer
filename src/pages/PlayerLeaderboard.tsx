@@ -50,9 +50,9 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
 
-  const transferMode = (allParams.indexOf("transferMode=true") >= 0) || (allParams.indexOf("transferMode=20") >= 0); 
+  const transferModeUrlParam = (allParams.indexOf("transferMode=true") >= 0) || (allParams.indexOf("transferMode=20") >= 0); 
     //^ Note only supported for "All" tiers
-  const transferInit = transferMode ? {} as Record<string, Array<TransferModel>> : undefined; //(start as empty list)
+  const transferInit = {} as Record<string, Array<TransferModel>>; //(start as empty list)
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -131,12 +131,15 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const year = fullYear.substring(0, 4);
     const tier = (paramObj.tier || ParamDefaults.defaultTier);
 
+    const nextYear = DateUtils.getNextYear(fullYear);
+    const transferMode = transferModeUrlParam || (nextYear <= DateUtils.yearWithActiveTransferPortal)
+
     if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
       const transferYearStr = (paramObj.transferMode?.toString() == "true")
         ? (DateUtils.getOffseasonOfYear(DateUtils.offseasonYear) || "").substring(0, 4) //(default, means most recent year)
-        :  paramObj.transferMode; //(else whatever is specified)
+        :  (paramObj.transferMode || nextYear.substring(0, 4)); //(else whatever is specified)
       
       const transferYearIn = (transferMode && transferYearStr) ? [ transferYearStr ] : [];
 

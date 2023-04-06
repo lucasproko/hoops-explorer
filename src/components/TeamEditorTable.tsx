@@ -1198,7 +1198,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     return <PlayerLeaderboardTable
       startingState={{
         ...startingState,
-        transferMode: (yearWithStats == DateUtils.offseasonYear) ? "true" : DateUtils.getOffseasonOfYear(yearWithStats),
+        transferMode: (onlyTransfers && !nextYearBeforePortalIsActive) ?
+          ((yearWithStats == DateUtils.offseasonYear) ? "true" : DateUtils.getOffseasonOfYear(yearWithStats)) : undefined,
           //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
         year: onlyThisYear ? startingState.year : "All",
         tier: "All"
@@ -1212,7 +1213,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
             players: (onlyThisYear && (year != "All"))? 
               (dataEvent.players || []).filter(p => p.year == yearWithStats) : 
               (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= yearWithStats) : dataEvent.players), 
-            transfers: (onlyTransfers && hasTransfers && (year != "All") && !nextYearBeforePortalIsActive) ? dataEvent.transfers?.[0] : undefined 
+            transfers: (hasTransfers && (year != "All")) ? dataEvent.transfers?.[0] : undefined 
           }
         )
       }

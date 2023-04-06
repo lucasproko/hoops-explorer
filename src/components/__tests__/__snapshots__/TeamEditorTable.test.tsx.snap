@@ -5506,7 +5506,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -5524,7 +5537,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -10771,7 +10784,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -10785,7 +10811,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -16976,7 +17002,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "value": -2.2439,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -16990,7 +17029,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -23364,7 +23403,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "value": -2.2439,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -23382,7 +23434,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -29736,7 +29788,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                       "year": "2020/21",
                     },
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -29750,7 +29815,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -35613,7 +35678,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "year": "2020/21",
                     },
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -35627,7 +35705,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "superSeniorsBack": true,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "2021/22",
                 }
               }
@@ -40130,7 +40208,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   ],
                   "lastUpdated": 1583968724,
                   "players": Array [],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -40144,7 +40235,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "superSeniorsBack": true,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "2021/22",
                 }
               }
@@ -44294,7 +44385,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -44312,7 +44416,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -47626,7 +47730,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                             "value": -0.8269,
                                           }},
                   ],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -47640,7 +47757,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "All",
                 }
               }
@@ -49868,7 +49985,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   ],
                   "lastUpdated": 1583968724,
                   "players": Array [],
-                  "transfers": undefined,
+                  "transfers": Object {
+                    "RiLindo": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "George Washington",
+                      },
+                    ],
+                    "SeSmith": Array [
+                      Object {
+                        "f": "Maryland",
+                        "t": "ETSU",
+                      },
+                    ],
+                  },
                 }
               }
               onChangeState={[Function]}
@@ -49883,7 +50013,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   "superSeniorsBack": true,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": "2021",
+                  "transferMode": undefined,
                   "year": "2020/21",
                 }
               }

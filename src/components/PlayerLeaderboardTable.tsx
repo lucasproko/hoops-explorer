@@ -541,7 +541,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       return (
         (
-          _.isNil(dataEvent.transfers) || //(if not specified, don't care about transfers)
+          (_.isNil(startingState.transferMode) || (_.isEmpty(dataEvent.transfers))) || //(if not specified, don't care about transfers)
           (maybeTxfer && (!maybeTxfer.t || (startingState.transferMode?.toString() != "true")))
             //(transferred and either doesn't have a destination, or we don't care)
         ) 
@@ -1113,7 +1113,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
         <Col xs={12} sm={12} md={6} lg={6}>
           <ConferenceSelector
-              emptyLabel={`All ${!_.isNil(dataEvent?.transfers) ? "Transfers" : "Teams"} in ${tier} Tier${tier == "All" ? "s" : ""}`}
+              emptyLabel={`All ${!_.isNil(startingState.transferMode) ? "Transfers" : "Teams"} in ${tier} Tier${tier == "All" ? "s" : ""}`}
               confStr={confs}
               tier={tier}
               confMap={dataEvent?.confMap}
@@ -1363,7 +1363,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           }/>
         </Col>
         <Col xs={12} sm={12} md={12} lg={4}>
-          { (_.size(dataEvent?.transfers || {}) > 0)
+          { (!_.isNil(startingState.transferMode) && !_.isEmpty(dataEvent.transfers))
           ? <div className="float-right"><small>(Available transfers: <b>{_.size(dataEvent?.transfers || {})}</b>{numFilteredStr})</small></div>
           : <div className="float-right"><small>(Qualifying players in tier: <b>{dataEvent?.players?.length || 0}</b>{numFilteredStr})</small></div>
           }
