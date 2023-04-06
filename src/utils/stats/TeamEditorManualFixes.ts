@@ -408,7 +408,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "TrJackson-da::" ]),
             },
             "Iowa St.": {
-               superSeniorsReturning: new Set([ "RoJones::" ]),
+               superSeniorsReturning: new Set([ "RoJones::", "TrKing::" ]),
             },
             "Liberty": {
                superSeniorsReturning: new Set([ "KyRode::", "ShRobinson::" ]),
@@ -421,6 +421,9 @@ export class TeamEditorManualFixes {
             },
             "Maryland": {
                superSeniorsReturning: new Set([ "JaYoung::" ]),
+            },
+            "Missouri": {
+               superSeniorsReturning: new Set([ "NoCarter::" ]),
             },
             "Nevada": {
                superSeniorsReturning: new Set([ "KeBlackshear::" ]),

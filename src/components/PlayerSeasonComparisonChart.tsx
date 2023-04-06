@@ -424,6 +424,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const avgEff = efficiencyAverages[`${gender}_${yearWithStats}`] || efficiencyAverages.fallback;
          //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
 
+      //TODO 2 ideas here:
+      // 1] For un-ranked Fr give them 2*/3*/3*+ expectations (ie if actualResults exists but no orig)
+      // 2] Allow a 23/24 season just showing the predictions
+      // 3] Allow a multiple year - create multiple 2-year groups and call buildAllTeamStats repeatedly, then cat the
+      //    triples together with a year string which the logic will handle
+      // 4] (here and in PlayerLeaderboardTable, always enrich currently with transfer info once it exists)
+
       // Team stats generation business logic:
       const {
          derivedDivisionStats, teamRanks,
