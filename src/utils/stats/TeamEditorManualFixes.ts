@@ -376,7 +376,7 @@ export class TeamEditorManualFixes {
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
-            //(through Apr 4)
+            //(through Apr 7, see https://barttorvik.com/all_superseniors.php)
             "Alabama": {
                leftTeam: [ "BrMiller::" ], //(NBA)
             },
@@ -386,29 +386,38 @@ export class TeamEditorManualFixes {
             "App State": {
                superSeniorsReturning: new Set([ "DoGregory::" ]),
             },
-            "Arizona St.": {
-               superSeniorsReturning: new Set([ "JaThomas::" ]),
-            },
             "Boise St.": {
                superSeniorsReturning: new Set([ "MaRice::" ]),
             },
             "Butler": {
-               superSeniorsReturning: new Set([ "JaThomas::" ]),
+               superSeniorsReturning: new Set([ "JaThomas::", "AlAli::" ]),
             },
             "Cincinnati": {
                superSeniorsReturning: new Set([ "OdOguama::" ]),
             },
+            "Clemson": {
+               superSeniorsReturning: new Set([ "AlHemenway::" ]),
+            },
             "Dayton": {
                leftTeam: [ "MiSharavjamt::" ], //(NBA)
             },
-            "George Mason": {
-               superSeniorsReturning: new Set([ "DaGaines::" ]),
+            "Duke": {
+               superSeniorsReturning: new Set([ "RyYoung::" ]),
+            },
+            "Eastern Ky.": {
+               superSeniorsReturning: new Set([ "IsCozart::" ]),
+            },
+            "Georgia Tech": {
+               superSeniorsReturning: new Set([ "LaTerry::" ]),
             },
             "Indiana": {
-               superSeniorsReturning: new Set([ "TrJackson-da::" ]),
+               superSeniorsReturning: new Set([ "XaJohnson::" ]),
             },
             "Iowa St.": {
-               superSeniorsReturning: new Set([ "RoJones::", "TrKing::" ]),
+               superSeniorsReturning: new Set([ "RoJones::", "HaWard::", "TrKing::" ]),
+            },
+            "Kentucky": {
+               superSeniorsReturning: new Set([ "BrCanada::" ]),
             },
             "Liberty": {
                superSeniorsReturning: new Set([ "KyRode::", "ShRobinson::" ]),
@@ -416,20 +425,38 @@ export class TeamEditorManualFixes {
             "Loyola Chicago": {
                superSeniorsReturning: new Set([ "BrNorris::", "ToWelch::" ]),
             },
-            "Loyola Maryland": {
+            "LMU (CA)": {
                superSeniorsReturning: new Set([ "KeLeaupepe::" ]),
             },
             "Maryland": {
                superSeniorsReturning: new Set([ "JaYoung::" ]),
             },
+            "Massachusetts": {
+               superSeniorsReturning: new Set([ "WiLeveque::" ]),
+            },
             "Missouri": {
                superSeniorsReturning: new Set([ "NoCarter::" ]),
+            },
+            "Michigan St.": {
+               superSeniorsReturning: new Set([ "StIzzo::" ]),
+            },
+            "Montana": {
+               superSeniorsReturning: new Set([ "AaMoody::" ]),
             },
             "Nevada": {
                superSeniorsReturning: new Set([ "KeBlackshear::" ]),
             },
             "New Mexico": {
                superSeniorsReturning: new Set([ "JaHouse::" ]),
+            },
+            "North Carolina": {
+               superSeniorsReturning: new Set([ "ArBacot::" ]),
+            },
+            "North Florida": {
+               superSeniorsReturning: new Set([ "DoJames::", "JaHicklen" ]),
+            },
+            "Ohio St.": {
+               superSeniorsReturning: new Set([ "TaHolden::" ]),
             },
             "Oklahoma St.": {
                superSeniorsReturning: new Set([ "JoWright::" ]),
@@ -443,8 +470,17 @@ export class TeamEditorManualFixes {
             "Richmond": {
                superSeniorsReturning: new Set([ "NeQuinn::" ]),
             },
+            "Sacred Heart": {
+               superSeniorsReturning: new Set([ "JoReilly::", "RaSoloman::", "BrMcguire::" ]),
+            },
             "Saint Joseph's": {
                superSeniorsReturning: new Set([ "CaBrown::" ]),
+            },
+            "Saint Louis": {
+               superSeniorsReturning: new Set([ "GiJimerson::" ]),
+            },
+            "San Diego St.": {
+               superSeniorsReturning: new Set([ "JaLedee::", "DaTrammell::" ]),
             },
             "Santa Clara": {
                leftTeam: [ "BrPodziemski" ], //(NBA)
@@ -455,17 +491,50 @@ export class TeamEditorManualFixes {
             "Southern California": {
                superSeniorsReturning: new Set([ "JoMorgan::" ]),
             },
+            "St. John's (NY)": {
+               superSeniorsReturning: new Set([ "JoSoriano::" ]),
+            },
+            "Stanford": {
+               superSeniorsReturning: new Set([ "MiJones::" ]),
+            },
+            "Texas": {
+               superSeniorsReturning: new Set([ "BrCunningham::" ]),
+            },
+            "Towson": {
+               superSeniorsReturning: new Set([ "ChThompson::" ]),
+            },
+            "UC Santa Barbara": {
+               superSeniorsReturning: new Set([ "JoPierre-lou::" ]),
+            },
             "UCLA": {
                superSeniorsReturning: new Set([ "KeNwuba::" ]),
+            },
+            "UNC Asheville": {
+               superSeniorsReturning: new Set([ "DrPember::" ]),
+            },
+            "UNCW": {
+               superSeniorsReturning: new Set([ "AmKelly::", "ShPhillips::" ]),
+            },
+            "Valparaiso": {
+               superSeniorsReturning: new Set([ "QuGreen::" ]),
             },
             "Villanova": {
                superSeniorsReturning: new Set([ "JuMoore::" ]),
             },
+            "Washington St.": {
+               superSeniorsReturning: new Set([ "DjRodman::" ]),
+            },
             "West Virginia": {
-               superSeniorsReturning: new Set([ "JoPerez::" ]),
+               superSeniorsReturning: new Set([ "JoPerez::", "JoToussaint::" ]), 
+            },
+            "Winthrop": {
+               superSeniorsReturning: new Set([ "MiAnumba::", "ChClaxton::" ]),
             },
             "Wisconsin": {
                superSeniorsReturning: new Set([ "TyWahl::" ]),
+            },
+            "Wright St.": {
+               superSeniorsReturning: new Set([ "TrCalvin::" ]),
             }
          };
 
