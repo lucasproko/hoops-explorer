@@ -724,7 +724,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({ startingState, d
     );
     return <OverlayTrigger placement="auto" overlay={tooltip}>
       <Button variant="outline-secondary" size="sm" onClick={e => {
-        window.location.href = UrlRouting.getOffseasonLeaderboard({ year });
+        window.location.href = UrlRouting.getOffseasonLeaderboard({ 
+          year: ((year == DateUtils.offseasonYear) && !DateUtils.seasonNotFinished[year]) ? DateUtils.getNextYear(year) : year
+        });
       }}>
         PRE
       </Button>

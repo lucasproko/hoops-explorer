@@ -23,9 +23,6 @@ export class DateUtils {
 
    /** Note should include all 3 formats */
    static readonly seasonNotFinished: Record<string, boolean> = {
-      "2022/23": true,
-      "Men_2022/23": true,
-      "Women_2022/23": true
    };
 
    /** Up this once the portal gets active, even if it's before the season ends */
