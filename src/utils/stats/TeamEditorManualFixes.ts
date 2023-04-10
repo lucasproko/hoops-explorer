@@ -411,6 +411,9 @@ export class TeamEditorManualFixes {
             "Georgia Tech": {
                superSeniorsReturning: new Set([ "LaTerry::" ]),
             },
+            "Georgetown": {
+               leftTeam: [ "DaHarris::" ], //(bug in how transfers who didn't suit up last year are handled)
+            },
             "Indiana": {
                superSeniorsReturning: new Set([ "XaJohnson::" ]),
             },
@@ -430,7 +433,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "KeLeaupepe::" ]),
             },
             "Maryland": {
-               superSeniorsReturning: new Set([ "JaYoung::" ]),
+               superSeniorsReturning: new Set([ "JaYoung::", "DoScott::" ]),
             },
             "Massachusetts": {
                superSeniorsReturning: new Set([ "WiLeveque::" ]),
