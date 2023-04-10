@@ -382,6 +382,7 @@ export class TeamEditorManualFixes {
             },
             "Arkansas": {
                leftTeam: [ "NiSmith::", "AnBlack::" ], //(NBA)
+               superSeniorsReturning: new Set([ "JaGraham::" ]),
             },
             "App State": {
                superSeniorsReturning: new Set([ "DoGregory::" ]),
@@ -438,7 +439,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "NoCarter::" ]),
             },
             "Michigan St.": {
-               superSeniorsReturning: new Set([ "StIzzo::" ]),
+               superSeniorsReturning: new Set([ "StIzzo::", "TyWalker::" ]),
             },
             "Montana": {
                superSeniorsReturning: new Set([ "AaMoody::" ]),
@@ -470,6 +471,9 @@ export class TeamEditorManualFixes {
             "Richmond": {
                superSeniorsReturning: new Set([ "NeQuinn::" ]),
             },
+            "Rutgers": {
+               superSeniorsReturning: new Set([ "CaSpencer::" ]),
+            },
             "Sacred Heart": {
                superSeniorsReturning: new Set([ "JoReilly::", "RaSoloman::", "BrMcguire::" ]),
             },
@@ -489,7 +493,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "SaWilliamson::" ]),
             },
             "Southern California": {
-               superSeniorsReturning: new Set([ "JoMorgan::" ]),
+               superSeniorsReturning: new Set([ "JoMorgan::", "BoEllis::" ]),
             },
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "JoSoriano::" ]),
