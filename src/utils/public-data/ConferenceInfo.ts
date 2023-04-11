@@ -85,12 +85,15 @@ export const getConfAdjustment = (confStr: string, year: string) => {
   return 0;
 }
 
-/** Currently for 22/23 offseason - conf changes that I won't pick up until I build the pre-season ingest lineup 
- * h/t Jun 2022: https://medium.com/run-it-back-with-zach/conference-realignment-all-the-moves-coming-in-2022-25-130ef706da55
+/** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in 
+ * off-season projects correct
 */
 export const latestConfChanges = {
 
-  "2022/3": {
+  /**
+   * h/t Jun 2022: https://medium.com/run-it-back-with-zach/conference-realignment-all-the-moves-coming-in-2022-25-130ef706da55
+   */
+  "2022/23": {
     // Sun Belt
     "James Madison": "Sun Belt Conference", //(CAA)
     "Marshall": "Sun Belt Conference", //(C-USA)
@@ -136,21 +139,42 @@ export const latestConfChanges = {
     // (Stonehill from D2)
   },
 
-  "2023/4": {
-    // Conference USA
-    //2023: "Jacksonville St.": "Conference USA",
-    //2023: "Liberty": "Conference USA",
-    //2023: "New Mexico St.": "Conference USA",
-    //2023: "Sam Houston": "Conference USA",
+  /** https://sportsenthusiasts.net/2022/07/02/college-sports-realignment-for-2023-and-beyond/ */
+  "2023/24": {
 
+    //AAC
+    "Charlotte": "American Athletic Conference", //(conferenceusa)
+    "Fla. Atlantic": "American Athletic Conference", //(conferenceusa)
+    "North Texas": "American Athletic Conference", //(conferenceusa)
+    "Rice": "American Athletic Conference", //(conferenceusa)
+    "UAB": "American Athletic Conference", //(conferenceusa)
+    "UTSA": "American Athletic Conference", //(conferenceusa)
+
+    //B12
+    "Cincinnati": "Big 12 Conference", //(american)
+    "Houston": "Big 12 Conference",  //(american)
+    "UCF": "Big 12 Conference",  //(american)
+    "BYU": "Big 12 Conference",  //(wcc)
+
+    // Conference USA
+    "Jacksonville St.": "Conference USA", //(asun)
+    "Kenneshaw St.": "Conference USA", //(asun)
+    "Liberty": "Conference USA", //(asun)
+    "New Mexico St.": "Conference USA", //(wac)
+    "Sam Houston": "Conference USA", //(wac)
+
+    // CAA
+    "Campbell": "Colonial Athletic Association",
+    "N.C. A&T": "Colonial Athletic Association",
 
     // Western Athletic Conference
     
-    // 2023?: "UIW": "Western Athletic Conference", //(southland)
-
     //Southland
-    //2023: "Lamar University": "Southland Conference",
-    // (Texas A&M-Commerce from D2)  
+    "Lamar University": "Southland Conference", //(wac - actually were in southland but i missed it)
+
+    // Dropping out of D1:
+    "Hartford": "NCAA D3",
+    "St. Francis Brooklyn": "No NCAA",
 
   }
 
