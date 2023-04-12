@@ -376,7 +376,7 @@ export class TeamEditorManualFixes {
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
-            //(through Apr 7, see https://barttorvik.com/all_superseniors.php)
+            //(through Apr 12, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
             "Alabama": {
                leftTeam: [ "BrMiller::" ], //(NBA)
             },
@@ -398,6 +398,9 @@ export class TeamEditorManualFixes {
             },
             "Clemson": {
                superSeniorsReturning: new Set([ "AlHemenway::" ]),
+            },
+            "Creighton": {
+               superSeniorsReturning: new Set([ "FrFarabello::" ]),
             },
             "Dayton": {
                leftTeam: [ "MiSharavjamt::" ], //(NBA)
@@ -447,11 +450,17 @@ export class TeamEditorManualFixes {
             "Massachusetts": {
                superSeniorsReturning: new Set([ "WiLeveque::" ]),
             },
+            "Memphis": {
+               superSeniorsReturning: new Set([ "JaHardaway::", "ChLawson::" ]),
+            },
             "Missouri": {
                superSeniorsReturning: new Set([ "NoCarter::" ]),
             },
+            "Mississippi St.": {
+               superSeniorsReturning: new Set([ "DaDavis::", "DjJeffries::", "WiMcnair::" ]),
+            },
             "Michigan St.": {
-               superSeniorsReturning: new Set([ "StIzzo::", "TyWalker::" ]),
+               superSeniorsReturning: new Set([ "StIzzo::", "TyWalker::", "MaHall::" ]),
             },
             "Montana": {
                superSeniorsReturning: new Set([ "AaMoody::" ]),
@@ -563,11 +572,14 @@ export class TeamEditorManualFixes {
             },
             "Wright St.": {
                superSeniorsReturning: new Set([ "TrCalvin::" ]),
+            },
+            "Youngstown St.": {
+               superSeniorsReturning: new Set([ "BrRush::" ]),
             }
          };
 
          const combinedOverrides = TeamEditorManualFixes.combineOverrides(
-            mutableToRet, manualOverrides_Men_2023_24, superSeniors2022_23, leftTeam2022_23
+            mutableToRet, manualOverrides_Men_2023_24, {}, {}
          );
          return combinedOverrides;
       } else {
