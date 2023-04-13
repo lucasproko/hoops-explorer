@@ -670,6 +670,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const playerEl = teamEditorMode ?
         <OverlayTrigger placement="auto" overlay={playerTeamEditorTooltip}>
           <a target="_blank" href="#"
+            style={{wordWrap: "normal"}}
             onClick={(ev) => {
               teamEditorMode(player);
               ev.preventDefault();
@@ -678,7 +679,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </OverlayTrigger>
         :
         <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
-          <a target="_blank" href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>{player.key}</a>
+          <a target="_blank" style={{wordWrap: "normal"}} href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>{player.key}</a>
         </OverlayTrigger>;
 
       const teamTooltip = (
