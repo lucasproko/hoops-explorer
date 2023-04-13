@@ -445,6 +445,11 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "KeLeaupepe::" ]),
             },
             "Maryland": {
+               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
+                  "Long, Jahari": {
+                     "pos": "PG", "pr": "4*", "c": "JaLong", "h": "6-5", "r": 0, "o": -0.25, "d": 0.5
+                  },
+               }})[""]),
                superSeniorsReturning: new Set([ "JaYoung::", "DoScott::" ]),
             },
             "Massachusetts": {
