@@ -155,7 +155,7 @@ export class CommonTableDefs {
     "Box Rtg": "Box",
     "Adj+ Rtg": "Adj+",
     "Adj+ Prod": "Adj+",
-    "RAPM diff": "RAPM",
+    "RAPM net": "RAPM",
 
     "Usg Pos": "Usg",
     "TO% Stl%": "TO%",
@@ -188,7 +188,7 @@ export class CommonTableDefs {
 
     // 2 of these 4 are always omitted by onOffIndividualTable, the other 2 we just make empty-ish so that auto-gen of table sort works
     "adj_rapm_margin": expandedView ? { colName: undefined } : GenericTableOps.addDataCol(
-      "RAPM diff", "Adjusted Plus-Minus vs D1 average (Off-Def margin)",
+      "RAPM net", "Adjusted Plus-Minus vs D1 average (Off-Def margin)",
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "adj_rapm_prod_margin": expandedView ? { colName: undefined } : GenericTableOps.addDataCol(
       "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average (Off-Def margin)",

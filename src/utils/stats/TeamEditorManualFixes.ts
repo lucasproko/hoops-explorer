@@ -376,7 +376,7 @@ export class TeamEditorManualFixes {
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
-            //(through Apr 12, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
+            //(through Apr 14, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
             "Alabama": {
                leftTeam: [ "BrMiller::" ], //(NBA)
             },
@@ -400,7 +400,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AlHemenway::" ]),
             },
             "Creighton": {
-               superSeniorsReturning: new Set([ "FrFarabello::" ]),
+               superSeniorsReturning: new Set([ "FrFarabello::", "BaScheierman" ]),
             },
             "Dayton": {
                leftTeam: [ "MiSharavjamt::" ], //(NBA)
@@ -577,6 +577,9 @@ export class TeamEditorManualFixes {
             },
             "Wright St.": {
                superSeniorsReturning: new Set([ "TrCalvin::" ]),
+            },
+            "Xavier": {
+               superSeniorsReturning: new Set([ "JeHunter::" ]),
             },
             "Youngstown St.": {
                superSeniorsReturning: new Set([ "BrRush::" ]),
