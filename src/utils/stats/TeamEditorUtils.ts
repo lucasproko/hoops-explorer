@@ -703,6 +703,10 @@ export class TeamEditorUtils {
                //if (team == "Team") console.log(`Leaving(Sr) [${p.code}][${p.year}]: [${acc.sr_off.toFixed(2)}] [${acc.sr_def.toFixed(2)}]`);
                acc.txferCountDups[key] = true;
             }
+         } else if (wasOnTeam && notAgingOut && (p.year == year) && !notOnExcludeList) {
+            // We treat players we put on the mutable exclude list as "NBA" (aka "Pro")
+            acc.nba_off = acc.nba_off + TeamEditorUtils.getOff(p)*possPctOff;
+            acc.nba_def = acc.nba_def + TeamEditorUtils.getDef(p)*possPctDef;
          }
 
          //Diagnostic:

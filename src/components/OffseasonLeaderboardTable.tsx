@@ -286,8 +286,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             evalMode: evalMode,
             ...(teamOverrides[t.team] || {})
          };
-
-         const maybeOverriddenEl = _.isEmpty(teamOverrides[t.team] || {}) ? null : <span> (*)</span>
+         const teamOverride = teamOverrides[t.team] || {};
+         const hasOverrides = 
+            teamOverride.addedPlayers || teamOverride.deletedPlayers || teamOverride.disabledPlayers || teamOverride.overrides;
+         const maybeOverriddenEl = hasOverrides ? <span> (*)</span> : null;
 
          const teamTooltip = (
             <Tooltip id={`teamTooltip${netRankIn}`}>

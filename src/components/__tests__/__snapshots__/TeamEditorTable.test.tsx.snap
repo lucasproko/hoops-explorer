@@ -4006,7 +4006,26 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     removed
                   </b>
                    [
-                  Ayala, Eric
+                  <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="returnPlayer0"
+                          placement="right"
+                        >
+                          Return player to roster
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Ayala, Eric
+                      </a>
+                    </OverlayTrigger>
+                  </span>
                   ]
                 </i>,
               },
@@ -9284,7 +9303,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },
@@ -14920,7 +14939,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },
@@ -21321,7 +21340,26 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     removed
                   </b>
                    [
-                  Ayala, Eric
+                  <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="returnPlayer0"
+                          placement="right"
+                        >
+                          Return player to roster
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        Ayala, Eric
+                      </a>
+                    </OverlayTrigger>
+                  </span>
                   ]
                 </i>,
               },
@@ -27543,7 +27581,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },
@@ -34518,7 +34556,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },
@@ -39794,7 +39832,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },
@@ -42929,7 +42967,26 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                     removed
                   </b>
                    [
-                  code:ErAyala::
+                  <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="returnPlayer0"
+                          placement="right"
+                        >
+                          Return player to roster
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        code:ErAyala::
+                      </a>
+                    </OverlayTrigger>
+                  </span>
                   ]
                 </i>,
               },
@@ -46274,7 +46331,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },
@@ -49615,7 +49672,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                     removed
                   </b>
                    [
-                  
+                  <span />
                   ]
                 </i>,
               },

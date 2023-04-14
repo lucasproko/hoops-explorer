@@ -53,6 +53,7 @@ import { DerivedStatsUtils } from '../utils/stats/DerivedStatsUtils';
 import { ConferenceToNickname, latestConfChanges } from '../utils/public-data/ConferenceInfo';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { FeatureFlags } from '../utils/stats/FeatureFlags';
+import ReactNode from 'react';
 
 // Input params/models
 
@@ -1164,7 +1165,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     })).concat(maybeBenchBig ? buildBenchDataRowFromTriple(maybeBenchBig) : []);
 
     const addedTxfersStr = _.values(otherPlayerCache).map(p => p.orig.key).join(" / ");
-    const removedPlayerStr = _.values(pxResults.allDeletedPlayers).join(" / ");
+    const maxRemovedPlayersIndex = _.size(pxResults.allDeletedPlayers) - 1;
+    const removedPlayerStr = <span>{_.chain(pxResults.allDeletedPlayers).toPairs().flatMap((kv, ii) => {
+      const tooltip = (
+        <Tooltip id={"returnPlayer" + ii}>Return player to roster</Tooltip>
+      );
+      return ([ <OverlayTrigger placement="auto" overlay={tooltip}><a href="#" onClick={(event) => { 
+          event.preventDefault(); 
+          const newDeletedPlayers = _.clone(deletedPlayers);
+          delete newDeletedPlayers[kv[0]];
+          friendlyChange(() => {
+            setDeletedPlayers(newDeletedPlayers);
+          }, true);
+        } }
+      >{kv[1]}</a></OverlayTrigger> ] as React.ReactNode[]).concat(ii < maxRemovedPlayersIndex ? [ " / " ] : []);
+    }).value()}</span>;
 
     const rosterTableData = _.flatten([
       rosterTableDataGuards,

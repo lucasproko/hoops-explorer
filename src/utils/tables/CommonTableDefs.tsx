@@ -407,7 +407,7 @@ export class CommonTableDefs {
          CbbColors.picker(...CbbColors.diff10_p100_greenRed), GenericTableOps.pointsOrHtmlFormatter
       ),
       nba_margin: GenericTableOps.addDataCol(
-         "NBA", "For efficiency margin, lost production from last season due to early NBA departures",
+         "NBA", "For efficiency margin, lost production from last season due to early NBA (or other pro) departures",
          CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter
       ),
       sr_margin: GenericTableOps.addDataCol(

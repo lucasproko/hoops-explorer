@@ -345,14 +345,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 0.30429880000000004,
+                    "value": -5.57679194,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 0,
+                    "value": 5.881090739999999,
                   },
                   "net": Object {
                     "value": 21.915460627153475,
@@ -950,14 +950,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 0.30429880000000004,
+                    "value": -5.57679194,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 0,
+                    "value": 5.881090739999999,
                   },
                   "net": Object {
                     "value": 21.915460627153475,
@@ -15209,14 +15209,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 0.30429880000000004,
+                    "value": -5.57679194,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 0,
+                    "value": 5.881090739999999,
                   },
                   "net": Object {
                     "value": 21.915460627153475,
@@ -28170,14 +28170,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 0.30429880000000004,
+                    "value": -5.57679194,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 0,
+                    "value": 5.881090739999999,
                   },
                   "net": Object {
                     "value": 21.915460627153475,
@@ -39373,14 +39373,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": 0.30429880000000004,
+                    "value": -5.57679194,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 0,
+                    "value": 5.881090739999999,
                   },
                   "net": Object {
                     "value": 21.915460627153475,
@@ -39546,7 +39546,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "For efficiency margin, lost production from last season due to early NBA departures",
+                "toolTip": "For efficiency margin, lost production from last season due to early NBA (or other pro) departures",
                 "widthUnits": 2,
               },
               "net": GenericTableColProps {
