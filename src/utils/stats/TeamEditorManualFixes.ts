@@ -584,7 +584,7 @@ export class TeamEditorManualFixes {
          };
 
          const combinedOverrides = TeamEditorManualFixes.combineOverrides(
-            mutableToRet, manualOverrides_Men_2023_24, {}, {}
+            mutableToRet, manualOverrides_Men_2023_24, {}, leftTeam2022_23 //(concatenate old "left team" with current)
          );
          return combinedOverrides;
       } else {
