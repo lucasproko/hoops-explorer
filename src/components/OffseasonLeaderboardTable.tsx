@@ -46,7 +46,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 import { RequestUtils } from '../utils/RequestUtils';
-import { OffseasonLeaderboardUtils } from '../utils/stats/OffseasonLeaderboardUtils';
+import { OffseasonLeaderboardUtils, OffseasonTeamInfo } from '../utils/stats/OffseasonLeaderboardUtils';
 
 type Props = {
    startingState: OffseasonLeaderboardParams,
@@ -274,6 +274,100 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
             ;
       }
       
+      const toIntRank = (val: Statistic | undefined) => {
+         const pcile = val?.value || 0;
+         const rank = 1 + Math.round((1 - pcile)*numTeams); //(+1, since 100% is rank==1)
+         return rank;
+      };
+      const getActualNetRankObj  = (t: OffseasonTeamInfo) => {
+         const actualNetRankObj = actualNetEffToRankMap ? 
+            { off_net: { value: 1.0 - (actualNetEffToRankMap[t.actualNet || 0]!)/(numTeams || 1), samples: numTeams } }: undefined;
+         return actualNetRankObj;
+      }
+
+      // In eval mode want to see how we did:
+      // teams I had in the T10 who finished T15 (/outside T30) ... teams I had outside T15 (T30) who finished in T10
+      // same but T25/T35 (/outside T60)
+      // same but T50/T65 (/outside T80)
+      type EvalRule = {
+         lowerRank: number, goodThresholdRank: number, badThresholdRank: number
+      };
+      const evalRuleSet: [ EvalRule, EvalRule, EvalRule ] = [
+         { lowerRank: 10, goodThresholdRank: 15, badThresholdRank: 30 },
+         { lowerRank: 25, goodThresholdRank: 35, badThresholdRank: 60 },
+         { lowerRank: 50, goodThresholdRank: 65, badThresholdRank: 80 },
+      ];
+      type EvalSubResults = {
+         good: number,
+         bad: string[]
+      };
+      type EvalResults = {
+         rule: EvalRule, 
+         predicted: EvalSubResults,
+         actual: EvalSubResults
+      };
+      const resultsToText = (res: EvalResults) => {
+         const predictedMissesTooltip = (
+            <Tooltip id={`predictedMisses${res.rule.lowerRank}`}>
+               {_.flatMap(res.predicted.bad, s => [ s, <br/> ])}
+            </Tooltip>
+          );
+         const predictedMisses = <OverlayTrigger placement="auto" overlay={predictedMissesTooltip}>
+            <span>{_.size(res.predicted.bad)}<sup>*</sup></span>
+         </OverlayTrigger>;
+         const actualMissesTooltip = (
+            <Tooltip id={`actualMisses${res.rule.lowerRank}`}>
+               {_.flatMap(res.actual.bad, s => [ s, <br/> ])}
+            </Tooltip>
+          );
+         const actualMisses = <OverlayTrigger placement="auto" overlay={actualMissesTooltip}>
+            <span>{_.size(res.actual.bad)}<sup>*</sup></span>
+         </OverlayTrigger>;
+         return <span>
+            [{res.predicted.good}] predicted in T{res.rule.lowerRank} were actually in T{res.rule.goodThresholdRank}, [{predictedMisses}] big misses<br/> 
+            [{res.actual.good}] actually in T{res.rule.lowerRank} were predicted in T{res.rule.goodThresholdRank}, [{actualMisses}] big misses
+         </span>;
+      };
+      const evalResults = _.thru(evalMode, __ => {
+         if (evalMode) {
+            return _.transform(teamRanks, (acc, t, netRankIn) => {
+               const netRank = netRankIn + 1;
+
+               const actualNetRankObj = getActualNetRankObj(t);
+               const actualNetRank = actualNetRankObj ? toIntRank(actualNetRankObj?.off_net) : 0;
+      
+               if (actualNetRankObj && actualNetRank) {
+                  _.forEach(acc, ruleInfo => {
+                     if ((netRank <= ruleInfo.rule.lowerRank) && (actualNetRank <= ruleInfo.rule.goodThresholdRank)) {
+                        ruleInfo.predicted.good = ruleInfo.predicted.good + 1;
+                     }
+                     if ((actualNetRank <= ruleInfo.rule.lowerRank) && (netRank <= ruleInfo.rule.goodThresholdRank)) {
+                        ruleInfo.actual.good = ruleInfo.actual.good + 1;
+                     }
+                     if ((netRank <= ruleInfo.rule.lowerRank) && (actualNetRank > ruleInfo.rule.badThresholdRank)) {
+                        ruleInfo.predicted.bad = ruleInfo.predicted.bad.concat([
+                           `${t.team} [${netRank}] vs [${actualNetRank}]`
+                        ]);
+                     }
+                     if ((actualNetRank <= ruleInfo.rule.lowerRank) && (netRank > ruleInfo.rule.badThresholdRank)) {
+                        ruleInfo.actual.bad = ruleInfo.actual.bad.concat([
+                           `${t.team} [${netRank}] vs [${actualNetRank}]`
+                        ]);
+                     }
+                  });
+               }
+
+            }, [
+               { rule: evalRuleSet[0], predicted: { good: 0, bad: [] }, actual: { good: 0, bad: [] } },
+               { rule: evalRuleSet[1], predicted: { good: 0, bad: [] }, actual: { good: 0, bad: [] } },
+               { rule: evalRuleSet[2], predicted: { good: 0, bad: [] }, actual: { good: 0, bad: [] } },
+            ] as [ EvalResults, EvalResults, EvalResults ] );
+         } else {
+            return undefined;
+         }
+      });
+      //(end eval part 1)
+
       const tableRows = _.chain(teamRanks).filter(confFilter).take(75).flatMap((t, netRankIn) => {
 
          const nonStdSort = sortBy && (sortBy != "net") && transferInOutMode;
@@ -302,35 +396,39 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
              
          const netRank = (nonStdSort || confs) ? netEffToRankMap[t.net]! : netRankIn;
 
-         // Eval mode:         
+         // Eval mode part 2:         
          // (make the format like we'd called buildTeamPercentiles)
-         const actualNetRankObj = actualNetEffToRankMap ? 
-            { off_net: { value: 1.0 - (actualNetEffToRankMap[t.actualNet || 0]!)/(numTeams || 1), samples: numTeams } }: undefined;
+         const actualNetRankObj = getActualNetRankObj(t);
          // example of calling buildTeamPercentils
          //const actualNetRank = GradeUtils.buildTeamPercentiles(derivedDivisionStats, { off_net: { value: t.actualNet || 0 } }, [ "net" ], true);
-         const toIntRank = (val: Statistic | undefined) => {
-            const pcile = val?.value || 0;
-            const rank = 1 + Math.round((1 - pcile)*numTeams); //(+1, since 100% is rank==1)
-            return rank;
-         };
          const actualNetRank = actualNetRankObj ? toIntRank(actualNetRankObj?.off_net) : 0;
          const goodNetRank = actualNetRankObj ? toIntRank(goodNet.off_net) : 0;
          const badNetRank = actualNetRankObj ? toIntRank(badNet.off_net) : 0;
          const evalStdDev = (actualNetRank < netRank) ? (netRank - goodNetRank) : (badNetRank - netRank);
          const deltaProjRank = Math.abs(netRank - actualNetRank)/(evalStdDev || 1);
-         //end Eval mode
+         //end Eval mode part 2
 
          const pickSubHeaderMessage = (rank: number) => {
-            if (rank == 0) {
-               return "Top 25 + 1";
-            } else if (rank == 26) {
-               return "Solid NCAAT teams";
-            } else if (rank == 35) {
-               return "The Bubble";
-            } else if (rank == 55) {
-               return "Autobids / AD on Selection Committee / Maybe Next Year";
+            if (evalResults) {
+               if (rank == 10) {
+                  return resultsToText(evalResults[0]);
+               } else if (rank == 25) {
+                  return resultsToText(evalResults[1]);
+               } else if (rank == 50) {
+                  return resultsToText(evalResults[2]);
+               } else return "";
             } else {
-               return "";
+               if (rank == 0) {
+                  return "Top 25 + 1";
+               } else if (rank == 26) {
+                  return "Solid NCAAT teams";
+               } else if (rank == 35) {
+                  return "The Bubble";
+               } else if (rank == 55) {
+                  return "Autobids / AD on Selection Committee / Maybe Next Year";
+               } else {
+                  return "";
+               }
             }
          };
          const yearOnYearDetails = GenericTableOps.buildSubHeaderRow([
