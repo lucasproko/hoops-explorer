@@ -411,7 +411,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
       );
       return <Col xs={1} className="small">
         <OverlayTrigger placement="auto" overlay={blogTooltip}>
-          <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_blank">Blog...</a>
+          <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_blank">Docs...</a>
         </OverlayTrigger>
       </Col>;
     }
