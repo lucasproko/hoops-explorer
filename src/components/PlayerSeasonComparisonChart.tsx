@@ -430,6 +430,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       // 3] Allow a multiple year - create multiple 2-year groups and call buildAllTeamStats repeatedly, then cat the
       //    triples together with a year string which the logic will handle
       // 4] (here and in PlayerLeaderboardTable, always enrich currently with transfer info once it exists)
+      // 5] Copy to clipboard
+      // 6] Display results in a PlayerLeaderboardTable
 
       // Team stats generation business logic:
       const {

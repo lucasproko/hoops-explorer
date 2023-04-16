@@ -5,6 +5,10 @@ import { freshmenMen2020_21 } from "../public-data/freshmenMen2020_21";
 import { freshmenMen2021_22 } from "../public-data/freshmenMen2021_22";
 import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
 import { freshmenMen2023_24 } from "../public-data/freshmenMen2023_24";
+import { superSeniors2020_21 } from "../public-data/superSeniors2020_21";
+import { leftTeam2020_21 } from "../public-data/leftTeam2020_21";
+import { superSeniors2021_22 } from "../public-data/superSeniors2021_22";
+import { leftTeam2021_22 } from "../public-data/leftTeam2021_22";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
 import { leftTeam2022_23 } from "../public-data/leftTeam2022_23";
 
@@ -131,7 +135,9 @@ export class TeamEditorManualFixes {
                }})[""])
             },
          }
-         return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2020_21);
+         return TeamEditorManualFixes.combineOverrides(
+            mutableToRet, manualOverrides_Men_2020_21, superSeniors2020_21, leftTeam2020_21
+         );
       } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
          const manualOverrides_Men_2021_22: Record<string, TeamEditorManualFixModel> = {
             "Iowa": {
@@ -178,7 +184,9 @@ export class TeamEditorManualFixes {
                codeSwitch: { "JnDavis": "JoDavis" } //(sigh... see cbb-exlorer:DataQualityIssues)
             },
          }
-         return TeamEditorManualFixes.combineOverrides(mutableToRet, manualOverrides_Men_2021_22);
+         return TeamEditorManualFixes.combineOverrides(
+            mutableToRet, manualOverrides_Men_2021_22, superSeniors2021_22, leftTeam2021_22
+         );
 
       } else if (genderYear == "Men_2021/22") {  //(offseason of 21/22, ie team for 22/23)
 
@@ -587,10 +595,11 @@ export class TeamEditorManualFixes {
          };
 
          const combinedOverrides = TeamEditorManualFixes.combineOverrides(
-            mutableToRet, manualOverrides_Men_2023_24, {}, leftTeam2022_23 //(concatenate old "left team" with current)
+            mutableToRet, manualOverrides_Men_2023_24, {}, leftTeam2022_23 //(use prev season until have calculated this season's)
          );
          return combinedOverrides;
       } else {
+         // Note when calling combineOverrides, need to use leftTeam${prevYear} to handle players who left a season ago
          return {} as Record<string, TeamEditorManualFixModel>;
       }
    });
