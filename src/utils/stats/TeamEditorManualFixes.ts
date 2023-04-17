@@ -5,8 +5,6 @@ import { freshmenMen2020_21 } from "../public-data/freshmenMen2020_21";
 import { freshmenMen2021_22 } from "../public-data/freshmenMen2021_22";
 import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
 import { freshmenMen2023_24 } from "../public-data/freshmenMen2023_24";
-import { superSeniors2020_21 } from "../public-data/superSeniors2020_21";
-import { leftTeam2020_21 } from "../public-data/leftTeam2020_21";
 import { superSeniors2021_22 } from "../public-data/superSeniors2021_22";
 import { leftTeam2021_22 } from "../public-data/leftTeam2021_22";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
@@ -136,7 +134,7 @@ export class TeamEditorManualFixes {
             },
          }
          return TeamEditorManualFixes.combineOverrides(
-            mutableToRet, manualOverrides_Men_2020_21, superSeniors2020_21, leftTeam2020_21
+            mutableToRet, manualOverrides_Men_2020_21
          );
       } else if (genderYear == "Men_2020/21") { //(offseason of 20/21, ie team for 21/22)
          const manualOverrides_Men_2021_22: Record<string, TeamEditorManualFixModel> = {

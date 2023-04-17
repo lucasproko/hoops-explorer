@@ -61,7 +61,14 @@ export class LeaderboardUtils {
           });
       }).concat(
          transferYears.map(transferYear => {
-            return transferYear ? fetch(`/api/getTransfers?transferMode=${transferYear || ""}`).then((response: fetch.IsomorphicResponse) => {
+            const transferJsonPath = _.thru(transferYear, __ => {
+               if (!transferYear || (transferYear.substring(0, 4) == DateUtils.offseasonPredictionYear.substring(0, 4))) {
+                  return `/api/getTransfers?transferMode=${transferYear || ""}`;
+               } else {
+                  return `/leaderboards/roster_movement/transfers_${transferYear.substring(0, 4)}.json`;
+               }
+            });
+            return transferYear ? fetch(transferJsonPath).then((response: fetch.IsomorphicResponse) => {
                return response.ok ? response.json() : Promise.resolve({})
              }) : Promise.resolve({});
          })

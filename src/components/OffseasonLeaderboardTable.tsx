@@ -312,7 +312,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                {_.flatMap(res.predicted.bad, s => [ s, <br/> ])}
             </Tooltip>
           );
-         const predictedMisses = <OverlayTrigger placement="auto" overlay={predictedMissesTooltip}>
+         const predictedMisses = _.isEmpty(res.predicted.bad) ? "0" : <OverlayTrigger placement="auto" overlay={predictedMissesTooltip}>
             <span>{_.size(res.predicted.bad)}<sup>*</sup></span>
          </OverlayTrigger>;
          const actualMissesTooltip = (
@@ -320,12 +320,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
                {_.flatMap(res.actual.bad, s => [ s, <br/> ])}
             </Tooltip>
           );
-         const actualMisses = <OverlayTrigger placement="auto" overlay={actualMissesTooltip}>
+         const actualMisses = _.isEmpty(res.actual.bad) ? "0" : <OverlayTrigger placement="auto" overlay={actualMissesTooltip}>
             <span>{_.size(res.actual.bad)}<sup>*</sup></span>
          </OverlayTrigger>;
+         const missOrMisses = (n: number) => n == 1 ? "miss" : "misses";
          return <span>
-            [{res.predicted.good}] predicted in T{res.rule.lowerRank} were actually in T{res.rule.goodThresholdRank}, [{predictedMisses}] big misses<br/> 
-            [{res.actual.good}] actually in T{res.rule.lowerRank} were predicted in T{res.rule.goodThresholdRank}, [{actualMisses}] big misses
+            [{res.predicted.good}] predicted in T{res.rule.lowerRank} were actually in T{res.rule.goodThresholdRank}, [{predictedMisses}] big {missOrMisses(_.size(res.predicted.bad))}<br/> 
+            [{res.actual.good}] actually in T{res.rule.lowerRank} were predicted in T{res.rule.goodThresholdRank}, [{actualMisses}] big {missOrMisses(_.size(res.actual.bad))}
          </span>;
       };
       const evalResults = _.thru(evalMode, __ => {
@@ -576,11 +577,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          </Col>
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
-               isDisabled={evalMode || transferInOutMode}
+               isDisabled={transferInOutMode}
                value={stringToOption(year)}
                options={
                   DateUtils.lboardYearListWithNextYear(tier == "High")
-                     .filter(y => y >= DateUtils.firstYearWithDecentRosterData).map(r => stringToOption(r))
+                     .filter(y => y >= DateUtils.firstYearWithDecentRosterData)
+                     .filter(y => evalMode ? (y <= DateUtils.mostRecentYearWithLboardData) : true) //(can't eval year that hasn't happened yet)
+                     .map(r => stringToOption(r))
                }
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {

@@ -3,6 +3,7 @@ import { NextApiResponse, NextApiRequest } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 import queryString from "query-string";
+import { DateUtils } from '../../utils/DateUtils';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const url = require('url').parse(req.url);
@@ -11,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const getFilename = () => {
         const transferMode = parsed["transferMode"] || "";
         if ((transferMode == "") || (transferMode == "true")) { //(shortcut for current year)
-            return "transfers_2022.json";
+            return `transfers_${DateUtils.offseasonPredictionYear.substring(0, 4)}.json`;
         } else { //(all transfers from previous years)
             return `transfers_${transferMode}.json`;
         }

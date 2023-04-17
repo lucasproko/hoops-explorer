@@ -357,10 +357,10 @@ export class OffseasonLeaderboardUtils {
       }).value();
 
       if (diagnosticCompareWithRosters && !_.isEmpty(superSeniorsReturning) && !diagnosticCompareWithRostersDebugOnly) {
-         console.log(`export const superSeniors${DateUtils.getPrevYear(year).replace("/", "_")} = \n${JSON.stringify(superSeniorsReturning, null, 3)}`);
+         console.log(`export const superSeniors${year.replace("/", "_")} = \n${JSON.stringify(superSeniorsReturning, null, 3)}`);
       }
       if (diagnosticCompareWithRosters && !_.isEmpty(leftTeamUnexpectedly) && !diagnosticCompareWithRostersDebugOnly) {
-         console.log(`export const leftTeam${DateUtils.getPrevYear(year).replace("/", "_")} = \n${JSON.stringify(leftTeamUnexpectedly, null, 3)}`);
+         console.log(`export const leftTeam${year.replace("/", "_")} = \n${JSON.stringify(leftTeamUnexpectedly, null, 3)}`);
       }
 
       // Lookups

@@ -1,90 +1,576 @@
 export const superSeniors2021_22 = 
 {
-   "Elon": [
-      "ToWatson::"
+   "A&M-Corpus Christi": [
+      "MySmith::"
    ],
-   "Gardner-Webb": [
-      "LuDufeal::"
+   "Abilene Christian": [
+      "MaMorris::",
+      "ReMiller::",
+      "CoMason::"
    ],
-   "Hampton": [
-      "MaGodwin::"
+   "Albany (NY)": [
+      "JaDoles::",
+      "ChChampion::"
+   ],
+   "Alcorn": [
+      "JuThomas::"
+   ],
+   "American": [
+      "StBeckton::"
+   ],
+   "App State": [
+      "MiAlmonacy::",
+      "JuForrest::"
+   ],
+   "Arizona St.": [
+      "KiLawrence::"
+   ],
+   "Arkansas St.": [
+      "MaEaton::",
+      "ChWillis::"
+   ],
+   "BYU": [
+      "AlBarcello::"
+   ],
+   "Boise St.": [
+      "AbKigab::"
+   ],
+   "Boston College": [
+      "MaAshton-lan::",
+      "JaKarnik::"
+   ],
+   "Boston U.": [
+      "SuMathon::",
+      "JaMccoy::"
+   ],
+   "Bowling Green": [
+      "DaPlowden::",
+      "TrDiggs::"
+   ],
+   "Bryant": [
+      "HaElisias::"
+   ],
+   "Buffalo": [
+      "BrBertram::"
+   ],
+   "Butler": [
+      "BrNze::",
+      "AaThompson::",
+      "JaBolden::"
+   ],
+   "CSU Bakersfield": [
+      "JuMccall::",
+      "ShStith::",
+      "JuEdler-davi::"
+   ],
+   "California": [
+      "MaForeman::",
+      "GrAnticevich::"
+   ],
+   "Campbell": [
+      "AuMccullough::",
+      "JoWhitfield::"
+   ],
+   "Central Conn. St.": [
+      "StAyangma::"
+   ],
+   "Charlotte": [
+      "MaCannon::"
+   ],
+   "Chattanooga": [
+      "DaJean-bapti::",
+      "DaBanks::",
+      "JoAyeni::"
+   ],
+   "Chicago St.": [
+      "CaMarble::"
+   ],
+   "Cleveland St.": [
+      "CrBeaudion::",
+      "AlEichelberg::",
+      "ToPatton::"
+   ],
+   "Coastal Carolina": [
+      "GaGreen::"
+   ],
+   "Col. of Charleston": [
+      "OsSmart::"
+   ],
+   "Colgate": [
+      "JaFerguson::"
+   ],
+   "Delaware": [
+      "DyPainter::",
+      "RyAllen::",
+      "KeAnderson::"
+   ],
+   "Delaware St.": [
+      "MyCarter::",
+      "JoStansbury::"
+   ],
+   "Detroit Mercy": [
+      "MaJohnson::"
+   ],
+   "Drake": [
+      "RoPenn::",
+      "TrMurphy::",
+      "ShHemphill::"
+   ],
+   "Drexel": [
+      "JaButler::"
+   ],
+   "ETSU": [
+      "DaSloan::",
+      "SiAdheke::",
+      "VoPatterson::"
+   ],
+   "East Carolina": [
+      "LuDebaut::",
+      "JjMiles::"
+   ],
+   "Eastern Ill.": [
+      "SaFriday::",
+      "KaCharles::"
+   ],
+   "Eastern Ky.": [
+      "RuCruickshan::"
+   ],
+   "Eastern Mich.": [
+      "DaSpottsvill::"
+   ],
+   "Evansville": [
+      "EvKuhlman::",
+      "NoFrederking::"
+   ],
+   "FIU": [
+      "ErLovett::"
+   ],
+   "Fairfield": [
+      "JeCruz::",
+      "CaGreen::",
+      "TaBenning::"
+   ],
+   "Fla. Atlantic": [
+      "EvWinchester::"
+   ],
+   "Florida A&M": [
+      "DjJones::",
+      "BrMoragne::",
+      "KaReaves::"
+   ],
+   "Florida St.": [
+      "RaEvans::"
+   ],
+   "Furman": [
+      "AlHunter::"
+   ],
+   "Ga. Southern": [
+      "GrWeatherfor::"
+   ],
+   "Georgia": [
+      "PjHorne::"
+   ],
+   "Georgia St.": [
+      "CoAllen::",
+      "KaWilliams::"
+   ],
+   "Georgia Tech": [
+      "JoUsher::",
+      "BuParham::"
+   ],
+   "Grambling": [
+      "TeRandolph::",
+      "PrMoss::"
+   ],
+   "Grand Canyon": [
+      "SeMiller-moo::"
    ],
    "Hartford": [
-      "JaKimbrough::"
+      "AuWilliams::"
    ],
-   "IUPUI": [
-      "JoCarrasco::"
+   "High Point": [
+      "CaSanchez::"
    ],
-   "Kennesaw St.": [
-      "AlPeterson::",
-      "SpRodgers::"
+   "Hofstra": [
+      "JaRay::"
    ],
-   "Manhattan": [
-      "JoRoberts::",
-      "SaStewart::",
-      "AnNelson::",
-      "NiBrennen::",
-      "MaWatson::",
-      "ElBuchanan::"
+   "Idaho St.": [
+      "TaCool::",
+      "MaPorter::"
+   ],
+   "Illinois": [
+      "TrFrazier::"
+   ],
+   "Indiana St.": [
+      "TyKey::"
+   ],
+   "Iona": [
+      "DyVanEyck::"
+   ],
+   "Jackson St.": [
+      "JoJames::",
+      "DaHicks::",
+      "DaWilson::"
+   ],
+   "Jacksonville St.": [
+      "BrHuffman::",
+      "KaHenry::",
+      "DaAdams::"
+   ],
+   "Kansas": [
+      "MiLightfoot::"
+   ],
+   "Kansas City": [
+      "MaNesbitt::"
+   ],
+   "Kansas St.": [
+      "MiMcguirl::"
+   ],
+   "Kent St.": [
+      "TeBeck::",
+      "JuHamilton::"
+   ],
+   "LIU": [
+      "TyFlowers::"
+   ],
+   "LMU (CA)": [
+      "ElScott::"
+   ],
+   "Lamar University": [
+      "ElJefferson::"
+   ],
+   "Lehigh": [
+      "MaWilson::"
+   ],
+   "Lipscomb": [
+      "PaHazen::"
+   ],
+   "Long Beach St.": [
+      "CoSlater::",
+      "JoRoberts::"
+   ],
+   "Louisiana": [
+      "DoGueye::"
+   ],
+   "Louisiana Tech": [
+      "AmArchibald::",
+      "ExChriston::"
+   ],
+   "Loyola Chicago": [
+      "LuWilliamson::",
+      "KeClemons::",
+      "AhUguak::",
+      "TaHall::"
+   ],
+   "Marist": [
+      "JoJones::"
+   ],
+   "Marshall": [
+      "DaGeorge::",
+      "MiBeyers::"
+   ],
+   "Miami (FL)": [
+      "KaMcgusty::"
+   ],
+   "Miami (OH)": [
+      "DaBrown::",
+      "PrAyah::"
+   ],
+   "Middle Tenn.": [
+      "DoSims::"
+   ],
+   "Milwaukee": [
+      "JoThomas::"
+   ],
+   "Minnesota": [
+      "ErCurry::"
    ],
    "Mississippi Val.": [
-      "TeCollins::"
+      "AlPerry::"
+   ],
+   "Missouri St.": [
+      "GaPrim::"
+   ],
+   "Monmouth": [
+      "GePapas::",
+      "MaMcclary::"
+   ],
+   "Montana St.": [
+      "AmAdamu::",
+      "XaBishop::",
+      "AbMohamed::"
+   ],
+   "Morgan St.": [
+      "LaGrantsaan::"
    ],
    "N.C. A&T": [
-      "WeFilmore::"
+      "TyMaye::",
+      "KaLangley::"
    ],
-   "N.C. Central": [
-      "KrMonroe::",
-      "NiFennell::"
+   "Nebraska": [
+      "KoWebster::"
+   ],
+   "New Hampshire": [
+      "ChLester::"
+   ],
+   "New Mexico St.": [
+      "JoMccants::",
+      "ClHenry::",
+      "DoTillman::"
+   ],
+   "New Orleans": [
+      "DeStHilaire::",
+      "TrGreen::"
+   ],
+   "Niagara": [
+      "JoCintron::",
+      "GrKuakumensa::",
+      "JuRoberts::",
+      "NiKratholm::"
+   ],
+   "Nicholls St.": [
+      "RyLyons::",
+      "TyGordon::"
    ],
    "North Dakota": [
-      "MiSueker::"
+      "BePanoam::"
    ],
-   "Northern Ill.": [
-      "AnCrump::"
+   "North Dakota St.": [
+      "RoKreuser::"
    ],
-   "Presbyterian": [
-      "WiHill::"
+   "North Texas": [
+      "ThBell::",
+      "JjMurray::"
+   ],
+   "Northwestern St.": [
+      "LaOwens::",
+      "LaReed::"
+   ],
+   "Ohio": [
+      "DwWilson::"
+   ],
+   "Oklahoma St.": [
+      "BrWilliams::"
+   ],
+   "Old Dominion": [
+      "AuTrice::"
+   ],
+   "Oregon St.": [
+      "RoSilva::"
+   ],
+   "Pacific": [
+      "JeBailey::",
+      "JoBell::"
+   ],
+   "Penn St.": [
+      "JoHarrar::"
+   ],
+   "Pittsburgh": [
+      "NiSibande::"
+   ],
+   "Portland St.": [
+      "KhThomas::"
+   ],
+   "Prairie View": [
+      "DeCox::"
+   ],
+   "Providence": [
+      "NaWatson::",
+      "NoHorchler::"
+   ],
+   "Purdue Fort Wayne": [
+      "JaPipkins::"
+   ],
+   "Quinnipiac": [
+      "JaRigoni::"
+   ],
+   "Rhode Island": [
+      "JeSheppard::"
+   ],
+   "Richmond": [
+      "NaCayo::",
+      "JaGilyard::",
+      "GrGolden::"
+   ],
+   "Rutgers": [
+      "GeBaker::"
+   ],
+   "SFA": [
+      "GaKensmil::",
+      "RoWare::",
+      "DaKachelries::"
+   ],
+   "SMU": [
+      "IsJasey::"
+   ],
+   "Sacramento St.": [
+      "BrFowler::",
+      "WiFitzpatric::"
+   ],
+   "Sacred Heart": [
+      "AlWatson::"
    ],
    "Saint Francis (PA)": [
-      "MyThompson::",
-      "MaHargis::"
+      "RaDixon-cono::",
+      "MaFlagg::"
+   ],
+   "Saint Joseph's": [
+      "TaFunk::"
+   ],
+   "Saint Louis": [
+      "JaPerkins::"
+   ],
+   "Saint Mary's (CA)": [
+      "ToKuhse::"
+   ],
+   "Samford": [
+      "JaTryon::",
+      "RiMaitre::"
+   ],
+   "San Diego": [
+      "JoParrish::"
+   ],
+   "San Francisco": [
+      "JaBouyea::"
+   ],
+   "Santa Clara": [
+      "JoVrankic::"
+   ],
+   "Seattle U": [
+      "AaNettles::"
    ],
    "South Alabama": [
-      "JaFranklin::"
+      "KaGoncalves::"
    ],
-   "South Dakota": [
-      "MaArchambaul::",
-      "DaHayes::"
+   "South Dakota St.": [
+      "DoWilson::"
    ],
-   "Southern U.": [
-      "IsRollins::"
+   "Southeast Mo. St.": [
+      "NoTaylor::",
+      "MaPatterson::"
    ],
-   "St. Francis Brooklyn": [
-      "LaMoreno::"
+   "Southeastern La.": [
+      "KeClergeot::"
    ],
-   "St. Thomas (MN)": [
-      "PaBjorklund::",
-      "RiMiller::"
+   "Southern California": [
+      "IsWhite::"
    ],
-   "Tarleton St.": [
-      "ShDaniel::"
+   "Southern Ill.": [
+      "AnD'avanzo::"
+   ],
+   "Southern Utah": [
+      "JoKnight::",
+      "DrMarin::"
+   ],
+   "Stetson": [
+      "ChJones::"
+   ],
+   "Stony Brook": [
+      "JaSayles::"
    ],
    "Tennessee St.": [
-      "DeBoyd::"
+      "ShJohnson::"
+   ],
+   "Tennessee Tech": [
+      "ShGoldman::"
+   ],
+   "Texas A&M": [
+      "QuJackson::"
    ],
    "Texas Southern": [
-      "JoKaNicholas::",
-      "JoWalker::",
-      "JoGilliam::"
+      "GaAlexander::",
+      "JuHopkins::",
+      "JoJones::"
    ],
-   "Washington": [
-      "JaBey::"
+   "Texas St.": [
+      "IsSmall::",
+      "ShAdams::"
    ],
-   "Western Caro.": [
-      "CaBacote::"
+   "The Citadel": [
+      "TyMoffe::"
    ],
-   "Winthrop": [
-      "MiAnumba::"
+   "Troy": [
+      "KhWaters::",
+      "NiStampley::"
+   ],
+   "Tulsa": [
+      "DaJackson::"
+   ],
+   "UAB": [
+      "QuJackson::",
+      "MiErtel::"
+   ],
+   "UC Riverside": [
+      "DoPickett::"
+   ],
+   "UC Santa Barbara": [
+      "RoIdehen::"
+   ],
+   "UCF": [
+      "BrMahan::",
+      "DaPerry::"
+   ],
+   "UConn": [
+      "TyPolley::"
+   ],
+   "UIC": [
+      "MiDiggins::",
+      "JaAhale::"
+   ],
+   "UMBC": [
+      "DaRogers::",
+      "DiSpasojevic::"
+   ],
+   "UNC Asheville": [
+      "EvClayborne::"
+   ],
+   "UNCW": [
+      "MiOkauru::"
+   ],
+   "UNI": [
+      "TrBerhow::",
+      "TyPickford::"
+   ],
+   "Valparaiso": [
+      "ErGordon::"
+   ],
+   "Vermont": [
+      "BeShungu::",
+      "BaPatella::"
+   ],
+   "Villanova": [
+      "JeSamuels::",
+      "CoGillespie::",
+      "CaDaniels::"
+   ],
+   "Wagner": [
+      "ElFord::",
+      "AlMorales::",
+      "WiMartinez::",
+      "NiJackson::"
+   ],
+   "Weber St.": [
+      "DoBassett::",
+      "CoCarlson::",
+      "MiKozak::"
+   ],
+   "West Virginia": [
+      "TaSherman::",
+      "GaOsabuohien::"
+   ],
+   "Western Ill.": [
+      "WiCarius::"
+   ],
+   "Western Ky.": [
+      "JoAnderson::"
+   ],
+   "Xavier": [
+      "NaJohnson::",
+      "PaScruggs::"
+   ],
+   "Youngstown St.": [
+      "MiAkuchie::",
+      "GaCovington::"
    ]
 }
+

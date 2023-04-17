@@ -1,71 +1,152 @@
 export const leftTeam2021_22 = 
 {
-   "Central Ark.": [
-      "KhBennett::",
-      "JaBaker::"
+   "Albany (NY)": [
+      "AdLulka::"
    ],
-   "Central Mich.": [
-      "JaWebb::"
+   "Bowling Green": [
+      "DySwingle::"
+   ],
+   "Charlotte": [
+      "AnRissetto::"
    ],
    "Chicago St.": [
-      "NoBigirumwam::"
+      "JoPolynice::",
+      "LeZeigler::",
+      "RaJones::"
    ],
-   "Columbia": [
-      "PaHarding::"
+   "Coastal Carolina": [
+      "DeTipler::"
    ],
-   "Denver": [
-      "CoPorter::"
+   "Duquesne": [
+      "ChBaker::",
+      "MaAustin::"
    ],
-   "Dixie St.": [
-      "AnMulibea::"
-   ],
-   "ETSU": [
-      "ChWeber::",
-      "MoYasser::"
+   "Elon": [
+      "FePoser::"
    ],
    "FIU": [
       "JoNunez::"
    ],
-   "Georgetown": [
-      "DaHarris::"
+   "Fla. Atlantic": [
+      "KaSilins::"
    ],
-   "Hampton": [
-      "RuDean::"
+   "Gonzaga": [
+      "FiPetrusev::"
    ],
-   "Lamar University": [
-      "JoAdams::",
-      "DeReyes::"
+   "Hawaii": [
+      "BiBayles::"
    ],
-   "Morgan St.": [
-      "DeWare::"
+   "Iowa St.": [
+      "JaJohnson::"
    ],
-   "New Orleans": [
-      "KmDoughty::"
+   "Jackson St.": [
+      "CaMcclelland::"
    ],
-   "Nicholls": [
-      "DeCarter::",
-      "RyLyons::",
-      "TyGordon::"
+   "Kansas St.": [
+      "MoMurphy::"
    ],
-   "Northwestern St.": [
-      "ZuZhgenti::"
+   "Lehigh": [
+      "BeLi::"
    ],
-   "Oral Roberts": [
-      "ElLufile::"
+   "Lipscomb": [
+      "MiMiller::"
    ],
-   "St. Francis Brooklyn": [
-      "BaHaidara::"
+   "Maine": [
+      "TaSchildroth::"
    ],
-   "UC Davis": [
-      "CaBa::"
+   "Missouri St.": [
+      "JaRidder::"
    ],
-   "ULM": [
-      "ElGonzales::"
+   "Nebraska": [
+      "ShStevenson::"
    ],
-   "Utah Valley": [
-      "CoHarding::"
+   "New Mexico St.": [
+      "JaRice::"
    ],
-   "Washington": [
-      "NaRoberts::"
+   "Niagara": [
+      "RaSolomon::"
+   ],
+   "Northeastern": [
+      "GrEboigbodin::"
+   ],
+   "Northern Ariz.": [
+      "CaMahaney::"
+   ],
+   "Northern Colo.": [
+      "KuJockuch::"
+   ],
+   "Oregon": [
+      "AdPatterson::"
+   ],
+   "Portland": [
+      "TaFahrensohn::"
+   ],
+   "Prairie View": [
+      "CaMack::"
+   ],
+   "Presbyterian": [
+      "TrReddish::"
+   ],
+   "SFA": [
+      "DeHeckard::"
+   ],
+   "SIUE": [
+      "SiWilson::"
+   ],
+   "Sacramento St.": [
+      "SaHector::",
+      "BrDavis::"
+   ],
+   "Saint Francis (PA)": [
+      "BrLaskey::"
+   ],
+   "Santa Clara": [
+      "GuCaruso::"
+   ],
+   "South Alabama": [
+      "TyLocure::"
+   ],
+   "Southern Miss.": [
+      "ArKonontsuk::",
+      "JaMalone::"
+   ],
+   "Texas Southern": [
+      "KaNicholas::"
+   ],
+   "The Citadel": [
+      "FlAbee::"
+   ],
+   "Towson": [
+      "ViUyaelunmo::",
+      "CaAllen::"
+   ],
+   "Tulane": [
+      "KeZhang::"
+   ],
+   "UC Riverside": [
+      "ArChidom::",
+      "JoPerry::",
+      "OlHayes-brow::"
+   ],
+   "UCLA": [
+      "JaHill::"
+   ],
+   "UIC": [
+      "TeKirk::"
+   ],
+   "UT Martin": [
+      "EmSertovic::"
+   ],
+   "Utah": [
+      "MiJantunen::"
+   ],
+   "Western Ky.": [
+      "JoRawls::"
+   ],
+   "Wichita St.": [
+      "ClJackson::"
+   ],
+   "Wisconsin": [
+      "KoKing::"
    ]
 }
