@@ -65,6 +65,7 @@ export type PlayerLeaderboardStatsModel = {
   lastUpdated?: number,
   transfers?: Record<string, Array<TransferModel>>,
   error?: string,
+  syntheticData?: boolean, //(if true, can't use T100 and conf sub-filters)
 }
 type Props = {
   startingState: PlayerLeaderboardParams,
@@ -1309,7 +1310,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Statistics always adjusted for luck",
               toggled: true,
               onClick: () => {}
-            }].concat(teamEditorMode ? [] : [ //TODO - for now block T100/conf because unclear how to store the state
+            }].concat(dataEvent.syntheticData ? [] : [
             {
               label: "T100",
               tooltip: "Leaderboard of players vs T100 opposition",

@@ -30,7 +30,7 @@ import ConferenceSelector, { ConfSelectorConstants } from './shared/ConferenceSe
 
 // Table building
 // Util imports
-import { TeamEditorParams, PlayerSeasonComparisonParams, ParamDefaults } from '../utils/FilterModels';
+import { TeamEditorParams, PlayerSeasonComparisonParams, ParamDefaults, PlayerLeaderboardParams } from '../utils/FilterModels';
 
 import { Statistic, RosterEntry, PureStatSet } from '../utils/StatModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
@@ -58,6 +58,8 @@ import LinqExpressionBuilder from './shared/LinqExpressionBuilder';
 import { SelectComponents } from 'react-select/src/components';
 import { CommonTableDefs } from '../utils/tables/CommonTableDefs';
 import { ScatterChartUtils } from '../utils/charts/ScatterChartUtils';
+import GenericCollapsibleCard from './shared/GenericCollapsibleCard';
+import PlayerLeaderboardTable from './PlayerLeaderboardTable';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
@@ -113,7 +115,7 @@ export const overallPlayerChartPresets = [
    }],
    [ "Fr to Soph Jumps",  {
       title: "Increase in production from Freshman to Soph years",
-      advancedFilter: `prev_roster.year_class == "Fr" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
+      advancedFilter: `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
       xAxis: "prev_adj_rapm_margin",
       yAxis: "next_adj_rapm_margin",
       dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
@@ -124,7 +126,7 @@ export const overallPlayerChartPresets = [
    [ "Jr -> Sr Off Rating Jump",  {
       title: "How the Jr->Sr Off Rating changes vs the Jr Off Rtg",
       advancedFilter: `(prev_team == next_team) SORT_BY (next_off_rtg - prev_off_rtg)  DESC`,
-      highlightFilter: `prev_roster.year_class == "Jr"`,
+      highlightFilter: `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" `,
       xAxis: `prev_off_rtg  //LABEL Previous Season Off Rating`,
       yAxis: "next_off_rtg - prev_off_rtg //LABEL Off Rating Jump",
       dotColor: "next_off_rtg",
@@ -193,9 +195,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       [ "All players", "ALL" ],
       [ "Transfers", "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC" ],
       [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
-      [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
-      [ "Sophomores -> Juniors", `prev_roster.year_class == "So" SORT_BY next_adj_rapm_margin DESC` ],
-      [ "Juniors -> Seniors", `prev_roster.year_class == "Jr" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Freshmen -> Sophomores", `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Sophomores -> Juniors", `prev_roster.year_class == "So" AND next_roster.year_class == "Jr" SORT_BY next_adj_rapm_margin DESC` ],
+      [ "Juniors -> Seniors", `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC` ],
       [ "Seniors -> Super-Seniors", `prev_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC` ],
       [ "Rotation+ caliber previous year", `prev_adj_rapm_margin >= 2 SORT_BY next_adj_rapm_margin DESC` ],
       [ "Starter+ caliber previous year", `prev_adj_rapm_margin >= 3.5 SORT_BY next_adj_rapm_margin DESC` ],
@@ -410,13 +412,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const editTooltip = <Tooltip id="editTooltip">Show/Hide the inline Team Viewer and Editor </Tooltip>;
 
-   const chart = React.useMemo(() => {
+   const [ chart, playerLeaderboard ] = React.useMemo(() => {
 
       const waitForRosterDiagMode = diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam);
       if (waitForRosterDiagMode || _.isEmpty(dataEvent.players)) {
          // If we don't have players we're not done loading yet, so put up a loading screen:
-         return <div>
-            </div>;
+         return [ <div></div>, <div></div> ];
       } else {
          setLoadingOverride(false);
       }
@@ -762,7 +763,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       const labelState = ScatterChartUtils.buildEmptyLabelState(); 
       const xAxisDecom = decompAxis(xAxis);
       const yAxisDecom = decompAxis(yAxis);
-      return  <div>
+      const chartToReturn =  <div>
          <ResponsiveContainer width={"100%"} height={0.75*height}>
             <ScatterChart>
                <CartesianGrid />
@@ -827,6 +828,28 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <i><small>{renderAvgState()}</small></i>
       </div>
       ;
+
+      const playerLeaderboardToReturn = <PlayerLeaderboardTable
+         startingState={{
+            transferMode: undefined, 
+            year: year,
+            tier: "All"
+         }}
+         dataEvent={{
+            players: (subChart || mainChart).map(p => p.p.actualResults),
+            confs: dataEvent.confs,
+            confMap: dataEvent.confMap,
+            lastUpdated: dataEvent.lastUpdated,
+            error: dataEvent.error,
+            transfers: _.first(dataEvent.transfers),
+            syntheticData: true
+         }}
+         onChangeState={(newParams: PlayerLeaderboardParams) => {
+            //TODO: store user settings
+         }}
+      />;
+
+      return [ chartToReturn, playerLeaderboardToReturn ];
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
       advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
@@ -1206,6 +1229,32 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   {chart}
                </LoadingOverlay>
             }
+         </Col>
+      </Row>
+      <Row>
+         <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
+         <GenericCollapsibleCard minimizeMargin={true} title="Player Stats" helpLink={undefined} startClosed={true}>
+            <Container>
+               <Row>
+                  {((xAxis && yAxis) || loadingOverride) ?
+                  <LoadingOverlay
+                     active={needToLoadQuery()}
+                     spinner
+                     text={"Loading Player Comparison Chart..."}
+                  >
+                     {playerLeaderboard}
+                  </LoadingOverlay>
+                  :
+                  <LoadingOverlay
+                     active={true}
+                     text={`Configure chart or select a preset from "Chart Title"`}
+                  >
+                     {playerLeaderboard}
+                  </LoadingOverlay>
+                  }
+               </Row>
+            </Container>
+         </GenericCollapsibleCard>
          </Col>
       </Row>
    </Container>;

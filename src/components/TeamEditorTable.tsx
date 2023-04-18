@@ -1225,6 +1225,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
           lboardAltDataSource :
           {
             ...dataEvent, 
+            syntheticData: true,
             players: (onlyThisYear && (year != "All"))? 
               (dataEvent.players || []).filter(p => p.year == yearWithStats) : 
               (evalMode ? (dataEvent.players || []).filter(p => (p.year || "") <= yearWithStats) : dataEvent.players), 

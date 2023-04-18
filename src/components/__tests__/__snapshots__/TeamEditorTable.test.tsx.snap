@@ -5525,6 +5525,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                                             "value": -0.8269,
                                           }},
                   ],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -10803,6 +10804,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                             "value": -0.8269,
                                           }},
                   ],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -17021,6 +17023,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                             "value": -2.2439,
                                           }},
                   ],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -23441,6 +23444,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                             "value": -2.2439,
                                           }},
                   ],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -29663,6 +29667,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                             "value": -2.2439,
                                           }},
                   ],
+                  "syntheticData": true,
                   "teamStats": Array [
                     Object {
                       "conf": "Big Ten Conference",
@@ -35553,6 +35558,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                             "value": -2.2439,
                                           }},
                   ],
+                  "syntheticData": true,
                   "teamStats": Array [
                     Object {
                       "conf": "Big Ten Conference",
@@ -40246,6 +40252,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   ],
                   "lastUpdated": 1583968724,
                   "players": Array [],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -44442,6 +44449,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                             "value": -0.8269,
                                           }},
                   ],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -47787,6 +47795,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                                             "value": -0.8269,
                                           }},
                   ],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
@@ -50042,6 +50051,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   ],
                   "lastUpdated": 1583968724,
                   "players": Array [],
+                  "syntheticData": true,
                   "transfers": Object {
                     "RiLindo": Array [
                       Object {
