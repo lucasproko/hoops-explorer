@@ -575,7 +575,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "MaVeretto::", "AaDeloney::" ]),
             },
             "Villanova": {
-               superSeniorsReturning: new Set([ "JuMoore::" ]),
+               superSeniorsReturning: new Set([ "JuMoore::", "ErDixon::" ]), //(Dixon is actually a Jr but NCAA roster is wrong)
             },
             "Virginia Tech": {
                superSeniorsReturning: new Set([ "HuCattoor::" ]),
