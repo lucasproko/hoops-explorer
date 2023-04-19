@@ -829,6 +829,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </div>
       ;
 
+      //TODO: also have a toggle for show prev years
+      //TODO: also click on player to add to/remove filter
       const playerLeaderboardToReturn = <PlayerLeaderboardTable
          startingState={{
             transferMode: undefined, 
@@ -841,7 +843,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             confMap: dataEvent.confMap,
             lastUpdated: dataEvent.lastUpdated,
             error: dataEvent.error,
-            transfers: _.first(dataEvent.transfers),
+            transfers: undefined, //TODO dataEvent.transfers starts with the _prev_ year, we don't currently collect this year
+               //TODO: need to get another transfer as well
             syntheticData: true
          }}
          onChangeState={(newParams: PlayerLeaderboardParams) => {
