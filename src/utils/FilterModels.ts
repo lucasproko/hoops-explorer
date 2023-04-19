@@ -191,23 +191,6 @@ export type OffseasonLeaderboardParams = {
   queryFilters?: string
 } & Record<string, string>; //(for teamOverrides)
 
-export type PlayerSeasonComparisonParams = {
-  year?: string,
-  gender?: string,
-  confs?: string,
-  showConfig?: boolean,
-  title?: string,
-  advancedFilter?: string,
-  highlightFilter?: string,
-  queryFilters?: string,
-  xAxis?: string,
-  yAxis?: string,
-  dotSize?: string,
-  dotColor?: string,
-  dotColorMap?: string,
-  labelStrategy?: string,
-};
-
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
@@ -232,6 +215,25 @@ export type PlayerLeaderboardParams = {
   t100?: boolean,
   // Transfer info
   transferMode?: string //==true => show only available, vs ==$year show all
+};
+
+export type PlayerSeasonComparisonParams = {
+  [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
+} & {
+  year?: string,
+  gender?: string,
+  confs?: string,
+  showConfig?: boolean,
+  title?: string,
+  datasetFilter?: string,
+  highlightFilter?: string,
+  queryFilters?: string,
+  xAxis?: string,
+  yAxis?: string,
+  dotSize?: string,
+  dotColor?: string,
+  dotColorMap?: string,
+  labelStrategy?: string,
 };
 
 export type TeamLeaderboardParams = {

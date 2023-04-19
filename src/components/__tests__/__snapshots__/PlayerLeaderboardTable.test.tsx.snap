@@ -803,6 +803,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "Year",
                       "value": "desc:year",
                     },
+                    Object {
+                      "label": "Unsorted",
+                      "value": "unsorted",
+                    },
                   ],
                 },
               ]
@@ -8491,6 +8495,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Year",
                       "value": "desc:year",
+                    },
+                    Object {
+                      "label": "Unsorted",
+                      "value": "unsorted",
                     },
                   ],
                 },
@@ -16184,6 +16192,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Year",
                       "value": "desc:year",
+                    },
+                    Object {
+                      "label": "Unsorted",
+                      "value": "unsorted",
                     },
                   ],
                 },
@@ -27078,6 +27090,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "Year",
                       "value": "desc:year",
                     },
+                    Object {
+                      "label": "Unsorted",
+                      "value": "unsorted",
+                    },
                   ],
                 },
               ]
@@ -34719,6 +34735,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "label": "Year",
                       "value": "desc:year",
                     },
+                    Object {
+                      "label": "Unsorted",
+                      "value": "unsorted",
+                    },
                   ],
                 },
               ]
@@ -36216,6 +36236,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Year",
                       "value": "desc:year",
+                    },
+                    Object {
+                      "label": "Unsorted",
+                      "value": "unsorted",
                     },
                   ],
                 },

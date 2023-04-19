@@ -81,6 +81,30 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
       //(all the other fields we'll just show their full value)
 
+      // "Add players from leaderboard" params
+
+      (rawParams.tier == "All") ? [ 'tier' ] : [],
+      (!rawParams.filter) ? [ 'filter' ] : [],
+      (!rawParams.advancedFilter) ? [ 'advancedFilter' ] : [],
+      (!rawParams.conf) ? [ 'conf' ] : [], //(unused now)
+      (!rawParams.posClasses) ? [ 'posClasses' ] : [],
+
+      //These aren't plumbed in:
+      (!rawParams.t100) ? [ 't100' ] : [], //(TODO these 2 don't work)
+      (!rawParams.confOnly) ? [ 'confOnly' ] : [],
+      
+      (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],
+      (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
+      (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],
+
+      (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
+
+      (rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos) ? [ 'minPoss' ] : [],
+      (rawParams.maxTableSize == ParamDefaults.defaultPlayerLboardMaxTableSize) ? [ 'maxTableSize' ] : [],
+      (rawParams.sortBy == ParamDefaults.defaultPlayerLboardSortBy(
+        _.isNil(rawParams.useRapm) ? ParamDefaults.defaultPlayerLboardUseRapm : rawParams.useRapm,
+        _.isNil(rawParams.factorMins) ? ParamDefaults.defaultPlayerLboardFactorMins : rawParams.factorMins
+      )) ? [ 'sortBy' ] : []      
     ]));
     if (!_.isEqual(params, playerSeasonComparisonParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);

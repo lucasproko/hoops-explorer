@@ -162,7 +162,7 @@ export class AdvancedFilterUtils {
          (
             (where ? `( ${where} ) && ` : "") + //(inject extra params into "p")
                _.chain(extraParams).toPairs().flatMap(kv => {
-                  return kv[1] ? [ `($.p.${kv[0]} = ( ${AdvancedFilterUtils.tidyClauses(kv[1], multiYear)} ))` ] : [];
+                  return kv[1] ? [ `($.p.${kv[0]} = ( ${AdvancedFilterUtils.tidyClauses(kv[1], multiYear)} ))` ] : [ `(true)` ];
                }).join(" && ").value()
          );
 

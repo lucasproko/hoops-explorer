@@ -52,7 +52,7 @@ import { OffseasonLeaderboardUtils } from '../utils/stats/OffseasonLeaderboardUt
 import { ReferenceArea, ResponsiveContainer, Tooltip as RechartTooltip, ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Label, Cell, LabelList } from 'recharts';
 import { GoodBadOkTriple } from '../utils/stats/TeamEditorUtils';
 import { CbbColors } from '../utils/CbbColors';
-import { NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
+import { ConferenceToNickname, NicknameToConference, NonP6Conferences, Power6Conferences } from '../utils/public-data/ConferenceInfo';
 import { AdvancedFilterUtils } from '../utils/AdvancedFilterUtils';
 import LinqExpressionBuilder from './shared/LinqExpressionBuilder';
 import { SelectComponents } from 'react-select/src/components';
@@ -95,7 +95,7 @@ const decompAxis = (axis: string): AxisDecomposition => {
 export const overallPlayerChartPresets = [
    [ "Transfer predictions",  {
       title: "How transfers fared compared to their predicted RAPM",
-      advancedFilter: "Transfers",
+      datasetFilter: "Transfers",
       xAxis: "Off RAPM: actual - predicted",
       yAxis: "Def RAPM: actual - predicted",
       dotColor: "RAPM margin",
@@ -105,7 +105,7 @@ export const overallPlayerChartPresets = [
    }],
    [ "Freshmen vs Rankings",  {
       title: "How Freshmen fared compared to a prediction based on their HS ranking",
-      advancedFilter: "Ranked Freshmen",
+      datasetFilter: "Ranked Freshmen",
       xAxis: "Off RAPM: actual - predicted",
       yAxis: "Def RAPM: actual - predicted",
       dotColor: "RAPM margin",
@@ -115,7 +115,7 @@ export const overallPlayerChartPresets = [
    }],
    [ "Fr to Soph Jumps",  {
       title: "Increase in production from Freshman to Soph years",
-      advancedFilter: `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
+      datasetFilter: `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
       xAxis: "prev_adj_rapm_margin",
       yAxis: "next_adj_rapm_margin",
       dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
@@ -125,7 +125,7 @@ export const overallPlayerChartPresets = [
    }],
    [ "Jr -> Sr Off Rating Jump",  {
       title: "How the Jr->Sr Off Rating changes vs the Jr Off Rtg",
-      advancedFilter: `(prev_team == next_team) SORT_BY (next_off_rtg - prev_off_rtg)  DESC`,
+      datasetFilter: `(prev_team == next_team) SORT_BY (next_off_rtg - prev_off_rtg)  DESC`,
       highlightFilter: `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" `,
       xAxis: `prev_off_rtg  //LABEL Previous Season Off Rating`,
       yAxis: "next_off_rtg - prev_off_rtg //LABEL Off Rating Jump",
@@ -136,7 +136,7 @@ export const overallPlayerChartPresets = [
    }],
    [ "Super Senior Offense",  {
       title: "Super Senior Off Rtg/Usage, ranked by offensive RAPM production",
-      advancedFilter: `ALL SORT_BY next_off_adj_rapm* next_off_team_poss_pct DESC`,
+      datasetFilter: `ALL SORT_BY next_off_adj_rapm* next_off_team_poss_pct DESC`,
       highlightFilter: `prev_roster.year_class == "Sr"`,
       xAxis: `next_off_rtg //LABEL Off Rating //LIMITS auto,135`,
       yAxis: "next_off_usage*100 //LABEL Usage%",
@@ -161,6 +161,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
  
    // 1] Data model
+
+   //(controlling the leaderboard table)
+   const [ lboardParams, setLboardParams ] = useState(startingState as PlayerLeaderboardParams);
 
    // (don't support tier changes)
    const tier: string = "All";
@@ -189,9 +192,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(startingState.showConfig || !startingState.title);
 
    // Filter text (show/hide):
-   const [ advancedFilterStr, setAdvancedFilterStr ] = useState(startingState.advancedFilter || "");
-   const [ advancedFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
-   const advancedFilterPresets = [
+   const [ datasetFilterStr, setAdvancedFilterStr ] = useState(startingState.datasetFilter || "");
+   const [ datasetFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
+   const datasetFilterPresets = [
       [ "All players", "ALL" ],
       [ "Transfers", "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC" ],
       [ "Ranked Freshmen", `!prev_team AND next_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC` ],
@@ -296,8 +299,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const applyPresetChart = (preset: PlayerSeasonComparisonParams) => {
       friendlyChange(() => {
       setTitle(preset.title || "");
-      setAdvancedFilterStr(advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "");
-      setHighlightFilterStr(advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
+      setAdvancedFilterStr(datasetFilterPresets.find(t => t[0] == preset.datasetFilter)?.[1] || preset.datasetFilter || "");
+      setHighlightFilterStr(datasetFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "");
       setXAxis(axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "");
       setYAxis(axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "");
       setDotColor(axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "");
@@ -316,18 +319,19 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    /** When the params change */
    useEffect(() => {
       onChangeState({
+         ...lboardParams,
          year: year, confs, 
          queryFilters: queryFilters,
          title: title,
-         advancedFilter: advancedFilterStr,
+         datasetFilter: datasetFilterStr,
          highlightFilter: highlightFilterStr,
          xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor,
          showConfig: showConfigOptions,
          dotColorMap: dotColorMap,
          labelStrategy: labelStrategy
       });
-   }, [ confs, year, queryFilters, advancedFilterStr, highlightFilterStr, title, xAxis, yAxis, 
-      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy ]);
+   }, [ confs, year, queryFilters, datasetFilterStr, highlightFilterStr, title, xAxis, yAxis, 
+      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy, lboardParams ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -553,7 +557,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             const data = payload?.[0].payload || {};
             if (!data.showTooltips) return null; //(if showing sub-chart don't show tooltips for main chart)
 
-            const net = data.x + data.y;
             const triple = data.p;
             const roster = (triple.actualResults?.roster || triple.orig?.roster);
             const maybePrevSchool = ((data?.p?.orig.team) && (data?.p?.orig.team != data?.p?.actualResults.team))
@@ -569,7 +572,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
              }}><small>
                <p className="label"><b>
                {`${triple.actualResults?.key}`}<br/>
-               {`${triple.actualResults?.team}`}</b><br/>
+               {`${triple.actualResults?.team}`}</b> (<i>{ConferenceToNickname[triple.actualResults.conf] || "??"}</i>)<br/>
                <i>{`${triple.actualResults?.posClass}`}
                {` ${roster?.height || "?-?"}`}
                {` ${roster?.year_class || ""}`}
@@ -610,14 +613,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
        ) : undefined;
 
 
-      const dataToFilter = _.flatMap(teamRanks, t => t.players || []);
-      const [ filteredData, tmpAvancedFilterError ] = advancedFilterStr ?
-         AdvancedFilterUtils.applyFilter(dataToFilter, advancedFilterStr, {
+      const dataToFilter = _.flatMap(teamRanks, t => _.filter(t.players, p => p?.actualResults) || []);
+      const [ filteredData, tmpAvancedFilterError ] = datasetFilterStr ?
+         AdvancedFilterUtils.applyFilter(dataToFilter, datasetFilterStr, {
             "x": decompAxis(xAxis).linq,
             "y": decompAxis(yAxis).linq,
             "z": dotSize,
             "color": dotColor,
-         }, true) : [ dataToFilter, undefined ];
+         }, true) : [ [], undefined ];
       setAdvancedFilterError(tmpAvancedFilterError);
 
       const [ highlightData, tmpHighlightFilterError ] = highlightFilterStr ?
@@ -831,9 +834,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       //TODO: also have a toggle for show prev years
       //TODO: also click on player to add to/remove filter
+      const dataIsAlreadySorted = datasetFilterStr.includes("SORT_BY") || highlightFilterStr.includes("SORT_BY");
       const playerLeaderboardToReturn = <PlayerLeaderboardTable
          startingState={{
-            transferMode: undefined, 
+            ...startingState,
+            sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
             year: year,
             tier: "All"
          }}
@@ -848,14 +853,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             syntheticData: true
          }}
          onChangeState={(newParams: PlayerLeaderboardParams) => {
-            //TODO: store user settings
+            setLboardParams(newParams);
          }}
       />;
 
       return [ chartToReturn, playerLeaderboardToReturn ];
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
-      advancedFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
+      datasetFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
       screenHeight, screenWidth
    ]);
 
@@ -870,10 +875,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       <Tooltip id="doneAdvFilterTooltip">Filter successfully applied</Tooltip>
    );
    const errorAdvFilterTooltip = (
-      <Tooltip id="errorAdvFilterTooltip">Malformed Linq query: [{advancedFilterError || ""}]</Tooltip>
+      <Tooltip id="errorAdvFilterTooltip">Malformed Linq query: [{datasetFilterError || ""}]</Tooltip>
    );
    const editingAdvFilterText = <OverlayTrigger placement="auto" overlay={editingAdvFilterTooltip}><div>...</div></OverlayTrigger>;
-   const doneAdvFilterText = advancedFilterError ?
+   const doneAdvFilterText = datasetFilterError ?
       <OverlayTrigger placement="auto" overlay={errorAdvFilterTooltip}><FontAwesomeIcon icon={faExclamation} /></OverlayTrigger> :
       <OverlayTrigger placement="auto" overlay={doneAdvFilterTooltip}><FontAwesomeIcon icon={faCheck} /></OverlayTrigger>;
 
@@ -902,8 +907,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const isoverallPlayerChartPresetselected = (preset: PlayerSeasonComparisonParams) => {
       return (
-         ((advancedFilterPresets.find(t => t[0] == preset.advancedFilter)?.[1] || preset.advancedFilter || "") == advancedFilterStr) &&
-         ((advancedFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "") == highlightFilterStr) &&
+         ((datasetFilterPresets.find(t => t[0] == preset.datasetFilter)?.[1] || preset.datasetFilter || "") == datasetFilterStr) &&
+         ((datasetFilterPresets.find(t => t[0] == preset.highlightFilter)?.[1] || preset.highlightFilter || "") == highlightFilterStr) &&
          ((axisPresets.find(t => t[0] == preset.xAxis)?.[1] || preset.xAxis || "") == xAxis) &&
          ((axisPresets.find(t => t[0] == preset.yAxis)?.[1] || preset.yAxis || "") == yAxis) &&
          ((axisPresets.find(t => t[0] == preset.dotColor)?.[1] || preset.dotColor || "") == dotColor) &&
@@ -1076,10 +1081,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             <LinqExpressionBuilder
                label="Filter"
                prompt="Enter Linq: remove non-matching players (see presets for ideas)"
-               value={advancedFilterStr}
-               error={advancedFilterError}
+               value={datasetFilterStr}
+               error={datasetFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
-               presets={advancedFilterPresets}
+               presets={datasetFilterPresets}
                syncEvent={linqExpressionSync}
                callback={(newVal: string, onSync?: boolean) => {
                   if (!onSync) setLinqExpressionSync(n => n + 1);
@@ -1097,7 +1102,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                value={highlightFilterStr}
                error={highlightFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
-               presets={advancedFilterPresets}
+               presets={datasetFilterPresets}
                syncEvent={linqExpressionSync}
                callback={(newVal: string, onSync?: boolean) => {
                   if (!onSync) setLinqExpressionSync(n => n + 1);
@@ -1123,7 +1128,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                label="X-Axis"
                prompt="Linq //LABEL //LIMITS //TICKS"
                value={xAxis}
-               error={advancedFilterError}
+               error={datasetFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(extraAxisDecompKeywords)}
                presets={axisPresets}
                presetsIcon={faList}
@@ -1140,7 +1145,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                label="Y-Axis"
                prompt="Linq //LABEL //LIMITS //TICKS"
                value={yAxis}
-               error={advancedFilterError}
+               error={datasetFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete.concat(extraAxisDecompKeywords)}
                presets={axisPresets}
                presetsIcon={faList}
@@ -1159,7 +1164,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                label="Color"
                prompt="Linq expression for color vs colormap selected to right"
                value={dotColor}
-               error={advancedFilterError}
+               error={datasetFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
                presetsIcon={faList}
@@ -1201,7 +1206,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                label="Size"
                prompt="Linq expression for datapoint size"
                value={dotSize}
-               error={advancedFilterError}
+               error={datasetFilterError}
                autocomplete={AdvancedFilterUtils.playerSeasonComparisonAutocomplete}
                presets={axisPresets}
                presetsIcon={faList}

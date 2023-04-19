@@ -80,6 +80,10 @@ const yearOpt = {
   label: "Year",
   value: "desc:year"
 };
+const unsortedOpt = {
+  label: "Unsorted",
+  value: "unsorted"
+};
 const sortOptions: Array<any> = _.flatten(
   _.toPairs(CommonTableDefs.onOffIndividualTableAllFields(true))
     .filter(keycol => keycol[1].colName && keycol[1].colName != "")
@@ -114,7 +118,10 @@ const sortOptions: Array<any> = _.flatten(
     })
 );
 const sortOptionsByValue = _.fromPairs(
-  sortOptions.map(opt => [opt.value, opt]).concat([ [ yearOpt.value, yearOpt] ])
+  sortOptions.map(opt => [opt.value, opt]).concat([ 
+    [ yearOpt.value, yearOpt ], 
+    [ unsortedOpt.value, unsortedOpt ],
+  ])
 );
 
 // Info required for the positional filter
@@ -518,6 +525,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                 (player.off_team_poss?.value >= minPossNum);
         //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
     });
+
+    const skipSort = 
+      (year != DateUtils.AllYears) && (tier != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
+        ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
+      ))
+      || (sortBy == unsortedOpt.value)
+      ;      
     // Filter, sort, and limit players part 2/2
     const playersPhase1 = _.chain(confDataEventPlayers).filter(player => {
       const strToTestCase = buildFilterStringTest(player);
@@ -555,9 +569,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         )
         ;
     }).sortBy(
-      (year != DateUtils.AllYears) && (tier != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
-        ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
-      )) ? [] : //(can save on a sort if using the generated sort-order)
+      skipSort ? [] : //(can save on a sort if using the generated sort-order, or if sorting is disabled)
         [ LineupTableUtils.sorter(sortBy) , (p) => p.baseline?.off_team_poss?.value || 0, (p) => p.key ]
     ).value();
 
@@ -1082,7 +1094,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       spinner
       text={"Loading Player Leaderboard..."}
     >
-      { teamEditorMode ? null :
+      { dataEvent.syntheticData ? null :
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2}>
           <Select
