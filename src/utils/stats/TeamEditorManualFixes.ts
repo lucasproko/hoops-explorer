@@ -539,10 +539,13 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "JoSoriano::" ]),
             },
             "Stanford": {
-               superSeniorsReturning: new Set([ "MiJones::" ]),
+               superSeniorsReturning: new Set([ "MiJones::", "SpJones::" ]),
             },
             "Stonehill": {
                superSeniorsReturning: new Set([ "MaZegarowski::" ]),
+            },
+            "Tennessee": {
+               superSeniorsReturning: new Set([ "SaVescovi::" ]),
             },
             "Texas": {
                superSeniorsReturning: new Set([ "BrCunningham::" ]),
@@ -574,6 +577,9 @@ export class TeamEditorManualFixes {
             "Villanova": {
                superSeniorsReturning: new Set([ "JuMoore::" ]),
             },
+            "Virginia Tech": {
+               superSeniorsReturning: new Set([ "HuCattoor::" ]),
+            },
             "Washington": {
                superSeniorsReturning: new Set([ "KeBrooks::" ]),
             },
@@ -593,7 +599,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "TrCalvin::" ]),
             },
             "Xavier": {
-               superSeniorsReturning: new Set([ "JeHunter::" ]),
+               superSeniorsReturning: new Set([ "JeHunter::", "ZaFreemantle::" ]),
             },
             "Youngstown St.": {
                superSeniorsReturning: new Set([ "BrRush::" ]),
