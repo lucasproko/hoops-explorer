@@ -184,6 +184,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    const [ title, setTitle ] = useState(startingState.title || "");
 
+   // Chart magic:
+
+   const  [ toggledPlayers, setToggledPlayers ] = useState<Record<string, boolean>>(
+      startingState.toggledPlayers ? _.chain(startingState.toggledPlayers.split(";")).map(p => [ p, true ]).fromPairs().value() : {}
+   ); 
+   const globalScatterChartRef = React.createRef<any>();
+
    // All the complex config:
 
    const [ linqExpressionSync, setLinqExpressionSync ] = useState<number>(0);
@@ -328,10 +335,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          xAxis: xAxis, yAxis: yAxis, dotSize: dotSize, dotColor: dotColor,
          showConfig: showConfigOptions,
          dotColorMap: dotColorMap,
-         labelStrategy: labelStrategy
+         labelStrategy: labelStrategy,
+         toggledPlayers: _.keys(toggledPlayers).join(";")
       });
    }, [ confs, year, queryFilters, datasetFilterStr, highlightFilterStr, title, xAxis, yAxis, 
-      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy, lboardParams ]);
+      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy, lboardParams, toggledPlayers ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -414,7 +422,145 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    // 2] Processing
 
-   const editTooltip = <Tooltip id="editTooltip">Show/Hide the inline Team Viewer and Editor </Tooltip>;
+   // Tooltip builder (doesn't need to be closed in React.useMemo below)
+
+   const fieldValExtractor = (field: string) => {
+      return (p: PureStatSet | undefined) => {
+         if ((field[0] == 'o') || (field[0] == 'd')) {
+            return p?.[field]?.value || 0;
+         } else {
+            return (p?.[`off_${field}`]?.value || 0) - (p?.[`def_${field}`]?.value || 0);
+         }
+      }
+   };
+   const extractBubbleAttr = (fieldDef: string) => {
+      const typeAndField = fieldDef.split(":");
+      const fieldType = typeAndField.length > 1 ? typeAndField[0] : "actualResults";
+      const field = typeAndField.length > 1 ? typeAndField[1] : typeAndField[0];
+
+      const fieldExtractor = fieldValExtractor(field);
+      return (p: GoodBadOkTriple) => {
+         const tripleAsMap = p as unknown as Record<string, Record<string, Statistic>>;
+         if (fieldType == "delta") {
+            return fieldExtractor(p.actualResults) - fieldExtractor(p.ok);
+         } else if (fieldType == "deltaHistory") {
+            return fieldExtractor(p.actualResults) - fieldExtractor(p.orig);
+         } else {
+            return fieldExtractor(tripleAsMap[fieldType]);
+         }
+      };
+   };
+   const bOrW = (f: number) => {
+      return `${Math.abs(f).toFixed(1)} ${f > 0 ? "better" : "worse"} than expected`;
+   };
+   const genericExtraInfo = (field: string, factor: number = 1.0) => {
+      const has = (target: string) => {
+         return _.find([xAxis, yAxis, dotColor, dotSize], axis => axis.indexOf(target) >= 0);
+      };
+      const prevSeasonExtractor = extractBubbleAttr(`orig:${field}`);
+      const predictedSeasonExtractor = extractBubbleAttr(`ok:${field}`);
+      const predDeltaExtractor = extractBubbleAttr(`delta:${field}`);
+      const isFrPredictedField = _.endsWith(field, "adj_rapm") || _.endsWith(field, "off_team_poss_pct");
+      const careAboutOffPrediction = has(`next_off_adj_rapm`) && has(`pred_ok_off_adj_rapm`);
+      const careAboutDefPrediction = has(`next_def_adj_rapm`) && has(`pred_ok_def_adj_rapm`);
+      const offOrDefRapmSpecialCase = // user cares about predicted vs actual delta specifically
+         (_.startsWith(field, "off_") && careAboutOffPrediction) ||
+         (_.startsWith(field, "def_") && careAboutDefPrediction);
+      const rapmMarginSpecialCase = // user cares about predicted vs actual delta for both off and def
+         (field == "adj_rapm") && careAboutOffPrediction && careAboutDefPrediction;
+      const rapmSpecialCase = offOrDefRapmSpecialCase || rapmMarginSpecialCase;
+
+      return (data: any) => {
+         const triple = data.p;
+         const isFreshman = !triple.orig.off_rtg; //(filters out take Fr "prev" stats)
+         if ((rapmSpecialCase  && !isFreshman) || has(`next_${field} - pred_ok_${field}`)) { //(special case)
+            return <i>({bOrW(factor*predDeltaExtractor(triple))})</i>; 
+         } else {
+            const isRapmMargin = field == "adj_rapm";
+            const hasPrev = isRapmMargin || (triple.orig[field] && !isFreshman); 
+            const hasPred = isRapmMargin || triple.ok[field] && (!isFreshman || isFrPredictedField);
+            const shortForm = hasPrev && hasPrev;
+            const prev = hasPrev ? 
+               <i>{shortForm ? "Prev." : "Previous"} [{(factor*prevSeasonExtractor(triple)).toFixed(1)}]</i> : undefined;
+            const pred = hasPred ? 
+               <i>{shortForm ? "Pred." : "Predicted"} [{(factor*predictedSeasonExtractor(triple)).toFixed(1)}]</i> : undefined;
+
+            return (prev || pred) ?
+               (
+                  <span>{prev}{(prev && pred) ? <i> / </i> : undefined}{pred}</span>
+               ) : undefined;
+         }
+      };
+   };        
+   const netRapmExtraInfoExtractor = genericExtraInfo("adj_rapm"); //(special case handled in the fieldExtractor)
+   const getNetRapmExtraInfo = (data: any) => netRapmExtraInfoExtractor(data);
+
+   const offRapmExtraInfoExtractor = genericExtraInfo("off_adj_rapm");
+   const getOffRapmExtraInfo = (data: any) => offRapmExtraInfoExtractor(data);
+
+   const defRapmExtraInfoExtractor = genericExtraInfo("def_adj_rapm");
+   const getDefRapmExtraInfo = (data: any) => defRapmExtraInfoExtractor(data);
+
+   const offRtgExtraInfoExtractor = genericExtraInfo("off_rtg");
+   const getOffRtgExtraInfo = (data: any) => offRtgExtraInfoExtractor(data);
+
+   const offUsgExtraInfoExtractor = genericExtraInfo("off_usage", 100);
+   const getUsgExtraInfo = (data: any) => offUsgExtraInfoExtractor(data);
+
+   const mpgExtraInfoExtractor = genericExtraInfo("off_team_poss_pct", 40);
+   const getMpgExtraInfo = (data: any) => mpgExtraInfoExtractor(data);
+
+   type CustomTooltipProps = {
+      active?: boolean,
+      payload?: any,
+      label?: string,
+   };
+   const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
+      if (active) {
+         const data = payload?.[0].payload || {};
+         if (!data.showTooltips) return null; //(if showing sub-chart don't show tooltips for main chart)
+
+         const triple = data.p;
+         const roster = (triple.actualResults?.roster || triple.orig?.roster);
+         const maybePrevSchool = ((data?.p?.orig.team) && (data?.p?.orig.team != data?.p?.actualResults.team))
+            ? <i>(Previous school: {data?.p?.orig.team})</i> : undefined;
+
+         // these 2 can be null:
+         const offRtgExtraInfo = getOffRtgExtraInfo(data);
+         const usageExtraInfo = getUsgExtraInfo(data);
+
+         return (
+            <div className="custom-tooltip" style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+            }}><small>
+            <p className="label"><b>
+            {`${triple.actualResults?.key}`}<br/>
+            {`${triple.actualResults?.team}`}</b> (<i>{ConferenceToNickname[triple.actualResults.conf] || "??"}</i>)<br/>
+            <i>{`${triple.actualResults?.posClass}`}
+            {` ${roster?.height || "?-?"}`}
+            {` ${roster?.year_class || ""}`}
+            </i></p>
+            <p className="desc">
+               <span>Net RAPM: <b>{fieldValExtractor("adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
+               <span>{getNetRapmExtraInfo(data)}</span><br/>
+               <span>Off RAPM: <b>{fieldValExtractor("off_adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
+               <span>{getOffRapmExtraInfo(data)}</span><br/>
+               <span>Def RAPM: <b>{fieldValExtractor("def_adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
+               <span>{getDefRapmExtraInfo(data)}</span><br/>
+               <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data?.p?.actualResults).toFixed(1)}</b></span><br/>
+               {offRtgExtraInfo ? <span>{offRtgExtraInfo}</span> : undefined }{offRtgExtraInfo ? <br/> : undefined}
+               <span>Usage: <b>{(fieldValExtractor("off_usage")(data?.p?.actualResults)*100).toFixed(1)}</b>%</span><br/>
+               {usageExtraInfo ? <span>{usageExtraInfo}</span> : undefined}{usageExtraInfo ? <br/> : undefined}
+               <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data?.p?.actualResults)*40).toFixed(1)}</b></span><br/>
+               <span>{getMpgExtraInfo(data)}</span><br/><br/>
+               <span>{maybePrevSchool}</span>
+            </p>
+         </small></div>
+         );
+      }
+      return null;
+   };
+   // (end chart tooltip)
 
    const [ chart, playerLeaderboard ] = React.useMemo(() => {
 
@@ -459,145 +605,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          console.log(JSON.stringify(derivedDivisionStats));
       }
 
-      // Tooltip builder:
 
-      const fieldValExtractor = (field: string) => {
-         return (p: PureStatSet | undefined) => {
-            if ((field[0] == 'o') || (field[0] == 'd')) {
-               return p?.[field]?.value || 0;
-            } else {
-               return (p?.[`off_${field}`]?.value || 0) - (p?.[`def_${field}`]?.value || 0);
-            }
-         }
-      };
-       const extractBubbleAttr = (fieldDef: string) => {
-         const typeAndField = fieldDef.split(":");
-         const fieldType = typeAndField.length > 1 ? typeAndField[0] : "actualResults";
-         const field = typeAndField.length > 1 ? typeAndField[1] : typeAndField[0];
-
-         const fieldExtractor = fieldValExtractor(field);
-         return (p: GoodBadOkTriple) => {
-            const tripleAsMap = p as unknown as Record<string, Record<string, Statistic>>;
-            if (fieldType == "delta") {
-               return fieldExtractor(p.actualResults) - fieldExtractor(p.ok);
-            } else if (fieldType == "deltaHistory") {
-               return fieldExtractor(p.actualResults) - fieldExtractor(p.orig);
-            } else {
-               return fieldExtractor(tripleAsMap[fieldType]);
-            }
-         };
-      };
-      const bOrW = (f: number) => {
-         return `${Math.abs(f).toFixed(1)} ${f > 0 ? "better" : "worse"} than expected`;
-      };
-      const genericExtraInfo = (field: string, factor: number = 1.0) => {
-         const has = (target: string) => {
-            return _.find([xAxis, yAxis, dotColor, dotSize], axis => axis.indexOf(target) >= 0);
-         };
-         const prevSeasonExtractor = extractBubbleAttr(`orig:${field}`);
-         const predictedSeasonExtractor = extractBubbleAttr(`ok:${field}`);
-         const predDeltaExtractor = extractBubbleAttr(`delta:${field}`);
-         const isFrPredictedField = _.endsWith(field, "adj_rapm") || _.endsWith(field, "off_team_poss_pct");
-         const careAboutOffPrediction = has(`next_off_adj_rapm`) && has(`pred_ok_off_adj_rapm`);
-         const careAboutDefPrediction = has(`next_def_adj_rapm`) && has(`pred_ok_def_adj_rapm`);
-         const offOrDefRapmSpecialCase = // user cares about predicted vs actual delta specifically
-            (_.startsWith(field, "off_") && careAboutOffPrediction) ||
-            (_.startsWith(field, "def_") && careAboutDefPrediction);
-         const rapmMarginSpecialCase = // user cares about predicted vs actual delta for both off and def
-            (field == "adj_rapm") && careAboutOffPrediction && careAboutDefPrediction;
-         const rapmSpecialCase = offOrDefRapmSpecialCase || rapmMarginSpecialCase;
-
-         return (data: any) => {
-            const triple = data.p;
-            const isFreshman = !triple.orig.off_rtg; //(filters out take Fr "prev" stats)
-            if ((rapmSpecialCase  && !isFreshman) || has(`next_${field} - pred_ok_${field}`)) { //(special case)
-               return <i>({bOrW(factor*predDeltaExtractor(triple))})</i>; 
-            } else {
-               const isRapmMargin = field == "adj_rapm";
-               const hasPrev = isRapmMargin || (triple.orig[field] && !isFreshman); 
-               const hasPred = isRapmMargin || triple.ok[field] && (!isFreshman || isFrPredictedField);
-               const shortForm = hasPrev && hasPrev;
-               const prev = hasPrev ? 
-                  <i>{shortForm ? "Prev." : "Previous"} [{(factor*prevSeasonExtractor(triple)).toFixed(1)}]</i> : undefined;
-               const pred = hasPred ? 
-                  <i>{shortForm ? "Pred." : "Predicted"} [{(factor*predictedSeasonExtractor(triple)).toFixed(1)}]</i> : undefined;
-
-               return (prev || pred) ?
-                  (
-                     <span>{prev}{(prev && pred) ? <i> / </i> : undefined}{pred}</span>
-                  ) : undefined;
-            }
-         };
-      };        
-      const netRapmExtraInfoExtractor = genericExtraInfo("adj_rapm"); //(special case handled in the fieldExtractor)
-      const getNetRapmExtraInfo = (data: any) => netRapmExtraInfoExtractor(data);
-
-      const offRapmExtraInfoExtractor = genericExtraInfo("off_adj_rapm");
-      const getOffRapmExtraInfo = (data: any) => offRapmExtraInfoExtractor(data);
-
-      const defRapmExtraInfoExtractor = genericExtraInfo("def_adj_rapm");
-      const getDefRapmExtraInfo = (data: any) => defRapmExtraInfoExtractor(data);
-
-      const offRtgExtraInfoExtractor = genericExtraInfo("off_rtg");
-      const getOffRtgExtraInfo = (data: any) => offRtgExtraInfoExtractor(data);
-
-      const offUsgExtraInfoExtractor = genericExtraInfo("off_usage", 100);
-      const getUsgExtraInfo = (data: any) => offUsgExtraInfoExtractor(data);
-
-      const mpgExtraInfoExtractor = genericExtraInfo("off_team_poss_pct", 40);
-      const getMpgExtraInfo = (data: any) => mpgExtraInfoExtractor(data);
-
-      type CustomTooltipProps = {
-         active?: boolean,
-         payload?: any,
-         label?: string,
-       };
-      const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
-         if (active) {
-            const data = payload?.[0].payload || {};
-            if (!data.showTooltips) return null; //(if showing sub-chart don't show tooltips for main chart)
-
-            const triple = data.p;
-            const roster = (triple.actualResults?.roster || triple.orig?.roster);
-            const maybePrevSchool = ((data?.p?.orig.team) && (data?.p?.orig.team != data?.p?.actualResults.team))
-               ? <i>(Previous school: {data?.p?.orig.team})</i> : undefined;
-
-            // these 2 can be null:
-            const offRtgExtraInfo = getOffRtgExtraInfo(data);
-            const usageExtraInfo = getUsgExtraInfo(data);
-
-            return (
-             <div className="custom-tooltip" style={{
-               background: 'rgba(255, 255, 255, 0.9)',
-             }}><small>
-               <p className="label"><b>
-               {`${triple.actualResults?.key}`}<br/>
-               {`${triple.actualResults?.team}`}</b> (<i>{ConferenceToNickname[triple.actualResults.conf] || "??"}</i>)<br/>
-               <i>{`${triple.actualResults?.posClass}`}
-               {` ${roster?.height || "?-?"}`}
-               {` ${roster?.year_class || ""}`}
-               </i></p>
-               <p className="desc">
-                  <span>Net RAPM: <b>{fieldValExtractor("adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
-                  <span>{getNetRapmExtraInfo(data)}</span><br/>
-                  <span>Off RAPM: <b>{fieldValExtractor("off_adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
-                  <span>{getOffRapmExtraInfo(data)}</span><br/>
-                  <span>Def RAPM: <b>{fieldValExtractor("def_adj_rapm")(data?.p?.actualResults).toFixed(1)}</b> pts/100</span><br/>
-                  <span>{getDefRapmExtraInfo(data)}</span><br/>
-                  <span>Off Rtg: <b>{fieldValExtractor("off_rtg")(data?.p?.actualResults).toFixed(1)}</b></span><br/>
-                  {offRtgExtraInfo ? <span>{offRtgExtraInfo}</span> : undefined }{offRtgExtraInfo ? <br/> : undefined}
-                  <span>Usage: <b>{(fieldValExtractor("off_usage")(data?.p?.actualResults)*100).toFixed(1)}</b>%</span><br/>
-                  {usageExtraInfo ? <span>{usageExtraInfo}</span> : undefined}{usageExtraInfo ? <br/> : undefined}
-                  <span>Mpg: <b>{(fieldValExtractor("off_team_poss_pct")(data?.p?.actualResults)*40).toFixed(1)}</b></span><br/>
-                  <span>{getMpgExtraInfo(data)}</span><br/><br/>
-                  <span>{maybePrevSchool}</span>
-               </p>
-            </small></div>
-           );
-         }
-         return null;
-       };
-       
       const extractTitle = (fieldDef: string) => {
          const decomp = decompAxis(fieldDef);
          return decomp.label || axisPresets.find(kv => kv[1] == decomp.linq)?.[0] || decomp.linq;
@@ -686,7 +694,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          }
       });
       const chartToUseForLabels = subChart || mainChart;
-      const dataPointsToLabel = (maxLabels > 0) ? _.thru(topAndBottom, () => {
+      const dataPointsToLabelPhase1 = (maxLabels > 0) ? _.thru(topAndBottom, () => {
          if (topAndBottom) {
             if (2*maxLabels > _.size(chartToUseForLabels)) {
                return chartToUseForLabels;
@@ -699,6 +707,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             return _.take(chartToUseForLabels, maxLabels);
          }
       }) as any[]: undefined;
+
+      const dataPointsToLabel = _.isEmpty(toggledPlayers) ? dataPointsToLabelPhase1 : (dataPointsToLabelPhase1 || []).concat(
+         mainChart.filter(p => toggledPlayers[p.p.actualResults?.code || "??"])
+      );
 
       // (Some util logic associated with building averages and limits)
       const mutAvgState = {
@@ -745,12 +757,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       //TODO: if the axis are the same except for next/prev then force the domains to be the same
       completeAvgState();    
       const renderAvgState = () => {
-         return <p>Average: [({mutAvgState.avgX.toFixed(2)}, {mutAvgState.avgY.toFixed(2)})]&nbsp;
+         return <div>Average: [({mutAvgState.avgX.toFixed(2)}, {mutAvgState.avgY.toFixed(2)})]&nbsp;
             (std: [{mutAvgState.varX.toFixed(2)}], [{mutAvgState.varY.toFixed(2)}]) //&nbsp;
             Weighted: [({mutAvgState.weightAvgX.toFixed(2)}, {mutAvgState.weightAvgY.toFixed(2)})]&nbsp;
             (std: [{mutAvgState.weightVarX.toFixed(2)}], [{mutAvgState.weightVarY.toFixed(2)}]) //&nbsp;
             sample count=[{mutAvgState.avgCount}]
-         </p>;
+         </div>;
       };   
       //(end averages and limits)     
 
@@ -763,12 +775,29 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          } else return n;
       };
 
+      const handlePlayerToggle = (playerKey: string) => {
+         friendlyChange(() => {
+            globalScatterChartRef.current.handleItemMouseLeave();
+            if (toggledPlayers[playerKey]) {
+               setToggledPlayers(_.omit(toggledPlayers, [ playerKey ]));
+            } else {
+               setToggledPlayers({
+                  ...toggledPlayers,
+                  [playerKey]: true
+               });
+            }
+         }, true, 250); //(i experimented with making this shorter but it tended not to appear a bit too often)
+      };
+
       const labelState = ScatterChartUtils.buildEmptyLabelState(); 
       const xAxisDecom = decompAxis(xAxis);
       const yAxisDecom = decompAxis(yAxis);
       const chartToReturn =  <div>
          <ResponsiveContainer width={"100%"} height={0.75*height}>
-            <ScatterChart>
+            <ScatterChart
+               onMouseLeave={() => globalScatterChartRef.current.handleItemMouseLeave()}
+               ref={globalScatterChartRef}
+            >
                <CartesianGrid />
                <XAxis type="number" dataKey="x" ticks={xAxisDecom.ticks}
                      domain={xAxisDecom.limits || ["auto", "auto"]} allowDataOverflow={!_.isNil(xAxisDecom.limits)}>                     
@@ -786,7 +815,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   })}
 
                   {mainChart.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
+                     return <Cell 
+                        key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}
+                        onClick={e => handlePlayerToggle(p.label)}
+                     />
                   })};
                </Scatter>
                {subChart ? <Scatter data={subChart} fill="green">
@@ -796,7 +828,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   })}
 
                   {subChart.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
+                     return <Cell 
+                        key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}
+                        onClick={e => handlePlayerToggle(p.label)}
+                     />
                   })}</Scatter> : null
                };         
                {dataPointsToLabel ? <Scatter data={dataPointsToLabel} fill="green">
@@ -813,11 +848,15 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                {dataPointsToLabel ? <Scatter data={dataPointsToLabel} fill="green">
                   {ScatterChartUtils.buildTidiedLabelList({
                      maxHeight: screenHeight, maxWidth: screenWidth, mutableState: labelState,
-                     dataKey: "label", series: dataPointsToLabel
+                     dataKey: "label", series: dataPointsToLabel,
+                     underlinedLabels: toggledPlayers
                   })}
 
                   {dataPointsToLabel.map((p, index) => {
-                     return <Cell key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}/>
+                     return <Cell 
+                        key={`cell-${index}`} fill={colorMapPicker(colorMapTransformer(p.p.color))}
+                        onClick={e => handlePlayerToggle(p.label)}
+                     />
                   })}</Scatter> : null
                };         
                <RechartTooltip
@@ -828,7 +867,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                />
             </ScatterChart>
          </ResponsiveContainer>
-         <i><small>{renderAvgState()}</small></i>
+         <i><small><p>{renderAvgState()}
+         {_.isEmpty(toggledPlayers) ? null : 
+            <a href="#" onClick={e => { e.preventDefault(); friendlyChange(() => setToggledPlayers({}), true)}}
+            >[{_.size(toggledPlayers)}] player(s) manually selected. Click to clear selection</a>
+         }
+         </p></small></i>
       </div>
       ;
 
@@ -843,7 +887,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             tier: "All"
          }}
          dataEvent={{
-            players: (subChart || mainChart).map(p => p.p.actualResults),
+            players: (subChart || mainChart).map(p => p.p.actualResults).filter(p => {
+               return _.isEmpty(toggledPlayers) ? true : toggledPlayers[p?.code || "??"];
+            }),
             confs: dataEvent.confs,
             confMap: dataEvent.confMap,
             lastUpdated: dataEvent.lastUpdated,
@@ -861,7 +907,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
       datasetFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
-      screenHeight, screenWidth
+      screenHeight, screenWidth, toggledPlayers
    ]);
 
    // 3] View
@@ -1226,6 +1272,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   active={needToLoadQuery()}
                   spinner
                   text={"Loading Player Comparison Chart..."}
+                  styles={{
+                      overlay: (base: any) => ({
+                       ...base,
+                       zIndex: 2000
+                     })
+                   }}                  
                >
                   {chart}
                </LoadingOverlay>
@@ -1241,7 +1293,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </Row>
       <Row>
          <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-         <GenericCollapsibleCard minimizeMargin={true} title="Player Stats" helpLink={undefined} startClosed={true}>
+         <GenericCollapsibleCard minimizeMargin={true} title="Player Stats" helpLink={undefined} startClosed={_.isEmpty(toggledPlayers)}>
             <Container>
                <Row>
                   {((xAxis && yAxis) || loadingOverride) ?

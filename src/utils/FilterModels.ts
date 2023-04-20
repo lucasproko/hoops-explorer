@@ -234,6 +234,7 @@ export type PlayerSeasonComparisonParams = {
   dotColor?: string,
   dotColorMap?: string,
   labelStrategy?: string,
+  toggledPlayers?: string,
 };
 
 export type TeamLeaderboardParams = {

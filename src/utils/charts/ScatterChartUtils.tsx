@@ -25,6 +25,7 @@ export type TidyLabelListProps = LabelListProps<Record<string, any>> & {
    maxHeight: number,
    maxWidth: number,
    mutableState: LabelMoveState, 
+   underlinedLabels?: Record<string, boolean>,
    /** This is _all_ the series in the scatter chart, differentiated by labelColor property 
     *  the points will be rendered 2nd time through
    */
@@ -159,6 +160,7 @@ export class ScatterChartUtils {
                   className="recharts-text recharts-label"
                   key={`label-${index}`} 
                   x="50%" y="50%" dominantBaseline="middle" textAnchor="middle"
+                  textDecoration={props.underlinedLabels?.[value] ? "underline" : undefined}
                   fill={dataPointObj.labelColor || fill} name={value}
                >{value}</text>
             </svg>;

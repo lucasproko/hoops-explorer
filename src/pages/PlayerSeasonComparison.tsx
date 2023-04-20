@@ -79,6 +79,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
 
       (!rawParams.confs) ? [ "confs" ] : [],
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
+      (!rawParams.toggledPlayers) ? [ "toggledPlayers" ] : [],
       //(all the other fields we'll just show their full value)
 
       // "Add players from leaderboard" params
