@@ -411,7 +411,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     if (showGrades || transferPredictionMode) {
       //(if transferPredictionMode we'd like some grades so we can show the ranks associated with predicted grades)
 
-      const yearsToCheck = (year == DateUtils.AllYears) ? DateUtils.coreYears : [ year ];
+      const yearsToCheck = _.thru(startingState.includePrevYear, includePrevYear => {
+        if ((year == DateUtils.AllYears)) {
+          return DateUtils.coreYears;
+        } else if (includePrevYear) {
+          return [ DateUtils.getPrevYear(year), year ];
+        } else {
+          return [ year ];
+        }        
+      });
       yearsToCheck.forEach(yearToCheck => {
         const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
         const currPosCacheForThisYear = positionalStatsCache[yearToCheck] || {};
@@ -609,12 +617,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const numFiltered = _.size(players);
 
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
-    const builderPlayerLine = (player: any, playerIndex: number) => {
+    const builderPlayerLine = (player: any, playerIndex: number, nextYearState: "y1ofN" | "y1of1" | "y2of2") => {
       if (playerIndex == 0) setExampleForFilterStr(player);
+      const firstRowForPlayer = nextYearState != "y2of2";
+      const lastRowForPlayer = nextYearState != "y1ofN";
 
       const divisionStatesCacheByYear: DivisionStatsCache = divisionStatsCache[player.year || year] || {};
 
-      const isDup = (tier == "All") && (playerIndex > 0) && 
+      const isDup = (tier == "All") && (playerIndex > 0) && firstRowForPlayer &&
         (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].team == player.team) && (players[playerIndex - 1].year == player.year);
 
       if (isDup) playerDuplicates++;
@@ -636,9 +646,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const confNickname = ConferenceToNickname[player.conf] || "???";
       const teamSeasonLookup = `${startingState.gender}_${player.team}_${startingState.year}`;
 
-      const generalRank = !isDup && isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1 - playerDuplicates})</i>&nbsp;</span> : null;
+      const generalRank = !isDup && isGeneralSortOrFilter && firstRowForPlayer ? 
+        <span><i>(#{playerIndex + 1 - playerDuplicates})</i>&nbsp;</span> : null;
+
       const rankingsTooltip = (
-        <Tooltip id={`rankings_${playerIndex}`}>
+        <Tooltip id={`rankings_${playerIndex}_${nextYearState}`}>
           {factorMins ? "Production " : "Rating "}Ranks:<br/>
           {isGeneralSortOrFilter ? "[filtered/sorted subset] " : ""}{isGeneralSortOrFilter ? <br/> : null}
           {player.tier ? `${player.tier} Tier` : null}{player.tier ? <br/> : null}
@@ -668,10 +680,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const rankings = getRankings();
 
       const playerLboardTooltip = (
-        <Tooltip id={`lboard_${playerIndex}`}>Open new tab showing all the player's seasons, in the multi-year version of the leaderboard</Tooltip>
+        <Tooltip id={`lboard_${playerIndex}_${nextYearState}`}>Open new tab showing all the player's seasons, in the multi-year version of the leaderboard</Tooltip>
       );
       const playerTeamEditorTooltip = (
-        <Tooltip id={`lboard_teamEditor_${playerIndex}`}>Add this player to the Team Builder table</Tooltip>
+        <Tooltip id={`lboard_teamEditor_${playerIndex}_${nextYearState}`}>Add this player to the Team Builder table</Tooltip>
       );
       const playerLeaderboardParams = {
         tier: "All",
@@ -692,11 +704,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </OverlayTrigger>
         :
         <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
-          <a target="_blank" style={{wordWrap: "normal"}} href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>{player.key}</a>
+          <a target="_blank" style={{wordWrap: "normal"}} href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>
+            {firstRowForPlayer ? player.key : `${_.split(player.key, ",")[0]} ${player.year.substring(2, 4)}+`}
+          </a>
         </OverlayTrigger>;
 
       const teamTooltip = (
-        <Tooltip id={`team_${playerIndex}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
+        <Tooltip id={`team_${playerIndex}_${nextYearState}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
       );
       const teamParams = {
         team: player.team, gender: gender, year: player.year || year,
@@ -728,10 +742,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         teamLuck: true, rapmDiagMode: "base"
       };
       const rapmTooltip = (
-        <Tooltip id={`rapm_${playerIndex}`}>RAPM {factorMins ? "Production" : "Rating"} margin: click to open new tab showing the RAPM diagnostics for this player</Tooltip>
+        <Tooltip id={`rapm_${playerIndex}_${nextYearState}`}>RAPM {factorMins ? "Production" : "Rating"} margin: click to open new tab showing the RAPM diagnostics for this player</Tooltip>
       );
       const playerTooltip = (
-        <Tooltip id={`player_${playerIndex}`}>{factorMins ? "Production" : "Rating"} margin: click to open new tab showing the off/def rating diagnostics for this player</Tooltip>
+        <Tooltip id={`player_${playerIndex}_${nextYearState}`}>{factorMins ? "Production" : "Rating"} margin: click to open new tab showing the off/def rating diagnostics for this player</Tooltip>
       );
 
       const adjMargin = useRapm ?
@@ -878,8 +892,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
-      const showGradesFactor = showGrades ? 2 : 5;
-      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % showGradesFactor))
+      const showGradesFactor = _.thru(startingState.includePrevYear || false, includePrevYear => {
+        if (includePrevYear) {
+          return showGrades ? 1 : 2;
+        } else {
+          return showGrades ? 2 : 5;
+        }
+      });
+      const shouldInjectSubheader = (playerIndex > 0) && (0 == ((playerIndex - playerDuplicates) % showGradesFactor));
+        //TODO: this will inject in the wrong place if we are showing prevYear data
 
       if (showGrades) {
         // Always show the overall grade, even though it's spurious in some cases - it's too hard
@@ -906,8 +927,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
       ])
       : _.flatten([
-        playerIndex > 0 ? [ GenericTableOps.buildRowSeparator() ] : [],
-        (shouldInjectSubheader && showRepeatingHeader) ? [ 
+        (playerIndex > 0) && firstRowForPlayer ? [ GenericTableOps.buildRowSeparator() ] : [],
+        (shouldInjectSubheader && showRepeatingHeader && firstRowForPlayer) ? [ 
           GenericTableOps.buildHeaderRepeatRow(CommonTableDefs.repeatingOnOffIndivHeaderFields, "small"),
           GenericTableOps.buildRowSeparator()
         ] : [],
@@ -930,7 +951,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ]);
     };
     const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
-      return builderPlayerLine(player, playerIndex);
+      const nextYearState = (startingState.includePrevYear && player.prevYear) ? "y1ofN" : "y1of1";
+      return builderPlayerLine(player, playerIndex, nextYearState).concat(
+        (startingState.includePrevYear && player.prevYear) ? 
+          builderPlayerLine(player.prevYear, playerIndex, "y2of2") : []
+      );
     });
 
     setNumFilteredStr(isFiltered ? 

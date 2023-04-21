@@ -214,7 +214,8 @@ export type PlayerLeaderboardParams = {
   confOnly?: boolean,
   t100?: boolean,
   // Transfer info
-  transferMode?: string //==true => show only available, vs ==$year show all
+  transferMode?: string, //==true => show only available, vs ==$year show all
+  includePrevYear?: boolean, //(if available add an extra 2 rows with the player's prev year stats)
 };
 
 export type PlayerSeasonComparisonParams = {

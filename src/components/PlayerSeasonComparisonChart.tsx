@@ -886,18 +886,22 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </div>
       ;
 
-      //TODO: also have a toggle for show prev years
-      //TODO: also click on player to add to/remove filter
       const dataIsAlreadySorted = datasetFilterStr.includes("SORT_BY") || highlightFilterStr.includes("SORT_BY");
       const playerLeaderboardToReturn = <PlayerLeaderboardTable
          startingState={{
             ...startingState,
+            includePrevYear: showPrevNextInTable,
             sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
             year: year,
             tier: "All"
          }}
          dataEvent={{
-            players: (subChart || mainChart).map(p => p.p.actualResults).filter(p => {
+            players: (subChart || mainChart).map(p => {
+               if (showPrevNextInTable && p.p.actualResults && p.p.orig) {
+                  p.p.actualResults.prevYear = p.p.orig;
+               }
+               return p.p.actualResults;
+            }).filter(p => {
                return _.isEmpty(toggledPlayers) ? true : toggledPlayers[p?.code || "??"];
             }),
             confs: dataEvent.confs,
@@ -1311,6 +1315,19 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             onShowHide={(nowShown: boolean) => setShowTable(nowShown)}
          >
             <Container>
+               <Row>
+                  <Form.Group as={Col} className="mt-2">
+                     <Form.Check className="float-left" type="switch"
+                        id="showPrevNextInTable"
+                        checked={showPrevNextInTable}
+                        onChange={() => {
+                           const isCurrentlySet = showPrevNextInTable;
+                           friendlyChange(() => setShowPrevNextInTable(!showPrevNextInTable), true);
+                        }}
+                        label="Show Both Years' Stats"
+                     />
+                  </Form.Group>
+               </Row>
                <Row>
                   {((xAxis && yAxis) || loadingOverride) ?
                   <LoadingOverlay
