@@ -609,7 +609,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const numFiltered = _.size(players);
 
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
-    const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
+    const builderPlayerLine = (player: any, playerIndex: number) => {
       if (playerIndex == 0) setExampleForFilterStr(player);
 
       const divisionStatesCacheByYear: DivisionStatsCache = divisionStatsCache[player.year || year] || {};
@@ -928,6 +928,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           expandedView: true, possAsPct, factorMins, includeRapm: true, leaderboardMode: true
         }) : []
       ]);
+    };
+    const tableData = _.take(players, parseInt(maxTableSize)).flatMap((player, playerIndex) => {
+      return builderPlayerLine(player, playerIndex);
     });
 
     setNumFilteredStr(isFiltered ? 
