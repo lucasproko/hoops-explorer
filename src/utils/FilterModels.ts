@@ -223,7 +223,9 @@ export type PlayerSeasonComparisonParams = {
   year?: string,
   gender?: string,
   confs?: string,
-  showConfig?: boolean,
+  showConfig?: boolean, //(whether to show all the config for the axis etc)
+  showTable?: boolean,
+  showPrevNextInTable?: boolean, //(if showing table, show prev and next stats)
   title?: string,
   datasetFilter?: string,
   highlightFilter?: string,

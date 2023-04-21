@@ -80,6 +80,8 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
       (!rawParams.confs) ? [ "confs" ] : [],
       (!rawParams.queryFilters) ? [ "queryFilters" ] : [],
       (!rawParams.toggledPlayers) ? [ "toggledPlayers" ] : [],
+      (!rawParams.showTable) ? [ "showTable" ] : [],
+      (!rawParams.showPrevNextInTable) ? [ "showPrevNextInTable" ] : [],
       //(all the other fields we'll just show their full value)
 
       // "Add players from leaderboard" params
@@ -91,7 +93,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
       (!rawParams.posClasses) ? [ 'posClasses' ] : [],
 
       //These aren't plumbed in:
-      (!rawParams.t100) ? [ 't100' ] : [], //(TODO these 2 don't work)
+      (!rawParams.t100) ? [ 't100' ] : [], //(these 2 don't work anyway in this view)
       (!rawParams.confOnly) ? [ 'confOnly' ] : [],
       
       (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],

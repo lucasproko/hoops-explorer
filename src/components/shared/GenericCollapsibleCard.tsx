@@ -16,10 +16,11 @@ type Props = {
   readonly title: string,
   readonly summary?: string,
   readonly helpLink?: string,
-  readonly startClosed?: boolean
+  readonly startClosed?: boolean,
+  readonly onShowHide?: (nowShown: boolean) => void
 }
 
-const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, minimizeMargin, title, summary, helpLink, startClosed}) => {
+const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, minimizeMargin, title, summary, helpLink, startClosed, onShowHide}) => {
   const [ showTable, toggleShowTable ] = useState((undefined == startClosed) || !startClosed);
 
   const showSummaryIfHidden = () => {
@@ -40,7 +41,12 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, minim
   return <Card className="w-100">
     <Card.Body style={cardBodyStyle}>
       <Card.Title style={titleStyle}>
-        <span><a href="#" onClick={() => { toggleShowTable(!showTable); return false } }>
+        <span><a href="#" onClick={() => { 
+          const newSetting = !showTable;
+          toggleShowTable(newSetting); 
+          if (onShowHide) onShowHide(newSetting);
+          return false;
+        } }>
           ({showTable ? "+" : "-"}) {title}
         </a></span>
         {optionalHelpLink()}

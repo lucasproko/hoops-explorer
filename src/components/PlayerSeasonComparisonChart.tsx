@@ -198,6 +198,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // If there's a title show that, otherwise show the config
    const [ showConfigOptions, setShowConfigOptions ] = useState<boolean>(startingState.showConfig || !startingState.title);
 
+   // If there's a title show that, otherwise show the config
+   const [ showTable, setShowTable ] = useState<boolean>(startingState.showTable || false);
+
+   // Whether to show prev and next seasons for each player
+   const [ showPrevNextInTable, setShowPrevNextInTable ] = useState<boolean>(startingState.showPrevNextInTable || false);
+
    // Filter text (show/hide):
    const [ datasetFilterStr, setAdvancedFilterStr ] = useState(startingState.datasetFilter || "");
    const [ datasetFilterError, setAdvancedFilterError ] = useState(undefined as string | undefined);
@@ -336,10 +342,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          showConfig: showConfigOptions,
          dotColorMap: dotColorMap,
          labelStrategy: labelStrategy,
-         toggledPlayers: _.keys(toggledPlayers).join(";")
+         toggledPlayers: _.keys(toggledPlayers).join(";"),
+         showTable: showTable,
+         showPrevNextInTable: showPrevNextInTable
       });
    }, [ confs, year, queryFilters, datasetFilterStr, highlightFilterStr, title, xAxis, yAxis, 
-      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy, lboardParams, toggledPlayers ]);
+      dotColor, dotColorMap, dotSize, showConfigOptions, labelStrategy, lboardParams, toggledPlayers,
+      showPrevNextInTable, showTable
+    ]);
 
    /** Set this to be true on expensive operations */
    const [loadingOverride, setLoadingOverride] = useState(false);
@@ -907,7 +917,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    }, [
       gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
       datasetFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
-      screenHeight, screenWidth, toggledPlayers
+      screenHeight, screenWidth, toggledPlayers, showPrevNextInTable
    ]);
 
    // 3] View
@@ -1293,7 +1303,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       </Row>
       <Row>
          <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-         <GenericCollapsibleCard minimizeMargin={true} title="Player Stats" helpLink={undefined} startClosed={_.isEmpty(toggledPlayers)}>
+         <GenericCollapsibleCard 
+            minimizeMargin={true} 
+            title="Player Stats" 
+            helpLink={undefined} 
+            startClosed={!showTable}
+            onShowHide={(nowShown: boolean) => setShowTable(nowShown)}
+         >
             <Container>
                <Row>
                   {((xAxis && yAxis) || loadingOverride) ?
