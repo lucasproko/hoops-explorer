@@ -45,7 +45,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 import { RequestUtils } from '../utils/RequestUtils';
-import { OffseasonLeaderboardUtils } from '../utils/stats/OffseasonLeaderboardUtils';
+import { OffseasonLeaderboardUtils, OffseasonTeamInfo } from '../utils/stats/OffseasonLeaderboardUtils';
 
 // Recharts imports:
 //@ts-ignore
@@ -147,11 +147,8 @@ export const overallPlayerChartPresets = [
    }],
 ] as Array<[string, PlayerSeasonComparisonParams]>;
 
-/** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
-const logDivisionStatsToConsole = false;
-
-/** Will dump out some possible manual overrides to be made */
-const diagnosticCompareWithRosters = false;
+// Currently only since PortalPalooza kicked off in earnest
+const supportedYears = [ "2021/22", "2022/23" ];
 
 const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
@@ -174,13 +171,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    const hasCustomFilter = confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
 
    const [year, setYear] = useState(startingState.year || DateUtils.mostRecentYearWithData);
-   const yearWithStats = DateUtils.getPrevYear(year);
 
    const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
 
    const [queryFilters, setQueryFilters] = useState(startingState.queryFilters || "");
-
-   const [ rostersPerTeam, setRostersPerTeam ] = useState({} as Record<string, Record<string, RosterEntry>>);
 
    const [ title, setTitle ] = useState(startingState.title || "");
 
@@ -277,36 +271,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    } as Record<string, undefined | ((val: number) => string)>;
 
    const [ labelStrategy, setLabelStrategy ] = useState(startingState.labelStrategy || "None");
-
-   // Go fetch the data
-
-   if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
-      const fetchRosterJson = (teamName: string) => {
-         const rosterJsonUri = (encodeEncodePrefix: boolean) =>
-           `/rosters/${gender}_${(year || "").substring(0, 4)}`
-           + `/${RequestUtils.fixLocalhostRosterUrl(teamName, encodeEncodePrefix)}.json`;
-         return fetch(
-           rosterJsonUri(true)
-         ).then(
-           (resp: any) => resp.json()
-         ).then((json: any) => [ teamName, json ] as [ string, Record<string, RosterEntry> ]);
-      };
-      const rosterPromises: Promise<[string, Record<string, RosterEntry>]>[] = _.flatMap(AvailableTeams.byName, (teams, __) => {
-         const maybeTeam = teams.find(t => (t.year == yearWithStats) && (t.gender == gender));
-         return maybeTeam ? [ 
-            fetchRosterJson(maybeTeam.team).catch( //(carry on error, eg if the file doesn't exist)
-               (err: any) => [ maybeTeam.team, {} ]
-            )                
-         ] : []
-      });
-      if (_.isEmpty(rosterPromises)) {
-         setRostersPerTeam({});
-      } else {
-         Promise.all(rosterPromises).then((rosterInfo: [string, Record<string, RosterEntry>][]) => {
-            setRostersPerTeam(_.fromPairs(rosterInfo));
-         });
-      }
-   }
 
    // On page load, if title is specified and the other params aren't then pre-load
    const applyPresetChart = (preset: PlayerSeasonComparisonParams) => {
@@ -573,48 +537,48 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // (end chart tooltip)
 
    const [ chart, playerLeaderboard ] = React.useMemo(() => {
-
-      const waitForRosterDiagMode = diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam);
-      if (waitForRosterDiagMode || _.isEmpty(dataEvent.players)) {
+      if (_.isEmpty(dataEvent.players)) {
          // If we don't have players we're not done loading yet, so put up a loading screen:
          return [ <div></div>, <div></div> ];
       } else {
          setLoadingOverride(false);
       }
 
-      const avgEff = efficiencyAverages[`${gender}_${yearWithStats}`] || efficiencyAverages.fallback;
-         //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
-
-      //TODO 2 ideas here:
+      //TODO Some ideas here:
       // 1] For un-ranked Fr give them 2*/3*/3*+ expectations (ie if actualResults exists but no orig)
       // 2] Allow a 23/24 season just showing the predictions
       // 3] Allow a multiple year - create multiple 2-year groups and call buildAllTeamStats repeatedly, then cat the
       //    triples together with a year string which the logic will handle
       // 4] (here and in PlayerLeaderboardTable, always enrich currently with transfer info once it exists)
       // 5] Copy to clipboard
-      // 6] Display results in a PlayerLeaderboardTable
 
       // Team stats generation business logic:
-      const {
-         derivedDivisionStats, teamRanks,
-         numTeams, 
-         netEffToRankMap, actualNetEffToRankMap, offEffToRankMap, defEffToRankMap
-      } = OffseasonLeaderboardUtils.buildAllTeamStats(
-         dataEvent, {
-            confs, year, gender,
-            sortBy: "", 
-            evalMode: true,
-            diagnosticCompareWithRosters
-         },
-         {}, rostersPerTeam, avgEff, true
-      );
 
-      //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json) 
-      //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)
-      if (logDivisionStatsToConsole && server == "localhost") {
-         console.log(JSON.stringify(derivedDivisionStats));
-      }
+      const yearsToProcess = (year == "All") ? supportedYears : [ year ];
 
+      const { teamRanks } = _.transform(yearsToProcess, (acc, thisYear) => {
+         const yearWithStats = DateUtils.getPrevYear(thisYear);
+
+         const avgEff = efficiencyAverages[`${gender}_${yearWithStats}`] || efficiencyAverages.fallback;
+         //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
+
+
+         const {
+            derivedDivisionStats, teamRanks: teamRanksPerYear,
+            numTeams, 
+            netEffToRankMap, actualNetEffToRankMap, offEffToRankMap, defEffToRankMap
+         } = OffseasonLeaderboardUtils.buildAllTeamStats(
+            dataEvent, {
+               confs, year: thisYear, gender,
+               sortBy: "", 
+               evalMode: true,
+               diagnosticCompareWithRosters: false
+            },
+            {}, {}, avgEff, true
+         );   
+         acc.teamRanks = acc.teamRanks.concat(teamRanksPerYear);
+
+      }, { teamRanks: [] as OffseasonTeamInfo[] });
 
       const extractTitle = (fieldDef: string) => {
          const decomp = decompAxis(fieldDef);
@@ -919,7 +883,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       return [ chartToReturn, playerLeaderboardToReturn ];
    }, [
-      gender, year, confs, dataEvent, queryFilters, rostersPerTeam, height, 
+      gender, year, confs, dataEvent, queryFilters, height, 
       datasetFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
       screenHeight, screenWidth, toggledPlayers, showPrevNextInTable
    ]);
@@ -1065,7 +1029,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
                value={stringToOption(year)}
-               options={[stringToOption("2021/22"), stringToOption("2022/23")]}
+               options={supportedYears.concat([/*"All"*/]).map(stringToOption)}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
                   setYear((option as any)?.value);
@@ -1075,7 +1039,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
          <Col xs={12} sm={12} md={5} lg={5} style={{zIndex: 10}}>
             <ConferenceSelector
-               emptyLabel={year < DateUtils.yearFromWhichAllMenD1Imported ? `All High Tier Teams` : `All Teams`}
+               emptyLabel={
+                  ((year != "All") && (year < DateUtils.yearFromWhichAllMenD1Imported)) ? `All High Tier Teams` : `All Teams`
+               }
                confStr={confs}
                confMap={dataEvent?.confMap}
                confs={dataEvent?.confs}

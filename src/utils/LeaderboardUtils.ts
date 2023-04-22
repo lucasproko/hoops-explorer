@@ -160,10 +160,13 @@ export class LeaderboardUtils {
 
    /** Fetch the requested team stats either from GCS or static storage */
    static readonly getTeamStatsUrl = (gender: string, subYear: string, inTier: string) => {
-      if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
-        return `/api/getTeamStats?src=teams&gender=${gender}&year=${subYear}&tier=${inTier}`; //TODO: doesn't currently exist
-      } else { //archived
-        return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
-      }
+      return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
+
+      //TODO: this doesn't currently exist:
+      // if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+      //   return `/api/getTeamStats?src=teams&gender=${gender}&year=${subYear}&tier=${inTier}`;
+      // } else { //archived
+      //   return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
+      // }
    }
 }

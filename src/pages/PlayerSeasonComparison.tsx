@@ -154,10 +154,11 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
         const jsonsIn = playersTeams[0];
         const teamsIn = playersTeams[1];
         const jsons = _.dropRight(jsonsIn, _.size(transferYears));
+
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-          teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(),
+          teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(), 
           transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
           lastUpdated: 0 //TODO use max?
         });
