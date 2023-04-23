@@ -382,7 +382,7 @@ export class TeamEditorManualFixes {
          return combinedOverrides;
       } else if (genderYear == "Men_2022/23") {  //(offseason of 21/22, ie team for 22/23)
          const manualOverrides_Men_2023_24:  Record<string, TeamEditorManualFixModel> = {
-            //(through Apr 18, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
+            //(through Apr 23, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
             "Arkansas": {
                superSeniorsReturning: new Set([ "JaGraham::" ]),
             },
@@ -391,6 +391,9 @@ export class TeamEditorManualFixes {
             },
             "Boise St.": {
                superSeniorsReturning: new Set([ "MaRice::" ]),
+            },
+            "Boston College": {
+               superSeniorsReturning: new Set([ "QuPost::" ]),
             },
             "Bradley": {
                superSeniorsReturning: new Set([ "MaLeons::" ]),
@@ -411,7 +414,7 @@ export class TeamEditorManualFixes {
                leftTeam: [ "MiSharavjamt::" ], //(NBA)
             },
             "Drake": {
-               superSeniorsReturning: new Set([ "DaBrodie::" ]),
+               superSeniorsReturning: new Set([ "DaBrodie::", "TuDevries::" ]),
             },
             "Duke": {
                superSeniorsReturning: new Set([ "RyYoung::" ]),
@@ -488,7 +491,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "ArBacot::" ]),
             },
             "North Florida": {
-               superSeniorsReturning: new Set([ "DoJames::", "JaHicklen::" ]),
+               superSeniorsReturning: new Set([ "DoJames::" ]),
             },
             "Ohio": {
                superSeniorsReturning: new Set([ "MiBrown::" ]),
