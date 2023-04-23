@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Lodash:
-import _, { isNumber } from "lodash";
+import _, { isNumber, some } from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -63,7 +63,7 @@ import PlayerLeaderboardTable from './PlayerLeaderboardTable';
 
 type Props = {
    startingState: PlayerSeasonComparisonParams,
-   dataEvent: TeamEditorStatsModel,
+   dataEvent: Record<string, TeamEditorStatsModel>,
    onChangeState: (newParams: PlayerSeasonComparisonParams) => void
 }
 
@@ -147,8 +147,9 @@ export const overallPlayerChartPresets = [
    }],
 ] as Array<[string, PlayerSeasonComparisonParams]>;
 
-// Currently only since PortalPalooza kicked off in earnest
+// Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparison)
 const supportedYears = [ "2021/22", "2022/23" ];
+const allPortalYears = "2021+";
 
 const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
@@ -537,7 +538,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
    // (end chart tooltip)
 
    const [ chart, playerLeaderboard ] = React.useMemo(() => {
-      if (_.isEmpty(dataEvent.players)) {
+      if (_.isEmpty(dataEvent)) {
          // If we don't have players we're not done loading yet, so put up a loading screen:
          return [ <div></div>, <div></div> ];
       } else {
@@ -554,7 +555,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       // Team stats generation business logic:
 
-      const yearsToProcess = (year == "All") ? supportedYears : [ year ];
+      const yearsToProcess = (year == allPortalYears) ? supportedYears : [ year ];
 
       const { teamRanks } = _.transform(yearsToProcess, (acc, thisYear) => {
          const yearWithStats = DateUtils.getPrevYear(thisYear);
@@ -568,7 +569,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             numTeams, 
             netEffToRankMap, actualNetEffToRankMap, offEffToRankMap, defEffToRankMap
          } = OffseasonLeaderboardUtils.buildAllTeamStats(
-            dataEvent, {
+            dataEvent[year], {
                confs, year: thisYear, gender,
                sortBy: "", 
                evalMode: true,
@@ -868,10 +869,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             }).filter(p => {
                return _.isEmpty(toggledPlayers) ? true : toggledPlayers[p?.code || "??"];
             }),
-            confs: dataEvent.confs,
-            confMap: dataEvent.confMap,
-            lastUpdated: dataEvent.lastUpdated,
-            error: dataEvent.error,
+            confs: dataEvent[year]?.confs,
+            confMap: dataEvent[year]?.confMap,
+            lastUpdated: dataEvent[year].lastUpdated,
+            error: dataEvent[year]?.error,
             transfers: undefined, //TODO dataEvent.transfers starts with the _prev_ year, we don't currently collect this year
                //TODO: need to get another transfer as well
             syntheticData: true
@@ -908,7 +909,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
    /** Sticks an overlay on top of the table if no query has ever been loaded */
    function needToLoadQuery() {
-      return !dataEvent.error && (loadingOverride || ((dataEvent?.players || []).length == 0));
+      return loadingOverride || (_.chain(dataEvent).map(d => _.size(d.players || [])).sum().value() == 0);
    }
 
    /** Copy to clipboard button */
@@ -1029,7 +1030,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
                value={stringToOption(year)}
-               options={supportedYears.concat([/*"All"*/]).map(stringToOption)}
+               options={supportedYears.concat([/*allPortalYears*/]).map(stringToOption)}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
                   setYear((option as any)?.value);
@@ -1040,11 +1041,11 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col xs={12} sm={12} md={5} lg={5} style={{zIndex: 10}}>
             <ConferenceSelector
                emptyLabel={
-                  ((year != "All") && (year < DateUtils.yearFromWhichAllMenD1Imported)) ? `All High Tier Teams` : `All Teams`
+                  (year < DateUtils.yearFromWhichAllMenD1Imported) ? `All High Tier Teams` : `All Teams`
                }
                confStr={confs}
-               confMap={dataEvent?.confMap}
-               confs={dataEvent?.confs}
+               confMap={dataEvent[year]?.confMap}
+               confs={dataEvent[year]?.confs}
                onChangeConf={confStr => friendlyChange(() => setConfs(confStr), confs != confStr)}
             />
          </Col>

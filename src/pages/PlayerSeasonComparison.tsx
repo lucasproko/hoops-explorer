@@ -18,7 +18,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, OffseasonLeaderboardParams, ParamDefaults, PlayerSeasonComparisonParams } from '../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, PlayerSeasonComparisonParams } from '../utils/FilterModels';
 import { TeamEditorStatsModel } from '../components/TeamEditorTable';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
@@ -27,9 +27,13 @@ import HeaderBar from '../components/shared/HeaderBar';
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
-import OffSeasonLeaderboardTable from '../components/OffseasonLeaderboardTable';
 import { DateUtils } from '../utils/DateUtils';
 import PlayerSeasonComparisonChart from '../components/PlayerSeasonComparisonChart';
+
+// Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparisonChart)
+const supportedYears = [ "2021/22", "2022/23" ];
+const allPortalYears = "2021+";
+
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -58,7 +62,10 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
-  const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as TeamEditorStatsModel);
+  const [ dataEvent, setDataEvent ] = useState(
+    {} as 
+    Record<string, TeamEditorStatsModel>
+  );
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
 
@@ -137,6 +144,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
     const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
     const transferYears = [ transferYear, transferYearPrev ];
 
+    
     if ((fullYear != currYear) || (gender != currGender)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
@@ -155,13 +163,13 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
         const teamsIn = playersTeams[1];
         const jsons = _.dropRight(jsonsIn, _.size(transferYears));
 
-        setDataSubEvent({
+        setDataEvent({ [year]: {
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(), 
           transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
           lastUpdated: 0 //TODO use max?
-        });
+        }});
       });
     }
   }, [ playerSeasonComparisonParams ]);
@@ -172,10 +180,10 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
   const table = React.useMemo(() => {
     return <PlayerSeasonComparisonChart
       startingState={playerSeasonComparisonParamsRef.current || {}}
-      dataEvent={dataSubEvent}
+      dataEvent={dataEvent}
       onChangeState={onPlayerSeasonComparisonParamsChange}
     />
-  }, [dataSubEvent]);
+  }, [dataEvent]);
 
   const gender = playerSeasonComparisonParams.gender || ParamDefaults.defaultGender;
   const year = playerSeasonComparisonParams.year || DateUtils.mostRecentYearWithLboardData;
