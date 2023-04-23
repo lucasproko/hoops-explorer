@@ -28,6 +28,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -182,7 +183,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
           teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
-          lastUpdated: 0 //TODO use max?
+          lastUpdated: _.chain(jsons).map(d => d.lastUpdated).max().value()
         });
       });
     }

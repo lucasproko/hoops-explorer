@@ -25,7 +25,7 @@ type Props = {
    emptyLabel: string,
    confStr: string,
    tier?: string, //(if populated then tier mode)
-   confMap?: Map<string, string[]>,
+   /** For High/Med/Low tiers, "visiting" teams from the "wrong" tier */ confMap?: Map<string, string[]>,
    confs?: Array<string>,
    onChangeConf: (newConfOrTier: string) => void
 };
@@ -42,15 +42,15 @@ const ConferenceSelector: React.FunctionComponent<Props> = ({emptyLabel, confStr
 
    const confsWithTeams = confMap ?
       _.toPairs(confMap || {}).map(kv => {
-      const teams = kv[1] || [];
-      return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
+         const teams = kv[1] || [];
+         return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
       }) : (confs || []);
 
    function getCurrentConfsOrPlaceholder() {
       return (confStr == "") ?
-      { label: emptyLabel } 
-      :
-      confStr.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
+         { label: emptyLabel } 
+         :
+         confStr.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
    }
 
    function getExtraConfsByTier() {

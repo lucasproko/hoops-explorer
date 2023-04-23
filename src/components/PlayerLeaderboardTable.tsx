@@ -62,7 +62,6 @@ export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
   confs?: Array<string>,
   confMap?: Map<string, Array<string>>,
-  lastUpdated?: number,
   transfers?: Record<string, Array<TransferModel>>,
   error?: string,
   syntheticData?: boolean, //(if true, can't use T100 and conf sub-filters)
@@ -1109,12 +1108,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       }, timeout);
     }
   };
-
-  const confsWithTeams = dataEvent?.confMap ?
-    _.toPairs(dataEvent?.confMap || {}).map(kv => {
-      const teams = kv[1] || [];
-      return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
-    }) : (dataEvent?.confs || []);
 
   return <Container>
     <LoadingOverlay

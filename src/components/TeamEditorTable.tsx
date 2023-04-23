@@ -1252,7 +1252,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
               players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
               confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
               transfers: _.last(jsonsIn) as Record<string, Array<TransferModel>>,
-              lastUpdated: 0 //TODO use max?
             });
           });
         } else {

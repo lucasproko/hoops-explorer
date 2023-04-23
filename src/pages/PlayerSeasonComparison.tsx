@@ -166,9 +166,9 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
         setDataEvent({ [year]: {
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+          lastUpdated: _.chain(jsons).map(d => d.lastUpdated).max().value(),
           teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(), 
           transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
-          lastUpdated: 0 //TODO use max?
         }});
       });
     }
@@ -215,7 +215,9 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
     <Row className="mt-3">
       {table}
     </Row>
-    <Footer year={year} gender={gender} server={server}/>
+    <Footer dateOverride={
+      _.chain(dataEvent).values().map(d => d.lastUpdated).max().value()
+    } year={year} gender={gender} server={server}/>
   </Container>;
 }
 export default PlayerSeasonComparison;

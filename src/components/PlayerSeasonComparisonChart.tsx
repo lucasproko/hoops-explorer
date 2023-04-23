@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Lodash:
-import _, { isNumber, some } from "lodash";
+import _, { isNumber, some, values } from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -869,10 +869,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             }).filter(p => {
                return _.isEmpty(toggledPlayers) ? true : toggledPlayers[p?.code || "??"];
             }),
-            confs: dataEvent[year]?.confs,
-            confMap: dataEvent[year]?.confMap,
-            lastUpdated: dataEvent[year].lastUpdated,
-            error: dataEvent[year]?.error,
+            confs: _.chain(dataEvent).values().flatMap(d => d.confs || []).uniq().value(),
+            //(don't need confMap because the conference selector isn't shown, it's just inherited)
+            error: _.chain(dataEvent).values().flatMap(d => d.error ? [ d.error ] : []).value().join("/"), 
             transfers: undefined, //TODO dataEvent.transfers starts with the _prev_ year, we don't currently collect this year
                //TODO: need to get another transfer as well
             syntheticData: true
@@ -1044,8 +1043,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
                   (year < DateUtils.yearFromWhichAllMenD1Imported) ? `All High Tier Teams` : `All Teams`
                }
                confStr={confs}
-               confMap={dataEvent[year]?.confMap}
-               confs={dataEvent[year]?.confs}
+               confs={_.chain(dataEvent).values().flatMap(d => d.confs || []).uniq().value()}
                onChangeConf={confStr => friendlyChange(() => setConfs(confStr), confs != confStr)}
             />
          </Col>

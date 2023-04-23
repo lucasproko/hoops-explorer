@@ -149,11 +149,11 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
 
       fetchAll.then((jsonsIn: any[]) => {
         const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
+
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<string, Array<TransferModel>>,
-          lastUpdated: 0 //TODO use max?
         });
       })
     } else {
@@ -162,7 +162,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({testMode}) => {
         setCurrYear(fullYear);
         setCurrGender(gender)
         setCurrTier(tier);
-        setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
+        setDataSubEvent({ players: [], confs: [] }); //(set the spinner off)
 
         LeaderboardUtils.getSingleYearPlayerLboards(
           dataSubEventKey, gender, fullYear, tier
