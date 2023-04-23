@@ -551,7 +551,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "SaVescovi::" ]),
             },
             "Texas": {
-               superSeniorsReturning: new Set([ "BrCunningham::" ]),
+               superSeniorsReturning: new Set([ "BrCunningham::", "DyDisu::" ]),
             },
             "Toledo": {
                superSeniorsReturning: new Set([ "RaDennis::" ]),
