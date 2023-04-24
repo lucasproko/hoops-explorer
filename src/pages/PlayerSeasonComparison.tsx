@@ -28,12 +28,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from 'next/head';
 import { LeaderboardUtils, TransferModel } from '../utils/LeaderboardUtils';
 import { DateUtils } from '../utils/DateUtils';
-import PlayerSeasonComparisonChart from '../components/PlayerSeasonComparisonChart';
-
-// Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparisonChart)
-const supportedYears = [ "2021/22", "2022/23" ];
-const allPortalYears = "2021+";
-
+import PlayerSeasonComparisonChart, { multiYearScenarios } from '../components/PlayerSeasonComparisonChart';
 
 type Props = {
   testMode?: boolean //works around SSR issues, see below
@@ -134,42 +129,54 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear =  (paramObj.year || DateUtils.offseasonYear);
-    const prevYear = DateUtils.getPrevYear(fullYear)
-    const tier = "All";
 
-    const transferYear = fullYear.substring(0, 4);
-    const transferYearPrev = prevYear.substring(0, 4);
-
-    const yearWithStats = prevYear; 
-    const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
-    const transferYears = [ transferYear, transferYearPrev ];
-
-    
     if ((fullYear != currYear) || (gender != currGender)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
+      const tier = "All"; //(changing tier unsupported)
 
-      const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, yearWithStats, tier, transferYears, 
-        [ fullYear, prevYearWithStats ]
-      );
-      const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
-        gender, yearWithStats, tier, [ fullYear ]
-      );
-      const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
+      const yearsToDo = multiYearScenarios[fullYear] || [ fullYear ];
 
-      fetchAll.then((playersTeams: [ any[], any[] ]) => {
-        const jsonsIn = playersTeams[0];
-        const teamsIn = playersTeams[1];
-        const jsons = _.dropRight(jsonsIn, _.size(transferYears));
+      const { fetchAllPromise } = _.transform(yearsToDo, (acc, yearToDo) => {
 
-        setDataEvent({ [year]: {
-          players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
-          confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
-          lastUpdated: _.chain(jsons).map(d => d.lastUpdated).max().value(),
-          teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(), 
-          transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
-        }});
+        const prevYear = DateUtils.getPrevYear(yearToDo)
+
+        const transferYear = yearToDo.substring(0, 4);
+        const transferYearPrev = prevYear.substring(0, 4);
+  
+        const yearWithStats = prevYear; 
+        const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
+        const transferYears = [ transferYear, transferYearPrev ];
+
+        const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
+          "all", gender, yearWithStats, tier, transferYears, 
+          [ yearToDo, prevYearWithStats ]
+        );
+        const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
+          gender, yearWithStats, tier, [ yearToDo ]
+        );
+        acc.fetchAllPromise = acc.fetchAllPromise.concat([ fetchPlayers, fetchTeamStats ]);
+      }, { fetchAllPromise: [] as Promise<any[]>[] });
+
+      const fetchAllYears = Promise.all(fetchAllPromise);
+      fetchAllYears.then((playersTeamPairs: any[][]) => {
+        const dataEventToPublish: Record<string, TeamEditorStatsModel> = _.chain(playersTeamPairs).chunk(2).map((chunkedFetch, yearIndex) => {
+          const yearToDo = yearsToDo[yearIndex]!; //(exists by construction)
+          const jsonsIn = chunkedFetch[0] || [];
+          const teamsIn = chunkedFetch[1] || [];
+          const jsons = _.dropRight(jsonsIn, 2); //(2 years' of transfers, see transferYears above)
+  
+          const dataSubEvent: TeamEditorStatsModel = {
+            players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
+            confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
+            lastUpdated: _.chain(jsons).map(d => d.lastUpdated).max().value(),
+            teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(), 
+            transfers: _.drop(jsonsIn, _.size(jsons)) as Record<string, Array<TransferModel>>[],
+          };
+
+          return [ yearToDo, dataSubEvent ];
+        }).fromPairs().value();
+        setDataEvent(dataEventToPublish);
       });
     }
   }, [ playerSeasonComparisonParams ]);

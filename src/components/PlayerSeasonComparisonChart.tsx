@@ -147,9 +147,11 @@ export const overallPlayerChartPresets = [
    }],
 ] as Array<[string, PlayerSeasonComparisonParams]>;
 
-// Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparison)
+/** Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparison) */
 const supportedYears = [ "2021/22", "2022/23" ];
-const allPortalYears = "2021+";
+export const multiYearScenarios = {
+   "2021+": supportedYears
+} as Record<string, string[]>;
 
 const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
    const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
@@ -555,7 +557,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       // Team stats generation business logic:
 
-      const yearsToProcess = (year == allPortalYears) ? supportedYears : [ year ];
+      const yearsToProcess = multiYearScenarios[year] || [ year ];
 
       const { teamRanks } = _.transform(yearsToProcess, (acc, thisYear) => {
          const yearWithStats = DateUtils.getPrevYear(thisYear);
@@ -1029,7 +1031,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
                value={stringToOption(year)}
-               options={supportedYears.concat([/*allPortalYears*/]).map(stringToOption)}
+               options={supportedYears.concat(/*_.keys(multiYearScenarios)*/).map(stringToOption)}
                isSearchable={false}
                onChange={(option) => { if ((option as any)?.value) {
                   setYear((option as any)?.value);
