@@ -704,7 +704,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         :
         <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
           <a target="_blank" style={{wordWrap: "normal"}} href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>
-            {firstRowForPlayer ? player.key : `${_.split(player.key, ",")[0]} ${player.year.substring(2, 4)}+`}
+            {firstRowForPlayer ? player.key : `${_.split(player.key, ",")[0]}${
+              isMultiYr ? `` : `${player.year.substring(2, 4)}`
+            }`}
           </a>
         </OverlayTrigger>;
 

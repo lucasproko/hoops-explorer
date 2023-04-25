@@ -422,6 +422,9 @@ export class TeamEditorManualFixes {
             "Eastern Ky.": {
                superSeniorsReturning: new Set([ "IsCozart::" ]),
             },
+            "Fairfield": {
+               superSeniorsReturning: new Set([ "CaFields::" ]),
+            },
             "George Washington": {
                superSeniorsReturning: new Set([ "JaBishop::" ]),
             },
@@ -436,6 +439,9 @@ export class TeamEditorManualFixes {
             },
             "Indiana": {
                superSeniorsReturning: new Set([ "XaJohnson::" ]),
+            },
+            "Iona": {
+               superSeniorsReturning: new Set([ "OsShema::" ]),
             },
             "Iowa St.": {
                superSeniorsReturning: new Set([ "RoJones::", "HaWard::", "TrKing::" ]),
@@ -505,6 +511,9 @@ export class TeamEditorManualFixes {
             "Oregon": {
                superSeniorsReturning: new Set([ "JeCouisnard::", "N'Dante::" ]),
             },
+            "Quinnipiac": {
+               superSeniorsReturning: new Set([ "SaLewis::", "MaBalanc::" ]),
+            },
             "Richmond": {
                superSeniorsReturning: new Set([ "NeQuinn::" ]),
             },
@@ -546,6 +555,9 @@ export class TeamEditorManualFixes {
             },
             "Stonehill": {
                superSeniorsReturning: new Set([ "MaZegarowski::" ]),
+            },
+            "TCU": {
+               superSeniorsReturning: new Set([ "ChO'bannon::" ]),
             },
             "Tennessee": {
                superSeniorsReturning: new Set([ "SaVescovi::" ]),

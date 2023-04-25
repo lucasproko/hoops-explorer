@@ -550,8 +550,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
       //TODO Some ideas here:
       // 1] For un-ranked Fr give them 2*/3*/3*+ expectations (ie if actualResults exists but no orig)
       // 2] Allow a 23/24 season just showing the predictions
-      // 3] Allow a multiple year - create multiple 2-year groups and call buildAllTeamStats repeatedly, then cat the
-      //    triples together with a year string which the logic will handle
       // 4] (here and in PlayerLeaderboardTable, always enrich currently with transfer info once it exists)
       // 5] Copy to clipboard
 
@@ -559,19 +557,18 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       const yearsToProcess = multiYearScenarios[year] || [ year ];
 
-      const { teamRanks } = _.transform(yearsToProcess, (acc, thisYear) => {
+      const { teamRanks } = _.chain(yearsToProcess).filter(y => !_.isNil(dataEvent[y])).transform((acc, thisYear) => {
          const yearWithStats = DateUtils.getPrevYear(thisYear);
 
          const avgEff = efficiencyAverages[`${gender}_${yearWithStats}`] || efficiencyAverages.fallback;
          //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
-
 
          const {
             derivedDivisionStats, teamRanks: teamRanksPerYear,
             numTeams, 
             netEffToRankMap, actualNetEffToRankMap, offEffToRankMap, defEffToRankMap
          } = OffseasonLeaderboardUtils.buildAllTeamStats(
-            dataEvent[year], {
+            dataEvent[thisYear], {
                confs, year: thisYear, gender,
                sortBy: "", 
                evalMode: true,
@@ -581,7 +578,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          );   
          acc.teamRanks = acc.teamRanks.concat(teamRanksPerYear);
 
-      }, { teamRanks: [] as OffseasonTeamInfo[] });
+      }, { teamRanks: [] as OffseasonTeamInfo[] }).value();
 
       const extractTitle = (fieldDef: string) => {
          const decomp = decompAxis(fieldDef);
@@ -859,7 +856,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
             ...startingState,
             includePrevYear: showPrevNextInTable,
             sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
-            year: year,
+            year: multiYearScenarios[year] ? DateUtils.AllYears : year,
             tier: "All"
          }}
          dataEvent={{
@@ -1031,11 +1028,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
          <Col xs={6} sm={6} md={3} lg={2} style={{zIndex: 11}}>
             <Select
                value={stringToOption(year)}
-               options={supportedYears.concat(/*_.keys(multiYearScenarios)*/).map(stringToOption)}
+               options={supportedYears.concat(_.keys(multiYearScenarios)).map(stringToOption)}
                isSearchable={false}
-               onChange={(option) => { if ((option as any)?.value) {
-                  setYear((option as any)?.value);
-               }}}
+               onChange={(option) => { 
+                  const maybeYear = (option as any)?.value;
+                  if (maybeYear) {
+                     friendlyChange(() => setYear(maybeYear), maybeYear != year);
+                  }
+               }}
             />
          </Col>
          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />

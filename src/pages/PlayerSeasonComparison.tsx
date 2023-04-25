@@ -176,6 +176,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({testMode}) => {
 
           return [ yearToDo, dataSubEvent ];
         }).fromPairs().value();
+
         setDataEvent(dataEventToPublish);
       });
     }
