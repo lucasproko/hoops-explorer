@@ -521,7 +521,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AlPowell::" ]),
             },
             "Rutgers": {
-               superSeniorsReturning: new Set([ "CaSpencer::" ]),
+               superSeniorsReturning: new Set([ "CaSpencer::", "AuHyatt::" ]),
             },
             "Sacred Heart": {
                superSeniorsReturning: new Set([ "JoReilly::", "RaSoloman::", "BrMcguire::" ]),
