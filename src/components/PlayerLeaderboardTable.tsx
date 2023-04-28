@@ -217,11 +217,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // Data source
   const [ confs, setConfs ] = useState(startingState.conf || "");
-  const [ year, setYear ] = useState(startingState.year || DateUtils.mostRecentYearWithLboardData);
-  const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
+  const [ yearUnreliable, setYear ] = useState(startingState.year || DateUtils.mostRecentYearWithLboardData);
+  const year = startingState.year || DateUtils.mostRecentYearWithLboardData; 
+    //(changing year changes data which triggers a reload of this page, so startingState is always right ...
+    // whereas conversely if year is changed programmatically from outside the page, yearUnreliable won't change)
+  const [ genderUnreliable, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
+  const gender = startingState.gender || ParamDefaults.defaultGender;
+    //(see year/yearUnreliable, this is the same thing)
+
+  // (use startingState.year because this can be set programmatically from parents)
   const isMultiYr = teamEditorMode
     ? (startingState.year == DateUtils.AllYears)
-    : (year == DateUtils.ExtraYears) || (year == DateUtils.AllYears);
+    : ((startingState.year == DateUtils.ExtraYears) || (startingState.year == DateUtils.AllYears));
 
   const [ tier, setTier ] = useState(startingState.tier || ParamDefaults.defaultTier);
 
@@ -376,7 +383,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
-      conf: confs, gender: gender, year: year, tier: tier,
+      // These 2 can be changed by parents, in which case they can't be changed from this page
+      gender: dataEvent.syntheticData ? startingState.gender : genderUnreliable, 
+      year: dataEvent.syntheticData ? startingState.year : yearUnreliable, 
+      // Normal params
+      conf: confs, 
+      tier: tier,
       t100: isT100, confOnly: isConfOnly,
       // Player filters/settings:
       posClasses: posClasses,
@@ -399,7 +411,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       showInfoSubHeader,
       useRapm, showGrades,
       posClasses,
-      confs, year, gender, tier ]);
+      confs, yearUnreliable, genderUnreliable, tier ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
   const [ divisionStatsCache, setDivisionStatsCache ] = useState<Record<string, DivisionStatsCache>>({});
@@ -705,7 +717,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
           <a target="_blank" style={{wordWrap: "normal"}} href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}>
             {firstRowForPlayer ? player.key : `${_.split(player.key, ",")[0]}${
-              isMultiYr ? `` : `${player.year.substring(2, 4)}`
+              isMultiYr ? `` : ` '${player.year.substring(2, 4)}`
             }`}
           </a>
         </OverlayTrigger>;
@@ -1121,7 +1133,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2}>
           <Select
-            value={ stringToOption(gender) }
+            value={ stringToOption(genderUnreliable) }
             options={[ "Men", "Women" ].map(
               (gender) => stringToOption(gender)
             )}
@@ -1136,7 +1148,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </Col>
         <Col xs={6} sm={6} md={3} lg={2}>
           <Select
-            value={ stringToOption(year) }
+            value={ stringToOption(yearUnreliable) }
             options={DateUtils.lboardYearList(tier).map(r => stringToOption(r))}
             isSearchable={false}
             onChange={(option) => { 

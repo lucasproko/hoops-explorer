@@ -882,7 +882,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({startingSt
 
       return [ chartToReturn, playerLeaderboardToReturn ];
    }, [
-      gender, year, confs, dataEvent, queryFilters, height, 
+      confs, dataEvent, queryFilters, height, 
       datasetFilterStr, highlightFilterStr, xAxis, yAxis, dotSize, dotColor, dotColorMap, labelStrategy,
       screenHeight, screenWidth, toggledPlayers, showPrevNextInTable
    ]);
