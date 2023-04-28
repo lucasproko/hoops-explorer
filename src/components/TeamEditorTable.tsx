@@ -1216,7 +1216,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         transferMode: (onlyTransfers && !nextYearBeforePortalIsActive) ?
           ((yearWithStats == DateUtils.offseasonYear) ? "true" : DateUtils.getOffseasonOfYear(yearWithStats)) : undefined,
           //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
-        year: onlyThisYear ? startingState.year : "All",
+        year: onlyThisYear ? yearWithStats : "All",
         tier: "All"
       }}
       dataEvent={reloadData ?
