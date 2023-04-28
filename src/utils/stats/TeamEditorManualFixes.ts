@@ -481,14 +481,20 @@ export class TeamEditorManualFixes {
             "Mississippi St.": {
                superSeniorsReturning: new Set([ "DaDavis::", "DjJeffries::", "WiMcnair::" ]),
             },
+            "Michigan": {
+               superSeniorsReturning: new Set([ "JaLlewellyn::" ]),
+            },
             "Michigan St.": {
                superSeniorsReturning: new Set([ "StIzzo::", "TyWalker::", "MaHall::" ]),
             },
             "Montana": {
                superSeniorsReturning: new Set([ "AaMoody::" ]),
             },
+            "Mount St. Mary's": {
+               superSeniorsReturning: new Set([ "GeTinsley::" ]),
+            },
             "Nevada": {
-               superSeniorsReturning: new Set([ "KeBlackshear::" ]),
+               superSeniorsReturning: new Set([ "KeBlackshear::", "JaLucas::" ]),
             },
             "New Mexico": {
                superSeniorsReturning: new Set([ "JaHouse::" ]),
@@ -534,6 +540,9 @@ export class TeamEditorManualFixes {
             },
             "Saint Mary's (CA)": {
                superSeniorsReturning: new Set([ "AlDucas::" ]),
+            },
+            "Saint Peters's": {
+               superSeniorsReturning: new Set([ "LaReid::", "KyCardaci::" ]),
             },
             "San Diego St.": {
                superSeniorsReturning: new Set([ "JaLedee::", "DaTrammell::" ]),
