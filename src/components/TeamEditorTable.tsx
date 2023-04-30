@@ -136,6 +136,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   const usePreseasonRanks = 
     offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${year}`];
 
+  const useLastSeasonAndPreseasonRanks = 
+    offSeasonMode && DateUtils.usePreseasonAndLastSeason[`${gender}_${year}`];
+
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : yearWithStats, gender);
 
@@ -175,6 +178,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
   // (Grade builder)
   const [ divisionStatsCache, setDivisionStatsCache ] = useState({} as DivisionStatsCache);
+  const [ preSeasonDivisionStats, setPreSeasonDivisionStats ] = useState<DivisionStatistics | undefined>(overrideGrades);
   
   // Misc display
 
@@ -299,9 +303,22 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+    if (!_.isEmpty(preSeasonDivisionStats)) setPreSeasonDivisionStats(undefined); //unset if set
+
     GradeTableUtils.populateTeamDivisionStatsCache(params, statsCache => {
       setDivisionStatsCache(statsCache);
     }, usePreseasonRanks ? "Preseason" : undefined);
+
+    if (useLastSeasonAndPreseasonRanks && !usePreseasonRanks) { // Also go fetch pre-season grades
+      const preSeasonParams = {
+        ...startingState, gender, year
+      };
+
+      GradeTableUtils.populateTeamDivisionStatsCache(preSeasonParams, statsCache => {
+        setPreSeasonDivisionStats(statsCache.Combo)
+      }, "Preseason");  
+    }
+
   }, [ year, gender, evalMode, offSeasonMode ]);
 
   /////////////////////////////////////
@@ -856,12 +873,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const teamGradesBad = currOrPrevSeasonGrades ?
         GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
-      const teamGradesOkNextYear = overrideGrades ? 
-        GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
-      const teamGradesGoodNextYear = overrideGrades ? 
-        GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
-      const teamGradesBadNextYear = overrideGrades ? 
-        GradeUtils.buildTeamPercentiles(overrideGrades, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesOkNextYear = preSeasonDivisionStats ? 
+        GradeUtils.buildTeamPercentiles(preSeasonDivisionStats, dummyTeamOk, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesGoodNextYear = preSeasonDivisionStats ? 
+        GradeUtils.buildTeamPercentiles(preSeasonDivisionStats, dummyTeamGood, [ "net", "adj_ppp" ], true) : {};
+      const teamGradesBadNextYear = preSeasonDivisionStats ? 
+        GradeUtils.buildTeamPercentiles(preSeasonDivisionStats, dummyTeamBad, [ "net", "adj_ppp" ], true) : {};
 
       // Use measured team efficiency if it exists, else fallback to legacy (calculate from sum of qualifying players)
 
@@ -950,7 +967,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_off: offSeasonMode ? dummyTeamBad.off_adj_ppp : undefined,
         bad_def: offSeasonMode ? dummyTeamBad.def_adj_ppp : undefined,
       };
-      const teamProjectedGradesRowData = (filteredPlayerSet && overrideGrades) ? {
+      const teamProjectedGradesRowData = (filteredPlayerSet && preSeasonDivisionStats) ? {
         title: <b>Team Grades (projected)</b>,
         ok_net: teamGradesOkNextYear.off_net,
         ok_off: teamGradesOkNextYear.off_adj_ppp,

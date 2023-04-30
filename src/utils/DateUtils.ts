@@ -31,6 +31,12 @@ export class DateUtils {
    /** Use pre-season rankings instead of previous season's rankings - do once the pre-season ranks settle down (1st June?) */
    static readonly hasPreseasonRankings: Record<string, boolean> = {
       "Men_2022/23": true,
+      "Men_2023/24": false, //(see usePreseasonAndLastSeason)
+   };
+
+   /** Start showing both pre-season and prev-season - do once the pre-season ranks start to settle down (1st May?) */
+   static readonly usePreseasonAndLastSeason: Record<string, boolean> = {
+      "Men_2023/24": true,
    };
 
    /** The first year for which we had bulk date (ie not just hand-picked) */
