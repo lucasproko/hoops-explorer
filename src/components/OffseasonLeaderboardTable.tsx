@@ -258,15 +258,26 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          },
          teamOverrides, rostersPerTeam, avgEff,
       );
+      //TODO BUG: if you call this multiple times - even with deep cloned inputs - you get a slightly different answer
+      // 2nd+ times than 1st time. So somewhere there must be a mutable global (!!) getting changed.
 
       //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json) 
       //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)
       if (logDivisionStatsToConsole && server == "localhost") {
          console.log(JSON.stringify(derivedDivisionStats));
       }
-      if (logDivisionStatsToFile) {
-         console.log(`BUILD FILE HERE`);
-         //console.log(JSON.stringify(derivedDivisionStats));
+      if (typeof window === `undefined`) { //(since require('fs) needs to appear only in server side code)
+         if (logDivisionStatsToFile) {
+            console.log(`(BUILDING [./stats_all_Men_${year.substring(0, 4)}_Preseason.json] )`);
+
+            const fs = require('fs');
+            fs.writeFileSync(
+               `./stats_all_Men_${year.substring(0, 4)}_Preseason.json`, 
+               JSON.stringify(derivedDivisionStats)
+            );
+
+            //console.log(JSON.stringify(derivedDivisionStats));
+         }
       }
 
       const confFilter = (t: {team: string, conf: string}) => {
