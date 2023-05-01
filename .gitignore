@@ -12,6 +12,7 @@
 .DS_Store
 npm-debug.log*
 coverage
+transfers_*.json
 
 .vercel
 .metals

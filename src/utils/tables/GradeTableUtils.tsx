@@ -152,7 +152,11 @@ export class GradeTableUtils {
       const maybePosInfix = posOverride ? `pos${posOverride}_` : "";
       const getUrl = (inGender: string, inYear: string, inTier: string) => {
          const subYear = inYear.substring(0, 4);
-         if ((tierOverride != "Preseason") && DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
+
+         const isPreseason = (tierOverride == "Preseason") && (inYear > DateUtils.mostRecentYearWithData);
+            //(during the current off-season, BUT NOT after the next season starts - get Preseason from dynamic storage)
+
+         if (isPreseason || DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
             return `/api/getStats?&gender=${inGender}&year=${subYear}&tier=${inTier}&type=${type}${maybePosParam}`;
          } else { //archived (+ preseason - this requires manual intervention anyway so might as well store locally)
             return `/leaderboards/lineups/stats_${urlInfix}${maybePosInfix}all_${inGender}_${subYear}_${inTier}.json`;

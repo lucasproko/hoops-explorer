@@ -56,6 +56,7 @@ type Props = {
 
 /** Set to true to rebuild public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json */
 const logDivisionStatsToConsole = false;
+const logDivisionStatsToFile = process.env.BUILD_OFFSEASON_STATS_LEADERBOARD == "true";
 
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
@@ -262,6 +263,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
       //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)
       if (logDivisionStatsToConsole && server == "localhost") {
          console.log(JSON.stringify(derivedDivisionStats));
+      }
+      if (logDivisionStatsToFile) {
+         console.log(`BUILD FILE HERE`);
+         //console.log(JSON.stringify(derivedDivisionStats));
       }
 
       const confFilter = (t: {team: string, conf: string}) => {
