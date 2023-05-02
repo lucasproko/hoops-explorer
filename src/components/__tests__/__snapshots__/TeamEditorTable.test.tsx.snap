@@ -5557,7 +5557,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -10832,7 +10832,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -17051,7 +17051,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -23476,7 +23476,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -29858,7 +29858,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -35749,7 +35749,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "superSeniorsBack": true,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "2020/21",
                 }
               }
@@ -40280,7 +40280,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "superSeniorsBack": true,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "2020/21",
                 }
               }
@@ -44481,7 +44481,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -47823,7 +47823,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "superSeniorsBack": false,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "All",
                 }
               }
@@ -50080,7 +50080,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
                   "superSeniorsBack": true,
                   "team": "Maryland",
                   "tier": "All",
-                  "transferMode": undefined,
+                  "transferMode": ":predictions",
                   "year": "2020/21",
                 }
               }
