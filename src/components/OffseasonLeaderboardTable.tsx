@@ -258,8 +258,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({startingStat
          },
          teamOverrides, rostersPerTeam, avgEff,
       );
-      //TODO BUG: if you call this multiple times - even with deep cloned inputs - you get a slightly different answer
-      // 2nd+ times than 1st time. So somewhere there must be a mutable global (!!) getting changed.
 
       //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json) 
       //(note this gets printed out multiple times - ignore all but the last time, it doesn't have all the data yet)

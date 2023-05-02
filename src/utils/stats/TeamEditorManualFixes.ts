@@ -108,7 +108,9 @@ export class TeamEditorManualFixes {
    };
 
    static readonly fixes: (genderYear: string) => Record<string, TeamEditorManualFixModel> = _.memoize((genderYear: string) => {
-      const mutableToRet = TeamEditorManualFixes.getFreshmenForYear(genderYear);  
+      const mutableToRet = _.cloneDeep(TeamEditorManualFixes.getFreshmenForYear(genderYear));  
+         //(this gets mutated but of course we don't want to mutate the source data)
+         
       if (genderYear == "Men_2018/9") { //offseason of 18/19 ie team for 19/20
          const manualOverrides_Men_2019_20: Record<string, TeamEditorManualFixModel> = {
             "Maryland": {

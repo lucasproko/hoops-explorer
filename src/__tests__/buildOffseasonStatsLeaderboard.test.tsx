@@ -66,20 +66,6 @@ describe("buildOffseasonStatsLeaderboards", () => {
                onChangeState={dummyChangeStateCallback}
             />
          );
-         //TODO BUG: haven't been able to track where but there is some mutable state
-         // somewhere in the OffSeasonLeaderboardTable logic, 2nd+ times through you get
-         // a different answer than 1st time
-         console.log(`Running a 2nd time for consistency with the web-based version`);
-         shallow(
-            <OffSeasonLeaderboardTable
-               startingState={{
-                  //(all defaults, except:)
-                  year: DateUtils.offseasonPredictionYear, 
-               } as OffseasonLeaderboardParams}
-               dataEvent={twoYears}
-               onChangeState={dummyChangeStateCallback}
-            />
-         );
          //(no expectations, but the Preseason stats file is now [./stats_all_Men_${year.substring(0, 4)}_Preseason.json]])
       });
    } else {
