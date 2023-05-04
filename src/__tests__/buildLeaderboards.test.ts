@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import _ from "lodash";
 
-import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, teamInfo, mutableDivisionStats, mutablePlayerDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
+import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, savedLowVolumePlayers, teamInfo, mutableDivisionStats, mutablePlayerDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
 
 import { sampleLineupStatsResponse } from "../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../sample-data/sampleTeamStatsResponse";
@@ -62,6 +62,13 @@ describe("buildLeaderboards", () => {
 
     expect(completeLineupLeaderboard("test", savedLineups, 300)).toMatchSnapshot();
     expect(completeLineupLeaderboard("test", savedLineups, 1)).toMatchSnapshot();
+  });
+  test("buildLeaderboards - main / low volume players", async () => {
+
+    // (only works if run after test above)
+
+    //(TODO actually this is just [] at the moment :( but in the future maybe will add some more players that match this)
+    expect(completePlayerLeaderboard("lowvol", savedLowVolumePlayers, 700)).toMatchSnapshot();
   });
   test("buildLeaderboards - main / team stats", async () => {
 

@@ -106,6 +106,9 @@ export const savedPlayers = [] as Array<any>;
 const savedConfOnlyPlayers = [] as Array<any>;
 const savedT100Players = [] as Array<any>;
 
+/** Exported for test only - this is to improve predictions a bit */
+export const savedLowVolumePlayers = [] as Array<any>;
+
 /** Exported for test only */
 export const teamInfo = [] as Array<TeamInfo>;
 var bubbleOffenseInfo: number[] = [];
@@ -567,9 +570,11 @@ export async function main() {
       );
 
       // Merge ratings and position, and filter based on offensive possessions played
-      const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
-
-        const minThreshold = 0.25;
+      const enrichAndFilter = (playerMap: Record<string, IndivStatSet>, cutdownLowVolume: boolean) => 
+        _.toPairs(playerMap).filter(kv => 
+      {
+        const minThreshold = cutdownLowVolume ? 0.125 : 0.25;
+        const maxThreshold = cutdownLowVolume ? 0.25 : 2.0; //(10 is effectively infinity)
 
         const player = kv[1];
 
@@ -591,7 +596,7 @@ export async function main() {
         const secondaryFilter = 
           !DateUtils.isSeasonFinished(teamYear) || (playerPoss > minThreshold*averagePossInCompletedYear*extraPossFactor);
 
-        return secondaryFilter && (playerPossPct > minThreshold); //(>10mpg)
+        return secondaryFilter && (playerPossPct > minThreshold) && (playerPossPct < maxThreshold); //(>10mpg)
       }).map((kv: [PlayerId, IndivStatSet]) => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         const player = kv[1];
@@ -645,8 +650,17 @@ export async function main() {
           team: team,
           year: teamYear,
           ...posInfo,
-          posFreqs,
-          ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
+          posFreqs,         
+          ...(cutdownLowVolume ? _.chain(kv[1]).pick([ // much smaller subset of fields, to keep the size down
+            "off_team_poss_pct", "def_team_poss_pct",
+            "off_rtg", "off_usage", "def_orb", "off_adj_rtg", "def_adj_rtg", "roster"
+          ]).mapValues(p => {
+            if ((p as Statistic)?.override) (p as Statistic).override = undefined;
+            if ((p as Statistic)?.old_value) (p as Statistic).old_value = undefined;
+            return p;
+          }).value() 
+            :
+            (_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
               (
                 (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||
                 (t2[0] == "def_team_poss") || (t2[0] == "def_team_poss_pct")
@@ -663,9 +677,13 @@ export async function main() {
                 (t2[0] != "player_array") && (t2[0] != "roster")
               )
             ).fromPairs().value()
-          )
+          ))
         } as IndivStatSet;
       });
+
+      const enrichedAndFilteredPlayers = enrichAndFilter(baselinePlayerInfo, false);
+      // In "all" mode (ie for predictions) we keep a list of players with fewer minutes but who are still noteworthy
+      const cutdownEnrichedPlayers = (label == "all") ? enrichAndFilter(baselinePlayerInfo, true) : [];
 
       const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
         sortedLineups,
@@ -684,67 +702,94 @@ export async function main() {
         const enrichedAndFilteredPlayersMap = _.fromPairs(
           enrichedAndFilteredPlayers.map(p => [ p.key, p ])
         );
+        const cutdownEnrichedPlayersMap = _.fromPairs(
+          cutdownEnrichedPlayers.map(p => [ p.key, p ])
+        );
         (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
-          const player = enrichedAndFilteredPlayersMap[rapmP.playerId] as Record<string, any>;
+          const player = (
+            enrichedAndFilteredPlayersMap[rapmP.playerId] || cutdownEnrichedPlayersMap[rapmP.playerId]
+          ) as Record<string, any>;
+
           // RAPM (rating + productions)
           if (player && rapmP.rapm) {
-            if (injectAllRapmForNbaFolks) {
+            player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
+            player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
+
+            const cutdownMode = _.isNil(enrichedAndFilteredPlayersMap[rapmP.playerId]);
+
+            if (injectAllRapmForNbaFolks && !cutdownMode) {
               player.rapm = rapmP.rapm;
             }
-            player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
-            player.off_adj_rapm_prod = {
-              value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
-            };
-            player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
-            if (player.def_adj_rapm && player.def_adj_rtg?.extraInfo) {
-              player.def_adj_rapm.extraInfo = player.def_adj_rtg?.extraInfo; //(on-ball defense context, def_adj_rtg is a prior for RAPM)
-            }
-            player.def_adj_rapm_prod = {
-              value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
-              old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
-              override: rapmP.rapm?.def_adj_ppp?.override,
-              extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
-            };
-            const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod" ], k => [ `off_${k}`, `def_${k}` ]);
-            const otherRapmFields = [ "off_adj_rapm_margin", "off_adj_rapm_prod_margin" ];
-            if ("all" == label) {
-              GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
-              const otherRapmValues = {
-                off_team_poss_pct: { value: player.off_team_poss_pct?.value || 0 },
-                off_adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
-                off_adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
-              }
-              GradeUtils.buildAndInjectPlayerDivisionStats(otherRapmValues, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
 
-              // Again, per position grouping:
-              (PositionUtils.positionsToGroup[player.posClass] || []).forEach(posGroup => {
-                const mutablePosGroupDivStats = mutablePlayerDivisionStats_byPosGroup[posGroup];
-                if (mutablePosGroupDivStats) {
-                  GradeUtils.buildAndInjectPlayerDivisionStats(
-                    player, mutablePosGroupDivStats, inNaturalTier, rapmFields
-                  );    
-                  GradeUtils.buildAndInjectPlayerDivisionStats(
-                    otherRapmValues, mutablePosGroupDivStats, inNaturalTier, otherRapmFields
-                  );    
-                }
-              });                  
-            }
-    
-            // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
-            [ "off_adj_rapm", "off_adj_rapm_prod" ].forEach(field => {
-              const maybeRapm = player[field];
-              if (!DateUtils.lineupsHavePlayerShotInfo(genderYearLookup)) {
-                if (maybeRapm?.old_value) {
-                  maybeRapm.value = maybeRapm.old_value;
-                  delete maybeRapm.override;
-                }
-              } else if (maybeRapm?.override) { // Improve wording of luck override if we're keeping it
-                maybeRapm.override = "Adjusted from per-lineup 3P% luck adjustments"
+            if (cutdownMode) { //(cutdown mode, pare down RAPM still further)
+              if (player.off_adj_rapm) {
+                (player.off_adj_rapm as Statistic).old_value = undefined;
+                (player.off_adj_rapm as Statistic).override = undefined;
               }
-            });
+              if (player.def_adj_rapm) {
+                (player.def_adj_rapm as Statistic).old_value = undefined;
+                (player.def_adj_rapm as Statistic).override = undefined;
+              }
+            } else { //(normal mode, bunch of other stats)
+              player.off_adj_rapm_prod = {
+                value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
+              };
+              if (player.def_adj_rapm && player.def_adj_rtg?.extraInfo) {
+                player.def_adj_rapm.extraInfo = player.def_adj_rtg?.extraInfo; //(on-ball defense context, def_adj_rtg is a prior for RAPM)
+              }
+              player.def_adj_rapm_prod = {
+                value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
+                old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
+                override: rapmP.rapm?.def_adj_ppp?.override,
+                extraInfo: player.def_adj_prod?.extraInfo //(on-ball defense context, def_adj_rtg is a prior for RAPM)
+              };
+              const rapmFields = _.flatMap([ "adj_rapm", "adj_rapm_prod" ], k => [ `off_${k}`, `def_${k}` ]);
+              const otherRapmFields = [ "off_adj_rapm_margin", "off_adj_rapm_prod_margin" ];
+              if ("all" == label) {
+                GradeUtils.buildAndInjectPlayerDivisionStats(player, mutablePlayerDivisionStats, inNaturalTier, rapmFields);
+                const otherRapmValues = {
+                  off_team_poss_pct: { value: player.off_team_poss_pct?.value || 0 },
+                  off_adj_rapm_margin: { value: (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0) },
+                  off_adj_rapm_prod_margin: { value: (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) },
+                }
+                GradeUtils.buildAndInjectPlayerDivisionStats(otherRapmValues, mutablePlayerDivisionStats, inNaturalTier, otherRapmFields);
+
+                // Again, per position grouping:
+                (PositionUtils.positionsToGroup[player.posClass] || []).forEach(posGroup => {
+                  const mutablePosGroupDivStats = mutablePlayerDivisionStats_byPosGroup[posGroup];
+                  if (mutablePosGroupDivStats) {
+                    GradeUtils.buildAndInjectPlayerDivisionStats(
+                      player, mutablePosGroupDivStats, inNaturalTier, rapmFields
+                    );    
+                    GradeUtils.buildAndInjectPlayerDivisionStats(
+                      otherRapmValues, mutablePosGroupDivStats, inNaturalTier, otherRapmFields
+                    );    
+                  }
+                });                  
+              }
+      
+              // For Off RAPM, we copy the non-luck version across, except when we are using it to regress the lineups:
+              [ "off_adj_rapm", "off_adj_rapm_prod" ].forEach(field => {
+                const maybeRapm = player[field];
+                if (!DateUtils.lineupsHavePlayerShotInfo(genderYearLookup)) {
+                  if (maybeRapm?.old_value) {
+                    maybeRapm.value = maybeRapm.old_value;
+                    delete maybeRapm.override;
+                  }
+                } else if (maybeRapm?.override) { // Improve wording of luck override if we're keeping it
+                  maybeRapm.override = "Adjusted from per-lineup 3P% luck adjustments"
+                }
+              });
+            }
           }
         });
       } //(end RAPM)
+
+      //TODO: start with all players
+      // one have attached RAPM, _then_ remove players but keeping "hidden gems" (5mpg vs 0.25, RAPM above some tier-based threshold)
+      // TO DECIDE: could put that in separate file where we massively cut down on the fields we keep
+      // (since we only need off/def rtg/adj rtg/rapm)
+      // ^ fair bit of this is done now... still need to manage the filter by RAPM
 
       const tableData = _.take(preRapmTableData, 5).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)
@@ -788,6 +833,14 @@ export async function main() {
         case "all":
           savedLineups.push(...tableData);
           savedPlayers.push(...enrichedAndFilteredPlayers);
+          savedLowVolumePlayers.push(...cutdownEnrichedPlayers.filter(p => {
+            // For low volume players they have to have been reasonably good compared to their tier
+            const offRapm = (p.off_adj_rapm as Statistic)?.value || 0;
+            const defRapm = (p.def_adj_rapm as Statistic)?.value || 0;
+            const classBonus = (p.roster?.year_class == "Fr") ? 0 : 0.5; //(non Fr have to clear a higher bar)
+            const thresh = (inTier == "High") ? 1.4 : ((inTier == "Medium") ? 0.4 : -1.1);
+            return p.off_adj_rapm && p.def_adj_rapm && (offRapm - defRapm >= (thresh + classBonus));
+          }));
           break;
         case "conf":
           savedConfOnlyLineups.push(...tableData);
@@ -812,25 +865,29 @@ export async function main() {
 }
 /** Adds some handy default sortings */
 export function completePlayerLeaderboard(key: string, leaderboard: any[], topTableSize: number) {
-  // Take T300 by possessions
-  const topByPoss =
-    _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
+  if (key == "lowvol") {
+    return leaderboard; //(no sorting or anything for lowvol, just get it out)
+  } else {
+    // Take T300 by possessions
+    const topByPoss =
+      _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
 
-  [ "rtg", "prod", "rapm", "rapm_prod"  ].forEach(subKey => {
-    _.sortBy(
-      topByPoss, player => (player[`def_adj_${subKey}`]?.value || 0) - (player[`off_adj_${subKey}`]?.value || 0)
-    ).map((player, index) => {
-      player[`adj_${subKey}_margin_rank`] = index + 1;
+    [ "rtg", "prod", "rapm", "rapm_prod"  ].forEach(subKey => {
+      _.sortBy(
+        topByPoss, player => (player[`def_adj_${subKey}`]?.value || 0) - (player[`off_adj_${subKey}`]?.value || 0)
+      ).map((player, index) => {
+        player[`adj_${subKey}_margin_rank`] = index + 1;
+      });
+      _.sortBy(topByPoss, player => (player[`def_adj_${subKey}`]?.value || 0)).forEach((player, index) => {
+        player[`def_adj_${subKey}_rank`] = index + 1;
+      });
+      _.sortBy(topByPoss, player => -1*(player[`off_adj_${subKey}`]?.value || 0)).forEach((player, index) => {
+        player[`off_adj_${subKey}_rank`] = index + 1;
+      });
     });
-    _.sortBy(topByPoss, player => (player[`def_adj_${subKey}`]?.value || 0)).forEach((player, index) => {
-      player[`def_adj_${subKey}_rank`] = index + 1;
-    });
-    _.sortBy(topByPoss, player => -1*(player[`off_adj_${subKey}`]?.value || 0)).forEach((player, index) => {
-      player[`off_adj_${subKey}_rank`] = index + 1;
-    });
-  });
-  const sortedLeaderboard = _.sortBy(topByPoss, player => player.adj_rapm_margin_rank);
-  return sortedLeaderboard;
+    const sortedLeaderboard = _.sortBy(topByPoss, player => player.adj_rapm_margin_rank);
+    return sortedLeaderboard;
+  }
 }
 
 /** Adds some handy default sortings and removes possession outliers (export for test only) */
@@ -981,6 +1038,7 @@ if (!testMode) {
 
       const outputCases: Array<[string, Array<any>, Array<any>]> =
         [ [ "all", savedLineups, savedPlayers ],
+          [ "lowvol", [], savedLowVolumePlayers ],
           [ "conf", savedConfOnlyLineups, savedConfOnlyPlayers ],
           [ "t100", savedT100Lineups, savedT100Players ] ];
 
@@ -1004,7 +1062,8 @@ if (!testMode) {
         console.log(`${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`);
         console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
         const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-        const lineupsWritePromise = fs.writeFile(`${lineupFilename}`,sortedLineupsStr);
+        const lineupsWritePromise = _.isEmpty(sortedLineups) ? Promise.resolve() :
+          fs.writeFile(`${lineupFilename}`,sortedLineupsStr);
         console.log(`${kv[0]} player count: [${players.length}] ([${kv[2].length}])`);
         console.log(`${kv[0]} player length: [${playersStr.length}]`);
         const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
