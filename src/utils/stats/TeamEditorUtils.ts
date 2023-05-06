@@ -443,7 +443,8 @@ export class TeamEditorUtils {
       ) || !_.isEmpty(allDeletedPlayers); //(or have deleted players)
 
       TeamEditorUtils.calcAndInjectYearlyImprovement(
-         basePlayersPlusHypos, team, year, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode, benchEstimates
+         basePlayersPlusHypos, team, year, teamSosOff, teamSosDef, avgEff, unpausedOverrides, offSeasonMode, 
+         benchEstimates, prevYearFrList
       );
       TeamEditorUtils.calcAndInjectMinsAssignment(
          basePlayersPlusHypos, team, year, disabledPlayersIn, unpausedOverrides, hasDeletedPlayersOrTransfersIn, 
@@ -881,7 +882,7 @@ export class TeamEditorUtils {
       TeamEditorUtils.calcAndInjectYearlyImprovement(
          rosterOfOne, destTeam || fallbackTeam, year,
          107.0, 98.0, avgEff, //(inject typical HM SoS)
-         {}, true, benchEstimates
+         {}, true, benchEstimates, {}
       );
       const okPrediction = rosterOfOne[0]!.ok;
       return {
@@ -898,7 +899,8 @@ export class TeamEditorUtils {
       team: string, year: string, teamSosOff: number, teamSosDef: number, avgEff: number,
       overrides: Record<string, PlayerEditModel>, 
       offSeasonMode: boolean,
-      benchEstimates: IndivStatSet[]
+      benchEstimates: IndivStatSet[],
+      prevYearFrList: Record<string, TeamEditorManualFixModel> //(indexed by team) 
    ) {
       /** Handy a util to make the diagnostics mode a bit more readable */
       const tidy = (inJson: TeamEditorDiagObject) => {
@@ -1058,10 +1060,14 @@ export class TeamEditorUtils {
          return diags;
       };
       const applyFrRegression = (
-         player: IndivStatSet, 
+         player: IndivStatSet
       ) => {
          const netRegressTo = TeamEditorUtils.getAvFrProduction(team, player.year || "");
-            //TODO: use player profile to build this, eg for 5* should regress to a higher value
+
+         // If we know this player's rank then we regress to their expectation
+         const [ offNetRegressTo, defNetRegressTo ] = TeamEditorUtils.getFrOffDef(
+            prevYearFrList[team]?.overrides?.[player.code as string || ""]
+         ) || [ 0.5*netRegressTo, -0.5*netRegressTo ];
 
          const minRegression = 0.10; // at 30mpg+ (0.75%)
          const maxRegression = 0.50; // at 10mpg- (0.25%)
@@ -1069,9 +1075,9 @@ export class TeamEditorUtils {
          const regressionFactor = minRegression + (2*(0.75 - poss))*(maxRegression - minRegression);
 
          const regressedOffRapm = 
-            (1 - regressionFactor)*((player as PureStatSet).off_adj_rapm?.value || 0) + regressionFactor*(netRegressTo*0.5)
+            (1 - regressionFactor)*((player as PureStatSet).off_adj_rapm?.value || 0) + regressionFactor*offNetRegressTo
          const regressedDefRapm = 
-            (1 - regressionFactor)*((player as PureStatSet).def_adj_rapm?.value || 0) + regressionFactor*(-netRegressTo*0.5)
+            (1 - regressionFactor)*((player as PureStatSet).def_adj_rapm?.value || 0) + regressionFactor*defNetRegressTo
 
          // Only apply if "bad" (-ve off, +ve def), and only to ok(partial) + bad projections
          const deltaOffRapm = Math.min(0, regressedOffRapm - ((player as PureStatSet).off_adj_rapm?.value || 0));
@@ -1106,17 +1112,23 @@ export class TeamEditorUtils {
          };
       };
 
+
+      const lowVolumePossUpperThresh = 0.30; //(above this don't regress to bench bean)
+      const shouldApplyRegression = (triple: GoodBadOkTriple, isFr: boolean) => {
+         // (low volume Fr get the same low volume regression as other classes)
+         return ((triple.prevYear && !isFr) || ((triple.orig.off_team_poss_pct?.value || 0) < lowVolumePossUpperThresh));
+      }
       const applyRegression = (
-         player: PureStatSet, prevYear: IndivStatSet, adjPrevYear: PureStatSet
+         player: PureStatSet, prevYear: IndivStatSet | undefined, adjPrevYear: PureStatSet
       ) => {
          const thisYearPossWeighted = (player.off_poss?.value || 0)*3; // 3:1
-         const lastYearPossWeightedTmp = (prevYear.off_poss?.value || 0);
+         const lastYearPossWeightedTmp = (prevYear?.off_poss?.value || 0);
 
          const lastYearPossWeighted = Math.min(lastYearPossWeightedTmp, 0.40*thisYearPossWeighted); 
             //(as much weight as we'll allow last season)
 
          const thisYearDefSos = (player.def_adj_opp?.value || teamSosDef);
-         const lastYearDefSos = (prevYear.def_adj_opp?.value || teamSosDef);
+         const lastYearDefSos = (prevYear?.def_adj_opp?.value || teamSosDef);
 
          const thisYearNormalizer = teamSosDef/thisYearDefSos;  //(scale, eg for x-team SoS)
          const lastYearNormalizer = 1.0; //(we've already scaled last year's to this team-year's)
@@ -1125,17 +1137,49 @@ export class TeamEditorUtils {
          const thisYearWeight = thisYearPossWeighted*totalWeightInv;
          const lastYearWeight = lastYearPossWeighted*totalWeightInv;
 
-         const regressedORtg = thisYearWeight*(player.off_rtg?.value || 0)*thisYearNormalizer + lastYearWeight*(adjPrevYear.off_rtg?.value || 0)*lastYearNormalizer;
+         const defaultBenchLevelScoring = TeamEditorUtils.getBenchLevelScoring(team, year);
+         // If we know this player's rank then we regress to their expectation
+         const [ offMaybeFrRegressTo, defMaybeFrRegressTo ] = TeamEditorUtils.getFrOffDef(
+            prevYearFrList[team]?.overrides?.[player.code as string || ""]
+         ) || [ 0.5*defaultBenchLevelScoring, -0.5*defaultBenchLevelScoring ];
+
+         // Because they are low volume, they don't get the full Fr expectation (or they would have played more!)
+         // (still this could be improved)
+         const offRegressTo = 0.25*defaultBenchLevelScoring + 0.5*offMaybeFrRegressTo; 
+         const defRegressTo = -0.25*defaultBenchLevelScoring + 0.5*defMaybeFrRegressTo;
+
+         const highPossPct = lowVolumePossUpperThresh; //(above this don't regress)
+         const lowPossPct = 0.125; //(at this point regressed all the way to 0)
+         const lowVolumeRegression = (val: number, regressTo: number, isPrev: boolean) => {
+            const possPct = (isPrev ? prevYear : player)?.off_team_poss_pct?.value || 0;
+            if (possPct < highPossPct) {
+               const alpha = Math.max(0, possPct - lowPossPct)/(highPossPct - lowPossPct);
+
+               /**/if (player.key == "Melendez, RJ") console.log(`??? ${possPct} ${alpha} ${val} ${regressTo}` + 
+               ` [${prevYearFrList[team]?.overrides?.[player.code as string]?.profile || "NR"}] ${thisYearWeight} - ${val*alpha + regressTo*(1.0 - alpha)}`)
+               /**/if (player.key == "Goode, Luke") console.log(`??????? ${JSON.stringify(prevYearFrList[team])}`)
+
+               return val*alpha + regressTo*(1.0 - alpha);
+            } else {
+               return val;
+            }
+         };
+         const offRtgCurrReg = (val: number) => lowVolumeRegression(val, 100, false);
+         const offCurrReg = (val: number) => lowVolumeRegression(val, offRegressTo, false);
+         const defCurrReg = (val: number) => lowVolumeRegression(val, defRegressTo, false);
+
+         const regressedORtg = thisYearWeight*offRtgCurrReg(player.off_rtg?.value || 0)*thisYearNormalizer + lastYearWeight*(adjPrevYear.off_rtg?.value || 0)*lastYearNormalizer;
          const regressedUsage = thisYearWeight*(player.off_usage?.value || 0) + lastYearWeight*(adjPrevYear.off_usage?.value || 0);
 
-         const regressedOffRapm = thisYearWeight*(player.off_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.off_adj_rapm?.value || 0);
-         const regressedDefRapm = thisYearWeight*(player.def_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.def_adj_rapm?.value || 0);
+         const regressedOffRapm = thisYearWeight*offCurrReg(player.off_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.off_adj_rapm?.value || 0);
+         const regressedDefRapm = thisYearWeight*defCurrReg(player.def_adj_rapm?.value || 0) + lastYearWeight*(adjPrevYear.def_adj_rapm?.value || 0);
 
          const deltaORtg = regressedORtg - (player.off_rtg?.value || 0)*thisYearNormalizer; //(only incorporate the 2 if they were better)
          const deltaUsg = regressedUsage - (player.off_usage?.value || 0);
          const deltaOffRapm = regressedOffRapm - (player.off_adj_rapm?.value || 0);
          const deltaDefRapm = regressedDefRapm - (player.def_adj_rapm?.value || 0);
-         const lastYearWasFr = (prevYear.roster?.year_class == "Fr");
+         const lastYearWasFr = (prevYear?.roster?.year_class == "Fr");
+         const isLowVolume = (player.off_team_poss_pct?.value || 0) < lowVolumePossUpperThresh; //(always apply as debuff)
 
          // Diagnostics
          //console.log(`[${player.key}]: ([${player.off_rtg?.value}]*[${thisYearWeight}] + [${adjPrevYear.off_rtg?.value}]*[${lastYearWeight}])`);
@@ -1143,10 +1187,10 @@ export class TeamEditorUtils {
          return {
             off_rtg: {
                good: tidy({
-                  incorp_prev_season: (deltaOffRapm > 0) ? deltaORtg : 0 //if it's net (ortg+usg) good
+                  incorp_prev_season: ((deltaOffRapm > 0) || isLowVolume) ? deltaORtg : 0 //if it's net (ortg+usg) good
                }),
                ok: tidy({
-                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaORtg : 0 //(for Fr - only if it's net (ortg+usg) good)
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0) || isLowVolume) ? deltaORtg : 0 //(for Fr - only if it's net (ortg+usg) good)
                }),
                bad: tidy({
                   incorp_prev_season: (!lastYearWasFr && (deltaOffRapm < 0)) ? deltaORtg : 0 //(only if it's net (ortg+usg) bad, not Fr)
@@ -1154,10 +1198,10 @@ export class TeamEditorUtils {
             },
             off_usage: {
                good: tidy({
-                  incorp_prev_season: (deltaOffRapm > 0) ? deltaOffRapm : 0 //if it's net (ortg+usg) good
+                  incorp_prev_season: ((deltaOffRapm > 0) || isLowVolume) ? deltaOffRapm : 0 //if it's net (ortg+usg) good
                }),
                ok: tidy({
-                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaUsg : 0 //(for Fr - only if it's net (ortg+usg) good)
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0) || isLowVolume) ? deltaUsg : 0 //(for Fr - only if it's net (ortg+usg) good)
                }),
                bad: tidy({
                   incorp_prev_season: (!lastYearWasFr && (deltaOffRapm < 0)) ? deltaUsg : 0 //(only if it's net (ortg+usg) bad, not Fr)
@@ -1165,10 +1209,10 @@ export class TeamEditorUtils {
             },
             off: {
                good: tidy({
-                  incorp_prev_season: (deltaOffRapm > 0) ? deltaOffRapm : 0 //if it's good
+                  incorp_prev_season: ((deltaOffRapm > 0) || isLowVolume) ? deltaOffRapm : 0 //if it's good
                }),
                ok: tidy({
-                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0)) ? deltaOffRapm : 0 //(for Fr - only if it's good)
+                  incorp_prev_season: (!lastYearWasFr || (deltaOffRapm > 0) || isLowVolume) ? deltaOffRapm : 0 //(for Fr - only if it's good)
                }),
                bad: tidy({
                   incorp_prev_season: (!lastYearWasFr && (deltaOffRapm < 0)) ? deltaOffRapm : 0 //(only if it's bad, not Fr)
@@ -1176,10 +1220,10 @@ export class TeamEditorUtils {
             },
             def: {
                good: tidy({
-                  incorp_prev_season: (deltaDefRapm > 0) ? deltaDefRapm : 0 //if it's good
+                  incorp_prev_season: ((deltaDefRapm > 0) || isLowVolume) ? deltaDefRapm : 0 //if it's good
                }),
                ok: tidy({
-                  incorp_prev_season: (!lastYearWasFr || (deltaDefRapm > 0)) ? deltaDefRapm : 0 //(for Fr - only if it's good)
+                  incorp_prev_season: (!lastYearWasFr || (deltaDefRapm > 0) || isLowVolume) ? deltaDefRapm : 0 //(for Fr - only if it's good)
                }),
                bad: tidy({
                   incorp_prev_season: (!lastYearWasFr && (deltaDefRapm < 0)) ? deltaDefRapm : 0 //(only if it's bad, not Fr)
@@ -1305,8 +1349,11 @@ export class TeamEditorUtils {
          };
 
          const isFr = (triple.orig.roster?.year_class == "Fr"); //("fake Freshmen" already handled by 1st clause)
-         const regressionDeltas = triple.prevYear ? 
-            applyRegression(triple.orig, triple.prevYear, prevPlayerYearlyAdjustment) : 
+
+         const regressionDeltas = 
+            shouldApplyRegression(triple, isFr) ? 
+               applyRegression(triple.orig, triple.prevYear, prevPlayerYearlyAdjustment) 
+               : 
                (isFr ? applyFrRegression(triple.orig) : undefined);
 
          // Diagnostics
@@ -2120,6 +2167,18 @@ export class TeamEditorUtils {
          return undefined;
       } else {
          return newLevel - oldLevel;
+      }
+   }
+
+   static getFrOffDef(fr: PlayerEditModel | undefined): [ number, number ] | undefined {
+      if (fr?.profile) {
+         const basic = TeamEditorUtils.getBenchLevelScoringByProfile(fr.profile);
+         return [
+            basic + (fr.global_off_adj || 0),
+            -basic + (fr.global_def_adj || 0)
+         ]
+      } else {
+         return undefined;
       }
    }
 

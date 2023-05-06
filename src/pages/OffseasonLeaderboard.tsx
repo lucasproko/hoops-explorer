@@ -60,7 +60,6 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
   const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as TeamEditorStatsModel);
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
-  const [ currTier, setCurrTier ] = useState("");
   const [ currEvalMode, setCurrEvalMode ] = useState(false);
 
   // Game filter
@@ -108,7 +107,6 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
       (paramObj.year || DateUtils.offseasonYear) : //(first year we can do a review)
       (paramObj.year || DateUtils.offseasonPredictionYear); 
     const prevYear = DateUtils.getPrevYear(fullYear)
-    const tier = (paramObj.tier || "All");
 
     const transferYear = fullYear.substring(0, 4);
     const transferYearPrev = prevYear.substring(0, 4);
@@ -117,18 +115,17 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({testMode}) => {
     const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
     const transferYears = [ transferYear, transferYearPrev ];
 
-    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (paramObj.evalMode != currEvalMode)) { // Only need to do this if the data source has changed
+    if ((fullYear != currYear) || (gender != currGender) || (paramObj.evalMode != currEvalMode)) { // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
-      setCurrTier(tier);
       setCurrEvalMode(paramObj.evalMode || false);
 
       const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, yearWithStats, tier, transferYears, 
+        "all-lowvol", gender, yearWithStats, "All", transferYears, 
         paramObj.evalMode ? [ fullYear, prevYearWithStats ] : [ prevYearWithStats ]
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
-        gender, yearWithStats, tier, paramObj.evalMode ? [ fullYear ] : []
+        gender, yearWithStats, "All", paramObj.evalMode ? [ fullYear ] : []
       );
       const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
 

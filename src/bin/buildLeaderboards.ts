@@ -573,8 +573,8 @@ export async function main() {
       const enrichAndFilter = (playerMap: Record<string, IndivStatSet>, cutdownLowVolume: boolean) => 
         _.toPairs(playerMap).filter(kv => 
       {
-        const minThreshold = cutdownLowVolume ? 0.125 : 0.25;
-        const maxThreshold = cutdownLowVolume ? 0.25 : 2.0; //(10 is effectively infinity)
+        const minThreshold = cutdownLowVolume ? 0.125 : lowVolThreshold;
+        const maxThreshold = cutdownLowVolume ? lowVolThreshold : 2.0; //(10 is effectively infinity)
 
         const player = kv[1];
 
@@ -651,15 +651,7 @@ export async function main() {
           year: teamYear,
           ...posInfo,
           posFreqs,         
-          ...(cutdownLowVolume ? _.chain(kv[1]).pick([ // much smaller subset of fields, to keep the size down
-            "off_team_poss_pct", "def_team_poss_pct",
-            "off_rtg", "off_usage", "def_orb", "off_adj_rtg", "def_adj_rtg", "roster"
-          ]).mapValues(p => {
-            if ((p as Statistic)?.override) (p as Statistic).override = undefined;
-            if ((p as Statistic)?.old_value) (p as Statistic).old_value = undefined;
-            return p;
-          }).value() 
-            :
+          ...(cutdownLowVolume ? lowVolumeStripPlayerInfo(kv[1]) :
             (_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
               (
                 (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||
@@ -828,19 +820,11 @@ export async function main() {
         return lineup;
       });
 
-
       switch (label) {
         case "all":
           savedLineups.push(...tableData);
           savedPlayers.push(...enrichedAndFilteredPlayers);
-          savedLowVolumePlayers.push(...cutdownEnrichedPlayers.filter(p => {
-            // For low volume players they have to have been reasonably good compared to their tier
-            const offRapm = (p.off_adj_rapm as Statistic)?.value || 0;
-            const defRapm = (p.def_adj_rapm as Statistic)?.value || 0;
-            const classBonus = (p.roster?.year_class == "Fr") ? 0 : 0.5; //(non Fr have to clear a higher bar)
-            const thresh = (inTier == "High") ? 1.4 : ((inTier == "Medium") ? 0.4 : -1.1);
-            return p.off_adj_rapm && p.def_adj_rapm && (offRapm - defRapm >= (thresh + classBonus));
-          }));
+          savedLowVolumePlayers.push(...(cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)));
           break;
         case "conf":
           savedConfOnlyLineups.push(...tableData);
@@ -863,14 +847,54 @@ export async function main() {
   }
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
-/** Adds some handy default sortings */
+
+/** The normal leaderboard won't contain anyone who has played < 25% aka 10mpg */
+const lowVolThreshold = 0.25;
+
+/** Handy util to identify which players are worthy of getting some consideration in pre-season predictions */
+const lowVolumePlayerCheck = (p: IndivStatSet): boolean => {
+  // For low volume players they have to have been reasonably good compared to their tier
+  // The closer they are to the 10mpg threshold, the 
+  const offRapm = (p.off_adj_rapm as Statistic)?.value || 0;
+  const defRapm = (p.def_adj_rapm as Statistic)?.value || 0;
+  const classBonus = (p.roster?.year_class == "Fr") ? 0 : 0.5; //(non Fr have to clear a higher bar)
+  const highThresh = (inTier == "High") ? 1.4 : ((inTier == "Medium") ? 0.4 : -0.6); //(if poss% == lowVolThresholdMid)
+  const lowThresh = (inTier == "High") ? 0.9 : ((inTier == "Medium") ? -0.1 : -1.1);//(if poss% == lowVolThreshold, more poss = less picky)
+  const lowVolThresholdMid = lowVolThreshold/2;
+  const playerPossPctCapped = Math.min(p.off_team_poss_pct?.value || 0, lowVolThreshold);
+  const alpha = Math.max(playerPossPctCapped - lowVolThresholdMid)/lowVolThresholdMid;
+  const thresh = highThresh + alpha*(lowThresh - highThresh);
+
+  return Boolean(
+    p.off_adj_rapm && p.def_adj_rapm && ((offRapm - defRapm) >= (thresh + classBonus))
+  ).valueOf();
+};
+
+/** Handy util to cut a player's stats down to the bare min needed for evaluating them */
+const lowVolumeStripPlayerInfo = (p: IndivStatSet) => _.chain(p).pick([ // much smaller subset of fields, to keep the size down
+    "off_team_poss_pct", "def_team_poss_pct",
+    "off_rtg", "off_usage", "def_orb", "off_adj_rtg", "def_adj_rtg",
+    "off_adj_opp", "def_adj_opp", "off_poss", //(misc extra required fields)
+    "roster",
+    // (in some cases these are injected later - harmless extra fields if so)
+    "off_rapm", "def_rapm",
+    // (in some cases these are injected outside)
+    "code", "key", "conf", "team", "year", "posFreqs", "posClass", "posConfidences"
+  ]).mapValues(p => {
+    if ((p as Statistic)?.override) (p as Statistic).override = undefined;
+    if ((p as Statistic)?.old_value) (p as Statistic).old_value = undefined;
+    if ((p as Statistic)?.extraInfo) (p as Statistic).extraInfo = undefined;
+    return p;
+  }).value() 
+
+/** Adds some handy default sortings - includes stripped down view of key players removed due to lack of posessions in second array */
 export function completePlayerLeaderboard(key: string, leaderboard: any[], topTableSize: number) {
   if (key == "lowvol") {
-    return leaderboard; //(no sorting or anything for lowvol, just get it out)
+    return [ leaderboard, [] ]; //(no sorting or anything for lowvol, just get it out)
   } else {
-    // Take T300 by possessions
-    const topByPoss =
-      _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
+    // Take [topTableSize] by possessions
+    const sortedByPoss = _.sortBy(leaderboard, player => -1*(player.off_team_poss?.value || 0));
+    const [ topByPoss, processedCastOffs ] = [ sortedByPoss.splice(0, topTableSize), sortedByPoss.splice(topTableSize) ];
 
     [ "rtg", "prod", "rapm", "rapm_prod"  ].forEach(subKey => {
       _.sortBy(
@@ -886,7 +910,10 @@ export function completePlayerLeaderboard(key: string, leaderboard: any[], topTa
       });
     });
     const sortedLeaderboard = _.sortBy(topByPoss, player => player.adj_rapm_margin_rank);
-    return sortedLeaderboard;
+    return [ 
+      sortedLeaderboard, 
+      processedCastOffs.filter(lowVolumePlayerCheck).map(lowVolumeStripPlayerInfo) 
+    ];
   }
 }
 
@@ -1036,6 +1063,8 @@ if (!testMode) {
 
       console.log("Processing Complete!");
 
+      var savedCastoffs = [] as IndivStatSet[];
+
       const outputCases: Array<[string, Array<any>, Array<any>]> =
         [ [ "all", savedLineups, savedPlayers ],
           [ "lowvol", [], savedLowVolumePlayers ],
@@ -1043,14 +1072,19 @@ if (!testMode) {
           [ "t100", savedT100Lineups, savedT100Players ] ];
 
       await Promise.all(_.flatMap(outputCases, kv => {
-        const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
+        const label = kv[0];
+        const sortedLineups = completeLineupLeaderboard(label, kv[1], topLineupSize);
         const sortedLineupsStr = JSON.stringify({
           lastUpdated: lastUpdated,
           confMap: mutableConferenceMap,
           confs: _.keys(mutableConferenceMap),
           lineups: sortedLineups
         }, reduceNumberSize);
-        const players = completePlayerLeaderboard(kv[0], kv[2], topPlayersSize);
+
+        const playersToWrite = kv[2].concat((label == "lowvol") ? savedCastoffs : []);
+        const [ players, castOffs ] = completePlayerLeaderboard(label, playersToWrite, topPlayersSize);
+        if (label == "all") savedCastoffs = castOffs;
+
         const playersStr = JSON.stringify({
           lastUpdated: lastUpdated,
           confMap: mutableConferenceMap,

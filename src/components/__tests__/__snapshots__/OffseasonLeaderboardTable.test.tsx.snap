@@ -3535,14 +3535,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 92.6510676897881,
+                    "value": 92.802401692764,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 6.428288053773728,
+                    "value": 6.631953523646091,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -3596,7 +3596,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </ForwardRef>
                   </OverlayTrigger>,
                   "fr_margin": Object {
-                    "value": 1.6253878371571917,
+                    "value": 1.6698731605279102,
                   },
                   "high_grade": Object {
                     "samples": 106,
@@ -3606,7 +3606,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -11.441483722842808,
+                    "value": -11.39699839947209,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -3616,14 +3616,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.190740837371912,
+                    "value": 15.502484952164831,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 107.84180852716001,
+                    "value": 108.30488664492881,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -4053,7 +4053,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "high_grade": Object {
                     "samples": 106,
-                    "value": 1,
+                    "value": 0.9905660377358491,
                   },
                   "in_margin": Object {
                     "value": 0,
@@ -16674,7 +16674,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       "dedup_samples": Object {
                         "def_adj_ppp": Array [
                           94.62219277428653,
-                          96.398799371143,
+                          96.37161809415122,
                           104.3,
                           104.3,
                           104.3,
@@ -16778,10 +16778,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           104.3,
                           104.3,
                           104.3,
-                          105.05817408439,
+                          105.07078676710104,
                         ],
                         "off_adj_ppp": Array [
-                          102.087288024,
+                          102.12379700434285,
                           104.3,
                           104.3,
                           104.3,
@@ -16885,11 +16885,11 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           104.3,
                           104.3,
                           104.3,
-                          111.40873283741152,
+                          111.44554116308878,
                           116.53765340144,
                         ],
                         "off_net": Array [
-                          -2.9708860603900002,
+                          -2.946989762758189,
                           0,
                           0,
                           0,
@@ -16993,7 +16993,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           0,
                           0,
                           0,
-                          15.009933466268519,
+                          15.07392306893757,
                           21.915460627153475,
                         ],
                       },
@@ -17109,7 +17109,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "105": Array [
                               105,
-                              105.05817408439,
+                              105.07078676710104,
                             ],
                             "95": Array [
                               0,
@@ -17117,7 +17117,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "96": Array [
                               1,
-                              96.398799371143,
+                              96.37161809415122,
                             ],
                           },
                           "lutMult": undefined,
@@ -17129,7 +17129,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "102": Array [
                               0,
-                              102.087288024,
+                              102.12379700434285,
                             ],
                             "104": Array [
                               1,
@@ -17239,7 +17239,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "111": Array [
                               104,
-                              111.40873283741152,
+                              111.44554116308878,
                             ],
                             "117": Array [
                               105,
@@ -17247,7 +17247,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 102.087288024,
+                          "min": 102.12379700434285,
                           "size": 106,
                         },
                         "off_net": Object {
@@ -17255,7 +17255,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "-3": Array [
                               0,
-                              -2.9708860603900002,
+                              -2.946989762758189,
                             ],
                             "0": Array [
                               1,
@@ -17365,7 +17365,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "15": Array [
                               104,
-                              15.009933466268519,
+                              15.07392306893757,
                             ],
                             "22": Array [
                               105,
@@ -17373,7 +17373,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                           },
                           "lutMult": undefined,
-                          "min": -2.9708860603900002,
+                          "min": -2.946989762758189,
                           "size": 106,
                         },
                         "off_raw_net": undefined,
@@ -17401,14 +17401,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 96.398799371143,
+                    "value": 96.37161809415122,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 5.061131823681107,
+                    "value": 5.128339078251875,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -17482,14 +17482,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.009933466268519,
+                    "value": 15.07392306893757,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 111.40873283741152,
+                    "value": 111.44554116308878,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -28500,14 +28500,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 96.398799371143,
+                    "value": 96.37161809415122,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 5.061131823681107,
+                    "value": 5.128339078251875,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -28581,14 +28581,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.009933466268519,
+                    "value": 15.07392306893757,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 111.40873283741152,
+                    "value": 111.44554116308878,
                   },
                   "off_grade": Object {
                     "samples": 106,

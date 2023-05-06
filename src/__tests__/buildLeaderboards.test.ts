@@ -59,6 +59,7 @@ describe("buildLeaderboards", () => {
 
     expect(completePlayerLeaderboard("test", savedPlayers, 700)).toMatchSnapshot();
     expect(completePlayerLeaderboard("test", savedPlayers, 1)).toMatchSnapshot();
+      //(no lowvol players because RAPM isn't being calculated in this test)
 
     expect(completeLineupLeaderboard("test", savedLineups, 300)).toMatchSnapshot();
     expect(completeLineupLeaderboard("test", savedLineups, 1)).toMatchSnapshot();

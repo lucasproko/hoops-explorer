@@ -247,23 +247,8 @@ export class TeamEditorManualFixes {
                   },
                }})[""])
             },
-            "Florida": { 
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "Lane, Niels": {
-                     "pos": "WG", "pr": "3*", "c": "NiLane", "h": "6-5", "r": 0, "o": 1, "d": 2.5
-                  },
-                  "Jitoboh, Jason": {
-                     "pos": "C", "pr": "3*", "c": "JaJitoboh", "h": "6-11", "r": 0, "o": 2, "d": 2
-                  },
-               }})[""])
-            },
             "Florida St.": { 
                leftTeam: [ "JaGainey:Brown:" ], //(injury)
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "McLeod, Naheem": {
-                     "pos": "C", "pr": "3*", "c": "NaMcleod", "h": "7-4", "r": 0, "o": 2.5, "d": 1
-                  },
-               }})[""])
             },
             "Georgia": {
                overrides: {
@@ -272,13 +257,6 @@ export class TeamEditorManualFixes {
             },
             "Iowa St.": {
                leftTeam: [ "JeWilliams:Temple:" ] //(injury)
-            },
-            "Illinois": { 
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "Melendez, RJ": {
-                     "pos": "WF", "pr": "4*", "c": "RjMelendez", "h": "6-7", "r": 0, "o": 1.5, "d": 1.5
-                  },
-               }})[""])
             },
             "Kentucky": {
                leftTeam: [ "ShSharpe::" ], //KEEPME (NBA draft)
@@ -309,13 +287,6 @@ export class TeamEditorManualFixes {
             "Ole Miss": {
                superSeniorsReturning: new Set([ "TyFagan::" ]), //KEEPME 
             },
-            "Oklahoma": { 
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "Cortes, Bijan": {
-                     "pos": "s-PG", "pr": "3*", "c": "BiCortes", "h": "6-3", "r": 0, "o": 0.5, "d": 2
-                  },
-               }})[""])
-            },
             "Oregon": {
                overrides: {
                   "JeCouisnard:South Carolina:": { mins: 15 } //(injury)
@@ -328,20 +299,6 @@ export class TeamEditorManualFixes {
             },
             "Pittsburgh": {
                leftTeam: [ "DiJohnson" ], //(suspension)               
-            },
-            "Saint Mary's (CA)": { 
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "Saxen, Mitchell": {
-                     "pos": "C", "pr": "3*", "c": "MiSaxen", "h": "6-10", "r": 0, "o": 1.5, "d": 1.5
-                  },
-               }})[""])
-            },
-            "South Carolina": { 
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "Gray, Josh": {
-                     "pos": "C", "pr": "3*", "c": "JoGray", "h": "7-0", "r": 0, "o": 0.75, "d": 3.25
-                  },
-               }})[""])
             },
             "Texas A&M": {
                overrides: {
@@ -391,6 +348,9 @@ export class TeamEditorManualFixes {
             "App State": {
                superSeniorsReturning: new Set([ "DoGregory::" ]),
             },
+            "Auburn": {
+               superSeniorsReturning: new Set([ "LiBerman::" ]),
+            },
             "Boise St.": {
                superSeniorsReturning: new Set([ "MaRice::" ]),
             },
@@ -411,6 +371,9 @@ export class TeamEditorManualFixes {
             },
             "Creighton": {
                superSeniorsReturning: new Set([ "FrFarabello::", "BaScheierman::" ]),
+            },
+            "CSUN": {
+               superSeniorsReturning: new Set([ "DeAllen-eike::" ]),
             },
             "Dayton": {
                leftTeam: [ "MiSharavjamt::" ], //(NBA)
@@ -464,11 +427,6 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "KeLeaupepe::" ]),
             },
             "Maryland": {
-               ...(TeamEditorManualFixes.buildOverrides({"": { //TODO: interim until I've incorporated lower poss players in properly
-                  "Long, Jahari": {
-                     "pos": "PG", "pr": "4*", "c": "JaLong", "h": "6-5", "r": 0, "o": -0.25, "d": 0.5
-                  },
-               }})[""]),
                superSeniorsReturning: new Set([ "JaYoung::", "DoScott::" ]),
             },
             "Massachusetts": {
@@ -477,8 +435,11 @@ export class TeamEditorManualFixes {
             "Memphis": {
                superSeniorsReturning: new Set([ "JaHardaway::", "ChLawson::" ]),
             },
+            "Miami (FL)": {
+               superSeniorsReturning: new Set([ "JoMiller::" ]),
+            },
             "Missouri": {
-               superSeniorsReturning: new Set([ "NoCarter::" ]),
+               superSeniorsReturning: new Set([ "NoCarter::", "NiHonor::" ]),
             },
             "Mississippi St.": {
                superSeniorsReturning: new Set([ "DaDavis::", "DjJeffries::", "WiMcnair::" ]),
@@ -516,8 +477,14 @@ export class TeamEditorManualFixes {
             "Oklahoma St.": {
                superSeniorsReturning: new Set([ "JoWright::" ]),
             },
+            "Oral Roberts": {
+               superSeniorsReturning: new Set([ "KaThompson::" ]),
+            },
             "Oregon": {
                superSeniorsReturning: new Set([ "JeCouisnard::", "N'Dante::" ]),
+            },
+            "Portland St.": {
+               superSeniorsReturning: new Set([ "BoHarvey::" ]),
             },
             "Quinnipiac": {
                superSeniorsReturning: new Set([ "SaLewis::", "MaBalanc::" ]),
@@ -544,7 +511,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AlDucas::" ]),
             },
             "Saint Peters's": {
-               superSeniorsReturning: new Set([ "LaReid::", "KyCardaci::" ]),
+               superSeniorsReturning: new Set([ "LaReid::" ]),
             },
             "San Diego St.": {
                superSeniorsReturning: new Set([ "JaLedee::", "DaTrammell::" ]),
@@ -593,6 +560,9 @@ export class TeamEditorManualFixes {
             },
             "UNCW": {
                superSeniorsReturning: new Set([ "AmKelly::", "ShPhillips::" ]),
+            },
+            "UNLV": {
+               superSeniorsReturning: new Set([ "JuWebster::" ]),
             },
             "Valparaiso": {
                superSeniorsReturning: new Set([ "QuGreen::" ]),

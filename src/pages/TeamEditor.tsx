@@ -60,7 +60,6 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
   const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as TeamEditorStatsModel);
   const [ currYear, setCurrYear ] = useState("");
   const [ currGender, setCurrGender ] = useState("");
-  const [ currTier, setCurrTier ] = useState("");
   const [ currEvalMode, setCurrEvalMode ] = useState(undefined as undefined | boolean);
   const [ currOffSeasonMode, setCurrOffSeasonMode ] = useState(undefined as undefined | boolean);
 
@@ -146,7 +145,6 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = (paramObj.year || DateUtils.offseasonPredictionYear);
     const prevYear = DateUtils.getPrevYear(fullYear);
-    const tier = (paramObj.tier || "All");
     const evalMode = (paramObj.evalMode || false);
     const offSeasonMode = _.isNil(paramObj.offSeason) ? true : paramObj.offSeason;
 
@@ -157,20 +155,19 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
     const prevYearWithStats = DateUtils.getPrevYear(yearWithStats); 
     const transferYears = [ transferYear, transferYearPrev ];
 
-    if ((fullYear != currYear) || (gender != currGender) || (tier != currTier) || (evalMode != currEvalMode) || (offSeasonMode != currOffSeasonMode)) { 
+    if ((fullYear != currYear) || (gender != currGender) || (evalMode != currEvalMode) || (offSeasonMode != currOffSeasonMode)) { 
       // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender)
-      setCurrTier(tier);
       setCurrEvalMode(evalMode);
       setCurrOffSeasonMode(offSeasonMode);
 
       const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-        "all", gender, yearWithStats, tier, transferYears, 
+        "all-lowvol", gender, yearWithStats, "All", transferYears, 
         paramObj.evalMode ? [ fullYear, prevYearWithStats ] : [ prevYearWithStats ]
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
-        gender, yearWithStats, tier, paramObj.evalMode ? [ fullYear ] : []
+        gender, yearWithStats, "All", paramObj.evalMode ? [ fullYear ] : []
       );
       const fetchAll = Promise.all([ fetchPlayers, fetchTeamStats ]);
 
@@ -178,6 +175,7 @@ const TeamEditorPage: NextPage<Props> = ({testMode}) => {
         const jsonsIn = playersTeams[0];
         const teamsIn = playersTeams[1];
         const jsons = _.dropRight(jsonsIn, _.size(transferYears));
+        
         setDataSubEvent({
           players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           teamStats: _.chain(teamsIn).flatMap(d => (d.teams || [])).flatten().value(),

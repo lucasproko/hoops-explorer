@@ -23,13 +23,20 @@ export class LeaderboardUtils {
     * Returns a list of JSONs, the last transfersYear.size of which are transfers
    */
    static getMultiYearPlayerLboards(
-      dataSubEventKey: "all" | "t100" | "conf",
+      dataSubEventKey: "all" | "t100" | "conf" | "all-lowvol",
       gender: string, fullYear: string, tier: string,
       transferYears: string[], otherYears: string[],
    ): Promise<any[]> {
       return LeaderboardUtils.getMultiYearLboards(
          gender, fullYear, tier, transferYears, otherYears,
-         (gender: string, subYear: string, inTier: string) => LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier)
+         (gender: string, subYear: string, inTier: string) => 
+         dataSubEventKey == "all-lowvol" ? [ 
+            LeaderboardUtils.getPlayerUrl("all", gender, subYear, inTier),
+            LeaderboardUtils.getPlayerUrl("lowvol", gender, subYear, inTier) 
+
+         ] : [ 
+            LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier) 
+         ]
       );
    }   
 
@@ -39,7 +46,7 @@ export class LeaderboardUtils {
    private static getMultiYearLboards(
       gender: string, fullYear: string, tier: string,
       transferYears: string[], otherYears: string[],
-      getUrl: (gender: string, subYear: string, inTier: string) => string
+      getUrl: (gender: string, subYear: string, inTier: string) => string[]
    ): Promise<any[]> {
       const year = fullYear.substring(0, 4);
    
@@ -48,31 +55,35 @@ export class LeaderboardUtils {
    
       const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
    
-      const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
-        const subYear = inYear.substring(0, 4);
-        return fetch(getUrl(gender, subYear, inTier))
-          .then((response: fetch.IsomorphicResponse) => {
-            return response.ok ? 
-            response.json().then((j: any) => { //(tag the tier in)
-              if (tier == "All") j.tier = inTier;
-              return j;
-            }) : 
-            Promise.resolve({ error: "No data available" });
-          });
-      }).concat(
-         transferYears.map(transferYear => {
-            const transferJsonPath = _.thru(transferYear, __ => {
-               if (!transferYear || (transferYear.substring(0, 4) == DateUtils.offseasonPredictionYear.substring(0, 4))) {
-                  return `/api/getTransfers?transferMode=${transferYear || ""}`;
-               } else {
-                  return `/leaderboards/roster_movement/transfers_${transferYear.substring(0, 4)}.json`;
-               }
-            });
-            return transferYear ? fetch(transferJsonPath).then((response: fetch.IsomorphicResponse) => {
-               return response.ok ? response.json() : Promise.resolve({})
-             }) : Promise.resolve({});
-         })
-      ));  
+      const fetchAll = Promise.all(
+         _.flatMap(yearsAndTiers, ([ inYear, inTier ]) => {
+            const subYear = inYear.substring(0, 4);
+            return getUrl(gender, subYear, inTier).map(url => fetch(url)
+               .then((response: fetch.IsomorphicResponse) => {
+                  return response.ok ? 
+                     response.json().then((j: any) => { //(tag the tier in)
+                        if (tier == "All") j.tier = inTier;
+                        return j;
+                     }) 
+                     : 
+                     Promise.resolve({ error: "No data available" });
+               })
+            );
+         }).concat(
+            transferYears.map(transferYear => {
+               const transferJsonPath = _.thru(transferYear, __ => {
+                  if (!transferYear || (transferYear.substring(0, 4) == DateUtils.offseasonPredictionYear.substring(0, 4))) {
+                     return `/api/getTransfers?transferMode=${transferYear || ""}`;
+                  } else {
+                     return `/leaderboards/roster_movement/transfers_${transferYear.substring(0, 4)}.json`;
+                  }
+               });
+               return transferYear ? fetch(transferJsonPath).then((response: fetch.IsomorphicResponse) => {
+                  return response.ok ? response.json() : Promise.resolve({})
+               }) : Promise.resolve({});
+            })
+         )
+      );  
       return fetchAll;  
    }
 
