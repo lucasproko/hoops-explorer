@@ -1155,9 +1155,8 @@ export class TeamEditorUtils {
             if (possPct < highPossPct) {
                const alpha = Math.max(0, possPct - lowPossPct)/(highPossPct - lowPossPct);
 
-               /**/if (player.key == "Melendez, RJ") console.log(`??? ${possPct} ${alpha} ${val} ${regressTo}` + 
-               ` [${prevYearFrList[team]?.overrides?.[player.code as string]?.profile || "NR"}] ${thisYearWeight} - ${val*alpha + regressTo*(1.0 - alpha)}`)
-               /**/if (player.key == "Goode, Luke") console.log(`??????? ${JSON.stringify(prevYearFrList[team])}`)
+               // if (player.key == "XXX, YYY") console.log(`??? ${possPct} ${alpha} ${val} ${regressTo}` + 
+               // ` [${prevYearFrList[team]?.overrides?.[player.code as string]?.profile || "NR"}] ${thisYearWeight} - ${val*alpha + regressTo*(1.0 - alpha)}`)
 
                return val*alpha + regressTo*(1.0 - alpha);
             } else {

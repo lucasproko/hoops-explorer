@@ -16,6 +16,10 @@ describe("buildOffseasonStatsLeaderboards", () => {
          // Simulate OffseasonLeaderboard.tsx
          const currYear = DateUtils.mostRecentYearWithLboardData;
          const nextYear = DateUtils.offseasonPredictionYear;
+         // For regenerating previous years:
+         // const currYear = "2021/22";
+         // const nextYear = "2022/23";
+
          const olderYear = DateUtils.getPrevYear(currYear);
          const currYearStr = currYear.substring(0, 4);
          const nextYearStr = nextYear.substring(0, 4);
@@ -25,7 +29,13 @@ describe("buildOffseasonStatsLeaderboards", () => {
             const sampleData = JSON.parse( 
                fs.readFileSync(`./public/leaderboards/lineups/players_all_Men_${currYearStr}_${v}.json`, { encoding: "utf-8"})
             );
+            const lowVolSampleData = JSON.parse( 
+               fs.readFileSync(`./public/leaderboards/lineups/players_lowvol_Men_${currYearStr}_${v}.json`, { encoding: "utf-8"})
+            );
             _.forEach((sampleData.players || []), (p: any) => {
+               p.tier = v;
+            });
+            _.forEach((lowVolSampleData.players || []), (p: any) => {
                p.tier = v;
             });
             const sampleTeamData = JSON.parse(
@@ -37,7 +47,7 @@ describe("buildOffseasonStatsLeaderboards", () => {
             _.forEach((sampleDataOlder.players || []), (p: any) => {
                p.tier = v;
             });
-            acc.players = acc.players.concat(sampleData.players || []);
+            acc.players = acc.players.concat(sampleData.players || []).concat(lowVolSampleData.players || []);
             acc.playersOld = acc.playersOld.concat(sampleDataOlder.players || []);
             acc.teams = acc.teams.concat(sampleTeamData.teams || []);
             acc.confs = acc.confs.concat(sampleData.confs || []).concat(sampleDataOlder.confs || []);
@@ -60,7 +70,7 @@ describe("buildOffseasonStatsLeaderboards", () => {
             <OffSeasonLeaderboardTable
                startingState={{
                   //(all defaults, except:)
-                  year: DateUtils.offseasonPredictionYear, 
+                  year: nextYear, 
                } as OffseasonLeaderboardParams}
                dataEvent={twoYears}
                onChangeState={dummyChangeStateCallback}
