@@ -44,11 +44,14 @@ describe("buildOffseasonStatsLeaderboards", () => {
             const sampleDataOlder = JSON.parse(
                fs.readFileSync(`./public/leaderboards/lineups/players_all_Men_${olderYearStr}_${v}.json`, { encoding: "utf-8"})
             );         
+            const lowVolSampleDataOlder = JSON.parse( 
+               fs.readFileSync(`./public/leaderboards/lineups/players_lowvol_Men_${olderYearStr}_${v}.json`, { encoding: "utf-8"})
+            );
             _.forEach((sampleDataOlder.players || []), (p: any) => {
                p.tier = v;
             });
             acc.players = acc.players.concat(sampleData.players || []).concat(lowVolSampleData.players || []);
-            acc.playersOld = acc.playersOld.concat(sampleDataOlder.players || []);
+            acc.playersOld = acc.playersOld.concat(sampleDataOlder.players || []).concat(lowVolSampleDataOlder.players || []);
             acc.teams = acc.teams.concat(sampleTeamData.teams || []);
             acc.confs = acc.confs.concat(sampleData.confs || []).concat(sampleDataOlder.confs || []);
          }, {
