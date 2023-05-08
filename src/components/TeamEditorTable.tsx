@@ -133,11 +133,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
 
-  const usePreseasonRanks = 
-    offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${year}`];
+  const usePreseasonRanksOnly = 
+    offSeasonMode && DateUtils.hasPreseasonRankings[`${gender}_${year}`] && !evalMode; //(always use both in eval mode, see below)
 
   const useLastSeasonAndPreseasonRanks = 
-    offSeasonMode && DateUtils.usePreseasonAndLastSeason[`${gender}_${year}`];
+    offSeasonMode && (DateUtils.usePreseasonAndLastSeason[`${gender}_${year}`] || evalMode); 
+    //(the existing logic handles the case where they aren't available)
 
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, (year == "All") ? ParamDefaults.defaultLeaderboardYear : yearWithStats, gender);
@@ -284,7 +285,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   // Team Editor specifc logic
 
   /** The year from which we're taking the grades - other averages need to come from that season */
-  const gradeYear = (yearIn: string, evalModeIn: boolean, offSeasonModeIn: boolean) => {
+  const gradeYear = (yearIn: string, offSeasonModeIn: boolean) => {
     const yearToUse = (!offSeasonModeIn) ? yearIn : DateUtils.getPrevYear(yearIn);
       //(basically if we're in prediction mode, we use the year before - ie what it would have looked like
       // before the season started. In "review" mode we obv use the data from that year)
@@ -299,17 +300,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
   useEffect(() => {
     const params = {
       ...startingState, gender,
-      year: usePreseasonRanks ? year : gradeYear(year, evalMode, offSeasonMode)
+      year: usePreseasonRanksOnly ? year 
+            : 
+            (evalMode ? year : gradeYear(year, offSeasonMode))
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-    if (!_.isEmpty(preSeasonDivisionStats)) setPreSeasonDivisionStats(undefined); //unset if set
+    if (!_.isEmpty(preSeasonDivisionStats)) setPreSeasonDivisionStats(overrideGrades); //unset if set
 
     GradeTableUtils.populateTeamDivisionStatsCache(params, statsCache => {
       setDivisionStatsCache(statsCache);
-    }, usePreseasonRanks ? "Preseason" : undefined);
+    }, usePreseasonRanksOnly ? "Preseason" : undefined);
 
-    if (useLastSeasonAndPreseasonRanks && !usePreseasonRanks) { // Also go fetch pre-season grades
+    if (useLastSeasonAndPreseasonRanks && !usePreseasonRanksOnly) { // Also go fetch pre-season grades
       const preSeasonParams = {
         ...startingState, gender, year
       };
@@ -398,7 +401,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
 
     // Processing - various pxResults are used in the buildXxx functions below
 
-    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, evalMode, offSeasonMode)}`; 
+    const genderYearLookupForAvgEff = `${gender}_${gradeYear(year, offSeasonMode)}`; 
       //(the year for which we are getting the grades)
     const avgEff = efficiencyAverages[genderYearLookupForAvgEff] || efficiencyAverages.fallback;
     const genderPrevSeason = offSeasonMode ? `${gender}_${DateUtils.getPrevYear(yearWithStats)}` : "NO MATCH"; //(for Fr)
@@ -917,6 +920,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
       const teamGradesActual = (dummyTeamActual && currOrPrevSeasonGrades) ?
         GradeUtils.buildTeamPercentiles(currOrPrevSeasonGrades, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
 
+      const teamGradesActualVsProj = (dummyTeamActual && preSeasonDivisionStats && useLastSeasonAndPreseasonRanks) ?
+        GradeUtils.buildTeamPercentiles(preSeasonDivisionStats, dummyTeamActual, [ "net", "adj_ppp" ], true) : {};
+
       const actualBenchInfo = actualTotalsFromTeam ?
         TeamEditorUtils.calcActualBenchProduction(actualTotalsFromTeam.stats, pxResults.actualResultsForReview, avgEff) : undefined;
 
@@ -968,7 +974,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_def: offSeasonMode ? dummyTeamBad.def_adj_ppp : undefined,
       };
       const teamProjectedGradesRowData = (filteredPlayerSet && preSeasonDivisionStats) ? {
-        title: <b>Team Grades (projected)</b>,
+        title: <b>Team Grades (preseason)</b>,
+        actual_net: evalMode ? teamGradesActualVsProj.off_net : undefined,
+        actual_off: evalMode ? teamGradesActualVsProj.off_adj_ppp : undefined,
+        actual_def: evalMode ? teamGradesActualVsProj.def_adj_ppp : undefined,
         ok_net: teamGradesOkNextYear.off_net,
         ok_off: teamGradesOkNextYear.off_adj_ppp,
         ok_def: teamGradesOkNextYear.def_adj_ppp,
@@ -980,16 +989,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({startingState, dataEve
         bad_def: teamGradesBadNextYear.def_adj_ppp,
       } : undefined;
 
-      const teamGradesRowData = (!teamProjectedGradesRowData || !usePreseasonRanks) ? {
+      const teamGradesRowData = (!teamProjectedGradesRowData || !usePreseasonRanksOnly) ? {
         title: <b>Team Grades {
           (divisionStatsCache.year && (divisionStatsCache.year != "None")) ? (
             (() => {
               const prevYear = DateUtils.getPrevYear(year);
-              if (usePreseasonRanks) {
+              if (usePreseasonRanksOnly) {
                 return "(preseason)";
               } else {
-                return  ((divisionStatsCache.year != ((!offSeasonMode) ? year : prevYear)) ?
-                "(generic)"
+                return  ((divisionStatsCache.year != ((!offSeasonMode || evalMode) ? year : prevYear)) ?
+                `(gen. [${divisionStatsCache.year.substring(2)}])`
                 : `(${divisionStatsCache.year.substring(2)})`);
               }
             })()         
