@@ -351,6 +351,9 @@ export class TeamEditorManualFixes {
             "Auburn": {
                superSeniorsReturning: new Set([ "LiBerman::" ]),
             },
+            "Belmont": {
+               superSeniorsReturning: new Set([ "KeDavidson::" ]),
+            },
             "Boise St.": {
                superSeniorsReturning: new Set([ "MaRice::" ]),
             },
@@ -369,6 +372,12 @@ export class TeamEditorManualFixes {
             "Clemson": {
                superSeniorsReturning: new Set([ "AlHemenway::" ]),
             },
+            "Colgate": {
+               superSeniorsReturning: new Set([ "KeRecords::" ]),
+            },
+            "Colorado St.": {
+               superSeniorsReturning: new Set([ "PaCartier::", "JoStrong::", "JoPalmer::", "IsStevens::" ]),
+            },
             "Creighton": {
                superSeniorsReturning: new Set([ "FrFarabello::", "BaScheierman::" ]),
             },
@@ -381,14 +390,23 @@ export class TeamEditorManualFixes {
             "Drake": {
                superSeniorsReturning: new Set([ "DaBrodie::", "TuDevries::" ]),
             },
+            "Drexel": {
+               superSeniorsReturning: new Set([ "MaOkros::", "LuHouse::" ]),
+            },
             "Duke": {
                superSeniorsReturning: new Set([ "RyYoung::" ]),
             },
             "Eastern Ky.": {
                superSeniorsReturning: new Set([ "IsCozart::" ]),
             },
+            "Evansville": {
+               superSeniorsReturning: new Set([ "KeStrawbridg::" ]),
+            },
             "Fairfield": {
                superSeniorsReturning: new Set([ "CaFields::" ]),
+            },
+            "FGCU": {
+               superSeniorsReturning: new Set([ "IsThompson::", "CyLargie::", "DaRivers::", "FrMiller::" ]),
             },
             "George Washington": {
                superSeniorsReturning: new Set([ "JaBishop::" ]),
@@ -399,8 +417,14 @@ export class TeamEditorManualFixes {
             "Georgetown": {
                leftTeam: [ "DaHarris::" ], //(bug in how transfers who didn't suit up last year are handled)
             },
+            "Gonzaga": {
+               superSeniorsReturning: new Set([ "AnWatson::" ]),
+            },
             "Hampton": {
                superSeniorsReturning: new Set([ "BrEarle::" ]),
+            },
+            "Illinois": {
+               superSeniorsReturning: new Set([ "TeShannon::" ]),
             },
             "Indiana": {
                superSeniorsReturning: new Set([ "XaJohnson::" ]),
@@ -412,10 +436,10 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "RoJones::", "HaWard::", "TrKing::" ]),
             },
             "Kansas": {
-               superSeniorsReturning: new Set([ "DaHarris::" ]),
+               superSeniorsReturning: new Set([ "DaHarris::", "KeMccullar::" ]),
             },
             "Kentucky": {
-               superSeniorsReturning: new Set([ "BrCanada::" ]),
+               superSeniorsReturning: new Set([ "BrCanada::", "AnReeves::" ]),
             },
             "Liberty": {
                superSeniorsReturning: new Set([ "KyRode::", "ShRobinson::" ]),
@@ -442,7 +466,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "NoCarter::", "NiHonor::" ]),
             },
             "Mississippi St.": {
-               superSeniorsReturning: new Set([ "DaDavis::", "DjJeffries::", "WiMcnair::" ]),
+               superSeniorsReturning: new Set([ "DaDavis::", "DjJeffries::", "ToSmith::" ]),
             },
             "Michigan": {
                superSeniorsReturning: new Set([ "JaLlewellyn::" ]),
@@ -450,14 +474,20 @@ export class TeamEditorManualFixes {
             "Michigan St.": {
                superSeniorsReturning: new Set([ "StIzzo::", "TyWalker::", "MaHall::" ]),
             },
+            "Missouri St.": {
+               superSeniorsReturning: new Set([ "DoClay::", "DaCarper::", "DaRidgnal::", "MaLee::" ]),
+            },
             "Montana": {
                superSeniorsReturning: new Set([ "AaMoody::" ]),
             },
             "Mount St. Mary's": {
                superSeniorsReturning: new Set([ "GeTinsley::" ]),
             },
+            "NC State": {
+               superSeniorsReturning: new Set([ "DjBurns::", "CaMorsell::" ]),
+            },
             "Nevada": {
-               superSeniorsReturning: new Set([ "KeBlackshear::", "JaLucas::" ]),
+               superSeniorsReturning: new Set([ "KeBlackshear::", "JaLucas::", "KjHymes::", "HuMcintosh::" ]),
             },
             "New Mexico": {
                superSeniorsReturning: new Set([ "JaHouse::" ]),
@@ -468,6 +498,9 @@ export class TeamEditorManualFixes {
             "North Florida": {
                superSeniorsReturning: new Set([ "DoJames::" ]),
             },
+            "Northwestern": {
+               superSeniorsReturning: new Set([ "BoBuie::" ]),
+            },
             "Ohio": {
                superSeniorsReturning: new Set([ "MiBrown::" ]),
             },
@@ -476,6 +509,9 @@ export class TeamEditorManualFixes {
             },
             "Oklahoma St.": {
                superSeniorsReturning: new Set([ "JoWright::" ]),
+            },
+            "Ole Miss": {
+               superSeniorsReturning: new Set([ "MaMurrell::" ]),
             },
             "Oral Roberts": {
                superSeniorsReturning: new Set([ "KaThompson::" ]),
@@ -496,7 +532,7 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "AlPowell::" ]),
             },
             "Rutgers": {
-               superSeniorsReturning: new Set([ "CaSpencer::", "AuHyatt::" ]),
+               superSeniorsReturning: new Set([ "AuHyatt::" ]),
             },
             "Sacred Heart": {
                superSeniorsReturning: new Set([ "JoReilly::", "RaSoloman::", "BrMcguire::" ]),
@@ -517,7 +553,10 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "JaLedee::", "DaTrammell::" ]),
             },
             "Santa Clara": {
-               leftTeam: [ "BrPodziemski" ], //(NBA)
+               superSeniorsReturning: new Set([ "CaMarshall::" ]),
+            },
+            "Seton Hall": {
+               superSeniorsReturning: new Set([ "AlDawes::" ]),
             },
             "SMU": {
                superSeniorsReturning: new Set([ "SaWilliamson::" ]),
@@ -525,8 +564,14 @@ export class TeamEditorManualFixes {
             "Southern California": {
                superSeniorsReturning: new Set([ "JoMorgan::", "BoEllis::" ]),
             },
+            "Southern Ill.": {
+               superSeniorsReturning: new Set([ "XaJohnson::", "TrBrown::" ]),
+            },
             "St. John's (NY)": {
                superSeniorsReturning: new Set([ "JoSoriano::" ]),
+            },
+            "St. Thomas (MN)": {
+               superSeniorsReturning: new Set([ "PaBjorklund::", "BrAllen::" ]),
             },
             "Stanford": {
                superSeniorsReturning: new Set([ "MiJones::", "SpJones::" ]),
@@ -538,10 +583,16 @@ export class TeamEditorManualFixes {
                superSeniorsReturning: new Set([ "ChO'bannon::" ]),
             },
             "Tennessee": {
-               superSeniorsReturning: new Set([ "SaVescovi::" ]),
+               superSeniorsReturning: new Set([ "SaVescovi::", "JoJames::" ]),
             },
             "Texas": {
                superSeniorsReturning: new Set([ "BrCunningham::", "DyDisu::" ]),
+            },
+            "Texas A&M": {
+               superSeniorsReturning: new Set([ "TyRadford::" ]),
+            },
+            "The Citadel": {
+               superSeniorsReturning: new Set([ "ElMorgan::" ]),
             },
             "Toledo": {
                superSeniorsReturning: new Set([ "RaDennis::" ]),
@@ -554,6 +605,9 @@ export class TeamEditorManualFixes {
             },
             "UCLA": {
                superSeniorsReturning: new Set([ "KeNwuba::" ]),
+            },
+            "UConn": {
+               superSeniorsReturning: new Set([ "TrNewton::" ]),
             },
             "UNC Asheville": {
                superSeniorsReturning: new Set([ "DrPember::" ]),
