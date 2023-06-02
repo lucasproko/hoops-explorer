@@ -3527,158 +3527,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 0.25,
-                    "samples": 106,
-                    "value": 0.9905660377358491,
-                  },
-                  "conf": <small>
-                    BE
-                  </small>,
-                  "def": Object {
-                    "value": 92.802401692764,
-                  },
-                  "def_grade": Object {
-                    "samples": 106,
-                    "value": 0.9905660377358491,
-                  },
-                  "dev_margin": Object {
-                    "value": 6.631953523646091,
-                  },
-                  "edit": <OverlayTrigger
-                    overlay={
-                      <ForwardRef
-                        id="editTooltip"
-                        placement="right"
-                      >
-                        Show/Hide the inline Team Viewer and Editor 
-                      </ForwardRef>
-                    }
-                    placement="auto"
-                  >
-                    <ForwardRef
-                      active={false}
-                      disabled={false}
-                      onClick={[Function]}
-                      size="sm"
-                      variant="outline-secondary"
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={false}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [
-                              576,
-                              512,
-                              Array [],
-                              "f06e",
-                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
-                            ],
-                            "iconName": "eye",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        swapOpacity={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      />
-                    </ForwardRef>
-                  </OverlayTrigger>,
-                  "fr_margin": Object {
-                    "value": 1.6698731605279102,
-                  },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 1,
-                  },
-                  "in_margin": Object {
-                    "value": 0,
-                  },
-                  "inout_margin": Object {
-                    "value": -11.39699839947209,
-                  },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.9622641509433962,
-                  },
-                  "nba_margin": Object {
-                    "value": 0,
-                  },
-                  "net": Object {
-                    "value": 15.502484952164831,
-                  },
-                  "net_grade": Object {
-                    "samples": 106,
-                    "value": 0.9905660377358491,
-                  },
-                  "off": Object {
-                    "value": 108.30488664492881,
-                  },
-                  "off_grade": Object {
-                    "samples": 106,
-                    "value": 0.9716981132075472,
-                  },
-                  "out_margin": Object {
-                    "value": 0,
-                  },
-                  "roster": <span
-                    style={
-                      Object {
-                        "whiteSpace": "nowrap",
-                      }
-                    }
-                  >
-                    <small>
-                      0 / 0 / 4 / 1
-                    </small>
-                  </span>,
-                  "sr_margin": Object {
-                    "value": 13.06687156,
-                  },
-                  "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <ForwardRef
-                          id="teamTooltip1"
-                          placement="right"
-                        >
-                          Open new tab with the detailed off-season predictions for this team
-                        </ForwardRef>
-                      }
-                      placement="auto"
-                    >
-                      <b>
-                        <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Seton%20Hall&year=2020%2F21&"
-                          target="_blank"
-                        >
-                          Seton Hall
-                        </a>
-                      </b>
-                    </OverlayTrigger>
-                  </span>,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "actual_grade": Object {
-                    "colorOverride": 26,
+                    "colorOverride": 21,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -3771,7 +3620,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.9811320754716981,
+                    "value": 0.9905660377358491,
                   },
                   "off": Object {
                     "value": 109.12113125,
@@ -3801,7 +3650,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip2"
+                          id="teamTooltip1"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -3815,6 +3664,157 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           target="_blank"
                         >
                           Duke
+                        </a>
+                      </b>
+                    </OverlayTrigger>
+                  </span>,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "actual_grade": Object {
+                    "colorOverride": 0,
+                    "samples": 106,
+                    "value": 0.9905660377358491,
+                  },
+                  "conf": <small>
+                    BE
+                  </small>,
+                  "def": Object {
+                    "value": 93.1586180661049,
+                  },
+                  "def_grade": Object {
+                    "samples": 106,
+                    "value": 0.9905660377358491,
+                  },
+                  "dev_margin": Object {
+                    "value": 5.939252928237211,
+                  },
+                  "edit": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="editTooltip"
+                        placement="right"
+                      >
+                        Show/Hide the inline Team Viewer and Editor 
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <ForwardRef
+                      active={false}
+                      disabled={false}
+                      onClick={[Function]}
+                      size="sm"
+                      variant="outline-secondary"
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={false}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [
+                              576,
+                              512,
+                              Array [],
+                              "f06e",
+                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
+                            ],
+                            "iconName": "eye",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        swapOpacity={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      />
+                    </ForwardRef>
+                  </OverlayTrigger>,
+                  "fr_margin": Object {
+                    "value": 1.6546438394535676,
+                  },
+                  "high_grade": Object {
+                    "samples": 106,
+                    "value": 1,
+                  },
+                  "in_margin": Object {
+                    "value": 0,
+                  },
+                  "inout_margin": Object {
+                    "value": -11.412227720546431,
+                  },
+                  "low_grade": Object {
+                    "samples": 106,
+                    "value": 0.9622641509433962,
+                  },
+                  "nba_margin": Object {
+                    "value": 0,
+                  },
+                  "net": Object {
+                    "value": 14.812762641163367,
+                  },
+                  "net_grade": Object {
+                    "samples": 106,
+                    "value": 0.9811320754716981,
+                  },
+                  "off": Object {
+                    "value": 107.97138070726827,
+                  },
+                  "off_grade": Object {
+                    "samples": 106,
+                    "value": 0.9716981132075472,
+                  },
+                  "out_margin": Object {
+                    "value": 0,
+                  },
+                  "roster": <span
+                    style={
+                      Object {
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    <small>
+                      0 / 0 / 4 / 1
+                    </small>
+                  </span>,
+                  "sr_margin": Object {
+                    "value": 13.06687156,
+                  },
+                  "title": <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="teamTooltip2"
+                          placement="right"
+                        >
+                          Open new tab with the detailed off-season predictions for this team
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <b>
+                        <a
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Seton%20Hall&year=2020%2F21&"
+                          target="_blank"
+                        >
+                          Seton Hall
                         </a>
                       </b>
                     </OverlayTrigger>
@@ -4053,7 +4053,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "high_grade": Object {
                     "samples": 106,
-                    "value": 0.9905660377358491,
+                    "value": 1,
                   },
                   "in_margin": Object {
                     "value": 0,
@@ -4900,7 +4900,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             id="predictedMisses10"
                             placement="right"
                           >
-                            Duke [3] vs [106]
+                            Duke [2] vs [106]
                             <br />
                             Kentucky [4] vs [106]
                             <br />
@@ -7238,7 +7238,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             id="predictedMisses25"
                             placement="right"
                           >
-                            Duke [3] vs [106]
+                            Duke [2] vs [106]
                             <br />
                             Kentucky [4] vs [106]
                             <br />
@@ -11116,7 +11116,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             id="predictedMisses50"
                             placement="right"
                           >
-                            Duke [3] vs [106]
+                            Duke [2] vs [106]
                             <br />
                             Kentucky [4] vs [106]
                             <br />
@@ -16778,10 +16778,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           104.3,
                           104.3,
                           104.3,
-                          105.07078676710104,
+                          105.19879195733465,
                         ],
                         "off_adj_ppp": Array [
-                          102.12379700434285,
+                          102.37183346605714,
                           104.3,
                           104.3,
                           104.3,
@@ -16889,7 +16889,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           116.53765340144,
                         ],
                         "off_net": Array [
-                          -2.946989762758189,
+                          -2.826958491277503,
                           0,
                           0,
                           0,
@@ -17109,7 +17109,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "105": Array [
                               105,
-                              105.07078676710104,
+                              105.19879195733465,
                             ],
                             "95": Array [
                               0,
@@ -17129,7 +17129,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "102": Array [
                               0,
-                              102.12379700434285,
+                              102.37183346605714,
                             ],
                             "104": Array [
                               1,
@@ -17247,7 +17247,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 102.12379700434285,
+                          "min": 102.37183346605714,
                           "size": 106,
                         },
                         "off_net": Object {
@@ -17255,7 +17255,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "-3": Array [
                               0,
-                              -2.946989762758189,
+                              -2.826958491277503,
                             ],
                             "0": Array [
                               1,
@@ -17373,7 +17373,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                           },
                           "lutMult": undefined,
-                          "min": -2.946989762758189,
+                          "min": -2.826958491277503,
                           "size": 106,
                         },
                         "off_raw_net": undefined,

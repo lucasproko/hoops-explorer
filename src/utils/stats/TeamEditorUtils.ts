@@ -1958,8 +1958,9 @@ export class TeamEditorUtils {
 
          // (can't turn into an iron man without showing signs the previous season!)
          const playedATonLastYear = (p.orig?.off_team_poss_pct?.value || 0) >= 0.7;
+         const playedVeryLittleLastYear = (p.orig?.off_team_poss_pct?.value || 0) <= 0.30;
 
-         const baseMax = playedATonLastYear ? 0.85 : 0.76;
+         const baseMax = playedATonLastYear ? 0.85 : (playedVeryLittleLastYear ? 0.6 : 0.76);
          if (foulsPer50 > 4) { //(so now by construction it's in the 6-4 range)
             return baseMax - (foulsPer50 - 4)*0.10;
          } else {
