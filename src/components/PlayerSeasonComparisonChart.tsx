@@ -912,10 +912,34 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         )
       : undefined;
 
-    const dataToFilter = _.flatMap(
-      teamRanks,
-      (t) => _.filter(t.players, (p) => p?.actualResults) || []
-    );
+    const dataToFilter = _.flatMap(teamRanks, (t) => {
+      // Inject transfers from this season
+      const offseasonYear = DateUtils.getNextYear(t.year);
+      const offseasonTransfers = dataEvent[offseasonYear]?.transfers?.[0];
+      const chain = _.chain(t.players).filter(
+        (p) => !_.isNil(p?.actualResults)
+      );
+      return (
+        offseasonTransfers
+          ? chain.map((p) => {
+              const actualResults = p?.actualResults;
+              if (actualResults) {
+                const maybeTransfers =
+                  offseasonTransfers[actualResults.code || "???"] || [];
+                const maybeTransfer = _.find(
+                  maybeTransfers,
+                  (txfer) => txfer.f == actualResults.team
+                );
+                if (maybeTransfer) {
+                  (actualResults as any).transfer_src = actualResults.team;
+                  (actualResults as any).transfer_dest = maybeTransfer.t;
+                }
+                return p;
+              }
+            })
+          : chain
+      ).value();
+    });
     const [filteredData, tmpAvancedFilterError] = datasetFilterStr
       ? AdvancedFilterUtils.applyFilter(
           dataToFilter,

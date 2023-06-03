@@ -94,33 +94,34 @@ export class LeaderboardUtils {
               : Promise.resolve({ error: "No data available" });
           })
         );
-      }).concat(
-        transferYears.map((transferYear) => {
-          const transferJsonPath = _.thru(transferYear, (__) => {
-            if (
-              !transferYear ||
-              transferYear.substring(0, 4) ==
-                DateUtils.offseasonPredictionYear.substring(0, 4)
-            ) {
-              return `/api/getTransfers?transferMode=${transferYear || ""}`;
-            } else {
-              return `/leaderboards/roster_movement/transfers_${transferYear.substring(
-                0,
-                4
-              )}.json`;
-            }
-          });
-          return transferYear
-            ? fetch(transferJsonPath).then(
-                (response: fetch.IsomorphicResponse) => {
-                  return response.ok ? response.json() : Promise.resolve({});
-                }
-              )
-            : Promise.resolve({});
-        })
-      )
+      }).concat(LeaderboardUtils.getTransferInfo(transferYears))
     );
     return fetchAll;
+  }
+
+  /** Returns just the transfer info about a given year */
+  static getTransferInfo(years: string[]): Promise<any>[] {
+    return years.map((transferYear) => {
+      const transferJsonPath = _.thru(transferYear, (__) => {
+        if (
+          !transferYear ||
+          transferYear.substring(0, 4) ==
+            DateUtils.offseasonPredictionYear.substring(0, 4)
+        ) {
+          return `/api/getTransfers?transferMode=${transferYear || ""}`;
+        } else {
+          return `/leaderboards/roster_movement/transfers_${transferYear.substring(
+            0,
+            4
+          )}.json`;
+        }
+      });
+      return transferYear
+        ? fetch(transferJsonPath).then((response: fetch.IsomorphicResponse) => {
+            return response.ok ? response.json() : Promise.resolve({});
+          })
+        : Promise.resolve({});
+    });
   }
 
   /** Get a single year of player leaderboard for a single tier (mostly for older years when there was only one tier) */

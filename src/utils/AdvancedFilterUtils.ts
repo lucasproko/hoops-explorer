@@ -171,12 +171,11 @@ export class AdvancedFilterUtils {
             return []; //(prediction strings are different with the player season comparison)
           } else if (AdvancedFilterUtils.operatorsSet.has(field)) {
             return prefix == "prev_" ? [field] : []; //(return operators just once)
-          } else if (
-            _.startsWith(field, "player_") ||
-            _.startsWith(field, "transfer_")
-          ) {
+          } else if (_.startsWith(field, "player_")) {
             //(TODO: incorporate transfer info and do next/prev and orig)
-            return prefix == "prev_" ? [field] : []; //(return player_name|code/transfer_src|dest just once)
+            return prefix == "prev_" ? [field] : []; //(return player_name|code just once)
+          } else if (_.startsWith(field, "transfer_")) {
+            return prefix == "prev_" ? [field] : [`next_${field}`]; //(return transfer_X and next_transfer_X)
           } else {
             return [`${prefix}${field}`];
           }
@@ -226,32 +225,29 @@ export class AdvancedFilterUtils {
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
   }
   static multiYearfixObjectFormat(s: string) {
-    return (
-      s
-        .replace(
-          /(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g,
-          "$.$1?.p.$2?.value"
-        )
-        .replace(
-          /(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g,
-          "$1$.$2?.$3"
-        )
-        .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
-        // Not currently supported
-        //.replace(/(prev|next|pred_[a-z]+)_transfer_(src|dest)/g, "$.$1?.transfer_$2")
-        .replace(/transfer_(src|dest)/g, "$.transfer_$1")
-        .replace(/player_(name|code)/g, "$.player_$1")
-        .replace(
-          /(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
-          "$1$.$2?.p.$3"
-        )
-        .replace(
-          /[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g,
-          "(100*$.$1?.p.def_ftr?.value)"
-        ) //(fouls called/50)
-        .replace(/roster[.]/g, "roster?.") //(roster not always present)
-        .replace(/ALL/g, "($.player_code)")
-    );
+    return s
+      .replace(
+        /(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g,
+        "$.$1?.p.$2?.value"
+      )
+      .replace(
+        /(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g,
+        "$1$.$2?.$3"
+      )
+      .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
+      .replace(/(^|[^_])transfer_(src|dest)/g, "$1$.transfer_$2")
+      .replace(/(prev|next)_transfer_(src|dest)/g, "$.$1?.transfer_$2")
+      .replace(/player_(name|code)/g, "$.player_$1")
+      .replace(
+        /(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
+        "$1$.$2?.p.$3"
+      )
+      .replace(
+        /[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g,
+        "(100*$.$1?.p.def_ftr?.value)"
+      ) //(fouls called/50)
+      .replace(/roster[.]/g, "roster?.") //(roster not always present)
+      .replace(/ALL/g, "($.player_code)");
   }
   static avoidAssigmentOperator(s: string) {
     return s.replace(/([^!<>])=[=]*/g, "$1==");

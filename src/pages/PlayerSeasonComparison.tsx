@@ -174,6 +174,17 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
 
       const yearsToDo = multiYearScenarios[fullYear] || [fullYear];
 
+      // Include the transfer info from the previous season:
+      const offseasonTransferYearFull = _.thru(_.last(yearsToDo), (year) =>
+        year ? DateUtils.getNextYear(year) : undefined
+      );
+      const offseasonTransferYear = offseasonTransferYearFull
+        ? offseasonTransferYearFull.substring(0, 4)
+        : undefined;
+      const offseasonTransferPromise = offseasonTransferYear
+        ? LeaderboardUtils.getTransferInfo([offseasonTransferYear])
+        : [Promise.resolve({})];
+
       const { fetchAllPromise } = _.transform(
         yearsToDo,
         (acc, yearToDo) => {
@@ -185,7 +196,6 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
           const yearWithStats = prevYear;
           const prevYearWithStats = DateUtils.getPrevYear(yearWithStats);
           const transferYears = [transferYear, transferYearPrev];
-
           const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
             "all",
             gender,
@@ -209,52 +219,67 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
       );
 
       const fetchAllYears = Promise.all(fetchAllPromise);
-      fetchAllYears.then((playersTeamPairs: any[][]) => {
-        const dataEventToPublish: Record<string, TeamEditorStatsModel> =
-          _.chain(playersTeamPairs)
-            .chunk(2)
-            .map((chunkedFetch, yearIndex) => {
-              const yearToDo = yearsToDo[yearIndex]!; //(exists by construction)
-              const jsonsIn = chunkedFetch[0] || [];
-              const teamsIn = chunkedFetch[1] || [];
-              const jsons = _.dropRight(jsonsIn, 2); //(2 years' of transfers, see transferYears above)
+      offseasonTransferPromise[0].then((offseasonTransfers) => {
+        fetchAllYears.then((playersTeamPairs: any[][]) => {
+          const dataEventToPublish: Record<string, TeamEditorStatsModel> =
+            _.chain(playersTeamPairs)
+              .chunk(2)
+              .map((chunkedFetch, yearIndex) => {
+                const yearToDo = yearsToDo[yearIndex]!; //(exists by construction)
+                const jsonsIn = chunkedFetch[0] || [];
+                const teamsIn = chunkedFetch[1] || [];
+                const jsons = _.dropRight(jsonsIn, 2); //(2 years' of transfers, see transferYears above)
 
-              const dataSubEvent: TeamEditorStatsModel = {
-                players: _.chain(jsons)
-                  .map(
-                    (d) =>
-                      (d.players || []).map((p: any) => {
-                        p.tier = d.tier;
-                        return p;
-                      }) || []
-                  )
-                  .flatten()
-                  .value(),
-                confs: _.chain(jsons)
-                  .map((d) => d.confs || [])
-                  .flatten()
-                  .uniq()
-                  .value(),
-                lastUpdated: _.chain(jsons)
-                  .map((d) => d.lastUpdated)
-                  .max()
-                  .value(),
-                teamStats: _.chain(teamsIn)
-                  .flatMap((d) => d.teams || [])
-                  .flatten()
-                  .value(),
-                transfers: _.drop(jsonsIn, _.size(jsons)) as Record<
-                  string,
-                  Array<TransferModel>
-                >[],
-              };
+                const dataSubEvent: TeamEditorStatsModel = {
+                  players: _.chain(jsons)
+                    .map(
+                      (d) =>
+                        (d.players || []).map((p: any) => {
+                          p.tier = d.tier;
+                          return p;
+                        }) || []
+                    )
+                    .flatten()
+                    .value(),
+                  confs: _.chain(jsons)
+                    .map((d) => d.confs || [])
+                    .flatten()
+                    .uniq()
+                    .value(),
+                  lastUpdated: _.chain(jsons)
+                    .map((d) => d.lastUpdated)
+                    .max()
+                    .value(),
+                  teamStats: _.chain(teamsIn)
+                    .flatMap((d) => d.teams || [])
+                    .flatten()
+                    .value(),
+                  transfers: _.drop(jsonsIn, _.size(jsons)) as Record<
+                    string,
+                    Array<TransferModel>
+                  >[],
+                };
 
-              return [yearToDo, dataSubEvent];
-            })
-            .fromPairs()
-            .value();
+                return [yearToDo, dataSubEvent];
+              })
+              .concat(
+                //(if we are in an off-season situation, then create a dummy TeamEditorStatsModel with just the transfers)
+                offseasonTransferYearFull
+                  ? [
+                      [
+                        offseasonTransferYearFull,
+                        {
+                          transfers: [offseasonTransfers],
+                        },
+                      ],
+                    ]
+                  : []
+              )
+              .fromPairs()
+              .value();
 
-        setDataEvent(dataEventToPublish);
+          setDataEvent(dataEventToPublish);
+        });
       });
     }
   }, [playerSeasonComparisonParams]);
