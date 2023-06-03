@@ -1,76 +1,95 @@
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // Next imports:
-import { NextPage } from 'next';
-import Router from 'next/router'
+import { NextPage } from "next";
+import Router from "next/router";
 
 // Lodash
 import _ from "lodash";
 
 // Bootstrap imports:
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Alert from 'react-bootstrap/Alert';
-import InputGroup from 'react-bootstrap/InputGroup';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Tooltip from 'react-bootstrap/Tooltip';
-import Modal from 'react-bootstrap/Modal';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
+import InputGroup from "react-bootstrap/InputGroup";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import Dropdown from "react-bootstrap/Dropdown";
+import Tooltip from "react-bootstrap/Tooltip";
+import Modal from "react-bootstrap/Modal";
 
 // Additional components:
-import Select, { components} from "react-select"
+import Select, { components } from "react-select";
 // @ts-ignore
-import LoadingOverlay from 'react-loading-overlay';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { faHistory } from '@fortawesome/free-solid-svg-icons'
-import { faLink } from '@fortawesome/free-solid-svg-icons'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import ClipboardJS from 'clipboard';
+import LoadingOverlay from "react-loading-overlay";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import ClipboardJS from "clipboard";
 // @ts-ignore
-import { Shake } from 'reshake'
+import { Shake } from "reshake";
 // @ts-ignore
-import ls from 'local-storage';
+import ls from "local-storage";
 
 // Component imports:
-import { TeamStatsModel } from '../components/TeamStatsTable';
-import { RosterCompareModel } from '../components/RosterCompareTable';
-import HistorySelector, { historySelectContainerWidth } from './shared/HistorySelector';
-import AutoSuggestText, { notFromAutoSuggest } from './shared/AutoSuggestText';
+import { TeamStatsModel } from "../components/TeamStatsTable";
+import { RosterCompareModel } from "../components/RosterCompareTable";
+import HistorySelector, {
+  historySelectContainerWidth,
+} from "./shared/HistorySelector";
+import AutoSuggestText, { notFromAutoSuggest } from "./shared/AutoSuggestText";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 
 // Utils:
-import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
-import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/preloadedData';
-import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
-import { ClientRequestCache } from '../utils/ClientRequestCache';
-import { RequestUtils } from '../utils/RequestUtils';
-import { FilterParamsType, FilterRequestInfo, ParamPrefixes, ParamPrefixesType, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
-import { HistoryManager } from '../utils/HistoryManager';
-import { UrlRouting } from '../utils/UrlRouting';
-import { CommonFilterType, QueryUtils, CommonFilterCustomDate } from '../utils/QueryUtils';
+import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
+import {
+  PreloadedDataSamples,
+  preloadedData,
+} from "../utils/internal-data/preloadedData";
+import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
+import { ClientRequestCache } from "../utils/ClientRequestCache";
+import { RequestUtils } from "../utils/RequestUtils";
+import {
+  FilterParamsType,
+  FilterRequestInfo,
+  ParamPrefixes,
+  ParamPrefixesType,
+  ParamDefaults,
+  CommonFilterParams,
+  RequiredTeamReportFilterParams,
+} from "../utils/FilterModels";
+import { HistoryManager } from "../utils/HistoryManager";
+import { UrlRouting } from "../utils/UrlRouting";
+import {
+  CommonFilterType,
+  QueryUtils,
+  CommonFilterCustomDate,
+} from "../utils/QueryUtils";
 
 // Library imports:
-import fetch from 'isomorphic-unfetch';
-import fetchBuilder from 'fetch-retry-ts';
-import QueryFilterDropdown from './shared/QueryFilterDropdown';
-import { QueryDisplayUtils } from '../utils/QueryDisplayUtils';
-import DateRangeModal from './shared/DateRangeModal';
+import fetch from "isomorphic-unfetch";
+import fetchBuilder from "fetch-retry-ts";
+import QueryFilterDropdown from "./shared/QueryFilterDropdown";
+import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
+import DateRangeModal from "./shared/DateRangeModal";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
   onChangeState: (newParams: PARAMS) => void;
   onChangeCommonState: (newCommonParams: CommonFilterParams) => void;
-  tablePrefix: ParamPrefixesType,
-  tablePrefixForPrimaryRequest?: ParamPrefixesType, //(goes with primary request, normally same as tablePrefix)
-  buildParamsFromState: (includeFilterParams: Boolean) => [ PARAMS, FilterRequestInfo[] ];
+  tablePrefix: ParamPrefixesType;
+  tablePrefixForPrimaryRequest?: ParamPrefixesType; //(goes with primary request, normally same as tablePrefix)
+  buildParamsFromState: (
+    includeFilterParams: Boolean
+  ) => [PARAMS, FilterRequestInfo[]];
   childHandleResponse: (json: any, wasError: Boolean) => void;
   buildLinks?: (params: PARAMS) => React.ReactNode[];
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
@@ -84,85 +103,121 @@ interface Props<PARAMS> {
 export const GlobalKeypressManager = React.createContext((ev: any) => {});
 
 const fetchRetryOptions = {
-    retries: 5,
-    retryDelay: 500,
-    retryOn: [419, 502, 503, 504],
+  retries: 5,
+  retryDelay: 500,
+  retryOn: [419, 502, 503, 504],
 };
 const fetchWithRetry = fetchBuilder(fetch, fetchRetryOptions);
 
 /** Type workaround per https://stackoverflow.com/questions/51459971/type-of-generic-stateless-component-react-or-extending-generic-function-interfa */
-type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
+type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>;
 
 const CommonFilter: CommonFilterI = ({
-    children,
-    startingState, onChangeState, onChangeCommonState,
-    tablePrefix, tablePrefixForPrimaryRequest, buildParamsFromState, childHandleResponse,
-    buildLinks,
-    majorParamsDisabled,
-    forceReload1Up,
-    matchupMode,
-    blockSubmit
+  children,
+  startingState,
+  onChangeState,
+  onChangeCommonState,
+  tablePrefix,
+  tablePrefixForPrimaryRequest,
+  buildParamsFromState,
+  childHandleResponse,
+  buildLinks,
+  majorParamsDisabled,
+  forceReload1Up,
+  matchupMode,
+  blockSubmit,
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
   // Data model
 
   // Ugly internals
-  const [ queryIsLoading, setQueryIsLoading ] = useState(false);
-  const [ atLeastOneQueryMade, setAtLeastOneQueryMade ] = useState(false);
-  const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
-  const [ currForceReload1Up, setCurrForceload1up ] = useState(0);
-  const [ currState, setCurrState ] = useState(startingState);
+  const [queryIsLoading, setQueryIsLoading] = useState(false);
+  const [atLeastOneQueryMade, setAtLeastOneQueryMade] = useState(false);
+  const [pageJustLoaded, setPageJustLoaded] = useState(true);
+  const [currForceReload1Up, setCurrForceload1up] = useState(0);
+  const [currState, setCurrState] = useState(startingState);
 
-  const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
+  const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
 
   // Data source
-  const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
-  const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
-  const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
+  const [team, setTeam] = useState(
+    startingState.team || ParamDefaults.defaultTeam
+  );
+  const [year, setYear] = useState(
+    startingState.year || ParamDefaults.defaultYear
+  );
+  const [gender, setGender] = useState(
+    startingState.gender || ParamDefaults.defaultGender
+  );
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
 
   // Generic filters:
 
-  const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || ParamDefaults.defaultMinRank);
-  const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || ParamDefaults.defaultMaxRank);
-  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
+  const [minRankFilter, setMinRankFilter] = useState(
+    startingState.minRank || ParamDefaults.defaultMinRank
+  );
+  const [maxRankFilter, setMaxRankFilter] = useState(
+    startingState.maxRank || ParamDefaults.defaultMaxRank
+  );
+  const [baseQuery, setBaseQuery] = useState(startingState.baseQuery || "");
 
-  const [ garbageTimeFiltered, setGarbageTimeFiltered ] = useState(
-    _.isNil(startingState.filterGarbage) ? ParamDefaults.defaultFilterGarbage : startingState.filterGarbage
+  const [garbageTimeFiltered, setGarbageTimeFiltered] = useState(
+    _.isNil(startingState.filterGarbage)
+      ? ParamDefaults.defaultFilterGarbage
+      : startingState.filterGarbage
   );
 
-  const [ queryFilters, setQueryFilters ] = useState(
+  const [queryFilters, setQueryFilters] = useState(
     QueryUtils.parseFilter(
-      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters, year
+      _.isNil(startingState.queryFilters)
+        ? ParamDefaults.defaultQueryFilters
+        : startingState.queryFilters,
+      year
     )
   );
 
-  const [ showDateRangeModal, setShowDateRangeModal ] = useState(false);
+  const [showDateRangeModal, setShowDateRangeModal] = useState(false);
 
   // Validation, this currently only supports once case:
-  const [ showInvalidQuery, setShowInvalidQuery ] = useState(false as boolean);
+  const [showInvalidQuery, setShowInvalidQuery] = useState(false as boolean);
 
   // Automatically update child state when any current param is changed:
   // (Note this doesn't trigger a change to the URL unless submit is pressed)
   useEffect(() => {
     //(note: this is duplicated in the force reload logic)
     onChangeCommonState({
-      team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
-      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
-      queryFilters: QueryUtils.buildFilterStr(queryFilters)
+      team: team,
+      year: year,
+      gender: gender,
+      minRank: minRankFilter,
+      maxRank: maxRankFilter,
+      baseQuery: baseQuery,
+      filterGarbage: garbageTimeFiltered,
+      queryFilters: QueryUtils.buildFilterStr(queryFilters),
     });
-  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered, queryFilters ]);
+  }, [
+    team,
+    year,
+    gender,
+    minRankFilter,
+    maxRankFilter,
+    baseQuery,
+    garbageTimeFiltered,
+    queryFilters,
+  ]);
 
-  const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
-  const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
+  const [submitDisabled, setSubmitDisabled] = useState(false); // (always start as true on page load)
+  const [reportIsDisabled, setReportIsDisabled] = useState(false); //(same as above)
   const canSubmit = () => !submitDisabled && !(blockSubmit || false);
 
-  const isDebug = (process.env.NODE_ENV !== 'production');
+  const isDebug = process.env.NODE_ENV !== "production";
 
-  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname
+  const server =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? "server"
+      : window.location.hostname;
 
   // Utils
 
@@ -175,7 +230,12 @@ const CommonFilter: CommonFilterI = ({
       //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
       return inAutoSuggest || notFromAutoSuggest(event);
     };
-    if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
+    if (
+      event.code === "Enter" ||
+      event.code === "NumpadEnter" ||
+      event.keyCode == 13 ||
+      event.keyCode == 14
+    ) {
       if (canSubmit() && allowKeypress()) {
         onSubmit();
       } else if (event && event.preventDefault) {
@@ -199,14 +259,16 @@ const CommonFilter: CommonFilterI = ({
     // return (now - lastActive) < thresholdMs; //4hrs
     // Let's just start auto-loading everything
     return true;
-  }
+  };
   /** Update session activity */
   const registerSessionActivity = (sessionActive: boolean) => {
     if (!sessionActive) {
-      console.log("Set browser session active, will auto-retrieve non-cached requests");
+      console.log(
+        "Set browser session active, will auto-retrieve non-cached requests"
+      );
     }
     (ls as any).set(sessionActiveKey, "" + new Date().getTime());
-  }
+  };
 
   /** Handles data loading logic either when loading a page (onLoad==true) or pressing submit (onLoad==false) */
   const requestHandlingLogic = (onLoadIn: boolean) => {
@@ -216,40 +278,53 @@ const CommonFilter: CommonFilterI = ({
     const sessionActive = isSessionActive();
     const onLoad = onLoadIn && !sessionActive; //(ie always false if session active)
     if (!onLoadIn) registerSessionActivity(sessionActive); //(pressed button => session active)
-    if (onLoadIn && !onLoad) { // (user visited page but we're going to load it anyway)      
+    if (onLoadIn && !onLoad) {
+      // (user visited page but we're going to load it anyway)
       setQueryIsLoading(true);
     }
 
     const fetchUrl = (url: string, force: boolean) => {
-      return (!onLoad || force) ? //(if onLoad - JSON cache, or wait for user to hit submit)
-        fetchWithRetry(url).then((response: fetch.IsomorphicResponse) => {
-          return response.json().then((json: any) => [json, response.ok, response]);
-        }) :
-        Promise.reject(new Error('Needed request, currently forcing user to press submit'));
+      return !onLoad || force //(if onLoad - JSON cache, or wait for user to hit submit)
+        ? fetchWithRetry(url).then((response: fetch.IsomorphicResponse) => {
+            return response
+              .json()
+              .then((json: any) => [json, response.ok, response]);
+          })
+        : Promise.reject(
+            new Error("Needed request, currently forcing user to press submit")
+          );
     };
-    const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
+    const [primaryRequest, otherRequests] = buildParamsFromState(false);
     const allPromises = Promise.all(
       RequestUtils.requestHandlingLogic(
-        primaryRequest, tablePrefixForPrimaryRequest || tablePrefix, otherRequests,
+        primaryRequest,
+        tablePrefixForPrimaryRequest || tablePrefix,
+        otherRequests,
         fetchUrl,
-        currentJsonEpoch, isDebug
+        currentJsonEpoch,
+        isDebug
       )
     );
-    allPromises.then((jsons: any[]) => {
-      if (onLoadIn) registerSessionActivity(sessionActive); //(retrieved from cache => session active)
-      handleResponse(jsons);
-    }, rejection => {
-      if (isDebug) {
-        console.log(`(no cached entry found)`);
+    allPromises.then(
+      (jsons: any[]) => {
+        if (onLoadIn) registerSessionActivity(sessionActive); //(retrieved from cache => session active)
+        handleResponse(jsons);
+      },
+      (rejection) => {
+        if (isDebug) {
+          console.log(`(no cached entry found)`);
+        }
       }
-    });
+    );
   };
 
   /** Checks if the input has been changed, and also handles on page load logic */
   useEffect(() => {
     initClipboard();
     setSubmitDisabled(shouldSubmitBeDisabled());
-    setReportIsDisabled(_.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year));
+    setReportIsDisabled(
+      _.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year)
+    );
 
     const submitListener = submitListenerFactory(false);
 
@@ -262,17 +337,24 @@ const CommonFilter: CommonFilterI = ({
     }
 
     // Cached response and pre-load handling:
-    const forceReload = forceReload1Up && (forceReload1Up != currForceReload1Up);
+    const forceReload = forceReload1Up && forceReload1Up != currForceReload1Up;
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
       // Load the data if it's cached
       requestHandlingLogic(true);
-    } else if (forceReload) { // simulate user pressing "submit button"
+    } else if (forceReload) {
+      // simulate user pressing "submit button"
       setCurrForceload1up(forceReload1Up || 0);
-      onChangeCommonState({ // THIS TAKE PLACE AFTER THE SUBMIT SO WILL RESET EVERYTHING BACK AGAIN, UGH
-        team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
-        baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
-        queryFilters: QueryUtils.buildFilterStr(queryFilters)
+      onChangeCommonState({
+        // THIS TAKE PLACE AFTER THE SUBMIT SO WILL RESET EVERYTHING BACK AGAIN, UGH
+        team: team,
+        year: year,
+        gender: gender,
+        minRank: minRankFilter,
+        maxRank: maxRankFilter,
+        baseQuery: baseQuery,
+        filterGarbage: garbageTimeFiltered,
+        queryFilters: QueryUtils.buildFilterStr(queryFilters),
       });
       onSubmit();
     }
@@ -292,36 +374,46 @@ const CommonFilter: CommonFilterI = ({
   /** If the params match the last request, disable submit */
   function shouldSubmitBeDisabled() {
     // If parent is blocking then short-circuit this:
-    if (blockSubmit) { return true }
+    if (blockSubmit) {
+      return true;
+    }
 
     const newParams = buildParamsFromState(false)[0];
     const moreSpecialCaseKeys = ["onQueryFilters", "offQueryFilters"];
-      //(we remove these GameFilterParams from the query if they are null, handle that here)
-      //TODO: really need to tidy up all these "missing if empty" special case clauses...
-    const paramsUnchanged = _.keys(newParams).concat(moreSpecialCaseKeys).filter((key) => {
-      return (key != "filterGarbage") && (key != "queryFilters");
-    }).every(
-      (key: string) => (newParams as any)[key] == (currState as any)[key]
-    );
+    //(we remove these GameFilterParams from the query if they are null, handle that here)
+    //TODO: really need to tidy up all these "missing if empty" special case clauses...
+    const paramsUnchanged = _.keys(newParams)
+      .concat(moreSpecialCaseKeys)
+      .filter((key) => {
+        return key != "filterGarbage" && key != "queryFilters";
+      })
+      .every(
+        (key: string) => (newParams as any)[key] == (currState as any)[key]
+      );
     const garbageSpecialCase =
       (newParams?.filterGarbage || ParamDefaults.defaultFilterGarbage) ==
-        (currState?.filterGarbage || ParamDefaults.defaultFilterGarbage);
+      (currState?.filterGarbage || ParamDefaults.defaultFilterGarbage);
     const queryFiltersSpecialCase =
       (newParams?.queryFilters || ParamDefaults.defaultQueryFilters) ==
-        (currState?.queryFilters || ParamDefaults.defaultQueryFilters);
+      (currState?.queryFilters || ParamDefaults.defaultQueryFilters);
 
     return (
-      atLeastOneQueryMade && paramsUnchanged &&
-        garbageSpecialCase && queryFiltersSpecialCase
-    ) || (team == "") || (year == AvailableTeams.extraTeamName);
+      (atLeastOneQueryMade &&
+        paramsUnchanged &&
+        garbageSpecialCase &&
+        queryFiltersSpecialCase) ||
+      team == "" ||
+      year == AvailableTeams.extraTeamName
+    );
   }
-
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsons: any[]) {
     setQueryIsLoading(false);
     const newParams = buildParamsFromState(true)[0];
-    const wasError = _.some(jsons, json => RequestUtils.isResponseError(json));
+    const wasError = _.some(jsons, (json) =>
+      RequestUtils.isResponseError(json)
+    );
     if (!wasError) {
       setAtLeastOneQueryMade(true);
       setCurrState(newParams);
@@ -336,20 +428,28 @@ const CommonFilter: CommonFilterI = ({
     // including the filtering on the results
     const newParamsWithFilterParams = buildParamsFromState(true)[0];
     const checkQueriesForLowercaseOps = (strs: Array<string | undefined>) => {
-      return _.find(strs, str => (str && / (and|or|not) /.exec(str)));
+      return _.find(strs, (str) => str && / (and|or|not) /.exec(str));
     };
-    if (checkQueriesForLowercaseOps([
-      newParamsWithFilterParams.baseQuery, //(common)
-      newParamsWithFilterParams.onQuery, newParamsWithFilterParams.offQuery //(on off page)
-    ])) {
+    if (
+      checkQueriesForLowercaseOps([
+        newParamsWithFilterParams.baseQuery, //(common)
+        newParamsWithFilterParams.onQuery,
+        newParamsWithFilterParams.offQuery, //(on off page)
+      ])
+    ) {
       // Invalid query, raise an error, don't submit
       setShowInvalidQuery(true);
-
-    } else { // Submit validated, carry on
+    } else {
+      // Submit validated, carry on
       setQueryIsLoading(true);
 
-      const newParamsStrWithFilterParams = QueryUtils.stringify(newParamsWithFilterParams);
-      HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
+      const newParamsStrWithFilterParams = QueryUtils.stringify(
+        newParamsWithFilterParams
+      );
+      HistoryManager.addParamsToHistory(
+        newParamsStrWithFilterParams,
+        tablePrefix
+      );
 
       // Load the data via request
       requestHandlingLogic(false);
@@ -366,65 +466,53 @@ const CommonFilter: CommonFilterI = ({
       if (tablePrefix == ParamPrefixes.report) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          return [
-            [ "TeamReport", newUrl ],
-          ];
-        } else { //(default is men)
+          return [["TeamReport", newUrl]];
+        } else {
+          //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          return [
-            [ "TeamReport", newUrl ],
-          ];
+          return [["TeamReport", newUrl]];
         }
       } else if (tablePrefix == ParamPrefixes.game) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenOnOff}`;
-          return [
-            [ "", newUrl ],
-          ];
-        } else { //(default is men)
+          return [["", newUrl]];
+        } else {
+          //(default is men)
           const newUrl = `${PreloadedDataSamples.menOnOff}`;
-          return [
-            [ "", newUrl ],
-          ];
+          return [["", newUrl]];
         }
       } else if (tablePrefix == ParamPrefixes.lineup) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          return [
-            [ "LineupAnalyzer", newUrl ],
-          ];
-        } else { //(default is men)
+          return [["LineupAnalyzer", newUrl]];
+        } else {
+          //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          return [
-            [ "LineupAnalyzer", newUrl ],
-          ];
-        } 
+          return [["LineupAnalyzer", newUrl]];
+        }
       } else if (tablePrefix == ParamPrefixes.gameInfo) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenSingleGames}`;
-          return [
-            [ "MatchupAnalyzer", newUrl ],
-          ];
-        } else { //(default is men)
+          return [["MatchupAnalyzer", newUrl]];
+        } else {
+          //(default is men)
           const newUrl = `${PreloadedDataSamples.menSingleGames}`;
-          return [
-            [ "MatchupAnalyzer", newUrl ],
-          ];
+          return [["MatchupAnalyzer", newUrl]];
         }
-      } 
-      return [ ["", ""] ];
+      }
+      return [["", ""]];
     })();
-    const pageAndParam = prefixesAndParamStrs[0] as [ string, string ];
+    const pageAndParam = prefixesAndParamStrs[0] as [string, string];
     window.location.href = `/${pageAndParam[0]}?${pageAndParam[1]}`;
   }
 
   /** For use in selects */
   function stringToOption(s: string) {
-    return { label: s, value: s};
+    return { label: s, value: s };
   }
   /** For use in team select */
   function getCurrentTeamOrPlaceholder() {
-    return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
+    return team == "" ? { label: "Choose Team..." } : stringToOption(team);
   }
 
   /** Adds the MenuList component with user prompt if there are teams fitered out*/
@@ -438,16 +526,21 @@ const CommonFilter: CommonFilterI = ({
   function initClipboard() {
     if (null == clipboard) {
       var newClipboard = new ClipboardJS(`#copyLink_${tablePrefix}`, {
-        text: function(trigger) {
+        text: function (trigger) {
           return window.location.href;
-        }
+        },
       });
-      newClipboard.on('success', (event: ClipboardJS.Event) => {
+      newClipboard.on("success", (event: ClipboardJS.Event) => {
         // Add the saved entry to the clipbaorrd
-        const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true)[0]);
-        HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
+        const newParamsStrWithFilterParams = QueryUtils.stringify(
+          buildParamsFromState(true)[0]
+        );
+        HistoryManager.addParamsToHistory(
+          newParamsStrWithFilterParams,
+          tablePrefix
+        );
         // Clear the selection in some visually pleasing way
-        setTimeout(function() {
+        setTimeout(function () {
           event.clearSelection();
         }, 150);
       });
@@ -458,10 +551,12 @@ const CommonFilter: CommonFilterI = ({
   // Visual components:
 
   /** Let the user know that he might need to change */
-  const MenuList = (props: any)  => {
+  const MenuList = (props: any) => {
     return (
       <components.MenuList {...props}>
-        <p className="text-secondary text-center">(Let me know if there's a team/season you want to see!)</p>
+        <p className="text-secondary text-center">
+          (Let me know if there's a team/season you want to see!)
+        </p>
         {props.children}
       </components.MenuList>
     );
@@ -469,40 +564,55 @@ const CommonFilter: CommonFilterI = ({
 
   /** Add button to allow users to access their analysis history easily */
   const getHistoryButton = () => {
-
     // I actually want placement=left but it doesn't work on mobile
-    return <OverlayTrigger
-      rootClose={true}
-      trigger="click"
-      key="left"
-      placement="auto"
-      overlay={
-        <Popover id="popover-positioned-left" style={{ maxWidth: historySelectContainerWidth }}>
-          <Popover.Title as="h3">{`History`}</Popover.Title>
-          <Popover.Content>
-            <HistorySelector
-              tablePrefix={tablePrefix}
-            />
-          </Popover.Content>
-        </Popover>
-      }
-    >
-      <Button className="float-left" id="historyButton" variant="outline-secondary" size="sm">
-        <FontAwesomeIcon icon={faHistory} />
-      </Button>
-    </OverlayTrigger>
-    ;
+    return (
+      <OverlayTrigger
+        rootClose={true}
+        trigger="click"
+        key="left"
+        placement="auto"
+        overlay={
+          <Popover
+            id="popover-positioned-left"
+            style={{ maxWidth: historySelectContainerWidth }}
+          >
+            <Popover.Title as="h3">{`History`}</Popover.Title>
+            <Popover.Content>
+              <HistorySelector tablePrefix={tablePrefix} />
+            </Popover.Content>
+          </Popover>
+        }
+      >
+        <Button
+          className="float-left"
+          id="historyButton"
+          variant="outline-secondary"
+          size="sm"
+        >
+          <FontAwesomeIcon icon={faHistory} />
+        </Button>
+      </OverlayTrigger>
+    );
   };
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Copies URL to clipboard (and saves state to history)</Tooltip>
+      <Tooltip id="copyLinkTooltip">
+        Copies URL to clipboard (and saves state to history)
+      </Tooltip>
     );
-    return  <OverlayTrigger placement="auto" overlay={tooltip}>
-        <Button className="float-left" id={`copyLink_${tablePrefix}`} variant="outline-secondary" size="sm">
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button
+          className="float-left"
+          id={`copyLink_${tablePrefix}`}
+          variant="outline-secondary"
+          size="sm"
+        >
           <FontAwesomeIcon icon={faLink} />
         </Button>
-      </OverlayTrigger>;
+      </OverlayTrigger>
+    );
   };
   const getClearQueryButton = () => {
     const onClick = () => {
@@ -527,251 +637,350 @@ const CommonFilter: CommonFilterI = ({
     const tooltip = (
       <Tooltip id="copyLinkTooltip">Clears and empties the page</Tooltip>
     );
-    return  <OverlayTrigger placement="auto" overlay={tooltip}>
-        <Button onClick={() => onClick()} className="float-right" id={`clearQuery_${tablePrefix}`} variant="outline-secondary" size="sm">
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button
+          onClick={() => onClick()}
+          className="float-right"
+          id={`clearQuery_${tablePrefix}`}
+          variant="outline-secondary"
+          size="sm"
+        >
           <FontAwesomeIcon icon={faTrashAlt} />
         </Button>
-      </OverlayTrigger>;
-  }
+      </OverlayTrigger>
+    );
+  };
 
   /** If no team is specified, add the option to jump to an example */
   const getExampleButtonsIfNoTeamElseClear = () => {
     if (team == "") {
-      return <Shake
-        h={20} v={5} r={5} q={5} int={25} fixed={true}
-        className="float-right"
-      >
-        <Button variant="warning" onClick={() => onSeeExample()}><b>Example ({gender})!</b></Button>
-      </Shake>;
-    } else { // If there is no query then show clear query
+      return (
+        <Shake
+          h={20}
+          v={5}
+          r={5}
+          q={5}
+          int={25}
+          fixed={true}
+          className="float-right"
+        >
+          <Button variant="warning" onClick={() => onSeeExample()}>
+            <b>Example ({gender})!</b>
+          </Button>
+        </Shake>
+      );
+    } else {
+      // If there is no query then show clear query
       return getClearQueryButton();
     }
-  }
+  };
 
   /** Shows the blog help when accessed via hoop-explorer, consistency with top-level maybeShowBlog */
   function maybeShowBlogHelp() {
-    const publicSite = !_.startsWith(server, "cbb-on-off-analyzer")
+    const publicSite = !_.startsWith(server, "cbb-on-off-analyzer");
     if (publicSite) {
-      return <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a>;
+      return (
+        <a
+          href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
+          target="_blank"
+        >
+          (?)
+        </a>
+      );
     } else {
-      return <a href="/query_docs.html" target="_blank">(?)</a>;
+      return (
+        <a href="/query_docs.html" target="_blank">
+          (?)
+        </a>
+      );
     }
   }
 
   function maybeShowGarbageHelp() {
-    const publicSite = !_.startsWith(server, "cbb-on-off-analyzer")
+    const publicSite = !_.startsWith(server, "cbb-on-off-analyzer");
     if (publicSite) {
-      return <span>
-      &nbsp;
-        <a href="https://hoop-explorer.blogspot.com/2020/01/garbage-time.html" target="_blank">(?)</a>
-      </span>;
+      return (
+        <span>
+          &nbsp;
+          <a
+            href="https://hoop-explorer.blogspot.com/2020/01/garbage-time.html"
+            target="_blank"
+          >
+            (?)
+          </a>
+        </span>
+      );
     } else {
       return undefined;
     }
   }
 
   const garbageFilterTooltip = (
-    <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
+    <Tooltip id="garbageFilterTooltip">
+      Filters out lineups in garbage time - see the "Garbage time" article under
+      "Blog contents" for more details
+    </Tooltip>
   );
 
-  return <LoadingOverlay
-    active={queryIsLoading}
-    spinner
-    text="Calculating statistics"
-  ><Modal show={showInvalidQuery} onHide={() => setShowInvalidQuery(false)}>
-      <Modal.Header closeButton>
-        <Modal.Title>Ambiguous Query Error!</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        Your query contains one of these terms: ' <b>and</b> ', ' <b>or</b> ', ' <b>not</b> '.<br/>
-        Please use ' <b>AND</b> ', ' <b>OR</b> ', ' <b>NOT</b> ' instead.<br/><br/>
-        <i>In the unlikely event you wanted to search on the word rather than using it as an operator, please put the term in quotes, eg ' "and" '</i>.
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowInvalidQuery(false)}>
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
-    <DateRangeModal
-      show={showDateRangeModal}
-      queryType="Baseline Query"
-      onSave={(filter: CommonFilterCustomDate|undefined) => setQueryFilters(QueryUtils.setCustomDate(queryFilters, filter))}
-      onHide={() => setShowDateRangeModal(false)}
-      year={startingState.year}
-    />
-  <Form>
-    <Form.Group as={Row}>
-      <Col xs={6} sm={6} md={3} lg={2}>
-        <Select
-          isDisabled={majorParamsDisabled}
-          value={ stringToOption(gender) }
-          options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
-            (r) => r.gender
-          ))).map(
-            (gender) => stringToOption(gender)
-          )}
-          isSearchable={false}
-          onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
-        />
-      </Col>
-      <Col xs={6} sm={6} md={3} lg={2}>
-        <Select
-          isDisabled={majorParamsDisabled}
-          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-          value={ stringToOption(year) }
-          options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
-            (r) => r.year
-          ))).concat([AvailableTeams.extraTeamName]).map(
-            (year) => stringToOption(year)
-          )}
-          isSearchable={false}
-          onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
-        />
-      </Col>
-      <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
-      <Col xs={12} sm={12} md={6} lg={6}>
-        <Select
-          isDisabled={majorParamsDisabled}
-          components = { maybeMenuList() }
-          isClearable={false}
-          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
-          value={ getCurrentTeamOrPlaceholder() }
-          options={teamList.map(
-            (r) => stringToOption(r.team)
-          )}
-          onChange={(option) => {
-            const selection = (option as any)?.value || "";
-            if (year == AvailableTeams.extraTeamName) {
-              const teamYear = selection.split(/ (?=[^ ]+$)/);
-              setTeam(teamYear[0]);
-              setYear(teamYear[1]);
-            } else {
-              setTeam(selection);
-            }
-          }}
-        />
-      </Col>
-      <Col className="mt-1">
-        {getHistoryButton()}
-        <div className="float-left">&nbsp;&nbsp;</div>
-        {getCopyLinkButton()}
-      </Col>
-    </Form.Group>
-    <GlobalKeypressManager.Provider value={submitListenerFactory(true)}>
-      {children}
-    </GlobalKeypressManager.Provider>
-    {matchupMode ? null : <Form.Group as={Row}>
-      <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
-      <Col sm="8">
-        <Container>
-          <Row>
-            <InputGroup>
-              <div className="flex-fill">
-                <AutoSuggestText
-                  readOnly={false}
-                  placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-                  initValue={baseQuery}
-                  year={year}
-                  gender={gender}
-                  team={team}
-                  onChange={(ev: any) => setBaseQuery(ev.target.value)}
-                  onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-                  onKeyDown={submitListenerFactory(true)}
-                />
-              </div>
-              <QueryFilterDropdown
-                queryFilters={queryFilters}
-                setQueryFilters={setQueryFilters}
-                showCustomRangeFilter={() => setShowDateRangeModal(true)}
-              />
-            </InputGroup>
-          </Row>
-          { queryFilters.length > 0 ?
-          <Row>&nbsp;
-            {queryFilters.map(
-              (p, i) => <span key={`conf${i}`}>{i > 0 ? null : <small>AND </small>}{QueryDisplayUtils.showQueryFilter(p, gender, year)}&nbsp;&nbsp;</span>
-            ).concat((startingState.invertBase || startingState.invertBaseQueryFilters) ? [
-              <span key="invertBase"><small>AND NOT </small>
-              {QueryDisplayUtils.showInvertedQueryAndFilters(startingState.invertBase, startingState.invertBaseQueryFilters)}
-              </span>
-            ] : [])}
-          </Row> 
-          : null}
-        </Container>
-      </Col>
-    </Form.Group>}
-    {matchupMode ? null : <Form.Group as={Row} controlId="oppositionFilter">
-      <Form.Label column sm="2">Opponent Strength</Form.Label>
-      <Col sm="2">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text id="filterOppoBest">Best</InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            onChange={(ev: any) => {
-              if (ev.target.value.match("^[0-9]*$") != null) {
-                setMinRankFilter(ev.target.value);
-              }
-            }}
-            placeholder = "eg 0"
-            value={minRankFilter}
-          />
-        </InputGroup>
-      </Col>
-      <Col sm="2">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            onChange={(ev: any) => {
-              if (ev.target.value.match("^[0-9]*$") != null) {
-                setMaxRankFilter(ev.target.value);
-              }
-            }}
-            placeholder = "eg 400"
-            value={maxRankFilter}
-          />
-          </InputGroup>
-      </Col>
-      <Form.Label column sm="2"><span className="text-muted">(out of ~360 teams)</span></Form.Label>
-      <Col sm="3" className="mt-1 pt-1">
-        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
-          <div>
-            <Form.Check type="switch"
-              id="excludeGarbage"
-              checked={garbageTimeFiltered}
-              onChange={() => {
-                setGarbageTimeFiltered(!garbageTimeFiltered);
+  return (
+    <LoadingOverlay
+      active={queryIsLoading}
+      spinner
+      text="Calculating statistics"
+    >
+      <Modal show={showInvalidQuery} onHide={() => setShowInvalidQuery(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Ambiguous Query Error!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Your query contains one of these terms: ' <b>and</b> ', ' <b>or</b> ',
+          ' <b>not</b> '.
+          <br />
+          Please use ' <b>AND</b> ', ' <b>OR</b> ', ' <b>NOT</b> ' instead.
+          <br />
+          <br />
+          <i>
+            In the unlikely event you wanted to search on the word rather than
+            using it as an operator, please put the term in quotes, eg ' "and" '
+          </i>
+          .
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowInvalidQuery(false)}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <DateRangeModal
+        show={showDateRangeModal}
+        queryType="Baseline Query"
+        onSave={(filter: CommonFilterCustomDate | undefined) =>
+          setQueryFilters(QueryUtils.setCustomDate(queryFilters, filter))
+        }
+        onHide={() => setShowDateRangeModal(false)}
+        year={startingState.year}
+      />
+      <Form>
+        <Form.Group as={Row}>
+          <Col xs={6} sm={6} md={3} lg={2}>
+            <Select
+              isDisabled={majorParamsDisabled}
+              value={stringToOption(gender)}
+              options={Array.from(
+                new Set(
+                  AvailableTeams.getTeams(team, year, null).map((r) => r.gender)
+                )
+              ).map((gender) => stringToOption(gender))}
+              isSearchable={false}
+              onChange={(option) => {
+                if ((option as any)?.value) setGender((option as any).value);
               }}
-              label={<span>Filter Garbage{maybeShowGarbageHelp()}</span>}
             />
-          </div>
-        </OverlayTrigger>
-      </Col>
-    </Form.Group>}
-    <Row>
-      <Col sm={2}>
-        <Button disabled={!canSubmit()} variant="primary" onClick={onSubmit}>Submit</Button>
-      </Col>
-      <Col className="text-center w-100 pt-2">
-        {_.thru(buildLinks, __ => {
-        if (buildLinks && !canSubmit()) { 
-            const links = buildLinks(startingState);
-            return _.isEmpty(links) ? null : <small className="text-center">
-              Links: {links.map((l, i) => <span>{l}{(i < links.length - 1) ? <span> | </span> : ""}</span>)}
-            </small>;
-          } else { 
-            return null;
-          }       
-        })}
-        </Col>
-        <Col sm={2}>
-        {getExampleButtonsIfNoTeamElseClear()}
-      </Col>
-    </Row>      
-  </Form></LoadingOverlay>;
-}
+          </Col>
+          <Col xs={6} sm={6} md={3} lg={2}>
+            <Select
+              isDisabled={majorParamsDisabled}
+              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              value={stringToOption(year)}
+              options={Array.from(
+                new Set(
+                  AvailableTeams.getTeams(team, null, gender).map((r) => r.year)
+                )
+              )
+                .concat([AvailableTeams.extraTeamName])
+                .map((year) => stringToOption(year))}
+              isSearchable={false}
+              onChange={(option) => {
+                if ((option as any)?.value) setYear((option as any).value);
+              }}
+            />
+          </Col>
+          <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
+          <Col xs={12} sm={12} md={6} lg={6}>
+            <Select
+              isDisabled={majorParamsDisabled}
+              components={maybeMenuList()}
+              isClearable={false}
+              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              value={getCurrentTeamOrPlaceholder()}
+              options={teamList.map((r) => stringToOption(r.team))}
+              onChange={(option) => {
+                const selection = (option as any)?.value || "";
+                if (year == AvailableTeams.extraTeamName) {
+                  const teamYear = selection.split(/ (?=[^ ]+$)/);
+                  setTeam(teamYear[0]);
+                  setYear(teamYear[1]);
+                } else {
+                  setTeam(selection);
+                }
+              }}
+            />
+          </Col>
+          <Col className="mt-1">
+            {getHistoryButton()}
+            <div className="float-left">&nbsp;&nbsp;</div>
+            {getCopyLinkButton()}
+          </Col>
+        </Form.Group>
+        <GlobalKeypressManager.Provider value={submitListenerFactory(true)}>
+          {children}
+        </GlobalKeypressManager.Provider>
+        {matchupMode ? null : (
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              Baseline Query {maybeShowBlogHelp()}
+            </Form.Label>
+            <Col sm="8">
+              <Container>
+                <Row>
+                  <InputGroup>
+                    <div className="flex-fill">
+                      <AutoSuggestText
+                        readOnly={false}
+                        placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                        initValue={baseQuery}
+                        year={year}
+                        gender={gender}
+                        team={team}
+                        onChange={(ev: any) => setBaseQuery(ev.target.value)}
+                        onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+                        onKeyDown={submitListenerFactory(true)}
+                      />
+                    </div>
+                    <QueryFilterDropdown
+                      queryFilters={queryFilters}
+                      setQueryFilters={setQueryFilters}
+                      showCustomRangeFilter={() => setShowDateRangeModal(true)}
+                    />
+                  </InputGroup>
+                </Row>
+                {queryFilters.length > 0 ? (
+                  <Row>
+                    &nbsp;
+                    {queryFilters
+                      .map((p, i) => (
+                        <span key={`conf${i}`}>
+                          {i > 0 ? null : <small>AND </small>}
+                          {QueryDisplayUtils.showQueryFilter(p, gender, year)}
+                          &nbsp;&nbsp;
+                        </span>
+                      ))
+                      .concat(
+                        startingState.invertBase ||
+                          startingState.invertBaseQueryFilters
+                          ? [
+                              <span key="invertBase">
+                                <small>AND NOT </small>
+                                {QueryDisplayUtils.showInvertedQueryAndFilters(
+                                  startingState.invertBase,
+                                  startingState.invertBaseQueryFilters
+                                )}
+                              </span>,
+                            ]
+                          : []
+                      )}
+                  </Row>
+                ) : null}
+              </Container>
+            </Col>
+          </Form.Group>
+        )}
+        {matchupMode ? null : (
+          <Form.Group as={Row} controlId="oppositionFilter">
+            <Form.Label column sm="2">
+              Opponent Strength
+            </Form.Label>
+            <Col sm="2">
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="filterOppoBest">Best</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  onChange={(ev: any) => {
+                    if (ev.target.value.match("^[0-9]*$") != null) {
+                      setMinRankFilter(ev.target.value);
+                    }
+                  }}
+                  placeholder="eg 0"
+                  value={minRankFilter}
+                />
+              </InputGroup>
+            </Col>
+            <Col sm="2">
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  onChange={(ev: any) => {
+                    if (ev.target.value.match("^[0-9]*$") != null) {
+                      setMaxRankFilter(ev.target.value);
+                    }
+                  }}
+                  placeholder="eg 400"
+                  value={maxRankFilter}
+                />
+              </InputGroup>
+            </Col>
+            <Form.Label column sm="2">
+              <span className="text-muted">(out of ~360 teams)</span>
+            </Form.Label>
+            <Col sm="3" className="mt-1 pt-1">
+              <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
+                <div>
+                  <Form.Check
+                    type="switch"
+                    id="excludeGarbage"
+                    checked={garbageTimeFiltered}
+                    onChange={() => {
+                      setGarbageTimeFiltered(!garbageTimeFiltered);
+                    }}
+                    label={<span>Filter Garbage{maybeShowGarbageHelp()}</span>}
+                  />
+                </div>
+              </OverlayTrigger>
+            </Col>
+          </Form.Group>
+        )}
+        <Row>
+          <Col sm={2}>
+            <Button
+              disabled={!canSubmit()}
+              variant="primary"
+              onClick={onSubmit}
+            >
+              Submit
+            </Button>
+          </Col>
+          <Col className="text-center w-100 pt-2">
+            {_.thru(buildLinks, (__) => {
+              if (buildLinks && !canSubmit()) {
+                const links = buildLinks(startingState);
+                return _.isEmpty(links) ? null : (
+                  <small className="text-center">
+                    Links:{" "}
+                    {links.map((l, i) => (
+                      <span>
+                        {l}
+                        {i < links.length - 1 ? <span> | </span> : ""}
+                      </span>
+                    ))}
+                  </small>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </Col>
+          <Col sm={2}>{getExampleButtonsIfNoTeamElseClear()}</Col>
+        </Row>
+      </Form>
+    </LoadingOverlay>
+  );
+};
 
 export default CommonFilter;
