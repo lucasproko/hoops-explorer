@@ -1,2 +1,596 @@
-export const freshmenMen2023_24: Record<string, any> = 
-   {"Auburn":{"Holloway, Aden":{"pos":"PG","pr":"5*","c":"AdHolloway","h":"6-0","r":-38}},"Washington":{"Yates, Wesley":{"pos":"WG","pr":"4*/T40ish","c":"WeYates","h":"6-4","r":-32}},"Florida St.":{"Bowen, Taylor":{"pos":"PF/C","pr":"4*","c":"TaBowen","h":"6-9","r":25}},"South Carolina":{"Murray-Boyles, Collin":{"pos":"S-PF","pr":"4*","c":"CoMurray-boy","h":"6-7","r":-60}},"Iowa St.":{"Biliew, Omaha":{"pos":"S-PF","pr":"5*/Lotto","c":"OmBiliew","h":"6-8","r":-76},"Momcilovic, Milan":{"pos":"S-PF","pr":"4*/T40ish","c":"MiMomcilovic","h":"6-8","r":8}},"Arkansas":{"Fall, Baye":{"pos":"C","pr":"4*/T40ish","c":"BaFall","h":"6-10","r":82},"Blocker, Layden":{"pos":"PG","pr":"4*/T40ish","c":"LaBlocker","h":"6-2","r":42}},"UCLA":{"Mack, Sebastian":{"pos":"WG","pr":"4*","c":"SeMack","h":"6-4","r":86},"Williams, Devin":{"pos":"PF/C","pr":"4*","c":"DeWilliams","h":"6-10","r":10},"Williams, Brandon":{"pos":"S-PF","pr":"4*","c":"BrWilliams","h":"6-7","r":-54}},"Ohio St.":{"Chatman, Taison":{"pos":"CG","pr":"4*/T40ish","c":"TaChatman","h":"6-4","r":2},"Royal, Devin":{"pos":"S-PF","pr":"4*/T40ish","c":"DeRoyal","h":"6-7","r":-46},"Middleton, Scotty":{"pos":"WG","pr":"4*/T40ish","c":"ScMiddleton","h":"6-6","r":-52}},"Marquette":{"Norman, Tre":{"pos":"CG","pr":"4*","c":"TrNorman","h":"6-3","r":-56}},"Southern California":{"James, Bronny":{"pos":"CG","pr":"5*","c":"BrJames","h":"6-3","r":-72}, "Collier, Isaiah":{"pos":"PG","pr":"5*/Lotto","c":"IsCollier","h":"6-3","r":-2},"Page, Arrinten":{"pos":"C","pr":"4*/T40ish","c":"ArPage","h":"6-9","r":-40}},"Tennessee":{"Carr, Cameron":{"pos":"WG","pr":"4*","c":"CaCarr","h":"6-4","r":85},"Estrella, JP":{"pos":"C","pr":"4*","c":"JpEstrella","h":"6-11","r":66}},"Houston":{"Tugler, Joseph":{"pos":"C","pr":"4*","c":"JoTugler","h":"6-7","r":43},"McFarland, Jacob":{"pos":"C","pr":"4*","c":"JaMcfarland","h":"6-10","r":-89}},"Georgia":{"James, Dylan":{"pos":"S-PF","pr":"4*","c":"DyJames","h":"6-8","r":-11},"Demary Jr., Silas":{"pos":"CG","pr":"3.5*/T150ish","c":"SiDemary","h":"6-4","r":74},"Jordan, Mari":{"pos":"WG","pr":"3.5*/T150ish","c":"MaJordan","h":"6-5","r":63}},"Missouri":{"Pierce, Trent":{"pos":"S-PF","pr":"4*","c":"TrPierce","h":"6-8","r":-46}},"TCU":{"Posey, Jace":{"pos":"WG","pr":"4*","c":"JaPosey","h":"6-4","r":-82}},"Oklahoma":{"Cooper, Kaden":{"pos":"WG","pr":"4*","c":"KaCooper","h":"6-5","r":74},"Cole, Jacolb":{"pos":"WF","pr":"3.5*/T150ish","c":"JaCole","h":"6-7","r":75}},"Cincinnati":{"James, Jizzle":{"pos":"PG","pr":"4*","c":"JiJames","h":"6-1","r":67},"Griffith, Rayvon":{"pos":"WG","pr":"4*","c":"RaGriffith","h":"6-5","r":28}},"Washington St.":{"Chinyelu, Rueben":{"pos":"C","pr":"3.5*/T150ish","c":"RuChinyelu","h":"6-10","r":85}},"North Carolina":{"Cadeau, Elliot":{"pos":"PG","pr":"5*/Lotto","c":"ElCadeau","h":"6-1","r":-68},"Wilcher, Simeon":{"pos":"CG","pr":"4*/T40ish","c":"SiWilcher","h":"6-4","r":52},"High, Zayden":{"pos":"PF/C","pr":"4*","c":"ZaHigh","h":"6-9","r":33}},"Gonzaga":{"Stromer, Dusty":{"pos":"WG","pr":"4*/T40ish","c":"DuStromer","h":"6-6","r":-34}},"Virginia":{"Gertrude, Elijah":{"pos":"WG","pr":"4*","c":"ElGertrude","h":"6-3","r":60},"Buchanan, Blake":{"pos":"C","pr":"4*","c":"BlBuchanan","h":"6-9","r":-7}},"Alabama":{"Walters, Sam":{"pos":"S-PF","pr":"4*","c":"SaWalters","h":"6-8","r":78},"Dioubate, Mouhamed":{"pos":"S-PF","pr":"3.5*/T150ish","c":"MoDioubate","h":"6-7","r":54}},"Duke":{"McCain, Jared":{"pos":"CG","pr":"5*/Lotto","c":"JaMccain","h":"6-2","r":-78},"Stewart, Sean":{"pos":"S-PF","pr":"5*","c":"SeStewart","h":"6-8","r":-28},"Foster, Caleb":{"pos":"CG","pr":"5*","c":"CaFoster","h":"6-5","r":-48},"Power, TJ":{"pos":"S-PF","pr":"5*","c":"TjPower","h":"6-8","r":-56}},"Stanford":{"Stojakovic, Andrej":{"pos":"WG","pr":"5*","c":"AnStojakovic","h":"6-6","r":-90},"Carlyle, Kanaan":{"pos":"WG","pr":"4*/T40ish","c":"KaCarlyle","h":"6-2","r":-80}},"Xavier":{"Green, Trey":{"pos":"PG","pr":"4*","c":"TrGreen","h":"5-10","r":64},"Swain, Dailyn":{"pos":"WG","pr":"4*","c":"DaSwain","h":"6-6","r":-56}},"Indiana":{"Mgbako, Mackenzie":{"pos":"S-PF","pr":"5*/Lotto","c":"MaMgbako","h":"6-8","r":-64}, "Cupps, Gabe":{"pos":"PG","pr":"3.5*/T150ish","c":"GaCupps","h":"6-1","r":99}},"Butler":{"Bizjack, Finley":{"pos":"CG","pr":"3.5*/T150ish","c":"FiBizjack","h":"6-3","r":72}},"Purdue":{"Colvin, Myles":{"pos":"WG","pr":"3.5*/T150ish","c":"MyColvin","h":"6-5","r":89}},"Baylor":{"Walter, Ja'Kobe":{"pos":"WG","pr":"5*/Lotto","c":"JaWalter","h":"6-5","r":-64},"Little, Miro":{"pos":"PG","pr":"4*/T40ish","c":"MiLittle","h":"6-4","r":-8}},"Kentucky":{"Dillingham, Robert":{"pos":"PG","pr":"5*","c":"RoDillingham","h":"6-2","r":-12},"Edwards, Justin":{"pos":"WF","pr":"5*/Lotto","c":"JuEdwards","h":"6-7","r":-16},"Sheppard, Reed":{"pos":"CG","pr":"4*/T40ish","c":"ReSheppard","h":"6-3","r":-4},"Wagner, DJ":{"pos":"CG","pr":"5*/Lotto","c":"DjWagner","h":"6-3","r":-34},"Bradshaw, Aaron":{"pos":"C","pr":"5*/Lotto","c":"AaBradshaw","h":"7-0","r":-24}},"Memphis":{"Williams, Mikey":{"pos":"CG","pr":"4*/T40ish","c":"MiWilliams","h":"6-2","r":-68},"Taylor, JJ":{"pos":"WF","pr":"4*","c":"JjTaylor","h":"6-7","r":-47},"Hardaway, Ashton":{"pos":"S-PF","pr":"3.5*/T150ish","c":"AsHardaway","h":"6-7","r":58}},"Kansas St.":{"Dai Ames, Dai":{"pos":"PG","pr":"4*","c":"DaDaiAmes","h":"6-1","r":58},"Jones, RJ":{"pos":"WG","pr":"4*","c":"RjJones","h":"6-3","r":-9}},"Illinois":{"Hansberry, Amani":{"pos":"S-PF","pr":"4*","c":"AmHansberry","h":"6-8","r":47}},"Mississippi St.":{"Hubbard, Josh":{"pos":"PG","pr":"3.5*/T150ish","c":"JoHubbard","h":"5-10","r":96}},"Louisville":{"Flowers, Trentyn":{"pos":"WF","pr":"5*","c":"TrFlowers","h":"6-8","r":-72},"Evans, Dennis":{"pos":"C","pr":"4*/T40ish","c":"DeEvans","h":"7-1","r":82},"Glenn, Kaleb":{"pos":"WG","pr":"4*","c":"KaGlenn","h":"6-6","r":-4},"Williams Jr., Curtis":{"pos":"WG","pr":"4*","c":"CuWilliams","h":"6-6","r":-28}},"Kansas":{"Jackson, Elmarko":{"pos":"PG","pr":"5*","c":"ElJackson","h":"6-3","r":-58},"Johnson, Chris":{"pos":"CG","pr":"4*/T40ish","c":"ChJohnson","h":"6-4","r":-78},"Adams Jr., Marcus":{"pos":"WF","pr":"3.5*/T150ish","c":"MaAdams","h":"6-8","r":72},"McDowell, Jamari":{"pos":"WG","pr":"3.5*/T150ish","c":"JaMcdowell","h":"6-4","r":54}},"NC State":{"Parker, Trey":{"pos":"WG","pr":"4*","c":"TrParker","h":"6-2","r":-54}},"Maryland":{"Harris-Smith, DeShawn":{"pos":"WG","pr":"4*/T40ish","c":"DeHarris-smi","h":"6-4","r":58},"Kaiser, Jamie":{"pos":"WG","pr":"4*","c":"JaKaiser","h":"6-6","r":54}},"Iowa":{"Sandfort, Pryce":{"pos":"WF","pr":"4*","c":"PrSandfort","h":"6-7","r":-50}},"UConn":{"Castle, Stephon":{"pos":"CG","pr":"5*/Lotto","c":"StCastle","h":"6-6","r":-68},"Ball, Solomon":{"pos":"WG","pr":"4*/T40ish","c":"SoBall","h":"6-3","r":-28},"Stewart, Jaylin":{"pos":"WF","pr":"4*","c":"JaStewart","h":"6-7","r":47},"Ross, Jayden":{"pos":"WF","pr":"4*","c":"JaRoss","h":"6-7","r":-29}},"Pittsburgh":{"Lowe, Jaland":{"pos":"PG","pr":"4*","c":"JaLowe","h":"6-1","r":-33}},"Rutgers":{"Griffiths, Gavin":{"pos":"WF","pr":"4*/T40ish","c":"GaGriffiths","h":"6-7","r":-16}},"Arizona":{"Lewis, KJ":{"pos":"WG","pr":"3.5*/T150ish","c":"KjLewis","h":"6-4","r":60}},"Oklahoma St.":{"Garrison, Brandon":{"pos":"C","pr":"4*/T40ish","c":"BrGarrison","h":"6-9","r":38},"Dailey, Eric":{"pos":"S-PF","pr":"4*/T40ish","c":"ErDailey","h":"6-7","r":-92}},"Colorado":{"Williams, Cody":{"pos":"WF","pr":"5*/Lotto","c":"CoWilliams","h":"6-8","r":-38},"Diop, Assane":{"pos":"C","pr":"3.5*/T150ish","c":"AsDiop","h":"6-10","r":87}},"Michigan":{"Washington III, George":{"pos":"WG","pr":"3.5*/T150ish","c":"GeWashington","h":"6-2","r":98}},"Oregon":{"Evans Jr., Kwame":{"pos":"PF/C","pr":"5*","c":"KwEvans","h":"6-9","r":-10},"Shelstad, Jackson":{"pos":"PG","pr":"5*","c":"JaShelstad","h":"6-0","r":-86},"Cook, Mookie":{"pos":"WF","pr":"4*/T40ish","c":"MoCook","h":"6-7","r":86}},"Michigan St.":{"Booker, Xavier":{"pos":"C","pr":"5*/Lotto","c":"XaBooker","h":"6-10","r":-96},"Fears, Jeremy":{"pos":"PG","pr":"4*/T40ish","c":"JeFears","h":"6-0","r":72},"Carr, Coen":{"pos":"S-PF","pr":"4*/T40ish","c":"CoCarr","h":"6-7","r":58}}}
+export const freshmenMen2023_24: Record<string, any> = {
+  Auburn: {
+    "Holloway, Aden": {
+      pos: "PG",
+      pr: "5*",
+      c: "AdHolloway",
+      h: "6-0",
+      r: -38,
+    },
+  },
+  Washington: {
+    "Yates, Wesley": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "WeYates",
+      h: "6-4",
+      r: -32,
+    },
+  },
+  "Florida St.": {
+    "Bowen, Taylor": { pos: "PF/C", pr: "4*", c: "TaBowen", h: "6-9", r: 25 },
+  },
+  "South Carolina": {
+    "Murray-Boyles, Collin": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "CoMurray-boy",
+      h: "6-7",
+      r: -60,
+    },
+  },
+  "Iowa St.": {
+    "Biliew, Omaha": {
+      pos: "S-PF",
+      pr: "5*/Lotto",
+      c: "OmBiliew",
+      h: "6-8",
+      r: -76,
+    },
+    "Momcilovic, Milan": {
+      pos: "S-PF",
+      pr: "4*/T40ish",
+      c: "MiMomcilovic",
+      h: "6-8",
+      r: 8,
+    },
+  },
+  Arkansas: {
+    "Fall, Baye": { pos: "C", pr: "4*/T40ish", c: "BaFall", h: "6-10", r: 82 },
+    "Blocker, Layden": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "LaBlocker",
+      h: "6-2",
+      r: 42,
+    },
+  },
+  UCLA: {
+    "Mack, Sebastian": { pos: "WG", pr: "4*", c: "SeMack", h: "6-4", r: 86 },
+    "Williams, Devin": {
+      pos: "PF/C",
+      pr: "4*",
+      c: "DeWilliams",
+      h: "6-10",
+      r: 10,
+    },
+    "Williams, Brandon": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "BrWilliams",
+      h: "6-7",
+      r: -54,
+    },
+  },
+  "Ohio St.": {
+    "Chatman, Taison": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "TaChatman",
+      h: "6-4",
+      r: 2,
+    },
+    "Royal, Devin": {
+      pos: "S-PF",
+      pr: "4*/T40ish",
+      c: "DeRoyal",
+      h: "6-7",
+      r: -46,
+    },
+    "Middleton, Scotty": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "ScMiddleton",
+      h: "6-6",
+      r: -52,
+    },
+  },
+  Marquette: {
+    "Norman, Tre": { pos: "CG", pr: "4*", c: "TrNorman", h: "6-3", r: -56 },
+  },
+  "Southern California": {
+    "James, Bronny": { pos: "CG", pr: "5*", c: "BrJames", h: "6-3", r: -72 },
+    "Collier, Isaiah": {
+      pos: "PG",
+      pr: "5*/Lotto",
+      c: "IsCollier",
+      h: "6-3",
+      r: -2,
+    },
+    "Page, Arrinten": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "ArPage",
+      h: "6-9",
+      r: -40,
+    },
+  },
+  Tennessee: {
+    "Carr, Cameron": { pos: "WG", pr: "4*", c: "CaCarr", h: "6-4", r: 85 },
+    "Estrella, JP": { pos: "C", pr: "4*", c: "JpEstrella", h: "6-11", r: 66 },
+  },
+  Houston: {
+    "Tugler, Joseph": { pos: "C", pr: "4*", c: "JoTugler", h: "6-7", r: 43 },
+    "McFarland, Jacob": {
+      pos: "C",
+      pr: "4*",
+      c: "JaMcfarland",
+      h: "6-10",
+      r: -89,
+    },
+  },
+  Georgia: {
+    "James, Dylan": { pos: "S-PF", pr: "4*", c: "DyJames", h: "6-8", r: -11 },
+    "Demary Jr., Silas": {
+      pos: "CG",
+      pr: "3.5*/T150ish",
+      c: "SiDemary",
+      h: "6-4",
+      r: 74,
+    },
+    "Jordan, Mari": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "MaJordan",
+      h: "6-5",
+      r: 63,
+    },
+  },
+  Missouri: {
+    "Pierce, Trent": { pos: "S-PF", pr: "4*", c: "TrPierce", h: "6-8", r: -46 },
+  },
+  TCU: {
+    "Posey, Jace": { pos: "WG", pr: "4*", c: "JaPosey", h: "6-4", r: -82 },
+  },
+  Oklahoma: {
+    "Cooper, Kaden": { pos: "WG", pr: "4*", c: "KaCooper", h: "6-5", r: 74 },
+    "Cole, Jacolb": {
+      pos: "WF",
+      pr: "3.5*/T150ish",
+      c: "JaCole",
+      h: "6-7",
+      r: 75,
+    },
+  },
+  Cincinnati: {
+    "James, Jizzle": { pos: "PG", pr: "4*", c: "JiJames", h: "6-1", r: 67 },
+    "Griffith, Rayvon": {
+      pos: "WG",
+      pr: "4*",
+      c: "RaGriffith",
+      h: "6-5",
+      r: 28,
+    },
+  },
+  "Washington St.": {
+    "Chinyelu, Rueben": {
+      pos: "C",
+      pr: "3.5*/T150ish",
+      c: "RuChinyelu",
+      h: "6-10",
+      r: 85,
+    },
+  },
+  "North Carolina": {
+    "Cadeau, Elliot": {
+      pos: "PG",
+      pr: "5*/Lotto",
+      c: "ElCadeau",
+      h: "6-1",
+      r: -68,
+    },
+    "Wilcher, Simeon": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "SiWilcher",
+      h: "6-4",
+      r: 52,
+    },
+    "High, Zayden": { pos: "PF/C", pr: "4*", c: "ZaHigh", h: "6-9", r: 33 },
+  },
+  Gonzaga: {
+    "Stromer, Dusty": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "DuStromer",
+      h: "6-6",
+      r: -34,
+    },
+  },
+  Virginia: {
+    "Gertrude, Elijah": {
+      pos: "WG",
+      pr: "4*",
+      c: "ElGertrude",
+      h: "6-3",
+      r: 60,
+    },
+    "Buchanan, Blake": { pos: "C", pr: "4*", c: "BlBuchanan", h: "6-9", r: -7 },
+  },
+  Alabama: {
+    "Walters, Sam": { pos: "S-PF", pr: "4*", c: "SaWalters", h: "6-8", r: 78 },
+    "Dioubate, Mouhamed": {
+      pos: "S-PF",
+      pr: "3.5*/T150ish",
+      c: "MoDioubate",
+      h: "6-7",
+      r: 54,
+    },
+  },
+  Duke: {
+    "McCain, Jared": {
+      pos: "CG",
+      pr: "5*/Lotto",
+      c: "JaMccain",
+      h: "6-2",
+      r: -78,
+    },
+    "Stewart, Sean": {
+      pos: "S-PF",
+      pr: "5*",
+      c: "SeStewart",
+      h: "6-8",
+      r: -28,
+    },
+    "Foster, Caleb": { pos: "CG", pr: "5*", c: "CaFoster", h: "6-5", r: -48 },
+    "Power, TJ": { pos: "S-PF", pr: "5*", c: "TjPower", h: "6-8", r: -56 },
+  },
+  Stanford: {
+    "Stojakovic, Andrej": {
+      pos: "WG",
+      pr: "5*",
+      c: "AnStojakovic",
+      h: "6-6",
+      r: -90,
+    },
+    "Carlyle, Kanaan": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "KaCarlyle",
+      h: "6-2",
+      r: -80,
+    },
+  },
+  Xavier: {
+    "Green, Trey": { pos: "PG", pr: "4*", c: "TrGreen", h: "5-10", r: 64 },
+    "Swain, Dailyn": { pos: "WG", pr: "4*", c: "DaSwain", h: "6-6", r: -56 },
+  },
+  Indiana: {
+    "Mgbako, Mackenzie": {
+      pos: "S-PF",
+      pr: "5*/Lotto",
+      c: "MaMgbako",
+      h: "6-8",
+      r: -64,
+    },
+    "Cupps, Gabe": {
+      pos: "PG",
+      pr: "3.5*/T150ish",
+      c: "GaCupps",
+      h: "6-1",
+      r: 99,
+    },
+  },
+  Butler: {
+    "Bizjack, Finley": {
+      pos: "CG",
+      pr: "3.5*/T150ish",
+      c: "FiBizjack",
+      h: "6-3",
+      r: 72,
+    },
+  },
+  Purdue: {
+    "Colvin, Myles": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "MyColvin",
+      h: "6-5",
+      r: 89,
+    },
+  },
+  Baylor: {
+    "Walter, Ja'Kobe": {
+      pos: "WG",
+      pr: "5*/Lotto",
+      c: "JaWalter",
+      h: "6-5",
+      r: -64,
+    },
+    "Little, Miro": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "MiLittle",
+      h: "6-4",
+      r: -8,
+    },
+  },
+  Kentucky: {
+    "Dillingham, Robert": {
+      pos: "PG",
+      pr: "5*",
+      c: "RoDillingham",
+      h: "6-2",
+      r: -12,
+    },
+    "Edwards, Justin": {
+      pos: "WF",
+      pr: "5*/Lotto",
+      c: "JuEdwards",
+      h: "6-7",
+      r: -16,
+    },
+    "Sheppard, Reed": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "ReSheppard",
+      h: "6-3",
+      r: -4,
+    },
+    "Wagner, DJ": {
+      pos: "CG",
+      pr: "5*/Lotto",
+      c: "DjWagner",
+      h: "6-3",
+      r: -34,
+    },
+    "Bradshaw, Aaron": {
+      pos: "C",
+      pr: "5*/Lotto",
+      c: "AaBradshaw",
+      h: "7-0",
+      r: -24,
+    },
+  },
+  Memphis: {
+    "Williams, Mikey": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "MiWilliams",
+      h: "6-2",
+      r: -68,
+    },
+    "Taylor, JJ": { pos: "WF", pr: "4*", c: "JjTaylor", h: "6-7", r: -47 },
+    "Hardaway, Ashton": {
+      pos: "S-PF",
+      pr: "3.5*/T150ish",
+      c: "AsHardaway",
+      h: "6-7",
+      r: 58,
+    },
+  },
+  "Kansas St.": {
+    "Dai Ames, Dai": { pos: "PG", pr: "4*", c: "DaDaiAmes", h: "6-1", r: 58 },
+    "Jones, RJ": { pos: "WG", pr: "4*", c: "RjJones", h: "6-3", r: -9 },
+  },
+  Illinois: {
+    "Hansberry, Amani": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "AmHansberry",
+      h: "6-8",
+      r: 47,
+    },
+  },
+  "Mississippi St.": {
+    "Hubbard, Josh": {
+      pos: "PG",
+      pr: "3.5*/T150ish",
+      c: "JoHubbard",
+      h: "5-10",
+      r: 96,
+    },
+  },
+  Louisville: {
+    "Flowers, Trentyn": {
+      pos: "WF",
+      pr: "5*",
+      c: "TrFlowers",
+      h: "6-8",
+      r: -72,
+    },
+    "Evans, Dennis": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "DeEvans",
+      h: "7-1",
+      r: 82,
+    },
+    "Glenn, Kaleb": { pos: "WG", pr: "4*", c: "KaGlenn", h: "6-6", r: -4 },
+    "Williams Jr., Curtis": {
+      pos: "WG",
+      pr: "4*",
+      c: "CuWilliams",
+      h: "6-6",
+      r: -28,
+    },
+  },
+  Kansas: {
+    "Jackson, Elmarko": {
+      pos: "PG",
+      pr: "5*",
+      c: "ElJackson",
+      h: "6-3",
+      r: -58,
+    },
+    "Johnson, Chris": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "ChJohnson",
+      h: "6-4",
+      r: -78,
+    },
+    "Adams Jr., Marcus": {
+      pos: "WF",
+      pr: "3.5*/T150ish",
+      c: "MaAdams",
+      h: "6-8",
+      r: 72,
+    },
+    "McDowell, Jamari": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "JaMcdowell",
+      h: "6-4",
+      r: 54,
+    },
+  },
+  "NC State": {
+    "Parker, Trey": { pos: "WG", pr: "4*", c: "TrParker", h: "6-2", r: -54 },
+  },
+  Maryland: {
+    "Harris-Smith, DeShawn": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "DeHarris-smi",
+      h: "6-4",
+      r: 58,
+    },
+    "Kaiser, Jamie": { pos: "WG", pr: "4*", c: "JaKaiser", h: "6-6", r: 54 },
+  },
+  Iowa: {
+    "Sandfort, Pryce": {
+      pos: "WF",
+      pr: "4*",
+      c: "PrSandfort",
+      h: "6-7",
+      r: -50,
+    },
+  },
+  UConn: {
+    "Castle, Stephon": {
+      pos: "CG",
+      pr: "5*/Lotto",
+      c: "StCastle",
+      h: "6-6",
+      r: -68,
+    },
+    "Ball, Solomon": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "SoBall",
+      h: "6-3",
+      r: -28,
+    },
+    "Stewart, Jaylin": { pos: "WF", pr: "4*", c: "JaStewart", h: "6-7", r: 47 },
+    "Ross, Jayden": { pos: "WF", pr: "4*", c: "JaRoss", h: "6-7", r: -29 },
+  },
+  Pittsburgh: {
+    "Lowe, Jaland": { pos: "PG", pr: "4*", c: "JaLowe", h: "6-1", r: -33 },
+  },
+  Rutgers: {
+    "Griffiths, Gavin": {
+      pos: "WF",
+      pr: "4*/T40ish",
+      c: "GaGriffiths",
+      h: "6-7",
+      r: -16,
+    },
+  },
+  Arizona: {
+    "Lewis, KJ": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "KjLewis",
+      h: "6-4",
+      r: 60,
+    },
+  },
+  "Oklahoma St.": {
+    "Garrison, Brandon": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "BrGarrison",
+      h: "6-9",
+      r: 38,
+    },
+    "Dailey, Eric": {
+      pos: "S-PF",
+      pr: "4*/T40ish",
+      c: "ErDailey",
+      h: "6-7",
+      r: -92,
+    },
+  },
+  Colorado: {
+    "Williams, Cody": {
+      pos: "WF",
+      pr: "5*/Lotto",
+      c: "CoWilliams",
+      h: "6-8",
+      r: -38,
+    },
+    "Diop, Assane": {
+      pos: "C",
+      pr: "3.5*/T150ish",
+      c: "AsDiop",
+      h: "6-10",
+      r: 87,
+    },
+  },
+  Michigan: {
+    "Washington III, George": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "GeWashington",
+      h: "6-2",
+      r: 98,
+    },
+  },
+  Oregon: {
+    "Evans Jr., Kwame": {
+      pos: "PF/C",
+      pr: "5*",
+      c: "KwEvans",
+      h: "6-9",
+      r: -10,
+    },
+    "Shelstad, Jackson": {
+      pos: "PG",
+      pr: "5*",
+      c: "JaShelstad",
+      h: "6-0",
+      r: -86,
+    },
+    "Cook, Mookie": {
+      pos: "WF",
+      pr: "4*/T40ish",
+      c: "MoCook",
+      h: "6-7",
+      r: 86,
+    },
+  },
+  "Michigan St.": {
+    "Booker, Xavier": {
+      pos: "C",
+      pr: "5*/Lotto",
+      c: "XaBooker",
+      h: "6-10",
+      r: -96,
+    },
+    "Fears, Jeremy": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "JeFears",
+      h: "6-0",
+      r: 72,
+    },
+    "Carr, Coen": {
+      pos: "S-PF",
+      pr: "4*/T40ish",
+      c: "CoCarr",
+      h: "6-7",
+      r: 58,
+    },
+  },
+};
