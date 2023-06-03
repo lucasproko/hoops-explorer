@@ -9,34 +9,40 @@ export class ParamPrefixes {
   static readonly player = "player-";
   static readonly gameInfo = "gameInfo-";
 }
-export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-" | "player-" | "gameInfo-";
+export type ParamPrefixesType =
+  | "game-"
+  | "lineup-"
+  | "report-"
+  | "roster-"
+  | "player-"
+  | "gameInfo-";
 
 /** The common luck config */
 export type LuckParams = {
-  base: "baseline" | "season"
+  base: "baseline" | "season";
 };
 
 export type ManualOverride = {
-  rowId: string, //(the player key, lineup key, or on/off key)
-  statName: string, //(the field that has been changed)
-  newVal: number,
-  use: boolean
-}
+  rowId: string; //(the player key, lineup key, or on/off key)
+  statName: string; //(the field that has been changed)
+  newVal: number;
+  use: boolean;
+};
 
 /** Common params across all filter types */
 export type CommonFilterParams = {
-  year?: string,
-  team?: string,
-  gender?: string,
-  minRank?: string,
-  maxRank?: string,
-  baseQuery?: string,
-  filterGarbage?: boolean, //(missing iff "false")
-  queryFilters?: string, //(missing iff empty)
+  year?: string;
+  team?: string;
+  gender?: string;
+  minRank?: string;
+  maxRank?: string;
+  baseQuery?: string;
+  filterGarbage?: boolean; //(missing iff "false")
+  queryFilters?: string; //(missing iff empty)
 
   // FOR INTERNAL USE ONLY
-  invertBase?: string //special case - the inverse of these two are used in combination with the usual queryFilters/baseQuery
-  invertBaseQueryFilters?: string
+  invertBase?: string; //special case - the inverse of these two are used in combination with the usual queryFilters/baseQuery
+  invertBaseQueryFilters?: string;
 };
 
 /** Extracts the common params from a superset */
@@ -49,12 +55,15 @@ export function getCommonFilterParams(p: CommonFilterParams) {
     maxRank: p.maxRank,
     baseQuery: p.baseQuery,
     filterGarbage: p.filterGarbage,
-    queryFilters: p.queryFilters
+    queryFilters: p.queryFilters,
   };
 }
 
 /** Extracts the common leaderboard params from a superset */
-export function getCommonLboardFilterParams(p: CommonFilterParams, tier?: string) {
+export function getCommonLboardFilterParams(
+  p: CommonFilterParams,
+  tier?: string
+) {
   return {
     tier: tier,
     year: p.year,
@@ -66,55 +75,55 @@ export function getCommonLboardFilterParams(p: CommonFilterParams, tier?: string
 export type MatchupFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  oppoTeam?: string,
-  luck?: LuckParams, //(missing iff default)
-  onOffLuck?: boolean,
+  oppoTeam?: string;
+  luck?: LuckParams; //(missing iff default)
+  onOffLuck?: boolean;
 };
 
 /** Combined params for game filtering */
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  onQuery?: string,
-  offQuery?: string,
-  onQueryFilters?: string, //(missing iff empty)
-  offQueryFilters?: string, //(missing iff empty)
-  autoOffQuery?: boolean
-  showGrades?: string,
+  onQuery?: string;
+  offQuery?: string;
+  onQueryFilters?: string; //(missing iff empty)
+  offQueryFilters?: string; //(missing iff empty)
+  autoOffQuery?: boolean;
+  showGrades?: string;
   // Team view
-  teamDiffs?: boolean,
-  showExtraInfo?: boolean,
-  showTeamPlayTypes?: boolean,
-  showRoster?: boolean,
-  showGameInfo?: boolean,
+  teamDiffs?: boolean;
+  showExtraInfo?: boolean;
+  showTeamPlayTypes?: boolean;
+  showRoster?: boolean;
+  showGameInfo?: boolean;
   // Manual override:
-  manual?: ManualOverride[],
-  showPlayerManual?: boolean,
-  showOnBallConfig?: boolean,
+  manual?: ManualOverride[];
+  showPlayerManual?: boolean;
+  showOnBallConfig?: boolean;
   // Global luck adjustments
-  luck?: LuckParams, //(missing iff default)
+  luck?: LuckParams; //(missing iff default)
   // Luck adjustments
-  onOffLuck?: boolean,
-  showOnOffLuckDiags?: boolean,
-  showPlayerOnOffLuckDiags?: boolean,
-  showPlayerPlayTypes?: boolean,
+  onOffLuck?: boolean;
+  showOnOffLuckDiags?: boolean;
+  showPlayerOnOffLuckDiags?: boolean;
+  showPlayerPlayTypes?: boolean;
   // Misc display:
-  showInfoSubHeader?: boolean,
+  showInfoSubHeader?: boolean;
   // Filtering of individual view:
-  filter?: string,
-  sortBy?: string,
-  showBase?: boolean,
-  showExpanded?: boolean,
-  showDiag?: boolean
-  possAsPct?: boolean,
-  factorMins?: boolean,
-  showPosDiag?: boolean,
+  filter?: string;
+  sortBy?: string;
+  showBase?: boolean;
+  showExpanded?: boolean;
+  showDiag?: boolean;
+  possAsPct?: boolean;
+  factorMins?: boolean;
+  showPosDiag?: boolean;
   // RAPM
-  calcRapm?: boolean,
-  rapmPriorMode?: string, //(-1==default==adapative, else the prior weight as 0->1)
-  rapmRegressMode?: string, //0-1 to force the regression, or -1 to auto-choose (default: -1)
+  calcRapm?: boolean;
+  rapmPriorMode?: string; //(-1==default==adapative, else the prior weight as 0->1)
+  rapmRegressMode?: string; //0-1 to force the regression, or -1 to auto-choose (default: -1)
   // For leaderboard building:
-  getGames?: boolean
+  getGames?: boolean;
 };
 
 /** Params for lineup filtering */
@@ -123,170 +132,172 @@ export type LineupFilterParams = {
 } & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
-  decorate?: boolean,
-  showTotal?: boolean,
-  showOff?: boolean,
-  minPoss?: string,
-  maxTableSize?: string,
-  sortBy?: string,
+  decorate?: boolean;
+  showTotal?: boolean;
+  showOff?: boolean;
+  minPoss?: string;
+  maxTableSize?: string;
+  sortBy?: string;
   // Filtering:
-  filter?: string,
+  filter?: string;
   // Luck adjustments
-  luck?: LuckParams, //(missing iff default)
-  lineupLuck?: boolean,
-  showLineupLuckDiags?: boolean,
+  luck?: LuckParams; //(missing iff default)
+  lineupLuck?: boolean;
+  showLineupLuckDiags?: boolean;
   // Other features:
-  aggByPos?: string,
-  showGameInfo?: boolean
+  aggByPos?: string;
+  showGameInfo?: boolean;
 };
 
 export type LineupLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  tier?: string, //High, Medium, Low
-  conf?: string, //(undefined ==> all conferences)
-  minPoss?: string,
-  maxTableSize?: string,
-  sortBy?: string,
+  tier?: string; //High, Medium, Low
+  conf?: string; //(undefined ==> all conferences)
+  minPoss?: string;
+  maxTableSize?: string;
+  sortBy?: string;
   // Filtering:
-  filter?: string,
-  lineupFilters?: string,
+  filter?: string;
+  lineupFilters?: string;
   // Luck adjustments
-  showLineupLuckDiags?: boolean,
+  showLineupLuckDiags?: boolean;
   // Query pre-sets
-  confOnly?: boolean,
-  t100?: boolean
+  confOnly?: boolean;
+  t100?: boolean;
 };
 
 export type TeamEditorParams = {
   [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
 } & {
   // Player editor settings:
-  showPrevSeasons?: boolean, //(defaults to false)
-  offSeason?: boolean, //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
-  evalMode?: boolean, //(defaults to false, if true will compare the season X with the predictions from the previous offseason)
-  alwaysShowBench?: boolean, //(defaults to false)
-  superSeniorsBack?: boolean, //(defaults to false)
+  showPrevSeasons?: boolean; //(defaults to false)
+  offSeason?: boolean; //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
+  evalMode?: boolean; //(defaults to false, if true will compare the season X with the predictions from the previous offseason)
+  alwaysShowBench?: boolean; //(defaults to false)
+  superSeniorsBack?: boolean; //(defaults to false)
   // Controls what transfers are shown
-  showOnlyTransfers?: boolean, //(defaults to true)
-  showOnlyCurrentYear?: boolean, //(defaults to true)
-  diffBasis?: string, //JSON representation of the starting point for showing diffs
-  enableNil?: boolean,
+  showOnlyTransfers?: boolean; //(defaults to true)
+  showOnlyCurrentYear?: boolean; //(defaults to true)
+  diffBasis?: string; //JSON representation of the starting point for showing diffs
+  enableNil?: boolean;
   // Editor state
-  deletedPlayers?: string, //;-separated list
-  disabledPlayers?: string,//;-separated list
-  addedPlayers?: string, //;-separated list
-  editOpen?: string, //;-separated list, <key>|<open-tab>
+  deletedPlayers?: string; //;-separated list
+  disabledPlayers?: string; //;-separated list
+  addedPlayers?: string; //;-separated list
+  editOpen?: string; //;-separated list, <key>|<open-tab>
   overrides?: string; //;-separated list, see TeamEditorUtils.PlayerEditModel
-  allEditOpen?: string, //(defaults to undefined, all edit pages open to the tab if true)
+  allEditOpen?: string; //(defaults to undefined, all edit pages open to the tab if true)
 };
 
 export type OffseasonLeaderboardParams = {
-  year?: string,
-  teamView?: string,
-  confs?: string,
-  evalMode?: boolean,
-  transferInOutMode?: boolean,
-  sortBy?: string, //(for transferInOutMode)
-  queryFilters?: string
+  year?: string;
+  teamView?: string;
+  confs?: string;
+  evalMode?: boolean;
+  transferInOutMode?: boolean;
+  sortBy?: string; //(for transferInOutMode)
+  queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)
 
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  tier?: string,  //All, High, Medium, Low
-  conf?: string, //(undefined ==> all conferences)
-  minPoss?: string,
-  maxTableSize?: string,
-  sortBy?: string,
+  tier?: string; //All, High, Medium, Low
+  conf?: string; //(undefined ==> all conferences)
+  minPoss?: string;
+  maxTableSize?: string;
+  sortBy?: string;
   // Player settings
-  posClasses?: string, //(undefined => all positions)
-  possAsPct?: boolean,
-  factorMins?: boolean,
-  useRapm?: boolean,
-  showGrades?: string,
+  posClasses?: string; //(undefined => all positions)
+  possAsPct?: boolean;
+  factorMins?: boolean;
+  useRapm?: boolean;
+  showGrades?: string;
   // Filtering:
-  filter?: string,
-  advancedFilter?: string,
+  filter?: string;
+  advancedFilter?: string;
   // Misc display:
-  showInfoSubHeader?: boolean,
+  showInfoSubHeader?: boolean;
   // Query pre-sets
-  confOnly?: boolean,
-  t100?: boolean,
+  confOnly?: boolean;
+  t100?: boolean;
   // Transfer info
-  transferMode?: string, //==true => show only available, vs ==$year show all, append ":predictions" show all but including predictions
-  includePrevYear?: boolean, //(if available add an extra 2 rows with the player's prev year stats)
+  transferMode?: string; //==true => show only available, vs ==$year show all, append ":predictions" show all but including predictions
+  includePrevYear?: boolean; //(if available add an extra 2 rows with the player's prev year stats)
 };
 
 export type PlayerSeasonComparisonParams = {
   [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
 } & {
-  year?: string,
-  gender?: string,
-  confs?: string,
-  showConfig?: boolean, //(whether to show all the config for the axis etc)
-  showTable?: boolean,
-  showPrevNextInTable?: boolean, //(if showing table, show prev and next stats)
-  title?: string,
-  datasetFilter?: string,
-  highlightFilter?: string,
-  queryFilters?: string,
-  xAxis?: string,
-  yAxis?: string,
-  dotSize?: string,
-  dotColor?: string,
-  dotColorMap?: string,
-  labelStrategy?: string,
-  toggledPlayers?: string,
+  year?: string;
+  gender?: string;
+  confs?: string;
+  showConfig?: boolean; //(whether to show all the config for the axis etc)
+  showTable?: boolean;
+  showPrevNextInTable?: boolean; //(if showing table, show prev and next stats)
+  title?: string;
+  datasetFilter?: string;
+  highlightFilter?: string;
+  queryFilters?: string;
+  xAxis?: string;
+  yAxis?: string;
+  dotSize?: string;
+  dotColor?: string;
+  dotColorMap?: string;
+  labelStrategy?: string;
+  toggledPlayers?: string;
 };
 
 export type TeamLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  conf?: string, //(undefined ==> all conferences)
+  conf?: string; //(undefined ==> all conferences)
   // Lots of settings:
-  qualityWeight?: string,
-  pinQualityWeight?: string,
-  wabWeight?: string,
-  pinWabWeight?: string,
-  waeWeight?: string,
-  pinWaeWeight?: string,
-  domWeight?: string,
-  pinDomWeight?: string,
-  timeWeight?: string
-  pinTimeWeight?: string
+  qualityWeight?: string;
+  pinQualityWeight?: string;
+  wabWeight?: string;
+  pinWabWeight?: string;
+  waeWeight?: string;
+  pinWaeWeight?: string;
+  domWeight?: string;
+  pinDomWeight?: string;
+  timeWeight?: string;
+  pinTimeWeight?: string;
 };
-
 
 export type TeamReportFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
-  sortBy?: string,
+  sortBy?: string;
   // Filtering:
-  filter?: string,
-  showOnOff?: boolean,
-  showComps?: boolean,
-  incRepOnOff?: boolean,
-  regressDiffs?: string, //+ve to add that number of 0 samples, -ve to regress to the given sample size
-  repOnOffDiagMode?: string //(the number of diagnostic lineups to show, basically 0 or 20:sort order:sort field)
-  incRapm?: boolean,
-  rapmDiagMode?: string, //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
-  rapmPriorMode?: string, //(-1==default==adapative, else the prior weight as 0->1)
-  rapmRegressMode?: string, //0-1 to force the regression, or -1 to auto-choose (default: -1)
+  filter?: string;
+  showOnOff?: boolean;
+  showComps?: boolean;
+  incRepOnOff?: boolean;
+  regressDiffs?: string; //+ve to add that number of 0 samples, -ve to regress to the given sample size
+  repOnOffDiagMode?: string; //(the number of diagnostic lineups to show, basically 0 or 20:sort order:sort field)
+  incRapm?: boolean;
+  rapmDiagMode?: string; //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
+  rapmPriorMode?: string; //(-1==default==adapative, else the prior weight as 0->1)
+  rapmRegressMode?: string; //0-1 to force the regression, or -1 to auto-choose (default: -1)
   // Luck adjustments
-  luck?: LuckParams, //(missing iff default)
-  teamLuck?: boolean
+  luck?: LuckParams; //(missing iff default)
+  teamLuck?: boolean;
   //(there's no luck diags here because we're applying at the lineup level)
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */
 export type RequiredTeamReportFilterParams = {
   [P in keyof TeamReportFilterParams]?: TeamReportFilterParams[P];
-} & {
-  [P in keyof Required<CommonFilterParams>]: CommonFilterParams[P] | undefined;
-};
+} &
+  {
+    [P in keyof Required<CommonFilterParams>]:
+      | CommonFilterParams[P]
+      | undefined;
+  };
 
 export class ParamDefaults {
   // Game
@@ -330,8 +341,14 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";
   static defaultPlayerLboardSortBy(useRapm: boolean, factorMins: boolean) {
-    return useRapm ? (factorMins ? "desc:diff_adj_rapm_prod" : "desc:diff_adj_rapm") : (factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg");
-  }  
+    return useRapm
+      ? factorMins
+        ? "desc:diff_adj_rapm_prod"
+        : "desc:diff_adj_rapm"
+      : factorMins
+      ? "desc:off_adj_prod"
+      : "desc:off_adj_rtg";
+  }
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;
@@ -351,7 +368,11 @@ export class ParamDefaults {
   static readonly defaultTeamReportIncRapm = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";
   static readonly defaultTeamReportRepOnOffDiagMode = "0";
-  static readonly defaultTeamReportRepOnOffDiagModeIfEnabled = [ "20", "-1", "lineup.off_poss.value" ];
+  static readonly defaultTeamReportRepOnOffDiagModeIfEnabled = [
+    "20",
+    "-1",
+    "lineup.off_poss.value",
+  ];
   static readonly defaultTeamReportRapmDiagMode = "";
   static readonly defaultTeamReportRapmPriorMode = "-1";
   static readonly defaultTeamReportRapmRegressMode = "-1";
@@ -359,7 +380,8 @@ export class ParamDefaults {
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = DateUtils.mostRecentYearWithData;
-  static readonly defaultLeaderboardYear = DateUtils.mostRecentYearWithLboardData; //(takes a while longer to get updated)
+  static readonly defaultLeaderboardYear =
+    DateUtils.mostRecentYearWithLboardData; //(takes a while longer to get updated)
   static readonly defaultGender = "Men";
   static readonly defaultMinRank = "0";
   static readonly defaultMaxRank = "400";
@@ -367,13 +389,16 @@ export class ParamDefaults {
   static readonly defaultQueryFilters = "";
   static readonly defaultLuckConfig: LuckParams = { base: "season" };
   static readonly defaultEnabledGrade = "rank:Combo";
-};
+}
 
-export type FilterParamsType = GameFilterParams | LineupFilterParams | TeamReportFilterParams;
+export type FilterParamsType =
+  | GameFilterParams
+  | LineupFilterParams
+  | TeamReportFilterParams;
 
 /** Which API to call and with what object */
 export type FilterRequestInfo = {
-  context: ParamPrefixesType,
-  paramsObj: FilterParamsType,
-  includeRoster?: boolean //(if true will fetch the roster, eg one call per page should do this)
+  context: ParamPrefixesType;
+  paramsObj: FilterParamsType;
+  includeRoster?: boolean; //(if true will fetch the roster, eg one call per page should do this)
 };
