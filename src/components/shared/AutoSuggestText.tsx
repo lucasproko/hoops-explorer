@@ -100,7 +100,7 @@ const AutoSuggestText: React.FunctionComponent<Props> = ({
     if (!_.isEqual(params, savedParams)) {
       if (isDebug)
         console.log(
-          `Update params: old=[${JSON.stringify(
+          `[auto-debug-mode] Update params: old=[${JSON.stringify(
             savedParams
           )}] vs new=[${JSON.stringify(params)}]`
         );
@@ -144,7 +144,9 @@ const AutoSuggestText: React.FunctionComponent<Props> = ({
           response.json().then(function (json: any) {
             // Cache result locally:
             if (isDebug) {
-              console.log(`CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`);
+              console.log(
+                `[auto-debug-mode] CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`
+              );
               //(this is a bit chatty)
               //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
             }

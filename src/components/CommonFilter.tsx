@@ -616,15 +616,21 @@ const CommonFilter: CommonFilterI = ({
   };
   const getClearQueryButton = () => {
     const onClick = () => {
+      /**/
+      console.log(
+        `??? ${team} ${gender} ${year} ${JSON.stringify(startingState)}`
+      );
+
+      const defaultParams = { gender, year, team }; //common set of params to preserve
       const getUrl = () => {
         if (tablePrefix == ParamPrefixes.game) {
-          return UrlRouting.getGameUrl({}, {});
+          return UrlRouting.getGameUrl(defaultParams, {});
         } else if (tablePrefix == ParamPrefixes.lineup) {
-          return UrlRouting.getLineupUrl({}, {});
+          return UrlRouting.getLineupUrl(defaultParams, {});
         } else if (tablePrefix == ParamPrefixes.report) {
-          return UrlRouting.getTeamReportUrl({});
+          return UrlRouting.getTeamReportUrl(defaultParams);
         } else if (tablePrefix == ParamPrefixes.gameInfo) {
-          return UrlRouting.getMatchupUrl({});
+          return UrlRouting.getMatchupUrl(defaultParams);
         } else {
           return undefined;
         }
@@ -635,7 +641,10 @@ const CommonFilter: CommonFilterI = ({
       }
     };
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Clears and empties the page</Tooltip>
+      <Tooltip id="copyLinkTooltip">
+        Clears and empties the page, preserving only gender / year / team
+        settings
+      </Tooltip>
     );
     return (
       <OverlayTrigger placement="auto" overlay={tooltip}>
