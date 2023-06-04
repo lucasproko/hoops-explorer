@@ -289,6 +289,14 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     startingState.showPrevNextInTable || false
   );
 
+  // Whether to show only manually selected players in the table (if there are any)
+  const [showOnlyHandSelectedInTable, setShowOnlyHandSelectedInTable] =
+    useState<boolean>(
+      _.isNil(startingState.showOnlyHandSelectedInTable)
+        ? true
+        : startingState.showOnlyHandSelectedInTable
+    );
+
   // Filter text (show/hide):
   const [datasetFilterStr, setAdvancedFilterStr] = useState(
     startingState.datasetFilter || ""
@@ -469,6 +477,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       toggledPlayers: _.keys(toggledPlayers).join(";"),
       showTable: showTable,
       showPrevNextInTable: showPrevNextInTable,
+      showOnlyHandSelectedInTable: showOnlyHandSelectedInTable,
     });
   }, [
     confs,
@@ -487,6 +496,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     lboardParams,
     toggledPlayers,
     showPrevNextInTable,
+    showOnlyHandSelectedInTable,
     showTable,
   ]);
 
@@ -1350,7 +1360,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
               return p.p.actualResults;
             })
             .filter((p) => {
-              return _.isEmpty(toggledPlayers)
+              return _.isEmpty(toggledPlayers) || !showOnlyHandSelectedInTable
                 ? true
                 : toggledPlayers[p?.code || "??"];
             }),
@@ -1365,8 +1375,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             .flatMap((d) => (d.error ? [d.error] : []))
             .value()
             .join("/"),
-          transfers: undefined, //TODO dataEvent.transfers starts with the _prev_ year, we don't currently collect this year
-          //TODO: need to get another transfer as well
+          transfers: undefined, //(we've already injected transfer_src and transfer_dest where possible)
           syntheticData: true,
         }}
         onChangeState={(newParams: PlayerLeaderboardParams) => {
@@ -1393,6 +1402,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     screenWidth,
     toggledPlayers,
     showPrevNextInTable,
+    showOnlyHandSelectedInTable,
   ]);
 
   // 3] View
@@ -1922,13 +1932,31 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                     id="showPrevNextInTable"
                     checked={showPrevNextInTable}
                     onChange={() => {
-                      const isCurrentlySet = showPrevNextInTable;
                       friendlyChange(
                         () => setShowPrevNextInTable(!showPrevNextInTable),
                         true
                       );
                     }}
                     label="Show Both Years' Stats"
+                  />
+                </Form.Group>
+                <Form.Group as={Col} className="mt-2">
+                  <Form.Check
+                    className="float-left"
+                    type="switch"
+                    id="showOnlyHandSelectedInTable"
+                    disabled={_.isEmpty(toggledPlayers)}
+                    checked={showOnlyHandSelectedInTable}
+                    onChange={() => {
+                      friendlyChange(
+                        () =>
+                          setShowOnlyHandSelectedInTable(
+                            !showOnlyHandSelectedInTable
+                          ),
+                        true
+                      );
+                    }}
+                    label="Show only hand-selected players"
                   />
                 </Form.Group>
               </Row>

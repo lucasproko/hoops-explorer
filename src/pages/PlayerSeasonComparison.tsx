@@ -100,6 +100,10 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         !rawParams.toggledPlayers ? ["toggledPlayers"] : [],
         !rawParams.showTable ? ["showTable"] : [],
         !rawParams.showPrevNextInTable ? ["showPrevNextInTable"] : [],
+        _.isNil(rawParams.showOnlyHandSelectedInTable) ||
+        rawParams.showOnlyHandSelectedInTable
+          ? ["showOnlyHandSelectedInTable"]
+          : [],
         //(all the other fields we'll just show their full value)
 
         // "Add players from leaderboard" params

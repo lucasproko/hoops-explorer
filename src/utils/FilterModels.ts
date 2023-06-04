@@ -236,6 +236,7 @@ export type PlayerSeasonComparisonParams = {
   showConfig?: boolean; //(whether to show all the config for the axis etc)
   showTable?: boolean;
   showPrevNextInTable?: boolean; //(if showing table, show prev and next stats)
+  showOnlyHandSelectedInTable?: boolean; //(if enabled, and any players hand selected, show only those players)
   title?: string;
   datasetFilter?: string;
   highlightFilter?: string;
