@@ -114,6 +114,13 @@ export const freshmenMen2023_24: Record<string, any> = {
       h: "6-9",
       r: -40,
     },
+    "Gardner, Brandon": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "JaMcfarland",
+      h: "6-7",
+      r: -89,
+    },
   },
   Tennessee: {
     "Carr, Cameron": { pos: "WG", pr: "4*", c: "CaCarr", h: "6-4", r: 85 },
@@ -188,13 +195,6 @@ export const freshmenMen2023_24: Record<string, any> = {
       c: "ElCadeau",
       h: "6-1",
       r: -68,
-    },
-    "Wilcher, Simeon": {
-      pos: "CG",
-      pr: "4*/T40ish",
-      c: "SiWilcher",
-      h: "6-4",
-      r: 52,
     },
     "High, Zayden": { pos: "PF/C", pr: "4*", c: "ZaHigh", h: "6-9", r: 33 },
   },
@@ -445,9 +445,7 @@ export const freshmenMen2023_24: Record<string, any> = {
       r: 54,
     },
   },
-  "NC State": {
-    "Parker, Trey": { pos: "WG", pr: "4*", c: "TrParker", h: "6-2", r: -54 },
-  },
+  "NC State": {},
   Maryland: {
     "Harris-Smith, DeShawn": {
       pos: "WG",

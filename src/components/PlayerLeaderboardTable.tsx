@@ -1136,7 +1136,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         </OverlayTrigger>
       );
 
-      const maybeYrStr = isMultiYr ? ` '${player.year.substring(2, 4)}+` : ``;
+      const maybeYrStr = isMultiYr
+        ? ` '${player.year?.substring(2, 4) || "??"}+`
+        : ``;
 
       // Add roster metadata:
 
