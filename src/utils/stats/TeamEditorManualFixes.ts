@@ -457,14 +457,20 @@ export class TeamEditorManualFixes {
           TeamEditorManualFixModel
         > = {
           //(through Apr 23, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
+          Alabama: {
+            superSeniorsReturning: new Set(["JaQuinerly::"]),
+          },
           Arkansas: {
-            superSeniorsReturning: new Set(["JaGraham::"]),
+            superSeniorsReturning: new Set(["JaGraham::", "MiMitchell::"]),
           },
           "App State": {
             superSeniorsReturning: new Set(["DoGregory::"]),
           },
           Auburn: {
-            superSeniorsReturning: new Set(["LiBerman::"]),
+            superSeniorsReturning: new Set(["LiBerman::", "JaWilliams::"]),
+          },
+          Baylor: {
+            superSeniorsReturning: new Set(["JoTcTchatchoua::"]),
           },
           Belmont: {
             superSeniorsReturning: new Set(["KeDavidson::"]),
@@ -523,7 +529,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["KeStrawbridg::"]),
           },
           Fairfield: {
-            superSeniorsReturning: new Set(["CaFields::"]),
+            superSeniorsReturning: new Set(["CaFields::", "BrGoodine::"]),
           },
           FGCU: {
             superSeniorsReturning: new Set([
@@ -769,8 +775,14 @@ export class TeamEditorManualFixes {
           UNLV: {
             superSeniorsReturning: new Set(["JuWebster::"]),
           },
+          Utah: {
+            superSeniorsReturning: new Set(["BrCarlson::"]),
+          },
           Valparaiso: {
             superSeniorsReturning: new Set(["QuGreen::"]),
+          },
+          Vanderbilt: {
+            superSeniorsReturning: new Set(["EzManjon::"]),
           },
           Vermont: {
             superSeniorsReturning: new Set(["MaVeretto::", "AaDeloney::"]),

@@ -122,6 +122,15 @@ export const freshmenMen2023_24: Record<string, any> = {
       r: -89,
     },
   },
+  "St. John's (NY)": {
+    "Wilcher, Simeon": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "SiWilcher",
+      h: "6-4",
+      r: 52,
+    },
+  },
   Tennessee: {
     "Carr, Cameron": { pos: "WG", pr: "4*", c: "CaCarr", h: "6-4", r: 85 },
     "Estrella, JP": { pos: "C", pr: "4*", c: "JpEstrella", h: "6-11", r: 66 },
