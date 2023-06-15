@@ -586,6 +586,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["KeLeaupepe::"]),
           },
           Maryland: {
+            leftTeam: ["ChStephens::"], //(injury expected to be all year)
             superSeniorsReturning: new Set(["JaYoung::", "DoScott::"]),
           },
           Massachusetts: {
