@@ -22,7 +22,8 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
       xs={12}
     >
       <h3>
-        Build Your Own T25! 
+        Build Your Own T25!
+         
         <span
           className="badge badge-pill badge-info"
         >

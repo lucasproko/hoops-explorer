@@ -11,6 +11,9 @@ export class DateUtils {
 
   //////////////////////////////////////
 
+  /** Set this to true to show the off-season leaderboard as the site front page */
+  static readonly frontPageIsOffseasonLeaderboard = true;
+
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
   static readonly inSeasonYear = "2023/24";
 

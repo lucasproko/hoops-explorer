@@ -79,13 +79,28 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     if (typeof window !== `undefined`) window.location.href = newUrl;
     return <span>(redirecting old link)</span>;
   }
-  //TODO: in off-season mode:
-  // if (!testMode && ((allParams.indexOf("year=2022/23") >= 0) || (allParams.indexOf("year=") < 0))) {
-  //   //TODO: this needs to get un-hardwired, but for now ...
-  //   const newUrl = UrlRouting.getOffseasonLeaderboard({});
-  //   if (typeof window !== `undefined`) window.location.href = newUrl;
-  //   return <span>(retrieving offseason predictions)</span>;
-  // }
+
+  if (
+    !testMode &&
+    DateUtils.frontPageIsOffseasonLeaderboard && //(this is manually set/unset to give some latitude)
+    (allParams.indexOf(`year=${DateUtils.inSeasonYear}`) >= 0 ||
+      allParams.indexOf("year=") < 0)
+  ) {
+    const newUrl = UrlRouting.getOffseasonLeaderboard({});
+    if (typeof window !== `undefined`) window.location.href = newUrl;
+
+    return (
+      <Container>
+        <Row className="mt-3 mb-3">
+          <Col xs={12} className="text-center">
+            <span>
+              <i>(Retrieving Offseason Predictions...)</i>
+            </span>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
   // Team Stats interface
 
