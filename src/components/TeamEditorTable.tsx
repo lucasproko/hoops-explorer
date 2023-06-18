@@ -2521,13 +2521,31 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} sm="1">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
+                text={"Show projection ranks/%iles"}
+                truthVal={showGrades != ""}
+                onSelect={() =>
+                  friendlyChange(() => {
+                    if (showGrades == "" && showPrevSeasons) {
+                      // (can't show grades and history at the same time, UI reasons)
+                      setShowPrevSeasons(false);
+                    }
+                    setShowGrades(
+                      showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                    );
+                  }, true)
+                }
+              />
+              <GenericTogglingMenuItem
                 text={"Show players' previous seasons"}
                 truthVal={showPrevSeasons}
                 onSelect={() =>
-                  friendlyChange(
-                    () => setShowPrevSeasons(!showPrevSeasons),
-                    true
-                  )
+                  friendlyChange(() => {
+                    if (!showPrevSeasons && showGrades) {
+                      // (can't show grades and history at the same time, UI reasons)
+                      setShowGrades("");
+                    }
+                    setShowPrevSeasons(!showPrevSeasons);
+                  }, true)
                 }
               />
               <GenericTogglingMenuItem
@@ -2622,15 +2640,34 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   }, true),
               },
               {
+                label: "Grades",
+                tooltip:
+                  "If enabled show the ranks/%iles corresponding to the players' projections",
+                toggled: showGrades != "",
+                onClick: () =>
+                  friendlyChange(() => {
+                    if (showGrades == "" && showPrevSeasons) {
+                      // (can't show grades and history at the same time, UI reasons)
+                      setShowPrevSeasons(false);
+                    }
+                    setShowGrades(
+                      showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                    );
+                  }, true),
+              },
+              {
                 label: "History",
                 tooltip:
                   "If enabled show player's previous 2 seasons (useful sanity check for projections)",
                 toggled: showPrevSeasons,
                 onClick: () =>
-                  friendlyChange(
-                    () => setShowPrevSeasons(!showPrevSeasons),
-                    true
-                  ),
+                  friendlyChange(() => {
+                    if (!showPrevSeasons && showGrades) {
+                      // (can't show grades and history at the same time, UI reasons)
+                      setShowGrades("");
+                    }
+                    setShowPrevSeasons(!showPrevSeasons);
+                  }, true),
               },
               {
                 label: "* Mins%",
@@ -2659,16 +2696,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 onClick: () =>
                   friendlyChange(() => {
                     setSuperSeniorsBack(!superSeniorsBack);
-                  }, true),
-              },
-              {
-                label: "NIL",
-                tooltip:
-                  "If enabled, shows a totally made-up editable view of the team's NIL numbers",
-                toggled: enableNil,
-                onClick: () =>
-                  friendlyChange(() => {
-                    setEnableNil(!enableNil);
                   }, true),
               },
             ].concat(

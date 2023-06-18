@@ -1565,6 +1565,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -1648,6 +1653,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -1670,12 +1681,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -7137,6 +7142,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -7220,6 +7230,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -7242,12 +7258,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -12413,6 +12423,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -12496,6 +12511,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -12518,12 +12539,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -18633,6 +18648,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -18716,6 +18736,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -18738,12 +18764,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -25059,6 +25079,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -25142,6 +25167,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -25164,12 +25195,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -31442,6 +31467,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -31525,6 +31555,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -31547,12 +31583,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "onClick": [Function],
               "toggled": true,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -37334,6 +37364,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -37417,6 +37452,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -37439,12 +37480,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "onClick": [Function],
               "toggled": true,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -41870,6 +41905,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -41953,6 +41993,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -41975,12 +42021,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -46072,6 +46112,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -46155,6 +46200,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -46177,12 +46228,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
@@ -49414,6 +49459,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
+          text="Show projection ranks/%iles"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -49497,6 +49547,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
+              "label": "Grades",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
+            },
+            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -49519,12 +49575,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "onClick": [Function],
               "toggled": true,
               "tooltip": "If enabled, assume seniors with eligibility will return (or you can add them from 'Add New Players' (off-season mode only)",
-            },
-            Object {
-              "label": "NIL",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled, shows a totally made-up editable view of the team's NIL numbers",
             },
             Object {
               "disabled": false,
