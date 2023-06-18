@@ -2007,7 +2007,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -7578,7 +7579,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -12861,7 +12863,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -19080,7 +19083,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -25505,7 +25509,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -31887,7 +31892,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -37770,7 +37776,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
@@ -42288,7 +42295,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "ok_net": undefined,
                   "ok_off": undefined,
                   "title": <b>
-                    Team Grades 
+                    Team Grades
+                     
                   </b>,
                 },
                 "kind": "data-row",
