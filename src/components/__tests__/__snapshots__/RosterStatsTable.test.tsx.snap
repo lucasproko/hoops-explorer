@@ -5948,7 +5948,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -5965,7 +5966,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -5989,7 +5991,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -6006,7 +6009,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -10000,7 +10004,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -10017,7 +10022,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -10041,7 +10047,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -10058,7 +10065,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -13053,7 +13061,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -13070,7 +13079,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -13094,7 +13104,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -13111,7 +13122,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -18978,7 +18990,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -18995,7 +19008,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -19019,7 +19033,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -19036,7 +19051,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -26886,7 +26902,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -26903,7 +26920,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -26927,7 +26945,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -26944,7 +26963,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -35136,7 +35156,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -35153,7 +35174,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -35177,7 +35199,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -35194,7 +35217,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -46834,7 +46858,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -46851,7 +46876,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -46875,7 +46901,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -46892,7 +46919,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -55765,7 +55793,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -55782,7 +55811,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -55806,7 +55836,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -55823,7 +55854,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -67728,7 +67760,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -67745,7 +67778,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text={
               <span>
-                Configure Manual Overrides... 
+                Configure Manual Overrides...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -67769,7 +67803,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text={
               <span>
-                Upload On-Ball Defense... 
+                Upload On-Ball Defense...
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -67786,7 +67821,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text={
               <span>
-                Show Play Style Breakdowns 
+                Show Play Style Breakdowns
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
