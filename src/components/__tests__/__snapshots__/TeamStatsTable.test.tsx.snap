@@ -6097,7 +6097,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         Medium
                         
                       </a>
-                       | 
+                       |
+                       
                       <a
                         onClick={[Function]}
                       >
@@ -6105,7 +6106,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         
                       </a>
                     </span>
-                     // 
+                     
+                    //
+                     
                     <span
                       className="small"
                     >
@@ -6117,7 +6120,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Ranks
                         </a>
                       </b>
-                       | 
+                       |
+                       
                       <a
                         href="#"
                         onClick={[Function]}
@@ -20813,7 +20817,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         Medium
                         
                       </a>
-                       | 
+                       |
+                       
                       <a
                         onClick={[Function]}
                       >
@@ -20821,7 +20826,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         
                       </a>
                     </span>
-                     // 
+                     
+                    //
+                     
                     <span
                       className="small"
                     >
@@ -20833,7 +20840,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Ranks
                         </a>
                       </b>
-                       | 
+                       |
+                       
                       <a
                         href="#"
                         onClick={[Function]}
@@ -35529,7 +35537,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         Medium
                         
                       </a>
-                       | 
+                       |
+                       
                       <a
                         onClick={[Function]}
                       >
@@ -35537,7 +35546,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         
                       </a>
                     </span>
-                     // 
+                     
+                    //
+                     
                     <span
                       className="small"
                     >
@@ -35549,7 +35560,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Ranks
                         </a>
                       </b>
-                       | 
+                       |
+                       
                       <a
                         href="#"
                         onClick={[Function]}
@@ -50410,7 +50422,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         Medium
                         
                       </a>
-                       | 
+                       |
+                       
                       <a
                         onClick={[Function]}
                       >
@@ -50418,7 +50431,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         
                       </a>
                     </span>
-                     // 
+                     
+                    //
+                     
                     <span
                       className="small"
                     >
@@ -50430,7 +50445,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                           Ranks
                         </a>
                       </b>
-                       | 
+                       |
+                       
                       <a
                         href="#"
                         onClick={[Function]}
@@ -52836,7 +52852,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         Medium
                         
                       </a>
-                       | 
+                       |
+                       
                       <a
                         onClick={[Function]}
                       >
@@ -52844,7 +52861,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         
                       </a>
                     </span>
-                     // 
+                     
+                    //
+                     
                     <span
                       className="small"
                     >
@@ -52856,7 +52875,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                           Ranks
                         </a>
                       </b>
-                       | 
+                       |
+                       
                       <a
                         href="#"
                         onClick={[Function]}
@@ -55276,7 +55296,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         Medium
                         
                       </a>
-                       | 
+                       |
+                       
                       <a
                         onClick={[Function]}
                       >
@@ -55284,7 +55305,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         
                       </a>
                     </span>
-                     // 
+                     
+                    //
+                     
                     <span
                       className="small"
                     >
@@ -55296,7 +55319,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                           Ranks
                         </a>
                       </b>
-                       | 
+                       |
+                       
                       <a
                         href="#"
                         onClick={[Function]}

@@ -27696,7 +27696,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -27704,7 +27705,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -27731,7 +27734,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -27752,7 +27756,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -27760,7 +27765,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -27772,7 +27779,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -28420,7 +28428,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -28428,7 +28437,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -28455,7 +28466,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -28476,7 +28488,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -28484,7 +28497,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -28496,7 +28511,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -29147,7 +29163,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -29155,7 +29172,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -29182,7 +29201,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -29203,7 +29223,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -29211,7 +29232,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -29223,7 +29246,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -29874,7 +29898,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -29882,7 +29907,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -29909,7 +29936,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -29930,7 +29958,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -29938,7 +29967,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -29950,7 +29981,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -36556,7 +36588,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -36564,7 +36597,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -36591,7 +36626,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -36612,7 +36648,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -36620,7 +36657,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -36632,7 +36671,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -37886,7 +37926,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -37894,7 +37935,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -37921,7 +37964,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -37942,7 +37986,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -37950,7 +37995,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -37962,7 +38009,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -39219,7 +39267,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -39227,7 +39276,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -39254,7 +39305,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -39275,7 +39327,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -39283,7 +39336,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -39295,7 +39350,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
@@ -40552,7 +40608,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Medium
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -40560,7 +40617,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -40587,7 +40646,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Guards
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -40608,7 +40668,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       Centers
                       
                     </a>
-                     | 
+                     |
+                     
                     <a
                       onClick={[Function]}
                     >
@@ -40616,7 +40677,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                       
                     </a>
                   </span>
-                   // 
+                   
+                  //
+                   
                   <span
                     className="small"
                   >
@@ -40628,7 +40691,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                         Ranks
                       </a>
                     </b>
-                     | 
+                     |
+                     
                     <a
                       href="#"
                       onClick={[Function]}
