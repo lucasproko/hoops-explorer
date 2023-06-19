@@ -1267,6 +1267,7 @@ export class GradeTableUtils {
         GenericTableOps.defaultCellMeta,
         tableConfig
       ),
+      controlRow,
     ];
     return tableData;
   };

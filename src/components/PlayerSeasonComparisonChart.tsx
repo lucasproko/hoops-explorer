@@ -1044,6 +1044,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         }
       }
     );
+
+    //TODO: move this below calc of mutable state and then allow "outlier option" for labelling
     const chartToUseForLabels = subChart || mainChart;
     const dataPointsToLabelPhase1 =
       maxLabels > 0

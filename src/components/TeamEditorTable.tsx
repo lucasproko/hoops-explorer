@@ -391,6 +391,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     alwaysShowBench,
     superSeniorsBack,
     evalMode,
+    showGrades,
   ]);
 
   /** Converts team editor state to offseason leaderboard state (need to prefix each key with `$team__` in the leaderboard */
@@ -1133,27 +1134,30 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       };
 
       const playerGradesEl = showGrades
-        ? GradeTableUtils.buildProjectedPlayerGradeTableRows({
-            selectionTitle: `Projected Grades`,
-            config: showGrades,
-            setConfig: (newConfig: string) => {
-              setShowGrades(newConfig);
-            },
-            playerStats: {
-              comboTier: playerDivisionStatsCache.Combo,
-              highTier: playerDivisionStatsCache.High,
-              mediumTier: playerDivisionStatsCache.Medium,
-              lowTier: playerDivisionStatsCache.Low,
-            },
-            playerPosStats: positionalStatsCache,
+        ? _.take(
+            GradeTableUtils.buildProjectedPlayerGradeTableRows({
+              selectionTitle: `Projected Grades`,
+              config: showGrades,
+              setConfig: (newConfig: string) => {
+                setShowGrades(newConfig);
+              },
+              playerStats: {
+                comboTier: playerDivisionStatsCache.Combo,
+                highTier: playerDivisionStatsCache.High,
+                mediumTier: playerDivisionStatsCache.Medium,
+                lowTier: playerDivisionStatsCache.Low,
+              },
+              playerPosStats: positionalStatsCache,
 
-            code: triple.key,
-            playerProjections: tableEl as PureStatSet,
-            evalMode,
-            offSeasonMode,
-            factorMins,
-            enableNil,
-          })
+              code: triple.key,
+              playerProjections: tableEl as PureStatSet,
+              evalMode,
+              offSeasonMode,
+              factorMins,
+              enableNil,
+            }),
+            1
+          ) //(skip the control row)
         : undefined;
 
       return (
@@ -1166,7 +1170,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             GenericTableOps.defaultCellMeta
           ),
         ])
-        .concat(playerGradesEl ? playerGradesEl : [])
+        .concat(playerGradesEl || [])
         .concat(
           showPrevSeasons && prevSeasonEl
             ? [
@@ -1269,133 +1273,190 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             : []
         );
     };
-    const buildBenchDataRowFromTriple = (triple: GoodBadOkTriple) => {
-      const mpg = (triple.ok.off_team_poss_pct?.value || 0) * 40;
-      const isFiltered = mpg == 0;
-      const hasEditPage = allEditOpen || editOpen[triple.key];
+    const buildBenchDataRowFromTriple = (
+      benchName: string,
+      tripleIn: GoodBadOkTriple | undefined
+    ) => {
+      const benchOverrides = tripleIn
+        ? pxResults.allOverrides[tripleIn.key]
+        : undefined;
 
-      const okProdFactor = factorMins
-        ? triple.ok.off_team_poss_pct?.value || 0
-        : 1.0;
-      const goodProdFactor = factorMins
-        ? triple.good.off_team_poss_pct?.value || 0
-        : 1.0;
-      const badProdFactor = factorMins
-        ? triple.bad.off_team_poss_pct?.value || 0
-        : 1.0;
+      const hasEditPage =
+        allEditOpen || (tripleIn ? editOpen[tripleIn.key] : false);
 
-      const benchOverrides = pxResults.allOverrides[triple.key];
-      const benchOffOver = (benchOverrides?.global_off_adj || 0) * okProdFactor;
-      const benchDefOver = (benchOverrides?.global_def_adj || 0) * okProdFactor;
-      const hasBenchOverride = benchOffOver != 0 || benchDefOver != 0;
-      const showCol = offSeasonMode || hasBenchOverride;
+      const tableEl = _.thru(tripleIn, (triple) => {
+        if (triple) {
+          const mpg = (triple.ok.off_team_poss_pct?.value || 0) * 40;
+          const isFiltered = mpg == 0;
 
-      const okNet = offSeasonMode
-        ? TeamEditorUtils.getNet(triple.ok, okProdFactor)
-        : TeamEditorUtils.getNet(triple.ok, okProdFactor) -
-          (benchOffOver - benchDefOver);
+          const okProdFactor = factorMins
+            ? triple.ok.off_team_poss_pct?.value || 0
+            : 1.0;
+          const goodProdFactor = factorMins
+            ? triple.good.off_team_poss_pct?.value || 0
+            : 1.0;
+          const badProdFactor = factorMins
+            ? triple.bad.off_team_poss_pct?.value || 0
+            : 1.0;
 
-      const tableEl = {
-        title: <b>{triple.orig.key}</b>,
-        mpg: { value: mpg },
-        nil: _.isNil(triple.nil) ? undefined : (
-          <small>
-            <i>{triple.nil.toFixed(0)}</i>
-          </small>
-        ),
+          const benchOffOver =
+            (benchOverrides?.global_off_adj || 0) * okProdFactor;
+          const benchDefOver =
+            (benchOverrides?.global_def_adj || 0) * okProdFactor;
+          const hasBenchOverride = benchOffOver != 0 || benchDefOver != 0;
+          const showCol = offSeasonMode || hasBenchOverride;
 
-        ptsPlus: factorMins
-          ? { value: (avgPts100 * 0.2 * okProdFactor + okNet) * 0.7 }
-          : undefined, //TODO: calc poss/g
+          const okNet = offSeasonMode
+            ? TeamEditorUtils.getNet(triple.ok, okProdFactor)
+            : TeamEditorUtils.getNet(triple.ok, okProdFactor) -
+              (benchOffOver - benchDefOver);
 
-        actual_net: !triple.actualResults
-          ? undefined
-          : { value: TeamEditorUtils.getNet(triple.actualResults, 1.0) },
-        actual_off: !triple.actualResults
-          ? undefined
-          : { value: TeamEditorUtils.getOff(triple.actualResults, 1.0) },
-        actual_def: !triple.actualResults
-          ? undefined
-          : { value: TeamEditorUtils.getDef(triple.actualResults, 1.0) },
-        actual_mpg: !triple.actualResults
-          ? undefined
-          : {
-              value: (triple.actualResults.off_team_poss_pct?.value || 0) * 40,
-            },
+          return {
+            title: <b>{triple.orig.key}</b>,
+            mpg: { value: mpg },
+            nil: _.isNil(triple.nil) ? undefined : (
+              <small>
+                <i>{triple.nil.toFixed(0)}</i>
+              </small>
+            ),
 
-        good_net:
-          isFiltered || !showCol
-            ? undefined
-            : offSeasonMode
-            ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) }
-            : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) },
-        good_off:
-          isFiltered || !showCol
-            ? undefined
-            : offSeasonMode
-            ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) }
-            : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) },
-        good_def:
-          isFiltered || !showCol
-            ? undefined
-            : offSeasonMode
-            ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) }
-            : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) },
-        ok_net: isFiltered ? undefined : { value: okNet },
-        ok_off: isFiltered
-          ? undefined
-          : offSeasonMode
-          ? { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) }
-          : {
-              value:
-                TeamEditorUtils.getOff(triple.ok, okProdFactor) - benchOffOver,
-            },
-        ok_def: isFiltered
-          ? undefined
-          : offSeasonMode
-          ? { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) }
-          : {
-              value:
-                TeamEditorUtils.getDef(triple.ok, okProdFactor) + benchDefOver,
-            },
-        bad_net:
-          isFiltered || !offSeasonMode
-            ? undefined
-            : { value: TeamEditorUtils.getNet(triple.bad, badProdFactor) },
-        bad_off:
-          isFiltered || !offSeasonMode
-            ? undefined
-            : { value: TeamEditorUtils.getOff(triple.bad, badProdFactor) },
-        bad_def:
-          isFiltered || !offSeasonMode
-            ? undefined
-            : { value: TeamEditorUtils.getDef(triple.bad, badProdFactor) },
-        edit: (
-          <OverlayTrigger overlay={editTooltip} placement="auto">
-            <Button
-              variant={hasEditPage ? "secondary" : "outline-secondary"}
-              size="sm"
-              onClick={(ev: any) => {
-                const newEditOpen = togglePlayerEdited(triple, editOpen, false);
-                if (newEditOpen) {
-                  setEditOpen(newEditOpen);
-                }
-              }}
-            >
-              <FontAwesomeIcon icon={faPen} />
-            </Button>
-          </OverlayTrigger>
-        ),
-      };
-      return [
-        GenericTableOps.buildDataRow(
-          tableEl,
-          GenericTableOps.defaultFormatter,
-          GenericTableOps.defaultCellMeta
-        ),
-      ]
+            ptsPlus: factorMins
+              ? { value: (avgPts100 * 0.2 * okProdFactor + okNet) * 0.7 }
+              : undefined, //TODO: calc poss/g
+
+            actual_net: !triple.actualResults
+              ? undefined
+              : { value: TeamEditorUtils.getNet(triple.actualResults, 1.0) },
+            actual_off: !triple.actualResults
+              ? undefined
+              : { value: TeamEditorUtils.getOff(triple.actualResults, 1.0) },
+            actual_def: !triple.actualResults
+              ? undefined
+              : { value: TeamEditorUtils.getDef(triple.actualResults, 1.0) },
+            actual_mpg: !triple.actualResults
+              ? undefined
+              : {
+                  value:
+                    (triple.actualResults.off_team_poss_pct?.value || 0) * 40,
+                },
+
+            good_net:
+              isFiltered || !showCol
+                ? undefined
+                : offSeasonMode
+                ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) }
+                : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) },
+            good_off:
+              isFiltered || !showCol
+                ? undefined
+                : offSeasonMode
+                ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) }
+                : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) },
+            good_def:
+              isFiltered || !showCol
+                ? undefined
+                : offSeasonMode
+                ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) }
+                : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) },
+            ok_net: isFiltered ? undefined : { value: okNet },
+            ok_off: isFiltered
+              ? undefined
+              : offSeasonMode
+              ? { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) }
+              : {
+                  value:
+                    TeamEditorUtils.getOff(triple.ok, okProdFactor) -
+                    benchOffOver,
+                },
+            ok_def: isFiltered
+              ? undefined
+              : offSeasonMode
+              ? { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) }
+              : {
+                  value:
+                    TeamEditorUtils.getDef(triple.ok, okProdFactor) +
+                    benchDefOver,
+                },
+            bad_net:
+              isFiltered || !offSeasonMode
+                ? undefined
+                : { value: TeamEditorUtils.getNet(triple.bad, badProdFactor) },
+            bad_off:
+              isFiltered || !offSeasonMode
+                ? undefined
+                : { value: TeamEditorUtils.getOff(triple.bad, badProdFactor) },
+            bad_def:
+              isFiltered || !offSeasonMode
+                ? undefined
+                : { value: TeamEditorUtils.getDef(triple.bad, badProdFactor) },
+            edit: (
+              <OverlayTrigger overlay={editTooltip} placement="auto">
+                <Button
+                  variant={hasEditPage ? "secondary" : "outline-secondary"}
+                  size="sm"
+                  onClick={(ev: any) => {
+                    const newEditOpen = togglePlayerEdited(
+                      triple,
+                      editOpen,
+                      false
+                    );
+                    if (newEditOpen) {
+                      setEditOpen(newEditOpen);
+                    }
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPen} />
+                </Button>
+              </OverlayTrigger>
+            ),
+          };
+        } else {
+          return {};
+        }
+      });
+
+      // If grades are enabled, then add a control row immediately befpre the bench info:
+      const benchGradesEl = showGrades
+        ? _.takeRight(
+            GradeTableUtils.buildProjectedPlayerGradeTableRows({
+              selectionTitle: `Projected Grades`,
+              config: showGrades,
+              setConfig: (newConfig: string) => {
+                setShowGrades(newConfig);
+              },
+              playerStats: {
+                comboTier: playerDivisionStatsCache.Combo,
+                highTier: playerDivisionStatsCache.High,
+                mediumTier: playerDivisionStatsCache.Medium,
+                lowTier: playerDivisionStatsCache.Low,
+              },
+              playerPosStats: positionalStatsCache,
+
+              code: benchName,
+              playerProjections: tableEl as PureStatSet,
+              evalMode,
+              offSeasonMode,
+              factorMins,
+              enableNil,
+            }),
+            1
+          ) //(skip bench grades, the aren't super useful because low minutes and lots of garbage minutes etc)
+        : undefined;
+
+      return (benchGradesEl || [])
         .concat(
-          hasEditPage
+          tableEl
+            ? [
+                GenericTableOps.buildDataRow(
+                  tableEl,
+                  GenericTableOps.defaultFormatter,
+                  GenericTableOps.defaultCellMeta
+                ),
+              ]
+            : []
+        )
+        .concat(
+          hasEditPage && tripleIn
             ? [
                 GenericTableOps.buildTextRow(
                   <TeamRosterEditor
@@ -1405,7 +1466,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                     overrides={benchOverrides}
                     onUpdate={(edit: PlayerEditModel | undefined) => {
                       friendlyChange(() => {
-                        setUiOverrides(editPlayerOverrides(triple, edit));
+                        setUiOverrides(editPlayerOverrides(tripleIn, edit));
                       }, true);
                     }}
                     onDelete={() => null}
@@ -1417,11 +1478,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             : []
         )
         .concat(
-          debugMode
+          debugMode && tripleIn
             ? [
                 GenericTableOps.buildTextRow(
                   JSON.stringify(
-                    _.omit(triple.diag, ["off_rtg", "off_usage"]),
+                    _.omit(tripleIn.diag, ["off_rtg", "off_usage"]),
                     reduceNumberSize
                   ),
                   "small"
@@ -2187,7 +2248,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         })
       )
       .concat(
-        maybeBenchGuard ? buildBenchDataRowFromTriple(maybeBenchGuard) : []
+        maybeBenchGuard || showGrades
+          ? buildBenchDataRowFromTriple("Guards", maybeBenchGuard)
+          : []
       );
     const rosterTableDataWings = [buildPosHeaderRow("Wings", rosterWingMins)]
       .concat(
@@ -2196,7 +2259,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         })
       )
       .concat(
-        maybeBenchWing ? buildBenchDataRowFromTriple(maybeBenchWing) : []
+        maybeBenchWing || showGrades
+          ? buildBenchDataRowFromTriple("Wings", maybeBenchWing)
+          : []
       );
     const rosterTableDataBigs = [buildPosHeaderRow("Bigs", rosterBigMins)]
       .concat(
@@ -2204,7 +2269,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           return buildDataRowFromTriple(triple);
         })
       )
-      .concat(maybeBenchBig ? buildBenchDataRowFromTriple(maybeBenchBig) : []);
+      .concat(
+        maybeBenchBig || showGrades
+          ? buildBenchDataRowFromTriple("Bigs", maybeBenchBig)
+          : []
+      );
 
     const addedTxfersStr = _.values(otherPlayerCache)
       .map((p) => p.orig.key)
@@ -2282,6 +2351,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     disabledPlayers,
     uiOverrides,
     divisionStatsCache,
+    playerDivisionStatsCache,
+    positionalStatsCache,
     debugMode,
     showPrevSeasons,
     factorMins,
@@ -2293,6 +2364,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     alwaysShowBench,
     diffBasis,
     enableNil,
+    showGrades,
   ]);
 
   /////////////////////////////////////
