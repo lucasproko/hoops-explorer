@@ -43,6 +43,7 @@ import PlayerLeaderboardTable, {
 import {
   DivisionStatsCache,
   GradeTableUtils,
+  PositionStatsCache,
 } from "../utils/tables/GradeTableUtils";
 
 // Util imports
@@ -285,12 +286,18 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   );
 
   // (Grade builder)
+  // Team: complicated because sometimes we need to show two sets of grades
   const [divisionStatsCache, setDivisionStatsCache] = useState(
     {} as DivisionStatsCache
   );
   const [preSeasonDivisionStats, setPreSeasonDivisionStats] = useState<
     DivisionStatistics | undefined
   >(overrideGrades);
+  // Player: Just always show the closest year that exists
+  const [positionalStatsCache, setPositionalStatsCache] =
+    useState<PositionStatsCache>({});
+  const [playerDivisionStatsCache, setPlayerDivisionStatsCache] =
+    useState<DivisionStatsCache>({});
 
   // Misc display
 
@@ -444,7 +451,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       : yearToUse;
   };
 
-  // Events that trigger building or rebuilding the division stats cache
+  // Events that trigger building or rebuilding the *team* division stats cache
   useEffect(() => {
     const params = {
       ...startingState,
@@ -485,6 +492,61 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       );
     }
   }, [year, gender, evalMode, offSeasonMode]);
+
+  // Events that trigger building or rebuilding the *player*  division stats cache
+  useEffect(() => {
+    if (showGrades) {
+      const yearToUse = // pick the closest year for which we have data (regardless of eval mode etc)
+        _.find(DateUtils.coreYears, year) ||
+        (year < DateUtils.coreYears[0]
+          ? DateUtils.coreYears[0]
+          : _.last(DateUtils.coreYears)!);
+
+      const yearOrGenderChanged =
+        yearToUse != divisionStatsCache.year ||
+        gender != divisionStatsCache.gender;
+
+      if (yearOrGenderChanged || _.isEmpty(playerDivisionStatsCache)) {
+        if (!_.isEmpty(playerDivisionStatsCache))
+          setPlayerDivisionStatsCache({}); //unset if set
+        if (!_.isEmpty(positionalStatsCache)) setPositionalStatsCache({}); //unset if set
+        GradeTableUtils.populatePlayerDivisionStatsCache(
+          {
+            ...startingState,
+            year: yearToUse,
+            gender,
+          },
+          setPlayerDivisionStatsCache
+        );
+      }
+      const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
+      if (maybePosGroup && maybePosGroup != "All") {
+        const posGroupStats = positionalStatsCache[maybePosGroup];
+        if (yearOrGenderChanged || !posGroupStats) {
+          GradeTableUtils.populatePlayerDivisionStatsCache(
+            {
+              year: yearToUse,
+              gender,
+              ...startingState,
+            },
+            (s: DivisionStatsCache) => {
+              setPositionalStatsCache((currPosCache) => ({
+                ...currPosCache,
+                [maybePosGroup]: {
+                  comboTier: s.Combo,
+                  highTier: s.High,
+                  mediumTier: s.Medium,
+                  lowTier: s.Low,
+                },
+              }));
+            },
+            undefined,
+            maybePosGroup
+          );
+        }
+      }
+    }
+  }, [year, gender, showGrades]);
 
   /////////////////////////////////////
 
@@ -1070,6 +1132,30 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ),
       };
 
+      const playerGradesEl = showGrades
+        ? GradeTableUtils.buildProjectedPlayerGradeTableRows({
+            selectionTitle: `Projected Grades`,
+            config: showGrades,
+            setConfig: (newConfig: string) => {
+              setShowGrades(newConfig);
+            },
+            playerStats: {
+              comboTier: playerDivisionStatsCache.Combo,
+              highTier: playerDivisionStatsCache.High,
+              mediumTier: playerDivisionStatsCache.Medium,
+              lowTier: playerDivisionStatsCache.Low,
+            },
+            playerPosStats: positionalStatsCache,
+
+            code: triple.key,
+            playerProjections: tableEl as PureStatSet,
+            evalMode,
+            offSeasonMode,
+            factorMins,
+            enableNil,
+          })
+        : undefined;
+
       return (
         allEditOpen ? [GenericTableOps.buildHeaderRepeatRow({}, "small")] : []
       )
@@ -1080,6 +1166,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             GenericTableOps.defaultCellMeta
           ),
         ])
+        .concat(playerGradesEl ? playerGradesEl : [])
         .concat(
           showPrevSeasons && prevSeasonEl
             ? [

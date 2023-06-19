@@ -25,12 +25,16 @@ import {
 import {
   DivisionStatistics,
   IndivStatSet,
+  PureStatSet,
   Statistic,
   TeamStatSet,
 } from "../../utils/StatModels";
 import { DerivedStatsUtils } from "../stats/DerivedStatsUtils";
 import { ParamDefaults, CommonFilterParams } from "../FilterModels";
 import { DateUtils } from "../DateUtils";
+import { GoodBadOkTriple } from "../stats/TeamEditorUtils";
+import { truncate } from "fs/promises";
+import { TeamEditorTableUtils } from "./TeamEditorTableUtils";
 
 export type StatsCaches = {
   comboTier?: DivisionStatistics;
@@ -65,11 +69,26 @@ type PlayerProps = {
   isFullSelection?: boolean;
 
   player: IndivStatSet;
+
   expandedView: boolean;
   possAsPct: boolean;
   factorMins: boolean;
   includeRapm: boolean;
   leaderboardMode?: boolean;
+};
+
+type ProjectedPlayerProps = {
+  [P in keyof CommonPlayerProps]: CommonPlayerProps[P];
+} & {
+  isFullSelection?: boolean;
+
+  code: string;
+  playerProjections: PureStatSet;
+
+  evalMode: boolean;
+  offSeasonMode: boolean;
+  factorMins: boolean;
+  enableNil: boolean;
 };
 
 type TableBuilderInfo = {
@@ -153,7 +172,7 @@ const teamBuilderInfo = {
   freq_pct: new Set(["assist", "3pr", "2pmidr", "2primr"]),
 };
 
-/** Controls the formatting of the team grade table */
+/** Controls the formatting of the team and player grade tables */
 const playerBuilderInfo = {
   custom: {
     "3pr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq),
@@ -161,6 +180,12 @@ const playerBuilderInfo = {
     "2primr": CbbColors.offOnlyPicker(...CbbColors.pctile_freq),
   },
   freq_pct: new Set(["usage", "assist"]),
+};
+
+/** Controls the formatting of the projected player grade tables */
+const projectedPlayerBuilderInfo = {
+  custom: {},
+  freq_pct: new Set(["usage"]),
 };
 
 export type DivisionStatsCache = {
@@ -256,6 +281,8 @@ export class GradeTableUtils {
 
   /** Build the rows containing the grade information for a team
    * TODO: merge common code between this and buildPlayerControlState (mostly just unused tooltips?)
+   *  and also merge any common logic this and buildPlayerGradeTableRows and buildProjectedPlayerGradeTableRows
+   * (but I'm actually not sure it's worth it)
    */
   static readonly buildTeamGradeTableRows: (p: TeamProps) => GenericTableRow[] =
     ({
@@ -811,8 +838,8 @@ export class GradeTableUtils {
   };
 
   /** Build the rows containing the grade information for a team
-   * TODO: merge this and buildTeamGradeTableRows
-   * (see buildTeamGradeTableRows for why there aren't OverlayTriggers)
+   * TODO: merge any common logic this and buildTeamGradeTableRows and buildProjectedPlayerGradeTableRows
+   * (but I'm actually not sure it's worth it)
    */
   static readonly buildPlayerGradeTableRows: (
     p: PlayerProps
@@ -1069,6 +1096,178 @@ export class GradeTableUtils {
       )
       .concat([controlRow])
       .concat(leaderboardMode ? [] : [GenericTableOps.buildRowSeparator()]);
+    return tableData;
+  };
+
+  /** Build the rows containing the grade information for a team
+   * TODO: merge any common logic this and buildTeamGradeTableRows and buildProjectedPlayerGradeTableRows
+   * (but I'm actually not sure it's worth it)
+   */
+  static readonly buildProjectedPlayerGradeTableRows: (
+    p: ProjectedPlayerProps
+  ) => GenericTableRow[] = ({
+    isFullSelection,
+    selectionTitle,
+    config,
+    setConfig,
+    playerStats,
+    playerPosStats,
+    code,
+    playerProjections,
+    evalMode,
+    offSeasonMode,
+    factorMins,
+    enableNil,
+  }) => {
+    const equivOrApprox = isFullSelection ? "Approx" : "Equiv";
+    const nameAsId = (selectionTitle + (code || "unknown")).replace(
+      /[^A-Za-z0-9_]/g,
+      ""
+    );
+
+    const { controlRow, tierToUse, gradeFormat } =
+      GradeTableUtils.buildPlayerGradeControlState(nameAsId, {
+        selectionTitle,
+        config,
+        setConfig,
+        playerStats,
+        playerPosStats,
+      });
+
+    const netRapmField = factorMins
+      ? "off_adj_rapm_prod_margin"
+      : "off_adj_rapm_margin";
+
+    const fieldSuffix = factorMins ? "_prod" : "";
+
+    const playerPercentiles = _.transform(
+      ["good", "bad", "ok", "actual"],
+      (acc, v) => {
+        const isActualStats = v == "actual";
+        if (!isActualStats || playerProjections.actual_net) {
+          const tmp: PureStatSet = {};
+
+          tmp[`off_adj_rapm${fieldSuffix}`] = playerProjections[`${v}_off`];
+          tmp[`def_adj_rapm${fieldSuffix}`] = playerProjections[`${v}_def`];
+          tmp[netRapmField] = playerProjections[`${v}_net`];
+
+          const perProjectionPercentiles = tierToUse
+            ? GradeUtils.buildPlayerPercentiles(
+                tierToUse,
+                tmp,
+                [
+                  `off_adj_rapm${fieldSuffix}`,
+                  `def_adj_rapm${fieldSuffix}`,
+                  netRapmField,
+                ],
+                gradeFormat == "rank"
+              )
+            : {};
+
+          acc[`${v}_off`] =
+            perProjectionPercentiles[`off_adj_rapm${fieldSuffix}`];
+          acc[`${v}_def`] =
+            perProjectionPercentiles[`def_adj_rapm${fieldSuffix}`];
+          acc[`${v}_net`] = perProjectionPercentiles[netRapmField];
+        }
+      },
+      {} as PureStatSet
+    );
+
+    // Check whether fields have sufficient info to be displayed without a warning
+    //TODO port this to actual_mpg
+    //  const possPct = player.actualResults?.value || 0;
+    //  if (
+    //    playerActualPercentiles.off_team_poss_pct &&
+    //    possPct < GradeUtils.minPossPctForInclusion
+    //  ) {
+    //    playerActualPercentiles.off_team_poss_pct.extraInfo =
+    //      `Player poss% sits under qualifying criteria of [${(
+    //        100 * GradeUtils.minPossPctForInclusion
+    //      ).toFixed(0)}%], ` +
+    //      `treat all fields' ranks/percentiles as unreliable.`;
+    //  }
+
+    const maybeSmall = (node: React.ReactNode) => {
+      return gradeFormat == "pct" ? <small>{node}</small> : node;
+    };
+    const maybeWithExtraInfo = (
+      node: React.ReactElement,
+      playerPercentiles: PureStatSet,
+      field: string
+    ) => {
+      const extraInfo = playerPercentiles[field]?.extraInfo;
+      if (extraInfo) {
+        const extraInfoTooltip = (
+          <Tooltip id={`extraInfo${field}${nameAsId}`}>{extraInfo}</Tooltip>
+        );
+        return (
+          <OverlayTrigger placement="auto" overlay={extraInfoTooltip}>
+            <span>
+              {node}
+              <small>
+                <sup className="infoBadge"></sup>
+              </small>
+            </span>
+          </OverlayTrigger>
+        );
+      } else {
+        return node;
+      }
+    };
+
+    // Convert some fields
+
+    const eqRankTooltip = (
+      <Tooltip id={`eqRankTooltip${nameAsId}`}>
+        The approximate rank for each stat against the "tier" (D1/High/etc) as
+        if it were over the entire season
+      </Tooltip>
+    );
+    const percentileTooltip = (
+      <Tooltip id={`percentileTooltip${nameAsId}`}>
+        The percentile of each stat against the "tier" (D1/High/etc)
+      </Tooltip>
+    );
+
+    (playerPercentiles as any).off_title =
+      gradeFormat == "pct" ? (
+        <OverlayTrigger placement="auto" overlay={percentileTooltip}>
+          <div>
+            <small>
+              <b>Pctiles</b>
+            </small>
+          </div>
+        </OverlayTrigger>
+      ) : (
+        <OverlayTrigger placement="auto" overlay={eqRankTooltip}>
+          <div>
+            <small>
+              <b>{equivOrApprox} Ranks</b>
+            </small>
+          </div>
+        </OverlayTrigger>
+      );
+
+    const tableConfig = buildGradesTable(
+      TeamEditorTableUtils.tableDef(
+        evalMode,
+        offSeasonMode,
+        factorMins,
+        enableNil
+      ),
+      projectedPlayerBuilderInfo,
+      true,
+      false //(player true, expanded false)
+    );
+    const tableData = [
+      GenericTableOps.buildDataRow(
+        playerPercentiles,
+        GenericTableOps.defaultFormatter,
+        GenericTableOps.defaultCellMeta,
+        tableConfig
+      ),
+    ];
     return tableData;
   };
 }
