@@ -235,6 +235,13 @@ export const freshmenMen2023_24: Record<string, any> = {
       h: "6-7",
       r: 54,
     },
+    "Stevenson, Jarin": {
+      pos: "PF/C",
+      pr: "4*/T40ish",
+      c: "JaStevenson",
+      h: "6-10",
+      r: 38,
+    },
   },
   Duke: {
     "McCain, Jared": {
@@ -431,13 +438,6 @@ export const freshmenMen2023_24: Record<string, any> = {
       c: "ElJackson",
       h: "6-3",
       r: -58,
-    },
-    "Johnson, Chris": {
-      pos: "CG",
-      pr: "4*/T40ish",
-      c: "ChJohnson",
-      h: "6-4",
-      r: -78,
     },
     "Adams Jr., Marcus": {
       pos: "WF",

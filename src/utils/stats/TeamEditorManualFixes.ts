@@ -457,6 +457,9 @@ export class TeamEditorManualFixes {
           TeamEditorManualFixModel
         > = {
           //(through Apr 23, see https://barttorvik.com/all_superseniors.php / https://docs.google.com/spreadsheets/d/1LihDf0cb5B703qojm0V0cZ_VXxA0PcXD6999AgwumBM/edit#gid=0)
+          "Abilene Christian": {
+            superSeniorsReturning: new Set(["ImAllen::", "AiSimmons::"]),
+          },
           Alabama: {
             superSeniorsReturning: new Set(["JaQuinerly::"]),
           },
@@ -485,7 +488,16 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["MaLeons::"]),
           },
           Butler: {
-            superSeniorsReturning: new Set(["JaThomas::", "AlAli::"]),
+            superSeniorsReturning: new Set(["JaThomas::"]),
+          },
+          Campbell: {
+            superSeniorsReturning: new Set(["DeDunn::"]),
+          },
+          "Central Mich.": {
+            superSeniorsReturning: new Set(["BrTaylor::"]),
+          },
+          Charlotte: {
+            superSeniorsReturning: new Set(["RoBraswell::"]),
           },
           Cincinnati: {
             superSeniorsReturning: new Set(["OdOguama::"]),
@@ -494,7 +506,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["AlHemenway::"]),
           },
           Colgate: {
-            superSeniorsReturning: new Set(["KeRecords::"]),
+            superSeniorsReturning: new Set(["KeRecords::", "RyMoffatt::"]),
           },
           "Colorado St.": {
             superSeniorsReturning: new Set([
@@ -513,6 +525,9 @@ export class TeamEditorManualFixes {
           Dayton: {
             leftTeam: ["MiSharavjamt::"], //(NBA)
           },
+          Delaware: {
+            superSeniorsReturning: new Set(["ChRay::"]),
+          },
           Drake: {
             superSeniorsReturning: new Set(["DaBrodie::", "TuDevries::"]),
           },
@@ -522,14 +537,23 @@ export class TeamEditorManualFixes {
           Duke: {
             superSeniorsReturning: new Set(["RyYoung::"]),
           },
+          "Eastern Ill.": {
+            superSeniorsReturning: new Set(["JeHamlin::"]),
+          },
           "Eastern Ky.": {
             superSeniorsReturning: new Set(["IsCozart::"]),
+          },
+          "Eastern Mich.": {
+            superSeniorsReturning: new Set(["YuJihad::"]),
           },
           Evansville: {
             superSeniorsReturning: new Set(["KeStrawbridg::"]),
           },
           Fairfield: {
             superSeniorsReturning: new Set(["CaFields::", "BrGoodine::"]),
+          },
+          "Fairleigh Dickinson": {
+            superSeniorsReturning: new Set(["HeBligen::"]),
           },
           FGCU: {
             superSeniorsReturning: new Set([
@@ -538,6 +562,12 @@ export class TeamEditorManualFixes {
               "DaRivers::",
               "FrMiller::",
             ]),
+          },
+          "Fresno St.": {
+            superSeniorsReturning: new Set(["IsHill::"]),
+          },
+          "Gardner Webb": {
+            superSeniorsReturning: new Set(["QuAldridge::"]),
           },
           "George Washington": {
             superSeniorsReturning: new Set(["JaBishop::"]),
@@ -573,14 +603,26 @@ export class TeamEditorManualFixes {
           Kansas: {
             superSeniorsReturning: new Set(["DaHarris::", "KeMccullar::"]),
           },
+          "Kennesaw St.": {
+            superSeniorsReturning: new Set(["TeBurden::", "DeRobinson::"]),
+          },
+          "Kent St.": {
+            superSeniorsReturning: new Set(["ChPayton::"]),
+          },
           Kentucky: {
             superSeniorsReturning: new Set(["BrCanada::", "AnReeves::"]),
           },
           Liberty: {
             superSeniorsReturning: new Set(["KyRode::", "ShRobinson::"]),
           },
+          "Louisinia Tech": {
+            superSeniorsReturning: new Set(["DrMangum::"]),
+          },
           "Loyola Chicago": {
             superSeniorsReturning: new Set(["BrNorris::", "ToWelch::"]),
+          },
+          "Loyola Maryland": {
+            superSeniorsReturning: new Set(["GoDike::"]),
           },
           "LMU (CA)": {
             superSeniorsReturning: new Set(["KeLeaupepe::"]),
@@ -590,13 +632,13 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["JaYoung::", "DoScott::"]),
           },
           Massachusetts: {
-            superSeniorsReturning: new Set(["WiLeveque::"]),
+            superSeniorsReturning: new Set(["WiLeveque::"]), //(is transferring? leave here for now)
           },
           Memphis: {
-            superSeniorsReturning: new Set(["JaHardaway::", "ChLawson::"]),
+            superSeniorsReturning: new Set(["JaHardaway::"]),
           },
-          "Miami (FL)": {
-            superSeniorsReturning: new Set(["JoMiller::"]),
+          Mercer: {
+            superSeniorsReturning: new Set(["JaCobb::"]),
           },
           Missouri: {
             superSeniorsReturning: new Set(["NoCarter::", "NiHonor::"]),
@@ -630,7 +672,10 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["AaMoody::"]),
           },
           "Mount St. Mary's": {
-            superSeniorsReturning: new Set(["GeTinsley::"]),
+            superSeniorsReturning: new Set(["GeTinsley::", "JoVasquez::"]),
+          },
+          "N.C. A&T": {
+            superSeniorsReturning: new Set(["JeRobinson::"]),
           },
           "NC State": {
             superSeniorsReturning: new Set(["DjBurns::", "CaMorsell::"]),
@@ -646,8 +691,14 @@ export class TeamEditorManualFixes {
           "New Mexico": {
             superSeniorsReturning: new Set(["JaHouse::"]),
           },
+          "North Dakota": {
+            superSeniorsReturning: new Set(["BrDanielson::"]),
+          },
           "North Carolina": {
             superSeniorsReturning: new Set(["ArBacot::"]),
+          },
+          "Northern Colo.": {
+            superSeniorsReturning: new Set(["RiAbercrombi::"]),
           },
           "North Florida": {
             superSeniorsReturning: new Set(["DoJames::"]),
@@ -680,7 +731,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["SaLewis::", "MaBalanc::"]),
           },
           Richmond: {
-            superSeniorsReturning: new Set(["NeQuinn::"]),
+            superSeniorsReturning: new Set(["NeQuinn::", "IsBigelow::"]),
           },
           Rider: {
             superSeniorsReturning: new Set(["AlPowell::"]),
@@ -712,6 +763,9 @@ export class TeamEditorManualFixes {
           },
           "Santa Clara": {
             superSeniorsReturning: new Set(["CaMarshall::"]),
+          },
+          Samford: {
+            superSeniorsReturning: new Set(["NaJohnson::"]),
           },
           "Seton Hall": {
             superSeniorsReturning: new Set(["AlDawes::"]),
@@ -749,6 +803,9 @@ export class TeamEditorManualFixes {
           "Texas A&M": {
             superSeniorsReturning: new Set(["TyRadford::"]),
           },
+          "A&M-Corpus Christi": {
+            superSeniorsReturning: new Set(["TeMurdix::"]),
+          },
           "The Citadel": {
             superSeniorsReturning: new Set(["ElMorgan::"]),
           },
@@ -756,7 +813,10 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["RaDennis::"]),
           },
           Towson: {
-            superSeniorsReturning: new Set(["ChThompson::"]),
+            superSeniorsReturning: new Set(["ChThompson::", "ChPaar::"]),
+          },
+          "UC San Diego": {
+            superSeniorsReturning: new Set(["J'Brooks::"]),
           },
           "UC Santa Barbara": {
             superSeniorsReturning: new Set(["JoPierre-lou::"]),
@@ -768,13 +828,27 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["TrNewton::"]),
           },
           "UNC Asheville": {
-            superSeniorsReturning: new Set(["DrPember::"]),
+            superSeniorsReturning: new Set([
+              "DrPember::",
+              "TrStephney::",
+              "JaBattle::",
+              "CaBurgess::",
+            ]),
           },
           UNCW: {
             superSeniorsReturning: new Set(["AmKelly::", "ShPhillips::"]),
           },
           UNLV: {
             superSeniorsReturning: new Set(["JuWebster::"]),
+          },
+          UMKC: {
+            superSeniorsReturning: new Set(["AnKopp::"]),
+          },
+          "USC Upstate": {
+            superSeniorsReturning: new Set(["NiAlves::"]),
+          },
+          "UT Arlington": {
+            superSeniorsReturning: new Set(["AaCash::"]),
           },
           Utah: {
             superSeniorsReturning: new Set(["BrCarlson::"]),
@@ -783,7 +857,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["QuGreen::"]),
           },
           Vanderbilt: {
-            superSeniorsReturning: new Set(["EzManjon::"]),
+            superSeniorsReturning: new Set(["EzManjon::", "TyLawrence::"]),
           },
           Vermont: {
             superSeniorsReturning: new Set(["MaVeretto::", "AaDeloney::"]),
@@ -801,7 +875,14 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["DjRodman::"]),
           },
           "West Virginia": {
-            superSeniorsReturning: new Set(["JoPerez::", "JoToussaint::"]),
+            superSeniorsReturning: new Set(["JoPerez::", "JoToussaint::"]), //(might be transferring out, leave here in case they return)
+          },
+          "Western Caro.": {
+            superSeniorsReturning: new Set([
+              "TrJackson::",
+              "VoWoolbright::",
+              "RuJones::",
+            ]),
           },
           Winthrop: {
             superSeniorsReturning: new Set(["MiAnumba::", "ChClaxton::"]),
@@ -811,6 +892,9 @@ export class TeamEditorManualFixes {
           },
           "Wright St.": {
             superSeniorsReturning: new Set(["TrCalvin::"]),
+          },
+          Wyoming: {
+            superSeniorsReturning: new Set(["KeFoster::"]),
           },
           Xavier: {
             superSeniorsReturning: new Set(["JeHunter::", "ZaFreemantle::"]),
