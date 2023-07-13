@@ -17,6 +17,9 @@ export const freshmenMen2023_24: Record<string, any> = {
       r: -32,
     },
   },
+  "Notre Dame": {
+    "Booth, Carey": { pos: "S-PF", pr: "4*", c: "CaCarr", h: "6-4", r: 85 },
+  },
   "Florida St.": {
     "Bowen, Taylor": { pos: "PF/C", pr: "4*", c: "TaBowen", h: "6-9", r: 25 },
   },
