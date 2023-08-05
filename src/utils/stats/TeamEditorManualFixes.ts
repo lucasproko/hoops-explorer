@@ -758,6 +758,9 @@ export class TeamEditorManualFixes {
           "Saint Peters's": {
             superSeniorsReturning: new Set(["LaReid::"]),
           },
+          "San Diego": {
+            leftTeam: ["SeSiJawara::"],
+          },
           "San Diego St.": {
             superSeniorsReturning: new Set(["JaLedee::", "DaTrammell::"]),
           },

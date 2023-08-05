@@ -67,6 +67,13 @@ export const freshmenMen2023_24: Record<string, any> = {
       h: "6-10",
       r: 10,
     },
+    "Mara, Aday": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "AdMara",
+      h: "7-2",
+      r: 58,
+    },
     "Williams, Brandon": {
       pos: "S-PF",
       pr: "4*",
@@ -137,6 +144,15 @@ export const freshmenMen2023_24: Record<string, any> = {
   Tennessee: {
     "Carr, Cameron": { pos: "WG", pr: "4*", c: "CaCarr", h: "6-4", r: 85 },
     "Estrella, JP": { pos: "C", pr: "4*", c: "JpEstrella", h: "6-11", r: 66 },
+  },
+  Texas: {
+    "Johnson, Chris": {
+      pos: "CG",
+      pr: "4*/T40ish",
+      c: "ChJohnson",
+      h: "6-4",
+      r: -92,
+    },
   },
   Houston: {
     "Tugler, Joseph": { pos: "C", pr: "4*", c: "JoTugler", h: "6-7", r: 43 },
@@ -369,6 +385,13 @@ export const freshmenMen2023_24: Record<string, any> = {
       c: "AaBradshaw",
       h: "7-0",
       r: -24,
+    },
+    "Zvonimir, Ivisic": {
+      pos: "C",
+      pr: "4*",
+      c: "IvZvonimir",
+      h: "7-1",
+      r: 0,
     },
   },
   Memphis: {
