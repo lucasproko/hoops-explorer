@@ -40,39 +40,28 @@ import { Shake } from "reshake";
 import ls from "local-storage";
 
 // Component imports:
-import { TeamStatsModel } from "../components/TeamStatsTable";
-import { RosterCompareModel } from "../components/RosterCompareTable";
 import HistorySelector, {
   historySelectContainerWidth,
 } from "./shared/HistorySelector";
-import AutoSuggestText, { notFromAutoSuggest } from "./shared/AutoSuggestText";
-import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import LineupQueryAutoSuggestText, {
+  notFromAutoSuggest,
+} from "./shared/LineupQueryAutoSuggestText";
 
 // Utils:
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
-import {
-  PreloadedDataSamples,
-  preloadedData,
-} from "../utils/internal-data/preloadedData";
+import { PreloadedDataSamples } from "../utils/internal-data/preloadedData";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
-import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { RequestUtils } from "../utils/RequestUtils";
 import {
-  FilterParamsType,
   FilterRequestInfo,
   ParamPrefixes,
   ParamPrefixesType,
   ParamDefaults,
   CommonFilterParams,
-  RequiredTeamReportFilterParams,
 } from "../utils/FilterModels";
 import { HistoryManager } from "../utils/HistoryManager";
 import { UrlRouting } from "../utils/UrlRouting";
-import {
-  CommonFilterType,
-  QueryUtils,
-  CommonFilterCustomDate,
-} from "../utils/QueryUtils";
+import { QueryUtils, CommonFilterCustomDate } from "../utils/QueryUtils";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
@@ -848,7 +837,7 @@ const CommonFilter: CommonFilterI = ({
                 <Row>
                   <InputGroup>
                     <div className="flex-fill">
-                      <AutoSuggestText
+                      <LineupQueryAutoSuggestText
                         readOnly={false}
                         placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
                         initValue={baseQuery}

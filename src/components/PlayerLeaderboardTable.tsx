@@ -19,14 +19,9 @@ import Button from "react-bootstrap/Button";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "react-loading-overlay";
-import Select, { components, createFilter } from "react-select";
+import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLink,
-  faCheck,
-  faExclamation,
-  faFilter,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLink, faFilter } from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
 // Component imports
@@ -58,7 +53,7 @@ import { PlayerLeaderboardTracking } from "../utils/internal-data/LeaderboardTra
 
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
-import { StatModels, IndivStatSet, Statistic } from "../utils/StatModels";
+import { IndivStatSet, Statistic } from "../utils/StatModels";
 import { TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import ConferenceSelector from "./shared/ConferenceSelector";
@@ -69,7 +64,6 @@ import {
 } from "../utils/tables/GradeTableUtils";
 import { TeamEditorUtils } from "../utils/stats/TeamEditorUtils";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { CbbColors } from "../utils/CbbColors";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";

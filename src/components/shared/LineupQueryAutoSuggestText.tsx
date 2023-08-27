@@ -22,7 +22,6 @@ import {
   ParamDefaults,
   GameFilterParams,
 } from "../../utils/FilterModels";
-import { RosterCompareModel } from "../../components/RosterCompareTable";
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
 import { QueryUtils } from "../../utils/QueryUtils";
@@ -43,7 +42,7 @@ type Props = {
   onKeyUp: (ev: any) => void;
   onKeyDown: (ev: any) => void;
 };
-const AutoSuggestText: React.FunctionComponent<Props> = ({
+const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
   readOnly,
   placeholder,
   initValue,
@@ -253,4 +252,4 @@ const AutoSuggestText: React.FunctionComponent<Props> = ({
     />
   );
 };
-export default AutoSuggestText;
+export default LineupQueryAutoSuggestText;

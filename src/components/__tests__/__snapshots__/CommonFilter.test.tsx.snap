@@ -1840,7 +1840,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               <div
                 className="flex-fill"
               >
-                <AutoSuggestText
+                <LineupQueryAutoSuggestText
                   gender="Men"
                   initValue=""
                   onChange={[Function]}
@@ -2836,7 +2836,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               <div
                 className="flex-fill"
               >
-                <AutoSuggestText
+                <LineupQueryAutoSuggestText
                   gender="Men"
                   initValue=""
                   onChange={[Function]}
@@ -3936,7 +3936,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               <div
                 className="flex-fill"
               >
-                <AutoSuggestText
+                <LineupQueryAutoSuggestText
                   gender="Men"
                   initValue=""
                   onChange={[Function]}
@@ -4963,7 +4963,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               <div
                 className="flex-fill"
               >
-                <AutoSuggestText
+                <LineupQueryAutoSuggestText
                   gender="Men"
                   initValue=""
                   onChange={[Function]}
