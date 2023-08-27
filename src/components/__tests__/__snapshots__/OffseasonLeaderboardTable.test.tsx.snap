@@ -240,15 +240,132 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
           <InputGroupText
             id="filter"
           >
-            Filter:
+            Filter
+            :
           </InputGroupText>
         </InputGroupPrepend>
-        <AsyncFormControl
-          onChange={[Function]}
-          placeholder=";-separated list of teams"
-          startingVal="Maryland;"
-          timeout={500}
-        />
+        <div
+          className="flex-fill"
+        >
+          <TeamFilterAutoSuggestText
+            autocomplete={
+              Array [
+                "Maryland;",
+                "Alabama;",
+                "Arizona;",
+                "Arizona St.;",
+                "Arkansas;",
+                "Auburn;",
+                "BYU;",
+                "Baylor;",
+                "Boston College;",
+                "Butler;",
+                "California;",
+                "Cincinnati;",
+                "Clemson;",
+                "Colorado;",
+                "Creighton;",
+                "Davidson;",
+                "Dayton;",
+                "DePaul;",
+                "Duke;",
+                "Duquesne;",
+                "East Carolina;",
+                "Florida;",
+                "Florida St.;",
+                "Fordham;",
+                "George Mason;",
+                "George Washington;",
+                "Georgetown;",
+                "Georgia;",
+                "Georgia Tech;",
+                "Gonzaga;",
+                "Houston;",
+                "Illinois;",
+                "Indiana;",
+                "Iowa;",
+                "Iowa St.;",
+                "Kansas;",
+                "Kansas St.;",
+                "Kentucky;",
+                "LSU;",
+                "La Salle;",
+                "Louisville;",
+                "Marquette;",
+                "Massachusetts;",
+                "Memphis;",
+                "Miami (FL);",
+                "Michigan;",
+                "Michigan St.;",
+                "Minnesota;",
+                "Mississippi St.;",
+                "Missouri;",
+                "NC State;",
+                "Nebraska;",
+                "North Carolina;",
+                "Northwestern;",
+                "Notre Dame;",
+                "Ohio St.;",
+                "Oklahoma;",
+                "Oklahoma St.;",
+                "Ole Miss;",
+                "Oregon;",
+                "Oregon St.;",
+                "Penn St.;",
+                "Pittsburgh;",
+                "Providence;",
+                "Purdue;",
+                "Rhode Island;",
+                "Richmond;",
+                "Rutgers;",
+                "SMU;",
+                "Saint Joseph's;",
+                "Saint Louis;",
+                "Saint Mary's (CA);",
+                "San Diego St.;",
+                "Seton Hall;",
+                "South Carolina;",
+                "South Fla.;",
+                "Southern California;",
+                "St. Bonaventure;",
+                "St. John's (NY);",
+                "Stanford;",
+                "Syracuse;",
+                "TCU;",
+                "Temple;",
+                "Tennessee;",
+                "Texas;",
+                "Texas A&M;",
+                "Texas Tech;",
+                "Tulane;",
+                "Tulsa;",
+                "UCF;",
+                "UCLA;",
+                "UConn;",
+                "Utah;",
+                "Utah St.;",
+                "VCU;",
+                "Vanderbilt;",
+                "Villanova;",
+                "Virginia;",
+                "Virginia Tech;",
+                "Wake Forest;",
+                "Washington;",
+                "Washington St.;",
+                "West Virginia;",
+                "Wichita St.;",
+                "Wisconsin;",
+                "Xavier;",
+              ]
+            }
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            placeholder=";-separated list of teams"
+            readOnly={false}
+            value="Maryland;"
+          />
+        </div>
       </InputGroup>
     </Col>
   </FormGroup>
@@ -39685,15 +39802,132 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
           <InputGroupText
             id="filter"
           >
-            Filter:
+            Filter
+            :
           </InputGroupText>
         </InputGroupPrepend>
-        <AsyncFormControl
-          onChange={[Function]}
-          placeholder=";-separated list of teams"
-          startingVal="Maryland;"
-          timeout={500}
-        />
+        <div
+          className="flex-fill"
+        >
+          <TeamFilterAutoSuggestText
+            autocomplete={
+              Array [
+                "Maryland;",
+                "Alabama;",
+                "Arizona;",
+                "Arizona St.;",
+                "Arkansas;",
+                "Auburn;",
+                "BYU;",
+                "Baylor;",
+                "Boston College;",
+                "Butler;",
+                "California;",
+                "Cincinnati;",
+                "Clemson;",
+                "Colorado;",
+                "Creighton;",
+                "Davidson;",
+                "Dayton;",
+                "DePaul;",
+                "Duke;",
+                "Duquesne;",
+                "East Carolina;",
+                "Florida;",
+                "Florida St.;",
+                "Fordham;",
+                "George Mason;",
+                "George Washington;",
+                "Georgetown;",
+                "Georgia;",
+                "Georgia Tech;",
+                "Gonzaga;",
+                "Houston;",
+                "Illinois;",
+                "Indiana;",
+                "Iowa;",
+                "Iowa St.;",
+                "Kansas;",
+                "Kansas St.;",
+                "Kentucky;",
+                "LSU;",
+                "La Salle;",
+                "Louisville;",
+                "Marquette;",
+                "Massachusetts;",
+                "Memphis;",
+                "Miami (FL);",
+                "Michigan;",
+                "Michigan St.;",
+                "Minnesota;",
+                "Mississippi St.;",
+                "Missouri;",
+                "NC State;",
+                "Nebraska;",
+                "North Carolina;",
+                "Northwestern;",
+                "Notre Dame;",
+                "Ohio St.;",
+                "Oklahoma;",
+                "Oklahoma St.;",
+                "Ole Miss;",
+                "Oregon;",
+                "Oregon St.;",
+                "Penn St.;",
+                "Pittsburgh;",
+                "Providence;",
+                "Purdue;",
+                "Rhode Island;",
+                "Richmond;",
+                "Rutgers;",
+                "SMU;",
+                "Saint Joseph's;",
+                "Saint Louis;",
+                "Saint Mary's (CA);",
+                "San Diego St.;",
+                "Seton Hall;",
+                "South Carolina;",
+                "South Fla.;",
+                "Southern California;",
+                "St. Bonaventure;",
+                "St. John's (NY);",
+                "Stanford;",
+                "Syracuse;",
+                "TCU;",
+                "Temple;",
+                "Tennessee;",
+                "Texas;",
+                "Texas A&M;",
+                "Texas Tech;",
+                "Tulane;",
+                "Tulsa;",
+                "UCF;",
+                "UCLA;",
+                "UConn;",
+                "Utah;",
+                "Utah St.;",
+                "VCU;",
+                "Vanderbilt;",
+                "Villanova;",
+                "Virginia;",
+                "Virginia Tech;",
+                "Wake Forest;",
+                "Washington;",
+                "Washington St.;",
+                "West Virginia;",
+                "Wichita St.;",
+                "Wisconsin;",
+                "Xavier;",
+              ]
+            }
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            placeholder=";-separated list of teams"
+            readOnly={false}
+            value="Maryland;"
+          />
+        </div>
       </InputGroup>
     </Col>
     <Col

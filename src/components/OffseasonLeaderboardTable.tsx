@@ -55,6 +55,9 @@ import {
   OffseasonLeaderboardUtils,
   OffseasonTeamInfo,
 } from "../utils/stats/OffseasonLeaderboardUtils";
+import TeamFilterAutoSuggestText, {
+  notFromFilterAutoSuggest,
+} from "./shared/TeamFilterAutoSuggestText";
 
 type Props = {
   startingState: OffseasonLeaderboardParams;
@@ -96,6 +99,48 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [queryFilters, setQueryFilters] = useState(
     startingState.queryFilters || ""
   );
+  const [tmpQueryFilters, setTmpQueryFilters] = useState(
+    startingState.queryFilters || ""
+  );
+  const queryFiltersAsSet: Set<String> = new Set(
+    queryFilters.split(";").map(_.trim)
+  );
+  /** Keyboard listener - handles global page overrides while supporting individual components */
+  const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
+    const allowKeypress = () => {
+      //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
+      return inAutoSuggest || notFromFilterAutoSuggest(event);
+    };
+    if (
+      event.code === "Enter" ||
+      event.code === "NumpadEnter" ||
+      event.keyCode == 13 ||
+      event.keyCode == 14
+    ) {
+      if (allowKeypress() && queryFilters != tmpQueryFilters) {
+        friendlyChange(() => {
+          setQueryFilters(tmpQueryFilters);
+        }, true);
+      } else if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+    } else if (event.code == "Escape" || event.keyCode == 27) {
+      if (allowKeypress()) {
+        document.body.click(); //closes any overlays (like history) that have rootClick
+      }
+    }
+  };
+  const maybeFilterPromptTooltip = (
+    <Tooltip id="maybeFilterPromptTooltip">
+      Press Enter to apply this filter (current filter [{queryFilters}])
+    </Tooltip>
+  );
+  const maybeFilterPrompt =
+    queryFilters != tmpQueryFilters ? (
+      <OverlayTrigger placement="auto" overlay={maybeFilterPromptTooltip}>
+        <span>&nbsp;(*)</span>
+      </OverlayTrigger>
+    ) : null;
 
   const [year, setYear] = useState(
     startingState.year || DateUtils.offseasonPredictionYear
@@ -119,6 +164,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     {} as Record<string, Record<string, RosterEntry>>
   );
 
+  const teamList = _.flatMap(AvailableTeams.byName, (teams, __) => {
+    const maybeTeam = teams.find(
+      (t) => t.year == yearWithStats && t.gender == gender
+    );
+    return maybeTeam ? [maybeTeam.team] : [];
+  });
+
   if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
     const fetchRosterJson = (teamName: string) => {
       const rosterJsonUri = (encodeEncodePrefix: boolean) =>
@@ -135,19 +187,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         );
     };
     const rosterPromises: Promise<[string, Record<string, RosterEntry>]>[] =
-      _.flatMap(AvailableTeams.byName, (teams, __) => {
-        const maybeTeam = teams.find(
-          (t) => t.year == yearWithStats && t.gender == gender
-        );
-        return maybeTeam
-          ? [
-              fetchRosterJson(maybeTeam.team).catch(
-                //(carry on error, eg if the file doesn't exist)
-                (err: any) => [maybeTeam.team, {}]
-              ),
-            ]
-          : [];
-      });
+      teamList.map((team) =>
+        fetchRosterJson(team).catch(
+          //(carry on error, eg if the file doesn't exist)
+          (err: any) => [team, {}]
+        )
+      );
+
     if (_.isEmpty(rosterPromises)) {
       setRostersPerTeam({});
     } else {
@@ -381,8 +427,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
         (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
           ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0) ||
-        (hasCustomFilter &&
-          (startingState.queryFilters || "").indexOf(`${t.team};`) >= 0)
+        (hasCustomFilter && queryFiltersAsSet.has(t.team))
       );
     };
 
@@ -968,20 +1013,21 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             <Col xs={12} sm={12} md={8} lg={8}>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text id="filter">Filter:</InputGroup.Text>
+                  <InputGroup.Text id="filter">
+                    Filter{maybeFilterPrompt}:
+                  </InputGroup.Text>
                 </InputGroup.Prepend>
-                <AsyncFormControl
-                  startingVal={queryFilters}
-                  onChange={(t: string) => {
-                    const newStr = t.endsWith(";") ? t : t + ";";
-                    friendlyChange(
-                      () => setQueryFilters(newStr),
-                      newStr != queryFilters
-                    );
-                  }}
-                  timeout={500}
-                  placeholder=";-separated list of teams"
-                />
+                <div className="flex-fill">
+                  <TeamFilterAutoSuggestText
+                    readOnly={false}
+                    placeholder={";-separated list of teams"}
+                    autocomplete={teamList.map((s) => s + ";")}
+                    value={tmpQueryFilters}
+                    onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                    onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                    onKeyDown={submitListenerFactory(true)}
+                  />
+                </div>
               </InputGroup>
             </Col>
           ) : null}
