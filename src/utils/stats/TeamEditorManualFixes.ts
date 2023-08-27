@@ -724,6 +724,9 @@ export class TeamEditorManualFixes {
           Oregon: {
             superSeniorsReturning: new Set(["JeCouisnard::", "N'Dante::"]),
           },
+          Pittsburgh: {
+            leftTeam: ["DiJohnson::"],
+          },
           "Portland St.": {
             superSeniorsReturning: new Set(["BoHarvey::"]),
           },
