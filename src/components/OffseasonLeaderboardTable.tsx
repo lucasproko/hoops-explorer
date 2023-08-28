@@ -102,9 +102,27 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [tmpQueryFilters, setTmpQueryFilters] = useState(
     startingState.queryFilters || ""
   );
-  const queryFiltersAsSet: Set<String> = new Set(
-    queryFilters.split(";").map(_.trim)
+  const separatorKeyword = "BREAK";
+  // const queryFiltersAsMap: Record<string, number> = _.fromPairs(
+  //   queryFilters.split(";").map((s, ii) => [_.trim(s), ii + 1])
+  // );
+  const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
+    queryFilters.split(";"),
+    (acc, v, ii) => {
+      const teamName = _.trim(v);
+      if (teamName == separatorKeyword) {
+        acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
+      } else {
+        acc.queryFiltersAsMap[teamName] =
+          1 + ii - acc.queryFilterRowBreaks.size;
+      }
+    },
+    {
+      queryFiltersAsMap: {} as Record<string, number>,
+      queryFilterRowBreaks: new Set<number>(),
+    }
   );
+
   /** Keyboard listener - handles global page overrides while supporting individual components */
   const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
     const allowKeypress = () => {
@@ -427,7 +445,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
         (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
           ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0) ||
-        (hasCustomFilter && queryFiltersAsSet.has(t.team))
+        (hasCustomFilter && !_.isNil(queryFiltersAsMap[t.team]))
       );
     };
 
@@ -585,10 +603,21 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     });
     //(end eval part 1)
 
-    const tableRows = _.chain(teamRanks)
+    const useManualOrderForTeams = !_.isEmpty(queryFilterRowBreaks);
+    const tableRowsPreMaybeManualSort: _.CollectionChain<
+      [OffseasonTeamInfo, number]
+    > = _.chain(teamRanks)
       .filter(confFilter)
       .take(75)
-      .flatMap((t, netRankIn) => {
+      .map((t, netRankIn) => [t, netRankIn]);
+    const maybeHandSortedTeamRanks = useManualOrderForTeams
+      ? tableRowsPreMaybeManualSort.sortBy(([t, __]) => {
+          return queryFiltersAsMap[t.team] || 100;
+        })
+      : tableRowsPreMaybeManualSort;
+
+    const tableRows = maybeHandSortedTeamRanks
+      .flatMap(([t, netRankIn], finalTeamOrder) => {
         const nonStdSort = sortBy && sortBy != "net" && transferInOutMode;
 
         const goodNet = GradeUtils.buildTeamPercentiles(
@@ -836,6 +865,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                   ),
                 ]
               : []
+          )
+          .concat(
+            queryFilterRowBreaks.has(finalTeamOrder)
+              ? [GenericTableOps.buildRowSeparator()]
+              : []
           );
       })
       .value();
@@ -1020,8 +1054,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 <div className="flex-fill">
                   <TeamFilterAutoSuggestText
                     readOnly={false}
-                    placeholder={";-separated list of teams"}
-                    autocomplete={teamList.map((s) => s + ";")}
+                    placeholder={";-separated list of teams/BREAK"}
+                    autocomplete={teamList
+                      .concat([separatorKeyword])
+                      .map((s) => s + ";")}
                     value={tmpQueryFilters}
                     onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
                     onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
