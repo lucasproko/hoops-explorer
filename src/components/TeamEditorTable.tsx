@@ -86,6 +86,7 @@ import {
 import { efficiencyInfo } from "../utils/internal-data/efficiencyInfo";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import ReactNode from "react";
+import { CbbColors } from "../utils/CbbColors";
 
 // Input params/models
 
@@ -179,12 +180,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj
   );
   const [enableNil, setEnableNil] = useState(
-    _.isNil(startingState.enableNil) ? false : startingState.enableNil
+    _.isNil(startingState.enableNil)
+      ? FeatureFlags.isActiveWindow(FeatureFlags.estimateNilValue)
+      : startingState.enableNil
   );
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(startingState.showGrades) ? "" : startingState.showGrades
   );
+  const [caliberMode, setCaliberMode] = useState<boolean>(
+    FeatureFlags.isActiveWindow(FeatureFlags.playerCaliberMode)
+  ); //TODO: wire up
 
   // Data source
   const [year, setYear] = useState(
@@ -751,6 +757,28 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       </Tooltip>
     );
 
+    const buildCaliber = (goodNet: number, okNet: number, badNet: number) => (
+      <span style={{ whiteSpace: "nowrap" }}>
+        <span
+          style={{
+            backgroundColor: CbbColors.p_rapmCaliber(goodNet),
+          }}
+        >
+          &nbsp;&nbsp;
+        </span>
+        <span style={{ backgroundColor: CbbColors.p_rapmCaliber(okNet) }}>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span
+          style={{
+            backgroundColor: CbbColors.p_rapmCaliber(badNet),
+          }}
+        >
+          &nbsp;&nbsp;
+        </span>
+      </span>
+    );
+
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const maybeOverride: PlayerEditModel | undefined =
         pxResults.unpausedOverrides[triple.key];
@@ -986,6 +1014,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             ? undefined
             : { value: triple.ok.def_orb?.value },
 
+        caliber: buildCaliber(
+          TeamEditorUtils.getNet(triple.good, goodProdFactor),
+          okNet,
+          TeamEditorUtils.getNet(triple.bad, badProdFactor)
+        ),
+
         pos: (
           <span style={{ whiteSpace: "nowrap" }}>{triple.orig.posClass}</span>
         ),
@@ -1154,6 +1188,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               evalMode,
               offSeasonMode,
               factorMins,
+              caliberMode,
               enableNil,
             }),
             1
@@ -1319,6 +1354,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 <i>{triple.nil.toFixed(0)}</i>
               </small>
             ),
+            caliber: buildCaliber(
+              TeamEditorUtils.getNet(triple.good, goodProdFactor),
+              TeamEditorUtils.getNet(triple.ok, okProdFactor),
+              TeamEditorUtils.getNet(triple.bad, badProdFactor)
+            ),
 
             ptsPlus: factorMins
               ? { value: (avgPts100 * 0.2 * okProdFactor + okNet) * 0.7 }
@@ -1437,6 +1477,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               evalMode,
               offSeasonMode,
               factorMins,
+              caliberMode,
               enableNil,
             }),
             1
@@ -2241,9 +2282,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       pxResults.avgEff
     );
 
+    const maybeSorted = (triples: GoodBadOkTriple[]) =>
+      caliberMode
+        ? _.sortBy(triples, (triple) => -TeamEditorUtils.getNet(triple.ok, 1.0))
+        : triples;
+
     const rosterTableDataGuards = [buildPosHeaderRow("Guards", rosterGuardMins)]
       .concat(
-        _.flatMap(rosterGuards, (triple) => {
+        _.flatMap(maybeSorted(rosterGuards), (triple) => {
           return buildDataRowFromTriple(triple);
         })
       )
@@ -2254,7 +2300,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       );
     const rosterTableDataWings = [buildPosHeaderRow("Wings", rosterWingMins)]
       .concat(
-        _.flatMap(rosterWings, (triple) => {
+        _.flatMap(maybeSorted(rosterWings), (triple) => {
           return buildDataRowFromTriple(triple);
         })
       )
@@ -2265,7 +2311,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       );
     const rosterTableDataBigs = [buildPosHeaderRow("Bigs", rosterBigMins)]
       .concat(
-        _.flatMap(rosterBigs, (triple) => {
+        _.flatMap(maybeSorted(rosterBigs), (triple) => {
           return buildDataRowFromTriple(triple);
         })
       )
@@ -2336,6 +2382,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           evalMode,
           offSeasonMode,
           factorMins,
+          caliberMode,
           enableNil
         )}
         tableData={teamRows.concat(rosterTableData)}

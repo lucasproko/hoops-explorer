@@ -14,6 +14,7 @@ export class TeamEditorTableUtils {
     evalMode: boolean,
     offSeasonMode: boolean,
     minPct: boolean,
+    caliberMode: boolean,
     enableNil: boolean = false
   ) {
     const minPctStr = minPct ? " (weighted for a player's mpg)" : "";
@@ -77,6 +78,12 @@ export class TeamEditorTableUtils {
           "Rpg",
           "Rebounds per game, offensive and defensive (approximately last season's numbers)",
           CbbColors.alwaysWhite
+        ),
+        caliber: GenericTableOps.addDataCol(
+          "Caliber",
+          "A color indication of where a player might fit into a NCAAT team (the extremes show upside/downside), see color key in next row",
+          CbbColors.alwaysWhite,
+          GenericTableOps.htmlFormatter
         ),
 
         sep1: GenericTableOps.addColSeparator(2),
@@ -207,6 +214,7 @@ export class TeamEditorTableUtils {
           //            minPct ? [ "usage", "rebound" ] : [ "ptsPlus", "rpg" ]
           minPct ? ["rebound", "rpg"] : ["ptsPlus", "rpg"]
         )
+        .concat(caliberMode ? ["ortg", "usage", "rebound"] : ["caliber"]) //TODO: need to handle combos of other flags
         .concat(enableNil ? [] : ["nil"])
     ) as Record<string, GenericTableColProps>;
   }

@@ -89,6 +89,7 @@ type ProjectedPlayerProps = {
   offSeasonMode: boolean;
   factorMins: boolean;
   enableNil: boolean;
+  caliberMode: boolean;
 };
 
 type TableBuilderInfo = {
@@ -1117,6 +1118,7 @@ export class GradeTableUtils {
     evalMode,
     offSeasonMode,
     factorMins,
+    caliberMode,
     enableNil,
   }) => {
     const equivOrApprox = isFullSelection ? "Approx" : "Equiv";
@@ -1254,6 +1256,7 @@ export class GradeTableUtils {
         evalMode,
         offSeasonMode,
         factorMins,
+        caliberMode,
         enableNil
       ),
       projectedPlayerBuilderInfo,

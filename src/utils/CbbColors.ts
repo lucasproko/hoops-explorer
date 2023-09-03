@@ -375,6 +375,25 @@ export class CbbColors {
     CbbColors.p_def_2P_rim,
   ];
 
+  // Caliber based on RAPM
+  private static readonly rapmBasedCaliber = chroma.scale([
+    "#0000ff", //(dark blue - "Bench-", -inf:0)
+    "#4a86e8", //(mid blue - "Bench", 0:1)
+    "#a4c2f4", //(pale blue - "Rotation", 1:2)
+    "#c9daf8", //(light blue - "Rotation+", 2:3)
+    "white", //(avoid blending blue and green at 3.5!)
+    "#d9ead3", //(light green - "Starter-", 3:4)
+    "#b6d7a8", //(pale green - "Starter", 4:5)
+    "#93c47d", //(mid green - "Starter+", 5:6)
+    "#6aa84f", //(mid green - "All Conf", 6:7)
+    "#38761d", //(dark green - "All Conf 1st team", 7:inf)
+  ]);
+  private static rapmBasedCaliberDomain = [-1, 0, 1, 2, 3, 3.5, 4, 5, 6, 7, 8];
+  public static readonly p_rapmCaliber = (val: number) =>
+    CbbColors.rapmBasedCaliber
+      .domain(CbbColors.rapmBasedCaliberDomain)(val)
+      .toString();
+
   // Tempo
   private static readonly tempoDomain = [60, 68, 76];
   public static readonly p_tempo = (val: number) =>
