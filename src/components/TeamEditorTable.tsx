@@ -757,24 +757,38 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       </Tooltip>
     );
 
+    const caliberText = (okNet: number) => {
+      if (okNet < 0) {
+        return <small>B-</small>;
+      } else if (okNet < 1) {
+        return <small>B&nbsp;</small>;
+      } else if (okNet < 2) {
+        return <small>R-</small>;
+      } else if (okNet < 3) {
+        return <small>R&nbsp;</small>;
+      } else if (okNet < 4) {
+        return <small>S-</small>;
+      } else if (okNet < 5) {
+        return <small>S&nbsp;</small>;
+      } else if (okNet < 6) {
+        return <small>S+</small>;
+      } else if (okNet < 7) {
+        return <small>AC</small>;
+      } else {
+        return <small>AA</small>;
+      }
+    };
+
     const buildCaliber = (goodNet: number, okNet: number, badNet: number) => (
       <span style={{ whiteSpace: "nowrap" }}>
         <span
+          className="pb-1 pt-1"
           style={{
-            backgroundColor: CbbColors.p_rapmCaliber(goodNet),
+            backgroundColor: CbbColors.p_rapmCaliber(okNet),
+            color: okNet < 1 || okNet >= 6 ? "white" : "black",
           }}
         >
-          &nbsp;&nbsp;
-        </span>
-        <span style={{ backgroundColor: CbbColors.p_rapmCaliber(okNet) }}>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-        <span
-          style={{
-            backgroundColor: CbbColors.p_rapmCaliber(badNet),
-          }}
-        >
-          &nbsp;&nbsp;
+          &nbsp;&nbsp;{caliberText(okNet)}&nbsp;&nbsp;
         </span>
       </span>
     );
@@ -2134,66 +2148,152 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         },
       ]);
 
-      const subHeaders = [
-        GenericTableOps.buildSubHeaderRow(
-          evalMode
-            ? [
-                [<div className="text-right">{confEl}</div>, 1],
-                [<div />, subHeaderOffset(5)],
-                [
-                  <i>
-                    <b>{`${actualResultsYear} results`}</b>
-                  </i>,
-                  4,
+      const caliberGradient = (from: number, to: number) => {
+        const fromColor = CbbColors.p_rapmCaliber(from);
+        const midColor = CbbColors.p_rapmCaliber(0.5 * (from + to));
+        const endColor = CbbColors.p_rapmCaliber(to);
+        return `linear-gradient(to right, ${fromColor}, ${midColor} 25%, ${midColor} 75%, ${endColor})`;
+      };
+
+      const subHeaders = (
+        caliberMode
+          ? [
+              GenericTableOps.buildTextRow(
+                <Container>
+                  <Row>
+                    <Col
+                      className="text-center"
+                      style={{
+                        background: caliberGradient(-1, 0),
+                        color: "white",
+                      }}
+                    >
+                      Bench-
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{
+                        background: caliberGradient(0, 1),
+                        color: "white",
+                      }}
+                    >
+                      Bench
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{ background: caliberGradient(1, 2) }}
+                    >
+                      Rotation-
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{ background: caliberGradient(2, 3) }}
+                    >
+                      Rotation
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{ background: caliberGradient(3, 4) }}
+                    >
+                      Starter-
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{ background: caliberGradient(4, 5) }}
+                    >
+                      Starter
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{ background: caliberGradient(5, 6) }}
+                    >
+                      Starter+
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{
+                        background: caliberGradient(6, 7),
+                        color: "white",
+                      }}
+                    >
+                      All Conf
+                    </Col>
+                    <Col
+                      className="text-center"
+                      style={{
+                        background: caliberGradient(7, 8),
+                        color: "white",
+                      }}
+                    >
+                      All Amer.
+                    </Col>
+                  </Row>
+                </Container>,
+                "small"
+              ),
+            ]
+          : []
+      )
+        .concat([
+          GenericTableOps.buildSubHeaderRow(
+            evalMode
+              ? [
+                  [<div className="text-right">{confEl}</div>, 1],
+                  [<div />, subHeaderOffset(5)],
+                  [
+                    <i>
+                      <b>{`${actualResultsYear} results`}</b>
+                    </i>,
+                    4,
+                  ],
+                  [<div />, 1],
+                  [
+                    <i>
+                      <b>Balanced</b>
+                    </i>,
+                    4,
+                  ],
+                  [<div />, 1],
+                  [<i>Optimistic</i>, 4],
+                  [<div />, 1],
+                  [<i>Pessimistic</i>, 4],
+                  [<div />, 1],
+                  [<div />, 2],
+                ]
+              : !offSeasonMode
+              ? [
+                  [<div className="text-right">{confEl}</div>, 1],
+                  [<div />, subHeaderOffset(9)],
+                  [
+                    <i>
+                      <b>{actualResultsYear} results</b>
+                    </i>,
+                    4,
+                  ],
+                  [<div />, 1],
+                  [<i>Adjusted results</i>, 4],
+                  [<div />, 1],
+                  [<div />, 2],
+                ]
+              : [
+                  [<div className="text-right">{confEl}</div>, 1],
+                  [<div />, subHeaderOffset(8)],
+                  [
+                    <i>
+                      <b>Balanced</b>
+                    </i>,
+                    4,
+                  ],
+                  [<div />, 1],
+                  [<i>Optimistic</i>, 4],
+                  [<div />, 1],
+                  [<i>Pessimistic</i>, 4],
+                  [<div />, 1],
+                  [<div />, 2],
                 ],
-                [<div />, 1],
-                [
-                  <i>
-                    <b>Balanced</b>
-                  </i>,
-                  4,
-                ],
-                [<div />, 1],
-                [<i>Optimistic</i>, 4],
-                [<div />, 1],
-                [<i>Pessimistic</i>, 4],
-                [<div />, 1],
-                [<div />, 2],
-              ]
-            : !offSeasonMode
-            ? [
-                [<div className="text-right">{confEl}</div>, 1],
-                [<div />, subHeaderOffset(9)],
-                [
-                  <i>
-                    <b>{actualResultsYear} results</b>
-                  </i>,
-                  4,
-                ],
-                [<div />, 1],
-                [<i>Adjusted results</i>, 4],
-                [<div />, 1],
-                [<div />, 2],
-              ]
-            : [
-                [<div className="text-right">{confEl}</div>, 1],
-                [<div />, subHeaderOffset(8)],
-                [
-                  <i>
-                    <b>Balanced</b>
-                  </i>,
-                  4,
-                ],
-                [<div />, 1],
-                [<i>Optimistic</i>, 4],
-                [<div />, 1],
-                [<i>Pessimistic</i>, 4],
-                [<div />, 1],
-                [<div />, 2],
-              ],
-          "small text-center"
-        ),
-      ]
+            "small text-center"
+          ),
+        ])
         .concat(
           _.isEmpty(filteredPlayerSet)
             ? []

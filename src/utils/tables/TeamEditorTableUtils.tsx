@@ -80,7 +80,7 @@ export class TeamEditorTableUtils {
           CbbColors.alwaysWhite
         ),
         caliber: GenericTableOps.addDataCol(
-          "Caliber",
+          <u>Caliber</u>,
           "A color indication of where a player might fit into a NCAAT team (the extremes show upside/downside), see color key in next row",
           CbbColors.alwaysWhite,
           GenericTableOps.htmlFormatter
