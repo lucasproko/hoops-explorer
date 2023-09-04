@@ -1014,11 +1014,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             ? undefined
             : { value: triple.ok.def_orb?.value },
 
-        caliber: buildCaliber(
-          TeamEditorUtils.getNet(triple.good, goodProdFactor),
-          okNet,
-          TeamEditorUtils.getNet(triple.bad, badProdFactor)
-        ),
+        caliber: caliberMode
+          ? buildCaliber(
+              TeamEditorUtils.getNet(triple.good, goodProdFactor),
+              okNet,
+              TeamEditorUtils.getNet(triple.bad, badProdFactor)
+            )
+          : undefined,
 
         pos: (
           <span style={{ whiteSpace: "nowrap" }}>{triple.orig.posClass}</span>
@@ -1354,11 +1356,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 <i>{triple.nil.toFixed(0)}</i>
               </small>
             ),
-            caliber: buildCaliber(
-              TeamEditorUtils.getNet(triple.good, goodProdFactor),
-              TeamEditorUtils.getNet(triple.ok, okProdFactor),
-              TeamEditorUtils.getNet(triple.bad, badProdFactor)
-            ),
+            caliber: caliberMode
+              ? buildCaliber(
+                  TeamEditorUtils.getNet(triple.good, goodProdFactor),
+                  TeamEditorUtils.getNet(triple.ok, okProdFactor),
+                  TeamEditorUtils.getNet(triple.bad, badProdFactor)
+                )
+              : undefined,
 
             ptsPlus: factorMins
               ? { value: (avgPts100 * 0.2 * okProdFactor + okNet) * 0.7 }
@@ -2115,12 +2119,27 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         }
       })();
 
+      const subHeaderOffset = _.flow([
+        (offset: number) => {
+          if (enableNil) {
+            return offset + 1; //(adding NIL column)
+          } else return offset;
+        },
+        (offset: number) => {
+          if (caliberMode && evalMode) {
+            return offset + 1; //(in eval mode don't have ORtg/usage/reb so just adding one col)
+          } else if (caliberMode) {
+            return offset - 2; //(otherwise removing ORtg/usage/reb adding caliber)
+          } else return offset;
+        },
+      ]);
+
       const subHeaders = [
         GenericTableOps.buildSubHeaderRow(
           evalMode
             ? [
                 [<div className="text-right">{confEl}</div>, 1],
-                [<div />, enableNil ? 6 : 5],
+                [<div />, subHeaderOffset(5)],
                 [
                   <i>
                     <b>{`${actualResultsYear} results`}</b>
@@ -2144,7 +2163,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             : !offSeasonMode
             ? [
                 [<div className="text-right">{confEl}</div>, 1],
-                [<div />, 9],
+                [<div />, subHeaderOffset(9)],
                 [
                   <i>
                     <b>{actualResultsYear} results</b>
@@ -2158,7 +2177,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               ]
             : [
                 [<div className="text-right">{confEl}</div>, 1],
-                [<div />, enableNil ? 9 : 8],
+                [<div />, subHeaderOffset(8)],
                 [
                   <i>
                     <b>Balanced</b>

@@ -20,5 +20,5 @@ export class FeatureFlags {
   static readonly estimateNilValue = false;
 
   /** For team editor - showing the caliber of a player */
-  static readonly playerCaliberMode = true;
+  static readonly playerCaliberMode = false;
 }

@@ -2215,6 +2215,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": 4.2285705,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -2415,6 +2416,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": -0.5351295,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -2601,6 +2603,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": -1,
                   },
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -2717,6 +2720,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -2901,6 +2905,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                     "extraInfo": "Manually adjusted, see Player Editor tab",
                     "value": 1.3577204999999999,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -3105,6 +3110,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": 0.15007049999999997,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -3303,6 +3309,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": -1,
                   },
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -3425,6 +3432,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": 2.663482596,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -3623,6 +3631,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": -0.3551295000000001,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -3813,6 +3822,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                   "bad_off": Object {
                     "value": 5.0090705,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -7792,6 +7802,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": 0.3368340749047399,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -7990,6 +8001,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": -1,
                   },
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -8112,6 +8124,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": 0.7624756669047397,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -8310,6 +8323,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": 0.5616340749047397,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -8508,6 +8522,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": -0.14601592509526015,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -8729,6 +8744,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": 2.36739617090474,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -8927,6 +8943,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": -0.6512159250952603,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -9117,6 +9134,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                   "bad_off": Object {
                     "value": 4.71298407490474,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -13079,6 +13097,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -13193,6 +13212,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 4.7276,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -13391,6 +13411,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 3.12265,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -13589,6 +13610,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 3.7922000000000002,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -13787,6 +13809,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 3.753,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -13985,6 +14008,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 0.65595,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -14177,6 +14201,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -14291,6 +14316,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 2.698612096,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -14489,6 +14515,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": -0.32000000000000006,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -14679,6 +14706,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_off": Object {
                     "value": 5.0442,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -14871,6 +14899,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -19310,6 +19339,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": 4.179690498795216,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -19510,6 +19540,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": -0.5840095012047842,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -19696,6 +19727,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": -1,
                   },
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -19822,6 +19854,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": 3.038640498795216,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -20014,6 +20047,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -20195,6 +20229,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": 3.6689904987952158,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -20393,6 +20428,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": 0.5719404987952158,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -20585,6 +20621,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -20699,6 +20736,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": 2.614602594795216,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -20897,6 +20935,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": -0.4040095012047843,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -21087,6 +21126,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_off": Object {
                     "value": 4.960190498795216,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -21279,6 +21319,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -25735,6 +25776,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -25849,6 +25891,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 4.694031526054439,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -26047,6 +26090,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 3.0890815260544393,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -26245,6 +26289,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 3.7586315260544394,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -26443,6 +26488,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 3.7194315260544393,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -26641,6 +26687,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 0.622381526054439,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -26833,6 +26880,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -26947,6 +26995,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 2.665043622054439,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -27145,6 +27194,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": -0.3535684739455611,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -27335,6 +27385,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_off": Object {
                     "value": 5.010631526054439,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -27527,6 +27578,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -32129,6 +32181,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 3.877210704188923,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -32321,6 +32374,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -32435,6 +32489,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 4.682710704188922,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -32633,6 +32688,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 3.0777607041889232,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -32831,6 +32887,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 3.7473107041889233,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -33029,6 +33086,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 0.7785107041889231,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -33227,6 +33285,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 3.708110704188923,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -33425,6 +33484,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 0.6110607041889231,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -33617,6 +33677,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -33731,6 +33792,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 2.6537228001889233,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -33929,6 +33991,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": -0.364889295811077,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -34119,6 +34182,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": 4.9993107041889235,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -34317,6 +34381,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_off": Object {
                     "value": -2.288789295811077,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -34509,6 +34574,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38014,6 +38080,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 3.8491636274246464,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38212,6 +38279,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 0.5951136274246466,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38404,6 +38472,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38514,6 +38583,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 1.0207552194246463,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38712,6 +38782,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 0.8199136274246465,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -38910,6 +38981,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 0.11226362742464654,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -39102,6 +39174,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -39212,6 +39285,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 2.6256757234246466,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -39410,6 +39484,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": -0.3929363725753535,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -39600,6 +39675,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_off": Object {
                     "value": 4.971263627424647,
                   },
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -39792,6 +39868,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -42534,6 +42611,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "disable": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -42708,6 +42786,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -42818,6 +42897,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
@@ -42928,6 +43008,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                   "bad_def": undefined,
                   "bad_net": undefined,
                   "bad_off": undefined,
+                  "caliber": undefined,
                   "edit": <OverlayTrigger
                     overlay={
                       <ForwardRef
