@@ -10,6 +10,34 @@ import { CommonTableDefs } from "./CommonTableDefs";
 export class TeamEditorTableUtils {
   // Table definitions
 
+  private static readonly caliberFormatter = (val: any) => {
+    const caliber = val.value as number;
+    if (caliber < 0) {
+      return <small style={{ color: "white" }}>B-</small>;
+    } else if (caliber < 0.95) {
+      return <small style={{ color: "white" }}>B&nbsp;</small>;
+    } else if (caliber < 1.95) {
+      return <small>R-</small>;
+    } else if (caliber < 2.95) {
+      return <small>R&nbsp;</small>;
+    } else if (caliber < 3.95) {
+      return <small>S-</small>;
+    } else if (caliber < 5) {
+      return <small>S&nbsp;</small>;
+    } else if (caliber < 6) {
+      return <small>S+</small>;
+    } else if (caliber < 7) {
+      return <small style={{ color: "white" }}>AC</small>;
+    } else if (!_.isNaN(caliber)) {
+      return <small style={{ color: "white" }}>AA</small>;
+    } else return "";
+  };
+
+  //            color: okNet < 1 || okNet >= 6 ? "white" : "black",
+
+  private static readonly caliberColor = (val: number) =>
+    CbbColors.p_rapmCaliber(val);
+
   static tableDef(
     evalMode: boolean,
     offSeasonMode: boolean,
@@ -79,11 +107,18 @@ export class TeamEditorTableUtils {
           "Rebounds per game, offensive and defensive (approximately last season's numbers)",
           CbbColors.alwaysWhite
         ),
+
+        act_caliber: GenericTableOps.addDataCol(
+          <u>act.</u>,
+          "The caliber associated with the player's actual results instead of the expected results",
+          CbbColors.varPicker(TeamEditorTableUtils.caliberColor),
+          TeamEditorTableUtils.caliberFormatter
+        ),
         caliber: GenericTableOps.addDataCol(
-          <u>Caliber</u>,
-          "A color indication of where a player might fit into a NCAAT team (the extremes show upside/downside), see color key in next row",
-          CbbColors.alwaysWhite,
-          GenericTableOps.htmlFormatter
+          <u>Cal.</u>,
+          "'Caliber', A color indication of where a player might fit into a NCAAT team (the extremes show upside/downside), see color key in next row",
+          CbbColors.varPicker(TeamEditorTableUtils.caliberColor),
+          TeamEditorTableUtils.caliberFormatter
         ),
 
         sep1: GenericTableOps.addColSeparator(2),
@@ -214,7 +249,11 @@ export class TeamEditorTableUtils {
           //            minPct ? [ "usage", "rebound" ] : [ "ptsPlus", "rpg" ]
           minPct ? ["rebound", "rpg"] : ["ptsPlus", "rpg"]
         )
-        .concat(caliberMode ? ["ortg", "usage", "rebound"] : ["caliber"]) //TODO: need to handle combos of other flags
+        .concat(
+          caliberMode
+            ? ["ortg", "usage", "rebound"].concat(evalMode ? [] : "act_caliber")
+            : ["caliber", "act_caliber"]
+        )
         .concat(enableNil ? [] : ["nil"])
     ) as Record<string, GenericTableColProps>;
   }

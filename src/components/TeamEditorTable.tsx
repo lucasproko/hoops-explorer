@@ -757,42 +757,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       </Tooltip>
     );
 
-    const caliberText = (okNet: number) => {
-      if (okNet < 0) {
-        return <small>B-</small>;
-      } else if (okNet < 1) {
-        return <small>B&nbsp;</small>;
-      } else if (okNet < 2) {
-        return <small>R-</small>;
-      } else if (okNet < 3) {
-        return <small>R&nbsp;</small>;
-      } else if (okNet < 4) {
-        return <small>S-</small>;
-      } else if (okNet < 5) {
-        return <small>S&nbsp;</small>;
-      } else if (okNet < 6) {
-        return <small>S+</small>;
-      } else if (okNet < 7) {
-        return <small>AC</small>;
-      } else {
-        return <small>AA</small>;
-      }
-    };
-
-    const buildCaliber = (goodNet: number, okNet: number, badNet: number) => (
-      <span style={{ whiteSpace: "nowrap" }}>
-        <span
-          className="pb-1 pt-1"
-          style={{
-            backgroundColor: CbbColors.p_rapmCaliber(okNet),
-            color: okNet < 1 || okNet >= 6 ? "white" : "black",
-          }}
-        >
-          &nbsp;&nbsp;{caliberText(okNet)}&nbsp;&nbsp;
-        </span>
-      </span>
-    );
-
     const buildDataRowFromTriple = (triple: GoodBadOkTriple) => {
       const maybeOverride: PlayerEditModel | undefined =
         pxResults.unpausedOverrides[triple.key];
@@ -1028,12 +992,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             ? undefined
             : { value: triple.ok.def_orb?.value },
 
+        act_caliber:
+          caliberMode && triple.actualResults
+            ? {
+                value: TeamEditorUtils.getNet(triple.actualResults, 1.0),
+              }
+            : undefined,
         caliber: caliberMode
-          ? buildCaliber(
-              TeamEditorUtils.getNet(triple.good, goodProdFactor),
-              okNet,
-              TeamEditorUtils.getNet(triple.bad, badProdFactor)
-            )
+          ? {
+              value: okNet,
+            }
           : undefined,
 
         pos: (
@@ -1370,12 +1338,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 <i>{triple.nil.toFixed(0)}</i>
               </small>
             ),
+            act_caliber:
+              caliberMode && triple.actualResults
+                ? { value: TeamEditorUtils.getNet(triple.actualResults, 1.0) }
+                : undefined,
+
             caliber: caliberMode
-              ? buildCaliber(
-                  TeamEditorUtils.getNet(triple.good, goodProdFactor),
-                  TeamEditorUtils.getNet(triple.ok, okProdFactor),
-                  TeamEditorUtils.getNet(triple.bad, badProdFactor)
-                )
+              ? { value: TeamEditorUtils.getNet(triple.ok, 1.0) }
               : undefined,
 
             ptsPlus: factorMins
@@ -2141,7 +2110,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         },
         (offset: number) => {
           if (caliberMode && evalMode) {
-            return offset + 1; //(in eval mode don't have ORtg/usage/reb so just adding one col)
+            return offset + 2; //(in eval mode don't have ORtg/usage/reb but do have 2 caliber cols)
           } else if (caliberMode) {
             return offset - 2; //(otherwise removing ORtg/usage/reb adding caliber)
           } else return offset;
