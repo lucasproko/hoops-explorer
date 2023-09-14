@@ -8,6 +8,15 @@ export const freshmenMen2023_24: Record<string, any> = {
       r: -38,
     },
   },
+  BYU: {
+    "Adams Jr., Marcus": {
+      pos: "WF",
+      pr: "3.5*/T150ish",
+      c: "MaAdams",
+      h: "6-8",
+      r: 72,
+    },
+  },
   Washington: {
     "Yates, Wesley": {
       pos: "WG",
@@ -464,13 +473,6 @@ export const freshmenMen2023_24: Record<string, any> = {
       c: "ElJackson",
       h: "6-3",
       r: -58,
-    },
-    "Adams Jr., Marcus": {
-      pos: "WF",
-      pr: "3.5*/T150ish",
-      c: "MaAdams",
-      h: "6-8",
-      r: 72,
     },
     "McDowell, Jamari": {
       pos: "WG",
