@@ -602,6 +602,7 @@ export class TeamEditorManualFixes {
           },
           Kansas: {
             superSeniorsReturning: new Set(["DaHarris::", "KeMccullar::"]),
+            leftTeam: ["ArMorris::", "ArMorris:Texas:"], //(kicked off team - for some reason needed to include in both forms)
           },
           "Kennesaw St.": {
             superSeniorsReturning: new Set(["TeBurden::", "DeRobinson::"]),
