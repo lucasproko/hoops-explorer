@@ -14,7 +14,6 @@ import {
   TeamEditorManualFixModel,
 } from "./TeamEditorManualFixes";
 import { DateUtils } from "../DateUtils";
-import { TeamEditorTableUtils } from "../tables/TeamEditorTableUtils";
 import { getConfAdjustment } from "../public-data/ConferenceInfo";
 
 /** Possibly ways we change projections */

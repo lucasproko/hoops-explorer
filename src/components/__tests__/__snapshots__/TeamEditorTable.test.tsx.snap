@@ -2202,6 +2202,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -2403,6 +2404,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -2590,6 +2592,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -2713,6 +2716,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -2889,6 +2893,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -3097,6 +3102,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -3296,6 +3302,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -3419,6 +3426,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -3618,6 +3626,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -3809,6 +3818,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -7789,6 +7799,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -7988,6 +7999,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -8111,6 +8123,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -8310,6 +8323,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -8509,6 +8523,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -8731,6 +8746,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -8930,6 +8946,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -9121,6 +9138,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -13090,6 +13108,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -13199,6 +13218,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -13398,6 +13418,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -13597,6 +13618,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -13796,6 +13818,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -13995,6 +14018,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -14194,6 +14218,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -14303,6 +14328,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -14502,6 +14528,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -14693,6 +14720,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -14892,6 +14920,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -19326,6 +19355,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -19527,6 +19557,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -19714,6 +19745,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -19841,6 +19873,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -20040,6 +20073,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -20216,6 +20250,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -20415,6 +20450,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -20614,6 +20650,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -20723,6 +20760,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -20922,6 +20960,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -21113,6 +21152,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -21312,6 +21352,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -25769,6 +25810,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -25878,6 +25920,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -26077,6 +26120,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -26276,6 +26320,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -26475,6 +26520,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -26674,6 +26720,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -26873,6 +26920,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -26982,6 +27030,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -27181,6 +27230,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -27372,6 +27422,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -27571,6 +27622,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -32168,6 +32220,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -32367,6 +32420,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -32476,6 +32530,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -32675,6 +32730,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -32874,6 +32930,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -33073,6 +33130,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -33272,6 +33330,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -33471,6 +33530,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -33670,6 +33730,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -33779,6 +33840,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -33978,6 +34040,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -34169,6 +34232,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -34368,6 +34432,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -34567,6 +34632,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -38067,6 +38133,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -38266,6 +38333,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -38465,6 +38533,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -38570,6 +38639,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -38769,6 +38839,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -38968,6 +39039,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -39167,6 +39239,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -39272,6 +39345,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -39471,6 +39545,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -39662,6 +39737,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -39861,6 +39937,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -42602,6 +42679,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": Object {
                     "value": 0,
@@ -42779,6 +42857,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -42890,6 +42969,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,
@@ -43001,6 +43081,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                 "cellMetaFn": [Function],
                 "colSpanOverride": undefined,
                 "dataObj": Object {
+                  "act_caliber": undefined,
                   "actual_def": undefined,
                   "actual_mpg": undefined,
                   "actual_net": undefined,

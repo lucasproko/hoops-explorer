@@ -9,6 +9,10 @@ import { superSeniors2021_22 } from "../public-data/superSeniors2021_22";
 import { leftTeam2021_22 } from "../public-data/leftTeam2021_22";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
 import { leftTeam2022_23 } from "../public-data/leftTeam2022_23";
+import { getAllAmericanFrTeam } from "../public-data/allAmericanFreshmen";
+
+const allAmericanBonuses = [0, 8.9, 6.7, 5.9, 5.3]; //(calculated over 5yrs from https://docs.google.com/spreadsheets/d/1W2grnn733eDWb9f7frDCFClzqmBmTo2840RCAiSGc_0/edit#gid=1514587992)
+const allAmericanBonusWeight = 0.35; //(35% - arbitrary weight)
 
 /** Note string keys are TeamEditorUtils.getKey, string val in leftTeam is player id (aka name) */
 export type TeamEditorManualFixModel = {
@@ -19,23 +23,39 @@ export type TeamEditorManualFixModel = {
 };
 
 export class TeamEditorManualFixes {
+  /** TODO; This actually takes prevGenderYear, for reasons that are very unclear to me */
   static readonly getFreshmenForYear = _.memoize((genderYear: string) => {
     if (genderYear == "Men_2019/20") {
       //(Fr for the following year given date)
-      return TeamEditorManualFixes.buildOverrides(freshmenMen2020_21);
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenMen2020_21,
+        "Men_2020/21"
+      );
     } else if (genderYear == "Men_2020/21") {
-      return TeamEditorManualFixes.buildOverrides(freshmenMen2021_22);
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenMen2021_22,
+        "Men_2021/22"
+      );
     } else if (genderYear == "Men_2021/22") {
-      return TeamEditorManualFixes.buildOverrides(freshmenMen2022_23);
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenMen2022_23,
+        "Men_2022/23"
+      );
     } else if (genderYear == "Men_2022/23") {
-      return TeamEditorManualFixes.buildOverrides(freshmenMen2023_24);
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenMen2023_24,
+        "Men_2023/24"
+      );
     } else {
       return {};
     }
   });
 
-  //TODO: move this into TeamEditorUtils
-  private static readonly buildOverrides = (recruits: Record<string, any>) => {
+  //TODO: move this into TeamEditorUtils?
+  private static readonly buildOverrides = (
+    recruits: Record<string, any>,
+    genderYear: string = "NA"
+  ) => {
     return _.transform(
       recruits,
       (acc, override, team) => {
@@ -65,11 +85,49 @@ export class TeamEditorManualFixes {
             const factor =
               over.pr >= "5*" ? fiveStarFactor : fourStarSuperFactor;
 
-            const factorTimeRatingOff = parseFloat(
-              (factor * adjRtg + (over.o || 0)).toFixed(2)
+            const factorTimeRatingOff = factor * adjRtg + (over.o || 0);
+            const factorTimeRatingDef = -(
+              factor * adjRtg +
+              (over.d || 0)
+            ).toFixed(2);
+            const [aaOffAdj, aaDefAdj] = _.thru(
+              getAllAmericanFrTeam(over.c, team, genderYear),
+              (maybeTeam) => {
+                /**/
+                if (team == "Maryland")
+                  console.log(
+                    `${over.c} / ${team} / ${genderYear} ... ${maybeTeam}`
+                  );
+
+                if (maybeTeam > 0) {
+                  const baseForThisRank =
+                    TeamEditorUtils.getBenchLevelScoringByProfile(
+                      over.pr as Profiles
+                    );
+                  const initialPredRapm =
+                    baseForThisRank + factorTimeRatingOff - factorTimeRatingDef;
+                  const teamRapm =
+                    allAmericanBonuses[maybeTeam] || initialPredRapm;
+
+                  const adjPredRapm =
+                    allAmericanBonusWeight * teamRapm +
+                    (1.0 - allAmericanBonusWeight) * initialPredRapm;
+                  const adjPredRapmAdj = Math.max(
+                    0,
+                    adjPredRapm - initialPredRapm
+                  );
+
+                  return [0.5 * adjPredRapmAdj, -0.5 * adjPredRapmAdj];
+                } else {
+                  return [0, 0];
+                }
+              }
             );
-            const factorTimeRatingDef = -parseFloat(
-              (factor * adjRtg + (over.d || 0)).toFixed(2)
+            const totalRatingOff = parseFloat(
+              (factorTimeRatingOff + aaOffAdj).toFixed(2)
+            );
+            const totalRatingDef = parseFloat(
+              (factorTimeRatingDef + aaDefAdj).toFixed(2)
             );
 
             acc2[`${over.c}`] = {
@@ -78,12 +136,8 @@ export class TeamEditorManualFixes {
               profile: over.pr as Profiles,
               pos: over.pos,
               height: over.h,
-              global_off_adj: factorTimeRatingOff
-                ? factorTimeRatingOff
-                : undefined, //apportion out bonus/penalty if there is one
-              global_def_adj: factorTimeRatingDef
-                ? factorTimeRatingDef
-                : undefined,
+              global_off_adj: totalRatingOff ? totalRatingOff : undefined, //apportion out bonus/penalty if there is one
+              global_def_adj: totalRatingDef ? totalRatingDef : undefined,
               fromFrList: true,
             };
           },

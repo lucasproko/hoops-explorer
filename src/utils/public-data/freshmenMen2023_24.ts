@@ -83,6 +83,13 @@ export const freshmenMen2023_24: Record<string, any> = {
       h: "7-2",
       r: 58,
     },
+    "Buyuktuncel, Berke": {
+      pos: "WF",
+      pr: "4*/T40ish",
+      c: "BeBuyuktunce",
+      h: "6-9",
+      r: 56,
+    },
     "Williams, Brandon": {
       pos: "S-PF",
       pr: "4*",
