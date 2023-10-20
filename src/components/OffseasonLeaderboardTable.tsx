@@ -906,6 +906,30 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     );
   }
 
+  /** Switch to pre-season button */
+  const getInSeasonButton = () => {
+    const tooltip = (
+      <Tooltip id="inSeasonLeaderboard">
+        Switch to in-season leaderboard
+      </Tooltip>
+    );
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button
+          variant="outline-secondary"
+          size="sm"
+          onClick={(e) => {
+            window.location.href = UrlRouting.getTeamLeaderboardUrl({
+              year,
+            });
+          }}
+        >
+          IN
+        </Button>
+      </OverlayTrigger>
+    );
+  };
+
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
@@ -976,7 +1000,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-        <Col xs={12} sm={12} md={6} lg={6} style={{ zIndex: 10 }}>
+        <Col xs={12} sm={12} md={5} lg={5} style={{ zIndex: 10 }}>
           <ConferenceSelector
             emptyLabel={
               year < DateUtils.yearFromWhichAllMenD1Imported
@@ -991,8 +1015,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             }
           />
         </Col>
-        <Col lg={1} className="mt-1">
+        <Col lg={2} className="mt-1">
           {getCopyLinkButton()}
+          &nbsp;&nbsp;&nbsp;
+          {year <= DateUtils.mostRecentYearWithData
+            ? getInSeasonButton()
+            : null}
         </Col>
         <Col lg={1} className="mt-1">
           <GenericTogglingMenu>

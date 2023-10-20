@@ -5,30 +5,48 @@ import _ from "lodash";
 import { QueryUtils } from "./QueryUtils";
 
 // Utils
-import { GameFilterParams, LineupFilterParams, LineupLeaderboardParams, OffseasonLeaderboardParams, PlayerLeaderboardParams, TeamEditorParams, TeamReportFilterParams } from '../utils/FilterModels';
-import { PlayerSeasonComparisonParams, MatchupFilterParams } from './FilterModels';
+import {
+  GameFilterParams,
+  LineupFilterParams,
+  LineupLeaderboardParams,
+  OffseasonLeaderboardParams,
+  PlayerLeaderboardParams,
+  TeamEditorParams,
+  TeamReportFilterParams,
+} from "../utils/FilterModels";
+import {
+  PlayerSeasonComparisonParams,
+  MatchupFilterParams,
+} from "./FilterModels";
 
 /** Url routing utils */
 export class UrlRouting {
-
   static readonly noSuffix = "";
   static readonly savedLineupSuffix = "_lineup";
   static readonly savedGameSuffix = "_game";
   static readonly savedTeamReportSuffix = "_report";
   /** List of all the keys that can be saved */
   static readonly savedKeySuffices = [
-    UrlRouting.savedLineupSuffix, UrlRouting.savedGameSuffix, UrlRouting.savedTeamReportSuffix
+    UrlRouting.savedLineupSuffix,
+    UrlRouting.savedGameSuffix,
+    UrlRouting.savedTeamReportSuffix,
   ];
 
   /** If any of these change then copy between saved (and reset the others) */
-  static readonly commonParams = [ "year", "team", "gender" ];
+  static readonly commonParams = ["year", "team", "gender"];
 
   /** If one of the common params changed, then copy across and */
   static checkForCommonParamChange(
-    newParams: any, oldParams: any,
+    newParams: any,
+    oldParams: any,
     onParamChanges: Array<(params: any) => void>
   ) {
-    if (_.some(UrlRouting.commonParams, (param) => newParams[param] != oldParams[param])) {
+    if (
+      _.some(
+        UrlRouting.commonParams,
+        (param) => newParams[param] != oldParams[param]
+      )
+    ) {
       const newObj = _.fromPairs(
         UrlRouting.commonParams.map((param) => [param, newParams[param]])
       );
@@ -37,65 +55,71 @@ export class UrlRouting {
   }
 
   /** The URL to use to view the "On/Off" page */
-  static getGameUrl(params: GameFilterParams, lineupParams: LineupFilterParams) {
+  static getGameUrl(
+    params: GameFilterParams,
+    lineupParams: LineupFilterParams
+  ) {
     return `/OnOffAnalyzer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
-      [UrlRouting.savedLineupSuffix]: lineupParams
+      [UrlRouting.savedLineupSuffix]: lineupParams,
     })}`;
   }
   /** The URL to use to view the "Lineups" page */
-  static getLineupUrl(params: LineupFilterParams, gameParams: GameFilterParams) {
+  static getLineupUrl(
+    params: LineupFilterParams,
+    gameParams: GameFilterParams
+  ) {
     return `/LineupAnalyzer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
-      [UrlRouting.savedGameSuffix]: gameParams
+      [UrlRouting.savedGameSuffix]: gameParams,
     })}`;
   }
   /** The URL to use to view the "Lineup Leaderboard" page */
   static getLineupLeaderboardUrl(params: LineupLeaderboardParams) {
     return `/LineupLeaderboard?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
-  /** The URL to use to view the "Player Leaderboard" page */
+  /** The URL to use to view the "Team Leaderboard" page */
   static getTeamLeaderboardUrl(params: PlayerLeaderboardParams) {
     return `/?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the "Player Leaderboard" page */
   static getPlayerLeaderboardUrl(params: PlayerLeaderboardParams) {
     return `/PlayerLeaderboard?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the "Team Editor" page */
   static getTeamEditorUrl(params: TeamEditorParams) {
     return `/TeamEditor?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the "Offseason Leaderboard" page */
   static getOffseasonLeaderboard(params: OffseasonLeaderboardParams) {
     return `/OffseasonLeaderboard?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the "Team Report" page */
   static getTeamReportUrl(params: TeamReportFilterParams) {
     return `/TeamReport?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the simple prototype for the "Player/Season Comparison" page */
   static getTransferRapmComparisonUrl(params: PlayerSeasonComparisonParams) {
     return `/TransferRapmComparison?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the "Player/Season Comparison" page */
   static getPlayerSeasonComparisonUrl(params: PlayerSeasonComparisonParams) {
     return `/PlayerSeasonComparison?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params
+      [UrlRouting.noSuffix]: params,
     })}`;
   }
   /** The URL to use to view the "Matchup Analyzer" page */
@@ -106,7 +130,10 @@ export class UrlRouting {
   }
 
   /** Filters out _lineup or _game from object to avoid them getting chained repeatedly */
-  static removedSavedKeys(urlParams: string, suffices: Array<string> = UrlRouting.savedKeySuffices) {
+  static removedSavedKeys(
+    urlParams: string,
+    suffices: Array<string> = UrlRouting.savedKeySuffices
+  ) {
     return _.pickBy(QueryUtils.parse(urlParams), (value, key) => {
       return !_.some(suffices, (suffix) => key.indexOf(suffix) >= 0);
     });
@@ -114,20 +141,23 @@ export class UrlRouting {
 
   /** Retries only the specified saved URL params */
   static extractSavedKeys(urlParams: string, suffixToKeep: string) {
-    return _.mapKeys(_.pickBy(QueryUtils.parse(urlParams), (value, key) => {
-      return key.indexOf(suffixToKeep) >= 0;
-    }), (value, key) => key.replace(suffixToKeep, ""));
+    return _.mapKeys(
+      _.pickBy(QueryUtils.parse(urlParams), (value, key) => {
+        return key.indexOf(suffixToKeep) >= 0;
+      }),
+      (value, key) => key.replace(suffixToKeep, "")
+    );
   }
 
   /** Builds a state URL out of the base params (key "") and the saved ones (key==suffix) */
   static getUrl(paramsBySuffix: Record<string, any>) {
-    return _.toPairs(paramsBySuffix).map((kv) => {
-      const queryStr =
-        QueryUtils.stringify(
+    return _.toPairs(paramsBySuffix)
+      .map((kv) => {
+        const queryStr = QueryUtils.stringify(
           _.mapKeys(kv[1], (value, key) => key + kv[0])
         );
-      return (queryStr == "") ? "" : (queryStr + "&");
-    }).join("");
+        return queryStr == "" ? "" : queryStr + "&";
+      })
+      .join("");
   }
-
 }

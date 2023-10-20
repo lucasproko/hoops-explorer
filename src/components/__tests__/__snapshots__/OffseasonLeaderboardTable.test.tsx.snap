@@ -96,8 +96,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
       className="w-100"
     />
     <Col
-      lg={6}
-      md={6}
+      lg={5}
+      md={5}
       sm={12}
       style={
         Object {
@@ -142,7 +142,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
     </Col>
     <Col
       className="mt-1"
-      lg={1}
+      lg={2}
     >
       <OverlayTrigger
         overlay={
@@ -194,6 +194,28 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
             title=""
             transform={null}
           />
+        </Button>
+      </OverlayTrigger>
+         
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="inSeasonLeaderboard"
+            placement="right"
+          >
+            Switch to in-season leaderboard
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          size="sm"
+          variant="outline-secondary"
+        >
+          IN
         </Button>
       </OverlayTrigger>
     </Col>
@@ -1006,8 +1028,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       className="w-100"
     />
     <Col
-      lg={6}
-      md={6}
+      lg={5}
+      md={5}
       sm={12}
       style={
         Object {
@@ -1052,7 +1074,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     </Col>
     <Col
       className="mt-1"
-      lg={1}
+      lg={2}
     >
       <OverlayTrigger
         overlay={
@@ -1104,6 +1126,28 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             title=""
             transform={null}
           />
+        </Button>
+      </OverlayTrigger>
+         
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="inSeasonLeaderboard"
+            placement="right"
+          >
+            Switch to in-season leaderboard
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          size="sm"
+          variant="outline-secondary"
+        >
+          IN
         </Button>
       </OverlayTrigger>
     </Col>
@@ -3521,8 +3565,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       className="w-100"
     />
     <Col
-      lg={6}
-      md={6}
+      lg={5}
+      md={5}
       sm={12}
       style={
         Object {
@@ -3567,7 +3611,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     </Col>
     <Col
       className="mt-1"
-      lg={1}
+      lg={2}
     >
       <OverlayTrigger
         overlay={
@@ -3619,6 +3663,28 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             title=""
             transform={null}
           />
+        </Button>
+      </OverlayTrigger>
+         
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="inSeasonLeaderboard"
+            placement="right"
+          >
+            Switch to in-season leaderboard
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          size="sm"
+          variant="outline-secondary"
+        >
+          IN
         </Button>
       </OverlayTrigger>
     </Col>
@@ -15600,8 +15666,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       className="w-100"
     />
     <Col
-      lg={6}
-      md={6}
+      lg={5}
+      md={5}
       sm={12}
       style={
         Object {
@@ -15646,7 +15712,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     </Col>
     <Col
       className="mt-1"
-      lg={1}
+      lg={2}
     >
       <OverlayTrigger
         overlay={
@@ -15698,6 +15764,28 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             title=""
             transform={null}
           />
+        </Button>
+      </OverlayTrigger>
+         
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="inSeasonLeaderboard"
+            placement="right"
+          >
+            Switch to in-season leaderboard
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          size="sm"
+          variant="outline-secondary"
+        >
+          IN
         </Button>
       </OverlayTrigger>
     </Col>
@@ -28636,8 +28724,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       className="w-100"
     />
     <Col
-      lg={6}
-      md={6}
+      lg={5}
+      md={5}
       sm={12}
       style={
         Object {
@@ -28682,7 +28770,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     </Col>
     <Col
       className="mt-1"
-      lg={1}
+      lg={2}
     >
       <OverlayTrigger
         overlay={
@@ -28734,6 +28822,28 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             title=""
             transform={null}
           />
+        </Button>
+      </OverlayTrigger>
+         
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="inSeasonLeaderboard"
+            placement="right"
+          >
+            Switch to in-season leaderboard
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          size="sm"
+          variant="outline-secondary"
+        >
+          IN
         </Button>
       </OverlayTrigger>
     </Col>
@@ -39810,8 +39920,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       className="w-100"
     />
     <Col
-      lg={6}
-      md={6}
+      lg={5}
+      md={5}
       sm={12}
       style={
         Object {
@@ -39856,7 +39966,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
     </Col>
     <Col
       className="mt-1"
-      lg={1}
+      lg={2}
     >
       <OverlayTrigger
         overlay={
@@ -39908,6 +40018,28 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
             title=""
             transform={null}
           />
+        </Button>
+      </OverlayTrigger>
+         
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="inSeasonLeaderboard"
+            placement="right"
+          >
+            Switch to in-season leaderboard
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          size="sm"
+          variant="outline-secondary"
+        >
+          IN
         </Button>
       </OverlayTrigger>
     </Col>
