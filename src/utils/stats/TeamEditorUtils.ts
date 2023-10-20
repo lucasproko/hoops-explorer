@@ -163,6 +163,10 @@ export class TeamEditorUtils {
   static readonly benchGuardKey = "benchG";
   static readonly benchWingKey = "benchW";
   static readonly benchBigKey = "benchB";
+  static isBenchKey = (key: String) =>
+    key == TeamEditorUtils.benchGuardKey ||
+    key == TeamEditorUtils.benchWingKey ||
+    key == TeamEditorUtils.benchBigKey;
 
   // Model Parsing
 

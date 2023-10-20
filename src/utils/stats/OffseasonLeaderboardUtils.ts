@@ -31,12 +31,15 @@ export type OffseasonTeamInfo = {
   numStars: number;
   numStarters: number;
   numRotation: number;
+  nonBenchMins: number;
   off: number;
   def: number;
   net: number;
   goodNet: number;
   badNet: number;
   actualNet: number | undefined;
+  actualOff: number | undefined;
+  actualDef: number | undefined;
   team: string;
   conf: string;
   rosterInfo: string;
@@ -366,8 +369,18 @@ export class OffseasonLeaderboardUtils {
               } else if (netEff >= 2) {
                 acc.numRotation = acc.numRotation + 1;
               }
+              if (!TeamEditorUtils.isBenchKey(triple.key)) {
+                acc.nonBenchMins =
+                  acc.nonBenchMins + (triple.ok.off_team_poss_pct?.value || 0);
+              }
             },
-            { numSuperstars: 0, numStars: 0, numStarters: 0, numRotation: 0 }
+            {
+              numSuperstars: 0,
+              numStars: 0,
+              numStarters: 0,
+              numRotation: 0,
+              nonBenchMins: 0.0,
+            }
           );
           return { off, def, net, ...netInfo };
         };
@@ -475,7 +488,9 @@ export class OffseasonLeaderboardUtils {
           ...okTotals,
           goodNet: okTotals.net + goodDeltaNet,
           badNet: okTotals.net + badDeltaNet,
-          actualNet: dummyTeamActual?.off_net?.value, //TODO: off and def also
+          actualNet: dummyTeamActual?.off_net?.value,
+          actualOff: dummyTeamActual?.off_adj_ppp?.value, //TODO: these have a different avgEff basis than thae okTotals numbers
+          actualDef: dummyTeamActual?.def_adj_ppp?.value, //(also an issue in the roster edior)
           team: t,
           conf: ConferenceToNickname[confStr] || "???",
           rosterInfo: `${okTotals.numSuperstars} / ${okTotals.numStars} / ${okTotals.numStarters} / ${okTotals.numRotation}`,
