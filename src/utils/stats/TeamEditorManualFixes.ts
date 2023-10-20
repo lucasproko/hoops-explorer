@@ -93,12 +93,6 @@ export class TeamEditorManualFixes {
             const [aaOffAdj, aaDefAdj] = _.thru(
               getAllAmericanFrTeam(over.c, team, genderYear),
               (maybeTeam) => {
-                /**/
-                if (team == "Maryland")
-                  console.log(
-                    `${over.c} / ${team} / ${genderYear} ... ${maybeTeam}`
-                  );
-
                 if (maybeTeam > 0) {
                   const baseForThisRank =
                     TeamEditorUtils.getBenchLevelScoringByProfile(
@@ -555,6 +549,7 @@ export class TeamEditorManualFixes {
           },
           Cincinnati: {
             superSeniorsReturning: new Set(["OdOguama::"]),
+            leftTeam: ["AzBandaogo:Utah Valley:", "JaReynolds:Temple:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
           },
           Clemson: {
             superSeniorsReturning: new Set(["AlHemenway::"]),
@@ -919,6 +914,9 @@ export class TeamEditorManualFixes {
           },
           Vanderbilt: {
             superSeniorsReturning: new Set(["EzManjon::", "TyLawrence::"]),
+          },
+          VCU: {
+            leftTeam: ["JoBamisile:George Washington:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
           },
           Vermont: {
             superSeniorsReturning: new Set(["MaVeretto::", "AaDeloney::"]),
