@@ -708,9 +708,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             const badPredictionWarning = (
               <Tooltip id={`badPredictionWarning${netRankIn}`}>
                 This prediction is very dubious - only based on [
-                {t.playersInPrediction}] players's stats, with [
-                {t.playersInPredictionMins.toFixed(1)}] minutes assigned to [
-                {t.conf}] replacement level stats, despite unrealistically
+                {t.playersInPrediction}] players' stats, with [
+                {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
+                to [{t.conf}] replacement level stats, despite unrealistically
                 maxing out the minutes of the named players.
               </Tooltip>
             );
@@ -726,9 +726,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             const mehPredictionWarning = (
               <Tooltip id={`badPredictionWarning${netRankIn}`}>
                 This prediction is dubious - only based on [
-                {t.playersInPrediction}] players's stats, with [
-                {t.playersInPredictionMins.toFixed(1)}] minutes assigned to [
-                {t.conf}] replacement level stats, despite possibly
+                {t.playersInPrediction}] players' stats, with [
+                {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned
+                to [{t.conf}] replacement level stats, despite possibly
                 unrealistically maxing out the minutes of the named players.
               </Tooltip>
             );
