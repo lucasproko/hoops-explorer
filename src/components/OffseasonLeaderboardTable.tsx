@@ -386,10 +386,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       setLoadingOverride(false);
     }
 
+    // The avgEff based on which the stats were calc'd (yearWithStats) and what actually happened (year)
     const avgEff =
       efficiencyAverages[`${gender}_${yearWithStats}`] ||
       efficiencyAverages.fallback;
-    //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
+    const actualResultsAvgEff = evalMode
+      ? efficiencyAverages[`${gender}_${year}`] || efficiencyAverages.fallback
+      : avgEff;
 
     // Team stats generation business logic:
     const {
@@ -412,7 +415,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       },
       teamOverrides,
       rostersPerTeam,
-      avgEff
+      avgEff,
+      actualResultsAvgEff
     );
 
     //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json)
@@ -724,7 +728,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
           ) {
             const mehPredictionWarning = (
-              <Tooltip id={`badPredictionWarning${netRankIn}`}>
+              <Tooltip id={`mehPredictionWarning${netRankIn}`}>
                 This prediction is dubious - only based on [
                 {t.playersInPrediction}] players' stats, with [
                 {(200 - t.playersInPredictionMins).toFixed(1)}] minutes assigned

@@ -864,10 +864,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         (acc, thisYear) => {
           const yearWithStats = DateUtils.getPrevYear(thisYear);
 
+          // The avgEff based on which the stats were calc'd (yearWithStats) and what actually happened (year)
           const avgEff =
             efficiencyAverages[`${gender}_${yearWithStats}`] ||
             efficiencyAverages.fallback;
-          //(always use yearWithStats, because in evalMode you want to compare actual against exactly what was projected)
+          const actualResultsAvgEff =
+            efficiencyAverages[`${gender}_${year}`] ||
+            efficiencyAverages.fallback;
 
           const {
             derivedDivisionStats,
@@ -890,6 +893,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             {},
             {},
             avgEff,
+            actualResultsAvgEff,
             true
           );
           acc.teamRanks = acc.teamRanks.concat(teamRanksPerYear);
