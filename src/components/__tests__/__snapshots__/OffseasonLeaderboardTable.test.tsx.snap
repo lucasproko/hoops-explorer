@@ -4481,7 +4481,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="badPredictionWarning1"
+                          id="mehPredictionWarning1"
                           placement="right"
                         >
                           This prediction is dubious - only based on [
@@ -4812,7 +4812,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="badPredictionWarning3"
+                          id="mehPredictionWarning3"
                           placement="right"
                         >
                           This prediction is dubious - only based on [
@@ -20448,7 +20448,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="badPredictionWarning1"
+                          id="mehPredictionWarning1"
                           placement="right"
                         >
                           This prediction is dubious - only based on [
@@ -33669,7 +33669,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="badPredictionWarning1"
+                          id="mehPredictionWarning1"
                           placement="right"
                         >
                           This prediction is dubious - only based on [
