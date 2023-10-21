@@ -5977,13 +5977,20 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       ] big
                        
                       misses
+                      <br />
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        (show more stats)
+                      </a>
                     </span>
                   </i>,
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  4,
-                  9,
+                  3,
+                  12,
                 ],
               },
               GenericTableRepeatHeaderRow {
@@ -8767,13 +8774,20 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       ] big
                        
                       misses
+                      <br />
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        (show more stats)
+                      </a>
                     </span>
                   </i>,
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  4,
-                  9,
+                  3,
+                  12,
                 ],
               },
               GenericTableRepeatHeaderRow {
@@ -13397,13 +13411,20 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       ] big
                        
                       misses
+                      <br />
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        (show more stats)
+                      </a>
                     </span>
                   </i>,
                 ],
                 "kind": "subheader-row",
                 "spans": Array [
-                  4,
-                  9,
+                  3,
+                  12,
                 ],
               },
               GenericTableRepeatHeaderRow {

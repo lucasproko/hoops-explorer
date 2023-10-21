@@ -175,6 +175,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     startingState.transferInOutMode || false
   );
   const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
+  const [showExtraStatsInEvalMode, setShowExtraStatsInEvalMode] =
+    useState<Boolean>(false); //TODO make this display param
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
 
@@ -574,6 +576,22 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         </OverlayTrigger>
       );
       const missOrMisses = (n: number) => (n == 1 ? "miss" : "misses");
+      const displayStatResults = (s: EvalStatSubResults) => {
+        const displayStats = (ss: EvalStatInfo) => {
+          return (
+            <span>
+              [{ss.mean.toFixed(1)}]&plusmn;[
+              {Math.sqrt(Math.abs(ss.meanSq - ss.mean * ss.mean)).toFixed(1)}]
+            </span>
+          );
+        };
+        return (
+          <span>
+            Off: {displayStats(s.off)} / Def: {displayStats(s.def)} / Net:{" "}
+            {displayStats(s.net)}
+          </span>
+        );
+      };
       return (
         <span>
           [{res.predicted.good}] predicted in T{res.rule.lowerRank} were
@@ -582,14 +600,39 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           <br />[{res.actual.good}] actually in T{res.rule.lowerRank} were
           predicted in T{res.rule.goodThresholdRank}, [{actualMisses}] big{" "}
           {missOrMisses(_.size(res.actual.bad))}
-          {
-            //TODO: tidy this up:
-            // <span>
-            //   <br />
-            //   Stats (predicted rankings): [{JSON.stringify(res.predicted.stats)}
-            //   ] Stats (actual rankings): [{JSON.stringify(res.actual.stats)}]
-            // </span>
-          }
+          <br />
+          {showExtraStatsInEvalMode ? (
+            <span>
+              <br />
+              <b>Stats vs rating deltas ([mean]&plusmn;[std-dev])</b>{" "}
+              <a
+                href="#"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setShowExtraStatsInEvalMode(false);
+                }}
+              >
+                (hide)
+              </a>
+              <br />
+              Predicted T{res.rule.goodThresholdRank},{" "}
+              {displayStatResults(res.predicted.stats)}
+              <br />
+              Actual T{res.rule.goodThresholdRank},{" "}
+              {displayStatResults(res.actual.stats)}
+              <br />
+            </span>
+          ) : (
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setShowExtraStatsInEvalMode(true);
+              }}
+            >
+              (show more stats)
+            </a>
+          )}
         </span>
       );
     };
@@ -613,7 +656,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                   !_.isUndefined(t.actualOffMargin) &&
                   !_.isUndefined(t.actualDefMargin)
                 ) {
-                  if (netRank <= ruleInfo.rule.lowerRank) {
+                  if (netRank <= ruleInfo.rule.goodThresholdRank) {
                     incorpIntoSubResults(
                       t.actualOffMargin - t.off,
                       t.actualDefMargin - t.def,
@@ -621,7 +664,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                       ruleInfo.predicted.stats
                     );
                   }
-                  if (actualNetRank <= ruleInfo.rule.lowerRank) {
+                  if (actualNetRank <= ruleInfo.rule.goodThresholdRank) {
                     incorpIntoSubResults(
                       t.actualOffMargin - t.off,
                       t.actualDefMargin - t.def,
@@ -856,8 +899,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             : [
                 GenericTableOps.buildSubHeaderRow(
                   [
-                    [<div />, 4],
-                    [<i>{subHeaderMessage}</i>, transferInOutMode ? 11 : 9],
+                    [<div />, evalMode ? 3 : 4],
+                    [
+                      <i>{subHeaderMessage}</i>,
+                      transferInOutMode ? 11 : evalMode ? 12 : 9,
+                    ],
                   ],
                   "small text-center"
                 ),
@@ -1017,6 +1063,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     sortBy,
     queryFilters,
     rostersPerTeam,
+    showExtraStatsInEvalMode,
   ]);
 
   // 3] View
