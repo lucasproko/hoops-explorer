@@ -1,13 +1,25 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from "next";
 
 import _ from "lodash";
 
-import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, savedLowVolumePlayers, teamInfo, mutableDivisionStats, mutablePlayerDivisionStats, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
+import {
+  main,
+  completeLineupLeaderboard,
+  completePlayerLeaderboard,
+  savedLineups,
+  savedPlayers,
+  savedLowVolumePlayers,
+  teamInfo,
+  mutableDivisionStats,
+  mutablePlayerDivisionStats,
+  MutableAsyncResponse,
+  setTestModeOn,
+} from "../bin/buildLeaderboards";
 
 import { sampleLineupStatsResponse } from "../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../sample-data/sampleTeamStatsResponse";
 import { samplePlayerStatsResponse } from "../sample-data/samplePlayerStatsResponse";
-import { GradeUtils } from '../utils/stats/GradeUtils';
+import { GradeUtils } from "../utils/stats/GradeUtils";
 
 const mockSampleLineupStatsResponse = sampleLineupStatsResponse;
 const mockSampleTeamStatsResponse = sampleTeamStatsResponse;
@@ -52,41 +64,55 @@ jest.mock("../pages/api/calculateOnOffPlayerStats", () =>
   })
 );
 
+// seeing intermittent: "Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Timeout - Async callback was not invoked within the 5000ms timeout specified by jest.setTimeout.Error:"
+jest.setTimeout(60000);
+
 describe("buildLeaderboards", () => {
   test("buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard", async () => {
-
     await main();
 
-    expect(completePlayerLeaderboard("test", savedPlayers, 700)).toMatchSnapshot();
-    expect(completePlayerLeaderboard("test", savedPlayers, 1)).toMatchSnapshot();
-      //(no lowvol players because RAPM isn't being calculated in this test)
+    expect(
+      completePlayerLeaderboard("test", savedPlayers, 700)
+    ).toMatchSnapshot();
+    expect(
+      completePlayerLeaderboard("test", savedPlayers, 1)
+    ).toMatchSnapshot();
+    //(no lowvol players because RAPM isn't being calculated in this test)
 
-    expect(completeLineupLeaderboard("test", savedLineups, 300)).toMatchSnapshot();
-    expect(completeLineupLeaderboard("test", savedLineups, 1)).toMatchSnapshot();
+    expect(
+      completeLineupLeaderboard("test", savedLineups, 300)
+    ).toMatchSnapshot();
+    expect(
+      completeLineupLeaderboard("test", savedLineups, 1)
+    ).toMatchSnapshot();
   });
   test("buildLeaderboards - main / low volume players", async () => {
-
     // (only works if run after test above)
 
     //(TODO actually this is just [] at the moment :( but in the future maybe will add some more players that match this)
-    expect(completePlayerLeaderboard("lowvol", savedLowVolumePlayers, 700)).toMatchSnapshot();
+    expect(
+      completePlayerLeaderboard("lowvol", savedLowVolumePlayers, 700)
+    ).toMatchSnapshot();
   });
   test("buildLeaderboards - main / team stats", async () => {
-
     // (only works if run after test above)
 
     expect(teamInfo).toMatchSnapshot();
   });
   test("buildLeaderboards - main / division team stats", async () => {
-
     // (only works if run after test above)
 
-    expect(GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats)).toMatchSnapshot();
+    expect(
+      GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats)
+    ).toMatchSnapshot();
   });
 
   test("buildLeaderboards - main / division player stats", async () => {
-
     // (only works if run after test above)
-    expect(GradeUtils.buildAndInjectPlayerDivisionStatsLUT(mutablePlayerDivisionStats)).toMatchSnapshot();
+    expect(
+      GradeUtils.buildAndInjectPlayerDivisionStatsLUT(
+        mutablePlayerDivisionStats
+      )
+    ).toMatchSnapshot();
   });
 });
