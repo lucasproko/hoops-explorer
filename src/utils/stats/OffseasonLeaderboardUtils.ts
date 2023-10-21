@@ -39,8 +39,8 @@ export type OffseasonTeamInfo = {
   goodNet: number;
   badNet: number;
   actualNet: number | undefined;
-  actualOff: number | undefined;
-  actualDef: number | undefined;
+  actualOffMargin: number | undefined; //(margin vs avg for the season under review)
+  actualDefMargin: number | undefined;
   team: string;
   conf: string;
   rosterInfo: string;
@@ -98,6 +98,9 @@ export class OffseasonLeaderboardUtils {
     teamOverrides: Record<string, TeamEditorParams>,
     rostersPerTeam: Record<string, Record<string, RosterEntry>>,
     avgEff: number,
+    /** Predicted numbers use the year before's avgEff, so move the actual results' basis away from ifEvalModeActualAvgEff
+     * TODO: also need to do this in the roster editor
+     */
     ifEvalModeActualAvgEff: number,
 
     includeTeams: boolean = false
@@ -451,11 +454,6 @@ export class OffseasonLeaderboardUtils {
           ? teamStatsPartition.actualYear[t]
           : undefined;
 
-        /** Predicted numbers use the year before's avgEff, so move the actual results' basis away from ifEvalModeActualAvgEff
-         * TODO: also need to do this in the roster editor
-         */
-        const avgEffAdj = avgEff - ifEvalModeActualAvgEff;
-
         const getLuckAdjOrRaw = (s: Statistic | undefined) =>
           (_.isNil(s?.old_value) ? s?.value : s?.old_value) || avgEff;
         const dummyTeamActualFromTeamNoLuck = actualTotalsFromTeam
@@ -466,14 +464,10 @@ export class OffseasonLeaderboardUtils {
                   getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp),
               },
               off_adj_ppp: {
-                value:
-                  getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) +
-                  avgEffAdj,
+                value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp),
               },
               def_adj_ppp: {
-                value:
-                  getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp) +
-                  avgEffAdj,
+                value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp),
               },
             }
           : undefined;
@@ -490,8 +484,12 @@ export class OffseasonLeaderboardUtils {
         const dummyTeamActualFromPlayers = actualTotalsFromPlayers
           ? {
               off_net: { value: actualTotalsFromPlayers.net },
-              off_adj_ppp: { value: actualTotalsFromPlayers.off + avgEff }, //(use avgEff on which stats were collected...)
-              def_adj_ppp: { value: actualTotalsFromPlayers.def + avgEff }, //(...to compare like for like against predicted stats)
+              off_adj_ppp: {
+                value: actualTotalsFromPlayers.off + ifEvalModeActualAvgEff,
+              }, //(use the avg efficiency on which actual stats were collected)
+              def_adj_ppp: {
+                value: actualTotalsFromPlayers.def + ifEvalModeActualAvgEff,
+              },
             }
           : undefined;
         const dummyTeamActual =
@@ -503,8 +501,20 @@ export class OffseasonLeaderboardUtils {
           goodNet: okTotals.net + goodDeltaNet,
           badNet: okTotals.net + badDeltaNet,
           actualNet: dummyTeamActual?.off_net?.value,
-          actualOff: dummyTeamActual?.off_adj_ppp?.value,
-          actualDef: dummyTeamActual?.def_adj_ppp?.value,
+          actualOffMargin: _.thru(
+            dummyTeamActual?.off_adj_ppp?.value,
+            (maybeOff) =>
+              _.isUndefined(maybeOff)
+                ? undefined
+                : maybeOff - ifEvalModeActualAvgEff
+          ),
+          actualDefMargin: _.thru(
+            dummyTeamActual?.def_adj_ppp?.value,
+            (maybeDef) =>
+              _.isUndefined(maybeDef)
+                ? undefined
+                : maybeDef - ifEvalModeActualAvgEff
+          ),
           team: t,
           conf: ConferenceToNickname[confStr] || "???",
           rosterInfo: `${okTotals.numSuperstars} / ${okTotals.numStars} / ${okTotals.numStarters} / ${okTotals.numRotation}`,

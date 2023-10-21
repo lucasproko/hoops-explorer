@@ -486,16 +486,54 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       { lowerRank: 25, goodThresholdRank: 35, badThresholdRank: 60 },
       { lowerRank: 50, goodThresholdRank: 65, badThresholdRank: 80 },
     ];
-    type EvalStatSubResults = {
+    type EvalStatInfo = {
       mean: number;
-      stddev: number;
+      meanSq: number; //(calculating it all in one pass: https://blog.demofox.org/2020/03/10/how-do-i-calculate-variance-in-1-pass/)
+    };
+    type EvalStatSubResults = {
+      samples: number;
+      net: EvalStatInfo;
+      off: EvalStatInfo;
+      def: EvalStatInfo;
+    };
+    /** a function so we can mutate it safely */
+    const emptyStats = () => ({
+      samples: 0,
+      net: { mean: 0.0, meanSq: 0.0 },
+      off: { mean: 0.0, meanSq: 0.0 },
+      def: { mean: 0.0, meanSq: 0.0 },
+    });
+    const incorpIntoSubResults = (
+      off: number,
+      def: number,
+      net: number,
+      mutableSubResults: EvalStatSubResults
+    ) => {
+      const incorpIntoStats = (
+        datum: number,
+        sample: number,
+        mutableStats: EvalStatInfo
+      ) => {
+        const lerp = (a: number, b: number, tt: number) =>
+          a * (1.0 - tt) + b * tt;
+        mutableStats.mean = lerp(mutableStats.mean, datum, 1.0 / sample);
+        mutableStats.meanSq = lerp(
+          mutableStats.meanSq,
+          datum * datum,
+          1.0 / sample
+        );
+      };
+      mutableSubResults.samples = mutableSubResults.samples + 1;
+      incorpIntoStats(net, mutableSubResults.samples, mutableSubResults.net);
+      incorpIntoStats(off, mutableSubResults.samples, mutableSubResults.off);
+      incorpIntoStats(def, mutableSubResults.samples, mutableSubResults.def);
     };
     type EvalSubResults = {
       good: number;
       bad: string[];
       //TODO: add these
       // notEnoughMins: number;
-      // stats: EvalStatSubResults;
+      stats: EvalStatSubResults;
       // statsIgnoringBad: EvalStatSubResults;
       // statsIgnoringFewMins: EvalStatSubResults;
     };
@@ -544,6 +582,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           <br />[{res.actual.good}] actually in T{res.rule.lowerRank} were
           predicted in T{res.rule.goodThresholdRank}, [{actualMisses}] big{" "}
           {missOrMisses(_.size(res.actual.bad))}
+          {
+            //TODO: tidy this up:
+            // <span>
+            //   <br />
+            //   Stats (predicted rankings): [{JSON.stringify(res.predicted.stats)}
+            //   ] Stats (actual rankings): [{JSON.stringify(res.actual.stats)}]
+            // </span>
+          }
         </span>
       );
     };
@@ -561,6 +607,29 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
 
             if (actualNetRankObj && actualNetRank) {
               _.forEach(acc, (ruleInfo) => {
+                // If we have actual results we can generate statistics on the prediction errors:
+                if (
+                  !_.isUndefined(t.actualNet) &&
+                  !_.isUndefined(t.actualOffMargin) &&
+                  !_.isUndefined(t.actualDefMargin)
+                ) {
+                  if (netRank <= ruleInfo.rule.lowerRank) {
+                    incorpIntoSubResults(
+                      t.actualOffMargin - t.off,
+                      t.actualDefMargin - t.def,
+                      t.actualNet - t.net,
+                      ruleInfo.predicted.stats
+                    );
+                  }
+                  if (actualNetRank <= ruleInfo.rule.lowerRank) {
+                    incorpIntoSubResults(
+                      t.actualOffMargin - t.off,
+                      t.actualDefMargin - t.def,
+                      t.actualNet - t.net,
+                      ruleInfo.actual.stats
+                    );
+                  }
+                }
                 if (
                   netRank <= ruleInfo.rule.lowerRank &&
                   actualNetRank <= ruleInfo.rule.goodThresholdRank
@@ -595,18 +664,18 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           [
             {
               rule: evalRuleSet[0],
-              predicted: { good: 0, bad: [] },
-              actual: { good: 0, bad: [] },
+              predicted: { good: 0, bad: [], stats: emptyStats() },
+              actual: { good: 0, bad: [], stats: emptyStats() },
             },
             {
               rule: evalRuleSet[1],
-              predicted: { good: 0, bad: [] },
-              actual: { good: 0, bad: [] },
+              predicted: { good: 0, bad: [], stats: emptyStats() },
+              actual: { good: 0, bad: [], stats: emptyStats() },
             },
             {
               rule: evalRuleSet[2],
-              predicted: { good: 0, bad: [] },
-              actual: { good: 0, bad: [] },
+              predicted: { good: 0, bad: [], stats: emptyStats() },
+              actual: { good: 0, bad: [], stats: emptyStats() },
             },
           ] as [EvalResults, EvalResults, EvalResults]
         );
