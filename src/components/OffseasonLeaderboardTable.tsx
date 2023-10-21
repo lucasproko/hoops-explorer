@@ -482,9 +482,18 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       { lowerRank: 25, goodThresholdRank: 35, badThresholdRank: 60 },
       { lowerRank: 50, goodThresholdRank: 65, badThresholdRank: 80 },
     ];
+    type EvalStatSubResults = {
+      mean: number;
+      stddev: number;
+    };
     type EvalSubResults = {
       good: number;
       bad: string[];
+      //TODO: add these
+      // notEnoughMins: number;
+      // stats: EvalStatSubResults;
+      // statsIgnoringBad: EvalStatSubResults;
+      // statsIgnoringFewMins: EvalStatSubResults;
     };
     type EvalResults = {
       rule: EvalRule;
@@ -693,6 +702,46 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           Math.abs(netRank - actualNetRank) / (evalStdDev || 1);
         //end Eval mode part 2
 
+        /** Gives an idea of when H-E didn't have enough data to work with */
+        const maybeMinutesWarning = () => {
+          if (t.playersInPrediction <= 5) {
+            const badPredictionWarning = (
+              <Tooltip id={`badPredictionWarning${netRankIn}`}>
+                This prediction is very dubious - only based on [
+                {t.playersInPrediction}] players's stats, with [
+                {t.playersInPredictionMins.toFixed(1)}] minutes assigned to [
+                {t.conf}] replacement level stats, despite unrealistically
+                maxing out the minutes of the named players.
+              </Tooltip>
+            );
+            return (
+              <OverlayTrigger placement="auto" overlay={badPredictionWarning}>
+                <sup style={{ color: "red" }}>&nbsp;(!!)</sup>
+              </OverlayTrigger>
+            );
+          } else if (
+            t.playersInPrediction == 6 ||
+            (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
+          ) {
+            const mehPredictionWarning = (
+              <Tooltip id={`badPredictionWarning${netRankIn}`}>
+                This prediction is dubious - only based on [
+                {t.playersInPrediction}] players's stats, with [
+                {t.playersInPredictionMins.toFixed(1)}] minutes assigned to [
+                {t.conf}] replacement level stats, despite possibly
+                unrealistically maxing out the minutes of the named players.
+              </Tooltip>
+            );
+            return (
+              <OverlayTrigger placement="auto" overlay={mehPredictionWarning}>
+                <sup style={{ color: "orange" }}>&nbsp;(!)</sup>
+              </OverlayTrigger>
+            );
+          } else {
+            return null;
+          }
+        };
+
         const pickSubHeaderMessage = (rank: number) => {
           if (evalResults) {
             if (rank == 10) {
@@ -766,6 +815,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                       </sup>
                     ) : null}
                     {teamLink}
+                    {maybeMinutesWarning()}
                   </span>
                 ),
                 conf: <small>{t.conf}</small>,

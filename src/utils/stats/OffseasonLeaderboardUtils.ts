@@ -31,7 +31,8 @@ export type OffseasonTeamInfo = {
   numStars: number;
   numStarters: number;
   numRotation: number;
-  nonBenchMins: number;
+  playersInPredictionMins: number;
+  playersInPrediction: number;
   off: number;
   def: number;
   net: number;
@@ -370,8 +371,10 @@ export class OffseasonLeaderboardUtils {
                 acc.numRotation = acc.numRotation + 1;
               }
               if (!TeamEditorUtils.isBenchKey(triple.key)) {
-                acc.nonBenchMins =
-                  acc.nonBenchMins + (triple.ok.off_team_poss_pct?.value || 0);
+                acc.playersInPrediction = acc.playersInPrediction + 1;
+                acc.playersInPredictionMins =
+                  acc.playersInPredictionMins +
+                  (triple.ok.off_team_poss_pct?.value || 0) * 40;
               }
             },
             {
@@ -379,7 +382,8 @@ export class OffseasonLeaderboardUtils {
               numStars: 0,
               numStarters: 0,
               numRotation: 0,
-              nonBenchMins: 0.0,
+              playersInPrediction: 0,
+              playersInPredictionMins: 0.0,
             }
           );
           return { off, def, net, ...netInfo };
