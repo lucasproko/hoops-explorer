@@ -30,6 +30,10 @@ import ConferenceSelector, {
   ConfSelectorConstants,
 } from "./shared/ConferenceSelector";
 
+// Math:
+// @ts-ignore
+import Statistics from "statistics.js";
+
 // Table building
 // Util imports
 import {
@@ -46,7 +50,6 @@ import TeamEditorTable, { TeamEditorStatsModel } from "./TeamEditorTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { DateUtils } from "../utils/DateUtils";
 import { InputGroup } from "react-bootstrap";
-import AsyncFormControl from "./shared/AsyncFormControl";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
@@ -474,19 +477,22 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       return actualNetRankObj;
     };
 
+    //TODO: move all this into OffseasonLeaderboardUtils
     // In eval mode want to see how we did:
     // teams I had in the T10 who finished T15 (/outside T30) ... teams I had outside T15 (T30) who finished in T10
     // same but T25/T35 (/outside T60)
     // same but T50/T65 (/outside T80)
+    // plus misc stats I'm playing with
     type EvalRule = {
       lowerRank: number;
       goodThresholdRank: number;
       badThresholdRank: number;
     };
-    const evalRuleSet: [EvalRule, EvalRule, EvalRule] = [
+    const evalRuleSet: [EvalRule, EvalRule, EvalRule, EvalRule] = [
       { lowerRank: 10, goodThresholdRank: 15, badThresholdRank: 30 },
       { lowerRank: 25, goodThresholdRank: 35, badThresholdRank: 60 },
       { lowerRank: 50, goodThresholdRank: 65, badThresholdRank: 80 },
+      { lowerRank: 75, goodThresholdRank: 100, badThresholdRank: 120 },
     ];
     type EvalStatInfo = {
       mean: number;
@@ -539,10 +545,16 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       // statsIgnoringBad: EvalStatSubResults;
       // statsIgnoringFewMins: EvalStatSubResults;
     };
+    type PredictedVsActualRankings = {
+      predicted: number;
+      actual: number;
+    };
     type EvalResults = {
       rule: EvalRule;
       predicted: EvalSubResults;
       actual: EvalSubResults;
+      predVsActual: PredictedVsActualRankings[];
+      predVsActualRuleOnly: PredictedVsActualRankings[];
     };
     const resultsToText = (res: EvalResults) => {
       const predictedMissesTooltip = (
@@ -592,6 +604,36 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           </span>
         );
       };
+      const buildAndDisplayRankCorrelation = (
+        rule: EvalRule,
+        l: PredictedVsActualRankings[],
+        ruleOnly: Boolean
+      ) => {
+        if (!_.isEmpty(l)) {
+          const stats = new Statistics(l, {
+            actual: "ordinal",
+            predicted: "ordinal",
+          });
+          const ruleInfo = ruleOnly
+            ? `T${1 + rule.goodThresholdRank - _.size(l)}:${
+                rule.goodThresholdRank
+              }`
+            : `T${rule.lowerRank}`;
+          const correlResults = stats.kendallsTau("actual", "predicted");
+          if (correlResults?.b?.tauB) {
+            return (
+              <span>
+                {ruleInfo} Actual vs Predicted rank similarity: [
+                {((0.5 + 0.5 * correlResults?.b?.tauB) * 100).toFixed(1)}%]
+              </span>
+            );
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
+      };
       return (
         <span>
           [{res.predicted.good}] predicted in T{res.rule.lowerRank} were
@@ -621,6 +663,18 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               Actual T{res.rule.goodThresholdRank},{" "}
               {displayStatResults(res.actual.stats)}
               <br />
+              {buildAndDisplayRankCorrelation(
+                res.rule,
+                res.predVsActual,
+                false
+              )}
+              <br />
+              {buildAndDisplayRankCorrelation(
+                res.rule,
+                res.predVsActualRuleOnly,
+                true
+              )}
+              <br />
             </span>
           ) : (
             <a
@@ -636,6 +690,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         </span>
       );
     };
+
+    //TODO: move all this into OffseasonLeaderboardUtils
     const evalResults = _.thru(evalMode, (__) => {
       if (evalMode) {
         return _.transform(
@@ -649,7 +705,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               : 0;
 
             if (actualNetRankObj && actualNetRank) {
-              _.forEach(acc, (ruleInfo) => {
+              _.forEach(acc, (ruleInfo, prevRuleIndex) => {
                 // If we have actual results we can generate statistics on the prediction errors:
                 if (
                   !_.isUndefined(t.actualNet) &&
@@ -672,6 +728,21 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                       ruleInfo.actual.stats
                     );
                   }
+                }
+                if (netRank <= ruleInfo.rule.lowerRank) {
+                  ruleInfo.predVsActual = ruleInfo.predVsActual.concat([
+                    { predicted: netRank, actual: actualNetRank },
+                  ]);
+                }
+                if (
+                  netRank <= ruleInfo.rule.goodThresholdRank &&
+                  prevRuleIndex >= 1 &&
+                  netRank > acc[prevRuleIndex - 1]!.rule.lowerRank //(ignore anything covered in previous rules)
+                ) {
+                  ruleInfo.predVsActualRuleOnly =
+                    ruleInfo.predVsActualRuleOnly.concat([
+                      { predicted: netRank, actual: actualNetRank },
+                    ]);
                 }
                 if (
                   netRank <= ruleInfo.rule.lowerRank &&
@@ -709,18 +780,31 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               rule: evalRuleSet[0],
               predicted: { good: 0, bad: [], stats: emptyStats() },
               actual: { good: 0, bad: [], stats: emptyStats() },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
             },
             {
               rule: evalRuleSet[1],
               predicted: { good: 0, bad: [], stats: emptyStats() },
               actual: { good: 0, bad: [], stats: emptyStats() },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
             },
             {
               rule: evalRuleSet[2],
               predicted: { good: 0, bad: [], stats: emptyStats() },
               actual: { good: 0, bad: [], stats: emptyStats() },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
             },
-          ] as [EvalResults, EvalResults, EvalResults]
+            {
+              rule: evalRuleSet[3],
+              predicted: { good: 0, bad: [], stats: emptyStats() },
+              actual: { good: 0, bad: [], stats: emptyStats() },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
+            },
+          ] as [EvalResults, EvalResults, EvalResults, EvalResults]
         );
       } else {
         return undefined;
@@ -728,12 +812,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     });
     //(end eval part 1)
 
+    const maxUnfilteredRows = 75;
     const useManualOrderForTeams = !_.isEmpty(queryFilterRowBreaks);
     const tableRowsPreMaybeManualSort: _.CollectionChain<
       [OffseasonTeamInfo, number]
     > = _.chain(teamRanks)
       .filter(confFilter)
-      .take(75)
+      .take(maxUnfilteredRows)
       .map((t, netRankIn) => [t, netRankIn]);
     const maybeHandSortedTeamRanks = useManualOrderForTeams
       ? tableRowsPreMaybeManualSort.sortBy(([t, __]) => {
@@ -858,6 +943,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           }
         };
 
+        const isFinalRow = netRank + 1 == maxUnfilteredRows;
         const pickSubHeaderMessage = (rank: number) => {
           if (evalResults) {
             if (rank == 10) {
@@ -866,6 +952,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               return resultsToText(evalResults[1]);
             } else if (rank == 50) {
               return resultsToText(evalResults[2]);
+            } else if (isFinalRow) {
+              //(final row)
+              return resultsToText(evalResults[3]);
             } else return "";
           } else {
             if (rank == 0) {
@@ -922,7 +1011,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           (t.out_off - t.out_def) -
           (t.nba_off - t.nba_def) -
           (t.sr_off - t.sr_def);
-        return subHeaderRows
+        return (isFinalRow ? [] : subHeaderRows)
           .concat([
             GenericTableOps.buildDataRow(
               {
@@ -1039,7 +1128,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             queryFilterRowBreaks.has(finalTeamOrder)
               ? [GenericTableOps.buildRowSeparator()]
               : []
-          );
+          )
+          .concat(isFinalRow ? _.take(subHeaderRows, 1) : []);
       })
       .value();
 

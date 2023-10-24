@@ -17799,6 +17799,51 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
               },
+              GenericTableSubHeaderRow {
+                "className": "small text-center",
+                "cols": Array [
+                  <div />,
+                  <i>
+                    <span>
+                      [
+                      2
+                      ] predicted in T
+                      75
+                       were actually in T
+                      100
+                      , [
+                      0
+                      ] big
+                       
+                      misses
+                      <br />
+                      [
+                      2
+                      ] actually in T
+                      75
+                       were predicted in T
+                      100
+                      , [
+                      0
+                      ] big
+                       
+                      misses
+                      <br />
+                      <a
+                        href="#"
+                        onClick={[Function]}
+                      >
+                        (show more stats)
+                      </a>
+                    </span>
+                  </i>,
+                ],
+                "kind": "subheader-row",
+                "spans": Array [
+                  3,
+                  12,
+                ],
+              },
             ]
           }
           tableFields={
