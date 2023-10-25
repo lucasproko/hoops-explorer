@@ -68,6 +68,7 @@
     "recharts": "^2.2.0",
     "reshake": "^1.2.1",
     "ssri": "^6.0.2",
+    "statistics.js": "^1.0.0",
     "styled-components": "^4.4.1",
     "svd-js": "^1.1.1",
     "tabletojson": "^2.0.7",
