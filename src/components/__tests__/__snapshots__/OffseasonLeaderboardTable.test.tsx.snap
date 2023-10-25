@@ -5922,61 +5922,63 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   <div />,
                   <i>
                     <span>
-                      [
-                      2
-                      ] predicted in T
-                      10
-                       were actually in T
-                      15
-                      , [
-                      <OverlayTrigger
-                        overlay={
-                          <ForwardRef
-                            id="predictedMisses10"
-                            placement="right"
-                          >
-                            Duke [2] vs [106]
-                            <br />
-                            Kentucky [4] vs [106]
-                            <br />
-                            North Carolina [5] vs [106]
-                            <br />
-                            Tennessee [6] vs [106]
-                            <br />
-                            Arizona St. [7] vs [106]
-                            <br />
-                            Gonzaga [8] vs [106]
-                            <br />
-                            LSU [9] vs [106]
-                            <br />
-                            Oklahoma St. [10] vs [106]
-                            <br />
-                          </ForwardRef>
-                        }
-                        placement="auto"
-                      >
-                        <span>
-                          8
-                          <sup>
-                            *
-                          </sup>
-                        </span>
-                      </OverlayTrigger>
-                      ] big
-                       
-                      misses
-                      <br />
-                      [
-                      2
-                      ] actually in T
-                      10
-                       were predicted in T
-                      15
-                      , [
-                      0
-                      ] big
-                       
-                      misses
+                      <span>
+                        [
+                        2
+                        ] predicted in T
+                        10
+                         were actually in T
+                        15
+                        , [
+                        <OverlayTrigger
+                          overlay={
+                            <ForwardRef
+                              id="predictedMisses10"
+                              placement="right"
+                            >
+                              Duke [2] vs [106]
+                              <br />
+                              Kentucky [4] vs [106]
+                              <br />
+                              North Carolina [5] vs [106]
+                              <br />
+                              Tennessee [6] vs [106]
+                              <br />
+                              Arizona St. [7] vs [106]
+                              <br />
+                              Gonzaga [8] vs [106]
+                              <br />
+                              LSU [9] vs [106]
+                              <br />
+                              Oklahoma St. [10] vs [106]
+                              <br />
+                            </ForwardRef>
+                          }
+                          placement="auto"
+                        >
+                          <span>
+                            8
+                            <sup>
+                              *
+                            </sup>
+                          </span>
+                        </OverlayTrigger>
+                        ] big
+                         
+                        misses
+                        <br />
+                        [
+                        2
+                        ] actually in T
+                        10
+                         were predicted in T
+                        15
+                        , [
+                        0
+                        ] big
+                         
+                        misses
+                      </span>
                       <br />
                       <a
                         href="#"
@@ -8689,91 +8691,93 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   <div />,
                   <i>
                     <span>
-                      [
-                      2
-                      ] predicted in T
-                      25
-                       were actually in T
-                      35
-                      , [
-                      <OverlayTrigger
-                        overlay={
-                          <ForwardRef
-                            id="predictedMisses25"
-                            placement="right"
-                          >
-                            Duke [2] vs [106]
-                            <br />
-                            Kentucky [4] vs [106]
-                            <br />
-                            North Carolina [5] vs [106]
-                            <br />
-                            Tennessee [6] vs [106]
-                            <br />
-                            Arizona St. [7] vs [106]
-                            <br />
-                            Gonzaga [8] vs [106]
-                            <br />
-                            LSU [9] vs [106]
-                            <br />
-                            Oklahoma St. [10] vs [106]
-                            <br />
-                            Auburn [11] vs [106]
-                            <br />
-                            Stanford [12] vs [106]
-                            <br />
-                            Texas Tech [13] vs [106]
-                            <br />
-                            Illinois [14] vs [106]
-                            <br />
-                            Southern California [15] vs [106]
-                            <br />
-                            Florida St. [16] vs [106]
-                            <br />
-                            Texas [17] vs [106]
-                            <br />
-                            Kansas [18] vs [106]
-                            <br />
-                            Indiana [19] vs [106]
-                            <br />
-                            Arkansas [20] vs [106]
-                            <br />
-                            Virginia [21] vs [106]
-                            <br />
-                            Miami (FL) [22] vs [106]
-                            <br />
-                            Arizona [23] vs [106]
-                            <br />
-                            Oregon [24] vs [106]
-                            <br />
-                            Ole Miss [25] vs [106]
-                            <br />
-                          </ForwardRef>
-                        }
-                        placement="auto"
-                      >
-                        <span>
-                          23
-                          <sup>
-                            *
-                          </sup>
-                        </span>
-                      </OverlayTrigger>
-                      ] big
-                       
-                      misses
-                      <br />
-                      [
-                      2
-                      ] actually in T
-                      25
-                       were predicted in T
-                      35
-                      , [
-                      0
-                      ] big
-                       
-                      misses
+                      <span>
+                        [
+                        2
+                        ] predicted in T
+                        25
+                         were actually in T
+                        35
+                        , [
+                        <OverlayTrigger
+                          overlay={
+                            <ForwardRef
+                              id="predictedMisses25"
+                              placement="right"
+                            >
+                              Duke [2] vs [106]
+                              <br />
+                              Kentucky [4] vs [106]
+                              <br />
+                              North Carolina [5] vs [106]
+                              <br />
+                              Tennessee [6] vs [106]
+                              <br />
+                              Arizona St. [7] vs [106]
+                              <br />
+                              Gonzaga [8] vs [106]
+                              <br />
+                              LSU [9] vs [106]
+                              <br />
+                              Oklahoma St. [10] vs [106]
+                              <br />
+                              Auburn [11] vs [106]
+                              <br />
+                              Stanford [12] vs [106]
+                              <br />
+                              Texas Tech [13] vs [106]
+                              <br />
+                              Illinois [14] vs [106]
+                              <br />
+                              Southern California [15] vs [106]
+                              <br />
+                              Florida St. [16] vs [106]
+                              <br />
+                              Texas [17] vs [106]
+                              <br />
+                              Kansas [18] vs [106]
+                              <br />
+                              Indiana [19] vs [106]
+                              <br />
+                              Arkansas [20] vs [106]
+                              <br />
+                              Virginia [21] vs [106]
+                              <br />
+                              Miami (FL) [22] vs [106]
+                              <br />
+                              Arizona [23] vs [106]
+                              <br />
+                              Oregon [24] vs [106]
+                              <br />
+                              Ole Miss [25] vs [106]
+                              <br />
+                            </ForwardRef>
+                          }
+                          placement="auto"
+                        >
+                          <span>
+                            23
+                            <sup>
+                              *
+                            </sup>
+                          </span>
+                        </OverlayTrigger>
+                        ] big
+                         
+                        misses
+                        <br />
+                        [
+                        2
+                        ] actually in T
+                        25
+                         were predicted in T
+                        35
+                        , [
+                        0
+                        ] big
+                         
+                        misses
+                      </span>
                       <br />
                       <a
                         href="#"
@@ -13276,141 +13280,143 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   <div />,
                   <i>
                     <span>
-                      [
-                      2
-                      ] predicted in T
-                      50
-                       were actually in T
-                      65
-                      , [
-                      <OverlayTrigger
-                        overlay={
-                          <ForwardRef
-                            id="predictedMisses50"
-                            placement="right"
-                          >
-                            Duke [2] vs [106]
-                            <br />
-                            Kentucky [4] vs [106]
-                            <br />
-                            North Carolina [5] vs [106]
-                            <br />
-                            Tennessee [6] vs [106]
-                            <br />
-                            Arizona St. [7] vs [106]
-                            <br />
-                            Gonzaga [8] vs [106]
-                            <br />
-                            LSU [9] vs [106]
-                            <br />
-                            Oklahoma St. [10] vs [106]
-                            <br />
-                            Auburn [11] vs [106]
-                            <br />
-                            Stanford [12] vs [106]
-                            <br />
-                            Texas Tech [13] vs [106]
-                            <br />
-                            Illinois [14] vs [106]
-                            <br />
-                            Southern California [15] vs [106]
-                            <br />
-                            Florida St. [16] vs [106]
-                            <br />
-                            Texas [17] vs [106]
-                            <br />
-                            Kansas [18] vs [106]
-                            <br />
-                            Indiana [19] vs [106]
-                            <br />
-                            Arkansas [20] vs [106]
-                            <br />
-                            Virginia [21] vs [106]
-                            <br />
-                            Miami (FL) [22] vs [106]
-                            <br />
-                            Arizona [23] vs [106]
-                            <br />
-                            Oregon [24] vs [106]
-                            <br />
-                            Ole Miss [25] vs [106]
-                            <br />
-                            Michigan St. [26] vs [106]
-                            <br />
-                            Michigan [27] vs [106]
-                            <br />
-                            Marquette [28] vs [106]
-                            <br />
-                            Florida [29] vs [106]
-                            <br />
-                            Villanova [30] vs [106]
-                            <br />
-                            Alabama [31] vs [106]
-                            <br />
-                            Xavier [32] vs [106]
-                            <br />
-                            Rutgers [33] vs [106]
-                            <br />
-                            UCLA [34] vs [106]
-                            <br />
-                            Clemson [35] vs [106]
-                            <br />
-                            Texas A&M [36] vs [106]
-                            <br />
-                            Mississippi St. [37] vs [106]
-                            <br />
-                            NC State [38] vs [106]
-                            <br />
-                            Creighton [39] vs [106]
-                            <br />
-                            Wake Forest [40] vs [106]
-                            <br />
-                            Purdue [41] vs [106]
-                            <br />
-                            Baylor [42] vs [106]
-                            <br />
-                            Iowa St. [43] vs [106]
-                            <br />
-                            West Virginia [44] vs [106]
-                            <br />
-                            Syracuse [45] vs [106]
-                            <br />
-                            DePaul [46] vs [106]
-                            <br />
-                            Georgia [47] vs [106]
-                            <br />
-                            Virginia Tech [48] vs [106]
-                            <br />
-                            Pittsburgh [49] vs [106]
-                            <br />
-                            Wisconsin [50] vs [106]
-                            <br />
-                          </ForwardRef>
-                        }
-                        placement="auto"
-                      >
-                        <span>
-                          48
-                          <sup>
-                            *
-                          </sup>
-                        </span>
-                      </OverlayTrigger>
-                      ] big
-                       
-                      misses
-                      <br />
-                      [
-                      2
-                      ] actually in T
-                      50
-                       were predicted in T
-                      65
-                      , [
-                      0
-                      ] big
-                       
-                      misses
+                      <span>
+                        [
+                        2
+                        ] predicted in T
+                        50
+                         were actually in T
+                        65
+                        , [
+                        <OverlayTrigger
+                          overlay={
+                            <ForwardRef
+                              id="predictedMisses50"
+                              placement="right"
+                            >
+                              Duke [2] vs [106]
+                              <br />
+                              Kentucky [4] vs [106]
+                              <br />
+                              North Carolina [5] vs [106]
+                              <br />
+                              Tennessee [6] vs [106]
+                              <br />
+                              Arizona St. [7] vs [106]
+                              <br />
+                              Gonzaga [8] vs [106]
+                              <br />
+                              LSU [9] vs [106]
+                              <br />
+                              Oklahoma St. [10] vs [106]
+                              <br />
+                              Auburn [11] vs [106]
+                              <br />
+                              Stanford [12] vs [106]
+                              <br />
+                              Texas Tech [13] vs [106]
+                              <br />
+                              Illinois [14] vs [106]
+                              <br />
+                              Southern California [15] vs [106]
+                              <br />
+                              Florida St. [16] vs [106]
+                              <br />
+                              Texas [17] vs [106]
+                              <br />
+                              Kansas [18] vs [106]
+                              <br />
+                              Indiana [19] vs [106]
+                              <br />
+                              Arkansas [20] vs [106]
+                              <br />
+                              Virginia [21] vs [106]
+                              <br />
+                              Miami (FL) [22] vs [106]
+                              <br />
+                              Arizona [23] vs [106]
+                              <br />
+                              Oregon [24] vs [106]
+                              <br />
+                              Ole Miss [25] vs [106]
+                              <br />
+                              Michigan St. [26] vs [106]
+                              <br />
+                              Michigan [27] vs [106]
+                              <br />
+                              Marquette [28] vs [106]
+                              <br />
+                              Florida [29] vs [106]
+                              <br />
+                              Villanova [30] vs [106]
+                              <br />
+                              Alabama [31] vs [106]
+                              <br />
+                              Xavier [32] vs [106]
+                              <br />
+                              Rutgers [33] vs [106]
+                              <br />
+                              UCLA [34] vs [106]
+                              <br />
+                              Clemson [35] vs [106]
+                              <br />
+                              Texas A&M [36] vs [106]
+                              <br />
+                              Mississippi St. [37] vs [106]
+                              <br />
+                              NC State [38] vs [106]
+                              <br />
+                              Creighton [39] vs [106]
+                              <br />
+                              Wake Forest [40] vs [106]
+                              <br />
+                              Purdue [41] vs [106]
+                              <br />
+                              Baylor [42] vs [106]
+                              <br />
+                              Iowa St. [43] vs [106]
+                              <br />
+                              West Virginia [44] vs [106]
+                              <br />
+                              Syracuse [45] vs [106]
+                              <br />
+                              DePaul [46] vs [106]
+                              <br />
+                              Georgia [47] vs [106]
+                              <br />
+                              Virginia Tech [48] vs [106]
+                              <br />
+                              Pittsburgh [49] vs [106]
+                              <br />
+                              Wisconsin [50] vs [106]
+                              <br />
+                            </ForwardRef>
+                          }
+                          placement="auto"
+                        >
+                          <span>
+                            48
+                            <sup>
+                              *
+                            </sup>
+                          </span>
+                        </OverlayTrigger>
+                        ] big
+                         
+                        misses
+                        <br />
+                        [
+                        2
+                        ] actually in T
+                        50
+                         were predicted in T
+                        65
+                        , [
+                        0
+                        ] big
+                         
+                        misses
+                      </span>
                       <br />
                       <a
                         href="#"
@@ -17805,29 +17811,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   <div />,
                   <i>
                     <span>
-                      [
-                      2
-                      ] predicted in T
-                      75
-                       were actually in T
-                      100
-                      , [
-                      0
-                      ] big
-                       
-                      misses
-                      <br />
-                      [
-                      2
-                      ] actually in T
-                      75
-                       were predicted in T
-                      100
-                      , [
-                      0
-                      ] big
-                       
-                      misses
+                      <span>
+                        [
+                        2
+                        ] predicted in T
+                        75
+                         were actually in T
+                        100
+                        , [
+                        0
+                        ] big
+                         
+                        misses
+                        <br />
+                        [
+                        2
+                        ] actually in T
+                        75
+                         were predicted in T
+                        100
+                        , [
+                        0
+                        ] big
+                         
+                        misses
+                      </span>
                       <br />
                       <a
                         href="#"
