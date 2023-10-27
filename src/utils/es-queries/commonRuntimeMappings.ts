@@ -1,53 +1,55 @@
-
 import _ from "lodash";
 
-import { CommonFilterParams, ParamDefaults } from '../FilterModels';
-import { CommonFilterType, QueryUtils } from "../QueryUtils";
+import { CommonFilterParams } from "../FilterModels";
+import { QueryUtils } from "../QueryUtils";
 
-export const commonRuntimeMappings = function(
+export const commonRuntimeMappings = function (
   params: CommonFilterParams,
-  lastDate: number, publicEfficiency: any, lookup: any
+  lastDate: number,
+  publicEfficiency: any,
+  lookup: any
 ) {
   return {
     runtime_mappings: {
       vs_high_major: {
         type: "boolean",
         script: {
-          source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 1) > 0)`
-        }
+          source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 1) > 0)`,
+        },
       },
       in_conf: {
         type: "boolean",
         script: {
-          source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 2) > 0)`
-        }
+          source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 2) > 0)`,
+        },
       },
       vs_rank: {
         type: "long",
         script: {
-          source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value >> 2) & 511)`
-        }
+          source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value >> 2) & 511)`,
+        },
       },
       vs_3p: {
         type: "double",
-        script: { //(don't have 3P% for women so add an extra guard here)
+        script: {
+          //(don't have 3P% for women so add an extra guard here)
           source: `if (0 != doc['common_lookup'].size()) {
             def _3p = (doc['common_lookup'].value >> 11)  & 1023;
             if (_3p > 0) emit(0.1*_3p);
-          }`
-        }
+          }`,
+        },
       },
       vs_adj_off: {
         type: "double",
         script: {
-          source: `if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 21) & 2047))`
-        }
+          source: `if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 21) & 2047))`,
+        },
       },
       vs_adj_def: {
         type: "double",
         script: {
-          source: `if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 32) & 2047))`
-        }
+          source: `if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 32) & 2047))`,
+        },
       },
       common_lookup: {
         type: "long",
@@ -89,16 +91,20 @@ export const commonRuntimeMappings = function(
                 emit(returnVal);
               }
             }
-          `
-          ,
-          "lang": "painless",
-          "params": {
-             "pbp_to_kp": lookup,
-             "kp_info": publicEfficiency, //(if empty then the query auto-returns true)
-             "conf": QueryUtils.getConference(params.team || "", publicEfficiency, lookup) || ""
-          }
-        }
-      }
-    }
+          `,
+          lang: "painless",
+          params: {
+            pbp_to_kp: lookup,
+            kp_info: publicEfficiency, //(if empty then the query auto-returns true)
+            conf:
+              QueryUtils.getConference(
+                params.team || "",
+                publicEfficiency,
+                lookup
+              ) || "",
+          },
+        },
+      },
+    },
   };
-}
+};
