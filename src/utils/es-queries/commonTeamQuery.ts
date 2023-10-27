@@ -195,8 +195,8 @@ export const commonTeamQuery = function (
           : [
               {
                 query_string: {
-                  query: `vs_rank:[${Number(params.minRank)} TO ${Number(
-                    params.maxRank
+                  query: `vs_rank:[${Number(params.minRank || 0)} TO ${Number(
+                    params.maxRank || 400
                   )}]`,
                 },
               },

@@ -4,6 +4,7 @@ import { DateUtils } from "./DateUtils";
 export class ParamPrefixes {
   static readonly game = "game-"; //(this is on-off / team info)
   static readonly lineup = "lineup-";
+  static readonly lineupStints = "lineupStints-";
   static readonly report = "report-"; //(not used currrently, we re-use lineup)
   static readonly roster = "roster-";
   static readonly player = "player-";
