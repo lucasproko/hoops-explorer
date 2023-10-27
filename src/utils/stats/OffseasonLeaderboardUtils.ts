@@ -83,6 +83,7 @@ export type OffseasonLeaderboardReadOnlyState = {
 
   diagnosticCompareWithRosters: boolean;
 };
+//(there are some more "down-in-the-weeds" types for evaluating predictions at the bottom of this module)
 
 /** Will dump out some possible manual overrides to be made - needs diagnosticCompareWithRosters to be set in calling component  */
 const diagnosticCompareWithRostersDebugOnly = false;
@@ -633,4 +634,340 @@ export class OffseasonLeaderboardUtils {
       defEffToRankMap,
     };
   }
+
+  //////////////////////////////////////
+
+  // Code relating to evaluating the team-based projections via various subjective and stats measures
+
+  // In eval mode want to see how we did:
+  // teams I had in the T10 who finished T15 (/outside T30) ... teams I had outside T15 (T30) who finished in T10
+  // same but T25/T35 (/outside T60)
+  // same but T50/T65 (/outside T80)
+  // plus misc stats I'm playing with
+  private static readonly evalRuleSet: [
+    EvalRule,
+    EvalRule,
+    EvalRule,
+    EvalRule
+  ] = [
+    { lowerRank: 10, goodThresholdRank: 15, badThresholdRank: 30 },
+    { lowerRank: 25, goodThresholdRank: 35, badThresholdRank: 60 },
+    { lowerRank: 50, goodThresholdRank: 65, badThresholdRank: 80 },
+    { lowerRank: 75, goodThresholdRank: 100, badThresholdRank: 120 },
+  ];
+  /** a function so we can mutate it safely */
+  private static readonly emptyStats = () => ({
+    samples: 0,
+    net: { mean: 0.0, meanSq: 0.0 },
+    off: { mean: 0.0, meanSq: 0.0 },
+    def: { mean: 0.0, meanSq: 0.0 },
+  });
+  private static readonly incorpIntoSubResults = (
+    off: number,
+    def: number,
+    net: number,
+    mutableSubResults: EvalStatSubResults
+  ) => {
+    const incorpIntoStats = (
+      datum: number,
+      sample: number,
+      mutableStats: EvalStatInfo
+    ) => {
+      const lerp = (a: number, b: number, tt: number) =>
+        a * (1.0 - tt) + b * tt;
+      mutableStats.mean = lerp(mutableStats.mean, datum, 1.0 / sample);
+      mutableStats.meanSq = lerp(
+        mutableStats.meanSq,
+        datum * datum,
+        1.0 / sample
+      );
+    };
+    mutableSubResults.samples = mutableSubResults.samples + 1;
+    incorpIntoStats(net, mutableSubResults.samples, mutableSubResults.net);
+    incorpIntoStats(off, mutableSubResults.samples, mutableSubResults.off);
+    incorpIntoStats(def, mutableSubResults.samples, mutableSubResults.def);
+  };
+
+  /** Builds a bunch of stats (see types below) on actual vs predicted results */
+  static buildEvalResults = (
+    teamRanks: OffseasonTeamInfo[],
+    dataPreMaybeFiltering: _.CollectionChain<[OffseasonTeamInfo, number]>,
+    getActualNetRank: (t: OffseasonTeamInfo) => number,
+    datasetSize: number,
+    isFilteredData: Boolean
+  ) => {
+    const middleIndex = Math.round(datasetSize / 2) - 1;
+    const [filteredRowsToEval, middleActualRank] = _.thru(
+      isFilteredData,
+      (__) => {
+        if (isFilteredData) {
+          const filteredRowsToEval = dataPreMaybeFiltering
+            .map((tt) => tt[0])
+            .value();
+          const filteredRowsToEvalSortedByActualNet = _.chain(
+            filteredRowsToEval
+          )
+            .map((t) => getActualNetRank(t))
+            .sortBy((rank) => rank)
+            .value();
+
+          return [
+            filteredRowsToEval,
+            filteredRowsToEvalSortedByActualNet[middleIndex],
+          ];
+        } else {
+          return [[], -1];
+        }
+      }
+    );
+
+    return _.transform(
+      isFilteredData ? filteredRowsToEval : teamRanks,
+      (acc, t, netRankIn) => {
+        const netRank = netRankIn + 1;
+
+        const actualNetRank = getActualNetRank(t);
+
+        if (actualNetRank > 0) {
+          _.forEach(acc, (ruleInfo, prevRuleIndex) => {
+            // If we have actual results we can generate statistics on the prediction errors:
+            if (
+              !_.isUndefined(t.actualNet) &&
+              !_.isUndefined(t.actualOffMargin) &&
+              !_.isUndefined(t.actualDefMargin)
+            ) {
+              if (
+                isFilteredData ||
+                netRank <= ruleInfo.rule.goodThresholdRank
+              ) {
+                OffseasonLeaderboardUtils.incorpIntoSubResults(
+                  t.actualOffMargin - t.off,
+                  t.actualDefMargin - t.def,
+                  t.actualNet - t.net,
+                  ruleInfo.predicted.stats
+                );
+              }
+              if (
+                !isFilteredData &&
+                actualNetRank <= ruleInfo.rule.goodThresholdRank
+              ) {
+                OffseasonLeaderboardUtils.incorpIntoSubResults(
+                  t.actualOffMargin - t.off,
+                  t.actualDefMargin - t.def,
+                  t.actualNet - t.net,
+                  ruleInfo.actual.stats
+                );
+              }
+            }
+            if (netRank <= ruleInfo.rule.lowerRank) {
+              ruleInfo.predVsActual = ruleInfo.predVsActual.concat([
+                { predicted: netRank, actual: actualNetRank },
+              ]);
+            }
+            if (isFilteredData) {
+              // In addition to T7 similarity do full conf similarity:
+              ruleInfo.predVsActualRuleOnly =
+                ruleInfo.predVsActualRuleOnly.concat([
+                  { predicted: netRank, actual: actualNetRank },
+                ]);
+
+              // Teams I thought would be good (but maybe were bad)
+              if (
+                netRank <= ruleInfo.rule.lowerRank &&
+                actualNetRank <= middleActualRank
+              ) {
+                ruleInfo.predicted.good = ruleInfo.predicted.good + 1;
+              }
+              if (
+                netRank <= ruleInfo.rule.lowerRank &&
+                actualNetRank > middleActualRank
+              ) {
+                ruleInfo.predicted.bad = ruleInfo.predicted.bad.concat([
+                  `${t.team} [${actualNetRank}], > [${middleActualRank}]`,
+                ]);
+              }
+              // Teams I thought would be bad (but maybe were good)
+              if (
+                netRank > ruleInfo.rule.lowerRank &&
+                actualNetRank > middleActualRank
+              ) {
+                ruleInfo.actual.good = ruleInfo.actual.good + 1;
+              }
+              if (
+                netRank > ruleInfo.rule.lowerRank &&
+                actualNetRank <= middleActualRank
+              ) {
+                ruleInfo.actual.bad = ruleInfo.actual.bad.concat([
+                  `${t.team} [${actualNetRank}], <= [${middleActualRank}]`,
+                ]);
+              }
+            } else {
+              if (
+                netRank <= ruleInfo.rule.goodThresholdRank &&
+                prevRuleIndex >= 1 &&
+                netRank > acc[prevRuleIndex - 1]!.rule.lowerRank //(ignore anything covered in previous rules)
+              ) {
+                ruleInfo.predVsActualRuleOnly =
+                  ruleInfo.predVsActualRuleOnly.concat([
+                    { predicted: netRank, actual: actualNetRank },
+                  ]);
+              }
+              if (
+                netRank <= ruleInfo.rule.lowerRank &&
+                actualNetRank <= ruleInfo.rule.goodThresholdRank
+              ) {
+                ruleInfo.predicted.good = ruleInfo.predicted.good + 1;
+              }
+              if (
+                actualNetRank <= ruleInfo.rule.lowerRank &&
+                netRank <= ruleInfo.rule.goodThresholdRank
+              ) {
+                ruleInfo.actual.good = ruleInfo.actual.good + 1;
+              }
+              if (
+                netRank <= ruleInfo.rule.lowerRank &&
+                actualNetRank > ruleInfo.rule.badThresholdRank
+              ) {
+                ruleInfo.predicted.bad = ruleInfo.predicted.bad.concat([
+                  `${t.team} [${netRank}] vs [${actualNetRank}]`,
+                ]);
+              }
+              if (
+                actualNetRank <= ruleInfo.rule.lowerRank &&
+                netRank > ruleInfo.rule.badThresholdRank
+              ) {
+                ruleInfo.actual.bad = ruleInfo.actual.bad.concat([
+                  `${t.team} [${netRank}] vs [${actualNetRank}]`,
+                ]);
+              }
+            }
+          });
+        }
+      },
+      isFilteredData
+        ? [
+            {
+              rule: {
+                lowerRank: middleIndex + 1,
+                goodThresholdRank: datasetSize,
+                badThresholdRank: datasetSize,
+              },
+              predicted: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              actual: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
+            },
+          ]
+        : ([
+            {
+              rule: OffseasonLeaderboardUtils.evalRuleSet[0],
+              predicted: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              actual: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
+            },
+            {
+              rule: OffseasonLeaderboardUtils.evalRuleSet[1],
+              predicted: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              actual: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
+            },
+            {
+              rule: OffseasonLeaderboardUtils.evalRuleSet[2],
+              predicted: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              actual: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
+            },
+            {
+              rule: OffseasonLeaderboardUtils.evalRuleSet[3],
+              predicted: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              actual: {
+                good: 0,
+                bad: [],
+                stats: OffseasonLeaderboardUtils.emptyStats(),
+              },
+              predVsActual: [],
+              predVsActualRuleOnly: [],
+            },
+          ] as [EvalResults, EvalResults, EvalResults, EvalResults])
+    );
+  };
 }
+
+// Types modelling all the prediction eval logic:
+
+/** Used to calculate mean and variance of a stat via a one-pass algo */
+export type EvalStatInfo = {
+  mean: number;
+  meanSq: number; //(calculating it all in one pass: https://blog.demofox.org/2020/03/10/how-do-i-calculate-variance-in-1-pass/)
+};
+/** Some interesting stats in evaluating predictions */
+export type EvalStatSubResults = {
+  samples: number;
+  net: EvalStatInfo;
+  off: EvalStatInfo;
+  def: EvalStatInfo;
+};
+/** Determines one of the eval criteria for prediction vs reality */
+export type EvalRule = {
+  lowerRank: number;
+  goodThresholdRank: number;
+  badThresholdRank: number;
+};
+/** Evalulating predicted vs actual based on how many predicted results were close to what happened */
+export type EvalSubResults = {
+  good: number;
+  bad: string[];
+  stats: EvalStatSubResults;
+};
+/** Used to compare the similarity between 2 rankings */
+export type PredictedVsActualRankings = {
+  predicted: number;
+  actual: number;
+};
+/** Criteria and results for predicted vs actual results */
+export type EvalResults = {
+  rule: EvalRule;
+  predicted: EvalSubResults;
+  actual: EvalSubResults;
+  predVsActual: PredictedVsActualRankings[];
+  predVsActualRuleOnly: PredictedVsActualRankings[];
+};
