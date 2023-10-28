@@ -1,47 +1,52 @@
 // Google analytics:
-import { initGA, logPageView } from '../utils/GoogleAnalytics';
+import { initGA, logPageView } from "../utils/GoogleAnalytics";
 
 // React imports:
-import React, { useState, useEffect, useRef } from 'react';
-import Router, { useRouter } from 'next/router';
-import Link from 'next/link';
+import React, { useState, useEffect, useRef } from "react";
+import Router from "next/router";
 
 // Next imports:
-import { NextPage } from 'next';
+import { NextPage } from "next";
 
 // Lodash:
 import _ from "lodash";
 
 // Bootstrap imports:
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // App components:
-import GameFilter from '../components/GameFilter';
-import { ParamDefaults, ParamPrefixes, GameFilterParams, LineupFilterParams, MatchupFilterParams } from '../utils/FilterModels';
-import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
-import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
-import { LineupStatsModel } from '../components/LineupStatsTable';
-import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
-import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
-import Footer from '../components/shared/Footer';
-import HeaderBar from '../components/shared/HeaderBar';
+import {
+  ParamPrefixes,
+  GameFilterParams,
+  LineupFilterParams,
+  MatchupFilterParams,
+} from "../utils/FilterModels";
+import { TeamStatsModel } from "../components/TeamStatsTable";
+import { RosterStatsModel } from "../components/RosterStatsTable";
+import { LineupStatsModel } from "../components/LineupStatsTable";
+import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard";
+import Footer from "../components/shared/Footer";
+import HeaderBar from "../components/shared/HeaderBar";
 
 // Utils:
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { StatModels } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
-import { HistoryManager } from '../utils/HistoryManager';
-import { ClientRequestCache } from '../utils/ClientRequestCache';
-import MatchupFilter from '../components/MatchupFilter';
-import PlayerImpactChart from '../components/PlayerImpactChart';
-import { buildOppoFilter } from '../components/MatchupFilter';
+import { HistoryManager } from "../utils/HistoryManager";
+import { ClientRequestCache } from "../utils/ClientRequestCache";
+import MatchupFilter from "../components/MatchupFilter";
+import PlayerImpactChart from "../components/PlayerImpactChart";
+import { buildOppoFilter } from "../components/MatchupFilter";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import LineupStintsChart from "../components/LineupStintsChart";
+import { LineupStintInfo } from "../utils/StatModels";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
-
-  useEffect(() => { // Set up GA
-    if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
+  useEffect(() => {
+    // Set up GA
+    if (process.env.NODE_ENV === "production" && typeof window !== undefined) {
       if (!gaInited) {
         initGA();
         setGaInited(true);
@@ -52,31 +57,72 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   // Team Stats interface
 
-  const [ gaInited, setGaInited ] = useState(false);
-  const [ dataEvent, setDataEvent ] = useState({
-    teamStatsA: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
-    rosterStatsA: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
+  const [gaInited, setGaInited] = useState(false);
+  const [dataEvent, setDataEvent] = useState({
+    teamStatsA: {
+      on: StatModels.emptyTeam(),
+      off: StatModels.emptyTeam(),
+      baseline: StatModels.emptyTeam(),
+      global: StatModels.emptyTeam(),
+    } as TeamStatsModel,
+    rosterStatsA: {
+      on: [],
+      off: [],
+      baseline: [],
+      global: [],
+    } as RosterStatsModel,
     lineupStatsA: { lineups: [] } as LineupStatsModel,
 
-    teamStatsB: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
-    rosterStatsB: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
+    teamStatsB: {
+      on: StatModels.emptyTeam(),
+      off: StatModels.emptyTeam(),
+      baseline: StatModels.emptyTeam(),
+      global: StatModels.emptyTeam(),
+    } as TeamStatsModel,
+    rosterStatsB: {
+      on: [],
+      off: [],
+      baseline: [],
+      global: [],
+    } as RosterStatsModel,
     lineupStatsB: { lineups: [] } as LineupStatsModel,
+    lineupStintsA: [] as LineupStintInfo[],
+    lineupStintsB: [] as LineupStintInfo[],
   });
 
-  const  injectStats = (
-    lineupStatsA: LineupStatsModel, teamStatsA: TeamStatsModel, rosterStatsA: RosterStatsModel, 
-    lineupStatsB: LineupStatsModel, teamStatsB: TeamStatsModel, rosterStatsB: RosterStatsModel, 
+  const injectStats = (
+    lineupStatsA: LineupStatsModel,
+    teamStatsA: TeamStatsModel,
+    rosterStatsA: RosterStatsModel,
+    lineupStatsB: LineupStatsModel,
+    teamStatsB: TeamStatsModel,
+    rosterStatsB: RosterStatsModel,
+    lineupStintsA: LineupStintInfo[],
+    lineupStintsB: LineupStintInfo[]
   ) => {
-    setDataEvent({teamStatsA, rosterStatsA, lineupStatsA, rosterStatsB, teamStatsB, lineupStatsB});
-  }
+    setDataEvent({
+      teamStatsA,
+      rosterStatsA,
+      lineupStatsA,
+      rosterStatsB,
+      teamStatsB,
+      lineupStatsB,
+      lineupStintsA,
+      lineupStintsB,
+    });
+  };
 
   // Game and Lineup filters
 
-  const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "" : window.location.search;
+  const allParams =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? ""
+      : window.location.search;
 
-  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname
+  const server =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? "server"
+      : window.location.hostname;
 
   // Some cache management easter eggs, for development:
   if (allParams.indexOf("__clear_cache__") >= 0) {
@@ -88,31 +134,40 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     HistoryManager.clearHistory();
   }
 
-  const [ matchupFilterParams, setMatchupFilterParams ] = useState(
+  const [matchupFilterParams, setMatchupFilterParams] = useState(
     UrlRouting.removedSavedKeys(allParams) as MatchupFilterParams
-  )
+  );
   const matchupFilterParamsRef = useRef<MatchupFilterParams>();
   matchupFilterParamsRef.current = matchupFilterParams;
 
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupUrl(params);
   }
-  const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
+  const [shouldForceReload, setShouldForceReload] = useState(0 as number);
 
   const onMatchupFilterParamsChange = (rawParams: MatchupFilterParams) => {
-
     /** We're going to want to remove the manual options if the year changes */
-    const yearTeamGenderChange = (rawParams: MatchupFilterParams, currParams: MatchupFilterParams) => {
-      return (rawParams.year != currParams.year) ||
-              (rawParams.gender != currParams.gender) ||
-              (rawParams.team != currParams.team);
-    }
+    const yearTeamGenderChange = (
+      rawParams: MatchupFilterParams,
+      currParams: MatchupFilterParams
+    ) => {
+      return (
+        rawParams.year != currParams.year ||
+        rawParams.gender != currParams.gender ||
+        rawParams.team != currParams.team
+      );
+    };
 
     // Omit all the defaults
-    const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      !rawParams.oppoTeam ? [ 'oppoTeam' ] : [],
-    ]));
-    if (!_.isEqual(params, matchupFilterParamsRef.current)) { //(to avoid recursion)
+    const params = _.omit(
+      rawParams,
+      _.flatten([
+        // omit all defaults
+        !rawParams.oppoTeam ? ["oppoTeam"] : [],
+      ])
+    );
+    if (!_.isEqual(params, matchupFilterParamsRef.current)) {
+      //(to avoid recursion)
 
       const href = getRootUrl(params);
       const as = href;
@@ -124,7 +179,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       Router.replace(href, as, { shallow: true });
       setMatchupFilterParams(params); //(to ensure the new params are included in links)
     }
-  }
+  };
 
   // View
 
@@ -140,71 +195,124 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   /** Only rebuild the table if the data changes */
   const chart = React.useMemo(() => {
-    return  <GenericCollapsibleCard minimizeMargin={true} title="Player Impact Chart" helpLink={maybeShowDocs()}>
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Player Impact Chart"
+        helpLink={maybeShowDocs()}
+      >
         <Col xs={12} className="text-center d-flex justify-content-center">
-      <PlayerImpactChart
-        startingState={matchupFilterParamsRef.current || {}}
-        opponent={buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""}
-        dataEvent={dataEvent}
-        onChangeState={onMatchupFilterParamsChange}
-      />
-      </Col>
-    </GenericCollapsibleCard>
-  }, [ dataEvent ]);
+          <PlayerImpactChart
+            startingState={matchupFilterParamsRef.current || {}}
+            opponent={
+              buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""
+            }
+            dataEvent={dataEvent}
+            onChangeState={onMatchupFilterParamsChange}
+          />
+        </Col>
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent]);
+  const lineupStintTable = FeatureFlags.isActiveWindow(
+    FeatureFlags.lineupStintsMode
+  )
+    ? React.useMemo(() => {
+        return (
+          <GenericCollapsibleCard
+            minimizeMargin={true}
+            title="Lineup Stints"
+            helpLink={maybeShowDocs()}
+          >
+            <Col xs={12} className="text-center d-flex justify-content-center">
+              <LineupStintsChart
+                startingState={matchupFilterParamsRef.current || {}}
+                opponent={
+                  buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team ||
+                  ""
+                }
+                dataEvent={dataEvent}
+                onChangeState={onMatchupFilterParamsChange}
+              />
+            </Col>
+          </GenericCollapsibleCard>
+        );
+      }, [dataEvent])
+    : null;
 
   const gameParams = (team: string, subFor?: string): GameFilterParams => ({
     team,
-    minRank: "1", maxRank: "400",
+    minRank: "1",
+    maxRank: "400",
     gender: matchupFilterParams.gender,
     year: matchupFilterParams.year,
-    baseQuery: subFor ? 
-      (matchupFilterParams.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+    baseQuery: subFor
+      ? (matchupFilterParams.baseQuery || "").replace(
+          `"${team}"`,
+          `"${subFor}"`
+        )
       : matchupFilterParams.baseQuery,
     showRoster: true,
     calcRapm: true,
-    showExpanded: true
+    showExpanded: true,
   });
   const lineupParams = (team: string, subFor?: string): LineupFilterParams => ({
     team,
-    minRank: "1", maxRank: "400",
+    minRank: "1",
+    maxRank: "400",
     gender: matchupFilterParams.gender,
     year: matchupFilterParams.year,
     minPoss: "0",
-    baseQuery: subFor ? 
-      (matchupFilterParams.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
+    baseQuery: subFor
+      ? (matchupFilterParams.baseQuery || "").replace(
+          `"${team}"`,
+          `"${subFor}"`
+        )
       : matchupFilterParams.baseQuery,
   });
-  const opponentName = buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team;
+  const opponentName = buildOppoFilter(
+    matchupFilterParams.oppoTeam || ""
+  )?.team;
 
-  return <Container>
-    <Row>
-      <Col xs={12} className="text-center">
-        <h3>CBB Match-up Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
-      </Col>
-    </Row>
-    <Row>
-      <HeaderBar
-        common={matchupFilterParams}
-        thisPage={ParamPrefixes.gameInfo}
+  return (
+    <Container>
+      <Row>
+        <Col xs={12} className="text-center">
+          <h3>
+            CBB Match-up Analysis Tool{" "}
+            <span className="badge badge-pill badge-info">BETA!</span>
+          </h3>
+        </Col>
+      </Row>
+      <Row>
+        <HeaderBar
+          common={matchupFilterParams}
+          thisPage={ParamPrefixes.gameInfo}
         />
-    </Row>
-    <Row>
-      <GenericCollapsibleCard
-        minimizeMargin={false}
-        title="Team and Game Filter"
-        summary={HistoryManager.gameReportFilterSummary(matchupFilterParams)}
-      >
-        <MatchupFilter
-          onStats={injectStats}
-          startingState={matchupFilterParams}
-          onChangeState={onMatchupFilterParamsChange}
-        />
-      </GenericCollapsibleCard>
-    </Row>
-    <Row>
-      {chart}
-    </Row>
-    <Footer year={matchupFilterParams.year} gender={matchupFilterParams.gender} server={server}/>
-  </Container>;
-}
+      </Row>
+      <Row>
+        <GenericCollapsibleCard
+          minimizeMargin={false}
+          title="Team and Game Filter"
+          summary={HistoryManager.gameReportFilterSummary(matchupFilterParams)}
+        >
+          <MatchupFilter
+            onStats={injectStats}
+            startingState={matchupFilterParams}
+            onChangeState={onMatchupFilterParamsChange}
+          />
+        </GenericCollapsibleCard>
+      </Row>
+      <Row>{chart}</Row>
+      {FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsMode) ? (
+        <Row>{lineupStintTable}</Row>
+      ) : null}
+      <Footer
+        year={matchupFilterParams.year}
+        gender={matchupFilterParams.gender}
+        server={server}
+      />
+    </Container>
+  );
+};
 export default MatchupAnalyzerPage;

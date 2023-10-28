@@ -13,6 +13,7 @@ export class ParamPrefixes {
 export type ParamPrefixesType =
   | "game-"
   | "lineup-"
+  | "lineupStints-"
   | "report-"
   | "roster-"
   | "player-"

@@ -314,6 +314,60 @@ export type RosterStatsByCode = Record<PlayerCode, IndivStatSet>;
 
 //////////////////////////////////////
 
+/* Lineup stints */
+
+type LineupStintScoreInfo = {
+  scored: number;
+  allowed: number;
+};
+
+type LineupStintTeamStat = {
+  total: number;
+  early?: number;
+  orb?: number;
+};
+
+type LineupStintTeamShot = {
+  made?: LineupStintTeamStat;
+  attempts?: LineupStintTeamStat;
+  ast?: LineupStintTeamStat;
+  counts?: LineupStintTeamStat;
+};
+
+type LineupStintTeamStats = {
+  num_possessions: number;
+  pts: number;
+  plus_minus: number;
+  player_shot_info: Record<string, number>; //(these are weirdly formatted, use with care)
+} & Record<string, LineupStintTeamStat | LineupStintTeamStat>;
+
+export type LineupStintInfo = {
+  players: PlayerCodeId[];
+  lineup_id: string;
+  start_min: number;
+  end_min: number;
+  duration_mins: number;
+  duration: number;
+  team: {
+    team: string;
+    year: string;
+  };
+  opponent: {
+    team: string;
+    year: string;
+  };
+  score_info: {
+    start_diff: number;
+    end_diff: number;
+    start: LineupStintScoreInfo;
+    end: LineupStintScoreInfo;
+  };
+  team_stats: LineupStintTeamStats;
+  opponent_stats: LineupStintTeamStats;
+};
+
+//////////////////////////////////////
+
 /** Useful constants */
 export class StatModels {
   static emptyIndiv: () => IndivStatSet = () => {
