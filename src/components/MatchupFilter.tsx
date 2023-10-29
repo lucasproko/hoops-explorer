@@ -361,10 +361,12 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       StatModels.emptyTeam();
     const rosterInfoB = jsonResps?.[7]?.roster;
     globalTeamB.roster = rosterInfoB;
-    const lineupStintsA =
-      jsonResps?.[8]?.responses?.[0]?.hits?.hits || ([] as LineupStintInfo[]);
-    const lineupStintsB =
-      jsonResps?.[8]?.responses?.[0]?.hits?.hits || ([] as LineupStintInfo[]);
+    const lineupStintsA = (
+      jsonResps?.[8]?.responses?.[0]?.hits?.hits || []
+    ).map((p: any) => p._source) as LineupStintInfo[];
+    const lineupStintsB = (
+      jsonResps?.[9]?.responses?.[0]?.hits?.hits || []
+    ).map((p: any) => p._source) as LineupStintInfo[];
 
     const fromLineups = (lineupJson: any) => ({
       lineups: lineupJson?.aggregations?.lineups?.buckets,

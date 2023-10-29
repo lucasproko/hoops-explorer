@@ -21,7 +21,4 @@ export class FeatureFlags {
 
   /** For team editor - showing the caliber of a player */
   static readonly playerCaliberMode = false;
-
-  /** Including a visual representation of lineup stints in a game */
-  static readonly lineupStintsMode = false;
 }

@@ -214,31 +214,29 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     );
   }, [dataEvent]);
-  const lineupStintTable = FeatureFlags.isActiveWindow(
-    FeatureFlags.lineupStintsMode
-  )
-    ? React.useMemo(() => {
-        return (
-          <GenericCollapsibleCard
-            minimizeMargin={true}
-            title="Lineup Stints"
-            helpLink={maybeShowDocs()}
-          >
-            <Col xs={12} className="text-center d-flex justify-content-center">
-              <LineupStintsChart
-                startingState={matchupFilterParamsRef.current || {}}
-                opponent={
-                  buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team ||
-                  ""
-                }
-                dataEvent={dataEvent}
-                onChangeState={onMatchupFilterParamsChange}
-              />
-            </Col>
-          </GenericCollapsibleCard>
-        );
-      }, [dataEvent])
-    : null;
+  const lineupStintTable = React.useMemo(() => {
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Lineup Stints (WIP)"
+        helpLink={maybeShowDocs()}
+      >
+        <Col
+          xs={12}
+          className="w-100 text-center d-flex justify-content-center"
+        >
+          <LineupStintsChart
+            startingState={matchupFilterParamsRef.current || {}}
+            opponent={
+              buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""
+            }
+            dataEvent={dataEvent}
+            onChangeState={onMatchupFilterParamsChange}
+          />
+        </Col>
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent]);
 
   const gameParams = (team: string, subFor?: string): GameFilterParams => ({
     team,
@@ -304,9 +302,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         </GenericCollapsibleCard>
       </Row>
       <Row>{chart}</Row>
-      {FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsMode) ? (
-        <Row>{lineupStintTable}</Row>
-      ) : null}
+      <Row>{lineupStintTable}</Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}
