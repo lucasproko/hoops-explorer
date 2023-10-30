@@ -1,6 +1,6 @@
 // React imports:
 import _ from "lodash";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { CbbColors } from "../utils/CbbColors";
 
 // Bootstrap imports:
@@ -17,11 +17,7 @@ import {
   ParamDefaults,
 } from "../utils/FilterModels";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
-import { LineupStintInfo, PureStatSet } from "../utils/StatModels";
-import { defaultRapmConfig, RapmInfo } from "../utils/stats/RapmUtils";
-import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
-import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
+import { LineupStintInfo, PlayerCode } from "../utils/StatModels";
 import GenericTable, {
   GenericTableColProps,
   GenericTableOps,
@@ -30,6 +26,10 @@ import GenericTable, {
 import { LineupStatsModel } from "./LineupStatsTable";
 import { RosterStatsModel } from "./RosterStatsTable";
 import { TeamStatsModel } from "./TeamStatsTable";
+import {
+  GameAnalysisUtils,
+  GameStatsCache,
+} from "../utils/tables/GameAnalysisUtils";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -68,15 +68,77 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     lineupStintsB,
   } = dataEvent;
 
+  // Model
+
+  const commonParams = getCommonFilterParams(startingState);
+  const genderYearLookup = `${commonParams.gender}_${commonParams.year}`;
+  const avgEfficiency =
+    efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+
+  // Luck:
+  const [adjustForLuck, setAdjustForLuck] = useState(
+    _.isNil(startingState.onOffLuck)
+      ? ParamDefaults.defaultOnOffLuckAdjust
+      : startingState.onOffLuck
+  );
+  const [luckConfig, setLuckConfig] = useState(
+    _.isNil(startingState.luck)
+      ? ParamDefaults.defaultLuckConfig
+      : startingState.luck
+  );
+
+  // RAPM building
+
+  const [cachedStats, setCachedStats] = useState<{
+    aStats?: GameStatsCache;
+    bStats?: GameStatsCache;
+  }>({});
+  useEffect(() => {
+    setCachedStats({});
+  }, [dataEvent, adjustForLuck]);
+  useEffect(() => {
+    if (_.isEmpty(cachedStats) && !_.isEmpty(lineupStatsA.lineups)) {
+      const aStats = GameAnalysisUtils.buildGameRapmStats(
+        commonParams.team!,
+        commonParams,
+        lineupStatsA,
+        teamStatsA,
+        rosterStatsA,
+        adjustForLuck,
+        luckConfig,
+        avgEfficiency
+      );
+
+      const bStats = GameAnalysisUtils.buildGameRapmStats(
+        opponent,
+        commonParams,
+        lineupStatsB,
+        teamStatsB,
+        rosterStatsB,
+        adjustForLuck,
+        luckConfig,
+        avgEfficiency
+      );
+      setCachedStats({
+        aStats,
+        bStats,
+      });
+    }
+  }, [cachedStats]);
+
+  // Lineup building model
+
   const toStintsPerPlayer = (
     stints: LineupStintInfo[]
-  ): Record<string, LineupStintInfo[]> => {
+  ): Record<PlayerCode, LineupStintInfo[]> => {
     return _.chain(stints)
       .flatMap((l) => {
-        return l.players.map((p) => [p.code, l] as [string, LineupStintInfo]);
+        return l.players.map(
+          (p) => [p.code, l] as [PlayerCode, LineupStintInfo]
+        );
       })
-      .groupBy((idStint: [string, LineupStintInfo]) => idStint[0])
-      .mapValues((idStints: [string, LineupStintInfo][]) =>
+      .groupBy((idStint: [PlayerCode, LineupStintInfo]) => idStint[0])
+      .mapValues((idStints: [PlayerCode, LineupStintInfo][]) =>
         idStints.map((idStint) => idStint[1])
       )
       .value();
@@ -144,9 +206,15 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   );
 
   const buildTable = (
+    team: string,
     lineupStints: LineupStintInfo[],
-    players: Record<string, StintClump[]>
+    players: Record<string, StintClump[]>,
+    playerInfoCache: GameStatsCache | undefined
   ): [Record<string, GenericTableColProps>, GenericTableRow[]] => {
+    const starterCodes = new Set(
+      _.first(lineupStints)?.players?.map((p) => p.code) || []
+    );
+
     const { tableCols, gameBreakRowInfo } = _.transform(
       lineupStints,
       (acc, stint, index) => {
@@ -217,14 +285,123 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         GenericTableOps.defaultRowSpanCalculator,
         "",
         GenericTableOps.htmlFormatter,
-        50
+        75
       ),
       sep0: GenericTableOps.addColSeparator(),
       ...tableCols,
     };
 
+    const sortedPlayerObjs = _.chain(players)
+      .map((clumps, playerCode) => {
+        const playerKey =
+          _.find(
+            clumps[0].stints[0].players,
+            (player) => player.code == playerCode
+          )?.id || "?????";
+
+        const playerCols = _.transform(
+          clumps,
+          (acc, clump) => {
+            const clumpStart = clump.stints[0].start_min;
+            const clumpEnd = _.last(clump.stints)!.end_min;
+            const clumpPlusMinus = _.sum(
+              clump.stints.map((c) => c.team_stats.plus_minus)
+            );
+            const clumpNumPoss =
+              _.sum(clump.stints.map((c) => c.team_stats.num_possessions)) || 1;
+
+            const stintsRemaining = _.drop(lineupStints, acc.currStint);
+            const startStint = _.thru(
+              _.findIndex(
+                stintsRemaining,
+                (stint) => stint.start_min >= clumpStart
+              ),
+              (index) =>
+                index < 0 ? _.size(lineupStints) : index + acc.currStint
+            );
+            if (startStint >= 0) {
+              const endStint = _.thru(
+                _.findIndex(
+                  stintsRemaining,
+                  (stint) => stint.end_min >= clumpEnd
+                ),
+                (index) =>
+                  index < 0 ? _.size(lineupStints) : index + acc.currStint
+              );
+
+              //   console.log(
+              //     `${playerCode}: ${clumpStart}:${clumpEnd} found ${startStint}(${lineupStints[startStint].start_min})` +
+              //       ` vs ${startStint}(${lineupStints[endStint]?.end_min}`
+              //   );
+
+              for (var ii = startStint; ii <= endStint; ++ii) {
+                acc.cols[`stint${ii}`] = (
+                  <hr
+                    style={{
+                      height: "3px",
+                      background:
+                        CbbColors.off_diff20_p100_redGreyGreen(clumpPlusMinus),
+                    }}
+                  />
+                );
+              }
+              acc.currStint = endStint + 1;
+            } else return undefined; //(can complete the transform)
+          },
+          { currStint: 0, cols: {} as Record<string, any> }
+        ).cols;
+
+        const addFormattingToPlayers = (playerCode: string) => {
+          const maybeUnderline = (s: string) =>
+            starterCodes.has(s) ? <u>{s}</u> : s;
+          if (!playerInfoCache) {
+            return <b>{maybeUnderline(playerCode)}</b>;
+          } else {
+            const tooltip = (
+              <Tooltip id={`playerInfo${playerCode}`}>
+                {GameAnalysisUtils.buildPlayerTooltipContents(
+                  team,
+                  playerInfoCache.playerInfo[playerKey] || {},
+                  _.find(
+                    playerInfoCache.rapmInfo?.enrichedPlayers,
+                    (p) => p.playerCode == playerCode
+                  )!,
+                  playerInfoCache.positionInfo[playerKey]
+                )}
+              </Tooltip>
+            );
+
+            const maybePos =
+              playerInfoCache.positionInfo[playerKey]?.posClass || "??";
+            return (
+              <span style={{ whiteSpace: "nowrap" }}>
+                <sup>
+                  <small>{maybePos} </small>
+                </sup>
+                <OverlayTrigger placement="auto" overlay={tooltip}>
+                  <b>{maybeUnderline(playerCode)}</b>
+                </OverlayTrigger>
+              </span>
+            );
+          }
+        };
+
+        return {
+          title: addFormattingToPlayers(playerCode),
+          pct_poss:
+            playerInfoCache?.playerInfo?.[playerKey]?.off_team_poss_pct?.value,
+          ...playerCols,
+        };
+      })
+      .sortBy((playerObj) => -(playerObj.pct_poss || 0))
+      .value();
+
     const tableRows = (
       [
+        GenericTableOps.buildSubHeaderRow(
+          [[<b>{team}:</b>, _.size(tableDefs)]],
+          "small text-center"
+        ),
         GenericTableOps.buildDataRow(
           {
             title: <i>Game score</i>,
@@ -267,64 +444,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         ),
       ] as GenericTableRow[]
     ).concat(
-      _.map(players, (clumps, key) => {
-        const playerCols = _.transform(
-          clumps,
-          (acc, clump) => {
-            const clumpStart = clump.stints[0].start_min;
-            const clumpEnd = _.last(clump.stints)!.end_min;
-            const clumpPlusMinus = _.sum(
-              clump.stints.map((c) => c.team_stats.plus_minus)
-            );
-            const clumpNumPoss =
-              _.sum(clump.stints.map((c) => c.team_stats.num_possessions)) || 1;
-
-            const stintsRemaining = _.drop(lineupStints, acc.currStint);
-            const startStint = _.thru(
-              _.findIndex(
-                stintsRemaining,
-                (stint) => stint.start_min >= clumpStart
-              ),
-              (index) =>
-                index < 0 ? _.size(lineupStints) : index + acc.currStint
-            );
-            if (startStint >= 0) {
-              const endStint = _.thru(
-                _.findIndex(
-                  stintsRemaining,
-                  (stint) => stint.end_min >= clumpEnd
-                ),
-                (index) =>
-                  index < 0 ? _.size(lineupStints) : index + acc.currStint
-              );
-
-              //   console.log(
-              //     `${key}: ${clumpStart}:${clumpEnd} found ${startStint}(${lineupStints[startStint].start_min})` +
-              //       ` vs ${startStint}(${lineupStints[endStint]?.end_min}`
-              //   );
-
-              for (var ii = startStint; ii <= endStint; ++ii) {
-                acc.cols[`stint${ii}`] = (
-                  <hr
-                    style={{
-                      height: "3px",
-                      background:
-                        CbbColors.off_diff20_p100_redGreyGreen(clumpPlusMinus),
-                    }}
-                  />
-                );
-              }
-              acc.currStint = endStint + 1;
-            } else return undefined; //(can complete the transform)
-          },
-          { currStint: 0, cols: {} as Record<string, any> }
-        ).cols;
-
+      sortedPlayerObjs.map((playerObj) => {
         return GenericTableOps.buildDataRow(
-          {
-            title: key,
-            ...playerCols,
-          },
+          playerObj,
           GenericTableOps.defaultFormatter,
           GenericTableOps.defaultCellMeta
         );
@@ -333,8 +455,18 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     return [tableDefs, tableRows];
   };
 
-  const [tableDefsA, tableRowsA] = buildTable(lineupStintsA, playersA);
-  const [tableDefsB, tableRowsB] = buildTable(lineupStintsB, playersB);
+  const [tableDefsA, tableRowsA] = buildTable(
+    commonParams.team!,
+    lineupStintsA,
+    playersA,
+    cachedStats.aStats
+  );
+  const [tableDefsB, tableRowsB] = buildTable(
+    opponent,
+    lineupStintsB,
+    playersB,
+    cachedStats.bStats
+  );
 
   return (
     <Container>
