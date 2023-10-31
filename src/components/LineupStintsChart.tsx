@@ -357,17 +357,20 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           if (!playerInfoCache) {
             return <b>{maybeUnderline(playerCode)}</b>;
           } else {
+            const maybeRapmInfo = _.find(
+              playerInfoCache.rapmInfo?.enrichedPlayers,
+              (p) => p.playerCode == playerCode
+            );
             const tooltip = (
               <Tooltip id={`playerInfo${playerCode}`}>
-                {GameAnalysisUtils.buildPlayerTooltipContents(
-                  team,
-                  playerInfoCache.playerInfo[playerKey] || {},
-                  _.find(
-                    playerInfoCache.rapmInfo?.enrichedPlayers,
-                    (p) => p.playerCode == playerCode
-                  )!,
-                  playerInfoCache.positionInfo[playerKey]
-                )}
+                {maybeRapmInfo
+                  ? GameAnalysisUtils.buildPlayerTooltipContents(
+                      team,
+                      playerInfoCache.playerInfo[playerKey] || {},
+                      maybeRapmInfo,
+                      playerInfoCache.positionInfo[playerKey]
+                    )
+                  : "(loading)"}
               </Tooltip>
             );
 
