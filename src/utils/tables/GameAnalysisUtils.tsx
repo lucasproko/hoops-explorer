@@ -126,7 +126,7 @@ export class GameAnalysisUtils {
   };
 
   /** Build part of stint/clump lineup stat overlay */
-  static buildStintStats = (
+  static renderStintStats = (
     stints: LineupStintInfo[],
     teamNotOppo: Boolean
   ) => {

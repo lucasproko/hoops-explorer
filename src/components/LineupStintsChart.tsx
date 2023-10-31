@@ -336,14 +336,68 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               //   );
 
               for (var ii = startStint; ii <= endStint; ++ii) {
+                const stint = lineupStints[ii];
+                const tooltip = (
+                  <Tooltip id={`stint${ii}`}>
+                    <b>CLUMP</b>: [
+                    {GameAnalysisUtils.buildDurationStr(
+                      clump.stints[0].start_min
+                    )}
+                    ]-[
+                    {GameAnalysisUtils.buildDurationStr(
+                      _.last(clump.stints)!.end_min
+                    )}
+                    ]
+                    <br />
+                    Score: [{clump.stints[0].score_info.start.scored}:
+                    {clump.stints[0].score_info.start.allowed}]-[
+                    {_.last(clump.stints)!.score_info.end.scored}:
+                    {_.last(clump.stints)!.score_info.end.allowed}
+                    ]
+                    <br />
+                    <br />
+                    Team Stats:
+                    <br />
+                    {GameAnalysisUtils.renderStintStats(clump.stints, true)}
+                    <br />
+                    Opponent Stats:
+                    <br />
+                    {GameAnalysisUtils.renderStintStats(clump.stints, false)}
+                    <br />
+                    <br />
+                    <b>STINT</b>: [
+                    {GameAnalysisUtils.buildDurationStr(stint.start_min)}]-[
+                    {GameAnalysisUtils.buildDurationStr(stint.end_min)}]
+                    <br />
+                    Score: [{stint.score_info.start.scored}:
+                    {stint.score_info.start.allowed}]-[
+                    {stint.score_info.end.scored}:{stint.score_info.end.allowed}
+                    ]
+                    <br />
+                    <br />
+                    Team Stats:
+                    <br />
+                    {GameAnalysisUtils.renderStintStats([stint], true)}
+                    <br />
+                    Opponent Stats:
+                    <br />
+                    {GameAnalysisUtils.renderStintStats([stint], false)}
+                    <br />
+                  </Tooltip>
+                );
+
                 acc.cols[`stint${ii}`] = (
-                  <hr
-                    style={{
-                      height: "3px",
-                      background:
-                        CbbColors.off_diff20_p100_redGreyGreen(clumpPlusMinus),
-                    }}
-                  />
+                  <OverlayTrigger placement="auto" overlay={tooltip}>
+                    <hr
+                      style={{
+                        height: "3px",
+                        background:
+                          CbbColors.off_diff20_p100_redGreyGreen(
+                            clumpPlusMinus
+                          ),
+                      }}
+                    />
+                  </OverlayTrigger>
                 );
               }
               acc.currStint = endStint + 1;
