@@ -113,6 +113,11 @@ export class GameAnalysisUtils {
     };
   };
 
+  /** Builds format mm:ss  */
+  static buildDurationStr = (min: number) => {
+    return `${Math.floor(min).toFixed(0)}"${((min % 1) * 60).toFixed(0)}`;
+  };
+
   /** Gives a bunch of info about a player's performance in the game */
   static buildPlayerTooltipContents = (
     seriesId: string,

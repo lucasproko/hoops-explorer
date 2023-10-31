@@ -223,7 +223,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           acc.tableCols[fieldName] = new GenericTableColProps(
             "",
             "",
-            1,
+            0.1,
             false,
             GenericTableOps.htmlFormatter
           );
@@ -232,7 +232,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             (breakNum) => {
               const tooltip = (
                 <Tooltip id={`gameBreak${breakNum}`}>
-                  Break at [{gameBreaks[breakNum]!.toFixed(1)}]
+                  [{GameAnalysisUtils.buildDurationStr(gameBreaks[breakNum])}]
+                  break
                   <br />
                   Score: [{stint.score_info.start.scored}:
                   {stint.score_info.start.allowed}]
@@ -266,7 +267,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         acc.tableCols[`stint${index}`] = new GenericTableColProps(
           "",
           ``,
-          Math.floor(stint.duration_mins * 10),
+          stint.duration_mins,
           false,
           GenericTableOps.htmlFormatter
         );
@@ -285,7 +286,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         GenericTableOps.defaultRowSpanCalculator,
         "",
         GenericTableOps.htmlFormatter,
-        75
+        7.5
       ),
       sep0: GenericTableOps.addColSeparator(),
       ...tableCols,
@@ -415,8 +416,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                 const scoreDiffAtEnd = stint.score_info.end_diff;
                 const tooltip = (
                   <Tooltip id={`gameScore${stintNum}`}>
-                    Stint: [{stint.start_min.toFixed(1)}]-[
-                    {stint.end_min.toFixed(0)}]
+                    Stint: [
+                    {GameAnalysisUtils.buildDurationStr(stint.start_min)}]-[
+                    {GameAnalysisUtils.buildDurationStr(stint.end_min)}]
                     <br />
                     Score: [{stint.score_info.start.scored}:
                     {stint.score_info.start.allowed}]-[
