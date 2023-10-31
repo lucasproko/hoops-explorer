@@ -316,30 +316,30 @@ export type RosterStatsByCode = Record<PlayerCode, IndivStatSet>;
 
 /* Lineup stints */
 
-type LineupStintScoreInfo = {
+export type LineupStintScoreInfo = {
   scored: number;
   allowed: number;
 };
 
-type LineupStintTeamStat = {
+export type LineupStintTeamStat = {
   total: number;
   early?: number;
   orb?: number;
 };
 
-type LineupStintTeamShot = {
+export type LineupStintTeamShot = {
   made?: LineupStintTeamStat;
   attempts?: LineupStintTeamStat;
   ast?: LineupStintTeamStat;
   counts?: LineupStintTeamStat;
 };
 
-type LineupStintTeamStats = {
+export type LineupStintTeamStats = {
   num_possessions: number;
   pts: number;
   plus_minus: number;
   player_shot_info: Record<string, number>; //(these are weirdly formatted, use with care)
-} & Record<string, LineupStintTeamStat | LineupStintTeamStat>;
+} & Record<string, LineupStintTeamShot | LineupStintTeamStat>;
 
 export type LineupStintInfo = {
   players: PlayerCodeId[];

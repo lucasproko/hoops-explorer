@@ -14,6 +14,13 @@ import {
   PureStatSet,
 } from "../StatModels";
 import { PlayerOnOffStats } from "../stats/LineupUtils";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import {
+  LineupStintInfo,
+  LineupStintTeamStats,
+  LineupStintTeamStat,
+  LineupStintTeamShot,
+} from "../StatModels";
 
 export type GameStatsCache = {
   playerInfo: Record<PlayerId, IndivStatSet>;
@@ -116,6 +123,105 @@ export class GameAnalysisUtils {
   /** Builds format mm:ss  */
   static buildDurationStr = (min: number) => {
     return `${Math.floor(min).toFixed(0)}"${((min % 1) * 60).toFixed(0)}`;
+  };
+
+  /** Build part of stint/clump lineup stat overlay */
+  static buildStintStats = (
+    stints: LineupStintInfo[],
+    teamNotOppo: Boolean
+  ) => {
+    const toStats = (stats: LineupStintTeamStats) =>
+      stats as Record<string, LineupStintTeamStat>;
+    const toShots = (stats: LineupStintTeamStats) =>
+      stats as Record<string, LineupStintTeamShot>;
+    const {
+      _3pm,
+      _3pa,
+      _2pmidm,
+      _2pmida,
+      _2primm,
+      _2prima,
+      ftm,
+      fta,
+      assists,
+      tos,
+      orbs,
+      drbs,
+      stls,
+    } = _.transform(
+      stints,
+      (acc, stint) => {
+        const info = teamNotOppo ? stint.team_stats : stint.opponent_stats;
+
+        acc._3pm = acc._3pm + (toShots(info)?.fg_3p?.made?.total || 0);
+        acc._3pa = acc._3pa + (toShots(info)?.fg_3p?.attempts?.total || 0);
+        acc._2pmidm = acc._2pmidm + (toShots(info)?.fg_mid?.made?.total || 0);
+        acc._2pmida =
+          acc._2pmida + (toShots(info)?.fg_mid?.attempts?.total || 0);
+        acc._2primm = acc._2primm + (toShots(info)?.fg_rim?.made?.total || 0);
+        acc._2prima =
+          acc._2prima + (toShots(info)?.fg_rim?.attempts?.total || 0);
+        acc.ftm = acc.ftm + (toShots(info)?.ft?.made?.total || 0);
+        acc.fta = acc.fta + (toShots(info)?.ft?.attempts?.total || 0);
+        acc.assists = acc.assists + (toStats(info)?.assist?.total || 0);
+        acc.tos = acc.tos + (toStats(info)?.to?.total || 0);
+        acc.orbs = acc.orbs + (toStats(info)?.orb?.total || 0);
+        acc.drbs = acc.drbs + (toStats(info)?.drb?.total || 0);
+        acc.stls = acc.stls + (toStats(info)?.stl?.total || 0);
+      },
+      {
+        _3pm: 0,
+        _3pa: 0,
+        _2pmidm: 0,
+        _2pmida: 0,
+        _2primm: 0,
+        _2prima: 0,
+        ftm: 0,
+        fta: 0,
+        assists: 0,
+        tos: 0,
+        orbs: 0,
+        drbs: 0,
+        stls: 0,
+      }
+    );
+
+    //TODO render stl
+    return (
+      <div>
+        <span>
+          3P=[
+          <b>
+            {_3pm}/{_3pa}
+          </b>
+          ] mid=[
+          <b>
+            {_2pmidm}/{_2pmida}
+          </b>
+          ]
+        </span>
+        <br />
+        <span>
+          rim=[
+          <b>
+            {_2primm}/{_2prima}
+          </b>
+          ] FT=[
+          <b>
+            {ftm}/{fta}
+          </b>
+          ]
+        </span>
+        <br />
+        <span>
+          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>]
+        </span>
+        <br />
+        <span>
+          ORBs=[<b>{orbs}</b>] DRBs=[<b>{drbs}</b>]
+        </span>
+      </div>
+    );
   };
 
   /** Gives a bunch of info about a player's performance in the game */
