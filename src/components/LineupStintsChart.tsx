@@ -87,6 +87,12 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       : startingState.luck
   );
 
+  // Highlight lineup in hovered over stint:
+
+  const [activeLineup, setActiveLineup] = useState<Set<string> | undefined>(
+    undefined
+  );
+
   // RAPM building
 
   const [cachedStats, setCachedStats] = useState<{
@@ -387,7 +393,18 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                 );
 
                 acc.cols[`stint${ii}`] = (
-                  <OverlayTrigger placement="auto" overlay={tooltip}>
+                  <OverlayTrigger
+                    placement="auto"
+                    overlay={tooltip}
+                    onEntered={() => {
+                      setActiveLineup(
+                        new Set(stint.players.map((p) => `${team}${p.code}`))
+                      );
+                    }}
+                    onExited={() => {
+                      setActiveLineup(undefined);
+                    }}
+                  >
                     <hr
                       style={{
                         height: "3px",
@@ -437,7 +454,17 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                   <small>{maybePos} </small>
                 </sup>
                 <OverlayTrigger placement="auto" overlay={tooltip}>
-                  <b>{maybeUnderline(playerCode)}</b>
+                  <b
+                    style={{
+                      opacity: activeLineup
+                        ? activeLineup.has(`${team}${playerCode}`)
+                          ? "100%"
+                          : "50%"
+                        : "100%",
+                    }}
+                  >
+                    {maybeUnderline(playerCode)}
+                  </b>
                 </OverlayTrigger>
               </span>
             );
