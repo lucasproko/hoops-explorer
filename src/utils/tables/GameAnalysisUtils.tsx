@@ -122,7 +122,9 @@ export class GameAnalysisUtils {
 
   /** Builds format mm:ss  */
   static buildDurationStr = (min: number) => {
-    return `${Math.floor(min).toFixed(0)}"${((min % 1) * 60).toFixed(0)}`;
+    return `${Math.floor(min).toFixed(0)}"${((min % 1) * 60)
+      .toFixed(0)
+      .padStart(2, "0")}`;
   };
 
   /** Build part of stint/clump lineup stat overlay */
@@ -214,7 +216,7 @@ export class GameAnalysisUtils {
         </span>
         <br />
         <span>
-          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>]
+          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>] STLs=[<b>{stls}</b>]
         </span>
         <br />
         <span>
