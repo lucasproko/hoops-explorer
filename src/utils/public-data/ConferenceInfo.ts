@@ -1,8 +1,7 @@
-
 import _ from "lodash";
 
 export const NonP6Nick = "MM";
-export const P6Nick = "P6"
+export const P6Nick = "P6";
 
 /** Note these use the KenPom naming conventions */
 export const ConferenceToNickname: Record<string, string> = {
@@ -42,30 +41,47 @@ export const ConferenceToNickname: Record<string, string> = {
   "West Coast Conference": "WCC",
 };
 
-export const HighMajorConfs: Set<String> = new Set(
-  [ "Atlantic Coast Conference", "Big 12 Conference", "Big East Conference", "Big Ten Conference", "Pac 10 Conference", "Pac 12 Conference", "Southeastern Conference"]
+export const HighMajorConfs: Set<String> = new Set([
+  "Atlantic Coast Conference",
+  "Big 12 Conference",
+  "Big East Conference",
+  "Big Ten Conference",
+  "Pac 10 Conference",
+  "Pac 12 Conference",
+  "Southeastern Conference",
+]);
+
+export const NicknameToConference: Record<string, string> = _.chain(
+  ConferenceToNickname
+)
+  .toPairs()
+  .map((kv) => [kv[1], kv[0]])
+  .fromPairs()
+  .value();
+
+export const Power6ConferencesNicks = ["B1G", "ACC", "BE", "B12", "P12", "SEC"];
+export const Power6Conferences = Power6ConferencesNicks.map(
+  (c) => NicknameToConference[c] || c
 );
 
-export const NicknameToConference: Record<string, string> =
-  _.chain(ConferenceToNickname).toPairs().map(kv => [ kv[1], kv[0] ]).fromPairs().value();
+export const NonP6Conferences = _.chain(ConferenceToNickname)
+  .flatMap((confNick, conf) =>
+    confNick == NonP6Nick || confNick == P6Nick || HighMajorConfs.has(conf)
+      ? []
+      : [conf]
+  )
+  .value();
 
-export const Power6ConferencesNicks = [ "B1G", "ACC", "BE", "B12", "P12", "SEC" ];
-export const Power6Conferences = Power6ConferencesNicks.map(c => NicknameToConference[c] || c);
-
-export const NonP6Conferences = 
-  _.chain(ConferenceToNickname).flatMap((confNick, conf) => 
-    (confNick == NonP6Nick || confNick == P6Nick || HighMajorConfs.has(conf)) ? [] : [ conf ]).value();
-
-/** high / midhigh / mid / midlow / low doesn't seem quite granular enough in practice, plus  */    
+/** high / midhigh / mid / midlow / low doesn't seem quite granular enough in practice, plus  */
 export const confAdjustments = {
-  "horizon": -1, //"mid" seems way too high
+  horizon: -1, //"mid" seems way too high
 };
 export const getConfAdjustment = (confStr: string, year: string) => {
   if (confStr == "horizon") {
     return -1; //"mid" seems way too high
   } else if (confStr == "atlanticsun") {
     return +0.5; //"low" seems harsh, has often been better than that
-  }else if (confStr == "wac") {
+  } else if (confStr == "wac") {
     return +0.5; //"midlow" seems too low, has been mad but also in mid territory often
   } else if (confStr == "americaeast") {
     return +0.5; //"low" seems too low, pretty close to horizon
@@ -83,20 +99,19 @@ export const getConfAdjustment = (confStr: string, year: string) => {
     return -0.5; //"mid", one of the weaker mid majors
   }
   return 0;
-}
+};
 
-/** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in 
+/** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in
  * off-season projects correct
-*/
+ */
 export const latestConfChanges = {
-
   /**
    * h/t Jun 2022: https://medium.com/run-it-back-with-zach/conference-realignment-all-the-moves-coming-in-2022-25-130ef706da55
    */
   "2022/23": {
     // Sun Belt
     "James Madison": "Sun Belt Conference", //(CAA)
-    "Marshall": "Sun Belt Conference", //(C-USA)
+    Marshall: "Sun Belt Conference", //(C-USA)
     "Old Dominion": "Sun Belt Conference", //(C-USA)
     "Southern Miss.": "Sun Belt Conference", //(C-USA)
 
@@ -105,15 +120,14 @@ export const latestConfChanges = {
     // (Queens from D2)
 
     // Western Athletic Conference
-    
+
     "Southern Utah": "Western Athletic Conference", //(bigsky)
     "UT Arlington": "Western Athletic Conference", //(sunbelt)
     // 2023?: "UIW": "Western Athletic Conference", //(southland)
 
-
     // Colonial Athletic Association
-    "Hampton": "Colonial Athletic Association", //(bigsouth)
-    "Monmouth": "Colonial Athletic Association", //(maac)
+    Hampton: "Colonial Athletic Association", //(bigsouth)
+    Monmouth: "Colonial Athletic Association", //(maac)
     "N.C. A&T": "Colonial Athletic Association", //(bigsouth)
     "Stony Brook": "Colonial Athletic Association", //(americaeast)
 
@@ -125,15 +139,15 @@ export const latestConfChanges = {
     // (Lindenwood, Southern Indiana from D2)
 
     // Missouri Valley Conference
-    "Belmont": "Missouri Valley Conference", //(ovc)
-    "UIC": "Missouri Valley Conference", //(horizon)
+    Belmont: "Missouri Valley Conference", //(ovc)
+    UIC: "Missouri Valley Conference", //(horizon)
     "Murray St.": "Missouri Valley Conference", //(ovc)
 
     //Metro Atlantic Athletic Conference
     "Mount St. Mary's": "Metro Atlantic Athletic Conference", //(nec)
 
     // America East Conference
-    "Bryant": "America East Conference", //(nec)
+    Bryant: "America East Conference", //(nec)
 
     // Northeast Conference
     // (Stonehill from D2)
@@ -141,41 +155,37 @@ export const latestConfChanges = {
 
   /** https://sportsenthusiasts.net/2022/07/02/college-sports-realignment-for-2023-and-beyond/ */
   "2023/24": {
-
     //AAC
-    "Charlotte": "American Athletic Conference", //(conferenceusa)
+    Charlotte: "American Athletic Conference", //(conferenceusa)
     "Fla. Atlantic": "American Athletic Conference", //(conferenceusa)
     "North Texas": "American Athletic Conference", //(conferenceusa)
-    "Rice": "American Athletic Conference", //(conferenceusa)
-    "UAB": "American Athletic Conference", //(conferenceusa)
-    "UTSA": "American Athletic Conference", //(conferenceusa)
+    Rice: "American Athletic Conference", //(conferenceusa)
+    UAB: "American Athletic Conference", //(conferenceusa)
+    UTSA: "American Athletic Conference", //(conferenceusa)
 
     //B12
-    "Cincinnati": "Big 12 Conference", //(american)
-    "Houston": "Big 12 Conference",  //(american)
-    "UCF": "Big 12 Conference",  //(american)
-    "BYU": "Big 12 Conference",  //(wcc)
+    Cincinnati: "Big 12 Conference", //(american)
+    Houston: "Big 12 Conference", //(american)
+    UCF: "Big 12 Conference", //(american)
+    BYU: "Big 12 Conference", //(wcc)
 
     // Conference USA
     "Jacksonville St.": "Conference USA", //(asun)
     "Kenneshaw St.": "Conference USA", //(asun)
-    "Liberty": "Conference USA", //(asun)
+    Liberty: "Conference USA", //(asun)
     "New Mexico St.": "Conference USA", //(wac)
     "Sam Houston": "Conference USA", //(wac)
 
     // CAA
-    "Campbell": "Colonial Athletic Association",
-    "N.C. A&T": "Colonial Athletic Association",
+    Campbell: "Colonial Athletic Association", //(big south)
 
     // Western Athletic Conference
-    
+
     //Southland
     "Lamar University": "Southland Conference", //(wac - actually were in southland but i missed it)
 
     // Dropping out of D1:
-    "Hartford": "NCAA D3",
+    Hartford: "NCAA D3",
     "St. Francis Brooklyn": "No NCAA",
-
-  }
-
+  },
 } as Record<string, Record<string, string>>;
