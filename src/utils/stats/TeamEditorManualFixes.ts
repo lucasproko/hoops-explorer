@@ -541,6 +541,9 @@ export class TeamEditorManualFixes {
           Campbell: {
             superSeniorsReturning: new Set(["DeDunn::"]),
           },
+          California: {
+            leftTeam: ["JaTyson:Texas Tech:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
+          },
           "Central Mich.": {
             superSeniorsReturning: new Set(["BrTaylor::"]),
           },
@@ -621,6 +624,9 @@ export class TeamEditorManualFixes {
           "George Washington": {
             superSeniorsReturning: new Set(["JaBishop::"]),
           },
+          "George Mason": {
+            leftTeam: ["JaHaynes:ETSU:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
+          },
           "Georgia Tech": {
             superSeniorsReturning: new Set(["LaTerry::"]),
           },
@@ -676,6 +682,9 @@ export class TeamEditorManualFixes {
           },
           "LMU (CA)": {
             superSeniorsReturning: new Set(["KeLeaupepe::"]),
+          },
+          LSU: {
+            leftTeam: ["JaCook:Tulane:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
           },
           Maryland: {
             leftTeam: ["ChStephens:LMU (CA):"], //(injury expected to be all year)
@@ -927,6 +936,9 @@ export class TeamEditorManualFixes {
           "Virginia Tech": {
             superSeniorsReturning: new Set(["HuCattoor::"]),
           },
+          "Wake Forest": {
+            leftTeam: ["EfReid:Gonzaga:", "EfReid:LSU:", "BoKlintman::"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
+          },
           Washington: {
             superSeniorsReturning: new Set(["KeBrooks::"]),
           },
@@ -934,6 +946,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["DjRodman::"]),
           },
           "West Virginia": {
+            leftTeam: ["RaBattle:Montana St.:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
             superSeniorsReturning: new Set(["JoPerez::", "JoToussaint::"]), //(might be transferring out, leave here in case they return)
           },
           "Western Caro.": {

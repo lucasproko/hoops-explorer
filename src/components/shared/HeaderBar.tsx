@@ -1,92 +1,120 @@
 // React imports:
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 // Lodash:
 import _ from "lodash";
 
 // Bootstrap imports:
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import Dropdown from 'react-bootstrap/Dropdown';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Dropdown from "react-bootstrap/Dropdown";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 // Utils:
-import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, MatchupFilterParams, TeamLeaderboardParams, TeamEditorParams } from '../../utils/FilterModels';
+import {
+  getCommonFilterParams,
+  getCommonLboardFilterParams,
+  ParamPrefixes,
+  CommonFilterParams,
+  GameFilterParams,
+  LineupFilterParams,
+  TeamReportFilterParams,
+  LineupLeaderboardParams,
+  PlayerLeaderboardParams,
+  MatchupFilterParams,
+  TeamLeaderboardParams,
+  TeamEditorParams,
+} from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
-import { HistoryManager } from '../../utils/HistoryManager';
-import { DateUtils } from '../../utils/DateUtils';
+import { HistoryManager } from "../../utils/HistoryManager";
+import { DateUtils } from "../../utils/DateUtils";
 
 type Props = {
-  thisPage: string,
-  common: CommonFilterParams,
-  override?: boolean //(for testing)
+  thisPage: string;
+  common: CommonFilterParams;
+  override?: boolean; //(for testing)
 };
 
 /** Dropdowns for controlling navigation */
 const StyledDropdown = React.forwardRef<HTMLAnchorElement>((props, ref) => (
-    <a
-      href=""
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        (props as any).onClick(e);
-      }}
-    >
-        {props.children}
-        &nbsp;&nbsp;<FontAwesomeIcon icon={faAngleDown} />
-    </a>
+  <a
+    href=""
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      (props as any).onClick(e);
+    }}
+  >
+    {props.children}
+    &nbsp;&nbsp;
+    <FontAwesomeIcon icon={faAngleDown} />
+  </a>
 ));
 
-const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override}) => {
-
+const HeaderBar: React.FunctionComponent<Props> = ({
+  thisPage,
+  common,
+  override,
+}) => {
   const isLeaderboard = _.endsWith(thisPage, "_leaderboard");
 
-  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname;
+  const server =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? "server"
+      : window.location.hostname;
 
-  const hasMidMajors = (!common.year || (common.year >= DateUtils.yearFromWhichAllMenD1Imported));
+  const hasMidMajors =
+    !common.year || common.year >= DateUtils.yearFromWhichAllMenD1Imported;
 
   const currYearLboard = common.year || DateUtils.mostRecentYearWithLboardData;
-  const commonWithCorrectedYearLboard = (currYearLboard <= DateUtils.mostRecentYearWithLboardData) ? common : {
-    ...common,
-    year: DateUtils.mostRecentYearWithLboardData
-  };
+  const commonWithCorrectedYearLboard =
+    currYearLboard <= DateUtils.mostRecentYearWithLboardData
+      ? common
+      : {
+          ...common,
+          year: DateUtils.mostRecentYearWithLboardData,
+        };
 
   // Lineup Leaderboard
   function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low") {
     return UrlRouting.getLineupLeaderboardUrl(
-      getCommonLboardFilterParams(commonWithCorrectedYearLboard, tier) as LineupLeaderboardParams
+      getCommonLboardFilterParams(
+        commonWithCorrectedYearLboard,
+        tier
+      ) as LineupLeaderboardParams
     );
   }
   // Player Leaderboard
   function getPlayerLeaderboardUrl(tier: "High" | "Medium" | "Low" | "All") {
     return UrlRouting.getPlayerLeaderboardUrl(
-      getCommonLboardFilterParams(commonWithCorrectedYearLboard, tier) as PlayerLeaderboardParams
+      getCommonLboardFilterParams(
+        commonWithCorrectedYearLboard,
+        tier
+      ) as PlayerLeaderboardParams
     );
   }
   function getPlayerLeaderboardTrackingUrl(trackingList: string) {
-    return UrlRouting.getPlayerLeaderboardUrl(
-      {
-        ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
-        gender: "Men",
-        tier: "All",
-        year: DateUtils.mostRecentYearWithLboardData,
-        filter: trackingList
-      }
-    );
+    return UrlRouting.getPlayerLeaderboardUrl({
+      ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
+      gender: "Men",
+      tier: "All",
+      year: DateUtils.mostRecentYearWithLboardData,
+      filter: trackingList,
+    });
   }
   function getTeamLeaderboardUrl() {
     const currYear = common.year || DateUtils.mostRecentYearWithData;
-    if (DateUtils.isSeasonFinished(currYear) ? 
-          (currYear >= DateUtils.mostRecentYearWithData) : (currYear > DateUtils.mostRecentYearWithData)
+    if (
+      DateUtils.isSeasonFinished(currYear)
+        ? currYear >= DateUtils.mostRecentYearWithData
+        : currYear > DateUtils.mostRecentYearWithData
     ) {
       return UrlRouting.getOffseasonLeaderboard({});
     } else {
@@ -103,29 +131,36 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     return UrlRouting.getGameUrl(
       UrlRouting.removedSavedKeys(
         HistoryManager.getLastQuery(ParamPrefixes.game) || ""
-      ) as GameFilterParams, {});
+      ) as GameFilterParams,
+      {}
+    );
   }
   function getLastLineupUrl() {
     return UrlRouting.getLineupUrl(
       UrlRouting.removedSavedKeys(
         HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
-      ) as LineupFilterParams, {});
+      ) as LineupFilterParams,
+      {}
+    );
   }
   function getLastReportUrl() {
     return UrlRouting.getTeamReportUrl(
       UrlRouting.removedSavedKeys(
         HistoryManager.getLastQuery(ParamPrefixes.report) || ""
-      ) as TeamReportFilterParams);
+      ) as TeamReportFilterParams
+    );
   }
   // From baseline query
   function getBaseGameUrl() {
     return UrlRouting.getGameUrl(
-      getCommonFilterParams(common) as GameFilterParams, {}
+      getCommonFilterParams(common) as GameFilterParams,
+      {}
     );
   }
   function getBaseLineupUrl() {
     return UrlRouting.getLineupUrl(
-      getCommonFilterParams(common) as LineupFilterParams, {}
+      getCommonFilterParams(common) as LineupFilterParams,
+      {}
     );
   }
   function getBaseReportUrl() {
@@ -134,87 +169,155 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
 
-//TODO sort all these out
+  //TODO sort all these out
 
   const describeConfs = (tier: "High" | "Medium" | "Low" | "All") => {
     switch (tier) {
-      case "High": return "P6 and friends, or any T150-better team";
-      case "Medium": return "Mid majors, must be T275-better team"
-      case "Low": return "Bottom 7 conferences, or any T250-worse team";
-      case "All": return "All conferences, can get slow";
+      case "High":
+        return "P6 and friends, or any T150-better team";
+      case "Medium":
+        return "Mid majors, must be T275-better team";
+      case "Low":
+        return "Bottom 7 conferences, or any T250-worse team";
+      case "All":
+        return "All conferences, can get slow";
     }
     return "";
   };
   const lineupLeaderboardTooltip = (tier: "High" | "Medium" | "Low") => {
-    return <Tooltip id={"lineupLeaderboardTooltip" + tier}>Go to the (luck adjusted) Lineup T400 Leaderboard page ({describeConfs(tier)})</Tooltip>
+    return (
+      <Tooltip id={"lineupLeaderboardTooltip" + tier}>
+        Go to the (luck adjusted) Lineup T400 Leaderboard page (
+        {describeConfs(tier)})
+      </Tooltip>
+    );
   };
-  const playerLeaderboardTooltip = (tier: "High" | "Medium" | "Low" | "All") => {
-    return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard page ({describeConfs(tier)})</Tooltip>
+  const playerLeaderboardTooltip = (
+    tier: "High" | "Medium" | "Low" | "All"
+  ) => {
+    return (
+      <Tooltip id={"playerLeaderboardTooltip" + tier}>
+        Go to the (luck adjusted) Player Leaderboard page ({describeConfs(tier)}
+        )
+      </Tooltip>
+    );
   };
-  const playerLeaderboardTransferTooltip = (tier: "High" | "Medium" | "Low" | "All") => {
-    return <Tooltip id={"playerLeaderboardTransferTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard page, transfers only ({describeConfs(tier)})</Tooltip>
+  const playerLeaderboardTransferTooltip = (
+    tier: "High" | "Medium" | "Low" | "All"
+  ) => {
+    return (
+      <Tooltip id={"playerLeaderboardTransferTooltip" + tier}>
+        Go to the (luck adjusted) Player Leaderboard page, transfers only (
+        {describeConfs(tier)})
+      </Tooltip>
+    );
   };
   const teamLeaderboardTooltip = (
-    <Tooltip id={"teamLeaderboardTooltip"}>Build your own team leaderboard out of various resume and quality based metrics!</Tooltip>
+    <Tooltip id={"teamLeaderboardTooltip"}>
+      Build your own team leaderboard out of various resume and quality based
+      metrics!
+    </Tooltip>
   );
   const teamBuilderTooltip = (
-    <Tooltip id={"teamBuilderTooltip"}>Build your own roster out of returning players, transfers (or steals!), and the bench!</Tooltip>
+    <Tooltip id={"teamBuilderTooltip"}>
+      Build your own roster out of returning players, transfers (or steals!),
+      and the bench!
+    </Tooltip>
   );
   // const playerLeaderboardTooltipNba2021 = (
   //   <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
   // );
   const playerLeaderboardTooltipNba2022 = (
-    <Tooltip id="playerLeaderboardTooltipNba2022">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for 2022 NBA prospects (from ESPN/@DraftExpress)</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipNba2022">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for 2022
+      NBA prospects (from ESPN/@DraftExpress)
+    </Tooltip>
   );
   const playerLeaderboardTooltipSuperSr2022 = (
-    <Tooltip id="playerLeaderboardTooltipSuperSr2022">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for 2022 returning super seniors</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipSuperSr2022">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for 2022
+      returning super seniors
+    </Tooltip>
   );
   const playerLeaderboardTooltipMdDmv2017 = (
-    <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for Md/DMV-area players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipMdDmv2017">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
+      Md/DMV-area players class of 2017+
+    </Tooltip>
   );
   const playerLeaderboardTooltipNyNj2017 = (
-    <Tooltip id="playerLeaderboardTooltipNyNj2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for NY/NJ-area players class of 2017+ (h/t jules99b from reddit)</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipNyNj2017">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
+      NY/NJ-area players class of 2017+ (h/t jules99b from reddit)
+    </Tooltip>
   );
   const playerLeaderboardTooltipEuro2017 = (
-    <Tooltip id="playerLeaderboardTooltipEuro2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for European players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipEuro2017">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
+      European players class of 2017+
+    </Tooltip>
   );
   const playerLeaderboardTooltipCanada2017 = (
-    <Tooltip id="playerLeaderboardTooltipCanada2017">Go to the (luck adjusted) Player Leaderboard page (Men), filtered for Canadian players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipCanada2017">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
+      Canadian players class of 2017+
+    </Tooltip>
   );
   const baseGameTooltip = (
-    <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
+    <Tooltip id="baseGameTooltip">
+      Go to the On/Off Analysis page with the current baseline query
+    </Tooltip>
   );
   const lastGameTooltip = (
-    <Tooltip id="lastGameTooltip">Go back to the most recently submitted On/Off Analysis page</Tooltip>
+    <Tooltip id="lastGameTooltip">
+      Go back to the most recently submitted On/Off Analysis page
+    </Tooltip>
   );
   const baseLineupTooltip = (
-    <Tooltip id="baseLineupTooltip">Go to the Lineup Analysis page with the current baseline query</Tooltip>
+    <Tooltip id="baseLineupTooltip">
+      Go to the Lineup Analysis page with the current baseline query
+    </Tooltip>
   );
   const lastLineupTooltip = (
-    <Tooltip id="lastLineupTooltip">Go back to the most recently submitted Lineup Analysis page</Tooltip>
+    <Tooltip id="lastLineupTooltip">
+      Go back to the most recently submitted Lineup Analysis page
+    </Tooltip>
   );
   const baseReportTooltip = (
-    <Tooltip id="baseReportTooltip">Go to the On/Off Report page with the current baseline query</Tooltip>
+    <Tooltip id="baseReportTooltip">
+      Go to the On/Off Report page with the current baseline query
+    </Tooltip>
   );
   const lastReportTooltip = (
-    <Tooltip id="lastReportTooltip">Go back to the most recently submitted On/Off Report page</Tooltip>
+    <Tooltip id="lastReportTooltip">
+      Go back to the most recently submitted On/Off Report page
+    </Tooltip>
   );
   const chartTooltip = (
-    <Tooltip id="lastReportTooltip">View a gallery of interesting basketball analytics charts</Tooltip>
+    <Tooltip id="lastReportTooltip">
+      View a gallery of interesting basketball analytics charts
+    </Tooltip>
   );
   const gameReportTooltip = (
-    <Tooltip id="gameReportTooltip">Charts and tables for individual games</Tooltip>
+    <Tooltip id="gameReportTooltip">
+      Charts and tables for individual games
+    </Tooltip>
   );
   const playerSeasonAnalysisTooltip = (
-    <Tooltip id="playerSeasonTooltip">Analyze players' year-vs-year statistics</Tooltip>
+    <Tooltip id="playerSeasonTooltip">
+      Analyze players' year-vs-year statistics
+    </Tooltip>
   );
   const transferAnalysisTooltip = (
-    <Tooltip id="transferAnalysisTooltip">Analyze transfers' performance vs predicted</Tooltip>
+    <Tooltip id="transferAnalysisTooltip">
+      Analyze transfers' performance vs predicted
+    </Tooltip>
   );
 
   /** Adds the current selection to history before navigating away */
   const onNav = (e: any) => {
-    if (!_.isEmpty(common)) { //(do nothing if the page has just been loaded and not modified)
+    if (!_.isEmpty(common)) {
+      //(do nothing if the page has just been loaded and not modified)
       const key = UrlRouting.getUrl({ [UrlRouting.noSuffix]: common });
       HistoryManager.addParamsToHistory(key, thisPage);
     }
@@ -225,37 +328,56 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   };
 
   /** Builds a nice looking nav dropdown item */
-  const buildNavItem = (itemName: string, tooltip: React.ReactElement<any>, url: string, toLeaderboard: boolean = false) => {
-    return isLeaderboard && toLeaderboard ?
+  const buildNavItem = (
+    itemName: string,
+    tooltip: React.ReactElement<any>,
+    url: string,
+    toLeaderboard: boolean = false
+  ) => {
+    return isLeaderboard && toLeaderboard ? (
       <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
-        <a className="text-center small" href={url} onClick={onForce(url)}>{itemName}</a>
+        <a className="text-center small" href={url} onClick={onForce(url)}>
+          {itemName}
+        </a>
       </OverlayTrigger>
-      :
+    ) : (
       <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
         <span>
           <Link href={url}>
             <div>
-              <a className="text-center small" href={url} onClick={onNav}>{itemName}</a>
+              <a className="text-center small" href={url} onClick={onNav}>
+                {itemName}
+              </a>
             </div>
           </Link>
         </span>
       </OverlayTrigger>
+    );
   };
 
   const dropdownStyle = {
-    width:"40px", left:"50%", marginLeft:"-20px"
+    width: "40px",
+    left: "50%",
+    marginLeft: "-20px",
   };
 
   /** Build a nice looking nav dropdown */
   const buildNavDropdown = (
-      name: string,
-      baseTooltip: React.ReactElement<any>, baseUrl: string,
-      lastTooltip: React.ReactElement<any>, lastUrl: string
+    name: string,
+    baseTooltip: React.ReactElement<any>,
+    baseUrl: string,
+    lastTooltip: React.ReactElement<any>,
+    lastUrl: string
   ) => {
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
-    return <Dropdown
-    >
-        <Dropdown.Toggle id={baseUrl} as={StyledDropdown as unknown as undefined}>{name}</Dropdown.Toggle>
+    return (
+      <Dropdown>
+        <Dropdown.Toggle
+          id={baseUrl}
+          as={StyledDropdown as unknown as undefined}
+        >
+          {name}
+        </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
             {buildNavItem("Base", baseTooltip, baseUrl)}
@@ -264,22 +386,32 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             {buildNavItem("Last", lastTooltip, lastUrl)}
           </Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>;
+      </Dropdown>
+    );
   };
 
   /** Build a nice looking nav dropdown */
   const buildReportDropdown = () => {
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
-    return <Dropdown
-    >
-        <Dropdown.Toggle id={getBaseReportUrl()} as={StyledDropdown as unknown as undefined}>{"Reports"}</Dropdown.Toggle>
+    return (
+      <Dropdown>
+        <Dropdown.Toggle
+          id={getBaseReportUrl()}
+          as={StyledDropdown as unknown as undefined}
+        >
+          {"Reports"}
+        </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
-        <Dropdown.Item>
-            {buildNavItem("Game Reports", gameReportTooltip, UrlRouting.getMatchupUrl(
-              getCommonFilterParams(common) as MatchupFilterParams)
+          <Dropdown.Item>
+            {buildNavItem(
+              "Game Reports",
+              gameReportTooltip,
+              UrlRouting.getMatchupUrl(
+                getCommonFilterParams(common) as MatchupFilterParams
+              )
             )}
           </Dropdown.Item>
-          <Dropdown.Divider/>
+          <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem("Base", baseReportTooltip, getBaseReportUrl())}
           </Dropdown.Item>
@@ -287,83 +419,152 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             {buildNavItem("Last", lastReportTooltip, getLastReportUrl())}
           </Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>;
+      </Dropdown>
+    );
   };
 
   /** Build a nice looking nav dropdown */
   const buildChartDropdown = () => {
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
-    return <Dropdown>
-        <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Charts</Dropdown.Toggle>
+    return (
+      <Dropdown>
+        <Dropdown.Toggle
+          id="chartDropDown"
+          as={StyledDropdown as unknown as undefined}
+        >
+          Charts
+        </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
             {buildNavItem("Player Positions", chartTooltip, "/Charts")}
-          </Dropdown.Item>        
+          </Dropdown.Item>
           <Dropdown.Item>
-            {buildNavItem("Multi-Season Player Analysis", playerSeasonAnalysisTooltip, UrlRouting.getPlayerSeasonComparisonUrl({year: DateUtils.mostRecentYearWithLboardData}))}
+            {buildNavItem(
+              "Multi-Season Player Analysis",
+              playerSeasonAnalysisTooltip,
+              UrlRouting.getPlayerSeasonComparisonUrl({
+                year: DateUtils.mostRecentYearWithLboardData,
+              })
+            )}
           </Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>;
+      </Dropdown>
+    );
   };
 
   /** Build a nice looking nav dropdown */
   const buildLeaderboardDropdown = () => {
-
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
-    return <Dropdown>
-        <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Leaderboards</Dropdown.Toggle>
-        {hasMidMajors ?
+    return (
+      <Dropdown>
+        <Dropdown.Toggle
+          id="chartDropDown"
+          as={StyledDropdown as unknown as undefined}
+        >
+          Leaderboards
+        </Dropdown.Toggle>
+        {hasMidMajors ? (
           <Dropdown.Menu style={dropdownStyle}>
             <Dropdown.Item>
-              {buildNavItem("Players - all tiers", playerLeaderboardTooltip("All"), getPlayerLeaderboardUrl("All"), true)}
+              {buildNavItem(
+                "Players - all tiers",
+                playerLeaderboardTooltip("All"),
+                getPlayerLeaderboardUrl("All"),
+                true
+              )}
             </Dropdown.Item>
             {
-            // Keep until 2023/24
-            <Dropdown.Item>
-              {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true:predictions&sortBy=desc%3Adiff_adj_rapm_pred", true)}
-            </Dropdown.Item>
+              //(put transfers here later in the season, see below)
             }
             {/*
             // Switch to this later in the season
             <Dropdown.Item>
               {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=2023&advancedFilter=transfer_dest%20%3D%3D%20%22%22", true)}
             </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Players - 2023/4 Transfers", playerLeaderboardTransferTooltip("All"), getPlayerLeaderboardUrl("All") + "&transferMode=true:predictions&sortBy=desc%3Adiff_adj_rapm_pred", true)}
+            </Dropdown.Item>
             */}
-            <Dropdown.Divider/>
+            <Dropdown.Divider />
             <Dropdown.Item>
-              {buildNavItem("Build your own team leaderboard!", teamLeaderboardTooltip, getTeamLeaderboardUrl(), true)}
+              {buildNavItem(
+                "Build your own team leaderboard!",
+                teamLeaderboardTooltip,
+                getTeamLeaderboardUrl(),
+                true
+              )}
             </Dropdown.Item>
             <Dropdown.Item>
-              {buildNavItem("Build your own roster!", teamBuilderTooltip, getTeamBuilderUrl(), true)}
+              {buildNavItem(
+                "Build your own roster!",
+                teamBuilderTooltip,
+                getTeamBuilderUrl(),
+                true
+              )}
             </Dropdown.Item>
-            <Dropdown.Divider/>
+            <Dropdown.Divider />
             <Dropdown.Item>
-              {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
-            </Dropdown.Item>
-            <Dropdown.Item>
-              {buildNavItem("Lineups - 'medium' tier", lineupLeaderboardTooltip("Medium"), getLineupLeaderboardUrl("Medium"), true)}
-            </Dropdown.Item>
-            <Dropdown.Item>
-              {buildNavItem("Lineups - 'low' tier", lineupLeaderboardTooltip("Low"), getLineupLeaderboardUrl("Low"), true)}
-            </Dropdown.Item>
-            <Dropdown.Divider/>
-            <Dropdown.Item>
-              {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
-            </Dropdown.Item>
-            <Dropdown.Item>
-              {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+              {buildNavItem(
+                "Lineups - 'high' tier",
+                lineupLeaderboardTooltip("High"),
+                getLineupLeaderboardUrl("High"),
+                true
+              )}
             </Dropdown.Item>
             <Dropdown.Item>
-              {buildNavItem("European players (HS 2017+)", playerLeaderboardTooltipEuro2017, getPlayerLeaderboardTrackingUrl("__EURO_2017__"), true)}
+              {buildNavItem(
+                "Lineups - 'medium' tier",
+                lineupLeaderboardTooltip("Medium"),
+                getLineupLeaderboardUrl("Medium"),
+                true
+              )}
             </Dropdown.Item>
             <Dropdown.Item>
-              {buildNavItem("Canadian players (HS 2017+)", playerLeaderboardTooltipCanada2017, getPlayerLeaderboardTrackingUrl("__CANADA_2017__"), true)}
+              {buildNavItem(
+                "Lineups - 'low' tier",
+                lineupLeaderboardTooltip("Low"),
+                getLineupLeaderboardUrl("Low"),
+                true
+              )}
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              {buildNavItem(
+                "Md/DMV-area players (HS 2017+)",
+                playerLeaderboardTooltipMdDmv2017,
+                getPlayerLeaderboardTrackingUrl("__DMV_2017__"),
+                true
+              )}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem(
+                "NY/NJ-area players (HS 2017+)",
+                playerLeaderboardTooltipNyNj2017,
+                getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"),
+                true
+              )}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem(
+                "European players (HS 2017+)",
+                playerLeaderboardTooltipEuro2017,
+                getPlayerLeaderboardTrackingUrl("__EURO_2017__"),
+                true
+              )}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem(
+                "Canadian players (HS 2017+)",
+                playerLeaderboardTooltipCanada2017,
+                getPlayerLeaderboardTrackingUrl("__CANADA_2017__"),
+                true
+              )}
             </Dropdown.Item>
             {
               // Archived tracking lists:
               // <Dropdown.Item>
               //   {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
-              // </Dropdown.Item>            
+              // </Dropdown.Item>
               // <Dropdown.Item>
               //   {buildNavItem("2022 returning super seniors", playerLeaderboardTooltipSuperSr2022, getPlayerLeaderboardTrackingUrl("__SUPER_SR_2022__"), true)}
               // </Dropdown.Item>
@@ -372,84 +573,118 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
               // </Dropdown.Item>
             }
           </Dropdown.Menu>
-          :
+        ) : (
           <Dropdown.Menu style={dropdownStyle}>
             <Dropdown.Item>
-              {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip("High"), getPlayerLeaderboardUrl("High"), true)}
+              {buildNavItem(
+                "Players - 'high' tier",
+                playerLeaderboardTooltip("High"),
+                getPlayerLeaderboardUrl("High"),
+                true
+              )}
             </Dropdown.Item>
             <Dropdown.Item>
-              {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
+              {buildNavItem(
+                "Lineups - 'high' tier",
+                lineupLeaderboardTooltip("High"),
+                getLineupLeaderboardUrl("High"),
+                true
+              )}
             </Dropdown.Item>
-            <Dropdown.Divider/>
+            <Dropdown.Divider />
             {
               // Archived tracking lists:
-            // <Dropdown.Item>
-            //   {buildNavItem("2021 NBA prospects", playerLeaderboardTooltipNba2021, getPlayerLeaderboardTrackingUrl("__NBA_2021__"), true)}
-            // </Dropdown.Item>
-            // <Dropdown.Item>
-            //   {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
-            // </Dropdown.Item>
-
-            //TODO: would be nice to resurrect this one
-            // <Dropdown.Item>
-            //   {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
-            // </Dropdown.Item>
+              // <Dropdown.Item>
+              //   {buildNavItem("2021 NBA prospects", playerLeaderboardTooltipNba2021, getPlayerLeaderboardTrackingUrl("__NBA_2021__"), true)}
+              // </Dropdown.Item>
+              // <Dropdown.Item>
+              //   {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
+              // </Dropdown.Item>
+              //TODO: would be nice to resurrect this one
+              // <Dropdown.Item>
+              //   {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+              // </Dropdown.Item>
             }
             <Dropdown.Item>
-              {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
+              {buildNavItem(
+                "Md/DMV-area players (HS 2017+)",
+                playerLeaderboardTooltipMdDmv2017,
+                getPlayerLeaderboardTrackingUrl("__DMV_2017__"),
+                true
+              )}
             </Dropdown.Item>
           </Dropdown.Menu>
-        }
-      </Dropdown>;
+        )}
+      </Dropdown>
+    );
   };
 
   /** Show blog if rendering external version of the page */
   function maybeShowBlog() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
       const blogTooltip = (
-        <Tooltip id="blogTooltip">Articles describing how to use the tool</Tooltip>
+        <Tooltip id="blogTooltip">
+          Articles describing how to use the tool
+        </Tooltip>
       );
-      return <Col xs={1} className="small">
-        <OverlayTrigger placement="auto" overlay={blogTooltip}>
-          <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_blank">Docs...</a>
-        </OverlayTrigger>
-      </Col>;
+      return (
+        <Col xs={1} className="small">
+          <OverlayTrigger placement="auto" overlay={blogTooltip}>
+            <a
+              href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+              target="_blank"
+            >
+              Docs...
+            </a>
+          </OverlayTrigger>
+        </Col>
+      );
     }
   }
 
   //(only render client-side - was running into cache issues of the Link href)
-  return (override || (typeof window !== `undefined`)) ? <Container>
+  return override || typeof window !== `undefined` ? (
+    <Container>
       <Row className="border-top">
-        <Col className="text-center small">
-          {buildLeaderboardDropdown()}
-        </Col>
-        {(thisPage != ParamPrefixes.game) ?
-            <Col className="text-center small">
-              {buildNavDropdown("On/Off", baseGameTooltip, getBaseGameUrl(), lastGameTooltip, getLastGameUrl())}
-            </Col> : null
-        }
-        {(thisPage != ParamPrefixes.lineup) ?
-            <Col className="text-center small">
-              {buildNavDropdown("Lineups", baseLineupTooltip, getBaseLineupUrl(), lastLineupTooltip, getLastLineupUrl())}
-            </Col> : null
-        }
-        {true /*(thisPage != ParamPrefixes.report)*/ ? // always show this because we have game reports and team reports
+        <Col className="text-center small">{buildLeaderboardDropdown()}</Col>
+        {thisPage != ParamPrefixes.game ? (
           <Col className="text-center small">
-              
-            {buildReportDropdown()
-            //used to be
-            //buildNavDropdown("Reports", baseReportTooltip, getBaseReportUrl(), lastReportTooltip, getLastReportUrl())
+            {buildNavDropdown(
+              "On/Off",
+              baseGameTooltip,
+              getBaseGameUrl(),
+              lastGameTooltip,
+              getLastGameUrl()
+            )}
+          </Col>
+        ) : null}
+        {thisPage != ParamPrefixes.lineup ? (
+          <Col className="text-center small">
+            {buildNavDropdown(
+              "Lineups",
+              baseLineupTooltip,
+              getBaseLineupUrl(),
+              lastLineupTooltip,
+              getLastLineupUrl()
+            )}
+          </Col>
+        ) : null}
+        {true /*(thisPage != ParamPrefixes.report)*/ ? ( // always show this because we have game reports and team reports
+          <Col className="text-center small">
+            {
+              buildReportDropdown()
+              //used to be
+              //buildNavDropdown("Reports", baseReportTooltip, getBaseReportUrl(), lastReportTooltip, getLastReportUrl())
             }
-          </Col> : null
-        }
-        {(thisPage != "charts") ? 
-          <Col className="text-center small">
-            {buildChartDropdown()}
-          </Col> : null
-        }
+          </Col>
+        ) : null}
+        {thisPage != "charts" ? (
+          <Col className="text-center small">{buildChartDropdown()}</Col>
+        ) : null}
         {maybeShowBlog()}
       </Row>
-    </Container> : null;
-}
+    </Container>
+  ) : null;
+};
 
 export default HeaderBar;
