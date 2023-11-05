@@ -2,6 +2,7 @@ import _ from "lodash";
 
 export const NonP6Nick = "MM";
 export const P6Nick = "P6";
+export const P5Nick = "P5"; //(ready for 24/25!)
 
 /** Note these use the KenPom naming conventions */
 export const ConferenceToNickname: Record<string, string> = {
