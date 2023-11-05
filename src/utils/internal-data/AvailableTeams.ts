@@ -11,7 +11,11 @@ export class AvailableTeams {
 
   static readonly extraTeamName = "Extra";
 
-  /** A list of all the teams with lineup data available */
+  /** A list of all the teams with lineup data available
+   * To rebuild at the start of the season run the test buildAvailableTemsForNewYear
+   * then search for "???CHANGE???" and fix by hand
+   *
+   */
   static readonly byName: Record<string, Array<AvailableTeamMeta>> = {
     Maryland: [
       {
@@ -51,6 +55,13 @@ export class AvailableTeams {
       },
       {
         team: "Maryland",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Maryland",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -84,8 +95,14 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Maryland",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
-
     "A&M-Corpus Christi": [
       {
         team: "A&M-Corpus Christi",
@@ -104,6 +121,13 @@ export class AvailableTeams {
       {
         team: "A&M-Corpus Christi",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "A&M-Corpus Christi",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -131,6 +155,13 @@ export class AvailableTeams {
         index_template: "wac",
         category: "midlow",
       },
+      {
+        team: "Abilene Christian",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
     ],
     "Air Force": [
       {
@@ -154,6 +185,13 @@ export class AvailableTeams {
         index_template: "mountainwest",
         category: "midhigh",
       },
+      {
+        team: "Air Force",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
     ],
     Akron: [
       {
@@ -173,6 +211,13 @@ export class AvailableTeams {
       {
         team: "Akron",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Akron",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -216,6 +261,13 @@ export class AvailableTeams {
       },
       {
         team: "Alabama",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Alabama",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -249,6 +301,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Alabama",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Alabama A&M": [
       {
@@ -272,6 +331,13 @@ export class AvailableTeams {
         index_template: "swac",
         category: "low",
       },
+      {
+        team: "Alabama A&M",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
     ],
     "Alabama St.": [
       {
@@ -291,6 +357,13 @@ export class AvailableTeams {
       {
         team: "Alabama St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Alabama St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -320,6 +393,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "UAlbany",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     Alcorn: [
       {
@@ -339,6 +419,13 @@ export class AvailableTeams {
       {
         team: "Alcorn",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Alcorn",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -366,6 +453,13 @@ export class AvailableTeams {
         index_template: "patriot",
         category: "midlow",
       },
+      {
+        team: "American",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
     ],
     "App State": [
       {
@@ -385,6 +479,13 @@ export class AvailableTeams {
       {
         team: "App State",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "App State",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -428,6 +529,13 @@ export class AvailableTeams {
       },
       {
         team: "Arizona",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Arizona",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -457,6 +565,13 @@ export class AvailableTeams {
       {
         team: "Arizona",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
+      {
+        team: "Arizona",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
@@ -500,6 +615,13 @@ export class AvailableTeams {
       },
       {
         team: "Arizona St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Arizona St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -533,6 +655,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "Arizona St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     "Ark.-Pine Bluff": [
       {
@@ -552,6 +681,13 @@ export class AvailableTeams {
       {
         team: "Ark.-Pine Bluff",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Ark.-Pine Bluff",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -595,6 +731,13 @@ export class AvailableTeams {
       },
       {
         team: "Arkansas",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Arkansas",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -628,6 +771,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Arkansas",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Arkansas St.": [
       {
@@ -651,6 +801,13 @@ export class AvailableTeams {
         index_template: "sunbelt",
         category: "mid",
       },
+      {
+        team: "Arkansas St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
     ],
     "Army West Point": [
       {
@@ -670,6 +827,13 @@ export class AvailableTeams {
       {
         team: "Army West Point",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Army West Point",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -713,6 +877,13 @@ export class AvailableTeams {
       },
       {
         team: "Auburn",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Auburn",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -746,6 +917,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Auburn",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Austin Peay": [
       {
@@ -765,6 +943,13 @@ export class AvailableTeams {
       {
         team: "Austin Peay",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
+      {
+        team: "Austin Peay",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
@@ -808,6 +993,13 @@ export class AvailableTeams {
       },
       {
         team: "BYU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "BYU",
         year: "2020/21",
         gender: "Women",
         index_template: "women_misc_conf",
@@ -826,6 +1018,13 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
+      },
+      {
+        team: "BYU",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "bigtwelve",
+        category: "high",
       },
     ],
     "Ball St.": [
@@ -846,6 +1045,13 @@ export class AvailableTeams {
       {
         team: "Ball St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Ball St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -889,6 +1095,13 @@ export class AvailableTeams {
       },
       {
         team: "Baylor",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Baylor",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -922,6 +1135,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "Baylor",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     Bellarmine: [
       {
@@ -934,6 +1154,13 @@ export class AvailableTeams {
       {
         team: "Bellarmine",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
+      {
+        team: "Bellarmine",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
@@ -961,6 +1188,13 @@ export class AvailableTeams {
         index_template: "mvc",
         category: "mid",
       },
+      {
+        team: "Belmont",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
     ],
     "Bethune-Cookman": [
       {
@@ -973,6 +1207,13 @@ export class AvailableTeams {
       {
         team: "Bethune-Cookman",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Bethune-Cookman",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -1000,6 +1241,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "Binghamton",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     "Boise St.": [
       {
@@ -1019,6 +1267,13 @@ export class AvailableTeams {
       {
         team: "Boise St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "Boise St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
@@ -1062,6 +1317,13 @@ export class AvailableTeams {
       },
       {
         team: "Boston College",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Boston College",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -1095,6 +1357,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Boston College",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     "Boston U.": [
       {
@@ -1114,6 +1383,13 @@ export class AvailableTeams {
       {
         team: "Boston U.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Boston U.",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -1141,6 +1417,13 @@ export class AvailableTeams {
         index_template: "mac",
         category: "mid",
       },
+      {
+        team: "Bowling Green",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
     ],
     Bradley: [
       {
@@ -1164,6 +1447,13 @@ export class AvailableTeams {
         index_template: "mvc",
         category: "mid",
       },
+      {
+        team: "Bradley",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
     ],
     Brown: [
       {
@@ -1176,6 +1466,13 @@ export class AvailableTeams {
       {
         team: "Brown",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Brown",
+        year: "2023/24",
         gender: "Men",
         index_template: "ivy",
         category: "mid",
@@ -1203,6 +1500,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "Bryant",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     Bucknell: [
       {
@@ -1226,6 +1530,13 @@ export class AvailableTeams {
         index_template: "patriot",
         category: "midlow",
       },
+      {
+        team: "Bucknell",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
     ],
     Buffalo: [
       {
@@ -1245,6 +1556,13 @@ export class AvailableTeams {
       {
         team: "Buffalo",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Buffalo",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -1288,6 +1606,13 @@ export class AvailableTeams {
       },
       {
         team: "Butler",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Butler",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -1303,6 +1628,13 @@ export class AvailableTeams {
       {
         team: "Butler",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "Butler",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -1330,6 +1662,13 @@ export class AvailableTeams {
         index_template: "bigwest",
         category: "mid",
       },
+      {
+        team: "CSU Bakersfield",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
     ],
     CSUN: [
       {
@@ -1349,6 +1688,13 @@ export class AvailableTeams {
       {
         team: "CSUN",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
+      {
+        team: "CSUN",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
@@ -1376,6 +1722,13 @@ export class AvailableTeams {
         index_template: "bigwest",
         category: "mid",
       },
+      {
+        team: "Cal Poly",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
     ],
     "Cal St. Fullerton": [
       {
@@ -1395,6 +1748,13 @@ export class AvailableTeams {
       {
         team: "Cal St. Fullerton",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
+      {
+        team: "Cal St. Fullerton",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
@@ -1438,6 +1798,13 @@ export class AvailableTeams {
       },
       {
         team: "California",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "California",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -1471,6 +1838,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "California",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     "California Baptist": [
       {
@@ -1483,6 +1857,13 @@ export class AvailableTeams {
       {
         team: "California Baptist",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "California Baptist",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -1510,6 +1891,13 @@ export class AvailableTeams {
         index_template: "bigsouth",
         category: "low",
       },
+      {
+        team: "Campbell",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     Canisius: [
       {
@@ -1529,6 +1917,13 @@ export class AvailableTeams {
       {
         team: "Canisius",
         year: "2022/23",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
+      {
+        team: "Canisius",
+        year: "2023/24",
         gender: "Men",
         index_template: "maac",
         category: "midlow",
@@ -1556,6 +1951,13 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Central Ark.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
     ],
     "Central Conn. St.": [
       {
@@ -1575,6 +1977,13 @@ export class AvailableTeams {
       {
         team: "Central Conn. St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
+      {
+        team: "Central Conn. St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "nec",
         category: "low",
@@ -1602,6 +2011,13 @@ export class AvailableTeams {
         index_template: "mac",
         category: "mid",
       },
+      {
+        team: "Central Mich.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
     ],
     "Charleston So.": [
       {
@@ -1621,6 +2037,13 @@ export class AvailableTeams {
       {
         team: "Charleston So.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
+      {
+        team: "Charleston So.",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
@@ -1648,6 +2071,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "Charlotte",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
     ],
     Chattanooga: [
       {
@@ -1671,6 +2101,13 @@ export class AvailableTeams {
         index_template: "socon",
         category: "midlow",
       },
+      {
+        team: "Chattanooga",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
     ],
     "Chicago St.": [
       {
@@ -1690,6 +2127,13 @@ export class AvailableTeams {
       {
         team: "Chicago St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Chicago St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -1733,6 +2177,13 @@ export class AvailableTeams {
       },
       {
         team: "Cincinnati",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Cincinnati",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -1765,6 +2216,13 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+      },
+      {
+        team: "Cincinnati",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "bigtwelve",
+        category: "high",
       },
     ],
     Clemson: [
@@ -1805,6 +2263,13 @@ export class AvailableTeams {
       },
       {
         team: "Clemson",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Clemson",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -1838,6 +2303,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Clemson",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     "Cleveland St.": [
       {
@@ -1857,6 +2329,13 @@ export class AvailableTeams {
       {
         team: "Cleveland St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "Cleveland St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
@@ -1884,6 +2363,13 @@ export class AvailableTeams {
         index_template: "sunbelt",
         category: "mid",
       },
+      {
+        team: "Coastal Carolina",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
     ],
     "Col. of Charleston": [
       {
@@ -1907,6 +2393,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "Col. of Charleston",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     Colgate: [
       {
@@ -1926,6 +2419,13 @@ export class AvailableTeams {
       {
         team: "Colgate",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Colgate",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -1969,6 +2469,13 @@ export class AvailableTeams {
       },
       {
         team: "Colorado",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Colorado",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -2002,6 +2509,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "Colorado",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     "Colorado St.": [
       {
@@ -2025,6 +2539,13 @@ export class AvailableTeams {
         index_template: "mountainwest",
         category: "midhigh",
       },
+      {
+        team: "Colorado St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
     ],
     Columbia: [
       {
@@ -2037,6 +2558,13 @@ export class AvailableTeams {
       {
         team: "Columbia",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Columbia",
+        year: "2023/24",
         gender: "Men",
         index_template: "ivy",
         category: "mid",
@@ -2064,6 +2592,13 @@ export class AvailableTeams {
         index_template: "meac",
         category: "low",
       },
+      {
+        team: "Coppin St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
     ],
     Cornell: [
       {
@@ -2076,6 +2611,13 @@ export class AvailableTeams {
       {
         team: "Cornell",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Cornell",
+        year: "2023/24",
         gender: "Men",
         index_template: "ivy",
         category: "mid",
@@ -2119,6 +2661,13 @@ export class AvailableTeams {
       },
       {
         team: "Creighton",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Creighton",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -2138,6 +2687,13 @@ export class AvailableTeams {
         index_template: "women_bigeast",
         category: "high",
       },
+      {
+        team: "Creighton",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
     ],
     Dartmouth: [
       {
@@ -2150,6 +2706,13 @@ export class AvailableTeams {
       {
         team: "Dartmouth",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Dartmouth",
+        year: "2023/24",
         gender: "Men",
         index_template: "ivy",
         category: "mid",
@@ -2191,6 +2754,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Davidson",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     Dayton: [
       {
@@ -2224,6 +2794,13 @@ export class AvailableTeams {
       {
         team: "Dayton",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
+      {
+        team: "Dayton",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
@@ -2267,6 +2844,13 @@ export class AvailableTeams {
       },
       {
         team: "DePaul",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "DePaul",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -2282,6 +2866,13 @@ export class AvailableTeams {
       {
         team: "DePaul",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "DePaul",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -2309,6 +2900,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "Delaware",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     "Delaware St.": [
       {
@@ -2328,6 +2926,13 @@ export class AvailableTeams {
       {
         team: "Delaware St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
+      {
+        team: "Delaware St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "meac",
         category: "low",
@@ -2355,6 +2960,13 @@ export class AvailableTeams {
         index_template: "summit",
         category: "mid",
       },
+      {
+        team: "Denver",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
     ],
     "Detroit Mercy": [
       {
@@ -2374,6 +2986,13 @@ export class AvailableTeams {
       {
         team: "Detroit Mercy",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "Detroit Mercy",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
@@ -2419,6 +3038,13 @@ export class AvailableTeams {
         index_template: "mvc",
         category: "mid",
       },
+      {
+        team: "Drake",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
     ],
     Drexel: [
       {
@@ -2438,6 +3064,13 @@ export class AvailableTeams {
       {
         team: "Drexel",
         year: "2022/23",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
+      {
+        team: "Drexel",
+        year: "2023/24",
         gender: "Men",
         index_template: "colonial",
         category: "mid",
@@ -2481,6 +3114,13 @@ export class AvailableTeams {
       },
       {
         team: "Duke",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Duke",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -2510,6 +3150,13 @@ export class AvailableTeams {
       {
         team: "Duke",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
+      {
+        team: "Duke",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_acc",
         category: "high",
@@ -2551,6 +3198,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Duquesne",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     ETSU: [
       {
@@ -2570,6 +3224,13 @@ export class AvailableTeams {
       {
         team: "ETSU",
         year: "2022/23",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
+      {
+        team: "ETSU",
+        year: "2023/24",
         gender: "Men",
         index_template: "socon",
         category: "midlow",
@@ -2613,6 +3274,13 @@ export class AvailableTeams {
       },
       {
         team: "East Carolina",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "East Carolina",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -2646,6 +3314,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "East Carolina",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
     ],
     "Eastern Ill.": [
       {
@@ -2665,6 +3340,13 @@ export class AvailableTeams {
       {
         team: "Eastern Ill.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "Eastern Ill.",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -2692,6 +3374,13 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Eastern Ky.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
     ],
     "Eastern Mich.": [
       {
@@ -2711,6 +3400,13 @@ export class AvailableTeams {
       {
         team: "Eastern Mich.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Eastern Mich.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -2738,6 +3434,13 @@ export class AvailableTeams {
         index_template: "bigsky",
         category: "midlow",
       },
+      {
+        team: "Eastern Wash.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
     ],
     Elon: [
       {
@@ -2761,6 +3464,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "Elon",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     Evansville: [
       {
@@ -2780,6 +3490,13 @@ export class AvailableTeams {
       {
         team: "Evansville",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
+      {
+        team: "Evansville",
+        year: "2023/24",
         gender: "Men",
         index_template: "mvc",
         category: "mid",
@@ -2809,6 +3526,13 @@ export class AvailableTeams {
       },
       {
         team: "FGCU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
+      {
+        team: "FGCU",
         year: "2021/22",
         gender: "Women",
         index_template: "women_misc_conf",
@@ -2817,6 +3541,13 @@ export class AvailableTeams {
       {
         team: "FGCU",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
+      {
+        team: "FGCU",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
@@ -2844,6 +3575,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "FIU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
     ],
     Fairfield: [
       {
@@ -2863,6 +3601,13 @@ export class AvailableTeams {
       {
         team: "Fairfield",
         year: "2022/23",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
+      {
+        team: "Fairfield",
+        year: "2023/24",
         gender: "Men",
         index_template: "maac",
         category: "midlow",
@@ -2890,6 +3635,13 @@ export class AvailableTeams {
         index_template: "nec",
         category: "low",
       },
+      {
+        team: "Fairleigh Dickinson",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
     ],
     "Fla. Atlantic": [
       {
@@ -2912,6 +3664,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+      },
+      {
+        team: "Fla. Atlantic",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
       },
     ],
     Florida: [
@@ -2952,6 +3711,13 @@ export class AvailableTeams {
       },
       {
         team: "Florida",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Florida",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -2985,6 +3751,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Florida",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Florida A&M": [
       {
@@ -3004,6 +3777,13 @@ export class AvailableTeams {
       {
         team: "Florida A&M",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Florida A&M",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -3047,6 +3827,13 @@ export class AvailableTeams {
       },
       {
         team: "Florida St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Florida St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -3076,6 +3863,13 @@ export class AvailableTeams {
       {
         team: "Florida St.",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
+      {
+        team: "Florida St.",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_acc",
         category: "high",
@@ -3117,6 +3911,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Fordham",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     "Fresno St.": [
       {
@@ -3136,6 +3937,13 @@ export class AvailableTeams {
       {
         team: "Fresno St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "Fresno St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
@@ -3163,6 +3971,13 @@ export class AvailableTeams {
         index_template: "socon",
         category: "midlow",
       },
+      {
+        team: "Furman",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
     ],
     "Ga. Southern": [
       {
@@ -3186,6 +4001,13 @@ export class AvailableTeams {
         index_template: "sunbelt",
         category: "mid",
       },
+      {
+        team: "Ga. Southern",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
     ],
     "Gardner-Webb": [
       {
@@ -3205,6 +4027,13 @@ export class AvailableTeams {
       {
         team: "Gardner-Webb",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
+      {
+        team: "Gardner-Webb",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
@@ -3246,6 +4075,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "George Mason",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     "George Washington": [
       {
@@ -3279,6 +4115,13 @@ export class AvailableTeams {
       {
         team: "George Washington",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
+      {
+        team: "George Washington",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
@@ -3322,6 +4165,13 @@ export class AvailableTeams {
       },
       {
         team: "Georgetown",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Georgetown",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -3337,6 +4187,13 @@ export class AvailableTeams {
       {
         team: "Georgetown",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "Georgetown",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -3380,6 +4237,13 @@ export class AvailableTeams {
       },
       {
         team: "Georgia",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Georgia",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -3413,6 +4277,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Georgia",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Georgia St.": [
       {
@@ -3432,6 +4303,13 @@ export class AvailableTeams {
       {
         team: "Georgia St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "Georgia St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -3475,6 +4353,13 @@ export class AvailableTeams {
       },
       {
         team: "Georgia Tech",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Georgia Tech",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -3504,6 +4389,13 @@ export class AvailableTeams {
       {
         team: "Georgia Tech",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
+      {
+        team: "Georgia Tech",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_acc",
         category: "high",
@@ -3547,6 +4439,13 @@ export class AvailableTeams {
       },
       {
         team: "Gonzaga",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "Gonzaga",
         year: "2020/21",
         gender: "Women",
         index_template: "women_misc_conf",
@@ -3562,6 +4461,13 @@ export class AvailableTeams {
       {
         team: "Gonzaga",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
+      {
+        team: "Gonzaga",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
@@ -3589,6 +4495,13 @@ export class AvailableTeams {
         index_template: "swac",
         category: "low",
       },
+      {
+        team: "Grambling",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
     ],
     "Grand Canyon": [
       {
@@ -3608,6 +4521,13 @@ export class AvailableTeams {
       {
         team: "Grand Canyon",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Grand Canyon",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -3635,6 +4555,13 @@ export class AvailableTeams {
         index_template: "horizon",
         category: "mid",
       },
+      {
+        team: "Green Bay",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
     ],
     Hampton: [
       {
@@ -3654,6 +4581,13 @@ export class AvailableTeams {
       {
         team: "Hampton",
         year: "2022/23",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
+      {
+        team: "Hampton",
+        year: "2023/24",
         gender: "Men",
         index_template: "colonial",
         category: "mid",
@@ -3697,6 +4631,13 @@ export class AvailableTeams {
         index_template: "ivy",
         category: "mid",
       },
+      {
+        team: "Harvard",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
     ],
     Hawaii: [
       {
@@ -3716,6 +4657,13 @@ export class AvailableTeams {
       {
         team: "Hawaii",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
+      {
+        team: "Hawaii",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
@@ -3743,6 +4691,13 @@ export class AvailableTeams {
         index_template: "bigsouth",
         category: "low",
       },
+      {
+        team: "High Point",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
     ],
     Hofstra: [
       {
@@ -3766,6 +4721,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "Hofstra",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     "Holy Cross": [
       {
@@ -3785,6 +4747,13 @@ export class AvailableTeams {
       {
         team: "Holy Cross",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Holy Cross",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -3828,6 +4797,13 @@ export class AvailableTeams {
       },
       {
         team: "Houston",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Houston",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -3861,6 +4837,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "Houston",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "bigtwelve",
+        category: "high",
+      },
     ],
     "Houston Baptist": [
       {
@@ -3882,6 +4865,13 @@ export class AvailableTeams {
       {
         team: "Houston Christian",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "Houston Christian",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -3909,6 +4899,13 @@ export class AvailableTeams {
         index_template: "meac",
         category: "low",
       },
+      {
+        team: "Howard",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
     ],
     IUPUI: [
       {
@@ -3928,6 +4925,13 @@ export class AvailableTeams {
       {
         team: "IUPUI",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "IUPUI",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
@@ -3955,6 +4959,13 @@ export class AvailableTeams {
         index_template: "bigsky",
         category: "midlow",
       },
+      {
+        team: "Idaho",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
     ],
     "Idaho St.": [
       {
@@ -3974,6 +4985,13 @@ export class AvailableTeams {
       {
         team: "Idaho St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
+      {
+        team: "Idaho St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
@@ -4017,6 +5035,13 @@ export class AvailableTeams {
       },
       {
         team: "Illinois",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Illinois",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -4050,6 +5075,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Illinois",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     "Illinois St.": [
       {
@@ -4069,6 +5101,13 @@ export class AvailableTeams {
       {
         team: "Illinois St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
+      {
+        team: "Illinois St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mvc",
         category: "mid",
@@ -4112,6 +5151,13 @@ export class AvailableTeams {
       },
       {
         team: "Indiana",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Indiana",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -4145,6 +5191,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Indiana",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     "Indiana St.": [
       {
@@ -4168,6 +5221,13 @@ export class AvailableTeams {
         index_template: "mvc",
         category: "mid",
       },
+      {
+        team: "Indiana St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
     ],
     Iona: [
       {
@@ -4187,6 +5247,13 @@ export class AvailableTeams {
       {
         team: "Iona",
         year: "2022/23",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
+      {
+        team: "Iona",
+        year: "2023/24",
         gender: "Men",
         index_template: "maac",
         category: "midlow",
@@ -4230,6 +5297,13 @@ export class AvailableTeams {
       },
       {
         team: "Iowa",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Iowa",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -4259,6 +5333,13 @@ export class AvailableTeams {
       {
         team: "Iowa",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
+      {
+        team: "Iowa",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
@@ -4302,6 +5383,13 @@ export class AvailableTeams {
       },
       {
         team: "Iowa St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Iowa St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -4335,6 +5423,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "Iowa St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "Jackson St.": [
       {
@@ -4354,6 +5449,13 @@ export class AvailableTeams {
       {
         team: "Jackson St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Jackson St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -4381,6 +5483,13 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Jacksonville",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
     ],
     "Jacksonville St.": [
       {
@@ -4404,6 +5513,13 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Jacksonville St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
     ],
     "James Madison": [
       {
@@ -4423,6 +5539,13 @@ export class AvailableTeams {
       {
         team: "James Madison",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "James Madison",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -4466,6 +5589,13 @@ export class AvailableTeams {
       },
       {
         team: "Kansas",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Kansas",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -4499,6 +5629,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "Kansas",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "Kansas City": [
       {
@@ -4518,6 +5655,13 @@ export class AvailableTeams {
       {
         team: "Kansas City",
         year: "2022/23",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
+      {
+        team: "Kansas City",
+        year: "2023/24",
         gender: "Men",
         index_template: "summit",
         category: "mid",
@@ -4561,6 +5705,13 @@ export class AvailableTeams {
       },
       {
         team: "Kansas St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Kansas St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -4594,6 +5745,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "Kansas St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "Kennesaw St.": [
       {
@@ -4617,6 +5775,13 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Kennesaw St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
     ],
     "Kent St.": [
       {
@@ -4636,6 +5801,13 @@ export class AvailableTeams {
       {
         team: "Kent St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Kent St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -4679,6 +5851,13 @@ export class AvailableTeams {
       },
       {
         team: "Kentucky",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Kentucky",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -4712,6 +5891,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Kentucky",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     LIU: [
       {
@@ -4735,6 +5921,13 @@ export class AvailableTeams {
         index_template: "nec",
         category: "low",
       },
+      {
+        team: "LIU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
     ],
     "LMU (CA)": [
       {
@@ -4754,6 +5947,13 @@ export class AvailableTeams {
       {
         team: "LMU (CA)",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "LMU (CA)",
+        year: "2023/24",
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
@@ -4797,6 +5997,13 @@ export class AvailableTeams {
       },
       {
         team: "LSU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "LSU",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -4826,6 +6033,13 @@ export class AvailableTeams {
       {
         team: "LSU",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
+      {
+        team: "LSU",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_sec",
         category: "high",
@@ -4867,6 +6081,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "La Salle",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     Lafayette: [
       {
@@ -4886,6 +6107,13 @@ export class AvailableTeams {
       {
         team: "Lafayette",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Lafayette",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -4913,6 +6141,13 @@ export class AvailableTeams {
         index_template: "wac",
         category: "midlow",
       },
+      {
+        team: "Lamar University",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
     ],
     Lehigh: [
       {
@@ -4932,6 +6167,13 @@ export class AvailableTeams {
       {
         team: "Lehigh",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Lehigh",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -4959,11 +6201,25 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Liberty",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
     ],
     Lindenwood: [
       {
         team: "Lindenwood",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "Lindenwood",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -4991,6 +6247,13 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Lipscomb",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
     ],
     "Little Rock": [
       {
@@ -5010,6 +6273,13 @@ export class AvailableTeams {
       {
         team: "Little Rock",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "Little Rock",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -5037,6 +6307,13 @@ export class AvailableTeams {
         index_template: "bigwest",
         category: "mid",
       },
+      {
+        team: "Long Beach St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
     ],
     Longwood: [
       {
@@ -5056,6 +6333,13 @@ export class AvailableTeams {
       {
         team: "Longwood",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
+      {
+        team: "Longwood",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
@@ -5083,6 +6367,13 @@ export class AvailableTeams {
         index_template: "sunbelt",
         category: "mid",
       },
+      {
+        team: "Louisiana",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
     ],
     "Louisiana Tech": [
       {
@@ -5102,6 +6393,13 @@ export class AvailableTeams {
       {
         team: "Louisiana Tech",
         year: "2022/23",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
+      {
+        team: "Louisiana Tech",
+        year: "2023/24",
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
@@ -5145,6 +6443,13 @@ export class AvailableTeams {
       },
       {
         team: "Louisville",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Louisville",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -5178,6 +6483,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Louisville",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     "Loyola Chicago": [
       {
@@ -5197,6 +6509,13 @@ export class AvailableTeams {
       {
         team: "Loyola Chicago",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
+      {
+        team: "Loyola Chicago",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
@@ -5224,6 +6543,13 @@ export class AvailableTeams {
         index_template: "patriot",
         category: "midlow",
       },
+      {
+        team: "Loyola Maryland",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
     ],
     Maine: [
       {
@@ -5243,6 +6569,13 @@ export class AvailableTeams {
       {
         team: "Maine",
         year: "2022/23",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
+      {
+        team: "Maine",
+        year: "2023/24",
         gender: "Men",
         index_template: "americaeast",
         category: "low",
@@ -5270,6 +6603,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Manhattan",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
     ],
     Marist: [
       {
@@ -5289,6 +6629,13 @@ export class AvailableTeams {
       {
         team: "Marist",
         year: "2022/23",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
+      {
+        team: "Marist",
+        year: "2023/24",
         gender: "Men",
         index_template: "maac",
         category: "midlow",
@@ -5332,6 +6679,13 @@ export class AvailableTeams {
       },
       {
         team: "Marquette",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Marquette",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -5347,6 +6701,13 @@ export class AvailableTeams {
       {
         team: "Marquette",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "Marquette",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -5370,6 +6731,13 @@ export class AvailableTeams {
       {
         team: "Marshall",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "Marshall",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -5411,6 +6779,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Massachusetts",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     McNeese: [
       {
@@ -5430,6 +6805,13 @@ export class AvailableTeams {
       {
         team: "McNeese",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "McNeese",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -5473,6 +6855,13 @@ export class AvailableTeams {
       },
       {
         team: "Memphis",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "Memphis",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -5506,6 +6895,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "Memphis",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
     ],
     Mercer: [
       {
@@ -5529,6 +6925,13 @@ export class AvailableTeams {
         index_template: "socon",
         category: "midlow",
       },
+      {
+        team: "Mercer",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
     ],
     Merrimack: [
       {
@@ -5541,6 +6944,13 @@ export class AvailableTeams {
       {
         team: "Merrimack",
         year: "2022/23",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
+      {
+        team: "Merrimack",
+        year: "2023/24",
         gender: "Men",
         index_template: "nec",
         category: "low",
@@ -5584,6 +6994,13 @@ export class AvailableTeams {
       },
       {
         team: "Miami (FL)",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Miami (FL)",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -5617,6 +7034,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Miami (FL)",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     "Miami (OH)": [
       {
@@ -5636,6 +7060,13 @@ export class AvailableTeams {
       {
         team: "Miami (OH)",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Miami (OH)",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -5679,6 +7110,13 @@ export class AvailableTeams {
       },
       {
         team: "Michigan",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Michigan",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -5708,6 +7146,13 @@ export class AvailableTeams {
       {
         team: "Michigan",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
+      {
+        team: "Michigan",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
@@ -5751,6 +7196,13 @@ export class AvailableTeams {
       },
       {
         team: "Michigan St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Michigan St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -5784,6 +7236,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Michigan St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     "Middle Tenn.": [
       {
@@ -5807,6 +7266,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "Middle Tenn.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
     ],
     Milwaukee: [
       {
@@ -5826,6 +7292,13 @@ export class AvailableTeams {
       {
         team: "Milwaukee",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "Milwaukee",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
@@ -5869,6 +7342,13 @@ export class AvailableTeams {
       },
       {
         team: "Minnesota",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Minnesota",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -5898,6 +7378,13 @@ export class AvailableTeams {
       {
         team: "Minnesota",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
+      {
+        team: "Minnesota",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
@@ -5941,6 +7428,13 @@ export class AvailableTeams {
       },
       {
         team: "Mississippi St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Mississippi St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -5974,6 +7468,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Mississippi St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Mississippi Val.": [
       {
@@ -5993,6 +7494,13 @@ export class AvailableTeams {
       {
         team: "Mississippi Val.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Mississippi Val.",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -6036,6 +7544,13 @@ export class AvailableTeams {
       },
       {
         team: "Missouri",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Missouri",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -6069,6 +7584,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Missouri",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Missouri St.": [
       {
@@ -6094,6 +7616,13 @@ export class AvailableTeams {
       },
       {
         team: "Missouri St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
+      {
+        team: "Missouri St.",
         year: "2020/21",
         gender: "Women",
         index_template: "women_misc_conf",
@@ -6109,6 +7638,13 @@ export class AvailableTeams {
       {
         team: "Missouri St.",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
+      {
+        team: "Missouri St.",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
@@ -6136,6 +7672,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "Monmouth",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     Montana: [
       {
@@ -6155,6 +7698,13 @@ export class AvailableTeams {
       {
         team: "Montana",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
+      {
+        team: "Montana",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
@@ -6182,6 +7732,13 @@ export class AvailableTeams {
         index_template: "bigsky",
         category: "midlow",
       },
+      {
+        team: "Montana St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
     ],
     "Morehead St.": [
       {
@@ -6201,6 +7758,13 @@ export class AvailableTeams {
       {
         team: "Morehead St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "Morehead St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -6228,6 +7792,13 @@ export class AvailableTeams {
         index_template: "meac",
         category: "low",
       },
+      {
+        team: "Morgan St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
     ],
     "Mount St. Mary's": [
       {
@@ -6251,6 +7822,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Mount St. Mary's",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
     ],
     "Murray St.": [
       {
@@ -6270,6 +7848,13 @@ export class AvailableTeams {
       {
         team: "Murray St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
+      {
+        team: "Murray St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mvc",
         category: "mid",
@@ -6304,6 +7889,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "N.C. A&T",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     "N.C. Central": [
       {
@@ -6323,6 +7915,13 @@ export class AvailableTeams {
       {
         team: "N.C. Central",
         year: "2022/23",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
+      {
+        team: "N.C. Central",
+        year: "2023/24",
         gender: "Men",
         index_template: "meac",
         category: "low",
@@ -6366,6 +7965,13 @@ export class AvailableTeams {
       },
       {
         team: "NC State",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "NC State",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -6399,6 +8005,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "NC State",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     NJIT: [
       {
@@ -6422,6 +8035,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "NJIT",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     Navy: [
       {
@@ -6441,6 +8061,13 @@ export class AvailableTeams {
       {
         team: "Navy",
         year: "2022/23",
+        gender: "Men",
+        index_template: "patriot",
+        category: "midlow",
+      },
+      {
+        team: "Navy",
+        year: "2023/24",
         gender: "Men",
         index_template: "patriot",
         category: "midlow",
@@ -6484,6 +8111,13 @@ export class AvailableTeams {
       },
       {
         team: "Nebraska",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Nebraska",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -6517,6 +8151,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Nebraska",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     Nevada: [
       {
@@ -6536,6 +8177,13 @@ export class AvailableTeams {
       {
         team: "Nevada",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "Nevada",
+        year: "2023/24",
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
@@ -6563,6 +8211,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "New Hampshire",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     "New Mexico": [
       {
@@ -6582,6 +8237,13 @@ export class AvailableTeams {
       {
         team: "New Mexico",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "New Mexico",
+        year: "2023/24",
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
@@ -6609,6 +8271,13 @@ export class AvailableTeams {
         index_template: "wac",
         category: "midlow",
       },
+      {
+        team: "New Mexico St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
     ],
     "New Orleans": [
       {
@@ -6628,6 +8297,13 @@ export class AvailableTeams {
       {
         team: "New Orleans",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "New Orleans",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -6655,6 +8331,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Niagara",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
     ],
     Nicholls: [
       {
@@ -6667,6 +8350,13 @@ export class AvailableTeams {
       {
         team: "Nicholls",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "Nicholls",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -6703,6 +8393,13 @@ export class AvailableTeams {
         index_template: "meac",
         category: "low",
       },
+      {
+        team: "Norfolk St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
     ],
     "North Ala.": [
       {
@@ -6715,6 +8412,13 @@ export class AvailableTeams {
       {
         team: "North Ala.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
+      {
+        team: "North Ala.",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
@@ -6758,6 +8462,13 @@ export class AvailableTeams {
       },
       {
         team: "North Carolina",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "North Carolina",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -6791,6 +8502,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "North Carolina",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     "North Dakota": [
       {
@@ -6810,6 +8528,13 @@ export class AvailableTeams {
       {
         team: "North Dakota",
         year: "2022/23",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
+      {
+        team: "North Dakota",
+        year: "2023/24",
         gender: "Men",
         index_template: "summit",
         category: "mid",
@@ -6837,6 +8562,13 @@ export class AvailableTeams {
         index_template: "summit",
         category: "mid",
       },
+      {
+        team: "North Dakota St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
     ],
     "North Florida": [
       {
@@ -6856,6 +8588,13 @@ export class AvailableTeams {
       {
         team: "North Florida",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
+      {
+        team: "North Florida",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
@@ -6883,6 +8622,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "North Texas",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
     ],
     Northeastern: [
       {
@@ -6902,6 +8648,13 @@ export class AvailableTeams {
       {
         team: "Northeastern",
         year: "2022/23",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
+      {
+        team: "Northeastern",
+        year: "2023/24",
         gender: "Men",
         index_template: "colonial",
         category: "mid",
@@ -6929,6 +8682,13 @@ export class AvailableTeams {
         index_template: "bigsky",
         category: "midlow",
       },
+      {
+        team: "Northern Ariz.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
     ],
     "Northern Colo.": [
       {
@@ -6948,6 +8708,13 @@ export class AvailableTeams {
       {
         team: "Northern Colo.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
+      {
+        team: "Northern Colo.",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
@@ -6977,6 +8744,13 @@ export class AvailableTeams {
         index_template: "mac",
         category: "mid",
       },
+      {
+        team: "NIU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
     ],
     "Northern Ky.": [
       {
@@ -6996,6 +8770,13 @@ export class AvailableTeams {
       {
         team: "Northern Ky.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "Northern Ky.",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
@@ -7039,6 +8820,13 @@ export class AvailableTeams {
       },
       {
         team: "Northwestern",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Northwestern",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -7072,6 +8860,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Northwestern",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     "Northwestern St.": [
       {
@@ -7091,6 +8886,13 @@ export class AvailableTeams {
       {
         team: "Northwestern St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "Northwestern St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -7134,6 +8936,13 @@ export class AvailableTeams {
       },
       {
         team: "Notre Dame",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Notre Dame",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -7167,6 +8976,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Notre Dame",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     Oakland: [
       {
@@ -7190,6 +9006,13 @@ export class AvailableTeams {
         index_template: "horizon",
         category: "mid",
       },
+      {
+        team: "Oakland",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
     ],
     Ohio: [
       {
@@ -7209,6 +9032,13 @@ export class AvailableTeams {
       {
         team: "Ohio",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Ohio",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -7252,6 +9082,13 @@ export class AvailableTeams {
       },
       {
         team: "Ohio St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Ohio St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -7281,6 +9118,13 @@ export class AvailableTeams {
       {
         team: "Ohio St.",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
+      {
+        team: "Ohio St.",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigten",
         category: "high",
@@ -7324,6 +9168,13 @@ export class AvailableTeams {
       },
       {
         team: "Oklahoma",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Oklahoma",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -7353,6 +9204,13 @@ export class AvailableTeams {
       {
         team: "Oklahoma",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Oklahoma",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
@@ -7396,6 +9254,13 @@ export class AvailableTeams {
       },
       {
         team: "Oklahoma St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Oklahoma St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -7429,6 +9294,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "Oklahoma St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "Old Dominion": [
       {
@@ -7448,6 +9320,13 @@ export class AvailableTeams {
       {
         team: "Old Dominion",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "Old Dominion",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -7491,6 +9370,13 @@ export class AvailableTeams {
       },
       {
         team: "Ole Miss",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Ole Miss",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -7524,6 +9410,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Ole Miss",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     Omaha: [
       {
@@ -7547,6 +9440,13 @@ export class AvailableTeams {
         index_template: "summit",
         category: "mid",
       },
+      {
+        team: "Omaha",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
     ],
     "Oral Roberts": [
       {
@@ -7566,6 +9466,13 @@ export class AvailableTeams {
       {
         team: "Oral Roberts",
         year: "2022/23",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
+      {
+        team: "Oral Roberts",
+        year: "2023/24",
         gender: "Men",
         index_template: "summit",
         category: "mid",
@@ -7609,6 +9516,13 @@ export class AvailableTeams {
       },
       {
         team: "Oregon",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Oregon",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -7638,6 +9552,13 @@ export class AvailableTeams {
       {
         team: "Oregon",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
+      {
+        team: "Oregon",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
@@ -7681,6 +9602,13 @@ export class AvailableTeams {
       },
       {
         team: "Oregon St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Oregon St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -7714,6 +9642,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "Oregon St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     Pacific: [
       {
@@ -7737,6 +9672,13 @@ export class AvailableTeams {
         index_template: "wcc",
         category: "midhigh",
       },
+      {
+        team: "Pacific",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
     ],
     Penn: [
       {
@@ -7749,6 +9691,13 @@ export class AvailableTeams {
       {
         team: "Penn",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Penn",
+        year: "2023/24",
         gender: "Men",
         index_template: "ivy",
         category: "mid",
@@ -7792,6 +9741,13 @@ export class AvailableTeams {
       },
       {
         team: "Penn St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Penn St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -7825,6 +9781,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Penn St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     Pepperdine: [
       {
@@ -7844,6 +9807,13 @@ export class AvailableTeams {
       {
         team: "Pepperdine",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "Pepperdine",
+        year: "2023/24",
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
@@ -7887,6 +9857,13 @@ export class AvailableTeams {
       },
       {
         team: "Pittsburgh",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Pittsburgh",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -7920,6 +9897,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Pittsburgh",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     Portland: [
       {
@@ -7939,6 +9923,13 @@ export class AvailableTeams {
       {
         team: "Portland",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "Portland",
+        year: "2023/24",
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
@@ -7966,6 +9957,13 @@ export class AvailableTeams {
         index_template: "bigsky",
         category: "midlow",
       },
+      {
+        team: "Portland St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
     ],
     "Prairie View": [
       {
@@ -7985,6 +9983,13 @@ export class AvailableTeams {
       {
         team: "Prairie View",
         year: "2022/23",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
+      {
+        team: "Prairie View",
+        year: "2023/24",
         gender: "Men",
         index_template: "swac",
         category: "low",
@@ -8012,6 +10017,13 @@ export class AvailableTeams {
         index_template: "bigsouth",
         category: "low",
       },
+      {
+        team: "Presbyterian",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
     ],
     Princeton: [
       {
@@ -8030,6 +10042,13 @@ export class AvailableTeams {
       },
       {
         team: "Princeton",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Princeton",
         year: "2021/22",
         gender: "Women",
         index_template: "women_misc_conf",
@@ -8038,6 +10057,13 @@ export class AvailableTeams {
       {
         team: "Princeton",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
+      {
+        team: "Princeton",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
@@ -8081,6 +10107,13 @@ export class AvailableTeams {
       },
       {
         team: "Providence",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Providence",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -8096,6 +10129,13 @@ export class AvailableTeams {
       {
         team: "Providence",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "Providence",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -8139,6 +10179,13 @@ export class AvailableTeams {
       },
       {
         team: "Purdue",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Purdue",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -8172,6 +10219,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Purdue",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     "Purdue Fort Wayne": [
       {
@@ -8195,11 +10249,25 @@ export class AvailableTeams {
         index_template: "horizon",
         category: "mid",
       },
+      {
+        team: "Purdue Fort Wayne",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
     ],
     "Queens (NC)": [
       {
         team: "Queens (NC)",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
+      {
+        team: "Queens (NC)",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticsun",
         category: "low",
@@ -8227,6 +10295,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Quinnipiac",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
     ],
     Radford: [
       {
@@ -8246,6 +10321,13 @@ export class AvailableTeams {
       {
         team: "Radford",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
+      {
+        team: "Radford",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
@@ -8287,6 +10369,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Rhode Island",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     Rice: [
       {
@@ -8309,6 +10398,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+      },
+      {
+        team: "Rice",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
       },
     ],
     Richmond: [
@@ -8347,6 +10443,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Richmond",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     Rider: [
       {
@@ -8370,6 +10473,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Rider",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
     ],
     "Robert Morris": [
       {
@@ -8389,6 +10499,13 @@ export class AvailableTeams {
       {
         team: "Robert Morris",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "Robert Morris",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
@@ -8432,6 +10549,13 @@ export class AvailableTeams {
       },
       {
         team: "Rutgers",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Rutgers",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -8465,6 +10589,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Rutgers",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     SFA: [
       {
@@ -8488,6 +10619,13 @@ export class AvailableTeams {
         index_template: "wac",
         category: "midlow",
       },
+      {
+        team: "SFA",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
     ],
     SIUE: [
       {
@@ -8507,6 +10645,13 @@ export class AvailableTeams {
       {
         team: "SIUE",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "SIUE",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -8550,6 +10695,13 @@ export class AvailableTeams {
       },
       {
         team: "SMU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "SMU",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -8583,6 +10735,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "SMU",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
     ],
     "Sacramento St.": [
       {
@@ -8602,6 +10761,13 @@ export class AvailableTeams {
       {
         team: "Sacramento St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
+      {
+        team: "Sacramento St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
@@ -8629,6 +10795,13 @@ export class AvailableTeams {
         index_template: "nec",
         category: "low",
       },
+      {
+        team: "Sacred Heart",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
     ],
     "Saint Francis (PA)": [
       {
@@ -8648,6 +10821,13 @@ export class AvailableTeams {
       {
         team: "Saint Francis (PA)",
         year: "2022/23",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
+      {
+        team: "Saint Francis (PA)",
+        year: "2023/24",
         gender: "Men",
         index_template: "nec",
         category: "low",
@@ -8689,6 +10869,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "Saint Joseph's",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     "Saint Louis": [
       {
@@ -8722,6 +10909,13 @@ export class AvailableTeams {
       {
         team: "Saint Louis",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
+      {
+        team: "Saint Louis",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
@@ -8763,6 +10957,13 @@ export class AvailableTeams {
         index_template: "wcc",
         category: "midhigh",
       },
+      {
+        team: "Saint Mary's (CA)",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
     ],
     "Saint Peter's": [
       {
@@ -8782,6 +10983,13 @@ export class AvailableTeams {
       {
         team: "Saint Peter's",
         year: "2022/23",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
+      {
+        team: "Saint Peter's",
+        year: "2023/24",
         gender: "Men",
         index_template: "maac",
         category: "midlow",
@@ -8808,6 +11016,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+      },
+      {
+        team: "Sam Houston",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
       },
     ],
     "Sam Houston St.": [
@@ -8841,6 +11056,13 @@ export class AvailableTeams {
         index_template: "socon",
         category: "midlow",
       },
+      {
+        team: "Samford",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
     ],
     "San Diego": [
       {
@@ -8860,6 +11082,13 @@ export class AvailableTeams {
       {
         team: "San Diego",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "San Diego",
+        year: "2023/24",
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
@@ -8901,6 +11130,13 @@ export class AvailableTeams {
         index_template: "mountainwest",
         category: "midhigh",
       },
+      {
+        team: "San Diego St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
     ],
     "San Francisco": [
       {
@@ -8920,6 +11156,13 @@ export class AvailableTeams {
       {
         team: "San Francisco",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "San Francisco",
+        year: "2023/24",
         gender: "Men",
         index_template: "wcc",
         category: "midhigh",
@@ -8947,6 +11190,13 @@ export class AvailableTeams {
         index_template: "mountainwest",
         category: "midhigh",
       },
+      {
+        team: "San Jose St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
     ],
     "Santa Clara": [
       {
@@ -8970,6 +11220,13 @@ export class AvailableTeams {
         index_template: "wcc",
         category: "midhigh",
       },
+      {
+        team: "Santa Clara",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wcc",
+        category: "midhigh",
+      },
     ],
     "Seattle U": [
       {
@@ -8989,6 +11246,13 @@ export class AvailableTeams {
       {
         team: "Seattle U",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Seattle U",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -9032,6 +11296,13 @@ export class AvailableTeams {
       },
       {
         team: "Seton Hall",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Seton Hall",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -9047,6 +11318,13 @@ export class AvailableTeams {
       {
         team: "Seton Hall",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "Seton Hall",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -9074,6 +11352,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Siena",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "maac",
+        category: "midlow",
+      },
     ],
     "South Alabama": [
       {
@@ -9093,6 +11378,13 @@ export class AvailableTeams {
       {
         team: "South Alabama",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "South Alabama",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -9136,6 +11428,13 @@ export class AvailableTeams {
       },
       {
         team: "South Carolina",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "South Carolina",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -9169,6 +11468,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "South Carolina",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "South Carolina St.": [
       {
@@ -9188,6 +11494,13 @@ export class AvailableTeams {
       {
         team: "South Carolina St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
+      {
+        team: "South Carolina St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "meac",
         category: "low",
@@ -9217,6 +11530,13 @@ export class AvailableTeams {
       },
       {
         team: "South Dakota",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
+      {
+        team: "South Dakota",
         year: "2020/21",
         gender: "Women",
         index_template: "women_misc_conf",
@@ -9232,6 +11552,13 @@ export class AvailableTeams {
       {
         team: "South Dakota",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
+      {
+        team: "South Dakota",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
@@ -9255,6 +11582,13 @@ export class AvailableTeams {
       {
         team: "South Dakota St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
+      {
+        team: "South Dakota St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "summit",
         category: "mid",
@@ -9290,6 +11624,13 @@ export class AvailableTeams {
       {
         team: "South Dakota St.",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
+      {
+        team: "South Dakota St.",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_misc_conf",
         category: "midhigh",
@@ -9333,6 +11674,13 @@ export class AvailableTeams {
       },
       {
         team: "South Fla.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "South Fla.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -9366,6 +11714,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "South Fla.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
     ],
     "Southeast Mo. St.": [
       {
@@ -9389,6 +11744,13 @@ export class AvailableTeams {
         index_template: "ovc",
         category: "midlow",
       },
+      {
+        team: "Southeast Mo. St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
     ],
     "Southeastern La.": [
       {
@@ -9408,6 +11770,13 @@ export class AvailableTeams {
       {
         team: "Southeastern La.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "Southeastern La.",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -9451,6 +11820,13 @@ export class AvailableTeams {
       },
       {
         team: "Southern California",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Southern California",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -9484,6 +11860,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "Southern California",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     "Southern Ill.": [
       {
@@ -9507,11 +11890,25 @@ export class AvailableTeams {
         index_template: "mvc",
         category: "mid",
       },
+      {
+        team: "Southern Ill.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
     ],
     "Southern Ind.": [
       {
         team: "Southern Ind.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "Southern Ind.",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -9539,6 +11936,13 @@ export class AvailableTeams {
         index_template: "sunbelt",
         category: "mid",
       },
+      {
+        team: "Southern Miss.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
     ],
     "Southern U.": [
       {
@@ -9562,6 +11966,13 @@ export class AvailableTeams {
         index_template: "swac",
         category: "low",
       },
+      {
+        team: "Southern U.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
     ],
     "Southern Utah": [
       {
@@ -9581,6 +11992,13 @@ export class AvailableTeams {
       {
         team: "Southern Utah",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Southern Utah",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -9618,6 +12036,13 @@ export class AvailableTeams {
       {
         team: "St. Bonaventure",
         year: "2022/23",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
+      {
+        team: "St. Bonaventure",
+        year: "2023/24",
         gender: "Men",
         index_template: "atlanticten",
         category: "midhigh",
@@ -9684,6 +12109,13 @@ export class AvailableTeams {
       },
       {
         team: "St. John's (NY)",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "St. John's (NY)",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -9703,6 +12135,13 @@ export class AvailableTeams {
         index_template: "women_bigeast",
         category: "high",
       },
+      {
+        team: "St. John's (NY)",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
     ],
     "St. Thomas (MN)": [
       {
@@ -9715,6 +12154,13 @@ export class AvailableTeams {
       {
         team: "St. Thomas (MN)",
         year: "2022/23",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
+      {
+        team: "St. Thomas (MN)",
+        year: "2023/24",
         gender: "Men",
         index_template: "summit",
         category: "mid",
@@ -9758,6 +12204,13 @@ export class AvailableTeams {
       },
       {
         team: "Stanford",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Stanford",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -9791,6 +12244,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "Stanford",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     Stetson: [
       {
@@ -9814,11 +12274,25 @@ export class AvailableTeams {
         index_template: "atlanticsun",
         category: "low",
       },
+      {
+        team: "Stetson",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticsun",
+        category: "low",
+      },
     ],
     Stonehill: [
       {
         team: "Stonehill",
         year: "2022/23",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
+      {
+        team: "Stonehill",
+        year: "2023/24",
         gender: "Men",
         index_template: "americaeast",
         category: "low",
@@ -9842,6 +12316,13 @@ export class AvailableTeams {
       {
         team: "Stony Brook",
         year: "2022/23",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
+      {
+        team: "Stony Brook",
+        year: "2023/24",
         gender: "Men",
         index_template: "colonial",
         category: "mid",
@@ -9885,6 +12366,13 @@ export class AvailableTeams {
       },
       {
         team: "Syracuse",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Syracuse",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -9914,6 +12402,13 @@ export class AvailableTeams {
       {
         team: "Syracuse",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
+      {
+        team: "Syracuse",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_acc",
         category: "high",
@@ -9957,6 +12452,13 @@ export class AvailableTeams {
       },
       {
         team: "TCU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "TCU",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -9990,6 +12492,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "TCU",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "Tarleton St.": [
       {
@@ -10002,6 +12511,13 @@ export class AvailableTeams {
       {
         team: "Tarleton St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Tarleton St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -10045,6 +12561,13 @@ export class AvailableTeams {
       },
       {
         team: "Temple",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "Temple",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -10074,6 +12597,13 @@ export class AvailableTeams {
       {
         team: "Temple",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
+      {
+        team: "Temple",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
@@ -10117,6 +12647,13 @@ export class AvailableTeams {
       },
       {
         team: "Tennessee",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Tennessee",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -10150,6 +12687,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Tennessee",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Tennessee St.": [
       {
@@ -10169,6 +12713,13 @@ export class AvailableTeams {
       {
         team: "Tennessee St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
+      {
+        team: "Tennessee St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "ovc",
         category: "midlow",
@@ -10196,11 +12747,25 @@ export class AvailableTeams {
         index_template: "ovc",
         category: "midlow",
       },
+      {
+        team: "Tennessee Tech",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
     ],
     "Tex. A&M-Commerce": [
       {
         team: "Tex. A&M-Commerce",
         year: "2022/23",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
+      {
+        team: "Tex. A&M-Commerce",
+        year: "2023/24",
         gender: "Men",
         index_template: "southland",
         category: "low",
@@ -10244,6 +12809,13 @@ export class AvailableTeams {
       },
       {
         team: "Texas",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Texas",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -10273,6 +12845,13 @@ export class AvailableTeams {
       {
         team: "Texas",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Texas",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigtwelve",
         category: "high",
@@ -10316,6 +12895,13 @@ export class AvailableTeams {
       },
       {
         team: "Texas A&M",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Texas A&M",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -10349,6 +12935,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Texas A&M",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     "Texas Southern": [
       {
@@ -10372,6 +12965,13 @@ export class AvailableTeams {
         index_template: "swac",
         category: "low",
       },
+      {
+        team: "Texas Southern",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "swac",
+        category: "low",
+      },
     ],
     "Texas St.": [
       {
@@ -10391,6 +12991,13 @@ export class AvailableTeams {
       {
         team: "Texas St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "Texas St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -10434,6 +13041,13 @@ export class AvailableTeams {
       },
       {
         team: "Texas Tech",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "Texas Tech",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -10467,6 +13081,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "Texas Tech",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "The Citadel": [
       {
@@ -10486,6 +13107,13 @@ export class AvailableTeams {
       {
         team: "The Citadel",
         year: "2022/23",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
+      {
+        team: "The Citadel",
+        year: "2023/24",
         gender: "Men",
         index_template: "socon",
         category: "midlow",
@@ -10513,6 +13141,13 @@ export class AvailableTeams {
         index_template: "mac",
         category: "mid",
       },
+      {
+        team: "Toledo",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
     ],
     Towson: [
       {
@@ -10536,6 +13171,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "Towson",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     Troy: [
       {
@@ -10555,6 +13197,13 @@ export class AvailableTeams {
       {
         team: "Troy",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "Troy",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -10598,6 +13247,13 @@ export class AvailableTeams {
       },
       {
         team: "Tulane",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "Tulane",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -10627,6 +13283,13 @@ export class AvailableTeams {
       {
         team: "Tulane",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
+      {
+        team: "Tulane",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
@@ -10670,6 +13333,13 @@ export class AvailableTeams {
       },
       {
         team: "Tulsa",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "Tulsa",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -10703,6 +13373,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "Tulsa",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
     ],
     UAB: [
       {
@@ -10726,6 +13403,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "UAB",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
     ],
     "UC Davis": [
       {
@@ -10745,6 +13429,13 @@ export class AvailableTeams {
       {
         team: "UC Davis",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
+      {
+        team: "UC Davis",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
@@ -10772,6 +13463,13 @@ export class AvailableTeams {
         index_template: "bigwest",
         category: "mid",
       },
+      {
+        team: "UC Irvine",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
     ],
     "UC Riverside": [
       {
@@ -10795,6 +13493,13 @@ export class AvailableTeams {
         index_template: "bigwest",
         category: "mid",
       },
+      {
+        team: "UC Riverside",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
     ],
     "UC San Diego": [
       {
@@ -10807,6 +13512,13 @@ export class AvailableTeams {
       {
         team: "UC San Diego",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
+      {
+        team: "UC San Diego",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
@@ -10830,6 +13542,13 @@ export class AvailableTeams {
       {
         team: "UC Santa Barbara",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigwest",
+        category: "mid",
+      },
+      {
+        team: "UC Santa Barbara",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigwest",
         category: "mid",
@@ -10873,6 +13592,13 @@ export class AvailableTeams {
       },
       {
         team: "UCF",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "UCF",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -10905,6 +13631,13 @@ export class AvailableTeams {
         gender: "Women",
         index_template: "women_american",
         category: "midhigh",
+      },
+      {
+        team: "UCF",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "bigtwelve",
+        category: "high",
       },
     ],
     UCLA: [
@@ -10945,6 +13678,13 @@ export class AvailableTeams {
       },
       {
         team: "UCLA",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "UCLA",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -10974,6 +13714,13 @@ export class AvailableTeams {
       {
         team: "UCLA",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
+      {
+        team: "UCLA",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
@@ -11017,6 +13764,13 @@ export class AvailableTeams {
       },
       {
         team: "UConn",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "UConn",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -11050,6 +13804,13 @@ export class AvailableTeams {
         index_template: "women_bigeast",
         category: "high",
       },
+      {
+        team: "UConn",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
     ],
     UIC: [
       {
@@ -11069,6 +13830,13 @@ export class AvailableTeams {
       {
         team: "UIC",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
+      {
+        team: "UIC",
+        year: "2023/24",
         gender: "Men",
         index_template: "mvc",
         category: "mid",
@@ -11096,6 +13864,13 @@ export class AvailableTeams {
         index_template: "southland",
         category: "low",
       },
+      {
+        team: "UIW",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "southland",
+        category: "low",
+      },
     ],
     ULM: [
       {
@@ -11115,6 +13890,13 @@ export class AvailableTeams {
       {
         team: "ULM",
         year: "2022/23",
+        gender: "Men",
+        index_template: "sunbelt",
+        category: "mid",
+      },
+      {
+        team: "ULM",
+        year: "2023/24",
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
@@ -11142,6 +13924,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "UMBC",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     UMES: [
       {
@@ -11154,6 +13943,13 @@ export class AvailableTeams {
       {
         team: "UMES",
         year: "2022/23",
+        gender: "Men",
+        index_template: "meac",
+        category: "low",
+      },
+      {
+        team: "UMES",
+        year: "2023/24",
         gender: "Men",
         index_template: "meac",
         category: "low",
@@ -11181,6 +13977,13 @@ export class AvailableTeams {
         index_template: "americaeast",
         category: "low",
       },
+      {
+        team: "UMass Lowell",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
     ],
     "UNC Asheville": [
       {
@@ -11200,6 +14003,13 @@ export class AvailableTeams {
       {
         team: "UNC Asheville",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
+      {
+        team: "UNC Asheville",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
@@ -11227,6 +14037,13 @@ export class AvailableTeams {
         index_template: "socon",
         category: "midlow",
       },
+      {
+        team: "UNC Greensboro",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
     ],
     UNCW: [
       {
@@ -11246,6 +14063,13 @@ export class AvailableTeams {
       {
         team: "UNCW",
         year: "2022/23",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
+      {
+        team: "UNCW",
+        year: "2023/24",
         gender: "Men",
         index_template: "colonial",
         category: "mid",
@@ -11273,6 +14097,13 @@ export class AvailableTeams {
         index_template: "mvc",
         category: "mid",
       },
+      {
+        team: "UNI",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
     ],
     UNLV: [
       {
@@ -11292,6 +14123,13 @@ export class AvailableTeams {
       {
         team: "UNLV",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "UNLV",
+        year: "2023/24",
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
@@ -11319,6 +14157,13 @@ export class AvailableTeams {
         index_template: "bigsouth",
         category: "low",
       },
+      {
+        team: "USC Upstate",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
     ],
     "UT Arlington": [
       {
@@ -11338,6 +14183,13 @@ export class AvailableTeams {
       {
         team: "UT Arlington",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "UT Arlington",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -11365,6 +14217,13 @@ export class AvailableTeams {
         index_template: "ovc",
         category: "midlow",
       },
+      {
+        team: "UT Martin",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "ovc",
+        category: "midlow",
+      },
     ],
     UTEP: [
       {
@@ -11384,6 +14243,13 @@ export class AvailableTeams {
       {
         team: "UTEP",
         year: "2022/23",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
+      {
+        team: "UTEP",
+        year: "2023/24",
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
@@ -11411,6 +14277,13 @@ export class AvailableTeams {
         index_template: "wac",
         category: "midlow",
       },
+      {
+        team: "UTRGV",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
     ],
     UTSA: [
       {
@@ -11433,6 +14306,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "conferenceusa",
         category: "mid",
+      },
+      {
+        team: "UTSA",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
       },
     ],
     Utah: [
@@ -11473,6 +14353,13 @@ export class AvailableTeams {
       },
       {
         team: "Utah",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Utah",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -11502,6 +14389,13 @@ export class AvailableTeams {
       {
         team: "Utah",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
+      {
+        team: "Utah",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
@@ -11543,6 +14437,13 @@ export class AvailableTeams {
         index_template: "mountainwest",
         category: "midhigh",
       },
+      {
+        team: "Utah St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
     ],
     "Utah Valley": [
       {
@@ -11562,6 +14463,13 @@ export class AvailableTeams {
       {
         team: "Utah Valley",
         year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Utah Valley",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
@@ -11603,6 +14511,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "VCU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "atlanticten",
+        category: "midhigh",
+      },
     ],
     VMI: [
       {
@@ -11626,6 +14541,13 @@ export class AvailableTeams {
         index_template: "socon",
         category: "midlow",
       },
+      {
+        team: "VMI",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
     ],
     Valparaiso: [
       {
@@ -11645,6 +14567,13 @@ export class AvailableTeams {
       {
         team: "Valparaiso",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mvc",
+        category: "mid",
+      },
+      {
+        team: "Valparaiso",
+        year: "2023/24",
         gender: "Men",
         index_template: "mvc",
         category: "mid",
@@ -11688,6 +14617,13 @@ export class AvailableTeams {
       },
       {
         team: "Vanderbilt",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "sec",
+        category: "high",
+      },
+      {
+        team: "Vanderbilt",
         year: "2018/9",
         gender: "Women",
         index_template: "women_sec",
@@ -11721,6 +14657,13 @@ export class AvailableTeams {
         index_template: "women_sec",
         category: "high",
       },
+      {
+        team: "Vanderbilt",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_sec",
+        category: "high",
+      },
     ],
     Vermont: [
       {
@@ -11740,6 +14683,13 @@ export class AvailableTeams {
       {
         team: "Vermont",
         year: "2022/23",
+        gender: "Men",
+        index_template: "americaeast",
+        category: "low",
+      },
+      {
+        team: "Vermont",
+        year: "2023/24",
         gender: "Men",
         index_template: "americaeast",
         category: "low",
@@ -11783,6 +14733,13 @@ export class AvailableTeams {
       },
       {
         team: "Villanova",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Villanova",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -11798,6 +14755,13 @@ export class AvailableTeams {
       {
         team: "Villanova",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
+      {
+        team: "Villanova",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_bigeast",
         category: "high",
@@ -11841,6 +14805,13 @@ export class AvailableTeams {
       },
       {
         team: "Virginia",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Virginia",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -11870,6 +14841,13 @@ export class AvailableTeams {
       {
         team: "Virginia",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
+      {
+        team: "Virginia",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_acc",
         category: "high",
@@ -11913,6 +14891,13 @@ export class AvailableTeams {
       },
       {
         team: "Virginia Tech",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Virginia Tech",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -11946,6 +14931,13 @@ export class AvailableTeams {
         index_template: "women_acc",
         category: "high",
       },
+      {
+        team: "Virginia Tech",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
     ],
     Wagner: [
       {
@@ -11965,6 +14957,13 @@ export class AvailableTeams {
       {
         team: "Wagner",
         year: "2022/23",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
+      {
+        team: "Wagner",
+        year: "2023/24",
         gender: "Men",
         index_template: "nec",
         category: "low",
@@ -12008,6 +15007,13 @@ export class AvailableTeams {
       },
       {
         team: "Wake Forest",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "acc",
+        category: "high",
+      },
+      {
+        team: "Wake Forest",
         year: "2018/9",
         gender: "Women",
         index_template: "women_acc",
@@ -12037,6 +15043,13 @@ export class AvailableTeams {
       {
         team: "Wake Forest",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_acc",
+        category: "high",
+      },
+      {
+        team: "Wake Forest",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_acc",
         category: "high",
@@ -12080,6 +15093,13 @@ export class AvailableTeams {
       },
       {
         team: "Washington",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Washington",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -12109,6 +15129,13 @@ export class AvailableTeams {
       {
         team: "Washington",
         year: "2022/23",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
+      {
+        team: "Washington",
+        year: "2023/24",
         gender: "Women",
         index_template: "women_pactwelve",
         category: "high",
@@ -12152,6 +15179,13 @@ export class AvailableTeams {
       },
       {
         team: "Washington St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "pactwelve",
+        category: "high",
+      },
+      {
+        team: "Washington St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_pactwelve",
@@ -12185,6 +15219,13 @@ export class AvailableTeams {
         index_template: "women_pactwelve",
         category: "high",
       },
+      {
+        team: "Washington St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_pactwelve",
+        category: "high",
+      },
     ],
     "Weber St.": [
       {
@@ -12204,6 +15245,13 @@ export class AvailableTeams {
       {
         team: "Weber St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsky",
+        category: "midlow",
+      },
+      {
+        team: "Weber St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsky",
         category: "midlow",
@@ -12247,6 +15295,13 @@ export class AvailableTeams {
       },
       {
         team: "West Virginia",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigtwelve",
+        category: "high",
+      },
+      {
+        team: "West Virginia",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigtwelve",
@@ -12280,6 +15335,13 @@ export class AvailableTeams {
         index_template: "women_bigtwelve",
         category: "high",
       },
+      {
+        team: "West Virginia",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigtwelve",
+        category: "high",
+      },
     ],
     "Western Caro.": [
       {
@@ -12299,6 +15361,13 @@ export class AvailableTeams {
       {
         team: "Western Caro.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
+      {
+        team: "Western Caro.",
+        year: "2023/24",
         gender: "Men",
         index_template: "socon",
         category: "midlow",
@@ -12326,6 +15395,13 @@ export class AvailableTeams {
         index_template: "summit",
         category: "mid",
       },
+      {
+        team: "Western Ill.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "summit",
+        category: "mid",
+      },
     ],
     "Western Ky.": [
       {
@@ -12349,6 +15425,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "Western Ky.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "conferenceusa",
+        category: "mid",
+      },
     ],
     "Western Mich.": [
       {
@@ -12368,6 +15451,13 @@ export class AvailableTeams {
       {
         team: "Western Mich.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Western Mich.",
+        year: "2023/24",
         gender: "Men",
         index_template: "mac",
         category: "mid",
@@ -12411,6 +15501,13 @@ export class AvailableTeams {
       },
       {
         team: "Wichita St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "american",
+        category: "midhigh",
+      },
+      {
+        team: "Wichita St.",
         year: "2018/9",
         gender: "Women",
         index_template: "women_american",
@@ -12444,6 +15541,13 @@ export class AvailableTeams {
         index_template: "women_american",
         category: "midhigh",
       },
+      {
+        team: "Wichita St.",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_american",
+        category: "midhigh",
+      },
     ],
     "William & Mary": [
       {
@@ -12467,6 +15571,13 @@ export class AvailableTeams {
         index_template: "colonial",
         category: "mid",
       },
+      {
+        team: "William & Mary",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "colonial",
+        category: "mid",
+      },
     ],
     Winthrop: [
       {
@@ -12486,6 +15597,13 @@ export class AvailableTeams {
       {
         team: "Winthrop",
         year: "2022/23",
+        gender: "Men",
+        index_template: "bigsouth",
+        category: "low",
+      },
+      {
+        team: "Winthrop",
+        year: "2023/24",
         gender: "Men",
         index_template: "bigsouth",
         category: "low",
@@ -12529,6 +15647,13 @@ export class AvailableTeams {
       },
       {
         team: "Wisconsin",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigten",
+        category: "high",
+      },
+      {
+        team: "Wisconsin",
         year: "2018/9",
         gender: "Women",
         index_template: "women_bigten",
@@ -12562,6 +15687,13 @@ export class AvailableTeams {
         index_template: "women_bigten",
         category: "high",
       },
+      {
+        team: "Wisconsin",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigten",
+        category: "high",
+      },
     ],
     Wofford: [
       {
@@ -12581,6 +15713,13 @@ export class AvailableTeams {
       {
         team: "Wofford",
         year: "2022/23",
+        gender: "Men",
+        index_template: "socon",
+        category: "midlow",
+      },
+      {
+        team: "Wofford",
+        year: "2023/24",
         gender: "Men",
         index_template: "socon",
         category: "midlow",
@@ -12608,6 +15747,13 @@ export class AvailableTeams {
         index_template: "horizon",
         category: "mid",
       },
+      {
+        team: "Wright St.",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
     ],
     Wyoming: [
       {
@@ -12627,6 +15773,13 @@ export class AvailableTeams {
       {
         team: "Wyoming",
         year: "2022/23",
+        gender: "Men",
+        index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "Wyoming",
+        year: "2023/24",
         gender: "Men",
         index_template: "mountainwest",
         category: "midhigh",
@@ -12670,6 +15823,13 @@ export class AvailableTeams {
       },
       {
         team: "Xavier",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "bigeast",
+        category: "high",
+      },
+      {
+        team: "Xavier",
         year: "2020/21",
         gender: "Women",
         index_template: "women_bigeast",
@@ -12689,6 +15849,13 @@ export class AvailableTeams {
         index_template: "women_bigeast",
         category: "high",
       },
+      {
+        team: "Xavier",
+        year: "2023/24",
+        gender: "Women",
+        index_template: "women_bigeast",
+        category: "high",
+      },
     ],
     Yale: [
       {
@@ -12701,6 +15868,13 @@ export class AvailableTeams {
       {
         team: "Yale",
         year: "2022/23",
+        gender: "Men",
+        index_template: "ivy",
+        category: "mid",
+      },
+      {
+        team: "Yale",
+        year: "2023/24",
         gender: "Men",
         index_template: "ivy",
         category: "mid",
@@ -12724,6 +15898,13 @@ export class AvailableTeams {
       {
         team: "Youngstown St.",
         year: "2022/23",
+        gender: "Men",
+        index_template: "horizon",
+        category: "mid",
+      },
+      {
+        team: "Youngstown St.",
+        year: "2023/24",
         gender: "Men",
         index_template: "horizon",
         category: "mid",
