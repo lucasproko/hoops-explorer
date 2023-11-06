@@ -5899,6 +5899,15 @@ export class AvailableTeams {
         category: "high",
       },
     ],
+    "Le Moyne": [
+      {
+        team: "Le Moyne",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "nec",
+        category: "low",
+      },
+    ],
     LIU: [
       {
         team: "LIU",
