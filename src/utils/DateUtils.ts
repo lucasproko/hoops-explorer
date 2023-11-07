@@ -27,10 +27,15 @@ export class DateUtils {
     "2020/21",
     "2021/22",
     "2022/23",
+    "2023/24",
   ];
 
-  /** Note should include all 3 formats */
-  static readonly seasonNotFinished: Record<string, boolean> = {};
+  /** Note should include all 3 formats $date, Men_$date, Women_$date */
+  static readonly seasonNotFinished: Record<string, boolean> = {
+    "2023/24": true,
+    "Men_2023/24": true,
+    "Women_2023/24": true,
+  };
 
   /** Up this once the portal gets active, even if it's before the season ends */
   static readonly yearWithActiveTransferPortal = "2023/24";
@@ -53,7 +58,7 @@ export class DateUtils {
   static readonly firstYearWithData = DateUtils.coreYears[0];
 
   /** Used for defaults for everything but leaderboards (which get updated later) */
-  static readonly mostRecentYearWithData = "2022/23";
+  static readonly mostRecentYearWithData = "2023/24";
 
   /** The year to use if making off-season predictions */
   static readonly offseasonPredictionYear = "2023/24";
@@ -164,7 +169,9 @@ export class DateUtils {
   };
   /** Get the next season */
   static readonly getNextYear = (y: string) => {
-    if (y == "2022/23") {
+    if (y == "2023/24") {
+      return "2024/25";
+    } else if (y == "2022/23") {
       return "2023/24";
     } else if (y == "2021/22") {
       return "2022/23";
@@ -190,7 +197,10 @@ export class DateUtils {
 
   /** Get the offseason of the current season */
   static readonly getOffseasonOfYear = (y: string) => {
-    if (y == "2022/23") {
+    if (y == "2023/24") {
+      //TODO: can calculate programmatically
+      return "2024";
+    } else if (y == "2022/23") {
       //TODO: can calculate programmatically
       return "2023";
     } else if (y == "2021/22") {
