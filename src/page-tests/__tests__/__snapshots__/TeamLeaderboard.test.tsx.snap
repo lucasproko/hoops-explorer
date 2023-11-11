@@ -40,7 +40,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
       common={
         Object {
           "gender": "Men",
-          "year": "2022/23",
+          "year": "2023/24",
         }
       }
       thisPage="game-_leaderboard"

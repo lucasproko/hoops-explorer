@@ -34,7 +34,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   >
     <GenericCollapsibleCard
       minimizeMargin={false}
-      summary="On/Off: 2022/23  (M): on:'', auto-off, base:''"
+      summary="On/Off: 2023/24  (M): on:'', auto-off, base:''"
       title="Team and Game Filter"
     >
       <GameFilter

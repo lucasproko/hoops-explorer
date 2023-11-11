@@ -605,11 +605,6 @@ const CommonFilter: CommonFilterI = ({
   };
   const getClearQueryButton = () => {
     const onClick = () => {
-      /**/
-      console.log(
-        `??? ${team} ${gender} ${year} ${JSON.stringify(startingState)}`
-      );
-
       const defaultParams = { gender, year, team }; //common set of params to preserve
       const getUrl = () => {
         if (tablePrefix == ParamPrefixes.game) {
@@ -956,8 +951,13 @@ const CommonFilter: CommonFilterI = ({
           </Col>
           <Col className="text-center w-100 pt-2">
             {_.thru(buildLinks, (__) => {
-              if (buildLinks && !canSubmit()) {
-                const links = buildLinks(startingState);
+              if (buildLinks) {
+                const links = buildLinks({
+                  ...startingState,
+                  team: team, //pull these 3 params from currently active dropdowns vs last submit
+                  gender: gender,
+                  year: year,
+                });
                 return _.isEmpty(links) ? null : (
                   <small className="text-center">
                     Links:{" "}

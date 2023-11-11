@@ -40573,6 +40573,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "2022/23",
             },
             Object {
+              "label": "2023/24",
+              "value": "2023/24",
+            },
+            Object {
               "label": "All",
               "value": "All",
             },
@@ -44788,6 +44792,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "2022/23",
             },
             Object {
+              "label": "2023/24",
+              "value": "2023/24",
+            },
+            Object {
               "label": "All",
               "value": "All",
             },
@@ -48133,6 +48141,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             Object {
               "label": "2022/23",
               "value": "2022/23",
+            },
+            Object {
+              "label": "2023/24",
+              "value": "2023/24",
             },
             Object {
               "label": "All",

@@ -165,6 +165,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "2022/23",
               },
               Object {
+                "label": "2023/24",
+                "value": "2023/24",
+              },
+              Object {
                 "label": "Extra",
                 "value": "Extra",
               },
@@ -177,8 +181,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           }
           value={
             Object {
-              "label": "2022/23",
-              "value": "2022/23",
+              "label": "2023/24",
+              "value": "2023/24",
             }
           }
         />
@@ -639,10 +643,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Hampton",
               },
               Object {
-                "label": "Hartford",
-                "value": "Hartford",
-              },
-              Object {
                 "label": "Harvard",
                 "value": "Harvard",
               },
@@ -753,6 +753,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Kentucky",
                 "value": "Kentucky",
+              },
+              Object {
+                "label": "Le Moyne",
+                "value": "Le Moyne",
               },
               Object {
                 "label": "LIU",
@@ -1323,10 +1327,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "St. Bonaventure",
               },
               Object {
-                "label": "St. Francis Brooklyn",
-                "value": "St. Francis Brooklyn",
-              },
-              Object {
                 "label": "St. John's (NY)",
                 "value": "St. John's (NY)",
               },
@@ -1849,7 +1849,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                   placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
                   readOnly={false}
                   team=""
-                  year="2022/23"
+                  year="2023/24"
                 />
               </div>
               <QueryFilterDropdown
@@ -2182,6 +2182,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               Object {
                 "label": "2022/23",
                 "value": "2022/23",
+              },
+              Object {
+                "label": "2023/24",
+                "value": "2023/24",
               },
               Object {
                 "label": "Extra",
@@ -3284,6 +3288,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "2022/23",
               },
               Object {
+                "label": "2023/24",
+                "value": "2023/24",
+              },
+              Object {
                 "label": "Extra",
                 "value": "Extra",
               },
@@ -4309,6 +4317,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               Object {
                 "label": "2022/23",
                 "value": "2022/23",
+              },
+              Object {
+                "label": "2023/24",
+                "value": "2023/24",
               },
               Object {
                 "label": "Extra",

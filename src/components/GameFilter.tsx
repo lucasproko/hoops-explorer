@@ -619,7 +619,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 ]
               : []
           )
-          .concat()
           .concat([
             <a
               target="_blank"
