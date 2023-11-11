@@ -12,13 +12,13 @@ export class DateUtils {
   //////////////////////////////////////
 
   /** Set this to true to show the off-season leaderboard as the site front page */
-  static readonly frontPageIsOffseasonLeaderboard = true;
+  static readonly frontPageIsOffseasonLeaderboard = false;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
   static readonly inSeasonYear = "2023/24";
 
   /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season (tbc: June 2023 offseason == 2022/23) */
-  static readonly offseasonYear = "2022/23";
+  static readonly offseasonYear = "2023/24";
 
   /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
   static readonly coreYears = [
@@ -64,7 +64,7 @@ export class DateUtils {
   static readonly offseasonPredictionYear = "2023/24";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
-  static readonly mostRecentYearWithLboardData = "2022/23";
+  static readonly mostRecentYearWithLboardData = "2023/24";
 
   /** Don't bother trying to display NET after this year */
   static readonly mostRecentYearWithNetAvailable = "2022/23";
