@@ -17,18 +17,23 @@ export const PlayerLeaderboardTracking = {
       "-YEAR2020,EaTimberlake,HuDickinson,JuLewis+Justin,WoNewton,ChEvans,AdBaldwin,MaDockery,DiStevens,JoSmith:Seton,DaN'guessan,ElWood,DwKoroma,JaWest+Jamal,TeWilliams+Terrance,DaMiles+Darius,ChHarris+Chuck,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman+Josiah,AnGill+Anwar",
     ],
     [
-      "-YEAR2021,JoHawkins,JuReese,IkCornish,JaRobinson+Jakai,RyConway,JaMiller,ErReynolds,AbSamb,QuAllen,MaDread,TrKeels,DaJohnson+Darius,BrMurray+Brandon,BeWilliams+Benny,BrFreeman+Brayon,ElHawkins+Elijah",
+      "-YEAR2021MD,JoHawkins,JuReese,IkCornish,JaRobinson+Jakai,RyConway,JaMiller",
     ],
     [
-      "-YEAR2022,ChWatson+Christian,JaTurner+Jared,DeDinkins+Devin,CaWhitmore+Cam,TyWard+Tyrell,RoRice+Rodney,FaAire+Favour,MaTraore+Mady,ChWinbourne+Christian,JuMintz+Judah,DuMcdaniel,PaLewis+Paul,DaOnanina,JaWalker+Jarace,NoBatchelor",
+      "-YEAR2021VADC,ErReynolds,AbSamb,QuAllen,MyDread+Myles,TrKeels,DaJohnson+Darius,BrMurray+Brandon,BeWilliams+Benny,BrFreeman+Brayon,ElHawkins+Elijah",
     ],
     [
-      "-YEAR2023MD,AmHansberry+Amani,CaCarrington+Carlton,DrMckenna+Drew,JaLamothe+Jahn,MiWilliams:LSU,BrLindsey+Bryce,ElJones+Elijah,",
+      "-YEAR2022MD,ChWatson+Christian,JaTurner+Jared,DeDinkins+Devin,CaWhitmore+Cam,TyWard+Tyrell",
     ],
     [
-      "-YEAR2023VA,DeHarris-smi,KwEvans+Kwame,JaKaiser+Jamie,JaHutchinson+Jacoi,MaMack+Malik,",
+      "-YEAR2022VADC,RoRice+Rodney,FaAire+Favour,MaTraore+Mady,ChWinbourne+Christian,JuMintz+Judah,DuMcdaniel,PaLewis+Paul,DaOnanina,JaWalker+Jarace,NoBatchelor+Noah,RoBrumbaugh",
     ],
-    ["-YEAR2023DC,RoDockery+Rob,"],
+    [
+      "-YEAR2023MD,AmHansberry+Amani,CaCarrington+Carlton,DrMckenna+Drew,JaLamothe+Jahn,MiWilliams:LSU,BrLindsey+Bryce,ElJones:UTEP",
+    ],
+    [
+      "-YEAR2023VADC,DeHarris-smi,KwEvans+Kwame,JaKaiser+Jamie,JaHutchinson+Jacoi,MaMack+Malik,RoDockery+Rob",
+    ],
   ]).join(","),
 
   __EURO_2017__: _.flatten([
