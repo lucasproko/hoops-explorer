@@ -538,14 +538,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             </Dropdown.Item>
             <Dropdown.Item>
               {buildNavItem(
-                "NY/NJ-area players (HS 2017+)",
-                playerLeaderboardTooltipNyNj2017,
-                getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"),
-                true
-              )}
-            </Dropdown.Item>
-            <Dropdown.Item>
-              {buildNavItem(
                 "European players (HS 2017+)",
                 playerLeaderboardTooltipEuro2017,
                 getPlayerLeaderboardTrackingUrl("__EURO_2017__"),
@@ -562,6 +554,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             </Dropdown.Item>
             {
               // Archived tracking lists:
+              //   <Dropdown.Item>
+              //   {buildNavItem(
+              //     "NY/NJ-area players (HS 2017+)",
+              //     playerLeaderboardTooltipNyNj2017,
+              //     getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"),
+              //     true
+              //   )}
+              // </Dropdown.Item>
               // <Dropdown.Item>
               //   {buildNavItem("2022 NBA prospects", playerLeaderboardTooltipNba2022, getPlayerLeaderboardTrackingUrl("__NBA_2022__"), true)}
               // </Dropdown.Item>
