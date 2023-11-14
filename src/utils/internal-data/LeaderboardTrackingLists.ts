@@ -14,7 +14,7 @@ export const PlayerLeaderboardTracking = {
       "-YEAR2019,JuMoore:Villanova,JaBishop,JaYoung+Jahmir,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice+Marvin,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro",
     ],
     [
-      "-YEAR2020,EaTimberlake,HuDickinson,JuLewis+Justin,WoNewton,ChEvans,AcBaldwin,MaDockery,DiStevens,JoSmith:Seton,DaN'guessan,ElWood,DwKoroma,JaWest+Jamal,TeWilliams+Terrance,DaMiles+Darius,ChHarris+Chuck,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman+Josiah,AnGill+Anwar,DaMaddox+Darius",
+      "-YEAR2020,EaTimberlake,HuDickinson,JuLewis+Justin,WoNewton,ChEvans,AdBaldwin,AcBaldwin,MaDockery,DiStevens,JoSmith:Seton,DaN'guessan,ElWood,DwKoroma,JaWest+Jamal,TeWilliams+Terrance,DaMiles+Darius,ChHarris+Chuck,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman+Josiah,AnGill+Anwar,DaMaddox+Darius",
     ],
     [
       "-YEAR2021MD,JoHawkins,JuReese,IkCornish,JaRobinson+Jakai,RyConway,JaMiller,TyBrelsford",
@@ -76,7 +76,7 @@ export const PlayerLeaderboardTracking = {
 
   // Tracking transfer targets
   __TERPS_TAMPER_TARGETS__:
-    "AcBaldwin;ChHarris;TyPerkins;CaCarrington;ErReynolds;MaMack+Malik;KwEvans;TyCommander;",
+    "AdBaldwin;AcBaldwin;ChHarris;TyPerkins;CaCarrington;ErReynolds;MaMack+Malik;KwEvans;TyCommander;",
 
   // Archived:
 
