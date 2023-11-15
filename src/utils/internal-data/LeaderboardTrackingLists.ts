@@ -76,7 +76,7 @@ export const PlayerLeaderboardTracking = {
 
   // Tracking transfer targets
   __TERPS_TAMPER_TARGETS__:
-    "AdBaldwin;AcBaldwin;ChHarris;TyPerkins;CaCarrington;ErReynolds;MaMack+Malik;KwEvans;TyCommander;",
+    "AdBaldwin;AcBaldwin;ChHarris;TyPerkins;CaCarrington;ErReynolds;MaMack+Malik;KwEvans;TyCommander;BeMbeng",
 
   // Archived:
 
