@@ -313,4 +313,17 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> =
         ],
       },
     ],
+    "Men_Maryland_2023/24": [
+      //(this should settle down soon and realize Scott is the PF when playing alongside Batch)
+      {
+        key: [undefined, undefined, "DoScott", "NoBatchelor", undefined],
+        rule: [
+          undefined,
+          undefined,
+          { code: "NoBatchelor", id: "Batcherlor, Noah" },
+          { code: "DoScott", id: "Scott, Donta" },
+          undefined,
+        ],
+      },
+    ],
   };
