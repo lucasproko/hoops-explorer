@@ -322,7 +322,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
         >
           <Label
-            value={"Offensive RAPM"}
+            value={"Offensive RAPM (pts/game)"}
             position="top"
             style={{ textAnchor: "middle" }}
           />
@@ -336,7 +336,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         >
           <Label
             angle={-90}
-            value={"Defensive RAPM"}
+            value={"Defensive RAPM (pts/game)"}
             position="insideLeft"
             style={{ textAnchor: "middle" }}
           />
