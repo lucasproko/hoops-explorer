@@ -15,6 +15,7 @@ import {
   ScatterChart,
   XAxis,
   YAxis,
+  ZAxis,
 } from "recharts";
 import { CbbColors } from "../utils/CbbColors";
 import { ScatterChartUtils } from "../utils/charts/ScatterChartUtils";
@@ -202,6 +203,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               labelColor,
               x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)),
               y: -Math.min(graphLimit, Math.max(-graphLimit, defRapmProd)),
+              z: offPoss * missingGameAdjustment,
               color: offRapmProd - defRapmProd,
               name: p.playerCode,
               posInfo: positionInfo[p.playerId],
@@ -374,6 +376,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             style={{ textAnchor: "middle" }}
           />
         </YAxis>
+        {seasonStats ? (
+          <ZAxis type="number" dataKey="z" range={[10, 100]} />
+        ) : undefined}
         <CartesianGrid strokeDasharray="4" />
         <Scatter
           data={cachedStats.ab}
