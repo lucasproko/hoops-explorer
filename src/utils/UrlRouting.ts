@@ -128,6 +128,12 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params,
     })}`;
   }
+  /** The URL to use to view the "Matchup Analyzer" page */
+  static getMatchupPreviewUrl(params: MatchupFilterParams) {
+    return `/MatchupPreviewAnalyzer?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
 
   /** Filters out _lineup or _game from object to avoid them getting chained repeatedly */
   static removedSavedKeys(

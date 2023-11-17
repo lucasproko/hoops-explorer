@@ -42,8 +42,9 @@ import { buildOppoFilter } from "../components/MatchupFilter";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LineupStintsChart from "../components/LineupStintsChart";
 import { LineupStintInfo } from "../utils/StatModels";
+import MatchupPreviewFilter from "../components/MatchupPreviewFilter";
 
-const MatchupAnalyzerPage: NextPage<{}> = () => {
+const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
     // Set up GA
     if (process.env.NODE_ENV === "production" && typeof window !== undefined) {
@@ -141,7 +142,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   matchupFilterParamsRef.current = matchupFilterParams;
 
   function getRootUrl(params: MatchupFilterParams) {
-    return UrlRouting.getMatchupUrl(params);
+    return UrlRouting.getMatchupPreviewUrl(params);
   }
   const [shouldForceReload, setShouldForceReload] = useState(0 as number);
 
@@ -214,36 +215,13 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     );
   }, [dataEvent]);
-  const lineupStintTable = React.useMemo(() => {
-    return (
-      <GenericCollapsibleCard
-        minimizeMargin={true}
-        title="Lineup Stints"
-        helpLink={maybeShowDocs()}
-      >
-        <Col
-          xs={12}
-          className="w-100 text-center d-flex justify-content-center"
-        >
-          <LineupStintsChart
-            startingState={matchupFilterParamsRef.current || {}}
-            opponent={
-              buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""
-            }
-            dataEvent={dataEvent}
-            onChangeState={onMatchupFilterParamsChange}
-          />
-        </Col>
-      </GenericCollapsibleCard>
-    );
-  }, [dataEvent]);
 
   return (
     <Container>
       <Row>
         <Col xs={12} className="text-center">
           <h3>
-            CBB Match-up Analysis Tool{" "}
+            CBB Match-up Preview Tool{" "}
             <span className="badge badge-pill badge-info">BETA!</span>
           </h3>
         </Col>
@@ -260,7 +238,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           title="Team and Game Filter"
           summary={HistoryManager.gameReportFilterSummary(matchupFilterParams)}
         >
-          <MatchupFilter
+          <MatchupPreviewFilter
             onStats={injectStats}
             startingState={matchupFilterParams}
             onChangeState={onMatchupFilterParamsChange}
@@ -268,7 +246,6 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         </GenericCollapsibleCard>
       </Row>
       <Row>{chart}</Row>
-      <Row>{lineupStintTable}</Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}
@@ -277,4 +254,4 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     </Container>
   );
 };
-export default MatchupAnalyzerPage;
+export default MatchupPreviewAnalyzerPage;
