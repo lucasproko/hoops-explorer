@@ -3,15 +3,23 @@ import _ from "lodash";
 /** DMVish players from 2017+ */
 export const PlayerLeaderboardTracking = {
   __DMV_2017__: _.flatten([
-    ["-YEAR2016,GrGolden,JeWilliams:Penn"],
     [
-      "-YEAR2017,NaMarshall,DjHarvey,DaMorsell,JoCarlton,JaMoultrie,ChWalker+Chyree,DePerry+De'Vondre,TeHightower,ElClarance,NiJackson:Wagner,OmHabwe,AnDuruji,NaWatson,JaPickett:George,EjObinna,AaThompson,DaDickens:Hampton,MyDouglas,AnWalker:Rhode,ChLykes,LuGarza",
+      "-YEAR2023VADC,DeHarris-smi,KwEvans+Kwame,JaKaiser+Jamie,JaHutchinson+Jacoi,MaMack+Malik,RoDockery+Rob,DaBuchanon+Darren,GaJohnson+Garrett",
     ],
     [
-      "-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,DeMims,AmHarris,JaBynum,AnHiggs,DiZdor,DoToatley,BrSlater,XaJohnson:Pitt,XaJohnson:Indiana,PrHubb,SaBey,MyDead,TrWood+Tre,DeFlowers,RiLindo",
+      "-YEAR2023MD,AmHansberry+Amani,CaCarrington+Carlton,DrMckenna+Drew,JaLamothe+Jahn,MiWilliams:LSU,BrLindsey+Bryce,ElJones:UTEP",
     ],
     [
-      "-YEAR2019,JuMoore:Villanova,JaBishop,JaYoung+Jahmir,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice+Marvin,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro",
+      "-YEAR2023MISC,ChThompson+Charles,DyWilliamson+Dylan,RoPolite+Ronald,JaBillups+Jared,WaBristol+Wayne,DeHunt+Delonnie",
+    ],
+    [
+      "-YEAR2022VADC,RoRice+Rodney,FaAire+Favour,MaTraore+Mady,ChWinbourne+Christian,JuMintz+Judah,DuMcdaniel,PaLewis+Paul,DaOnanina,JaWalker+Jarace,NoBatchelor+Noah,RoBrumbaugh",
+    ],
+    [
+      "-YEAR2022MD,ChWatson+Christian,JaTurner+Jared,DeDinkins+Devin,CaWhitmore+Cam,TyWard+Tyrell,JaWest+Jamal,TyCommander+Tyson,D'Stines+D'Angelo",
+    ],
+    [
+      "-YEAR2021VADC,ErReynolds,AbSamb,QuAllen,MyDread+Myles,TrKeels,DaJohnson+Darius,BrMurray+Brandon,BeWilliams+Benny,BrFreeman+Brayon,ElHawkins+Elijah",
     ],
     [
       "-YEAR2020,EaTimberlake,HuDickinson,JuLewis+Justin,WoNewton,ChEvans,AdBaldwin,AcBaldwin,MaDockery,DiStevens,JoSmith:Seton,DaN'guessan,ElWood,DwKoroma,JaWest+Jamal,TeWilliams+Terrance,DaMiles+Darius,ChHarris+Chuck,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman+Josiah,AnGill+Anwar,DaMaddox+Darius",
@@ -20,20 +28,15 @@ export const PlayerLeaderboardTracking = {
       "-YEAR2021MD,JoHawkins,JuReese,IkCornish,JaRobinson+Jakai,RyConway,JaMiller,TyBrelsford",
     ],
     [
-      "-YEAR2021VADC,ErReynolds,AbSamb,QuAllen,MyDread+Myles,TrKeels,DaJohnson+Darius,BrMurray+Brandon,BeWilliams+Benny,BrFreeman+Brayon,ElHawkins+Elijah",
+      "-YEAR2019,JuMoore:Villanova,JaBishop,JaYoung+Jahmir,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice+Marvin,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro",
     ],
     [
-      "-YEAR2022MD,ChWatson+Christian,JaTurner+Jared,DeDinkins+Devin,CaWhitmore+Cam,TyWard+Tyrell,JaWest+Jamal,TyCommander+Tyson,D'Stines+D'Angelo",
+      "-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,DeMims,AmHarris,JaBynum,AnHiggs,DiZdor,DoToatley,BrSlater,XaJohnson:Pitt,XaJohnson:Indiana,PrHubb,SaBey,MyDead,TrWood+Tre,DeFlowers,RiLindo",
     ],
     [
-      "-YEAR2022VADC,RoRice+Rodney,FaAire+Favour,MaTraore+Mady,ChWinbourne+Christian,JuMintz+Judah,DuMcdaniel,PaLewis+Paul,DaOnanina,JaWalker+Jarace,NoBatchelor+Noah,RoBrumbaugh",
+      "-YEAR2017,NaMarshall,DjHarvey,DaMorsell,JoCarlton,JaMoultrie,ChWalker+Chyree,DePerry+De'Vondre,TeHightower,ElClarance,NiJackson:Wagner,OmHabwe,AnDuruji,NaWatson,JaPickett:George,EjObinna,AaThompson,DaDickens:Hampton,MyDouglas,AnWalker:Rhode,ChLykes,LuGarza",
     ],
-    [
-      "-YEAR2023MD,AmHansberry+Amani,CaCarrington+Carlton,DrMckenna+Drew,JaLamothe+Jahn,MiWilliams:LSU,BrLindsey+Bryce,ElJones:UTEP",
-    ],
-    [
-      "-YEAR2023VADC,DeHarris-smi,KwEvans+Kwame,JaKaiser+Jamie,JaHutchinson+Jacoi,MaMack+Malik,RoDockery+Rob,DaBuchanon+Darren,GaJohnson+Garrett",
-    ],
+    ["-YEAR2016,GrGolden,JeWilliams:Penn"],
   ]).join(","),
 
   __EURO_2017__: _.flatten([
