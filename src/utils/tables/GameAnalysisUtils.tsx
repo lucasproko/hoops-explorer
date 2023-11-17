@@ -237,6 +237,13 @@ export class GameAnalysisUtils {
       (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) -
       (playerOnOffStats.rapm?.def_adj_ppp?.value || 0);
     // Info needed for the performance breakdown
+    const offPoss = stats.off_team_poss_pct?.value || 0;
+    const defPoss = stats.def_team_poss_pct?.value || 0;
+    const offImpact =
+      (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) * offPoss;
+    const defImpact =
+      (playerOnOffStats.rapm?.def_adj_ppp?.value || 0) * defPoss;
+    const sgn = defImpact > 0 ? "-" : "+"; //(def value is reversed)
     const _3pa = stats.total_off_3p_attempts?.value || 0;
     const _3pm = stats.total_off_3p_made?.value || 0;
     const _2pmida = stats.total_off_2pmid_attempts?.value || 0;
@@ -267,6 +274,13 @@ export class GameAnalysisUtils {
           <span>
             <b>{pts}</b> pt{pts == 1 ? "" : "s"} / <b>{trbs}</b> RB
             {trbs == 1 ? "" : "s"}{" "}
+          </span>
+          <br />
+          <span>
+            Impact: <b>{(offImpact - defImpact).toFixed(1)}</b>pts (
+            <b>{offImpact.toFixed(1)}</b>
+            {sgn}
+            <b>{Math.abs(defImpact).toFixed(1)}</b>)
           </span>
           <br />
           <br />

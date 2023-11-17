@@ -218,7 +218,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
-        title="Lineup Stints (WIP)"
+        title="Lineup Stints"
         helpLink={maybeShowDocs()}
       >
         <Col
