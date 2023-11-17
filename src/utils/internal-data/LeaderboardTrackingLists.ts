@@ -32,7 +32,7 @@ export const PlayerLeaderboardTracking = {
       "-YEAR2023MD,AmHansberry+Amani,CaCarrington+Carlton,DrMckenna+Drew,JaLamothe+Jahn,MiWilliams:LSU,BrLindsey+Bryce,ElJones:UTEP",
     ],
     [
-      "-YEAR2023VADC,DeHarris-smi,KwEvans+Kwame,JaKaiser+Jamie,JaHutchinson+Jacoi,MaMack+Malik,RoDockery+Rob,DaBuchanon+Darren",
+      "-YEAR2023VADC,DeHarris-smi,KwEvans+Kwame,JaKaiser+Jamie,JaHutchinson+Jacoi,MaMack+Malik,RoDockery+Rob,DaBuchanon+Darren,GaJohnson+Garrett",
     ],
   ]).join(","),
 
@@ -76,7 +76,7 @@ export const PlayerLeaderboardTracking = {
 
   // Tracking transfer targets
   __TERPS_TAMPER_TARGETS__:
-    "AdBaldwin;AcBaldwin;ChHarris;TyPerkins;CaCarrington;ErReynolds;MaMack+Malik;KwEvans;TyCommander;BeMbeng",
+    "AdBaldwin;AcBaldwin;ChHarris;TyPerkins;CaCarrington;ErReynolds;MaMack+Malik;KwEvans;TyCommander;BeMbeng;TyWard+Tyrell;GaJohnson+Garrett",
 
   // Archived:
 
