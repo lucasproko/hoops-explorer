@@ -210,6 +210,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
             }
             dataEvent={dataEvent}
             onChangeState={onMatchupFilterParamsChange}
+            seasonStats={true}
           />
         </Col>
       </GenericCollapsibleCard>
@@ -222,7 +223,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         <Col xs={12} className="text-center">
           <h3>
             CBB Match-up Preview Tool{" "}
-            <span className="badge badge-pill badge-info">BETA!</span>
+            <span className="badge badge-pill badge-info">IN DEV!</span>
           </h3>
         </Col>
       </Row>

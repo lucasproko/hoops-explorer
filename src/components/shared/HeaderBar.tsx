@@ -411,6 +411,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               )
             )}
           </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Game Previews",
+              gameReportTooltip,
+              UrlRouting.getMatchupPreviewUrl(
+                getCommonFilterParams(common) as MatchupFilterParams
+              )
+            )}
+          </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem("Base", baseReportTooltip, getBaseReportUrl())}

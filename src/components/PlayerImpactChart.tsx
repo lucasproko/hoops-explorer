@@ -26,6 +26,7 @@ import {
 } from "../utils/FilterModels";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { PureStatSet } from "../utils/StatModels";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
 import { LineupStatsModel } from "./LineupStatsTable";
 import { RosterStatsModel } from "./RosterStatsTable";
@@ -43,6 +44,7 @@ type Props = {
     rosterStatsB: RosterStatsModel;
   };
   onChangeState: (newParams: MatchupFilterParams) => void;
+  seasonStats?: Boolean; //(defaults to game mode)
 };
 
 const graphLimit = 10.0;
@@ -52,6 +54,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   opponent,
   dataEvent,
   onChangeState,
+  seasonStats,
 }) => {
   const {
     lineupStatsA,
@@ -150,6 +153,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     teamStats: TeamStatsModel,
     rosterStats: RosterStatsModel
   ) => {
+    const totalGames = seasonStats
+      ? _.size(
+          LineupUtils.isGameInfoStatSet(teamStats.baseline?.game_info || {})
+            ? LineupUtils.getGameInfo(teamStats.baseline?.game_info || {})
+            : teamStats.baseline?.game_info
+        ) || 1
+      : 1;
+
     return _.thru(
       GameAnalysisUtils.buildGameRapmStats(
         team,
@@ -167,8 +178,25 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             const statObj = playerInfo[p.playerId];
             const offPoss = statObj.off_team_poss_pct?.value || 0;
             const defPoss = statObj.def_team_poss_pct?.value || 0;
-            const offRapmProd = (p.rapm?.off_adj_ppp?.value || 0) * offPoss;
-            const defRapmProd = (p.rapm?.def_adj_ppp?.value || 0) * defPoss;
+            const playerGames = seasonStats
+              ? _.size(
+                  LineupUtils.isGameInfoStatSet(statObj.game_info)
+                    ? LineupUtils.getGameInfo(statObj.game_info || {})
+                    : statObj.game_info
+                ) || 1
+              : 1;
+
+            const missingGameAdjustment = totalGames / playerGames;
+
+            const offRapmProd =
+              (p.rapm?.off_adj_ppp?.value || 0) *
+              offPoss *
+              missingGameAdjustment;
+            const defRapmProd =
+              (p.rapm?.def_adj_ppp?.value || 0) *
+              defPoss *
+              missingGameAdjustment;
+
             return {
               seriesId: team,
               labelColor,
@@ -179,6 +207,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               posInfo: positionInfo[p.playerId],
               stats: statObj,
               onOffStats: p,
+              missingGameAdj: missingGameAdjustment,
             };
           })
           .value();
@@ -213,7 +242,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               data.seriesId,
               data.stats,
               data.onOffStats,
-              data.posInfo
+              data.posInfo,
+              seasonStats || false,
+              data.missingGameAdj
             )}
           </small>
         </div>

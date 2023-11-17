@@ -93,7 +93,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     null,
     commonParams.year || DateUtils.mostRecentYearWithData,
     commonParams.gender || "Men"
-  );
+  ).filter((t) => t.team != commonParams.team);
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
@@ -143,35 +143,40 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       ...primaryRequestA,
       onQuery: "",
       offQuery: "",
+      getGames: true,
     };
     const secondaryRequestB = {
       ...primaryRequestB,
       onQuery: "",
       offQuery: "",
+      getGames: true,
     };
 
-    const entireSeasonRequestA = {
-      // Get the entire season of players for things like luck adjustments
-      team: primaryRequestA.team,
-      year: primaryRequestA.year,
-      gender: primaryRequestA.gender,
-      minRank: ParamDefaults.defaultMinRank,
-      maxRank: ParamDefaults.defaultMaxRank,
-      baseQuery: "",
-      onQuery: "",
-      offQuery: "",
-    };
-    const entireSeasonRequestB = {
-      // Get the entire season of players for things like luck adjustments
-      team: primaryRequestB.team,
-      year: primaryRequestB.year,
-      gender: primaryRequestB.gender,
-      minRank: ParamDefaults.defaultMinRank,
-      maxRank: ParamDefaults.defaultMaxRank,
-      baseQuery: "",
-      onQuery: "",
-      offQuery: "",
-    };
+    const noExtraFullSeasonRequests = true;
+
+    // Currently don't need this but might want it later for home/away analysis
+    // const entireSeasonRequestA = {
+    //   // Get the entire season of players for things like luck adjustments
+    //   team: primaryRequestA.team,
+    //   year: primaryRequestA.year,
+    //   gender: primaryRequestA.gender,
+    //   minRank: ParamDefaults.defaultMinRank,
+    //   maxRank: ParamDefaults.defaultMaxRank,
+    //   baseQuery: "",
+    //   onQuery: "",
+    //   offQuery: "",
+    // };
+    // const entireSeasonRequestB = {
+    //   // Get the entire season of players for things like luck adjustments
+    //   team: primaryRequestB.team,
+    //   year: primaryRequestB.year,
+    //   gender: primaryRequestB.gender,
+    //   minRank: ParamDefaults.defaultMinRank,
+    //   maxRank: ParamDefaults.defaultMaxRank,
+    //   baseQuery: "",
+    //   onQuery: "",
+    //   offQuery: "",
+    // };
 
     return [
       primaryRequestA,
@@ -183,14 +188,15 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         {
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: secondaryRequestA,
-          includeRoster: false,
+          includeRoster: noExtraFullSeasonRequests,
         },
-        {
-          //(don't make a spurious call)
-          context: ParamPrefixes.player as ParamPrefixesType,
-          paramsObj: entireSeasonRequestA,
-          includeRoster: true,
-        },
+        // Currently this is equivalent to primary request
+        // {
+        //   //(don't make a spurious call)
+        //   context: ParamPrefixes.player as ParamPrefixesType,
+        //   paramsObj: entireSeasonRequestA,
+        //   includeRoster: true,
+        // },
         {
           context: ParamPrefixes.lineup as ParamPrefixesType,
           paramsObj: primaryRequestB,
@@ -202,59 +208,50 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         {
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: secondaryRequestB,
-          includeRoster: false,
+          includeRoster: noExtraFullSeasonRequests,
         },
-        {
-          //(don't make a spurious call)
-          context: ParamPrefixes.player as ParamPrefixesType,
-          paramsObj: entireSeasonRequestB,
-          includeRoster: true,
-        },
-        {
-          context: ParamPrefixes.lineupStints as ParamPrefixesType,
-          paramsObj: primaryRequestA,
-          includeRoster: false,
-        },
-        {
-          context: ParamPrefixes.lineupStints as ParamPrefixesType,
-          paramsObj: primaryRequestB,
-          includeRoster: false,
-        },
+        // Currently this is equivalent to primary request
+        // {
+        //   //(don't make a spurious call)
+        //   context: ParamPrefixes.player as ParamPrefixesType,
+        //   paramsObj: entireSeasonRequestB,
+        //   includeRoster: true,
+        // },
       ],
     ];
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
+    const extraFullSeasonRequests = 0; //0 or 1, will be 1 later if we allow more granular filtering
     const jsonStatuses = jsonResps.map((j) => j.status);
 
     const lineupJsonA = jsonResps?.[0]?.responses?.[0] || {};
     const teamJsonA = jsonResps?.[1]?.responses?.[0] || {};
     const rosterStatsJsonA = jsonResps?.[2]?.responses?.[0] || {};
     const globalRosterStatsJsonA =
-      jsonResps?.[3]?.responses?.[0] || rosterStatsJsonA;
+      jsonResps?.[2 + extraFullSeasonRequests]?.responses?.[0] ||
+      rosterStatsJsonA;
     const globalTeamA =
       teamJsonA?.aggregations?.global?.only?.buckets?.team ||
       StatModels.emptyTeam();
-    const rosterInfoA = jsonResps?.[3]?.roster;
+    const rosterInfoA = jsonResps?.[2 + extraFullSeasonRequests]?.roster;
     globalTeamA.roster = rosterInfoA;
 
-    const lineupJsonB = jsonResps?.[4]?.responses?.[0] || {};
-    const teamJsonB = jsonResps?.[5]?.responses?.[0] || {};
-    const rosterStatsJsonB = jsonResps?.[6]?.responses?.[0] || {};
+    const lineupJsonB =
+      jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0] || {};
+    const teamJsonB =
+      jsonResps?.[4 + extraFullSeasonRequests]?.responses?.[0] || {};
+    const rosterStatsJsonB =
+      jsonResps?.[5 + extraFullSeasonRequests]?.responses?.[0] || {};
     const globalRosterStatsJsonB =
-      jsonResps?.[7]?.responses?.[0] || rosterStatsJsonB;
+      jsonResps?.[5 + 2 * extraFullSeasonRequests]?.responses?.[0] ||
+      rosterStatsJsonB;
     const globalTeamB =
       teamJsonB?.aggregations?.global?.only?.buckets?.team ||
       StatModels.emptyTeam();
-    const rosterInfoB = jsonResps?.[7]?.roster;
+    const rosterInfoB = jsonResps?.[5 + 2 * extraFullSeasonRequests]?.roster;
     globalTeamB.roster = rosterInfoB;
-    const lineupStintsA = (
-      jsonResps?.[8]?.responses?.[0]?.hits?.hits || []
-    ).map((p: any) => p._source) as LineupStintInfo[];
-    const lineupStintsB = (
-      jsonResps?.[9]?.responses?.[0]?.hits?.hits || []
-    ).map((p: any) => p._source) as LineupStintInfo[];
 
     const fromLineups = (lineupJson: any) => ({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
@@ -298,8 +295,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       fromLineups(lineupJsonB),
       fromTeam(teamJsonB, globalTeamB),
       fromRoster(rosterStatsJsonB, globalRosterStatsJsonB),
-      lineupStintsA,
-      lineupStintsB
+      [],
+      []
     );
   }
 

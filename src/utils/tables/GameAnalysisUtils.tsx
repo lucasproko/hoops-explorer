@@ -13,7 +13,7 @@ import {
   PlayerId,
   PureStatSet,
 } from "../StatModels";
-import { PlayerOnOffStats } from "../stats/LineupUtils";
+import { LineupUtils, PlayerOnOffStats } from "../stats/LineupUtils";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import {
   LineupStintInfo,
@@ -231,8 +231,18 @@ export class GameAnalysisUtils {
     seriesId: string,
     stats: IndivStatSet,
     playerOnOffStats: PlayerOnOffStats,
-    playerPosInfo: IndivPosInfo
+    playerPosInfo: IndivPosInfo,
+    seasonStats: Boolean = false,
+    missingGameAdj: number = 1.0
   ) => {
+    const games = seasonStats
+      ? _.size(
+          LineupUtils.isGameInfoStatSet(stats.game_info)
+            ? LineupUtils.getGameInfo(stats.game_info || {})
+            : stats.game_info
+        ) || 1
+      : 1;
+
     const net =
       (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) -
       (playerOnOffStats.rapm?.def_adj_ppp?.value || 0);
@@ -240,9 +250,13 @@ export class GameAnalysisUtils {
     const offPoss = stats.off_team_poss_pct?.value || 0;
     const defPoss = stats.def_team_poss_pct?.value || 0;
     const offImpact =
-      (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) * offPoss;
+      (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) *
+      offPoss *
+      missingGameAdj;
     const defImpact =
-      (playerOnOffStats.rapm?.def_adj_ppp?.value || 0) * defPoss;
+      (playerOnOffStats.rapm?.def_adj_ppp?.value || 0) *
+      defPoss *
+      missingGameAdj;
     const sgn = defImpact > 0 ? "-" : "+"; //(def value is reversed)
     const _3pa = stats.total_off_3p_attempts?.value || 0;
     const _3pm = stats.total_off_3p_made?.value || 0;
@@ -258,6 +272,11 @@ export class GameAnalysisUtils {
     const drbs = stats.total_off_drb?.value || 0;
     const pts = 3 * _3pm + 2 * (_2pmidm + _2primm) + ftm;
     const trbs = orbs + drbs;
+
+    const perG = (n: number) => {
+      return seasonStats && n != 0 ? (n / games).toFixed(1) : n.toFixed(0);
+    };
+
     return (
       <span>
         <p className="label">
@@ -271,10 +290,17 @@ export class GameAnalysisUtils {
           </i>
         </p>
         <p className="desc">
-          <span>
-            <b>{pts}</b> pt{pts == 1 ? "" : "s"} / <b>{trbs}</b> RB
-            {trbs == 1 ? "" : "s"}{" "}
-          </span>
+          {seasonStats ? (
+            <span>
+              <b>{(pts / games).toFixed(1)}</b> pts /{" "}
+              <b>{(trbs / games).toFixed(1)}</b> RBs
+            </span>
+          ) : (
+            <span>
+              <b>{pts}</b> pt{pts == 1 ? "" : "s"} / <b>{trbs}</b> RB
+              {trbs == 1 ? "" : "s"}{" "}
+            </span>
+          )}
           <br />
           <span>
             Impact: <b>{(offImpact - defImpact).toFixed(1)}</b>pts (
@@ -320,11 +346,13 @@ export class GameAnalysisUtils {
           <span>
             Mpg:{" "}
             <b>
-              {(
-                GameAnalysisUtils.fieldValExtractor("off_team_poss_pct")(
-                  stats
-                ) * 40
-              ).toFixed(1)}
+              {seasonStats
+                ? ((stats.duration_mins?.value || 0) / games).toFixed(1)
+                : (
+                    GameAnalysisUtils.fieldValExtractor("off_team_poss_pct")(
+                      stats
+                    ) * 40
+                  ).toFixed(1)}
             </b>
           </span>
           <br />
@@ -332,11 +360,11 @@ export class GameAnalysisUtils {
           <span>
             3P=[
             <b>
-              {_3pm}/{_3pa}
+              {perG(_3pm)}/{perG(_3pa)}
             </b>
             ] mid=[
             <b>
-              {_2pmidm}/{_2pmida}
+              {perG(_2pmidm)}/{perG(_2pmida)}
             </b>
             ]
           </span>
@@ -344,21 +372,21 @@ export class GameAnalysisUtils {
           <span>
             rim=[
             <b>
-              {_2primm}/{_2prima}
+              {perG(_2primm)}/{perG(_2prima)}
             </b>
             ] FT=[
             <b>
-              {ftm}/{fta}
+              {perG(ftm)}/{perG(fta)}
             </b>
             ]
           </span>
           <br />
           <span>
-            A:TO=[<b>{assists}</b>]:[<b>{tos}</b>]
+            A:TO=[<b>{perG(assists)}</b>]:[<b>{perG(tos)}</b>]
           </span>
           <br />
           <span>
-            ORBs=[<b>{orbs}</b>] DRBs=[<b>{drbs}</b>]
+            ORBs=[<b>{perG(orbs)}</b>] DRBs=[<b>{perG(drbs)}</b>]
           </span>
           <br />
         </p>
