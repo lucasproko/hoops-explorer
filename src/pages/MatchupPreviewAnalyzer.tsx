@@ -205,9 +205,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         <Col xs={12} className="text-center d-flex justify-content-center">
           <PlayerImpactChart
             startingState={matchupFilterParamsRef.current || {}}
-            opponent={
-              buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""
-            }
+            opponent={matchupFilterParams.oppoTeam || ""}
             dataEvent={dataEvent}
             onChangeState={onMatchupFilterParamsChange}
             seasonStats={true}
