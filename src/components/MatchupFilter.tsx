@@ -38,6 +38,7 @@ import {
   LineupStintInfo,
   PlayerCode,
   PureStatSet,
+  LineupStintTeamStats,
 } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
@@ -379,7 +380,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
           (p) => p.code == playerCode
         );
         if (playerInfo) {
-          playerInfo.stats = playerStatSet as PureStatSet;
+          playerInfo.stats = playerStatSet as LineupStintTeamStats;
         }
       };
       return _.transform(

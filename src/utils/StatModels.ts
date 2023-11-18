@@ -77,11 +77,6 @@ export type PlayerCode = string;
 export type PlayerId = string;
 
 export type PlayerCodeId = { code: PlayerCode; id: PlayerId };
-export type PlayerCodeIdWithStats = {
-  code: PlayerCode;
-  id: PlayerId;
-  stats?: PureStatSet;
-};
 
 export type RosterEntry = {
   player_code_id?: PlayerCodeId;
@@ -330,6 +325,7 @@ export type LineupStintTeamStat = {
   total: number;
   early?: number;
   orb?: number;
+  ast?: number;
 };
 
 export type LineupStintTeamShot = {
@@ -346,8 +342,12 @@ export type LineupStintTeamStats = {
   player_shot_info: Record<string, number>; //(these are weirdly formatted, use with care)
 } & Record<string, LineupStintTeamShot | LineupStintTeamStat>;
 
+export type PlayerCodeIdWithStintStats = {
+  stats?: LineupStintTeamStats;
+} & PlayerCodeId;
+
 export type LineupStintInfo = {
-  players: PlayerCodeIdWithStats[];
+  players: PlayerCodeIdWithStintStats[];
   lineup_id: string;
   start_min: number;
   end_min: number;

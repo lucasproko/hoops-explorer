@@ -80,6 +80,8 @@ export type MatchupFilterParams = {
   oppoTeam?: string;
   luck?: LuckParams; //(missing iff default)
   onOffLuck?: boolean;
+  showUsage?: boolean; // show player usage in stint view
+  showPpp?: boolean; // show player ppp in stint view
 };
 
 /** Combined params for game filtering */
@@ -380,6 +382,9 @@ export class ParamDefaults {
   static readonly defaultTeamReportRapmPriorMode = "-1";
   static readonly defaultTeamReportRapmRegressMode = "-1";
   static readonly defaultTeamReportLuckAdjust = false;
+  // Matchup analysis
+  static readonly defaultMatchupAnalysisShowUsage = false;
+  static readonly defaultMatchupAnalysisShowPpp = true;
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = DateUtils.mostRecentYearWithData;

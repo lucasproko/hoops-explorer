@@ -77,6 +77,11 @@ export class CbbColors {
     "#ddDDdd",
     "green",
   ]);
+  private static readonly greenGreyRed = chroma.scale([
+    "green",
+    "#ddDDdd",
+    "red",
+  ]);
   private static readonly blueToOrange = chroma.scale([
     "lightblue",
     "#ffFFff",
@@ -342,6 +347,9 @@ export class CbbColors {
     CbbColors.usg_offDef,
     CbbColors.usg_offDef,
   ];
+  private static readonly usgDomainAlt = [0.1, 0.35];
+  public static readonly usg_offDef_alt = (val: number) =>
+    CbbColors.whiteToOrange.domain(CbbColors.usgDomainAlt)(val).toString();
   // Personal rebounding
   private static readonly p_orDomain = [0.0, 0.06, 0.12];
   private static readonly p_drDomain = [0.0, 0.15, 0.3];
@@ -465,5 +473,15 @@ export class CbbColors {
   public static readonly off_diff20_p100_redGreyGreen = (val: number) =>
     CbbColors.redGreyGreen
       .domain(CbbColors.diff10Domainp100RedGreen)(val * 0.5)
+      .toString();
+
+  public static readonly off_ppp_redGreyGreen = (val: number) =>
+    CbbColors.redGreyGreen
+      .domain(CbbColors.pp100Domain)(val * 100)
+      .toString();
+
+  public static readonly def_ppp_redGreyGreen = (val: number) =>
+    CbbColors.greenGreyRed
+      .domain(CbbColors.pp100Domain)(val * 100)
       .toString();
 }

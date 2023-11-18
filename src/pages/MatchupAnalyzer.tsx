@@ -23,6 +23,7 @@ import {
   GameFilterParams,
   LineupFilterParams,
   MatchupFilterParams,
+  ParamDefaults,
 } from "../utils/FilterModels";
 import { TeamStatsModel } from "../components/TeamStatsTable";
 import { RosterStatsModel } from "../components/RosterStatsTable";
@@ -164,6 +165,14 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       _.flatten([
         // omit all defaults
         !rawParams.oppoTeam ? ["oppoTeam"] : [],
+        (rawParams.showUsage || false) ==
+        ParamDefaults.defaultMatchupAnalysisShowUsage
+          ? ["showUsage"]
+          : [],
+        (rawParams.showPpp || false) ==
+        ParamDefaults.defaultMatchupAnalysisShowPpp
+          ? ["showPpp"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {

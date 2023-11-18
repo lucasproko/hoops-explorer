@@ -17,7 +17,13 @@ import {
   ParamDefaults,
 } from "../utils/FilterModels";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
-import { LineupStintInfo, PlayerCode } from "../utils/StatModels";
+import {
+  LineupStintInfo,
+  LineupStintTeamShot,
+  LineupStintTeamStat,
+  LineupStintTeamStats,
+  PlayerCode,
+} from "../utils/StatModels";
 import GenericTable, {
   GenericTableColProps,
   GenericTableOps,
@@ -30,6 +36,7 @@ import {
   GameAnalysisUtils,
   GameStatsCache,
 } from "../utils/tables/GameAnalysisUtils";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -92,6 +99,27 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   const [activeLineup, setActiveLineup] = useState<Set<string> | undefined>(
     undefined
   );
+
+  const [showUsage, setShowUsage] = useState<boolean>(
+    _.isNil(startingState.showUsage)
+      ? ParamDefaults.defaultMatchupAnalysisShowUsage
+      : startingState.showUsage
+  );
+  const [showPpp, setShowPpp] = useState<boolean>(
+    _.isNil(startingState.showPpp)
+      ? ParamDefaults.defaultMatchupAnalysisShowPpp
+      : startingState.showPpp
+  );
+
+  // Integration with main page
+
+  useEffect(() => {
+    onChangeState({
+      ...startingState,
+      showUsage,
+      showPpp,
+    });
+  }, [showUsage, showPpp]);
 
   // RAPM building
 
@@ -343,7 +371,45 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
               for (var ii = startStint; ii <= endStint; ++ii) {
                 const stint = lineupStints[ii];
-                const tooltip = (
+
+                const playerStats = _.find(
+                  stint.players,
+                  (p) => p.code == playerCode
+                )?.stats;
+
+                // Calculate very simple usage rate:
+                const toStats = (stats: LineupStintTeamStats) =>
+                  stats as Record<string, LineupStintTeamStat>;
+                const toShots = (stats: LineupStintTeamStats) =>
+                  stats as Record<string, LineupStintTeamShot>;
+
+                const playerStintInfo = _.thru(playerStats, (__) => {
+                  const teamShots =
+                    stint.team_stats.num_possessions +
+                    (toStats(stint.team_stats)?.orb?.total || 0);
+                  if (playerStats && teamShots) {
+                    //TODO: very basic assist and ORB info
+
+                    const playerPoss =
+                      (toShots(playerStats)?.fg?.attempts?.total || 0) +
+                      0.475 * (toShots(playerStats)?.ft?.attempts?.total || 0) +
+                      (toStats(playerStats)?.to?.total || 0);
+
+                    const ptsScored =
+                      2 * (toShots(playerStats)?.fg_2p?.made?.total || 0) +
+                      3 * (toShots(playerStats)?.fg_3p?.made?.total || 0) +
+                      (toShots(playerStats)?.ft?.made?.total || 0);
+
+                    return {
+                      ppp: ptsScored / (playerPoss || 1),
+                      usage: playerPoss / (teamShots || 1),
+                    };
+                  } else {
+                    return undefined;
+                  }
+                });
+
+                const tooltipTeam = (
                   <Tooltip id={`stint${ii}`}>
                     <b>CLUMP</b>: [
                     {GameAnalysisUtils.buildDurationStr(
@@ -392,29 +458,111 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                   </Tooltip>
                 );
 
+                const tooltipPlayer = (
+                  <Tooltip id={`stintPlayer${ii}`}>
+                    <b>Player Stint Stats</b>
+                    <br />
+                    usage = [
+                    <b>{(100 * (playerStintInfo?.usage || 0)).toFixed(0)}</b>
+                    %]
+                    <br />
+                    ppp = [
+                    <b>{(100 * (playerStintInfo?.ppp || 0)).toFixed(2)}</b>]
+                    <br />
+                    <br />
+                    {playerStats
+                      ? GameAnalysisUtils.renderStintStats(
+                          [
+                            {
+                              ...stint,
+                              team_stats: playerStats,
+                            },
+                          ],
+                          true
+                        )
+                      : undefined}
+                  </Tooltip>
+                );
+
                 acc.cols[`stint${ii}`] = (
-                  <OverlayTrigger
-                    placement="auto"
-                    overlay={tooltip}
-                    onEntered={() => {
-                      setActiveLineup(
-                        new Set(stint.players.map((p) => `${team}${p.code}`))
-                      );
-                    }}
-                    onExited={() => {
-                      setActiveLineup(undefined);
-                    }}
-                  >
-                    <hr
-                      style={{
-                        height: "3px",
-                        background:
-                          CbbColors.off_diff20_p100_redGreyGreen(
-                            clumpPlusMinus
-                          ),
+                  <div>
+                    <OverlayTrigger
+                      placement="auto"
+                      overlay={tooltipTeam}
+                      onEntered={() => {
+                        setActiveLineup(
+                          new Set(stint.players.map((p) => `${team}${p.code}`))
+                        );
                       }}
-                    />
-                  </OverlayTrigger>
+                      onExited={() => {
+                        setActiveLineup(undefined);
+                      }}
+                    >
+                      <div>
+                        <hr
+                          className="mt-0 pt-0 pb-0"
+                          style={{
+                            height: "4px",
+                            marginBottom: "2px",
+                            background:
+                              CbbColors.off_diff20_p100_redGreyGreen(
+                                clumpPlusMinus
+                              ),
+                          }}
+                        />
+                      </div>
+                    </OverlayTrigger>
+                    {showUsage || showPpp ? (
+                      <OverlayTrigger
+                        placement="auto"
+                        overlay={tooltipPlayer}
+                        onEntered={() => {
+                          setActiveLineup(
+                            new Set(
+                              stint.players.map((p) => `${team}${p.code}`)
+                            )
+                          );
+                        }}
+                        onExited={() => {
+                          setActiveLineup(undefined);
+                        }}
+                      >
+                        <div>
+                          {showUsage ? (
+                            <hr
+                              className="mt-0 pt-0 pb-0"
+                              style={{
+                                height: "2px",
+                                marginBottom: "2px",
+                                opacity: _.isUndefined(playerStintInfo)
+                                  ? "0%"
+                                  : "100%",
+                                background: CbbColors.usg_offDef_alt(
+                                  playerStintInfo?.usage || 0
+                                ),
+                              }}
+                            />
+                          ) : undefined}
+                          {showPpp ? (
+                            <hr
+                              className="mt-0 pt-0 pb-0"
+                              style={{
+                                height: "2px",
+                                marginBottom: "0px",
+                                opacity: `${Math.min(
+                                  (playerStintInfo?.usage || 0) * 400,
+                                  100
+                                ).toFixed(0)}%`,
+                                background: CbbColors.off_ppp_redGreyGreen(
+                                  playerStintInfo?.ppp || 0
+                                ),
+                              }}
+                            />
+                          ) : undefined}
+                        </div>
+                      </OverlayTrigger>
+                    ) : undefined}
+                  </div>
                 );
               }
               acc.currStint = endStint + 1;
@@ -495,6 +643,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               lineupStints.map((stint, stintNum) => {
                 const scoreDiffAtStart = stint.score_info.start_diff;
                 const scoreDiffAtEnd = stint.score_info.end_diff;
+                const stintDiff =
+                  stint.score_info.end_diff - stint.score_info.start_diff;
                 const tooltip = (
                   <Tooltip id={`gameScore${stintNum}`}>
                     Stint: [
@@ -505,21 +655,40 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                     {stint.score_info.start.allowed}]-[
                     {stint.score_info.end.scored}:{stint.score_info.end.allowed}
                     ]
+                    <br />
+                    <br />
+                    Stint Delta Pts: [{stintDiff}]
                   </Tooltip>
                 );
                 return [
                   `stint${stintNum}`,
                   <OverlayTrigger placement="auto" overlay={tooltip}>
-                    <hr
-                      style={{
-                        height: "5px",
-                        background: `linear-gradient(to right, ${CbbColors.off_diff20_p100_redGreyGreen(
-                          scoreDiffAtStart
-                        )} 0%, ${CbbColors.off_diff20_p100_redGreyGreen(
-                          scoreDiffAtEnd
-                        )} 100%)`,
-                      }}
-                    />
+                    <div>
+                      <hr
+                        className="mt-0 pt-0 pb-0"
+                        style={{
+                          height: "5px",
+                          marginBottom: "2px",
+                          background: `linear-gradient(to right, ${CbbColors.off_diff20_p100_redGreyGreen(
+                            scoreDiffAtStart
+                          )} 0%, ${CbbColors.off_diff20_p100_redGreyGreen(
+                            scoreDiffAtEnd
+                          )} 100%)`,
+                        }}
+                      />
+                      <hr
+                        className="mt-0 pt-0 pb-0"
+                        style={{
+                          height: "1px",
+                          marginBottom: "0px",
+                          background: `linear-gradient(to right, ${CbbColors.off_diff20_p100_redGreyGreen(
+                            stintDiff
+                          )} 0%, ${CbbColors.off_diff20_p100_redGreyGreen(
+                            stintDiff
+                          )} 100%)`,
+                        }}
+                      />
+                    </div>
                   </OverlayTrigger>,
                 ];
               })
@@ -529,15 +698,76 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           GenericTableOps.defaultCellMeta
         ),
       ] as GenericTableRow[]
-    ).concat(
-      sortedPlayerObjs.map((playerObj) => {
-        return GenericTableOps.buildDataRow(
-          playerObj,
-          GenericTableOps.defaultFormatter,
-          GenericTableOps.defaultCellMeta
-        );
-      })
-    );
+    )
+      .concat(
+        sortedPlayerObjs.map((playerObj) => {
+          return GenericTableOps.buildDataRow(
+            playerObj,
+            GenericTableOps.defaultFormatter,
+            GenericTableOps.defaultCellMeta
+          );
+        })
+      )
+      .concat(
+        showPpp
+          ? ([
+              GenericTableOps.buildDataRow(
+                {
+                  title: <i>Defense:</i>,
+                  ...gameBreakRowInfo,
+                  ..._.fromPairs(
+                    lineupStints.map((stint, stintNum) => {
+                      const scoredVsAtStart = stint.score_info.start.allowed;
+                      const scoredVsAtEnd = stint.score_info.end.allowed;
+                      const stintDiff = scoredVsAtEnd - scoredVsAtStart;
+                      const ppp =
+                        stintDiff / (stint.team_stats.num_possessions || 1);
+                      const tooltip = (
+                        <Tooltip id={`gameScore${stintNum}`}>
+                          Stint: [
+                          {GameAnalysisUtils.buildDurationStr(stint.start_min)}
+                          ]-[
+                          {GameAnalysisUtils.buildDurationStr(stint.end_min)}]
+                          <br />
+                          Score: [{stint.score_info.start.scored}:
+                          {stint.score_info.start.allowed}]-[
+                          {stint.score_info.end.scored}:
+                          {stint.score_info.end.allowed}
+                          ]
+                          <br />
+                          <br />
+                          Pts Allowed: [{stintDiff}]
+                          <br />
+                          PPP Against: [{ppp.toFixed(2)}]
+                        </Tooltip>
+                      );
+                      return [
+                        `stint${stintNum}`,
+                        <OverlayTrigger placement="auto" overlay={tooltip}>
+                          <hr
+                            className="mt-0 pt-0 pb-0"
+                            style={{
+                              height: "3px",
+                              opacity: "75%",
+                              marginBottom: "0px",
+                              background: `linear-gradient(to right, ${CbbColors.def_ppp_redGreyGreen(
+                                ppp
+                              )} 0%, ${CbbColors.def_ppp_redGreyGreen(
+                                ppp
+                              )} 100%)`,
+                            }}
+                          />
+                        </OverlayTrigger>,
+                      ];
+                    })
+                  ),
+                },
+                GenericTableOps.defaultFormatter,
+                GenericTableOps.defaultCellMeta
+              ),
+            ] as GenericTableRow[])
+          : []
+      );
     return [tableDefs, tableRows];
   };
 
@@ -556,6 +786,24 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
   return (
     <Container>
+      <Row className="mb-1">
+        <ToggleButtonGroup
+          items={[
+            {
+              label: "Usage",
+              tooltip: "Show/hide player usage in each stint/clump",
+              toggled: showUsage,
+              onClick: () => setShowUsage(!showUsage),
+            },
+            {
+              label: "PPP",
+              tooltip: "Show/hide player pts/play in each stint/clump",
+              toggled: showPpp,
+              onClick: () => setShowPpp(!showPpp),
+            },
+          ]}
+        />
+      </Row>
       <Row>
         <Col xs={12} className="w-100 text-center">
           <GenericTable
