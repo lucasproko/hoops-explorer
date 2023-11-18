@@ -33,7 +33,12 @@ import {
 } from "../utils/FilterModels";
 
 // Utils
-import { StatModels, LineupStintInfo } from "../utils/StatModels";
+import {
+  StatModels,
+  LineupStintInfo,
+  PlayerCode,
+  PureStatSet,
+} from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
@@ -361,12 +366,61 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       StatModels.emptyTeam();
     const rosterInfoB = jsonResps?.[7]?.roster;
     globalTeamB.roster = rosterInfoB;
-    const lineupStintsA = (
-      jsonResps?.[8]?.responses?.[0]?.hits?.hits || []
-    ).map((p: any) => p._source) as LineupStintInfo[];
-    const lineupStintsB = (
-      jsonResps?.[9]?.responses?.[0]?.hits?.hits || []
-    ).map((p: any) => p._source) as LineupStintInfo[];
+
+    /** Combines player and team info for each minute */
+    const buildLineupStint = (pp: any[]) => {
+      const loadPlayer = (
+        mutableLineupStint: LineupStintInfo,
+        playerCode: PlayerCode,
+        playerStatSet: any
+      ) => {
+        const playerInfo = _.find(
+          mutableLineupStint.players,
+          (p) => p.code == playerCode
+        );
+        if (playerInfo) {
+          playerInfo.stats = playerStatSet as PureStatSet;
+        }
+      };
+      return _.transform(
+        pp,
+        (acc, p) => {
+          const newStartMin = _.isNumber(p.start_min) ? p.start_min : -2;
+
+          if (p.player?.code && newStartMin != acc.startMin) {
+            //stash:
+            acc.playerStash[p.player?.code] = p.player_stats || {};
+          } else if (p.player) {
+            const currStint = _.last(acc.stints);
+            if (currStint) {
+              loadPlayer(currStint, p.player.code, p.player_stats || {});
+            }
+          } else {
+            acc.startMin = newStartMin;
+            acc.stints = acc.stints.concat([p as LineupStintInfo]);
+            _.forEach(acc.playerStash, (val, key) => {
+              loadPlayer(p as LineupStintInfo, key, val);
+            });
+          }
+        },
+        {
+          stints: [] as LineupStintInfo[],
+          startMin: -1,
+          playerStash: {} as Record<string, any>,
+        }
+      ).stints;
+    };
+
+    const lineupStintsA: LineupStintInfo[] = buildLineupStint(
+      (jsonResps?.[8]?.responses?.[0]?.hits?.hits || []).map(
+        (p: any) => p._source
+      )
+    );
+    const lineupStintsB: LineupStintInfo[] = buildLineupStint(
+      (jsonResps?.[9]?.responses?.[0]?.hits?.hits || []).map(
+        (p: any) => p._source
+      )
+    );
 
     const fromLineups = (lineupJson: any) => ({
       lineups: lineupJson?.aggregations?.lineups?.buckets,

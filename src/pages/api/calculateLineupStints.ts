@@ -17,9 +17,13 @@ function marshallRequest(
   lookup: Record<string, any>,
   avgEfficiency: number
 ) {
+  const playerEventGenderPrefix = genderPrefix || "men_"; //("women_" or ""->"men_")
+
   const body =
     [
-      JSON.stringify({ index: index }),
+      JSON.stringify({
+        index: `${index},player_events_${genderPrefix}${index}`,
+      }),
       JSON.stringify(
         lineupStintsQuery(
           params,

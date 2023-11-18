@@ -77,6 +77,11 @@ export type PlayerCode = string;
 export type PlayerId = string;
 
 export type PlayerCodeId = { code: PlayerCode; id: PlayerId };
+export type PlayerCodeIdWithStats = {
+  code: PlayerCode;
+  id: PlayerId;
+  stats?: PureStatSet;
+};
 
 export type RosterEntry = {
   player_code_id?: PlayerCodeId;
@@ -342,7 +347,7 @@ export type LineupStintTeamStats = {
 } & Record<string, LineupStintTeamShot | LineupStintTeamStat>;
 
 export type LineupStintInfo = {
-  players: PlayerCodeId[];
+  players: PlayerCodeIdWithStats[];
   lineup_id: string;
   start_min: number;
   end_min: number;
