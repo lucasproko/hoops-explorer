@@ -241,6 +241,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
   const buildTable = (
     team: string,
+    teamStats: TeamStatsModel,
     lineupStints: LineupStintInfo[],
     players: Record<string, StintClump[]>,
     playerInfoCache: GameStatsCache | undefined
@@ -248,6 +249,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     const starterCodes = new Set(
       _.first(lineupStints)?.players?.map((p) => p.code) || []
     );
+
+    const gameOrbPct = teamStats.baseline?.off_orb?.value || 0;
 
     const { tableCols, gameBreakRowInfo } = _.transform(
       lineupStints,
@@ -388,8 +391,6 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                     stint.team_stats.num_possessions +
                     (toStats(stint.team_stats)?.orb?.total || 0);
                   if (playerStats && teamShots) {
-                    //TODO: very basic assist and ORB info
-
                     const playerPoss =
                       (toShots(playerStats)?.fg?.attempts?.total || 0) +
                       0.475 * (toShots(playerStats)?.ft?.attempts?.total || 0) +
@@ -400,9 +401,60 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       3 * (toShots(playerStats)?.fg_3p?.made?.total || 0) +
                       (toShots(playerStats)?.ft?.made?.total || 0);
 
+                    // Generate an approximate ORtg
+                    // (for ORB we don't calculate it exactly per stint, instead we rely on game/D1 averages
+                    //  the issue is that you could have lots of ORBs and no made shots in a stint - unlike
+                    //  assists where every assist corresponds to a make .. would still be interesting to
+                    //  weight the ORB factors according to whether there were any ORBs?)
+
+                    //TODO check out
+                    // http://localhost:3000/MatchupAnalyzer?baseQuery=opponent.team%3A%22Kentucky%22%20AND%20date%3A2023-11-14&gender=Men&maxRank=400&minRank=1&oppoTeam=vs%20Kentucky%20%282023-11-14%29%3A%20W%2089-84&showUsage=true&team=Kansas&year=2023%2F24&
+                    // There are some spells with not many rebounds where the usage numbers are off
+                    // (might just be a limitation)
+
+                    const playerAssists =
+                      toStats(playerStats)?.assist?.total || 0;
+
+                    const playerAssisted2s =
+                      toShots(playerStats)?.fg_2p?.ast?.total || 0;
+
+                    const playerAssisted3s =
+                      toShots(playerStats)?.fg_3p?.ast?.total || 0;
+
+                    const playerMakes =
+                      (toShots(playerStats)?.fg_2p?.made?.total || 0) +
+                      (toShots(playerStats)?.fg_3p?.made?.total || 0);
+
+                    const playerMisses =
+                      (toShots(playerStats)?.fg_2p?.attempts?.total || 0) +
+                      (toShots(playerStats)?.fg_3p?.attempts?.total || 0) -
+                      playerMakes;
+
+                    const orbFactor = 0.9; //(in real ORtg calculate this exactly, but here just make a guess)
+
+                    const playerPossUsed =
+                      playerPoss - //(ie makes + misses + other stuff)
+                      playerMisses * gameOrbPct - //(not penalized for misses if team ORBs well)
+                      playerMakes * (1.0 - orbFactor) + //(small penalty on all shots from ORBs)
+                      (0.25 *
+                        (playerAssists -
+                          (playerAssisted2s + playerAssisted3s)) + //(gain more credit on unassisted shots)
+                        0.25 * (toStats(playerStats)?.orb?.total || 0)) *
+                        orbFactor;
+
+                    const ptsContributed =
+                      orbFactor *
+                      (ptsScored +
+                        0.5 *
+                          (playerAssists -
+                            (playerAssisted2s + playerAssisted3s)) +
+                        0.5 * (toStats(playerStats)?.orb?.total || 0));
+
                     return {
+                      pts: ptsContributed,
                       ppp: ptsScored / (playerPoss || 1),
-                      usage: playerPoss / (teamShots || 1),
+                      ortg: ptsContributed / (playerPossUsed || 1),
+                      usage: playerPossUsed / (teamShots || 1),
                     };
                   } else {
                     return undefined;
@@ -462,12 +514,18 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                   <Tooltip id={`stintPlayer${ii}`}>
                     <b>Player Stint Stats</b>
                     <br />
-                    usage = [
+                    ORtg = [
+                    <b>{(100 * (playerStintInfo?.ortg || 0)).toFixed(2)}</b>]
+                    <br />
+                    (Contributed [
+                    <b>{(playerStintInfo?.pts || 0).toFixed(1)}</b>]pts)
+                    <br />
+                    (PPP = [
+                    <b>{(100 * (playerStintInfo?.ppp || 0)).toFixed(2)}</b>])
+                    <br />
+                    Usage = [
                     <b>{(100 * (playerStintInfo?.usage || 0)).toFixed(0)}</b>
                     %]
-                    <br />
-                    ppp = [
-                    <b>{(100 * (playerStintInfo?.ppp || 0)).toFixed(2)}</b>]
                     <br />
                     <br />
                     {playerStats
@@ -773,12 +831,14 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
   const [tableDefsA, tableRowsA] = buildTable(
     commonParams.team!,
+    teamStatsA,
     lineupStintsA,
     playersA,
     cachedStats.aStats
   );
   const [tableDefsB, tableRowsB] = buildTable(
     opponent,
+    teamStatsB,
     lineupStintsB,
     playersB,
     cachedStats.bStats
