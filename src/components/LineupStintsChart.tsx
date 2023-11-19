@@ -105,6 +105,11 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultMatchupAnalysisShowUsage
       : startingState.showUsage
   );
+  const [showFouls, setShowFouls] = useState<boolean>(
+    _.isNil(startingState.showFouls)
+      ? ParamDefaults.defaultMatchupAnalysisShowFouls
+      : startingState.showFouls
+  );
   const [showPpp, setShowPpp] = useState<boolean>(
     _.isNil(startingState.showPpp)
       ? ParamDefaults.defaultMatchupAnalysisShowPpp
@@ -118,8 +123,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       ...startingState,
       showUsage,
       showPpp,
+      showFouls,
     });
-  }, [showUsage, showPpp]);
+  }, [showUsage, showPpp, showFouls]);
 
   // RAPM building
 
@@ -414,11 +420,6 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                     //  assists where every assist corresponds to a make .. would still be interesting to
                     //  weight the ORB factors according to whether there were any ORBs?)
 
-                    //TODO check out
-                    // http://localhost:3000/MatchupAnalyzer?baseQuery=opponent.team%3A%22Kentucky%22%20AND%20date%3A2023-11-14&gender=Men&maxRank=400&minRank=1&oppoTeam=vs%20Kentucky%20%282023-11-14%29%3A%20W%2089-84&showUsage=true&team=Kansas&year=2023%2F24&
-                    // There are some spells with not many rebounds where the usage numbers are off
-                    // (might just be a limitation)
-
                     const playerAssists =
                       toStats(playerStats)?.assist?.total || 0;
 
@@ -611,7 +612,12 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                           setActiveLineup(undefined);
                         }}
                       >
-                        <div>
+                        <div
+                          style={{
+                            position: "relative",
+                            textAlign: "center",
+                          }}
+                        >
                           {showUsage ? (
                             <hr
                               className="mt-0 pt-0 pb-0"
@@ -642,6 +648,21 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                                 ),
                               }}
                             />
+                          ) : undefined}
+                          {showFouls &&
+                          playerInfo?.stats &&
+                          toStats(playerInfo?.stats)?.foul?.total ? (
+                            <small
+                              style={{
+                                position: "absolute",
+                                bottom: "calc(25% - 3px)",
+                                right: "calc(50% - 3px)",
+                              }}
+                            >
+                              <small>
+                                <b>{toStats(playerInfo?.stats)?.foul?.total}</b>
+                              </small>
+                            </small>
                           ) : undefined}
                         </div>
                       </OverlayTrigger>
@@ -886,6 +907,13 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               tooltip: "Show/hide player pts/play in each stint/clump",
               toggled: showPpp,
               onClick: () => setShowPpp(!showPpp),
+            },
+            {
+              label: "Fouls",
+              tooltip: "Show/hide player fouls in each stint/clump",
+              toggled: showFouls,
+              disabled: !(showUsage || showPpp),
+              onClick: () => setShowFouls(!showFouls),
             },
           ]}
         />

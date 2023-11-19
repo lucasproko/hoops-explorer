@@ -173,6 +173,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultMatchupAnalysisShowPpp
           ? ["showPpp"]
           : [],
+        (rawParams.showFouls || false) ==
+        ParamDefaults.defaultMatchupAnalysisShowFouls
+          ? ["showFouls"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
