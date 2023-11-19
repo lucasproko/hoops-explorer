@@ -375,10 +375,11 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               for (var ii = startStint; ii <= endStint; ++ii) {
                 const stint = lineupStints[ii];
 
-                const playerStats = _.find(
+                const playerInfo = _.find(
                   stint.players,
                   (p) => p.code == playerCode
-                )?.stats;
+                );
+                const playerStats = playerInfo?.stats;
 
                 // Calculate very simple usage rate:
                 const toStats = (stats: LineupStintTeamStats) =>
@@ -387,14 +388,18 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                   stats as Record<string, LineupStintTeamShot>;
 
                 const playerStintInfo = _.thru(playerStats, (__) => {
-                  const teamShots =
-                    stint.team_stats.num_possessions +
-                    (toStats(stint.team_stats)?.orb?.total || 0);
+                  /** Use this instead of stint.team_stats.num_possessions for consistency with how we calc player equivs */
+                  const getClassicShots = (stat: LineupStintTeamStats) => {
+                    return (
+                      (toShots(stat)?.fg?.attempts?.total || 0) +
+                      0.475 * (toShots(stat)?.ft?.attempts?.total || 0) +
+                      (toStats(stat)?.to?.total || 0)
+                    );
+                  };
+                  const teamShots = getClassicShots(stint.team_stats);
+
                   if (playerStats && teamShots) {
-                    const playerPoss =
-                      (toShots(playerStats)?.fg?.attempts?.total || 0) +
-                      0.475 * (toShots(playerStats)?.ft?.attempts?.total || 0) +
-                      (toStats(playerStats)?.to?.total || 0);
+                    const playerPoss = getClassicShots(playerStats);
 
                     const ptsScored =
                       2 * (toShots(playerStats)?.fg_2p?.made?.total || 0) +
@@ -449,6 +454,25 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                           (playerAssists -
                             (playerAssisted2s + playerAssisted3s)) +
                         0.5 * (toStats(playerStats)?.orb?.total || 0));
+
+                    /**/
+                    if (
+                      team == "Kansas" &&
+                      GameAnalysisUtils.buildDurationStr(stint.start_min) ==
+                        '23"02'
+                    ) {
+                      // Possessions break down:
+                      //   console.log(`POSS: ${playerCode} team=[${teamShots}|${
+                      //     stint.team_stats.num_possessions
+                      //   }]: ${playerPoss} - [${playerMisses}*0.9] - [${playerMakes}*0.1] +
+                      // 0.25*([${playerAssists}]a - [${
+                      //     playerAssisted2s + playerAssisted3s
+                      //   }]a'd + 0.25*([${
+                      //     toStats(playerStats)?.orb?.total || 0
+                      //   }]orbs)-> ${playerPossUsed} / ${
+                      //     playerPossUsed / (teamShots || 1)
+                      //   } vs ${playerPoss}`);
+                    }
 
                     return {
                       pts: ptsContributed,
@@ -512,7 +536,10 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
                 const tooltipPlayer = (
                   <Tooltip id={`stintPlayer${ii}`}>
-                    <b>Player Stint Stats</b>
+                    <b>{playerInfo?.id || "???"}</b>
+                    <br />
+                    <br />
+                    <b>Lineup Stint Stats</b>
                     <br />
                     ORtg = [
                     <b>{(100 * (playerStintInfo?.ortg || 0)).toFixed(2)}</b>]
