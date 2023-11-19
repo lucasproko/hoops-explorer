@@ -396,6 +396,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       (toStats(stat)?.to?.total || 0)
                     );
                   };
+                  const orbFactor = 0.9; //(in real ORtg calculate this exactly, but here just make a guess)
+
                   const teamShots = getClassicShots(stint.team_stats);
 
                   if (playerStats && teamShots) {
@@ -435,8 +437,6 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       (toShots(playerStats)?.fg_3p?.attempts?.total || 0) -
                       playerMakes;
 
-                    const orbFactor = 0.9; //(in real ORtg calculate this exactly, but here just make a guess)
-
                     const playerPossUsed =
                       playerPoss - //(ie makes + misses + other stuff)
                       playerMisses * gameOrbPct - //(not penalized for misses if team ORBs well)
@@ -455,24 +455,23 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                             (playerAssisted2s + playerAssisted3s)) +
                         0.5 * (toStats(playerStats)?.orb?.total || 0));
 
-                    /**/
-                    if (
-                      team == "Kansas" &&
-                      GameAnalysisUtils.buildDurationStr(stint.start_min) ==
-                        '23"02'
-                    ) {
-                      // Possessions break down:
-                      //   console.log(`POSS: ${playerCode} team=[${teamShots}|${
-                      //     stint.team_stats.num_possessions
-                      //   }]: ${playerPoss} - [${playerMisses}*0.9] - [${playerMakes}*0.1] +
-                      // 0.25*([${playerAssists}]a - [${
-                      //     playerAssisted2s + playerAssisted3s
-                      //   }]a'd + 0.25*([${
-                      //     toStats(playerStats)?.orb?.total || 0
-                      //   }]orbs)-> ${playerPossUsed} / ${
-                      //     playerPossUsed / (teamShots || 1)
-                      //   } vs ${playerPoss}`);
-                    }
+                    // Possessions break down:
+                    // if (
+                    //   team == "XXX" &&
+                    //   GameAnalysisUtils.buildDurationStr(stint.start_min) ==
+                    //     'YY"ZZ'
+                    // ) {
+                    //   console.log(`POSS: ${playerCode} team=[${teamShots}|${
+                    //     stint.team_stats.num_possessions
+                    //   }]: ${playerPoss} - [${playerMisses}*0.9] - [${playerMakes}*0.1] +
+                    //   0.25*([${playerAssists}]a - [${
+                    //     playerAssisted2s + playerAssisted3s
+                    //   }]a'd + 0.25*([${
+                    //     toStats(playerStats)?.orb?.total || 0
+                    //   }]orbs)-> ${playerPossUsed} / ${
+                    //     playerPossUsed / (teamShots || 1)
+                    //   } vs ${playerPoss}`);
+                    // }
 
                     return {
                       pts: ptsContributed,

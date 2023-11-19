@@ -150,6 +150,8 @@ export class GameAnalysisUtils {
       orbs,
       drbs,
       stls,
+      blks,
+      fouls,
     } = _.transform(
       stints,
       (acc, stint) => {
@@ -170,6 +172,8 @@ export class GameAnalysisUtils {
         acc.orbs = acc.orbs + (toStats(info)?.orb?.total || 0);
         acc.drbs = acc.drbs + (toStats(info)?.drb?.total || 0);
         acc.stls = acc.stls + (toStats(info)?.stl?.total || 0);
+        acc.fouls = acc.fouls + (toStats(info)?.foul?.total || 0);
+        acc.blks = acc.blks + (toStats(info)?.blk?.total || 0);
       },
       {
         _3pm: 0,
@@ -185,6 +189,8 @@ export class GameAnalysisUtils {
         orbs: 0,
         drbs: 0,
         stls: 0,
+        blks: 0,
+        fouls: 0,
       }
     );
 
@@ -216,7 +222,11 @@ export class GameAnalysisUtils {
         </span>
         <br />
         <span>
-          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>] STLs=[<b>{stls}</b>]
+          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>] BLKs=[<b>{blks}</b>]
+        </span>
+        <br />
+        <span>
+          STLs=[<b>{stls}</b>] FLs=[<b>{fouls}</b>]
         </span>
         <br />
         <span>
