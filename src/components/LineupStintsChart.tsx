@@ -10,6 +10,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Select from "react-select";
 
 import {
   getCommonFilterParams,
@@ -105,16 +106,65 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultMatchupAnalysisShowUsage
       : startingState.showUsage
   );
-  const [showFouls, setShowFouls] = useState<boolean>(
-    _.isNil(startingState.showFouls)
-      ? ParamDefaults.defaultMatchupAnalysisShowFouls
-      : startingState.showFouls
-  );
   const [showPpp, setShowPpp] = useState<boolean>(
     _.isNil(startingState.showPpp)
       ? ParamDefaults.defaultMatchupAnalysisShowPpp
       : startingState.showPpp
   );
+
+  const [showLabels, setShowLabels] = useState<boolean>(
+    _.isNil(startingState.showLabels)
+      ? ParamDefaults.defaultMatchupAnalysisShowLabels
+      : startingState.showLabels
+  );
+  const [labelToShow, setLabelToShow] = useState<string>(
+    _.isNil(startingState.labelToShow)
+      ? ParamDefaults.defaultMatchupAnalysisLabelToShow
+      : startingState.labelToShow
+  );
+
+  /** Util for manipulating player stats */
+  const toStats = (stats: LineupStintTeamStats) =>
+    stats as Record<string, LineupStintTeamStat>;
+  /** Util for manipulating player stats */
+  const toShots = (stats: LineupStintTeamStats) =>
+    stats as Record<string, LineupStintTeamShot>;
+
+  const labelOptions = {
+    "No Labels": (info) => 0,
+    Fouls: (info) => toStats(info)?.foul?.total || 0,
+    Assists: (info) => toStats(info)?.assist?.total || 0,
+    Turnovers: (info) => toStats(info)?.to?.total || 0,
+    Steals: (info) => toStats(info)?.stl?.total || 0,
+    Blocks: (info) => toStats(info)?.blk?.total || 0,
+    ORBs: (info) => toStats(info)?.orb?.total || 0,
+    DRBs: (info) => toStats(info)?.drb?.total || 0,
+    "3PM": (info) => toShots(info)?.fg_3p?.made?.total || 0,
+    "3PA": (info) => toShots(info)?.fg_3p?.attempts?.total || 0,
+    "3Pmi": (info) =>
+      (toShots(info)?.fg_3p?.attempts?.total || 0) -
+      (toShots(info)?.fg_3p?.made?.total || 0),
+    "2PM": (info) => toShots(info)?.fg_2p?.made?.total || 0,
+    "2PA": (info) => toShots(info)?.fg_2p?.attempts?.total || 0,
+    "2Pmi": (info) =>
+      (toShots(info)?.fg_2p?.made?.total || 0) -
+      (toShots(info)?.fg_2p?.made?.total || 0),
+    "2PM (mid)": (info) => toShots(info)?.fg_mid?.made?.total || 0,
+    "2PA (mid)": (info) => toShots(info)?.fg_mid?.attempts?.total || 0,
+    "2Pmi (mid)": (info) =>
+      (toShots(info)?.fg_mid?.attempts?.total || 0) -
+      (toShots(info)?.fg_mid?.made?.total || 0),
+    "2PM (rim)": (info) => toShots(info)?.fg_rim?.made?.total || 0,
+    "2PA (rim)": (info) => toShots(info)?.fg_rim?.attempts?.total || 0,
+    "2Pmi (rim)": (info) =>
+      (toShots(info)?.fg_rim?.attempts?.total || 0) -
+      (toShots(info)?.fg_rim?.made?.total || 0),
+    FTM: (info) => toShots(info)?.ft?.made?.total || 0,
+    FTA: (info) => toShots(info)?.ft?.attempts?.total || 0,
+    FTmi: (info) =>
+      (toShots(info)?.ft?.attempts?.total || 0) -
+      (toShots(info)?.ft?.made?.total || 0),
+  } as Record<string, (info: LineupStintTeamStats) => number>;
 
   // Integration with main page
 
@@ -123,9 +173,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       ...startingState,
       showUsage,
       showPpp,
-      showFouls,
+      labelToShow,
     });
-  }, [showUsage, showPpp, showFouls]);
+  }, [showUsage, showPpp, labelToShow]);
 
   // RAPM building
 
@@ -388,11 +438,6 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                 const playerStats = playerInfo?.stats;
 
                 // Calculate very simple usage rate:
-                const toStats = (stats: LineupStintTeamStats) =>
-                  stats as Record<string, LineupStintTeamStat>;
-                const toShots = (stats: LineupStintTeamStats) =>
-                  stats as Record<string, LineupStintTeamShot>;
-
                 const playerStintInfo = _.thru(playerStats, (__) => {
                   /** Use this instead of stint.team_stats.num_possessions for consistency with how we calc player equivs */
                   const getClassicShots = (stat: LineupStintTeamStats) => {
@@ -649,9 +694,11 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                               }}
                             />
                           ) : undefined}
-                          {showFouls &&
+                          {showLabels &&
+                          labelToShow &&
+                          labelOptions[labelToShow] &&
                           playerInfo?.stats &&
-                          toStats(playerInfo?.stats)?.foul?.total ? (
+                          labelOptions[labelToShow](playerInfo?.stats) ? (
                             <small
                               style={{
                                 position: "absolute",
@@ -660,7 +707,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                               }}
                             >
                               <small>
-                                <b>{toStats(playerInfo?.stats)?.foul?.total}</b>
+                                <b>
+                                  {labelOptions[labelToShow](playerInfo?.stats)}
+                                </b>
                               </small>
                             </small>
                           ) : undefined}
@@ -891,32 +940,59 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     cachedStats.bStats
   );
 
+  function stringToOption(s: string) {
+    return { label: s, value: s };
+  }
+
   return (
     <Container>
-      <Row className="mb-1">
-        <ToggleButtonGroup
-          items={[
-            {
-              label: "Usage",
-              tooltip: "Show/hide player usage in each stint/clump",
-              toggled: showUsage,
-              onClick: () => setShowUsage(!showUsage),
-            },
-            {
-              label: "PPP",
-              tooltip: "Show/hide player pts/play in each stint/clump",
-              toggled: showPpp,
-              onClick: () => setShowPpp(!showPpp),
-            },
-            {
-              label: "Fouls",
-              tooltip: "Show/hide player fouls in each stint/clump",
-              toggled: showFouls,
-              disabled: !(showUsage || showPpp),
-              onClick: () => setShowFouls(!showFouls),
-            },
-          ]}
-        />
+      <Row className="mb-1 text-left">
+        <Col xs={12} md={6}>
+          <ToggleButtonGroup
+            items={[
+              {
+                label: "Usage",
+                tooltip: "Show/hide player usage in each stint/clump",
+                toggled: showUsage,
+                onClick: () => setShowUsage(!showUsage),
+              },
+              {
+                label: "PPP",
+                tooltip: "Show/hide player pts/play in each stint/clump",
+                toggled: showPpp,
+                onClick: () => setShowPpp(!showPpp),
+              },
+              {
+                label: "| ",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+                isLabelOnly: true,
+              },
+              {
+                label: "Labels",
+                tooltip: "Show/hide player labels (see dropdown to right)",
+                toggled: showLabels,
+                disabled: !(showUsage || showPpp),
+                onClick: () => setShowLabels(!showLabels),
+              },
+            ]}
+          />
+        </Col>
+        <Col></Col>
+        <Col xs={2} md={2}>
+          <Select
+            value={stringToOption(labelToShow)}
+            isDisabled={!(showUsage || showPpp) || !showLabels}
+            options={_.keys(labelOptions).map((l) => stringToOption(l))}
+            isSearchable={true}
+            onChange={(option) => {
+              if ((option as any)?.value) {
+                setLabelToShow((option as any).value);
+              }
+            }}
+          />
+        </Col>
       </Row>
       <Row>
         <Col xs={12} className="w-100 text-center">

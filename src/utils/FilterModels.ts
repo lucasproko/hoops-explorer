@@ -82,7 +82,8 @@ export type MatchupFilterParams = {
   onOffLuck?: boolean;
   showUsage?: boolean; // show player usage in stint view
   showPpp?: boolean; // show player ppp in stint view
-  showFouls?: boolean; // show player ppp in stint view
+  showLabels?: boolean; // show player ppp in stint view
+  labelToShow?: string; // show player ppp in stint view
 };
 
 /** Combined params for game filtering */
@@ -386,7 +387,8 @@ export class ParamDefaults {
   // Matchup analysis
   static readonly defaultMatchupAnalysisShowUsage = false;
   static readonly defaultMatchupAnalysisShowPpp = true;
-  static readonly defaultMatchupAnalysisShowFouls = false;
+  static readonly defaultMatchupAnalysisShowLabels = true;
+  static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = DateUtils.mostRecentYearWithData;
