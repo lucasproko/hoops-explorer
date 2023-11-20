@@ -130,9 +130,14 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   const toShots = (stats: LineupStintTeamStats) =>
     stats as Record<string, LineupStintTeamShot>;
 
+  /** Overlay counting stats on each stint if enabled */
   const labelOptions = {
     "No Labels": (info) => 0,
     Fouls: (info) => toStats(info)?.foul?.total || 0,
+    Points: (info) =>
+      3 * (toShots(info)?.fg_3p?.made?.total || 0) +
+      2 * (toShots(info)?.fg_2p?.made?.total || 0) +
+      (toShots(info)?.ft?.made?.total || 0),
     Assists: (info) => toStats(info)?.assist?.total || 0,
     Turnovers: (info) => toStats(info)?.to?.total || 0,
     Steals: (info) => toStats(info)?.stl?.total || 0,
@@ -169,6 +174,13 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     FTmi: (info) =>
       (toShots(info)?.ft?.attempts?.total || 0) -
       (toShots(info)?.ft?.made?.total || 0),
+  } as Record<string, (info: LineupStintTeamStats) => number>;
+
+  /** Some special cases where it makes sense to show the labels over the defense also */
+  const defenseOnlyLabelOptions = {
+    Turnovers: (info) => toStats(info)?.to?.total || 0, //(turnovers forced)
+    ORBs: (info) => toStats(info)?.orb?.total || 0, //(ORBs allowed)
+    Points: (info) => info?.pts || 0, //(for some reason pts isn't filled in on individuals stats)
   } as Record<string, (info: LineupStintTeamStats) => number>;
 
   // Integration with main page
@@ -838,7 +850,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       <hr
                         className="mt-0 pt-0 pb-0"
                         style={{
-                          height: "1px",
+                          height: "2px",
                           marginBottom: "0px",
                           background: `linear-gradient(to right, ${CbbColors.off_diff20_p100_redGreyGreen(
                             stintDiff
@@ -903,19 +915,49 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       return [
                         `stint${stintNum}`,
                         <OverlayTrigger placement="auto" overlay={tooltip}>
-                          <hr
-                            className="mt-0 pt-0 pb-0"
+                          <div
                             style={{
-                              height: "3px",
-                              opacity: "75%",
-                              marginBottom: "0px",
-                              background: `linear-gradient(to right, ${CbbColors.def_ppp_redGreyGreen(
-                                ppp
-                              )} 0%, ${CbbColors.def_ppp_redGreyGreen(
-                                ppp
-                              )} 100%)`,
+                              position: "relative",
+                              textAlign: "center",
                             }}
-                          />
+                          >
+                            <hr
+                              className="mt-0 pt-0 pb-0"
+                              style={{
+                                height: "3px",
+                                opacity: "75%",
+                                marginBottom: "0px",
+                                background: `linear-gradient(to right, ${CbbColors.def_ppp_redGreyGreen(
+                                  ppp
+                                )} 0%, ${CbbColors.def_ppp_redGreyGreen(
+                                  ppp
+                                )} 100%)`,
+                              }}
+                            />
+                            {showLabels &&
+                            labelToShow &&
+                            defenseOnlyLabelOptions[labelToShow] &&
+                            stint.opponent_stats &&
+                            defenseOnlyLabelOptions[labelToShow](
+                              stint.opponent_stats
+                            ) ? (
+                              <small
+                                style={{
+                                  position: "absolute",
+                                  bottom: "calc(25% - 3px)",
+                                  right: "calc(50% - 3px)",
+                                }}
+                              >
+                                <small>
+                                  <b>
+                                    {labelOptions[labelToShow](
+                                      stint.opponent_stats
+                                    )}
+                                  </b>
+                                </small>
+                              </small>
+                            ) : undefined}
+                          </div>
                         </OverlayTrigger>,
                       ];
                     })
