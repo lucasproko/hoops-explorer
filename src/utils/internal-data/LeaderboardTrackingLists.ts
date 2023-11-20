@@ -28,7 +28,7 @@ export const PlayerLeaderboardTracking = {
       "-YEAR2021MD,JoHawkins,JuReese,IkCornish,JaRobinson+Jakai,RyConway,JaMiller,TyBrelsford",
     ],
     [
-      "-YEAR2019,JuMoore:Villanova,JaBishop,JaYoung+Jahmir,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice+Marvin,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro",
+      "-YEAR2019,JuMoore:Villanova,JaBishop,JaYoung+Jahmir,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice+Marvin,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro,CaSpencer+Cam",
     ],
     [
       "-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,DeMims,AmHarris,JaBynum,AnHiggs,DiZdor,DoToatley,BrSlater,XaJohnson:Pitt,XaJohnson:Indiana,PrHubb,SaBey,MyDead,TrWood+Tre,DeFlowers,RiLindo",
