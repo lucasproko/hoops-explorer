@@ -139,6 +139,11 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     Blocks: (info) => toStats(info)?.blk?.total || 0,
     ORBs: (info) => toStats(info)?.orb?.total || 0,
     DRBs: (info) => toStats(info)?.drb?.total || 0,
+    FGM: (info) => toShots(info)?.fg?.made?.total || 0,
+    FGA: (info) => toShots(info)?.fg?.attempts?.total || 0,
+    FGmi: (info) =>
+      (toShots(info)?.fg?.attempts?.total || 0) -
+      (toShots(info)?.fg?.made?.total || 0),
     "3PM": (info) => toShots(info)?.fg_3p?.made?.total || 0,
     "3PA": (info) => toShots(info)?.fg_3p?.attempts?.total || 0,
     "3Pmi": (info) =>
@@ -147,7 +152,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     "2PM": (info) => toShots(info)?.fg_2p?.made?.total || 0,
     "2PA": (info) => toShots(info)?.fg_2p?.attempts?.total || 0,
     "2Pmi": (info) =>
-      (toShots(info)?.fg_2p?.made?.total || 0) -
+      (toShots(info)?.fg_2p?.attempts?.total || 0) -
       (toShots(info)?.fg_2p?.made?.total || 0),
     "2PM (mid)": (info) => toShots(info)?.fg_mid?.made?.total || 0,
     "2PA (mid)": (info) => toShots(info)?.fg_mid?.attempts?.total || 0,
