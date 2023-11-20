@@ -980,7 +980,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           />
         </Col>
         <Col></Col>
-        <Col xs={2} md={2}>
+        <Col xs={12} md={4} lg={2}>
           <Select
             value={stringToOption(labelToShow)}
             isDisabled={!(showUsage || showPpp) || !showLabels}
