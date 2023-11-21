@@ -89,6 +89,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   const [screenHeight, setScreenHeight] = useState(512);
   const [screenWidth, setScreenWidth] = useState(512);
+  const isSmallScreen = screenWidth <= 800;
+
   //(would only need these if using dynamic sizing)
   // const latestScreenHeight = useRef(screenHeight);
   // const latestScreenWidth = useRef(screenWidth);
@@ -335,7 +337,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           y2={0}
           fillOpacity={0}
         >
-          <Label position="insideTopLeft" value="Negative=Good D" />
+          <Label
+            position="insideTopLeft"
+            value={isSmallScreen ? "Good D" : "Negative=Good D"}
+          />
         </ReferenceArea>
         <ReferenceArea
           x1={0}
@@ -344,7 +349,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           y2={-graphLimitY}
           fillOpacity={0}
         >
-          <Label position="insideBottomRight" value="Positive=Good 0" />
+          <Label
+            position="insideBottomRight"
+            value={isSmallScreen ? "Good O" : "Positive=Good O"}
+          />
         </ReferenceArea>
 
         <Legend verticalAlign="bottom" align="center" iconSize={8} />
@@ -356,7 +364,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         >
           <Label
             value={
-              screenWidth > 800 ? "Offensive Impact (pts)" : "Off. Impact (pts)"
+              isSmallScreen ? "Off. Impact (pts)" : "Offensive Impact (pts)"
             }
             position="top"
             style={{ textAnchor: "middle" }}
