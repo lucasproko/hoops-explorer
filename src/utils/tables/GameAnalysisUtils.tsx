@@ -10,6 +10,7 @@ import _ from "lodash";
 import {
   IndivPosInfo,
   IndivStatSet,
+  PlayerCode,
   PlayerId,
   PureStatSet,
 } from "../StatModels";
@@ -30,6 +31,48 @@ export type GameStatsCache = {
 
 /** Utils for performing analyses of single game stats */
 export class GameAnalysisUtils {
+  /** Turns the ugly PlayerCode into something marginally less ugly */
+  static namePrettifier = (name: PlayerCode): string => {
+    if (name.length > 3) {
+      return _.chain(name)
+        .thru((n) => {
+          // Step 1, tidy up end of names
+          const endOfName = n.substring(3);
+          return (
+            n.substring(0, 3) +
+            endOfName.replace(/([a-z]*)(?:([A-Z]|[-][A-Za-z]).*)/, "$1$2")
+          );
+        })
+        .thru((n) => {
+          //Step 2: tidy up hyphens
+          const possibleHyphen = n.length - 2;
+          if (n.charAt(possibleHyphen) == "-") {
+            return (
+              n.substring(0, possibleHyphen + 1) +
+              n.charAt(possibleHyphen + 1).toUpperCase()
+            );
+          } else if (n.charAt(possibleHyphen + 1) == "-") {
+            return n.substring(0, possibleHyphen + 1);
+          } else return n;
+        })
+        .thru((n) => {
+          // Step 3, add a "." between first and last names
+          const char2 = n.charAt(1);
+          if (char2.toUpperCase() == char2) {
+            // eg ASurname -> A.Surname
+            return n.substring(0, 1) + "." + n.substring(1);
+          } else if (n.length < 9) {
+            // AfSurname -> Af.Surname
+            return n.substring(0, 2) + "." + n.substring(2);
+          } else {
+            // AfVerylongsurname -> A.Verylongsurname
+            return n.substring(0, 1) + "." + n.substring(2);
+          }
+        })
+        .value();
+    } else return name; //(name too short to do anything)
+  };
+
   /** For a given lineup set, calculate RAPM as quickly as possible */
   static buildGameRapmStats = (
     team: string,
@@ -193,8 +236,6 @@ export class GameAnalysisUtils {
         fouls: 0,
       }
     );
-
-    //TODO render stl
     return (
       <div>
         <span>

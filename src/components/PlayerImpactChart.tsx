@@ -207,7 +207,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               y: -Math.min(graphLimit, Math.max(-graphLimit, defRapmProd)),
               z: offPoss * missingGameAdjustment,
               color: offRapmProd - defRapmProd,
-              name: p.playerCode,
+              name: GameAnalysisUtils.namePrettifier(p.playerCode),
               posInfo: positionInfo[p.playerId],
               stats: statObj,
               onOffStats: p,

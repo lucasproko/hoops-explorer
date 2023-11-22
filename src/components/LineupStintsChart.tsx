@@ -743,6 +743,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         ).cols;
 
         const addFormattingToPlayers = (playerCode: string) => {
+          const prettifiedPlayerCode =
+            GameAnalysisUtils.namePrettifier(playerCode);
           const maybeUnderline = (s: string) =>
             starterCodes.has(s) ? <u>{s}</u> : s;
           if (!playerInfoCache) {
@@ -782,7 +784,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                         : "100%",
                     }}
                   >
-                    {maybeUnderline(playerCode)}
+                    {maybeUnderline(prettifiedPlayerCode)}
                   </b>
                 </OverlayTrigger>
               </span>
