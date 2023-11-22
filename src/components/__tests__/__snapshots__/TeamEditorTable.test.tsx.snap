@@ -103,11 +103,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -5700,11 +5695,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -10997,11 +10987,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -17244,11 +17229,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -23699,11 +23679,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -30109,11 +30084,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -36034,11 +36004,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -40601,11 +40566,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -44820,11 +44780,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}
@@ -48171,11 +48126,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       xs={12}
     >
       <StateManager
-        components={
-          Object {
-            "MenuList": [Function],
-          }
-        }
         defaultInputValue=""
         defaultMenuIsOpen={false}
         defaultValue={null}

@@ -552,7 +552,7 @@ export class TeamEditorManualFixes {
           },
           Cincinnati: {
             superSeniorsReturning: new Set(["OdOguama::"]),
-            leftTeam: ["AzBandaogo:Utah Valley:", "JaReynolds:Temple:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
+            leftTeam: ["JaReynolds:Temple:"], //(waiver_denied: https://docs.google.com/spreadsheets/d/1a8uYxj2fW1XX1yTZbZWMrPqNEcs9a_YMwQ4DCqVHy1o/edit#gid=0)
           },
           Clemson: {
             superSeniorsReturning: new Set(["AlHemenway::"]),

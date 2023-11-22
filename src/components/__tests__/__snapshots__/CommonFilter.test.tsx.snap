@@ -198,11 +198,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         xs={12}
       >
         <StateManager
-          components={
-            Object {
-              "MenuList": [Function],
-            }
-          }
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}

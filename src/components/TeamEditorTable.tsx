@@ -2713,7 +2713,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   };
   /** Adds the MenuList component with user prompt if there are teams fitered out*/
   function maybeMenuList() {
-    if (teamList.length < Object.keys(AvailableTeams.byName).length) {
+    if (gender == "Women" || year < DateUtils.yearFromWhichAllMenD1Imported) {
       return { MenuList };
     }
   }

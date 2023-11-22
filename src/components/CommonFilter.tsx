@@ -69,6 +69,7 @@ import fetchBuilder from "fetch-retry-ts";
 import QueryFilterDropdown from "./shared/QueryFilterDropdown";
 import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import DateRangeModal from "./shared/DateRangeModal";
+import { DateUtils } from "../utils/DateUtils";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -506,7 +507,7 @@ const CommonFilter: CommonFilterI = ({
 
   /** Adds the MenuList component with user prompt if there are teams fitered out*/
   function maybeMenuList() {
-    if (teamList.length < Object.keys(AvailableTeams.byName).length) {
+    if (gender == "Women" || year < DateUtils.yearFromWhichAllMenD1Imported) {
       return { MenuList };
     }
   }
