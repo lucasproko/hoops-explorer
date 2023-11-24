@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // Lodash:
 import _ from "lodash";
@@ -11,7 +11,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // Library imports:
-import fetch from "isomorphic-unfetch";
 import Select from "react-select";
 
 // Component imports:
@@ -22,7 +21,6 @@ import CommonFilter, {
   GlobalKeypressManager,
 } from "../components/CommonFilter";
 import {
-  ParamDefaults,
   ParamPrefixesType,
   ParamPrefixes,
   CommonFilterParams,
@@ -35,11 +33,10 @@ import {
 // Utils
 import { StatModels, LineupStintInfo } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
-import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
-import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { UrlRouting } from "../utils/UrlRouting";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { DateUtils } from "../utils/DateUtils";
+import { FilterParamsType } from "../utils/FilterModels";
 
 type Props = {
   onStats: (
@@ -89,6 +86,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   // Utils
 
   /** Pre-calculate this */
+  const noOpponent = "No Opponent";
   const teamList = AvailableTeams.getTeams(
     null,
     commonParams.year || DateUtils.mostRecentYearWithData,
@@ -178,81 +176,57 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     //   offQuery: "",
     // };
 
+    const primaryRequests: FilterRequestInfo[] = [
+      {
+        context: ParamPrefixes.game as ParamPrefixesType,
+        paramsObj: secondaryRequestA,
+      },
+      {
+        context: ParamPrefixes.player as ParamPrefixesType,
+        paramsObj: secondaryRequestA,
+        includeRoster: noExtraFullSeasonRequests,
+      },
+      // Currently this is equivalent to primary request
+      // {
+      //   //(don't make a spurious call)
+      //   context: ParamPrefixes.player as ParamPrefixesType,
+      //   paramsObj: entireSeasonRequestA,
+      //   includeRoster: true,
+      // },
+    ];
+    const secondaryRequests: FilterRequestInfo[] = [
+      {
+        context: ParamPrefixes.lineup as ParamPrefixesType,
+        paramsObj: primaryRequestB as FilterParamsType,
+      },
+      {
+        context: ParamPrefixes.game as ParamPrefixesType,
+        paramsObj: secondaryRequestB,
+      },
+      {
+        context: ParamPrefixes.player as ParamPrefixesType,
+        paramsObj: secondaryRequestB,
+        includeRoster: noExtraFullSeasonRequests,
+      },
+      // Currently this is equivalent to primary request
+      // {
+      //   //(don't make a spurious call)
+      //   context: ParamPrefixes.player as ParamPrefixesType,
+      //   paramsObj: entireSeasonRequestB,
+      //   includeRoster: true,
+      // },
+    ];
+
     return [
       primaryRequestA,
-      [
-        {
-          context: ParamPrefixes.game as ParamPrefixesType,
-          paramsObj: secondaryRequestA,
-        },
-        {
-          context: ParamPrefixes.player as ParamPrefixesType,
-          paramsObj: secondaryRequestA,
-          includeRoster: noExtraFullSeasonRequests,
-        },
-        // Currently this is equivalent to primary request
-        // {
-        //   //(don't make a spurious call)
-        //   context: ParamPrefixes.player as ParamPrefixesType,
-        //   paramsObj: entireSeasonRequestA,
-        //   includeRoster: true,
-        // },
-        {
-          context: ParamPrefixes.lineup as ParamPrefixesType,
-          paramsObj: primaryRequestB,
-        },
-        {
-          context: ParamPrefixes.game as ParamPrefixesType,
-          paramsObj: secondaryRequestB,
-        },
-        {
-          context: ParamPrefixes.player as ParamPrefixesType,
-          paramsObj: secondaryRequestB,
-          includeRoster: noExtraFullSeasonRequests,
-        },
-        // Currently this is equivalent to primary request
-        // {
-        //   //(don't make a spurious call)
-        //   context: ParamPrefixes.player as ParamPrefixesType,
-        //   paramsObj: entireSeasonRequestB,
-        //   includeRoster: true,
-        // },
-      ],
+      primaryRequests.concat(
+        team != noOpponent ? secondaryRequests : ([] as FilterRequestInfo[])
+      ),
     ];
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
-    const extraFullSeasonRequests = 0; //0 or 1, will be 1 later if we allow more granular filtering
-    const jsonStatuses = jsonResps.map((j) => j.status);
-
-    const lineupJsonA = jsonResps?.[0]?.responses?.[0] || {};
-    const teamJsonA = jsonResps?.[1]?.responses?.[0] || {};
-    const rosterStatsJsonA = jsonResps?.[2]?.responses?.[0] || {};
-    const globalRosterStatsJsonA =
-      jsonResps?.[2 + extraFullSeasonRequests]?.responses?.[0] ||
-      rosterStatsJsonA;
-    const globalTeamA =
-      teamJsonA?.aggregations?.global?.only?.buckets?.team ||
-      StatModels.emptyTeam();
-    const rosterInfoA = jsonResps?.[2 + extraFullSeasonRequests]?.roster;
-    globalTeamA.roster = rosterInfoA;
-
-    const lineupJsonB =
-      jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0] || {};
-    const teamJsonB =
-      jsonResps?.[4 + extraFullSeasonRequests]?.responses?.[0] || {};
-    const rosterStatsJsonB =
-      jsonResps?.[5 + extraFullSeasonRequests]?.responses?.[0] || {};
-    const globalRosterStatsJsonB =
-      jsonResps?.[5 + 2 * extraFullSeasonRequests]?.responses?.[0] ||
-      rosterStatsJsonB;
-    const globalTeamB =
-      teamJsonB?.aggregations?.global?.only?.buckets?.team ||
-      StatModels.emptyTeam();
-    const rosterInfoB = jsonResps?.[5 + 2 * extraFullSeasonRequests]?.roster;
-    globalTeamB.roster = rosterInfoB;
-
     const fromLineups = (lineupJson: any) => ({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError
@@ -288,16 +262,61 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
           "Unknown"
         : undefined,
     });
-    onStats(
-      fromLineups(lineupJsonA),
-      fromTeam(teamJsonA, globalTeamA),
-      fromRoster(rosterStatsJsonA, globalRosterStatsJsonA),
-      fromLineups(lineupJsonB),
-      fromTeam(teamJsonB, globalTeamB),
-      fromRoster(rosterStatsJsonB, globalRosterStatsJsonB),
-      [],
-      []
-    );
+
+    const extraFullSeasonRequests = 0; //0 or 1, will be 1 later if we allow more granular filtering
+    const jsonStatuses = jsonResps.map((j) => j.status);
+
+    const lineupJsonA = jsonResps?.[0]?.responses?.[0] || {};
+    const teamJsonA = jsonResps?.[1]?.responses?.[0] || {};
+    const rosterStatsJsonA = jsonResps?.[2]?.responses?.[0] || {};
+    const globalRosterStatsJsonA =
+      jsonResps?.[2 + extraFullSeasonRequests]?.responses?.[0] ||
+      rosterStatsJsonA;
+    const globalTeamA =
+      teamJsonA?.aggregations?.global?.only?.buckets?.team ||
+      StatModels.emptyTeam();
+    const rosterInfoA = jsonResps?.[2 + extraFullSeasonRequests]?.roster;
+    globalTeamA.roster = rosterInfoA;
+
+    if (jsonResps.length < 5) {
+      //special "no opponent case", short circuit the rest
+      onStats(
+        fromLineups(lineupJsonA),
+        fromTeam(teamJsonA, globalTeamA),
+        fromRoster(rosterStatsJsonA, globalRosterStatsJsonA),
+        fromLineups({}),
+        fromTeam({}, {}),
+        fromRoster({}, {}),
+        [],
+        []
+      );
+    } else {
+      const lineupJsonB =
+        jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0] || {};
+      const teamJsonB =
+        jsonResps?.[4 + extraFullSeasonRequests]?.responses?.[0] || {};
+      const rosterStatsJsonB =
+        jsonResps?.[5 + extraFullSeasonRequests]?.responses?.[0] || {};
+      const globalRosterStatsJsonB =
+        jsonResps?.[5 + 2 * extraFullSeasonRequests]?.responses?.[0] ||
+        rosterStatsJsonB;
+      const globalTeamB =
+        teamJsonB?.aggregations?.global?.only?.buckets?.team ||
+        StatModels.emptyTeam();
+      const rosterInfoB = jsonResps?.[5 + 2 * extraFullSeasonRequests]?.roster;
+      globalTeamB.roster = rosterInfoB;
+
+      onStats(
+        fromLineups(lineupJsonA),
+        fromTeam(teamJsonA, globalTeamA),
+        fromRoster(rosterStatsJsonA, globalRosterStatsJsonA),
+        fromLineups(lineupJsonB),
+        fromTeam(teamJsonB, globalTeamB),
+        fromRoster(rosterStatsJsonB, globalRosterStatsJsonB),
+        [],
+        []
+      );
+    }
   }
 
   // Visual components:
@@ -383,25 +402,30 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
               >
                 Team lineups
               </a>,
-              <a
-                target="_blank"
-                href={UrlRouting.getGameUrl(
-                  gameParams(params, opponentName, params.team),
-                  {}
-                )}
-              >
-                Opponent stats
-              </a>,
-              <a
-                target="_blank"
-                href={UrlRouting.getLineupUrl(
-                  lineupParams(params, opponentName, params.team),
-                  {}
-                )}
-              >
-                Opponent lineups
-              </a>,
-            ]
+            ].concat(
+              params.team != noOpponent
+                ? [
+                    <a
+                      target="_blank"
+                      href={UrlRouting.getGameUrl(
+                        gameParams(params, opponentName, params.team),
+                        {}
+                      )}
+                    >
+                      Opponent stats
+                    </a>,
+                    <a
+                      target="_blank"
+                      href={UrlRouting.getLineupUrl(
+                        lineupParams(params, opponentName, params.team),
+                        {}
+                      )}
+                    >
+                      Opponent lineups
+                    </a>,
+                  ]
+                : []
+            )
           : [];
       }}
     >
@@ -415,7 +439,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                   isClearable={false}
                   styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
-                  options={teamList.map((r) => stringToOption(r.team))}
+                  options={[stringToOption(noOpponent)].concat(
+                    teamList.map((r) => stringToOption(r.team))
+                  )}
                   onChange={(option) => {
                     setGame((option as any)?.value);
                   }}
