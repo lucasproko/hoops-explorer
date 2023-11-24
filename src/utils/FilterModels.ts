@@ -84,6 +84,9 @@ export type MatchupFilterParams = {
   showPpp?: boolean; // show player ppp in stint view
   showLabels?: boolean; // show player ppp in stint view
   labelToShow?: string; // show player ppp in stint view
+  posClasses?: string; // which position classes to show
+  showTeam?: boolean;
+  showOppo?: boolean;
 };
 
 /** Combined params for game filtering */

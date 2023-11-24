@@ -166,58 +166,6 @@ const sortOptionsByValue = _.fromPairs(
 
 // Info required for the positional filter
 
-const positionClasses = [
-  "Pure PG",
-  "Scoring PG",
-  "Combo Guard",
-  "(All Ballhandlers)",
-  "Wing Guard",
-  "(All Guards)",
-  "Wing Forward",
-  "(All Wings)",
-  "Stretch PF",
-  "Power Forward/Center",
-  "(All PFs)",
-  "Center",
-  "(All Post Players)",
-  "(All Frontcourt)",
-];
-const posClassToNickname = {
-  "Pure PG": "PG",
-  "Scoring PG": "s-PG",
-  "Combo Guard": "CG",
-  "(All Ballhandlers)": "BH*",
-  "Wing Guard": "WG",
-  "(All Guards)": "*G",
-  "Wing Forward": "WF",
-  "(All Wings)": "W*",
-  "Stretch PF": "S-PF",
-  "Power Forward/Center": "PF/C",
-  "(All PFs)": "PF+",
-  Center: "C",
-  "(All Post Players)": "C+",
-  "(All Frontcourt)": "4/5",
-} as Record<string, string>;
-
-const nicknameToPosClass = {
-  ...PositionUtils.idToPosition,
-  "BH*": "(All Ballhandlers)",
-  "*G": "(All Guards)",
-  "W*": "(All Wings)",
-  "PF+": "(All PFs)",
-  "C+": "(All Post Players)",
-  "4/5": "(All Frontcourt)",
-} as Record<string, string>;
-
-const expandedPosClasses = {
-  "BH*": ["PG", "s-PG", "CG"],
-  "*G": ["PG", "s-PG", "CG", "WG"],
-  "W*": ["WG", "WF"],
-  "PF+": ["WF", "S-PF", "PF/C"],
-  "C+": ["PF/C", "C"],
-  "4/5": ["WF", "S-PF", "PF/C", "C"],
-} as Record<string, string[]>;
-
 const advancedFilterPresets = [
   ["Pass-first ball handlers", "off_usage <= 20% && off_assist >= 25%", "BH*"],
   [
@@ -718,7 +666,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? new Set(
           _.flatMap(
             (posClasses || "").split(","),
-            (c) => expandedPosClasses[c] || [c]
+            (c) => PositionUtils.expandedPosClasses[c] || [c]
           )
         )
       : undefined;
@@ -1689,6 +1637,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   };
 
   // Position filter
+  //TODO: duplicated in PlayerImpactChart - need to move to tables/PositionUtils
 
   function getCurrentPositionsOrPlaceholder() {
     return posClasses == ""
@@ -1696,7 +1645,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       : posClasses
           .split(",")
           .map((posClass: string) =>
-            stringToOption(nicknameToPosClass[posClass] || posClass)
+            stringToOption(
+              PositionUtils.nicknameToPosClass[posClass] || posClass
+            )
           );
   }
 
@@ -1708,7 +1659,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ...oldText,
       props: {
         ...oldText.props,
-        children: [posClassToNickname[fullPosition] || fullPosition],
+        children: [
+          PositionUtils.posClassToNickname[fullPosition] || fullPosition,
+        ],
       },
     };
     const newProps = {
@@ -1829,7 +1782,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               isMulti
               components={{ MultiValueContainer: PositionValueContainer }}
               value={getCurrentPositionsOrPlaceholder()}
-              options={(positionClasses || []).map((r) => stringToOption(r))}
+              options={(PositionUtils.positionClasses || []).map((r) =>
+                stringToOption(r)
+              )}
               onChange={(optionsIn) => {
                 const options = optionsIn as Array<any>;
                 const selection = (options || []).map(
@@ -1837,7 +1792,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 );
                 const posClassStr = selection
                   .filter((t: string) => t != "")
-                  .map((c: string) => posClassToNickname[c] || c)
+                  .map((c: string) => PositionUtils.posClassToNickname[c] || c)
                   .join(",");
                 friendlyChange(
                   () => setPosClasses(posClassStr),

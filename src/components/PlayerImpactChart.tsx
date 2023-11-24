@@ -1,7 +1,8 @@
 // React imports:
 import _ from "lodash";
 import React, { useState, useEffect } from "react";
-import { Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import Select, { components } from "react-select";
 import {
   ReferenceLine,
   ReferenceArea,
@@ -26,12 +27,13 @@ import {
   ParamDefaults,
 } from "../utils/FilterModels";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
-import { PureStatSet } from "../utils/StatModels";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
 import { LineupStatsModel } from "./LineupStatsTable";
 import { RosterStatsModel } from "./RosterStatsTable";
 import { TeamStatsModel } from "./TeamStatsTable";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import { PositionUtils } from "../utils/stats/PositionUtils";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -85,6 +87,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       : startingState.luck
   );
 
+  const [posClasses, setPosClasses] = useState(startingState.posClasses || "");
+  const [showTeam, setShowTeam] = useState<boolean>(
+    _.isNil(startingState.showTeam) ? true : startingState.showTeam
+  );
+  const [showOppo, setShowOppo] = useState<boolean>(
+    _.isNil(startingState.showOppo) ? true : startingState.showOppo
+  );
+
   // Viewport management
 
   const [screenHeight, setScreenHeight] = useState(512);
@@ -116,6 +126,17 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     setScreenWidth(baseWidth);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Comms with main page
+
+  useEffect(() => {
+    onChangeState({
+      ...startingState,
+      posClasses,
+      showTeam,
+      showOppo,
+    });
+  }, [posClasses, showTeam, showOppo]);
 
   // RAPM building
 
@@ -288,173 +309,266 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   const graphLimitX = calcGraphLimit(xMin, xMax);
   const graphLimitY = calcGraphLimit(yMin, yMax);
 
+  // Position filter
+  //TODO: duplicated in PlayerLeaderboardTable - need to move to tables/PositionUtils
+
+  function getCurrentPositionsOrPlaceholder() {
+    return posClasses == ""
+      ? { label: "All Positions" }
+      : posClasses
+          .split(",")
+          .map((posClass: string) =>
+            stringToOption(
+              PositionUtils.nicknameToPosClass[posClass] || posClass
+            )
+          );
+  }
+
+  /** Slightly hacky code to render the position abbreviations */
+  const PositionValueContainer = (props: any) => {
+    const oldText = props.children[0];
+    const fullPosition = oldText.props.children;
+    const newText = {
+      ...oldText,
+      props: {
+        ...oldText.props,
+        children: [
+          PositionUtils.posClassToNickname[fullPosition] || fullPosition,
+        ],
+      },
+    };
+    const newProps = {
+      ...props,
+      children: [newText, props.children[1]],
+    };
+    return <components.MultiValueContainer {...newProps} />;
+  };
+
+  // Chart:
+
+  function stringToOption(s: string) {
+    return { label: s, value: s };
+  }
   const labelState = ScatterChartUtils.buildEmptyLabelState();
   return _.isEmpty(cachedStats.ab) ? (
     <Col className="text-center w-100">
       <i>(No Data)</i>
     </Col>
   ) : (
-    <ResponsiveContainer width={screenWidth} height={screenHeight}>
-      <ScatterChart>
-        <defs>
-          <linearGradient
-            id="xAxisGradient"
-            x1="0"
-            y1="0"
-            x2={screenWidth}
-            y2="0"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop
-              offset="0%"
-              stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}
-            />
-            <stop
-              offset="100%"
-              stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}
-              stopOpacity={1}
-            />
-          </linearGradient>
-          <linearGradient
-            id="yAxisGradient"
-            x1="0"
-            y1="0"
-            x2="0"
-            y2={screenHeight}
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop
-              offset="0%"
-              stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}
-            />
-            <stop
-              offset="100%"
-              stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}
-              stopOpacity={1}
-            />
-          </linearGradient>
-        </defs>
+    <Container>
+      <Row className="mb-1 text-left">
+        <Col xs={12} md={4}>
+          <ToggleButtonGroup
+            items={[
+              {
+                label: <span>&#9650;</span>,
+                tooltip: `Show/fade players from ${startingState.team || "??"}`,
+                toggled: showTeam,
+                onClick: () => setShowTeam(!showTeam),
+              },
+              {
+                label: <small>&#9679;</small>,
+                tooltip: `Show/fade players from ${
+                  startingState.oppoTeam || "??"
+                }`,
+                toggled: showOppo,
+                onClick: () => setShowOppo(!showOppo),
+              },
+            ]}
+          />
+        </Col>
+        <Col xs={10} md={4}>
+          <Select
+            isClearable={true}
+            styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+            isMulti
+            components={{ MultiValueContainer: PositionValueContainer }}
+            value={getCurrentPositionsOrPlaceholder()}
+            options={(PositionUtils.positionClasses || []).map((r) =>
+              stringToOption(r)
+            )}
+            onChange={(optionsIn) => {
+              const options = optionsIn as Array<any>;
+              const selection = (options || []).map(
+                (option) => (option as any)?.value || ""
+              );
+              const posClassStr = selection
+                .filter((t: string) => t != "")
+                .map((c: string) => PositionUtils.posClassToNickname[c] || c)
+                .join(",");
+              setPosClasses(posClassStr);
+            }}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ResponsiveContainer width={screenWidth} height={screenHeight}>
+            <ScatterChart>
+              <defs>
+                <linearGradient
+                  id="xAxisGradient"
+                  x1="0"
+                  y1="0"
+                  x2={screenWidth}
+                  y2="0"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}
+                    stopOpacity={1}
+                  />
+                </linearGradient>
+                <linearGradient
+                  id="yAxisGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2={screenHeight}
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(10)}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor={CbbColors.off_diff10_p100_redBlackGreen(-10)}
+                    stopOpacity={1}
+                  />
+                </linearGradient>
+              </defs>
 
-        <ReferenceLine y={0} strokeWidth={1} />
-        <ReferenceLine x={0} strokeWidth={1} />
+              <ReferenceLine y={0} strokeWidth={1} />
+              <ReferenceLine x={0} strokeWidth={1} />
 
-        <ReferenceArea
-          x1={-graphLimitX}
-          x2={0}
-          y1={graphLimitY}
-          y2={0}
-          fillOpacity={0}
-        >
-          <Label
-            position="insideTopLeft"
-            value={isSmallScreen ? "Good D" : "Negative=Good D"}
-          />
-        </ReferenceArea>
-        <ReferenceArea
-          x1={0}
-          x2={graphLimitX}
-          y1={0}
-          y2={-graphLimitY}
-          fillOpacity={0}
-        >
-          <Label
-            position="insideBottomRight"
-            value={isSmallScreen ? "Good O" : "Positive=Good O"}
-          />
-        </ReferenceArea>
+              <ReferenceArea
+                x1={-graphLimitX}
+                x2={0}
+                y1={graphLimitY}
+                y2={0}
+                fillOpacity={0}
+              >
+                <Label
+                  position="insideTopLeft"
+                  value={isSmallScreen ? "Good D" : "Negative=Good D"}
+                />
+              </ReferenceArea>
+              <ReferenceArea
+                x1={0}
+                x2={graphLimitX}
+                y1={0}
+                y2={-graphLimitY}
+                fillOpacity={0}
+              >
+                <Label
+                  position="insideBottomRight"
+                  value={isSmallScreen ? "Good O" : "Positive=Good O"}
+                />
+              </ReferenceArea>
 
-        <Legend verticalAlign="bottom" align="center" iconSize={8} />
-        <XAxis
-          type="number"
-          dataKey="x"
-          domain={[-graphLimitX, graphLimitX]}
-          axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
-        >
-          <Label
-            value={
-              isSmallScreen ? "Off. Impact (pts)" : "Offensive Impact (pts)"
-            }
-            position="top"
-            style={{ textAnchor: "middle" }}
-          />
-        </XAxis>
-        <YAxis
-          type="number"
-          dataKey="y"
-          domain={[-graphLimitY, graphLimitY]}
-          axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
-          tickFormatter={(s) => `-${s}`.replace("--", "")}
-        >
-          <Label
-            angle={-90}
-            value={"Defensive Impact (pts)"}
-            position="insideLeft"
-            style={{ textAnchor: "middle" }}
-          />
-        </YAxis>
-        {seasonStats ? (
-          <ZAxis type="number" dataKey="z" range={[10, 100]} />
-        ) : undefined}
-        <CartesianGrid strokeDasharray="4" />
-        <Scatter
-          data={cachedStats.ab}
-          fill="black"
-          shape="triangle"
-          name={commonParams.team!}
-          legendType="triangle"
-        >
-          {ScatterChartUtils.buildTidiedLabelList({
-            maxHeight: screenHeight,
-            maxWidth: screenWidth,
-            mutableState: labelState,
-            dataKey: "name",
-            series: cachedStats.ab,
-          })}
-          {_.values(cachedStats.ab).map((p, index) => {
-            return p.seriesId == commonParams.team! ? (
-              <Cell
-                key={`cellA-${index}`}
-                fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+              <Legend verticalAlign="bottom" align="center" iconSize={8} />
+              <XAxis
+                type="number"
+                dataKey="x"
+                domain={[-graphLimitX, graphLimitX]}
+                axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
+              >
+                <Label
+                  value={
+                    isSmallScreen
+                      ? "Off. Impact (pts)"
+                      : "Offensive Impact (pts)"
+                  }
+                  position="top"
+                  style={{ textAnchor: "middle" }}
+                />
+              </XAxis>
+              <YAxis
+                type="number"
+                dataKey="y"
+                domain={[-graphLimitY, graphLimitY]}
+                axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
+                tickFormatter={(s) => `-${s}`.replace("--", "")}
+              >
+                <Label
+                  angle={-90}
+                  value={"Defensive Impact (pts)"}
+                  position="insideLeft"
+                  style={{ textAnchor: "middle" }}
+                />
+              </YAxis>
+              {seasonStats ? (
+                <ZAxis type="number" dataKey="z" range={[10, 100]} />
+              ) : undefined}
+              <CartesianGrid strokeDasharray="4" />
+              <Scatter
+                data={cachedStats.ab}
+                fill="black"
+                shape="triangle"
+                name={commonParams.team!}
+                legendType="triangle"
+              >
+                {ScatterChartUtils.buildTidiedLabelList({
+                  maxHeight: screenHeight,
+                  maxWidth: screenWidth,
+                  mutableState: labelState,
+                  dataKey: "name",
+                  series: cachedStats.ab,
+                })}
+                {_.values(cachedStats.ab).map((p, index) => {
+                  return p.seriesId == commonParams.team! ? (
+                    <Cell
+                      key={`cellA-${index}`}
+                      fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+                    />
+                  ) : (
+                    <Cell key={`cellA-${index}`} opacity={0} />
+                  );
+                })}
+                ;
+              </Scatter>
+              <Scatter
+                data={cachedStats.ab}
+                fill="purple"
+                name={opponent}
+                legendType="circle"
+              >
+                {ScatterChartUtils.buildTidiedLabelList({
+                  maxHeight: screenHeight,
+                  maxWidth: screenWidth,
+                  mutableState: labelState,
+                  dataKey: "name",
+                  series: cachedStats.ab,
+                })}
+                {_.values(cachedStats.ab).map((p, index) => {
+                  return p.seriesId == opponent ? (
+                    <Cell
+                      key={`cellB-${index}`}
+                      fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+                    />
+                  ) : (
+                    <Cell key={`cellB-${index}`} opacity={0} />
+                  );
+                })}
+                ;
+              </Scatter>
+              <RechartTooltip
+                content={<CustomTooltip />}
+                wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
+                allowEscapeViewBox={{ x: true, y: false }}
+                itemSorter={(item: any) => item.value}
               />
-            ) : (
-              <Cell key={`cellA-${index}`} opacity={0} />
-            );
-          })}
-          ;
-        </Scatter>
-        <Scatter
-          data={cachedStats.ab}
-          fill="purple"
-          name={opponent}
-          legendType="circle"
-        >
-          {ScatterChartUtils.buildTidiedLabelList({
-            maxHeight: screenHeight,
-            maxWidth: screenWidth,
-            mutableState: labelState,
-            dataKey: "name",
-            series: cachedStats.ab,
-          })}
-          {_.values(cachedStats.ab).map((p, index) => {
-            return p.seriesId == opponent ? (
-              <Cell
-                key={`cellB-${index}`}
-                fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
-              />
-            ) : (
-              <Cell key={`cellB-${index}`} opacity={0} />
-            );
-          })}
-          ;
-        </Scatter>
-        <RechartTooltip
-          content={<CustomTooltip />}
-          wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
-          allowEscapeViewBox={{ x: true, y: false }}
-          itemSorter={(item: any) => item.value}
-        />
-      </ScatterChart>
-    </ResponsiveContainer>
+            </ScatterChart>
+          </ResponsiveContainer>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default PlayerImpactChart;

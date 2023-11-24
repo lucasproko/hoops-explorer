@@ -142,6 +142,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       _.flatten([
         // omit all defaults
         !rawParams.oppoTeam ? ["oppoTeam"] : [],
+        _.isNil(rawParams.showTeam) || rawParams.showTeam ? ["showTeam"] : [],
+        _.isNil(rawParams.showOppo) || rawParams.showOppo ? ["showOppo"] : [],
+        !rawParams.posClasses ? ["posClasses"] : [],
+        !rawParams.oppoTeam ? ["oppoTeam"] : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -179,7 +183,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         title="Player Impact Chart"
         helpLink={maybeShowDocs()}
       >
-        <Col xs={12} className="text-center d-flex justify-content-center">
+        <Col
+          xs={12}
+          className="w-100 text-center d-flex justify-content-center"
+        >
           <PlayerImpactChart
             startingState={matchupFilterParamsRef.current || {}}
             opponent={matchupFilterParams.oppoTeam || ""}
