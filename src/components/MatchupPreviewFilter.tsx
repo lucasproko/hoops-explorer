@@ -74,9 +74,6 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     startingCommonFilterParams as CommonFilterParams
   );
 
-  /** The list of opponents */
-  const [opponentList, setOpponentList] = useState<Array<any>>([]); //(TODO: see StatModels - this needs to get modelled)
-
   // Lineup Filter - custom queries and filters:
 
   const isDebug = process.env.NODE_ENV !== "production";
@@ -220,7 +217,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     return [
       primaryRequestA,
       primaryRequests.concat(
-        team != noOpponent ? secondaryRequests : ([] as FilterRequestInfo[])
+        game != noOpponent ? secondaryRequests : ([] as FilterRequestInfo[])
       ),
     ];
   }
@@ -403,7 +400,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                 Team lineups
               </a>,
             ].concat(
-              params.team != noOpponent
+              opponentName != noOpponent
                 ? [
                     <a
                       target="_blank"
