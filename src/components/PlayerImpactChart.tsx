@@ -177,7 +177,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       ),
       ({ playerInfo, positionInfo, rapmInfo }) => {
         return _.chain(rapmInfo?.enrichedPlayers || [])
-          .map((p) => {
+          .flatMap((p) => {
             const statObj = playerInfo[p.playerId];
             const offPoss = statObj.off_team_poss_pct?.value || 0;
             const defPoss = statObj.def_team_poss_pct?.value || 0;
@@ -200,19 +200,27 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               defPoss *
               missingGameAdjustment;
 
-            return {
-              seriesId: team,
-              labelColor,
-              x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)),
-              y: -Math.min(graphLimit, Math.max(-graphLimit, defRapmProd)),
-              z: offPoss * missingGameAdjustment,
-              color: offRapmProd - defRapmProd,
-              name: GameAnalysisUtils.namePrettifier(p.playerCode),
-              posInfo: positionInfo[p.playerId],
-              stats: statObj,
-              onOffStats: p,
-              missingGameAdj: missingGameAdjustment,
-            };
+            // (in season mode, remove sub 5mpg players, likely walk-ons)
+            return seasonStats && offPoss < 0.12 && defPoss < 0.12
+              ? []
+              : [
+                  {
+                    seriesId: team,
+                    labelColor,
+                    x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)),
+                    y: -Math.min(
+                      graphLimit,
+                      Math.max(-graphLimit, defRapmProd)
+                    ),
+                    z: offPoss * missingGameAdjustment,
+                    color: offRapmProd - defRapmProd,
+                    name: GameAnalysisUtils.namePrettifier(p.playerCode),
+                    posInfo: positionInfo[p.playerId],
+                    stats: statObj,
+                    onOffStats: p,
+                    missingGameAdj: missingGameAdjustment,
+                  },
+                ];
           })
           .value();
       }
