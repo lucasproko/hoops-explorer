@@ -903,10 +903,10 @@ export class PositionUtils {
 
   static readonly expandedPosClasses = {
     "BH*": ["PG", "s-PG", "CG"],
-    "*G": ["PG", "s-PG", "CG", "WG"],
+    "*G": ["PG", "s-PG", "CG", "WG", "G?"],
     "W*": ["WG", "WF"],
     "PF+": ["WF", "S-PF", "PF/C"],
     "C+": ["PF/C", "C"],
-    "4/5": ["WF", "S-PF", "PF/C", "C"],
+    "4/5": ["WF", "S-PF", "PF/C", "C", "F/C?"],
   } as Record<string, string[]>;
 }
