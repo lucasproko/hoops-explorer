@@ -35,6 +35,7 @@ import { TeamStatsModel } from "./TeamStatsTable";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
+import { IndivPosInfo } from "../utils/StatModels";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -89,6 +90,17 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   );
 
   const [posClasses, setPosClasses] = useState(startingState.posClasses || "");
+  const buildPosClassSet = (classes: string): Set<string> | undefined => {
+    return classes
+      ? new Set(
+          _.flatMap(
+            (classes || "").split(","),
+            (c) => PositionUtils.expandedPosClasses[c] || [c]
+          )
+        )
+      : undefined;
+  };
+
   const [showTeam, setShowTeam] = useState<boolean>(
     _.isNil(startingState.showTeam) ? true : startingState.showTeam
   );
@@ -146,20 +158,24 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     setCachedStats({ ab: [] });
   }, [dataEvent, adjustForLuck]);
   useEffect(() => {
+    const posClassSet = buildPosClassSet(posClasses);
+
     if (_.isEmpty(cachedStats.ab) && !_.isEmpty(lineupStatsA.lineups)) {
       const aStats = buildStats(
         commonParams.team!,
         "black",
         lineupStatsA,
         teamStatsA,
-        rosterStatsA
+        rosterStatsA,
+        posClassSet
       );
       const bStats = buildStats(
         opponent,
         "purple",
         lineupStatsB,
         teamStatsB,
-        rosterStatsB
+        rosterStatsB,
+        posClassSet
       );
       setCachedStats({
         ab: _.orderBy(aStats.concat(bStats), (p) => -(p.x * p.x + p.y * p.y)),
@@ -168,7 +184,12 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     }
   }, [cachedStats]);
 
-  const isFilteredCachedAb = (p: any, team?: string) => {
+  const isFilteredCachedAb = (
+    p: any,
+    posClassSet: Set<string> | undefined,
+    team?: string
+  ) => {
+    //return true to filter _out_
     const teamToUse = team || p.seriesId;
     return _.thru(_, (__) => {
       if (teamToUse == commonParams.team && !showTeam) {
@@ -176,15 +197,29 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       } else if (teamToUse != commonParams.team && !showOppo) {
         return true;
       } else {
-        return false;
+        // Pos stats:
+        const posPass = _.thru(
+          (p.posInfo as IndivPosInfo)?.posClass,
+          (maybePosClass) => {
+            if (maybePosClass) {
+              return (
+                !posClassSet || posClassSet.has(maybePosClass || "Unknown")
+              );
+            } else {
+              return _.isUndefined(posClassSet); //(if don't know pos and pos filter defined then fail)
+            }
+          }
+        );
+        return !posPass;
       }
     });
   };
 
   /** Recalculate filtering */
   useEffect(() => {
+    const posClassSet = buildPosClassSet(posClasses);
     _.forEach(cachedStats.ab, (p) => {
-      p.filteredOut = isFilteredCachedAb(p);
+      p.filteredOut = isFilteredCachedAb(p, posClassSet);
     });
     setCachedStats({
       ab: cachedStats.ab,
@@ -199,7 +234,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     labelColor: string,
     lineupStats: LineupStatsModel,
     teamStats: TeamStatsModel,
-    rosterStats: RosterStatsModel
+    rosterStats: RosterStatsModel,
+    posClassSet: Set<string> | undefined
   ) => {
     const totalGames = seasonStats
       ? _.size(
@@ -264,7 +300,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     stats: statObj,
                     onOffStats: p,
                     missingGameAdj: missingGameAdjustment,
-                    filteredOut: isFilteredCachedAb({}, team),
+                    filteredOut: isFilteredCachedAb(
+                      { posInfo: positionInfo[p.playerId] },
+                      posClassSet,
+                      team
+                    ),
                   },
                 ];
           })
@@ -382,7 +422,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   ) : (
     <Container>
       <Row className="mb-1 text-left">
-        <Col xs={12} md={4}>
+        <Col xs={12} md={3}>
           <ToggleButtonGroup
             items={[
               {
@@ -403,30 +443,28 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             ]}
           />
         </Col>
-        <Col xs={10} md={4}>
-          {false ? (
-            <Select
-              isClearable={true}
-              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
-              isMulti
-              components={{ MultiValueContainer: PositionValueContainer }}
-              value={getCurrentPositionsOrPlaceholder()}
-              options={(PositionUtils.positionClasses || []).map((r) =>
-                stringToOption(r)
-              )}
-              onChange={(optionsIn) => {
-                const options = optionsIn as Array<any>;
-                const selection = (options || []).map(
-                  (option) => (option as any)?.value || ""
-                );
-                const posClassStr = selection
-                  .filter((t: string) => t != "")
-                  .map((c: string) => PositionUtils.posClassToNickname[c] || c)
-                  .join(",");
-                setPosClasses(posClassStr);
-              }}
-            />
-          ) : null}
+        <Col xs={10} md={4} className="text-left">
+          <Select
+            isClearable={true}
+            styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+            isMulti
+            components={{ MultiValueContainer: PositionValueContainer }}
+            value={getCurrentPositionsOrPlaceholder()}
+            options={(PositionUtils.positionClasses || []).map((r) =>
+              stringToOption(r)
+            )}
+            onChange={(optionsIn) => {
+              const options = optionsIn as Array<any>;
+              const selection = (options || []).map(
+                (option) => (option as any)?.value || ""
+              );
+              const posClassStr = selection
+                .filter((t: string) => t != "")
+                .map((c: string) => PositionUtils.posClassToNickname[c] || c)
+                .join(",");
+              setPosClasses(posClassStr);
+            }}
+          />
         </Col>
       </Row>
       <Row>
