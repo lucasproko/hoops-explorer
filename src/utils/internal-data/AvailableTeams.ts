@@ -7,6 +7,9 @@ export type AvailableTeamMeta = {
 };
 
 export class AvailableTeams {
+  /** Handy constant for when you don't have the name of a team */
+  static readonly noOpponent = "No Opponent";
+
   static readonly defaultConfIndex = "misc_conf";
 
   static readonly extraTeamName = "Extra";

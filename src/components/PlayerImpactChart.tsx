@@ -34,6 +34,7 @@ import { RosterStatsModel } from "./RosterStatsTable";
 import { TeamStatsModel } from "./TeamStatsTable";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import { PositionUtils } from "../utils/stats/PositionUtils";
+import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -167,6 +168,29 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     }
   }, [cachedStats]);
 
+  const isFilteredCachedAb = (p: any, team?: string) => {
+    const teamToUse = team || p.seriesId;
+    return _.thru(_, (__) => {
+      if (teamToUse == commonParams.team && !showTeam) {
+        return true;
+      } else if (teamToUse != commonParams.team && !showOppo) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  };
+
+  /** Recalculate filtering */
+  useEffect(() => {
+    _.forEach(cachedStats.ab, (p) => {
+      p.filteredOut = isFilteredCachedAb(p);
+    });
+    setCachedStats({
+      ab: cachedStats.ab,
+    });
+  }, [showTeam, showOppo, posClasses]);
+
   // Calcs
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
@@ -240,6 +264,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     stats: statObj,
                     onOffStats: p,
                     missingGameAdj: missingGameAdjustment,
+                    filteredOut: isFilteredCachedAb({}, team),
                   },
                 ];
           })
@@ -371,34 +396,37 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 tooltip: `Show/fade players from ${
                   startingState.oppoTeam || "??"
                 }`,
-                toggled: showOppo,
+                disabled: opponent == AvailableTeams.noOpponent,
+                toggled: showOppo && opponent != AvailableTeams.noOpponent,
                 onClick: () => setShowOppo(!showOppo),
               },
             ]}
           />
         </Col>
         <Col xs={10} md={4}>
-          <Select
-            isClearable={true}
-            styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
-            isMulti
-            components={{ MultiValueContainer: PositionValueContainer }}
-            value={getCurrentPositionsOrPlaceholder()}
-            options={(PositionUtils.positionClasses || []).map((r) =>
-              stringToOption(r)
-            )}
-            onChange={(optionsIn) => {
-              const options = optionsIn as Array<any>;
-              const selection = (options || []).map(
-                (option) => (option as any)?.value || ""
-              );
-              const posClassStr = selection
-                .filter((t: string) => t != "")
-                .map((c: string) => PositionUtils.posClassToNickname[c] || c)
-                .join(",");
-              setPosClasses(posClassStr);
-            }}
-          />
+          {false ? (
+            <Select
+              isClearable={true}
+              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              isMulti
+              components={{ MultiValueContainer: PositionValueContainer }}
+              value={getCurrentPositionsOrPlaceholder()}
+              options={(PositionUtils.positionClasses || []).map((r) =>
+                stringToOption(r)
+              )}
+              onChange={(optionsIn) => {
+                const options = optionsIn as Array<any>;
+                const selection = (options || []).map(
+                  (option) => (option as any)?.value || ""
+                );
+                const posClassStr = selection
+                  .filter((t: string) => t != "")
+                  .map((c: string) => PositionUtils.posClassToNickname[c] || c)
+                  .join(",");
+                setPosClasses(posClassStr);
+              }}
+            />
+          ) : null}
         </Col>
       </Row>
       <Row>
@@ -507,6 +535,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 <ZAxis type="number" dataKey="z" range={[10, 100]} />
               ) : undefined}
               <CartesianGrid strokeDasharray="4" />
+
               <Scatter
                 data={cachedStats.ab}
                 fill="black"
@@ -526,6 +555,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     <Cell
                       key={`cellA-${index}`}
                       fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+                      opacity={p.filteredOut ? 0.25 : 1}
                     />
                   ) : (
                     <Cell key={`cellA-${index}`} opacity={0} />
@@ -551,6 +581,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     <Cell
                       key={`cellB-${index}`}
                       fill={CbbColors.off_diff10_p100_redBlackGreen(p.color)}
+                      opacity={p.filteredOut ? 0.25 : 1}
                     />
                   ) : (
                     <Cell key={`cellB-${index}`} opacity={0} />

@@ -83,7 +83,6 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   // Utils
 
   /** Pre-calculate this */
-  const noOpponent = "No Opponent";
   const teamList = AvailableTeams.getTeams(
     null,
     commonParams.year || DateUtils.mostRecentYearWithData,
@@ -217,7 +216,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     return [
       primaryRequestA,
       primaryRequests.concat(
-        game != noOpponent ? secondaryRequests : ([] as FilterRequestInfo[])
+        game != AvailableTeams.noOpponent
+          ? secondaryRequests
+          : ([] as FilterRequestInfo[])
       ),
     ];
   }
@@ -400,7 +401,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                 Team lineups
               </a>,
             ].concat(
-              opponentName != noOpponent
+              opponentName != AvailableTeams.noOpponent
                 ? [
                     <a
                       target="_blank"
@@ -436,7 +437,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                   isClearable={false}
                   styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
-                  options={[stringToOption(noOpponent)].concat(
+                  options={[stringToOption(AvailableTeams.noOpponent)].concat(
                     teamList.map((r) => stringToOption(r.team))
                   )}
                   onChange={(option) => {
