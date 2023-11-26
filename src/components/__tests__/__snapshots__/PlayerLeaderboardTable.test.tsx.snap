@@ -308,6 +308,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Wing Guard",
               },
               Object {
+                "label": "Unknown:Guard?",
+                "value": "Unknown:Guard?",
+              },
+              Object {
                 "label": "(All Guards)",
                 "value": "(All Guards)",
               },
@@ -330,6 +334,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "(All PFs)",
                 "value": "(All PFs)",
+              },
+              Object {
+                "label": "Unknown:Forward/Center?",
+                "value": "Unknown:Forward/Center?",
               },
               Object {
                 "label": "Center",
@@ -8008,6 +8016,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Wing Guard",
               },
               Object {
+                "label": "Unknown:Guard?",
+                "value": "Unknown:Guard?",
+              },
+              Object {
                 "label": "(All Guards)",
                 "value": "(All Guards)",
               },
@@ -8030,6 +8042,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "(All PFs)",
                 "value": "(All PFs)",
+              },
+              Object {
+                "label": "Unknown:Forward/Center?",
+                "value": "Unknown:Forward/Center?",
               },
               Object {
                 "label": "Center",
@@ -15708,6 +15724,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Wing Guard",
               },
               Object {
+                "label": "Unknown:Guard?",
+                "value": "Unknown:Guard?",
+              },
+              Object {
                 "label": "(All Guards)",
                 "value": "(All Guards)",
               },
@@ -15730,6 +15750,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "(All PFs)",
                 "value": "(All PFs)",
+              },
+              Object {
+                "label": "Unknown:Forward/Center?",
+                "value": "Unknown:Forward/Center?",
               },
               Object {
                 "label": "Center",
@@ -26616,6 +26640,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Wing Guard",
               },
               Object {
+                "label": "Unknown:Guard?",
+                "value": "Unknown:Guard?",
+              },
+              Object {
                 "label": "(All Guards)",
                 "value": "(All Guards)",
               },
@@ -26638,6 +26666,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "(All PFs)",
                 "value": "(All PFs)",
+              },
+              Object {
+                "label": "Unknown:Forward/Center?",
+                "value": "Unknown:Forward/Center?",
               },
               Object {
                 "label": "Center",
@@ -34268,6 +34300,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Wing Guard",
               },
               Object {
+                "label": "Unknown:Guard?",
+                "value": "Unknown:Guard?",
+              },
+              Object {
                 "label": "(All Guards)",
                 "value": "(All Guards)",
               },
@@ -34290,6 +34326,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "(All PFs)",
                 "value": "(All PFs)",
+              },
+              Object {
+                "label": "Unknown:Forward/Center?",
+                "value": "Unknown:Forward/Center?",
               },
               Object {
                 "label": "Center",
@@ -35777,6 +35817,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Wing Guard",
               },
               Object {
+                "label": "Unknown:Guard?",
+                "value": "Unknown:Guard?",
+              },
+              Object {
                 "label": "(All Guards)",
                 "value": "(All Guards)",
               },
@@ -35799,6 +35843,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "(All PFs)",
                 "value": "(All PFs)",
+              },
+              Object {
+                "label": "Unknown:Forward/Center?",
+                "value": "Unknown:Forward/Center?",
               },
               Object {
                 "label": "Center",
