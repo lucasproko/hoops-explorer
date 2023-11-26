@@ -36,6 +36,8 @@ import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { IndivPosInfo } from "../utils/StatModels";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -107,6 +109,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   const [showOppo, setShowOppo] = useState<boolean>(
     _.isNil(startingState.showOppo) ? true : startingState.showOppo
   );
+  const [factorMins, setFactorMins] = useState<boolean>(
+    _.isNil(startingState.factorMins) ? true : startingState.factorMins
+  );
+  const [lockAspect, setLockAspect] = useState<boolean>(
+    _.isNil(startingState.lockAspect)
+      ? ParamDefaults.defaultMatchupAnalysisAspectLock
+      : startingState.lockAspect
+  );
 
   // Viewport management
 
@@ -125,21 +135,6 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     );
     return [baseWidth, baseHeight];
   };
-  useEffect(() => {
-    function handleResize() {
-      setTimeout(() => {
-        const [baseWidth, baseHeight] = calcWidthHeight();
-        setScreenHeight(baseHeight);
-        setScreenWidth(baseWidth);
-      }, 250);
-    }
-    window.addEventListener("resize", handleResize);
-    const [baseWidth, baseHeight] = calcWidthHeight();
-    setScreenHeight(baseHeight);
-    setScreenWidth(baseWidth);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   // Comms with main page
 
   useEffect(() => {
@@ -148,8 +143,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       posClasses,
       showTeam,
       showOppo,
+      factorMins,
+      lockAspect,
     });
-  }, [posClasses, showTeam, showOppo]);
+  }, [posClasses, showTeam, showOppo, factorMins, lockAspect]);
 
   // RAPM building
 
@@ -214,6 +211,32 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       }
     });
   };
+  useEffect(() => {
+    const aspectLockedWidthAdj = 6; // (empirical!)
+
+    const graphLimitRatio = graphLimitX / (graphLimitY || 1);
+
+    function handleResize() {
+      setTimeout(() => {
+        const [baseWidth, baseHeight] = calcWidthHeight();
+        setScreenHeight(baseHeight);
+        if (lockAspect) {
+          setScreenWidth(baseHeight * graphLimitRatio + aspectLockedWidthAdj);
+        } else {
+          setScreenWidth(baseWidth);
+        }
+      }, 250);
+    }
+    window.addEventListener("resize", handleResize);
+    const [baseWidth, baseHeight] = calcWidthHeight();
+    setScreenHeight(baseHeight);
+    if (lockAspect) {
+      setScreenWidth(baseHeight * graphLimitRatio + aspectLockedWidthAdj);
+    } else {
+      setScreenWidth(baseWidth);
+    }
+    return () => window.removeEventListener("resize", handleResize);
+  }, [lockAspect, factorMins, cachedStats]);
 
   /** Recalculate filtering */
   useEffect(() => {
@@ -274,11 +297,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
             const offRapmProd =
               (p.rapm?.off_adj_ppp?.value || 0) *
-              offPoss *
+              (factorMins ? offPoss : 1.0) *
               missingGameAdjustment;
             const defRapmProd =
               (p.rapm?.def_adj_ppp?.value || 0) *
-              defPoss *
+              (factorMins ? defPoss : 1.0) *
               missingGameAdjustment;
 
             // (in season mode, remove sub 5mpg players, likely walk-ons)
@@ -422,7 +445,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   ) : (
     <Container>
       <Row className="mb-1 text-left">
-        <Col xs={12} md={3}>
+        <Col xs={12} md={4}>
           <ToggleButtonGroup
             items={[
               {
@@ -439,6 +462,28 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 disabled: opponent == AvailableTeams.noOpponent,
                 toggled: showOppo && opponent != AvailableTeams.noOpponent,
                 onClick: () => setShowOppo(!showOppo),
+              },
+              {
+                label: <FontAwesomeIcon icon={faLock} />,
+                tooltip: `Lock/unlock fixed aspect ratio`,
+                toggled: lockAspect,
+                onClick: () => setLockAspect(!lockAspect),
+              },
+              {
+                label: "| ",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+                isLabelOnly: true,
+              },
+              {
+                label: "* Mins%",
+                tooltip: `Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')`,
+                toggled: factorMins,
+                onClick: () => {
+                  setFactorMins(!factorMins);
+                  setCachedStats({ ab: [] });
+                },
               },
             ]}
           />

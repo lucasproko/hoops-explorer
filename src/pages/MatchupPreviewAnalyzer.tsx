@@ -18,7 +18,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // App components:
-import { ParamPrefixes, MatchupFilterParams } from "../utils/FilterModels";
+import {
+  ParamPrefixes,
+  MatchupFilterParams,
+  ParamDefaults,
+} from "../utils/FilterModels";
 import { TeamStatsModel } from "../components/TeamStatsTable";
 import { RosterStatsModel } from "../components/RosterStatsTable";
 import { LineupStatsModel } from "../components/LineupStatsTable";
@@ -144,8 +148,14 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         !rawParams.oppoTeam ? ["oppoTeam"] : [],
         _.isNil(rawParams.showTeam) || rawParams.showTeam ? ["showTeam"] : [],
         _.isNil(rawParams.showOppo) || rawParams.showOppo ? ["showOppo"] : [],
+        _.isNil(rawParams.factorMins) || rawParams.factorMins
+          ? ["factorMins"]
+          : [],
         !rawParams.posClasses ? ["posClasses"] : [],
-        !rawParams.oppoTeam ? ["oppoTeam"] : [],
+        (rawParams.lockAspect || false) ==
+        ParamDefaults.defaultMatchupAnalysisAspectLock
+          ? ["lockAspect"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {

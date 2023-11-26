@@ -87,6 +87,8 @@ export type MatchupFilterParams = {
   posClasses?: string; // which position classes to show
   showTeam?: boolean;
   showOppo?: boolean;
+  factorMins?: boolean; //impact vs /100 (defaults to true)
+  lockAspect?: boolean; //(force x to be correct proportions to y)
 };
 
 /** Combined params for game filtering */
@@ -389,6 +391,7 @@ export class ParamDefaults {
   static readonly defaultTeamReportLuckAdjust = false;
   // Matchup analysis
   static readonly defaultMatchupAnalysisShowUsage = false;
+  static readonly defaultMatchupAnalysisAspectLock = false;
   static readonly defaultMatchupAnalysisShowPpp = true;
   static readonly defaultMatchupAnalysisShowLabels = true;
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";

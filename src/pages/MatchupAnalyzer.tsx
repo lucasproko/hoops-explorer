@@ -167,7 +167,14 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         !rawParams.oppoTeam ? ["oppoTeam"] : [],
         _.isNil(rawParams.showTeam) || rawParams.showTeam ? ["showTeam"] : [],
         _.isNil(rawParams.showOppo) || rawParams.showOppo ? ["showOppo"] : [],
+        _.isNil(rawParams.factorMins) || rawParams.factorMins
+          ? ["factorMins"]
+          : [],
         !rawParams.posClasses ? ["posClasses"] : [],
+        (rawParams.lockAspect || false) ==
+        ParamDefaults.defaultMatchupAnalysisAspectLock
+          ? ["lockAspect"]
+          : [],
         (rawParams.showUsage || false) ==
         ParamDefaults.defaultMatchupAnalysisShowUsage
           ? ["showUsage"]
