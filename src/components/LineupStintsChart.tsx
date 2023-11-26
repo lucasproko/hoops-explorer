@@ -195,8 +195,28 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   /** Some special cases where it makes sense to show the labels over the defense also */
   const defenseOnlyLabelOptions = {
     Turnovers: (info) => toStats(info)?.to?.total || 0, //(turnovers forced)
-    ORBs: (info) => toStats(info)?.orb?.total || 0, //(ORBs allowed)
     Points: (info) => info?.pts || 0, //(for some reason pts isn't filled in on individuals stats)
+
+    // Transition
+    "Transition Pts": (info) =>
+      2 * (toShots(info)?.fg_2p?.made?.early || 0) +
+      3 * (toShots(info)?.fg_3p?.made?.early || 0),
+    "Transition FGA": (info) =>
+      (toShots(info)?.fg_2p?.attempts?.early || 0) +
+      (toShots(info)?.fg_3p?.attempts?.early || 0),
+
+    // Putbacks
+    ORBs: (info) => toStats(info)?.orb?.total || 0, //(ORBs allowed)
+    "Putback Pts": (info) => 2 * (toShots(info)?.fg_2p?.made?.orb || 0),
+    "Putback FGA": (info) => toShots(info)?.fg_2p?.attempts?.orb || 0,
+    "3PA / ORBs": (info) => toShots(info)?.fg_3p?.attempts?.orb || 0,
+    "3PM / ORBs": (info) => toShots(info)?.fg_3p?.made?.orb || 0,
+    "'Empty' ORBs": (info) =>
+      Math.max(
+        0,
+        (toStats(info)?.orb?.total || 0) -
+          (toShots(info)?.fg?.attempts?.orb || 0)
+      ),
   } as Record<string, (info: LineupStintTeamStats) => number>;
 
   // Integration with main page
