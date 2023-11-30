@@ -31,7 +31,10 @@ export type GameStatsCache = {
 
 /** Utils for performing analyses of single game stats */
 export class GameAnalysisUtils {
-  /** Turns the ugly PlayerCode into something marginally less ugly */
+  /** Turns the ugly PlayerCode into something marginally less ugly
+   * TODO: have a set of player codes and always add ".", also see LineupUtils.namePrettifier
+   * it would be nice to unify the two
+   */
   static namePrettifier = (name: PlayerCode): string => {
     if (name.length > 3) {
       return _.chain(name)

@@ -926,7 +926,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           className="float-right"
         >
           <small>
-            (Qualifying lineups in tier: 
+            (Qualifying lineups in tier:
+             
             <b>
               10
             </b>
@@ -1180,7 +1181,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -1200,7 +1201,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -1786,7 +1789,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -1806,7 +1809,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -2395,7 +2400,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -2415,7 +2420,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -2991,7 +2998,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -3011,7 +3018,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -3590,7 +3599,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -3610,7 +3619,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -4186,7 +4197,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -4206,7 +4217,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -4785,7 +4798,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -4805,7 +4818,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -5381,7 +5396,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -5401,7 +5416,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -5980,7 +5997,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -6000,7 +6017,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -6573,7 +6592,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -6593,7 +6612,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -7180,7 +7201,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -7200,7 +7221,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -7782,7 +7805,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -7802,7 +7825,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -8391,7 +8416,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -8411,7 +8436,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -8994,7 +9021,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -9014,7 +9041,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -9600,7 +9629,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -9620,7 +9649,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -10218,7 +10249,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -10238,7 +10269,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -10839,7 +10872,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -10859,7 +10892,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -11437,7 +11472,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -11457,7 +11492,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -12038,7 +12075,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -12058,7 +12095,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -12634,7 +12673,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -12654,7 +12693,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -14208,7 +14249,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           className="float-right"
         >
           <small>
-            (Qualifying lineups in tier: 
+            (Qualifying lineups in tier:
+             
             <b>
               15
             </b>
@@ -14462,7 +14504,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -14483,7 +14525,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -15077,7 +15121,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -15098,7 +15142,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -15695,7 +15741,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -15716,7 +15762,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -16304,7 +16352,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -16325,7 +16373,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -16916,7 +16966,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -16937,7 +16987,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -17521,7 +17573,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -17542,7 +17594,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -18129,7 +18183,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -18150,7 +18204,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -18731,7 +18787,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -18752,7 +18808,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -19336,7 +19394,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -19357,7 +19415,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -19941,7 +20001,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -19962,7 +20022,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -20564,7 +20626,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -20585,7 +20647,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -21169,7 +21233,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -21190,7 +21254,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -21777,7 +21843,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -21798,7 +21864,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -22379,7 +22447,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -22400,7 +22468,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -22984,7 +23054,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -23005,7 +23075,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -23596,7 +23668,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -23617,7 +23689,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -24211,7 +24285,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -24232,7 +24306,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -24819,7 +24895,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -24840,7 +24916,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -25430,7 +25508,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -25451,7 +25529,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -26032,7 +26112,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -26053,7 +26133,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -26652,7 +26734,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -26673,7 +26755,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -27267,7 +27351,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -27288,7 +27372,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -27885,7 +27971,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -27906,7 +27992,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -28491,7 +28579,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -28512,7 +28600,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -29100,7 +29190,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -29121,7 +29211,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -29702,7 +29794,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -29723,7 +29815,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -30303,7 +30397,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -30324,7 +30418,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -30902,7 +30998,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -30923,7 +31019,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -31508,7 +31606,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -31529,7 +31627,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -32107,7 +32207,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -32128,7 +32228,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <span>
                                             <i>
                                               (#
@@ -33684,7 +33786,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           className="float-right"
         >
           <small>
-            (Qualifying lineups in tier: 
+            (Qualifying lineups in tier:
+             
             <b>
               10
             </b>
@@ -33938,7 +34041,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -33958,7 +34061,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -34544,7 +34649,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -34564,7 +34669,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -35188,7 +35295,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -35208,7 +35315,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -35784,7 +35893,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -35804,7 +35913,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -36418,7 +36529,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -36438,7 +36549,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -37014,7 +37127,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -37034,7 +37147,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -37648,7 +37763,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -37668,7 +37783,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -38244,7 +38361,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -38264,7 +38381,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -38878,7 +38997,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -38898,7 +39017,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -39471,7 +39592,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -39491,7 +39612,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -40098,7 +40221,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -40118,7 +40241,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -40700,7 +40825,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -40720,7 +40845,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -41344,7 +41471,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -41364,7 +41491,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -41947,7 +42076,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -41967,7 +42096,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -42588,7 +42719,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -42608,7 +42739,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -43206,7 +43339,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -43226,7 +43359,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -43862,7 +43997,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -43882,7 +44017,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -44460,7 +44597,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -44480,7 +44617,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -45096,7 +45235,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -45116,7 +45255,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>
@@ -45692,7 +45833,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
 
                   off_title: <div>
                                     <span
-                                      className="float-left"
+                                      className=""
                                     >
                                       <OverlayTrigger
                                         overlay={
@@ -45712,7 +45853,9 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         }
                                         placement="auto"
                                       >
-                                        <span>
+                                        <span
+                                          className="float-left"
+                                        >
                                           <small>
                                             <span>
                                               <b>

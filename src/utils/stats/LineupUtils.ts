@@ -66,6 +66,38 @@ export class LineupUtils {
   private static readonly debugReplacementOnOffPlayer = "PLAYER";
   private static readonly debugReplacementOnOffMinPoss = 30;
 
+  /** Tidies up ugly name endings (see GameAnalysisUtils.namePrettifier - here
+   *  we don't replace the "." because it would be too annoying when 2 players with dup codes
+   * played together, and in the lineup leaderboard we don't know which names are duplicate)
+   * TODO: but would be nice to unify this somewhat
+   */
+  static namePrettifier(name: PlayerCode) {
+    if (name.length > 3) {
+      return _.chain(name)
+        .thru((n) => {
+          // Step 1, tidy up end of names
+          const endOfName = n.substring(3);
+          return (
+            n.substring(0, 3) +
+            endOfName.replace(/([a-z]*)(?:([A-Z]|[-][A-Za-z]).*)/, "$1$2")
+          );
+        })
+        .thru((n) => {
+          //Step 2: tidy up hyphens
+          const possibleHyphen = n.length - 2;
+          if (n.charAt(possibleHyphen) == "-") {
+            return (
+              n.substring(0, possibleHyphen + 1) +
+              n.charAt(possibleHyphen + 1).toUpperCase()
+            );
+          } else if (n.charAt(possibleHyphen + 1) == "-") {
+            return n.substring(0, possibleHyphen + 1);
+          } else return n;
+        })
+        .value();
+    } else return name;
+  }
+
   /**
    * Combines all lineups into a single team stat, ignoring discarded fields
    * TODO: for individual RAPM calcs, only actually need to do this for a couple of fields, can
