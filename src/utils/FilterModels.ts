@@ -61,6 +61,15 @@ export function getCommonFilterParams(p: CommonFilterParams) {
   };
 }
 
+/** Extracts the most basic params from a superset (eg for getting the params for game reports) */
+export function getBaseFilterParams(p: CommonFilterParams) {
+  return {
+    year: p.year,
+    team: p.team,
+    gender: p.gender,
+  };
+}
+
 /** Extracts the common leaderboard params from a superset */
 export function getCommonLboardFilterParams(
   p: CommonFilterParams,

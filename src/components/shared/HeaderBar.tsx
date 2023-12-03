@@ -20,6 +20,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 // Utils:
 import {
   getCommonFilterParams,
+  getBaseFilterParams,
   getCommonLboardFilterParams,
   ParamPrefixes,
   CommonFilterParams,
@@ -407,7 +408,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Game Reports",
               gameReportTooltip,
               UrlRouting.getMatchupUrl(
-                getCommonFilterParams(common) as MatchupFilterParams
+                getBaseFilterParams(common) as MatchupFilterParams
               )
             )}
           </Dropdown.Item>
@@ -416,7 +417,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Game Previews",
               gameReportTooltip,
               UrlRouting.getMatchupPreviewUrl(
-                getCommonFilterParams(common) as MatchupFilterParams
+                getBaseFilterParams(common) as MatchupFilterParams
               )
             )}
           </Dropdown.Item>
