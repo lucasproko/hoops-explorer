@@ -444,8 +444,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     </Col>
   ) : (
     <Container>
-      <Row className="mb-1 text-left">
-        <Col xs={12} md={4}>
+      <Row className="text-left">
+        <Col xs={12} md={6} lg={6} className="mb-1">
           <ToggleButtonGroup
             items={[
               {
@@ -488,7 +488,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             ]}
           />
         </Col>
-        <Col xs={10} md={4} className="text-left">
+        <Col xs={12} md={6} lg={5} className="text-left mb-1">
           <Select
             isClearable={true}
             styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
