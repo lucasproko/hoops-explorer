@@ -154,7 +154,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
     player
   ).map((info) => {
     return {
-      ...info,
+      ...(info.info || {}),
       title: (
         <span>
           <i>{_.capitalize(PosFamilyNames[info.order])}</i>
