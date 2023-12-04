@@ -15,18 +15,18 @@ import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Utils
-import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
-import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
+import {
+  PosFamilyNames,
+  PlayTypeUtils,
+  TargetAssistInfo,
+} from "../../utils/stats/PlayTypeUtils";
 import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
-import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
-import GenericTable, {
-  GenericTableOps,
-  GenericTableColProps,
-} from "../GenericTable";
+import GenericTable, { GenericTableOps } from "../GenericTable";
 import {
   IndivStatSet,
+  PureStatSet,
   RosterStatsByCode,
   StatModels,
   TeamStatSet,
@@ -164,6 +164,10 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
         const extraAssistInfo = maybeExtraNetwork?.[posTitle]?.assists;
         const extraOtherInfo = maybeExtraNetwork?.[posTitle]?.other;
 
+        const asStatSet = (
+          targetAssistInfo: TargetAssistInfo | undefined
+        ): IndivStatSet => (targetAssistInfo || {}) as unknown as IndivStatSet;
+
         return [
           GenericTableOps.buildDataRow(
             {
@@ -176,7 +180,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             {
               ...PlayTypeDiagUtils.buildInfoRow(
                 PlayTypeUtils.enrichUnassistedStats(otherInfo[0]!, ix),
-                extraOtherInfo?.[0]
+                asStatSet(extraOtherInfo?.[0])
               ),
               title: tooltipBuilder(
                 "unassisted",
@@ -191,7 +195,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             {
               ...PlayTypeDiagUtils.buildInfoRow(
                 otherInfo[1]!,
-                extraOtherInfo?.[1]
+                asStatSet(extraOtherInfo?.[1])
               ),
               title: tooltipBuilder(
                 "assist",
@@ -209,7 +213,10 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             GenericTableOps.buildRowSeparator(),
             assistInfo
               .map((info: any, index: number) =>
-                PlayTypeDiagUtils.buildInfoRow(info, extraAssistInfo?.[index])
+                PlayTypeDiagUtils.buildInfoRow(
+                  info,
+                  asStatSet(extraAssistInfo?.[index])
+                )
               )
               .map((info: any) =>
                 GenericTableOps.buildDataRow(
@@ -232,7 +239,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
               {
                 ...PlayTypeDiagUtils.buildInfoRow(
                   otherInfo[2]!,
-                  extraOtherInfo?.[2]
+                  asStatSet(extraOtherInfo?.[2])
                 ),
                 title: tooltipBuilder(
                   "trans",
@@ -247,7 +254,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
               {
                 ...PlayTypeDiagUtils.buildInfoRow(
                   otherInfo[3]!,
-                  extraOtherInfo?.[3]
+                  asStatSet(extraOtherInfo?.[3])
                 ),
                 title: tooltipBuilder(
                   "scramble",
