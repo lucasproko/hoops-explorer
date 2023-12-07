@@ -458,8 +458,8 @@ export class PlayTypeUtils {
       .toPairs()
       .flatMap((kv, ix) => {
         const posTitle = kv[0];
-        const assistInfo = kv[1].assists as Record<string, any>[];
-        const otherInfo = kv[1].other as Record<string, any>[];
+        const assistInfo = kv[1].assists;
+        const otherInfo = kv[1].other;
         //(unassisted, assisted <- DROP, transition, scramble)
         const unassistedInfo = otherInfo[0];
         const transitionInfo = otherInfo[2];
@@ -474,15 +474,19 @@ export class PlayTypeUtils {
           unassistedInfo
         );
 
-        return assistInfo
+        return (assistInfo as SourceAssistInfo[])
           .concat([unassistedInfo, transitionInfo, scrambleInfo])
           .flatMap((a, i) => {
             return _.keys(a)
               .filter((ka) => _.startsWith(ka, "source_"))
-              .map((ka) => ({ key: `${posTitle}_${i}_${ka}`, stat: a[ka] }));
+              .map((ka) => ({
+                key: `${posTitle}_${i}_${ka}`,
+                stat: (a as PureStatSet)[ka],
+              }));
           });
       })
-      .groupBy((obj) => (obj.stat.extraInfo || []).join(":"))
+      .groupBy((obj) => ((obj.stat.extraInfo as string[]) || []).join(":"))
+      //TODO: type weirdness here, extraInfo temporarily is an array of strings
       .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
       .value();
 
@@ -1079,8 +1083,9 @@ export class PlayTypeUtils {
         .uniq()
         .value();
 
-      if ((mutableUnassistedStats as any)[statKey]) {
-        (mutableUnassistedStats as any)[statKey].extraInfo = playTypeExamples;
+      if ((mutableUnassistedStats as PureStatSet)[statKey]) {
+        (mutableUnassistedStats as PureStatSet)[statKey].extraInfo =
+          playTypeExamples;
       }
     });
     return mutableUnassistedStats; //(for chaining)
@@ -1113,9 +1118,11 @@ export class PlayTypeUtils {
       // const nonHalfCourtInfoTrans = otherInfo[4];
       // const nonHalfCourtInfoScramble = otherInfo[5];
       const nonHalfCourtInfoTransPct =
-        (nonHalfCourtInfoTrans as any)[`source_${shotType}_ast`]?.value || 0;
+        (nonHalfCourtInfoTrans as PureStatSet)[`source_${shotType}_ast`]
+          ?.value || 0;
       const nonHalfCourtInfoScramblePct =
-        (nonHalfCourtInfoScramble as any)[`source_${shotType}_ast`]?.value || 0;
+        (nonHalfCourtInfoScramble as PureStatSet)[`source_${shotType}_ast`]
+          ?.value || 0;
       const nonHalfCourtInfoPct =
         nonHalfCourtInfoTransPct + nonHalfCourtInfoScramblePct;
 
@@ -1124,7 +1131,7 @@ export class PlayTypeUtils {
       const totalAssistedPct = _.chain(PosFamilyNames)
         .map((pos, ipos) => {
           return (
-            (mutableAssistInfo as any)[ipos]?.[`source_${shotType}_ast`]
+            (mutableAssistInfo[ipos] as PureStatSet)?.[`source_${shotType}_ast`]
               ?.value || 0
           );
         })
@@ -1140,14 +1147,11 @@ export class PlayTypeUtils {
       _.map(PosFamilyNames, (pos, ipos) => {
         //console.log(`[${pos}][${shotType}][${posTitle}]: [${(assistInfo[ipos]?.[`source_${shotType}_ast`]?.value || 0).toFixed(4)}]`);
 
-        if (
-          _.isNumber(
-            (mutableAssistInfo[ipos] as any)?.[`source_${shotType}_ast`]?.value
-          )
-        ) {
-          (mutableAssistInfo[ipos] as any)[`source_${shotType}_ast`].value =
-            (mutableAssistInfo[ipos] as any)[`source_${shotType}_ast`].value *
-            reductionPct;
+        const maybeShotTypeAst = (mutableAssistInfo[ipos] as PureStatSet)?.[
+          `source_${shotType}_ast`
+        ];
+        if (_.isNumber(maybeShotTypeAst?.value)) {
+          maybeShotTypeAst.value = maybeShotTypeAst.value * reductionPct;
         }
       });
     });
@@ -1162,7 +1166,7 @@ export class PlayTypeUtils {
       { assists: TargetAssistInfo[] }
     >,
     mutableHalfCourtAssistInfo: Record<string, { assists: TargetAssistInfo[] }>,
-    mutableUnassisted: Record<string, any>
+    mutableUnassisted: SourceAssistInfo
   ) {
     // We take the % of half-court turnovers for each position group
     // and apportion it out in the following ratios:
@@ -1173,7 +1177,7 @@ export class PlayTypeUtils {
     // assists to "me" on the perimeter: lowest weight
     const weights = [4.5, 3.5, 2, 1];
 
-    const adjStat = (stat: any, adj: number) => {
+    const adjStat = (stat: Statistic, adj: number) => {
       if (_.isNumber(stat?.value)) stat.value = stat.value + adj;
     };
     const toPctToUse = mutableUnassisted.source_to?.value || 0;
@@ -1204,24 +1208,24 @@ export class PlayTypeUtils {
           const isInside = shotType == "rim";
           const otherToMeAssistWeight =
             weights[isInside ? 2 : 3] *
-            ((otherPosToMeAssists as any)[`source_${shotType}_ast`]?.value ||
-              0);
+            ((otherPosToMeAssists as PureStatSet)[`source_${shotType}_ast`]
+              ?.value || 0);
           if (phase == 0) totalWeight = totalWeight + otherToMeAssistWeight;
           if (phase == 1)
             adjStat(
-              (mutOtherPosToMeAssists as any)[`source_${shotType}_ast`],
+              (mutOtherPosToMeAssists as PureStatSet)[`source_${shotType}_ast`],
               (otherToMeAssistWeight * toPctToUse) / (totalWeight || 1)
             );
           //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj me->other [ast/${shotType}] by [${meToOtherPosAssists}] -> [${toPctToUse*meToOtherPosAssists/totalWeight}]`)
 
           const meToOtherAssistWeight =
             weights[1] *
-            ((meToOtherPosAssists as any)[`source_${shotType}_ast`]?.value ||
-              0);
+            ((meToOtherPosAssists as PureStatSet)[`source_${shotType}_ast`]
+              ?.value || 0);
           if (phase == 0) totalWeight = totalWeight + meToOtherAssistWeight;
           if (phase == 1)
             adjStat(
-              (mutMeToOtherPosAssists as any)[`source_${shotType}_ast`],
+              (mutMeToOtherPosAssists as PureStatSet)[`source_${shotType}_ast`],
               (meToOtherAssistWeight * toPctToUse) / (totalWeight || 1)
             );
           //if (phase == 1) console.log(`[${pos}][${posIndex}] (to%=[${toPctToUse}]): adj me->other [ast/${shotType}] by [${meToOtherAssistWeight}] -> [${toPctToUse*meToOtherAssistWeight/totalWeight}]`)
