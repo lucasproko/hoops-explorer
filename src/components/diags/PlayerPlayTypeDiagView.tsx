@@ -32,6 +32,7 @@ import GenericTable, {
   GenericTableColProps,
 } from "../GenericTable";
 import { IndivStatSet, RosterStatsByCode } from "../../utils/StatModels";
+import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -62,6 +63,11 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
 }) => {
   const [showPlayerBreakdown, setShowPlayerBreakdown] = useState(
     showDetailsOverride || false
+  );
+  const [tableType, setTableType] = useState<"scoring" | "usage">(
+    FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)
+      ? "usage"
+      : "scoring"
   );
 
   ////////////////////////////////////
@@ -259,6 +265,38 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
 
   // Visual layout:
 
+  const maybeBold = (boldIf: String, el: React.ReactElement) => {
+    if (boldIf == tableType) {
+      return <b>{el}</b>;
+    } else {
+      return el;
+    }
+  };
+  const scoringToggle = maybeBold(
+    "scoring",
+    <a
+      href="#"
+      onClick={(event) => {
+        event.preventDefault();
+        setTableType("scoring");
+      }}
+    >
+      Scoring
+    </a>
+  );
+  const usageToggle = maybeBold(
+    "usage",
+    <a
+      href="#"
+      onClick={(event) => {
+        event.preventDefault();
+        setTableType("usage");
+      }}
+    >
+      Usage
+    </a>
+  );
+
   return (
     <span>
       {/*JSON.stringify(_.chain(player).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
@@ -268,6 +306,11 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
       </span>
       <br />
       <br />
+      {FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis) ? (
+        <span>
+          ({scoringToggle} // {usageToggle})
+        </span>
+      ) : null}
       <Container>
         <Col xs={10}>
           <GenericTable
