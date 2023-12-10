@@ -63,6 +63,7 @@ type PosCategoryAssistNetwork = {
   playerStyle: PlayerStyleInfo;
 };
 export type CategorizedAssistNetwork = {
+  posInfo?: Record<PlayerCode, number>; //lists the player weights used in the categorization
   assists: TargetAssistInfo[];
   other: TargetAssistInfo[]; //(unassisted info but in the "assist" model format)
 };

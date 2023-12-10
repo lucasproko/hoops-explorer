@@ -67,7 +67,7 @@ export class DateUtils {
   static readonly mostRecentYearWithLboardData = "2023/24";
 
   /** Don't bother trying to display NET after this year */
-  static readonly mostRecentYearWithNetAvailable = "2022/23";
+  static readonly mostRecentYearWithNetAvailable = "2023/24";
 
   /** Can't do team leaderboard predictions before here (per-team projections are fine because it's easy to edit them) */
   static readonly firstYearWithDecentRosterData = "2021/22";

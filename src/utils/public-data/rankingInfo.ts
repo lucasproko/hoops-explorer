@@ -1,23 +1,23 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 /** For some reason ncaa.com has different names to stats.ncaa.org! */
 const weirdNameChanges: Record<string, string> = {
-   "North Carolina St.": "NC State",
-   "NC St.": "NC State",
-   "UNC": "North Carolina",
-   "Connecticut": "UConn",
-   "South Florida": "South Fla.",
-   "Loyola (IL)": "Loyola Chicago",
-   "USC": "Southern California",
-   "Southern Cal": "Southern California",
-   "Florida Gulf Coast": "FGCU",
-   "USF": "South Fla.",
-   "Saint Mary's": "Saint Mary's (CA)",
-   "Miami (Fl.)": "Miami (FL)",
-   "Miami (Fla.)": "Miami (FL)",
-   "St. John's": "St. John's (NY)",
-   "Charleston": "Col. of Charleston",
-   "Florida Atlantic": "Fla. Atlantic"
+  "North Carolina St.": "NC State",
+  "NC St.": "NC State",
+  UNC: "North Carolina",
+  Connecticut: "UConn",
+  "South Florida": "South Fla.",
+  "Loyola (IL)": "Loyola Chicago",
+  USC: "Southern California",
+  "Southern Cal": "Southern California",
+  "Florida Gulf Coast": "FGCU",
+  USF: "South Fla.",
+  "Saint Mary's": "Saint Mary's (CA)",
+  "Miami (Fl.)": "Miami (FL)",
+  "Miami (Fla.)": "Miami (FL)",
+  "St. John's": "St. John's (NY)",
+  Charleston: "Col. of Charleston",
+  "Florida Atlantic": "Fla. Atlantic",
 };
 const fixName = (t: string) => weirdNameChanges[t] || t;
 
@@ -26,13 +26,73 @@ const fixName = (t: string) => weirdNameChanges[t] || t;
 // AP Rankings
 
 /* poll archives https://www.collegepollarchive.com/ */
-const apPollMen_2020_21: () => Record<string, number> = () => { return {"Gonzaga":1,"Illinois":2,"Baylor":3,"Michigan":4,"Alabama":5,"Houston":6,"Ohio St.":7,"Iowa":8,"Texas":9,"Arkansas":10,"Oklahoma St.":11,"Kansas":12,"West Virginia":13,"Florida St.":14,"Virginia":15,"San Diego St.":16,"Loyola Chicago":17,"Villanova":18,"Creighton":19,"Purdue":20,"Texas Tech":21,"Colorado":22,"BYU":23,"Southern California":24,"Virginia Tech":25,"__week__":17} };
+const apPollMen_2020_21: () => Record<string, number> = () => {
+  return {
+    Gonzaga: 1,
+    Illinois: 2,
+    Baylor: 3,
+    Michigan: 4,
+    Alabama: 5,
+    Houston: 6,
+    "Ohio St.": 7,
+    Iowa: 8,
+    Texas: 9,
+    Arkansas: 10,
+    "Oklahoma St.": 11,
+    Kansas: 12,
+    "West Virginia": 13,
+    "Florida St.": 14,
+    Virginia: 15,
+    "San Diego St.": 16,
+    "Loyola Chicago": 17,
+    Villanova: 18,
+    Creighton: 19,
+    Purdue: 20,
+    "Texas Tech": 21,
+    Colorado: 22,
+    BYU: 23,
+    "Southern California": 24,
+    "Virginia Tech": 25,
+    __week__: 17,
+  };
+};
 
 /* poll archives https://www.collegepollarchive.com/ */
-const apPollWomen_2020_21: () => Record<string, number> = () => { return {"UConn":1,"Stanford":2,"NC State":3,"Texas A&M":4,"Baylor":5,"South Carolina":6,"Maryland":7,"Louisville":8,"UCLA":9,"Georgia":10,"Arizona":11,"Indiana":12,"Tennessee":13,"Gonzaga":14,"Arkansas":15,"Michigan":16,"West Virginia":17,"Kentucky":18,"South Fla.":19,"Missouri St.":20,"Rutgers":21,"Ohio St.":22,"Oregon":23,"Florida Gulf Coast":24,"South Dakota St.":25,"__week__":17} }; 
+const apPollWomen_2020_21: () => Record<string, number> = () => {
+  return {
+    UConn: 1,
+    Stanford: 2,
+    "NC State": 3,
+    "Texas A&M": 4,
+    Baylor: 5,
+    "South Carolina": 6,
+    Maryland: 7,
+    Louisville: 8,
+    UCLA: 9,
+    Georgia: 10,
+    Arizona: 11,
+    Indiana: 12,
+    Tennessee: 13,
+    Gonzaga: 14,
+    Arkansas: 15,
+    Michigan: 16,
+    "West Virginia": 17,
+    Kentucky: 18,
+    "South Fla.": 19,
+    "Missouri St.": 20,
+    Rutgers: 21,
+    "Ohio St.": 22,
+    Oregon: 23,
+    "Florida Gulf Coast": 24,
+    "South Dakota St.": 25,
+    __week__: 17,
+  };
+};
 
 /** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
-const apPollMen_2021_22: () => Record<string, number> = () => _.chain(`
+const apPollMen_2021_22: () => Record<string, number> = () =>
+  _.chain(
+    `
 1	Gonzaga	26-3	1,518	1
 2	Arizona	31-3	1,470	2
 3	Kansas	28-6	1,388	6
@@ -58,14 +118,22 @@ const apPollMen_2021_22: () => Record<string, number> = () => _.chain(`
 23	Boise State	27-7	165	NR
 24	Colorado State	25-5	82	23
 25	Texas	21-11	72	22
-`).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
-   .assign(
-      {
-         __week__: 19
-      }
-   ).value();
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0])];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 19,
+    })
+    .value();
 /** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
-const apPollMen_2022_23: () => Record<string, number> = () => _.chain(`
+const apPollMen_2022_23: () => Record<string, number> = () =>
+  _.chain(
+    `
 1	Houston (58)	29-2	1,522	1
 2	UCLA (3)	27-4	1,452	4
 3	Kansas	25-6	1,368	3
@@ -91,17 +159,75 @@ const apPollMen_2022_23: () => Record<string, number> = () => _.chain(`
 23	Kentucky	21-10	138	23
 24	Creighton	20-11	133	NR
 25	Missouri	23-8	66	NR
-`).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "")
-   .replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
-   ), parseInt(ab[0].replace("T-", "")) ];}).fromPairs()
-   .assign(
-      {
-         __week__: 17
-      }
-   ).value();
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 17,
+    })
+    .value();
+
+/** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
+const apPollMen_2023_24: () => Record<string, number> = () =>
+  _.chain(
+    `
+1	Arizona (59)	7-0	1,571	2
+2	Kansas (1)	7-1	1,460	5
+3	Houston (3)	8-0	1,432	4
+4	Purdue	7-1	1,407	1
+5	UConn	7-1	1,340	4
+6	Baylor	8-0	1,234	9
+7	Gonzaga	6-1	1,146	11
+8	Marquette	6-2	1,134	3
+9	North Carolina	7-1	1,004	17
+10	Creighton	7-1	921	15
+11	Florida Atlantic	7-1	901	19
+12	Texas	6-1	763	16
+13	Colorado State	8-0	755	20
+14	BYU	7-0	732	19
+15	Miami (FL)	6-1	638	8
+16	Kentucky	6-2	544	12
+17	Tennessee	4-3	509	10
+18	James Madison	8-0	381	22
+19	Oklahoma	7-0	355	25
+20	Illinois	6-1	322	24
+21	Texas A&M	6-2	306	14
+22	Duke	5-3	296	7
+23	Wisconsin	6-2	245	NR
+24	Clemson	7-0	227	NR
+25	San Diego State	7-1	168	NR
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 1,
+    })
+    .value();
 
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
-const apPollWomen_2021_22: () => Record<string, number> = () => _.chain(`
+const apPollWomen_2021_22: () => Record<string, number> = () =>
+  _.chain(
+    `
 1	South Carolina	29-2	1	739
 2	Stanford	28-3	2	728
 3	NC State	29-3	3	693
@@ -127,15 +253,23 @@ const apPollWomen_2021_22: () => Record<string, number> = () => _.chain(`
 23	Florida Gulf Coast	29-2	23	132
 24	UCF	25-3	25	58
 25	Princeton	24-4	24	46
-`).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}).fromPairs()
-   .assign(
-      {
-         __week__: 19
-      }
-   ).value();
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0])];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 19,
+    })
+    .value();
 
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
-const apPollWomen_2022_23: () => Record<string, number> = () => _.chain(`
+const apPollWomen_2022_23: () => Record<string, number> = () =>
+  _.chain(
+    `
 1	South Carolina (28)	32-0	700	1
 2	Iowa	26-6	651	7
 3	Indiana	27-3	640	2
@@ -161,24 +295,82 @@ const apPollWomen_2022_23: () => Record<string, number> = () => _.chain(`
 23	Tennessee	23-11	92	NR
 24	Arizona	21-9	89	21
 25	Middle Tennessee	25-4	62	24
-`).split("\n").map(l => { const ab = l.split("\t"); return [ fixName((ab[1] || "")
-   .replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
-), parseInt(ab[0].replace("T-", "")) ];}).fromPairs()
-   .assign(
-      {
-         __week__: 17
-      }
-   ).value();
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 17,
+    })
+    .value();
+
+/** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
+const apPollWomen_2023_24: () => Record<string, number> = () =>
+  _.chain(
+    `
+    1	South Carolina (35)	7-0	875	1
+    2	UCLA	7-0	836	2
+    3	NC State	9-0	769	4
+    4	Iowa	8-1	740	5
+    5	Texas	9-0	689	10
+    6	Southern Cal	7-0	682	6
+    7	LSU	8-1	670	T-7
+    8	Colorado	8-1	639	T-7
+    9	Stanford	8-1	584	3
+    10	Baylor	7-0	546	13
+    11	Utah	7-1	513	12
+    12	Ohio State	6-1	463	16
+    13	Kansas State	7-1	453	14
+    14	Notre Dame	6-1	439	18
+    15	Virginia Tech	5-2	409	9
+    16	Indiana	7-1	380	17
+    17	UConn	4-3	326	11
+    18	Louisville	8-1	288	22
+    19	Marquette	8-0	232	23
+    20	Florida State	6-2	203	15
+    21	Washington State	9-1	119	NR
+    22	Creighton	6-1	112	NR
+    23	Gonzaga	8-2	104	NR
+    24	North Carolina	5-3	79	NR
+    25	Penn State	7-1	44	NR
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 1,
+    })
+    .value();
 
 /** Contains NCAA/KP lookups for gender/years where we want to retrieve efficiency from the cache (current year only) */
 export const apPolls: Record<string, () => Record<string, number>> = {
-   "Women_2020/21": _.memoize(apPollWomen_2020_21),
-   "Women_2021/22": _.memoize(apPollWomen_2021_22),
-   "Women_2022/23": _.memoize(apPollWomen_2022_23),
+  "Women_2020/21": _.memoize(apPollWomen_2020_21),
+  "Women_2021/22": _.memoize(apPollWomen_2021_22),
+  "Women_2022/23": _.memoize(apPollWomen_2022_23),
+  "Women_2023/24": _.memoize(apPollWomen_2023_24),
 
-   "Men_2020/21": _.memoize(apPollMen_2020_21),
-   "Men_2021/22": _.memoize(apPollMen_2021_22),
-   "Men_2022/23": _.memoize(apPollMen_2022_23),
+  "Men_2020/21": _.memoize(apPollMen_2020_21),
+  "Men_2021/22": _.memoize(apPollMen_2021_22),
+  "Men_2022/23": _.memoize(apPollMen_2022_23),
+  "Men_2023/24": _.memoize(apPollMen_2023_24),
 };
 
 ////////////////////////////////////////////////////////////////
@@ -186,7 +378,9 @@ export const apPolls: Record<string, () => Record<string, number>> = {
 // AP Rankings
 
 /** From https://www.ncaa.com/news/basketball-men/article/2022-03-13/2022-ncaa-mens-tournament-bids-all-68-march-madness-teams. Note you need to edit the names by hand */
-const sCurveMen_2021_22: () => Record<string, number> = () => _.chain(`
+const sCurveMen_2021_22: () => Record<string, number> = () =>
+  _.chain(
+    `
 1. Gonzaga (26 - 3)
 2. Arizona (31 - 3)
 3. Kansas (28 - 6)
@@ -238,12 +432,21 @@ const sCurveMen_2021_22: () => Record<string, number> = () => _.chain(`
 49. Oklahoma (0 - 0)
 50. SMU (0 - 0)
 51. Texas A&M (0 - 0)
-`).split("\n").map(l => { 
-   const ab = l.replace(/^([0-9]+)[.] +(.*) +[(][0-9].*/, '$1\t$2').split("\t"); 
-   return [ fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0]) ];}
-).fromPairs().value();
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l
+        .replace(/^([0-9]+)[.] +(.*) +[(][0-9].*/, "$1\t$2")
+        .split("\t");
+      return [fixName((ab[1] || "").replace("State", "St.")), parseInt(ab[0])];
+    })
+    .fromPairs()
+    .value();
 
-const sCurveWomen_2021_22: () => Record<string, number> = () => _.chain(`
+const sCurveWomen_2021_22: () => Record<string, number> = () =>
+  _.chain(
+    `
 South Carolina
 Stanford
 NC State
@@ -296,12 +499,16 @@ Oregon State
 Boston College
 South Dakota State
 Marquette
-`).split("\n").map((l, rank) => { 
-   return [ fixName(l.replace("State", "St.")), rank ];}
-).fromPairs().value();
-
+`
+  )
+    .split("\n")
+    .map((l, rank) => {
+      return [fixName(l.replace("State", "St.")), rank];
+    })
+    .fromPairs()
+    .value();
 
 export const sCurves: Record<string, () => Record<string, number>> = {
-   "Men_2021/22": _.memoize(sCurveMen_2021_22),
-   "Women_2021/22": _.memoize(sCurveWomen_2021_22)
+  "Men_2021/22": _.memoize(sCurveMen_2021_22),
+  "Women_2021/22": _.memoize(sCurveWomen_2021_22),
 };
