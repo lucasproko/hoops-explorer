@@ -48,6 +48,7 @@ export class OnBallDefenseUtils {
     return `${headerRow}\n${teamRow}\n${rows.join("\n")}`;
   }
 
+  /** Returns a list of candidate jersey numbers for a player */
   private static getRosterNumbers = (
     roster: RosterEntry
   ): [string, string, string] => {
@@ -58,6 +59,9 @@ export class OnBallDefenseUtils {
     const backupRosterId = "#" + (roster?.alt_number || "??");
     return [rosterId, rosterIdWithLeadingZero, backupRosterId];
   };
+
+  /** From 23/24 onwards, Synergy is returning a longer row */
+  private static isLongRow = (cols: string[]) => cols.length > 25;
 
   /** Util to parse a nd csv file, remove headers and corrupted lines */
   private static getRowCols(contents: string): string[][] {
@@ -92,12 +96,12 @@ export class OnBallDefenseUtils {
 
     // Phase 2: find the line corresponding to the team
 
-    const longerFormat = (playerRowsCols[0]?.length || 0) > 25;
+    const longerFormat = OnBallDefenseUtils.isLongRow(playerRowsCols[0] || []);
     const teamName =
       playerRowsCols[0]?.[longerFormat ? 3 : 2] || "NOT FOUND TEAM";
     const teamRow = teamRowsCols.find((row) => row?.[1] == teamName);
     const transformTeamRow = (row: string[]) => {
-      return longerFormat //TODO tidy this up
+      return longerFormat
         ? [row?.[0] || "", "Team", "Team", ..._.drop(row, 1)]
         : [row?.[0] || "", "Team", ..._.drop(row, 1)];
     };
@@ -131,7 +135,7 @@ export class OnBallDefenseUtils {
       }
     };
     const parseRow = (code: string, row: string[]) => {
-      if (row.length > 25) {
+      if (OnBallDefenseUtils.isLongRow(row)) {
         // New format as of 23/24 (applies retro to previous years though, unless using already downloaded data)
         //TODO: need to actually pull headers and turn these into maps, this formatting is now too horrible
 
@@ -228,7 +232,7 @@ export class OnBallDefenseUtils {
     );
     const [matchedPlayerStats, unmatchedPlayerStats] = _.chain(rowsCols)
       .flatMap((row, ii) => {
-        const longerFormat = (row?.length || 0) > 25; //TODO tidy this up
+        const longerFormat = OnBallDefenseUtils.isLongRow(row || []);
         const playerName = transformName(row[longerFormat ? 2 : 1]);
         const matchingPlayer =
           playersByCode[row[1]] || playersByFullName[playerName];
@@ -341,11 +345,9 @@ export class OnBallDefenseUtils {
     const dupColMatches = playerNumberToColAndDups.dups;
 
     const getMatchingRosterId = (roster: RosterEntry) => {
-      const rosterNumber = roster?.number || "??";
-      const rosterNumberNoZero = rosterNumber.replace(/0([0-9])/, "$1");
-      const rosterId = "#" + rosterNumberNoZero;
-      const rosterIdWithLeadingZero = "#0" + (roster?.number || "??");
-      const backupRosterId = "#" + (roster?.alt_number || "??");
+      const [rosterId, rosterIdWithLeadingZero, backupRosterId] =
+        OnBallDefenseUtils.getRosterNumbers(roster);
+
       return playerNumberToCol.hasOwnProperty(rosterId)
         ? rosterId
         : playerNumberToCol.hasOwnProperty(rosterIdWithLeadingZero)
