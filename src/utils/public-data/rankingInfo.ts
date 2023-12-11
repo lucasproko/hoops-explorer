@@ -181,31 +181,31 @@ const apPollMen_2022_23: () => Record<string, number> = () =>
 const apPollMen_2023_24: () => Record<string, number> = () =>
   _.chain(
     `
-1	Arizona (59)	7-0	1,571	2
-2	Kansas (1)	7-1	1,460	5
-3	Houston (3)	8-0	1,432	4
-4	Purdue	7-1	1,407	1
-5	UConn	7-1	1,340	4
-6	Baylor	8-0	1,234	9
-7	Gonzaga	6-1	1,146	11
-8	Marquette	6-2	1,134	3
-9	North Carolina	7-1	1,004	17
-10	Creighton	7-1	921	15
-11	Florida Atlantic	7-1	901	19
-12	Texas	6-1	763	16
-13	Colorado State	8-0	755	20
-14	BYU	7-0	732	19
-15	Miami (FL)	6-1	638	8
-16	Kentucky	6-2	544	12
-17	Tennessee	4-3	509	10
-18	James Madison	8-0	381	22
-19	Oklahoma	7-0	355	25
-20	Illinois	6-1	322	24
-21	Texas A&M	6-2	306	14
-22	Duke	5-3	296	7
-23	Wisconsin	6-2	245	NR
-24	Clemson	7-0	227	NR
-25	San Diego State	7-1	168	NR
+    1	Arizona (62)	8-0	1,574	1
+    2	Kansas	9-1	1,461	2
+    3	Purdue	9-1	1,424	4
+    4	Houston (1)	10-0	1,416	3
+    5	UConn	9-1	1,344	5
+    6	Baylor	9-0	1,239	6
+    7	Marquette	8-2	1,221	8
+    8	Creighton	8-1	1,073	10
+    9	North Carolina	7-2	992	9
+    10	Gonzaga	7-2	860	7
+    11	Oklahoma	9-0	848	19
+    12	Tennessee	6-3	835	17
+    13	Clemson	9-0	746	24
+    14	Kentucky	7-2	677	16
+    15	Florida Atlantic	7-2	622	11
+    16	Illinois	7-2	589	20
+    17	Colorado State	9-1	522	13
+    18	BYU	8-1	503	14
+    19	Texas	7-2	451	12
+    20	James Madison	9-0	441	18
+    21	Duke	6-3	315	22
+    22	Virginia	8-1	300	NR
+    23	Wisconsin	7-3	213	23
+    24	Miami (FL)	7-2	156	15
+    25	Northwestern	7-1	147	NR
 `
   )
     .split("\n")
@@ -220,7 +220,7 @@ const apPollMen_2023_24: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 1,
+      __week__: 6,
     })
     .value();
 
@@ -317,31 +317,31 @@ const apPollWomen_2022_23: () => Record<string, number> = () =>
 const apPollWomen_2023_24: () => Record<string, number> = () =>
   _.chain(
     `
-    1	South Carolina (35)	7-0	875	1
-    2	UCLA	7-0	836	2
-    3	NC State	9-0	769	4
-    4	Iowa	8-1	740	5
-    5	Texas	9-0	689	10
-    6	Southern Cal	7-0	682	6
-    7	LSU	8-1	670	T-7
-    8	Colorado	8-1	639	T-7
-    9	Stanford	8-1	584	3
-    10	Baylor	7-0	546	13
-    11	Utah	7-1	513	12
-    12	Ohio State	6-1	463	16
-    13	Kansas State	7-1	453	14
-    14	Notre Dame	6-1	439	18
-    15	Virginia Tech	5-2	409	9
-    16	Indiana	7-1	380	17
-    17	UConn	4-3	326	11
-    18	Louisville	8-1	288	22
-    19	Marquette	8-0	232	23
-    20	Florida State	6-2	203	15
-    21	Washington State	9-1	119	NR
-    22	Creighton	6-1	112	NR
-    23	Gonzaga	8-2	104	NR
-    24	North Carolina	5-3	79	NR
-    25	Penn State	7-1	44	NR
+    1	South Carolina (36)	9-0	900	1				
+    2	UCLA	9-0	861	2				
+    3	NC State	10-0	800	3				
+    4	Iowa	10-1	754	4				
+    5	Texas	10-0	732	5				
+    6	Southern Cal	8-0	697	6				
+    7	LSU	9-1	679	7				
+    8	Colorado	9-1	651	8				
+    9	Stanford	8-1	608	9				
+    10	Baylor	7-0	572	10				
+    11	Utah	8-2	498	11				
+    12	Kansas State	9-1	488	13				
+    12	Ohio State	8-1	488	12				
+    14	Notre Dame	7-1	459	14				
+    15	Indiana	8-1	396	16				
+    16	Virginia Tech	7-2	391	15				
+    17	UConn	6-3	343	17				
+    18	Louisville	9-1	314	18				
+    19	Marquette	9-0	252	19				
+    20	Creighton	7-1	171	22				
+    21	Gonzaga	10-2	165	23				
+    22	Florida State	7-3	113	20				
+    23	UNLV	9-0	103	NR				
+    24	Miami (FL)	8-0	100	NR				
+    25	North Carolina	6-4	37	24
 `
   )
     .split("\n")
