@@ -281,7 +281,10 @@ export class OnBallDefenseUtils {
       .value();
 
     // If there's a totals row we can now add team stats (otherwise do nothing)
-    const maybeTotals = _.find(rowsCols, (row) => row[1] == "Team");
+    const maybeTotals = _.find(
+      rowsCols,
+      (row) => row[1] == "Team" || row[2] == "Team"
+    ); //either long/short format
     if (maybeTotals) {
       const totalStats = parseRow("totals", maybeTotals);
       RatingUtils.injectUncatOnBallDefenseStats(

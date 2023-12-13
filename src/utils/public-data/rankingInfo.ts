@@ -356,7 +356,7 @@ const apPollWomen_2023_24: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 1,
+      __week__: 6,
     })
     .value();
 
