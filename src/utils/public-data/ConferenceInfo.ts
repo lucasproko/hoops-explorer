@@ -172,7 +172,6 @@ export const latestConfChanges = {
 
     // Conference USA
     "Jacksonville St.": "Conference USA", //(asun)
-    "Kenneshaw St.": "Conference USA", //(asun)
     Liberty: "Conference USA", //(asun)
     "New Mexico St.": "Conference USA", //(wac)
     "Sam Houston": "Conference USA", //(wac)

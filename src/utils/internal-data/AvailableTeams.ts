@@ -3638,8 +3638,10 @@ export class AvailableTeams {
         index_template: "nec",
         category: "low",
       },
+    ],
+    FDU: [
       {
-        team: "Fairleigh Dickinson",
+        team: "FDU",
         year: "2023/24",
         gender: "Men",
         index_template: "nec",
