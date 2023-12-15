@@ -339,6 +339,7 @@ export class GameAnalysisUtils {
           <b>{`${seriesId}`}</b>
           <br />
           <i>
+            {`#${stats?.roster?.number || "??"} `}
             {`${stats?.roster?.height || "?-?"} `}
             {`${playerPosInfo.posClass || "??"}`}
           </i>

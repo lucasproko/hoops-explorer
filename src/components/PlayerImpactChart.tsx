@@ -17,6 +17,7 @@ import {
   XAxis,
   YAxis,
   ZAxis,
+  LabelList,
 } from "recharts";
 import { CbbColors } from "../utils/CbbColors";
 import { ScatterChartUtils } from "../utils/charts/ScatterChartUtils";
@@ -119,6 +120,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   );
 
   // Viewport management
+
+  const [iconType, setIconType] = useState<"icon" | "pos" | "jersey">("icon");
 
   const [screenHeight, setScreenHeight] = useState(512);
   const [screenWidth, setScreenWidth] = useState(512);
@@ -622,10 +625,25 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               <Scatter
                 data={cachedStats.ab}
                 fill="black"
+                fillOpacity={iconType == "icon" ? "100%" : "0%"}
                 shape="triangle"
                 name={commonParams.team!}
                 legendType="triangle"
               >
+                {iconType == "pos" ? (
+                  <LabelList
+                    style={{ fontSize: "12px", pointerEvents: "none" }}
+                    valueAccessor={(p: any) => p.posInfo?.posClass || "??"}
+                  />
+                ) : null}
+                {iconType == "jersey" ? (
+                  <LabelList
+                    style={{ fontSize: "12px", pointerEvents: "none" }}
+                    valueAccessor={(p: any) =>
+                      `#${p.stats?.roster?.number || "??"}`
+                    }
+                  />
+                ) : null}
                 {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight,
                   maxWidth: screenWidth,
@@ -649,9 +667,25 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               <Scatter
                 data={cachedStats.ab}
                 fill="purple"
+                fillOpacity={iconType == "icon" ? "100%" : "0%"}
+                shape="circle"
                 name={opponent}
                 legendType="circle"
               >
+                {iconType == "pos" ? (
+                  <LabelList
+                    style={{ fontSize: "12px", pointerEvents: "none" }}
+                    valueAccessor={(p: any) => p.posInfo?.posClass || "??"}
+                  />
+                ) : null}
+                {iconType == "jersey" ? (
+                  <LabelList
+                    style={{ fontSize: "12px", pointerEvents: "none" }}
+                    valueAccessor={(p: any) =>
+                      `#${p.stats?.roster?.number || "??"}`
+                    }
+                  />
+                ) : null}
                 {ScatterChartUtils.buildTidiedLabelList({
                   maxHeight: screenHeight,
                   maxWidth: screenWidth,
