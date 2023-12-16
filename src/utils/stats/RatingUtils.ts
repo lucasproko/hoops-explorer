@@ -496,10 +496,14 @@ export class RatingUtils {
 
     // We have the actual number of possessions, which means we can do better than the legacy:
     //const FTA_to_Poss = 0.475;
-    const Actual_FT_Poss = Team_Poss - (Team_TOV + Team_FGA - Team_ORB);
+    //(there was a case [23/24 La Salle] where a low volume player had this resolve to 0, so put a safety check in the low volume case)
+    const Actual_FT_Poss = Math.max(
+      Team_Poss - (Team_TOV + Team_FGA - Team_ORB),
+      FTA > 0 ? 1 : 0
+    );
     const Actual_FTA_to_Poss = Actual_FT_Poss / (Team_FTA || 1);
 
-    const Prob_Miss_Both_FT = (1 - FTM / FTA) ** 2;
+    const Prob_Miss_Both_FT = FTA > 0 ? (1 - FTM / FTA) ** 2 : 0.0;
     const FT_Part =
       FTA > 0 ? (1 - Prob_Miss_Both_FT) * Actual_FTA_to_Poss * FTA : 0.0;
 
