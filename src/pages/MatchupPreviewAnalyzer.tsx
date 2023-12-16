@@ -156,6 +156,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultMatchupAnalysisAspectLock
           ? ["lockAspect"]
           : [],
+        (rawParams.iconType || "") ==
+        ParamDefaults.defaultMatchupAnalysisIconType
+          ? ["iconType"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {

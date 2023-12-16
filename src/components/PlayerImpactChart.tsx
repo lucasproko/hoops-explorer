@@ -121,7 +121,12 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   // Viewport management
 
-  const [iconType, setIconType] = useState<"icon" | "pos" | "jersey">("icon");
+  const [iconType, setIconType] = useState<"icon" | "pos" | "jersey">(
+    (startingState.iconType || ParamDefaults.defaultMatchupAnalysisIconType) as
+      | "icon"
+      | "pos"
+      | "jersey"
+  );
 
   const [screenHeight, setScreenHeight] = useState(512);
   const [screenWidth, setScreenWidth] = useState(512);
@@ -148,8 +153,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       showOppo,
       factorMins,
       lockAspect,
+      iconType,
     });
-  }, [posClasses, showTeam, showOppo, factorMins, lockAspect]);
+  }, [posClasses, showTeam, showOppo, factorMins, lockAspect, iconType]);
 
   // RAPM building
 
@@ -448,7 +454,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   ) : (
     <Container>
       <Row className="text-left">
-        <Col xs={12} md={6} lg={6} className="mb-1">
+        <Col xs={12} md={12} lg={6} className="mb-1">
           <ToggleButtonGroup
             items={[
               {
@@ -480,6 +486,44 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 isLabelOnly: true,
               },
               {
+                label: _.thru(iconType, (__) => {
+                  switch (iconType) {
+                    case "icon":
+                      return (
+                        <small>
+                          &#9650;<sup>&#9679;</sup>
+                        </small>
+                      );
+                    case "pos":
+                      return "PG";
+                    default:
+                      return "#00";
+                  }
+                }),
+                tooltip: `Toggle through team icon / jersey number / positional role`,
+                toggled: false,
+                onClick: () => {
+                  switch (iconType) {
+                    case "icon":
+                      setIconType("pos");
+                      return;
+                    case "pos":
+                      setIconType("jersey");
+                      return;
+                    default:
+                      setIconType("icon");
+                      return;
+                  }
+                },
+              },
+              {
+                label: "| ",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+                isLabelOnly: true,
+              },
+              {
                 label: "* Mins%",
                 tooltip: `Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')`,
                 toggled: factorMins,
@@ -491,7 +535,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             ]}
           />
         </Col>
-        <Col xs={12} md={6} lg={5} className="text-left mb-1">
+        <Col xs={12} md={12} lg={5} className="text-left mb-1">
           <Select
             isClearable={true}
             styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}

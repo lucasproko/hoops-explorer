@@ -191,6 +191,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultMatchupAnalysisLabelToShow
           ? ["labelToShow"]
           : [],
+        (rawParams.iconType || "") ==
+        ParamDefaults.defaultMatchupAnalysisIconType
+          ? ["iconType"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
