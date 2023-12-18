@@ -1120,6 +1120,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           } as IndivStatSet
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
+                        teamStats={teamStats.on}
                         teamSeasonLookup={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
@@ -1230,6 +1231,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           } as IndivStatSet
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
+                        teamStats={teamStats.off}
                         teamSeasonLookup={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
@@ -1351,6 +1353,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           } as IndivStatSet
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
+                        teamStats={teamStats.baseline}
                         teamSeasonLookup={teamSeasonLookup}
                         showHelp={showHelp}
                       />,

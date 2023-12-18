@@ -393,6 +393,10 @@ export class PlayTypeUtils {
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet
   ): TopLevelPlayAnalysis {
+    //TODO: need a player vs team indicator ... eg
+    // for most of these categories, need a "creator" vs "scorer" indicator
+    // plus also the percentages I think need to get tweaked to only count when player is on the floor
+
     const posVsPosAssistNetworkPoss =
       PlayTypeUtils.buildCategorizedAssistNetworks(
         "playsPct",

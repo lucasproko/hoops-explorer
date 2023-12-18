@@ -31,8 +31,13 @@ import GenericTable, {
   GenericTableOps,
   GenericTableColProps,
 } from "../GenericTable";
-import { IndivStatSet, RosterStatsByCode } from "../../utils/StatModels";
+import {
+  IndivStatSet,
+  RosterStatsByCode,
+  TeamStatSet,
+} from "../../utils/StatModels";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
+import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
 
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -50,6 +55,7 @@ const tidyNumbers = (k: string, v: any) => {
 type Props = {
   player: IndivStatSet;
   rosterStatsByCode: RosterStatsByCode;
+  teamStats: TeamStatSet;
   teamSeasonLookup: string;
   showHelp: boolean;
   showDetailsOverride?: boolean;
@@ -57,10 +63,25 @@ type Props = {
 const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
   player,
   rosterStatsByCode,
+  teamStats,
   teamSeasonLookup,
   showHelp,
   showDetailsOverride,
 }) => {
+  //TODO: hack for testing this, need to integrate it more sensibly
+  if (FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)) {
+    return (
+      <TeamPlayTypeDiagRadar
+        title="Baseline"
+        players={[player]}
+        rosterStatsByCode={rosterStatsByCode}
+        teamStats={teamStats}
+        teamSeasonLookup={teamSeasonLookup}
+        showHelp={showHelp}
+      />
+    );
+  }
+
   const [showPlayerBreakdown, setShowPlayerBreakdown] = useState(
     showDetailsOverride || false
   );
