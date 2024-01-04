@@ -220,7 +220,7 @@ const apPollMen_2023_24: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 6,
+      __week__: 9,
     })
     .value();
 
