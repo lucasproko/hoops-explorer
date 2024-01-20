@@ -5,13 +5,11 @@ import fetch from "isomorphic-unfetch";
 import queryString from "query-string";
 import { Readable } from "stream";
 
-// My existing streaming code didn't work in node10
-// production is an earlier version so doesn't have this issue, but I can't share the code
-const pxIsDebug = process.env.NODE_ENV !== "production";
-if (pxIsDebug) {
-  console.log(
-    `Running locally (getStats): use node v18+ constructs for streaming`
-  );
+// Streaming code doesn't work in earlier versions of Node than 18
+// production is now Node 18 so the legacy code should not be needed any more
+const useNode18Stream = true;
+if (!useNode18Stream) {
+  console.log(`Running legacy node16- for streaming`);
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -57,10 +55,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           res.setHeader("Content-Type", "application/json");
 
           res.status(200);
-          if (pxIsDebug) {
+          if (useNode18Stream) {
             //@ts-ignore
             Readable.fromWeb(resp.body).pipe(res);
           } else {
+            //(legacy, should no longer be used)
             res.send(resp.body);
           }
         }
