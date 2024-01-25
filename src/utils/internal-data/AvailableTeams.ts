@@ -3013,7 +3013,14 @@ export class AvailableTeams {
     "Utah Tech": [
       {
         team: "Utah Tech",
-        year: "2021/22",
+        year: "2022/23",
+        gender: "Men",
+        index_template: "wac",
+        category: "midlow",
+      },
+      {
+        team: "Utah Tech",
+        year: "2023/24",
         gender: "Men",
         index_template: "wac",
         category: "midlow",
