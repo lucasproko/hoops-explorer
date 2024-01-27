@@ -80,7 +80,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -698,10 +699,29 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "tooltip": "Aggregate lineups by different C combos",
               },
               Object {
-                "label": "Pairs",
+                "isLabelOnly": true,
+                "label": "/ ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+              },
+              Object {
+                "label": "2",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different 2-player combos",
+              },
+              Object {
+                "label": "3",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 3-player combos",
+              },
+              Object {
+                "label": "4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 4-player combos",
               },
             ]
           }
@@ -3863,7 +3883,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -4481,10 +4502,29 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "tooltip": "Aggregate lineups by different C combos",
               },
               Object {
-                "label": "Pairs",
+                "isLabelOnly": true,
+                "label": "/ ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+              },
+              Object {
+                "label": "2",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different 2-player combos",
+              },
+              Object {
+                "label": "3",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 3-player combos",
+              },
+              Object {
+                "label": "4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 4-player combos",
               },
             ]
           }
@@ -7158,7 +7198,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -7776,10 +7817,29 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Aggregate lineups by different C combos",
               },
               Object {
-                "label": "Pairs",
+                "isLabelOnly": true,
+                "label": "/ ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+              },
+              Object {
+                "label": "2",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different 2-player combos",
+              },
+              Object {
+                "label": "3",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 3-player combos",
+              },
+              Object {
+                "label": "4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 4-player combos",
               },
             ]
           }
@@ -10170,7 +10230,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -10788,10 +10849,29 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Aggregate lineups by different C combos",
               },
               Object {
-                "label": "Pairs",
+                "isLabelOnly": true,
+                "label": "/ ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+              },
+              Object {
+                "label": "2",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different 2-player combos",
+              },
+              Object {
+                "label": "3",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 3-player combos",
+              },
+              Object {
+                "label": "4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 4-player combos",
               },
             ]
           }
@@ -14037,7 +14117,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onSelect={[Function]}
             text={
               <span>
-                Adjust for Luck 
+                Adjust for Luck
+                 
                 <span
                   className="badge badge-pill badge-info"
                 >
@@ -14655,10 +14736,29 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Aggregate lineups by different C combos",
               },
               Object {
-                "label": "Pairs",
+                "isLabelOnly": true,
+                "label": "/ ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Aggregate lineups by combiations of 2/3/4 players",
+              },
+              Object {
+                "label": "2",
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different 2-player combos",
+              },
+              Object {
+                "label": "3",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 3-player combos",
+              },
+              Object {
+                "label": "4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 4-player combos",
               },
             ]
           }

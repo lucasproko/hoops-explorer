@@ -494,6 +494,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Detroit Mercy",
               },
               Object {
+                "label": "Utah Tech",
+                "value": "Utah Tech",
+              },
+              Object {
                 "label": "Drake",
                 "value": "Drake",
               },
