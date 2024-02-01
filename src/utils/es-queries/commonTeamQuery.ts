@@ -183,13 +183,15 @@ export const commonTeamQuery = function (
       should: params.filterGarbage ? garbageTimeFilter : [], //(has OR components so should not must)
       minimum_should_match: params.filterGarbage ? 1 : 0,
       must: _.flatten([
-        [
-          {
-            term: {
-              "team.team.keyword": `${params.team}`,
-            },
-          },
-        ],
+        params.team == "*"
+          ? []
+          : [
+              {
+                term: {
+                  "team.team.keyword": `${params.team}`,
+                },
+              },
+            ],
         _.isEmpty(publicEfficiency)
           ? []
           : [
