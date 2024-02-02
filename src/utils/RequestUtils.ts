@@ -9,6 +9,7 @@ import {
 } from "./FilterModels";
 import { QueryUtils } from "./QueryUtils";
 import { ClientRequestCache } from "./ClientRequestCache";
+import { AvailableTeams } from "./internal-data/AvailableTeams";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
@@ -87,6 +88,20 @@ export class RequestUtils {
       primaryContext,
       otherRequests
     ).map((req: FilterRequestInfo, index: number) => {
+      // Mutate req for teams with changing names over years:
+      const teamToCheck =
+        req.paramsObj?.team && req.paramsObj?.year && req.paramsObj?.gender
+          ? AvailableTeams.getTeam(
+              req.paramsObj?.team,
+              req.paramsObj?.year,
+              req.paramsObj?.gender
+            )
+          : null;
+
+      if (teamToCheck?.use_team) {
+        req.paramsObj!.team = teamToCheck.use_team;
+      }
+
       const newParamsStr = QueryUtils.stringify(req.paramsObj);
 
       if (isDebug) {

@@ -141,7 +141,7 @@ const CommonFilter: CommonFilterI = ({
     startingState.gender || ParamDefaults.defaultGender
   );
   /** Pre-calculate this */
-  const teamList = AvailableTeams.getTeams(null, year, gender);
+  const teamList = AvailableTeams.getTeams(null, year, gender, true);
 
   // Generic filters:
 
@@ -285,6 +285,7 @@ const CommonFilter: CommonFilterI = ({
           );
     };
     const [primaryRequest, otherRequests] = buildParamsFromState(false);
+
     const allPromises = Promise.all(
       RequestUtils.requestHandlingLogic(
         primaryRequest,
@@ -766,7 +767,9 @@ const CommonFilter: CommonFilterI = ({
               value={stringToOption(gender)}
               options={Array.from(
                 new Set(
-                  AvailableTeams.getTeams(team, year, null).map((r) => r.gender)
+                  AvailableTeams.getTeams(team, year, null, true).map(
+                    (r) => r.gender
+                  )
                 )
               ).map((gender) => stringToOption(gender))}
               isSearchable={false}
@@ -782,7 +785,9 @@ const CommonFilter: CommonFilterI = ({
               value={stringToOption(year)}
               options={Array.from(
                 new Set(
-                  AvailableTeams.getTeams(team, null, gender).map((r) => r.year)
+                  AvailableTeams.getTeams(team, null, gender, true).map(
+                    (r) => r.year
+                  )
                 )
               )
                 .concat([AvailableTeams.extraTeamName])

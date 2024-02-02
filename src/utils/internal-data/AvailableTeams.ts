@@ -1,5 +1,6 @@
 export type AvailableTeamMeta = {
   team: string;
+  use_team?: string;
   year: string;
   gender: string;
   index_template: string;
@@ -8756,8 +8757,40 @@ export class AvailableTeams {
         index_template: "mac",
         category: "mid",
       },
+      {
+        team: "Northern Ill.",
+        use_team: "NIU",
+        year: "2022/23",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "Northern Ill.",
+        use_team: "NIU",
+        year: "2023/24",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
     ],
     NIU: [
+      {
+        team: "NIU",
+        use_team: "Northern Ill.",
+        year: "2020/21",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
+      {
+        team: "NIU",
+        use_team: "Northern Ill.",
+        year: "2021/22",
+        gender: "Men",
+        index_template: "mac",
+        category: "mid",
+      },
       {
         team: "NIU",
         year: "2022/23",
@@ -15934,7 +15967,7 @@ export class AvailableTeams {
   };
 
   /** These are extra teams I've added for specific years */
-  static readonly extraTeamsBase = [
+  static readonly extraTeamsBase: AvailableTeamMeta[] = [
     {
       team: "Maryland",
       year: "2014/5",
@@ -16006,7 +16039,8 @@ export class AvailableTeams {
   static getTeams(
     team: string | null,
     year: string | null,
-    gender: string | null
+    gender: string | null,
+    includeNameChanged: Boolean = false
   ): Array<AvailableTeamMeta> {
     // Special cases
     if (year == AvailableTeams.extraTeamName && gender == "Men") {
@@ -16020,7 +16054,8 @@ export class AvailableTeams {
         return (
           (!team || team == record.team) &&
           (!year || year == record.year) &&
-          (!gender || gender == record.gender)
+          (!gender || gender == record.gender) &&
+          (includeNameChanged || !record.use_team)
         );
       });
     }
@@ -16030,7 +16065,7 @@ export class AvailableTeams {
     year: string,
     gender: string
   ): AvailableTeamMeta | null {
-    const retVal = AvailableTeams.getTeams(team, year, gender);
+    const retVal = AvailableTeams.getTeams(team, year, gender, true);
     return retVal.length > 0 ? retVal[0] : null;
   }
 }
