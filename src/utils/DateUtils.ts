@@ -61,7 +61,7 @@ export class DateUtils {
   static readonly mostRecentYearWithData = "2023/24";
 
   /** The year to use if making off-season predictions */
-  static readonly offseasonPredictionYear = "2023/24";
+  static readonly offseasonPredictionYear = "2024/25";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
   static readonly mostRecentYearWithLboardData = "2023/24";
@@ -151,7 +151,9 @@ export class DateUtils {
 
   /** Get the previous season */
   static readonly getPrevYear = (y: string) => {
-    if (y == "2023/24") {
+    if (y == "2024/25") {
+      return "2023/24";
+    } else if (y == "2023/24") {
       return "2022/23";
     } else if (y == "2022/23") {
       return "2021/22";

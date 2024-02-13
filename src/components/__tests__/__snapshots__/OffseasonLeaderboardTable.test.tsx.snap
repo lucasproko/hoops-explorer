@@ -81,6 +81,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -1066,6 +1070,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             Object {
               "label": "2023/24",
               "value": "2023/24",
+            },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
             },
           ]
         }
@@ -18159,6 +18167,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -33242,6 +33254,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -46462,6 +46478,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
             Object {
               "label": "2023/24",
               "value": "2023/24",
+            },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
             },
           ]
         }

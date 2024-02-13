@@ -82,6 +82,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -5674,6 +5678,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -10965,6 +10973,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             Object {
               "label": "2023/24",
               "value": "2023/24",
+            },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
             },
           ]
         }
@@ -17207,6 +17219,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             Object {
               "label": "2023/24",
               "value": "2023/24",
+            },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
             },
           ]
         }
@@ -23658,6 +23674,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -30063,6 +30083,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
@@ -35982,6 +36006,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
             Object {
               "label": "2023/24",
               "value": "2023/24",
+            },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
             },
           ]
         }
