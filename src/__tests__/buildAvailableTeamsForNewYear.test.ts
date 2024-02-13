@@ -9,7 +9,7 @@ import _ from "lodash";
 /** Run "YEAR_TO_BUILD_FROM=2022/23 npm run test src/__tests__/buildAvailableTeamsForNewYear.test.ts  -- --coverage=false" to build
  * After copying "transfers_${offseasonYearStr}" to working dir
  */
-describe("buildAvailableTemsForNewYear", () => {
+describe("buildAvailableTeamsForNewYear", () => {
   if (process.env.YEAR_TO_BUILD_FROM) {
     const yearToBuildFrom = process.env.YEAR_TO_BUILD_FROM! as string;
     const newYear = DateUtils.getNextYear(yearToBuildFrom);

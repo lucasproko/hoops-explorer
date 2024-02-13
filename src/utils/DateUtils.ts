@@ -60,7 +60,11 @@ export class DateUtils {
   /** Used for defaults for everything but leaderboards (which get updated later) */
   static readonly mostRecentYearWithData = "2023/24";
 
-  /** The year to use if making off-season predictions */
+  /** The year to use if making off-season predictions
+   * To update for the following year in-season: up this, and fix getPrevYear
+   * Also don't forget to ensure "transfer_${prev_season}.json" is copied from GCS to public/leaderboards/roster_movement
+   *
+   */
   static readonly offseasonPredictionYear = "2024/25";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
