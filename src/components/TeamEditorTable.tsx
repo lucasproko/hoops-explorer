@@ -224,10 +224,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     gender
   );
 
+  const activeTransferSeason =
+    DateUtils.yearWithActiveTransferPortal == year &&
+    DateUtils.offseasonPredictionYear == year;
+
   // Handling various ways of uploading data
   const [onlyTransfers, setOnlyTransfers] = useState(
     _.isNil(startingState.showOnlyTransfers)
-      ? true
+      ? activeTransferSeason //(if not specified then "show only transfers" only if in off-season mode)
       : startingState.showOnlyTransfers
   );
   /** (don't show "transfers-only" if this is the case - portalpalooza has not started yet) */
