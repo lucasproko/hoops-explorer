@@ -10,6 +10,7 @@ import {
   savedPlayers,
   savedLowVolumePlayers,
   teamInfo,
+  detailedTeamInfo,
   mutableDivisionStats,
   mutablePlayerDivisionStats,
   MutableAsyncResponse,
@@ -98,6 +99,11 @@ describe("buildLeaderboards", () => {
     // (only works if run after test above)
 
     expect(teamInfo).toMatchSnapshot();
+  });
+  test("buildLeaderboards - main / detailed team stats", async () => {
+    // (only works if run after test above)
+
+    expect(detailedTeamInfo).toMatchSnapshot();
   });
   test("buildLeaderboards - main / division team stats", async () => {
     // (only works if run after test above)

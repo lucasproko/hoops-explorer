@@ -127,6 +127,7 @@ export const savedLowVolumePlayers = [] as Array<any>;
 
 /** Exported for test only */
 export const teamInfo = [] as Array<TeamInfo>;
+export const detailedTeamInfo = [] as Array<any>;
 var bubbleOffenseInfo: number[] = [];
 var bubbleDefenseInfo: number[] = [];
 var eliteOffenseInfo: number[] = [];
@@ -631,6 +632,89 @@ export async function main() {
               },
             });
 
+            const oppoInfo = _.chain(teamBaseline.game_info?.buckets || [])
+              .flatMap((l) => l?.game_info?.buckets || [])
+              .map((l) => {
+                // Let's do some marshalling:
+                const retVal = l?.end_of_game?.hits?.hits?.[0]?._source || {};
+                retVal.offPoss = l?.off_poss?.value || 0;
+                retVal.defPoss = l?.def_poss?.value || 0;
+                retVal.avgLead =
+                  (l?.avg_lead?.value || 0) /
+                  (0.5 * (retVal.offPoss + retVal.defPoss) || 1);
+                return retVal;
+              })
+              .sortBy((g) => g.date)
+              .flatMap((g) => {
+                // Get efficiency
+                const oppoEff = completedEfficiencyInfo?.[g.opponent?.team];
+                const gameDate = Date.parse(g.date);
+
+                const isValid =
+                  g.score_info?.end?.scored &&
+                  g.score_info?.end?.allowed &&
+                  oppoEff &&
+                  !Number.isNaN(gameDate);
+
+                const teamOff = oppoEff?.["stats.adj_off.value"] || 0.0;
+                const teamDef = oppoEff?.["stats.adj_def.value"] || 0.0;
+                const locationType = g.location_type as
+                  | "Home"
+                  | "Away"
+                  | "Neutral";
+                const baseHca = CommonApiUtils.getHca(fullRequestModel);
+                const actualHca =
+                  locationType == "Home"
+                    ? baseHca
+                    : locationType == "Away"
+                    ? -baseHca
+                    : 0;
+
+                return isValid
+                  ? [
+                      {
+                        oppo_name: g.opponent?.team || "Unknown",
+                        date_str: (g.date || "").substring(0, 16),
+                        date: Math.floor(gameDate / 1000),
+                        team_scored: g.score_info?.end?.scored || 0,
+                        oppo_scored: g.score_info?.end?.allowed || 0,
+                        off_poss: g.offPoss,
+                        def_poss: g.defPoss,
+                        avg_lead: g.avgLead,
+                        location_type: locationType,
+
+                        rank: oppoEff?.["stats.adj_margin.rank"] || 400,
+                        adj_off: teamOff,
+                        adj_def: teamDef,
+
+                        wae: TeamEvalUtils.calcWinsAbove(
+                          teamOff,
+                          teamDef,
+                          eliteOffenseInfo,
+                          eliteDefenseInfo,
+                          actualHca
+                        ),
+                        wab: TeamEvalUtils.calcWinsAbove(
+                          teamOff,
+                          teamDef,
+                          bubbleOffenseInfo,
+                          bubbleDefenseInfo,
+                          actualHca
+                        ),
+                      },
+                    ]
+                  : [];
+              })
+              .value();
+            detailedTeamInfo.push({
+              team_name: fullRequestModel.team,
+              gender: fullRequestModel.gender,
+              year: fullRequestModel.year,
+              conf: conference,
+              opponents: oppoInfo,
+              ...teamBaselineWithLuck,
+              ...extraFields,
+            });
             teamInfo.push({
               team_name: fullRequestModel.team,
               gender: fullRequestModel.gender,
@@ -643,80 +727,7 @@ export async function main() {
               adj_off_calc_30d: teamCalcAdjEffOffRecent,
               adj_def_calc_30d: teamCalcAdjEffDefRecent,
 
-              opponents: _.chain(teamBaseline.game_info?.buckets || [])
-                .flatMap((l) => l?.game_info?.buckets || [])
-                .map((l) => {
-                  // Let's do some marshalling:
-                  const retVal = l?.end_of_game?.hits?.hits?.[0]?._source || {};
-                  retVal.offPoss = l?.off_poss?.value || 0;
-                  retVal.defPoss = l?.def_poss?.value || 0;
-                  retVal.avgLead =
-                    (l?.avg_lead?.value || 0) /
-                    (0.5 * (retVal.offPoss + retVal.defPoss) || 1);
-                  return retVal;
-                })
-                .sortBy((g) => g.date)
-                .flatMap((g) => {
-                  // Get efficiency
-                  const oppoEff = completedEfficiencyInfo?.[g.opponent?.team];
-                  const gameDate = Date.parse(g.date);
-
-                  const isValid =
-                    g.score_info?.end?.scored &&
-                    g.score_info?.end?.allowed &&
-                    oppoEff &&
-                    !Number.isNaN(gameDate);
-
-                  const teamOff = oppoEff?.["stats.adj_off.value"] || 0.0;
-                  const teamDef = oppoEff?.["stats.adj_def.value"] || 0.0;
-                  const locationType = g.location_type as
-                    | "Home"
-                    | "Away"
-                    | "Neutral";
-                  const baseHca = CommonApiUtils.getHca(fullRequestModel);
-                  const actualHca =
-                    locationType == "Home"
-                      ? baseHca
-                      : locationType == "Away"
-                      ? -baseHca
-                      : 0;
-
-                  return isValid
-                    ? [
-                        {
-                          oppo_name: g.opponent?.team || "Unknown",
-                          date_str: (g.date || "").substring(0, 16),
-                          date: Math.floor(gameDate / 1000),
-                          team_scored: g.score_info?.end?.scored || 0,
-                          oppo_scored: g.score_info?.end?.allowed || 0,
-                          off_poss: g.offPoss,
-                          def_poss: g.defPoss,
-                          avg_lead: g.avgLead,
-                          location_type: locationType,
-
-                          rank: oppoEff?.["stats.adj_margin.rank"] || 400,
-                          adj_off: teamOff,
-                          adj_def: teamDef,
-
-                          wae: TeamEvalUtils.calcWinsAbove(
-                            teamOff,
-                            teamDef,
-                            eliteOffenseInfo,
-                            eliteDefenseInfo,
-                            actualHca
-                          ),
-                          wab: TeamEvalUtils.calcWinsAbove(
-                            teamOff,
-                            teamDef,
-                            bubbleOffenseInfo,
-                            bubbleDefenseInfo,
-                            actualHca
-                          ),
-                        },
-                      ]
-                    : [];
-                })
-                .value(),
+              opponents: oppoInfo,
             });
           }
 
@@ -1654,6 +1665,27 @@ if (!testMode) {
                 )
               : Promise.resolve();
 
+          const detailedTeamFilename = `./public/leaderboards/lineups/team_details_${
+            kv[0]
+          }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
+
+          const detailedTeamWritePromise =
+            detailedTeamInfo.length > 0
+              ? fs.writeFile(
+                  `${detailedTeamFilename}`,
+                  JSON.stringify(
+                    {
+                      lastUpdated: lastUpdated,
+                      confMap: mutableConferenceMap,
+                      confs: _.keys(mutableConferenceMap),
+
+                      teams: detailedTeamInfo,
+                    },
+                    reduceNumberSize
+                  )
+                )
+              : Promise.resolve();
+
           const teamStatFilename = `./public/leaderboards/lineups/team_stats_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
@@ -1747,6 +1779,7 @@ if (!testMode) {
             lineupsWritePromise,
             playersWritePromise,
             teamWritePromise,
+            detailedTeamWritePromise,
             teamWriteStatPromise,
             divisionStatsWritePromise,
             playerDivisionStatsWritePromise,

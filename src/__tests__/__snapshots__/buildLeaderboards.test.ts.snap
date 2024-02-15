@@ -3126,6 +3126,8180 @@ Array [
 ]
 `;
 
+exports[`buildLeaderboards buildLeaderboards - main / detailed team stats 1`] = `
+Array [
+  Object {
+    "conf": "Big Ten Conference",
+    "def_2p": Object {
+      "value": 0.44483671668137686,
+    },
+    "def_2p_ast": Object {
+      "value": 0,
+    },
+    "def_2pmid": Object {
+      "value": 0.30671506352087113,
+    },
+    "def_2pmid_ast": Object {
+      "value": 0.3254437869822485,
+    },
+    "def_2pmidr": Object {
+      "value": 0.3009284543965046,
+    },
+    "def_2prim": Object {
+      "value": 0.5756013745704467,
+    },
+    "def_2prim_ast": Object {
+      "value": 0.4507462686567164,
+    },
+    "def_2primr": Object {
+      "value": 0.3178590933915893,
+    },
+    "def_3p": Object {
+      "old_value": 0.32521489971346706,
+      "override": "Luck adjusted",
+      "value": 0.3283030945558739,
+    },
+    "def_3p_ast": Object {
+      "value": 0.8546255506607929,
+    },
+    "def_3p_opp": Object {
+      "value": 32.98939828080229,
+    },
+    "def_3pr": Object {
+      "value": 0.3812124522119061,
+    },
+    "def_adj_opp": Object {
+      "value": 96.96167549350024,
+    },
+    "def_adj_ppp": Object {
+      "old_value": 91.58495122584529,
+      "override": "Adjusted from Def 3P%",
+      "value": 91.85186645164359,
+    },
+    "def_assist": Object {
+      "value": 0.5471956224350205,
+    },
+    "def_ast_3p": Object {
+      "value": 0.485,
+    },
+    "def_ast_mid": Object {
+      "value": 0.1375,
+    },
+    "def_ast_rim": Object {
+      "value": 0.3775,
+    },
+    "def_efg": Object {
+      "old_value": 0.4612233752048061,
+      "override": "Adjusted from Def 3P%",
+      "value": 0.46298926269797924,
+    },
+    "def_ft": Object {
+      "value": 0.6981981981981982,
+    },
+    "def_ftr": Object {
+      "value": 0.24249044238121245,
+    },
+    "def_net": Object {
+      "value": 11.114221640321887,
+    },
+    "def_orb": Object {
+      "value": 0.26252158894645944,
+    },
+    "def_poss": Object {
+      "value": 2081,
+    },
+    "def_ppp": Object {
+      "old_value": 96.05958673714561,
+      "override": "Adjusted from Def 3P%",
+      "value": 96.34056081359675,
+    },
+    "def_scramble": Object {
+      "value": 0.08527071563674632,
+    },
+    "def_scramble_2p": Object {
+      "value": 0.4766355140186916,
+    },
+    "def_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "def_scramble_2pmid": Object {
+      "value": 0.2916666666666667,
+    },
+    "def_scramble_2pmid_ast": Object {
+      "value": 0.42857142857142855,
+    },
+    "def_scramble_2pmidr": Object {
+      "value": 0.16901408450704225,
+    },
+    "def_scramble_2prim": Object {
+      "value": 0.5301204819277109,
+    },
+    "def_scramble_2prim_ast": Object {
+      "value": 0.06818181818181818,
+    },
+    "def_scramble_2primr": Object {
+      "value": 0.5845070422535211,
+    },
+    "def_scramble_3p": Object {
+      "value": 0.42857142857142855,
+    },
+    "def_scramble_3p_ast": Object {
+      "value": 0.9333333333333333,
+    },
+    "def_scramble_3pr": Object {
+      "value": 0.24647887323943662,
+    },
+    "def_scramble_assist": Object {
+      "value": 0.30303030303030304,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 8.196096883864556,
+    },
+    "def_scramble_efg": Object {
+      "value": 0.5176056338028169,
+    },
+    "def_scramble_ft": Object {
+      "value": 0.59375,
+    },
+    "def_scramble_ftr": Object {
+      "value": 0.4507042253521127,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0.583711708026543,
+    },
+    "def_scramble_ppp": Object {
+      "value": 104.25568362101016,
+    },
+    "def_scramble_to": Object {
+      "value": 0.14088605894731104,
+    },
+    "def_to": Object {
+      "value": 0.17443536761172512,
+    },
+    "def_trans": Object {
+      "value": 0.19610764055742433,
+    },
+    "def_trans_2p": Object {
+      "value": 0.5286624203821656,
+    },
+    "def_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "def_trans_2pmid": Object {
+      "value": 0.3888888888888889,
+    },
+    "def_trans_2pmid_ast": Object {
+      "value": 0.14285714285714285,
+    },
+    "def_trans_2pmidr": Object {
+      "value": 0.13043478260869565,
+    },
+    "def_trans_2prim": Object {
+      "value": 0.5702479338842975,
+    },
+    "def_trans_2prim_ast": Object {
+      "value": 0.5072463768115942,
+    },
+    "def_trans_2primr": Object {
+      "value": 0.4384057971014493,
+    },
+    "def_trans_3p": Object {
+      "value": 0.35294117647058826,
+    },
+    "def_trans_3p_ast": Object {
+      "value": 0.8333333333333334,
+    },
+    "def_trans_3pr": Object {
+      "value": 0.4311594202898551,
+    },
+    "def_trans_assist": Object {
+      "value": 0.576,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": -5.395533808941735,
+    },
+    "def_trans_efg": Object {
+      "value": 0.5289855072463768,
+    },
+    "def_trans_ft": Object {
+      "value": 0.6724137931034483,
+    },
+    "def_trans_ftr": Object {
+      "value": 0.42028985507246375,
+    },
+    "def_trans_ppp": Object {
+      "value": 90.66405292820387,
+    },
+    "def_trans_to": Object {
+      "value": 0.18867924528301885,
+    },
+    "doc_count": 594,
+    "duration_mins": Object {
+      "value": 1000,
+    },
+    "gender": "Men",
+    "off_2p": Object {
+      "value": 0.5014866204162537,
+    },
+    "off_2p_ast": Object {
+      "value": 0,
+    },
+    "off_2pmid": Object {
+      "value": 0.28895184135977336,
+    },
+    "off_2pmid_ast": Object {
+      "value": 0.27450980392156865,
+    },
+    "off_2pmidr": Object {
+      "value": 0.19898534385569336,
+    },
+    "off_2prim": Object {
+      "value": 0.6158536585365854,
+    },
+    "off_2prim_ast": Object {
+      "value": 0.4430693069306931,
+    },
+    "off_2primr": Object {
+      "value": 0.3697857948139797,
+    },
+    "off_3p": Object {
+      "value": 0.3111111111111111,
+    },
+    "off_3p_ast": Object {
+      "value": 0.8487394957983193,
+    },
+    "off_3pr": Object {
+      "value": 0.43122886133032695,
+    },
+    "off_adj_opp": Object {
+      "value": 107.58303700144161,
+    },
+    "off_adj_ppp": Object {
+      "value": 113.24062028551026,
+    },
+    "off_assist": Object {
+      "value": 0.5497311827956989,
+    },
+    "off_ast_3p": Object {
+      "value": 0.4938875305623472,
+    },
+    "off_ast_mid": Object {
+      "value": 0.06845965770171149,
+    },
+    "off_ast_rim": Object {
+      "value": 0.43765281173594134,
+    },
+    "off_efg": Object {
+      "value": 0.48647125140924463,
+    },
+    "off_ft": Object {
+      "value": 0.7473841554559043,
+    },
+    "off_ftr": Object {
+      "value": 0.37711386696730553,
+    },
+    "off_net": Object {
+      "old_value": 21.655669059664973,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 21.388753833866677,
+    },
+    "off_orb": Object {
+      "value": 0.31216457960644006,
+    },
+    "off_poss": Object {
+      "value": 2077,
+    },
+    "off_ppp": Object {
+      "value": 107.1738083774675,
+    },
+    "off_scramble": Object {
+      "value": 0.10780838866433026,
+    },
+    "off_scramble_2p": Object {
+      "value": 0.5755395683453237,
+    },
+    "off_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2pmid": Object {
+      "value": 0.3157894736842105,
+    },
+    "off_scramble_2pmid_ast": Object {
+      "value": 0.6666666666666666,
+    },
+    "off_scramble_2pmidr": Object {
+      "value": 0.10326086956521739,
+    },
+    "off_scramble_2prim": Object {
+      "value": 0.6166666666666667,
+    },
+    "off_scramble_2prim_ast": Object {
+      "value": 0.08108108108108109,
+    },
+    "off_scramble_2primr": Object {
+      "value": 0.6521739130434783,
+    },
+    "off_scramble_3p": Object {
+      "value": 0.28888888888888886,
+    },
+    "off_scramble_3p_ast": Object {
+      "value": 0.9230769230769231,
+    },
+    "off_scramble_3pr": Object {
+      "value": 0.24456521739130435,
+    },
+    "off_scramble_assist": Object {
+      "value": 0.23655913978494625,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 8.046930109156818,
+    },
+    "off_scramble_efg": Object {
+      "value": 0.5407608695652174,
+    },
+    "off_scramble_ft": Object {
+      "value": 0.6781609195402298,
+    },
+    "off_scramble_ftr": Object {
+      "value": 0.47282608695652173,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0.6415989205037649,
+    },
+    "off_scramble_ppp": Object {
+      "value": 115.22073848662431,
+    },
+    "off_scramble_to": Object {
+      "value": 0.12057984260228126,
+    },
+    "off_to": Object {
+      "value": 0.16947520462205104,
+    },
+    "off_trans": Object {
+      "value": 0.24058738565238325,
+    },
+    "off_trans_2p": Object {
+      "value": 0.6779661016949152,
+    },
+    "off_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "off_trans_2pmid": Object {
+      "value": 0.37037037037037035,
+    },
+    "off_trans_2pmid_ast": Object {
+      "value": 0.3,
+    },
+    "off_trans_2pmidr": Object {
+      "value": 0.08544303797468354,
+    },
+    "off_trans_2prim": Object {
+      "value": 0.7333333333333333,
+    },
+    "off_trans_2prim_ast": Object {
+      "value": 0.5727272727272728,
+    },
+    "off_trans_2primr": Object {
+      "value": 0.47468354430379744,
+    },
+    "off_trans_3p": Object {
+      "value": 0.30935251798561153,
+    },
+    "off_trans_3p_ast": Object {
+      "value": 0.8372093023255814,
+    },
+    "off_trans_3pr": Object {
+      "value": 0.439873417721519,
+    },
+    "off_trans_assist": Object {
+      "value": 0.6257668711656442,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0.0905502377016063,
+    },
+    "off_trans_efg": Object {
+      "value": 0.5838607594936709,
+    },
+    "off_trans_ft": Object {
+      "value": 0.7877358490566038,
+    },
+    "off_trans_ftr": Object {
+      "value": 0.6708860759493671,
+    },
+    "off_trans_ppp": Object {
+      "value": 107.2643586151691,
+    },
+    "off_trans_to": Object {
+      "value": 0.16609965979587754,
+    },
+    "opponents": Array [],
+    "team_name": "Maryland",
+    "tempo": Object {
+      "value": 83.16,
+    },
+    "total_def_2p_ast": Object {
+      "value": 0,
+    },
+    "total_def_2p_attempts": Object {
+      "value": 1133,
+    },
+    "total_def_2p_made": Object {
+      "value": 504,
+    },
+    "total_def_2pmid_ast": Object {
+      "value": 55,
+    },
+    "total_def_2pmid_attempts": Object {
+      "value": 551,
+    },
+    "total_def_2pmid_made": Object {
+      "value": 169,
+    },
+    "total_def_2prim_ast": Object {
+      "value": 151,
+    },
+    "total_def_2prim_attempts": Object {
+      "value": 582,
+    },
+    "total_def_2prim_made": Object {
+      "value": 335,
+    },
+    "total_def_3p_ast": Object {
+      "value": 194,
+    },
+    "total_def_3p_attempts": Object {
+      "value": 698,
+    },
+    "total_def_3p_made": Object {
+      "value": 227,
+    },
+    "total_def_assist": Object {
+      "value": 400,
+    },
+    "total_def_ast_3p": Object {
+      "value": 194,
+    },
+    "total_def_ast_mid": Object {
+      "value": 55,
+    },
+    "total_def_ast_rim": Object {
+      "value": 151,
+    },
+    "total_def_blk": Object {
+      "value": 110,
+    },
+    "total_def_drb": Object {
+      "value": 769,
+    },
+    "total_def_fga": Object {
+      "value": 1831,
+    },
+    "total_def_fgm": Object {
+      "value": 731,
+    },
+    "total_def_foul": Object {
+      "value": 588,
+    },
+    "total_def_fta": Object {
+      "value": 444,
+    },
+    "total_def_ftm": Object {
+      "value": 310,
+    },
+    "total_def_orb": Object {
+      "value": 304,
+    },
+    "total_def_poss": Object {
+      "value": 2081,
+    },
+    "total_def_pts": Object {
+      "value": 1999,
+    },
+    "total_def_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "total_def_scramble_2p_attempts": Object {
+      "value": 107,
+    },
+    "total_def_scramble_2p_made": Object {
+      "value": 51,
+    },
+    "total_def_scramble_2pmid_ast": Object {
+      "value": 3,
+    },
+    "total_def_scramble_2pmid_attempts": Object {
+      "value": 24,
+    },
+    "total_def_scramble_2pmid_made": Object {
+      "value": 7,
+    },
+    "total_def_scramble_2prim_ast": Object {
+      "value": 3,
+    },
+    "total_def_scramble_2prim_attempts": Object {
+      "value": 83,
+    },
+    "total_def_scramble_2prim_made": Object {
+      "value": 44,
+    },
+    "total_def_scramble_3p_ast": Object {
+      "value": 14,
+    },
+    "total_def_scramble_3p_attempts": Object {
+      "value": 35,
+    },
+    "total_def_scramble_3p_made": Object {
+      "value": 15,
+    },
+    "total_def_scramble_assist": Object {
+      "value": 20,
+    },
+    "total_def_scramble_fga": Object {
+      "value": 142,
+    },
+    "total_def_scramble_fgm": Object {
+      "value": 66,
+    },
+    "total_def_scramble_fta": Object {
+      "value": 64,
+    },
+    "total_def_scramble_ftm": Object {
+      "value": 38,
+    },
+    "total_def_scramble_poss": Object {
+      "value": 177.4483592400691,
+    },
+    "total_def_scramble_pts": Object {
+      "value": 185,
+    },
+    "total_def_scramble_to": Object {
+      "value": 25,
+    },
+    "total_def_stl": Object {
+      "value": 170,
+    },
+    "total_def_to": Object {
+      "value": 363,
+    },
+    "total_def_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "total_def_trans_2p_attempts": Object {
+      "value": 157,
+    },
+    "total_def_trans_2p_made": Object {
+      "value": 83,
+    },
+    "total_def_trans_2pmid_ast": Object {
+      "value": 2,
+    },
+    "total_def_trans_2pmid_attempts": Object {
+      "value": 36,
+    },
+    "total_def_trans_2pmid_made": Object {
+      "value": 14,
+    },
+    "total_def_trans_2prim_ast": Object {
+      "value": 35,
+    },
+    "total_def_trans_2prim_attempts": Object {
+      "value": 121,
+    },
+    "total_def_trans_2prim_made": Object {
+      "value": 69,
+    },
+    "total_def_trans_3p_ast": Object {
+      "value": 35,
+    },
+    "total_def_trans_3p_attempts": Object {
+      "value": 119,
+    },
+    "total_def_trans_3p_made": Object {
+      "value": 42,
+    },
+    "total_def_trans_assist": Object {
+      "value": 72,
+    },
+    "total_def_trans_fga": Object {
+      "value": 276,
+    },
+    "total_def_trans_fgm": Object {
+      "value": 125,
+    },
+    "total_def_trans_fta": Object {
+      "value": 116,
+    },
+    "total_def_trans_ftm": Object {
+      "value": 78,
+    },
+    "total_def_trans_poss": Object {
+      "value": 408.1,
+    },
+    "total_def_trans_pts": Object {
+      "value": 370,
+    },
+    "total_def_trans_to": Object {
+      "value": 77,
+    },
+    "total_off_2p_ast": Object {
+      "value": 0,
+    },
+    "total_off_2p_attempts": Object {
+      "value": 1009,
+    },
+    "total_off_2p_made": Object {
+      "value": 506,
+    },
+    "total_off_2pmid_ast": Object {
+      "value": 28,
+    },
+    "total_off_2pmid_attempts": Object {
+      "value": 353,
+    },
+    "total_off_2pmid_made": Object {
+      "value": 102,
+    },
+    "total_off_2prim_ast": Object {
+      "value": 179,
+    },
+    "total_off_2prim_attempts": Object {
+      "value": 656,
+    },
+    "total_off_2prim_made": Object {
+      "value": 404,
+    },
+    "total_off_3p_ast": Object {
+      "value": 202,
+    },
+    "total_off_3p_attempts": Object {
+      "value": 765,
+    },
+    "total_off_3p_made": Object {
+      "value": 238,
+    },
+    "total_off_assist": Object {
+      "value": 409,
+    },
+    "total_off_ast_3p": Object {
+      "value": 202,
+    },
+    "total_off_ast_mid": Object {
+      "value": 28,
+    },
+    "total_off_ast_rim": Object {
+      "value": 179,
+    },
+    "total_off_blk": Object {
+      "value": 134,
+    },
+    "total_off_drb": Object {
+      "value": 854,
+    },
+    "total_off_fga": Object {
+      "value": 1774,
+    },
+    "total_off_fgm": Object {
+      "value": 744,
+    },
+    "total_off_foul": Object {
+      "value": 463,
+    },
+    "total_off_fta": Object {
+      "value": 669,
+    },
+    "total_off_ftm": Object {
+      "value": 500,
+    },
+    "total_off_orb": Object {
+      "value": 349,
+    },
+    "total_off_poss": Object {
+      "value": 2077,
+    },
+    "total_off_pts": Object {
+      "value": 2226,
+    },
+    "total_off_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "total_off_scramble_2p_attempts": Object {
+      "value": 139,
+    },
+    "total_off_scramble_2p_made": Object {
+      "value": 80,
+    },
+    "total_off_scramble_2pmid_ast": Object {
+      "value": 4,
+    },
+    "total_off_scramble_2pmid_attempts": Object {
+      "value": 19,
+    },
+    "total_off_scramble_2pmid_made": Object {
+      "value": 6,
+    },
+    "total_off_scramble_2prim_ast": Object {
+      "value": 6,
+    },
+    "total_off_scramble_2prim_attempts": Object {
+      "value": 120,
+    },
+    "total_off_scramble_2prim_made": Object {
+      "value": 74,
+    },
+    "total_off_scramble_3p_ast": Object {
+      "value": 12,
+    },
+    "total_off_scramble_3p_attempts": Object {
+      "value": 45,
+    },
+    "total_off_scramble_3p_made": Object {
+      "value": 13,
+    },
+    "total_off_scramble_assist": Object {
+      "value": 22,
+    },
+    "total_off_scramble_fga": Object {
+      "value": 184,
+    },
+    "total_off_scramble_fgm": Object {
+      "value": 93,
+    },
+    "total_off_scramble_fta": Object {
+      "value": 87,
+    },
+    "total_off_scramble_ftm": Object {
+      "value": 59,
+    },
+    "total_off_scramble_poss": Object {
+      "value": 223.91802325581395,
+    },
+    "total_off_scramble_pts": Object {
+      "value": 258,
+    },
+    "total_off_scramble_to": Object {
+      "value": 27,
+    },
+    "total_off_stl": Object {
+      "value": 142,
+    },
+    "total_off_to": Object {
+      "value": 352,
+    },
+    "total_off_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "total_off_trans_2p_attempts": Object {
+      "value": 177,
+    },
+    "total_off_trans_2p_made": Object {
+      "value": 120,
+    },
+    "total_off_trans_2pmid_ast": Object {
+      "value": 3,
+    },
+    "total_off_trans_2pmid_attempts": Object {
+      "value": 27,
+    },
+    "total_off_trans_2pmid_made": Object {
+      "value": 10,
+    },
+    "total_off_trans_2prim_ast": Object {
+      "value": 63,
+    },
+    "total_off_trans_2prim_attempts": Object {
+      "value": 150,
+    },
+    "total_off_trans_2prim_made": Object {
+      "value": 110,
+    },
+    "total_off_trans_3p_ast": Object {
+      "value": 36,
+    },
+    "total_off_trans_3p_attempts": Object {
+      "value": 139,
+    },
+    "total_off_trans_3p_made": Object {
+      "value": 43,
+    },
+    "total_off_trans_assist": Object {
+      "value": 102,
+    },
+    "total_off_trans_fga": Object {
+      "value": 316,
+    },
+    "total_off_trans_fgm": Object {
+      "value": 163,
+    },
+    "total_off_trans_fta": Object {
+      "value": 212,
+    },
+    "total_off_trans_ftm": Object {
+      "value": 167,
+    },
+    "total_off_trans_poss": Object {
+      "value": 499.7,
+    },
+    "total_off_trans_pts": Object {
+      "value": 536,
+    },
+    "total_off_trans_to": Object {
+      "value": 83,
+    },
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southland Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Abilene Christian",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Akron",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Alabama",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Arizona",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Arizona St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Arkansas",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Auburn",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "BYU",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Ball St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Baylor",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Ohio Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Belmont",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mountain West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Boise St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Boston College",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Bowling Green",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Missouri Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Bradley",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Buffalo",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Butler",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "CSU Bakersfield",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "California",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Cincinnati",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Clemson",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Patriot League",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Colgate",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Colorado",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mountain West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Colorado St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Creighton",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Davidson",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Dayton",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "DePaul",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Missouri Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Drake",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Duke",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Duquesne",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "ETSU",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Sky Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Eastern Wash.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Florida",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Florida St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Furman",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "George Mason",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Georgetown",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Georgia",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Georgia Tech",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Gonzaga",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Western Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Grand Canyon",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Houston",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Illinois",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Indiana",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Missouri Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Indiana St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Iowa",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Iowa St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Kansas",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Kansas St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Kent St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Kentucky",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "LMU (CA)",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "LSU",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "ASUN Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Liberty",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Conference USA",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Louisiana Tech",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Louisville",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Missouri Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Loyola Chicago",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Marquette",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Conference USA",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Marshall",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Massachusetts",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Memphis",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Mercer",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Miami (FL)",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Michigan",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Michigan St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Minnesota",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Mississippi St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Missouri",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Missouri Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Missouri St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Ohio Valley Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Morehead St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "NC State",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Nebraska",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mountain West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Nevada",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Western Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "New Mexico St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "North Carolina",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Summit League",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "North Dakota St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Conference USA",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "North Texas",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Northwestern",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Notre Dame",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Ohio",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Ohio St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Oklahoma",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Oklahoma St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Ole Miss",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Summit League",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Oral Roberts",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Oregon",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Oregon St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Pacific",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Penn St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Pepperdine",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Pittsburgh",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Providence",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Purdue",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Rhode Island",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Richmond",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Rutgers",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "SMU",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Saint Louis",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Saint Mary's (CA)",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mountain West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "San Diego St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "San Francisco",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "West Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Santa Clara",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Seton Hall",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "South Carolina",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Summit League",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "South Dakota St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Southern California",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Sky Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Southern Utah",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "St. Bonaventure",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "St. John's (NY)",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Stanford",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Syracuse",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "TCU",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Temple",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Tennessee",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Texas",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Texas A&M",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Texas Tech",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mid American Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Toledo",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Tulane",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Tulsa",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Conference USA",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UAB",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UC Irvine",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UC Riverside",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UC Santa Barbara",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UCF",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UCLA",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UConn",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UNC Greensboro",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Conference USA",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "UTEP",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Utah",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Mountain West Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Utah St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic 10 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "VCU",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southeastern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Vanderbilt",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "America East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Vermont",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Villanova",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Virginia",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Virginia Tech",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Atlantic Coast Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Wake Forest",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Washington",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Pac 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Washington St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Sky Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Weber St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big 12 Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "West Virginia",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Conference USA",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Western Ky.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "American Athletic Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Wichita St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big South Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Winthrop",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big Ten Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Wisconsin",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Southern Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Wofford",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Horizon League",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Wright St.",
+    "year": "2020/21",
+  },
+  Object {
+    "conf": "Big East Conference",
+    "def_scramble": Object {
+      "value": 0,
+    },
+    "def_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "def_scramble_ppp": Object {
+      "value": 0,
+    },
+    "def_trans": Object {
+      "value": 0,
+    },
+    "def_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "def_trans_ppp": Object {
+      "value": 0,
+    },
+    "gender": "Men",
+    "off_scramble": Object {
+      "value": 0,
+    },
+    "off_scramble_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_scramble_per_orb": Object {
+      "value": 0,
+    },
+    "off_scramble_ppp": Object {
+      "value": 0,
+    },
+    "off_trans": Object {
+      "value": 0,
+    },
+    "off_trans_delta_ppp": Object {
+      "value": 0,
+    },
+    "off_trans_ppp": Object {
+      "value": 0,
+    },
+    "opponents": Array [],
+    "team_name": "Xavier",
+    "year": "2020/21",
+  },
+]
+`;
+
 exports[`buildLeaderboards buildLeaderboards - main / division player stats 1`] = `
 Object {
   "compression_factor": 3,
