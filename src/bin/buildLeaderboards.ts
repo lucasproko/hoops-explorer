@@ -706,15 +706,17 @@ export async function main() {
                   : [];
               })
               .value();
-            detailedTeamInfo.push({
-              team_name: fullRequestModel.team,
-              gender: fullRequestModel.gender,
-              year: fullRequestModel.year,
-              conf: conference,
-              opponents: oppoInfo,
-              ...teamBaselineWithLuck,
-              ...extraFields,
-            });
+            if (inNaturalTier)
+              //(only store detailed stats for each team once, regardless of tier overlaps)
+              detailedTeamInfo.push({
+                team_name: fullRequestModel.team,
+                gender: fullRequestModel.gender,
+                year: fullRequestModel.year,
+                conf: conference,
+                opponents: oppoInfo,
+                ...teamBaselineWithLuck,
+                ...extraFields,
+              });
             teamInfo.push({
               team_name: fullRequestModel.team,
               gender: fullRequestModel.gender,
@@ -1670,7 +1672,7 @@ if (!testMode) {
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
 
           const detailedTeamWritePromise =
-            detailedTeamInfo.length > 0
+            "all" == kv[0] && detailedTeamInfo.length > 0
               ? fs.writeFile(
                   `${detailedTeamFilename}`,
                   JSON.stringify(
