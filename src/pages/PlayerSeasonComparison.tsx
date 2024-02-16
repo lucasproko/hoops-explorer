@@ -343,7 +343,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
             gender: currGender,
             year: DateUtils.getLastSeasonWithDataFrom(currYear),
           }}
-          thisPage={`${ParamPrefixes.player}_leaderboard`}
+          thisPage={`${ParamPrefixes.player}_chart`}
         />
       </Row>
       <Row className="mt-3">{table}</Row>

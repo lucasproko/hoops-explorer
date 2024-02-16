@@ -313,7 +313,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
             gender: currGender,
             year: DateUtils.getLastSeasonWithDataFrom(currYear),
           }}
-          thisPage={`${ParamPrefixes.player}_chart`}
+          thisPage={`${ParamPrefixes.player}_leaderboard`}
         />
       </Row>
       <Row className="mt-3">{table}</Row>

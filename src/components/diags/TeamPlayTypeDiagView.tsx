@@ -32,6 +32,7 @@ import {
   TeamStatSet,
 } from "../../utils/StatModels";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
+import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
 
 type Props = {
   title: string;
@@ -63,9 +64,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
           ?.teamStats
       : teamStatsIn) || StatModels.emptyTeam();
 
-  const [tableType, setTableType] = useState<"scoring" | "usage">(
+  const [tableType, setTableType] = useState<"scoring" | "usage" | "breakdown">(
     FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)
-      ? "usage"
+      ? "breakdown"
       : "scoring"
   );
 
@@ -305,6 +306,19 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
     </a>
   );
 
+  const breakdownToggle = maybeBold(
+    "breakdown",
+    <a
+      href="#"
+      onClick={(event) => {
+        event.preventDefault();
+        setTableType("breakdown");
+      }}
+    >
+      Play Types
+    </a>
+  );
+
   return (
     <span>
       {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
@@ -319,26 +333,36 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       </span>
       {FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis) ? (
         <span>
-          ({scoringToggle} // {usageToggle})
+          ({scoringToggle} // {usageToggle} // {breakdownToggle})
         </span>
       ) : null}
       <br />
       <br />
-      <Container>
-        <Col xs={10}>
-          <GenericTable
-            responsive={false}
-            tableCopyId="teamAssistNetworks"
-            tableFields={PlayTypeDiagUtils.rawAssistTableFields(
-              false,
-              true,
-              tableType,
-              tableType == "usage"
-            )}
-            tableData={rawAssistTableData}
-          />
-        </Col>
-      </Container>
+      {tableType == "breakdown" ? (
+        <TeamPlayTypeDiagRadar
+          players={players}
+          rosterStatsByCode={rosterStatsByCode}
+          teamStats={teamStats}
+          teamSeasonLookup={teamSeasonLookup}
+          showHelp={showHelp}
+        />
+      ) : (
+        <Container>
+          <Col xs={10}>
+            <GenericTable
+              responsive={false}
+              tableCopyId="teamAssistNetworks"
+              tableFields={PlayTypeDiagUtils.rawAssistTableFields(
+                false,
+                true,
+                tableType,
+                tableType == "usage"
+              )}
+              tableData={rawAssistTableData}
+            />
+          </Col>
+        </Container>
+      )}
     </span>
   );
 };
