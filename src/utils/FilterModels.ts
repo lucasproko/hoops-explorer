@@ -1,14 +1,17 @@
 import { DateUtils } from "./DateUtils";
 
-/** Typescript limitations - also have to repeat this for ParamPrefixesType */
+/** Typescript limitations - also have to repeat this for ParamPrefixesType
+ * (in addition to being used as a cache key, this is used to determine when a HeaderBar dropdown is a same-page refresh)
+ */
 export class ParamPrefixes {
   static readonly game = "game-"; //(this is on-off / team info)
   static readonly lineup = "lineup-";
   static readonly lineupStints = "lineupStints-";
-  static readonly report = "report-"; //(not used currrently, we re-use lineup)
+  static readonly report = "report-"; //(only used for HeaderBar, we re-use lineup for AP requests)
   static readonly roster = "roster-";
   static readonly player = "player-";
   static readonly gameInfo = "gameInfo-";
+  static readonly team = "team-"; //(only used for HeaderBar)
 }
 export type ParamPrefixesType =
   | "game-"

@@ -43,7 +43,7 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
           "year": "",
         }
       }
-      thisPage="player-_leaderboard"
+      thisPage="team-_editor"
     />
   </Row>
   <Row

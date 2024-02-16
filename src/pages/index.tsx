@@ -336,7 +336,7 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
             gender: currGender,
             year: DateUtils.getLastSeasonWithDataFrom(currYear),
           }}
-          thisPage={`${ParamPrefixes.game}_leaderboard`}
+          thisPage={`${ParamPrefixes.team}_leaderboard`}
         />
       </Row>
       <Row className="mt-3">{table}</Row>

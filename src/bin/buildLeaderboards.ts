@@ -716,6 +716,7 @@ export async function main() {
                 opponents: oppoInfo,
                 ...teamBaselineWithLuck,
                 ...extraFields,
+                game_info: undefined, //(unset game_info, it's already covered more efficiently via oppoInfo)
               });
             teamInfo.push({
               team_name: fullRequestModel.team,

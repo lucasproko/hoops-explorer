@@ -22,7 +22,8 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
       xs={12}
     >
       <h3>
-        CBB Player Leaderboard 
+        CBB Player Leaderboard
+         
         <span
           className="badge badge-pill badge-info"
         >
@@ -42,7 +43,7 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
           "year": "",
         }
       }
-      thisPage="player-_leaderboard"
+      thisPage="player-_chart"
     />
   </Row>
   <Row

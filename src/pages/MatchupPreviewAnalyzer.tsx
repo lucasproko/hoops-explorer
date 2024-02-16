@@ -226,7 +226,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       <Row>
         <HeaderBar
           common={matchupFilterParams}
-          thisPage={ParamPrefixes.gameInfo}
+          thisPage={`${ParamPrefixes.gameInfo}_preview`}
         />
       </Row>
       <Row>

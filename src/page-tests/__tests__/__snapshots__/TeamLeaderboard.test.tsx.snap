@@ -43,7 +43,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
           "year": "2023/24",
         }
       }
-      thisPage="game-_leaderboard"
+      thisPage="team-_leaderboard"
     />
   </Row>
   <Row
