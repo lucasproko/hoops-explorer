@@ -18,7 +18,9 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
           href=""
           onClick={[Function]}
         >
-          Teams
+          <b>
+            Teams
+          </b>
             
           <svg
             aria-hidden="true"
@@ -51,7 +53,9 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
           href=""
           onClick={[Function]}
         >
-          Players
+          <b>
+            Players
+          </b>
             
           <svg
             aria-hidden="true"
@@ -239,7 +243,9 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
           href=""
           onClick={[Function]}
         >
-          Lineups
+          <b>
+            Lineups
+          </b>
             
           <svg
             aria-hidden="true"
@@ -361,7 +367,9 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
           href=""
           onClick={[Function]}
         >
-          Players
+          <b>
+            Players
+          </b>
             
           <svg
             aria-hidden="true"

@@ -372,7 +372,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     marginLeft: "-20px",
   };
 
-  const buildTeamDropdown = () => {
+  const buildTeamDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
       showRoster: true,
       calcRapm: true,
@@ -384,7 +384,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           id="chartDropDown"
           as={StyledDropdown as unknown as undefined}
         >
-          Teams
+          {highlight ? <b>Teams</b> : "Teams"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
@@ -442,7 +442,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     );
   };
 
-  const buildPlayerDropdown = () => {
+  const buildPlayerDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
       showRoster: true,
       calcRapm: true,
@@ -454,7 +454,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           id="chartDropDown"
           as={StyledDropdown as unknown as undefined}
         >
-          Players
+          {highlight ? <b>Players</b> : "Players"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
@@ -536,14 +536,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     );
   };
 
-  const buildLineupDropdown = () => {
+  const buildLineupDropdown = (highlight: Boolean) => {
     return (
       <Dropdown>
         <Dropdown.Toggle
           id="chartDropDown"
           as={StyledDropdown as unknown as undefined}
         >
-          Lineups
+          {highlight ? <b>Lineups</b> : "Lineups"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
@@ -592,7 +592,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     );
   };
 
-  const buildGameDropdown = () => {
+  const buildGameDropdown = (highlight: Boolean) => {
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
     return (
       <Dropdown>
@@ -600,7 +600,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           id={getBaseReportUrl()}
           as={StyledDropdown as unknown as undefined}
         >
-          {"Games"}
+          {highlight ? <b>Games</b> : "Games"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
@@ -655,10 +655,26 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   return override || typeof window !== `undefined` ? (
     <Container>
       <Row className="border-top">
-        <Col className="text-center small">{buildTeamDropdown()}</Col>
-        <Col className="text-center small">{buildPlayerDropdown()}</Col>
-        <Col className="text-center small">{buildLineupDropdown()}</Col>
-        <Col className="text-center small">{buildGameDropdown()}</Col>
+        <Col className="text-center small">
+          {buildTeamDropdown(
+            _.startsWith(thisPage, ParamPrefixes.team) ||
+              _.startsWith(thisPage, ParamPrefixes.game)
+          )}
+        </Col>
+        <Col className="text-center small">
+          {buildPlayerDropdown(
+            _.startsWith(thisPage, ParamPrefixes.player) ||
+              _.startsWith(thisPage, ParamPrefixes.game) ||
+              _.startsWith(thisPage, ParamPrefixes.report) ||
+              thisPage == "charts"
+          )}
+        </Col>
+        <Col className="text-center small">
+          {buildLineupDropdown(_.startsWith(thisPage, ParamPrefixes.lineup))}
+        </Col>
+        <Col className="text-center small">
+          {buildGameDropdown(_.startsWith(thisPage, ParamPrefixes.gameInfo))}
+        </Col>
         {maybeShowBlog()}
       </Row>
     </Container>
