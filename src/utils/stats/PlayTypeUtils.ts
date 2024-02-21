@@ -8,6 +8,7 @@ import {
   Statistic,
   RosterStatsByCode,
 } from "../StatModels";
+import { LuckUtils } from "./LuckUtils";
 
 export type PosFamily = "ballhandler" | "wing" | "big";
 export const PosFamilyNames: PosFamily[] = ["ballhandler", "wing", "big"];
@@ -562,11 +563,36 @@ export class PlayTypeUtils {
     //(for pts/100 and % of plays we care about field goals made and missed)
     //(note always use FTA*ftaMult though, scoring plays == plays in this case - later on for the numerator we use FTM in some cases)
 
-    //TODO: OK but here's the issue .... ALL MISSES ARE UNASSISTED
+    // OK but here's the issue .... ALL MISSES ARE UNASSISTED
     // so need to split the misses out from UA to A (half court only since we won't categorize scramble/transition further)
     // AND the way in which we do that actually depends on the inferred play type
     // which we don't have yet :( .. for 3PAs it's fairly easy so we should probably do that first!
-    const needToSplitOutUnassistedMisses = playStyleType == "playsPct";
+    //TODO: OK this works for unassisted 3P%, but not for assisted 3P% (probably that gets calculated via different calcs)
+    const shotAdjustments: Record<string, number> = _.thru(
+      playStyleType == "playsPct",
+      (needToSplitOutUnassistedMisses) => {
+        if (needToSplitOutUnassistedMisses) {
+          const shotDecompInfo = LuckUtils.calcOffPlayerLuckAdj(
+            player,
+            player,
+            100.0
+          ); //(the avgEff doesn't matter)
+          const maybePlayer3PInfo = _.values(shotDecompInfo.player3PInfo)[0];
+          if (maybePlayer3PInfo) {
+            //(undefined if the player has taken no shots)
+            const { fgM_ast, fgM_unast } =
+              LuckUtils.decomposeUnknown3PMisses(maybePlayer3PInfo);
+
+            return {
+              "3p": fgM_ast,
+              //increase the number of assisted shots by this number...
+              //...thus reduce the number of unassisted shots by the same number
+            };
+          }
+        }
+        return {} as Record<string, number>;
+      }
+    );
 
     const totalShotsCount = player[`total_off_${totalSuffix}`]?.value || 0;
     const totalFtTripsMadeForDenom =
@@ -710,8 +736,12 @@ export class PlayTypeUtils {
           0; //(half court/transition/scramble)
         const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
         const unassisted = shots - assisted;
+        const assistedMissAdjustment = shotAdjustments[key] || 0; //(these are added to the assisted shot total, so removed here)
         const unassistedHalfCourt =
-          unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
+          unassisted -
+          scrambleTotal[key]![2]! -
+          transitionTotal[key]![2]! -
+          assistedMissAdjustment;
         const unassistedToUse = separateHalfCourt
           ? unassistedHalfCourt
           : unassisted;
@@ -749,8 +779,12 @@ export class PlayTypeUtils {
     const assistToUseTotalsRow = shotTypes
       .map((key) => {
         const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
+        const assistedMissAdjustment = shotAdjustments[key] || 0; //(these are added to the assisted shot total)
         const assistedHalfCourt =
-          assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
+          assisted -
+          scrambleTotal[key]![1]! -
+          transitionTotal[key]![1]! +
+          assistedMissAdjustment;
         const assistedToUse = separateHalfCourt ? assistedHalfCourt : assisted;
 
         return [
@@ -790,7 +824,11 @@ export class PlayTypeUtils {
 
     //DEBUG INFO:
     // console.log(
-    //   `${player.key}: ${playStyleType}: ${JSON.stringify(retVal, null, 3)}`
+    //   `${player.key}: ${playStyleType}: ${JSON.stringify(
+    //     retVal,
+    //     null,
+    //     3
+    //   )} [${JSON.stringify(shotAdjustments)}]`
     // );
 
     return retVal;
