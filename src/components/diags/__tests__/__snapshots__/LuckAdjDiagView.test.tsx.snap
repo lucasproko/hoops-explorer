@@ -163,7 +163,34 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                144: 15 / 7 / 29 / 15 / 78
+                144: 15 / 7 / 29 / 15
+                 / 
+                <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="name_0"
+                      placement="right"
+                    >
+                      Half court estimates:
+                      <br />
+                      Off-pass misses: 
+                      39.7
+                      <br />
+                      Off-dribble misses: 
+                      38.3
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <span>
+                    78
+                    <small>
+                      <sup>
+                        *
+                      </sup>
+                    </small>
+                  </span>
+                </OverlayTrigger>
               </b>
               ] Base_3P%=[
               <b>
@@ -180,7 +207,34 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                133: 28 / 7 / 35 / 3 / 60
+                133: 28 / 7 / 35 / 3
+                 / 
+                <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="name_1"
+                      placement="right"
+                    >
+                      Half court estimates:
+                      <br />
+                      Off-pass misses: 
+                      51.5
+                      <br />
+                      Off-dribble misses: 
+                      8.5
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <span>
+                    60
+                    <small>
+                      <sup>
+                        *
+                      </sup>
+                    </small>
+                  </span>
+                </OverlayTrigger>
               </b>
               ] Base_3P%=[
               <b>
@@ -709,7 +763,34 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                144: 15 / 7 / 29 / 15 / 78
+                144: 15 / 7 / 29 / 15
+                 / 
+                <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="name_0"
+                      placement="right"
+                    >
+                      Half court estimates:
+                      <br />
+                      Off-pass misses: 
+                      39.7
+                      <br />
+                      Off-dribble misses: 
+                      38.3
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <span>
+                    78
+                    <small>
+                      <sup>
+                        *
+                      </sup>
+                    </small>
+                  </span>
+                </OverlayTrigger>
               </b>
               ] Base_3P%=[
               <b>
@@ -726,7 +807,34 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                133: 28 / 7 / 35 / 3 / 60
+                133: 28 / 7 / 35 / 3
+                 / 
+                <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="name_1"
+                      placement="right"
+                    >
+                      Half court estimates:
+                      <br />
+                      Off-pass misses: 
+                      51.5
+                      <br />
+                      Off-dribble misses: 
+                      8.5
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <span>
+                    60
+                    <small>
+                      <sup>
+                        *
+                      </sup>
+                    </small>
+                  </span>
+                </OverlayTrigger>
               </b>
               ] Base_3P%=[
               <b>

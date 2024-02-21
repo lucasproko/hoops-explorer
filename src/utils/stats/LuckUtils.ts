@@ -716,4 +716,14 @@ export class LuckUtils {
         info.base3P
     );
   };
+
+  /** Splits unknown misses into an estimate of whether they would have been ast or unast if they'd been scores */
+  static readonly decomposeUnknown3PMisses = (
+    info: OffLuckShotTypeAndAdj3P
+  ): { fgM_ast: number; fgM_unast: number } => {
+    const fgM_unast =
+      info.shot_info_unast_3pm * (1 / (info.unassisted3P || 1) - 1);
+    const fgM_ast = Math.max(0, info.shot_info_unknown_3pM - fgM_unast);
+    return { fgM_ast, fgM_unast };
+  };
 }

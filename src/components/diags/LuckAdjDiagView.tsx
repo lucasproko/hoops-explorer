@@ -8,15 +8,10 @@ import _ from "lodash";
 
 // Bootstrap imports:
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Utils
-import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
-import { CbbColors } from "../../utils/CbbColors";
 import {
   LuckAdjustmentBaseline,
   OffLuckAdjustmentDiags,
@@ -25,12 +20,7 @@ import {
 } from "../../utils/stats/LuckUtils";
 
 // Component imports
-import GenericTable, {
-  GenericTableOps,
-  GenericTableColProps,
-} from "../GenericTable";
-import { TeamStatsModel } from "../../components/TeamStatsTable";
-import { RosterStatsModel } from "../../components/RosterStatsTable";
+import { LuckUtils } from "../../utils/stats/LuckUtils";
 
 type Props = {
   name: string;
@@ -169,7 +159,29 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({
                         index: number
                       ) => {
                         const info = pV[1];
-                        const countStr = `${info.shot_info_total}: ${info.shot_info_early_3pa} / ${info.shot_info_scramble_3pa} / ${info.shot_info_ast_3pm} / ${info.shot_info_unast_3pm} / ${info.shot_info_unknown_3pM}`;
+                        const { fgM_ast, fgM_unast } =
+                          LuckUtils.decomposeUnknown3PMisses(info);
+                        const tooltip = (
+                          <Tooltip id={`name_${index}`}>
+                            Half court estimates:
+                            <br />
+                            Off-pass misses: {fgM_ast.toFixed(1)}
+                            <br />
+                            Off-dribble misses: {fgM_unast.toFixed(1)}
+                          </Tooltip>
+                        );
+                        const missesBreakdown = (
+                          <OverlayTrigger placement="auto" overlay={tooltip}>
+                            <span>
+                              {info.shot_info_unknown_3pM}
+                              <small>
+                                <sup>*</sup>
+                              </small>
+                            </span>
+                          </OverlayTrigger>
+                        );
+
+                        const countStr = `${info.shot_info_total}: ${info.shot_info_early_3pa} / ${info.shot_info_scramble_3pa} / ${info.shot_info_ast_3pm} / ${info.shot_info_unast_3pm}`;
                         const _3Pstr = `${(
                           100 * (info.expected3P || 0)
                         ).toFixed(1)}%: ${(100 * info.base3P).toFixed(1)} / ${(
@@ -181,8 +193,11 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({
                         ).toFixed(1)}`;
                         return (
                           <li key={index}>
-                            [<b>{pV[0]}</b>]: Sample_3PA=[<b>{countStr}</b>]
-                            Base_3P%=[<b>{_3Pstr}</b>]
+                            [<b>{pV[0]}</b>]: Sample_3PA=[
+                            <b>
+                              {countStr}&nbsp;/&nbsp;{missesBreakdown}
+                            </b>
+                            ] Base_3P%=[<b>{_3Pstr}</b>]
                           </li>
                         );
                       }
