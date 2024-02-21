@@ -49,7 +49,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
       </b>
       :
       <span>
-         adjustment [
+         
+        adjustment [
         <b>
           -0.0
         </b>
@@ -118,7 +119,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <b>
               31.9
             </b>
-            %] = 
+            %] =
+             
             <i>
               Weighted_Mean
             </i>
@@ -149,7 +151,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <i>
               Weighted_Mean
             </i>
-             of: (early / assisted / solo / unknown)
+             of: (early / scramble / assisted / solo / unknown)
           </li>
           <ul>
             <li
@@ -161,11 +163,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                144: 15 / 29 / 16 / 84
+                144: 15 / 7 / 29 / 15 / 78
               </b>
               ] Base_3P%=[
               <b>
-                32.2%: 32.2 / 34.2 / 28.2 / 32.2
+                32.2%: 32.2 / 32.2 / 34.1 / 28.1 / 32.2
               </b>
               ]
             </li>
@@ -178,11 +180,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                133: 28 / 35 / 3 / 67
+                133: 28 / 7 / 35 / 3 / 60
               </b>
               ] Base_3P%=[
               <b>
-                31.7%: 31.7 / 32.1 / 26.1 / 31.7
+                31.7%: 31.7 / 31.7 / 32.1 / 26.1 / 31.7
               </b>
               ]
             </li>
@@ -302,7 +304,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
       </b>
       :
       <span>
-         adjustment [
+         
+        adjustment [
         <b>
           -3.3
         </b>
@@ -394,7 +397,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <b>
               0.1
             </b>
-            %] = 
+            %] =
+             
             <i>
               Weighted_Mean
             </i>
@@ -661,7 +665,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
             <b>
               31.9
             </b>
-            %] = 
+            %] =
+             
             <i>
               Weighted_Mean
             </i>
@@ -692,7 +697,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
             <i>
               Weighted_Mean
             </i>
-             of: (early / assisted / solo / unknown)
+             of: (early / scramble / assisted / solo / unknown)
           </li>
           <ul>
             <li
@@ -704,11 +709,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                144: 15 / 29 / 16 / 84
+                144: 15 / 7 / 29 / 15 / 78
               </b>
               ] Base_3P%=[
               <b>
-                32.2%: 32.2 / 34.2 / 28.2 / 32.2
+                32.2%: 32.2 / 32.2 / 34.1 / 28.1 / 32.2
               </b>
               ]
             </li>
@@ -721,11 +726,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                133: 28 / 35 / 3 / 67
+                133: 28 / 7 / 35 / 3 / 60
               </b>
               ] Base_3P%=[
               <b>
-                31.7%: 31.7 / 32.1 / 26.1 / 31.7
+                31.7%: 31.7 / 31.7 / 32.1 / 26.1 / 31.7
               </b>
               ]
             </li>
@@ -809,7 +814,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
             <b>
               0.1
             </b>
-            %] = 
+            %] =
+             
             <i>
               Weighted_Mean
             </i>
@@ -923,7 +929,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !over
       </b>
       :
       <span>
-         adjustment [
+         
+        adjustment [
         <b>
           -0.0
         </b>
@@ -968,7 +975,8 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !over
       </b>
       :
       <span>
-         adjustment [
+         
+        adjustment [
         <b>
           -3.3
         </b>

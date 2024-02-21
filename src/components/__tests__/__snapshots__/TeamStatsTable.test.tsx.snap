@@ -9601,7 +9601,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </b>
                         :
                         <span>
-                           adjustment [
+                           
+                          adjustment [
                           <b>
                             0.0
                           </b>
@@ -9646,7 +9647,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </b>
                         :
                         <span>
-                           adjustment [
+                           
+                          adjustment [
                           <b>
                             1.0
                           </b>
@@ -24321,7 +24323,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </b>
                         :
                         <span>
-                           adjustment [
+                           
+                          adjustment [
                           <b>
                             0.0
                           </b>
@@ -24366,7 +24369,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </b>
                         :
                         <span>
-                           adjustment [
+                           
+                          adjustment [
                           <b>
                             -2.2
                           </b>
@@ -39041,7 +39045,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </b>
                         :
                         <span>
-                           adjustment [
+                           
+                          adjustment [
                           <b>
                             0.0
                           </b>
@@ -39086,7 +39091,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </b>
                         :
                         <span>
-                           adjustment [
+                           
+                          adjustment [
                           <b>
                             0.3
                           </b>
