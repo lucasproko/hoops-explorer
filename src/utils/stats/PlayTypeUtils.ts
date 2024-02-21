@@ -162,15 +162,19 @@ export class PlayTypeUtils {
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet
   ): Record<PlayerCode, CategorizedAssistNetwork> {
-    //(use pure possessions and not + assists because the team is "closed" unlike one player)
-    const teamPossessions =
-      (teamStats.total_off_fga?.value || 0) +
-      0.475 * (teamStats.total_off_fta?.value || 0) +
-      (teamStats.total_off_to?.value || 0);
+    const isActuallyIndivMode = players.length == 1;
 
-    const teamScoringPossessions =
-      (teamStats.total_off_fgm?.value || 0) +
-      0.475 * (teamStats.total_off_fta?.value || 0);
+    //(use pure possessions and not + assists because the team is "closed" unlike one player)
+    const teamPossessions = isActuallyIndivMode
+      ? undefined
+      : (teamStats.total_off_fga?.value || 0) +
+        0.475 * (teamStats.total_off_fta?.value || 0) +
+        (teamStats.total_off_to?.value || 0);
+
+    const teamScoringPossessions = isActuallyIndivMode
+      ? undefined
+      : (teamStats.total_off_fgm?.value || 0) +
+        0.475 * (teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
     const teamPossessionsToUse =
@@ -558,6 +562,12 @@ export class PlayTypeUtils {
     //(for pts/100 and % of plays we care about field goals made and missed)
     //(note always use FTA*ftaMult though, scoring plays == plays in this case - later on for the numerator we use FTM in some cases)
 
+    //TODO: OK but here's the issue .... ALL MISSES ARE UNASSISTED
+    // so need to split the misses out from UA to A (half court only since we won't categorize scramble/transition further)
+    // AND the way in which we do that actually depends on the inferred play type
+    // which we don't have yet :( .. for 3PAs it's fairly easy so we should probably do that first!
+    const needToSplitOutUnassistedMisses = playStyleType == "playsPct";
+
     const totalShotsCount = player[`total_off_${totalSuffix}`]?.value || 0;
     const totalFtTripsMadeForDenom =
       ftaMult * (player[`total_off_fta`]?.value || 0);
@@ -763,7 +773,7 @@ export class PlayTypeUtils {
         ],
       ]);
 
-    return {
+    const retVal = {
       unassisted: _.fromPairs(unassistedToUseRow) as SourceAssistInfo,
       assisted: _.fromPairs(assistToUseTotalsRow) as SourceAssistInfo,
       scramble: _.fromPairs(scrambleRow) as SourceAssistInfo,
@@ -777,6 +787,13 @@ export class PlayTypeUtils {
       totalPlaysMade: totalPlaysMade,
       totalAssists: totalAssists,
     };
+
+    //DEBUG INFO:
+    // console.log(
+    //   `${player.key}: ${playStyleType}: ${JSON.stringify(retVal, null, 3)}`
+    // );
+
+    return retVal;
   }
 
   /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network
