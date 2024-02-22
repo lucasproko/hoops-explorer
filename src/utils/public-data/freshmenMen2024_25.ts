@@ -316,6 +316,9 @@ export const freshmenMen2024_25: Record<string, any> = {
       r: -72,
     },
   },
+  Maryland: {
+    "Queen, Derik": { pos: "PF/C", pr: "5*", c: "DeQueen", h: "6-10", r: -8 },
+  },
   Indiana: {
     "McNeeley, Liam": { pos: "WF", pr: "5*", c: "LiMcneeley", h: "6-7", r: -8 },
   },
