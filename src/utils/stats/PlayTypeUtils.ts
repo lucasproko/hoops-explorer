@@ -52,6 +52,7 @@ export type PlayerStyleInfo = {
   transitionAssisted: SourceAssistInfo;
   totalPlaysMade: number;
   totalAssists: number;
+  assistedMissAdjustments?: Record<string, number>; //(for each shot type, misses that we estimate would have been estimated)
 };
 
 const asPlayerStyleSet = (
@@ -235,7 +236,13 @@ export class PlayTypeUtils {
         return [
           code,
           {
-            posCategoryAssistNetwork: posCategoryAssistNetwork,
+            posCategoryAssistNetwork: playerStyle.assistedMissAdjustments
+              ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
+                  posCategoryAssistNetwork,
+                  playerStyle.assistedMissAdjustments,
+                  playerStyle.totalPlaysMade
+                )
+              : posCategoryAssistNetwork,
             playerStyle: playerStyle,
           },
         ];
@@ -568,7 +575,7 @@ export class PlayTypeUtils {
     // AND the way in which we do that actually depends on the inferred play type
     // which we don't have yet :( .. for 3PAs it's fairly easy so we should probably do that first!
     //TODO: OK this works for unassisted 3P%, but not for assisted 3P% (probably that gets calculated via different calcs)
-    const shotAdjustments: Record<string, number> = _.thru(
+    const assistedMissAdjustments: Record<string, number> = _.thru(
       playStyleType == "playsPct",
       (needToSplitOutUnassistedMisses) => {
         if (needToSplitOutUnassistedMisses) {
@@ -736,7 +743,7 @@ export class PlayTypeUtils {
           0; //(half court/transition/scramble)
         const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
         const unassisted = shots - assisted;
-        const assistedMissAdjustment = shotAdjustments[key] || 0; //(these are added to the assisted shot total, so removed here)
+        const assistedMissAdjustment = assistedMissAdjustments[key] || 0; //(these are added to the assisted shot total, so removed here)
         const unassistedHalfCourt =
           unassisted -
           scrambleTotal[key]![2]! -
@@ -779,7 +786,7 @@ export class PlayTypeUtils {
     const assistToUseTotalsRow = shotTypes
       .map((key) => {
         const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
-        const assistedMissAdjustment = shotAdjustments[key] || 0; //(these are added to the assisted shot total)
+        const assistedMissAdjustment = assistedMissAdjustments[key] || 0; //(these are added to the assisted shot total)
         const assistedHalfCourt =
           assisted -
           scrambleTotal[key]![1]! -
@@ -820,6 +827,8 @@ export class PlayTypeUtils {
       ) as SourceAssistInfo,
       totalPlaysMade: totalPlaysMade,
       totalAssists: totalAssists,
+      assistedMissAdjustments:
+        playStyleType == "playsPct" ? assistedMissAdjustments : undefined,
     };
 
     //DEBUG INFO:
@@ -898,6 +907,43 @@ export class PlayTypeUtils {
       })
     );
     return [info as TargetAssistInfo, mutableTotal];
+  }
+
+  /** Add in an estimate of "assisted misses" to each positional category */
+  static adjustPosCategoryAssistNetworkWithMissInfo(
+    mutableUnadjusted: Array<ScoredTargetAssistInfo>,
+    missAdjustments: Record<string, number>,
+    denominator: number
+  ): Array<ScoredTargetAssistInfo> {
+    const genericAssistSplit = [1, 0.5, 0.5]; // regress assists to this number
+    const genericAssistRegression = 2;
+    shotTypes.map((key) => {
+      // Decide on the weight of each positional category on the misses to add
+      const totalWeight =
+        _.sumBy(mutableUnadjusted, (assistInfo) => {
+          const stat = (assistInfo.info as Record<string, Statistic>)[
+            `source_${key}_ast`
+          ];
+          return (stat?.value || 0) * denominator;
+        }) + genericAssistRegression;
+
+      mutableUnadjusted.forEach((assistInfo, index) => {
+        if (assistInfo.info) {
+          const stat = (assistInfo.info as Record<string, Statistic>)[
+            `source_${key}_ast`
+          ];
+          if (!_.isUndefined(stat?.value)) {
+            const weight =
+              (stat.value * denominator + genericAssistSplit[index]!) /
+              totalWeight;
+            stat.value +=
+              (weight * (missAdjustments[key] || 0)) / (denominator || 1);
+          }
+        }
+      });
+    });
+
+    return mutableUnadjusted;
   }
 
   /** Converts a player-grouped assist network into a positional category grouped one
