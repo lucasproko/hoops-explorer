@@ -87,11 +87,11 @@ export type TopLevelPlayType =
   | "Rim Attack"
   | "Attack & Kick"
   | "Dribble Jumper"
-  | "Spread"
+  | "Mid-Range"
   | "Backdoor Cut"
   | "Big Cut & Roll"
   | "Post-Up"
-  | "Post-Up Collapse"
+  | "Post & Kick"
   | "Pick & Pop"
   | "High-Low"
   | "Transition"
@@ -113,11 +113,11 @@ export class PlayTypeUtils {
     "Rim Attack",
     "Attack & Kick",
     "Dribble Jumper",
-    "Spread",
+    "Mid-Range",
     "Backdoor Cut",
     "Big Cut & Roll",
     "Post-Up",
-    "Post-Up Collapse",
+    "Post & Kick",
     "Pick & Pop",
     "High-Low",
     "Transition",
@@ -570,32 +570,39 @@ export class PlayTypeUtils {
     //(for pts/100 and % of plays we care about field goals made and missed)
     //(note always use FTA*ftaMult though, scoring plays == plays in this case - later on for the numerator we use FTM in some cases)
 
-    // OK but here's the issue .... ALL MISSES ARE UNASSISTED
+    // Here's an issue .... ALL MISSES ARE (implicitly) UNASSISTED
     // so need to split the misses out from UA to A (half court only since we won't categorize scramble/transition further)
-    // AND the way in which we do that actually depends on the inferred play type
-    // which we don't have yet :( .. for 3PAs it's fairly easy so we should probably do that first!
-    //TODO: OK this works for unassisted 3P%, but not for assisted 3P% (probably that gets calculated via different calcs)
     const assistedMissAdjustments: Record<string, number> = _.thru(
       playStyleType == "playsPct",
       (needToSplitOutUnassistedMisses) => {
         if (needToSplitOutUnassistedMisses) {
-          const shotDecompInfo = LuckUtils.calcOffPlayerLuckAdj(
-            player,
-            player,
-            100.0
-          ); //(the avgEff doesn't matter)
-          const maybePlayer3PInfo = _.values(shotDecompInfo.player3PInfo)[0];
-          if (maybePlayer3PInfo) {
-            //(undefined if the player has taken no shots)
-            const { fgM_ast, fgM_unast } =
-              LuckUtils.decomposeUnknown3PMisses(maybePlayer3PInfo);
+          return _.transform(
+            ["3p", "mid", "rim"],
+            (acc, shotType) => {
+              const mappedShotType = shotMap[shotType] as
+                | "3p"
+                | "2pmid"
+                | "2prim";
 
-            return {
-              "3p": fgM_ast,
-              //increase the number of assisted shots by this number...
-              //...thus reduce the number of unassisted shots by the same number
-            };
-          }
+              const fgDecompInfo = LuckUtils.buildShotInfo(
+                player,
+                mappedShotType
+              );
+              const adjFgPctDecompInfo = LuckUtils.buildAdjustedFG(
+                player,
+                fgDecompInfo,
+                mappedShotType
+              );
+              if (fgDecompInfo.shot_info_total_attempts > 0) {
+                const { fgM_ast, fgM_unast } = LuckUtils.decomposeUnknownMisses(
+                  fgDecompInfo,
+                  adjFgPctDecompInfo
+                );
+                acc[shotType] = fgM_ast;
+              }
+            },
+            {} as Record<string, number>
+          );
         }
         return {} as Record<string, number>;
       }
@@ -1439,7 +1446,7 @@ export class PlayTypeUtils {
       source: "3P Assisted by frontcourt",
       target: "Pass to ballhandler for 3P",
       examples: ["kick-out after an ORB", "pass out of a post-up"],
-      topLevel: { "Post-Up Collapse": 1.0 },
+      topLevel: { "Post & Kick": 1.0 },
     },
 
     // 1.2] mid
@@ -1447,25 +1454,25 @@ export class PlayTypeUtils {
     ballhandler_mid: {
       source: "Mid Range Unassisted",
       examples: ["drive and pull-up off ball-screen or ISO", "misc action"],
-      topLevel: { "Rim Attack": 0.6, Spread: 0.4 },
+      topLevel: { "Rim Attack": 0.6, "Mid-Range": 0.4 },
     },
     ballhandler_mid_ballhandler: {
       source: "Mid Range Assisted by ballhandler",
       target: "Pass to ballhandler for mid-range",
       examples: ["spread offense", "misc action"],
-      topLevel: { Spread: 1.0 },
+      topLevel: { "Mid-Range": 1.0 },
     },
     ballhandler_mid_wing: {
       source: "Mid Range Assisted by wing",
       target: "Pass to ballhandler for mid-range",
       examples: ["spread offense", "misc action"],
-      topLevel: { Spread: 1.0 },
+      topLevel: { "Mid-Range": 1.0 },
     },
     ballhandler_mid_big: {
       source: "Mid Range Assisted from frontcourt",
       target: "Pass to ballhandler for mid-range",
       examples: ["(usually sub-optimal) pass out of a post-up"],
-      topLevel: { "Post-Up Collapse": 1.0 },
+      topLevel: { "Post & Kick": 1.0 },
     },
 
     // 1.3] rim
@@ -1542,7 +1549,7 @@ export class PlayTypeUtils {
       source: "3P Assisted by frontcourt",
       target: "Pass to wing for 3P",
       examples: ["kick-out after an ORB", "pass out of a post-up"],
-      topLevel: { "Post-Up Collapse": 1.0 },
+      topLevel: { "Post & Kick": 1.0 },
     },
 
     // 2.2] mid
@@ -1550,25 +1557,25 @@ export class PlayTypeUtils {
     wing_mid: {
       source: "Mid Range Unassisted",
       examples: ["drive and pull-up off ball-screen or ISO", "misc action"],
-      topLevel: { "Rim Attack": 0.6, Spread: 0.4 },
+      topLevel: { "Rim Attack": 0.6, "Mid-Range": 0.4 },
     },
     wing_mid_ballhandler: {
       source: "Mid Range Assisted by ballhandler",
       target: "Pass to wing for mid-range",
       examples: ["spread offense", "misc action", "zone buster"],
-      topLevel: { Spread: 1.0 },
+      topLevel: { "Mid-Range": 1.0 },
     },
     wing_mid_wing: {
       source: "Mid Range Assisted by wing",
       target: "Pass to wing for mid-range",
       examples: ["spread offense, misc action", "zone buster"],
-      topLevel: { Spread: 1.0 },
+      topLevel: { "Mid-Range": 1.0 },
     },
     wing_mid_big: {
       source: "Mid Range Assisted from frontcourt",
       target: "Pass to wing for mid-range",
       examples: ["(usually sub-optimal) pass out of a post-up"],
-      topLevel: { "Post-Up Collapse": 1.0 },
+      topLevel: { "Post & Kick": 1.0 },
     },
 
     // 2.3] rim
@@ -1639,7 +1646,7 @@ export class PlayTypeUtils {
       source: "3P Assisted by frontcourt",
       target: "Pass to frontcourt for 3P",
       examples: ["kick-out after an ORB", "pass out of a post-up"],
-      topLevel: { "Post-Up Collapse": 1.0 },
+      topLevel: { "Post & Kick": 1.0 },
     },
 
     // 3.2] mid
@@ -1665,7 +1672,7 @@ export class PlayTypeUtils {
       source: "Mid Range Assisted from frontcourt",
       target: "Pass to frontcourt for mid-range",
       examples: ["high-low action"],
-      topLevel: { "High Low": 1.0 },
+      topLevel: { "High-Low": 1.0 },
     },
 
     // 3.3] rim
@@ -1691,7 +1698,7 @@ export class PlayTypeUtils {
       source: "Layup Assisted by frontcourt",
       target: "Pass to frontcourt for layup",
       examples: ["high-low action"],
-      topLevel: { "High Low": 0.8, "Big Cut & Roll": 0.2 },
+      topLevel: { "High-Low": 0.8, "Big Cut & Roll": 0.2 },
     },
   } as Record<string, any>;
 }

@@ -2,13 +2,13 @@
 
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 1`] = `
 Object {
-  "Attack & Kick": 0.09184859746482298,
-  "Backdoor Cut": 0.017180262070376495,
+  "Attack & Kick": 0.09093268200783171,
+  "Backdoor Cut": 0.022436036731770293,
   "Dribble Jumper": 0.029422683855289698,
+  "Mid-Range": 0.024836995670427298,
   "Misc": 0.06465407003508915,
   "Put-Back": 0.03399453714028501,
-  "Rim Attack": 0.09911168297574911,
-  "Spread": 0.021055861703296472,
+  "Rim Attack": 0.09005792324323686,
   "Transition": 0.10752831173082629,
 }
 `;
@@ -18,10 +18,10 @@ Object {
   "Attack & Kick": 0.09197465826076066,
   "Backdoor Cut": 0.03160661595348259,
   "Dribble Jumper": 0.02455217849433765,
+  "Mid-Range": 0.012217995155707356,
   "Misc": 0.06465407003508915,
   "Put-Back": 0.038055876666223364,
   "Rim Attack": 0.09499120847682335,
-  "Spread": 0.012217995155707356,
   "Transition": 0.1248069073462164,
 }
 `;
@@ -653,6 +653,8 @@ Object {
   },
   "assistedMissAdjustments": Object {
     "3p": 52.59946595460614,
+    "mid": 1.2222222222222285,
+    "rim": 8.563343491510672,
   },
   "scramble": Object {
     "source_3p_ast": Object {
