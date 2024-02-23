@@ -22,7 +22,7 @@ export type OffLuckShotInfo = {
   shot_info_scramble_3pa: number;
   shot_info_unast_3pm: number;
   shot_info_unknown_3pM: number;
-  shot_info_total: number;
+  shot_info_total_3p: number;
 };
 
 export type OffLuckAdj3P = {
@@ -232,7 +232,7 @@ export class LuckUtils {
           acc[field] = playerShotInfo?.[field]?.[index] || 0;
         },
         {
-          shot_info_total: playerShotInfo.total[index] || 0,
+          shot_info_total_3p: playerShotInfo.total[index] || 0,
           ...LuckUtils.buildAdjusted3P(basePlayerStats, baseShotInfo),
         } as Record<string, number>
       );
@@ -259,28 +259,28 @@ export class LuckUtils {
 
         if (playerInfo) {
           //(we use the sample size but the expected 3P% based on base3P% and sample distribution)
-          varTotal3PA += playerInfo.shot_info_total;
+          varTotal3PA += playerInfo.shot_info_total_3p;
 
           const manual3pOver = manual3pPct[player.key];
           if (_.isNil(manual3pOver)) {
             const totalTimes3P = LuckUtils.buildExp3P(playerInfo);
             playerInfo.expected3P =
-              totalTimes3P / (playerInfo.shot_info_total || 1);
+              totalTimes3P / (playerInfo.shot_info_total_3p || 1);
             varTotal3P += totalTimes3P;
           } else {
             // Use the manual override (eg player's career stats as their expected shooting %)
             playerInfo.expected3P = manual3pOver;
-            varTotal3P += playerInfo.shot_info_total * manual3pOver;
+            varTotal3P += playerInfo.shot_info_total_3p * manual3pOver;
           }
 
-          return playerInfo.shot_info_total > 0 //(don't bother with any players who didn't take a 3P shot)
+          return playerInfo.shot_info_total_3p > 0 //(don't bother with any players who didn't take a 3P shot)
             ? [[player.key, playerInfo]]
             : [];
         } else {
           return []; //(player not in this lineup)
         }
       })
-      .sortBy((pV: any[]) => -1 * (pV?.[1]?.shot_info_total || 0))
+      .sortBy((pV: any[]) => -1 * (pV?.[1]?.shot_info_total_3p || 0))
       .fromPairs()
       .value();
 
@@ -670,9 +670,9 @@ export class LuckUtils {
       0
     );
 
-    const shot_info_total = p.total_off_3p_attempts?.value || 0;
+    const shot_info_total_3p = p.total_off_3p_attempts?.value || 0;
     const shot_info_unknown_3pM = Math.max(
-      shot_info_total -
+      shot_info_total_3p -
         shot_info_ast_3pm -
         shot_info_early_3pa -
         shot_info_scramble_3pa -
@@ -684,7 +684,7 @@ export class LuckUtils {
       shot_info_scramble_3pa,
       shot_info_unast_3pm,
       shot_info_unknown_3pM,
-      shot_info_total,
+      shot_info_total_3p,
     } as OffLuckShotInfo;
   };
   /** Calculates approx unassisted/assisted 3P (p and baseShotInfo should be based on the biggest sample available, normally NOT the sample) */

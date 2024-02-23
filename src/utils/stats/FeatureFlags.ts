@@ -14,7 +14,7 @@ export class FeatureFlags {
   // Feature flags themselves:
 
   /** Some long term work on showing guesses as to the play types players and teams use */
-  static readonly betterStyleAnalysis = true;
+  static readonly betterStyleAnalysis = false;
 
   /** For team editor - short term work on generating make-believe NIL estimates - otherwise just a user-editable field */
   static readonly estimateNilValue = false;

@@ -181,7 +181,7 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({
                           </OverlayTrigger>
                         );
 
-                        const countStr = `${info.shot_info_total}: ${info.shot_info_early_3pa} / ${info.shot_info_scramble_3pa} / ${info.shot_info_ast_3pm} / ${info.shot_info_unast_3pm}`;
+                        const countStr = `${info.shot_info_total_3p}: ${info.shot_info_early_3pa} / ${info.shot_info_scramble_3pa} / ${info.shot_info_ast_3pm} / ${info.shot_info_unast_3pm}`;
                         const _3Pstr = `${(
                           100 * (info.expected3P || 0)
                         ).toFixed(1)}%: ${(100 * info.base3P).toFixed(1)} / ${(

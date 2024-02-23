@@ -2,13 +2,13 @@
 
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 1`] = `
 Object {
-  "Attack & Kick": 0.03601708389933508,
-  "Backdoor Cut": 0.01917384483743767,
-  "Dribble Jumper": 0.0773393622571636,
+  "Attack & Kick": 0.09184859746482298,
+  "Backdoor Cut": 0.017180262070376495,
+  "Dribble Jumper": 0.029422683855289698,
   "Misc": 0.06465407003508915,
   "Put-Back": 0.03399453714028501,
-  "Rim Attack": 0.10525116633173048,
-  "Spread": 0.02138724683081238,
+  "Rim Attack": 0.09911168297574911,
+  "Spread": 0.021055861703296472,
   "Transition": 0.10752831173082629,
 }
 `;
@@ -581,6 +581,7 @@ Object {
       "value": 0.38013964313421256,
     },
   },
+  "assistedMissAdjustments": undefined,
   "scramble": Object {
     "source_3p_ast": Object {
       "value": 0.015515903801396431,
@@ -649,6 +650,9 @@ Object {
     "target_ast": Object {
       "value": 0.218522372528616,
     },
+  },
+  "assistedMissAdjustments": Object {
+    "3p": 52.59946595460614,
   },
   "scramble": Object {
     "source_3p_ast": Object {
@@ -728,6 +732,7 @@ Object {
       "value": 147,
     },
   },
+  "assistedMissAdjustments": undefined,
   "scramble": Object {
     "source_3p_ast": Object {
       "value": 6,
@@ -797,6 +802,7 @@ Object {
       "value": 0.218522372528616,
     },
   },
+  "assistedMissAdjustments": undefined,
   "scramble": Object {
     "source_3p_ast": Object {
       "value": 0.026757841534116245,
