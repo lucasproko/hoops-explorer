@@ -16,7 +16,26 @@ import { ManualOverride } from "../FilterModels";
 */
 export type LuckAdjustmentBaseline = "baseline" | "season";
 
-export type OffLuckShotInfo = {
+/** A breakdown of the context of shots */
+export type OffShotInfoBreakdown = {
+  shot_info_ast_made: number;
+  shot_info_early_attempts: number;
+  shot_info_scramble_attempts: number;
+  shot_info_unast_made: number;
+  shot_info_unknown_missed: number;
+  shot_info_total_attempts: number;
+};
+
+/** A breakdown of the estimated unassisted/assisted FG rates */
+export type OffAdjShotBreakdown = {
+  base: number;
+  unassisted: number;
+  assisted: number;
+  expected?: number;
+};
+
+/** OffShotInfoBreakdown but for 3P only - retained for bwc */
+export type OffLuckShotInfo3P = {
   shot_info_ast_3pm: number;
   shot_info_early_3pa: number;
   shot_info_scramble_3pa: number;
@@ -25,6 +44,7 @@ export type OffLuckShotInfo = {
   shot_info_total_3p: number;
 };
 
+/** OffAdjShotBreakdown but for 3P only - retained for bwc */
 export type OffLuckAdj3P = {
   base3P: number;
   unassisted3P: number;
@@ -32,7 +52,7 @@ export type OffLuckAdj3P = {
   expected3P?: number;
 };
 
-export type OffLuckShotTypeAndAdj3P = OffLuckShotInfo & OffLuckAdj3P;
+export type OffLuckShotTypeAndAdj3P = OffLuckShotInfo3P & OffLuckAdj3P;
 
 /** Holds all the info required to calculate and explain the delta when luck is regressed away */
 export type OffLuckAdjustmentDiags = {
@@ -224,7 +244,7 @@ export class LuckUtils {
     const buildShotLineupInfo = (
       basePlayerStats: IndivStatSet,
       index: number,
-      baseShotInfo: OffLuckShotInfo
+      baseShotInfo: OffLuckShotInfo3P
     ) => {
       return _.transform(
         LuckUtils.lineupAggregatedShotInfoFields,
@@ -240,7 +260,7 @@ export class LuckUtils {
     const player3PInfo = _.chain(samplePlayers)
       .flatMap((player: IndivStatSet, index: number) => {
         const basePlayerStats = basePlayersMap[player.key];
-        const baseShotInfo = LuckUtils.buildShotInfo(
+        const baseShotInfo = LuckUtils.build3PShotInfo(
           basePlayersMap[player.key] || player
         ); //(to calc buildAdjusted3P)
         const playerInfo = (
@@ -249,7 +269,7 @@ export class LuckUtils {
                 ...buildShotLineupInfo(basePlayerStats, index, baseShotInfo),
               }
             : {
-                ...LuckUtils.buildShotInfo(player),
+                ...LuckUtils.build3PShotInfo(player),
                 ...LuckUtils.buildAdjusted3P(
                   basePlayerStats || {},
                   baseShotInfo
@@ -636,75 +656,132 @@ export class LuckUtils {
   };
 
   /** Builds the different shot types when you don't have the lineup info */
-  static readonly buildShotInfo = (p: IndivStatSet) => {
-    //"ast_3pm", "unast_3pm", "early_3pa", "scramble_3pa", "unknown_3pM"
+  static readonly buildShotInfo = (
+    p: IndivStatSet,
+    shotType: "3p" | "2pmid" | "2prim"
+  ) => {
+    const shot_info_ast_made = p[`total_off_${shotType}_ast`]?.value || 0; //(this includes assisted transition and scramble shots)
 
-    const shot_info_ast_3pm = p.total_off_3p_ast?.value || 0; //(this includes assisted transition and scramble shots)
-
-    const shot_info_ast_trans_3pm = p.total_off_trans_3p_ast?.value || 0; //(includes some early shots)
-    const shot_info_unast_trans_3pm = Math.max(
-      (p.total_off_trans_3p_made?.value || 0) - shot_info_ast_trans_3pm,
+    const shot_info_ast_trans_made =
+      p[`total_off_trans_${shotType}_ast`]?.value || 0; //(includes some early shots)
+    const shot_info_unast_trans_made = Math.max(
+      (p[`total_off_trans_${shotType}_made`]?.value || 0) -
+        shot_info_ast_trans_made,
       0
     );
-    const shot_info_early_3pa = Math.max(
-      (p.total_off_trans_3p_attempts?.value || 0) - shot_info_ast_trans_3pm,
-      0
-    );
-
-    const shot_info_ast_scramble_3pm = p.total_off_scramble_3p_ast?.value || 0; //(includes some scramble shots)
-    const shot_info_unast_scramble_3pm = Math.max(
-      (p.total_off_scramble_3p_made?.value || 0) - shot_info_ast_scramble_3pm,
-      0
-    );
-    const shot_info_scramble_3pa = Math.max(
-      (p.total_off_scramble_3p_attempts?.value || 0) -
-        shot_info_ast_scramble_3pm,
+    const shot_info_early_attempts = Math.max(
+      (p[`total_off_trans_${shotType}_attempts`]?.value || 0) -
+        shot_info_ast_trans_made,
       0
     );
 
-    const shot_info_unast_3pm = Math.max(
-      (p.total_off_3p_made?.value || 0) -
-        shot_info_ast_3pm -
-        shot_info_unast_trans_3pm -
-        shot_info_unast_scramble_3pm,
+    const shot_info_ast_scramble_made =
+      p[`total_off_scramble_${shotType}_ast`]?.value || 0; //(includes some scramble shots)
+    const shot_info_unast_scramble_made = Math.max(
+      (p[`total_off_scramble_${shotType}_made`]?.value || 0) -
+        shot_info_ast_scramble_made,
+      0
+    );
+    const shot_info_scramble_attempts = Math.max(
+      (p[`total_off_scramble_${shotType}_attempts`]?.value || 0) -
+        shot_info_ast_scramble_made,
       0
     );
 
-    const shot_info_total_3p = p.total_off_3p_attempts?.value || 0;
-    const shot_info_unknown_3pM = Math.max(
-      shot_info_total_3p -
-        shot_info_ast_3pm -
-        shot_info_early_3pa -
-        shot_info_scramble_3pa -
-        shot_info_unast_3pm
+    const shot_info_unast_made = Math.max(
+      (p[`total_off_${shotType}_made`]?.value || 0) -
+        shot_info_ast_made -
+        shot_info_unast_trans_made -
+        shot_info_unast_scramble_made,
+      0
+    );
+
+    const shot_info_total_attempts =
+      p[`total_off_${shotType}_attempts`]?.value || 0;
+    const shot_info_unknown_missed = Math.max(
+      shot_info_total_attempts -
+        shot_info_ast_made -
+        shot_info_early_attempts -
+        shot_info_scramble_attempts -
+        shot_info_unast_made
     );
     return {
-      shot_info_ast_3pm,
-      shot_info_early_3pa,
-      shot_info_scramble_3pa,
-      shot_info_unast_3pm,
-      shot_info_unknown_3pM,
-      shot_info_total_3p,
-    } as OffLuckShotInfo;
+      shot_info_ast_made,
+      shot_info_early_attempts,
+      shot_info_scramble_attempts,
+      shot_info_unast_made,
+      shot_info_unknown_missed,
+      shot_info_total_attempts,
+    } as OffShotInfoBreakdown;
   };
-  /** Calculates approx unassisted/assisted 3P (p and baseShotInfo should be based on the biggest sample available, normally NOT the sample) */
-  static readonly buildAdjusted3P = (
+
+  /** Builds the different shot types when you don't have the lineup info */
+  static readonly build3PShotInfo = (p: IndivStatSet) => {
+    const {
+      shot_info_ast_made,
+      shot_info_early_attempts,
+      shot_info_scramble_attempts,
+      shot_info_unast_made,
+      shot_info_unknown_missed,
+      shot_info_total_attempts,
+    } = LuckUtils.buildShotInfo(p, "3p");
+
+    return {
+      shot_info_ast_3pm: shot_info_ast_made,
+      shot_info_early_3pa: shot_info_early_attempts,
+      shot_info_scramble_3pa: shot_info_scramble_attempts,
+      shot_info_unast_3pm: shot_info_unast_made,
+      shot_info_unknown_3pM: shot_info_unknown_missed,
+      shot_info_total_3p: shot_info_total_attempts,
+    } as OffLuckShotInfo3P;
+  };
+  /** Calculates approx unassisted/assisted FG% */
+  static readonly buildAdjustedFG = (
     p: IndivStatSet,
-    baseShotInfo: OffLuckShotInfo
+    baseShotInfo: OffShotInfoBreakdown,
+    shotType: "3p" | "2pmid" | "2prim"
   ) => {
-    const base3P = LuckUtils.get(p?.off_3p, 0);
+    const base = LuckUtils.get(p?.[`off_${shotType}`], 0);
     // Can't use off_3p_ast because some of the transition 3PAs are unassisted makes, so we just use non-early ast%
     const baseAssistPct =
-      baseShotInfo.shot_info_ast_3pm /
-      (baseShotInfo.shot_info_ast_3pm + baseShotInfo.shot_info_unast_3pm || 1);
+      baseShotInfo.shot_info_ast_made /
+      (baseShotInfo.shot_info_ast_made + baseShotInfo.shot_info_unast_made ||
+        1);
 
-    const weight = 0.06; // (we estimate the average diff between assisted and unassisted 3P% as 6%)
+    const weight = shotType == "3p" ? 0.06 : 0.1; // (totally arbitrary)
     return {
-      base3P,
-      unassisted3P: base3P - baseAssistPct * weight,
-      assisted3P: base3P + (1 - baseAssistPct) * weight,
+      base,
+      unassisted: base - baseAssistPct * weight,
+      assisted: base + (1 - baseAssistPct) * weight,
+    } as OffAdjShotBreakdown;
+  };
+  /** Calculates approx unassisted/assisted 3P (p and baseShotInfo should be based on the biggest sample available, normally NOT the sample)
+   * Note this is just a special case of buildAdjustedFG retained for bwc compat
+   */
+  static readonly buildAdjusted3P = (
+    p: IndivStatSet,
+    info: OffLuckShotInfo3P
+  ) => {
+    const adjustedShotInfo = LuckUtils.buildAdjustedFG(
+      p,
+      {
+        shot_info_ast_made: info.shot_info_ast_3pm,
+        shot_info_early_attempts: info.shot_info_early_3pa,
+        shot_info_scramble_attempts: info.shot_info_scramble_3pa,
+        shot_info_unast_made: info.shot_info_unast_3pm,
+        shot_info_unknown_missed: info.shot_info_unknown_3pM,
+        shot_info_total_attempts: info.shot_info_total_3p,
+      },
+      "3p"
+    );
+
+    return {
+      base3P: adjustedShotInfo.base,
+      unassisted3P: adjustedShotInfo.unassisted,
+      assisted3P: adjustedShotInfo.assisted,
     } as OffLuckAdj3P;
   };
+
   /** Returns (3P%*total 3P) */
   static readonly buildExp3P = (info: OffLuckShotTypeAndAdj3P) => {
     return (
@@ -718,12 +795,37 @@ export class LuckUtils {
   };
 
   /** Splits unknown misses into an estimate of whether they would have been ast or unast if they'd been scores */
+  static readonly decomposeUnknownMisses = (
+    shotCounts: OffShotInfoBreakdown,
+    fgBreakdown: OffAdjShotBreakdown
+  ): { fgM_ast: number; fgM_unast: number } => {
+    const fgM_unast =
+      shotCounts.shot_info_unast_made * (1 / (fgBreakdown.unassisted || 1) - 1);
+    const fgM_ast = Math.max(
+      0,
+      shotCounts.shot_info_unknown_missed - fgM_unast
+    );
+    return { fgM_ast, fgM_unast };
+  };
+
+  /** Special case of decomposeUnknownMisses, retained for bwc */
   static readonly decomposeUnknown3PMisses = (
     info: OffLuckShotTypeAndAdj3P
   ): { fgM_ast: number; fgM_unast: number } => {
-    const fgM_unast =
-      info.shot_info_unast_3pm * (1 / (info.unassisted3P || 1) - 1);
-    const fgM_ast = Math.max(0, info.shot_info_unknown_3pM - fgM_unast);
-    return { fgM_ast, fgM_unast };
+    return LuckUtils.decomposeUnknownMisses(
+      {
+        shot_info_ast_made: info.shot_info_ast_3pm,
+        shot_info_early_attempts: info.shot_info_early_3pa,
+        shot_info_scramble_attempts: info.shot_info_scramble_3pa,
+        shot_info_unast_made: info.shot_info_unast_3pm,
+        shot_info_unknown_missed: info.shot_info_unknown_3pM,
+        shot_info_total_attempts: info.shot_info_total_3p,
+      },
+      {
+        base: info.base3P,
+        unassisted: info.unassisted3P,
+        assisted: info.assisted3P,
+      }
+    );
   };
 }
