@@ -61,6 +61,7 @@ import { OnBallDefenseModel } from "../utils/stats/RatingUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
+import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -525,9 +526,9 @@ export async function main() {
             playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
               ?.baseline?.player?.buckets || [];
 
-          const rosterGlobal =
-            playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
-              ?.baseline?.player?.buckets || [];
+          const rosterGlobalButActuallyBaseline = rosterBaseline;
+          // playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets
+          //   ?.baseline?.player?.buckets || [];
           //using baseline instead of global here:
           // has no effect on luck since using "baseline" not "season" for luck adjustments
           // will have a small impact on ORtg and position calcs, in on/off they use season-wide
@@ -547,6 +548,13 @@ export async function main() {
           const teamRecent =
             teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets
               ?.on || {};
+
+          /** Largest sample of player stats, by player key - use for ORtg calcs */
+          const globalRosterStatsByCode =
+            RosterTableUtils.buildRosterTableByCode(
+              rosterGlobalButActuallyBaseline,
+              rosterInfoJson
+            );
 
           // Team info, for "Build your own T25"
           if ("all" == label && completedEfficiencyInfo?.[team]) {
@@ -588,6 +596,19 @@ export async function main() {
             GradeUtils.buildAndInjectTeamDivisionStats(
               teamBaseline,
               extraFields,
+              mutableDivisionStats,
+              inNaturalTier
+            );
+
+            // And yet more derived stats!
+            const topLevelPlayTypeStyles =
+              PlayTypeUtils.buildTopLevelPlayStyles(
+                rosterGlobalButActuallyBaseline,
+                globalRosterStatsByCode,
+                teamBaseline
+              );
+            GradeUtils.buildAndInjectPlayStyleStats(
+              topLevelPlayTypeStyles,
               mutableDivisionStats,
               inNaturalTier
             );
@@ -706,7 +727,8 @@ export async function main() {
                   : [];
               })
               .value();
-            if (inNaturalTier)
+
+            if (inNaturalTier) {
               //(only store detailed stats for each team once, regardless of tier overlaps)
               detailedTeamInfo.push({
                 team_name: fullRequestModel.team,
@@ -716,8 +738,10 @@ export async function main() {
                 opponents: oppoInfo,
                 ...teamBaselineWithLuck,
                 ...extraFields,
+                style: topLevelPlayTypeStyles,
                 game_info: undefined, //(unset game_info, it's already covered more efficiently via oppoInfo)
               });
+            }
             teamInfo.push({
               team_name: fullRequestModel.team,
               gender: fullRequestModel.gender,
@@ -733,13 +757,6 @@ export async function main() {
               opponents: oppoInfo,
             });
           }
-
-          /** Largest sample of player stats, by player key - use for ORtg calcs */
-          const globalRosterStatsByCode =
-            RosterTableUtils.buildRosterTableByCode(
-              rosterGlobal,
-              rosterInfoJson
-            );
 
           // Ready in on-ball defense if it exists
           var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
@@ -793,7 +810,7 @@ export async function main() {
             onBallDefenseByCode //(always adjust for luck)
           );
           const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(
-            rosterGlobal,
+            rosterGlobalButActuallyBaseline,
             teamSeasonLookup
           );
 
@@ -986,7 +1003,7 @@ export async function main() {
           const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
             sortedLineups,
             teamGlobal,
-            rosterGlobal,
+            rosterGlobalButActuallyBaseline,
             teamBaseline,
             true,
             "baseline",

@@ -13,6 +13,7 @@ import {
   TeamStatSet,
   PureStatSet,
 } from "../StatModels";
+import { TopLevelPlayAnalysis } from "./PlayTypeUtils";
 
 type QualifyingCriterion = [string, number];
 
@@ -215,6 +216,35 @@ export class GradeUtils {
         .forEach((f) => updateForField(f, teamBaseline))
         .value();
     }
+  };
+
+  /** Add play style stats to a team (division) stats collection */
+  static buildAndInjectPlayStyleStats = (
+    playStyle: TopLevelPlayAnalysis,
+    mutableDivisionStats: DivisionStatistics,
+    inNaturalTier: boolean
+  ) => {
+    _.forEach(playStyle, (playStyleInfo, playStyleType) => {
+      const updateForField = (field: string, stat: Statistic) => {
+        if (!_.isNil(stat.value)) {
+          if (!mutableDivisionStats.tier_samples[field]) {
+            mutableDivisionStats.tier_samples[field] = [];
+          }
+          mutableDivisionStats.tier_samples[field]!.push(stat.value);
+
+          if (inNaturalTier) {
+            if (!mutableDivisionStats.dedup_samples[field]) {
+              mutableDivisionStats.dedup_samples[field] = [];
+            }
+            mutableDivisionStats.dedup_samples[field]!.push(stat.value);
+          }
+        }
+      };
+      const possPctField = `${playStyleType}|Pct`;
+      updateForField(possPctField, playStyleInfo.possPct);
+      const pppField = `${playStyleType}|Ppp`;
+      updateForField(pppField, playStyleInfo.pts);
+    });
   };
 
   /** Add a team's stats to the divison stats collection  */
