@@ -641,6 +641,45 @@ export class GradeUtils {
     );
   };
 
+  /** Play style stats are most usefully consumed as percentiles - this builds the %iles */
+  static getPlayStyleStats = (
+    playStyle: TopLevelPlayAnalysis,
+    divisionStats: DivisionStatistics,
+    buildLutMissCache: boolean = false
+  ): TopLevelPlayAnalysis => {
+    return _.transform(
+      playStyle,
+      (acc, playStyleType, playStyleInfo) => {
+        const possPctField = `${playStyleType}|Pct`;
+        const pppField = `${playStyleType}|Ppp`;
+        if (
+          !_.isNil(playStyleType.possPct.value) &&
+          !_.isNil(playStyleType.pts.value)
+        ) {
+          const maybePossPctile = GradeUtils.getPercentile(
+            divisionStats,
+            possPctField,
+            playStyleType.possPct.value,
+            buildLutMissCache
+          );
+          const maybePppPctile = GradeUtils.getPercentile(
+            divisionStats,
+            pppField,
+            playStyleType.pts.value,
+            buildLutMissCache
+          );
+          if (maybePossPctile && maybePppPctile) {
+            acc[playStyleInfo] = {
+              possPct: maybePossPctile,
+              pts: maybePossPctile,
+            };
+          }
+        }
+      },
+      {} as Record<string, { possPct: Statistic; pts: Statistic }>
+    ) as TopLevelPlayAnalysis;
+  };
+
   /** Calculate the percentile of all fields within a stat set */
   static buildPlayerPercentiles = (
     divStats: DivisionStatistics,
