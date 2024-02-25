@@ -50,6 +50,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { GradeProps, GradeUtils } from "../../utils/stats/GradeUtils";
 
 type Props = {
   title?: string;
@@ -58,6 +59,8 @@ type Props = {
   teamStats: TeamStatSet;
   teamSeasonLookup: string;
   quickSwitchOptions?: Props[];
+  showGrades: string;
+  grades?: GradeProps;
   showHelp: boolean;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
@@ -67,6 +70,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   teamStats: teamStatsIn,
   teamSeasonLookup,
   quickSwitchOptions,
+  showGrades,
+  grades,
   showHelp,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
@@ -94,6 +99,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       pts: stat.pts.value || 0,
     };
   });
+
+  //TODO
+  // const topLevelPlayTypeStylesPctile = grades ?
+  //   GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, grades.comboTier || {}, true) : {};
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) => (
     <OverlayTrigger

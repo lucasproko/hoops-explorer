@@ -9371,7 +9371,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               </b>
                               ]%
                               <span>
-                                 (
+                                 
+                                (
                                 <b>
                                   Rank
                                 </b>
@@ -9409,7 +9410,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   79.8
                                   ]
                                 </b>
-                                 poss/g
+                                 
+                                poss/g
                               </span>
                             </li>
                           </ul>
@@ -24093,7 +24095,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               </b>
                               ]%
                               <span>
-                                 (
+                                 
+                                (
                                 <b>
                                   Rank
                                 </b>
@@ -24131,7 +24134,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   77.1
                                   ]
                                 </b>
-                                 poss/g
+                                 
+                                poss/g
                               </span>
                             </li>
                           </ul>
@@ -38815,7 +38819,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               </b>
                               ]%
                               <span>
-                                 (
+                                 
+                                (
                                 <b>
                                   Rank
                                 </b>
@@ -38853,7 +38858,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   83.2
                                   ]
                                 </b>
-                                 poss/g
+                                 
+                                poss/g
                               </span>
                             </li>
                           </ul>

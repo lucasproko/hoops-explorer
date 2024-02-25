@@ -17,6 +17,14 @@ import { TopLevelPlayAnalysis } from "./PlayTypeUtils";
 
 type QualifyingCriterion = [string, number];
 
+/** Lets you select the tier against which you want to compare stats (defaults to Combo, or all together) */
+export type GradeProps = {
+  comboTier?: DivisionStatistics;
+  highTier?: DivisionStatistics;
+  mediumTier?: DivisionStatistics;
+  lowTier?: DivisionStatistics;
+};
+
 /** Utility functions for calculating percentile/grade related statistics */
 export class GradeUtils {
   /** For players, only use their stats for grades if they've played 40% of possessions (same for display, but will allow override) */

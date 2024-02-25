@@ -642,7 +642,8 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
               83.2
               ]
             </b>
-             poss/g
+             
+            poss/g
           </span>
         </li>
       </ul>

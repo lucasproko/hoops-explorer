@@ -33,6 +33,7 @@ import {
 } from "../../utils/StatModels";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
+import { GradeProps } from "../../utils/stats/GradeUtils";
 
 type Props = {
   title: string;
@@ -41,6 +42,8 @@ type Props = {
   teamStats: TeamStatSet;
   teamSeasonLookup: string;
   quickSwitchOptions?: Props[];
+  showGrades: string;
+  grades?: GradeProps;
   showHelp: boolean;
 };
 const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
@@ -50,6 +53,8 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   teamStats: teamStatsIn,
   teamSeasonLookup,
   quickSwitchOptions,
+  showGrades,
+  grades,
   showHelp,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
@@ -344,6 +349,8 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
           rosterStatsByCode={rosterStatsByCode}
           teamStats={teamStats}
           teamSeasonLookup={teamSeasonLookup}
+          showGrades={showGrades}
+          grades={grades}
           showHelp={showHelp}
         />
       ) : (
