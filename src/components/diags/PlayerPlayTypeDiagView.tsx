@@ -76,6 +76,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
         players={[player]}
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamStats}
+        showGrades="false"
         teamSeasonLookup={teamSeasonLookup}
         showHelp={showHelp}
       />
