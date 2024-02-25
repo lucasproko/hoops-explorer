@@ -2490,6 +2490,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     disabledPlayers,
     uiOverrides,
     divisionStatsCache,
+    preSeasonDivisionStats,
     playerDivisionStatsCache,
     positionalStatsCache,
     debugMode,
