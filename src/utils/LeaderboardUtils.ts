@@ -261,13 +261,12 @@ export class LeaderboardUtils {
     subYear: string,
     inTier: string
   ) => {
-    return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
-
-    //TODO: this doesn't currently exist:
-    // if (DateUtils.inSeasonYear.startsWith(subYear)) { // Access from dynamic storage
-    //   return `/api/getTeamStats?src=teams&gender=${gender}&year=${subYear}&tier=${inTier}`;
-    // } else { //archived
-    //   return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
-    // }
+    if (DateUtils.inSeasonYear.startsWith(subYear)) {
+      // Access from dynamic storage
+      return `/api/getTeamStats?gender=${gender}&year=${subYear}&tier=${inTier}`;
+    } else {
+      //archived
+      return `/leaderboards/lineups/team_stats_all_${gender}_${subYear}_${inTier}.json`;
+    }
   };
 }
