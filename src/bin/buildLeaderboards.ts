@@ -553,7 +553,8 @@ export async function main() {
           const globalRosterStatsByCode =
             RosterTableUtils.buildRosterTableByCode(
               rosterGlobalButActuallyBaseline,
-              rosterInfoJson
+              rosterInfoJson,
+              true //(injects positional info into the player stats, needed for play style analysis below)
             );
 
           // Team info, for "Build your own T25"
@@ -758,7 +759,7 @@ export async function main() {
             });
           }
 
-          // Ready in on-ball defense if it exists
+          // Read in on-ball defense if it exists
           var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
           if ("all" == label && inGender == "Men") {
             const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);
@@ -954,7 +955,6 @@ export async function main() {
                   conf: conference,
                   team: team,
                   year: teamYear,
-                  ...posInfo,
                   posFreqs,
                   ...(cutdownLowVolume
                     ? lowVolumeStripPlayerInfo(kv[1])
@@ -985,10 +985,12 @@ export async function main() {
                               !_.endsWith(t2[0], "_target") &&
                               !_.endsWith(t2[0], "_source") &&
                               t2[0] != "player_array" &&
+                              t2[0] != "role" &&
                               t2[0] != "roster")
                         )
                         .fromPairs()
                         .value()),
+                  ...posInfo,
                 } as IndivStatSet;
               });
 
