@@ -23,6 +23,7 @@ import {
 import { DerivedStatsUtils } from "../../utils/stats/DerivedStatsUtils";
 import { GradeUtils, GradeProps } from "../../utils/stats/GradeUtils";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { GradeTableUtils } from "../../utils/tables/GradeTableUtils";
 
 const playTypeTable = {
   title: GenericTableOps.addTitle(
@@ -240,26 +241,10 @@ const TeamExtraStatsInfoView: React.FunctionComponent<Props> = ({
 }) => {
   const nameAsId = name.replace(/[^A-Za-z0-9_]/g, "");
 
-  const tiers = {
-    //(handy LUT)
-    High: grades?.highTier,
-    Medium: grades?.mediumTier,
-    Low: grades?.lowTier,
-    Combo: grades?.comboTier,
-  } as Record<string, DivisionStatistics | undefined>;
-
-  // Build %ile/rank handling, in case we have show grades enabled
-  const gradeFormat = showGrades.split(":")[0];
-  const tierStrTmp = showGrades.split(":")?.[1] || "Combo";
-  const tierStr = tiers[tierStrTmp]
-    ? tierStrTmp
-    : tiers["Combo"]
-    ? "Combo"
-    : tiers["High"]
-    ? "High"
-    : tierStrTmp;
-  //(if set tier doesn't exist just fallback)
-  const tierToUse = tiers[tierStr];
+  const { tierToUse, gradeFormat } = GradeTableUtils.buildTeamTierInfo(
+    showGrades,
+    grades
+  );
 
   // Build derived stats and inject into extraStats
   const extraStats = {

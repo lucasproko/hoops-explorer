@@ -587,6 +587,35 @@ export class GradeTableUtils {
       return tableData;
     };
 
+  /** Builds team specific tier info used for building player grades */
+  static readonly buildTeamTierInfo = (
+    gradeConfig: string,
+    globalStats: StatsCaches | undefined
+  ) => {
+    const configStr = gradeConfig.split(":");
+    const gradeFormat = configStr[0];
+    const tierStrTmp = configStr?.[1] || "Combo";
+
+    const tiers = {
+      //(handy LUT)
+      High: globalStats?.highTier,
+      Medium: globalStats?.mediumTier,
+      Low: globalStats?.lowTier,
+      Combo: globalStats?.comboTier,
+    } as Record<string, DivisionStatistics | undefined>;
+
+    const tierStr = tiers[tierStrTmp]
+      ? tierStrTmp
+      : tiers["Combo"]
+      ? "Combo"
+      : tiers["High"]
+      ? "High"
+      : tierStrTmp;
+    const tierToUse = tiers[tierStr];
+
+    return { tierStr, tierToUse, tiers, gradeFormat };
+  };
+
   /** Builds some player specific tier info used for building player grades */
   static readonly buildPlayerTierInfo = (
     gradeConfig: string,

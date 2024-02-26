@@ -50,7 +50,11 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { GradeProps, GradeUtils } from "../../utils/stats/GradeUtils";
+import { GradeUtils } from "../../utils/stats/GradeUtils";
+import {
+  GradeTableUtils,
+  DivisionStatsCache,
+} from "../../utils/tables/GradeTableUtils";
 
 type Props = {
   title?: string;
@@ -60,7 +64,7 @@ type Props = {
   teamSeasonLookup: string;
   quickSwitchOptions?: Props[];
   showGrades: string;
-  grades?: GradeProps;
+  grades?: DivisionStatsCache;
   showHelp: boolean;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
@@ -92,17 +96,31 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     teamStats
   );
 
-  const data = _.map(topLevelPlayTypeStyles, (stat, playType) => {
-    return {
-      name: playType.replace("-", " - "),
-      pct: (stat.possPct.value || 0) * 100,
-      pts: stat.pts.value || 0,
-    };
+  const { tierToUse } = GradeTableUtils.buildTeamTierInfo(showGrades, {
+    comboTier: grades?.Combo,
+    highTier: grades?.High,
+    mediumTier: grades?.Medium,
+    lowTier: grades?.Low,
   });
+  const topLevelPlayTypeStylesPctile = tierToUse
+    ? GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, tierToUse, true)
+    : undefined;
 
-  //TODO
-  // const topLevelPlayTypeStylesPctile = grades ?
-  //   GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, grades.comboTier || {}, true) : {};
+  const data = topLevelPlayTypeStylesPctile
+    ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
+        return {
+          name: playType.replace("-", " - "),
+          pct: (stat.possPct.value || 0) * 100,
+          pts: stat.pts.value || 0,
+        };
+      })
+    : _.map(topLevelPlayTypeStyles, (stat, playType) => {
+        return {
+          name: playType.replace("-", " - "),
+          pct: (stat.possPct.value || 0) * 100,
+          pts: stat.pts.value || 0,
+        };
+      });
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) => (
     <OverlayTrigger
@@ -186,7 +204,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     return (
                       <Cell
                         key={`cell-${index}`}
-                        fill={CbbColors.off_pp100_redBlackGreen(p.pts * 100)}
+                        fill={
+                          topLevelPlayTypeStylesPctile
+                            ? CbbColors.off_pctile_qual(p.pts)
+                            : CbbColors.off_pp100_redBlackGreen(p.pts * 100)
+                        }
                       />
                     );
                   })}
@@ -198,7 +220,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         </Row>
         <Row>
           <Col xs={10}>
-            {_.toPairs(topLevelPlayTypeStyles).map((o) => (
+            {_.toPairs(topLevelPlayTypeStylesPctile || {}).map((o) => (
+              <span>
+                {JSON.stringify(o, tidyNumbers)}
+                <br />
+              </span>
+            ))}
+            {_.toPairs(topLevelPlayTypeStyles || {}).map((o) => (
               <span>
                 {JSON.stringify(o, tidyNumbers)}
                 <br />

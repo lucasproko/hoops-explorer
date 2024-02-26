@@ -5,7 +5,6 @@ import GameInfoDiagView from "../../components/diags/GameInfoDiagView";
 import LuckAdjDiagView from "../../components/diags/LuckAdjDiagView";
 import TeamExtraStatsInfoView from "../../components/diags/TeamExtraStatsInfoView";
 import TeamPlayTypeDiagView from "../../components/diags/TeamPlayTypeDiagView";
-import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
 import TeamRosterDiagView from "../../components/diags/TeamRosterDiagView";
 import {
   GenericTableOps,
@@ -38,7 +37,6 @@ import { GradeTableUtils, DivisionStatsCache } from "./GradeTableUtils";
 import { LineupTableUtils } from "./LineupTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { TableDisplayUtils } from "./TableDisplayUtils";
-import { GradeProps } from "../stats/GradeUtils";
 
 // Data model
 
@@ -63,7 +61,6 @@ export type TeamStatsReadOnlyState = {
   showGameInfo: boolean;
   showExtraInfo: boolean;
   showGrades: string;
-  grades?: GradeProps;
   showLuckAdjDiags: boolean;
   showHelp: boolean;
 };
@@ -99,7 +96,6 @@ export class TeamStatsTableUtils {
       showGameInfo,
       showExtraInfo,
       showGrades,
-      grades,
       showLuckAdjDiags,
       showHelp,
     } = readOnlyState;
@@ -435,7 +431,6 @@ export class TeamStatsTableUtils {
         teamStats: teamStatsByQuery["on"],
         teamSeasonLookup: teamSeasonLookup,
         showGrades: showGrades,
-        grades: grades,
         showHelp,
       },
       {
@@ -445,7 +440,6 @@ export class TeamStatsTableUtils {
         teamStats: teamStatsByQuery["off"],
         teamSeasonLookup: teamSeasonLookup,
         showGrades: showGrades,
-        grades: grades,
         showHelp,
       },
       {
@@ -455,7 +449,6 @@ export class TeamStatsTableUtils {
         teamStats: teamStatsByQuery["baseline"],
         teamSeasonLookup: teamSeasonLookup,
         showGrades: showGrades,
-        grades: grades,
         showHelp,
       },
     ].filter((opt) => (opt.teamStats.doc_count || 0) > 0);
@@ -626,7 +619,7 @@ export class TeamStatsTableUtils {
                       (opt) => opt.title != displayKey
                     )}
                     showGrades={showGrades}
-                    grades={grades}
+                    grades={divisionStatsCache}
                     showHelp={showHelp}
                   />,
                   "small"

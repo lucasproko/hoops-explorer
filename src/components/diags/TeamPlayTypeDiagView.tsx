@@ -33,7 +33,7 @@ import {
 } from "../../utils/StatModels";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
-import { GradeProps } from "../../utils/stats/GradeUtils";
+import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
 
 type Props = {
   title: string;
@@ -43,7 +43,7 @@ type Props = {
   teamSeasonLookup: string;
   quickSwitchOptions?: Props[];
   showGrades: string;
-  grades?: GradeProps;
+  grades?: DivisionStatsCache;
   showHelp: boolean;
 };
 const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({

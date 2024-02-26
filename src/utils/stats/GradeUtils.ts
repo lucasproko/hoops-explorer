@@ -657,29 +657,29 @@ export class GradeUtils {
   ): TopLevelPlayAnalysis => {
     return _.transform(
       playStyle,
-      (acc, playStyleType, playStyleInfo) => {
+      (acc, playStyleInfo, playStyleType) => {
         const possPctField = `${playStyleType}|Pct`;
         const pppField = `${playStyleType}|Ppp`;
         if (
-          !_.isNil(playStyleType.possPct.value) &&
-          !_.isNil(playStyleType.pts.value)
+          !_.isNil(playStyleInfo.possPct.value) &&
+          !_.isNil(playStyleInfo.pts.value)
         ) {
           const maybePossPctile = GradeUtils.getPercentile(
             divisionStats,
             possPctField,
-            playStyleType.possPct.value,
+            playStyleInfo.possPct.value,
             buildLutMissCache
           );
           const maybePppPctile = GradeUtils.getPercentile(
             divisionStats,
             pppField,
-            playStyleType.pts.value,
+            playStyleInfo.pts.value,
             buildLutMissCache
           );
           if (maybePossPctile && maybePppPctile) {
-            acc[playStyleInfo] = {
+            acc[playStyleType] = {
               possPct: maybePossPctile,
-              pts: maybePossPctile,
+              pts: maybePppPctile,
             };
           }
         }
