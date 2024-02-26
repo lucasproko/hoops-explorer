@@ -182,31 +182,31 @@ const apPollMen_2022_23: () => Record<string, number> = () =>
 const apPollMen_2023_24: () => Record<string, number> = () =>
   _.chain(
     `
-    1	UConn (62)	24-2	1550	1
-    2	Houston	22-3	1473	3
-    3	Purdue	23-3	1414	2
-    4	Arizona	20-5	1373	5
-    5	Tennessee	19-6	1230	8
-    6	Iowa State	20-5	1160	10
-    7	Marquette	19-6	114	4
-    8	Duke	20-5	116	9
-    9	Kansas	20-6	1065	6
-    10	North Carolina	20-6	1044	7
-    11	Baylor	1-6	959	12
-    12	Illinois	19-6	853	14
-    13	Alabama	18-7	803	15
-    14	Auburn	2-0-6	690	13
-    15	Creighton	19-7	612	17
-    16	Dayton	21-4	584	16
-    17	Kentucky	18-7	540	22
-    18	Saint Mary's (CA)	21-6	486	18
-    19	San Diego State	20-6	374	NR
-    20	South Carolina	21-5	346	11
-    21	Washington State	20-6	215	NR
-    22	Colorado State	20-6	171	NR
-    23	Texas Tech	18-7	135	NR
-    24	Florida	18-7	124	NR
-    25	BYU	18-7	123	19
+    1	Houston (53)	24-3	1540	2
+    2	Purdue (4)	25-3	1460	3
+    3	UConn (5)	25-3	1459	1
+    4	Tennessee	21-6	1338	3
+    5	Marquette	21-6	1243	7
+    6	Arizona	21-6	1188	4
+    7	Kansas	21-6	1156	9
+    8	Iowa State	21-6	1155	6
+    9	North Carolina	21-6	1130	10
+    10	Duke	21-6	976	8
+    11	Auburn	21-6	862	14
+    12	Creighton	20-8	738	15
+    13	Illinois	20-7	726	12
+    14	Alabama	19-8	695	13
+    15	Baylor	19-8	689	11
+    16	Kentucky	19-8	649	17
+    17	Saint Mary's	23-6	646	18
+    18	South Carolina	22-5	471	20
+    19	Washington State	21-7	361	21
+    20	San Diego State	21-7	305	19
+    21	Dayton	21-5	261	16
+    22	Utah State	22-5	207	NR
+    23	Gonzaga	22-6	184	NR
+    24	Florida	19-8	140	NR
+    25	South Florida	21-5	127	NR
 `
   )
     .split("\n")
@@ -221,7 +221,7 @@ const apPollMen_2023_24: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 15,
+      __week__: 16,
     })
     .value();
 
@@ -318,31 +318,31 @@ const apPollWomen_2022_23: () => Record<string, number> = () =>
 const apPollWomen_2023_24: () => Record<string, number> = () =>
   _.chain(
     `
-    1	South Carolina (35)	25-0	875	1
-    2	Ohio State	22-3	824	2
-    3	Stanford	23-3	804	3
-    4	Iowa	23-3	742	4
-    5	Texas	24-3	730	5
-    6	NC State	23-3	714	6
-    7	Southern Cal	20-4	654	10
-    8	Virginia Tech	22-4	594	12
-    9	Oregon State	21-4	554	11
-    10	Kansas State	22-4	521	7
-    11	Colorado	20-5	520	8
-    12	UCLA	20-5	498	9
-    13	LSU	21-4	448	13
-    14	Indiana	21-3	447	14
-    15	UConn	22-5	424	15
-    16	Gonzaga	26-2	327	17
-    17	Syracuse	22-4	273	19
-    18	Utah	19-7	247	22
-    19	Notre Dame	18-6	243	16
-    20	Louisville	21-6	229	18
-    21	Creighton	21-3	202	20
-    22	West Virginia	22-3	173	24
-    23	Oklahoma	18-7	95	23
-    24	Baylor	19-6	89	21
-    25	Princeton	20-3	67	25
+    1	South Carolina (35)	27-0	875	1
+    2	Ohio State	24-3	837	2
+    3	Texas	26-3	796	5
+    4	Stanford	24-4	734	3
+    5	Virginia Tech	23-4	721	8
+    6	Iowa	24-4	697	4
+    7	Southern Cal	21-5	643	7
+    8	UCLA	21-5	607	12
+    9	LSU	24-4	592	13
+    10	UConn	24-5	502	15
+    11	Oregon State	22-5	488	9
+    12	NC State	23-5	486	6
+    13	Colorado	20-6	455	11
+    14	Indiana	22-4	453	14
+    15	Kansas State	23-5	422	10
+    16	Gonzaga	28-2	367	16
+    17	Notre Dame	21-6	340	19
+    18	Utah	20-8	274	18
+    19	Syracuse	23-5	215	17
+    20	Oklahoma	20-7	199	23
+    21	Baylor	21-6	189	24
+    22	Louisville	22-7	136	20
+    23	Creighton	22-4	125	21
+    24	UNLV	24-2	61	NR
+    25	West Virginia	22-5	61	22
 `
   )
     .split("\n")
@@ -357,7 +357,7 @@ const apPollWomen_2023_24: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 15,
+      __week__: 16,
     })
     .value();
 
