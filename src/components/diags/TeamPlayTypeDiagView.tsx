@@ -70,9 +70,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       : teamStatsIn) || StatModels.emptyTeam();
 
   const [tableType, setTableType] = useState<"scoring" | "usage" | "breakdown">(
-    FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)
-      ? "breakdown"
-      : "scoring"
+    "breakdown"
   );
 
   const [reorderedPosVsPosAssistNetwork, maybeExtraNetwork] = _.thru(
@@ -336,11 +334,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
           </div>
         )}
       </span>
-      {FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis) ? (
-        <span>
-          ({scoringToggle} // {usageToggle} // {breakdownToggle})
-        </span>
-      ) : null}
+      <span>
+        ({scoringToggle} // {usageToggle} // {breakdownToggle})
+      </span>
       <br />
       <br />
       {tableType == "breakdown" ? (
@@ -352,6 +348,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
           showGrades={showGrades}
           grades={grades}
           showHelp={showHelp}
+          quickSwitchOverride={quickSwitch}
         />
       ) : (
         <Container>

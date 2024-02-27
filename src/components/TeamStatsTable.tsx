@@ -162,7 +162,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
 
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
-    if (showGrades) {
+    if (showGrades || showPlayTypes) {
       if (
         gameFilterParams.year != divisionStatsCache.year ||
         gameFilterParams.gender != divisionStatsCache.gender ||
@@ -175,7 +175,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         );
       }
     }
-  }, [gameFilterParams, showGrades]);
+  }, [gameFilterParams, showGrades, showPlayTypes]);
 
   // Generic page builder plumbing
 

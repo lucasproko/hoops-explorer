@@ -46,7 +46,8 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip as RechartsTooltip,
+  Tooltip as RechartTooltip,
+  LabelList,
   Legend,
   ResponsiveContainer,
 } from "recharts";
@@ -55,6 +56,7 @@ import {
   GradeTableUtils,
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
+import { useEffect } from "react";
 
 type Props = {
   title?: string;
@@ -66,6 +68,7 @@ type Props = {
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
+  quickSwitchOverride: string | undefined;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -77,6 +80,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   showGrades,
   grades,
   showHelp,
+  quickSwitchOverride,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const players =
@@ -108,19 +112,22 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   const data = topLevelPlayTypeStylesPctile
     ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
+        const rawVal = (
+          topLevelPlayTypeStyles as Record<
+            string,
+            { possPct: Statistic; pts: Statistic }
+          >
+        )[playType];
         return {
           name: playType.replace("-", " - "),
-          pct: (stat.possPct.value || 0) * 100,
-          pts: stat.pts.value || 0,
+          playType: playType,
+          pct: Math.min(100, (stat.possPct.value || 0) * 100),
+          pts: Math.min(100, (stat.pts.value || 0) * 100),
+          rawPct: rawVal?.possPct?.value || 0,
+          rawPts: rawVal?.pts?.value || 0,
         };
       })
-    : _.map(topLevelPlayTypeStyles, (stat, playType) => {
-        return {
-          name: playType.replace("-", " - "),
-          pct: (stat.possPct.value || 0) * 100,
-          pts: stat.pts.value || 0,
-        };
-      });
+    : [];
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) => (
     <OverlayTrigger
@@ -155,88 +162,186 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
     const { x, y, payload } = props;
     return (
-      <Text x={x} y={y} width={40} textAnchor="middle" verticalAnchor="start">
+      <Text
+        x={x}
+        y={y}
+        width={40}
+        textAnchor="middle"
+        verticalAnchor="start"
+        style={{ fontWeight: "bold" }}
+      >
         {payload.value}
       </Text>
     );
   };
 
-  return (
-    <span>
-      {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
-      <br />
-      {title ? (
-        <span style={{ display: "flex" }}>
-          <b>Scoring Analysis: [{quickSwitch || title}]</b>
-          {_.isEmpty(quickSwitchOptions) ? null : (
-            <div style={{ display: "flex" }}>
-              &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;{quickSwitchBuilder}
-            </div>
-          )}
-        </span>
-      ) : undefined}
-      <br />
-      <br />
-      <Container>
-        <Row>
-          <Col xs={10}>
-            <ResponsiveContainer width="100%" height={400}>
-              <BarChart
-                height={400}
-                data={data}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 40,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="name"
-                  interval={0}
-                  tick={<CustomizedAxisTick />}
-                />
-                <YAxis domain={[0, 35]} />
-                <RechartsTooltip />
-                <Bar dataKey="pct" fill="#8884d8">
-                  {data.map((p, index) => {
-                    return (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={
-                          topLevelPlayTypeStylesPctile
-                            ? CbbColors.off_pctile_qual(p.pts)
-                            : CbbColors.off_pp100_redBlackGreen(p.pts * 100)
-                        }
-                      />
-                    );
-                  })}
-                  ;
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={10}>
-            {_.toPairs(topLevelPlayTypeStylesPctile || {}).map((o) => (
-              <span>
-                {JSON.stringify(o, tidyNumbers)}
-                <br />
-              </span>
-            ))}
-            {_.toPairs(topLevelPlayTypeStyles || {}).map((o) => (
-              <span>
-                {JSON.stringify(o, tidyNumbers)}
-                <br />
-              </span>
-            ))}
-          </Col>
-        </Row>
-      </Container>
-    </span>
-  );
+  const CustomLabelledWidthBar = (props: any) => {
+    const { fill, x, y, width, height, rawPct, rawPts, pct, pts } = props;
+
+    // Bar:
+
+    // We adjust width according to rawPct
+    // It's 0.1 at 0, and 1.0 at 0.10+
+
+    const widthToUse =
+      width * (0.1 + 0.9 * Math.max(0, Math.min(1.0, 10 * rawPct)));
+    const xAdj = 0.5 * (width - widthToUse);
+
+    // Text:
+    //(incorporate the label along with the bar to workaround animation bug: https://github.com/recharts/recharts/issues/829#issuecomment-647998463)
+    const radius = 10;
+
+    return (
+      <g>
+        <text
+          x={x + width / 2}
+          y={y - radius}
+          fill="#000000"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {(100 * (rawPct || 0)).toFixed(1)} x{(rawPts || 0).toFixed(2)}
+        </text>
+        <path
+          stroke="#000000"
+          fill={fill}
+          className="recharts-rectangle"
+          d={`M ${
+            x + xAdj
+          },${y} h ${widthToUse} v ${height} h ${-widthToUse} Z`}
+        />
+      </g>
+    );
+  };
+
+  const CustomTooltip: React.FunctionComponent<any> = (props: any) => {
+    const { active, payload, label } = props;
+    if (active) {
+      const data = payload?.[0].payload || {};
+      return (
+        <div
+          className="custom-tooltip"
+          style={{
+            background: "rgba(255, 255, 255, 0.9)",
+          }}
+        >
+          <p className="label">
+            &nbsp;<b>{`${data.playType}`}</b>&nbsp;
+          </p>
+          <p className="desc">
+            &nbsp;Frequency: [<b>{(100 * data.rawPct).toFixed(1)}</b>] /
+            100&nbsp; plays
+            <br />
+            &nbsp;Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]&nbsp;
+          </p>
+          <p className="desc">
+            &nbsp;Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play&nbsp;
+            <br />
+            &nbsp;Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]&nbsp;
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  /** Shows the JSON at the bottom if enabled */
+  const debugView = false;
+
+  return React.useMemo(() => {
+    return (
+      <span>
+        <br />
+        {
+          //(Note this isn't used - instead we inherit the one from the parent container TeamPlayTypeDiagView)
+          title ? (
+            <span style={{ display: "flex" }}>
+              <b>Scoring Analysis: [{quickSwitch || title}]</b>
+              {_.isEmpty(quickSwitchOptions) ? null : (
+                <div style={{ display: "flex" }}>
+                  &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;{quickSwitchBuilder}
+                </div>
+              )}
+            </span>
+          ) : undefined
+        }
+        <Container>
+          {topLevelPlayTypeStylesPctile ? (
+            <Row>
+              <Col xs={10}>
+                <ResponsiveContainer width="100%" height={400}>
+                  <BarChart
+                    height={400}
+                    data={data}
+                    margin={{
+                      top: 10,
+                      right: 30,
+                      left: 20,
+                      bottom: 30,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="name"
+                      interval={0}
+                      tick={<CustomizedAxisTick />}
+                    />
+                    <YAxis
+                      type="number"
+                      domain={[0, 100]}
+                      ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+                    />
+                    <RechartTooltip
+                      content={<CustomTooltip />}
+                      wrapperStyle={{
+                        background: "rgba(255, 255, 255, 0.9)",
+                        zIndex: 1000,
+                      }}
+                      allowEscapeViewBox={{ x: true, y: false }}
+                    />
+                    <Bar
+                      dataKey="pct"
+                      fill="#8884d8"
+                      shape={<CustomLabelledWidthBar />}
+                      isAnimationActive={true}
+                    >
+                      {data.map((p, index) => {
+                        return (
+                          <Cell
+                            key={`cell-${index}`}
+                            stroke="#000000"
+                            fill={CbbColors.off_pctile_qual(p.pts * 0.01)}
+                          />
+                        );
+                      })}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </Col>
+            </Row>
+          ) : undefined}
+          {debugView ? (
+            <Row>
+              <Col xs={10}>
+                {_.toPairs(topLevelPlayTypeStylesPctile || {}).map((o) => (
+                  <span>
+                    {JSON.stringify(o, tidyNumbers)}
+                    <br />
+                  </span>
+                ))}
+                {_.toPairs(topLevelPlayTypeStyles || {}).map((o) => (
+                  <span>
+                    {JSON.stringify(o, tidyNumbers)}
+                    <br />
+                  </span>
+                ))}
+              </Col>
+            </Row>
+          ) : undefined}
+        </Container>
+      </span>
+    );
+  }, [players, grades, teamStats, quickSwitch, quickSwitchOverride]);
 };
 export default TeamPlayTypeDiagRadar;
 

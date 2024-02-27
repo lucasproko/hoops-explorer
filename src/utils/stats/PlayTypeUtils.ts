@@ -417,8 +417,10 @@ export class PlayTypeUtils {
         rosterStatsByCode,
         teamStats
       );
+
     const topLevelPlayTypeAnalysisPoss =
       PlayTypeUtils.aggregateToTopLevelPlayStyles(
+        "playsPct",
         posVsPosAssistNetworkPoss,
         players,
         teamStats
@@ -433,6 +435,7 @@ export class PlayTypeUtils {
       );
     const topLevelPlayTypeAnalysisPts =
       PlayTypeUtils.aggregateToTopLevelPlayStyles(
+        "pointsPer100",
         posVsPosAssistNetworkPts,
         players,
         teamStats
@@ -461,6 +464,7 @@ export class PlayTypeUtils {
 
   /** Builds a higher level view of the assist network, with lots of guessing */
   static aggregateToTopLevelPlayStyles(
+    playStyleType: PlayStyleType,
     assistNetwork: Record<
       string,
       { assists: TargetAssistInfo[]; other: SourceAssistInfo[] }
@@ -483,13 +487,15 @@ export class PlayTypeUtils {
         const scrambleInfo = otherInfo[3];
 
         // Distribute TOs into half court assist network
-        PlayTypeUtils.apportionHalfCourtTurnovers(
-          posTitle,
-          ix,
-          copyOfAssistNetwork,
-          assistNetwork,
-          unassistedInfo
-        );
+        if (playStyleType == "playsPct") {
+          PlayTypeUtils.apportionHalfCourtTurnovers(
+            posTitle,
+            ix,
+            copyOfAssistNetwork,
+            assistNetwork,
+            unassistedInfo
+          );
+        }
 
         return (assistInfo as SourceAssistInfo[])
           .concat([unassistedInfo, transitionInfo, scrambleInfo])
@@ -523,19 +529,24 @@ export class PlayTypeUtils {
     );
 
     // Uncategorized turnovers:
-    const teamPossessions =
-      (teamStats.total_off_fga?.value || 0) +
-        0.475 * (teamStats.total_off_fta?.value || 0) +
-        (teamStats.total_off_to?.value || 0) || 1;
+    if (playStyleType == "playsPct") {
+      const teamPossessions =
+        (teamStats.total_off_fga?.value || 0) +
+          0.475 * (teamStats.total_off_fta?.value || 0) +
+          (teamStats.total_off_to?.value || 0) || 1;
 
-    const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
-      PlayTypeUtils.calcTeamHalfCourtTos(
-        players as IndivStatSet[],
-        teamStats as TeamStatSet
-      );
-    topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
-    topLevelPlayTypeAnalysis["Put-Back"] += uncatScrambleTos / teamPossessions;
-    topLevelPlayTypeAnalysis["Transition"] += uncatTransTos / teamPossessions;
+      const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
+        PlayTypeUtils.calcTeamHalfCourtTos(
+          players as IndivStatSet[],
+          teamStats as TeamStatSet
+        );
+      topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
+      topLevelPlayTypeAnalysis["Put-Back"] +=
+        uncatScrambleTos / teamPossessions;
+      topLevelPlayTypeAnalysis["Transition"] += uncatTransTos / teamPossessions;
+    } else {
+      topLevelPlayTypeAnalysis["Misc"] = 0;
+    }
 
     return topLevelPlayTypeAnalysis;
   }
@@ -1347,23 +1358,36 @@ export class PlayTypeUtils {
     });
   }
 
-  /** Uncategorized TOs, for housekeeping purposes - half court, scramble, transition */
+  /** Uncategorized TOs, for housekeeping purposes - half court, scramble, transition
+   *
+   * Actually, it doesn't look like I count scramble/transition TOs anywhere else, so
+   */
   static calcTeamHalfCourtTos(
     players: IndivStatSet[],
     teamStats: TeamStatSet
   ): [number, number, number] {
     //(7..half-court, 6..scramble/trans)
 
-    const teamTotalTos =
+    const teamTotalTos = Math.max(
+      0,
       (teamStats.total_off_to?.value || 0) -
-      _.sumBy(players, (player) => player.total_off_to?.value || 0);
-    const teamScrambleTos =
-      (teamStats.total_off_scramble_to?.value || 0) -
-      _.sumBy(players, (player) => player.total_off_scramble_to?.value || 0);
-    const teamTransitionTos =
-      (teamStats.total_off_trans_to?.value || 0) -
-      _.sumBy(players, (player) => player.total_off_trans_to?.value || 0);
+        _.sumBy(players, (player) => player.total_off_to?.value || 0)
+    );
+    // In an ideal world I'd incorporate these in a more logical spot and then return
+    // to this being just the non-player TOs
 
+    // const teamScrambleTos = Math.max(
+    //   0,
+    //   (teamStats.total_off_scramble_to?.value || 0) -
+    //     _.sumBy(players, (player) => player.total_off_scramble_to?.value || 0)
+    // );
+    // const teamTransitionTos = Math.max(
+    //   0,
+    //   (teamStats.total_off_trans_to?.value || 0) -
+    //     _.sumBy(players, (player) => player.total_off_trans_to?.value || 0)
+    // );
+    const teamScrambleTos = teamStats.total_off_scramble_to?.value || 0;
+    const teamTransitionTos = teamStats.total_off_trans_to?.value || 0;
     return [
       teamTotalTos - teamScrambleTos - teamTransitionTos,
       teamScrambleTos,
