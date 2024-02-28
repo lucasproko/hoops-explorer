@@ -50,13 +50,13 @@ import {
   LabelList,
   Legend,
   ResponsiveContainer,
+  Label,
 } from "recharts";
 import { GradeUtils } from "../../utils/stats/GradeUtils";
 import {
   GradeTableUtils,
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
-import { useEffect } from "react";
 
 type Props = {
   title?: string;
@@ -225,19 +225,22 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             background: "rgba(255, 255, 255, 0.9)",
           }}
         >
-          <p className="label">
-            &nbsp;<b>{`${data.playType}`}</b>&nbsp;
+          <p className="label pl-1 pr-1">
+            <b>{`${data.playType}`}</b>
           </p>
-          <p className="desc">
-            &nbsp;Frequency: [<b>{(100 * data.rawPct).toFixed(1)}</b>] /
-            100&nbsp; plays
-            <br />
-            &nbsp;Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]&nbsp;
+          <p className="desc pl-1 pr-1">
+            {topLevelPlayTypeDescriptions[data.playType as TopLevelPlayType]}
           </p>
-          <p className="desc">
-            &nbsp;Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play&nbsp;
+          <p className="desc pl-1 pr-1">
+            Frequency: [<b>{(100 * data.rawPct).toFixed(1)}</b>] / 100&nbsp;
+            plays
             <br />
-            &nbsp;Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]&nbsp;
+            Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]
+          </p>
+          <p className="desc pl-1 pr-1">
+            Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play
+            <br />
+            Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]
           </p>
         </div>
       );
@@ -274,7 +277,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     height={400}
                     data={data}
                     margin={{
-                      top: 10,
+                      top: 15,
                       right: 30,
                       left: 20,
                       bottom: 30,
@@ -290,7 +293,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       type="number"
                       domain={[0, 100]}
                       ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-                    />
+                    >
+                      <Label
+                        angle={-90}
+                        value={`Frequency %ile in D1`}
+                        position="insideLeft"
+                        style={{ textAnchor: "middle", fontWeight: "bold" }}
+                      />
+                    </YAxis>
                     <RechartTooltip
                       content={<CustomTooltip />}
                       wrapperStyle={{
@@ -358,3 +368,74 @@ const tidyNumbers = (k: string, v: any) => {
     return v;
   }
 };
+
+const topLevelPlayTypeDescriptions: Record<TopLevelPlayType, React.ReactNode> =
+  {
+    "Rim Attack": (
+      <i>
+        Drives and slashes to the rim from the perimeter.
+        <br />
+        Includes pull-ups and floaters
+      </i>
+    ),
+    "Attack & Kick": (
+      <i>
+        Ball-handler passes to the perimeter for 3P,
+        <br />
+        usually after the defense collapses on a drive
+      </i>
+    ),
+    "Dribble Jumper": (
+      <i>
+        3P shots off the dribble, eg off ISOs
+        <br />
+        or defenders going under screens
+      </i>
+    ),
+    "Mid-Range": (
+      <i>
+        The offense finds space in the mid-range,
+        <br />
+        from passes or sagging defenders
+      </i>
+    ),
+    "Backdoor Cut": <i>A perimeter player cuts to the basket</i>,
+    "Big Cut & Roll": (
+      <i>
+        A frontcourt player cuts to the basket,
+        <br />
+        Usually after a screen, eg in PnR
+      </i>
+    ),
+    "Post-Up": (
+      <i>
+        A frontcourt player backs his defender
+        <br />
+        down to the rim
+      </i>
+    ),
+    "Post & Kick": (
+      <i>
+        A frontcourt player is doubled (usually),
+        <br />
+        but finds an open shooter on the perimeter
+      </i>
+    ),
+    "Pick & Pop": (
+      <i>
+        An assisted 3P from a frontcourt player,
+        <br />
+        Sometimes after setting a screen
+      </i>
+    ),
+    "High-Low": <i>Two bigs connect for a shot at the rim</i>,
+    Transition: <i>Rim-to-rim, off turnovers, etc</i>,
+    "Put-Back": (
+      <i>
+        Shots taken directly off a rebound
+        <br />
+        (can include a kick-out for 3P)
+      </i>
+    ),
+    Misc: <i></i>,
+  };

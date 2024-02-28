@@ -939,7 +939,7 @@ export class PlayTypeUtils {
       // Decide on the weight of each positional category on the misses to add
       const totalWeight =
         _.sumBy(mutableUnadjusted, (assistInfo) => {
-          const stat = (assistInfo.info as Record<string, Statistic>)[
+          const stat = (assistInfo.info as Record<string, Statistic>)?.[
             `source_${key}_ast`
           ];
           return (stat?.value || 0) * denominator;

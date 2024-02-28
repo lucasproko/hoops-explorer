@@ -6,23 +6,23 @@ Object {
   "Backdoor Cut": 0.022436036731770293,
   "Dribble Jumper": 0.029422683855289698,
   "Mid-Range": 0.024836995670427298,
-  "Misc": 0.06465407003508915,
-  "Put-Back": 0.03399453714028501,
+  "Misc": 0.05033196591339219,
+  "Put-Back": 0.03767736391443566,
   "Rim Attack": 0.09005792324323686,
-  "Transition": 0.10752831173082629,
+  "Transition": 0.1181675890783726,
 }
 `;
 
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 2`] = `
 Object {
-  "Attack & Kick": 0.09197465826076066,
-  "Backdoor Cut": 0.03160661595348259,
+  "Attack & Kick": 0.07365653548301296,
+  "Backdoor Cut": 0.026352671583922415,
   "Dribble Jumper": 0.02455217849433765,
-  "Mid-Range": 0.012217995155707356,
-  "Misc": 0.06465407003508915,
-  "Put-Back": 0.038055876666223364,
-  "Rim Attack": 0.09499120847682335,
-  "Transition": 0.1248069073462164,
+  "Mid-Range": 0.011457683297357569,
+  "Misc": 0,
+  "Put-Back": 0.03069022311792207,
+  "Rim Attack": 0.08495053759040828,
+  "Transition": 0.10148233777659563,
 }
 `;
 

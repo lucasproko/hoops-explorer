@@ -508,6 +508,26 @@ export class TeamStatsTableUtils {
                 team: teamStats[queryKey],
               })
             : [],
+          showPlayTypes
+            ? [
+                GenericTableOps.buildTextRow(
+                  <TeamPlayTypeDiagView
+                    title={displayKey}
+                    players={rosterStats[queryKey] || []}
+                    rosterStatsByCode={globalRosterStatsByCode}
+                    teamStats={teamStatsByQuery[queryKey]}
+                    teamSeasonLookup={teamSeasonLookup}
+                    quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
+                      (opt) => opt.title != displayKey
+                    )}
+                    showGrades={showGrades}
+                    grades={divisionStatsCache}
+                    showHelp={showHelp}
+                  />,
+                  "small"
+                ),
+              ]
+            : [],
           showExtraInfo
             ? [
                 GenericTableOps.buildTextRow(
@@ -603,26 +623,6 @@ export class TeamStatsTableUtils {
                     showHelp={showHelp}
                   />,
                   "small pt-2"
-                ),
-              ]
-            : [],
-          showPlayTypes
-            ? [
-                GenericTableOps.buildTextRow(
-                  <TeamPlayTypeDiagView
-                    title={displayKey}
-                    players={rosterStats[queryKey] || []}
-                    rosterStatsByCode={globalRosterStatsByCode}
-                    teamStats={teamStatsByQuery[queryKey]}
-                    teamSeasonLookup={teamSeasonLookup}
-                    quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
-                      (opt) => opt.title != displayKey
-                    )}
-                    showGrades={showGrades}
-                    grades={divisionStatsCache}
-                    showHelp={showHelp}
-                  />,
-                  "small"
                 ),
               ]
             : [],
