@@ -79,6 +79,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
         showGrades="false"
         teamSeasonLookup={teamSeasonLookup}
         showHelp={showHelp}
+        quickSwitchOverride={undefined}
       />
     );
   }
