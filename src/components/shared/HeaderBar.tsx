@@ -374,6 +374,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({
 
   const buildTeamDropdown = (highlight: Boolean) => {
     const teamAnalysisSettings: GameFilterParams = {
+      showTeamPlayTypes: true,
+      showGrades: "rank:Combo",
       showRoster: true,
       calcRapm: true,
       showExtraInfo: true,
