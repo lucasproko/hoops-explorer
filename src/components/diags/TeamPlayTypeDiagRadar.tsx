@@ -189,21 +189,32 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     // Text:
     //(incorporate the label along with the bar to workaround animation bug: https://github.com/recharts/recharts/issues/829#issuecomment-647998463)
-    const radius = 10;
+    const textHeight = 10;
+
+    // Outline .. starting from 10% we go from width 1 to 3 (at 25%+)
+    const outlineWidth = 1 + Math.max(0, (rawPct - 0.1) * (3 / 0.15));
+
+    //Blob showing true efficiency
+    const radius = 0.4 * (widthToUse / 2);
+    const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
+      (rawPts - 0.89) * 100
+    );
 
     return (
       <g>
         <text
           x={x + width / 2}
-          y={y - radius}
+          y={y - textHeight + 3}
           fill="#000000"
           textAnchor="middle"
           dominantBaseline="middle"
         >
-          {(100 * (rawPct || 0)).toFixed(1)} x{(rawPts || 0).toFixed(2)}
+          <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
+          <tspan fill={rawColor}>{(rawPts || 0).toFixed(2)}</tspan>
         </text>
         <path
           stroke="#000000"
+          strokeWidth={outlineWidth}
           fill={fill}
           className="recharts-rectangle"
           d={`M ${
@@ -241,6 +252,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play
             <br />
             Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]
+            <br />
+            (Average D1 play is approx [<b>0.89</b>] pts)
           </p>
         </div>
       );
@@ -277,7 +290,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     height={400}
                     data={data}
                     margin={{
-                      top: 15,
+                      top: 20,
                       right: 30,
                       left: 20,
                       bottom: 30,

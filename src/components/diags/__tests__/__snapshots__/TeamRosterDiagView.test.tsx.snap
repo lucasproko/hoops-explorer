@@ -858,7 +858,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
   <Col>
     Using [
     global
-    ] stats - 
+    ] stats -
+     
     <a
       href="#"
       onClick={[Function]}
@@ -1509,7 +1510,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
   <Col>
     Using [
     sample
-    ] stats - 
+    ] stats -
+     
     <a
       href="#"
       onClick={[Function]}

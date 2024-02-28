@@ -245,26 +245,18 @@ export class PlayTypeDiagUtils {
                   ],
                 ])
                 .concat(
-                  targetNotSource || !sourceOnlyMode
-                    ? []
-                    : [
+                  sourceOnlyMode
+                    ? [
                         [
-                          `${loc}_ppp`,
-                          GenericTableOps.addDataCol(
-                            `PPP`,
-                            descriptionPpp,
-                            CbbColors.offOnlyPicker(
-                              CbbColors.alwaysWhite,
-                              CbbColors.alwaysWhite
-                            ),
-                            GenericTableOps.percentOrHtmlFormatter
+                          `source_to`,
+                          GenericTableOps.addPctCol(
+                            `TO%`,
+                            `% of possessions from this position group ending in a TO`,
+                            CbbColors.varPicker(CbbColors.p_ast_breakdown)
                           ),
                         ],
-                        [
-                          `sep${loc}ppp_ast`,
-                          GenericTableOps.addColSeparator(0.125),
-                        ],
                       ]
+                    : []
                 )
             );
           })

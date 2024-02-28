@@ -94,8 +94,8 @@ export type TopLevelPlayType =
   | "Post & Kick"
   | "Pick & Pop"
   | "High-Low"
-  | "Transition"
   | "Put-Back"
+  | "Transition"
   | "Misc";
 //(currently "Misc" is just team turnovers, used to get the sum back to 100%)
 
@@ -120,9 +120,9 @@ export class PlayTypeUtils {
     "Post & Kick",
     "Pick & Pop",
     "High-Low",
-    "Transition",
     "Put-Back",
-  ]; //(no Misc we don't rennder)
+    "Transition",
+  ]; //(no Misc - we don't render)
 
   /** Gives % of ball-handler /  wing / big vs position name */
   private static posToFamilyScore = {
