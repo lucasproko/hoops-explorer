@@ -2,14 +2,14 @@
 
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 1`] = `
 Object {
-  "Attack & Kick": 0.09093268200783171,
-  "Backdoor Cut": 0.022436036731770293,
-  "Dribble Jumper": 0.029422683855289698,
-  "Mid-Range": 0.024836995670427298,
-  "Misc": 0.05033196591339219,
-  "Put-Back": 0.03767736391443566,
-  "Rim Attack": 0.09005792324323686,
-  "Transition": 0.1181675890783726,
+  "Attack & Kick": 0.1960333867510726,
+  "Backdoor Cut": 0.048367783383114045,
+  "Dribble Jumper": 0.06342965187105977,
+  "Mid-Range": 0.053543789432893334,
+  "Misc": 0.06465407003508915,
+  "Put-Back": 0.0647724089708131,
+  "Rim Attack": 0.1941475749678136,
+  "Transition": 0.2048516551949357,
 }
 `;
 

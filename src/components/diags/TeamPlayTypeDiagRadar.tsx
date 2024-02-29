@@ -106,28 +106,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     mediumTier: grades?.Medium,
     lowTier: grades?.Low,
   });
-  const topLevelPlayTypeStylesPctile = tierToUse
-    ? GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, tierToUse, true)
-    : undefined;
-
-  const data = topLevelPlayTypeStylesPctile
-    ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
-        const rawVal = (
-          topLevelPlayTypeStyles as Record<
-            string,
-            { possPct: Statistic; pts: Statistic }
-          >
-        )[playType];
-        return {
-          name: playType.replace("-", " - "),
-          playType: playType,
-          pct: Math.min(100, (stat.possPct.value || 0) * 100),
-          pts: Math.min(100, (stat.pts.value || 0) * 100),
-          rawPct: rawVal?.possPct?.value || 0,
-          rawPts: rawVal?.pts?.value || 0,
-        };
-      })
-    : [];
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) => (
     <OverlayTrigger
@@ -192,7 +170,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const textHeight = 10;
 
     // Outline .. starting from 10% we go from width 1 to 3 (at 25%+)
-    const outlineWidth = 1 + Math.max(0, (rawPct - 0.1) * (3 / 0.15));
+    const outlineWidth =
+      1 + Math.min(3, Math.max(0, (rawPct - 0.1) * (3 / 0.15)));
 
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
@@ -210,7 +189,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           dominantBaseline="middle"
         >
           <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
-          <tspan fill={rawColor}>{(rawPts || 0).toFixed(2)}</tspan>
+          {rawPct > 0 ? (
+            <tspan fill={rawColor}>{(rawPts || 0).toFixed(2)}</tspan>
+          ) : undefined}
         </text>
         <path
           stroke="#000000"
@@ -265,6 +246,33 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const debugView = false;
 
   return React.useMemo(() => {
+    const topLevelPlayTypeStylesPctile = tierToUse
+      ? GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, tierToUse, true)
+      : undefined;
+
+    const data = topLevelPlayTypeStylesPctile
+      ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
+          const rawVal = (
+            topLevelPlayTypeStyles as Record<
+              string,
+              { possPct: Statistic; pts: Statistic }
+            >
+          )[playType];
+
+          const rawPct = rawVal?.possPct?.value || 0;
+
+          return {
+            name: playType.replace("-", " - "),
+            playType: playType,
+            pct:
+              rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
+            pts: Math.min(100, (stat.pts.value || 0) * 100),
+            rawPct,
+            rawPts: rawVal?.pts?.value || 0,
+          };
+        })
+      : [];
+
     return (
       <span>
         <br />
@@ -364,7 +372,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         </Container>
       </span>
     );
-  }, [players, grades, teamStats, quickSwitch, quickSwitchOverride]);
+  }, [
+    players,
+    grades,
+    showGrades,
+    teamStats,
+    quickSwitch,
+    quickSwitchOverride,
+  ]);
 };
 export default TeamPlayTypeDiagRadar;
 
@@ -409,7 +424,7 @@ const topLevelPlayTypeDescriptions: Record<TopLevelPlayType, React.ReactNode> =
       <i>
         The offense finds space in the mid-range,
         <br />
-        from passes or sagging defenders
+        from backcourt/wing passes or sagging defenders
       </i>
     ),
     "Backdoor Cut": <i>A perimeter player cuts to the basket</i>,
@@ -431,7 +446,7 @@ const topLevelPlayTypeDescriptions: Record<TopLevelPlayType, React.ReactNode> =
       <i>
         A frontcourt player is doubled (usually),
         <br />
-        but finds an open shooter on the perimeter
+        but finds an open shooter on the perimeter or mid-range
       </i>
     ),
     "Pick & Pop": (

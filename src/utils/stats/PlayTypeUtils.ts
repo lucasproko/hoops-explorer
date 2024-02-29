@@ -475,6 +475,8 @@ export class PlayTypeUtils {
     //(need a copy of this before we mutate it one final time in PlayTypeUtils.apportionHalfCourtTurnovers()
     const copyOfAssistNetwork = _.cloneDeep(assistNetwork);
 
+    const playTypesLookup = PlayTypeUtils.buildPlayTypesLookup();
+
     const flattenedNetwork = _.chain(assistNetwork)
       .toPairs()
       .flatMap((kv, ix) => {
@@ -487,6 +489,8 @@ export class PlayTypeUtils {
         const scrambleInfo = otherInfo[3];
 
         // Distribute TOs into half court assist network
+        // Note that transition and scramble TOs have valid stat.extraInfo so are correctly incorporated below
+        // hence don't need special handling here
         if (playStyleType == "playsPct") {
           PlayTypeUtils.apportionHalfCourtTurnovers(
             posTitle,
@@ -500,29 +504,89 @@ export class PlayTypeUtils {
         return (assistInfo as SourceAssistInfo[])
           .concat([unassistedInfo, transitionInfo, scrambleInfo])
           .flatMap((a, i) => {
-            return _.keys(a)
-              .filter((ka) => _.startsWith(ka, "source_"))
-              .map((ka) => ({
-                key: `${posTitle}_${i}_${ka}`,
-                stat: (a as PureStatSet)[ka],
-              }));
+            // Diagnostics:
+            // if (playStyleType == "playsPct") {
+            //   _.keys(a)
+            //     .filter((ka) => _.startsWith(ka, "source_"))
+            //     .forEach((ka) => {
+            //       console.log(
+            //         `??? ${posTitle}: ${i} : ${ka} .. [${
+            //           (a as PureStatSet)[ka].extraInfo
+            //         }] .. [${(a as PureStatSet)[ka].value}]`
+            //       );
+            //     });
+            // }
+            return (
+              _.keys(a)
+                .filter((ka) => _.startsWith(ka, "source_"))
+                //(note this means the usages don't sum to 100 since the play count is source+target assists
+                // but at the team-level that is double counting, so we build the play list based on the source assists)
+                // When we come to build the player versions, then we _will_ want to use plays+assists and count both assists
+                // for one player and assisted FG for the other)
+                // (NOTE: in theory we'd also want to include "failed assists", ie one per miss that we've assigned to the
+                // assisted play, not sure how feasible that is)
+                .map((ka) => ({
+                  key: `${posTitle}_${i}_${ka}`,
+                  stat: (a as PureStatSet)[ka],
+                }))
+            );
           });
       })
-      .groupBy((obj) => ((obj.stat.extraInfo as string[]) || []).join(":"))
       //TODO: type weirdness here, extraInfo temporarily is an array of strings
+      .groupBy((obj) => ((obj.stat.extraInfo as string[]) || []).join(":"))
+
       .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
       .value();
 
-    const playTypesLookup = PlayTypeUtils.buildPlayTypesLookup();
+    //TODO: (ideally we'd pass this in to ensure it's the same demon as everything else)
+    const teamPossessions =
+      (teamStats.total_off_fga?.value || 0) +
+        0.475 * (teamStats.total_off_fta?.value || 0) +
+        (teamStats.total_off_to?.value || 0) || 1;
+
+    const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
+      playStyleType == "playsPct"
+        ? PlayTypeUtils.calcTeamHalfCourtTos(
+            players as IndivStatSet[],
+            teamStats as TeamStatSet
+          )
+        : [0, 0, 0];
+
+    const sourceOnlyAdj =
+      (playStyleType == "playsPct"
+        ? _.sum(
+            _.values(
+              _.filter(
+                flattenedNetwork,
+                (obj, key) => !_.isEmpty(playTypesLookup[key])
+              )
+            )
+          )
+        : 1.0) +
+      (uncatHalfCourtTos + uncatScrambleTos + uncatTransTos) / teamPossessions;
 
     const topLevelPlayTypeAnalysis = _.transform(
       flattenedNetwork,
       (acc, usage, key) => {
         const playTypesCombo = playTypesLookup[key];
+        //(note half-court TOs don't match anything here, key=="", that's OK because they are
+        // already distributed amongst the other play types)
+
         _.toPairs(playTypesCombo).forEach((kv) => {
           const playType = kv[0] as TopLevelPlayType;
           const weight = kv[1];
-          acc[playType] = (acc[playType] || 0) + weight * usage;
+
+          // Diagnostics:
+          // if (playStyleType == "playsPct") {
+          //   console.log(
+          //     `${key}: ${playType} ${weight}*${usage.toFixed(3)}=${(
+          //       weight * usage
+          //     ).toFixed(3)}: [${acc[playType]}]`
+          //   );
+          // }
+
+          acc[playType] =
+            (acc[playType] || 0) + (weight * usage) / (sourceOnlyAdj || 1);
         });
       },
       {} as Record<TopLevelPlayType, number>
@@ -530,16 +594,6 @@ export class PlayTypeUtils {
 
     // Uncategorized turnovers:
     if (playStyleType == "playsPct") {
-      const teamPossessions =
-        (teamStats.total_off_fga?.value || 0) +
-          0.475 * (teamStats.total_off_fta?.value || 0) +
-          (teamStats.total_off_to?.value || 0) || 1;
-
-      const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
-        PlayTypeUtils.calcTeamHalfCourtTos(
-          players as IndivStatSet[],
-          teamStats as TeamStatSet
-        );
       topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
       topLevelPlayTypeAnalysis["Put-Back"] +=
         uncatScrambleTos / teamPossessions;
@@ -1359,8 +1413,6 @@ export class PlayTypeUtils {
   }
 
   /** Uncategorized TOs, for housekeeping purposes - half court, scramble, transition
-   *
-   * Actually, it doesn't look like I count scramble/transition TOs anywhere else, so
    */
   static calcTeamHalfCourtTos(
     players: IndivStatSet[],
@@ -1373,21 +1425,16 @@ export class PlayTypeUtils {
       (teamStats.total_off_to?.value || 0) -
         _.sumBy(players, (player) => player.total_off_to?.value || 0)
     );
-    // In an ideal world I'd incorporate these in a more logical spot and then return
-    // to this being just the non-player TOs
-
-    // const teamScrambleTos = Math.max(
-    //   0,
-    //   (teamStats.total_off_scramble_to?.value || 0) -
-    //     _.sumBy(players, (player) => player.total_off_scramble_to?.value || 0)
-    // );
-    // const teamTransitionTos = Math.max(
-    //   0,
-    //   (teamStats.total_off_trans_to?.value || 0) -
-    //     _.sumBy(players, (player) => player.total_off_trans_to?.value || 0)
-    // );
-    const teamScrambleTos = teamStats.total_off_scramble_to?.value || 0;
-    const teamTransitionTos = teamStats.total_off_trans_to?.value || 0;
+    const teamScrambleTos = Math.max(
+      0,
+      (teamStats.total_off_scramble_to?.value || 0) -
+        _.sumBy(players, (player) => player.total_off_scramble_to?.value || 0)
+    );
+    const teamTransitionTos = Math.max(
+      0,
+      (teamStats.total_off_trans_to?.value || 0) -
+        _.sumBy(players, (player) => player.total_off_trans_to?.value || 0)
+    );
     return [
       teamTotalTos - teamScrambleTos - teamTransitionTos,
       teamScrambleTos,
