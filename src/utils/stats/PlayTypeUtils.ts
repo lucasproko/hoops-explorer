@@ -226,23 +226,23 @@ export class PlayTypeUtils {
             rosterStatsByCode,
             undefined
           );
+        const posCategoryAssistNetworkMaybeIncMisses =
+          playerStyle.assistedMissAdjustments
+            ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
+                posCategoryAssistNetwork,
+                playerStyle.assistedMissAdjustments,
+                playerStyle.totalPlaysMade
+              )
+            : posCategoryAssistNetwork;
 
         const code: PlayerCode =
           player.player_array?.hits?.hits?.[0]?._source?.player?.code ||
           player.key;
 
-        // console.log(`${code} ... vs ... ${JSON.stringify(playerAssistNetwork, tidyNumbers, 3)}`);
-
         return [
           code,
           {
-            posCategoryAssistNetwork: playerStyle.assistedMissAdjustments
-              ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
-                  posCategoryAssistNetwork,
-                  playerStyle.assistedMissAdjustments,
-                  playerStyle.totalPlaysMade
-                )
-              : posCategoryAssistNetwork,
+            posCategoryAssistNetwork: posCategoryAssistNetworkMaybeIncMisses,
             playerStyle: playerStyle,
           },
         ];
@@ -516,20 +516,12 @@ export class PlayTypeUtils {
             //       );
             //     });
             // }
-            return (
-              _.keys(a)
-                .filter((ka) => _.startsWith(ka, "source_"))
-                //(note this means the usages don't sum to 100 since the play count is source+target assists
-                // but at the team-level that is double counting, so we build the play list based on the source assists)
-                // When we come to build the player versions, then we _will_ want to use plays+assists and count both assists
-                // for one player and assisted FG for the other)
-                // (NOTE: in theory we'd also want to include "failed assists", ie one per miss that we've assigned to the
-                // assisted play, not sure how feasible that is)
-                .map((ka) => ({
-                  key: `${posTitle}_${i}_${ka}`,
-                  stat: (a as PureStatSet)[ka],
-                }))
-            );
+            return _.keys(a)
+              .filter((ka) => _.startsWith(ka, "source_"))
+              .map((ka) => ({
+                key: `${posTitle}_${i}_${ka}`,
+                stat: (a as PureStatSet)[ka],
+              }));
           });
       })
       //TODO: type weirdness here, extraInfo temporarily is an array of strings
@@ -537,33 +529,6 @@ export class PlayTypeUtils {
 
       .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
       .value();
-
-    //TODO: (ideally we'd pass this in to ensure it's the same demon as everything else)
-    const teamPossessions =
-      (teamStats.total_off_fga?.value || 0) +
-        0.475 * (teamStats.total_off_fta?.value || 0) +
-        (teamStats.total_off_to?.value || 0) || 1;
-
-    const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
-      playStyleType == "playsPct"
-        ? PlayTypeUtils.calcTeamHalfCourtTos(
-            players as IndivStatSet[],
-            teamStats as TeamStatSet
-          )
-        : [0, 0, 0];
-
-    const sourceOnlyAdj =
-      (playStyleType == "playsPct"
-        ? _.sum(
-            _.values(
-              _.filter(
-                flattenedNetwork,
-                (obj, key) => !_.isEmpty(playTypesLookup[key])
-              )
-            )
-          )
-        : 1.0) +
-      (uncatHalfCourtTos + uncatScrambleTos + uncatTransTos) / teamPossessions;
 
     const topLevelPlayTypeAnalysis = _.transform(
       flattenedNetwork,
@@ -585,8 +550,7 @@ export class PlayTypeUtils {
           //   );
           // }
 
-          acc[playType] =
-            (acc[playType] || 0) + (weight * usage) / (sourceOnlyAdj || 1);
+          acc[playType] = (acc[playType] || 0) + weight * usage;
         });
       },
       {} as Record<TopLevelPlayType, number>
@@ -594,6 +558,18 @@ export class PlayTypeUtils {
 
     // Uncategorized turnovers:
     if (playStyleType == "playsPct") {
+      //TODO: (ideally we'd pass this in to ensure it's the same demon as everything else)
+      const teamPossessions =
+        (teamStats.total_off_fga?.value || 0) +
+          0.475 * (teamStats.total_off_fta?.value || 0) +
+          (teamStats.total_off_to?.value || 0) || 1;
+
+      const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
+        PlayTypeUtils.calcTeamHalfCourtTos(
+          players as IndivStatSet[],
+          teamStats as TeamStatSet
+        );
+
       topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
       topLevelPlayTypeAnalysis["Put-Back"] +=
         uncatScrambleTos / teamPossessions;
@@ -625,7 +601,7 @@ export class PlayTypeUtils {
       ? totalAssistsCalcHalfCourt
       : totalAssistsCalc;
 
-    const totalAssists = countNotPctAssists
+    const totalAssists = !_.isNil(countNotPctAssists)
       ? countNotPctAssists
       : totalAssistsCalc;
     const maybeTurnovers =
@@ -677,7 +653,7 @@ export class PlayTypeUtils {
     const totalFtTripsMadeForDenom =
       ftaMult * (player[`total_off_fta`]?.value || 0);
     const totalPlaysMade =
-      (countNotPctScorePoss
+      (!_.isNil(countNotPctScorePoss)
         ? countNotPctScorePoss
         : totalShotsCount +
           totalFtTripsMadeForDenom +
@@ -1001,9 +977,21 @@ export class PlayTypeUtils {
 
       mutableUnadjusted.forEach((assistInfo, index) => {
         if (assistInfo.info) {
-          const stat = (assistInfo.info as Record<string, Statistic>)[
-            `source_${key}_ast`
-          ];
+          const stat = _.thru(
+            (assistInfo.info as Record<string, Statistic>)[`source_${key}_ast`],
+            (testStat) => {
+              if (!_.isUndefined(testStat?.value)) {
+                return testStat;
+              } else {
+                const retVal = ((assistInfo.info as Record<string, Statistic>)[
+                  `source_${key}_ast`
+                ] = {
+                  value: 0,
+                });
+                return retVal;
+              }
+            }
+          );
           if (!_.isUndefined(stat?.value)) {
             const weight =
               (stat.value * denominator + genericAssistSplit[index]!) /
