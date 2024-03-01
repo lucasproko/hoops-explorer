@@ -72,6 +72,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       dribble jumper off ISO
                     </li>
                   </div>,
+                  "old_value": undefined,
                   "value": 0.05602676834487589,
                 },
                 "source_mid_ast": Object {
@@ -85,6 +86,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       misc action
                     </li>
                   </div>,
+                  "old_value": undefined,
                   "value": 0.043576375379347915,
                 },
                 "source_rim_ast": Object {
@@ -98,6 +100,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       ISO
                     </li>
                   </div>,
+                  "old_value": undefined,
                   "value": 0.12139133141389775,
                 },
                 "source_sf": Object {
@@ -804,6 +807,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       dribble jumper off ISO
                     </li>
                   </div>,
+                  "old_value": undefined,
                   "value": 0.05602676834487589,
                 },
                 "source_mid_ast": Object {
@@ -817,6 +821,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       misc action
                     </li>
                   </div>,
+                  "old_value": undefined,
                   "value": 0.043576375379347915,
                 },
                 "source_rim_ast": Object {
@@ -830,6 +835,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       ISO
                     </li>
                   </div>,
+                  "old_value": undefined,
                   "value": 0.12139133141389775,
                 },
                 "source_sf": Object {

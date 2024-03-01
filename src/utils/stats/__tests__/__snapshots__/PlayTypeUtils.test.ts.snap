@@ -623,12 +623,15 @@ Object {
   "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
+      "old_value": undefined,
       "value": 0.05430566330488751,
     },
     "source_mid_ast": Object {
+      "old_value": undefined,
       "value": 0.0465477114041893,
     },
     "source_rim_ast": Object {
+      "old_value": undefined,
       "value": 0.12412723041117145,
     },
     "source_sf": Object {
@@ -703,12 +706,15 @@ Object {
   "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
+      "old_value": 0.28482156377970286,
       "value": 0.20662999851345323,
     },
     "source_mid_ast": Object {
+      "old_value": 0.09844242934773632,
       "value": 0.09662553887319755,
     },
     "source_rim_ast": Object {
+      "old_value": 0.16138448564220406,
       "value": 0.1486546751895347,
     },
     "source_sf": Object {
@@ -776,12 +782,15 @@ Object {
   "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
+      "old_value": undefined,
       "value": 21,
     },
     "source_mid_ast": Object {
+      "old_value": undefined,
       "value": 18,
     },
     "source_rim_ast": Object {
+      "old_value": undefined,
       "value": 48,
     },
     "source_sf": Object {
@@ -852,12 +861,15 @@ Object {
   "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
+      "old_value": undefined,
       "value": 0.09365244536940687,
     },
     "source_mid_ast": Object {
+      "old_value": undefined,
       "value": 0.05351568306823249,
     },
     "source_rim_ast": Object {
+      "old_value": undefined,
       "value": 0.1427084881819533,
     },
     "source_sf": Object {
@@ -1095,6 +1107,7 @@ Object {
       "off ball-screen",
       "dribble jumper off ISO",
     ],
+    "old_value": undefined,
     "value": 0.05430566330488751,
   },
   "source_mid_ast": Object {
@@ -1102,6 +1115,7 @@ Object {
       "drive and pull-up off ball-screen or ISO",
       "misc action",
     ],
+    "old_value": undefined,
     "value": 0.0465477114041893,
   },
   "source_rim_ast": Object {
@@ -1109,6 +1123,7 @@ Object {
       "attacks the rim off pick-and-roll",
       "ISO",
     ],
+    "old_value": undefined,
     "value": 0.12412723041117145,
   },
   "source_sf": Object {
@@ -1130,6 +1145,7 @@ Object {
       "off ball-screen",
       "dribble jumper off ISO",
     ],
+    "old_value": undefined,
     "value": 0.05430566330488751,
   },
   "source_mid_ast": Object {
@@ -1137,6 +1153,7 @@ Object {
       "drive and pull-up off ball-screen or ISO",
       "misc action",
     ],
+    "old_value": undefined,
     "value": 0.0465477114041893,
   },
   "source_rim_ast": Object {
@@ -1144,6 +1161,7 @@ Object {
       "attacks the rim off pick-and-roll",
       "ISO",
     ],
+    "old_value": undefined,
     "value": 0.12412723041117145,
   },
   "source_sf": Object {
