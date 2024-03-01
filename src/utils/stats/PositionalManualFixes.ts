@@ -150,6 +150,12 @@ export const absolutePositionFixes: Record<
       position: "PF/C",
     },
   },
+  "Men_Illinois_2023/24": {
+    "Hawkins, Coleman": {
+      // Plays a "super stretch 5"
+      position: "S-PF",
+    },
+  },
 };
 
 export type RelativePositionFixRule = {
@@ -323,6 +329,19 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> =
           { code: "NoBatchelor", id: "Batcherlor, Noah" },
           { code: "DoScott", id: "Scott, Donta" },
           undefined,
+        ],
+      },
+    ],
+    "Men_Illinois_2023/24": [
+      // Coleman Hawkins crazy stretch-5-iness causes confusion
+      {
+        key: [undefined, undefined, undefined, "CoHawkins", "QuGuerrier"],
+        rule: [
+          undefined,
+          undefined,
+          undefined,
+          { code: "QuGuerrier", id: "Guerrier, Quincy" },
+          { code: "CoHawkins", id: "Hawkins, Coleman" },
         ],
       },
     ],
