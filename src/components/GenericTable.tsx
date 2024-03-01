@@ -135,9 +135,10 @@ export class GenericTableOps {
     ["st", "nd", "rd"][((((n + 90) % 100) - 10) % 10) - 1] || "th";
   static readonly rankFormatter = (val: any) => {
     return (
+      //(sometimes get 0th due to rounding, we just switch that to 1)
       <small>
-        {(val.value as number).toFixed(0)}
-        <sup>{GenericTableOps.rankSuffix(val.value as number)}</sup>
+        {((val.value as number) || 1).toFixed(0)}
+        <sup>{GenericTableOps.rankSuffix((val.value as number) || 1)}</sup>
       </small>
     );
   };
