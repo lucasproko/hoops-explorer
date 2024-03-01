@@ -202,6 +202,9 @@ export class PlayTypeUtils {
     > = _.chain(filteredPlayers)
       .map((player, ix) => {
         const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
+
+        // Decomposes stats into unassisted half court, assisted half court (this is broken down further below)
+        // plus scramble/transition stats
         const playerStyle = PlayTypeUtils.buildPlayerStyle(
           playStyleType,
           player,
@@ -209,6 +212,8 @@ export class PlayTypeUtils {
           teamTotalAssists,
           separateHalfCourt
         );
+
+        // Which players assisted "player", and which did "player" assist?
         const playerAssistNetwork = allPlayers.map((p) => {
           const [info, ignore] = PlayTypeUtils.buildPlayerAssistNetwork(
             playStyleType,
@@ -220,12 +225,17 @@ export class PlayTypeUtils {
           );
           return { code: p, ...info };
         });
+
+        // For this player, we convert their player-based assist network into a positional-based assist network
+        // eg if "playerX (WG) -> player", then converts to "BH*0.6 -> player, W*0.4 -> player"
         const posCategoryAssistNetwork =
           PlayTypeUtils.buildPosCategoryAssistNetwork(
             playerAssistNetwork,
             rosterStatsByCode,
             undefined
           );
+
+        // Distributes uncategorized misses across the source_
         const posCategoryAssistNetworkMaybeIncMisses =
           playerStyle.assistedMissAdjustments
             ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
@@ -396,8 +406,11 @@ export class PlayTypeUtils {
         .value();
     }
 
-    //(need a copy of this before we mutate it one final time in PlayTypeUtils.apportionHalfCourtTurnovers()
+    // Distribute TOs into half court assist network
+    // Note that transition and scramble TOs have valid stat.extraInfo so are correctly incorporated later
+    // hence don't need special handling here
     if (playStyleType == "playsPct") {
+      //(need a copy of this before we mutate it one final time in PlayTypeUtils.apportionHalfCourtTurnovers()
       const copyOfAssistNetwork = _.cloneDeep(reorderedPosVsPosAssistNetwork);
 
       _.chain(reorderedPosVsPosAssistNetwork)
@@ -407,9 +420,6 @@ export class PlayTypeUtils {
           const otherInfo = kv[1].other;
           const unassistedInfo = otherInfo[0];
 
-          // Distribute TOs into half court assist network
-          // Note that transition and scramble TOs have valid stat.extraInfo so are correctly incorporated later
-          // hence don't need special handling here
           PlayTypeUtils.apportionHalfCourtTurnovers(
             posTitle,
             ix,
@@ -810,12 +820,22 @@ export class PlayTypeUtils {
           ? unassistedHalfCourt
           : unassisted;
 
+        const assistedMissAdjustmentPct =
+          assistedMissAdjustment / totalPlaysMade;
+
+        const unassistedPct =
+          (unassistedToUse * ptsMultiplier(key)) / totalPlaysMade;
+
         return [
           `source_${key}_ast`,
-          unassistedToUse > 0
-            ? {
-                value: (unassistedToUse * ptsMultiplier(key)) / totalPlaysMade,
-              }
+          unassistedPct + assistedMissAdjustmentPct > 0
+            ? ({
+                value: unassistedPct,
+                old_value:
+                  assistedMissAdjustmentPct > 0.0
+                    ? assistedMissAdjustmentPct + unassistedPct
+                    : undefined,
+              } as Statistic)
             : null,
         ];
       })
@@ -1007,6 +1027,7 @@ export class PlayTypeUtils {
               totalWeight;
 
             const missAdjsForShot = missAdjustments[key] || 0;
+
             const adjustment = (weight * missAdjsForShot) / (denominator || 1);
             if (_.isNil(stat.old_value)) {
               stat.old_value = stat.value; //(save original value)
@@ -1163,14 +1184,24 @@ export class PlayTypeUtils {
                 const statKey = `${loc}_${shotType}_ast`;
                 const statVal = asStatSet(statSet)[statKey];
 
-                if (statVal?.value) {
-                  // (do nothing on 0)
+                if (statVal?.value || statVal?.old_value) {
+                  // (do nothing on 0, unless it use to be non-zero but has been adjusted down)
                   maybeFill(statKey, playTypeExamples);
-                  asStatSet(acc)[statKey].value! += weight * statVal.value;
-                  //TODO: also save old_value if set for any fields (using value if there isn't one) ...
-                  // (this happens because of incorporating half court misses)
-                  // ...then have to figure out how to add an override at the end if one is set ...
-                  // ... BEFORE we incorporate half-court TOs
+                  const newStat = asStatSet(acc)[statKey];
+                  const weightedVal = weight * (statVal.value || 0);
+
+                  // If we encounter any old_values then build it for the new stat also
+                  if (!_.isNil(statVal.old_value)) {
+                    if (_.isNil(newStat.old_value)) {
+                      newStat.old_value = newStat.value;
+                      //(Set the override for this in the "half court turnover" logic - not ideal)
+                    }
+                    newStat.old_value! += weight * statVal.old_value;
+                  } else if (!_.isNil(newStat.old_value)) {
+                    newStat.old_value! += weightedVal;
+                  }
+                  // Update the main value as a weighted average
+                  newStat.value! += weightedVal;
                 }
               });
             });
@@ -1335,7 +1366,14 @@ export class PlayTypeUtils {
           `source_${shotType}_ast`
         ];
         if (_.isNumber(maybeShotTypeAst?.value)) {
-          maybeShotTypeAst.value = maybeShotTypeAst.value * reductionPct;
+          const adjustment =
+            maybeShotTypeAst.value * reductionPct - maybeShotTypeAst.value;
+          maybeShotTypeAst.value += adjustment;
+          if (_.isNumber(maybeShotTypeAst.old_value)) {
+            //(ideally we'd preserve "old_value" and then add this to the overrides list but
+            // it's too complicated so we'll just pretend this is the original value)
+            maybeShotTypeAst.old_value += adjustment;
+          }
         }
       });
     });
@@ -1367,21 +1405,41 @@ export class PlayTypeUtils {
 
     const toPctToUse = mutableUnassisted.source_to?.value || 0;
 
-    var adjusted = 0;
-    const adjStat = (stat: Statistic, adj: number) => {
-      if (_.isNumber(stat?.value)) {
-        stat.value = stat.value + adj;
-      }
-      if (adj >= 0.0006) {
-        if (!stat.override) {
-          stat.override = "";
+    const adjStat = (stat: Statistic | undefined, adj: number) => {
+      if (stat) {
+        // As a "handy spot in the code" (ugh) sets the override explanation
+        // for any half court misses that have previously been adjusted
+        if (!_.isNil(stat.old_value) && !stat.override) {
+          const existingAdj = (stat.value || 0) - (stat.old_value || 0);
+          if (Math.abs(existingAdj) >= 0.0006) {
+            const existingAdjInfo = `Adjusted by [${(100 * existingAdj).toFixed(
+              1
+            )}] from uncategorized half-court misses, `;
+            stat.override = existingAdjInfo;
+          }
         }
-        stat.override += `Adjusted by [${(100 * adj).toFixed(
-          1
-        )}] from [${pos}] TO% of [${(100 * toPctToUse).toFixed(1)}], `;
+
+        if (_.isNumber(stat?.value)) {
+          stat.value = stat.value + adj;
+        }
+
+        if (adj >= 0.0006) {
+          if (!stat.override) {
+            stat.override = "";
+          }
+          stat.override += `Adjusted by [${(100 * adj).toFixed(
+            1
+          )}] from [${pos}] TO% of [${(100 * toPctToUse).toFixed(1)}], `;
+        }
       }
     };
+
     var totalWeight = 0;
+    // (Since we're abusing adjStat to "close out" half court misses, we call it for UA 3P/mid shots which
+    //  bypass the TO distribuion logic below)
+    adjStat(mutableUnassisted.source_mid_ast, 0.0);
+    adjStat(mutableUnassisted.source_3p_ast, 0.0);
+
     // 2 Phases, 1 to collect weight, 1 to mutate stats
     [0, 1].forEach((phase) => {
       const unassistedAtTheRim =
