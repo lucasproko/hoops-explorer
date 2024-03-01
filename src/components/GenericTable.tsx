@@ -564,7 +564,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
               {tmpVal?.override}
             </span>
           ) : null}
-          {tmpVal?.extraInfo && tmpVal?.override ? <br /> : null}
+          {tmpVal?.extraInfo && tmpVal?.override ? (
+            <span>
+              <br />
+              <br />
+            </span>
+          ) : null}
           {tmpVal?.extraInfo ? <span>{tmpVal?.extraInfo}</span> : null}
         </Tooltip>
       ) : null;
