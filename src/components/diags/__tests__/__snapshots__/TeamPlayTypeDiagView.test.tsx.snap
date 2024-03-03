@@ -2260,8 +2260,8 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
         },
       }
     }
-    showHelp={true}
-    teamSeasonLookup="Men_Maryland_2018/9"
+    showGrades="false"
+    showHelp={false}
     teamStats={
       Object {
         "baseline": Object {
@@ -6827,8 +6827,8 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
         },
       }
     }
+    showGrades="false"
     showHelp={false}
-    teamSeasonLookup="Men_Maryland_2018/9"
     teamStats={
       Object {
         "baseline": Object {

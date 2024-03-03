@@ -15,15 +15,12 @@ import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Utils
-import {
-  PosFamilyNames,
-  PlayTypeUtils,
-  SourceAssistInfo,
-} from "../../utils/stats/PlayTypeUtils";
+import { SourceAssistInfo } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
-import { LineupUtils } from "../../utils/stats/LineupUtils";
+import { Props as PlayTypeDiagProps } from "../../components/diags/TeamPlayTypeDiagRadar";
+import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
 
 const targetSource = ["source", "target"];
 const shotTypes = ["3p", "mid", "rim"];
@@ -41,7 +38,16 @@ import GenericTable, {
   GenericTableOps,
   GenericTableColProps,
 } from "../../components/GenericTable";
-import { Statistic, IndivStatSet } from "../StatModels";
+import {
+  Statistic,
+  IndivStatSet,
+  TeamStatSet,
+  RosterEntry,
+} from "../StatModels";
+import { DivisionStatsCache } from "./GradeTableUtils";
+import { RosterTableUtils } from "./RosterTableUtils";
+import { RosterStatsModel } from "../../components/RosterStatsTable";
+import { TeamStatsModel } from "../../components/TeamStatsTable";
 
 /** Encapsulates some of the logic used to build the diag visualiations in XxxPlayTypeDiags */
 export class PlayTypeDiagUtils {
@@ -262,5 +268,53 @@ export class PlayTypeDiagUtils {
           })
       ),
     };
+  };
+
+  /** Encapsulates the logic to build a play style table from either single game or season  */
+  static buildTeamStyleBreakdown = (
+    title: string,
+    players: RosterStatsModel,
+    teamStats: TeamStatsModel,
+    grades: DivisionStatsCache,
+    showHelp: boolean
+  ) => {
+    const rosterInfo = teamStats.global.roster || {};
+
+    /** Largest sample of player stats, by player key - use for ORtg calcs */
+    const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+      players.global,
+      rosterInfo,
+      true //(injects positional info into the player stats, needed for play style analysis below)
+    );
+
+    //TODO: this doesn't work currently, I think "players.global" does not contain the right info maybe?
+    const options = [
+      {
+        title: `${title} // Season Breakdown`,
+        players: players.global,
+        rosterStatsByCode: globalRosterStatsByCode,
+        teamStats: teamStats.global,
+        showGrades: "rank:Combo",
+        showHelp,
+        quickSwitchOverride: undefined,
+      },
+    ];
+
+    return (
+      <div>
+        <TeamPlayTypeDiagRadar
+          title={`${title} // Game Breakdown`}
+          players={players.baseline}
+          rosterStatsByCode={globalRosterStatsByCode}
+          teamStats={teamStats.baseline}
+          showGrades={"rank:Combo"}
+          grades={grades}
+          showHelp={showHelp}
+          quickSwitchOptions={[]}
+          usePossCount={true}
+          quickSwitchOverride={undefined}
+        />
+      </div>
+    );
   };
 }

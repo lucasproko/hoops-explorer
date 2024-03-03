@@ -516,7 +516,6 @@ export class TeamStatsTableUtils {
                     players={rosterStats[queryKey] || []}
                     rosterStatsByCode={globalRosterStatsByCode}
                     teamStats={teamStatsByQuery[queryKey]}
-                    teamSeasonLookup={teamSeasonLookup}
                     quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey
                     )}

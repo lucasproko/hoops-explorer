@@ -56,7 +56,6 @@ type Props = {
   player: IndivStatSet;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
-  teamSeasonLookup: string;
   showHelp: boolean;
   showDetailsOverride?: boolean;
 };
@@ -64,7 +63,6 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
   player,
   rosterStatsByCode,
   teamStats,
-  teamSeasonLookup,
   showHelp,
   showDetailsOverride,
 }) => {
@@ -77,7 +75,6 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamStats}
         showGrades="false"
-        teamSeasonLookup={teamSeasonLookup}
         showHelp={showHelp}
         quickSwitchOverride={undefined}
       />

@@ -16,12 +16,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Utils
 import {
-  PosFamilyNames,
   PlayTypeUtils,
   TopLevelPlayType,
 } from "../../utils/stats/PlayTypeUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
-import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
@@ -30,7 +28,6 @@ import GenericTable, {
   GenericTableColProps,
 } from "../GenericTable";
 import {
-  PureStatSet,
   Statistic,
   IndivStatSet,
   TeamStatSet,
@@ -47,8 +44,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip as RechartTooltip,
-  LabelList,
-  Legend,
   ResponsiveContainer,
   Label,
 } from "recharts";
@@ -58,16 +53,16 @@ import {
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
 
-type Props = {
+export type Props = {
   title?: string;
   players: Array<IndivStatSet>;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
-  teamSeasonLookup: string;
   quickSwitchOptions?: Props[];
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
+  usePossCount?: boolean;
   quickSwitchOverride: string | undefined;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
@@ -75,11 +70,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   players: playersIn,
   rosterStatsByCode,
   teamStats: teamStatsIn,
-  teamSeasonLookup,
   quickSwitchOptions,
   showGrades,
   grades,
   showHelp,
+  usePossCount,
   quickSwitchOverride,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
@@ -106,6 +101,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     mediumTier: grades?.Medium,
     lowTier: grades?.Low,
   });
+  const maybePossCount = teamStats.off_poss?.value || 0;
+  const possFactor =
+    maybePossCount && usePossCount ? maybePossCount / 100 : 1.0;
 
   const tooltipBuilder = (id: string, title: string, tooltip: string) => (
     <OverlayTrigger
@@ -188,7 +186,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           textAnchor="middle"
           dominantBaseline="middle"
         >
-          <tspan>{(100 * (rawPct || 0)).toFixed(1)}x </tspan>
+          <tspan>{(100 * (rawPct || 0) * possFactor).toFixed(1)}x </tspan>
           {rawPct > 0 ? (
             <tspan fill={rawColor}>{(rawPts || 0).toFixed(2)}</tspan>
           ) : undefined}
@@ -228,6 +226,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             plays
             <br />
             Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]
+            {usePossCount ? <br /> : null}
+            {usePossCount ? (
+              <span>(Label shows value for {maybePossCount} poss game)</span>
+            ) : null}
           </p>
           <p className="desc pl-1 pr-1">
             Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play

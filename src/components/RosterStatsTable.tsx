@@ -1121,7 +1121,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
                         teamStats={teamStats.on}
-                        teamSeasonLookup={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
                       "small"
@@ -1232,7 +1231,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
                         teamStats={teamStats.off}
-                        teamSeasonLookup={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
                       "small"
@@ -1354,7 +1352,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
                         teamStats={teamStats.baseline}
-                        teamSeasonLookup={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
                       "small"

@@ -57482,7 +57482,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeasonLookup="undefined_undefined_undefined"
                   teamStats={
                     Object {
                       "doc_count": 0,
@@ -58928,7 +58927,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeasonLookup="undefined_undefined_undefined"
                   teamStats={
                     Object {
                       "doc_count": 0,
@@ -60377,7 +60375,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeasonLookup="undefined_undefined_undefined"
                   teamStats={
                     Object {
                       "doc_count": 0,
@@ -61802,7 +61799,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeasonLookup="undefined_undefined_undefined"
                   teamStats={
                     Object {
                       "doc_count": 0,

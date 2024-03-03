@@ -43,6 +43,12 @@ import { buildOppoFilter } from "../components/MatchupFilter";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LineupStintsChart from "../components/LineupStintsChart";
 import { LineupStintInfo } from "../utils/StatModels";
+import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
+import {
+  DivisionStatsCache,
+  GradeTableUtils,
+} from "../utils/tables/GradeTableUtils";
+import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -124,6 +130,9 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     typeof window === `undefined` //(ensures SSR code still compiles)
       ? "server"
       : window.location.hostname;
+
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
   // Some cache management easter eggs, for development:
   if (allParams.indexOf("__clear_cache__") >= 0) {
@@ -212,6 +221,27 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     }
   };
 
+  // Load team grades, needed for play recap view
+
+  const [divisionStatsCache, setDivisionStatsCache] = useState(
+    {} as DivisionStatsCache
+  );
+
+  // Events that trigger building or rebuilding the division stats cache
+  useEffect(() => {
+    if (
+      matchupFilterParams.year != divisionStatsCache.year ||
+      matchupFilterParams.gender != divisionStatsCache.gender ||
+      _.isEmpty(divisionStatsCache)
+    ) {
+      if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+      GradeTableUtils.populateTeamDivisionStatsCache(
+        matchupFilterParams,
+        setDivisionStatsCache
+      );
+    }
+  }, [matchupFilterParams]);
+
   // View
 
   function maybeShowDocs() {
@@ -272,6 +302,52 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent]);
 
+  const playStyleChart = React.useMemo(() => {
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Play Type Breakdown"
+        helpLink={maybeShowDocs()}
+      >
+        <Container>
+          <Row>
+            <Col xs={12}>
+              {_.isEmpty(divisionStatsCache) ? (
+                <span>
+                  <i>(Loading data...)</i>
+                </span>
+              ) : (
+                PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                  matchupFilterParams.team || "Unknown",
+                  dataEvent.rosterStatsA,
+                  dataEvent.teamStatsA,
+                  divisionStatsCache,
+                  showHelp
+                )
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              {_.isEmpty(divisionStatsCache) ? (
+                <span></span>
+              ) : (
+                PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                  buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team ||
+                    "Unknown",
+                  dataEvent.rosterStatsB,
+                  dataEvent.teamStatsB,
+                  divisionStatsCache,
+                  showHelp
+                )
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent, divisionStatsCache]);
+
   return (
     <Container>
       <Row>
@@ -303,6 +379,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       </Row>
       <Row>{chart}</Row>
       <Row>{lineupStintTable}</Row>
+      <Row>{playStyleChart}</Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

@@ -501,6 +501,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       : params.baseQuery,
     showRoster: true,
     calcRapm: true,
+    showTeamPlayTypes: true,
     rapmRegressMode: "0.8",
     showExpanded: true,
   });

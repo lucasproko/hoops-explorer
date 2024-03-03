@@ -26,12 +26,10 @@ import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import GenericTable, { GenericTableOps } from "../GenericTable";
 import {
   IndivStatSet,
-  PureStatSet,
   RosterStatsByCode,
   StatModels,
   TeamStatSet,
 } from "../../utils/StatModels";
-import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
 import { DivisionStatsCache } from "../../utils/tables/GradeTableUtils";
 
@@ -40,7 +38,6 @@ type Props = {
   players: Array<IndivStatSet>;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
-  teamSeasonLookup: string;
   quickSwitchOptions?: Props[];
   showGrades: string;
   grades?: DivisionStatsCache;
@@ -51,7 +48,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   players: playersIn,
   rosterStatsByCode,
   teamStats: teamStatsIn,
-  teamSeasonLookup,
   quickSwitchOptions,
   showGrades,
   grades,
@@ -348,7 +344,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             players={players}
             rosterStatsByCode={rosterStatsByCode}
             teamStats={teamStats}
-            teamSeasonLookup={teamSeasonLookup}
             showGrades={showGrades}
             grades={grades}
             showHelp={showHelp}
