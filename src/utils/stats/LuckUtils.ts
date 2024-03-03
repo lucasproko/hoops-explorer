@@ -735,18 +735,30 @@ export class LuckUtils {
       shot_info_total_3p: shot_info_total_attempts,
     } as OffLuckShotInfo3P;
   };
-  /** Calculates approx unassisted/assisted FG% */
+  /** Calculates approx unassisted/assisted FG% - if you think sample size is small, use regressNumber say 20 */
   static readonly buildAdjustedFG = (
     p: IndivStatSet,
     baseShotInfo: OffShotInfoBreakdown,
-    shotType: "3p" | "2pmid" | "2prim"
+    shotType: "3p" | "2pmid" | "2prim",
+    regressNumber: number = 0
   ) => {
-    const base = LuckUtils.get(p?.[`off_${shotType}`], 0);
+    const basePre = LuckUtils.get(p?.[`off_${shotType}`], 0);
     // Can't use off_3p_ast because some of the transition 3PAs are unassisted makes, so we just use non-early ast%
     const baseAssistPct =
       baseShotInfo.shot_info_ast_made /
       (baseShotInfo.shot_info_ast_made + baseShotInfo.shot_info_unast_made ||
         1);
+
+    const totalShotsTaken = baseShotInfo.shot_info_total_attempts;
+    const regressionPct =
+      shotType == "3p" ? 0.3 : shotType == "2pmid" ? 0.35 : 0.5;
+    const regressWeight =
+      regressNumber / (totalShotsTaken + regressNumber || 1);
+
+    const base =
+      totalShotsTaken < regressNumber
+        ? regressWeight * regressionPct + (1.0 - regressWeight) * basePre
+        : basePre;
 
     const weight = shotType == "3p" ? 0.06 : 0.1; // (totally arbitrary)
     return {
@@ -799,13 +811,32 @@ export class LuckUtils {
     shotCounts: OffShotInfoBreakdown,
     fgBreakdown: OffAdjShotBreakdown
   ): { fgM_ast: number; fgM_unast: number } => {
-    const fgM_unast =
-      shotCounts.shot_info_unast_made * (1 / (fgBreakdown.unassisted || 1) - 1);
-    const fgM_ast = Math.max(
-      0,
-      shotCounts.shot_info_unknown_missed - fgM_unast
-    );
-    return { fgM_ast, fgM_unast };
+    if (shotCounts.shot_info_unast_made > 0) {
+      const fgM_unast =
+        shotCounts.shot_info_unast_made *
+        (1 / (fgBreakdown.unassisted || 1) - 1);
+      const fgM_ast = Math.max(
+        0,
+        shotCounts.shot_info_unknown_missed - fgM_unast
+      );
+      return { fgM_ast, fgM_unast };
+    } else if (shotCounts.shot_info_unast_made > 0) {
+      const fgM_ast =
+        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1);
+      const fgM_unast = Math.max(
+        0,
+        shotCounts.shot_info_unknown_missed - fgM_ast
+      );
+      return { fgM_ast, fgM_unast };
+    } else {
+      const astWeights =
+        fgBreakdown.unassisted /
+        (fgBreakdown.unassisted + fgBreakdown.assisted);
+      return {
+        fgM_ast: shotCounts.shot_info_unknown_missed * astWeights,
+        fgM_unast: shotCounts.shot_info_unknown_missed * (1.0 - astWeights),
+      };
+    }
   };
 
   /** Special case of decomposeUnknownMisses, retained for bwc */

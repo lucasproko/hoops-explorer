@@ -648,17 +648,30 @@ export class PlayTypeUtils {
                 player,
                 mappedShotType
               );
+
+              const regressNumber = 10;
               const adjFgPctDecompInfo = LuckUtils.buildAdjustedFG(
                 player,
                 fgDecompInfo,
-                mappedShotType
+                mappedShotType,
+                regressNumber
               );
+
               if (fgDecompInfo.shot_info_total_attempts > 0) {
                 const { fgM_ast, fgM_unast } = LuckUtils.decomposeUnknownMisses(
                   fgDecompInfo,
                   adjFgPctDecompInfo
                 );
                 acc[shotType] = fgM_ast;
+                /**/
+                if (shotType == "3p")
+                  console.log(
+                    `[${shotType}]: [${player.code}] : [${fgM_ast}] vs [${
+                      fgM_ast + fgM_unast
+                    }]  ///// ${JSON.stringify(
+                      adjFgPctDecompInfo
+                    )} ${JSON.stringify(fgDecompInfo)}`
+                  );
               }
             },
             {} as Record<string, number>
