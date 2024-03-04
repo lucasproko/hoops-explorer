@@ -82,6 +82,7 @@ export class PlayTypeDiagUtils {
             !_.isNil(valObj.value) && !_.endsWith(key, "_to");
           if (isNumericKey) {
             //(remove - incorrectly formatted anyway - extra info)
+
             const possStat = (statSet as any)[key]?.value || 1;
             valObj.value = (0.01 * (valObj.value || 0)) / possStat;
             valObj.extraInfo = undefined;
@@ -94,6 +95,7 @@ export class PlayTypeDiagUtils {
         return {};
       }
     });
+
     return _.merge(
       _.mapValues(statSet, (valObj, key) => {
         // Decorate eFG

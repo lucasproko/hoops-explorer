@@ -295,7 +295,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           {topLevelPlayTypeStylesPctile ? (
             <Row>
               <Col xs={10}>
-                <ResponsiveContainer width="100%" height={400}>
+                <ResponsiveContainer minWidth={800} width="100%" height={400}>
                   <BarChart
                     height={400}
                     data={data}

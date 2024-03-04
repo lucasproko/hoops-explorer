@@ -6134,7 +6134,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className="small"
+                  className=""
                   colSpan={24}
                 >
                   <span>
@@ -6256,7 +6256,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   "height": 400,
                                   "maxHeight": undefined,
                                   "minHeight": undefined,
-                                  "minWidth": undefined,
+                                  "minWidth": 800,
                                   "width": "100%",
                                 }
                               }
@@ -12283,7 +12283,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className="small"
+                  className=""
                   colSpan={24}
                 >
                   <span>
@@ -12405,7 +12405,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   "height": 400,
                                   "maxHeight": undefined,
                                   "minHeight": undefined,
-                                  "minWidth": undefined,
+                                  "minWidth": 800,
                                   "width": "100%",
                                 }
                               }
@@ -18432,7 +18432,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className="small"
+                  className=""
                   colSpan={24}
                 >
                   <span>
@@ -18554,7 +18554,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                                   "height": 400,
                                   "maxHeight": undefined,
                                   "minHeight": undefined,
-                                  "minWidth": undefined,
+                                  "minWidth": 800,
                                   "width": "100%",
                                 }
                               }

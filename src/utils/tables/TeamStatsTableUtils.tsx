@@ -523,7 +523,7 @@ export class TeamStatsTableUtils {
                     grades={divisionStatsCache}
                     showHelp={showHelp}
                   />,
-                  "small"
+                  ""
                 ),
               ]
             : [],

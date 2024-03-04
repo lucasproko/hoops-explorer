@@ -428,7 +428,6 @@ export class PlayTypeUtils {
         })
         .value();
     }
-
     return reorderedPosVsPosAssistNetwork;
   }
 

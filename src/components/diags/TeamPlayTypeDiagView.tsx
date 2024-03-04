@@ -99,6 +99,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             rosterStatsByCode,
             teamStats
           );
+
           return [network1, network2];
         } else {
           return [{}, undefined];
@@ -189,7 +190,10 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
                 title: tooltipBuilder(
                   "unassisted",
                   "Unassisted",
-                  `All scoring plays where the ${posTitle} was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.`
+                  `All scoring plays where the ${posTitle} was unassisted (includes FTs which can never be assisted). ` +
+                    (tableType == "usage"
+                      ? "(Half-court only)"
+                      : "(Includes half court, scramble, and transitions)")
                 ),
               },
               GenericTableOps.defaultFormatter,
@@ -206,7 +210,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
                   "Assist totals:",
                   `All plays where the  ${posTitle} was assisted (left half) or provided the assist (right half). ` +
                     "The 3 rows below break down assisted plays according to the positional category of the assister/assistee. " +
-                    "(Includes half court, scramble, and transitions)"
+                    (tableType == "usage"
+                      ? "(Half-court only)"
+                      : "(Includes half court, scramble, and transitions)")
                 ),
               },
               GenericTableOps.defaultFormatter,
