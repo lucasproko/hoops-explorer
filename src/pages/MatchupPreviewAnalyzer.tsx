@@ -38,6 +38,12 @@ import { ClientRequestCache } from "../utils/ClientRequestCache";
 import PlayerImpactChart from "../components/PlayerImpactChart";
 import { LineupStintInfo } from "../utils/StatModels";
 import MatchupPreviewFilter from "../components/MatchupPreviewFilter";
+import {
+  DivisionStatsCache,
+  GradeTableUtils,
+} from "../utils/tables/GradeTableUtils";
+import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
+import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -120,6 +126,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       ? "server"
       : window.location.hostname;
 
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
   // Some cache management easter eggs, for development:
   if (allParams.indexOf("__clear_cache__") >= 0) {
     console.log("CLEAR CACHE");
@@ -177,6 +186,27 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     }
   };
 
+  // Load team grades, needed for play recap view
+
+  const [divisionStatsCache, setDivisionStatsCache] = useState(
+    {} as DivisionStatsCache
+  );
+
+  // Events that trigger building or rebuilding the division stats cache
+  useEffect(() => {
+    if (
+      matchupFilterParams.year != divisionStatsCache.year ||
+      matchupFilterParams.gender != divisionStatsCache.gender ||
+      _.isEmpty(divisionStatsCache)
+    ) {
+      if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+      GradeTableUtils.populateTeamDivisionStatsCache(
+        matchupFilterParams,
+        setDivisionStatsCache
+      );
+    }
+  }, [matchupFilterParams]);
+
   // View
 
   function maybeShowDocs() {
@@ -213,6 +243,68 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent]);
 
+  const playStyleChart = React.useMemo(() => {
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Play Type Breakdown"
+        helpLink={maybeShowDocs()}
+      >
+        {dataEvent.teamStatsA.baseline.off_poss?.value ? (
+          <Container>
+            <Row>
+              <Col xs={12}>
+                {_.isEmpty(divisionStatsCache) ? (
+                  <span>
+                    <i>(Loading data...)</i>
+                  </span>
+                ) : (
+                  PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                    matchupFilterParams.team || "Unknown",
+                    dataEvent.rosterStatsA,
+                    dataEvent.teamStatsA,
+                    divisionStatsCache,
+                    showHelp,
+                    false
+                  )
+                )}
+              </Col>
+            </Row>
+            {matchupFilterParams.oppoTeam ==
+            AvailableTeams.noOpponent ? undefined : (
+              <Row>
+                <Col xs={12}>
+                  {_.isEmpty(divisionStatsCache) ? (
+                    <span></span>
+                  ) : (
+                    PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                      matchupFilterParams.oppoTeam || "Unknown",
+                      dataEvent.rosterStatsB,
+                      dataEvent.teamStatsB,
+                      divisionStatsCache,
+                      showHelp,
+                      false
+                    )
+                  )}
+                </Col>
+              </Row>
+            )}
+          </Container>
+        ) : (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center">
+                <span>
+                  <i>(No data)</i>
+                </span>
+              </Col>
+            </Row>
+          </Container>
+        )}
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent, divisionStatsCache]);
+
   return (
     <Container>
       <Row>
@@ -243,6 +335,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         </GenericCollapsibleCard>
       </Row>
       <Row>{chart}</Row>
+      <Row>{playStyleChart}</Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

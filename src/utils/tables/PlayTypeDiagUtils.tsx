@@ -278,7 +278,8 @@ export class PlayTypeDiagUtils {
     players: RosterStatsModel,
     teamStats: TeamStatsModel,
     grades: DivisionStatsCache,
-    showHelp: boolean
+    showHelp: boolean,
+    usePossCount: boolean
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -313,7 +314,7 @@ export class PlayTypeDiagUtils {
           grades={grades}
           showHelp={showHelp}
           quickSwitchOptions={[]}
-          usePossCount={true}
+          usePossCount={usePossCount}
           quickSwitchOverride={undefined}
         />
       </div>

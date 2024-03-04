@@ -285,19 +285,31 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         title="Lineup Stints"
         helpLink={maybeShowDocs()}
       >
-        <Col
-          xs={12}
-          className="w-100 text-center d-flex justify-content-center"
-        >
-          <LineupStintsChart
-            startingState={matchupFilterParamsRef.current || {}}
-            opponent={
-              buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""
-            }
-            dataEvent={dataEvent}
-            onChangeState={onMatchupFilterParamsChange}
-          />
-        </Col>
+        {dataEvent.teamStatsA.baseline.off_poss?.value ? (
+          <Col
+            xs={12}
+            className="w-100 text-center d-flex justify-content-center"
+          >
+            <LineupStintsChart
+              startingState={matchupFilterParamsRef.current || {}}
+              opponent={
+                buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team || ""
+              }
+              dataEvent={dataEvent}
+              onChangeState={onMatchupFilterParamsChange}
+            />
+          </Col>
+        ) : (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center">
+                <span>
+                  <i>(No data)</i>
+                </span>
+              </Col>
+            </Row>
+          </Container>
+        )}
       </GenericCollapsibleCard>
     );
   }, [dataEvent]);
@@ -309,41 +321,55 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         title="Play Type Breakdown"
         helpLink={maybeShowDocs()}
       >
-        <Container>
-          <Row>
-            <Col xs={12}>
-              {_.isEmpty(divisionStatsCache) ? (
+        {dataEvent.teamStatsA.baseline.off_poss?.value ? (
+          <Container>
+            <Row>
+              <Col xs={12}>
+                {_.isEmpty(divisionStatsCache) ? (
+                  <span>
+                    <i>(Loading data...)</i>
+                  </span>
+                ) : (
+                  PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                    matchupFilterParams.team || "Unknown",
+                    dataEvent.rosterStatsA,
+                    dataEvent.teamStatsA,
+                    divisionStatsCache,
+                    showHelp,
+                    true
+                  )
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                {_.isEmpty(divisionStatsCache) ? (
+                  <span></span>
+                ) : (
+                  PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                    buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team ||
+                      "Unknown",
+                    dataEvent.rosterStatsB,
+                    dataEvent.teamStatsB,
+                    divisionStatsCache,
+                    showHelp,
+                    true
+                  )
+                )}
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center">
                 <span>
-                  <i>(Loading data...)</i>
+                  <i>(No data)</i>
                 </span>
-              ) : (
-                PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                  matchupFilterParams.team || "Unknown",
-                  dataEvent.rosterStatsA,
-                  dataEvent.teamStatsA,
-                  divisionStatsCache,
-                  showHelp
-                )
-              )}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              {_.isEmpty(divisionStatsCache) ? (
-                <span></span>
-              ) : (
-                PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                  buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team ||
-                    "Unknown",
-                  dataEvent.rosterStatsB,
-                  dataEvent.teamStatsB,
-                  divisionStatsCache,
-                  showHelp
-                )
-              )}
-            </Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+          </Container>
+        )}
       </GenericCollapsibleCard>
     );
   }, [dataEvent, divisionStatsCache]);
