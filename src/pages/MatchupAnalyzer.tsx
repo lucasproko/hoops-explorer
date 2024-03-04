@@ -304,7 +304,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
             <Row>
               <Col xs={12} className="text-center">
                 <span>
-                  <i>(No data)</i>
+                  <i>(No Data)</i>
                 </span>
               </Col>
             </Row>
@@ -364,7 +364,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
             <Row>
               <Col xs={12} className="text-center">
                 <span>
-                  <i>(No data)</i>
+                  <i>(No Data)</i>
                 </span>
               </Col>
             </Row>
