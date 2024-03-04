@@ -147,9 +147,6 @@ export class PlayTypeUtils {
 
   //////////////////////////////////////////////////////////////
 
-  //TODO:
-  // Some % of misses need to go to assisted numbers (probably under player for 3P shooting at least)
-
   // Top Level Logic
 
   /** Builds per-player assist networks and then groups players into weighted categories and re-aggregates the assist networks
@@ -327,7 +324,7 @@ export class PlayTypeUtils {
                   return {
                     ...(asPlayerStyleSet(playerStyle)[key] || {}),
                     code: playerCode,
-                  } as TargetAssistInfo; //(TODO: actually this is SourceAssistInfo but using the super-type for convenience)
+                  } as TargetAssistInfo; //(actually this is SourceAssistInfo but using the super-type for convenience)
                 })
                 .values()
                 .value();
@@ -345,7 +342,6 @@ export class PlayTypeUtils {
             .value();
 
           return [
-            //TODO: more typing possible here
             pos,
             {
               assists: posPosCatAssistNetwork.map(
@@ -397,6 +393,8 @@ export class PlayTypeUtils {
 
           // Now get an approximate half court number for all the assists by sensibly (if not correctly!)
           // taking out the scramble and transition assisted numbers
+          // (NOTE: there's a complication here because we may have adjusted assists upwards to include missed shots
+          //  .. the previous value is preserved in old_value and we use that when it exists)
           PlayTypeUtils.convertAssistsToHalfCourtAssists(
             assistInfo,
             assistedTransitionInfo,
@@ -1349,10 +1347,11 @@ export class PlayTypeUtils {
 
       const totalAssistedPct = _.chain(PosFamilyNames)
         .map((pos, ipos) => {
-          return (
-            (mutableAssistInfo[ipos] as PureStatSet)?.[`source_${shotType}_ast`]
-              ?.value || 0
-          );
+          //(use old_value when it exists since that is pre "missed shot adjustment")
+          const stat = (mutableAssistInfo[ipos] as PureStatSet)?.[
+            `source_${shotType}_ast`
+          ] || { value: 0, old_value: 0 };
+          return _.isNumber(stat.old_value) ? stat.old_value : stat.value;
         })
         .sum()
         .value();
@@ -1370,8 +1369,10 @@ export class PlayTypeUtils {
           `source_${shotType}_ast`
         ];
         if (_.isNumber(maybeShotTypeAst?.value)) {
-          const adjustment =
-            maybeShotTypeAst.value * reductionPct - maybeShotTypeAst.value;
+          const astValueToUse = _.isNumber(maybeShotTypeAst?.old_value)
+            ? maybeShotTypeAst?.old_value
+            : maybeShotTypeAst.value;
+          const adjustment = astValueToUse * (reductionPct - 1.0);
           maybeShotTypeAst.value += adjustment;
           if (_.isNumber(maybeShotTypeAst.old_value)) {
             //(ideally we'd preserve "old_value" and then add this to the overrides list but
