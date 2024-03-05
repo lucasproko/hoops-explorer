@@ -332,7 +332,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       <span>
         {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
         <br />
-        <span style={{ display: "flex" }}>
+        <span style={{ display: "flex" }} className="small">
           <b>Scoring Analysis: [{quickSwitch || title}]</b>
           {_.isEmpty(quickSwitchOptions) ? null : (
             <div style={{ display: "flex" }}>
@@ -340,7 +340,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             </div>
           )}
         </span>
-        <span>
+        <span className="small">
           ({scoringToggle} // {usageToggle} // {breakdownToggle})
         </span>
         <br />

@@ -6140,6 +6140,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <span>
                     <br />
                     <span
+                      className="small"
                       style={
                         Object {
                           "display": "flex",
@@ -6185,7 +6186,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </div>
                       </div>
                     </span>
-                    <span>
+                    <span
+                      className="small"
+                    >
                       (
                       <a
                         href="#"
@@ -12289,6 +12292,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <span>
                     <br />
                     <span
+                      className="small"
                       style={
                         Object {
                           "display": "flex",
@@ -12334,7 +12338,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </div>
                       </div>
                     </span>
-                    <span>
+                    <span
+                      className="small"
+                    >
                       (
                       <a
                         href="#"
@@ -18438,6 +18444,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   <span>
                     <br />
                     <span
+                      className="small"
                       style={
                         Object {
                           "display": "flex",
@@ -18483,7 +18490,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </div>
                       </div>
                     </span>
-                    <span>
+                    <span
+                      className="small"
+                    >
                       (
                       <a
                         href="#"

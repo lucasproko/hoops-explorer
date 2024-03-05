@@ -83,6 +83,36 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                         "field": "team_stats.fg_3p.attempts.total"
                      }
                   },
+                  "total_off_fga": {
+                     "sum": {
+                        "field": "team_stats.fg.attempts.total"
+                     }
+                  },
+                  "total_off_fta": {
+                     "sum": {
+                        "field": "team_stats.ft.attempts.total"
+                     }
+                  },
+                  "total_off_to": {
+                     "sum": {
+                        "field": "team_stats.to.total"
+                     }
+                  },
+                  "total_off_assist": {
+                     "sum": {
+                        "field": "team_stats.assist.total"
+                     }
+                  },
+                  "total_off_scramble_to": {
+                     "sum": {
+                        "field": "team_stats.to.orb"
+                     }
+                  },
+                  "total_off_trans_to": {
+                     "sum": {
+                        "field": "team_stats.to.early"
+                     }
+                  },
                   "def_3p": {
                      "bucket_script": {
                         "buckets_path": {
@@ -2090,6 +2120,36 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                         "field": "team_stats.fg_3p.attempts.total"
                      }
                   },
+                  "total_off_fga": {
+                     "sum": {
+                        "field": "team_stats.fg.attempts.total"
+                     }
+                  },
+                  "total_off_fta": {
+                     "sum": {
+                        "field": "team_stats.ft.attempts.total"
+                     }
+                  },
+                  "total_off_to": {
+                     "sum": {
+                        "field": "team_stats.to.total"
+                     }
+                  },
+                  "total_off_assist": {
+                     "sum": {
+                        "field": "team_stats.assist.total"
+                     }
+                  },
+                  "total_off_scramble_to": {
+                     "sum": {
+                        "field": "team_stats.to.orb"
+                     }
+                  },
+                  "total_off_trans_to": {
+                     "sum": {
+                        "field": "team_stats.to.early"
+                     }
+                  },
                   "def_3p": {
                      "bucket_script": {
                         "buckets_path": {
@@ -4095,6 +4155,36 @@ exports[`teamStatsQuery teamStatsQuery-game-info 1`] = `
                   "total_off_3p_attempts": {
                      "sum": {
                         "field": "team_stats.fg_3p.attempts.total"
+                     }
+                  },
+                  "total_off_fga": {
+                     "sum": {
+                        "field": "team_stats.fg.attempts.total"
+                     }
+                  },
+                  "total_off_fta": {
+                     "sum": {
+                        "field": "team_stats.ft.attempts.total"
+                     }
+                  },
+                  "total_off_to": {
+                     "sum": {
+                        "field": "team_stats.to.total"
+                     }
+                  },
+                  "total_off_assist": {
+                     "sum": {
+                        "field": "team_stats.assist.total"
+                     }
+                  },
+                  "total_off_scramble_to": {
+                     "sum": {
+                        "field": "team_stats.to.orb"
+                     }
+                  },
+                  "total_off_trans_to": {
+                     "sum": {
+                        "field": "team_stats.to.early"
                      }
                   },
                   "def_3p": {
@@ -6155,6 +6245,36 @@ exports[`teamStatsQuery teamStatsQuery-game-info 2`] = `
                   "total_off_3p_attempts": {
                      "sum": {
                         "field": "team_stats.fg_3p.attempts.total"
+                     }
+                  },
+                  "total_off_fga": {
+                     "sum": {
+                        "field": "team_stats.fg.attempts.total"
+                     }
+                  },
+                  "total_off_fta": {
+                     "sum": {
+                        "field": "team_stats.ft.attempts.total"
+                     }
+                  },
+                  "total_off_to": {
+                     "sum": {
+                        "field": "team_stats.to.total"
+                     }
+                  },
+                  "total_off_assist": {
+                     "sum": {
+                        "field": "team_stats.assist.total"
+                     }
+                  },
+                  "total_off_scramble_to": {
+                     "sum": {
+                        "field": "team_stats.to.orb"
+                     }
+                  },
+                  "total_off_trans_to": {
+                     "sum": {
+                        "field": "team_stats.to.early"
                      }
                   },
                   "def_3p": {

@@ -4,6 +4,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
 <span>
   <br />
   <span
+    className="small"
     style={
       Object {
         "display": "flex",
@@ -16,7 +17,9 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
       ]
     </b>
   </span>
-  <span>
+  <span
+    className="small"
+  >
     (
     <a
       href="#"
@@ -4571,6 +4574,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
 <span>
   <br />
   <span
+    className="small"
     style={
       Object {
         "display": "flex",
@@ -4583,7 +4587,9 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
       ]
     </b>
   </span>
-  <span>
+  <span
+    className="small"
+  >
     (
     <a
       href="#"

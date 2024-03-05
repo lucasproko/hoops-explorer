@@ -279,7 +279,7 @@ export class PlayTypeDiagUtils {
     teamStats: TeamStatsModel,
     grades: DivisionStatsCache,
     showHelp: boolean,
-    usePossCount: boolean
+    singleGameMode: boolean
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -291,30 +291,32 @@ export class PlayTypeDiagUtils {
     );
 
     //TODO: this doesn't work currently, I think "players.global" does not contain the right info maybe?
-    const options = [
-      {
-        title: `${title} // Season Breakdown`,
-        players: players.global,
-        rosterStatsByCode: globalRosterStatsByCode,
-        teamStats: teamStats.global,
-        showGrades: "rank:Combo",
-        showHelp,
-        quickSwitchOverride: undefined,
-      },
-    ];
+    const options = singleGameMode
+      ? [
+          {
+            title: `${title} // Season Breakdown`,
+            players: players.global,
+            rosterStatsByCode: globalRosterStatsByCode,
+            teamStats: teamStats.global,
+            showGrades: "rank:Combo",
+            showHelp,
+            quickSwitchOverride: undefined,
+          },
+        ]
+      : [];
 
     return (
       <div>
         <TeamPlayTypeDiagRadar
-          title={`${title} // Game Breakdown`}
+          title={`${title} // ${singleGameMode ? "Game" : "Season"} Breakdown`}
           players={players.baseline}
           rosterStatsByCode={globalRosterStatsByCode}
           teamStats={teamStats.baseline}
           showGrades={"rank:Combo"}
           grades={grades}
           showHelp={showHelp}
-          quickSwitchOptions={[]}
-          usePossCount={usePossCount}
+          quickSwitchOptions={options}
+          usePossCount={singleGameMode}
           quickSwitchOverride={undefined}
         />
       </div>

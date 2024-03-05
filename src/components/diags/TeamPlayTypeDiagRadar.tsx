@@ -281,7 +281,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         {
           //(Note this isn't used - instead we inherit the one from the parent container TeamPlayTypeDiagView)
           title ? (
-            <span style={{ display: "flex" }}>
+            <span style={{ display: "flex" }} className="small">
               <b>Scoring Analysis: [{quickSwitch || title}]</b>
               {_.isEmpty(quickSwitchOptions) ? null : (
                 <div style={{ display: "flex" }}>

@@ -52,7 +52,17 @@ export const teamStatsQuery = function (
                   avgEfficiency,
                   hca
                 ),
-                ["total_off_3p_attempts"]
+                [
+                  // I foget what this is needed for (3P luck maybe?)
+                  "total_off_3p_attempts",
+                  // These are needed for play style analysis
+                  "total_off_fga",
+                  "total_off_fta",
+                  "total_off_to",
+                  "total_off_assist",
+                  "total_off_scramble_to",
+                  "total_off_trans_to",
+                ]
               ),
               ..._.pick(
                 commonAggregations(
