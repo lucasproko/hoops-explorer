@@ -104,6 +104,7 @@ export type TopLevelPlayAnalysis = Record<
   {
     possPct: Statistic;
     pts: Statistic;
+    adj_pts?: Statistic;
   }
 >;
 

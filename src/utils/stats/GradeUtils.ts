@@ -252,6 +252,10 @@ export class GradeUtils {
       updateForField(possPctField, playStyleInfo.possPct);
       const pppField = `${playStyleType}|Ppp`;
       updateForField(pppField, playStyleInfo.pts);
+      if (playStyleInfo.adj_pts) {
+        const adjPppField = `${playStyleType}|AdjPpp`;
+        updateForField(adjPppField, playStyleInfo.adj_pts);
+      }
     });
   };
 

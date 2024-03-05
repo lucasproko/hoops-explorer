@@ -61,7 +61,10 @@ import { OnBallDefenseModel } from "../utils/stats/RatingUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
-import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
+import {
+  PlayTypeUtils,
+  TopLevelPlayAnalysis,
+} from "../utils/stats/PlayTypeUtils";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -608,8 +611,23 @@ export async function main() {
                 globalRosterStatsByCode,
                 teamBaseline
               );
+
+            const defSos = teamBaseline?.def_adj_opp?.value || avgEfficiency;
+            const topLevelPlayTypeStylesAdj: TopLevelPlayAnalysis = _.chain(
+              topLevelPlayTypeStyles
+            )
+              .mapValues((stat) => {
+                return {
+                  ...stat,
+                  adj_pts: {
+                    value: ((stat.pts?.value || 0) * avgEfficiency) / defSos,
+                  },
+                };
+              })
+              .value();
+
             GradeUtils.buildAndInjectPlayStyleStats(
-              topLevelPlayTypeStyles,
+              topLevelPlayTypeStylesAdj,
               mutableDivisionStats,
               inNaturalTier
             );
