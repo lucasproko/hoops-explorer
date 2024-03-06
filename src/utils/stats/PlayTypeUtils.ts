@@ -99,6 +99,23 @@ export type TopLevelPlayType =
   | "Misc";
 //(currently "Misc" is just team turnovers, used to get the sum back to 100%)
 
+export type TopLevelIndivPlayType =
+  | "Rim Attack"
+  | "Attack & Kick"
+  | "Perimeter Sniper"
+  | "Dribble Jumper"
+  | "Mid-Range"
+  | "Hits Cutter"
+  | "Backdoor Cut"
+  | "PnR Passer"
+  | "Big Cut & Roll"
+  | "Post-Up"
+  | "Post & Kick"
+  | "Pick & Pop"
+  | "High-Low"
+  | "Put-Back"
+  | "Transition";
+
 export type TopLevelPlayAnalysis = Record<
   TopLevelPlayType,
   {
@@ -108,9 +125,36 @@ export type TopLevelPlayAnalysis = Record<
   }
 >;
 
+export type TopLevelIndivPlayAnalysis = Record<
+  TopLevelIndivPlayType,
+  {
+    possPct: Statistic;
+    pts: Statistic;
+    adj_pts?: Statistic;
+  }
+>;
+
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
-  static topTevelPlayTypes: TopLevelPlayType[] = [
+  static topLevelIndivPlayTypes: TopLevelIndivPlayType[] = [
+    "Rim Attack",
+    "Attack & Kick",
+    "Perimeter Sniper",
+    "Dribble Jumper",
+    "Mid-Range",
+    "Hits Cutter",
+    "Backdoor Cut",
+    "PnR Passer",
+    "Big Cut & Roll",
+    "Post-Up",
+    "Post & Kick",
+    "Pick & Pop",
+    "High-Low",
+    "Put-Back",
+    "Transition",
+  ]; //(no Misc - we don't render)
+
+  static topLevelPlayTypes: TopLevelPlayType[] = [
     "Rim Attack",
     "Attack & Kick",
     "Dribble Jumper",
@@ -310,7 +354,7 @@ export class PlayTypeUtils {
           // Unassisted/scramble/transition: similar:
           const posVsPosOtherTypes: ScoredTargetAssistInfo[] = _.chain([
             "unassisted",
-            "assisted",
+            "assisted", //(this are shots that are assisted, vs posPosCatAssistNetwork which are my assists)
             "transition",
             "scramble",
             "transitionAssisted",
@@ -474,7 +518,7 @@ export class PlayTypeUtils {
         teamStats
       );
 
-    return _.chain(PlayTypeUtils.topTevelPlayTypes)
+    return _.chain(PlayTypeUtils.topLevelPlayTypes)
       .map((type) => {
         const poss = topLevelPlayTypeAnalysisPoss[type] || 0;
         const pts = topLevelPlayTypeAnalysisPts[type] || 0;
