@@ -344,6 +344,7 @@ export class PlayTypeDiagUtils {
             showGrades: "rank:Combo",
             showHelp,
             quickSwitchOverride: undefined,
+            possCountToUse: teamStats.baseline.off_poss?.value,
           },
         ]
       : [];
@@ -359,7 +360,9 @@ export class PlayTypeDiagUtils {
           grades={grades}
           showHelp={showHelp}
           quickSwitchOptions={options}
-          usePossCount={singleGameMode}
+          possCountToUse={
+            singleGameMode ? teamStats.baseline.off_poss?.value : undefined
+          }
           quickSwitchOverride={undefined}
         />
       </div>
