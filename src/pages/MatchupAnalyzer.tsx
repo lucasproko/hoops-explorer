@@ -375,7 +375,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   }, [dataEvent, divisionStatsCache]);
 
   return (
-    <Container>
+    <Container style={{ minWidth: "95%" }}>
       <Row>
         <Col xs={12} className="text-center">
           <h3>

@@ -281,12 +281,19 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         {
           //(Note this isn't used - instead we inherit the one from the parent container TeamPlayTypeDiagView)
           title ? (
-            <span style={{ display: "flex" }} className="small">
-              <b>Scoring Analysis: [{quickSwitch || title}]</b>
+            <span className="small" style={{ display: "inline-flex" }}>
+              <span style={{ whiteSpace: "nowrap" }}>
+                <b>Scoring Analysis: [{quickSwitch || title}]</b>
+              </span>
               {_.isEmpty(quickSwitchOptions) ? null : (
-                <div style={{ display: "flex" }}>
-                  &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;{quickSwitchBuilder}
-                </div>
+                <span style={{ whiteSpace: "nowrap" }}>
+                  &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
+                </span>
+              )}
+              {_.isEmpty(quickSwitchOptions) ? null : (
+                <span style={{ whiteSpace: "nowrap" }}>
+                  {quickSwitchBuilder}
+                </span>
               )}
             </span>
           ) : undefined
