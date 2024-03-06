@@ -272,7 +272,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
             </Row>
             {matchupFilterParams.oppoTeam ==
             AvailableTeams.noOpponent ? undefined : (
-              <Row>
+              <Row className="mt-2">
                 <Col xs={12}>
                   {_.isEmpty(divisionStatsCache) ? (
                     <span></span>
@@ -306,7 +306,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   }, [dataEvent, divisionStatsCache]);
 
   return (
-    <Container style={{ minWidth: "95%" }}>
+    <Container>
       <Row>
         <Col xs={12} className="text-center">
           <h3>

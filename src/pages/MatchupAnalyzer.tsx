@@ -341,7 +341,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                 )}
               </Col>
             </Row>
-            <Row>
+            <Row className="mt-2">
               <Col xs={12}>
                 {_.isEmpty(divisionStatsCache) ? (
                   <span></span>
@@ -375,7 +375,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   }, [dataEvent, divisionStatsCache]);
 
   return (
-    <Container style={{ minWidth: "95%" }}>
+    <Container>
       <Row>
         <Col xs={12} className="text-center">
           <h3>
