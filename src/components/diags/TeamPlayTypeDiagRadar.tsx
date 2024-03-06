@@ -1,9 +1,6 @@
 // React imports:
 import React, { useState } from "react";
 
-// Next imports:
-import { NextPage } from "next";
-
 import _ from "lodash";
 
 // Bootstrap imports:
@@ -11,8 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Tooltip from "react-bootstrap/Tooltip";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Utils
 import {
@@ -52,6 +47,7 @@ import {
   GradeTableUtils,
   DivisionStatsCache,
 } from "../../utils/tables/GradeTableUtils";
+import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 
 export type Props = {
   title?: string;
@@ -104,36 +100,6 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   const maybePossCount = teamStats.off_poss?.value || 0;
   const possFactor =
     maybePossCount && usePossCount ? maybePossCount / 100 : 1.0;
-
-  const tooltipBuilder = (id: string, title: string, tooltip: string) => (
-    <OverlayTrigger
-      placement="auto"
-      overlay={<Tooltip id={id + "Tooltip"}>{tooltip}</Tooltip>}
-    >
-      <i>{title}</i>
-    </OverlayTrigger>
-  );
-
-  const quickSwitchBuilder = _.map(
-    quickSwitchOptions || [],
-    (opt) => opt.title
-  ).map((t, index) => {
-    return (
-      <div key={`quickSwitch-${index}`}>
-        [
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
-          }}
-        >
-          {t}
-        </a>
-        ]&nbsp;
-      </div>
-    );
-  });
 
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
     const { x, y, payload } = props;
@@ -277,26 +243,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     return (
       <span>
-        <br />
         {
-          //(Note this isn't used - instead we inherit the one from the parent container TeamPlayTypeDiagView)
-          title ? (
-            <span className="small" style={{ display: "inline-flex" }}>
-              <span style={{ whiteSpace: "nowrap" }}>
-                <b>Scoring Analysis: [{quickSwitch || title}]</b>
-              </span>
-              {_.isEmpty(quickSwitchOptions) ? null : (
-                <span style={{ whiteSpace: "nowrap" }}>
-                  &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
-                </span>
-              )}
-              {_.isEmpty(quickSwitchOptions) ? null : (
-                <span style={{ whiteSpace: "nowrap" }}>
-                  {quickSwitchBuilder}
-                </span>
-              )}
-            </span>
-          ) : undefined
+          //(Note this isn't used in the team views (we inherit the one in TeamPlayTypeDiagView), only the game views)
+          title
+            ? PlayTypeDiagUtils.buildQuickSwitchOptions(
+                title,
+                quickSwitch,
+                quickSwitchOptions,
+                setQuickSwitch
+              )
+            : undefined
         }
         <Container>
           {topLevelPlayTypeStylesPctile ? (

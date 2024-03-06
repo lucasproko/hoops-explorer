@@ -272,6 +272,49 @@ export class PlayTypeDiagUtils {
     };
   };
 
+  /** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
+  static buildQuickSwitchOptions = (
+    title: string,
+    quickSwitch: string | undefined,
+    quickSwitchOptions: { title?: string }[] | undefined,
+    setQuickSwitch: (newQuickSwitch: string | undefined) => void
+  ) => {
+    const quickSwitchBuilder = _.map(
+      quickSwitchOptions || [],
+      (opt) => opt.title
+    ).map((t, index) => {
+      return (
+        <span key={`quickSwitch-${index}`} style={{ whiteSpace: "nowrap" }}>
+          [
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+            }}
+          >
+            {t}
+          </a>
+          ]&nbsp;
+        </span>
+      );
+    });
+
+    return (
+      <div className="small">
+        <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
+          <b>Scoring Analysis: [{quickSwitch || title}]</b>
+        </span>
+        {_.isEmpty(quickSwitchOptions) ? null : (
+          <span style={{ whiteSpace: "nowrap" }}>
+            &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
+          </span>
+        )}
+        {_.isEmpty(quickSwitchOptions) ? null : quickSwitchBuilder}
+      </div>
+    );
+  };
+
   /** Encapsulates the logic to build a play style table from either single game or season  */
   static buildTeamStyleBreakdown = (
     title: string,

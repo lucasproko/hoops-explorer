@@ -3,20 +3,24 @@
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!details, help) 1`] = `
 <span>
   <br />
-  <span
+  <div
     className="small"
-    style={
-      Object {
-        "display": "flex",
-      }
-    }
   >
-    <b>
-      Scoring Analysis: [
-      Title
-      ]
-    </b>
-  </span>
+    <span
+      style={
+        Object {
+          "display": "inline-block",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      <b>
+        Scoring Analysis: [
+        Title
+        ]
+      </b>
+    </span>
+  </div>
   <span
     className="small"
   >
@@ -4573,20 +4577,24 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!help) 1`] = `
 <span>
   <br />
-  <span
+  <div
     className="small"
-    style={
-      Object {
-        "display": "flex",
-      }
-    }
   >
-    <b>
-      Scoring Analysis: [
-      Title
-      ]
-    </b>
-  </span>
+    <span
+      style={
+        Object {
+          "display": "inline-block",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      <b>
+        Scoring Analysis: [
+        Title
+        ]
+      </b>
+    </span>
+  </div>
   <span
     className="small"
   >

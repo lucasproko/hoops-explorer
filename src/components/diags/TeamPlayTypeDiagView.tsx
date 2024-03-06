@@ -116,27 +116,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       </OverlayTrigger>
     );
 
-    const quickSwitchBuilder = _.map(
-      quickSwitchOptions || [],
-      (opt) => opt.title
-    ).map((t, index) => {
-      return (
-        <div key={`quickSwitch-${index}`}>
-          [
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
-            }}
-          >
-            {t}
-          </a>
-          ]&nbsp;
-        </div>
-      );
-    });
-
     const rawAssistTableData = (
       tableType == "scoring"
         ? [
@@ -332,14 +311,14 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
       <span>
         {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
         <br />
-        <span style={{ display: "flex" }} className="small">
-          <b>Scoring Analysis: [{quickSwitch || title}]</b>
-          {_.isEmpty(quickSwitchOptions) ? null : (
-            <div style={{ display: "flex" }}>
-              &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;{quickSwitchBuilder}
-            </div>
-          )}
-        </span>
+        {title
+          ? PlayTypeDiagUtils.buildQuickSwitchOptions(
+              title,
+              quickSwitch,
+              quickSwitchOptions,
+              setQuickSwitch
+            )
+          : undefined}
         <span className="small">
           ({scoringToggle} // {usageToggle} // {breakdownToggle})
         </span>
