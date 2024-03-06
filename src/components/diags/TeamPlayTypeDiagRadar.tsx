@@ -74,6 +74,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   quickSwitchOverride,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
+  const [quickSwitchTimer, setQuickSwitchTimer] = useState<
+    NodeJS.Timer | undefined
+  >(undefined);
   const players =
     (quickSwitch
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
@@ -248,7 +251,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 title,
                 quickSwitch,
                 quickSwitchOptions,
-                setQuickSwitch
+                setQuickSwitch,
+                quickSwitchTimer,
+                setQuickSwitchTimer
               )
             : undefined
         }
@@ -341,6 +346,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     showGrades,
     teamStats,
     quickSwitch,
+    quickSwitchTimer,
     quickSwitchOverride,
   ]);
 };

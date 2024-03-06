@@ -39,7 +39,6 @@ describe("PlayerPlayTypeDiagView", () => {
         }
         teamStats={testTeamData}
         rosterStatsByCode={rosterStatsByCode}
-        teamSeasonLookup={teamSeasonLookup}
         showHelp={true}
       />
     );
@@ -53,7 +52,6 @@ describe("PlayerPlayTypeDiagView", () => {
         }
         teamStats={testTeamData}
         rosterStatsByCode={rosterStatsByCode}
-        teamSeasonLookup={teamSeasonLookup}
         showHelp={false}
         showDetailsOverride={true}
       />

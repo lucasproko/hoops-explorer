@@ -8,19 +8,16 @@ import _ from "lodash";
 
 // Bootstrap imports:
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Tooltip from "react-bootstrap/Tooltip";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Utils
 import { SourceAssistInfo } from "../../utils/stats/PlayTypeUtils";
-import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
-import { Props as PlayTypeDiagProps } from "../../components/diags/TeamPlayTypeDiagRadar";
 import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const targetSource = ["source", "target"];
 const shotTypes = ["3p", "mid", "rim"];
@@ -277,10 +274,38 @@ export class PlayTypeDiagUtils {
     title: string,
     quickSwitch: string | undefined,
     quickSwitchOptions: { title?: string }[] | undefined,
-    setQuickSwitch: (newQuickSwitch: string | undefined) => void
+    setQuickSwitch: React.Dispatch<React.SetStateAction<string | undefined>>,
+    quickSwitchTimer: NodeJS.Timer | undefined,
+    setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void
   ) => {
+    const quickSwitchTimerLogic = (newQuickSwitch: string | undefined) => {
+      if (quickSwitchTimer) {
+        clearInterval(quickSwitchTimer);
+      }
+      if (quickSwitch) {
+        setQuickSwitch(undefined);
+      } else {
+        setQuickSwitch(newQuickSwitch);
+      }
+      if (newQuickSwitch) {
+        setQuickSwitchTimer(
+          setInterval(() => {
+            setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+          }, 4000)
+        );
+      } else {
+        setQuickSwitchTimer(undefined);
+      }
+    };
+    const timeTooltip = (
+      <Tooltip id="timerTooltip">
+        Sets off a 4s timer switching between the default breakdown and this one
+      </Tooltip>
+    );
     const quickSwitchBuilder = _.map(
-      quickSwitchOptions || [],
+      quickSwitchTimer
+        ? [{ title: `Cancel 4s timer` }]
+        : quickSwitchOptions || [],
       (opt) => opt.title
     ).map((t, index) => {
       return (
@@ -290,11 +315,32 @@ export class PlayTypeDiagUtils {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+              if (!quickSwitchTimer) {
+                setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+              } else {
+                quickSwitchTimerLogic(undefined);
+              }
             }}
           >
             {t}
           </a>
+          {quickSwitchTimer ? undefined : (
+            <span>
+              &nbsp;
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  quickSwitchTimerLogic(t);
+                }}
+              >
+                <OverlayTrigger placement="auto" overlay={timeTooltip}>
+                  <FontAwesomeIcon icon={faClock} />
+                </OverlayTrigger>
+                &nbsp;
+              </a>
+            </span>
+          )}
           ]&nbsp;
         </span>
       );
@@ -333,7 +379,6 @@ export class PlayTypeDiagUtils {
       true //(injects positional info into the player stats, needed for play style analysis below)
     );
 
-    //TODO: this doesn't work currently, I think "players.global" does not contain the right info maybe?
     const options = singleGameMode
       ? [
           {

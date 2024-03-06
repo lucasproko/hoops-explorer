@@ -54,6 +54,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   showHelp,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
+  const [quickSwitchTimer, setQuickSwitchTimer] = useState<
+    NodeJS.Timer | undefined
+  >(undefined);
   const players =
     (quickSwitch
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
@@ -316,7 +319,9 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
               title,
               quickSwitch,
               quickSwitchOptions,
-              setQuickSwitch
+              setQuickSwitch,
+              quickSwitchTimer,
+              setQuickSwitchTimer
             )
           : undefined}
         <span className="small">
@@ -360,7 +365,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
     showGrades,
     teamStats,
     quickSwitch,
-    quickSwitch,
+    quickSwitchTimer,
   ]);
 };
 export default TeamPlayTypeDiagView;
