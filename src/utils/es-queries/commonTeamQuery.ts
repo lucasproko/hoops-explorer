@@ -174,7 +174,8 @@ export const commonTeamQuery = function (
   params: CommonFilterParams,
   lastDate: number,
   publicEfficiency: any,
-  lookup: any
+  lookup: any,
+  opponentMode: boolean = false
 ) {
   return {
     bool: {
@@ -188,7 +189,9 @@ export const commonTeamQuery = function (
           : [
               {
                 term: {
-                  "team.team.keyword": `${params.team}`,
+                  [opponentMode
+                    ? "opponent.team.keyword"
+                    : "team.team.keyword"]: `${params.team}`,
                 },
               },
             ],
