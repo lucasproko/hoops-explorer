@@ -3,9 +3,7 @@
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!details, help) 1`] = `
 <span>
   <br />
-  <div
-    className="small"
-  >
+  <div>
     <span
       style={
         Object {
@@ -4577,9 +4575,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!help) 1`] = `
 <span>
   <br />
-  <div
-    className="small"
-  >
+  <div>
     <span
       style={
         Object {

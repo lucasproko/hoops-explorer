@@ -347,7 +347,7 @@ export class PlayTypeDiagUtils {
     });
 
     return (
-      <div className="small">
+      <div>
         <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
           <b>Scoring Analysis: [{quickSwitch || title}]</b>
         </span>
@@ -395,7 +395,7 @@ export class PlayTypeDiagUtils {
       : [];
 
     return (
-      <div>
+      <div className="small">
         <TeamPlayTypeDiagRadar
           title={`${title} // ${singleGameMode ? "Game" : "Season"} Breakdown`}
           players={players.baseline}

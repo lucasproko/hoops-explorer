@@ -6134,14 +6134,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className=""
+                  className="small"
                   colSpan={24}
                 >
                   <span>
                     <br />
-                    <div
-                      className="small"
-                    >
+                    <div>
                       <span
                         style={
                           Object {
@@ -12357,14 +12355,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className=""
+                  className="small"
                   colSpan={24}
                 >
                   <span>
                     <br />
-                    <div
-                      className="small"
-                    >
+                    <div>
                       <span
                         style={
                           Object {
@@ -18580,14 +18576,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               </tr>
               <tr>
                 <td
-                  className=""
+                  className="small"
                   colSpan={24}
                 >
                   <span>
                     <br />
-                    <div
-                      className="small"
-                    >
+                    <div>
                       <span
                         style={
                           Object {
