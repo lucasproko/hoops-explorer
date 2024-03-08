@@ -7,7 +7,6 @@ import {
   commonLineupAggregations,
   commonAggregations,
 } from "./commonLineupAggregations";
-import { buildGameInfoRequest } from "./lineupStatsQueryTemplate";
 import { GameFilterParams } from "../FilterModels";
 
 export const teamDefenseStatsQuery = function (
