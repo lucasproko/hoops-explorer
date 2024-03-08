@@ -400,7 +400,7 @@ export async function main() {
       maxRank: ParamDefaults.defaultMaxRank,
       team: team,
       year: teamYear,
-      getGames: true,
+      //(for teams we also getGames but we set this explicitly below)
     };
     const _30d_ago = new Date((approxEndofRegSeason - 30 * 24 * 3600) * 1000)
       .toISOString()
@@ -448,8 +448,8 @@ export async function main() {
         async ([label, requestModel, teamRequestModel]: [string, any, any]) => {
           const requestParams = QueryUtils.stringify(requestModel);
           const teamRequestParms = teamRequestModel
-            ? QueryUtils.stringify(teamRequestModel)
-            : requestParams;
+            ? QueryUtils.stringify({ ...teamRequestModel, getGames: true })
+            : QueryUtils.stringify({ ...requestModel, getGames: true });
 
           const lineupResponse = new MutableAsyncResponse();
           const teamResponse = new MutableAsyncResponse();

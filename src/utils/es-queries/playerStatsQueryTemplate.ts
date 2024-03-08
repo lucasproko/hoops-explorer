@@ -3,6 +3,7 @@ import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonPlayerAggregations } from "./commonPlayerAggregations";
 import { GameFilterParams } from "../FilterModels";
+import { buildGameInfoRequest } from "./lineupStatsQueryTemplate";
 
 export const playerStatsQuery = function (
   params: GameFilterParams,
@@ -29,6 +30,7 @@ export const playerStatsQuery = function (
               size: 100,
             },
             aggregations: {
+              ...(params.getGames ? buildGameInfoRequest("final_scores") : {}),
               ...commonPlayerAggregations(
                 publicEfficiency,
                 lookup,
