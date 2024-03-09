@@ -812,9 +812,11 @@ export class LuckUtils {
     fgBreakdown: OffAdjShotBreakdown
   ): { fgM_ast: number; fgM_unast: number } => {
     // Pick decomposition based on what types of shot were made:
+    //TODO: still not great, eg take the case where all my makes are assisted
+    // it will likely say all misses were assisted also (makes/33% > misses)
     if (
       shotCounts.shot_info_unast_made > 0 &&
-      shotCounts.shot_info_unast_made > 0
+      shotCounts.shot_info_ast_made > 0
     ) {
       const fgM_unast =
         shotCounts.shot_info_unast_made *
@@ -830,17 +832,21 @@ export class LuckUtils {
         fgM_unast: shotCounts.shot_info_unknown_missed * (1.0 - astWeights),
       };
     } else if (shotCounts.shot_info_unast_made > 0) {
-      const fgM_unast =
+      const fgM_unast = Math.min(
+        shotCounts.shot_info_unknown_missed,
         shotCounts.shot_info_unast_made *
-        (1 / (fgBreakdown.unassisted || 1) - 1);
+          (1 / (fgBreakdown.unassisted || 1) - 1)
+      );
       const fgM_ast = Math.max(
         0,
         shotCounts.shot_info_unknown_missed - fgM_unast
       );
       return { fgM_ast, fgM_unast };
     } else if (shotCounts.shot_info_ast_made > 0) {
-      const fgM_ast =
-        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1);
+      const fgM_ast = Math.min(
+        shotCounts.shot_info_unknown_missed,
+        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1)
+      );
       const fgM_unast = Math.max(
         0,
         shotCounts.shot_info_unknown_missed - fgM_ast
