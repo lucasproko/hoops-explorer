@@ -29,6 +29,7 @@ import { LineupStatsModel } from "../components/LineupStatsTable";
 import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard";
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
+import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 
 // Utils:
 import { IndivStatSet, StatModels, TeamStatSet } from "../utils/StatModels";
@@ -45,6 +46,8 @@ import {
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { stringify } from "query-string";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -214,8 +217,11 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     {} as DivisionStatsCache
   );
 
-  // All player stats, part of defensive POC
-  const defensivePoc = false; //TODO: make a FF?
+  /** Set this here and in teamDefenseStatsQueryTemplate+teamPlayerDefenseStatsQueryTemplate to check we get approx the
+   * same number when looking at season averages and average across all games
+   */
+  const seasonVsGameAverageDebugMode = false;
+
   const [allPlayerStatsCache, setAllPlayerStatsCache] = useState<
     Record<string, IndivStatSet[]>
   >({});
@@ -236,24 +242,22 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       // Also load all players into a separate cache, for defensive purposes
       // TODO: really should load them all into ES instead and then get only those I need
       // But this will do to prove the concept
-      if (defensivePoc) {
-        const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
-          "all",
-          matchupFilterParams.gender || ParamDefaults.defaultGender,
-          matchupFilterParams.year || ParamDefaults.defaultYear,
-          "All",
-          [],
-          []
+      const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
+        "all",
+        matchupFilterParams.gender || ParamDefaults.defaultGender,
+        matchupFilterParams.year || ParamDefaults.defaultYear,
+        "All",
+        [],
+        []
+      );
+      fetchPlayers.then((players) => {
+        setAllPlayerStatsCache(
+          _.groupBy(
+            (players[0]?.players || []) as Array<IndivStatSet>,
+            (p) => p.team
+          )
         );
-        fetchPlayers.then((players) => {
-          setAllPlayerStatsCache(
-            _.groupBy(
-              (players[0]?.players || []) as Array<IndivStatSet>,
-              (p) => p.team
-            )
-          );
-        });
-      }
+      });
     }
   }, [matchupFilterParams]);
 
@@ -293,55 +297,89 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const playStyleChart = React.useMemo(() => {
-    const [defensiveBreakdownA, defensiveBreakdownB] = _.thru(
-      defensivePoc,
-      (__) => {
-        if (defensivePoc) {
-          const showDefA =
-            (breakdownViewArr?.[0] || "off") == "def" ||
-            matchupFilterParams.oppoTeam == AvailableTeams.noOpponent;
+    const [defensiveBreakdownA, defensiveBreakdownB] = _.thru(null, () => {
+      const showDefA =
+        (breakdownViewArr?.[0] || "off") == "def" ||
+        matchupFilterParams.oppoTeam == AvailableTeams.noOpponent;
 
-          const defA =
-            !_.isEmpty(dataEvent.defensiveInfoA) && showDefA
-              ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
-                  dataEvent.defensiveInfoA,
-                  allPlayerStatsCache
-                )
-              : undefined;
-
-          const showDefB = (breakdownViewArr?.[1] || "off") == "def";
-          const defB = !_.isEmpty(dataEvent.defensiveInfoA)
-            ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
-                dataEvent.defensiveInfoB,
-                allPlayerStatsCache
+      //DEBUG MODE:
+      // This ensures we have the same roster stats for season average and average of games (see use below for more)
+      const useExactPlayerSetInDebugMode = false;
+      const globalRosterStats = seasonVsGameAverageDebugMode
+        ? useExactPlayerSetInDebugMode
+          ? _.values(
+              RosterTableUtils.buildRosterTableByCode(
+                dataEvent.rosterStatsA.global,
+                dataEvent.teamStatsA.global.roster || {},
+                true //(injects positional info into the player stats, needed for play style analysis below)
               )
-            : undefined;
+            )
+          : allPlayerStatsCache[matchupFilterParams.team || "??"] || []
+        : [];
 
-          return [defA, defB];
-        } else {
-          return [undefined, undefined];
-        }
-      }
-    );
+      const defA =
+        !_.isEmpty(dataEvent.defensiveInfoA) && showDefA
+          ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+              dataEvent.defensiveInfoA,
+              seasonVsGameAverageDebugMode
+                ? _.mapValues(
+                    allPlayerStatsCache, //(ie always returns this regardless of team faced, since with this debug flag...
+                    (__) => globalRosterStats //... we are always looking at team's offense, not opponents')
+                  )
+                : allPlayerStatsCache
+            )
+          : undefined;
+
+      const showDefB = (breakdownViewArr?.[1] || "off") == "def";
+      const defB =
+        !_.isEmpty(dataEvent.defensiveInfoA) && showDefB
+          ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+              dataEvent.defensiveInfoB,
+              allPlayerStatsCache
+            )
+          : undefined;
+
+      return [defA, defB];
+    });
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
         title="Play Type Breakdown"
         helpLink={maybeShowDocs()}
       >
-        {defensivePoc &&
-        matchupFilterParams.oppoTeam != AvailableTeams.noOpponent &&
-        !_.isEmpty(divisionStatsCache) ? ( //TODO: if def available then also include as option?
+        {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent &&
+        !_.isEmpty(divisionStatsCache) ? (
           <Container>
             <Row>
-              <Col xs={12} className="text-center">
-                <span>
-                  <span className="small">
-                    <b>Off vs Def</b> &nbsp;&nbsp;|&nbsp;&nbsp; Def vs Off
-                    &nbsp;&nbsp;|&nbsp;&nbsp; Off v Off
-                    &nbsp;&nbsp;|&nbsp;&nbsp; Def v Def
-                  </span>
-                </span>
+              <Col xs={12} className="text-center small">
+                <ToggleButtonGroup
+                  items={[
+                    {
+                      label: "Off v Def",
+                      tooltip: "Show Top Team Offense vs Bottom Team Defense",
+                      toggled: breakdownView == "off;def",
+                      onClick: () => setBreakdownView("off;def"),
+                    },
+                    {
+                      label: "Def v Off",
+                      tooltip: "Show Top Team Defense vs Bottom Team Offense",
+                      toggled: breakdownView == "def;off",
+                      onClick: () => setBreakdownView("def;off"),
+                    },
+                    {
+                      label: "Off v Off",
+                      tooltip: "Show Top Team Offense vs Bottom Team Offense",
+                      toggled: breakdownView == "off;off",
+                      onClick: () => setBreakdownView("off;off"),
+                    },
+                    {
+                      label: "Def v Def",
+                      tooltip: "Show Top Team Defense vs Bottom Team Defense",
+                      toggled: breakdownView == "def;def",
+                      onClick: () => setBreakdownView("def;def"),
+                    },
+                  ]}
+                />
               </Col>
             </Row>
           </Container>
@@ -350,50 +388,54 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           <Container>
             <Row>
               <Col xs={12}>
-                {_.isEmpty(divisionStatsCache) ? (
+                {_.isEmpty(divisionStatsCache) ||
+                _.isEmpty(dataEvent.rosterStatsA.global) ? (
                   <span>
                     <i>(Loading data...)</i>
                   </span>
                 ) : (
                   PlayTypeDiagUtils.buildTeamStyleBreakdown(
                     `${matchupFilterParams.team || "Unknown"}${
-                      defensiveBreakdownA ? " Defense" : ""
+                      breakdownViewArr?.[0] == "def" ? " Defense" : ""
                     }`,
                     dataEvent.rosterStatsA,
                     dataEvent.teamStatsA,
                     divisionStatsCache,
                     showHelp,
-                    false
+                    false,
+                    breakdownViewArr?.[0] == "def"
+                      ? defensiveBreakdownA
+                      : undefined
                   )
                 )}
               </Col>
             </Row>
-            {matchupFilterParams.oppoTeam == AvailableTeams.noOpponent &&
-            !defensivePoc ? undefined : (
-              <Row className="mt-2">
-                <Col xs={12}>
-                  {_.isEmpty(divisionStatsCache) ? (
-                    <span></span>
-                  ) : (
-                    PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                      matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
-                        ? `${matchupFilterParams.team || "Unknown"} Defense`
-                        : `${matchupFilterParams.oppoTeam || "Unknown"}${
-                            defensiveBreakdownB ? " Defense" : ""
-                          }`,
-                      dataEvent.rosterStatsB,
-                      dataEvent.teamStatsB,
-                      divisionStatsCache,
-                      showHelp,
-                      false,
-                      matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
-                        ? defensiveBreakdownA
-                        : defensiveBreakdownB
-                    )
-                  )}
-                </Col>
-              </Row>
-            )}
+            <Row className="mt-2">
+              <Col xs={12}>
+                {_.isEmpty(divisionStatsCache) ||
+                (_.isEmpty(dataEvent.rosterStatsB.global) &&
+                  matchupFilterParams.oppoTeam == AvailableTeams.noOpponent &&
+                  _.isEmpty(dataEvent.rosterStatsA.global)) ? (
+                  <span></span>
+                ) : (
+                  PlayTypeDiagUtils.buildTeamStyleBreakdown(
+                    matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                      ? `${matchupFilterParams.team || "Unknown"} Defense`
+                      : `${matchupFilterParams.oppoTeam || "Unknown"}${
+                          defensiveBreakdownB ? " Defense" : ""
+                        }`,
+                    dataEvent.rosterStatsB,
+                    dataEvent.teamStatsB,
+                    divisionStatsCache,
+                    showHelp,
+                    false,
+                    matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                      ? defensiveBreakdownA
+                      : defensiveBreakdownB
+                  )
+                )}
+              </Col>
+            </Row>
           </Container>
         ) : (
           <Container>
@@ -436,7 +478,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
             onStats={injectStats}
             startingState={matchupFilterParams}
             onChangeState={onMatchupFilterParamsChange}
-            includeDefense={defensivePoc}
+            includeDefense={true}
           />
         </GenericCollapsibleCard>
       </Row>

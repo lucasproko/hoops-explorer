@@ -31,6 +31,7 @@ export type OffAdjShotBreakdown = {
   base: number;
   unassisted: number;
   assisted: number;
+  baseAssistPct: number;
   expected?: number;
 };
 
@@ -50,6 +51,7 @@ export type OffLuckAdj3P = {
   unassisted3P: number;
   assisted3P: number;
   expected3P?: number;
+  baseAssistPct: number;
 };
 
 export type OffLuckShotTypeAndAdj3P = OffLuckShotInfo3P & OffLuckAdj3P;
@@ -743,11 +745,27 @@ export class LuckUtils {
     regressNumber: number = 0
   ) => {
     const basePre = LuckUtils.get(p?.[`off_${shotType}`], 0);
-    // Can't use off_3p_ast because some of the transition 3PAs are unassisted makes, so we just use non-early ast%
+
+    // Ideally can't use off_3p_ast because some of the transition 3PAs are unassisted makes, so we just use non-early ast%
+    const fallbackBaseAssistPctPre = LuckUtils.get(
+      p?.[`off_${shotType}_ast`],
+      0.0
+    );
+
+    const fallbackBaseAssistPct =
+      fallbackBaseAssistPctPre == 0.0 && basePre <= 0.2
+        ? shotType == "3p"
+          ? 1.0
+          : 0.5
+        : fallbackBaseAssistPctPre;
+    //(fallback is that they only take assisted 3P shots, because they are bad!)
+
+    const madeThisSample =
+      baseShotInfo.shot_info_ast_made + baseShotInfo.shot_info_unast_made;
     const baseAssistPct =
-      baseShotInfo.shot_info_ast_made /
-      (baseShotInfo.shot_info_ast_made + baseShotInfo.shot_info_unast_made ||
-        1);
+      madeThisSample > 0
+        ? baseShotInfo.shot_info_ast_made / (madeThisSample || 1)
+        : fallbackBaseAssistPct;
 
     const totalShotsTaken = baseShotInfo.shot_info_total_attempts;
     const regressionPct =
@@ -765,6 +783,7 @@ export class LuckUtils {
       base,
       unassisted: base - baseAssistPct * weight,
       assisted: base + (1 - baseAssistPct) * weight,
+      baseAssistPct,
     } as OffAdjShotBreakdown;
   };
   /** Calculates approx unassisted/assisted 3P (p and baseShotInfo should be based on the biggest sample available, normally NOT the sample)
@@ -791,6 +810,7 @@ export class LuckUtils {
       base3P: adjustedShotInfo.base,
       unassisted3P: adjustedShotInfo.unassisted,
       assisted3P: adjustedShotInfo.assisted,
+      baseAssistPct: adjustedShotInfo.baseAssistPct,
     } as OffLuckAdj3P;
   };
 
@@ -814,16 +834,18 @@ export class LuckUtils {
     // Pick decomposition based on what types of shot were made:
     //TODO: still not great, eg take the case where all my makes are assisted
     // it will likely say all misses were assisted also (makes/33% > misses)
+    //TODO: plus using diff logic like this means you don't get remotely the same number
+    // when switching betweens season average and average of all games
     if (
       shotCounts.shot_info_unast_made > 0 &&
       shotCounts.shot_info_ast_made > 0
     ) {
       const fgM_unast =
         shotCounts.shot_info_unast_made *
-        (1 / (fgBreakdown.unassisted || 1) - 1);
+        (1 / (fgBreakdown.unassisted || 1) - 1.0);
 
       const fgM_ast =
-        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1);
+        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1.0);
 
       const astWeights = fgM_ast / (fgM_ast + fgM_unast);
 
@@ -835,7 +857,7 @@ export class LuckUtils {
       const fgM_unast = Math.min(
         shotCounts.shot_info_unknown_missed,
         shotCounts.shot_info_unast_made *
-          (1 / (fgBreakdown.unassisted || 1) - 1)
+          (1 / (fgBreakdown.unassisted || 1) - 1.0)
       );
       const fgM_ast = Math.max(
         0,
@@ -845,7 +867,7 @@ export class LuckUtils {
     } else if (shotCounts.shot_info_ast_made > 0) {
       const fgM_ast = Math.min(
         shotCounts.shot_info_unknown_missed,
-        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1)
+        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1.0)
       );
       const fgM_unast = Math.max(
         0,
@@ -853,12 +875,33 @@ export class LuckUtils {
       );
       return { fgM_ast, fgM_unast };
     } else {
+      const fudgeFactor = 1.15; //(seem to over-estimate assited shots in this clause)
+
       const astWeights = //(if my assisted FG% is higher, I expected _fewer_ assisted misses)
-        fgBreakdown.unassisted /
-        (fgBreakdown.unassisted + fgBreakdown.assisted);
+        (fgBreakdown.unassisted /
+          (0.5 * (fgBreakdown.unassisted + fgBreakdown.assisted))) *
+        fudgeFactor;
+
+      const astMissEstimate =
+        shotCounts.shot_info_unknown_missed *
+        fgBreakdown.baseAssistPct *
+        astWeights;
+
+      // This is the most common cause of issues with dribble jumper:
+      // console.log(
+      //   `0-0-SCENARIO: [${astMissEstimate.toFixed(3)}][${(
+      //     shotCounts.shot_info_unknown_missed - astMissEstimate
+      //   ).toFixed(3)}] // [${fgBreakdown.baseAssistPct.toFixed(
+      //     3
+      //   )}][${astWeights.toFixed(3)}]`
+      // );
+
       return {
-        fgM_ast: shotCounts.shot_info_unknown_missed * astWeights,
-        fgM_unast: shotCounts.shot_info_unknown_missed * (1.0 - astWeights),
+        fgM_ast: astMissEstimate,
+        fgM_unast: Math.max(
+          0,
+          shotCounts.shot_info_unknown_missed - astMissEstimate
+        ),
       };
     }
   };
@@ -880,6 +923,7 @@ export class LuckUtils {
         base: info.base3P,
         unassisted: info.unassisted3P,
         assisted: info.assisted3P,
+        baseAssistPct: info.base3P,
       }
     );
   };

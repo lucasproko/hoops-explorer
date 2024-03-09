@@ -374,7 +374,8 @@ export class PlayTypeDiagUtils {
     >,
     globalPlayerInfo: Record<string, Array<IndivStatSet>>
   ): TopLevelPlayAnalysis => {
-    var varTotalPoss = 0;
+    var varTotalPlays = 0;
+    const mutableBreakdownTotals: Record<string, number> = {};
     const separateBreakdown = _.mapValues(defensiveInfo, (stats, team) => {
       const globalRosterStatsByCode = _.chain(globalPlayerInfo[team] || [])
         .map((p) => {
@@ -388,14 +389,26 @@ export class PlayTypeDiagUtils {
         globalRosterStatsByCode,
         stats.teamStats
       );
-      varTotalPoss += stats.teamStats.off_poss?.value || 0;
+      varTotalPlays +=
+        (stats.teamStats.off_poss?.value || 0) +
+        (stats.teamStats.total_off_orb?.value || 0);
+
+      _.forEach(topLevelPlayTypeStyles, (v, k) => {
+        const currBreakdown = mutableBreakdownTotals[k] || 0;
+        if (!currBreakdown) {
+          mutableBreakdownTotals[k] = 0;
+        }
+        mutableBreakdownTotals[k] = currBreakdown + (v.possPct.value || 0);
+      });
 
       return topLevelPlayTypeStyles;
     });
     const combinedBreakdown = _.transform(
       defensiveInfo,
       (acc, stats, team) => {
-        const numPoss = stats.teamStats.off_poss?.value || 0;
+        const numPlays =
+          (stats.teamStats.off_poss?.value || 0) +
+          (stats.teamStats.total_off_orb?.value || 0);
         const teamTopLevelPlayTypeStyles = separateBreakdown[team];
         if (teamTopLevelPlayTypeStyles) {
           _.forEach(teamTopLevelPlayTypeStyles, (v, k) => {
@@ -407,12 +420,13 @@ export class PlayTypeDiagUtils {
                 adj_pts: { value: 0 },
               };
             }
+            const numPlaysOfType = mutableBreakdownTotals[k] || 1;
             acc[kk].possPct.value! +=
-              ((v.possPct?.value || 0) * numPoss) / (varTotalPoss || 1);
+              ((v.possPct?.value || 0) * numPlays) / (varTotalPlays || 1);
             acc[kk].pts.value! +=
-              ((v.pts?.value || 0) * numPoss) / (varTotalPoss || 1);
+              ((v.pts?.value || 0) * (v.possPct?.value || 0)) / numPlaysOfType;
             acc[kk].adj_pts!.value! +=
-              ((v.adj_pts?.value || 0) * numPoss) / (varTotalPoss || 1);
+              ((v.adj_pts?.value || 0) * numPlays) / numPlaysOfType;
           });
         }
       },

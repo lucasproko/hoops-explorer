@@ -253,7 +253,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           const rawPct = rawVal?.possPct?.value || 0;
 
           return {
-            name: playType.replace("-", " - "),
+            name:
+              playType == "Put-Back"
+                ? "ORB Scramble"
+                : playType.replace("-", " - "),
             playType: playType,
             pct:
               rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
@@ -372,6 +375,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     quickSwitch,
     quickSwitchTimer,
     quickSwitchOverride,
+    defensiveOverride,
   ]);
 };
 export default TeamPlayTypeDiagRadar;

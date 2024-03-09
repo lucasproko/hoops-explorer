@@ -6,6 +6,11 @@ import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonPlayerAggregations } from "./commonPlayerAggregations";
 import { GameFilterParams } from "../FilterModels";
 
+/** Set this here and in teamDefenseStatsQueryTemplate+MatchupPreviewAnalyzer to check we get approx the
+ * same number when looking at season averages and average across all games
+ */
+const seasonVsGameAverageDebugMode = false;
+
 export const teamDefensePlayerStatsQuery = function (
   params: GameFilterParams,
   lastDate: number,
@@ -28,7 +33,9 @@ export const teamDefensePlayerStatsQuery = function (
           opponents: {
             terms: {
               size: 100,
-              field: "team.team.keyword",
+              field: seasonVsGameAverageDebugMode
+                ? "opponent.team.keyword"
+                : "team.team.keyword",
             },
             aggregations: {
               player: {
@@ -66,6 +73,12 @@ export const teamDefensePlayerStatsQuery = function (
         },
       },
     },
-    query: commonTeamQuery(params, lastDate, publicEfficiency, lookup, true), //(opponent mode)
+    query: commonTeamQuery(
+      params,
+      lastDate,
+      publicEfficiency,
+      lookup,
+      !seasonVsGameAverageDebugMode
+    ), //(opponent mode)
   };
 };

@@ -9,6 +9,11 @@ import {
 } from "./commonLineupAggregations";
 import { GameFilterParams } from "../FilterModels";
 
+/** Set this here and in teamDefenseStatsQueryTemplate+MatchupPreviewAnalyzer to check we get approx the
+ * same number when looking at season averages and average across all games
+ */
+const seasonVsGameAverageDebugMode = false;
+
 export const teamDefenseStatsQuery = function (
   params: GameFilterParams,
   lastDate: number,
@@ -34,7 +39,9 @@ export const teamDefenseStatsQuery = function (
           opponents: {
             terms: {
               size: 100,
-              field: "team.team.keyword",
+              field: seasonVsGameAverageDebugMode
+                ? "opponent.team.keyword"
+                : "team.team.keyword",
             },
             aggregations: {
               ..._.pick(
@@ -53,6 +60,7 @@ export const teamDefenseStatsQuery = function (
                   "total_off_fga",
                   "total_off_fta",
                   "total_off_to",
+                  "total_off_orb",
                   "total_off_assist",
                   "total_off_scramble_to",
                   "total_off_trans_to",
@@ -63,6 +71,12 @@ export const teamDefenseStatsQuery = function (
         },
       },
     },
-    query: commonTeamQuery(params, lastDate, publicEfficiency, lookup, true), //(look for opponent instead of team)
+    query: commonTeamQuery(
+      params,
+      lastDate,
+      publicEfficiency,
+      lookup,
+      !seasonVsGameAverageDebugMode
+    ), //(look for opponent instead of team)
   };
 };
