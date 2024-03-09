@@ -32,13 +32,15 @@ describe("PlayTypeUtils", () => {
   test("PlayTypeUtils - buildPlayerStyle", () => {
     const playStyleScoring = PlayTypeUtils.buildPlayerStyle(
       "scoringPlaysPct",
-      mainPlayer
+      mainPlayer,
+      undefined
     );
     //expect(playStyle).toEqual({});
     expect(playStyleScoring).toMatchSnapshot();
 
     const playStylePoss = PlayTypeUtils.buildPlayerStyle(
       "playsPct",
+      mainPlayer,
       mainPlayer
     );
     //expect(playStyle).toEqual({});
@@ -47,6 +49,7 @@ describe("PlayTypeUtils", () => {
     const playStyleScoringWithTotals = PlayTypeUtils.buildPlayerStyle(
       "scoringPlaysPct",
       mainPlayer,
+      undefined,
       1,
       1
     );
@@ -55,7 +58,8 @@ describe("PlayTypeUtils", () => {
 
     const playStyleScoringPtsPer = PlayTypeUtils.buildPlayerStyle(
       "pointsPer100",
-      mainPlayer
+      mainPlayer,
+      undefined
     );
     //expect(playStyleWithTotals).toEqual({});
     expect(playStyleScoringPtsPer).toMatchSnapshot();
@@ -106,6 +110,7 @@ describe("PlayTypeUtils", () => {
   test("PlayTypeUtils - buildPlayerAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle(
       "scoringPlaysPct",
+      mainPlayer,
       mainPlayer
     );
     const testPlayerCode = allPlayers.filter((p) =>
@@ -137,7 +142,8 @@ describe("PlayTypeUtils", () => {
   test("PlayTypeUtils - enrichUnassistedStats", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle(
       "scoringPlaysPct",
-      mainPlayer
+      mainPlayer,
+      undefined
     );
     const extraUnassistedInfo = PlayTypeUtils.enrichUnassistedStats(
       playerStyle.unassisted,
@@ -158,6 +164,7 @@ describe("PlayTypeUtils", () => {
   test("PlayTypeUtils - buildPosCategoryAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle(
       "scoringPlaysPct",
+      mainPlayer,
       mainPlayer
     );
     const playerAssistNetwork = allPlayers.map((p) => {

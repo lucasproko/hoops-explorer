@@ -59,7 +59,7 @@ export type Props = {
   showGrades: string;
   grades?: DivisionStatsCache;
   showHelp: boolean;
-  possCountToUse?: number;
+  playCountToUse?: number;
   quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
 };
@@ -72,7 +72,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   showGrades,
   grades,
   showHelp,
-  possCountToUse,
+  playCountToUse,
   defensiveOverride,
   quickSwitchOverride,
 }) => {
@@ -105,7 +105,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     mediumTier: grades?.Medium,
     lowTier: grades?.Low,
   });
-  const possFactor = _.isNumber(possCountToUse) ? possCountToUse / 100 : 1.0;
+  const possFactor = _.isNumber(playCountToUse) ? playCountToUse / 100 : 1.0;
 
   const CustomizedAxisTick: React.FunctionComponent<any> = (props) => {
     const { x, y, payload } = props;
@@ -198,9 +198,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             plays
             <br />
             Frequency Pctile: [<b>{data.pct.toFixed(1)}%</b>]
-            {_.isNumber(possCountToUse) ? <br /> : null}
-            {_.isNumber(possCountToUse) ? (
-              <span>(Label shows value for {possCountToUse} poss game)</span>
+            {_.isNumber(playCountToUse) ? <br /> : null}
+            {_.isNumber(playCountToUse) ? (
+              <span>(Label shows value for {playCountToUse} play game)</span>
             ) : null}
           </p>
           <p className="desc pl-1 pr-1">

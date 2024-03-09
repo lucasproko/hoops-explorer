@@ -6256,9 +6256,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         ] 
                       </span>
                     </div>
-                    <span
-                      className="small"
-                    >
+                    <span>
                       (
                       <a
                         href="#"
@@ -12477,9 +12475,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         ] 
                       </span>
                     </div>
-                    <span
-                      className="small"
-                    >
+                    <span>
                       (
                       <a
                         href="#"
@@ -18698,9 +18694,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         ] 
                       </span>
                     </div>
-                    <span
-                      className="small"
-                    >
+                    <span>
                       (
                       <a
                         href="#"

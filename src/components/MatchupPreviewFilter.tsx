@@ -190,16 +190,19 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       },
     ];
     const defensiveRequests: FilterRequestInfo[] = includeDefense
-      ? [
-          {
-            context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
-            paramsObj: primaryRequestA as FilterParamsType,
-          },
-          {
-            context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
-            paramsObj: primaryRequestB as FilterParamsType,
-          },
-        ]
+      ? _.take(
+          [
+            {
+              context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
+              paramsObj: primaryRequestA as FilterParamsType,
+            },
+            {
+              context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
+              paramsObj: primaryRequestB as FilterParamsType,
+            },
+          ],
+          game != AvailableTeams.noOpponent ? 2 : 1
+        ) //(only get team defense if there is "no opponent")
       : [];
 
     return [
@@ -312,7 +315,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         .value();
     };
     const [defensiveStatsA, defensiveStatsB] = _.thru(includeDefense, (__) => {
-      const startingIndex = extraFullSeasonRequests + (noOpponentCase ? 5 : 6);
+      const startingIndex =
+        extraFullSeasonRequests +
+        (noOpponentCase ? 3 : 6 + extraFullSeasonRequests);
       if (includeDefense) {
         return [
           buildDefensiveInfo(jsonResps?.[startingIndex]?.responses || []),

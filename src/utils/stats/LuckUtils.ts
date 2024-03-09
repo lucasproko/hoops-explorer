@@ -811,7 +811,25 @@ export class LuckUtils {
     shotCounts: OffShotInfoBreakdown,
     fgBreakdown: OffAdjShotBreakdown
   ): { fgM_ast: number; fgM_unast: number } => {
-    if (shotCounts.shot_info_unast_made > 0) {
+    // Pick decomposition based on what types of shot were made:
+    if (
+      shotCounts.shot_info_unast_made > 0 &&
+      shotCounts.shot_info_unast_made > 0
+    ) {
+      const fgM_unast =
+        shotCounts.shot_info_unast_made *
+        (1 / (fgBreakdown.unassisted || 1) - 1);
+
+      const fgM_ast =
+        shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1);
+
+      const astWeights = fgM_ast / (fgM_ast + fgM_unast);
+
+      return {
+        fgM_ast: shotCounts.shot_info_unknown_missed * astWeights,
+        fgM_unast: shotCounts.shot_info_unknown_missed * (1.0 - astWeights),
+      };
+    } else if (shotCounts.shot_info_unast_made > 0) {
       const fgM_unast =
         shotCounts.shot_info_unast_made *
         (1 / (fgBreakdown.unassisted || 1) - 1);
@@ -820,7 +838,7 @@ export class LuckUtils {
         shotCounts.shot_info_unknown_missed - fgM_unast
       );
       return { fgM_ast, fgM_unast };
-    } else if (shotCounts.shot_info_unast_made > 0) {
+    } else if (shotCounts.shot_info_ast_made > 0) {
       const fgM_ast =
         shotCounts.shot_info_ast_made * (1 / (fgBreakdown.assisted || 1) - 1);
       const fgM_unast = Math.max(
@@ -829,7 +847,7 @@ export class LuckUtils {
       );
       return { fgM_ast, fgM_unast };
     } else {
-      const astWeights =
+      const astWeights = //(if my assisted FG% is higher, I expected _fewer_ assisted misses)
         fgBreakdown.unassisted /
         (fgBreakdown.unassisted + fgBreakdown.assisted);
       return {

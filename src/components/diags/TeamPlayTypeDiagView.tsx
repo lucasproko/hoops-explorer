@@ -328,7 +328,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
               setQuickSwitchTimer
             )
           : undefined}
-        <span className="small">
+        <span>
           ({scoringToggle} // {usageToggle} // {breakdownToggle})
         </span>
         <br />

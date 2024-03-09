@@ -19,9 +19,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
       </b>
     </span>
   </div>
-  <span
-    className="small"
-  >
+  <span>
     (
     <a
       href="#"
@@ -4591,9 +4589,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
       </b>
     </span>
   </div>
-  <span
-    className="small"
-  >
+  <span>
     (
     <a
       href="#"

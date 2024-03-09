@@ -257,6 +257,7 @@ export class PlayTypeUtils {
         const playerStyle = PlayTypeUtils.buildPlayerStyle(
           playStyleType,
           player,
+          rosterStatsByCode[PlayTypeUtils.getCode(player)],
           teamPossessionsToUse,
           teamTotalAssists,
           separateHalfCourt
@@ -655,6 +656,7 @@ export class PlayTypeUtils {
   static buildPlayerStyle(
     playStyleType: PlayStyleType,
     player: IndivStatSet,
+    playerGlobalRosterStats: IndivStatSet | undefined,
     countNotPctScorePoss?: number,
     countNotPctAssists?: number,
     separateHalfCourt?: boolean
@@ -700,10 +702,9 @@ export class PlayTypeUtils {
                 mappedShotType
               );
 
-              //TODO: we should consider instead regressing to the rosterStatsCode?
               const regressNumber = 10;
               const adjFgPctDecompInfo = LuckUtils.buildAdjustedFG(
-                player,
+                playerGlobalRosterStats || player,
                 fgDecompInfo,
                 mappedShotType,
                 regressNumber

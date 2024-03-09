@@ -60,6 +60,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   // Team Stats interface
 
+  const [breakdownView, setBreakdownView] = useState<string>("off;def");
+  const breakdownViewArr = breakdownView.split(";");
+
   const [gaInited, setGaInited] = useState(false);
   const [dataEvent, setDataEvent] = useState({
     teamStatsA: {
@@ -294,14 +297,19 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       defensivePoc,
       (__) => {
         if (defensivePoc) {
+          const showDefA =
+            (breakdownViewArr?.[0] || "off") == "def" ||
+            matchupFilterParams.oppoTeam == AvailableTeams.noOpponent;
+
           const defA =
-            false && !_.isEmpty(dataEvent.defensiveInfoA) /**/
+            !_.isEmpty(dataEvent.defensiveInfoA) && showDefA
               ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
                   dataEvent.defensiveInfoA,
                   allPlayerStatsCache
                 )
               : undefined;
 
+          const showDefB = (breakdownViewArr?.[1] || "off") == "def";
           const defB = !_.isEmpty(dataEvent.defensiveInfoA)
             ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
                 dataEvent.defensiveInfoB,
@@ -322,7 +330,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         helpLink={maybeShowDocs()}
       >
         {defensivePoc &&
-        matchupFilterParams.oppoTeam != AvailableTeams.noOpponent ? ( //TODO: if def available then also include as option?
+        matchupFilterParams.oppoTeam != AvailableTeams.noOpponent &&
+        !_.isEmpty(divisionStatsCache) ? ( //TODO: if def available then also include as option?
           <Container>
             <Row>
               <Col xs={12} className="text-center">
@@ -359,23 +368,27 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                 )}
               </Col>
             </Row>
-            {matchupFilterParams.oppoTeam ==
-            AvailableTeams.noOpponent ? undefined : (
+            {matchupFilterParams.oppoTeam == AvailableTeams.noOpponent &&
+            !defensivePoc ? undefined : (
               <Row className="mt-2">
                 <Col xs={12}>
                   {_.isEmpty(divisionStatsCache) ? (
                     <span></span>
                   ) : (
                     PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                      `${matchupFilterParams.oppoTeam || "Unknown"}${
-                        defensiveBreakdownB ? " Defense" : ""
-                      }`,
+                      matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                        ? `${matchupFilterParams.team || "Unknown"} Defense`
+                        : `${matchupFilterParams.oppoTeam || "Unknown"}${
+                            defensiveBreakdownB ? " Defense" : ""
+                          }`,
                       dataEvent.rosterStatsB,
                       dataEvent.teamStatsB,
                       divisionStatsCache,
                       showHelp,
                       false,
-                      defensiveBreakdownB
+                      matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                        ? defensiveBreakdownA
+                        : defensiveBreakdownB
                     )
                   )}
                 </Col>
@@ -395,7 +408,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, divisionStatsCache, allPlayerStatsCache]);
+  }, [dataEvent, divisionStatsCache, allPlayerStatsCache, breakdownView]);
 
   return (
     <Container>

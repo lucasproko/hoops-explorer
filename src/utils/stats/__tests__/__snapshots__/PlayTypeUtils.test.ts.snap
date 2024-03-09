@@ -2,14 +2,14 @@
 
 exports[`PlayTypeUtils PlayTypeUtils - aggregateToTopLevelPlayStyles 1`] = `
 Object {
-  "Attack & Kick": 0.0664680841123148,
-  "Backdoor Cut": 0.021784384790066717,
-  "Dribble Jumper": 0.029422683855289698,
-  "Mid-Range": 0.02396729905916386,
+  "Attack & Kick": 0.069687840549326,
+  "Backdoor Cut": 0.02372638638917094,
+  "Dribble Jumper": 0.025820008694198687,
+  "Mid-Range": 0.023925187863739032,
   "Misc": 0.06465407003508915,
-  "Post & Kick": 0.017077723938564746,
+  "Post & Kick": 0.017813608326774526,
   "Put-Back": 0.03399453714028501,
-  "Rim Attack": 0.1004485284010794,
+  "Rim Attack": 0.09819567233327005,
   "Transition": 0.10752831173082629,
 }
 `;
@@ -756,9 +756,9 @@ Object {
     },
   },
   "assistedMissAdjustments": Object {
-    "3p": 52.59946595460614,
-    "mid": 1.2222222222222285,
-    "rim": 8.563343491510672,
+    "3p": 58.43164764281348,
+    "mid": 0,
+    "rim": 9.90732425136051,
   },
   "scramble": Object {
     "source_3p_ast": Object {
@@ -806,15 +806,15 @@ Object {
   "transitionAssisted": Object {},
   "unassisted": Object {
     "source_3p_ast": Object {
-      "old_value": 0.28482156377970286,
+      "old_value": 0.29349137452477103,
       "value": 0.20662999851345323,
     },
     "source_mid_ast": Object {
-      "old_value": 0.09844242934773632,
+      "old_value": undefined,
       "value": 0.09662553887319755,
     },
     "source_rim_ast": Object {
-      "old_value": 0.16138448564220406,
+      "old_value": 0.16338237587536866,
       "value": 0.1486546751895347,
     },
     "source_sf": Object {

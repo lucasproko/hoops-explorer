@@ -456,6 +456,12 @@ export class PlayTypeDiagUtils {
         ]
       : [];
 
+    const playCountToUse =
+      singleGameMode && teamStats.baseline.off_poss
+        ? (teamStats.baseline.off_poss?.value || 0) +
+          (teamStats.baseline.total_off_orb?.value || 0)
+        : undefined;
+
     return (
       <div className="small">
         <TeamPlayTypeDiagRadar
@@ -469,9 +475,7 @@ export class PlayTypeDiagUtils {
           grades={grades}
           showHelp={showHelp}
           quickSwitchOptions={options}
-          possCountToUse={
-            singleGameMode ? teamStats.baseline.off_poss?.value : undefined
-          }
+          playCountToUse={playCountToUse}
           quickSwitchOverride={undefined}
           defensiveOverride={defensiveOverride}
         />

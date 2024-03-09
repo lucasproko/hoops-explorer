@@ -174,10 +174,10 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                       Half court estimates:
                       <br />
                       Off-pass misses: 
-                      39.7
+                      46.3
                       <br />
                       Off-dribble misses: 
-                      38.3
+                      31.7
                     </ForwardRef>
                   }
                   placement="auto"
@@ -218,10 +218,10 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                       Half court estimates:
                       <br />
                       Off-pass misses: 
-                      51.5
+                      53.8
                       <br />
                       Off-dribble misses: 
-                      8.5
+                      6.2
                     </ForwardRef>
                   }
                   placement="auto"
@@ -774,10 +774,10 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
                       Half court estimates:
                       <br />
                       Off-pass misses: 
-                      39.7
+                      46.3
                       <br />
                       Off-dribble misses: 
-                      38.3
+                      31.7
                     </ForwardRef>
                   }
                   placement="auto"
@@ -818,10 +818,10 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
                       Half court estimates:
                       <br />
                       Off-pass misses: 
-                      51.5
+                      53.8
                       <br />
                       Off-dribble misses: 
-                      8.5
+                      6.2
                     </ForwardRef>
                   }
                   placement="auto"
