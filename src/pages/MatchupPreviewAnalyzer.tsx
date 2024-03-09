@@ -290,20 +290,53 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const playStyleChart = React.useMemo(() => {
-    if (defensivePoc) {
-      if (dataEvent.defensiveInfoA) {
-        PlayTypeDiagUtils.buildTeamDefenseBreakdown(
-          dataEvent.defensiveInfoA,
-          allPlayerStatsCache
-        );
+    const [defensiveBreakdownA, defensiveBreakdownB] = _.thru(
+      defensivePoc,
+      (__) => {
+        if (defensivePoc) {
+          const defA =
+            false && !_.isEmpty(dataEvent.defensiveInfoA) /**/
+              ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+                  dataEvent.defensiveInfoA,
+                  allPlayerStatsCache
+                )
+              : undefined;
+
+          const defB = !_.isEmpty(dataEvent.defensiveInfoA)
+            ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+                dataEvent.defensiveInfoB,
+                allPlayerStatsCache
+              )
+            : undefined;
+
+          return [defA, defB];
+        } else {
+          return [undefined, undefined];
+        }
       }
-    }
+    );
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
         title="Play Type Breakdown"
         helpLink={maybeShowDocs()}
       >
+        {defensivePoc &&
+        matchupFilterParams.oppoTeam != AvailableTeams.noOpponent ? ( //TODO: if def available then also include as option?
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center">
+                <span>
+                  <span className="small">
+                    <b>Off vs Def</b> &nbsp;&nbsp;|&nbsp;&nbsp; Def vs Off
+                    &nbsp;&nbsp;|&nbsp;&nbsp; Off v Off
+                    &nbsp;&nbsp;|&nbsp;&nbsp; Def v Def
+                  </span>
+                </span>
+              </Col>
+            </Row>
+          </Container>
+        ) : undefined}
         {dataEvent.teamStatsA.baseline.off_poss?.value ? (
           <Container>
             <Row>
@@ -314,7 +347,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                   </span>
                 ) : (
                   PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                    matchupFilterParams.team || "Unknown",
+                    `${matchupFilterParams.team || "Unknown"}${
+                      defensiveBreakdownA ? " Defense" : ""
+                    }`,
                     dataEvent.rosterStatsA,
                     dataEvent.teamStatsA,
                     divisionStatsCache,
@@ -332,12 +367,15 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     <span></span>
                   ) : (
                     PlayTypeDiagUtils.buildTeamStyleBreakdown(
-                      matchupFilterParams.oppoTeam || "Unknown",
+                      `${matchupFilterParams.oppoTeam || "Unknown"}${
+                        defensiveBreakdownB ? " Defense" : ""
+                      }`,
                       dataEvent.rosterStatsB,
                       dataEvent.teamStatsB,
                       divisionStatsCache,
                       showHelp,
-                      false
+                      false,
+                      defensiveBreakdownB
                     )
                   )}
                 </Col>

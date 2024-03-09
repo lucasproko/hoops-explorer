@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 // Utils
 import {
   PlayTypeUtils,
+  TopLevelPlayAnalysis,
   TopLevelPlayType,
 } from "../../utils/stats/PlayTypeUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
@@ -60,6 +61,7 @@ export type Props = {
   showHelp: boolean;
   possCountToUse?: number;
   quickSwitchOverride: string | undefined;
+  defensiveOverride?: TopLevelPlayAnalysis;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -71,6 +73,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   grades,
   showHelp,
   possCountToUse,
+  defensiveOverride,
   quickSwitchOverride,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
@@ -88,11 +91,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ?.teamStats
       : teamStatsIn) || StatModels.emptyTeam();
 
-  const topLevelPlayTypeStyles = PlayTypeUtils.buildTopLevelPlayStyles(
-    players,
-    rosterStatsByCode,
-    teamStats
-  );
+  const topLevelPlayTypeStyles =
+    defensiveOverride ||
+    PlayTypeUtils.buildTopLevelPlayStyles(
+      players,
+      rosterStatsByCode,
+      teamStats
+    );
 
   const { tierToUse } = GradeTableUtils.buildTeamTierInfo(showGrades, {
     comboTier: grades?.Combo,
@@ -141,7 +146,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
     const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
-      (rawPts - 0.89) * 100
+      (defensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100
     );
 
     return (
@@ -201,9 +206,26 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           <p className="desc pl-1 pr-1">
             Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play
             <br />
-            Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]
+            {defensiveOverride ? (
+              <span>
+                Efficiency Pctile: [<b>{(100 - data.pts).toFixed(1)}%</b>]
+              </span>
+            ) : (
+              <span>
+                Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]
+              </span>
+            )}
             <br />
             (Average D1 play is approx [<b>0.89</b>] pts)
+            {defensiveOverride ? <br /> : undefined}
+            {defensiveOverride ? <br /> : undefined}
+            {defensiveOverride ? (
+              <i>
+                (NOTE: Pctiles shown are currently based on
+                <br />
+                offensive stats, a temporary limitation)
+              </i>
+            ) : undefined}
           </p>
         </div>
       );
@@ -309,7 +331,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                           <Cell
                             key={`cell-${index}`}
                             stroke="#000000"
-                            fill={CbbColors.off_pctile_qual(p.pts * 0.01)}
+                            fill={(defensiveOverride
+                              ? CbbColors.def_pctile_qual
+                              : CbbColors.off_pctile_qual)(p.pts * 0.01)}
                           />
                         );
                       })}

@@ -373,7 +373,7 @@ export class PlayTypeDiagUtils {
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
     >,
     globalPlayerInfo: Record<string, Array<IndivStatSet>>
-  ) => {
+  ): TopLevelPlayAnalysis => {
     var varTotalPoss = 0;
     const separateBreakdown = _.mapValues(defensiveInfo, (stats, team) => {
       const globalRosterStatsByCode = _.chain(globalPlayerInfo[team] || [])
@@ -418,6 +418,8 @@ export class PlayTypeDiagUtils {
       },
       {} as TopLevelPlayAnalysis
     );
+
+    return combinedBreakdown;
   };
 
   /** Encapsulates the logic to build a play style table from either single game or season  */
@@ -427,7 +429,8 @@ export class PlayTypeDiagUtils {
     teamStats: TeamStatsModel,
     grades: DivisionStatsCache,
     showHelp: boolean,
-    singleGameMode: boolean
+    singleGameMode: boolean,
+    defensiveOverride?: TopLevelPlayAnalysis
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -456,7 +459,9 @@ export class PlayTypeDiagUtils {
     return (
       <div className="small">
         <TeamPlayTypeDiagRadar
-          title={`${title} // ${singleGameMode ? "Game" : "Season"} Breakdown`}
+          title={`${title} // ${
+            defensiveOverride ? "" : singleGameMode ? "Game " : "Season "
+          }Breakdown`}
           players={players.baseline}
           rosterStatsByCode={globalRosterStatsByCode}
           teamStats={teamStats.baseline}
@@ -468,6 +473,7 @@ export class PlayTypeDiagUtils {
             singleGameMode ? teamStats.baseline.off_poss?.value : undefined
           }
           quickSwitchOverride={undefined}
+          defensiveOverride={defensiveOverride}
         />
       </div>
     );
