@@ -12,6 +12,7 @@ export class ParamPrefixes {
   static readonly player = "player-";
   static readonly gameInfo = "gameInfo-";
   static readonly team = "team-"; //(only used for HeaderBar)
+  static readonly defensiveInfo = "defensiveInfo-"; //(only used for HeaderBar)
 }
 export type ParamPrefixesType =
   | "game-"
@@ -20,7 +21,8 @@ export type ParamPrefixesType =
   | "report-"
   | "roster-"
   | "player-"
-  | "gameInfo-";
+  | "gameInfo-"
+  | "defensiveInfo-";
 
 /** The common luck config */
 export type LuckParams = {

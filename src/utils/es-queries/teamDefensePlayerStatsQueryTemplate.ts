@@ -45,6 +45,9 @@ export const teamDefensePlayerStatsQuery = function (
                       hca
                     ),
                     (val, key) =>
+                      _.startsWith(key, "off_3p") ||
+                      _.startsWith(key, "off_2prim") ||
+                      _.startsWith(key, "off_2pmid") ||
                       _.startsWith(key, "total_off_") ||
                       _.startsWith(key, "off_ast_")
                   ),

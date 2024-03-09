@@ -31,7 +31,12 @@ import {
 } from "../utils/FilterModels";
 
 // Utils
-import { StatModels, LineupStintInfo } from "../utils/StatModels";
+import {
+  StatModels,
+  LineupStintInfo,
+  IndivStatSet,
+  TeamStatSet,
+} from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { UrlRouting } from "../utils/UrlRouting";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
@@ -47,16 +52,26 @@ type Props = {
     teamStatsB: TeamStatsModel,
     rosterStatsB: RosterStatsModel,
     lineupStintsA: LineupStintInfo[],
-    lineupStintsB: LineupStintInfo[]
+    lineupStintsB: LineupStintInfo[],
+    defensiveInfoA?: Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >,
+    defensiveInfoB?: Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >
   ) => void;
   startingState: MatchupFilterParams;
   onChangeState: (newParams: MatchupFilterParams) => void;
+  includeDefense?: boolean;
 };
 
 const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   onStats,
   startingState,
   onChangeState,
+  includeDefense,
 }) => {
   //console.log("Loading LineupFilter " + JSON.stringify(startingState));
 
@@ -148,30 +163,6 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
 
     const noExtraFullSeasonRequests = true;
 
-    // Currently don't need this but might want it later for home/away analysis
-    // const entireSeasonRequestA = {
-    //   // Get the entire season of players for things like luck adjustments
-    //   team: primaryRequestA.team,
-    //   year: primaryRequestA.year,
-    //   gender: primaryRequestA.gender,
-    //   minRank: ParamDefaults.defaultMinRank,
-    //   maxRank: ParamDefaults.defaultMaxRank,
-    //   baseQuery: "",
-    //   onQuery: "",
-    //   offQuery: "",
-    // };
-    // const entireSeasonRequestB = {
-    //   // Get the entire season of players for things like luck adjustments
-    //   team: primaryRequestB.team,
-    //   year: primaryRequestB.year,
-    //   gender: primaryRequestB.gender,
-    //   minRank: ParamDefaults.defaultMinRank,
-    //   maxRank: ParamDefaults.defaultMaxRank,
-    //   baseQuery: "",
-    //   onQuery: "",
-    //   offQuery: "",
-    // };
-
     const primaryRequests: FilterRequestInfo[] = [
       {
         context: ParamPrefixes.game as ParamPrefixesType,
@@ -182,13 +173,6 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         paramsObj: secondaryRequestA,
         includeRoster: noExtraFullSeasonRequests,
       },
-      // Currently this is equivalent to primary request
-      // {
-      //   //(don't make a spurious call)
-      //   context: ParamPrefixes.player as ParamPrefixesType,
-      //   paramsObj: entireSeasonRequestA,
-      //   includeRoster: true,
-      // },
     ];
     const secondaryRequests: FilterRequestInfo[] = [
       {
@@ -204,22 +188,29 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         paramsObj: secondaryRequestB,
         includeRoster: noExtraFullSeasonRequests,
       },
-      // Currently this is equivalent to primary request
-      // {
-      //   //(don't make a spurious call)
-      //   context: ParamPrefixes.player as ParamPrefixesType,
-      //   paramsObj: entireSeasonRequestB,
-      //   includeRoster: true,
-      // },
     ];
+    const defensiveRequests: FilterRequestInfo[] = includeDefense
+      ? [
+          {
+            context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
+            paramsObj: primaryRequestA as FilterParamsType,
+          },
+          {
+            context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
+            paramsObj: primaryRequestB as FilterParamsType,
+          },
+        ]
+      : [];
 
     return [
       primaryRequestA,
-      primaryRequests.concat(
-        game != AvailableTeams.noOpponent
-          ? secondaryRequests
-          : ([] as FilterRequestInfo[])
-      ),
+      primaryRequests
+        .concat(
+          game != AvailableTeams.noOpponent
+            ? secondaryRequests
+            : ([] as FilterRequestInfo[])
+        )
+        .concat(defensiveRequests),
     ];
   }
 
@@ -276,7 +267,63 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     const rosterInfoA = jsonResps?.[2 + extraFullSeasonRequests]?.roster;
     globalTeamA.roster = rosterInfoA;
 
-    if (jsonResps.length < 5) {
+    const noOpponentCase =
+      jsonResps.length < extraFullSeasonRequests + (includeDefense ? 7 : 5);
+
+    const buildDefensiveInfo = (jsonResp: any[]) => {
+      const teamsStatsByTeam: Record<string, TeamStatSet> = _.chain(
+        jsonResp?.[0]?.aggregations?.tri_filter?.buckets?.baseline?.opponents
+          ?.buckets || []
+      )
+        .groupBy((t) => t["key"])
+        .mapValues(
+          //(convert from  team defense to opponent offense)
+          (vv) => vv[0] || ({} as TeamStatSet)
+          // Previously I was getting team defense not opponent offense, but the
+          // stats weren't entirely identical (buglet!) so I switched to the slower but more
+          // accurate opponent offense
+          // _.mapKeys(vv[0] || ({} as TeamStatSet), (v, k) =>
+          //   _.startsWith(k, "total_def_") ? `total_off_${k.substring(10)}` : k
+          // ) as TeamStatSet
+        )
+        .value();
+
+      const playerStatsByTeam: Record<string, Array<IndivStatSet>> = _.chain(
+        jsonResp?.[1]?.aggregations?.tri_filter?.buckets?.baseline?.opponents
+          ?.buckets || []
+      )
+        .groupBy((t) => t["key"])
+        .mapValues((vv) => vv[0]?.player?.buckets || [])
+        .value();
+
+      return _.chain(teamsStatsByTeam)
+        .toPairs()
+        .transform((acc, kv) => {
+          const team = kv[0];
+          const teamStats = kv[1];
+          const playerStats = playerStatsByTeam[team];
+          if (playerStats) {
+            acc[team] = {
+              teamStats,
+              playerStats,
+            };
+          }
+        }, {} as Record<string, { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }>)
+        .value();
+    };
+    const [defensiveStatsA, defensiveStatsB] = _.thru(includeDefense, (__) => {
+      const startingIndex = extraFullSeasonRequests + (noOpponentCase ? 5 : 6);
+      if (includeDefense) {
+        return [
+          buildDefensiveInfo(jsonResps?.[startingIndex]?.responses || []),
+          buildDefensiveInfo(jsonResps?.[startingIndex + 1]?.responses || []),
+        ];
+      } else {
+        return [undefined, undefined];
+      }
+    });
+
+    if (noOpponentCase) {
       //special "no opponent case", short circuit the rest
       onStats(
         fromLineups(lineupJsonA),
@@ -286,7 +333,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         fromTeam({}, {}),
         fromRoster({}, {}),
         [],
-        []
+        [],
+        defensiveStatsA,
+        defensiveStatsB
       );
     } else {
       const lineupJsonB =
@@ -312,7 +361,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         fromTeam(teamJsonB, globalTeamB),
         fromRoster(rosterStatsJsonB, globalRosterStatsJsonB),
         [],
-        []
+        [],
+        defensiveStatsA,
+        defensiveStatsB
       );
     }
   }

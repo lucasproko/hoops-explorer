@@ -34,13 +34,13 @@ export const teamDefenseStatsQuery = function (
           opponents: {
             terms: {
               size: 100,
-              field: "opponent.team.keyword",
+              field: "team.team.keyword",
             },
             aggregations: {
               ..._.pick(
                 commonAggregations(
                   "team_stats",
-                  "def",
+                  "off",
                   publicEfficiency,
                   lookup,
                   avgEfficiency,
@@ -48,12 +48,14 @@ export const teamDefenseStatsQuery = function (
                 ),
                 [
                   // These are needed for play style analysis
-                  "total_def_fga",
-                  "total_def_fta",
-                  "total_def_to",
-                  "total_def_assist",
-                  "total_def_scramble_to",
-                  "total_def_trans_to",
+                  "off_poss",
+                  "total_off_poss",
+                  "total_off_fga",
+                  "total_off_fta",
+                  "total_off_to",
+                  "total_off_assist",
+                  "total_off_scramble_to",
+                  "total_off_trans_to",
                 ]
               ),
             },
@@ -61,6 +63,6 @@ export const teamDefenseStatsQuery = function (
         },
       },
     },
-    query: commonTeamQuery(params, lastDate, publicEfficiency, lookup),
+    query: commonTeamQuery(params, lastDate, publicEfficiency, lookup, true), //(look for opponent instead of team)
   };
 };

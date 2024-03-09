@@ -113,7 +113,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
         "All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition."
       ),
       ...PlayTypeDiagUtils.buildInfoRow(
-        PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player)
+        PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player, {})
       ),
     },
     {

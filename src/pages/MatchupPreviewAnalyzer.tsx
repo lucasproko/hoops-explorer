@@ -31,7 +31,7 @@ import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
 
 // Utils:
-import { StatModels } from "../utils/StatModels";
+import { IndivStatSet, StatModels, TeamStatSet } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
@@ -44,6 +44,7 @@ import {
 } from "../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
+import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -90,6 +91,14 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     lineupStatsB: { lineups: [] } as LineupStatsModel,
     lineupStintsA: [] as LineupStintInfo[],
     lineupStintsB: [] as LineupStintInfo[],
+    defensiveInfoA: {} as Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >,
+    defensiveInfoB: {} as Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >,
   });
 
   const injectStats = (
@@ -100,7 +109,15 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     teamStatsB: TeamStatsModel,
     rosterStatsB: RosterStatsModel,
     lineupStintsA: LineupStintInfo[],
-    lineupStintsB: LineupStintInfo[]
+    lineupStintsB: LineupStintInfo[],
+    defensiveInfoA?: Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >,
+    defensiveInfoB?: Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >
   ) => {
     setDataEvent({
       teamStatsA,
@@ -111,6 +128,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       lineupStatsB,
       lineupStintsA,
       lineupStintsB,
+      defensiveInfoA: defensiveInfoA || {},
+      defensiveInfoB: defensiveInfoB || {},
     });
   };
 
@@ -192,6 +211,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     {} as DivisionStatsCache
   );
 
+  // All player stats, part of defensive POC
+  const defensivePoc = false; //TODO: make a FF?
+  const [allPlayerStatsCache, setAllPlayerStatsCache] = useState<
+    Record<string, IndivStatSet[]>
+  >({});
+
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
     if (
@@ -204,6 +229,28 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         matchupFilterParams,
         setDivisionStatsCache
       );
+
+      // Also load all players into a separate cache, for defensive purposes
+      // TODO: really should load them all into ES instead and then get only those I need
+      // But this will do to prove the concept
+      if (defensivePoc) {
+        const fetchPlayers = LeaderboardUtils.getMultiYearPlayerLboards(
+          "all",
+          matchupFilterParams.gender || ParamDefaults.defaultGender,
+          matchupFilterParams.year || ParamDefaults.defaultYear,
+          "All",
+          [],
+          []
+        );
+        fetchPlayers.then((players) => {
+          setAllPlayerStatsCache(
+            _.groupBy(
+              (players[0]?.players || []) as Array<IndivStatSet>,
+              (p) => p.team
+            )
+          );
+        });
+      }
     }
   }, [matchupFilterParams]);
 
@@ -218,8 +265,6 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   }
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
-
-  /** Only rebuild the table if the data changes */
   const chart = React.useMemo(() => {
     return (
       <GenericCollapsibleCard
@@ -243,7 +288,16 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent]);
 
+  /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const playStyleChart = React.useMemo(() => {
+    if (defensivePoc) {
+      if (dataEvent.defensiveInfoA) {
+        PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+          dataEvent.defensiveInfoA,
+          allPlayerStatsCache
+        );
+      }
+    }
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
@@ -303,7 +357,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, divisionStatsCache]);
+  }, [dataEvent, divisionStatsCache, allPlayerStatsCache]);
 
   return (
     <Container>
@@ -331,11 +385,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
             onStats={injectStats}
             startingState={matchupFilterParams}
             onChangeState={onMatchupFilterParamsChange}
+            includeDefense={defensivePoc}
           />
         </GenericCollapsibleCard>
       </Row>
-      <Row>{chart}</Row>
       <Row>{playStyleChart}</Row>
+      <Row>{chart}</Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

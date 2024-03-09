@@ -166,7 +166,11 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             GenericTableOps.buildDataRow(
               {
                 ...PlayTypeDiagUtils.buildInfoRow(
-                  PlayTypeUtils.enrichUnassistedStats(otherInfo[0]!, ix),
+                  PlayTypeUtils.enrichUnassistedStats(
+                    otherInfo[0]!,
+                    ix,
+                    rosterStatsByCode
+                  ),
                   asStatSet(extraOtherInfo?.[0])
                 ),
                 title: tooltipBuilder(

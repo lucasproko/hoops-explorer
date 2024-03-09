@@ -28,7 +28,9 @@ function marshallRequest(
   const body =
     [
       JSON.stringify({
-        index,
+        index: isGenderWomen
+          ? `women_*${yearStr}*,-player_*,-bad*,-kenpom*`
+          : `*${yearStr}*,-women*,-player_*,-bad*,-kenpom*`,
       }),
       JSON.stringify(
         teamDefenseStatsQuery(

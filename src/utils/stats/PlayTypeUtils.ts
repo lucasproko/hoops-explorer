@@ -181,6 +181,7 @@ export class PlayTypeUtils {
     C: [0, 0, 1.0],
     "G?": [0.75, 0.25, 0],
     "F/C?": [0, 0.5, 0.5],
+    "??": [0.3, 0.4, 0.3],
   } as Record<string, [number, number, number]>;
 
   /** (currently unused, search for usage for more details) */
@@ -189,6 +190,13 @@ export class PlayTypeUtils {
     [0.0, 0.34, 0.85, 0.66, 0.0], // wing
     [0.0, 0.0, 0.0, 0.34, 1.0], // big
   ];
+
+  /** Depending on the code path the indiv stat set has taken to get here, code may or may not be present, so we'll reconstruct it */
+  private static getCode = (pl: IndivStatSet): PlayerCode =>
+    pl.code ||
+    pl.player_array?.hits?.hits?.[0]?._source?.player?.code ||
+    pl.key ||
+    "??";
 
   //////////////////////////////////////////////////////////////
 
@@ -232,8 +240,7 @@ export class PlayTypeUtils {
     const filterCodes = undefined as Set<string> | undefined; // = new Set(["ErAyala", "AqSmart"])
     const filteredPlayers = filterCodes
       ? players.filter((pl) => {
-          const code =
-            pl.player_array?.hits?.hits?.[0]?._source?.player?.code || pl.key;
+          const code = PlayTypeUtils.getCode(pl);
           return filterCodes.has(code);
         })
       : players;
@@ -287,9 +294,7 @@ export class PlayTypeUtils {
               )
             : posCategoryAssistNetwork;
 
-        const code: PlayerCode =
-          player.player_array?.hits?.hits?.[0]?._source?.player?.code ||
-          player.key;
+        const code: PlayerCode = PlayTypeUtils.getCode(player);
 
         return [
           code,
@@ -432,7 +437,11 @@ export class PlayTypeUtils {
           const assistedScrambleInfo = otherInfo[5];
 
           // Unassisted:
-          PlayTypeUtils.enrichUnassistedStats(otherInfo[0], ix);
+          PlayTypeUtils.enrichUnassistedStats(
+            otherInfo[0],
+            ix,
+            rosterStatsByCode
+          );
           // Transition + Scramble:
           PlayTypeUtils.enrichNonHalfCourtStats(otherInfo[2], otherInfo[3]);
 
@@ -691,6 +700,7 @@ export class PlayTypeUtils {
                 mappedShotType
               );
 
+              //TODO: we should consider instead regressing to the rosterStatsCode?
               const regressNumber = 10;
               const adjFgPctDecompInfo = LuckUtils.buildAdjustedFG(
                 player,
@@ -1104,8 +1114,15 @@ export class PlayTypeUtils {
         ? [{ order: mainPlayer, score: 0 }]
         : _.orderBy(
             PlayTypeUtils.buildPosFamily(
-              mainPlayer.role!,
-              mainPlayer.posConfidences!
+              rosterStatsByCode[PlayTypeUtils.getCode(mainPlayer)]?.role ||
+                rosterStatsByCode[PlayTypeUtils.getCode(mainPlayer)]
+                  ?.posClass || //(this is its name from player leaderboard)
+                mainPlayer.role ||
+                "??",
+              rosterStatsByCode[PlayTypeUtils.getCode(mainPlayer)]
+                ?.posConfidences ||
+                mainPlayer.posConfidences ||
+                []
             ).flatMap((catScore, ix) => {
               return catScore > 0 ? [{ order: ix, score: catScore }] : [];
             }),
@@ -1117,7 +1134,10 @@ export class PlayTypeUtils {
     return _.chain(playerAssistNetwork)
       .flatMap((playerStats) => {
         const playerCode = playerStats.code!;
-        const role = rosterStatsByCode[playerCode]?.role || "??";
+        const role =
+          rosterStatsByCode[playerCode]?.role ||
+          rosterStatsByCode[playerCode]?.posClass || //(this is its name from player leaderboard)
+          "??";
         const posConfidence =
           rosterStatsByCode[playerCode]?.posConfidences || [];
         return PlayTypeUtils.buildPosFamily(
@@ -1313,15 +1333,22 @@ export class PlayTypeUtils {
   /** Adds example plays to the "extraInfo" of unassisted stats */
   static enrichUnassistedStats(
     mutableUnassistedStats: SourceAssistInfo,
-    mainPlayer: IndivStatSet | number
+    mainPlayer: IndivStatSet | number,
+    rosterStatsByCode: RosterStatsByCode
   ): SourceAssistInfo {
     // Build main player's positional category:
     const mainPlayerCats = _.isNumber(mainPlayer)
       ? [{ order: mainPlayer, score: 0 }]
       : _.orderBy(
           PlayTypeUtils.buildPosFamily(
-            mainPlayer.role!,
-            mainPlayer.posConfidences!
+            rosterStatsByCode[PlayTypeUtils.getCode(mainPlayer)]?.role ||
+              rosterStatsByCode[PlayTypeUtils.getCode(mainPlayer)]?.posClass || //(this is its name from player leaderboard)
+              mainPlayer.role ||
+              "??",
+            rosterStatsByCode[PlayTypeUtils.getCode(mainPlayer)]
+              ?.posConfidences ||
+              mainPlayer.posConfidences ||
+              []
           ).flatMap((catScore, ix) => {
             return catScore > 0 ? [{ order: ix, score: catScore }] : [];
           }),

@@ -10,7 +10,11 @@ import _ from "lodash";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Utils
-import { SourceAssistInfo } from "../../utils/stats/PlayTypeUtils";
+import {
+  PlayTypeUtils,
+  SourceAssistInfo,
+  TopLevelPlayType,
+} from "../../utils/stats/PlayTypeUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
@@ -45,6 +49,7 @@ import { DivisionStatsCache } from "./GradeTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { RosterStatsModel } from "../../components/RosterStatsTable";
 import { TeamStatsModel } from "../../components/TeamStatsTable";
+import { TopLevelPlayAnalysis } from "../stats/PlayTypeUtils";
 
 /** Encapsulates some of the logic used to build the diag visualiations in XxxPlayTypeDiags */
 export class PlayTypeDiagUtils {
@@ -358,6 +363,60 @@ export class PlayTypeDiagUtils {
         )}
         {_.isEmpty(quickSwitchOptions) ? null : quickSwitchBuilder}
       </div>
+    );
+  };
+
+  /** Builds an aggregated top level view of defense */
+  static buildTeamDefenseBreakdown = (
+    defensiveInfo: Record<
+      string,
+      { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+    >,
+    globalPlayerInfo: Record<string, Array<IndivStatSet>>
+  ) => {
+    var varTotalPoss = 0;
+    const separateBreakdown = _.mapValues(defensiveInfo, (stats, team) => {
+      const globalRosterStatsByCode = _.chain(globalPlayerInfo[team] || [])
+        .map((p) => {
+          return [p.code, p];
+        })
+        .fromPairs()
+        .value();
+
+      const topLevelPlayTypeStyles = PlayTypeUtils.buildTopLevelPlayStyles(
+        stats.playerStats,
+        globalRosterStatsByCode,
+        stats.teamStats
+      );
+      varTotalPoss += stats.teamStats.off_poss?.value || 0;
+
+      return topLevelPlayTypeStyles;
+    });
+    const combinedBreakdown = _.transform(
+      defensiveInfo,
+      (acc, stats, team) => {
+        const numPoss = stats.teamStats.off_poss?.value || 0;
+        const teamTopLevelPlayTypeStyles = separateBreakdown[team];
+        if (teamTopLevelPlayTypeStyles) {
+          _.forEach(teamTopLevelPlayTypeStyles, (v, k) => {
+            const kk = k as TopLevelPlayType;
+            if (!acc[kk]) {
+              acc[kk] = {
+                possPct: { value: 0 },
+                pts: { value: 0 },
+                adj_pts: { value: 0 },
+              };
+            }
+            acc[kk].possPct.value! +=
+              ((v.possPct?.value || 0) * numPoss) / (varTotalPoss || 1);
+            acc[kk].pts.value! +=
+              ((v.pts?.value || 0) * numPoss) / (varTotalPoss || 1);
+            acc[kk].adj_pts!.value! +=
+              ((v.adj_pts?.value || 0) * numPoss) / (varTotalPoss || 1);
+          });
+        }
+      },
+      {} as TopLevelPlayAnalysis
     );
   };
 

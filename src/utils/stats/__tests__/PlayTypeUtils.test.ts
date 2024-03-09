@@ -141,14 +141,16 @@ describe("PlayTypeUtils", () => {
     );
     const extraUnassistedInfo = PlayTypeUtils.enrichUnassistedStats(
       playerStyle.unassisted,
-      mainPlayer
+      mainPlayer,
+      {}
     );
     //expect(extraUnassistedInfo).toEqual({});
     expect(extraUnassistedInfo).toMatchSnapshot();
 
     const extraUnassistedInfoPos = PlayTypeUtils.enrichUnassistedStats(
       playerStyle.unassisted,
-      0
+      0,
+      {}
     );
     //expect(extraUnassistedInfoPos).toEqual({});
     expect(extraUnassistedInfoPos).toMatchSnapshot();
