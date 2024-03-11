@@ -104,6 +104,7 @@ export type MatchupFilterParams = {
   iconType?: string; // "icon" / "jersey" / "pos"
   factorMins?: boolean; //impact vs /100 (defaults to true)
   lockAspect?: boolean; //(force x to be correct proportions to y)
+  breakdownConfig?: string; //(currently: [off|def];[off|def])
 };
 
 /** Combined params for game filtering */
@@ -411,6 +412,7 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisShowLabels = true;
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
   static readonly defaultMatchupAnalysisIconType = "icon";
+  static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = DateUtils.mostRecentYearWithData;

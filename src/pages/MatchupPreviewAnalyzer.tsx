@@ -63,9 +63,6 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   // Team Stats interface
 
-  const [breakdownView, setBreakdownView] = useState<string>("off;def");
-  const breakdownViewArr = breakdownView.split(";");
-
   const [gaInited, setGaInited] = useState(false);
   const [dataEvent, setDataEvent] = useState({
     teamStatsA: {
@@ -164,11 +161,20 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     HistoryManager.clearHistory();
   }
 
+  const startingMatchupFilterParams = UrlRouting.removedSavedKeys(
+    allParams
+  ) as MatchupFilterParams; //(only used to init a couple of useStates)
   const [matchupFilterParams, setMatchupFilterParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as MatchupFilterParams
+    startingMatchupFilterParams
   );
   const matchupFilterParamsRef = useRef<MatchupFilterParams>();
   matchupFilterParamsRef.current = matchupFilterParams;
+
+  const [breakdownView, setBreakdownView] = useState<string>(
+    startingMatchupFilterParams.breakdownConfig ||
+      ParamDefaults.defaultMatchupAnalysisBreakdownConfig
+  );
+  const breakdownViewArr = breakdownView.split(";");
 
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupPreviewUrl(params);
@@ -194,6 +200,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultMatchupAnalysisIconType
           ? ["iconType"]
           : [],
+        rawParams.breakdownConfig ==
+        ParamDefaults.defaultMatchupAnalysisBreakdownConfig
+          ? ["breakdownConfig"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -210,6 +220,14 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       setMatchupFilterParams(params); //(to ensure the new params are included in links)
     }
   };
+
+  // Update URL when dynamic (non-submit fields change)
+  useEffect(() => {
+    onMatchupFilterParamsChange({
+      ...matchupFilterParamsRef.current,
+      breakdownConfig: breakdownView,
+    });
+  }, [breakdownView]);
 
   // Load team grades, needed for play recap view
 
