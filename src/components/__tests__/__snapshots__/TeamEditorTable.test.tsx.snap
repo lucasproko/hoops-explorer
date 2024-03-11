@@ -1809,13 +1809,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -7405,13 +7405,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -12709,13 +12709,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -18955,13 +18955,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -25409,13 +25409,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -31818,13 +31818,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -37734,13 +37734,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2021%2F22&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2021%2F22&"
                       target="_blank"
                     >
                       <b>
@@ -42279,13 +42279,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
                         id="teamTooltip"
                         placement="right"
                       >
-                        Open new tab with the on/off analysis for this player/team
+                        Open new tab with a detailed analysis view (roster, play style info, on/off) for this team
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <a
-                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showGrades=rank%3AD1&team=Maryland&year=2020%2F21&"
+                      href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3AD1&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2020%2F21&"
                       target="_blank"
                     >
                       <b>

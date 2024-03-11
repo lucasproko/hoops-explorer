@@ -983,7 +983,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
       const teamTooltip = (
         <Tooltip id={`team_${playerIndex}_${nextYearState}`}>
-          Open new tab with the on/off analysis for this player/team
+          Open new tab with a detailed analysis view (roster, play style info,
+          on/off) for this player/team
         </Tooltip>
       );
       const teamParams = {
@@ -997,6 +998,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         possAsPct: possAsPct,
         showExpanded: true,
         calcRapm: true,
+        showTeamPlayTypes: !isT100 && !isConfOnly,
+        showGrades: "rank:Combo",
+        showExtraInfo: true,
+        showRoster: true,
       };
       const teamEl = teamEditorMode ? (
         <span>{player.team}</span>

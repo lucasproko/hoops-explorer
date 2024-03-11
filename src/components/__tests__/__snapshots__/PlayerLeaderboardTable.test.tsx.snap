@@ -1443,13 +1443,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -1750,13 +1750,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -2060,13 +2060,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -2367,13 +2367,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -2677,13 +2677,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -2984,13 +2984,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -3294,13 +3294,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -3601,13 +3601,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -3911,13 +3911,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -4218,13 +4218,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -4549,13 +4549,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -4856,13 +4856,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -5166,13 +5166,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -5473,13 +5473,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -5783,13 +5783,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -6090,13 +6090,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -6400,13 +6400,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -6707,13 +6707,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -7017,13 +7017,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -7324,13 +7324,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -9151,13 +9151,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -9458,13 +9458,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -9768,13 +9768,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -10075,13 +10075,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -10385,13 +10385,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -10692,13 +10692,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -11002,13 +11002,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -11309,13 +11309,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -11619,13 +11619,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -11926,13 +11926,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -12257,13 +12257,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -12564,13 +12564,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -12874,13 +12874,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -13181,13 +13181,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -13491,13 +13491,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -13798,13 +13798,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -14108,13 +14108,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -14415,13 +14415,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -14725,13 +14725,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -15032,13 +15032,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -16872,13 +16872,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Duke
@@ -17187,13 +17187,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Duke
@@ -17505,13 +17505,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -17820,13 +17820,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -18138,13 +18138,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Gonzaga&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Gonzaga&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Gonzaga
@@ -18453,13 +18453,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Gonzaga&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Gonzaga&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Gonzaga
@@ -18771,13 +18771,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -19086,13 +19086,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -19404,13 +19404,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=North%20Carolina&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=North%20Carolina&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             North Carolina
@@ -19719,13 +19719,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=North%20Carolina&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=North%20Carolina&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             North Carolina
@@ -20058,13 +20058,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Virginia&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Virginia&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Virginia
@@ -20373,13 +20373,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Virginia&year=2018%2F9&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Virginia&year=2018%2F9&"
                                             target="_blank"
                                           >
                                             Virginia
@@ -20691,13 +20691,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -21006,13 +21006,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -21324,13 +21324,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -21639,13 +21639,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -21957,13 +21957,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -22272,13 +22272,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -22590,13 +22590,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -22905,13 +22905,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -23233,13 +23233,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_10_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -23537,13 +23537,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_10_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -23844,13 +23844,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_11_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -24148,13 +24148,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_11_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -24455,13 +24455,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_12_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -24759,13 +24759,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_12_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Maryland&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Maryland&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Maryland
@@ -25058,13 +25058,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_13_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -25354,13 +25354,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_13_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2015%2F6&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&year=2015%2F6&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -25653,13 +25653,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_14_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -25949,13 +25949,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_14_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Seton%20Hall&year=2017%2F8&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&year=2017%2F8&"
                                             target="_blank"
                                           >
                                             Seton Hall
@@ -27775,13 +27775,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -28081,13 +28081,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -28390,13 +28390,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -28696,13 +28696,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -29005,13 +29005,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -29311,13 +29311,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -29620,13 +29620,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -29926,13 +29926,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -30235,13 +30235,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -30541,13 +30541,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -30871,13 +30871,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -31177,13 +31177,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -31486,13 +31486,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -31792,13 +31792,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -32101,13 +32101,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -32407,13 +32407,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -32716,13 +32716,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -33022,13 +33022,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -33331,13 +33331,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -33637,13 +33637,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=true&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -36952,13 +36952,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -37258,13 +37258,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Iowa&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Iowa&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Iowa
@@ -37567,13 +37567,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -37873,13 +37873,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Oregon&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Oregon&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Oregon
@@ -38182,13 +38182,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -38488,13 +38488,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -38797,13 +38797,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -39103,13 +39103,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Duke&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Duke&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Duke
@@ -39412,13 +39412,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -39718,13 +39718,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=San%20Diego%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=San%20Diego%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             San Diego St.
@@ -40048,13 +40048,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -40354,13 +40354,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -40663,13 +40663,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -40969,13 +40969,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Kansas&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Kansas&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Kansas
@@ -41278,13 +41278,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -41584,13 +41584,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Florida%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Florida%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Florida St.
@@ -41893,13 +41893,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -42199,13 +42199,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Michigan%20St.&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Michigan St.
@@ -42508,13 +42508,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado
@@ -42814,13 +42814,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9_y1of1"
                                               placement="right"
                                             >
-                                              Open new tab with the on/off analysis for this player/team
+                                              Open new tab with a detailed analysis view (roster, play style info, on/off) for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&team=Colorado&year=2019%2F20&"
+                                            href="/OnOffAnalyzer?calcRapm=true&factorMins=false&gender=Men&maxRank=400&minRank=0&possAsPct=true&showExpanded=true&showExtraInfo=true&showGrades=rank%3ACombo&showRoster=true&showTeamPlayTypes=true&team=Colorado&year=2019%2F20&"
                                             target="_blank"
                                           >
                                             Colorado

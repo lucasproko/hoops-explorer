@@ -1877,10 +1877,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         showExpanded: true,
         calcRapm: true,
         showGrades: "rank:D1",
+        showTeamPlayTypes: true,
+        showRoster: true,
+        showExtraInfo: true,
       };
       const teamTooltip = (
         <Tooltip id={`teamTooltip`}>
-          Open new tab with the on/off analysis for this player/team
+          Open new tab with a detailed analysis view (roster, play style info,
+          on/off) for this team
         </Tooltip>
       );
       const teamLink = team ? (

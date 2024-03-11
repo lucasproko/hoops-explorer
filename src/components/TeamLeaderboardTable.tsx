@@ -688,12 +688,15 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                           {
                             minRank: "0",
                             maxRank: "400",
-                            showRoster: true,
                             calcRapm: true,
                             showExpanded: true,
                             year: year,
                             gender: gender,
                             team: team.team_name,
+                            showGrades: "rank:Combo",
+                            showExtraInfo: true,
+                            showRoster: true,
+                            showTeamPlayTypes: true,
                           },
                           {}
                         )}
