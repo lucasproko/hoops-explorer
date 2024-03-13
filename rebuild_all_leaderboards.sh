@@ -8,6 +8,8 @@ if [ "$YEARS" = "all" ] || [ "$YEARS" = "new" ]; then
   npm run build_leaderboards -- --tier=Combo 
 fi
 if [ "$YEARS" = "all" ] || [ "$YEARS" = "old" ]; then
+   npm run build_leaderboards -- --year=2022/23 --tier=High;npm run build_leaderboards -- --year=2022/23 --tier=Medium; npm run build_leaderboards -- --year=2022/23 --tier=Low; npm run build_leaderboards -- --year=2022/23 --gender=Women --tier=High;
+   npm run build_leaderboards -- --tier=Combo --year=2022/23
    npm run build_leaderboards -- --year=2021/22 --tier=High;npm run build_leaderboards -- --year=2021/22 --tier=Medium; npm run build_leaderboards -- --year=2021/22 --tier=Low; npm run build_leaderboards -- --year=2021/22 --gender=Women --tier=High;
    npm run build_leaderboards -- --tier=Combo --year=2021/22
    npm run build_leaderboards -- --year=2020/21 --tier=High;npm run build_leaderboards -- --year=2020/21 --tier=Medium; npm run build_leaderboards -- --year=2020/21 --tier=Low; npm run build_leaderboards -- --year=2020/21 --gender=Women --tier=High;
