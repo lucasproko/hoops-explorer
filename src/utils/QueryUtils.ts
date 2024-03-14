@@ -354,9 +354,6 @@ export class QueryUtils {
       const dateStart = parseHandlingLeapYears(dateStrs[0]);
       const dateEnd = parseHandlingLeapYears(dateStrs[1] || "");
 
-      /**/
-      console.log(`${dateStart}|${dateEnd}: [${dateStrs[0]}][${dateStrs[1]}]`);
-
       return !Number.isNaN(dateStart.getTime()) &&
         !Number.isNaN(dateEnd.getTime())
         ? {
