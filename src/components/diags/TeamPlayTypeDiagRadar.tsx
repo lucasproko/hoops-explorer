@@ -99,6 +99,18 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       teamStats
     );
 
+  const getPlayTypeName = (name: string) => {
+    if (name == "Put-Back") {
+      return "Rebound & Scramble";
+    } else if (name == "Backdoor Cut") {
+      return "Perimeter Cut";
+    } else if (name == "Post & Kick") {
+      return "Inside Out";
+    } else {
+      return name;
+    }
+  };
+
   const { tierToUse } = GradeTableUtils.buildTeamTierInfo(showGrades, {
     comboTier: grades?.Combo,
     highTier: grades?.High,
@@ -188,7 +200,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           }}
         >
           <p className="label pl-1 pr-1">
-            <b>{`${data.playType}`}</b>
+            <b>{`${getPlayTypeName(data.playType)}`}</b>
           </p>
           <p className="desc pl-1 pr-1">
             {topLevelPlayTypeDescriptions[data.playType as TopLevelPlayType]}
@@ -253,10 +265,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           const rawPct = rawVal?.possPct?.value || 0;
 
           return {
-            name:
-              playType == "Put-Back"
-                ? "ORB Scramble"
-                : playType.replace("-", " - "),
+            name: getPlayTypeName(playType).replace("-", " - "),
             playType: playType,
             pct:
               rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
@@ -424,7 +433,13 @@ const topLevelPlayTypeDescriptions: Record<TopLevelPlayType, React.ReactNode> =
         from backcourt/wing passes or sagging defenders
       </i>
     ),
-    "Backdoor Cut": <i>A perimeter player cuts to the basket</i>,
+    "Backdoor Cut": (
+      <i>
+        A perimeter player cuts to the basket
+        <br />
+        eg via a backdoor cut
+      </i>
+    ),
     "Big Cut & Roll": (
       <i>
         A frontcourt player cuts to the basket,
