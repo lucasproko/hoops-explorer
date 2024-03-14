@@ -702,11 +702,14 @@ export class LuckUtils {
         : 0);
 
     const shot_info_unast_made = Math.max(
-      (p[`total_off_${shotType}_made`]?.value || 0) - //all makes, can't use shot_info_ast_made 'cos we've taken out scramble/trans
+      (p[`total_off_${shotType}_made`]?.value || 0) - //all makes
         (separateHalfCourt
-          ? (p[`total_off_${shotType}_ast`]?.value || 0) - //(all assisted makes)
-            (shot_info_unast_trans_made + shot_info_unast_scramble_made) //(don't double count transition/scramble assisted makes)
-          : shot_info_ast_made + //(this case is easier, just subtract all the categorized cases)
+          ? shot_info_ast_made +
+            shot_info_ast_trans_made +
+            shot_info_ast_scramble_made +
+            shot_info_unast_trans_made + //(in this case sub-tract these to make it HC unast made only)
+            shot_info_unast_scramble_made
+          : shot_info_ast_made + //(in this case, ast_made includes HC/scramble/trans)
             shot_info_unast_trans_made +
             shot_info_unast_scramble_made),
       0

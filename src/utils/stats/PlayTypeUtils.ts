@@ -719,12 +719,10 @@ export class PlayTypeUtils {
                 acc[shotType] = fgM_ast;
 
                 // Debugging this for 3P:
-                // if (mappedShotType == "3p") {
+                //   if (mappedShotType == "3p") {
                 //     console.log(
                 //       `Player [${player.key}]: ` +
-                //         `T [${
-                //           player.total_off_trans_3p_attempts?.value || 0
-                //         }]` +
+                //         `T [${player.total_off_trans_3p_attempts?.value || 0}]` +
                 //         `[${player.total_off_trans_3p_made?.value || 0}]` +
                 //         `a=[${player.total_off_trans_3p_ast?.value || 0}]` +
                 //         `S [${
@@ -742,9 +740,7 @@ export class PlayTypeUtils {
                 //       `Player [${player.key}]: ` +
                 //         `a=[${adjFgPctDecompInfo.assisted.toFixed(
                 //           4
-                //         )}] ua=[${adjFgPctDecompInfo.unassisted.toFixed(
-                //           4
-                //         )}]; ` +
+                //         )}] ua=[${adjFgPctDecompInfo.unassisted.toFixed(4)}]; ` +
                 //         `FG_a=[${
                 //           fgDecompInfo.shot_info_ast_made
                 //         }]M:[${fgM_ast.toFixed(1)}]m = [${(
@@ -762,7 +758,7 @@ export class PlayTypeUtils {
                 //           fgDecompInfo.shot_info_scramble_attempts
                 //         }]x[${player.off_scramble_3p?.value}]`
                 //     );
-                // }
+                //   }
               }
             },
             {} as Record<string, number>
