@@ -699,7 +699,8 @@ export class PlayTypeUtils {
 
               const fgDecompInfo = LuckUtils.buildShotInfo(
                 player,
-                mappedShotType
+                mappedShotType,
+                true
               );
 
               const regressNumber = 10;
@@ -716,6 +717,52 @@ export class PlayTypeUtils {
                   adjFgPctDecompInfo
                 );
                 acc[shotType] = fgM_ast;
+
+                // Debugging this for 3P:
+                // if (mappedShotType == "3p") {
+                //     console.log(
+                //       `Player [${player.key}]: ` +
+                //         `T [${
+                //           player.total_off_trans_3p_attempts?.value || 0
+                //         }]` +
+                //         `[${player.total_off_trans_3p_made?.value || 0}]` +
+                //         `a=[${player.total_off_trans_3p_ast?.value || 0}]` +
+                //         `S [${
+                //           player.total_off_scramble_3p_attempts?.value || 0
+                //         }]` +
+                //         `[${player.total_off_scramble_3p_made?.value || 0}]` +
+                //         `a=[${player.total_off_scramble_3p_ast?.value || 0}]` +
+                //         `Aa [${player.total_off_3p_ast?.value || 0}]` +
+                //         `== [${player.total_off_3p_attempts?.value || 0}]` +
+                //         `[${
+                //           player.total_off_3p_made?.value || 0
+                //         }] ... ${JSON.stringify(fgDecompInfo)}`
+                //     );
+                //     console.log(
+                //       `Player [${player.key}]: ` +
+                //         `a=[${adjFgPctDecompInfo.assisted.toFixed(
+                //           4
+                //         )}] ua=[${adjFgPctDecompInfo.unassisted.toFixed(
+                //           4
+                //         )}]; ` +
+                //         `FG_a=[${
+                //           fgDecompInfo.shot_info_ast_made
+                //         }]M:[${fgM_ast.toFixed(1)}]m = [${(
+                //           fgDecompInfo.shot_info_ast_made /
+                //           (fgM_ast + fgDecompInfo.shot_info_ast_made || 1)
+                //         ).toFixed(4)}],` +
+                //         `FG_ua=[${
+                //           fgDecompInfo.shot_info_unast_made
+                //         }]M:[${fgM_unast.toFixed(1)}]m = [${(
+                //           fgDecompInfo.shot_info_unast_made /
+                //           (fgM_unast + fgDecompInfo.shot_info_unast_made || 1)
+                //         ).toFixed(4)}] .. [${
+                //           fgDecompInfo.shot_info_early_attempts
+                //         }]x[${player.off_trans_3p?.value}] [${
+                //           fgDecompInfo.shot_info_scramble_attempts
+                //         }]x[${player.off_scramble_3p?.value}]`
+                //     );
+                // }
               }
             },
             {} as Record<string, number>
@@ -1514,6 +1561,7 @@ export class PlayTypeUtils {
     var totalWeight = 0;
     // (Since we're abusing adjStat to "close out" half court misses, we call it for UA 3P/mid shots which
     //  bypass the TO distribuion logic below)
+    //TODO: wait ... why do UA shots bypass them but A don't?!
     adjStat(mutableUnassisted.source_mid_ast, 0.0);
     adjStat(mutableUnassisted.source_3p_ast, 0.0);
 

@@ -657,13 +657,18 @@ export class LuckUtils {
     );
   };
 
-  /** Builds the different shot types when you don't have the lineup info */
+  /** Builds the different shot types when you don't have the lineup info
+   * If used for luck call with separateHalfCourt=true ("the fact it's an assist is more important than scramble/half court")
+   * If used for play type decomp call with separateHalfCourt=true ("the fact it's scramble/trans is more important than it's assisted")
+   * ^ Note this isn't ideal because the FG% split is that for scramble it's some combo of (ast and base) > half-court
+   * which is a mix of (ast and unast) .. but the diff in half court FG% split shouldn't be that important
+   * (But that's why we call it with false for the luck adjustment!)
+   */
   static readonly buildShotInfo = (
     p: IndivStatSet,
-    shotType: "3p" | "2pmid" | "2prim"
+    shotType: "3p" | "2pmid" | "2prim",
+    separateHalfCourt: boolean = false //(if set to true then keeps assists in their trans/scramble bin)
   ) => {
-    const shot_info_ast_made = p[`total_off_${shotType}_ast`]?.value || 0; //(this includes assisted transition and scramble shots)
-
     const shot_info_ast_trans_made =
       p[`total_off_trans_${shotType}_ast`]?.value || 0; //(includes some early shots)
     const shot_info_unast_trans_made = Math.max(
@@ -673,7 +678,7 @@ export class LuckUtils {
     );
     const shot_info_early_attempts = Math.max(
       (p[`total_off_trans_${shotType}_attempts`]?.value || 0) -
-        shot_info_ast_trans_made,
+        (separateHalfCourt ? 0 : shot_info_ast_trans_made),
       0
     );
 
@@ -686,21 +691,31 @@ export class LuckUtils {
     );
     const shot_info_scramble_attempts = Math.max(
       (p[`total_off_scramble_${shotType}_attempts`]?.value || 0) -
-        shot_info_ast_scramble_made,
+        (separateHalfCourt ? 0 : shot_info_ast_scramble_made),
       0
     );
+    //(this includes assisted transition and scramble shots, unless specified otherwise)
+    const shot_info_ast_made =
+      (p[`total_off_${shotType}_ast`]?.value || 0) -
+      (separateHalfCourt
+        ? shot_info_ast_trans_made + shot_info_ast_scramble_made
+        : 0);
 
     const shot_info_unast_made = Math.max(
-      (p[`total_off_${shotType}_made`]?.value || 0) -
-        shot_info_ast_made -
-        shot_info_unast_trans_made -
-        shot_info_unast_scramble_made,
+      (p[`total_off_${shotType}_made`]?.value || 0) - //all makes, can't use shot_info_ast_made 'cos we've taken out scramble/trans
+        (separateHalfCourt
+          ? (p[`total_off_${shotType}_ast`]?.value || 0) - //(all assisted makes)
+            (shot_info_unast_trans_made + shot_info_unast_scramble_made) //(don't double count transition/scramble assisted makes)
+          : shot_info_ast_made + //(this case is easier, just subtract all the categorized cases)
+            shot_info_unast_trans_made +
+            shot_info_unast_scramble_made),
       0
     );
 
     const shot_info_total_attempts =
       p[`total_off_${shotType}_attempts`]?.value || 0;
     const shot_info_unknown_missed = Math.max(
+      0,
       shot_info_total_attempts -
         shot_info_ast_made -
         shot_info_early_attempts -
@@ -875,7 +890,7 @@ export class LuckUtils {
       );
       return { fgM_ast, fgM_unast };
     } else {
-      const fudgeFactor = 1.15; //(seem to over-estimate assited shots in this clause)
+      const fudgeFactor = 1.1; //(seem to over-estimate assisted shots in this clause)
 
       const astWeights = //(if my assisted FG% is higher, I expected _fewer_ assisted misses)
         (fgBreakdown.unassisted /
