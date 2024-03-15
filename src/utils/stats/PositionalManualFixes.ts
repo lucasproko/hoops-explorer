@@ -156,6 +156,16 @@ export const absolutePositionFixes: Record<
       position: "S-PF",
     },
   },
+  "Men_George Washington_2023/24": {
+    "Johnson, Garrett": {
+      position: "WF",
+    },
+  },
+  "Men_Providence_2023/24": {
+    "Carter, Devin": {
+      position: "CG",
+    },
+  },
 };
 
 export type RelativePositionFixRule = {
