@@ -100,21 +100,10 @@ export type TopLevelPlayType =
 //(currently "Misc" is just team turnovers, used to get the sum back to 100%)
 
 export type TopLevelIndivPlayType =
-  | "Rim Attack"
-  | "Attack & Kick"
+  | TopLevelPlayType
   | "Perimeter Sniper"
-  | "Dribble Jumper"
-  | "Mid-Range"
   | "Hits Cutter"
-  | "Backdoor Cut"
-  | "PnR Passer"
-  | "Big Cut & Roll"
-  | "Post-Up"
-  | "Post & Kick"
-  | "Pick & Pop"
-  | "High-Low"
-  | "Put-Back"
-  | "Transition";
+  | "PnR Passer";
 
 export type TopLevelPlayAnalysis = Record<
   TopLevelPlayType,
@@ -136,6 +125,7 @@ export type TopLevelIndivPlayAnalysis = Record<
 
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
+  /** We don't cat the extra types to topLevelPlayTypes because we want this order */
   static topLevelIndivPlayTypes: TopLevelIndivPlayType[] = [
     "Rim Attack",
     "Attack & Kick",
@@ -154,6 +144,7 @@ export class PlayTypeUtils {
     "Transition",
   ]; //(no Misc - we don't render)
 
+  /** Subset of TopLevelIndivPlayType */
   static topLevelPlayTypes: TopLevelPlayType[] = [
     "Rim Attack",
     "Attack & Kick",
@@ -492,10 +483,6 @@ export class PlayTypeUtils {
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet
   ): TopLevelPlayAnalysis {
-    //TODO: need a player vs team indicator ... eg
-    // for most of these categories, need a "creator" vs "scorer" indicator
-    // plus also the percentages I think need to get tweaked to only count when player is on the floor
-
     const posVsPosAssistNetworkPoss =
       PlayTypeUtils.buildCategorizedAssistNetworks(
         "playsPct",
@@ -545,9 +532,266 @@ export class PlayTypeUtils {
       .value() as TopLevelPlayAnalysis;
   }
 
+  /** Builds usage and efficiency numbers for the top level play styles */
+  static buildTopLevelIndivPlayStyles(
+    player: IndivStatSet,
+    rosterStatsByCode: RosterStatsByCode,
+    teamStats: TeamStatSet
+  ): TopLevelPlayAnalysis {
+    //TOOD: issues here
+    // Currenty I'm counting makes, so the % is low but the ppp are all 3s
+    // Need to average eFG maybe? And the invent an assist number
+    // Alternatively always calc all players and then divvy up missed shots depending on assist rate
+    // (Then also how do we do freq? Maybe just sum up the possessions and then divide across)
+
+    const posVsPosAssistNetworkPoss =
+      PlayTypeUtils.buildCategorizedAssistNetworks(
+        "playsPct",
+        true,
+        [player],
+        rosterStatsByCode,
+        teamStats
+      );
+
+    const topLevelPlayTypeAnalysisPoss =
+      PlayTypeUtils.aggregateToIndivTopLevelPlayStyles(
+        "playsPct",
+        posVsPosAssistNetworkPoss,
+        [player],
+        teamStats
+      );
+    const posVsPosAssistNetworkPts =
+      PlayTypeUtils.buildCategorizedAssistNetworks(
+        "pointsPer100",
+        true,
+        [player],
+        rosterStatsByCode,
+        teamStats
+      );
+    const topLevelPlayTypeAnalysisPts =
+      PlayTypeUtils.aggregateToIndivTopLevelPlayStyles(
+        "pointsPer100",
+        posVsPosAssistNetworkPts,
+        [player],
+        teamStats
+      );
+
+    return _.chain(PlayTypeUtils.topLevelIndivPlayTypes)
+      .map((type) => {
+        const poss = topLevelPlayTypeAnalysisPoss[type] || 0;
+        const pts = topLevelPlayTypeAnalysisPts[type] || 0;
+
+        return [
+          type,
+          {
+            possPct: { value: poss },
+            pts: { value: poss > 0 && pts > 0 ? pts / poss : 0 },
+          },
+        ];
+      })
+      .fromPairs()
+      .value() as TopLevelIndivPlayAnalysis;
+  }
+
   //////////////////////////////////////////////////////////////
 
   // The main builders
+
+  /** Builds a higher level view of the assist network, with lots of guessing */
+  static aggregateToIndivTopLevelPlayStyles(
+    playStyleType: PlayStyleType,
+    assistNetwork: Record<
+      string,
+      { assists: TargetAssistInfo[]; other: SourceAssistInfo[] }
+    >,
+    players: Array<IndivStatSet>,
+    teamStats: TeamStatSet
+  ): Record<TopLevelIndivPlayType, number> {
+    const playTypesLookup = PlayTypeUtils.buildPlayTypesLookup();
+
+    const flattenedNetworkSrc = _.chain(assistNetwork)
+      .toPairs()
+      .flatMap((kv, ix) => {
+        const posTitle = kv[0];
+        const assistInfo = kv[1].assists;
+        const otherInfo = kv[1].other;
+        //(unassisted, assisted <- DROP, transition, scramble)
+        const unassistedInfo = otherInfo[0];
+        const transitionInfo = otherInfo[2];
+        const scrambleInfo = otherInfo[3];
+
+        return (assistInfo as SourceAssistInfo[])
+          .concat([unassistedInfo, transitionInfo, scrambleInfo])
+          .flatMap((a, i) => {
+            // Diagnostics:
+            // if (playStyleType == "playsPct") {
+            //   _.keys(a)
+            //     .filter((ka) => _.startsWith(ka, "source_"))
+            //     .forEach((ka) => {
+            //       console.log(
+            //         `??? ${posTitle}: ${i} : ${ka} .. [${
+            //           (a as PureStatSet)[ka].extraInfo
+            //         }] .. [${(a as PureStatSet)[ka].value}]`
+            //       );
+            //     });
+            // }
+            return _.keys(a)
+              .filter((ka) => _.startsWith(ka, "source_"))
+              .map((ka) => ({
+                key: `${posTitle}_${i}_${ka}`,
+                stat: (a as PureStatSet)[ka],
+              }));
+          });
+      })
+      //(type weirdness here, extraInfo temporarily is an array of strings)
+      .groupBy((obj) => ((obj.stat.extraInfo as string[]) || []).join(":"))
+      .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
+      .value();
+
+    const flattenedNetworkTarget = _.chain(assistNetwork)
+      .toPairs()
+      .flatMap((kv, ix) => {
+        const posTitle = kv[0];
+        const assistInfo = kv[1].assists;
+        const otherInfo = kv[1].other;
+        //(unassisted, assisted <- DROP, transition, scramble)
+        const unassistedInfo = otherInfo[0];
+        const transitionInfo = otherInfo[2];
+        const scrambleInfo = otherInfo[3];
+
+        return (assistInfo as SourceAssistInfo[])
+          .concat([unassistedInfo, transitionInfo, scrambleInfo])
+          .flatMap((a, i) => {
+            // Diagnostics:
+            // if (playStyleType == "playsPct") {
+            //   _.keys(a)
+            //     .filter((ka) => _.startsWith(ka, "target_"))
+            //     .forEach((ka) => {
+            //       console.log(
+            //         `??? ${posTitle}: ${i} : ${ka} .. [${
+            //           (a as PureStatSet)[ka].extraInfo
+            //         }] .. [${(a as PureStatSet)[ka].value}]`
+            //       );
+            //     });
+            // }
+            return _.keys(a)
+              .filter((ka) => _.startsWith(ka, "target_"))
+              .map((ka) => ({
+                key: `${posTitle}_${i}_${ka}`,
+                stat: (a as PureStatSet)[ka],
+              }));
+          });
+      })
+      //(type weirdness here, extraInfo temporarily is an array of strings)
+      .groupBy((obj) => ((obj.stat.extraInfo as string[]) || []).join(":"))
+      .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
+      .value();
+
+    // The larger set of indiv play types is mapped from the team set depending on target vs source
+
+    const teamToSrcPlayTypeMapping = (
+      playType: TopLevelPlayType
+    ): TopLevelIndivPlayType => {
+      switch (playType) {
+        case "Attack & Kick":
+          return "Perimeter Sniper";
+        case "Post & Kick":
+          return "Perimeter Sniper";
+        default:
+          return playType;
+      }
+    };
+    const teamToTargetPlayTypeMapping = (
+      playType: TopLevelPlayType
+    ): TopLevelIndivPlayType => {
+      switch (playType) {
+        case "Backdoor Cut":
+          return "Hits Cutter";
+        case "Big Cut & Roll":
+          return "PnR Passer";
+        default:
+          return playType;
+      }
+    };
+
+    const topLevelPlayTypeAnalysisPhase1 = _.transform(
+      flattenedNetworkSrc,
+      (acc, usage, key) => {
+        const playTypesCombo = playTypesLookup[key];
+        //(note half-court TOs don't match anything here, key=="", that's OK because they are
+        // already distributed amongst the other play types)
+
+        _.toPairs(playTypesCombo).forEach((kv) => {
+          const playType = teamToSrcPlayTypeMapping(kv[0] as TopLevelPlayType);
+          const weight = kv[1];
+
+          // Diagnostics:
+          // if (playStyleType == "playsPct") {
+          //   console.log(
+          //     `${key}: ${playType} ${weight}*${usage.toFixed(3)}=${(
+          //       weight * usage
+          //     ).toFixed(3)}: [${acc[playType]}]`
+          //   );
+          // }
+
+          acc[playType] = (acc[playType] || 0) + weight * usage;
+        });
+      },
+      {} as Record<TopLevelIndivPlayType, number>
+    );
+
+    const topLevelPlayTypeAnalysis = _.transform(
+      flattenedNetworkTarget,
+      (acc, usage, key) => {
+        const playTypesCombo = playTypesLookup[key];
+        //(note half-court TOs don't match anything here, key=="", that's OK because they are
+        // already distributed amongst the other play types)
+
+        _.toPairs(playTypesCombo).forEach((kv) => {
+          const playType = teamToTargetPlayTypeMapping(
+            kv[0] as TopLevelPlayType
+          );
+          const weight = kv[1];
+
+          // Diagnostics:
+          // if (playStyleType == "playsPct") {
+          //   console.log(
+          //     `${key}: ${playType} ${weight}*${usage.toFixed(3)}=${(
+          //       weight * usage
+          //     ).toFixed(3)}: [${acc[playType]}]`
+          //   );
+          // }
+
+          acc[playType] = (acc[playType] || 0) + weight * usage;
+        });
+      },
+      topLevelPlayTypeAnalysisPhase1 as Record<TopLevelIndivPlayType, number>
+    );
+
+    // Uncategorized turnovers:
+    if (playStyleType == "playsPct") {
+      //TODO: (ideally we'd pass this in to ensure it's the same demon as everything else)
+      const teamPossessions =
+        (teamStats.total_off_fga?.value || 0) +
+          0.475 * (teamStats.total_off_fta?.value || 0) +
+          (teamStats.total_off_to?.value || 0) || 1;
+
+      const [uncatHalfCourtTos, uncatScrambleTos, uncatTransTos] =
+        PlayTypeUtils.calcTeamHalfCourtTos(
+          players as IndivStatSet[],
+          teamStats as TeamStatSet
+        );
+
+      topLevelPlayTypeAnalysis["Misc"] = uncatHalfCourtTos / teamPossessions;
+      topLevelPlayTypeAnalysis["Put-Back"] +=
+        uncatScrambleTos / teamPossessions;
+      topLevelPlayTypeAnalysis["Transition"] += uncatTransTos / teamPossessions;
+    } else {
+      topLevelPlayTypeAnalysis["Misc"] = 0;
+    }
+
+    return topLevelPlayTypeAnalysis;
+  }
 
   /** Builds a higher level view of the assist network, with lots of guessing */
   static aggregateToTopLevelPlayStyles(
@@ -595,9 +839,8 @@ export class PlayTypeUtils {
               }));
           });
       })
-      //TODO: type weirdness here, extraInfo temporarily is an array of strings
+      //(type weirdness here, extraInfo temporarily is an array of strings)
       .groupBy((obj) => ((obj.stat.extraInfo as string[]) || []).join(":"))
-
       .mapValues((oo) => _.sumBy(oo, (o) => o.stat?.value || 0))
       .value();
 

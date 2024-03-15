@@ -37,7 +37,7 @@ import {
   TeamStatSet,
 } from "../../utils/StatModels";
 import { FeatureFlags } from "../../utils/stats/FeatureFlags";
-import TeamPlayTypeDiagRadar from "./TeamPlayTypeDiagRadar";
+import IndivPlayTypeDiagRadar from "./IndivPlayTypeDiagRadar";
 
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -69,9 +69,9 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({
   //TODO: hack for testing this, need to integrate it more sensibly
   if (FeatureFlags.isActiveWindow(FeatureFlags.betterStyleAnalysis)) {
     return (
-      <TeamPlayTypeDiagRadar
+      <IndivPlayTypeDiagRadar
         title="Baseline"
-        players={[player]}
+        player={player}
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamStats}
         showGrades="false"
