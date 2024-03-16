@@ -220,14 +220,6 @@ export class PlayTypeUtils {
         0.475 * (teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
-    const teamPossessionsToUse =
-      playStyleType == "scoringPlaysPct"
-        ? teamScoringPossessions
-        : teamPossessions;
-
-    const teamTotalAssists = teamStats.total_off_assist?.value || 0;
-    //(use team total assists for consistency with individual chart)
-
     const filterCodes = undefined as Set<string> | undefined; // = new Set(["ErAyala", "AqSmart"])
     const filteredPlayers = filterCodes
       ? players.filter((pl) => {
@@ -236,68 +228,21 @@ export class PlayTypeUtils {
         })
       : players;
 
+    const teamPossessionsToUse =
+      playStyleType == "scoringPlaysPct"
+        ? teamScoringPossessions
+        : teamPossessions;
     const posCategoryAssistNetworkVsPlayer: Record<
       PlayerCode,
       PosCategoryAssistNetwork
-    > = _.chain(filteredPlayers)
-      .map((player, ix) => {
-        const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
-
-        // Decomposes stats into unassisted half court, assisted half court (this is broken down further below)
-        // plus scramble/transition stats
-        const playerStyle = PlayTypeUtils.buildPlayerStyle(
-          playStyleType,
-          player,
-          rosterStatsByCode[PlayTypeUtils.getCode(player)],
-          teamPossessionsToUse,
-          teamTotalAssists,
-          separateHalfCourt
-        );
-
-        // Which players assisted "player", and which did "player" assist?
-        const playerAssistNetwork = allPlayers.map((p) => {
-          const [info, ignore] = PlayTypeUtils.buildPlayerAssistNetwork(
-            playStyleType,
-            p,
-            player,
-            playerStyle.totalPlaysMade,
-            playerStyle.totalAssists,
-            rosterStatsByCode
-          );
-          return { code: p, ...info };
-        });
-
-        // For this player, we convert their player-based assist network into a positional-based assist network
-        // eg if "playerX (WG) -> player", then converts to "BH*0.6 -> player, W*0.4 -> player"
-        const posCategoryAssistNetwork =
-          PlayTypeUtils.buildPosCategoryAssistNetwork(
-            playerAssistNetwork,
-            rosterStatsByCode,
-            undefined
-          );
-
-        // Distributes uncategorized misses across the source_
-        const posCategoryAssistNetworkMaybeIncMisses =
-          playerStyle.assistedMissAdjustments
-            ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
-                posCategoryAssistNetwork,
-                playerStyle.assistedMissAdjustments,
-                playerStyle.totalPlaysMade
-              )
-            : posCategoryAssistNetwork;
-
-        const code: PlayerCode = PlayTypeUtils.getCode(player);
-
-        return [
-          code,
-          {
-            posCategoryAssistNetwork: posCategoryAssistNetworkMaybeIncMisses,
-            playerStyle: playerStyle,
-          },
-        ];
-      })
-      .fromPairs()
-      .value();
+    > = PlayTypeUtils.buildPerPlayPositionalBreakdown(
+      playStyleType,
+      separateHalfCourt,
+      filteredPlayers,
+      rosterStatsByCode,
+      teamStats,
+      teamPossessionsToUse
+    );
 
     // This gets us to:
     // [1] (player)[ { [pos]: <shot-type-stats> } ]   (pos=bh|wing|big)
@@ -596,6 +541,84 @@ export class PlayTypeUtils {
   //////////////////////////////////////////////////////////////
 
   // The main builders
+
+  /** For each player, build breakdowns of assists to/from positional categories in the team */
+  static buildPerPlayPositionalBreakdown(
+    playStyleType: PlayStyleType,
+    separateHalfCourt: boolean,
+    filteredPlayers: Array<IndivStatSet>,
+    rosterStatsByCode: RosterStatsByCode,
+    teamStats: TeamStatSet,
+    teamPossessionsToUse: number | undefined
+  ): Record<PlayerCode, PosCategoryAssistNetwork> {
+    const teamTotalAssists = teamStats.total_off_assist?.value || 0;
+    //(use team total assists for consistency with individual chart)
+
+    const posCategoryAssistNetworkVsPlayer: Record<
+      PlayerCode,
+      PosCategoryAssistNetwork
+    > = _.chain(filteredPlayers)
+      .map((player, ix) => {
+        const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
+
+        // Decomposes stats into unassisted half court, assisted half court (this is broken down further below)
+        // plus scramble/transition stats
+        const playerStyle = PlayTypeUtils.buildPlayerStyle(
+          playStyleType,
+          player,
+          rosterStatsByCode[PlayTypeUtils.getCode(player)],
+          teamPossessionsToUse,
+          teamTotalAssists,
+          separateHalfCourt
+        );
+
+        // Which players assisted "player", and which did "player" assist?
+        const playerAssistNetwork = allPlayers.map((p) => {
+          const [info, ignore] = PlayTypeUtils.buildPlayerAssistNetwork(
+            playStyleType,
+            p,
+            player,
+            playerStyle.totalPlaysMade,
+            playerStyle.totalAssists,
+            rosterStatsByCode
+          );
+          return { code: p, ...info };
+        });
+
+        // For this player, we convert their player-based assist network into a positional-based assist network
+        // eg if "playerX (WG) -> player", then converts to "BH*0.6 -> player, W*0.4 -> player"
+        const posCategoryAssistNetwork =
+          PlayTypeUtils.buildPosCategoryAssistNetwork(
+            playerAssistNetwork,
+            rosterStatsByCode,
+            undefined
+          );
+
+        // Distributes uncategorized misses across the source_
+        const posCategoryAssistNetworkMaybeIncMisses =
+          playerStyle.assistedMissAdjustments
+            ? PlayTypeUtils.adjustPosCategoryAssistNetworkWithMissInfo(
+                posCategoryAssistNetwork,
+                playerStyle.assistedMissAdjustments,
+                playerStyle.totalPlaysMade
+              )
+            : posCategoryAssistNetwork;
+
+        const code: PlayerCode = PlayTypeUtils.getCode(player);
+
+        return [
+          code,
+          {
+            posCategoryAssistNetwork: posCategoryAssistNetworkMaybeIncMisses,
+            playerStyle: playerStyle,
+          },
+        ];
+      })
+      .fromPairs()
+      .value();
+
+    return posCategoryAssistNetworkVsPlayer;
+  }
 
   /** Builds a higher level view of the assist network, with lots of guessing */
   static aggregateToIndivTopLevelPlayStyles(
