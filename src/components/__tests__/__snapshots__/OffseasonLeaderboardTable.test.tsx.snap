@@ -425,7 +425,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.59387402715347,
+                    "value": 7.639429872513472,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -490,31 +490,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.57679194,
+                    "value": -5.477016459999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.881090739999999,
+                    "value": 5.765333279999999,
                   },
                   "net": Object {
-                    "value": 21.915460627153475,
+                    "value": 22.052325642513477,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.53765340144,
+                    "value": 116.6745184168,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.30429880000000004,
+                    "value": -0.2883168200000001,
                   },
                   "roster": <span
                     style={
@@ -1262,7 +1262,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.59387402715347,
+                    "value": 7.639429872513472,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -1327,31 +1327,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.57679194,
+                    "value": -5.477016459999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.881090739999999,
+                    "value": 5.765333279999999,
                   },
                   "net": Object {
-                    "value": 21.915460627153475,
+                    "value": 22.052325642513477,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.53765340144,
+                    "value": 116.6745184168,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.30429880000000004,
+                    "value": -0.2883168200000001,
                   },
                   "roster": <span
                     style={
@@ -4185,7 +4185,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.076823431587817,
+                    "value": 7.148487809198892,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -4250,7 +4250,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.39211606,
+                    "value": -5.33901894,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -4260,14 +4260,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 23.118318151587818,
+                    "value": 23.13508265919889,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 113.20125054322779,
+                    "value": 113.21801505083886,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -4288,7 +4288,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 5.39211606,
+                    "value": 5.33901894,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -4349,7 +4349,159 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "colSpanOverride": undefined,
                 "dataObj": Object {
                   "actual_grade": Object {
-                    "colorOverride": 21,
+                    "colorOverride": 0.25,
+                    "samples": 106,
+                    "value": 0.9905660377358491,
+                  },
+                  "conf": <small>
+                    BE
+                  </small>,
+                  "def": Object {
+                    "value": 93.1586180661049,
+                  },
+                  "def_grade": Object {
+                    "samples": 106,
+                    "value": 0.9905660377358491,
+                  },
+                  "dev_margin": Object {
+                    "value": 6.222244537901612,
+                  },
+                  "edit": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="editTooltip"
+                        placement="right"
+                      >
+                        Show/Hide the inline Team Viewer and Editor
+                         
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <ForwardRef
+                      active={false}
+                      disabled={false}
+                      onClick={[Function]}
+                      size="sm"
+                      variant="outline-secondary"
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={false}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [
+                              576,
+                              512,
+                              Array [],
+                              "f06e",
+                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
+                            ],
+                            "iconName": "eye",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        swapOpacity={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      />
+                    </ForwardRef>
+                  </OverlayTrigger>,
+                  "fr_margin": Object {
+                    "value": 1.6756758942019012,
+                  },
+                  "high_grade": Object {
+                    "samples": 106,
+                    "value": 1,
+                  },
+                  "in_margin": Object {
+                    "value": 0,
+                  },
+                  "inout_margin": Object {
+                    "value": -11.171628775798098,
+                  },
+                  "low_grade": Object {
+                    "samples": 106,
+                    "value": 0.9622641509433962,
+                  },
+                  "nba_margin": Object {
+                    "value": 0,
+                  },
+                  "net": Object {
+                    "value": 15.327994662972507,
+                  },
+                  "net_grade": Object {
+                    "samples": 106,
+                    "value": 0.9905660377358491,
+                  },
+                  "off": Object {
+                    "value": 108.48661272907741,
+                  },
+                  "off_grade": Object {
+                    "samples": 106,
+                    "value": 0.9716981132075472,
+                  },
+                  "out_margin": Object {
+                    "value": 0,
+                  },
+                  "roster": <span
+                    style={
+                      Object {
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    <small>
+                      0 / 0 / 4 / 1
+                    </small>
+                  </span>,
+                  "sr_margin": Object {
+                    "value": 12.84730467,
+                  },
+                  "title": <span>
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="teamTooltip1"
+                          placement="right"
+                        >
+                          Open new tab with the detailed off-season predictions for this team
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <b>
+                        <a
+                          href="/TeamEditor?evalMode=true&gender=Men&team=Seton%20Hall&year=2020%2F21&"
+                          target="_blank"
+                        >
+                          Seton Hall
+                        </a>
+                      </b>
+                    </OverlayTrigger>
+                  </span>,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
+                "dataObj": Object {
+                  "actual_grade": Object {
+                    "colorOverride": 26,
                     "samples": 106,
                     "value": 0.009433962264150941,
                   },
@@ -4443,7 +4595,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   },
                   "net_grade": Object {
                     "samples": 106,
-                    "value": 0.9905660377358491,
+                    "value": 0.9811320754716981,
                   },
                   "off": Object {
                     "value": 109.12113125,
@@ -4473,7 +4625,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="teamTooltip1"
+                          id="teamTooltip2"
                           placement="right"
                         >
                           Open new tab with the detailed off-season predictions for this team
@@ -4493,7 +4645,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     <OverlayTrigger
                       overlay={
                         <ForwardRef
-                          id="mehPredictionWarning1"
+                          id="mehPredictionWarning2"
                           placement="right"
                         >
                           This prediction is dubious - only based on [
@@ -4516,158 +4668,6 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       >
                          (!)
                       </sup>
-                    </OverlayTrigger>
-                  </span>,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "actual_grade": Object {
-                    "colorOverride": 0,
-                    "samples": 106,
-                    "value": 0.9905660377358491,
-                  },
-                  "conf": <small>
-                    BE
-                  </small>,
-                  "def": Object {
-                    "value": 93.1586180661049,
-                  },
-                  "def_grade": Object {
-                    "samples": 106,
-                    "value": 0.9905660377358491,
-                  },
-                  "dev_margin": Object {
-                    "value": 5.939252928237211,
-                  },
-                  "edit": <OverlayTrigger
-                    overlay={
-                      <ForwardRef
-                        id="editTooltip"
-                        placement="right"
-                      >
-                        Show/Hide the inline Team Viewer and Editor
-                         
-                      </ForwardRef>
-                    }
-                    placement="auto"
-                  >
-                    <ForwardRef
-                      active={false}
-                      disabled={false}
-                      onClick={[Function]}
-                      size="sm"
-                      variant="outline-secondary"
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={false}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [
-                              576,
-                              512,
-                              Array [],
-                              "f06e",
-                              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
-                            ],
-                            "iconName": "eye",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        swapOpacity={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      />
-                    </ForwardRef>
-                  </OverlayTrigger>,
-                  "fr_margin": Object {
-                    "value": 1.6546438394535676,
-                  },
-                  "high_grade": Object {
-                    "samples": 106,
-                    "value": 1,
-                  },
-                  "in_margin": Object {
-                    "value": 0,
-                  },
-                  "inout_margin": Object {
-                    "value": -11.412227720546431,
-                  },
-                  "low_grade": Object {
-                    "samples": 106,
-                    "value": 0.9622641509433962,
-                  },
-                  "nba_margin": Object {
-                    "value": 0,
-                  },
-                  "net": Object {
-                    "value": 14.812762641163367,
-                  },
-                  "net_grade": Object {
-                    "samples": 106,
-                    "value": 0.9811320754716981,
-                  },
-                  "off": Object {
-                    "value": 107.97138070726827,
-                  },
-                  "off_grade": Object {
-                    "samples": 106,
-                    "value": 0.9716981132075472,
-                  },
-                  "out_margin": Object {
-                    "value": 0,
-                  },
-                  "roster": <span
-                    style={
-                      Object {
-                        "whiteSpace": "nowrap",
-                      }
-                    }
-                  >
-                    <small>
-                      0 / 0 / 4 / 1
-                    </small>
-                  </span>,
-                  "sr_margin": Object {
-                    "value": 13.06687156,
-                  },
-                  "title": <span>
-                    <OverlayTrigger
-                      overlay={
-                        <ForwardRef
-                          id="teamTooltip2"
-                          placement="right"
-                        >
-                          Open new tab with the detailed off-season predictions for this team
-                        </ForwardRef>
-                      }
-                      placement="auto"
-                    >
-                      <b>
-                        <a
-                          href="/TeamEditor?evalMode=true&gender=Men&team=Seton%20Hall&year=2020%2F21&"
-                          target="_blank"
-                        >
-                          Seton Hall
-                        </a>
-                      </b>
                     </OverlayTrigger>
                   </span>,
                 },
@@ -5948,7 +5948,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                               id="predictedMisses10"
                               placement="right"
                             >
-                              Duke [2] vs [106]
+                              Duke [3] vs [106]
                               <br />
                               Kentucky [4] vs [106]
                               <br />
@@ -8717,7 +8717,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                               id="predictedMisses25"
                               placement="right"
                             >
-                              Duke [2] vs [106]
+                              Duke [3] vs [106]
                               <br />
                               Kentucky [4] vs [106]
                               <br />
@@ -13306,7 +13306,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                               id="predictedMisses50"
                               placement="right"
                             >
-                              Duke [2] vs [106]
+                              Duke [3] vs [106]
                               <br />
                               Kentucky [4] vs [106]
                               <br />
@@ -18372,7 +18372,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.59387402715347,
+                    "value": 7.639429872513472,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -18437,31 +18437,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.57679194,
+                    "value": -5.477016459999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.881090739999999,
+                    "value": 5.765333279999999,
                   },
                   "net": Object {
-                    "value": 21.915460627153475,
+                    "value": 22.052325642513477,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.53765340144,
+                    "value": 116.6745184168,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.30429880000000004,
+                    "value": -0.2883168200000001,
                   },
                   "roster": <span
                     style={
@@ -18571,13 +18571,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.5109,
+                                                    "old_value": -3.4984,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -3.3589,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.7213,
+                                                    "old_value": -2.7117,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.6035,
                                                   }
@@ -18595,8 +18595,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.6492,
-                                                    "value": 4.6492,
+                                                    "old_value": 4.6356,
+                                                    "value": 4.6356,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18630,8 +18630,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.0487,
-                                                    "value": 4.0487,
+                                                    "old_value": 3.9633,
+                                                    "value": 3.9633,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18665,8 +18665,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 5.4841,
-                                                    "value": 5.4841,
+                                                    "old_value": 5.3774,
+                                                    "value": 5.3774,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18676,13 +18676,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -4.0789,
+                                                    "old_value": -4.07,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -3.9224,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.9205,
+                                                    "old_value": -2.9141,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.8084,
                                                   }
@@ -18700,8 +18700,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 2.3635,
-                                                    "value": 2.3635,
+                                                    "old_value": 2.3551,
+                                                    "value": 2.3551,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18711,13 +18711,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.3883,
+                                                    "old_value": -1.3832,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.2921,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.1942,
+                                                    "old_value": -1.1897,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.1114,
                                                   }
@@ -18735,8 +18735,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.9339,
-                                                    "value": 4.9339,
+                                                    "old_value": 4.8727,
+                                                    "value": 4.8727,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18770,8 +18770,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.7578,
-                                                    "value": 1.7578,
+                                                    "old_value": 1.6369,
+                                                    "value": 1.6369,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18805,43 +18805,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 3.4427,
-                                                    "value": 3.4427,
-                                                  }},
-                        {
-                          def_adj_prod: Object {
-                                                    "old_value": -2.0252,
-                                                    "override": "Luck adjusted",
-                                                    "value": -1.745,
-                                                  }
-
-                          def_adj_rapm: Object {
-                                                    "old_value": -3.3132,
-                                                    "override": "Adjusted from Def 3P%",
-                                                    "value": -3.0318,
-                                                  }
-
-                          def_adj_rapm_prod: Object {
-                                                    "old_value": -2.1534,
-                                                    "override": "Adjusted from Def 3P%",
-                                                    "value": -1.9704,
-                                                  }
-
-                          def_adj_rtg: Object {
-                                                    "old_value": -3.116,
-                                                    "override": "Luck adjusted",
-                                                    "value": -2.6849,
-                                                  }
-
-                          def_rtg: Object {
-                                                    "old_value": 91.2948,
-                                                    "override": "Luck adjusted",
-                                                    "value": 93.5619,
-                                                  }
-
-                          off_adj_rapm: Object {
-                                                    "old_value": 1.0086,
-                                                    "value": 1.0086,
+                                                    "old_value": 3.6306,
+                                                    "value": 3.6306,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18875,8 +18840,43 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.8864,
-                                                    "value": 1.8864,
+                                                    "old_value": 2.3422,
+                                                    "value": 2.3422,
+                                                  }},
+                        {
+                          def_adj_prod: Object {
+                                                    "old_value": -2.0252,
+                                                    "override": "Luck adjusted",
+                                                    "value": -1.745,
+                                                  }
+
+                          def_adj_rapm: Object {
+                                                    "old_value": -3.3132,
+                                                    "override": "Adjusted from Def 3P%",
+                                                    "value": -3.0318,
+                                                  }
+
+                          def_adj_rapm_prod: Object {
+                                                    "old_value": -2.1534,
+                                                    "override": "Adjusted from Def 3P%",
+                                                    "value": -1.9704,
+                                                  }
+
+                          def_adj_rtg: Object {
+                                                    "old_value": -3.116,
+                                                    "override": "Luck adjusted",
+                                                    "value": -2.6849,
+                                                  }
+
+                          def_rtg: Object {
+                                                    "old_value": 91.2948,
+                                                    "override": "Luck adjusted",
+                                                    "value": 93.5619,
+                                                  }
+
+                          off_adj_rapm: Object {
+                                                    "old_value": 0.8789,
+                                                    "value": 0.8789,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18886,13 +18886,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.0336,
+                                                    "old_value": -3.0257,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.8738,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.5948,
+                                                    "old_value": -1.5907,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.5108,
                                                   }
@@ -18910,8 +18910,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.1852,
-                                                    "value": 0.1852,
+                                                    "old_value": 0.1423,
+                                                    "value": 0.1423,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18921,13 +18921,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.1901,
+                                                    "old_value": -2.1856,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.0885,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.5282,
+                                                    "old_value": -1.525,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.4572,
                                                   }
@@ -18945,8 +18945,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.924,
-                                                    "value": 0.924,
+                                                    "old_value": 0.9161,
+                                                    "value": 0.9161,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18980,8 +18980,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.3206,
-                                                    "value": 0.3206,
+                                                    "old_value": 0.4581,
+                                                    "value": 0.4581,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -18991,13 +18991,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.2445,
+                                                    "old_value": -1.2385,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.1671,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.8677,
+                                                    "old_value": -0.8636,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -0.8138,
                                                   }
@@ -19015,8 +19015,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.434,
-                                                    "value": 0.434,
+                                                    "old_value": 0.4194,
+                                                    "value": 0.4194,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19050,8 +19050,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -0.9774,
-                                                    "value": -0.9774,
+                                                    "old_value": -1.0095,
+                                                    "value": -1.0095,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19085,8 +19085,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.4999,
-                                                    "value": -1.4999,
+                                                    "old_value": -1.4863,
+                                                    "value": -1.4863,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19120,8 +19120,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.7854,
-                                                    "value": -1.7854,
+                                                    "old_value": -1.7477,
+                                                    "value": -1.7477,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19155,8 +19155,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 5.0442,
-                                                    "value": 5.0442,
+                                                    "old_value": 4.8888,
+                                                    "value": 4.8888,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19166,13 +19166,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.162,
+                                                    "old_value": -2.1604,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.028,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.9002,
+                                                    "old_value": -1.8989,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.7825,
                                                   }
@@ -19190,8 +19190,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.8637,
-                                                    "value": 4.8637,
+                                                    "old_value": 4.7907,
+                                                    "value": 4.7907,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19225,8 +19225,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.1163,
-                                                    "value": 4.1163,
+                                                    "old_value": 3.9335,
+                                                    "value": 3.9335,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19260,8 +19260,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 3.0204,
-                                                    "value": 3.0204,
+                                                    "old_value": 2.9913,
+                                                    "value": 2.9913,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19295,8 +19295,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.3783,
-                                                    "value": 1.3783,
+                                                    "old_value": 1.5827,
+                                                    "value": 1.5827,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19306,13 +19306,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.4835,
+                                                    "old_value": -2.4817,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.3406,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.7615,
+                                                    "old_value": -1.7603,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.6602,
                                                   }
@@ -19330,8 +19330,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.5447,
-                                                    "value": 1.5447,
+                                                    "old_value": 1.5226,
+                                                    "value": 1.5226,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19365,8 +19365,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.152,
-                                                    "value": 1.152,
+                                                    "old_value": 1.1127,
+                                                    "value": 1.1127,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19376,13 +19376,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -0.8281,
+                                                    "old_value": -0.8274,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -0.7194,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.5944,
+                                                    "old_value": -0.594,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -0.5164,
                                                   }
@@ -19400,8 +19400,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.1709,
-                                                    "value": 1.1709,
+                                                    "old_value": 1.1243,
+                                                    "value": 1.1243,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19411,13 +19411,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.9007,
+                                                    "old_value": -1.8989,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.7714,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.4373,
+                                                    "old_value": -1.4359,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.3395,
                                                   }
@@ -19435,8 +19435,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -0.1581,
-                                                    "value": -0.1581,
+                                                    "old_value": -0.1736,
+                                                    "value": -0.1736,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19446,13 +19446,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.2651,
+                                                    "old_value": -2.2638,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -2.1312,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.7157,
+                                                    "old_value": -1.7148,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": -1.6143,
                                                   }
@@ -19470,8 +19470,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.4638,
-                                                    "value": -1.4638,
+                                                    "old_value": -1.3596,
+                                                    "value": -1.3596,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19505,8 +19505,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.6923,
-                                                    "value": 0.6923,
+                                                    "old_value": 0.9326,
+                                                    "value": 0.9326,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19540,8 +19540,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.2924,
-                                                    "value": 0.2924,
+                                                    "old_value": 0.2189,
+                                                    "value": 0.2189,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19551,13 +19551,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": 0.3828,
+                                                    "old_value": 0.3835,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": 0.4212,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": 0.1279,
+                                                    "old_value": 0.1282,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": 0.1407,
                                                   }
@@ -19575,8 +19575,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -0.2264,
-                                                    "value": -0.2264,
+                                                    "old_value": -0.19,
+                                                    "value": -0.19,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19610,8 +19610,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -2.1544,
-                                                    "value": -2.1544,
+                                                    "old_value": -2.024,
+                                                    "value": -2.024,
                                                   }},
                         {
                           def_adj_prod: Object {
@@ -19621,13 +19621,13 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": 1.7592,
+                                                    "old_value": 1.7585,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": 1.6898,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": 0.5099,
+                                                    "old_value": 0.5097,
                                                     "override": "Adjusted from Def 3P%",
                                                     "value": 0.4898,
                                                   }
@@ -19645,8 +19645,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -0.8269,
-                                                    "value": -0.8269,
+                                                    "old_value": -0.7899,
+                                                    "value": -0.7899,
                                                   }},
                       ],
                       "transfers": Array [
@@ -19782,7 +19782,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           105.19879195733465,
                         ],
                         "off_adj_ppp": Array [
-                          102.37183346605714,
+                          102.43155517582856,
                           104.3,
                           104.3,
                           104.3,
@@ -19886,11 +19886,11 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           104.3,
                           104.3,
                           104.3,
-                          111.44554116308878,
-                          116.53765340144,
+                          111.47631548707751,
+                          116.6745184168,
                         ],
                         "off_net": Array [
-                          -2.826958491277503,
+                          -2.7672367815060745,
                           0,
                           0,
                           0,
@@ -19994,8 +19994,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           0,
                           0,
                           0,
-                          15.07392306893757,
-                          21.915460627153475,
+                          15.104697392926308,
+                          22.052325642513477,
                         ],
                       },
                       "tier_lut": Object {
@@ -20130,7 +20130,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "102": Array [
                               0,
-                              102.37183346605714,
+                              102.43155517582856,
                             ],
                             "104": Array [
                               1,
@@ -20240,15 +20240,15 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "111": Array [
                               104,
-                              111.44554116308878,
+                              111.47631548707751,
                             ],
                             "117": Array [
                               105,
-                              116.53765340144,
+                              116.6745184168,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 102.37183346605714,
+                          "min": 102.43155517582856,
                           "size": 106,
                         },
                         "off_net": Object {
@@ -20256,7 +20256,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "-3": Array [
                               0,
-                              -2.826958491277503,
+                              -2.7672367815060745,
                             ],
                             "0": Array [
                               1,
@@ -20366,15 +20366,15 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "15": Array [
                               104,
-                              15.07392306893757,
+                              15.104697392926308,
                             ],
                             "22": Array [
                               105,
-                              21.915460627153475,
+                              22.052325642513477,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": -2.826958491277503,
+                          "min": -2.7672367815060745,
                           "size": 106,
                         },
                         "off_raw_net": undefined,
@@ -20409,7 +20409,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 5.128339078251875,
+                    "value": 5.150380322240611,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -20474,7 +20474,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -1.34620215,
+                    "value": -1.3131767300000001,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -20484,14 +20484,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.07392306893757,
+                    "value": 15.104697392926308,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 111.44554116308878,
+                    "value": 111.47631548707751,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -20512,7 +20512,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 1.34620215,
+                    "value": 1.3131767300000001,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -33459,7 +33459,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.59387402715347,
+                    "value": 7.639429872513472,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -33524,31 +33524,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.57679194,
+                    "value": -5.477016459999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.881090739999999,
+                    "value": 5.765333279999999,
                   },
                   "net": Object {
-                    "value": 21.915460627153475,
+                    "value": 22.052325642513477,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.53765340144,
+                    "value": 116.6745184168,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.30429880000000004,
+                    "value": -0.2883168200000001,
                   },
                   "roster": <span
                     style={
@@ -33634,7 +33634,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 5.128339078251875,
+                    "value": 5.150380322240611,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -33699,7 +33699,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -1.34620215,
+                    "value": -1.3131767300000001,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -33709,14 +33709,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.07392306893757,
+                    "value": 15.104697392926308,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 111.44554116308878,
+                    "value": 111.47631548707751,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -33737,7 +33737,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 1.34620215,
+                    "value": 1.3131767300000001,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -46906,7 +46906,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.59387402715347,
+                    "value": 7.639429872513472,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -46971,31 +46971,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.57679194,
+                    "value": -5.477016459999999,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.881090739999999,
+                    "value": 5.765333279999999,
                   },
                   "net": Object {
-                    "value": 21.915460627153475,
+                    "value": 22.052325642513477,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.53765340144,
+                    "value": 116.6745184168,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.30429880000000004,
+                    "value": -0.2883168200000001,
                   },
                   "roster": <span
                     style={

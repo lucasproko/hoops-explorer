@@ -27780,7 +27780,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#4ca64c",
+                      "backgroundColor": "#46a346",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -27790,7 +27790,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                 >
                   <div>
                     <u>
-                      24.5
+                      25.4
                     </u>
                   </div>
                 </td>
@@ -27800,7 +27800,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#80c080",
+                      "backgroundColor": "#76bb76",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -27811,7 +27811,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   <div>
                     <div>
                       <u>
-                        109.9
+                        110.7
                       </u>
                       <small>
                         <sup
@@ -27827,7 +27827,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#329932",
+                      "backgroundColor": "#279327",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -27837,7 +27837,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                 >
                   <div>
                     <u>
-                      116.1
+                      116.9
                     </u>
                   </div>
                 </td>
@@ -28287,12 +28287,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                       <small
                         style={
                           Object {
-                            "textShadow": "0px 0px 15px #9acd9a,0px 0px 15px #9acd9a,0px 0px 15px #9acd9a",
+                            "textShadow": "0px 0px 15px #94ca94,0px 0px 15px #94ca94,0px 0px 15px #94ca94",
                           }
                         }
                       >
                         <i>
-                          13.9
+                          14.7
                         </i>
                       </small>
                     </u>
@@ -28796,7 +28796,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#299429",
+                      "backgroundColor": "#229122",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -28805,7 +28805,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   }
                 >
                   <small>
-                    13
+                    11
                     <sup>
                       th
                     </sup>
@@ -28817,7 +28817,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#66b366",
+                      "backgroundColor": "#55aa55",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -28826,9 +28826,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   }
                 >
                   <small>
-                    31
+                    26
                     <sup>
-                      st
+                      th
                     </sup>
                   </small>
                 </td>
@@ -28838,7 +28838,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   rowSpan={1}
                   style={
                     Object {
-                      "backgroundColor": "#339933",
+                      "backgroundColor": "#309830",
                       "fontWeight": "normal",
                       "textAlign": "center",
                       "verticalAlign": "middle",
@@ -28847,7 +28847,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   }
                 >
                   <small>
-                    16
+                    15
                     <sup>
                       th
                     </sup>
@@ -29307,7 +29307,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   <span
                     style={
                       Object {
-                        "textShadow": "0px 0px 15px #44a244,0px 0px 15px #44a244,0px 0px 15px #44a244",
+                        "textShadow": "0px 0px 15px #309830,0px 0px 15px #309830,0px 0px 15px #309830",
                       }
                     }
                   >
@@ -29316,9 +29316,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                         (
                       </small>
                       <small>
-                        21
+                        15
                         <sup>
-                          st
+                          th
                         </sup>
                       </small>
                       <small>

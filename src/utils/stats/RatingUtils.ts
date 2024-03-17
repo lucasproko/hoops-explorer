@@ -459,12 +459,28 @@ export class RatingUtils {
       Others_FGA > 0
         ? 0.5 * ((Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA)) * AST
         : 0.0;
+
     // New for assist calcs:
+    const capThreePtAssistPenalty = (eFG: number, shotType: number) => {
+      if (shotType == 2) {
+        // shouldn't penalize 3P shooters for being good!
+        // in fact we'll give them a buff if they are really good:
+        const elite3PBuff =
+          eFG > 0.38 * 1.5 ? Math.min(eFG - 0.38 * 1.5, 0.07 * 1.5) : 0; //(capped at 45%)
+        return Math.min(eFG, 0.345 * 1.5) - elite3PBuff;
+      } else {
+        return eFG;
+      }
+    };
     const FGM_Minus_AssistPenalty = Made.map((playerMade, index) => {
       //(0.5*eFG)*(assisted FGs=FG*assisted)
       const playerEfg =
         0.5 * shotBonus[index]! * (playerMade / Attempts[index]!);
-      return playerMade * (1 - 0.5 * playerEfg * AssistedPct[index]!);
+      return (
+        playerMade *
+        (1 -
+          0.5 * capThreePtAssistPenalty(playerEfg, index) * AssistedPct[index]!)
+      );
     });
     const FG_Part = _.sum(FGM_Minus_AssistPenalty);
     // We back-calculate these equivalents to the classic calcs just for approximate diags display
@@ -491,7 +507,7 @@ export class RatingUtils {
       );
     });
     const AST_Part = Efg_By_ShotType.map((eFG, index) => {
-      return 0.5 * eFG * AssistsTotals[index]!;
+      return 0.5 * capThreePtAssistPenalty(eFG, index) * AssistsTotals[index]!;
     });
 
     // We have the actual number of possessions, which means we can do better than the legacy:

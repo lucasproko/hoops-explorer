@@ -204,7 +204,8 @@ export class PlayTypeUtils {
     players: Array<IndivStatSet>,
     rosterStatsByCode: RosterStatsByCode,
     teamStats: TeamStatSet
-  ): Record<PlayerCode, CategorizedAssistNetwork> {
+  ): Record<string, CategorizedAssistNetwork> {
+    //(^ the key is "bh", "wing", "big")
     const isActuallyIndivMode = players.length == 1;
 
     //(use pure possessions and not + assists because the team is "closed" unlike one player)
@@ -235,7 +236,7 @@ export class PlayTypeUtils {
     const posCategoryAssistNetworkVsPlayer: Record<
       PlayerCode,
       PosCategoryAssistNetwork
-    > = PlayTypeUtils.buildPerPlayPositionalBreakdown(
+    > = PlayTypeUtils.buildPerPlayerPositionalBreakdown(
       playStyleType,
       separateHalfCourt,
       filteredPlayers,
@@ -246,121 +247,19 @@ export class PlayTypeUtils {
 
     // This gets us to:
     // [1] (player)[ { [pos]: <shot-type-stats> } ]   (pos=bh|wing|big)
+    // The next method transforms that to give us a pos vs pos -> <shot-type-stats> as desired!
 
-    // Then buildPosCategoryAssistNetwork goes:
-    // [2] player, (other_players)[ <shot-type-stats> ] => { [pos]: <shot-type-stats> }
-    // (and "player" is only used to inject examples in)
-
-    // So transform [1] to (pos)(players)[ <shot-type-stats> ] and then use [2] on each pos
-    // and that gives us a pos vs pos -> <shot-type-stats> as desired!
-
-    const posVsPosAssistNetwork: Record<string, CategorizedAssistNetwork> =
-      _.chain(PosFamilyNames)
-        .map((pos, ix) => {
-          const perPlayer: TargetAssistInfo[] = _.chain(
-            posCategoryAssistNetworkVsPlayer
-          )
-            .mapValues((perPlayerInfo, playerCode) => {
-              const posCategoryAssistNetwork =
-                perPlayerInfo.posCategoryAssistNetwork;
-              // ^ For each player, the stats to/from the position
-
-              // For each player: get a single pos category stats
-              const posStats =
-                posCategoryAssistNetwork.filter(
-                  (net: ScoredTargetAssistInfo) => net.order == ix
-                )?.[0] || undefined;
-              return posStats && posStats.info
-                ? [
-                    {
-                      ...posStats.info,
-                      code: playerCode,
-                    },
-                  ]
-                : [];
-            })
-            .values()
-            .flatten()
-            .value();
-
-          // This is now "for each pos, a list of player stats", so we can reapply, to get "for each pos a list of pos stats"
-          const posPosCatAssistNetwork: ScoredTargetAssistInfo[] =
-            PlayTypeUtils.buildPosCategoryAssistNetwork(
-              perPlayer,
-              rosterStatsByCode,
-              ix
-            ); // pos vs <shot-type-stats> (order tells you which)
-
-          //console.log(`${pos} ... vs ... ${JSON.stringify(perPlayer, tidyNumbers, 3)}`);
-
-          // Unassisted/scramble/transition: similar:
-          const posVsPosOtherTypes: ScoredTargetAssistInfo[] = _.chain([
-            "unassisted",
-            "assisted", //(this are shots that are assisted, vs posPosCatAssistNetwork which are my assists)
-            "transition",
-            "scramble",
-            "transitionAssisted",
-            "scrambleAssisted",
-          ])
-            .map((key) => {
-              const perPlayer: TargetAssistInfo[] = _.chain(
-                posCategoryAssistNetworkVsPlayer
-              )
-                .mapValues((perPlayerInfo, playerCode) => {
-                  const playerStyle = perPlayerInfo.playerStyle;
-                  return {
-                    ...(asPlayerStyleSet(playerStyle)[key] || {}),
-                    code: playerCode,
-                  } as TargetAssistInfo; //(actually this is SourceAssistInfo but using the super-type for convenience)
-                })
-                .values()
-                .value();
-              const posOtherPosCatAssistNetwork =
-                PlayTypeUtils.buildPosCategoryAssistNetwork(
-                  perPlayer,
-                  rosterStatsByCode,
-                  undefined
-                ); // pos vs <shot-type-stats> (order tells you which)
-
-              //console.log(`${key}: ${JSON.stringify(perPlayer, tidyNumbers)} ... ${JSON.stringify(posOtherPosCatAssistNetwork, tidyNumbers)}`);
-
-              return posOtherPosCatAssistNetwork[ix];
-            })
-            .value();
-
-          return [
-            pos,
-            {
-              assists: posPosCatAssistNetwork.map(
-                (p) => p.info
-              ) as TargetAssistInfo[],
-              other: posVsPosOtherTypes.map(
-                (p) => p.info
-              ) as TargetAssistInfo[],
-            },
-          ];
-        })
-        .fromPairs()
-        .value();
-
-    // The above is the wrong way round, so re-order the 2x pos keys:
     const reorderedPosVsPosAssistNetwork: Record<
       string,
       CategorizedAssistNetwork
-    > = _.chain(PosFamilyNames)
-      .map((pos, ix) => {
-        const other = posVsPosAssistNetwork[pos]?.other || [];
-        const assists = _.chain(posVsPosAssistNetwork)
-          .values()
-          .map((assistNetwork, ix2) => {
-            return { ...(assistNetwork.assists?.[ix] || {}), order: ix2 };
-          })
-          .value();
+    > = PlayTypeUtils.convertFromPlayerToPositionPositionalBreakdown(
+      posCategoryAssistNetworkVsPlayer,
+      rosterStatsByCode
+    );
 
-        return [pos, { assists: assists, other: other }];
-      })
-      .fromPairs()
-      .value();
+    // Finally we do some post processing on the pos-pos assist chart to take into account:
+    // - separating out half court and scramble/transition assists
+    // - TOs
 
     if (separateHalfCourt) {
       _.chain(reorderedPosVsPosAssistNetwork)
@@ -542,8 +441,75 @@ export class PlayTypeUtils {
 
   // The main builders
 
+  static adjustPlayerAssistNetworkWithFailedAssists(
+    mutablePlayerPosAssistNetwork: Record<string, CategorizedAssistNetwork>,
+    teamPosAssistNework: Record<string, CategorizedAssistNetwork>
+  ) {
+    // (The preceding logic leaves old_value)
+    // TODO: note this isn't quite true, the half court assist calcs also
+    // adjust old_value, I think we have to live with that
+    const getExtraShots = (stat: Statistic): number => {
+      if (_.isNumber(stat?.old_value)) {
+        return (stat.value || 0) - stat.old_value;
+      } else {
+        return 0;
+      }
+    };
+
+    var varFailedAssistCount = 0;
+    _.chain(PosFamilyNames)
+      .forEach((pos) => {
+        //(from pos category)
+        const playerInfo = mutablePlayerPosAssistNetwork[pos];
+        const teamInfo = teamPosAssistNework[pos];
+        if (playerInfo && teamInfo) {
+          _.forEach(teamInfo.assists, (posAssistInfo, ii) => {
+            //to pos category
+            _.forEach(shotTypes, (shotType) => {
+              const teamAsstInfo = posAssistInfo as Record<string, Statistic>;
+              //per shot type
+              const teamExtraShots = teamAsstInfo?.[`source_${shotType}_ast`];
+              const teamTotalAssists =
+                teamAsstInfo?.[`target_${shotType}_ast`]?.value || 0;
+
+              const playerAssistInfo = playerInfo.assists[ii] as
+                | Record<string, Statistic>
+                | undefined;
+              if (teamExtraShots && playerAssistInfo && teamTotalAssists > 0) {
+                const playerExtraShots =
+                  playerAssistInfo?.[`source_${shotType}_ast`]; //(need to subtract this from the team roster since can't pass to yourself!)
+
+                const missedShots = playerExtraShots
+                  ? Math.max(
+                      0,
+                      getExtraShots(teamExtraShots) -
+                        getExtraShots(playerExtraShots)
+                    )
+                  : 0;
+
+                const missedShotsCreditedToPlayer =
+                  (missedShots *
+                    (playerAssistInfo?.[`target_${shotType}_ast`]?.value ||
+                      0)) /
+                  teamTotalAssists;
+
+                if (missedShotsCreditedToPlayer > 0) {
+                  //TODO: ugh need to take total poss into account somehow since these are all %s already
+                  // I think? Can we make them not be %s?
+
+                  varFailedAssistCount =
+                    varFailedAssistCount + missedShotsCreditedToPlayer;
+                }
+              }
+            });
+          });
+        }
+      })
+      .value();
+  }
+
   /** For each player, build breakdowns of assists to/from positional categories in the team */
-  static buildPerPlayPositionalBreakdown(
+  static buildPerPlayerPositionalBreakdown(
     playStyleType: PlayStyleType,
     separateHalfCourt: boolean,
     filteredPlayers: Array<IndivStatSet>,
@@ -618,6 +584,135 @@ export class PlayTypeUtils {
       .value();
 
     return posCategoryAssistNetworkVsPlayer;
+  }
+
+  /** Given a per-player network of assists, convert to a positional network of assists */
+  static convertFromPlayerToPositionPositionalBreakdown(
+    posCategoryAssistNetworkVsPlayer: Record<
+      PlayerCode,
+      PosCategoryAssistNetwork
+    >,
+    rosterStatsByCode: RosterStatsByCode
+  ): Record<string, CategorizedAssistNetwork> {
+    // posCategoryAssistNetworkVsPlayer gets us to:
+    // [1] (player)[ { [pos]: <shot-type-stats> } ]   (pos=bh|wing|big)
+
+    // Then buildPosCategoryAssistNetwork goes:
+    // [2] player, (other_players)[ <shot-type-stats> ] => { [pos]: <shot-type-stats> }
+    // (and "player" is only used to inject examples in)
+
+    // So transform [1] to (pos)(players)[ <shot-type-stats> ] and then use [2] on each pos
+    // and that gives us a pos vs pos -> <shot-type-stats> as desired!
+
+    const posVsPosAssistNetwork: Record<string, CategorizedAssistNetwork> =
+      _.chain(PosFamilyNames)
+        .map((pos, ix) => {
+          const perPlayer: TargetAssistInfo[] = _.chain(
+            posCategoryAssistNetworkVsPlayer
+          )
+            .mapValues((perPlayerInfo, playerCode) => {
+              const posCategoryAssistNetwork =
+                perPlayerInfo.posCategoryAssistNetwork;
+              // ^ For each player, the stats to/from the position
+
+              // For each player: get a single pos category stats
+              const posStats =
+                posCategoryAssistNetwork.filter(
+                  (net: ScoredTargetAssistInfo) => net.order == ix
+                )?.[0] || undefined;
+              return posStats && posStats.info
+                ? [
+                    {
+                      ...posStats.info,
+                      code: playerCode,
+                    },
+                  ]
+                : [];
+            })
+            .values()
+            .flatten()
+            .value();
+
+          // This is now "for each pos, a list of player stats", so we can reapply, to get "for each pos a list of pos stats"
+          const posPosCatAssistNetwork: ScoredTargetAssistInfo[] =
+            PlayTypeUtils.buildPosCategoryAssistNetwork(
+              perPlayer,
+              rosterStatsByCode,
+              ix
+            ); // pos vs <shot-type-stats> (order tells you which)
+
+          //console.log(`${pos} ... vs ... ${JSON.stringify(perPlayer, tidyNumbers, 3)}`);
+
+          // Unassisted/scramble/transition: similar:
+          const posVsPosOtherTypes: ScoredTargetAssistInfo[] = _.chain([
+            "unassisted",
+            "assisted", //(this are shots that are assisted, vs posPosCatAssistNetwork which are my assists)
+            "transition",
+            "scramble",
+            "transitionAssisted",
+            "scrambleAssisted",
+          ])
+            .map((key) => {
+              const perPlayer: TargetAssistInfo[] = _.chain(
+                posCategoryAssistNetworkVsPlayer
+              )
+                .mapValues((perPlayerInfo, playerCode) => {
+                  const playerStyle = perPlayerInfo.playerStyle;
+                  return {
+                    ...(asPlayerStyleSet(playerStyle)[key] || {}),
+                    code: playerCode,
+                  } as TargetAssistInfo; //(actually this is SourceAssistInfo but using the super-type for convenience)
+                })
+                .values()
+                .value();
+              const posOtherPosCatAssistNetwork =
+                PlayTypeUtils.buildPosCategoryAssistNetwork(
+                  perPlayer,
+                  rosterStatsByCode,
+                  undefined
+                ); // pos vs <shot-type-stats> (order tells you which)
+
+              //console.log(`${key}: ${JSON.stringify(perPlayer, tidyNumbers)} ... ${JSON.stringify(posOtherPosCatAssistNetwork, tidyNumbers)}`);
+
+              return posOtherPosCatAssistNetwork[ix];
+            })
+            .value();
+
+          return [
+            pos,
+            {
+              assists: posPosCatAssistNetwork.map(
+                (p) => p.info
+              ) as TargetAssistInfo[],
+              other: posVsPosOtherTypes.map(
+                (p) => p.info
+              ) as TargetAssistInfo[],
+            },
+          ];
+        })
+        .fromPairs()
+        .value();
+
+    // The above is the wrong way round, so re-order the 2x pos keys:
+    const reorderedPosVsPosAssistNetwork: Record<
+      string,
+      CategorizedAssistNetwork
+    > = _.chain(PosFamilyNames)
+      .map((pos, ix) => {
+        const other = posVsPosAssistNetwork[pos]?.other || [];
+        const assists = _.chain(posVsPosAssistNetwork)
+          .values()
+          .map((assistNetwork, ix2) => {
+            return { ...(assistNetwork.assists?.[ix] || {}), order: ix2 };
+          })
+          .value();
+
+        return [pos, { assists: assists, other: other }];
+      })
+      .fromPairs()
+      .value();
+
+    return reorderedPosVsPosAssistNetwork;
   }
 
   /** Builds a higher level view of the assist network, with lots of guessing */
