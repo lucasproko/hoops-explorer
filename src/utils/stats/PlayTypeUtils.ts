@@ -167,7 +167,7 @@ export class PlayTypeUtils {
     CG: [0.8, 0.2, 0],
     WG: [0.2, 0.8, 0],
     WF: [0, 0.8, 0.2],
-    "S-PF": [0, 0.6, 0.4],
+    "S-PF": [0, 0.4, 0.6], //TODO: would be good here to use the actual frequency played (posFreqs)
     "PF/C": [0, 0.2, 0.8],
     C: [0, 0, 1.0],
     "G?": [0.75, 0.25, 0],
