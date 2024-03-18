@@ -99,6 +99,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       ) as PlayerLeaderboardParams
     );
   }
+  function getPlayerLeaderboardTransferPortalUrl() {
+    return UrlRouting.getPlayerLeaderboardUrl({
+      ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
+      gender: "Men",
+      tier: "All",
+      year: DateUtils.mostRecentYearWithLboardData,
+      transferMode: "true:predictions",
+    });
+  }
   function getPlayerLeaderboardTrackingUrl(trackingList: string) {
     return UrlRouting.getPlayerLeaderboardUrl({
       ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
@@ -214,15 +223,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     );
   };
   const playerLeaderboardTransferTooltip = (
-    tier: "High" | "Medium" | "Low" | "All"
-  ) => {
-    return (
-      <Tooltip id={"playerLeaderboardTransferTooltip" + tier}>
-        Go to the (luck adjusted) Player Leaderboard page, transfers only (
-        {describeConfs(tier)})
-      </Tooltip>
-    );
-  };
+    <Tooltip id={"playerLeaderboardTransferTooltip"}>
+      View the transfer portal in the (luck adjusted) Player Leaderboard page.
+      Includes predictions for the following year.
+    </Tooltip>
+  );
   const teamLeaderboardTooltip = (
     <Tooltip id={"teamLeaderboardTooltip"}>
       Build your own team leaderboard out of various resume and quality based
@@ -464,6 +469,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Leaderboard",
               playerLeaderboardTooltip(hasMidMajors ? "All" : "High"),
               getPlayerLeaderboardUrl(hasMidMajors ? "All" : "High"),
+              `${ParamPrefixes.player}_leaderboard`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Transfer Portal",
+              playerLeaderboardTransferTooltip,
+              getPlayerLeaderboardTransferPortalUrl(),
               `${ParamPrefixes.player}_leaderboard`
             )}
           </Dropdown.Item>
