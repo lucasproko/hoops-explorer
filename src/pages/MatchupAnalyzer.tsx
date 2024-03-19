@@ -323,6 +323,13 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       >
         {dataEvent.teamStatsA.baseline.off_poss?.value ? (
           <Container>
+            <Row className="mt-0 mb-2">
+              <Col>
+                <div className="small">
+                  {PlayTypeDiagUtils.buildLegend("LEGEND")}
+                </div>
+              </Col>
+            </Row>
             <Row>
               <Col xs={12}>
                 {_.isEmpty(divisionStatsCache) ? (

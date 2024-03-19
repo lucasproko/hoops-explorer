@@ -43,7 +43,9 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
         Play Types
       </a>
     </b>
-    ) // 
+    )
+     
+    // 
     <a
       href="#"
       onClick={[Function]}
@@ -59,7 +61,9 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
         Play Types
       </a>
     </b>
-    ) // 
+    )
+     
+    // 
     <b>
       <a
         href="#"
@@ -69,8 +73,51 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
       </a>
     </b>
     )
+     
+    <span
+      key="quickSwitch-legend"
+      style={
+        Object {
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="playTypeDiagLegend"
+            placement="right"
+          >
+            <div>
+              <p>
+                A quick guide to what the graph means, see help link for more details:
+              </p>
+              <p>
+                The height of the bar chart is how common that play type is, as a percentile.
+              </p>
+              <p>
+                The width of the bar chart indicates how often it's used in practice (eg an 100th %ile Pick and Pop is still way fewer plays than a 10th %ile Drive). Above 10% usage the width is constant but the outline thickness increases.
+              </p>
+              <p>
+                The color of the bar chart is how efficient that play is, as a percentile.
+              </p>
+              <p>
+                The numbers above the bar chart are the number of plays of this type / 100, and how many points per play were scored.
+              </p>
+              <p>
+                Similarly to width vs height - the color of the bar chart can be green for inefficient play types, eg 0.75pts/play is very inefficient but is 50% percentile for Mid-Range!
+              </p>
+            </div>
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <u>
+          [LEGEND]
+        </u>
+      </OverlayTrigger>
+    </span>
   </span>
-  <br />
   <br />
   <TeamPlayTypeDiagRadar
     players={
@@ -4613,7 +4660,9 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
         Play Types
       </a>
     </b>
-    ) // 
+    )
+     
+    // 
     <a
       href="#"
       onClick={[Function]}
@@ -4629,7 +4678,9 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
         Play Types
       </a>
     </b>
-    ) // 
+    )
+     
+    // 
     <b>
       <a
         href="#"
@@ -4639,8 +4690,51 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
       </a>
     </b>
     )
+     
+    <span
+      key="quickSwitch-legend"
+      style={
+        Object {
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      <OverlayTrigger
+        overlay={
+          <ForwardRef
+            id="playTypeDiagLegend"
+            placement="right"
+          >
+            <div>
+              <p>
+                A quick guide to what the graph means, see help link for more details:
+              </p>
+              <p>
+                The height of the bar chart is how common that play type is, as a percentile.
+              </p>
+              <p>
+                The width of the bar chart indicates how often it's used in practice (eg an 100th %ile Pick and Pop is still way fewer plays than a 10th %ile Drive). Above 10% usage the width is constant but the outline thickness increases.
+              </p>
+              <p>
+                The color of the bar chart is how efficient that play is, as a percentile.
+              </p>
+              <p>
+                The numbers above the bar chart are the number of plays of this type / 100, and how many points per play were scored.
+              </p>
+              <p>
+                Similarly to width vs height - the color of the bar chart can be green for inefficient play types, eg 0.75pts/play is very inefficient but is 50% percentile for Mid-Range!
+              </p>
+            </div>
+          </ForwardRef>
+        }
+        placement="auto"
+      >
+        <u>
+          [LEGEND]
+        </u>
+      </OverlayTrigger>
+    </span>
   </span>
-  <br />
   <br />
   <TeamPlayTypeDiagRadar
     players={

@@ -329,9 +329,11 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             )
           : undefined}
         <span>
-          ({scoringToggle} // {usageToggle} // {breakdownToggle})
+          ({scoringToggle} // {usageToggle} // {breakdownToggle}){" "}
+          {tableType == "breakdown"
+            ? PlayTypeDiagUtils.buildLegend("[LEGEND]")
+            : null}
         </span>
-        <br />
         <br />
         {tableType == "breakdown" ? (
           <TeamPlayTypeDiagRadar

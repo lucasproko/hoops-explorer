@@ -497,6 +497,7 @@ export class PlayTypeDiagUtils {
     );
   };
 
+  /** Not totally sold on this presentation, but give some handy insight into what the graph means */
   static readonly buildLegendText = (
     <div>
       <p>
@@ -527,6 +528,8 @@ export class PlayTypeDiagUtils {
       </p>
     </div>
   );
+
+  /** Presents the above text as a tooltip */
   static buildLegend = (legendLabelName: string) => {
     const tooltip = (
       <Tooltip id="playTypeDiagLegend">
@@ -534,12 +537,11 @@ export class PlayTypeDiagUtils {
       </Tooltip>
     );
     return (
-      <OverlayTrigger placement="auto" overlay={tooltip}>
-        <div>
-          {legendLabelName}
-          <sup>*</sup>
-        </div>
-      </OverlayTrigger>
+      <span key={`quickSwitch-legend`} style={{ whiteSpace: "nowrap" }}>
+        <OverlayTrigger placement="auto" overlay={tooltip}>
+          <u>{legendLabelName}</u>
+        </OverlayTrigger>
+      </span>
     );
   };
 }

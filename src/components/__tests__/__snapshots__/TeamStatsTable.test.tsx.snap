@@ -6280,7 +6280,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Play Types
                         </a>
                       </b>
-                      ) // 
+                      )
+                       
+                      // 
                       <a
                         href="#"
                         onClick={[Function]}
@@ -6296,7 +6298,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Play Types
                         </a>
                       </b>
-                      ) // 
+                      )
+                       
+                      // 
                       <b>
                         <a
                           href="#"
@@ -6306,8 +6310,21 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </a>
                       </b>
                       )
+                       
+                      <span
+                        style={
+                          Object {
+                            "whiteSpace": "nowrap",
+                          }
+                        }
+                      >
+                        <div>
+                          <u>
+                            [LEGEND]
+                          </u>
+                        </div>
+                      </span>
                     </span>
-                    <br />
                     <br />
                     <span>
                       <div
@@ -12499,7 +12516,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Play Types
                         </a>
                       </b>
-                      ) // 
+                      )
+                       
+                      // 
                       <a
                         href="#"
                         onClick={[Function]}
@@ -12515,7 +12534,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Play Types
                         </a>
                       </b>
-                      ) // 
+                      )
+                       
+                      // 
                       <b>
                         <a
                           href="#"
@@ -12525,8 +12546,21 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </a>
                       </b>
                       )
+                       
+                      <span
+                        style={
+                          Object {
+                            "whiteSpace": "nowrap",
+                          }
+                        }
+                      >
+                        <div>
+                          <u>
+                            [LEGEND]
+                          </u>
+                        </div>
+                      </span>
                     </span>
-                    <br />
                     <br />
                     <span>
                       <div
@@ -18718,7 +18752,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Play Types
                         </a>
                       </b>
-                      ) // 
+                      )
+                       
+                      // 
                       <a
                         href="#"
                         onClick={[Function]}
@@ -18734,7 +18770,9 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           Play Types
                         </a>
                       </b>
-                      ) // 
+                      )
+                       
+                      // 
                       <b>
                         <a
                           href="#"
@@ -18744,8 +18782,21 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         </a>
                       </b>
                       )
+                       
+                      <span
+                        style={
+                          Object {
+                            "whiteSpace": "nowrap",
+                          }
+                        }
+                      >
+                        <div>
+                          <u>
+                            [LEGEND]
+                          </u>
+                        </div>
+                      </span>
                     </span>
-                    <br />
                     <br />
                     <span>
                       <div
