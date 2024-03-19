@@ -396,6 +396,19 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                       toggled: breakdownView == "def;def",
                       onClick: () => setBreakdownView("def;def"),
                     },
+                    {
+                      label: "Def v Def",
+                      tooltip: "Show Top Team Defense vs Bottom Team Defense",
+                      toggled: breakdownView == "def;def",
+                      onClick: () => setBreakdownView("def;def"),
+                    },
+                    {
+                      label: "| LEGEND",
+                      tooltip: PlayTypeDiagUtils.buildLegendText,
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                    },
                   ]}
                 />
               </Col>

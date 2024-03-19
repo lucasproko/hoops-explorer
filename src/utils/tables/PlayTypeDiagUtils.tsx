@@ -496,4 +496,50 @@ export class PlayTypeDiagUtils {
       </div>
     );
   };
+
+  static readonly buildLegendText = (
+    <div>
+      <p>
+        A quick guide to what the graph means, see help link for more details:
+      </p>
+      <p>
+        The height of the bar chart is how common that play type is, as a
+        percentile.
+      </p>
+      <p>
+        The width of the bar chart indicates how often it's used in practice (eg
+        an 100th %ile Pick and Pop is still way fewer plays than a 10th %ile
+        Drive). Above 10% usage the width is constant but the outline thickness
+        increases.
+      </p>
+      <p>
+        The color of the bar chart is how efficient that play is, as a
+        percentile.
+      </p>
+      <p>
+        The numbers above the bar chart are the number of plays of this type /
+        100, and how many points per play were scored.
+      </p>
+      <p>
+        Similarly to width vs height - the color of the bar chart can be green
+        for inefficient play types, eg 0.75pts/play is very inefficient but is
+        50% percentile for Mid-Range!
+      </p>
+    </div>
+  );
+  static buildLegend = (legendLabelName: string) => {
+    const tooltip = (
+      <Tooltip id="playTypeDiagLegend">
+        {PlayTypeDiagUtils.buildLegendText}
+      </Tooltip>
+    );
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <div>
+          {legendLabelName}
+          <sup>*</sup>
+        </div>
+      </OverlayTrigger>
+    );
+  };
 }
