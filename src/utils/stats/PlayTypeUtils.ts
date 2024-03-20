@@ -443,7 +443,8 @@ export class PlayTypeUtils {
 
   static adjustPlayerAssistNetworkWithFailedAssists(
     mutablePlayerPosAssistNetwork: Record<string, CategorizedAssistNetwork>,
-    teamPosAssistNework: Record<string, CategorizedAssistNetwork>
+    teamPosAssistNework: Record<string, CategorizedAssistNetwork>,
+    playerStats: IndivStatSet
   ) {
     // (The preceding logic leaves old_value)
     // TODO: note this isn't quite true, the half court assist calcs also
@@ -455,6 +456,19 @@ export class PlayTypeUtils {
         return 0;
       }
     };
+
+    // The denom for mutablePlayerPosAssistNetwork is "team poss in sample while player was on the floor"
+    // The denom for teamPosAssistNework is "total team poss in sample"
+    // Example:
+    // Take "number of misses by a big assisted by a guard" of 1% in teamPosAssistNework = 1/100 (from 20/2000)
+    // Say "all guards have an assist rate of 4% to bigs" in teamPosAssistNework, eg 4/100 (from 80/2000)
+    // Then a guard who plays 50% of minutes has 20 assists
+    // Therefore to convert team to the play basis (since we're using these numbers to mutate the _player_ object)
+    // we multiply the teamPosAssistNetwork stats by the poss possession, eg we assume that in "player"'s 1000 poss
+    // there were 40 "assists from guards to bigs" and 10 misses on assists
+    // TODO: in practice we have the exact numbers in player.total_ so could do this exactly rather than v dubiously
+    // assume the stats are uniform
+    const playerPossPct = playerStats.off_team_poss_pct?.value || 0;
 
     var varFailedAssistCount = 0;
     _.chain(PosFamilyNames)
@@ -471,18 +485,27 @@ export class PlayTypeUtils {
               const teamExtraShots = teamAsstInfo?.[`source_${shotType}_ast`];
               const teamTotalAssists =
                 teamAsstInfo?.[`target_${shotType}_ast`]?.value || 0;
+              const teamTotalAssistsWhilePlayerIn =
+                teamTotalAssists * playerPossPct;
 
               const playerAssistInfo = playerInfo.assists[ii] as
                 | Record<string, Statistic>
                 | undefined;
-              if (teamExtraShots && playerAssistInfo && teamTotalAssists > 0) {
+              if (
+                teamExtraShots &&
+                playerAssistInfo &&
+                teamTotalAssistsWhilePlayerIn > 0
+              ) {
                 const playerExtraShots =
                   playerAssistInfo?.[`source_${shotType}_ast`]; //(need to subtract this from the team roster since can't pass to yourself!)
+
+                const teamExtraShotsWhilePlayerIn =
+                  getExtraShots(teamExtraShots) * playerPossPct;
 
                 const missedShots = playerExtraShots
                   ? Math.max(
                       0,
-                      getExtraShots(teamExtraShots) -
+                      teamExtraShotsWhilePlayerIn -
                         getExtraShots(playerExtraShots)
                     )
                   : 0;
@@ -491,7 +514,7 @@ export class PlayTypeUtils {
                   (missedShots *
                     (playerAssistInfo?.[`target_${shotType}_ast`]?.value ||
                       0)) /
-                  teamTotalAssists;
+                  teamTotalAssistsWhilePlayerIn;
 
                 if (missedShotsCreditedToPlayer > 0) {
                   //TODO: ugh need to take total poss into account somehow since these are all %s already
