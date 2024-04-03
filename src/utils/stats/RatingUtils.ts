@@ -487,7 +487,7 @@ export class RatingUtils {
     const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part / FGM : 0;
     const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
 
-    const Efg_By_ShotType = Assists.map((locMap, index) => {
+    const Capped_Efg_By_ShotType = Assists.map((locMap, index) => {
       const shotLoc = locMap[0];
       const playerMap = locMap[1];
       var totalEfgCount = AssistsTotals[index]! || 1;
@@ -502,12 +502,13 @@ export class RatingUtils {
             (rosterStatsByCode[playerCode]?.[`off_${shotLoc}`]?.value ||
               Others_eFG / eFgPart1);
           //(if we can't find the player, we just fallback to using team eFG for all phases)
-          return playerEfg * count;
+
+          return capThreePtAssistPenalty(playerEfg, index) * count;
         }) / totalEfgCount
       );
     });
-    const AST_Part = Efg_By_ShotType.map((eFG, index) => {
-      return 0.5 * capThreePtAssistPenalty(eFG, index) * AssistsTotals[index]!;
+    const AST_Part = Capped_Efg_By_ShotType.map((cappedEffFG, index) => {
+      return 0.5 * cappedEffFG * AssistsTotals[index]!;
     });
 
     // We have the actual number of possessions, which means we can do better than the legacy:
@@ -749,7 +750,7 @@ export class RatingUtils {
             othersAssist: Others_AST,
             otherEfg: Other_eFG,
             otherEfgInfo: _.reverse(
-              Efg_By_ShotType.map((efg) => (100 * efg).toFixed(1))
+              Capped_Efg_By_ShotType.map((efg) => (100 * efg).toFixed(1))
             ), //(3p first)
             otherPtsPerFgm: Other_Pts_Per_FGM,
             teamOrbContribPct: Team_ORB_Contrib,
