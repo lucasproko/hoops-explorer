@@ -904,9 +904,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             }
 
             diag_off_rtg: {
-               "oRtg": 96.36310974319929,
-               "adjORtg": 101.36047005936106,
-               "adjORtgPlus": 0.2720940118722126
+               "oRtg": 96.34503767812875,
+               "adjORtg": 101.3392967833375,
+               "adjORtgPlus": 0.2678593566675005
             }
 
             off_2pmidr: Object {
@@ -933,13 +933,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_assist: Object {
@@ -977,7 +977,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 96.36310974319929,
+                        "value": 96.34503767812875,
                       }
 
             off_team_poss: Object {
@@ -4437,9 +4437,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -4466,13 +4466,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -4510,7 +4510,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -4724,9 +4724,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -4753,13 +4753,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -4797,7 +4797,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -6818,9 +6818,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_2pmidr: Object {
@@ -6847,13 +6847,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -6891,7 +6891,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -15061,21 +15061,21 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             }
 
             diag_off_rtg: {
-               "oRtg": 96.36310974319929,
-               "adjORtg": 101.36047005936106,
-               "adjORtgPlus": 0.2720940118722126
+               "oRtg": 96.34503767812875,
+               "adjORtg": 101.3392967833375,
+               "adjORtgPlus": 0.2678593566675005
             }
 
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_assist: Object {
@@ -15113,7 +15113,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 96.36310974319929,
+                        "value": 96.34503767812875,
                       }
 
             off_team_poss: Object {
@@ -17715,21 +17715,21 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -17767,7 +17767,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -17919,21 +17919,21 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -17971,7 +17971,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -20102,21 +20102,21 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -20154,7 +20154,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -20306,21 +20306,21 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -20358,7 +20358,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -22026,9 +22026,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             }
 
             diag_off_rtg: {
-               "oRtg": 96.36310974319929,
-               "adjORtg": 101.36047005936106,
-               "adjORtgPlus": 0.2720940118722126
+               "oRtg": 96.34503767812875,
+               "adjORtg": 101.3392967833375,
+               "adjORtgPlus": 0.2678593566675005
             }
 
             off_2pmidr: Object {
@@ -22055,13 +22055,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_assist: Object {
@@ -22105,7 +22105,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 96.36310974319929,
+                        "value": 96.34503767812875,
                       }
 
             off_team_poss: Object {
@@ -25421,9 +25421,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -25450,13 +25450,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -25500,7 +25500,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -25682,9 +25682,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -25711,13 +25711,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -25761,7 +25761,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -28668,9 +28668,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_2pmidr: Object {
@@ -28697,13 +28697,13 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -28747,7 +28747,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -29273,9 +29273,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   }
                   ortgDiags={
                     {
-   "oRtg": 96.36310974319929,
-   "adjORtg": 101.36047005936106,
-   "adjORtgPlus": 0.2720940118722126
+   "oRtg": 96.34503767812875,
+   "adjORtg": 101.3392967833375,
+   "adjORtgPlus": 0.2678593566675005
 }
                   }
                 />,
@@ -30816,21 +30816,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             }
 
             diag_off_rtg: {
-               "oRtg": 118.15362394683302,
-               "adjORtg": 129.94468855962242,
-               "adjORtgPlus": 5.988937711924485
+               "oRtg": 117.48199360976494,
+               "adjORtg": 129.12610664714194,
+               "adjORtgPlus": 5.825221329428388
             }
 
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 5.988937711924485,
+                        "value": 5.825221329428388,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 5.988937711924485,
+                        "value": 5.825221329428388,
                       }
 
             off_assist: Object {
@@ -30874,7 +30874,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 118.15362394683302,
+                        "value": 117.48199360976494,
                       }
 
             off_team_poss: Object {
@@ -31027,21 +31027,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             }
 
             diag_off_rtg: {
-               "oRtg": 96.36310974319929,
-               "adjORtg": 101.36047005936106,
-               "adjORtgPlus": 0.2720940118722126
+               "oRtg": 96.34503767812875,
+               "adjORtg": 101.3392967833375,
+               "adjORtgPlus": 0.2678593566675005
             }
 
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_assist: Object {
@@ -31085,7 +31085,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 96.36310974319929,
+                        "value": 96.34503767812875,
                       }
 
             off_team_poss: Object {
@@ -31673,21 +31673,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 118.15362394683302,
-                   "adjORtg": 129.94468855962242,
-                   "adjORtgPlus": 5.988937711924485
+                   "oRtg": 117.48199360976494,
+                   "adjORtg": 129.12610664714194,
+                   "adjORtgPlus": 5.825221329428388
                 }
 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 5.988937711924485,
+                                "value": 5.825221329428388,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 5.988937711924485,
+                                "value": 5.825221329428388,
                               }
 
                 off_assist: Object {
@@ -31731,7 +31731,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 118.15362394683302,
+                                "value": 117.48199360976494,
                               }
 
                 off_team_poss: Object {
@@ -31891,21 +31891,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 118.15362394683302,
-                   "adjORtg": 129.94468855962242,
-                   "adjORtgPlus": 5.988937711924485
+                   "oRtg": 117.48199360976494,
+                   "adjORtg": 129.12610664714194,
+                   "adjORtgPlus": 5.825221329428388
                 }
 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 5.988937711924485,
+                                "value": 5.825221329428388,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 5.988937711924485,
+                                "value": 5.825221329428388,
                               }
 
                 off_assist: Object {
@@ -31949,7 +31949,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 118.15362394683302,
+                                "value": 117.48199360976494,
                               }
 
                 off_team_poss: Object {
@@ -33863,21 +33863,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -33921,7 +33921,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -34081,21 +34081,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -34139,7 +34139,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -34334,21 +34334,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             }
 
             diag_off_rtg: {
-               "oRtg": 118.15362394683302,
-               "adjORtg": 129.94468855962242,
-               "adjORtgPlus": 5.988937711924485
+               "oRtg": 117.48199360976494,
+               "adjORtg": 129.12610664714194,
+               "adjORtgPlus": 5.825221329428388
             }
 
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 5.988937711924485,
+                        "value": 5.825221329428388,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 5.988937711924485,
+                        "value": 5.825221329428388,
                       }
 
             off_assist: Object {
@@ -34392,7 +34392,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 118.15362394683302,
+                        "value": 117.48199360976494,
                       }
 
             off_team_poss: Object {
@@ -38166,21 +38166,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -38224,7 +38224,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -38384,21 +38384,21 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -38442,7 +38442,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -39377,9 +39377,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   }
                   ortgDiags={
                     {
-   "oRtg": 96.36310974319929,
-   "adjORtg": 101.36047005936106,
-   "adjORtgPlus": 0.2720940118722126
+   "oRtg": 96.34503767812875,
+   "adjORtg": 101.3392967833375,
+   "adjORtgPlus": 0.2678593566675005
 }
                   }
                 />,
@@ -41944,9 +41944,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             diag_off_rtg: {
-               "oRtg": 96.36310974319929,
-               "adjORtg": 101.36047005936106,
-               "adjORtgPlus": 0.2720940118722126
+               "oRtg": 96.34503767812875,
+               "adjORtg": 101.3392967833375,
+               "adjORtgPlus": 0.2678593566675005
             }
 
             off_2pmidr: Object {
@@ -41977,15 +41977,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
             off_adj_prod: Object {
-                        "old_value": 0.2720940118722126,
+                        "old_value": 0.2678593566675005,
                         "override": "Luck adjusted",
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_adj_rtg: Object {
-                        "old_value": 0.2720940118722126,
+                        "old_value": 0.2678593566675005,
                         "override": "Luck adjusted",
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_assist: Object {
@@ -42027,9 +42027,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             off_rtg: Object {
-                        "old_value": 96.36310974319929,
+                        "old_value": 96.34503767812875,
                         "override": "Luck adjusted",
-                        "value": 96.36310974319929,
+                        "value": 96.34503767812875,
                       }
 
             off_team_poss: Object {
@@ -45417,9 +45417,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -45450,15 +45450,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               }
 
                 off_adj_prod: Object {
-                                "old_value": 0.2720940118722126,
+                                "old_value": 0.2678593566675005,
                                 "override": "Luck adjusted",
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
-                                "old_value": 0.2720940118722126,
+                                "old_value": 0.2678593566675005,
                                 "override": "Luck adjusted",
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -45500,9 +45500,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 off_rtg: Object {
-                                "old_value": 96.36310974319929,
+                                "old_value": 96.34503767812875,
                                 "override": "Luck adjusted",
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -45684,9 +45684,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -45717,15 +45717,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                               }
 
                 off_adj_prod: Object {
-                                "old_value": 0.2720940118722126,
+                                "old_value": 0.2678593566675005,
                                 "override": "Luck adjusted",
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
-                                "old_value": 0.2720940118722126,
+                                "old_value": 0.2678593566675005,
                                 "override": "Luck adjusted",
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -45767,9 +45767,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 off_rtg: Object {
-                                "old_value": 96.36310974319929,
+                                "old_value": 96.34503767812875,
                                 "override": "Luck adjusted",
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -48422,9 +48422,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_2pmidr: Object {
@@ -48455,15 +48455,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                   }
 
                   off_adj_prod: Object {
-                                    "old_value": 0.2720940118722126,
+                                    "old_value": 0.2678593566675005,
                                     "override": "Luck adjusted",
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
-                                    "old_value": 0.2720940118722126,
+                                    "old_value": 0.2678593566675005,
                                     "override": "Luck adjusted",
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -48505,9 +48505,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
 
                   off_rtg: Object {
-                                    "old_value": 96.36310974319929,
+                                    "old_value": 96.34503767812875,
                                     "override": "Luck adjusted",
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -48600,9 +48600,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
                   ortgDiags={
                     {
-   "oRtg": 96.36310974319929,
-   "adjORtg": 101.36047005936106,
-   "adjORtgPlus": 0.2720940118722126
+   "oRtg": 96.34503767812875,
+   "adjORtg": 101.3392967833375,
+   "adjORtgPlus": 0.2678593566675005
 }
                   }
                 />,
@@ -48711,9 +48711,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
                       diag_off_rtg: {
-                         "oRtg": 96.36310974319929,
-                         "adjORtg": 101.36047005936106,
-                         "adjORtgPlus": 0.2720940118722126
+                         "oRtg": 96.34503767812875,
+                         "adjORtg": 101.3392967833375,
+                         "adjORtgPlus": 0.2678593566675005
                       }
 
                       off_2pmidr: Object {
@@ -48744,15 +48744,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                           }
 
                       off_adj_prod: Object {
-                                            "old_value": 0.2720940118722126,
+                                            "old_value": 0.2678593566675005,
                                             "override": "Luck adjusted",
-                                            "value": 0.2720940118722126,
+                                            "value": 0.2678593566675005,
                                           }
 
                       off_adj_rtg: Object {
-                                            "old_value": 0.2720940118722126,
+                                            "old_value": 0.2678593566675005,
                                             "override": "Luck adjusted",
-                                            "value": 0.2720940118722126,
+                                            "value": 0.2678593566675005,
                                           }
 
                       off_assist: Object {
@@ -48794,9 +48794,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
                       off_rtg: Object {
-                                            "old_value": 96.36310974319929,
+                                            "old_value": 96.34503767812875,
                                             "override": "Luck adjusted",
-                                            "value": 96.36310974319929,
+                                            "value": 96.34503767812875,
                                           }
 
                       off_team_poss: Object {
@@ -50686,9 +50686,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             diag_off_rtg: {
-               "oRtg": 97.60841357153596,
-               "adjORtg": 102.63673239527307,
-               "adjORtgPlus": 0.5273464790546143
+               "oRtg": 97.59044298643057,
+               "adjORtg": 102.61566456530657,
+               "adjORtgPlus": 0.5231329130613148
             }
 
             off_2pmidr: Object {
@@ -50719,15 +50719,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
             off_adj_prod: Object {
-                        "old_value": 0.26927234118413707,
+                        "old_value": 0.265037242480534,
                         "override": "Luck adjusted",
-                        "value": 0.5273464790546143,
+                        "value": 0.5231329130613148,
                       }
 
             off_adj_rtg: Object {
-                        "old_value": 0.26927234118413707,
+                        "old_value": 0.265037242480534,
                         "override": "Luck adjusted",
-                        "value": 0.5273464790546143,
+                        "value": 0.5231329130613148,
                       }
 
             off_assist: Object {
@@ -50775,9 +50775,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             off_rtg: Object {
-                        "old_value": 96.35106785528048,
+                        "old_value": 96.33299365270064,
                         "override": "Luck adjusted",
-                        "value": 97.60841357153596,
+                        "value": 97.59044298643057,
                       }
 
             off_team_poss: Object {
@@ -50954,9 +50954,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             diag_off_rtg: {
-               "oRtg": 129.56313043135464,
-               "adjORtg": 133.59139377780113,
-               "adjORtgPlus": 6.718278755560227
+               "oRtg": 129.47262307358088,
+               "adjORtg": 133.4815685510607,
+               "adjORtgPlus": 6.696313710212138
             }
 
             off_2p: Object {
@@ -50999,15 +50999,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
             off_adj_prod: Object {
-                        "old_value": 0.7438594078004144,
+                        "old_value": 0.7199092719085058,
                         "override": "Derived from luck adjustments and manual overrides",
-                        "value": 6.718278755560227,
+                        "value": 6.696313710212138,
                       }
 
             off_adj_rtg: Object {
-                        "old_value": 0.7438594078004144,
+                        "old_value": 0.7199092719085058,
                         "override": "Derived from luck adjustments and manual overrides",
-                        "value": 6.718278755560227,
+                        "value": 6.696313710212138,
                       }
 
             off_assist: Object {
@@ -51055,9 +51055,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             off_rtg: Object {
-                        "old_value": 99.6692167361893,
+                        "old_value": 99.5665043323145,
                         "override": "Derived from luck adjustments and manual overrides",
-                        "value": 129.56313043135464,
+                        "value": 129.47262307358088,
                       }
 
             off_team_poss: Object {
@@ -53732,9 +53732,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 129.56313043135464,
-                   "adjORtg": 133.59139377780113,
-                   "adjORtgPlus": 6.718278755560227
+                   "oRtg": 129.47262307358088,
+                   "adjORtg": 133.4815685510607,
+                   "adjORtgPlus": 6.696313710212138
                 }
 
                 off_2p: Object {
@@ -53777,15 +53777,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               }
 
                 off_adj_prod: Object {
-                                "old_value": 0.7438594078004144,
+                                "old_value": 0.7199092719085058,
                                 "override": "Derived from luck adjustments and manual overrides",
-                                "value": 6.718278755560227,
+                                "value": 6.696313710212138,
                               }
 
                 off_adj_rtg: Object {
-                                "old_value": 0.7438594078004144,
+                                "old_value": 0.7199092719085058,
                                 "override": "Derived from luck adjustments and manual overrides",
-                                "value": 6.718278755560227,
+                                "value": 6.696313710212138,
                               }
 
                 off_assist: Object {
@@ -53833,9 +53833,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 off_rtg: Object {
-                                "old_value": 99.6692167361893,
+                                "old_value": 99.5665043323145,
                                 "override": "Derived from luck adjustments and manual overrides",
-                                "value": 129.56313043135464,
+                                "value": 129.47262307358088,
                               }
 
                 off_team_poss: Object {
@@ -54019,9 +54019,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 129.56313043135464,
-                   "adjORtg": 133.59139377780113,
-                   "adjORtgPlus": 6.718278755560227
+                   "oRtg": 129.47262307358088,
+                   "adjORtg": 133.4815685510607,
+                   "adjORtgPlus": 6.696313710212138
                 }
 
                 off_2p: Object {
@@ -54064,15 +54064,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               }
 
                 off_adj_prod: Object {
-                                "old_value": 0.7438594078004144,
+                                "old_value": 0.7199092719085058,
                                 "override": "Derived from luck adjustments and manual overrides",
-                                "value": 6.718278755560227,
+                                "value": 6.696313710212138,
                               }
 
                 off_adj_rtg: Object {
-                                "old_value": 0.7438594078004144,
+                                "old_value": 0.7199092719085058,
                                 "override": "Derived from luck adjustments and manual overrides",
-                                "value": 6.718278755560227,
+                                "value": 6.696313710212138,
                               }
 
                 off_assist: Object {
@@ -54120,9 +54120,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 off_rtg: Object {
-                                "old_value": 99.6692167361893,
+                                "old_value": 99.5665043323145,
                                 "override": "Derived from luck adjustments and manual overrides",
-                                "value": 129.56313043135464,
+                                "value": 129.47262307358088,
                               }
 
                 off_team_poss: Object {
@@ -54308,9 +54308,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 97.60841357153596,
-                   "adjORtg": 102.63673239527307,
-                   "adjORtgPlus": 0.5273464790546143
+                   "oRtg": 97.59044298643057,
+                   "adjORtg": 102.61566456530657,
+                   "adjORtgPlus": 0.5231329130613148
                 }
 
                 off_2pmidr: Object {
@@ -54341,15 +54341,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               }
 
                 off_adj_prod: Object {
-                                "old_value": 0.26927234118413707,
+                                "old_value": 0.265037242480534,
                                 "override": "Luck adjusted",
-                                "value": 0.5273464790546143,
+                                "value": 0.5231329130613148,
                               }
 
                 off_adj_rtg: Object {
-                                "old_value": 0.26927234118413707,
+                                "old_value": 0.265037242480534,
                                 "override": "Luck adjusted",
-                                "value": 0.5273464790546143,
+                                "value": 0.5231329130613148,
                               }
 
                 off_assist: Object {
@@ -54397,9 +54397,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 off_rtg: Object {
-                                "old_value": 96.35106785528048,
+                                "old_value": 96.33299365270064,
                                 "override": "Luck adjusted",
-                                "value": 97.60841357153596,
+                                "value": 97.59044298643057,
                               }
 
                 off_team_poss: Object {
@@ -54583,9 +54583,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 97.60841357153596,
-                   "adjORtg": 102.63673239527307,
-                   "adjORtgPlus": 0.5273464790546143
+                   "oRtg": 97.59044298643057,
+                   "adjORtg": 102.61566456530657,
+                   "adjORtgPlus": 0.5231329130613148
                 }
 
                 off_2pmidr: Object {
@@ -54616,15 +54616,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                               }
 
                 off_adj_prod: Object {
-                                "old_value": 0.26927234118413707,
+                                "old_value": 0.265037242480534,
                                 "override": "Luck adjusted",
-                                "value": 0.5273464790546143,
+                                "value": 0.5231329130613148,
                               }
 
                 off_adj_rtg: Object {
-                                "old_value": 0.26927234118413707,
+                                "old_value": 0.265037242480534,
                                 "override": "Luck adjusted",
-                                "value": 0.5273464790546143,
+                                "value": 0.5231329130613148,
                               }
 
                 off_assist: Object {
@@ -54672,9 +54672,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 off_rtg: Object {
-                                "old_value": 96.35106785528048,
+                                "old_value": 96.33299365270064,
                                 "override": "Luck adjusted",
-                                "value": 97.60841357153596,
+                                "value": 97.59044298643057,
                               }
 
                 off_team_poss: Object {
@@ -55161,9 +55161,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             diag_off_rtg: {
-               "oRtg": 129.56313043135464,
-               "adjORtg": 133.59139377780113,
-               "adjORtgPlus": 6.718278755560227
+               "oRtg": 129.47262307358088,
+               "adjORtg": 133.4815685510607,
+               "adjORtgPlus": 6.696313710212138
             }
 
             off_2p: Object {
@@ -55206,15 +55206,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
             off_adj_prod: Object {
-                        "old_value": 0.7438594078004144,
+                        "old_value": 0.7199092719085058,
                         "override": "Derived from luck adjustments and manual overrides",
-                        "value": 6.718278755560227,
+                        "value": 6.696313710212138,
                       }
 
             off_adj_rtg: Object {
-                        "old_value": 0.7438594078004144,
+                        "old_value": 0.7199092719085058,
                         "override": "Derived from luck adjustments and manual overrides",
-                        "value": 6.718278755560227,
+                        "value": 6.696313710212138,
                       }
 
             off_assist: Object {
@@ -55262,9 +55262,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             off_rtg: Object {
-                        "old_value": 99.6692167361893,
+                        "old_value": 99.5665043323145,
                         "override": "Derived from luck adjustments and manual overrides",
-                        "value": 129.56313043135464,
+                        "value": 129.47262307358088,
                       }
 
             off_team_poss: Object {
@@ -57042,9 +57042,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         }
 
                         diag_off_rtg: {
-                           "oRtg": 99.6692167361893,
-                           "adjORtg": 103.71929703900207,
-                           "adjORtgPlus": 0.7438594078004144
+                           "oRtg": 99.5665043323145,
+                           "adjORtg": 103.59954635954253,
+                           "adjORtgPlus": 0.7199092719085058
                         }
 
                         off_2pmidr: Object {
@@ -57071,13 +57071,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_adj_prod: Object {
                                                 "old_value": 0,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_adj_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_assist: Object {
@@ -57121,7 +57121,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 99.6692167361893,
+                                                "value": 99.5665043323145,
                                               }
 
                         off_team_poss: Object {
@@ -58487,9 +58487,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         }
 
                         diag_off_rtg: {
-                           "oRtg": 99.6692167361893,
-                           "adjORtg": 103.71929703900207,
-                           "adjORtgPlus": 0.7438594078004144
+                           "oRtg": 99.5665043323145,
+                           "adjORtg": 103.59954635954253,
+                           "adjORtgPlus": 0.7199092719085058
                         }
 
                         off_2pmidr: Object {
@@ -58516,13 +58516,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_adj_prod: Object {
                                                 "old_value": 0,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_adj_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_assist: Object {
@@ -58566,7 +58566,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 99.6692167361893,
+                                                "value": 99.5665043323145,
                                               }
 
                         off_team_poss: Object {
@@ -59057,9 +59057,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 97.60841357153596,
-                     "adjORtg": 102.63673239527307,
-                     "adjORtgPlus": 0.5273464790546143
+                     "oRtg": 97.59044298643057,
+                     "adjORtg": 102.61566456530657,
+                     "adjORtgPlus": 0.5231329130613148
                   }
 
                   off_2pmidr: Object {
@@ -59090,15 +59090,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                   }
 
                   off_adj_prod: Object {
-                                    "old_value": 0.26927234118413707,
+                                    "old_value": 0.265037242480534,
                                     "override": "Luck adjusted",
-                                    "value": 0.5273464790546143,
+                                    "value": 0.5231329130613148,
                                   }
 
                   off_adj_rtg: Object {
-                                    "old_value": 0.26927234118413707,
+                                    "old_value": 0.265037242480534,
                                     "override": "Luck adjusted",
-                                    "value": 0.5273464790546143,
+                                    "value": 0.5231329130613148,
                                   }
 
                   off_assist: Object {
@@ -59146,9 +59146,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
 
                   off_rtg: Object {
-                                    "old_value": 96.35106785528048,
+                                    "old_value": 96.33299365270064,
                                     "override": "Luck adjusted",
-                                    "value": 97.60841357153596,
+                                    "value": 97.59044298643057,
                                   }
 
                   off_team_poss: Object {
@@ -59243,9 +59243,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
                   ortgDiags={
                     {
-   "oRtg": 97.60841357153596,
-   "adjORtg": 102.63673239527307,
-   "adjORtgPlus": 0.5273464790546143
+   "oRtg": 97.59044298643057,
+   "adjORtg": 102.61566456530657,
+   "adjORtgPlus": 0.5231329130613148
 }
                   }
                 />,
@@ -59354,9 +59354,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       diag_off_rtg: {
-                         "oRtg": 97.60841357153596,
-                         "adjORtg": 102.63673239527307,
-                         "adjORtgPlus": 0.5273464790546143
+                         "oRtg": 97.59044298643057,
+                         "adjORtg": 102.61566456530657,
+                         "adjORtgPlus": 0.5231329130613148
                       }
 
                       off_2pmidr: Object {
@@ -59387,15 +59387,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           }
 
                       off_adj_prod: Object {
-                                            "old_value": 0.26927234118413707,
+                                            "old_value": 0.265037242480534,
                                             "override": "Luck adjusted",
-                                            "value": 0.5273464790546143,
+                                            "value": 0.5231329130613148,
                                           }
 
                       off_adj_rtg: Object {
-                                            "old_value": 0.26927234118413707,
+                                            "old_value": 0.265037242480534,
                                             "override": "Luck adjusted",
-                                            "value": 0.5273464790546143,
+                                            "value": 0.5231329130613148,
                                           }
 
                       off_assist: Object {
@@ -59443,9 +59443,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       off_rtg: Object {
-                                            "old_value": 96.35106785528048,
+                                            "old_value": 96.33299365270064,
                                             "override": "Luck adjusted",
-                                            "value": 97.60841357153596,
+                                            "value": 97.59044298643057,
                                           }
 
                       off_team_poss: Object {
@@ -59656,9 +59656,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       diag_off_rtg: {
-                         "oRtg": 97.60841357153596,
-                         "adjORtg": 102.63673239527307,
-                         "adjORtgPlus": 0.5273464790546143
+                         "oRtg": 97.59044298643057,
+                         "adjORtg": 102.61566456530657,
+                         "adjORtgPlus": 0.5231329130613148
                       }
 
                       off_2pmidr: Object {
@@ -59689,15 +59689,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                           }
 
                       off_adj_prod: Object {
-                                            "old_value": 0.26927234118413707,
+                                            "old_value": 0.265037242480534,
                                             "override": "Luck adjusted",
-                                            "value": 0.5273464790546143,
+                                            "value": 0.5231329130613148,
                                           }
 
                       off_adj_rtg: Object {
-                                            "old_value": 0.26927234118413707,
+                                            "old_value": 0.265037242480534,
                                             "override": "Luck adjusted",
-                                            "value": 0.5273464790546143,
+                                            "value": 0.5231329130613148,
                                           }
 
                       off_assist: Object {
@@ -59745,9 +59745,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       off_rtg: Object {
-                                            "old_value": 96.35106785528048,
+                                            "old_value": 96.33299365270064,
                                             "override": "Luck adjusted",
-                                            "value": 97.60841357153596,
+                                            "value": 97.59044298643057,
                                           }
 
                       off_team_poss: Object {
@@ -59935,9 +59935,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         }
 
                         diag_off_rtg: {
-                           "oRtg": 99.6692167361893,
-                           "adjORtg": 103.71929703900207,
-                           "adjORtgPlus": 0.7438594078004144
+                           "oRtg": 99.5665043323145,
+                           "adjORtg": 103.59954635954253,
+                           "adjORtgPlus": 0.7199092719085058
                         }
 
                         off_2pmidr: Object {
@@ -59964,13 +59964,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_adj_prod: Object {
                                                 "old_value": 0,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_adj_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_assist: Object {
@@ -60014,7 +60014,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 99.6692167361893,
+                                                "value": 99.5665043323145,
                                               }
 
                         off_team_poss: Object {
@@ -61359,9 +61359,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         }
 
                         diag_off_rtg: {
-                           "oRtg": 99.6692167361893,
-                           "adjORtg": 103.71929703900207,
-                           "adjORtgPlus": 0.7438594078004144
+                           "oRtg": 99.5665043323145,
+                           "adjORtg": 103.59954635954253,
+                           "adjORtgPlus": 0.7199092719085058
                         }
 
                         off_2pmidr: Object {
@@ -61388,13 +61388,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_adj_prod: Object {
                                                 "old_value": 0,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_adj_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 0.7438594078004144,
+                                                "value": 0.7199092719085058,
                                               }
 
                         off_assist: Object {
@@ -61438,7 +61438,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         off_rtg: Object {
                                                 "old_value": undefined,
                                                 "override": undefined,
-                                                "value": 99.6692167361893,
+                                                "value": 99.5665043323145,
                                               }
 
                         off_team_poss: Object {
@@ -62953,9 +62953,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             }
 
             diag_off_rtg: {
-               "oRtg": 96.36310974319929,
-               "adjORtg": 101.36047005936106,
-               "adjORtgPlus": 0.2720940118722126
+               "oRtg": 96.34503767812875,
+               "adjORtg": 101.3392967833375,
+               "adjORtgPlus": 0.2678593566675005
             }
 
             off_2pmidr: Object {
@@ -62982,13 +62982,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.2720940118722126,
+                        "value": 0.2678593566675005,
                       }
 
             off_assist: Object {
@@ -63032,7 +63032,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 96.36310974319929,
+                        "value": 96.34503767812875,
                       }
 
             off_team_poss: Object {
@@ -63205,9 +63205,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             }
 
             diag_off_rtg: {
-               "oRtg": 99.6692167361893,
-               "adjORtg": 103.71929703900207,
-               "adjORtgPlus": 0.7438594078004144
+               "oRtg": 99.5665043323145,
+               "adjORtg": 103.59954635954253,
+               "adjORtgPlus": 0.7199092719085058
             }
 
             off_2pmidr: Object {
@@ -63234,13 +63234,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.7438594078004144,
+                        "value": 0.7199092719085058,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.7438594078004144,
+                        "value": 0.7199092719085058,
                       }
 
             off_assist: Object {
@@ -63284,7 +63284,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 99.6692167361893,
+                        "value": 99.5665043323145,
                       }
 
             off_team_poss: Object {
@@ -65835,9 +65835,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 99.6692167361893,
-                   "adjORtg": 103.71929703900207,
-                   "adjORtgPlus": 0.7438594078004144
+                   "oRtg": 99.5665043323145,
+                   "adjORtg": 103.59954635954253,
+                   "adjORtgPlus": 0.7199092719085058
                 }
 
                 off_2pmidr: Object {
@@ -65864,13 +65864,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.7438594078004144,
+                                "value": 0.7199092719085058,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.7438594078004144,
+                                "value": 0.7199092719085058,
                               }
 
                 off_assist: Object {
@@ -65914,7 +65914,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 99.6692167361893,
+                                "value": 99.5665043323145,
                               }
 
                 off_team_poss: Object {
@@ -66094,9 +66094,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 99.6692167361893,
-                   "adjORtg": 103.71929703900207,
-                   "adjORtgPlus": 0.7438594078004144
+                   "oRtg": 99.5665043323145,
+                   "adjORtg": 103.59954635954253,
+                   "adjORtgPlus": 0.7199092719085058
                 }
 
                 off_2pmidr: Object {
@@ -66123,13 +66123,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.7438594078004144,
+                                "value": 0.7199092719085058,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.7438594078004144,
+                                "value": 0.7199092719085058,
                               }
 
                 off_assist: Object {
@@ -66173,7 +66173,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 99.6692167361893,
+                                "value": 99.5665043323145,
                               }
 
                 off_team_poss: Object {
@@ -66355,9 +66355,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -66384,13 +66384,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -66434,7 +66434,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -66614,9 +66614,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 96.36310974319929,
-                   "adjORtg": 101.36047005936106,
-                   "adjORtgPlus": 0.2720940118722126
+                   "oRtg": 96.34503767812875,
+                   "adjORtg": 101.3392967833375,
+                   "adjORtgPlus": 0.2678593566675005
                 }
 
                 off_2pmidr: Object {
@@ -66643,13 +66643,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_adj_prod: Object {
                                 "old_value": 0,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 0.2720940118722126,
+                                "value": 0.2678593566675005,
                               }
 
                 off_assist: Object {
@@ -66693,7 +66693,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 off_rtg: Object {
                                 "old_value": undefined,
                                 "override": undefined,
-                                "value": 96.36310974319929,
+                                "value": 96.34503767812875,
                               }
 
                 off_team_poss: Object {
@@ -67172,9 +67172,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             }
 
             diag_off_rtg: {
-               "oRtg": 99.6692167361893,
-               "adjORtg": 103.71929703900207,
-               "adjORtgPlus": 0.7438594078004144
+               "oRtg": 99.5665043323145,
+               "adjORtg": 103.59954635954253,
+               "adjORtgPlus": 0.7199092719085058
             }
 
             off_2pmidr: Object {
@@ -67201,13 +67201,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             off_adj_prod: Object {
                         "old_value": 0,
                         "override": undefined,
-                        "value": 0.7438594078004144,
+                        "value": 0.7199092719085058,
                       }
 
             off_adj_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 0.7438594078004144,
+                        "value": 0.7199092719085058,
                       }
 
             off_assist: Object {
@@ -67251,7 +67251,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             off_rtg: Object {
                         "old_value": undefined,
                         "override": undefined,
-                        "value": 99.6692167361893,
+                        "value": 99.5665043323145,
                       }
 
             off_team_poss: Object {
@@ -69316,9 +69316,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   }
 
                   diag_off_rtg: {
-                     "oRtg": 96.36310974319929,
-                     "adjORtg": 101.36047005936106,
-                     "adjORtgPlus": 0.2720940118722126
+                     "oRtg": 96.34503767812875,
+                     "adjORtg": 101.3392967833375,
+                     "adjORtgPlus": 0.2678593566675005
                   }
 
                   off_2pmidr: Object {
@@ -69345,13 +69345,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   off_adj_prod: Object {
                                     "old_value": 0,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_adj_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 0.2720940118722126,
+                                    "value": 0.2678593566675005,
                                   }
 
                   off_assist: Object {
@@ -69395,7 +69395,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   off_rtg: Object {
                                     "old_value": undefined,
                                     "override": undefined,
-                                    "value": 96.36310974319929,
+                                    "value": 96.34503767812875,
                                   }
 
                   off_team_poss: Object {
@@ -69486,9 +69486,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   }
                   ortgDiags={
                     {
-   "oRtg": 96.36310974319929,
-   "adjORtg": 101.36047005936106,
-   "adjORtgPlus": 0.2720940118722126
+   "oRtg": 96.34503767812875,
+   "adjORtg": 101.3392967833375,
+   "adjORtgPlus": 0.2678593566675005
 }
                   }
                 />,
@@ -69597,9 +69597,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       }
 
                       diag_off_rtg: {
-                         "oRtg": 96.36310974319929,
-                         "adjORtg": 101.36047005936106,
-                         "adjORtgPlus": 0.2720940118722126
+                         "oRtg": 96.34503767812875,
+                         "adjORtg": 101.3392967833375,
+                         "adjORtgPlus": 0.2678593566675005
                       }
 
                       off_2pmidr: Object {
@@ -69626,13 +69626,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       off_adj_prod: Object {
                                             "old_value": 0,
                                             "override": undefined,
-                                            "value": 0.2720940118722126,
+                                            "value": 0.2678593566675005,
                                           }
 
                       off_adj_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
-                                            "value": 0.2720940118722126,
+                                            "value": 0.2678593566675005,
                                           }
 
                       off_assist: Object {
@@ -69676,7 +69676,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       off_rtg: Object {
                                             "old_value": undefined,
                                             "override": undefined,
-                                            "value": 96.36310974319929,
+                                            "value": 96.34503767812875,
                                           }
 
                       off_team_poss: Object {

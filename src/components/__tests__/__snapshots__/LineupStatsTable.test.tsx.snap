@@ -11214,7 +11214,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -11690,7 +11690,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -12169,7 +12169,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -12645,7 +12645,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -13124,7 +13124,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -13600,7 +13600,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -15101,7 +15101,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -15577,7 +15577,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -16056,7 +16056,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -16532,7 +16532,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -17011,7 +17011,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
@@ -17487,7 +17487,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#ffe2e280",
+                                                "backgroundColor": "#ffe1e180",
                                               }
                                             }
                                             variant="light"
