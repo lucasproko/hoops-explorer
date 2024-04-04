@@ -39,6 +39,14 @@ type DiagCodes =
 /** For a given stat/projection, how/why we changed it */
 type TeamEditorDiagObject = { [K in DiagCodes]?: number };
 
+/** Allow for different settings in the prediction model - these started out as hard coded where needed so
+ * they are just getting moved across as needed
+ */
+type PredictionSettings = {
+  /** If true then use usage*poss_count to decide how much of previous year's results to take into account  */
+  include_usage_in_off_regression: boolean;
+};
+
 /** For a given player, a set of all the changes to their projection */
 type TeamEditorDiags = {
   off_rtg: {
@@ -157,6 +165,18 @@ export type TeamEditorProcessingResults = {
 
 /** Data manipulation functions for the TeamEditorTable */
 export class TeamEditorUtils {
+  static readonly legacySettings: PredictionSettings = {
+    //TODO: add a currentSettings, and assign the settings to use (with include_usage_in_off_regression:true)
+    include_usage_in_off_regression: false,
+    //TODO: ideas:
+    // - buff RAPM for up-transfers who are efficient at a good volume but have RAPM < Adj Rtg (seems like that's not their fault!?)
+    // - buff def RAPM for higher usage players who are projected to have lower usage
+    // - smarter buffs/nerfs for defense for up-transfers (eg compare with their team average, apply that to "below average for team")
+    // More complex:
+    // - run a semi-"monte carlo" where players hit their ceilings/floors (should give upside/downside/depth bonuses)
+    // - better "bench players" / "coaching factor" team type aspects
+  };
+
   static readonly genericBenchUsage = 0.18;
   static readonly genericFrUsage = 0.18;
 
@@ -314,6 +334,8 @@ export class TeamEditorUtils {
     /** pass this in because we have to search it for transfers, so in leaderboard board (all teams at once) want to partition it */
     prevYearFrList: Record<string, TeamEditorManualFixModel>
   ): TeamEditorProcessingResults {
+    const settings = TeamEditorUtils.legacySettings; //TODO: should be possible to override this, or set it by year
+
     const specialCase = () => {
       // In "year==All" mode, if 5 players are present from the same selected team, then pick that as the base year
       const specialCaseKey = _.chain(addedPlayersIn)
@@ -673,7 +695,8 @@ export class TeamEditorUtils {
       unpausedOverrides,
       offSeasonMode,
       benchEstimates,
-      prevYearFrList
+      prevYearFrList,
+      settings
     );
     TeamEditorUtils.calcAndInjectMinsAssignment(
       basePlayersPlusHypos,
@@ -1349,6 +1372,8 @@ export class TeamEditorUtils {
     year: string,
     avgEff: number
   ): PureStatSet {
+    const settings = TeamEditorUtils.legacySettings; //TODO: should be possible to override this (but always use the current one if not)
+
     const rosterOfOne: GoodBadOkTriple[] = [
       {
         key: player.code || "",
@@ -1389,7 +1414,8 @@ export class TeamEditorUtils {
       {},
       true,
       benchEstimates,
-      {}
+      {},
+      settings
     );
     const okPrediction = rosterOfOne[0]!.ok;
     return {
@@ -1411,7 +1437,8 @@ export class TeamEditorUtils {
     overrides: Record<string, PlayerEditModel>,
     offSeasonMode: boolean,
     benchEstimates: IndivStatSet[],
-    prevYearFrList: Record<string, TeamEditorManualFixModel> //(indexed by team)
+    prevYearFrList: Record<string, TeamEditorManualFixModel>, //(indexed by team)
+    settings: PredictionSettings
   ) {
     /** Handy a util to make the diagnostics mode a bit more readable */
     const tidy = (inJson: TeamEditorDiagObject) => {
@@ -1700,8 +1727,18 @@ export class TeamEditorUtils {
       prevYear: IndivStatSet | undefined,
       adjPrevYear: PureStatSet
     ) => {
-      const thisYearPossWeighted = (player.off_poss?.value || 0) * 3; // 3:1
-      const lastYearPossWeightedTmp = prevYear?.off_poss?.value || 0;
+      const possMaybeWeightedByUsage = (
+        stats: PureStatSet | undefined,
+        weight: number
+      ) => {
+        const unweightedPoss = (stats?.off_poss?.value || 0) * weight;
+        const maybeWeighted = settings.include_usage_in_off_regression
+          ? unweightedPoss * (stats?.off_usage?.value || 0)
+          : unweightedPoss;
+        return maybeWeighted;
+      };
+      const thisYearPossWeighted = possMaybeWeightedByUsage(player, 3); // 3:1
+      const lastYearPossWeightedTmp = possMaybeWeightedByUsage(prevYear, 1);
 
       const lastYearPossWeighted = Math.min(
         lastYearPossWeightedTmp,
