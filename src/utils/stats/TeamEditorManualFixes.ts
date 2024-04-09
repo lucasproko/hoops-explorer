@@ -990,9 +990,29 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
+        const manualOverrides_Men_2024_25: Record<
+          string,
+          TeamEditorManualFixModel
+        > = {
+          Maryland: {
+            superSeniorsReturning: new Set(["JoGeronimo::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              //Was OKish as a T75 Fr in limited time, missed a year - so wild guess!
+              "": {
+                "Rice, Rodney": {
+                  pos: "CG",
+                  pr: "4*",
+                  c: "RoRice",
+                  h: "6-4",
+                  r: 90,
+                },
+              },
+            })[""],
+          },
+        };
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
           mutableToRet,
-          {},
+          manualOverrides_Men_2024_25,
           {},
           {} //(use prev season until have calculated this season's)
         );
