@@ -5,10 +5,10 @@ sed -i "-backup" s/MEN_CURR_UPDATE=.*/MEN_CURR_UPDATE=$NEW_DATE/ .env
 sed -i "-backup" s/WOMEN_CURR_UPDATE=.*/WOMEN_CURR_UPDATE=$NEW_DATE/ .env
 echo "Now call 'source .env'"
 # Update the env variables in vercel:
-echo "y" | vercel --token $VERCEL_TOKEN secrets rm men-curr-update
-vercel --token $VERCEL_TOKEN secrets add men-curr-update $NEW_DATE
-echo "y" | vercel --token $VERCEL_TOKEN secrets rm women-curr-update
-vercel --token $VERCEL_TOKEN secrets add women-curr-update $NEW_DATE
+vercel env rm MEN_CURR_UPDATE
+vercel env rm WOMEN_CURR_UPDATE
+echo "$NEW_DATE" | vercel env add MEN_CURR_UPDATE production
+echo "$NEW_DATE" | vercel env add WOMEN_CURR_UPDATE production
 # Redeploy app (so that server side cache gets the new data)
 if [ "$REDEPLOY_HOOK_ID" == "--skip" ]; then
   echo "Skip redeploy"
