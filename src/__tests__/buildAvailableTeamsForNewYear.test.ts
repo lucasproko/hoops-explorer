@@ -2,7 +2,7 @@ import {
   AvailableTeamMeta,
   AvailableTeams,
 } from "../utils/internal-data/AvailableTeams";
-import { latestConfChanges } from "../utils/public-data/ConferenceInfo";
+import { latestConfChanges_yearlyDiffs } from "../utils/public-data/ConferenceInfo";
 import { DateUtils } from "../utils/DateUtils";
 import _ from "lodash";
 
@@ -26,7 +26,7 @@ describe("buildAvailableTeamsForNewYear", () => {
                 const newTeamYear = _.cloneDeep(teamYear);
                 newTeamYear.year = newYear;
                 newTeamYear.index_template = _.thru(
-                  latestConfChanges[newYear]?.[teamName],
+                  latestConfChanges_yearlyDiffs[newYear]?.[teamName],
                   (maybeConfChange) => {
                     if (maybeConfChange) {
                       return `???CHANGE??? ${maybeConfChange}`;

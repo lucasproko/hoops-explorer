@@ -419,6 +419,7 @@ export class OffseasonLeaderboardUtils {
 
         //TODO; centralize this conf logic (also used in TeamEditorTable)
         const offseasonConfChanges = latestConfChanges[year] || {};
+
         const confLookupToUse =
           efficiencyInfo[`${gender}_${yearWithStats}`] ||
           efficiencyInfo[`${gender}_Latest`];

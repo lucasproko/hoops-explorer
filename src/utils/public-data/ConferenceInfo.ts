@@ -102,90 +102,158 @@ export const getConfAdjustment = (confStr: string, year: string) => {
   return 0;
 };
 
+//////////////////////////////////////////////
+
+// CONFERENCE CHANGE LOGIC
+
+/**
+ * h/t Jun 2022: https://medium.com/run-it-back-with-zach/conference-realignment-all-the-moves-coming-in-2022-25-130ef706da55
+ */
+const latestConfChanges_2022 = {
+  // Sun Belt
+  "James Madison": "Sun Belt Conference", //(CAA)
+  Marshall: "Sun Belt Conference", //(C-USA)
+  "Old Dominion": "Sun Belt Conference", //(C-USA)
+  "Southern Miss.": "Sun Belt Conference", //(C-USA)
+
+  // Atlantic Sun
+  "Austin Peay": "ASUN Conference", //(OVC)
+  // (Queens from D2)
+
+  // Western Athletic Conference
+
+  "Southern Utah": "Western Athletic Conference", //(bigsky)
+  "UT Arlington": "Western Athletic Conference", //(sunbelt)
+  // 2023?: "UIW": "Western Athletic Conference", //(southland)
+
+  // Colonial Athletic Association
+  Hampton: "Colonial Athletic Association", //(bigsouth)
+  Monmouth: "Colonial Athletic Association", //(maac)
+  "N.C. A&T": "Colonial Athletic Association", //(bigsouth)
+  "Stony Brook": "Colonial Athletic Association", //(americaeast)
+
+  // Atlantic 10 Conference
+  "Loyola Chicago": "Atlantic 10 Conference", //(mvc)
+
+  // Ohio Valley Conference
+  "Little Rock": "Ohio Valley Conference", //(sunbelt)
+  // (Lindenwood, Southern Indiana from D2)
+
+  // Missouri Valley Conference
+  Belmont: "Missouri Valley Conference", //(ovc)
+  UIC: "Missouri Valley Conference", //(horizon)
+  "Murray St.": "Missouri Valley Conference", //(ovc)
+
+  //Metro Atlantic Athletic Conference
+  "Mount St. Mary's": "Metro Atlantic Athletic Conference", //(nec)
+
+  // America East Conference
+  Bryant: "America East Conference", //(nec)
+
+  // Northeast Conference
+  // (Stonehill from D2)
+};
+/** https://sportsenthusiasts.net/2022/07/02/college-sports-realignment-for-2023-and-beyond/ */
+const latestConfChanges_2023 = {
+  //AAC
+  Charlotte: "American Athletic Conference", //(conferenceusa)
+  "Fla. Atlantic": "American Athletic Conference", //(conferenceusa)
+  "North Texas": "American Athletic Conference", //(conferenceusa)
+  Rice: "American Athletic Conference", //(conferenceusa)
+  UAB: "American Athletic Conference", //(conferenceusa)
+  UTSA: "American Athletic Conference", //(conferenceusa)
+
+  //B12
+  Cincinnati: "Big 12 Conference", //(american)
+  Houston: "Big 12 Conference", //(american)
+  UCF: "Big 12 Conference", //(american)
+  BYU: "Big 12 Conference", //(wcc)
+
+  // Conference USA
+  "Jacksonville St.": "Conference USA", //(asun)
+  Liberty: "Conference USA", //(asun)
+  "New Mexico St.": "Conference USA", //(wac)
+  "Sam Houston": "Conference USA", //(wac)
+
+  // CAA
+  Campbell: "Colonial Athletic Association", //(big south)
+
+  // Western Athletic Conference
+
+  //Southland
+  "Lamar University": "Southland Conference", //(wac - actually were in southland but i missed it)
+
+  // Dropping out of D1:
+  Hartford: "NCAA D3",
+  "St. Francis Brooklyn": "No NCAA",
+};
+/** https://en.wikipedia.org/wiki/2021–2024_NCAA_conference_realignment#List_of_FBS_schools_changing_conferences_since_2022 */
+const latestConfChanges_2024 = {
+  //ACC
+  California: "Atlantic Coast Conference", //(pactwelve)
+  SMU: "Atlantic Coast Conference", //(american)
+  Stanford: "Atlantic Coast Conference", //(pactwelve)
+
+  //BIG
+  UCLA: "Big Ten Conference", //(pactwelve)
+  "Southern California": "Big Ten Conference", //(pactwelve)
+  Oregon: "Big Ten Conference", //(pactwelve)
+  Washington: "Big Ten Conference", //(pactwelve)
+
+  //B12
+  Arizona: "Big 12 Conference", //(pactwelve)
+  "Arizona St.": "Big 12 Conference", //(pactwelve)
+  Colorado: "Big 12 Conference", //(pactwelve)
+  Utah: "Big 12 Conference", //(pactwelve)
+
+  //SEC
+  Oklahoma: "Southeastern Conference", //(bigtwelve)
+  Texas: "Southeastern Conference", //(bigtwelve)
+
+  // NEC
+  "Chicago St.": "Northeast Conference", // (ind; although I incorrectly had this team as wac)
+
+  // MAAC
+  Merrimack: "Metro Atlantic Athletic Conference", // (nec)
+  "Sacred Heart": "Metro Atlantic Athletic Conference", // (nec)
+
+  //WCC
+  "Oregon St.": "West Coast Conference", //(P12!)
+  "Washington St.": "West Coast Conference", //(P12!)
+
+  // Southland
+  UTRGV: "Southland Conference", //(wac)
+
+  //Conference USA
+  "Kennesaw St.": "Conference USA", //(asun)
+};
+
 /** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in
  * off-season projects correct
  */
 export const latestConfChanges = {
-  /**
-   * h/t Jun 2022: https://medium.com/run-it-back-with-zach/conference-realignment-all-the-moves-coming-in-2022-25-130ef706da55
-   */
-  "2022/23": {
-    // Sun Belt
-    "James Madison": "Sun Belt Conference", //(CAA)
-    Marshall: "Sun Belt Conference", //(C-USA)
-    "Old Dominion": "Sun Belt Conference", //(C-USA)
-    "Southern Miss.": "Sun Belt Conference", //(C-USA)
+  "2022/23": latestConfChanges_2022,
 
-    // Atlantic Sun
-    "Austin Peay": "ASUN Conference", //(OVC)
-    // (Queens from D2)
-
-    // Western Athletic Conference
-
-    "Southern Utah": "Western Athletic Conference", //(bigsky)
-    "UT Arlington": "Western Athletic Conference", //(sunbelt)
-    // 2023?: "UIW": "Western Athletic Conference", //(southland)
-
-    // Colonial Athletic Association
-    Hampton: "Colonial Athletic Association", //(bigsouth)
-    Monmouth: "Colonial Athletic Association", //(maac)
-    "N.C. A&T": "Colonial Athletic Association", //(bigsouth)
-    "Stony Brook": "Colonial Athletic Association", //(americaeast)
-
-    // Atlantic 10 Conference
-    "Loyola Chicago": "Atlantic 10 Conference", //(mvc)
-
-    // Ohio Valley Conference
-    "Little Rock": "Ohio Valley Conference", //(sunbelt)
-    // (Lindenwood, Southern Indiana from D2)
-
-    // Missouri Valley Conference
-    Belmont: "Missouri Valley Conference", //(ovc)
-    UIC: "Missouri Valley Conference", //(horizon)
-    "Murray St.": "Missouri Valley Conference", //(ovc)
-
-    //Metro Atlantic Athletic Conference
-    "Mount St. Mary's": "Metro Atlantic Athletic Conference", //(nec)
-
-    // America East Conference
-    Bryant: "America East Conference", //(nec)
-
-    // Northeast Conference
-    // (Stonehill from D2)
-  },
-
-  /** https://sportsenthusiasts.net/2022/07/02/college-sports-realignment-for-2023-and-beyond/ */
   "2023/24": {
-    //AAC
-    Charlotte: "American Athletic Conference", //(conferenceusa)
-    "Fla. Atlantic": "American Athletic Conference", //(conferenceusa)
-    "North Texas": "American Athletic Conference", //(conferenceusa)
-    Rice: "American Athletic Conference", //(conferenceusa)
-    UAB: "American Athletic Conference", //(conferenceusa)
-    UTSA: "American Athletic Conference", //(conferenceusa)
-
-    //B12
-    Cincinnati: "Big 12 Conference", //(american)
-    Houston: "Big 12 Conference", //(american)
-    UCF: "Big 12 Conference", //(american)
-    BYU: "Big 12 Conference", //(wcc)
-
-    // Conference USA
-    "Jacksonville St.": "Conference USA", //(asun)
-    Liberty: "Conference USA", //(asun)
-    "New Mexico St.": "Conference USA", //(wac)
-    "Sam Houston": "Conference USA", //(wac)
-
-    // CAA
-    Campbell: "Colonial Athletic Association", //(big south)
-
-    // Western Athletic Conference
-
-    //Southland
-    "Lamar University": "Southland Conference", //(wac - actually were in southland but i missed it)
-
-    // Dropping out of D1:
-    Hartford: "NCAA D3",
-    "St. Francis Brooklyn": "No NCAA",
+    ...latestConfChanges_2022,
+    ...latestConfChanges_2023,
   },
+
+  "2024/25": {
+    ...latestConfChanges_2022,
+    ...latestConfChanges_2023,
+    ...latestConfChanges_2024,
+  },
+} as Record<string, Record<string, string>>;
+
+/** During the off-season (ie before I've fixed the ingest pipeline) these are applied to make the conferences in
+ * off-season projects correct
+ * FOR BUILDING OFF-SEASON PIPELINE,
+ */
+export const latestConfChanges_yearlyDiffs = {
+  "2022/23": latestConfChanges_2022,
+
+  "2023/24": latestConfChanges_2023,
+
+  "2024/25": latestConfChanges_2024,
 } as Record<string, Record<string, string>>;
