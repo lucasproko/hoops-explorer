@@ -195,7 +195,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
         backdrop="static"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Input Error</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           If you want to zero a player's minutes, just click the 'Filter' button
