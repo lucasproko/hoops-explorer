@@ -990,10 +990,30 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
+        // Super seniors (final time!!), Rothstein up to 4/13
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
         > = {
+          Auburn: {
+            superSeniorsReturning: new Set(["AnScreen::"]),
+          },
+          Butler: {
+            superSeniorsReturning: new Set(["DyCardwell::"]),
+          },
+          "Georgia Tech": {
+            superSeniorsReturning: new Set(["LaTerry::"]),
+          },
+          Houston: {
+            superSeniorsReturning: new Set([
+              "MyWilson::",
+              "LjCryer::",
+              "J'Roberts::",
+            ]),
+          },
+          "Loyola Chicago": {
+            superSeniorsReturning: new Set(["ShEdwards::"]),
+          },
           Maryland: {
             superSeniorsReturning: new Set(["JoGeronimo::"]),
             ...TeamEditorManualFixes.buildOverrides({
@@ -1008,6 +1028,48 @@ export class TeamEditorManualFixes {
                 },
               },
             })[""],
+          },
+          Miami: {
+            superSeniorsReturning: new Set(["NiPack::"]),
+          },
+          Minnesota: {
+            superSeniorsReturning: new Set(["PaFox::"]),
+          },
+          "Mississippi St.": {
+            superSeniorsReturning: new Set(["CaMatthews::"]),
+          },
+          Nebraska: {
+            superSeniorsReturning: new Set(["BrWilliams::", "JuGary::"]),
+          },
+          Nevada: {
+            superSeniorsReturning: new Set(["TrColeman::", "DaFoster::"]),
+          },
+          "New Mexico": {
+            superSeniorsReturning: new Set(["NeJoseph::"]),
+          },
+          Northwestern: {
+            superSeniorsReturning: new Set(["MaNicholson::", "TyBerry::"]),
+          },
+          Oregon: {
+            superSeniorsReturning: new Set(["KeBarthelemy::"]),
+          },
+          "Penn St.": {
+            superSeniorsReturning: new Set(["PuJohnson::"]),
+          },
+          "Saint Louis": {
+            superSeniorsReturning: new Set(["GiJimerson::"]),
+          },
+          "Saint Mary's (CA)": {
+            superSeniorsReturning: new Set(["LuBarrett::", "MiSaxon::"]),
+          },
+          Texas: {
+            superSeniorsReturning: new Set(["KaShedrick::"]),
+          },
+          VCU: {
+            superSeniorsReturning: new Set(["ZeJackson::", "JoBamisile::"]),
+          },
+          Xavier: {
+            superSeniorsReturning: new Set(["ZaFreemantle::", "DaMcknight::"]),
           },
         };
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
