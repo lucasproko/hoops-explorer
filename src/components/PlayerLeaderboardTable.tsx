@@ -1460,6 +1460,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               ? `<${numFiltered - playerDuplicates}`
               : numFiltered - playerDuplicates
           }`
+        : !_.isEmpty(transferInfoSplit[0]) && tier != "All"
+        ? `, ${numFiltered} in tier`
         : ""
     );
 

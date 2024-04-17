@@ -61,7 +61,6 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   const transferModeUrlParam =
     allParams.indexOf("transferMode=true") >= 0 ||
     allParams.indexOf("transferMode=20") >= 0;
-  //^ Note only supported for "All" tiers
   const transferInit = {} as Record<string, Array<TransferModel>>; //(start as empty list)
 
   const server =
@@ -194,7 +193,9 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       transferModeUrlParam ||
       nextYear <= DateUtils.yearWithActiveTransferPortal;
 
-    if (year == "All" || tier == "All") {
+    if (year == "All" || tier == "All" || transferModeUrlParam) {
+      //(note the transferModeUrlParam means we use this slightly less efficient construct with single tier transfers)
+
       //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
