@@ -990,16 +990,32 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
-        // Super seniors (final time!!), Rothstein up to 4/13
+        // Super seniors (final time!!), Rothstein up to 4/17
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
         > = {
+          Arizona: {
+            superSeniorsReturning: new Set(["CaLove::"]),
+          },
           Auburn: {
-            superSeniorsReturning: new Set(["AnScreen::"]),
+            superSeniorsReturning: new Set(["DyCardwell::", "JoBroome::"]),
+          },
+          "Boise St.": {
+            superSeniorsReturning: new Set(["ChAgbo::"]),
           },
           Butler: {
-            superSeniorsReturning: new Set(["DyCardwell::"]),
+            superSeniorsReturning: new Set([
+              "AnScreen::",
+              "PoAlexander::",
+              "JaTelfort::",
+            ]),
+          },
+          Clemson: {
+            superSeniorsReturning: new Set(["ChHunter::"]),
+          },
+          "Fla. Atlantic": {
+            superSeniorsReturning: new Set(["JoDavis::"]),
           },
           "Georgia Tech": {
             superSeniorsReturning: new Set(["LaTerry::"]),
@@ -1062,11 +1078,21 @@ export class TeamEditorManualFixes {
           "Saint Mary's (CA)": {
             superSeniorsReturning: new Set(["LuBarrett::", "MiSaxon::"]),
           },
+          "San Diego St.": {
+            superSeniorsReturning: new Set(["LaButler::"]),
+          },
           Texas: {
             superSeniorsReturning: new Set(["KaShedrick::"]),
           },
+          Utah: {
+            superSeniorsReturning: new Set(["GaMadsen::"]),
+          },
           VCU: {
-            superSeniorsReturning: new Set(["ZeJackson::", "JoBamisile::"]),
+            superSeniorsReturning: new Set([
+              "ZeJackson::",
+              "JoBamisile::",
+              "MaShulga::",
+            ]),
           },
           Xavier: {
             superSeniorsReturning: new Set(["ZaFreemantle::", "DaMcknight::"]),
