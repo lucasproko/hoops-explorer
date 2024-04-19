@@ -233,7 +233,9 @@ const array = (v: number[]) => {
 export class RatingUtils {
   // Manual override calcs:
 
-  /** Builds the overrides to the raw fields based on stat overrides */
+  /** Builds the overrides to the raw fields based on stat overrides
+   *  See also OverrideUtils.applyPlayerOverridesToTeam, which is tightly coupled to this
+   */
   static buildOffOverrides(statSet: IndivStatSet): Record<string, Statistic> {
     const threePTries = statSet?.total_off_3p_attempts?.value || 0;
     const twoPTries = statSet?.total_off_2p_attempts?.value || 0;

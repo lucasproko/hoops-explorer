@@ -21,4 +21,7 @@ export class FeatureFlags {
 
   /** For team editor - showing the caliber of a player */
   static readonly playerCaliberMode = false;
+
+  /** For player editor in roster table - allows messing with shot selection metrics */
+  static readonly advancedPlayerEditor = true;
 }

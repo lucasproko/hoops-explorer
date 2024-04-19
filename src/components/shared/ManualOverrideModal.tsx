@@ -29,6 +29,7 @@ import {
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OverrideUtils } from "../../utils/stats/OverrideUtils";
 import { Statistic, IndivStatSet, PureStatSet } from "../../utils/StatModels";
+import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 
 // External Data Model
 
@@ -119,10 +120,22 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
 
   // Lits of metrics
 
-  const metricsMap: Record<string, string> = {
-    ...OverrideUtils.getOverridableStats(tableType),
-    [shotQualityOverride]: "Import Shot Quality FG%",
-  };
+  const isShotSelectionOverride = (statName: string) =>
+    _.startsWith(statName, OverrideUtils.shotSelectionPrefix);
+  const threePtShotSelection = "aggro_3p";
+
+  const metricsMap: Record<string, string> = FeatureFlags.isActiveWindow(
+    FeatureFlags.advancedPlayerEditor
+  )
+    ? {
+        ...OverrideUtils.getOverridableStats(tableType),
+        [threePtShotSelection]: "3P shot aggression%+",
+      }
+    : {
+        ...OverrideUtils.getOverridableStats(tableType),
+      };
+  // Removed this from metricsMap since haven't touched since 2020ish and it's likely SQ format has changed
+  //[shotQualityOverride]: "Import Shot Quality FG%",
 
   const metricToOption = (valLabel: [string, string]) => {
     if (valLabel[0]) {
@@ -148,7 +161,18 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
 
   /** When the player/stat is changed, recalc the stats */
   const updateValues = (inStat: string, statName: string) => {
-    if (isDefined(inStat, statName)) {
+    if (inStat != "" && isShotSelectionOverride(statName)) {
+      const maybeExistingOverride = _.find(
+        overrides,
+        (o) => o.rowId == inStat && o.statName == statName
+      );
+      const startingVal = 100.0;
+      const currVal =
+        100.0 *
+        (_.isNil(maybeExistingOverride) ? 1.0 : maybeExistingOverride.newVal);
+      setOldStatVal(startingVal);
+      setCurrReplacementAsStr(currVal.toFixed(1));
+    } else if (isDefined(inStat, statName)) {
       const playerStat = valueToStatMap?.[inStat]?.[statName] as
         | Statistic
         | undefined;
@@ -339,6 +363,8 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
         const oldVal =
           over.statName == OverrideUtils.shotQualityRim
             ? OverrideUtils.getOldRimTs(playerRow)
+            : isShotSelectionOverride(statNameKey)
+            ? 1.0 //(shot selection originals are always 100%)
             : getOldVal(playerRow[statNameKey]);
 
         return [

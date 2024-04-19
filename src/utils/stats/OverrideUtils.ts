@@ -18,7 +18,9 @@ import {
 export class OverrideUtils {
   // Top level
 
-  /** Apply any generated overrides to a player */
+  /** Apply any generated overrides to a player
+   * See also RatingUtils.buildOverrides, which is tightly coupled to this
+   */
   static readonly applyOverrides = (
     stat: IndivStatSet,
     onOffKey: "On" | "Off" | "Baseline" | "Global",
@@ -338,6 +340,71 @@ export class OverrideUtils {
     return mutableTeamStats;
   };
 
+  /** TODO all sorts of complications in terms of when fields get set/unset */
+  static readonly handleShotSelection = (
+    mutableStats: IndivStatSet | TeamStatSet | LineupStatSet,
+    shotSelMap: Record<string, number>,
+    reason: string
+  ) => {
+    if (_.isEmpty(shotSelMap)) {
+      const fieldsToReset = [
+        // Reset shot rates:
+        "off_3pr",
+        "off_2primr",
+        "off_2pmidr",
+        // Reset attempts/makes:
+        "total_off_3p_attempts",
+        "total_off_3p_made",
+        //TODO: other shots types
+        // Do NOT override %s, they are handled by the per-field settings
+      ];
+      fieldsToReset.forEach((fieldToReset) =>
+        OverrideUtils.overrideMutableVal(
+          mutableStats,
+          fieldToReset,
+          undefined,
+          undefined
+        )
+      );
+    } else {
+      //TODO: let's start off assuming 3P is set
+      const fgAttempts = mutableStats[`total_off_fga`]?.value || 0;
+
+      const shotType = "3p";
+      const shotAdj = shotSelMap[`aggro_${shotType}`] || 1.0;
+      const shotAttempts =
+        OverrideUtils.getOriginalVal(
+          mutableStats[`off_${shotType}_attempts`] //TODO: shotType isn't the same here except for 3P
+        ) || 0;
+      const shotMakes =
+        OverrideUtils.getOriginalVal(
+          mutableStats[`total_off_${shotType}_made`]
+        ) || 0;
+      const shotRate =
+        OverrideUtils.getOriginalVal(mutableStats[`off_${shotType}r`]) || 0;
+      const newShotRate = Math.min(1.0, shotRate * shotAdj);
+      const deltaShotRate = newShotRate - shotRate;
+      const deltaShots = fgAttempts * deltaShotRate;
+
+      // There's some weirdness with RatingUtils.buildOffOverrides
+      // since that also messes with the totals in order to calc ORtg/usage, which is basically what we're doing here
+
+      // const baseKey = shotSelKey.substring(
+      //   OverrideUtils.shotSelectionPrefix.length
+      // );
+      // const originalShotRate = OverrideUtils.getOriginalVal(
+      //   mutableStats[`off_${baseKey}`]
+      // );
+      //TODO: change total_off_<<key>>_attempts
+      //TODO: change off_<<key>>r
+      //TODO: change off_<<other-keys>>r
+      //TODO: ugh what about if multiple shot rates are adjusted, what a mess
+      // .. in practice I think we'll have to do all the shot selections at once
+      // .. but to start with probably just play with one param to see this work in concept
+      //TODO: change off_<<key>> ... maybe +-10% from current 3P, cap there
+    }
+  };
+
   /** Overrides the specified key (newVal undefined means set back), returns true if mutated */
   static readonly overrideMutableVal = (
     mutableStats: IndivStatSet | TeamStatSet | LineupStatSet,
@@ -444,6 +511,10 @@ export class OverrideUtils {
       );
     }
   };
+
+  // Some utils needed for aggression overrides
+
+  static readonly shotSelectionPrefix = "aggro_";
 
   // Some utils needed for Shot Quality overrides
 
