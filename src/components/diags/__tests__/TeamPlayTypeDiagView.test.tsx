@@ -53,6 +53,7 @@ describe("TeamPlayTypeDiagView", () => {
         players={players}
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamData}
+        avgEfficiency={100.0}
         showGrades="false"
         showHelp={false}
       />
@@ -66,6 +67,7 @@ describe("TeamPlayTypeDiagView", () => {
         players={players}
         rosterStatsByCode={rosterStatsByCode}
         teamStats={teamData}
+        avgEfficiency={100.0}
         showGrades="false"
         showHelp={false}
       />

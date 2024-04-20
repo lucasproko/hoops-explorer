@@ -657,13 +657,16 @@ export class GradeUtils {
   static getPlayStyleStats = (
     playStyle: TopLevelPlayAnalysis,
     divisionStats: DivisionStatistics,
+    scheduleStrengthMult: number | undefined,
     buildLutMissCache: boolean = false
   ): TopLevelPlayAnalysis => {
+    const adjPrefix = _.isNumber(scheduleStrengthMult) ? "Adj" : "";
+    const pppAdj = scheduleStrengthMult || 1;
     return _.transform(
       playStyle,
       (acc, playStyleInfo, playStyleType) => {
         const possPctField = `${playStyleType}|Pct`;
-        const pppField = `${playStyleType}|Ppp`;
+        const pppField = `${playStyleType}|${adjPrefix}Ppp`;
         if (
           !_.isNil(playStyleInfo.possPct.value) &&
           !_.isNil(playStyleInfo.pts.value)
@@ -677,7 +680,7 @@ export class GradeUtils {
           const maybePppPctile = GradeUtils.getPercentile(
             divisionStats,
             pppField,
-            playStyleInfo.pts.value,
+            playStyleInfo.pts.value * pppAdj,
             buildLutMissCache
           );
           if (maybePossPctile && maybePppPctile) {

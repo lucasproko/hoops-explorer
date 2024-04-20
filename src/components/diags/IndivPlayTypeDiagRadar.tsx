@@ -250,7 +250,12 @@ const IndivTeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   return React.useMemo(() => {
     const topLevelPlayTypeStylesPctile = tierToUse
-      ? GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, tierToUse, true)
+      ? GradeUtils.getPlayStyleStats(
+          topLevelPlayTypeStyles,
+          tierToUse,
+          undefined,
+          true
+        ) //TODO: use adj eff?
       : undefined;
 
     const data = topLevelPlayTypeStylesPctile

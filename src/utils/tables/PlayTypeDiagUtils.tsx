@@ -441,6 +441,7 @@ export class PlayTypeDiagUtils {
     title: string,
     players: RosterStatsModel,
     teamStats: TeamStatsModel,
+    avgEfficiency: number,
     grades: DivisionStatsCache,
     showHelp: boolean,
     singleGameMode: boolean,
@@ -462,6 +463,7 @@ export class PlayTypeDiagUtils {
             players: players.global,
             rosterStatsByCode: globalRosterStatsByCode,
             teamStats: teamStats.global,
+            avgEfficiency,
             showGrades: "rank:Combo",
             showHelp,
             quickSwitchOverride: undefined,
@@ -485,6 +487,7 @@ export class PlayTypeDiagUtils {
           players={players.baseline}
           rosterStatsByCode={globalRosterStatsByCode}
           teamStats={teamStats.baseline}
+          avgEfficiency={avgEfficiency}
           showGrades={"rank:Combo"}
           grades={grades}
           showHelp={showHelp}

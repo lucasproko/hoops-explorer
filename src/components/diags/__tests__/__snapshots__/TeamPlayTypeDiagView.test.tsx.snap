@@ -120,6 +120,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
   </span>
   <br />
   <TeamPlayTypeDiagRadar
+    avgEfficiency={100}
     players={
       Array [
         Object {
@@ -4737,6 +4738,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
   </span>
   <br />
   <TeamPlayTypeDiagRadar
+    avgEfficiency={100}
     players={
       Array [
         Object {

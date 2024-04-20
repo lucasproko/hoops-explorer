@@ -49,6 +49,7 @@ import {
   GradeTableUtils,
 } from "../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
+import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -315,6 +316,12 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   }, [dataEvent]);
 
   const playStyleChart = React.useMemo(() => {
+    const genderYearLookup = `${
+      matchupFilterParams.gender || ParamDefaults.defaultGender
+    }_${matchupFilterParams.year || ParamDefaults.defaultYear}`;
+    const avgEfficiency =
+      efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
@@ -341,6 +348,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                     matchupFilterParams.team || "Unknown",
                     dataEvent.rosterStatsA,
                     dataEvent.teamStatsA,
+                    avgEfficiency,
                     divisionStatsCache,
                     showHelp,
                     true
@@ -358,6 +366,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                       "Unknown",
                     dataEvent.rosterStatsB,
                     dataEvent.teamStatsB,
+                    avgEfficiency,
                     divisionStatsCache,
                     showHelp,
                     true

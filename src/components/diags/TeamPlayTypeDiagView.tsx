@@ -38,6 +38,7 @@ type Props = {
   players: Array<IndivStatSet>;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
+  avgEfficiency: number;
   quickSwitchOptions?: Props[];
   showGrades: string;
   grades?: DivisionStatsCache;
@@ -48,6 +49,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   players: playersIn,
   rosterStatsByCode,
   teamStats: teamStatsIn,
+  avgEfficiency,
   quickSwitchOptions,
   showGrades,
   grades,
@@ -340,6 +342,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
             players={players}
             rosterStatsByCode={rosterStatsByCode}
             teamStats={teamStats}
+            avgEfficiency={avgEfficiency}
             showGrades={showGrades}
             grades={grades}
             showHelp={showHelp}

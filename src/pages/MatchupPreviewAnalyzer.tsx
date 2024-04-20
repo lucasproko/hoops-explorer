@@ -48,6 +48,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { stringify } from "query-string";
+import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -359,6 +360,13 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
       return [defA, defB];
     });
+
+    const genderYearLookup = `${
+      matchupFilterParams.gender || ParamDefaults.defaultGender
+    }_${matchupFilterParams.year || ParamDefaults.defaultYear}`;
+    const avgEfficiency =
+      efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
@@ -431,6 +439,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     }`,
                     dataEvent.rosterStatsA,
                     dataEvent.teamStatsA,
+                    avgEfficiency,
                     divisionStatsCache,
                     showHelp,
                     false,
@@ -457,6 +466,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                         }`,
                     dataEvent.rosterStatsB,
                     dataEvent.teamStatsB,
+                    avgEfficiency,
                     divisionStatsCache,
                     showHelp,
                     false,

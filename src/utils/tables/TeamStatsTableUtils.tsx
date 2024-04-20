@@ -430,6 +430,7 @@ export class TeamStatsTableUtils {
         rosterStatsByCode: globalRosterStatsByCode,
         teamStats: teamStatsByQuery["on"],
         showGrades: showGrades,
+        avgEfficiency,
         showHelp,
       },
       {
@@ -438,6 +439,7 @@ export class TeamStatsTableUtils {
         rosterStatsByCode: globalRosterStatsByCode,
         teamStats: teamStatsByQuery["off"],
         showGrades: showGrades,
+        avgEfficiency,
         showHelp,
       },
       {
@@ -446,6 +448,7 @@ export class TeamStatsTableUtils {
         rosterStatsByCode: globalRosterStatsByCode,
         teamStats: teamStatsByQuery["baseline"],
         showGrades: showGrades,
+        avgEfficiency,
         showHelp,
       },
     ].filter((opt) => (opt.teamStats.doc_count || 0) > 0);
@@ -513,6 +516,7 @@ export class TeamStatsTableUtils {
                     players={rosterStats[queryKey] || []}
                     rosterStatsByCode={globalRosterStatsByCode}
                     teamStats={teamStatsByQuery[queryKey]}
+                    avgEfficiency={avgEfficiency}
                     quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey
                     )}

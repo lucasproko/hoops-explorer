@@ -55,6 +55,7 @@ export type Props = {
   players: Array<IndivStatSet>;
   rosterStatsByCode: RosterStatsByCode;
   teamStats: TeamStatSet;
+  avgEfficiency: number;
   quickSwitchOptions?: Props[];
   showGrades: string;
   grades?: DivisionStatsCache;
@@ -68,6 +69,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   players: playersIn,
   rosterStatsByCode,
   teamStats: teamStatsIn,
+  avgEfficiency,
   quickSwitchOptions,
   showGrades,
   grades,
@@ -76,6 +78,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   defensiveOverride,
   quickSwitchOverride,
 }) => {
+  const [adjustForSos, setAdjustForSos] = useState<boolean>(true);
+
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
@@ -90,6 +94,13 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
           ?.teamStats
       : teamStatsIn) || StatModels.emptyTeam();
+
+  const sosAdjustment = adjustForSos
+    ? avgEfficiency /
+      ((defensiveOverride
+        ? teamStats.off_adj_opp?.value
+        : teamStats.def_adj_opp?.value) || avgEfficiency)
+    : 1.0;
 
   const topLevelPlayTypeStyles =
     defensiveOverride ||
@@ -160,6 +171,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
       (defensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100
     );
+    const adjustment = adjustForSos ? sosAdjustment : 1.0;
 
     return (
       <g>
@@ -172,7 +184,9 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         >
           <tspan>{(100 * (rawPct || 0) * possFactor).toFixed(1)}x </tspan>
           {rawPct > 0 ? (
-            <tspan fill={rawColor}>{(rawPts || 0).toFixed(2)}</tspan>
+            <tspan fill={rawColor}>
+              {((rawPts || 0) * adjustment).toFixed(2)}
+            </tspan>
           ) : undefined}
         </text>
         <path
@@ -218,13 +232,18 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           <p className="desc pl-1 pr-1">
             Efficiency: [<b>{data.rawPts.toFixed(2)}</b>] pts/play
             <br />
+            Adj Efficiency: [<b>{(data.rawPts * sosAdjustment).toFixed(2)}</b>]
+            pts/play
+            <br />
             {defensiveOverride ? (
               <span>
-                Efficiency Pctile: [<b>{(100 - data.pts).toFixed(1)}%</b>]
+                {adjustForSos ? "Adj " : ""}Efficiency Pctile: [
+                <b>{(100 - data.pts).toFixed(1)}%</b>]
               </span>
             ) : (
               <span>
-                Efficiency Pctile: [<b>{data.pts.toFixed(1)}%</b>]
+                {adjustForSos ? "Adj " : ""}Efficiency Pctile: [
+                <b>{data.pts.toFixed(1)}%</b>]
               </span>
             )}
             <br />
@@ -250,7 +269,12 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   return React.useMemo(() => {
     const topLevelPlayTypeStylesPctile = tierToUse
-      ? GradeUtils.getPlayStyleStats(topLevelPlayTypeStyles, tierToUse, true)
+      ? GradeUtils.getPlayStyleStats(
+          topLevelPlayTypeStyles,
+          tierToUse,
+          sosAdjustment,
+          true
+        )
       : undefined;
 
     const data = topLevelPlayTypeStylesPctile
