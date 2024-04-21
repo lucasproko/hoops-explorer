@@ -171,10 +171,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     //Blob showing true efficiency
     const radius = 0.4 * (widthToUse / 2);
-    const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
-      (defensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100
-    );
     const adjustment = adjustForSos ? sosAdjustment : 1.0;
+    const rawColor = CbbColors.off_diff10_p100_redBlackGreen(
+      (defensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
+    );
 
     return (
       <g>
@@ -319,6 +319,15 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             : undefined
         }
         <Container>
+          <Row>
+            <Col>
+              {PlayTypeDiagUtils.buildAdjustedVsRawControls(
+                sosAdjustment,
+                adjustForSos,
+                setAdjustForSos
+              )}
+            </Col>
+          </Row>
           {topLevelPlayTypeStylesPctile ? (
             <Row>
               <Col xs={10}>
@@ -372,7 +381,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                             stroke="#000000"
                             fill={(defensiveOverride
                               ? CbbColors.def_pctile_qual
-                              : CbbColors.off_pctile_qual)(p.pts * 0.01)}
+                              : CbbColors.off_pctile_qual)(
+                              p.pts *
+                                0.01 *
+                                (adjustForSos ? sosAdjustment : 1.0)
+                            )}
                           />
                         );
                       })}
@@ -412,6 +425,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     quickSwitchTimer,
     quickSwitchOverride,
     defensiveOverride,
+    adjustForSos,
   ]);
 };
 export default TeamPlayTypeDiagRadar;

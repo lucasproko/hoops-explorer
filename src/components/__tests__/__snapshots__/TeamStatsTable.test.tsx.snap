@@ -6334,6 +6334,35 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           className="row"
                         >
                           <div
+                            className="col"
+                          >
+                            <span>
+                              <a
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                Raw
+                              </a>
+                               
+                              //
+                               
+                              <b>
+                                <a
+                                  href="#"
+                                  onClick={[Function]}
+                                >
+                                  Adjusted (SoS: x[
+                                  1.04
+                                  ])
+                                </a>
+                              </b>
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          className="row"
+                        >
+                          <div
                             className="col-10"
                           >
                             <div
@@ -12570,6 +12599,35 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                           className="row"
                         >
                           <div
+                            className="col"
+                          >
+                            <span>
+                              <a
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                Raw
+                              </a>
+                               
+                              //
+                               
+                              <b>
+                                <a
+                                  href="#"
+                                  onClick={[Function]}
+                                >
+                                  Adjusted (SoS: x[
+                                  1.01
+                                  ])
+                                </a>
+                              </b>
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          className="row"
+                        >
+                          <div
                             className="col-10"
                           >
                             <div
@@ -18802,6 +18860,35 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <div
                         className="container"
                       >
+                        <div
+                          className="row"
+                        >
+                          <div
+                            className="col"
+                          >
+                            <span>
+                              <a
+                                href="#"
+                                onClick={[Function]}
+                              >
+                                Raw
+                              </a>
+                               
+                              //
+                               
+                              <b>
+                                <a
+                                  href="#"
+                                  onClick={[Function]}
+                                >
+                                  Adjusted (SoS: x[
+                                  1.03
+                                  ])
+                                </a>
+                              </b>
+                            </span>
+                          </div>
+                        </div>
                         <div
                           className="row"
                         >

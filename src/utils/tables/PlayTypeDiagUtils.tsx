@@ -533,6 +533,47 @@ export class PlayTypeDiagUtils {
     </div>
   );
 
+  /** Allows to switch bewteen adjusted and raw PPP numbers */
+  static buildAdjustedVsRawControls = (
+    sos: number,
+    adjusted: boolean,
+    callback: (useAdjusted: boolean) => void
+  ) => {
+    const maybeBold = (bold: boolean, r: React.ReactNode) => {
+      if (bold) return <b>{r}</b>;
+      else return r;
+    };
+    return (
+      <span>
+        {maybeBold(
+          !adjusted,
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              callback(!adjusted);
+            }}
+          >
+            Raw
+          </a>
+        )}{" "}
+        //{" "}
+        {maybeBold(
+          adjusted,
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              callback(!adjusted);
+            }}
+          >
+            Adjusted (SoS: x[{sos.toFixed(2)}])
+          </a>
+        )}
+      </span>
+    );
+  };
+
   /** Presents the above text as a tooltip */
   static buildLegend = (legendLabelName: string) => {
     const tooltip = (

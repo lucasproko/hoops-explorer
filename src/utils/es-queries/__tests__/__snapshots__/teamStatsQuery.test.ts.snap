@@ -113,6 +113,24 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                         "field": "team_stats.to.early"
                      }
                   },
+                  "off_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "opponent_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_off\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_off\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1.5,
+                                 "def_hca": -1.5
+                              }
+                           }
+                        }
+                     }
+                  },
                   "def_3p": {
                      "bucket_script": {
                         "buckets_path": {
@@ -152,6 +170,24 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                         },
                         "value": {
                            "field": "vs_3p"
+                        }
+                     }
+                  },
+                  "def_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "team_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_def\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_def\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1.5,
+                                 "def_hca": -1.5
+                              }
+                           }
                         }
                      }
                   }
@@ -2150,6 +2186,24 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                         "field": "team_stats.to.early"
                      }
                   },
+                  "off_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "opponent_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_off\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_off\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1,
+                                 "def_hca": -1
+                              }
+                           }
+                        }
+                     }
+                  },
                   "def_3p": {
                      "bucket_script": {
                         "buckets_path": {
@@ -2189,6 +2243,24 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                         },
                         "value": {
                            "field": "vs_3p"
+                        }
+                     }
+                  },
+                  "def_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "team_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_def\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_def\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1,
+                                 "def_hca": -1
+                              }
+                           }
                         }
                      }
                   }
@@ -4187,6 +4259,24 @@ exports[`teamStatsQuery teamStatsQuery-game-info 1`] = `
                         "field": "team_stats.to.early"
                      }
                   },
+                  "off_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "opponent_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_off\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_off\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1.5,
+                                 "def_hca": -1.5
+                              }
+                           }
+                        }
+                     }
+                  },
                   "def_3p": {
                      "bucket_script": {
                         "buckets_path": {
@@ -4226,6 +4316,24 @@ exports[`teamStatsQuery teamStatsQuery-game-info 1`] = `
                         },
                         "value": {
                            "field": "vs_3p"
+                        }
+                     }
+                  },
+                  "def_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "team_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_def\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_def\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1.5,
+                                 "def_hca": -1.5
+                              }
+                           }
                         }
                      }
                   }
@@ -6277,6 +6385,24 @@ exports[`teamStatsQuery teamStatsQuery-game-info 2`] = `
                         "field": "team_stats.to.early"
                      }
                   },
+                  "off_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "opponent_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_off\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_off\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1,
+                                 "def_hca": -1
+                              }
+                           }
+                        }
+                     }
+                  },
                   "def_3p": {
                      "bucket_script": {
                         "buckets_path": {
@@ -6316,6 +6442,24 @@ exports[`teamStatsQuery teamStatsQuery-game-info 2`] = `
                         },
                         "value": {
                            "field": "vs_3p"
+                        }
+                     }
+                  },
+                  "def_adj_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "team_stats.num_possessions"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"vs_adj_def\\"].size()  > 0) {\\n     adj_sos = doc[\\"vs_adj_def\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
+                              "lang": "painless",
+                              "params": {
+                                 "avgEff": 100,
+                                 "off_hca": 1,
+                                 "def_hca": -1
+                              }
+                           }
                         }
                      }
                   }
