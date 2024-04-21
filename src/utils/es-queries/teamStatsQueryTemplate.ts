@@ -62,6 +62,7 @@ export const teamStatsQuery = function (
                   "total_off_assist",
                   "total_off_scramble_to",
                   "total_off_trans_to",
+                  "off_adj_opp",
                 ]
               ),
               ..._.pick(
@@ -80,6 +81,7 @@ export const teamStatsQuery = function (
                   "total_def_3p_attempts",
                   "total_def_3p_made",
                   "def_3p_opp",
+                  "def_adj_opp",
                 ]
               ),
             },
