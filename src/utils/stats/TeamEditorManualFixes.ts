@@ -990,7 +990,7 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
-        // Super seniors (final time!!), Rothstein up to 4/17
+        // Super seniors (final time!!), Rothstein up to 4/21
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
