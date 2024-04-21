@@ -63,6 +63,7 @@ export type Props = {
   playCountToUse?: number;
   quickSwitchOverride: string | undefined;
   defensiveOverride?: TopLevelPlayAnalysis;
+  startWithRaw?: boolean;
 };
 const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   title,
@@ -77,8 +78,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   playCountToUse,
   defensiveOverride,
   quickSwitchOverride,
+  startWithRaw,
 }) => {
-  const [adjustForSos, setAdjustForSos] = useState<boolean>(true);
+  const [adjustForSos, setAdjustForSos] = useState<boolean>(
+    !(startWithRaw || false)
+  );
 
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
@@ -95,12 +99,11 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           ?.teamStats
       : teamStatsIn) || StatModels.emptyTeam();
 
-  const sosAdjustment = adjustForSos
-    ? avgEfficiency /
-      ((defensiveOverride
-        ? teamStats.off_adj_opp?.value
-        : teamStats.def_adj_opp?.value) || avgEfficiency)
-    : 1.0;
+  const sosAdjustment =
+    avgEfficiency /
+    ((defensiveOverride
+      ? teamStats.off_adj_opp?.value
+      : teamStats.def_adj_opp?.value) || avgEfficiency);
 
   const topLevelPlayTypeStyles =
     defensiveOverride ||

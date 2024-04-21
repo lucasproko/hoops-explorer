@@ -495,6 +495,7 @@ export class PlayTypeDiagUtils {
           playCountToUse={playCountToUse}
           quickSwitchOverride={undefined}
           defensiveOverride={defensiveOverride}
+          startWithRaw={singleGameMode}
         />
       </div>
     );
