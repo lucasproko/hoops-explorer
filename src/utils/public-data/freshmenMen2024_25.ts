@@ -299,6 +299,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       h: "6-9",
       r: 0,
     },
+    "Maluach, Khaman": { pos: "C", pr: "5*", c: "KhMaluach", h: "7-1", r: -30 },
     "Knueppel, Kon": { pos: "WG", pr: "5*", c: "KoKnueppel", h: "6-5", r: -10 },
     "Harris, Darren": {
       pos: "WG",
@@ -509,6 +510,13 @@ export const freshmenMen2024_25: Record<string, any> = {
       c: "AcBailey",
       h: "6-8",
       r: -8,
+    },
+    "Harper, Dylon": {
+      pos: "CG",
+      pr: "5*/Lotto",
+      c: "DyHarper",
+      h: "6-6",
+      r: -9,
     },
   },
   Arizona: {
