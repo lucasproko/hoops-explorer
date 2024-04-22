@@ -32,6 +32,7 @@ import {
   MatchupFilterParams,
   TeamLeaderboardParams,
   TeamEditorParams,
+  OffseasonLeaderboardParams,
 } from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from "../../utils/HistoryManager";
@@ -394,14 +395,38 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           {highlight ? <b>Teams</b> : "Teams"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Build your own team leaderboard!",
-              teamLeaderboardTooltip,
-              getTeamLeaderboardUrl(),
-              `${ParamPrefixes.team}_leaderboard`
-            )}
-          </Dropdown.Item>
+          {DateUtils.frontPageIsOffseasonLeaderboard &&
+          DateUtils.showOffseasonMetrics ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "How Is Your Off-Season Going?!",
+                teamLeaderboardTooltip,
+                UrlRouting.getOffseasonLeaderboard({
+                  transferInOutMode: true,
+                } as OffseasonLeaderboardParams),
+                `${ParamPrefixes.team}_leaderboard`
+              )}
+            </Dropdown.Item>
+          ) : undefined}
+          {DateUtils.frontPageIsOffseasonLeaderboard ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Editable Off-Season Leaderboard!",
+                teamLeaderboardTooltip,
+                getTeamLeaderboardUrl(),
+                `${ParamPrefixes.team}_leaderboard`
+              )}
+            </Dropdown.Item>
+          ) : (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Build your own team leaderboard!",
+                teamLeaderboardTooltip,
+                getTeamLeaderboardUrl(),
+                `${ParamPrefixes.team}_leaderboard`
+              )}
+            </Dropdown.Item>
+          )}
           <Dropdown.Item>
             {buildNavItem(
               "Build your own off-season roster!",

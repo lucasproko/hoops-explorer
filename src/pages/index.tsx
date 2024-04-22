@@ -26,6 +26,7 @@ import {
   TeamLeaderboardParams,
   ParamDefaults,
   GameFilterParams,
+  OffseasonLeaderboardParams,
 } from "../utils/FilterModels";
 import { HistoryManager } from "../utils/HistoryManager";
 import TeamLeaderboardTable, {
@@ -86,7 +87,13 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     (allParams.indexOf(`year=${DateUtils.inSeasonYear.substring(0, 4)}`) >= 0 ||
       allParams.indexOf("year=") < 0)
   ) {
-    const newUrl = UrlRouting.getOffseasonLeaderboard({});
+    const newUrl = UrlRouting.getOffseasonLeaderboard(
+      DateUtils.showOffseasonMetrics
+        ? ({
+            transferInOutMode: true,
+          } as OffseasonLeaderboardParams)
+        : {}
+    );
     if (typeof window !== `undefined`) window.location.href = newUrl;
 
     return (

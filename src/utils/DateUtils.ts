@@ -12,7 +12,10 @@ export class DateUtils {
   //////////////////////////////////////
 
   /** Set this to true to show the off-season leaderboard as the site front page */
-  static readonly frontPageIsOffseasonLeaderboard: Boolean = false;
+  static readonly frontPageIsOffseasonLeaderboard: Boolean = true;
+
+  /** During portal mania show the off-season leaderboard with extra in/out metrics */
+  static readonly showOffseasonMetrics: Boolean = true;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
   static readonly inSeasonYear: string = "2023/24";
@@ -32,9 +35,9 @@ export class DateUtils {
 
   /** Note should include all 3 formats $date, Men_$date, Women_$date */
   static readonly seasonNotFinished: Record<string, boolean> = {
-    "2023/24": true,
-    "Men_2023/24": true,
-    "Women_2023/24": true,
+    "2023/24": false,
+    "Men_2023/24": false,
+    "Women_2023/24": false,
   };
 
   /** Up this once the portal gets active, even if it's before the season ends
