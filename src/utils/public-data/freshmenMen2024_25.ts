@@ -322,6 +322,7 @@ export const freshmenMen2024_25: Record<string, any> = {
   Indiana: {
     // Decommitted, keep him here to make it easy to add him later without doing a full Fr pull
     //"McNeeley, Liam": { pos: "WF", pr: "5*", c: "LiMcneeley", h: "6-7", r: -8 },
+    "Tucker, Bryson": { pos: "WG", pr: "5*", c: "BrTucker", h: "6-6", r: -23 },
   },
   "Saint Mary's (CA)": {
     "Lewis, Mikey": { pos: "CG", pr: "4*", c: "MiLewis", h: "6-3", r: -20 },
