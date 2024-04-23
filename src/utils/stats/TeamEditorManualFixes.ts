@@ -990,11 +990,14 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
-        // Super seniors (final time!!), Rothstein up to 4/21
+        // Super seniors (final time!!), Rothstein up to 4/23
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
         > = {
+          Alabama: {
+            superSeniorsReturning: new Set(["LaWrightsell::"]),
+          },
           Arizona: {
             superSeniorsReturning: new Set(["CaLove::"]),
           },
@@ -1083,6 +1086,9 @@ export class TeamEditorManualFixes {
           },
           Texas: {
             superSeniorsReturning: new Set(["KaShedrick::"]),
+          },
+          "Texas Tech": {
+            superSeniorsReturning: new Set(["ChMcmillian::"]),
           },
           Utah: {
             superSeniorsReturning: new Set(["GaMadsen::"]),

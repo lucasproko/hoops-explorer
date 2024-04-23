@@ -55,14 +55,23 @@ export const freshmenMen2024_25: Record<string, any> = {
     },
   },
   Arkansas: {
-    "Elohim, Isaiah": {
+    "Knox, Karter": {
       pos: "WG",
-      pr: "4*/T40ish",
-      c: "IsElohim",
+      pr: "5*",
+      c: "KaKnox",
       h: "6-5",
-      r: -26,
+      r: -45,
     },
-    "Shelley, Jalen": { pos: "WF", pr: "4*", c: "JaShelley", h: "6-8", r: 87 },
+    // Decommitted, leave him here now in case he goes somewhere else
+    // "Elohim, Isaiah": {
+    //   pos: "WG",
+    //   pr: "4*/T40ish",
+    //   c: "IsElohim",
+    //   h: "6-5",
+    //   r: -26,
+    // },
+    // Decommitted, leave him here now in case he goes somewhere else
+    //"Shelley, Jalen": { pos: "WF", pr: "4*", c: "JaShelley", h: "6-8", r: 87 },
   },
   "Ohio St.": {
     "Mobley, Juni": {
@@ -84,20 +93,22 @@ export const freshmenMen2024_25: Record<string, any> = {
     },
   },
   "Southern California": {
-    "Perry, Trent": {
-      pos: "PG",
-      pr: "4*/T40ish",
-      c: "TrPerry",
-      h: "6-4",
-      r: -2,
-    },
-    "Kozlowski, Brody": {
-      pos: "S-PF",
-      pr: "4*",
-      c: "BrKozlowski",
-      h: "6-7",
-      r: -77,
-    },
+    // Decommitted, leave him here now in case he goes somewhere else
+    // "Perry, Trent": {
+    //   pos: "PG",
+    //   pr: "4*/T40ish",
+    //   c: "TrPerry",
+    //   h: "6-4",
+    //   r: -2,
+    // },
+    // Decommitted, leave him here now in case he goes somewhere else
+    // "Kozlowski, Brody": {
+    //   pos: "S-PF",
+    //   pr: "4*",
+    //   c: "BrKozlowski",
+    //   h: "6-7",
+    //   r: -77,
+    // },
     "Campbell, Liam": {
       pos: "WG",
       pr: "3.5*/T150ish",
@@ -350,21 +361,24 @@ export const freshmenMen2024_25: Record<string, any> = {
     },
   },
   Kentucky: {
-    "Quaintance, Jayden": {
-      pos: "C",
-      pr: "5*/Lotto",
-      c: "JaQuaintance",
-      h: "6-9",
-      r: -64,
-    },
-    "Fland, Boogie": { pos: "CG", pr: "5*", c: "BoFland", h: "6-2", r: -22 },
-    "Cyril, Somto": {
-      pos: "C",
-      pr: "4*/T40ish",
-      c: "SoCyril",
-      h: "6-10",
-      r: -14,
-    },
+    // Decommitted, leave him here now in case he goes somewhere else
+    // "Quaintance, Jayden": {
+    //   pos: "C",
+    //   pr: "5*/Lotto",
+    //   c: "JaQuaintance",
+    //   h: "6-9",
+    //   r: -64,
+    // },
+    // Decommitted, leave him here now in case he goes somewhere else
+    // "Fland, Boogie": { pos: "CG", pr: "5*", c: "BoFland", h: "6-2", r: -22 },
+    // Decommitted, leave him here now in case he goes somewhere else
+    // "Cyril, Somto": {
+    //   pos: "C",
+    //   pr: "4*/T40ish",
+    //   c: "SoCyril",
+    //   h: "6-10",
+    //   r: -14,
+    // },
     "Perry, Travis": { pos: "PG", pr: "4*", c: "TrPerry", h: "6-2", r: -21 },
   },
   "St. John's (NY)": {
@@ -503,6 +517,33 @@ export const freshmenMen2024_25: Record<string, any> = {
       r: 63,
     },
   },
+  "Florida St.": {
+    "Daquan, Davis": {
+      pos: "PG",
+      pr: "3.5*/T150ish",
+      c: "DaDaquan",
+      h: "6-1",
+      r: 62,
+    },
+  },
+  Florida: {
+    "Brown, Isaiah": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "IsBrown",
+      h: "6-5",
+      r: 55,
+    },
+  },
+  Michigan: {
+    "Pippen, Justin": {
+      pos: "CG",
+      pr: "3.5*/T150ish",
+      c: "JuPippen",
+      h: "6-3",
+      r: 64,
+    },
+  },
   Rutgers: {
     "Bailey, Ace": {
       pos: "WF",
@@ -540,6 +581,15 @@ export const freshmenMen2024_25: Record<string, any> = {
       c: "EmStephen",
       h: "7-0",
       r: -30,
+    },
+  },
+  Washington: {
+    "Butler, Jase": {
+      pos: "CG",
+      pr: "3.5*/T150ish",
+      c: "JaButler",
+      h: "6-4",
+      r: 57,
     },
   },
   Colorado: {
