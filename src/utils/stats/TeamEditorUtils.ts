@@ -43,8 +43,23 @@ type TeamEditorDiagObject = { [K in DiagCodes]?: number };
  * they are just getting moved across as needed
  */
 type PredictionSettings = {
-  /** If true then use usage*poss_count to decide how much of previous year's results to take into account  */
+  /** If true then use usage*poss_count to decide how much of previous year's results to take into account
+   * (the idea here is simply that a players actions are ~poss*actions, not just poss)
+   */
   include_usage_in_off_regression: boolean;
+  /** If defined, will increasingly mix in some off_adj_rtg with off_rapm as min% increases
+   * (the idea here is that for higher minutes players, RAPM becomes less predictive because the "off" term is too small)
+   */
+  use_adj_rtg_if_high_poss_pct:
+    | {
+        min_poss_pct: number; // if the poss pct is > this start mixing in Adj Rtg
+        max_adj_rtg_weight: number; // when poss pct is 100% mix in this much Adj Rtg (0 < x < 1)
+      }
+    | undefined;
+  /** If true, picks the better of a player's dRAPM instead of newest as the main factor
+   * (the idea here is that if you've played good defense before you're more likely to play it again)
+   */
+  pick_highest_def_rapm: boolean;
 };
 
 /** For a given player, a set of all the changes to their projection */
@@ -165,16 +180,37 @@ export type TeamEditorProcessingResults = {
 
 /** Data manipulation functions for the TeamEditorTable */
 export class TeamEditorUtils {
+  /** These are settings on which any leaderboards prior to 2024 were calculated */
   static readonly legacySettings: PredictionSettings = {
-    //TODO: add a currentSettings, and assign the settings to use (with include_usage_in_off_regression:true)
     include_usage_in_off_regression: false,
-    //TODO: ideas:
-    // - buff RAPM for up-transfers who are efficient at a good volume but have RAPM < Adj Rtg (seems like that's not their fault!?)
+    use_adj_rtg_if_high_poss_pct: undefined,
+    pick_highest_def_rapm: false,
+    // Ideas:
     // - buff def RAPM for higher usage players who are projected to have lower usage
     // - smarter buffs/nerfs for defense for up-transfers (eg compare with their team average, apply that to "below average for team")
     // More complex:
     // - run a semi-"monte carlo" where players hit their ceilings/floors (should give upside/downside/depth bonuses)
     // - better "bench players" / "coaching factor" team type aspects
+  };
+  /** 2024 off-season calcs */
+  static readonly settingsFor2024: PredictionSettings = {
+    ...TeamEditorUtils.legacySettings,
+    include_usage_in_off_regression: true,
+    pick_highest_def_rapm: false, // (works really badly with better_help_txfer_bonus, need to tidy that up first)
+  };
+  /** Pick which settings to use based on year */
+  static getSettingsToUse = (
+    year: string,
+    overrideSettings?: PredictionSettings
+  ): PredictionSettings => {
+    if (overrideSettings) {
+      return overrideSettings;
+    } else if (year < "2023") {
+      //(year is one behind)
+      return TeamEditorUtils.legacySettings;
+    } else {
+      return TeamEditorUtils.settingsFor2024;
+    }
   };
 
   static readonly genericBenchUsage = 0.18;
@@ -332,9 +368,10 @@ export class TeamEditorUtils {
     alwaysShowBench: boolean,
     avgEff: number,
     /** pass this in because we have to search it for transfers, so in leaderboard board (all teams at once) want to partition it */
-    prevYearFrList: Record<string, TeamEditorManualFixModel>
+    prevYearFrList: Record<string, TeamEditorManualFixModel>,
+    settingsOverride?: PredictionSettings
   ): TeamEditorProcessingResults {
-    const settings = TeamEditorUtils.legacySettings; //TODO: should be possible to override this, or set it by year
+    const settings = TeamEditorUtils.getSettingsToUse(yearIn, settingsOverride);
 
     const specialCase = () => {
       // In "year==All" mode, if 5 players are present from the same selected team, then pick that as the base year
@@ -1372,7 +1409,7 @@ export class TeamEditorUtils {
     year: string,
     avgEff: number
   ): PureStatSet {
-    const settings = TeamEditorUtils.legacySettings; //TODO: should be possible to override this (but always use the current one if not)
+    const settings = TeamEditorUtils.getSettingsToUse(year);
 
     const rosterOfOne: GoodBadOkTriple[] = [
       {
@@ -1553,6 +1590,7 @@ export class TeamEditorUtils {
           : 0;
       const adjustedCurrDef = currDef - bonusHelpDef; //(bonus help defense for players coming up from low majors)
       const defTxferUpBetterHelpBump =
+        /**/ //TODO: ugh because this happens during basic, if the advanced improves the def significantly then this gets stupidly large
         defLevelJump >= minDefLevelJump
           ? Math.min(minDef, adjustedCurrDef) - currDef
           : 0;
@@ -1797,10 +1835,10 @@ export class TeamEditorUtils {
       };
       const offRtgCurrReg = (val: number) =>
         lowVolumeRegression(val, 100, false);
-      const offCurrReg = (val: number) =>
-        lowVolumeRegression(val, offRegressTo, false);
-      const defCurrReg = (val: number) =>
-        lowVolumeRegression(val, defRegressTo, false);
+      const offCurrReg = (val: number, prevYear: boolean = false) =>
+        lowVolumeRegression(val, offRegressTo, prevYear);
+      const defCurrReg = (val: number, prevYear: boolean = false) =>
+        lowVolumeRegression(val, defRegressTo, prevYear);
 
       const regressedORtg =
         thisYearWeight *
@@ -1813,10 +1851,39 @@ export class TeamEditorUtils {
 
       const regressedOffRapm =
         thisYearWeight * offCurrReg(player.off_adj_rapm?.value || 0) +
-        lastYearWeight * (adjPrevYear.off_adj_rapm?.value || 0);
-      const regressedDefRapm =
-        thisYearWeight * defCurrReg(player.def_adj_rapm?.value || 0) +
-        lastYearWeight * (adjPrevYear.def_adj_rapm?.value || 0);
+        lastYearWeight * (adjPrevYear.off_adj_rapm?.value || 0); //TODO: why aren't these regressed?
+
+      const regressedDefRapm = _.thru(
+        settings.pick_highest_def_rapm,
+        (orderedVsRecent) => {
+          if (orderedVsRecent) {
+            // We care more about whether a player has been good defensively than whether it was LY specifically
+            const maxDefRapm = Math.min(
+              //(use min not max because def is -ve)
+              defCurrReg(player.def_adj_rapm?.value || 0),
+              defCurrReg(adjPrevYear.def_adj_rapm?.value || 0, true)
+            );
+            const minDefRapm = Math.max(
+              //(use max not min because def is -ve)
+              defCurrReg(player.def_adj_rapm?.value || 0),
+              defCurrReg(adjPrevYear.def_adj_rapm?.value || 0, true)
+            );
+
+            /**/
+            if (prevYear)
+              console.log(
+                `${player.key}: [${thisYearWeight}]*[${maxDefRapm}] + [${lastYearWeight}]*[${minDefRapm}]`
+              );
+
+            return thisYearWeight * maxDefRapm + lastYearWeight * minDefRapm;
+          } else {
+            return (
+              thisYearWeight * defCurrReg(player.def_adj_rapm?.value || 0) +
+              lastYearWeight * (adjPrevYear.def_adj_rapm?.value || 0) //TODO: why aren't these regressed?
+            );
+          }
+        }
+      );
 
       const deltaORtg =
         regressedORtg - (player.off_rtg?.value || 0) * thisYearNormalizer; //(only incorporate the 2 if they were better)
