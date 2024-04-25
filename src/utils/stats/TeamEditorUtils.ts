@@ -1870,11 +1870,12 @@ export class TeamEditorUtils {
             );
 
             /**/
-            if (prevYear)
-              console.log(
-                `${player.key}: [${thisYearWeight}]*[${maxDefRapm}] + [${lastYearWeight}]*[${minDefRapm}]`
-              );
+            // if (prevYear)
+            //   console.log(
+            //     `${player.key}: [${thisYearWeight}]*[${maxDefRapm}] + [${lastYearWeight}]*[${minDefRapm}]`
+            //   );
 
+            //TODO: these weights don't make much sense in this context, rethink
             return thisYearWeight * maxDefRapm + lastYearWeight * minDefRapm;
           } else {
             return (
