@@ -1,11 +1,27 @@
 export const freshmenMen2024_25: Record<string, any> = {
+  "New Mexico": {
+    "Milicevic, Jovan": {
+      pos: "PF/C",
+      pr: "3*",
+      c: "JoMilicevic",
+      h: "6-10",
+      r: -29,
+    },
+  },
   "Texas A&M": {
     "Turkson, George": {
       pos: "S-PF",
       pr: "3.5*/T150ish",
       c: "GeTurkson",
       h: "6-7",
-      r: 50,
+      r: 48,
+    },
+    "Mills, Andre": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "AnMills",
+      h: "6-4",
+      r: 44,
     },
   },
   Clemson: {
@@ -14,7 +30,16 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*",
       c: "DaThomas",
       h: "6-7",
-      r: -25,
+      r: -37,
+    },
+  },
+  BYU: {
+    "Kozlowski, Brody": {
+      pos: "S-PF",
+      pr: "3.5*/T150ish",
+      c: "BrKozlowski",
+      h: "6-7",
+      r: 99,
     },
   },
   "San Diego St.": {
@@ -23,7 +48,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "3.5*/T150ish",
       c: "PhCompton",
       h: "6-6",
-      r: 58,
+      r: 60,
     },
   },
   Auburn: {
@@ -32,18 +57,122 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*",
       c: "TaPettiford",
       h: "6-1",
-      r: -80,
+      r: -88,
     },
-    "Howard, Jahki": { pos: "WG", pr: "4*", c: "JaHoward", h: "6-6", r: 11 },
+    "Howard, Jahki": {
+      pos: "WG",
+      pr: "4*",
+      c: "JaHoward",
+      h: "6-6",
+      r: 33,
+    },
+  },
+  Washington: {
+    "Diallo, Zoom": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "ZoDiallo",
+      h: "6-4",
+      r: 20,
+    },
+    "Butler, Jase": {
+      pos: "CG",
+      pr: "3.5*/T150ish",
+      c: "JaButler",
+      h: "6-4",
+      r: 58,
+    },
   },
   "Ole Miss": {
-    "Bol, John": { pos: "C", pr: "4*/T40ish", c: "JoBol", h: "7-1", r: -26 },
+    "Bol, John": {
+      pos: "C",
+      pr: "4*/T40ish",
+      c: "JoBol",
+      h: "7-1",
+      r: -54,
+    },
+  },
+  Florida: {
+    "Brown, Isaiah": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "IsBrown",
+      h: "6-5",
+      r: 50,
+    },
   },
   "Georgia Tech": {
-    "Mustaf, Jaeden": { pos: "CG", pr: "4*", c: "JaMustaf", h: "6-4", r: 88 },
+    "Mustaf, Jaeden": {
+      pos: "CG",
+      pr: "4*",
+      c: "JaMustaf",
+      h: "6-4",
+      r: 97,
+    },
+    "Sutton, Darrion": {
+      pos: "WF",
+      pr: "3.5*/T150ish",
+      c: "DaSutton",
+      h: "6-8",
+      r: 78,
+    },
+  },
+  "Florida St.": {
+    "Davis, Daquan": {
+      pos: "PG",
+      pr: "3.5*/T150ish",
+      c: "DaDavis",
+      h: "6-1",
+      r: 68,
+    },
+  },
+  "South Carolina": {
+    "Scott, Cam": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "CaScott",
+      h: "6-5",
+      r: 26,
+    },
+    "Noah, Trent": {
+      pos: "WG",
+      pr: "3.5*/T150ish",
+      c: "TrNoah",
+      h: "6-6",
+      r: 60,
+    },
+  },
+  "Arizona St.": {
+    "Ali, Amier": {
+      pos: "WF",
+      pr: "4*",
+      c: "AmAli",
+      h: "6-8",
+      r: 15,
+    },
+    "Yeanay, Sammie": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "SaYeanay",
+      h: "6-8",
+      r: -64,
+    },
   },
   Villanova: {
-    "Hodge, Matthew": { pos: "S-PF", pr: "4*", c: "MaHodge", h: "6-8", r: 16 },
+    "Hodge, Matthew": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "MaHodge",
+      h: "6-8",
+      r: 34,
+    },
+    "Moseley, Josiah": {
+      pos: "WF",
+      pr: "4*",
+      c: "JoMoseley",
+      h: "6-6",
+      r: -24,
+    },
   },
   "Iowa St.": {
     "Indrusaitis, Nojus": {
@@ -51,78 +180,78 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*",
       c: "NoIndrusaiti",
       h: "6-5",
-      r: 16,
+      r: 14,
     },
   },
   Arkansas: {
+    "Fland, Boogie": {
+      pos: "CG",
+      pr: "5*",
+      c: "BoFland",
+      h: "6-2",
+      r: -26,
+    },
     "Knox, Karter": {
       pos: "WG",
       pr: "5*",
       c: "KaKnox",
       h: "6-5",
-      r: -45,
+      r: -46,
     },
     "Richmond, Billy": {
       pos: "WG",
       pr: "5*",
       c: "BiRichmond",
       h: "6-5",
-      r: -72,
+      r: -80,
     },
-    "Fland, Boogie": { pos: "CG", pr: "5*", c: "BoFland", h: "6-2", r: -22 },
-    // Decommitted, leave him here now in case he goes somewhere else
-    // "Elohim, Isaiah": {
-    //   pos: "WG",
-    //   pr: "4*/T40ish",
-    //   c: "IsElohim",
-    //   h: "6-5",
-    //   r: -26,
-    // },
-    // Decommitted, leave him here now in case he goes somewhere else
-    //"Shelley, Jalen": { pos: "WF", pr: "4*", c: "JaShelley", h: "6-8", r: 87 },
   },
   "Ohio St.": {
     "Mobley, Juni": {
       pos: "CG",
       pr: "4*/T40ish",
       c: "JuMobley",
-      h: "6-0",
-      r: -40,
+      h: "6-2",
+      r: -70,
     },
   },
   Marquette: {
-    "Owens, Damarius": { pos: "WF", pr: "4*", c: "DaOwens", h: "6-8", r: 83 },
+    "Owens, Damarius": {
+      pos: "WF",
+      pr: "4*",
+      c: "DaOwens",
+      h: "6-8",
+      r: 66,
+    },
     "Parham, Royce": {
       pos: "S-PF",
       pr: "3.5*/T150ish",
       c: "RoParham",
       h: "6-8",
-      r: 73,
+      r: 79,
     },
   },
   "Southern California": {
-    // Decommitted, leave him here now in case he goes somewhere else
-    // "Perry, Trent": {
-    //   pos: "PG",
-    //   pr: "4*/T40ish",
-    //   c: "TrPerry",
-    //   h: "6-4",
-    //   r: -2,
-    // },
-    // Decommitted, leave him here now in case he goes somewhere else
-    // "Kozlowski, Brody": {
-    //   pos: "S-PF",
-    //   pr: "4*",
-    //   c: "BrKozlowski",
-    //   h: "6-7",
-    //   r: -77,
-    // },
+    "Elohim, Isaiah": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "IsElohim",
+      h: "6-5",
+      r: -42,
+    },
+    "Shelley, Jalen": {
+      pos: "WF",
+      pr: "4*",
+      c: "JaShelley",
+      h: "6-8",
+      r: 69,
+    },
     "Campbell, Liam": {
       pos: "WG",
       pr: "3.5*/T150ish",
       c: "LiCampbell",
       h: "6-4",
-      r: 83,
+      r: 80,
     },
   },
   Texas: {
@@ -131,13 +260,24 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "TrJohnson",
       h: "6-6",
-      r: -30,
+      r: -34,
     },
-    "Scott, Cam": { pos: "WG", pr: "4*/T40ish", c: "CaScott", h: "6-5", r: 40 },
-    "Codie, Nicolas": { pos: "PF/C", pr: "4*", c: "NiCodie", h: "6-9", r: 88 },
+    "Codie, Nicolas": {
+      pos: "PF/C",
+      pr: "4*",
+      c: "NiCodie",
+      h: "6-9",
+      r: 72,
+    },
   },
   Tennessee: {
-    "Boswell, Bishop": { pos: "CG", pr: "4*", c: "BiBoswell", h: "6-4", r: 8 },
+    "Boswell, Bishop": {
+      pos: "CG",
+      pr: "4*",
+      c: "BiBoswell",
+      h: "6-4",
+      r: 27,
+    },
   },
   Utah: {
     "Johnson, Jaxon": {
@@ -145,12 +285,24 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*",
       c: "JaJohnson",
       h: "6-8",
-      r: -13,
+      r: -31,
     },
   },
   Houston: {
-    "McCarty, Chase": { pos: "WG", pr: "4*", c: "ChMccarty", h: "6-5", r: 7 },
-    "Miller, Mercy": { pos: "WG", pr: "4*", c: "MeMiller", h: "6-4", r: -94 },
+    "McCarty, Chase": {
+      pos: "WG",
+      pr: "4*",
+      c: "ChMccarty",
+      h: "6-5",
+      r: 10,
+    },
+    "Miller, Mercy": {
+      pos: "WG",
+      pr: "4*",
+      c: "MeMiller",
+      h: "6-4",
+      r: -61,
+    },
   },
   Georgia: {
     "Newell, Asa": {
@@ -158,7 +310,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "AsNewell",
       h: "6-9",
-      r: -94,
+      r: -88,
     },
   },
   Missouri: {
@@ -167,22 +319,28 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "AnBoateng",
       h: "6-6",
-      r: 78,
+      r: 62,
     },
-    "Allen, Marcus": { pos: "WF", pr: "4*", c: "MaAllen", h: "6-6", r: 69 },
-    "Burns, Trent": {
-      pos: "C",
-      pr: "3.5*/T150ish",
-      c: "TrBurns",
-      h: "7-3",
-      r: 86,
+    "Allen, Marcus": {
+      pos: "WF",
+      pr: "4*",
+      c: "MaAllen",
+      h: "6-6",
+      r: 47,
     },
     "Marshall, Peyton": {
       pos: "C",
       pr: "3.5*/T150ish",
       c: "PeMarshall",
       h: "7-0",
-      r: 80,
+      r: 84,
+    },
+    "Burns, Trent": {
+      pos: "C",
+      pr: "3.5*/T150ish",
+      c: "TrBurns",
+      h: "7-3",
+      r: 83,
     },
   },
   TCU: {
@@ -191,18 +349,24 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*",
       c: "MiRobinson",
       h: "6-6",
-      r: -24,
+      r: -28,
     },
     "Punch, David": {
       pos: "S-PF",
-      pr: "3.5*/T150ish",
+      pr: "4*",
       c: "DaPunch",
       h: "6-7",
-      r: 96,
+      r: -91,
     },
   },
   "Wake Forest": {
-    "Harris, Juke": { pos: "WG", pr: "4*", c: "JuHarris", h: "6-6", r: -17 },
+    "Harris, Juke": {
+      pos: "WG",
+      pr: "4*",
+      c: "JuHarris",
+      h: "6-6",
+      r: -30,
+    },
   },
   Oklahoma: {
     "Atak, Kuol": {
@@ -210,16 +374,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "3.5*/T150ish",
       c: "KuAtak",
       h: "6-9",
-      r: 53,
-    },
-  },
-  UCF: {
-    "Greene, Kyle": {
-      pos: "CG",
-      pr: "3.5*/T150ish",
-      c: "KyGreene",
-      h: "6-2",
-      r: 89,
+      r: 56,
     },
   },
   Cincinnati: {
@@ -228,9 +383,15 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "TyBetsey",
       h: "6-8",
-      r: 6,
+      r: -40,
     },
-    "McKinley, Tyler": { pos: "C", pr: "4*", c: "TyMckinley", h: "6-8", r: 25 },
+    "McKinley, Tyler": {
+      pos: "C",
+      pr: "4*",
+      c: "TyMckinley",
+      h: "6-8",
+      r: 34,
+    },
   },
   "North Carolina": {
     "Jackson, Ian": {
@@ -238,34 +399,53 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "IaJackson",
       h: "6-5",
-      r: -66,
+      r: -62,
     },
     "Powell, Drake": {
       pos: "WG",
       pr: "5*/Lotto",
       c: "DrPowell",
       h: "6-6",
-      r: -76,
+      r: -90,
     },
-    "Brown, James": { pos: "C", pr: "4*", c: "JaBrown", h: "6-9", r: 4 },
+    "Brown, James": {
+      pos: "C",
+      pr: "4*",
+      c: "JaBrown",
+      h: "6-9",
+      r: -31,
+    },
   },
   Virginia: {
-    "Cofie, Jacob": { pos: "PF/C", pr: "4*", c: "JaCofie", h: "6-9", r: -23 },
+    "Cofie, Jacob": {
+      pos: "PF/C",
+      pr: "4*",
+      c: "JaCofie",
+      h: "6-9",
+      r: -28,
+    },
   },
   LSU: {
+    "Miller, Vyctorius": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "VyMiller",
+      h: "6-5",
+      r: -94,
+    },
     "Miller, Robert": {
       pos: "PF/C",
       pr: "4*",
       c: "RoMiller",
       h: "6-10",
-      r: 63,
+      r: 51,
     },
     "Givens III, Curtis": {
       pos: "PG",
       pr: "4*",
       c: "CuGivens",
       h: "6-2",
-      r: 37,
+      r: 43,
     },
   },
   Alabama: {
@@ -274,21 +454,21 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "DeReid",
       h: "6-7",
-      r: -96,
+      r: -84,
     },
     "Sherrell, Aiden": {
       pos: "C",
       pr: "5*",
       c: "AiSherrell",
       h: "6-10",
-      r: -48,
+      r: -54,
     },
     "Cunningham, Naas": {
       pos: "WF",
       pr: "4*/T40ish",
       c: "NaCunningham",
       h: "6-7",
-      r: -44,
+      r: -46,
     },
   },
   Syracuse: {
@@ -297,20 +477,33 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*",
       c: "DoFreeman",
       h: "6-9",
-      r: -86,
+      r: -10,
     },
     "Moore, Elijah": {
       pos: "WG",
       pr: "3.5*/T150ish",
       c: "ElMoore",
       h: "6-4",
-      r: 82,
+      r: 90,
     },
   },
   "Virginia Tech": {
-    "Jones, Ryan": { pos: "C", pr: "4*", c: "RyJones", h: "6-8", r: -6 },
+    "Jones, Ryan": {
+      pos: "C",
+      pr: "4*",
+      c: "RyJones",
+      h: "6-8",
+      r: -14,
+    },
   },
   Duke: {
+    "Maluach, Khaman": {
+      pos: "C",
+      pr: "5*/Lotto",
+      c: "KhMaluach",
+      h: "7-1",
+      r: -34,
+    },
     "Flagg, Cooper": {
       pos: "PF/C",
       pr: "5*/Lotto",
@@ -318,35 +511,68 @@ export const freshmenMen2024_25: Record<string, any> = {
       h: "6-9",
       r: 0,
     },
-    "Maluach, Khaman": { pos: "C", pr: "5*", c: "KhMaluach", h: "7-1", r: -30 },
-    "Knueppel, Kon": { pos: "WG", pr: "5*", c: "KoKnueppel", h: "6-5", r: -10 },
+    "Knueppel, Kon": {
+      pos: "WG",
+      pr: "5*",
+      c: "KoKnueppel",
+      h: "6-5",
+      r: -6,
+    },
     "Harris, Darren": {
       pos: "WG",
       pr: "4*/T40ish",
       c: "DaHarris",
       h: "6-6",
-      r: -84,
+      r: -10,
     },
-    "Evans, Isaiah": { pos: "WG", pr: "5*", c: "IsEvans", h: "6-6", r: -2 },
+    "Evans, Isaiah": {
+      pos: "WG",
+      pr: "5*/Lotto",
+      c: "IsEvans",
+      h: "6-6",
+      r: -96,
+    },
     "Ngongba II, Patrick": {
       pos: "C",
       pr: "5*",
       c: "PaNgongba",
       h: "6-11",
-      r: -72,
+      r: -80,
     },
   },
-  Maryland: {
-    "Queen, Derik": { pos: "PF/C", pr: "5*", c: "DeQueen", h: "6-10", r: -8 },
+  Stanford: {
+    "Crawford, Elijah": {
+      pos: "PG",
+      pr: "3.5*/T150ish",
+      c: "ElCrawford",
+      h: "6-1",
+      r: 42,
+    },
   },
   Indiana: {
-    // Decommitted, keep him here to make it easy to add him later without doing a full Fr pull
-    //"McNeeley, Liam": { pos: "WF", pr: "5*", c: "LiMcneeley", h: "6-7", r: -8 },
-    "Tucker, Bryson": { pos: "WG", pr: "5*", c: "BrTucker", h: "6-6", r: -23 },
+    "Tucker, Bryson": {
+      pos: "WG",
+      pr: "5*",
+      c: "BrTucker",
+      h: "6-6",
+      r: -40,
+    },
   },
   "Saint Mary's (CA)": {
-    "Lewis, Mikey": { pos: "CG", pr: "4*", c: "MiLewis", h: "6-3", r: -20 },
-    "Sensley, Zion": { pos: "WF", pr: "4*", c: "ZiSensley", h: "6-8", r: -87 },
+    "Lewis, Mikey": {
+      pos: "CG",
+      pr: "4*",
+      c: "MiLewis",
+      h: "6-3",
+      r: -39,
+    },
+    "Sensley, Zion": {
+      pos: "WF",
+      pr: "4*",
+      c: "ZiSensley",
+      h: "6-8",
+      r: -98,
+    },
   },
   Purdue: {
     "Catchings, Kanon": {
@@ -356,42 +582,72 @@ export const freshmenMen2024_25: Record<string, any> = {
       h: "6-8",
       r: 6,
     },
-    "Harris, Gicarri": { pos: "CG", pr: "4*", c: "GiHarris", h: "6-4", r: -6 },
+    "Harris, Gicarri": {
+      pos: "CG",
+      pr: "4*",
+      c: "GiHarris",
+      h: "6-4",
+      r: 7,
+    },
   },
   Baylor: {
-    "Wright, Rob": { pos: "PG", pr: "5*", c: "RoWright", h: "6-0", r: -90 },
+    "Edgecombe, VJ": {
+      pos: "WG",
+      pr: "5*/Lotto",
+      c: "VjEdgecombe",
+      h: "6-5",
+      r: -22,
+    },
+    "Wright, Rob": {
+      pos: "PG",
+      pr: "5*",
+      c: "RoWright",
+      h: "6-0",
+      r: -94,
+    },
     "Asemota, Jason": {
       pos: "WF",
       pr: "4*/T40ish",
       c: "JaAsemota",
       h: "6-8",
-      r: -20,
+      r: -40,
     },
   },
   Kentucky: {
-    // Decommitted, leave him here now in case he goes somewhere else
-    // "Quaintance, Jayden": {
-    //   pos: "C",
-    //   pr: "5*/Lotto",
-    //   c: "JaQuaintance",
-    //   h: "6-9",
-    //   r: -64,
-    // },
-    // Decommitted, leave him here now in case he goes somewhere else
-    // "Cyril, Somto": {
-    //   pos: "C",
-    //   pr: "4*/T40ish",
-    //   c: "SoCyril",
-    //   h: "6-10",
-    //   r: -14,
-    // },
-    "Perry, Travis": { pos: "PG", pr: "4*", c: "TrPerry", h: "6-2", r: -21 },
+    "Perry, Travis": {
+      pos: "PG",
+      pr: "4*",
+      c: "TrPerry",
+      h: "6-2",
+      r: -3,
+    },
   },
   "St. John's (NY)": {
-    "Glover, Jaiden": { pos: "WG", pr: "4*", c: "JaGlover", h: "6-5", r: 98 },
+    "Glover, Jaiden": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "JaGlover",
+      h: "6-5",
+      r: -70,
+    },
   },
   Memphis: {
-    "Harris, Jared": { pos: "WG", pr: "4*", c: "JaHarris", h: "6-2", r: -39 },
+    "Harris, Jared": {
+      pos: "WG",
+      pr: "4*",
+      c: "JaHarris",
+      h: "6-2",
+      r: -41,
+    },
+  },
+  Ohio: {
+    "Evans, Ayden": {
+      pos: "C",
+      pr: "3*",
+      c: "AyEvans",
+      h: "6-8",
+      r: 2,
+    },
   },
   "Kansas St.": {
     "Castillo, David": {
@@ -399,11 +655,17 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "DaCastillo",
       h: "6-1",
-      r: -44,
+      r: -94,
     },
   },
   "Notre Dame": {
-    "Mohammed, Sir": { pos: "CG", pr: "4*", c: "SiMohammed", h: "6-7", r: 30 },
+    "Mohammed, Sir": {
+      pos: "CG",
+      pr: "4*",
+      c: "SiMohammed",
+      h: "6-7",
+      r: 36,
+    },
   },
   Illinois: {
     "Johnson, Morez": {
@@ -411,14 +673,16 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "MoJohnson",
       h: "6-9",
-      r: 94,
+      r: 96,
     },
-    "Butler, Jase": {
-      pos: "CG",
-      pr: "3.5*/T150ish",
-      c: "JaButler",
-      h: "6-4",
-      r: 43,
+  },
+  "UC Santa Barbara": {
+    "Clark, ZZ": {
+      pos: "PG",
+      pr: "3*",
+      c: "ZzClark",
+      h: "6-2",
+      r: -75,
     },
   },
   Georgetown: {
@@ -427,14 +691,23 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "ThSorber",
       h: "6-9",
-      r: -24,
+      r: -32,
     },
     "Mulready, Kayvaun": {
       pos: "WG",
       pr: "4*",
       c: "KaMulready",
       h: "6-4",
-      r: 44,
+      r: 30,
+    },
+  },
+  Harvard: {
+    "Hinton, Robert": {
+      pos: "WG",
+      pr: "4*",
+      c: "RoHinton",
+      h: "6-4",
+      r: -100,
     },
   },
   Kansas: {
@@ -443,25 +716,33 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "FlBidunga",
       h: "6-8",
-      r: -70,
-    },
-    "Philon, Labaron": {
-      pos: "PG",
-      pr: "4*/T40ish",
-      c: "LaPhilon",
-      h: "6-4",
-      r: 58,
+      r: -96,
     },
     "Passmore, Rakease": {
       pos: "WG",
       pr: "4*/T40ish",
       c: "RaPassmore",
       h: "6-5",
-      r: -20,
+      r: -4,
     },
   },
   "NC State": {
-    "McNeil, Paul": { pos: "WG", pr: "4*", c: "PaMcneil", h: "6-6", r: 97 },
+    "McNeil, Paul": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "PaMcneil",
+      h: "6-6",
+      r: -88,
+    },
+  },
+  Maryland: {
+    "Queen, Derik": {
+      pos: "C",
+      pr: "5*/Lotto",
+      c: "DeQueen",
+      h: "6-10",
+      r: -94,
+    },
   },
   "Miami (FL)": {
     "Bethea, Jalil": {
@@ -469,14 +750,14 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "JaBethea",
       h: "6-4",
-      r: -38,
+      r: -40,
     },
     "Swartz, Austin": {
       pos: "WG",
       pr: "4*/T40ish",
       c: "AuSwartz",
       h: "6-4",
-      r: -28,
+      r: -60,
     },
   },
   Creighton: {
@@ -485,18 +766,24 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "JaMcandrew",
       h: "6-9",
-      r: 34,
+      r: 14,
     },
     "Johnson, Larry": {
       pos: "WG",
       pr: "3.5*/T150ish",
       c: "LaJohnson",
       h: "6-4",
-      r: 56,
+      r: 50,
     },
   },
   Iowa: {
-    "Koch, Cooper": { pos: "S-PF", pr: "4*", c: "CoKoch", h: "6-8", r: -14 },
+    "Koch, Cooper": {
+      pos: "S-PF",
+      pr: "4*",
+      c: "CoKoch",
+      h: "6-8",
+      r: -22,
+    },
   },
   UConn: {
     "Nowell, Ahmad": {
@@ -504,14 +791,14 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "AhNowell",
       h: "6-0",
-      r: 20,
+      r: 34,
     },
     "Abraham, Isaiah": {
       pos: "S-PF",
       pr: "4*",
       c: "IsAbraham",
       h: "6-7",
-      r: 1,
+      r: 6,
     },
   },
   "Penn St.": {
@@ -520,34 +807,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "3.5*/T150ish",
       c: "MiGoodman",
       h: "6-10",
-      r: 63,
-    },
-  },
-  "Florida St.": {
-    "Daquan, Davis": {
-      pos: "PG",
-      pr: "3.5*/T150ish",
-      c: "DaDaquan",
-      h: "6-1",
-      r: 62,
-    },
-  },
-  Florida: {
-    "Brown, Isaiah": {
-      pos: "WG",
-      pr: "3.5*/T150ish",
-      c: "IsBrown",
-      h: "6-5",
-      r: 55,
-    },
-  },
-  Michigan: {
-    "Pippen, Justin": {
-      pos: "CG",
-      pr: "3.5*/T150ish",
-      c: "JuPippen",
-      h: "6-3",
-      r: 64,
+      r: 69,
     },
   },
   Rutgers: {
@@ -558,67 +818,60 @@ export const freshmenMen2024_25: Record<string, any> = {
       h: "6-8",
       r: -8,
     },
-    "Harper, Dylon": {
+    "Harper, Dylan": {
       pos: "CG",
       pr: "5*/Lotto",
       c: "DyHarper",
       h: "6-6",
-      r: -9,
+      r: -18,
     },
   },
   Arizona: {
-    "Sanon, Joson": {
-      pos: "WG",
-      pr: "5*",
-      c: "JoSanon",
-      h: "6-5",
-      r: -60,
-    },
     "Bryant, Carter": {
       pos: "S-PF",
       pr: "5*",
       c: "CaBryant",
       h: "6-8",
-      r: -44,
+      r: -42,
+    },
+    "Sanon, Joson": {
+      pos: "WG",
+      pr: "5*",
+      c: "JoSanon",
+      h: "6-5",
+      r: -66,
     },
     "Phillips, Jamari": {
       pos: "WG",
       pr: "4*/T40ish",
       c: "JaPhillips",
       h: "6-3",
-      r: -14,
+      r: -34,
     },
     "Stephen, Emmanuel": {
       pos: "C",
       pr: "4*",
       c: "EmStephen",
       h: "7-0",
-      r: -30,
-    },
-  },
-  Washington: {
-    "Butler, Jase": {
-      pos: "CG",
-      pr: "3.5*/T150ish",
-      c: "JaButler",
-      h: "6-4",
-      r: 57,
+      r: -34,
     },
   },
   Colorado: {
-    "Rancik, Sebastian": {
-      pos: "PF/C",
-      pr: "3.5*/T150ish",
-      c: "SeRancik",
-      h: "6-9",
-      r: 58,
-    },
     "Crawford, Andrew": {
       pos: "CG",
       pr: "3.5*/T150ish",
       c: "AnCrawford",
       h: "6-6",
-      r: 58,
+      r: 59,
+    },
+  },
+  Michigan: {
+    "Pippen, Justin": {
+      pos: "CG",
+      pr: "3.5*/T150ish",
+      c: "JuPippen",
+      h: "6-3",
+      r: 75,
     },
   },
   "Michigan St.": {
@@ -627,8 +880,14 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "4*/T40ish",
       c: "JaRichardson",
       h: "6-3",
-      r: 72,
+      r: 74,
     },
-    "Teng, Kur": { pos: "WG", pr: "4*/T40ish", c: "KuTeng", h: "6-4", r: -38 },
+    "Teng, Kur": {
+      pos: "WG",
+      pr: "4*/T40ish",
+      c: "KuTeng",
+      h: "6-4",
+      r: -72,
+    },
   },
 };
