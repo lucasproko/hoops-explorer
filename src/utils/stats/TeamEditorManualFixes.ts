@@ -990,7 +990,7 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
-        // Super seniors (final time!!), Rothstein up to 4/23
+        // Super seniors (final time!!), Rothstein up to 4/26
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
@@ -1029,6 +1029,9 @@ export class TeamEditorManualFixes {
               "LjCryer::",
               "J'Roberts::",
             ]),
+          },
+          Kansas: {
+            superSeniorsReturning: new Set(["HuDickinson::"]),
           },
           "Loyola Chicago": {
             superSeniorsReturning: new Set(["ShEdwards::"]),
