@@ -62,6 +62,14 @@ export const freshmenMen2024_25: Record<string, any> = {
       h: "6-5",
       r: -45,
     },
+    "Richmond, Billy": {
+      pos: "WG",
+      pr: "5*",
+      c: "BiRichmond",
+      h: "6-5",
+      r: -72,
+    },
+    "Fland, Boogie": { pos: "CG", pr: "5*", c: "BoFland", h: "6-2", r: -22 },
     // Decommitted, leave him here now in case he goes somewhere else
     // "Elohim, Isaiah": {
     //   pos: "WG",
@@ -370,8 +378,6 @@ export const freshmenMen2024_25: Record<string, any> = {
     //   r: -64,
     // },
     // Decommitted, leave him here now in case he goes somewhere else
-    // "Fland, Boogie": { pos: "CG", pr: "5*", c: "BoFland", h: "6-2", r: -22 },
-    // Decommitted, leave him here now in case he goes somewhere else
     // "Cyril, Somto": {
     //   pos: "C",
     //   pr: "4*/T40ish",
@@ -561,6 +567,13 @@ export const freshmenMen2024_25: Record<string, any> = {
     },
   },
   Arizona: {
+    "Sanon, Joson": {
+      pos: "WG",
+      pr: "5*",
+      c: "JoSanon",
+      h: "6-5",
+      r: -60,
+    },
     "Bryant, Carter": {
       pos: "S-PF",
       pr: "5*",
