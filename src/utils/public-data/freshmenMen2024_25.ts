@@ -463,6 +463,13 @@ export const freshmenMen2024_25: Record<string, any> = {
       h: "6-10",
       r: -54,
     },
+    "Philon, Labaron": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "LaPhilon",
+      h: "6-4",
+      r: 60,
+    },
     "Cunningham, Naas": {
       pos: "WF",
       pr: "4*/T40ish",
@@ -530,7 +537,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "IsEvans",
       h: "6-6",
-      r: -96,
+      r: -98,
     },
     "Ngongba II, Patrick": {
       pos: "C",
@@ -565,13 +572,6 @@ export const freshmenMen2024_25: Record<string, any> = {
       c: "MiLewis",
       h: "6-3",
       r: -39,
-    },
-    "Sensley, Zion": {
-      pos: "WF",
-      pr: "4*",
-      c: "ZiSensley",
-      h: "6-8",
-      r: -98,
     },
   },
   Purdue: {
@@ -676,15 +676,6 @@ export const freshmenMen2024_25: Record<string, any> = {
       r: 96,
     },
   },
-  "UC Santa Barbara": {
-    "Clark, ZZ": {
-      pos: "PG",
-      pr: "3*",
-      c: "ZzClark",
-      h: "6-2",
-      r: -75,
-    },
-  },
   Georgetown: {
     "Sorber, Thomas": {
       pos: "C",
@@ -741,7 +732,7 @@ export const freshmenMen2024_25: Record<string, any> = {
       pr: "5*/Lotto",
       c: "DeQueen",
       h: "6-10",
-      r: -94,
+      r: -92,
     },
   },
   "Miami (FL)": {
@@ -786,6 +777,13 @@ export const freshmenMen2024_25: Record<string, any> = {
     },
   },
   UConn: {
+    "McNeeley, Liam": {
+      pos: "WF",
+      pr: "5*",
+      c: "LiMcneeley",
+      h: "6-7",
+      r: -16,
+    },
     "Nowell, Ahmad": {
       pos: "CG",
       pr: "4*/T40ish",

@@ -1002,7 +1002,11 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["CaLove::"]),
           },
           Auburn: {
-            superSeniorsReturning: new Set(["DyCardwell::", "JoBroome::"]),
+            superSeniorsReturning: new Set([
+              "DyCardwell::",
+              "JoBroome::",
+              "ChMoore::",
+            ]),
           },
           "Boise St.": {
             superSeniorsReturning: new Set(["ChAgbo::"]),
@@ -1016,6 +1020,9 @@ export class TeamEditorManualFixes {
           },
           Clemson: {
             superSeniorsReturning: new Set(["ChHunter::"]),
+          },
+          Creighton: {
+            leftTeam: ["TrAlexander::"], //(NBA declaration not yet included in my automated feed)
           },
           "Fla. Atlantic": {
             superSeniorsReturning: new Set(["JoDavis::"]),
@@ -1072,11 +1079,17 @@ export class TeamEditorManualFixes {
           Northwestern: {
             superSeniorsReturning: new Set(["MaNicholson::", "TyBerry::"]),
           },
+          "Oklahoma St.": {
+            superSeniorsReturning: new Set(["BrThompson::"]),
+          },
           Oregon: {
             superSeniorsReturning: new Set(["KeBarthelemy::"]),
           },
           "Penn St.": {
             superSeniorsReturning: new Set(["PuJohnson::"]),
+          },
+          Rice: {
+            superSeniorsReturning: new Set(["AlHuseinovic::"]),
           },
           "Saint Louis": {
             superSeniorsReturning: new Set(["GiJimerson::"]),
