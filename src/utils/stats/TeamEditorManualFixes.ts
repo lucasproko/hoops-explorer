@@ -990,13 +990,13 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
-        // Super seniors (final time!!), Rothstein up to 4/26
+        // Super seniors (final time!!), Rothstein up to 5/1
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
         > = {
           Alabama: {
-            superSeniorsReturning: new Set(["LaWrightsell::"]),
+            superSeniorsReturning: new Set(["LaWrightsell::", "GrNelson::"]),
           },
           Arizona: {
             superSeniorsReturning: new Set(["CaLove::"]),
@@ -1023,6 +1023,7 @@ export class TeamEditorManualFixes {
           },
           Creighton: {
             leftTeam: ["TrAlexander::"], //(NBA declaration not yet included in my automated feed)
+            superSeniorsReturning: new Set(["RyKalkbrenne::"]),
           },
           "Fla. Atlantic": {
             superSeniorsReturning: new Set(["JoDavis::"]),
@@ -1039,6 +1040,9 @@ export class TeamEditorManualFixes {
           },
           Kansas: {
             superSeniorsReturning: new Set(["HuDickinson::"]),
+          },
+          "Kansas St.": {
+            superSeniorsReturning: new Set(["DaN'guessan::"]),
           },
           "Loyola Chicago": {
             superSeniorsReturning: new Set(["ShEdwards::"]),
@@ -1061,11 +1065,17 @@ export class TeamEditorManualFixes {
           Miami: {
             superSeniorsReturning: new Set(["NiPack::"]),
           },
+          Michigan: {
+            superSeniorsReturning: new Set(["NiBurnett::"]),
+          },
           Minnesota: {
             superSeniorsReturning: new Set(["PaFox::"]),
           },
           "Mississippi St.": {
             superSeniorsReturning: new Set(["CaMatthews::"]),
+          },
+          "NC State": {
+            superSeniorsReturning: new Set(["Mi'Oconnell::"]),
           },
           Nebraska: {
             superSeniorsReturning: new Set(["BrWilliams::", "JuGary::"]),
@@ -1105,6 +1115,9 @@ export class TeamEditorManualFixes {
           },
           "Texas Tech": {
             superSeniorsReturning: new Set(["ChMcmillian::"]),
+          },
+          UConn: {
+            superSeniorsReturning: new Set(["HaDiarra::"]),
           },
           Utah: {
             superSeniorsReturning: new Set(["GaMadsen::"]),
