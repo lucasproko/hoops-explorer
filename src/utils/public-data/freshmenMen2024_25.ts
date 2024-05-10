@@ -799,6 +799,15 @@ export const freshmenMen2024_25: Record<string, any> = {
       r: 6,
     },
   },
+  UCLA: {
+    "Perry, Travis": {
+      pos: "PG",
+      pr: "4*/T40ish",
+      c: "TrPerry",
+      h: "6-4",
+      r: 82,
+    },
+  },
   "Penn St.": {
     "Goodman, Miles": {
       pos: "C",

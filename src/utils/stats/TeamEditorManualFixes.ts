@@ -990,7 +990,7 @@ export class TeamEditorManualFixes {
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
-        // Super seniors (final time!!), Rothstein up to 5/2
+        // Super seniors (final time!!), Rothstein up to 5/10
         const manualOverrides_Men_2024_25: Record<
           string,
           TeamEditorManualFixModel
@@ -1019,6 +1019,7 @@ export class TeamEditorManualFixes {
             ]),
           },
           Clemson: {
+            leftTeam: ["PjHall::"], //(NBA declaration not yet included in my automated feed)
             superSeniorsReturning: new Set(["ChHunter::"]),
           },
           Creighton: {
@@ -1078,7 +1079,7 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["Mi'Oconnell::"]),
           },
           Nebraska: {
-            leftTeam: ["RiMast::"],
+            leftTeam: ["RiMast::"], //(medical redshirt)
             superSeniorsReturning: new Set(["BrWilliams::", "JuGary::"]),
           },
           Nevada: {
@@ -1132,6 +1133,9 @@ export class TeamEditorManualFixes {
               "JoBamisile::",
               "MaShulga::",
             ]),
+          },
+          Villanova: {
+            leftTeam: ["MaArmstrong::"], //(NBA declaration not yet included in my automated feed)
           },
           Xavier: {
             superSeniorsReturning: new Set(["ZaFreemantle::", "DaMcknight::"]),
