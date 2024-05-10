@@ -800,7 +800,7 @@ export const freshmenMen2024_25: Record<string, any> = {
     },
   },
   UCLA: {
-    "Perry, Travis": {
+    "Perry, Trent": {
       pos: "PG",
       pr: "4*/T40ish",
       c: "TrPerry",
