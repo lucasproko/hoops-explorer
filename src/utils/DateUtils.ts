@@ -57,6 +57,7 @@ export class DateUtils {
   /** Start showing both pre-season and prev-season - do once the pre-season ranks start to settle down (1st May?) */
   static readonly usePreseasonAndLastSeason: Record<string, boolean> = {
     "Men_2023/24": true,
+    "Men_2024/25": true,
   };
 
   /** The first year for which we had bulk date (ie not just hand-picked) */

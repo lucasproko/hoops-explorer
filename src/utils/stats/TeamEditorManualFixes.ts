@@ -1092,14 +1092,34 @@ export class TeamEditorManualFixes {
           Maryland: {
             superSeniorsReturning: new Set(["JoGeronimo::"]),
             ...TeamEditorManualFixes.buildOverrides({
-              //Was OKish as a T75 Fr in limited time, missed a year - so wild guess!
               "": {
+                // Experimenting with hand editing players ..
+                // TODO: ideally this would just need o/d
+                "Queen, Derik": {
+                  pos: "C",
+                  pr: "5*",
+                  c: "DeQueen",
+                  h: "6-9",
+                  r: 5,
+                  o: 1.5,
+                  d: -1.5,
+                },
+                //Was OKish as a T75 Fr in limited time, missed a year - so wild guess!
                 "Rice, Rodney": {
                   pos: "CG",
                   pr: "4*",
                   c: "RoRice",
                   h: "6-4",
                   r: 90,
+                },
+                // Late transfer which source is missing
+                "Young, Jayhlon": {
+                  pos: "CG",
+                  pr: "2*",
+                  c: "JaYoung",
+                  h: "6-2",
+                  o: 0.1,
+                  d: 3.7,
                 },
               },
             })[""],
@@ -1215,6 +1235,7 @@ export class TeamEditorManualFixes {
             ]),
           },
           Vermont: {
+            leftTeam: ["JaYoung:UCF:"], //(late transfer not included in my transfer source)
             superSeniorsReturning: new Set(["NiFiorillo::", "JaRoquemore::"]),
           },
           Villanova: {
