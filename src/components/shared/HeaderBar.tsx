@@ -118,14 +118,23 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       filter: trackingList,
     });
   }
-  function getTeamLeaderboardUrl() {
+  function getTeamLeaderboardUrl(allowOffseasonOverride: Boolean = true) {
     const currYear = common.year || DateUtils.mostRecentYearWithData;
     if (
       DateUtils.isSeasonFinished(currYear)
         ? currYear >= DateUtils.mostRecentYearWithData
         : currYear > DateUtils.mostRecentYearWithData
     ) {
-      return UrlRouting.getOffseasonLeaderboard({});
+      if (allowOffseasonOverride) {
+        return UrlRouting.getOffseasonLeaderboard({});
+      } else {
+        return UrlRouting.getTeamLeaderboardUrl(
+          getCommonLboardFilterParams({
+            ...common,
+            year: DateUtils.mostRecentYearWithData,
+          }) as TeamLeaderboardParams
+        );
+      }
     } else {
       return UrlRouting.getTeamLeaderboardUrl(
         getCommonLboardFilterParams(common) as TeamLeaderboardParams
@@ -399,7 +408,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           DateUtils.showOffseasonMetrics ? (
             <Dropdown.Item>
               {buildNavItem(
-                "How Is Your Off-Season Going?!",
+                "How is your off-season going?",
                 teamLeaderboardTooltip,
                 UrlRouting.getOffseasonLeaderboard({
                   transferInOutMode: true,
@@ -411,7 +420,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           {DateUtils.frontPageIsOffseasonLeaderboard ? (
             <Dropdown.Item>
               {buildNavItem(
-                "Editable Off-Season Leaderboard!",
+                "Editable off-season leaderboard!",
                 teamLeaderboardTooltip,
                 getTeamLeaderboardUrl(),
                 `${ParamPrefixes.team}_leaderboard`
@@ -427,6 +436,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               )}
             </Dropdown.Item>
           )}
+          {DateUtils.frontPageIsOffseasonLeaderboard ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Last season's team leaderboard",
+                teamLeaderboardTooltip,
+                getTeamLeaderboardUrl(false),
+                `${ParamPrefixes.team}_leaderboard`
+              )}
+            </Dropdown.Item>
+          ) : null}
           <Dropdown.Item>
             {buildNavItem(
               "Build your own off-season roster!",

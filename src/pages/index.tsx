@@ -84,7 +84,9 @@ const TeamLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   if (
     !testMode &&
     DateUtils.frontPageIsOffseasonLeaderboard && //(this is manually set/unset to give some latitude)
-    (allParams.indexOf(`year=${DateUtils.inSeasonYear.substring(0, 4)}`) >= 0 ||
+    (allParams.indexOf(
+      `year=${DateUtils.offseasonPredictionYear.substring(0, 4)}`
+    ) >= 0 ||
       allParams.indexOf("year=") < 0)
   ) {
     const newUrl = UrlRouting.getOffseasonLeaderboard(
