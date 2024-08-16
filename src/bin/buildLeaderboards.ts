@@ -28,6 +28,7 @@ import {
   TeamStatInfo,
   PureStatSet,
   IndivPosInfo,
+  RosterEntry,
 } from "../utils/StatModels";
 
 // API calls
@@ -204,7 +205,7 @@ var testTeamFilter = undefined as Set<string> | undefined;
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
-//testTeamFilter = new Set([ "Maryland" ]) //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!_.find(commandLine, (p) => _.startsWith(p, "--debug")) && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -486,7 +487,14 @@ export async function main() {
               console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
               return undefined;
             });
-          //(don't use height_in for women)
+          // Build a structured model of the roster info from disk - later we will add
+          // the positional info based on stats
+          const rosterInfoJsonToWrite = _.cloneDeep(rosterInfoJson) as Record<
+            PlayerCode,
+            RosterEntry
+          >;
+
+          //Mutate the version we use in the processing (don't use height_in for women)
           RequestUtils.mutateRosterJsonForWomen(rosterInfoJson, inGender);
 
           // Check for errors:
@@ -559,6 +567,49 @@ export async function main() {
               rosterInfoJson,
               true //(injects positional info into the player stats, needed for play style analysis below)
             );
+
+          // Inject the better positional info into the roster file:
+          if ("all" == label) {
+            const rosterChanges = _.transform(
+              rosterInfoJsonToWrite,
+              (acc, rosterEntry, playerCode) => {
+                const playerInfoFromStats = globalRosterStatsByCode[playerCode];
+                if (playerInfoFromStats?.role) {
+                  // (if we already have a role then don't overwrite until we have a decent number of possessions)
+                  const usage = playerInfoFromStats?.off_usage?.value || 0;
+                  const poss = playerInfoFromStats?.off_team_poss?.value || 0;
+                  const effectivePoss = poss * usage;
+
+                  const currRoleFromStats = rosterEntry.role;
+                  if (effectivePoss > 40.0 || !rosterEntry.role) {
+                    //(40 is a pretty arbitrary stat, but if we have a role_from_stats from the prev season or HS analysis it's probably decent)
+                    rosterEntry.role = playerInfoFromStats.role;
+                  }
+                  const roleHasChanged = currRoleFromStats != rosterEntry.role;
+                  if (roleHasChanged) {
+                    console.log(
+                      `Will update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`
+                    );
+                  }
+                  return acc.push(playerCode);
+                } else {
+                  return acc;
+                }
+              },
+              [] as Array<PlayerCode>
+            );
+
+            if (!_.isEmpty(rosterChanges)) {
+              // Write a new roster file
+              console.log(
+                `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
+              );
+              await fs.writeFile(
+                rosterInfoFile,
+                JSON.stringify(rosterInfoJsonToWrite)
+              );
+            }
+          }
 
           // Team info, for "Build your own T25"
           if ("all" == label && completedEfficiencyInfo?.[team]) {

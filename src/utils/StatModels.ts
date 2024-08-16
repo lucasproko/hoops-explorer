@@ -87,6 +87,8 @@ export type RosterEntry = {
   alt_number?: string;
   /** From NCAA roster - just G, F, C */
   pos?: string;
+  /** We inject this periodically based on the most recent stats */
+  role?: string;
   /** Ft-In format */
   height?: string;
   /** Fr/So/Jr/Sr */
