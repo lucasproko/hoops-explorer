@@ -41,7 +41,7 @@ import {
   OffseasonLeaderboardParams,
 } from "../utils/FilterModels";
 
-import { Statistic, RosterEntry } from "../utils/StatModels";
+import { Statistic, RosterEntry, PlayerCode } from "../utils/StatModels";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { UrlRouting } from "../utils/UrlRouting";
@@ -426,7 +426,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       teamOverrides,
       rostersPerTeam,
       avgEff,
-      actualResultsAvgEff
+      actualResultsAvgEff,
+      logDivisionStatsToFile && typeof window === `undefined` //(in preseason-building mode, include teams)
     );
 
     //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json)
@@ -446,8 +447,55 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           `./stats_all_Men_${year.substring(0, 4)}_Preseason.json`,
           JSON.stringify(derivedDivisionStats)
         );
-
+        //(DEBUG)
         //console.log(JSON.stringify(derivedDivisionStats));
+
+        // For each team, if we have a roster file for them, then update it with role info
+
+        teamRanks.forEach((teamInfo) => {
+          const filename = `./public/rosters/${gender}_${(year || "").substring(
+            0,
+            4
+          )}/${RequestUtils.fixLocalhostRosterUrl(teamInfo.team, false)}.json`;
+
+          var updatedOffseasonRoles = false;
+          try {
+            const currRosterJson = JSON.parse(
+              fs.readFileSync(filename)
+            ) as Record<PlayerCode, RosterEntry>;
+
+            if (teamInfo.team == "Maryland") {
+              console.log("HERE? " + JSON.stringify(teamInfo.players));
+            }
+
+            _.forEach(teamInfo.players || [], (playerInfo) => {
+              const playerCode = playerInfo.key.replace(/:.*/, "");
+              const playerRosterInfo = currRosterJson[playerCode];
+              if (
+                playerInfo.ok.posClass &&
+                playerRosterInfo &&
+                playerRosterInfo.role != playerInfo.ok.role
+              ) {
+                //(DEBUG)
+                // console.log(
+                //   `Will update roster info for [${playerCode}], old_role=[${playerRosterInfo.role}], new_role=[${playerInfo.ok.posClass}]`
+                // );
+                playerRosterInfo.role = playerInfo.ok.posClass;
+                updatedOffseasonRoles = true;
+              }
+            });
+            if (updatedOffseasonRoles) {
+              fs.writeFileSync(
+                filename,
+                JSON.stringify(currRosterJson, null, 3)
+              );
+            }
+          } catch (err) {
+            //(this can happen if the team rosters aren't available yet, so just skip)
+            //(DEBUG)
+            //console.log(`Roster filename [${filename}] doesn't exist`);
+          }
+        });
       }
     }
 
