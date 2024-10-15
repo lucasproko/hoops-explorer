@@ -57,7 +57,7 @@ export class TeamEditorManualFixes {
     }
   });
 
-  //TODO: move this into TeamEditorUtils?
+  /** Does one of two things: builds Fr profiles, or adjusts existing profiles (Fr or otherwise) */
   private static readonly buildOverrides = (
     recruits: Record<string, any>,
     genderYear: string = "NA"
@@ -68,78 +68,95 @@ export class TeamEditorManualFixes {
         const typedOverrides: Record<
           string,
           {
-            pr: string;
-            pos: string;
-            c: string;
-            h: string;
+            pr?: string;
+            pos?: string;
+            c?: string;
+            h?: string;
             r?: number;
             o?: number;
             d?: number;
+            m?: number;
           }
         > = override;
         const playerOverrides = _.transform(
           typedOverrides,
           (acc2, over, player) => {
-            const adjRtg = (over.r || 0) * 0.01;
-            const fourStarSuperFactor =
-              (over.pr == "4*" && adjRtg >= 0.8
-                ? 0.5 + (adjRtg - 0.8) * 5 * 1.25 //(to make 4* align with T40 you start to get a bigger bonus at 75+, need o+d to get from 1.5 to 3 at adjRtg of 1.0
-                : 0.5) * //(0.5 so the total -1 to 1 range is RAPM of 1)
-              0.5; //(*0.5 for off/def)
+            if (over.pr && over.pos && over.c && over.h) {
+              //if profile specified, then specify all fields
+              // Specify the entire player profile
+              const adjRtg = (over.r || 0) * 0.01;
+              const fourStarSuperFactor =
+                (over.pr == "4*" && adjRtg >= 0.8
+                  ? 0.5 + (adjRtg - 0.8) * 5 * 1.25 //(to make 4* align with T40 you start to get a bigger bonus at 75+, need o+d to get from 1.5 to 3 at adjRtg of 1.0
+                  : 0.5) * //(0.5 so the total -1 to 1 range is RAPM of 1)
+                0.5; //(*0.5 for off/def)
 
-            const fiveStarFactor = 0.5; //(5* gets bigger range of penalties because values assigned are pretty higher)
-            const factor =
-              over.pr >= "5*" ? fiveStarFactor : fourStarSuperFactor;
+              const fiveStarFactor = 0.5; //(5* gets bigger range of penalties because values assigned are pretty higher)
+              const factor =
+                over.pr >= "5*" ? fiveStarFactor : fourStarSuperFactor;
 
-            const factorTimeRatingOff = factor * adjRtg + (over.o || 0);
-            const factorTimeRatingDef = -(
-              factor * adjRtg +
-              (over.d || 0)
-            ).toFixed(2);
-            const [aaOffAdj, aaDefAdj] = _.thru(
-              getAllAmericanFrTeam(over.c, team, genderYear),
-              (maybeTeam) => {
-                if (maybeTeam > 0) {
-                  const baseForThisRank =
-                    TeamEditorUtils.getBenchLevelScoringByProfile(
-                      over.pr as Profiles
+              const factorTimeRatingOff = factor * adjRtg + (over.o || 0);
+              const factorTimeRatingDef = -(
+                factor * adjRtg +
+                (over.d || 0)
+              ).toFixed(2);
+              const [aaOffAdj, aaDefAdj] = _.thru(
+                getAllAmericanFrTeam(over.c, team, genderYear),
+                (maybeTeam) => {
+                  if (maybeTeam > 0) {
+                    const baseForThisRank =
+                      TeamEditorUtils.getBenchLevelScoringByProfile(
+                        over.pr as Profiles
+                      );
+                    const initialPredRapm =
+                      baseForThisRank +
+                      factorTimeRatingOff -
+                      factorTimeRatingDef;
+                    const teamRapm =
+                      allAmericanBonuses[maybeTeam] || initialPredRapm;
+
+                    const adjPredRapm =
+                      allAmericanBonusWeight * teamRapm +
+                      (1.0 - allAmericanBonusWeight) * initialPredRapm;
+                    const adjPredRapmAdj = Math.max(
+                      0,
+                      adjPredRapm - initialPredRapm
                     );
-                  const initialPredRapm =
-                    baseForThisRank + factorTimeRatingOff - factorTimeRatingDef;
-                  const teamRapm =
-                    allAmericanBonuses[maybeTeam] || initialPredRapm;
 
-                  const adjPredRapm =
-                    allAmericanBonusWeight * teamRapm +
-                    (1.0 - allAmericanBonusWeight) * initialPredRapm;
-                  const adjPredRapmAdj = Math.max(
-                    0,
-                    adjPredRapm - initialPredRapm
-                  );
-
-                  return [0.5 * adjPredRapmAdj, -0.5 * adjPredRapmAdj];
-                } else {
-                  return [0, 0];
+                    return [0.5 * adjPredRapmAdj, -0.5 * adjPredRapmAdj];
+                  } else {
+                    return [0, 0];
+                  }
                 }
-              }
-            );
-            const totalRatingOff = parseFloat(
-              (factorTimeRatingOff + aaOffAdj).toFixed(2)
-            );
-            const totalRatingDef = parseFloat(
-              (factorTimeRatingDef + aaDefAdj).toFixed(2)
-            );
+              );
+              const totalRatingOff = parseFloat(
+                (factorTimeRatingOff + aaOffAdj).toFixed(2)
+              );
+              const totalRatingDef = parseFloat(
+                (factorTimeRatingDef + aaDefAdj).toFixed(2)
+              );
 
-            acc2[`${over.c}`] = {
-              //(index by code not key)
-              name: player,
-              profile: over.pr as Profiles,
-              pos: over.pos,
-              height: over.h,
-              global_off_adj: totalRatingOff ? totalRatingOff : undefined, //apportion out bonus/penalty if there is one
-              global_def_adj: totalRatingDef ? totalRatingDef : undefined,
-              fromFrList: true,
-            };
+              acc2[`${over.c}`] = {
+                //(index by code not key)
+                name: player,
+                profile: over.pr as Profiles,
+                pos: over.pos,
+                height: over.h,
+                global_off_adj: totalRatingOff ? totalRatingOff : undefined, //apportion out bonus/penalty if there is one
+                global_def_adj: totalRatingDef ? totalRatingDef : undefined,
+                fromFrList: true,
+              };
+            } else if (!over.pr) {
+              const code = over.c || player; //(take key as code if non specified)
+              //(NOTE: except for Fr, needs to include the "::" suffix or variant)
+              acc2[`${code}`] = {
+                pos: over.pos,
+                mins: over.m,
+                height: over.h,
+                global_off_adj: over.o,
+                global_def_adj: _.isNumber(over.d) ? -over.d : undefined,
+              };
+            }
           },
           {} as Record<string, PlayerEditModel>
         );
@@ -1093,17 +1110,13 @@ export class TeamEditorManualFixes {
             superSeniorsReturning: new Set(["JoGeronimo::"]),
             ...TeamEditorManualFixes.buildOverrides({
               "": {
-                // Experimenting with hand editing players ..
-                // TODO: ideally this would just need o/d
-                "Queen, Derik": {
-                  pos: "C",
-                  pr: "5*",
-                  c: "DeQueen",
-                  h: "6-9",
-                  r: 5,
+                // Adjustments:
+                DeQueen: {
+                  //(no "::" in key because Fr)
                   o: 1.5,
                   d: -1.5,
                 },
+                // Missing players:
                 //Was OKish as a T75 Fr in limited time, missed a year - so wild guess!
                 "Rice, Rodney": {
                   pos: "CG",
@@ -1112,13 +1125,13 @@ export class TeamEditorManualFixes {
                   h: "6-4",
                   r: 90,
                 },
-                // Late transfer which source is missing
+                // Late transfer for which source is missing
                 "Young, Jayhlon": {
                   pos: "CG",
                   pr: "2*",
                   c: "JaYoung",
                   h: "6-2",
-                  o: 0.1,
+                  o: 0.1, //(relative to pr - hand-picked to give a prediction vs his last 2 years)
                   d: 3.7,
                 },
               },

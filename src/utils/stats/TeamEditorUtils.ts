@@ -566,7 +566,7 @@ export class TeamEditorUtils {
                 {
                   ...userOverride,
                   ...teamVals, //(if paused this removes all any manual overrides)
-                  fromFrList: true,
+                  fromFrList: !_.isNil(maybeFr.profile), //(otherwise it's my override for a non-Fr)
                 },
               ];
             } else {
@@ -575,6 +575,7 @@ export class TeamEditorUtils {
           })
         )
     );
+
     const unpausedOverrides: Record<string, PlayerEditModel> = _.chain(
       allOverrides
     )
@@ -587,7 +588,8 @@ export class TeamEditorUtils {
         const maybeOverrides = teamOverrides.overrides || {};
         const maybeFr: PlayerEditModel | undefined =
           maybeOverrides[keyVal[0]] || redshirtishFr[keyVal[0]];
-        if (maybeFr) {
+        if (maybeFr?.profile) {
+          //(if not profile it's my override for a non-Fr)
           const userOverride = keyVal[1];
 
           const newGlobalOffAdj =
