@@ -57,12 +57,9 @@ import {
   GoodBadOkTriple,
   PlayerEditModel,
   TeamEditorUtils,
-  TeamEditorProcessingResults,
 } from "../utils/stats/TeamEditorUtils";
 
 import {
-  StatModels,
-  IndivStatSet,
   PureStatSet,
   DivisionStatistics,
   Statistic,
@@ -85,8 +82,8 @@ import {
 } from "../utils/public-data/ConferenceInfo";
 import { efficiencyInfo } from "../utils/internal-data/efficiencyInfo";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
-import ReactNode from "react";
 import { CbbColors } from "../utils/CbbColors";
+import { IndivStatSet } from "../utils/StatModels";
 
 // Input params/models
 
@@ -834,12 +831,32 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           ? triple.prevYear.off_team_poss_pct?.value || 0
           : 1.0;
 
+      const injectTransferOverlay = (text: String, season: IndivStatSet) => {
+        if (season.team != team) {
+          return (
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip id={`transfer_${season.year}`}>
+                  Playing at {season.team}{" "}
+                  {season.conf ? `(${season.conf})` : ""}
+                </Tooltip>
+              }
+            >
+              <span>
+                {text}
+                <sup>*</sup>
+              </span>
+            </OverlayTrigger>
+          );
+        }
+      };
       const prevSeasonEl =
         showPrevSeasons && offSeasonMode && !triple.manualProfile && !isFiltered
           ? {
               title: (
                 <small>
-                  <i>Previous season</i>
+                  <i>{injectTransferOverlay("Previous season", triple.orig)}</i>
                 </small>
               ),
               mpg: { value: (triple.orig.off_team_poss_pct?.value || 0) * 40 },
@@ -875,7 +892,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           ? {
               title: (
                 <small>
-                  <i>Season before</i>
+                  <i>
+                    {injectTransferOverlay("Season before", triple.prevYear)}
+                  </i>
                 </small>
               ),
               mpg: {
