@@ -849,6 +849,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               </span>
             </OverlayTrigger>
           );
+        } else {
+          <span>{text}</span>;
         }
       };
       const prevSeasonEl =
