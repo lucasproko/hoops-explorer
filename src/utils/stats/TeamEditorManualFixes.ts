@@ -1034,6 +1034,17 @@ export class TeamEditorManualFixes {
           },
           Arizona: {
             superSeniorsReturning: new Set(["CaLove::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "JaBradley:Alabama:": {
+                  o: -1.5,
+                },
+                "KrMotiejus::": {
+                  o: -0.5,
+                },
+              },
+            })[""],
           },
           Arkansas: {
             superSeniorsReturning: new Set(["TrBrazile::"]),
@@ -1044,6 +1055,25 @@ export class TeamEditorManualFixes {
               "JoBroome::",
               "ChMoore::",
             ]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "ChBaker-maza::": {
+                  o: -1.5,
+                },
+              },
+            })[""],
+          },
+          Baylor: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "LaLove::": {
+                  o: -0.75,
+                  d: -0.25,
+                },
+              },
+            })[""],
           },
           "Boise St.": {
             superSeniorsReturning: new Set(["ChAgbo::"]),
@@ -1077,6 +1107,15 @@ export class TeamEditorManualFixes {
           },
           Cincinnati: {
             superSeniorsReturning: new Set(["AzBandaogo::", "CjFredrick::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "JaJizzle::": {
+                  o: -0.5,
+                  d: -0.5,
+                },
+              },
+            })[""],
           },
           Clemson: {
             leftTeam: ["PjHall::"], //(NBA declaration not yet included in my automated feed)
@@ -1131,6 +1170,16 @@ export class TeamEditorManualFixes {
           "George Mason": {
             superSeniorsReturning: new Set(["DaMaddox::", "WoNewton::"]),
           },
+          Georgetown: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "IsMassoud::": {
+                  o: 2.0, //(played injured last season, no way he isn't an average-ish offensive player)
+                },
+              },
+            })[""],
+          },
           "Georgia Tech": {
             superSeniorsReturning: new Set(["LaTerry::"]),
           },
@@ -1160,6 +1209,14 @@ export class TeamEditorManualFixes {
           },
           "Iowa St.": {
             superSeniorsReturning: new Set(["CuJones::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "Momcilovic::": {
+                  d: -1.0,
+                },
+              },
+            })[""],
           },
           Kansas: {
             superSeniorsReturning: new Set(["HuDickinson::"]),
@@ -1169,6 +1226,28 @@ export class TeamEditorManualFixes {
           },
           "Kansas St.": {
             superSeniorsReturning: new Set(["DaN'guessan::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "DuMcDaniel:Michigan:": {
+                  o: -0.3,
+                  d: -0.3,
+                },
+                "AcAchor:Samford:": {
+                  d: -0.3,
+                },
+              },
+            })[""],
+          },
+          Kentucky: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "KeKriisa:West Virginia:": {
+                  d: 0.7,
+                },
+              },
+            })[""],
           },
           "Loyola Chicago": {
             superSeniorsReturning: new Set(["ShEdwards::"]),
@@ -1219,6 +1298,19 @@ export class TeamEditorManualFixes {
               },
             })[""],
           },
+          Memphis: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "BaOkojie:George Mason:": {
+                  d: -0.5,
+                },
+                "PjHaggerty:Tulsa:": {
+                  d: -0.5,
+                },
+              },
+            })[""],
+          },
           Mercer: {
             superSeniorsReturning: new Set(["AlHolt::"]),
           },
@@ -1227,6 +1319,29 @@ export class TeamEditorManualFixes {
           },
           Michigan: {
             superSeniorsReturning: new Set(["NiBurnett::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "VlGoldin:Fla. Atlantic:": {
+                  o: -0.5,
+                },
+              },
+            })[""],
+          },
+          "Michigan St.": {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "JeFears::": {
+                  o: -0.7,
+                  d: -0.3,
+                },
+                "XaBooker::": {
+                  o: -0.5,
+                  d: -1.0,
+                },
+              },
+            })[""],
           },
           "Middle Tenn.": {
             superSeniorsReturning: new Set(["CaWeston::"]),
@@ -1236,9 +1351,30 @@ export class TeamEditorManualFixes {
           },
           "Mississippi St.": {
             superSeniorsReturning: new Set(["CaMatthews::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "JoHubbard::": {
+                  o: -0.35,
+                  d: -0.35,
+                },
+                "JeFoumena:Rhode Island:": {
+                  o: -0.3,
+                  d: -0.3,
+                },
+              },
+            })[""],
           },
           Missouri: {
             superSeniorsReturning: new Set(["CaGrill::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "CaGrill:Iowa St.:": {
+                  d: -0.5,
+                },
+              },
+            })[""],
           },
           Montana: {
             superSeniorsReturning: new Set(["BrWhitney::"]),
@@ -1252,6 +1388,14 @@ export class TeamEditorManualFixes {
           Nebraska: {
             leftTeam: ["RiMast::"], //(medical redshirt)
             superSeniorsReturning: new Set(["BrWilliams::", "JuGary::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "SaHoiberg::": {
+                  o: -0.5,
+                },
+              },
+            })[""],
           },
           Nevada: {
             superSeniorsReturning: new Set([
@@ -1265,6 +1409,14 @@ export class TeamEditorManualFixes {
           },
           "North Carolina": {
             superSeniorsReturning: new Set(["JaWithers::", "RjDavis::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "ElCadeau::": {
+                  d: -0.7,
+                },
+              },
+            })[""],
           },
           "Northern Ky.": {
             superSeniorsReturning: new Set(["TrRobinson::"]),
@@ -1296,6 +1448,20 @@ export class TeamEditorManualFixes {
           },
           Portland: {
             superSeniorsReturning: new Set(["ChAustin::"]),
+          },
+          Purdue: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "BrSmith::": {
+                  o: -1.0,
+                  d: -0.25,
+                },
+                "CaFurst::": {
+                  d: -0.5,
+                },
+              },
+            })[""],
           },
           Quinnipac: {
             superSeniorsReturning: new Set(["SaLewis::"]),
@@ -1344,6 +1510,17 @@ export class TeamEditorManualFixes {
           },
           Temple: {
             superSeniorsReturning: new Set(["MaPicarelli::"]),
+          },
+          Tennessee: {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "ChLanier:North Florida:": {
+                  o: 1.5,
+                  d: 1.0,
+                },
+              },
+            })[""],
           },
           Texas: {
             superSeniorsReturning: new Set(["KaShedrick::"]),
@@ -1413,6 +1590,22 @@ export class TeamEditorManualFixes {
               "JoBamisile::",
               "MaShulga::",
             ]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Missing players:
+                //(for some reason - double transfer? - he doesn't appear, need to track this down
+                // but in the meantime, this will do)
+                "Clark, Jack": {
+                  pos: "WG",
+                  pr: "4*",
+                  c: "JaClark",
+                  h: "6-8",
+                  r: 90,
+                  o: 0.5,
+                  d: 0.5,
+                },
+              },
+            })[""],
           },
           Vermont: {
             leftTeam: ["JaYoung:UCF:"], //(late transfer not included in my transfer source)
@@ -1427,6 +1620,9 @@ export class TeamEditorManualFixes {
           },
           Wagner: {
             superSeniorsReturning: new Set(["RaMoore::"]),
+          },
+          "Wake Forest": {
+            leftTeam: ["BoKlintman::"], //(not sure what happened here, he long gone)
           },
           Washington: {
             superSeniorsReturning: new Set(["FrKepnang::"]),
