@@ -16,3 +16,5 @@ transfers_2024.json
 
 .vercel
 .metals
+.scala-build
+.bsp
