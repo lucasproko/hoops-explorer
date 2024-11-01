@@ -77,6 +77,7 @@ type Props = {
 const logDivisionStatsToConsole = false;
 const logDivisionStatsToFile =
   process.env.BUILD_OFFSEASON_STATS_LEADERBOARD == "true";
+const updateNextYearsRoster = process.env.BUILD_OFFSEASON_ROSTER == "true";
 
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
@@ -450,52 +451,54 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         //(DEBUG)
         //console.log(JSON.stringify(derivedDivisionStats));
 
-        // For each team, if we have a roster file for them, then update it with role info
+        // For each team, if we have a roster file for them for the next seasion,
+        // We have the option to update it with role info
+        //(only do this as a one-off when building next year's rosters, otherwise it happens
+        // during the normal buildLeaderboard process)
+        if (updateNextYearsRoster)
+          teamRanks.forEach((teamInfo) => {
+            const filename = `./public/rosters/${gender}_${(
+              year || ""
+            ).substring(0, 4)}/${RequestUtils.fixLocalhostRosterUrl(
+              teamInfo.team,
+              false
+            )}.json`;
 
-        teamRanks.forEach((teamInfo) => {
-          const filename = `./public/rosters/${gender}_${(year || "").substring(
-            0,
-            4
-          )}/${RequestUtils.fixLocalhostRosterUrl(teamInfo.team, false)}.json`;
+            var varUpdatedOffseasonRoles = false;
+            try {
+              const currRosterJson = JSON.parse(
+                fs.readFileSync(filename)
+              ) as Record<PlayerCode, RosterEntry>;
 
-          var updatedOffseasonRoles = false;
-          try {
-            const currRosterJson = JSON.parse(
-              fs.readFileSync(filename)
-            ) as Record<PlayerCode, RosterEntry>;
+              _.forEach(teamInfo.players || [], (playerInfo) => {
+                const playerCode = playerInfo.key.replace(/:.*/, "");
+                const playerRosterInfo = currRosterJson[playerCode];
 
-            if (teamInfo.team == "Maryland") {
-              console.log("HERE? " + JSON.stringify(teamInfo.players));
-            }
-
-            _.forEach(teamInfo.players || [], (playerInfo) => {
-              const playerCode = playerInfo.key.replace(/:.*/, "");
-              const playerRosterInfo = currRosterJson[playerCode];
-              if (
-                playerInfo.ok.posClass &&
-                playerRosterInfo &&
-                playerRosterInfo.role != playerInfo.ok.role
-              ) {
-                //(DEBUG)
-                // console.log(
-                //   `Will update roster info for [${playerCode}], old_role=[${playerRosterInfo.role}], new_role=[${playerInfo.ok.posClass}]`
-                // );
-                playerRosterInfo.role = playerInfo.ok.posClass;
-                updatedOffseasonRoles = true;
+                if (
+                  playerInfo.ok.posClass &&
+                  playerRosterInfo &&
+                  playerRosterInfo.role != playerInfo.ok.posClass
+                ) {
+                  //(DEBUG)
+                  // console.log(
+                  //   `Will update roster info for [${playerCode}], old_role=[${playerRosterInfo.role}], new_role=[${playerInfo.ok.posClass}]`
+                  // );
+                  playerRosterInfo.role = playerInfo.ok.posClass;
+                  varUpdatedOffseasonRoles = true;
+                }
+              });
+              if (varUpdatedOffseasonRoles) {
+                fs.writeFileSync(
+                  filename,
+                  JSON.stringify(currRosterJson, null, 3)
+                );
               }
-            });
-            if (updatedOffseasonRoles) {
-              fs.writeFileSync(
-                filename,
-                JSON.stringify(currRosterJson, null, 3)
-              );
+            } catch (err) {
+              //(this can happen if the team rosters aren't available yet, so just skip)
+              //(DEBUG)
+              //console.log(`Roster filename [${filename}] doesn't exist`);
             }
-          } catch (err) {
-            //(this can happen if the team rosters aren't available yet, so just skip)
-            //(DEBUG)
-            //console.log(`Roster filename [${filename}] doesn't exist`);
-          }
-        });
+          });
       }
     }
 

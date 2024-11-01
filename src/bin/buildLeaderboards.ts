@@ -1025,7 +1025,7 @@ export async function main() {
                   team: team,
                   year: teamYear,
                   posFreqs,
-                  ...(cutdownLowVolume
+                  ...((cutdownLowVolume
                     ? lowVolumeStripPlayerInfo(kv[1])
                     : _.chain(kv[1])
                         .toPairs()
@@ -1058,7 +1058,7 @@ export async function main() {
                               t2[0] != "roster")
                         )
                         .fromPairs()
-                        .value()),
+                        .value()) as PureStatSet),
                   ...posInfo,
                 } as IndivStatSet;
               });
