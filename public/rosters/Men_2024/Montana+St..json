@@ -1,1 +1,227 @@
-{"BrWalker":{"player_code_id":{"code":"BrWalker","id":"Walker, Brandon"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Dallas, TX"},"GrGaddis":{"player_code_id":{"code":"GrGaddis","id":"Gaddis, Grayson"},"number":"15","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Salt Lake City, UT"},"SaLecholat":{"player_code_id":{"code":"SaLecholat","id":"Lecholat, Sam"},"number":"25","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Sheridan, WY"},"BrZephir":{"player_code_id":{"code":"BrZephir","id":"Zephir, Bryce"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Carson, CA"},"TrJohnson":{"player_code_id":{"code":"TrJohnson","id":"Johnson, Trap"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Belton, TX"},"MyMoskowitz":{"player_code_id":{"code":"MyMoskowitz","id":"Moskowitz, Myles"},"number":"14","pos":"G","height":"5-11","height_in":71,"year_class":"Fr.","gp":0,"origin":"Boulder, CO"},"CaRutherfurd":{"player_code_id":{"code":"CaRutherfurd","id":"Rutherfurd, Calum"},"number":"22","pos":"F","height":"6-11","height_in":83,"year_class":"So.","gp":0,"origin":"Sebastopol, CA"},"ChNduka":{"player_code_id":{"code":"ChNduka","id":"Nduka, Chika"},"number":"23","pos":"F","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Seattle, WA"},"PaMcmahon":{"player_code_id":{"code":"PaMcmahon","id":"McMahon, Patrick"},"number":"1","pos":"G","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Palmer, AK"},"BjKolly":{"player_code_id":{"code":"BjKolly","id":"Kolly, BJ"},"number":"8","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Mukilteo, WA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Matt Logie"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JeDavis":{"player_code_id":{"code":"JeDavis","id":"Davis, Jeremiah"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Fountain Valley, CA"},"JeMiller":{"player_code_id":{"code":"JeMiller","id":"Miller, Jed"},"number":"24","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Agoura Hills, CA"},"MaAgbonkpolo":{"player_code_id":{"code":"MaAgbonkpolo","id":"Agbonkpolo, Max"},"number":"7","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Laguna Niguel, CA"},"TyPatterson":{"player_code_id":{"code":"TyPatterson","id":"Patterson, Tyler"},"number":"11","pos":"G","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Snoqualmie, WA"},"JaMullins":{"player_code_id":{"code":"JaMullins","id":"Mullins, Jabe"},"number":"3","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Snoqualmie, WA"},"BrGoracke":{"player_code_id":{"code":"BrGoracke","id":"Goracke, Brian"},"number":"21","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Monroe, OR"}}
+{
+   "BrWalker": {
+      "player_code_id": {
+         "code": "BrWalker",
+         "id": "Walker, Brandon"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Dallas, TX",
+      "role": "WF"
+   },
+   "GrGaddis": {
+      "player_code_id": {
+         "code": "GrGaddis",
+         "id": "Gaddis, Grayson"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Salt Lake City, UT"
+   },
+   "SaLecholat": {
+      "player_code_id": {
+         "code": "SaLecholat",
+         "id": "Lecholat, Sam"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Sheridan, WY",
+      "role": "S-PF"
+   },
+   "BrZephir": {
+      "player_code_id": {
+         "code": "BrZephir",
+         "id": "Zephir, Bryce"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Carson, CA"
+   },
+   "TrJohnson": {
+      "player_code_id": {
+         "code": "TrJohnson",
+         "id": "Johnson, Trap"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Belton, TX"
+   },
+   "MyMoskowitz": {
+      "player_code_id": {
+         "code": "MyMoskowitz",
+         "id": "Moskowitz, Myles"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Boulder, CO"
+   },
+   "CaRutherfurd": {
+      "player_code_id": {
+         "code": "CaRutherfurd",
+         "id": "Rutherfurd, Calum"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Sebastopol, CA"
+   },
+   "ChNduka": {
+      "player_code_id": {
+         "code": "ChNduka",
+         "id": "Nduka, Chika"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Seattle, WA",
+      "role": "WG"
+   },
+   "PaMcmahon": {
+      "player_code_id": {
+         "code": "PaMcmahon",
+         "id": "McMahon, Patrick"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Palmer, AK"
+   },
+   "BjKolly": {
+      "player_code_id": {
+         "code": "BjKolly",
+         "id": "Kolly, BJ"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Mukilteo, WA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Matt Logie"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JeDavis": {
+      "player_code_id": {
+         "code": "JeDavis",
+         "id": "Davis, Jeremiah"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Fountain Valley, CA"
+   },
+   "JeMiller": {
+      "player_code_id": {
+         "code": "JeMiller",
+         "id": "Miller, Jed"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Agoura Hills, CA"
+   },
+   "MaAgbonkpolo": {
+      "player_code_id": {
+         "code": "MaAgbonkpolo",
+         "id": "Agbonkpolo, Max"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Laguna Niguel, CA"
+   },
+   "TyPatterson": {
+      "player_code_id": {
+         "code": "TyPatterson",
+         "id": "Patterson, Tyler"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Snoqualmie, WA",
+      "role": "WG"
+   },
+   "JaMullins": {
+      "player_code_id": {
+         "code": "JaMullins",
+         "id": "Mullins, Jabe"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Snoqualmie, WA",
+      "role": "CG"
+   },
+   "BrGoracke": {
+      "player_code_id": {
+         "code": "BrGoracke",
+         "id": "Goracke, Brian"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Monroe, OR",
+      "role": "WG"
+   }
+}

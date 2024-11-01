@@ -1,1 +1,203 @@
-{"CaWilliams":{"player_code_id":{"code":"CaWilliams","id":"Williams, Caleb"},"number":"1","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Jacksonville, FL"},"JuVanderBaan":{"player_code_id":{"code":"JuVanderBaan","id":"Vander Baan, Justin"},"number":"15","pos":"C","height":"7-0","height_in":84,"year_class":"Sr.","gp":0,"origin":"Northbridge, MA"},"JoWyche":{"player_code_id":{"code":"JoWyche","id":"Wyche, Joshua"},"number":"23","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Philadelphia, PA"},"MaButler":{"player_code_id":{"code":"MaButler","id":"Butler, Mark"},"number":"10","pos":"G","height":"5-10","height_in":70,"year_class":"So.","gp":0,"origin":"Philadelphia, PA"},"DeHines":{"player_code_id":{"code":"DeHines","id":"Hines, Devin"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"West Palm Beach, FL"},"ChRubayo":{"player_code_id":{"code":"ChRubayo","id":"Rubayo, Chris"},"number":"22","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Skillman, NJ"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mike McGarvey"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnPhillips":{"player_code_id":{"code":"AnPhillips","id":"Phillips, Andrew"},"number":"21","pos":"F","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Downingtown, PA"},"FoFayemi":{"player_code_id":{"code":"FoFayemi","id":"Fayemi, Folabomi"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Chicago, IL"},"TjBerger":{"player_code_id":{"code":"TjBerger","id":"Berger, T.J."},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Malvern, PA"},"MiBednostin":{"player_code_id":{"code":"MiBednostin","id":"Bednostin, Misha"},"number":"13","pos":"C","height":"6-11","height_in":83,"year_class":"So.","gp":0,"origin":"Dillsburg, PA"},"AlChaikin":{"player_code_id":{"code":"AlChaikin","id":"Chaikin, Alex"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Williamsburg, VA"},"RyPettit":{"player_code_id":{"code":"RyPettit","id":"Pettit, Ryan"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":0,"origin":"Westfield, NJ"},"MaRasul":{"player_code_id":{"code":"MaRasul","id":"Rasul, Malik"},"number":"14","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Tucson, AZ"},"LuSavicevic":{"player_code_id":{"code":"LuSavicevic","id":"Savicevic, Luka"},"number":"99","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Skopje, North Macedonia"}}
+{
+   "CaWilliams": {
+      "player_code_id": {
+         "code": "CaWilliams",
+         "id": "Williams, Caleb"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Jacksonville, FL"
+   },
+   "JuVanderBaan": {
+      "player_code_id": {
+         "code": "JuVanderBaan",
+         "id": "Vander Baan, Justin"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Northbridge, MA",
+      "role": "PF/C"
+   },
+   "JoWyche": {
+      "player_code_id": {
+         "code": "JoWyche",
+         "id": "Wyche, Joshua"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "WF"
+   },
+   "MaButler": {
+      "player_code_id": {
+         "code": "MaButler",
+         "id": "Butler, Mark"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "s-PG"
+   },
+   "DeHines": {
+      "player_code_id": {
+         "code": "DeHines",
+         "id": "Hines, Devin"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "West Palm Beach, FL",
+      "role": "WG"
+   },
+   "ChRubayo": {
+      "player_code_id": {
+         "code": "ChRubayo",
+         "id": "Rubayo, Chris"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Skillman, NJ",
+      "role": "C"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mike McGarvey"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnPhillips": {
+      "player_code_id": {
+         "code": "AnPhillips",
+         "id": "Phillips, Andrew"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Downingtown, PA"
+   },
+   "FoFayemi": {
+      "player_code_id": {
+         "code": "FoFayemi",
+         "id": "Fayemi, Folabomi"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "TjBerger": {
+      "player_code_id": {
+         "code": "TjBerger",
+         "id": "Berger, T.J."
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Malvern, PA",
+      "role": "WG"
+   },
+   "MiBednostin": {
+      "player_code_id": {
+         "code": "MiBednostin",
+         "id": "Bednostin, Misha"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Dillsburg, PA"
+   },
+   "AlChaikin": {
+      "player_code_id": {
+         "code": "AlChaikin",
+         "id": "Chaikin, Alex"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Williamsburg, VA"
+   },
+   "RyPettit": {
+      "player_code_id": {
+         "code": "RyPettit",
+         "id": "Pettit, Ryan"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Westfield, NJ",
+      "role": "CG"
+   },
+   "MaRasul": {
+      "player_code_id": {
+         "code": "MaRasul",
+         "id": "Rasul, Malik"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Tucson, AZ"
+   },
+   "LuSavicevic": {
+      "player_code_id": {
+         "code": "LuSavicevic",
+         "id": "Savicevic, Luka"
+      },
+      "number": "99",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Skopje, North Macedonia",
+      "role": "CG"
+   }
+}

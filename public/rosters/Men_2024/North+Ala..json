@@ -1,1 +1,213 @@
-{"DaOrtiz":{"player_code_id":{"code":"DaOrtiz","id":"Ortiz, Daniel"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Shreveport, LA"},"DaHowell":{"player_code_id":{"code":"DaHowell","id":"Howell, Dallas"},"number":"34","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Coffee Springs, AL"},"DoBacchus":{"player_code_id":{"code":"DoBacchus","id":"Bacchus, Donte"},"number":"1","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Homewood, AL"},"BlFloyd":{"player_code_id":{"code":"BlFloyd","id":"Floyd, Blake"},"number":"13","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Pelham, AL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Tony Pujol"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KiWalker":{"player_code_id":{"code":"KiWalker","id":"Walker, King"},"number":"15","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Detroit, MI"},"DaKing":{"player_code_id":{"code":"DaKing","id":"King, DarKaun"},"number":"25","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Dallas, TX"},"KeDeKovachich":{"player_code_id":{"code":"KeDeKovachich","id":"de Kovachich, Kevin"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Montreal, Canada"},"JaAlbritton":{"player_code_id":{"code":"JaAlbritton","id":"Albritton, Jamal"},"number":"35","pos":"C","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Montgomery, AL"},"TaFields":{"player_code_id":{"code":"TaFields","id":"Fields, Taye"},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Opelika, AL"},"CoWilliams":{"player_code_id":{"code":"CoWilliams","id":"Williams, Corneilous"},"number":"3","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":"Beaumont, MS"},"CaJefferson":{"player_code_id":{"code":"CaJefferson","id":"Jefferson, Canin"},"number":"4","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"New Orleans, LA"},"JaLane":{"player_code_id":{"code":"JaLane","id":"Lane, Jacari"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Huntsville, AL"},"MiChaffee":{"player_code_id":{"code":"MiChaffee","id":"Chaffee, Mitchell"},"number":"24","pos":"C","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Muscle Shoals, AL"},"WiSoucie":{"player_code_id":{"code":"WiSoucie","id":"Soucie, Will"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Califon, NJ"},"IsJenrette":{"player_code_id":{"code":"IsJenrette","id":"Jenrette, Israel"},"number":"21","pos":"C","height":"7-1","height_in":85,"year_class":"Fr.","gp":0,"origin":"Valdosta, GA"}}
+{
+   "DaOrtiz": {
+      "player_code_id": {
+         "code": "DaOrtiz",
+         "id": "Ortiz, Daniel"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Shreveport, LA",
+      "role": "WG"
+   },
+   "DaHowell": {
+      "player_code_id": {
+         "code": "DaHowell",
+         "id": "Howell, Dallas"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Coffee Springs, AL",
+      "role": "S-PF"
+   },
+   "DoBacchus": {
+      "player_code_id": {
+         "code": "DoBacchus",
+         "id": "Bacchus, Donte"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Homewood, AL"
+   },
+   "BlFloyd": {
+      "player_code_id": {
+         "code": "BlFloyd",
+         "id": "Floyd, Blake"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Pelham, AL"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Tony Pujol"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KiWalker": {
+      "player_code_id": {
+         "code": "KiWalker",
+         "id": "Walker, King"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Detroit, MI"
+   },
+   "DaKing": {
+      "player_code_id": {
+         "code": "DaKing",
+         "id": "King, DarKaun"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "KeDeKovachich": {
+      "player_code_id": {
+         "code": "KeDeKovachich",
+         "id": "de Kovachich, Kevin"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Montreal, Canada"
+   },
+   "JaAlbritton": {
+      "player_code_id": {
+         "code": "JaAlbritton",
+         "id": "Albritton, Jamal"
+      },
+      "number": "35",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Montgomery, AL"
+   },
+   "TaFields": {
+      "player_code_id": {
+         "code": "TaFields",
+         "id": "Fields, Taye"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Opelika, AL"
+   },
+   "CoWilliams": {
+      "player_code_id": {
+         "code": "CoWilliams",
+         "id": "Williams, Corneilous"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Beaumont, MS",
+      "role": "C"
+   },
+   "CaJefferson": {
+      "player_code_id": {
+         "code": "CaJefferson",
+         "id": "Jefferson, Canin"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "New Orleans, LA"
+   },
+   "JaLane": {
+      "player_code_id": {
+         "code": "JaLane",
+         "id": "Lane, Jacari"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Huntsville, AL",
+      "role": "s-PG"
+   },
+   "MiChaffee": {
+      "player_code_id": {
+         "code": "MiChaffee",
+         "id": "Chaffee, Mitchell"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Muscle Shoals, AL"
+   },
+   "WiSoucie": {
+      "player_code_id": {
+         "code": "WiSoucie",
+         "id": "Soucie, Will"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Califon, NJ",
+      "role": "WG"
+   },
+   "IsJenrette": {
+      "player_code_id": {
+         "code": "IsJenrette",
+         "id": "Jenrette, Israel"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Valdosta, GA"
+   }
+}

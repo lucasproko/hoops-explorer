@@ -1,1 +1,202 @@
-{"MiWilson":{"player_code_id":{"code":"MiWilson","id":"Wilson, Michael"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Sacramento, CA"},"EjNeal":{"player_code_id":{"code":"EjNeal","id":"Neal, EJ"},"number":"3","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"San Francisco, CA"},"BaNunn":{"player_code_id":{"code":"BaNunn","id":"Nunn, Bailey"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"So.","gp":0,"origin":"Melbourne, Australia"},"BoBeatty":{"player_code_id":{"code":"BoBeatty","id":"Beatty, Bowyn"},"number":"25","pos":"F","height":"7-0","height_in":84,"year_class":"So.","gp":0,"origin":"Canberra, Australia"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Michael Czepil"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KiCholDeng":{"player_code_id":{"code":"KiCholDeng","id":"Kiir Chol Deng, Kiir"},"number":"14","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":"Juba, South Sudan"},"LaBrewer":{"player_code_id":{"code":"LaBrewer","id":"Brewer, Lachlan"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Tasmania, Australia"},"DeWilliams":{"player_code_id":{"code":"DeWilliams","id":"Williams, Denote"},"number":"6","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Sydney, Australia"},"JuVaughns":{"player_code_id":{"code":"JuVaughns","id":"Vaughns, Julian"},"number":"24","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Oakland, CA"},"JaPitre":{"player_code_id":{"code":"JaPitre","id":"Pitre, Jalen"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Long Beach, CA"},"AlKovatchev":{"player_code_id":{"code":"AlKovatchev","id":"Kovatchev, Alex"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Perth, Australia"},"ChDioramma":{"player_code_id":{"code":"ChDioramma","id":"Dioramma, Chudi"},"number":"34","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"London, United Kingdom"},"EmSkytta":{"player_code_id":{"code":"EmSkytta","id":"Skytta, Emil"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Helsinki, Finland"},"JaHolt":{"player_code_id":{"code":"JaHolt","id":"Holt, Jacob"},"number":"15","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"British Columbia, Canada"},"LeRicketts":{"player_code_id":{"code":"LeRicketts","id":"Ricketts, Leo"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Pleasant Hill, CA"}}
+{
+   "MiWilson": {
+      "player_code_id": {
+         "code": "MiWilson",
+         "id": "Wilson, Michael"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Sacramento, CA"
+   },
+   "EjNeal": {
+      "player_code_id": {
+         "code": "EjNeal",
+         "id": "Neal, EJ"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "San Francisco, CA",
+      "role": "WG"
+   },
+   "BaNunn": {
+      "player_code_id": {
+         "code": "BaNunn",
+         "id": "Nunn, Bailey"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Melbourne, Australia",
+      "role": "s-PG"
+   },
+   "BoBeatty": {
+      "player_code_id": {
+         "code": "BoBeatty",
+         "id": "Beatty, Bowyn"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Canberra, Australia",
+      "role": "PF/C"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Michael Czepil"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KiCholDeng": {
+      "player_code_id": {
+         "code": "KiCholDeng",
+         "id": "Kiir Chol Deng, Kiir"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Juba, South Sudan"
+   },
+   "LaBrewer": {
+      "player_code_id": {
+         "code": "LaBrewer",
+         "id": "Brewer, Lachlan"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Tasmania, Australia"
+   },
+   "DeWilliams": {
+      "player_code_id": {
+         "code": "DeWilliams",
+         "id": "Williams, Denote"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Sydney, Australia"
+   },
+   "JuVaughns": {
+      "player_code_id": {
+         "code": "JuVaughns",
+         "id": "Vaughns, Julian"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Oakland, CA"
+   },
+   "JaPitre": {
+      "player_code_id": {
+         "code": "JaPitre",
+         "id": "Pitre, Jalen"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Long Beach, CA",
+      "role": "S-PF"
+   },
+   "AlKovatchev": {
+      "player_code_id": {
+         "code": "AlKovatchev",
+         "id": "Kovatchev, Alex"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Perth, Australia",
+      "role": "WG"
+   },
+   "ChDioramma": {
+      "player_code_id": {
+         "code": "ChDioramma",
+         "id": "Dioramma, Chudi"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "London, United Kingdom"
+   },
+   "EmSkytta": {
+      "player_code_id": {
+         "code": "EmSkytta",
+         "id": "Skytta, Emil"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Helsinki, Finland",
+      "role": "s-PG"
+   },
+   "JaHolt": {
+      "player_code_id": {
+         "code": "JaHolt",
+         "id": "Holt, Jacob"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "British Columbia, Canada",
+      "role": "C"
+   },
+   "LeRicketts": {
+      "player_code_id": {
+         "code": "LeRicketts",
+         "id": "Ricketts, Leo"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Pleasant Hill, CA"
+   }
+}

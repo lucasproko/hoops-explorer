@@ -1,1 +1,232 @@
-{"ZoDiallo":{"player_code_id":{"code":"ZoDiallo","id":"Diallo, Zoom"},"number":"9","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Tacoma, WA"},"DjDavis":{"player_code_id":{"code":"DjDavis","id":"Davis, DJ"},"number":"4","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":0,"origin":"Moreno Valley, CA"},"LuKortright":{"player_code_id":{"code":"LuKortright","id":"Kortright, Luis"},"number":"12","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"New York, NY"},"WiBreidenbac":{"player_code_id":{"code":"WiBreidenbac","id":"Breidenbach, Wilhelm"},"number":"32","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"Rancho Santa Margarita, CA"},"TyHarris":{"player_code_id":{"code":"TyHarris","id":"Harris, Tyler"},"number":"15","pos":"G","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Hayward, CA"},"WiLandram":{"player_code_id":{"code":"WiLandram","id":"Landram, Will"},"number":"10","pos":"F","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Gig Harbor, WA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Danny Sprinkle"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KcIbekwe":{"player_code_id":{"code":"KcIbekwe","id":"Ibekwe, KC"},"number":"24","pos":"C","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Coquitlam, Canada"},"TyIhenacho":{"player_code_id":{"code":"TyIhenacho","id":"Ihenacho, Tyree"},"number":"6","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Prior Lake, MN"},"DyMansour":{"player_code_id":{"code":"DyMansour","id":"Mansour, Dylan"},"number":"20","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Lafayette, CA"},"SaSlutske":{"player_code_id":{"code":"SaSlutske","id":"Slutske, Sam"},"number":"33","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Santa Monica, CA"},"ChConway":{"player_code_id":{"code":"ChConway","id":"Conway, Chris"},"number":"5","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Naperville, IL"},"GrOsobor":{"player_code_id":{"code":"GrOsobor","id":"Osobor, Great"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Bradford, United Kingdom"},"FrKepnang":{"player_code_id":{"code":"FrKepnang","id":"Kepnang, Franck"},"number":"11","pos":"C","height":"6-11","height_in":83,"year_class":"Sr.","gp":0,"origin":"Yaoundé, Cameroon"},"ChKing":{"player_code_id":{"code":"ChKing","id":"King, Christian"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Kirkland, WA"},"JaButler":{"player_code_id":{"code":"JaButler","id":"Butler, Jase"},"number":"13","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"San Anselmo, CA"},"MeMason":{"player_code_id":{"code":"MeMason","id":"Mason, Mekhi"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Gilbert, AZ"}}
+{
+   "ZoDiallo": {
+      "player_code_id": {
+         "code": "ZoDiallo",
+         "id": "Diallo, Zoom"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Tacoma, WA",
+      "role": "PG"
+   },
+   "DjDavis": {
+      "player_code_id": {
+         "code": "DjDavis",
+         "id": "Davis, DJ"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Moreno Valley, CA",
+      "role": "CG"
+   },
+   "LuKortright": {
+      "player_code_id": {
+         "code": "LuKortright",
+         "id": "Kortright, Luis"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "New York, NY",
+      "role": "CG"
+   },
+   "WiBreidenbac": {
+      "player_code_id": {
+         "code": "WiBreidenbac",
+         "id": "Breidenbach, Wilhelm"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Rancho Santa Margarita, CA",
+      "role": "S-PF"
+   },
+   "TyHarris": {
+      "player_code_id": {
+         "code": "TyHarris",
+         "id": "Harris, Tyler"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Hayward, CA",
+      "role": "WG"
+   },
+   "WiLandram": {
+      "player_code_id": {
+         "code": "WiLandram",
+         "id": "Landram, Will"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Gig Harbor, WA"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Danny Sprinkle"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KcIbekwe": {
+      "player_code_id": {
+         "code": "KcIbekwe",
+         "id": "Ibekwe, KC"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Coquitlam, Canada",
+      "role": "C"
+   },
+   "TyIhenacho": {
+      "player_code_id": {
+         "code": "TyIhenacho",
+         "id": "Ihenacho, Tyree"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Prior Lake, MN"
+   },
+   "DyMansour": {
+      "player_code_id": {
+         "code": "DyMansour",
+         "id": "Mansour, Dylan"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Lafayette, CA"
+   },
+   "SaSlutske": {
+      "player_code_id": {
+         "code": "SaSlutske",
+         "id": "Slutske, Sam"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Santa Monica, CA"
+   },
+   "ChConway": {
+      "player_code_id": {
+         "code": "ChConway",
+         "id": "Conway, Chris"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Naperville, IL",
+      "role": "PF/C"
+   },
+   "GrOsobor": {
+      "player_code_id": {
+         "code": "GrOsobor",
+         "id": "Osobor, Great"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Bradford, United Kingdom",
+      "role": "PF/C"
+   },
+   "FrKepnang": {
+      "player_code_id": {
+         "code": "FrKepnang",
+         "id": "Kepnang, Franck"
+      },
+      "number": "11",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Yaoundé, Cameroon",
+      "role": "C"
+   },
+   "ChKing": {
+      "player_code_id": {
+         "code": "ChKing",
+         "id": "King, Christian"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Kirkland, WA"
+   },
+   "JaButler": {
+      "player_code_id": {
+         "code": "JaButler",
+         "id": "Butler, Jase"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "San Anselmo, CA",
+      "role": "CG"
+   },
+   "MeMason": {
+      "player_code_id": {
+         "code": "MeMason",
+         "id": "Mason, Mekhi"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Gilbert, AZ",
+      "role": "CG"
+   }
+}

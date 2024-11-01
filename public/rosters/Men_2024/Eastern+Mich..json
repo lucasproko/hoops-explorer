@@ -1,1 +1,213 @@
-{"MaBrunetto":{"player_code_id":{"code":"MaBrunetto","id":"Brunetto, Mario"},"number":"7","pos":"F","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"La Spezia, Italy"},"TrPettigrew":{"player_code_id":{"code":"TrPettigrew","id":"Pettigrew, Trey"},"number":"9","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Chicago, IL"},"DiTingler":{"player_code_id":{"code":"DiTingler","id":"Tingler, Dillon"},"number":"10","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Hurricane, WV"},"YuJihad":{"player_code_id":{"code":"YuJihad","id":"Jihad, Yusuf"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Farmington Hills, MI"},"MbN'diaye":{"player_code_id":{"code":"MbN'diaye","id":"N'Diaye, Mbaye"},"number":"8","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Thies, Senegal"},"MiSchnyders":{"player_code_id":{"code":"MiSchnyders","id":"Schnyders, Micah"},"number":"14","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"New Lenox, IL"},"JaTerry":{"player_code_id":{"code":"JaTerry","id":"Terry, Jalen"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Flint, MI"},"ChHenry":{"player_code_id":{"code":"ChHenry","id":"Henry, Christian"},"number":"30","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Chicago, IL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Stan Heath"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaBillingsle":{"player_code_id":{"code":"JaBillingsle","id":"Billingsley, Jalin"},"number":"1","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Cleveland, OH"},"GoNwabude":{"player_code_id":{"code":"GoNwabude","id":"Nwabude, Godslove"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Anambra State, Nigeria"},"DaNelson":{"player_code_id":{"code":"DaNelson","id":"Nelson, Da'Sean"},"number":"21","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Toledo, OH"},"CoSmith":{"player_code_id":{"code":"CoSmith","id":"Smith, Cooper"},"number":"45","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":0,"origin":"Saline, MI"},"JuLewis":{"player_code_id":{"code":"JuLewis","id":"Lewis, Julian"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Ann Arbor, MI"},"JoShanu":{"player_code_id":{"code":"JoShanu","id":"Shanu II, John"},"number":"33","pos":"F","height":"6-11","height_in":83,"year_class":"Sr.","gp":0,"origin":"Houston, TX"},"ArOsojnik":{"player_code_id":{"code":"ArOsojnik","id":"Osojnik, Arne"},"number":"44","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Ljubljana, Slovenia"}}
+{
+   "MaBrunetto": {
+      "player_code_id": {
+         "code": "MaBrunetto",
+         "id": "Brunetto, Mario"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "La Spezia, Italy"
+   },
+   "TrPettigrew": {
+      "player_code_id": {
+         "code": "TrPettigrew",
+         "id": "Pettigrew, Trey"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "DiTingler": {
+      "player_code_id": {
+         "code": "DiTingler",
+         "id": "Tingler, Dillon"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Hurricane, WV"
+   },
+   "YuJihad": {
+      "player_code_id": {
+         "code": "YuJihad",
+         "id": "Jihad, Yusuf"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Farmington Hills, MI"
+   },
+   "MbN'diaye": {
+      "player_code_id": {
+         "code": "MbN'diaye",
+         "id": "N'Diaye, Mbaye"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Thies, Senegal"
+   },
+   "MiSchnyders": {
+      "player_code_id": {
+         "code": "MiSchnyders",
+         "id": "Schnyders, Micah"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "New Lenox, IL"
+   },
+   "JaTerry": {
+      "player_code_id": {
+         "code": "JaTerry",
+         "id": "Terry, Jalen"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Flint, MI",
+      "role": "CG"
+   },
+   "ChHenry": {
+      "player_code_id": {
+         "code": "ChHenry",
+         "id": "Henry, Christian"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Stan Heath"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaBillingsle": {
+      "player_code_id": {
+         "code": "JaBillingsle",
+         "id": "Billingsley, Jalin"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Cleveland, OH",
+      "role": "S-PF"
+   },
+   "GoNwabude": {
+      "player_code_id": {
+         "code": "GoNwabude",
+         "id": "Nwabude, Godslove"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Anambra State, Nigeria"
+   },
+   "DaNelson": {
+      "player_code_id": {
+         "code": "DaNelson",
+         "id": "Nelson, Da'Sean"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Toledo, OH",
+      "role": "WF"
+   },
+   "CoSmith": {
+      "player_code_id": {
+         "code": "CoSmith",
+         "id": "Smith, Cooper"
+      },
+      "number": "45",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Saline, MI"
+   },
+   "JuLewis": {
+      "player_code_id": {
+         "code": "JuLewis",
+         "id": "Lewis, Julian"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Ann Arbor, MI",
+      "role": "WG"
+   },
+   "JoShanu": {
+      "player_code_id": {
+         "code": "JoShanu",
+         "id": "Shanu II, John"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "ArOsojnik": {
+      "player_code_id": {
+         "code": "ArOsojnik",
+         "id": "Osojnik, Arne"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Ljubljana, Slovenia",
+      "role": "WG"
+   }
+}

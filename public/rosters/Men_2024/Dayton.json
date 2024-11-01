@@ -1,1 +1,242 @@
-{"WiMaxwell":{"player_code_id":{"code":"WiMaxwell","id":"Maxwell, Will"},"number":"25","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Oakwood, OH"},"NaSantos":{"player_code_id":{"code":"NaSantos","id":"Santos, Nate"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Geneva, IL"},"EvDickey":{"player_code_id":{"code":"EvDickey","id":"Dickey, Evan"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Dayton, OH"},"EnCheeks":{"player_code_id":{"code":"EnCheeks","id":"Cheeks, Enoch"},"number":"6","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Providence, RI"},"JaSimon":{"player_code_id":{"code":"JaSimon","id":"Simon, Jaiun"},"number":"3","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Mableton, GA"},"HaMousa":{"player_code_id":{"code":"HaMousa","id":"Mousa, Hamad"},"number":"10","pos":"G","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Doha, Qatar"},"JaBennett":{"player_code_id":{"code":"JaBennett","id":"Bennett, Javon"},"number":"0","pos":"G","height":"5-11","height_in":71,"year_class":"Jr.","gp":0,"origin":"Orlando, FL"},"BrUhl":{"player_code_id":{"code":"BrUhl","id":"Uhl, Brady"},"number":"21","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":0,"origin":"Dayton, OH"},"AmL'etang":{"player_code_id":{"code":"AmL'etang","id":"L'Etang, Amael"},"number":"29","pos":"F","height":"7-1","height_in":85,"year_class":"Fr.","gp":0,"origin":"Toulouse, France"},"MaGrant":{"player_code_id":{"code":"MaGrant","id":"Grant, Makai"},"number":"33","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"Dayton, OH"},"AtSchuler":{"player_code_id":{"code":"AtSchuler","id":"Schuler, Atticus"},"number":"54","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Westerville, OH"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Anthony Grant"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaAllen":{"player_code_id":{"code":"MaAllen","id":"Allen, Marvel"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Fort Lauderdale, FL"},"MaSmith":{"player_code_id":{"code":"MaSmith","id":"Smith, Malachi"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Bronx, NY"},"PoAlexander":{"player_code_id":{"code":"PoAlexander","id":"Alexander, Posh"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Brooklyn, NY"},"ZeKey":{"player_code_id":{"code":"ZeKey","id":"Key, Zed"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Bay Shore, NY"},"IsJack":{"player_code_id":{"code":"IsJack","id":"Jack, Isaac"},"number":"13","pos":"C","height":"6-11","height_in":83,"year_class":"Jr.","gp":0,"origin":"Port Alberni, Canada"},"JaConner":{"player_code_id":{"code":"JaConner","id":"Conner, Jacob"},"number":"24","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Dayton, OH"}}
+{
+   "WiMaxwell": {
+      "player_code_id": {
+         "code": "WiMaxwell",
+         "id": "Maxwell, Will"
+      },
+      "number": "25",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Oakwood, OH"
+   },
+   "NaSantos": {
+      "player_code_id": {
+         "code": "NaSantos",
+         "id": "Santos, Nate"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Geneva, IL",
+      "role": "WG"
+   },
+   "EvDickey": {
+      "player_code_id": {
+         "code": "EvDickey",
+         "id": "Dickey, Evan"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Dayton, OH"
+   },
+   "EnCheeks": {
+      "player_code_id": {
+         "code": "EnCheeks",
+         "id": "Cheeks, Enoch"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Providence, RI",
+      "role": "WG"
+   },
+   "JaSimon": {
+      "player_code_id": {
+         "code": "JaSimon",
+         "id": "Simon, Jaiun"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Mableton, GA"
+   },
+   "HaMousa": {
+      "player_code_id": {
+         "code": "HaMousa",
+         "id": "Mousa, Hamad"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Doha, Qatar"
+   },
+   "JaBennett": {
+      "player_code_id": {
+         "code": "JaBennett",
+         "id": "Bennett, Javon"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Orlando, FL",
+      "role": "s-PG"
+   },
+   "BrUhl": {
+      "player_code_id": {
+         "code": "BrUhl",
+         "id": "Uhl, Brady"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Dayton, OH"
+   },
+   "AmL'etang": {
+      "player_code_id": {
+         "code": "AmL'etang",
+         "id": "L'Etang, Amael"
+      },
+      "number": "29",
+      "pos": "F",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Toulouse, France"
+   },
+   "MaGrant": {
+      "player_code_id": {
+         "code": "MaGrant",
+         "id": "Grant, Makai"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Dayton, OH"
+   },
+   "AtSchuler": {
+      "player_code_id": {
+         "code": "AtSchuler",
+         "id": "Schuler, Atticus"
+      },
+      "number": "54",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Westerville, OH"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Anthony Grant"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaAllen": {
+      "player_code_id": {
+         "code": "MaAllen",
+         "id": "Allen, Marvel"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Fort Lauderdale, FL"
+   },
+   "MaSmith": {
+      "player_code_id": {
+         "code": "MaSmith",
+         "id": "Smith, Malachi"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Bronx, NY",
+      "role": "PG"
+   },
+   "PoAlexander": {
+      "player_code_id": {
+         "code": "PoAlexander",
+         "id": "Alexander, Posh"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "s-PG"
+   },
+   "ZeKey": {
+      "player_code_id": {
+         "code": "ZeKey",
+         "id": "Key, Zed"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Bay Shore, NY",
+      "role": "C"
+   },
+   "IsJack": {
+      "player_code_id": {
+         "code": "IsJack",
+         "id": "Jack, Isaac"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Port Alberni, Canada",
+      "role": "C"
+   },
+   "JaConner": {
+      "player_code_id": {
+         "code": "JaConner",
+         "id": "Conner, Jacob"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Dayton, OH",
+      "role": "WF"
+   }
+}

@@ -1,1 +1,215 @@
-{"D'Samuels":{"player_code_id":{"code":"D'Samuels","id":"Samuels, D'Aundre"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Denver, CO"},"ElBrooks":{"player_code_id":{"code":"ElBrooks","id":"Brooks, Elijah"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Topeka, KS"},"BrDawkins":{"player_code_id":{"code":"BrDawkins","id":"Dawkins, Bryson"},"number":"9","pos":"F","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Dothan, AL"},"JuMackey":{"player_code_id":{"code":"JuMackey","id":"Mackey, Julian"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Grayson, GA"},"TrJohnson":{"player_code_id":{"code":"TrJohnson","id":"Johnson, Trent"},"number":"8","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Cambridge, Canada"},"MaMcbride":{"player_code_id":{"code":"MaMcbride","id":"McBride, Mason"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Manvel, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Craig Doty"},"number":"","pos":"","height":"","year_class":"","gp":-1},"PiBazil":{"player_code_id":{"code":"PiBazil","id":"Bazil, Pierce"},"number":"23","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Lincoln, NE"},"DeWilliams":{"player_code_id":{"code":"DeWilliams","id":"Williams, Demari"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Houston, TX"},"PoBazil":{"player_code_id":{"code":"PoBazil","id":"Bazil, Porter"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Lincoln, NE"},"PeRogers":{"player_code_id":{"code":"PeRogers","id":"Rogers, Peyton"},"number":"15","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Chippewa Falls, WI"},"MaGates":{"player_code_id":{"code":"MaGates","id":"Gates, Marques"},"number":"22","pos":"G","height":"5-11","height_in":71,"year_class":"Jr.","gp":0,"origin":"Selma, TX"},"AhLee":{"player_code_id":{"code":"AhLee","id":"Lee, Ahjany"},"number":"13","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Byron, MN"},"NaSelf":{"player_code_id":{"code":"NaSelf","id":"Self, Nathan"},"number":"14","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Houston, TX"},"IvReynolds":{"player_code_id":{"code":"IvReynolds","id":"Reynolds, Ivan"},"number":"1","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Pompano Beach, FL"},"VaCatt":{"player_code_id":{"code":"VaCatt","id":"Catt, Valentin"},"number":"12","pos":"C","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Orangefield, TX"}}
+{
+   "D'Samuels": {
+      "player_code_id": {
+         "code": "D'Samuels",
+         "id": "Samuels, D'Aundre"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Denver, CO"
+   },
+   "ElBrooks": {
+      "player_code_id": {
+         "code": "ElBrooks",
+         "id": "Brooks, Elijah"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Topeka, KS",
+      "role": "WG"
+   },
+   "BrDawkins": {
+      "player_code_id": {
+         "code": "BrDawkins",
+         "id": "Dawkins, Bryson"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Dothan, AL"
+   },
+   "JuMackey": {
+      "player_code_id": {
+         "code": "JuMackey",
+         "id": "Mackey, Julian"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Grayson, GA",
+      "role": "CG"
+   },
+   "TrJohnson": {
+      "player_code_id": {
+         "code": "TrJohnson",
+         "id": "Johnson, Trent"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Cambridge, Canada",
+      "role": "WF"
+   },
+   "MaMcbride": {
+      "player_code_id": {
+         "code": "MaMcbride",
+         "id": "McBride, Mason"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Manvel, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Craig Doty"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "PiBazil": {
+      "player_code_id": {
+         "code": "PiBazil",
+         "id": "Bazil, Pierce"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Lincoln, NE",
+      "role": "CG"
+   },
+   "DeWilliams": {
+      "player_code_id": {
+         "code": "DeWilliams",
+         "id": "Williams, Demari"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "PF/C"
+   },
+   "PoBazil": {
+      "player_code_id": {
+         "code": "PoBazil",
+         "id": "Bazil, Porter"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Lincoln, NE",
+      "role": "PF/C"
+   },
+   "PeRogers": {
+      "player_code_id": {
+         "code": "PeRogers",
+         "id": "Rogers, Peyton"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Chippewa Falls, WI"
+   },
+   "MaGates": {
+      "player_code_id": {
+         "code": "MaGates",
+         "id": "Gates, Marques"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Selma, TX"
+   },
+   "AhLee": {
+      "player_code_id": {
+         "code": "AhLee",
+         "id": "Lee, Ahjany"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Byron, MN",
+      "role": "PF/C"
+   },
+   "NaSelf": {
+      "player_code_id": {
+         "code": "NaSelf",
+         "id": "Self, Nathan"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "IvReynolds": {
+      "player_code_id": {
+         "code": "IvReynolds",
+         "id": "Reynolds, Ivan"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Pompano Beach, FL"
+   },
+   "VaCatt": {
+      "player_code_id": {
+         "code": "VaCatt",
+         "id": "Catt, Valentin"
+      },
+      "number": "12",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Orangefield, TX"
+   }
+}

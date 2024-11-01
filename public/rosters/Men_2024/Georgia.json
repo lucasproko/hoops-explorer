@@ -1,1 +1,218 @@
-{"DeMontgomery":{"player_code_id":{"code":"DeMontgomery","id":"Montgomery, De'Shayne"},"number":"2","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Ft Lauderdale, FL"},"SoCyril":{"player_code_id":{"code":"SoCyril","id":"Cyril, Somto"},"number":"6","pos":"C","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Enugu, Nigeria"},"BrKlatsky":{"player_code_id":{"code":"BrKlatsky","id":"Klatsky, Brandon"},"number":"22","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Colts Neck, NJ"},"SiDemary":{"player_code_id":{"code":"SiDemary","id":"Demary Jr., Silas"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Raleigh, NC"},"RjGodfrey":{"player_code_id":{"code":"RjGodfrey","id":"Godfrey, RJ"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Suwanee, GA"},"JuAbson":{"player_code_id":{"code":"JuAbson","id":"Abson, Justin"},"number":"25","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Coconut Creek, FL"},"JaNewell":{"player_code_id":{"code":"JaNewell","id":"Newell, Jaden"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Fort Walton Beach, FL"},"TyLawrence":{"player_code_id":{"code":"TyLawrence","id":"Lawrence, Tyrin"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Monticello, GA"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mike White"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DyJames":{"player_code_id":{"code":"DyJames","id":"James, Dylan"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":"Winter Haven, FL"},"BlCain":{"player_code_id":{"code":"BlCain","id":"Cain, Blue"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Knoxville, TN"},"SaDrezgic":{"player_code_id":{"code":"SaDrezgic","id":"Drezgic, Savo"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Belgrade, Serbia"},"AsNewell":{"player_code_id":{"code":"AsNewell","id":"Newell, Asa"},"number":"14","pos":"F","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Destin, FL"},"DaLeffew":{"player_code_id":{"code":"DaLeffew","id":"Leffew, Dakota"},"number":"1","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Hampton, GA"},"MaJennings":{"player_code_id":{"code":"MaJennings","id":"Jennings, Markel"},"number":"12","pos":"G","height":"5-11","height_in":71,"year_class":"Fr.","gp":0,"origin":"Watkinsville, GA"},"JoKee":{"player_code_id":{"code":"JoKee","id":"Kee, Jordyn"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Fort Lauderdale, FL"}}
+{
+   "DeMontgomery": {
+      "player_code_id": {
+         "code": "DeMontgomery",
+         "id": "Montgomery, De'Shayne"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Ft Lauderdale, FL",
+      "role": "CG"
+   },
+   "SoCyril": {
+      "player_code_id": {
+         "code": "SoCyril",
+         "id": "Cyril, Somto"
+      },
+      "number": "6",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Enugu, Nigeria",
+      "role": "C"
+   },
+   "BrKlatsky": {
+      "player_code_id": {
+         "code": "BrKlatsky",
+         "id": "Klatsky, Brandon"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Colts Neck, NJ"
+   },
+   "SiDemary": {
+      "player_code_id": {
+         "code": "SiDemary",
+         "id": "Demary Jr., Silas"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Raleigh, NC",
+      "role": "CG"
+   },
+   "RjGodfrey": {
+      "player_code_id": {
+         "code": "RjGodfrey",
+         "id": "Godfrey, RJ"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Suwanee, GA",
+      "role": "PF/C"
+   },
+   "JuAbson": {
+      "player_code_id": {
+         "code": "JuAbson",
+         "id": "Abson, Justin"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Coconut Creek, FL",
+      "role": "C"
+   },
+   "JaNewell": {
+      "player_code_id": {
+         "code": "JaNewell",
+         "id": "Newell, Jaden"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Fort Walton Beach, FL"
+   },
+   "TyLawrence": {
+      "player_code_id": {
+         "code": "TyLawrence",
+         "id": "Lawrence, Tyrin"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Monticello, GA",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mike White"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DyJames": {
+      "player_code_id": {
+         "code": "DyJames",
+         "id": "James, Dylan"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Winter Haven, FL",
+      "role": "S-PF"
+   },
+   "BlCain": {
+      "player_code_id": {
+         "code": "BlCain",
+         "id": "Cain, Blue"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Knoxville, TN",
+      "role": "WG"
+   },
+   "SaDrezgic": {
+      "player_code_id": {
+         "code": "SaDrezgic",
+         "id": "Drezgic, Savo"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Belgrade, Serbia"
+   },
+   "AsNewell": {
+      "player_code_id": {
+         "code": "AsNewell",
+         "id": "Newell, Asa"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Destin, FL",
+      "role": "PF/C"
+   },
+   "DaLeffew": {
+      "player_code_id": {
+         "code": "DaLeffew",
+         "id": "Leffew, Dakota"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Hampton, GA",
+      "role": "CG"
+   },
+   "MaJennings": {
+      "player_code_id": {
+         "code": "MaJennings",
+         "id": "Jennings, Markel"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Watkinsville, GA"
+   },
+   "JoKee": {
+      "player_code_id": {
+         "code": "JoKee",
+         "id": "Kee, Jordyn"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Fort Lauderdale, FL"
+   }
+}

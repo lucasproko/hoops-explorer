@@ -1,1 +1,200 @@
-{"CoO'connor":{"player_code_id":{"code":"CoO'connor","id":"O'Connor, Collin"},"number":"13","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Dayton, OH"},"PeFrey":{"player_code_id":{"code":"PeFrey","id":"Frey, Peyton"},"number":"24","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Columbus, OH"},"SaPhilip":{"player_code_id":{"code":"SaPhilip","id":"Philip, Sabry"},"number":"1","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Edmonton, Canada"},"JoOctave":{"player_code_id":{"code":"JoOctave","id":"Octave, Joe"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Gardena, CA"},"ToOnyekonwu":{"player_code_id":{"code":"ToOnyekonwu","id":"Onyekonwu, Toby"},"number":"4","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Joliet, IL"},"QuGorman":{"player_code_id":{"code":"QuGorman","id":"Gorman, Quin"},"number":"15","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Falls Church, VA"},"NiWoodard":{"player_code_id":{"code":"NiWoodard","id":"Woodard, Nick"},"number":"11","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Oglethorpe, GA"},"BrMitchell":{"player_code_id":{"code":"BrMitchell","id":"Mitchell, Bryan"},"number":"12","pos":"G","height":"6-1","height_in":73,"year_class":"Fr.","gp":0,"origin":"Englewood Cliffs, NJ"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Geno Ford"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JeNyarko":{"player_code_id":{"code":"JeNyarko","id":"Nyarko, Jeremiah"},"number":"34","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Accra, Ghana"},"JaFrey":{"player_code_id":{"code":"JaFrey","id":"Frey, Jared"},"number":"6","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Columbus, OH"},"BeWight":{"player_code_id":{"code":"BeWight","id":"Wight, Ben"},"number":"5","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Columbus, OH"},"AnSnoddy":{"player_code_id":{"code":"AnSnoddy","id":"Snoddy, Andre"},"number":"21","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Melville, NY"},"LeNahar":{"player_code_id":{"code":"LeNahar","id":"Nahar, Leon"},"number":"33","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Alkmaar, Netherlands"},"CjLuster":{"player_code_id":{"code":"CjLuster","id":"Luster, CJ"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Denton, TX"}}
+{
+   "CoO'connor": {
+      "player_code_id": {
+         "code": "CoO'connor",
+         "id": "O'Connor, Collin"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Dayton, OH"
+   },
+   "PeFrey": {
+      "player_code_id": {
+         "code": "PeFrey",
+         "id": "Frey, Peyton"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Columbus, OH"
+   },
+   "SaPhilip": {
+      "player_code_id": {
+         "code": "SaPhilip",
+         "id": "Philip, Sabry"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Edmonton, Canada"
+   },
+   "JoOctave": {
+      "player_code_id": {
+         "code": "JoOctave",
+         "id": "Octave, Joe"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Gardena, CA",
+      "role": "WG"
+   },
+   "ToOnyekonwu": {
+      "player_code_id": {
+         "code": "ToOnyekonwu",
+         "id": "Onyekonwu, Toby"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Joliet, IL",
+      "role": "s-PG"
+   },
+   "QuGorman": {
+      "player_code_id": {
+         "code": "QuGorman",
+         "id": "Gorman, Quin"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Falls Church, VA"
+   },
+   "NiWoodard": {
+      "player_code_id": {
+         "code": "NiWoodard",
+         "id": "Woodard, Nick"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Oglethorpe, GA"
+   },
+   "BrMitchell": {
+      "player_code_id": {
+         "code": "BrMitchell",
+         "id": "Mitchell, Bryan"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Englewood Cliffs, NJ"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Geno Ford"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JeNyarko": {
+      "player_code_id": {
+         "code": "JeNyarko",
+         "id": "Nyarko, Jeremiah"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Accra, Ghana"
+   },
+   "JaFrey": {
+      "player_code_id": {
+         "code": "JaFrey",
+         "id": "Frey, Jared"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Columbus, OH",
+      "role": "CG"
+   },
+   "BeWight": {
+      "player_code_id": {
+         "code": "BeWight",
+         "id": "Wight, Ben"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Columbus, OH",
+      "role": "PF/C"
+   },
+   "AnSnoddy": {
+      "player_code_id": {
+         "code": "AnSnoddy",
+         "id": "Snoddy, Andre"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Melville, NY",
+      "role": "WG"
+   },
+   "LeNahar": {
+      "player_code_id": {
+         "code": "LeNahar",
+         "id": "Nahar, Leon"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Alkmaar, Netherlands"
+   },
+   "CjLuster": {
+      "player_code_id": {
+         "code": "CjLuster",
+         "id": "Luster, CJ"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Denton, TX"
+   }
+}

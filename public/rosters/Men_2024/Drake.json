@@ -1,1 +1,171 @@
-{"MiMascari":{"player_code_id":{"code":"MiMascari","id":"Mascari, Mitch"},"number":"22","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Geneva, IL"},"NaFerguson":{"player_code_id":{"code":"NaFerguson","id":"Ferguson, Nate"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Lemont, IL"},"TaBanks":{"player_code_id":{"code":"TaBanks","id":"Banks, Tavion"},"number":"6","pos":"G","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Kansas City, MO"},"IsHoward":{"player_code_id":{"code":"IsHoward","id":"Howard, Isaia"},"number":"23","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Plattsburg, MO"},"BeStirtz":{"player_code_id":{"code":"BeStirtz","id":"Stirtz, Bennett"},"number":"14","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Liberty, MO"},"DaAbreu":{"player_code_id":{"code":"DaAbreu","id":"Abreu, Daniel"},"number":"54","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Springfield, MO"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Ben McCollum"},"number":"","pos":"","height":"","year_class":"","gp":-1},"IsJackson":{"player_code_id":{"code":"IsJackson","id":"Jackson, Isaiah"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Independence, MO"},"KaCombs":{"player_code_id":{"code":"KaCombs","id":"Combs, Kael"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Nixa, MO"},"CaManyawu":{"player_code_id":{"code":"CaManyawu","id":"Manyawu, Cam"},"number":"3","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Kansas City, MO"},"AnAlia":{"player_code_id":{"code":"AnAlia","id":"Alia, Andrew"},"number":"21","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Kenosha, WI"},"JoMatteoni":{"player_code_id":{"code":"JoMatteoni","id":"Matteoni, Joey"},"number":"44","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Overland Park, KS"},"ElShetlar":{"player_code_id":{"code":"ElShetlar","id":"Shetlar, Eli"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Wichita, KS"}}
+{
+   "MiMascari": {
+      "player_code_id": {
+         "code": "MiMascari",
+         "id": "Mascari, Mitch"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Geneva, IL"
+   },
+   "NaFerguson": {
+      "player_code_id": {
+         "code": "NaFerguson",
+         "id": "Ferguson, Nate"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Lemont, IL"
+   },
+   "TaBanks": {
+      "player_code_id": {
+         "code": "TaBanks",
+         "id": "Banks, Tavion"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Kansas City, MO"
+   },
+   "IsHoward": {
+      "player_code_id": {
+         "code": "IsHoward",
+         "id": "Howard, Isaia"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Plattsburg, MO"
+   },
+   "BeStirtz": {
+      "player_code_id": {
+         "code": "BeStirtz",
+         "id": "Stirtz, Bennett"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Liberty, MO"
+   },
+   "DaAbreu": {
+      "player_code_id": {
+         "code": "DaAbreu",
+         "id": "Abreu, Daniel"
+      },
+      "number": "54",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Springfield, MO"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Ben McCollum"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "IsJackson": {
+      "player_code_id": {
+         "code": "IsJackson",
+         "id": "Jackson, Isaiah"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Independence, MO"
+   },
+   "KaCombs": {
+      "player_code_id": {
+         "code": "KaCombs",
+         "id": "Combs, Kael"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Nixa, MO",
+      "role": "CG"
+   },
+   "CaManyawu": {
+      "player_code_id": {
+         "code": "CaManyawu",
+         "id": "Manyawu, Cam"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Kansas City, MO",
+      "role": "PF/C"
+   },
+   "AnAlia": {
+      "player_code_id": {
+         "code": "AnAlia",
+         "id": "Alia, Andrew"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Kenosha, WI"
+   },
+   "JoMatteoni": {
+      "player_code_id": {
+         "code": "JoMatteoni",
+         "id": "Matteoni, Joey"
+      },
+      "number": "44",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Overland Park, KS"
+   },
+   "ElShetlar": {
+      "player_code_id": {
+         "code": "ElShetlar",
+         "id": "Shetlar, Eli"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Wichita, KS"
+   }
+}

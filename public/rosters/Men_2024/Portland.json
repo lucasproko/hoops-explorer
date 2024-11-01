@@ -1,1 +1,251 @@
-{"CaBriggs":{"player_code_id":{"code":"CaBriggs","id":"Briggs, Carlin"},"number":"9","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Melbourne, Australia"},"MiBallew":{"player_code_id":{"code":"MiBallew","id":"Ballew, Mikah"},"number":"44","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Palmdale, CA"},"BoDengdit":{"player_code_id":{"code":"BoDengdit","id":"Dengdit, Bol"},"number":"24","pos":"F","height":"6-11","height_in":83,"year_class":"So.","gp":0,"origin":"Melbourne, Australia"},"WyMiller":{"player_code_id":{"code":"WyMiller","id":"Miller, Wyatt"},"number":"20","pos":"G","height":"5-10","height_in":70,"year_class":"Fr.","gp":0,"origin":"Santa Barbara, CA"},"ViDelano":{"player_code_id":{"code":"ViDelano","id":"Delano, Vincent"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Phoenix, AZ"},"ChAustin":{"player_code_id":{"code":"ChAustin","id":"Austin, Chris"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Pasadena, CA"},"ToJones":{"player_code_id":{"code":"ToJones","id":"Jones, Todd"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"New Orleans, LA"},"NaLong":{"player_code_id":{"code":"NaLong","id":"Long, NaVaughn"},"number":"21","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Livermore, CA"},"VuMasic":{"player_code_id":{"code":"VuMasic","id":"Masic, Vukasin"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Belgrade, Serbia"},"MaMackinnon":{"player_code_id":{"code":"MaMackinnon","id":"Mackinnon, Max"},"number":"3","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Brisbane, Australia"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Shantay Legans"},"number":"","pos":"","height":"","year_class":"","gp":-1},"CoLemke":{"player_code_id":{"code":"CoLemke","id":"Lemke, Coleman"},"number":"10","pos":"G","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Las Vegas, NV"},"JeBallisagerWebb":{"player_code_id":{"code":"JeBallisagerWebb","id":"Ballisager Webb, Jermaine"},"number":"1","pos":"C","height":"7-1","height_in":85,"year_class":"Jr.","gp":0,"origin":"Stjaer, Denmark"},"AuRapp":{"player_code_id":{"code":"AuRapp","id":"Rapp, Austin"},"number":"22","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Melbourne, Australia"},"PrLee":{"player_code_id":{"code":"PrLee","id":"Lee, Preston"},"number":"8","pos":"G","height":"5-11","height_in":71,"year_class":"Fr.","gp":0,"origin":"Laguna Hills, CA"},"KeGebbers":{"player_code_id":{"code":"KeGebbers","id":"Gebbers, Kelson"},"number":"12","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Brewster, WA"},"MeOakman":{"player_code_id":{"code":"MeOakman","id":"Oakman, Mezziah"},"number":"2","pos":"C","height":"7-0","height_in":84,"year_class":"Jr.","gp":0,"origin":"New York, NY"},"JuHarris":{"player_code_id":{"code":"JuHarris","id":"Harris, Jude"},"number":"13","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Manhattan Beach, CA"},"JiDoboul":{"player_code_id":{"code":"JiDoboul","id":"Doboul, Jinup"},"number":"4","pos":"G","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Saint Paul, MN"}}
+{
+   "CaBriggs": {
+      "player_code_id": {
+         "code": "CaBriggs",
+         "id": "Briggs, Carlin"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Melbourne, Australia"
+   },
+   "MiBallew": {
+      "player_code_id": {
+         "code": "MiBallew",
+         "id": "Ballew, Mikah"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Palmdale, CA"
+   },
+   "BoDengdit": {
+      "player_code_id": {
+         "code": "BoDengdit",
+         "id": "Dengdit, Bol"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Melbourne, Australia",
+      "role": "S-PF"
+   },
+   "WyMiller": {
+      "player_code_id": {
+         "code": "WyMiller",
+         "id": "Miller, Wyatt"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Santa Barbara, CA"
+   },
+   "ViDelano": {
+      "player_code_id": {
+         "code": "ViDelano",
+         "id": "Delano, Vincent"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Phoenix, AZ"
+   },
+   "ChAustin": {
+      "player_code_id": {
+         "code": "ChAustin",
+         "id": "Austin, Chris"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Pasadena, CA",
+      "role": "WG"
+   },
+   "ToJones": {
+      "player_code_id": {
+         "code": "ToJones",
+         "id": "Jones, Todd"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "New Orleans, LA"
+   },
+   "NaLong": {
+      "player_code_id": {
+         "code": "NaLong",
+         "id": "Long, NaVaughn"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Livermore, CA"
+   },
+   "VuMasic": {
+      "player_code_id": {
+         "code": "VuMasic",
+         "id": "Masic, Vukasin"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Belgrade, Serbia"
+   },
+   "MaMackinnon": {
+      "player_code_id": {
+         "code": "MaMackinnon",
+         "id": "Mackinnon, Max"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Brisbane, Australia",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Shantay Legans"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "CoLemke": {
+      "player_code_id": {
+         "code": "CoLemke",
+         "id": "Lemke, Coleman"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Las Vegas, NV"
+   },
+   "JeBallisagerWebb": {
+      "player_code_id": {
+         "code": "JeBallisagerWebb",
+         "id": "Ballisager Webb, Jermaine"
+      },
+      "number": "1",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Stjaer, Denmark",
+      "role": "C"
+   },
+   "AuRapp": {
+      "player_code_id": {
+         "code": "AuRapp",
+         "id": "Rapp, Austin"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Melbourne, Australia"
+   },
+   "PrLee": {
+      "player_code_id": {
+         "code": "PrLee",
+         "id": "Lee, Preston"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Laguna Hills, CA"
+   },
+   "KeGebbers": {
+      "player_code_id": {
+         "code": "KeGebbers",
+         "id": "Gebbers, Kelson"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Brewster, WA"
+   },
+   "MeOakman": {
+      "player_code_id": {
+         "code": "MeOakman",
+         "id": "Oakman, Mezziah"
+      },
+      "number": "2",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "New York, NY"
+   },
+   "JuHarris": {
+      "player_code_id": {
+         "code": "JuHarris",
+         "id": "Harris, Jude"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Manhattan Beach, CA"
+   },
+   "JiDoboul": {
+      "player_code_id": {
+         "code": "JiDoboul",
+         "id": "Doboul, Jinup"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Saint Paul, MN"
+   }
+}

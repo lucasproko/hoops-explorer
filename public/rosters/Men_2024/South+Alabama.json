@@ -1,1 +1,199 @@
-{"JuBrown":{"player_code_id":{"code":"JuBrown","id":"Brown, Judah"},"number":"25","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Bermuda Dunes, CA"},"JaCooper":{"player_code_id":{"code":"JaCooper","id":"Cooper, Jayden"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Pike Road, AL"},"RaBrady":{"player_code_id":{"code":"RaBrady","id":"Brady, Randy"},"number":"34","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Chattanooga, TN"},"JoBroom":{"player_code_id":{"code":"JoBroom","id":"Broom, John"},"number":"14","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Jacksonville, AL"},"CaRahming":{"player_code_id":{"code":"CaRahming","id":"Rahming, Cantia"},"number":"0","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Tampa, FL"},"BaDunning":{"player_code_id":{"code":"BaDunning","id":"Dunning Jr., Barry"},"number":"22","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Mobile, AL"},"EtKizer":{"player_code_id":{"code":"EtKizer","id":"Kizer, Ethan"},"number":"21","pos":"F","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Metamora, IL"},"CaKizer":{"player_code_id":{"code":"CaKizer","id":"Kizer, Caleb"},"number":"32","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Metamora, IL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Richie Riley"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaLand":{"player_code_id":{"code":"MaLand","id":"Land, Maxwell"},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Cincinnati, OH"},"JuMargrave":{"player_code_id":{"code":"JuMargrave","id":"Margrave, Julian"},"number":"12","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Louisburg, KS"},"ElOrmiston":{"player_code_id":{"code":"ElOrmiston","id":"Ormiston, Elijah"},"number":"3","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Minneapolis, MN"},"DyFasoyiro":{"player_code_id":{"code":"DyFasoyiro","id":"Fasoyiro, Dylan"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Houston, TX"},"MyCorey":{"player_code_id":{"code":"MyCorey","id":"Corey, Myles"},"number":"20","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Ontario, CA"},"JjWheat":{"player_code_id":{"code":"JjWheat","id":"Wheat, JJ"},"number":"6","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Clarksville, TN"}}
+{
+   "JuBrown": {
+      "player_code_id": {
+         "code": "JuBrown",
+         "id": "Brown, Judah"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Bermuda Dunes, CA"
+   },
+   "JaCooper": {
+      "player_code_id": {
+         "code": "JaCooper",
+         "id": "Cooper, Jayden"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Pike Road, AL"
+   },
+   "RaBrady": {
+      "player_code_id": {
+         "code": "RaBrady",
+         "id": "Brady, Randy"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Chattanooga, TN",
+      "role": "WG"
+   },
+   "JoBroom": {
+      "player_code_id": {
+         "code": "JoBroom",
+         "id": "Broom, John"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Jacksonville, AL"
+   },
+   "CaRahming": {
+      "player_code_id": {
+         "code": "CaRahming",
+         "id": "Rahming, Cantia"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Tampa, FL"
+   },
+   "BaDunning": {
+      "player_code_id": {
+         "code": "BaDunning",
+         "id": "Dunning Jr., Barry"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Mobile, AL"
+   },
+   "EtKizer": {
+      "player_code_id": {
+         "code": "EtKizer",
+         "id": "Kizer, Ethan"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Metamora, IL"
+   },
+   "CaKizer": {
+      "player_code_id": {
+         "code": "CaKizer",
+         "id": "Kizer, Caleb"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Metamora, IL"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Richie Riley"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaLand": {
+      "player_code_id": {
+         "code": "MaLand",
+         "id": "Land, Maxwell"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "WG"
+   },
+   "JuMargrave": {
+      "player_code_id": {
+         "code": "JuMargrave",
+         "id": "Margrave, Julian"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Louisburg, KS",
+      "role": "S-PF"
+   },
+   "ElOrmiston": {
+      "player_code_id": {
+         "code": "ElOrmiston",
+         "id": "Ormiston, Elijah"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Minneapolis, MN",
+      "role": "WF"
+   },
+   "DyFasoyiro": {
+      "player_code_id": {
+         "code": "DyFasoyiro",
+         "id": "Fasoyiro, Dylan"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Houston, TX"
+   },
+   "MyCorey": {
+      "player_code_id": {
+         "code": "MyCorey",
+         "id": "Corey, Myles"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Ontario, CA"
+   },
+   "JjWheat": {
+      "player_code_id": {
+         "code": "JjWheat",
+         "id": "Wheat, JJ"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Clarksville, TN"
+   }
+}

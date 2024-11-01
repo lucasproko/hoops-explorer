@@ -1,1 +1,227 @@
-{"ErMahaffey":{"player_code_id":{"code":"ErMahaffey","id":"Mahaffey, Eric"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Cincinnati, OH"},"RiBrisco":{"player_code_id":{"code":"RiBrisco","id":"Brisco, Rich"},"number":"2","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Brooklyn, NY"},"JoHarris":{"player_code_id":{"code":"JoHarris","id":"Harris, Josiah"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Canton, OH"},"IsGray":{"player_code_id":{"code":"IsGray","id":"Gray, Isaiah"},"number":"13","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Brooklyn, NY"},"MaMusiime-ka":{"player_code_id":{"code":"MaMusiime-ka","id":"Musiime-Kamali, Marvin"},"number":"23","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Boston, MA"},"SeWilson":{"player_code_id":{"code":"SeWilson","id":"Wilson, Seth"},"number":"14","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Lorain, OH"},"__coach__":{"player_code_id":{"code":"__coach__","id":"John Groce"},"number":"","pos":"","height":"","year_class":"","gp":-1},"BoHardman":{"player_code_id":{"code":"BoHardman","id":"Hardman, Bowen"},"number":"15","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Cincinnati, OH"},"ShScott":{"player_code_id":{"code":"ShScott","id":"Scott, Shammah"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Cleveland, OH"},"JaOkonkwo":{"player_code_id":{"code":"JaOkonkwo","id":"Okonkwo, James"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Maidenhead, United Kingdom"},"ShYoung":{"player_code_id":{"code":"ShYoung","id":"Young, Sharron"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Morgantown, WV"},"NaJohnson":{"player_code_id":{"code":"NaJohnson","id":"Johnson, Nate"},"number":"34","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Liberty Township, OH"},"AmLyles":{"player_code_id":{"code":"AmLyles","id":"Lyles, Amani"},"number":"0","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Columbus, OH"},"EvWilson":{"player_code_id":{"code":"EvWilson","id":"Wilson, Evan"},"number":"20","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Noblesville, IN"},"CoGroce":{"player_code_id":{"code":"CoGroce","id":"Groce, Conner"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Richfield, OH"},"ZaHalligan":{"player_code_id":{"code":"ZaHalligan","id":"Halligan, Zach"},"number":"21","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Uniontown, OH"},"TaJohnson":{"player_code_id":{"code":"TaJohnson","id":"Johnson, Tavari"},"number":"5","pos":"G","height":"5-11","height_in":71,"year_class":"Jr.","gp":0,"origin":"Chicago, IL"}}
+{
+   "ErMahaffey": {
+      "player_code_id": {
+         "code": "ErMahaffey",
+         "id": "Mahaffey, Eric"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Cincinnati, OH"
+   },
+   "RiBrisco": {
+      "player_code_id": {
+         "code": "RiBrisco",
+         "id": "Brisco, Rich"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Brooklyn, NY"
+   },
+   "JoHarris": {
+      "player_code_id": {
+         "code": "JoHarris",
+         "id": "Harris, Josiah"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Canton, OH",
+      "role": "S-PF"
+   },
+   "IsGray": {
+      "player_code_id": {
+         "code": "IsGray",
+         "id": "Gray, Isaiah"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "CG"
+   },
+   "MaMusiime-ka": {
+      "player_code_id": {
+         "code": "MaMusiime-ka",
+         "id": "Musiime-Kamali, Marvin"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Boston, MA"
+   },
+   "SeWilson": {
+      "player_code_id": {
+         "code": "SeWilson",
+         "id": "Wilson, Seth"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Lorain, OH",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "John Groce"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "BoHardman": {
+      "player_code_id": {
+         "code": "BoHardman",
+         "id": "Hardman, Bowen"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Cincinnati, OH"
+   },
+   "ShScott": {
+      "player_code_id": {
+         "code": "ShScott",
+         "id": "Scott, Shammah"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Cleveland, OH",
+      "role": "WG"
+   },
+   "JaOkonkwo": {
+      "player_code_id": {
+         "code": "JaOkonkwo",
+         "id": "Okonkwo, James"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Maidenhead, United Kingdom"
+   },
+   "ShYoung": {
+      "player_code_id": {
+         "code": "ShYoung",
+         "id": "Young, Sharron"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Morgantown, WV"
+   },
+   "NaJohnson": {
+      "player_code_id": {
+         "code": "NaJohnson",
+         "id": "Johnson, Nate"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Liberty Township, OH",
+      "role": "WG"
+   },
+   "AmLyles": {
+      "player_code_id": {
+         "code": "AmLyles",
+         "id": "Lyles, Amani"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Columbus, OH"
+   },
+   "EvWilson": {
+      "player_code_id": {
+         "code": "EvWilson",
+         "id": "Wilson, Evan"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Noblesville, IN"
+   },
+   "CoGroce": {
+      "player_code_id": {
+         "code": "CoGroce",
+         "id": "Groce, Conner"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Richfield, OH"
+   },
+   "ZaHalligan": {
+      "player_code_id": {
+         "code": "ZaHalligan",
+         "id": "Halligan, Zach"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Uniontown, OH"
+   },
+   "TaJohnson": {
+      "player_code_id": {
+         "code": "TaJohnson",
+         "id": "Johnson, Tavari"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "s-PG"
+   }
+}

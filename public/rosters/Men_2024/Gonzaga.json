@@ -1,1 +1,258 @@
-{"NoHaaland":{"player_code_id":{"code":"NoHaaland","id":"Haaland, Noah"},"number":"35","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Rathdrum, ID"},"JoFew":{"player_code_id":{"code":"JoFew","id":"Few, Joe"},"number":"15","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Spokane, WA"},"NoHickman":{"player_code_id":{"code":"NoHickman","id":"Hickman, Nolan"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Seattle, WA"},"BeGregg":{"player_code_id":{"code":"BeGregg","id":"Gregg, Ben"},"number":"33","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"Clackamas, OR"},"IsDiagne":{"player_code_id":{"code":"IsDiagne","id":"Diagne, Ismaila"},"number":"24","pos":"C","height":"7-0","height_in":84,"year_class":"Fr.","gp":0,"origin":"Nguekhokhe, Senegal"},"EmInnocenti":{"player_code_id":{"code":"EmInnocenti","id":"Innocenti, Emmanuel"},"number":"5","pos":"F","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Ranzanico, Italy"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mark Few"},"number":"","pos":"","height":"","year_class":"","gp":-1},"CaOrness":{"player_code_id":{"code":"CaOrness","id":"Orness, Cade"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Poulsbo, WA"},"RyNembhard":{"player_code_id":{"code":"RyNembhard","id":"Nembhard, Ryan"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Aurora, Canada"},"BrSmith":{"player_code_id":{"code":"BrSmith","id":"Smith, Braeden"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Seattle, WA"},"MiAjayi":{"player_code_id":{"code":"MiAjayi","id":"Ajayi, Michael"},"number":"1","pos":"G","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Kent, WA"},"DuStromer":{"player_code_id":{"code":"DuStromer","id":"Stromer, Dusty"},"number":"4","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Sherman Oaks, CA"},"JuSeokYeo":{"player_code_id":{"code":"JuSeokYeo","id":"Seok Yeo, Jun"},"number":"22","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Seoul, South Korea"},"BrHuff":{"player_code_id":{"code":"BrHuff","id":"Huff, Braden"},"number":"34","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Glen Ellyn, IL"},"GrIke":{"player_code_id":{"code":"GrIke","id":"Ike, Graham"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Aurora, CO"},"JoArauzmoore":{"player_code_id":{"code":"JoArauzmoore","id":"ArauzMoore, Joaquim"},"number":"10","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"Kentfield, CA"},"GrLemke":{"player_code_id":{"code":"GrLemke","id":"Lemke, Graydon"},"number":"14","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Las Vegas, NV"},"StVenters":{"player_code_id":{"code":"StVenters","id":"Venters, Steele"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Ellensburg, WA"},"KhBattle":{"player_code_id":{"code":"KhBattle","id":"Battle, Khalif"},"number":"99","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Hillside, NJ"}}
+{
+   "NoHaaland": {
+      "player_code_id": {
+         "code": "NoHaaland",
+         "id": "Haaland, Noah"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Rathdrum, ID"
+   },
+   "JoFew": {
+      "player_code_id": {
+         "code": "JoFew",
+         "id": "Few, Joe"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Spokane, WA"
+   },
+   "NoHickman": {
+      "player_code_id": {
+         "code": "NoHickman",
+         "id": "Hickman, Nolan"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Seattle, WA",
+      "role": "CG"
+   },
+   "BeGregg": {
+      "player_code_id": {
+         "code": "BeGregg",
+         "id": "Gregg, Ben"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Clackamas, OR",
+      "role": "S-PF"
+   },
+   "IsDiagne": {
+      "player_code_id": {
+         "code": "IsDiagne",
+         "id": "Diagne, Ismaila"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Nguekhokhe, Senegal"
+   },
+   "EmInnocenti": {
+      "player_code_id": {
+         "code": "EmInnocenti",
+         "id": "Innocenti, Emmanuel"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Ranzanico, Italy",
+      "role": "WF"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mark Few"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "CaOrness": {
+      "player_code_id": {
+         "code": "CaOrness",
+         "id": "Orness, Cade"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Poulsbo, WA"
+   },
+   "RyNembhard": {
+      "player_code_id": {
+         "code": "RyNembhard",
+         "id": "Nembhard, Ryan"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Aurora, Canada",
+      "role": "s-PG"
+   },
+   "BrSmith": {
+      "player_code_id": {
+         "code": "BrSmith",
+         "id": "Smith, Braeden"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Seattle, WA",
+      "role": "s-PG"
+   },
+   "MiAjayi": {
+      "player_code_id": {
+         "code": "MiAjayi",
+         "id": "Ajayi, Michael"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Kent, WA",
+      "role": "WF"
+   },
+   "DuStromer": {
+      "player_code_id": {
+         "code": "DuStromer",
+         "id": "Stromer, Dusty"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Sherman Oaks, CA",
+      "role": "WG"
+   },
+   "JuSeokYeo": {
+      "player_code_id": {
+         "code": "JuSeokYeo",
+         "id": "Seok Yeo, Jun"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Seoul, South Korea"
+   },
+   "BrHuff": {
+      "player_code_id": {
+         "code": "BrHuff",
+         "id": "Huff, Braden"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Glen Ellyn, IL",
+      "role": "PF/C"
+   },
+   "GrIke": {
+      "player_code_id": {
+         "code": "GrIke",
+         "id": "Ike, Graham"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Aurora, CO",
+      "role": "C"
+   },
+   "JoArauzmoore": {
+      "player_code_id": {
+         "code": "JoArauzmoore",
+         "id": "ArauzMoore, Joaquim"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Kentfield, CA"
+   },
+   "GrLemke": {
+      "player_code_id": {
+         "code": "GrLemke",
+         "id": "Lemke, Graydon"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Las Vegas, NV"
+   },
+   "StVenters": {
+      "player_code_id": {
+         "code": "StVenters",
+         "id": "Venters, Steele"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Ellensburg, WA",
+      "role": "WF"
+   },
+   "KhBattle": {
+      "player_code_id": {
+         "code": "KhBattle",
+         "id": "Battle, Khalif"
+      },
+      "number": "99",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Hillside, NJ",
+      "role": "WG"
+   }
+}

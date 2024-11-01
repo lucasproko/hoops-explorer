@@ -1,1 +1,202 @@
-{"BeSoutherlan":{"player_code_id":{"code":"BeSoutherlan","id":"Southerland, Ben"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Cincinnati, OH"},"MiImariagbe":{"player_code_id":{"code":"MiImariagbe","id":"Imariagbe, Michael"},"number":"33","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Houston, TX"},"DrCarter":{"player_code_id":{"code":"DrCarter","id":"Carter, Drey"},"number":"2","pos":"G","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Bellefontaine, OH"},"AyDavis":{"player_code_id":{"code":"AyDavis","id":"Davis, Ayden"},"number":"51","pos":"C","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Onsted, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Clint Sargent"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnHolden":{"player_code_id":{"code":"AnHolden","id":"Holden, Andrea"},"number":"20","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Hamilton, OH"},"BrGrant":{"player_code_id":{"code":"BrGrant","id":"Grant, Braden"},"number":"15","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Beavercreek, OH"},"BrNoel":{"player_code_id":{"code":"BrNoel","id":"Noel, Brandon"},"number":"14","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Lucasville, OH"},"AlBruskotter":{"player_code_id":{"code":"AlBruskotter","id":"Bruskotter, Alex"},"number":"5","pos":"G","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Shelby, OH"},"AnWelage":{"player_code_id":{"code":"AnWelage","id":"Welage, Andrew"},"number":"22","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Greensburg, IN"},"KeNorris":{"player_code_id":{"code":"KeNorris","id":"Norris, Keaton"},"number":"4","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Hilliard, OH"},"LoWoods":{"player_code_id":{"code":"LoWoods","id":"Woods, Logan"},"number":"21","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Fairfield, OH"},"SoCallaghan":{"player_code_id":{"code":"SoCallaghan","id":"Callaghan, Solomon"},"number":"13","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Wadsworth, OH"},"AlHuibregtse":{"player_code_id":{"code":"AlHuibregtse","id":"Huibregtse, Alex"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Grafton, WI"},"JaDoumbia":{"player_code_id":{"code":"JaDoumbia","id":"Doumbia, Jack"},"number":"23","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Lanham, MD"}}
+{
+   "BeSoutherlan": {
+      "player_code_id": {
+         "code": "BeSoutherlan",
+         "id": "Southerland, Ben"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Cincinnati, OH"
+   },
+   "MiImariagbe": {
+      "player_code_id": {
+         "code": "MiImariagbe",
+         "id": "Imariagbe, Michael"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "PF/C"
+   },
+   "DrCarter": {
+      "player_code_id": {
+         "code": "DrCarter",
+         "id": "Carter, Drey"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Bellefontaine, OH",
+      "role": "WG"
+   },
+   "AyDavis": {
+      "player_code_id": {
+         "code": "AyDavis",
+         "id": "Davis, Ayden"
+      },
+      "number": "51",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Onsted, MI"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Clint Sargent"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnHolden": {
+      "player_code_id": {
+         "code": "AnHolden",
+         "id": "Holden, Andrea"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Hamilton, OH"
+   },
+   "BrGrant": {
+      "player_code_id": {
+         "code": "BrGrant",
+         "id": "Grant, Braden"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Beavercreek, OH"
+   },
+   "BrNoel": {
+      "player_code_id": {
+         "code": "BrNoel",
+         "id": "Noel, Brandon"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Lucasville, OH",
+      "role": "WF"
+   },
+   "AlBruskotter": {
+      "player_code_id": {
+         "code": "AlBruskotter",
+         "id": "Bruskotter, Alex"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Shelby, OH"
+   },
+   "AnWelage": {
+      "player_code_id": {
+         "code": "AnWelage",
+         "id": "Welage, Andrew"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Greensburg, IN",
+      "role": "WG"
+   },
+   "KeNorris": {
+      "player_code_id": {
+         "code": "KeNorris",
+         "id": "Norris, Keaton"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Hilliard, OH",
+      "role": "CG"
+   },
+   "LoWoods": {
+      "player_code_id": {
+         "code": "LoWoods",
+         "id": "Woods, Logan"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Fairfield, OH"
+   },
+   "SoCallaghan": {
+      "player_code_id": {
+         "code": "SoCallaghan",
+         "id": "Callaghan, Solomon"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Wadsworth, OH"
+   },
+   "AlHuibregtse": {
+      "player_code_id": {
+         "code": "AlHuibregtse",
+         "id": "Huibregtse, Alex"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Grafton, WI",
+      "role": "CG"
+   },
+   "JaDoumbia": {
+      "player_code_id": {
+         "code": "JaDoumbia",
+         "id": "Doumbia, Jack"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Lanham, MD",
+      "role": "WF"
+   }
+}

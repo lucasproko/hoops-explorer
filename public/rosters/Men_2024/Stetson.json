@@ -1,1 +1,211 @@
-{"LaBabusiak":{"player_code_id":{"code":"LaBabusiak","id":"Babusiak, Landen"},"number":"33","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Saint John, IN"},"TrGross":{"player_code_id":{"code":"TrGross","id":"Gross, Tristan"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Saint Petersburg, FL"},"BlSagna":{"player_code_id":{"code":"BlSagna","id":"Sagna, Blaize"},"number":"9","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"London, United Kingdom"},"StAlesso":{"player_code_id":{"code":"StAlesso","id":"Alesso, Stefano"},"number":"77","pos":"F","height":"7-0","height_in":84,"year_class":"Fr.","gp":0,"origin":""},"BeGladieux":{"player_code_id":{"code":"BeGladieux","id":"Gladieux, Ben"},"number":"20","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Lakeland, FL"},"IsJones":{"player_code_id":{"code":"IsJones","id":"Jones, Isaac"},"number":"2","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"Deland, FL"},"DaMacgregor":{"player_code_id":{"code":"DaMacgregor","id":"Macgregor, Daniel"},"number":"4","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Clearwater, FL"},"MeEllison":{"player_code_id":{"code":"MeEllison","id":"Ellison, Mehki"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Flint, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Donnie Jones"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AlDoyle":{"player_code_id":{"code":"AlDoyle","id":"Doyle, Alex"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":""},"AbCanka":{"player_code_id":{"code":"AbCanka","id":"Canka, Abramo"},"number":"22","pos":"G","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Genoa, Italy"},"JoWood":{"player_code_id":{"code":"JoWood","id":"Wood, Jordan"},"number":"24","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"San Antonio, TX"},"FiSheridan":{"player_code_id":{"code":"FiSheridan","id":"Sheridan, Finley"},"number":"21","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Merrick, NY"},"JaPhillips":{"player_code_id":{"code":"JaPhillips","id":"Phillips Jr., Jamie"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Winter Haven, FL"},"JoMassey":{"player_code_id":{"code":"JoMassey","id":"Massey, Josh"},"number":"1","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Monroe, NC"},"TrThompson":{"player_code_id":{"code":"TrThompson","id":"Thompson, Treyton"},"number":"42","pos":"C","height":"6-11","height_in":83,"year_class":"Jr.","gp":0,"origin":"Glenwood, MN"}}
+{
+   "LaBabusiak": {
+      "player_code_id": {
+         "code": "LaBabusiak",
+         "id": "Babusiak, Landen"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Saint John, IN"
+   },
+   "TrGross": {
+      "player_code_id": {
+         "code": "TrGross",
+         "id": "Gross, Tristan"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Saint Petersburg, FL",
+      "role": "WG"
+   },
+   "BlSagna": {
+      "player_code_id": {
+         "code": "BlSagna",
+         "id": "Sagna, Blaize"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "London, United Kingdom"
+   },
+   "StAlesso": {
+      "player_code_id": {
+         "code": "StAlesso",
+         "id": "Alesso, Stefano"
+      },
+      "number": "77",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": ""
+   },
+   "BeGladieux": {
+      "player_code_id": {
+         "code": "BeGladieux",
+         "id": "Gladieux, Ben"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Lakeland, FL"
+   },
+   "IsJones": {
+      "player_code_id": {
+         "code": "IsJones",
+         "id": "Jones, Isaac"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Deland, FL"
+   },
+   "DaMacgregor": {
+      "player_code_id": {
+         "code": "DaMacgregor",
+         "id": "Macgregor, Daniel"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Clearwater, FL"
+   },
+   "MeEllison": {
+      "player_code_id": {
+         "code": "MeEllison",
+         "id": "Ellison, Mehki"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Flint, MI"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Donnie Jones"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AlDoyle": {
+      "player_code_id": {
+         "code": "AlDoyle",
+         "id": "Doyle, Alex"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": ""
+   },
+   "AbCanka": {
+      "player_code_id": {
+         "code": "AbCanka",
+         "id": "Canka, Abramo"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Genoa, Italy"
+   },
+   "JoWood": {
+      "player_code_id": {
+         "code": "JoWood",
+         "id": "Wood, Jordan"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "San Antonio, TX",
+      "role": "S-PF"
+   },
+   "FiSheridan": {
+      "player_code_id": {
+         "code": "FiSheridan",
+         "id": "Sheridan, Finley"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Merrick, NY"
+   },
+   "JaPhillips": {
+      "player_code_id": {
+         "code": "JaPhillips",
+         "id": "Phillips Jr., Jamie"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Winter Haven, FL"
+   },
+   "JoMassey": {
+      "player_code_id": {
+         "code": "JoMassey",
+         "id": "Massey, Josh"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Monroe, NC"
+   },
+   "TrThompson": {
+      "player_code_id": {
+         "code": "TrThompson",
+         "id": "Thompson, Treyton"
+      },
+      "number": "42",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Glenwood, MN",
+      "role": "PF/C"
+   }
+}

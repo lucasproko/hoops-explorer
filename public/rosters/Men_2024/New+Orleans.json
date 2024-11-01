@@ -1,1 +1,213 @@
-{"JaVincent":{"player_code_id":{"code":"JaVincent","id":"Vincent, Jamond"},"number":"13","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"New Orleans, LA"},"JaWhite":{"player_code_id":{"code":"JaWhite","id":"White, James"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Conyers, GA"},"KePrince":{"player_code_id":{"code":"KePrince","id":"Prince, Kerwin"},"number":"22","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Waterbury, CT"},"LeColeman":{"player_code_id":{"code":"LeColeman","id":"Coleman, Leland"},"number":"11","pos":"G","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Richmond, VA"},"JaSowards":{"player_code_id":{"code":"JaSowards","id":"Sowards, Jackson"},"number":"32","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Tulsa, OK"},"KoRowbatham":{"player_code_id":{"code":"KoRowbatham","id":"Rowbatham, Kohen"},"number":"24","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Metairie, LA"},"DaDaHunter":{"player_code_id":{"code":"DaDaHunter","id":"Dae Hunter, Dae"},"number":"10","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Sardis, MS"},"LuDavis":{"player_code_id":{"code":"LuDavis","id":"Davis, Luke"},"number":"20","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Winterville, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Stacy Hollowell"},"number":"","pos":"","height":"","year_class":"","gp":-1},"GrKemp":{"player_code_id":{"code":"GrKemp","id":"Kemp, Grant"},"number":"15","pos":"G","height":"5-10","height_in":70,"year_class":"Jr.","gp":0,"origin":"Madisonville, LA"},"OmHenry":{"player_code_id":{"code":"OmHenry","id":"Henry, Omarion"},"number":"4","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Saint Louis, MO"},"Jacobs":{"player_code_id":{"code":"Jacobs","id":"Jacobs, JR"},"number":"1","pos":"G","height":"5-9","height_in":69,"year_class":"So.","gp":0,"origin":"Memphis, TN"},"MaJones":{"player_code_id":{"code":"MaJones","id":"Jones, Mason"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Chicago, IL"},"MjThomas":{"player_code_id":{"code":"MjThomas","id":"Thomas, MJ"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Denton, TX"},"ThGrant":{"player_code_id":{"code":"ThGrant","id":"Grant, Theo"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Schertz, TX"},"JaShort":{"player_code_id":{"code":"JaShort","id":"Short, Jah"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Farmville, NC"}}
+{
+   "JaVincent": {
+      "player_code_id": {
+         "code": "JaVincent",
+         "id": "Vincent, Jamond"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "New Orleans, LA",
+      "role": "WG"
+   },
+   "JaWhite": {
+      "player_code_id": {
+         "code": "JaWhite",
+         "id": "White, James"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Conyers, GA",
+      "role": "WG"
+   },
+   "KePrince": {
+      "player_code_id": {
+         "code": "KePrince",
+         "id": "Prince, Kerwin"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Waterbury, CT"
+   },
+   "LeColeman": {
+      "player_code_id": {
+         "code": "LeColeman",
+         "id": "Coleman, Leland"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Richmond, VA"
+   },
+   "JaSowards": {
+      "player_code_id": {
+         "code": "JaSowards",
+         "id": "Sowards, Jackson"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Tulsa, OK"
+   },
+   "KoRowbatham": {
+      "player_code_id": {
+         "code": "KoRowbatham",
+         "id": "Rowbatham, Kohen"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Metairie, LA"
+   },
+   "DaDaHunter": {
+      "player_code_id": {
+         "code": "DaDaHunter",
+         "id": "Dae Hunter, Dae"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Sardis, MS"
+   },
+   "LuDavis": {
+      "player_code_id": {
+         "code": "LuDavis",
+         "id": "Davis, Luke"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Winterville, NC"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Stacy Hollowell"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "GrKemp": {
+      "player_code_id": {
+         "code": "GrKemp",
+         "id": "Kemp, Grant"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Madisonville, LA"
+   },
+   "OmHenry": {
+      "player_code_id": {
+         "code": "OmHenry",
+         "id": "Henry, Omarion"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Saint Louis, MO",
+      "role": "WF"
+   },
+   "Jacobs": {
+      "player_code_id": {
+         "code": "Jacobs",
+         "id": "Jacobs, JR"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Memphis, TN"
+   },
+   "MaJones": {
+      "player_code_id": {
+         "code": "MaJones",
+         "id": "Jones, Mason"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WG"
+   },
+   "MjThomas": {
+      "player_code_id": {
+         "code": "MjThomas",
+         "id": "Thomas, MJ"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Denton, TX"
+   },
+   "ThGrant": {
+      "player_code_id": {
+         "code": "ThGrant",
+         "id": "Grant, Theo"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Schertz, TX"
+   },
+   "JaShort": {
+      "player_code_id": {
+         "code": "JaShort",
+         "id": "Short, Jah"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Farmville, NC",
+      "role": "WG"
+   }
+}

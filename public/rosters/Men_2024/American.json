@@ -1,1 +1,241 @@
-{"GeSprouse":{"player_code_id":{"code":"GeSprouse","id":"Sprouse, Geoff"},"number":"12","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Pembroke Pines, FL"},"MaRogers":{"player_code_id":{"code":"MaRogers","id":"Rogers, Matt"},"number":"15","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Knoxville, MD"},"ErMichaels":{"player_code_id":{"code":"ErMichaels","id":"Michaels, Eric"},"number":"25","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Poughkeepsie, NY"},"MaMayock":{"player_code_id":{"code":"MaMayock","id":"Mayock, Matt"},"number":"33","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Berwyn, PA"},"ShO'reilly":{"player_code_id":{"code":"ShO'reilly","id":"O'Reilly, Shane"},"number":"22","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Moraga, CA"},"AdHolod":{"player_code_id":{"code":"AdHolod","id":"Holod, Adam"},"number":"20","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"South St Paul, MN"},"JuIturbe":{"player_code_id":{"code":"JuIturbe","id":"Iturbe, Julen"},"number":"32","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Greenville, SC"},"AdSamuels":{"player_code_id":{"code":"AdSamuels","id":"Samuels, Adrian"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Nashville, TN"},"LiBall":{"player_code_id":{"code":"LiBall","id":"Ball, Lincoln"},"number":"4","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Williamsport, MD"},"WyNausadis":{"player_code_id":{"code":"WyNausadis","id":"Nausadis, Wyatt"},"number":"7","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Traverse City, MI"},"GiColeman":{"player_code_id":{"code":"GiColeman","id":"Coleman, Gibraltar"},"number":"14","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Lorton, VA"},"NoJones":{"player_code_id":{"code":"NoJones","id":"Jones, Noah"},"number":"21","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Baltimore, MD"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Duane Simpkins"},"number":"","pos":"","height":"","year_class":"","gp":-1},"CoSmalls":{"player_code_id":{"code":"CoSmalls","id":"Smalls, Colin"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Upper Marlboro, MD"},"AlDaniels":{"player_code_id":{"code":"AlDaniels","id":"Daniels, Alex"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Duluth, GA"},"ElStephens":{"player_code_id":{"code":"ElStephens","id":"Stephens, Elijah"},"number":"1","pos":"G","height":"5-9","height_in":69,"year_class":"Sr.","gp":0,"origin":"Waco, TX"},"MaWhittaker":{"player_code_id":{"code":"MaWhittaker","id":"Whittaker, Mason"},"number":"45","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Cust, New Zealand"},"GrJones":{"player_code_id":{"code":"GrJones","id":"Jones, Greg"},"number":"23","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Alexandria, VA"}}
+{
+   "GeSprouse": {
+      "player_code_id": {
+         "code": "GeSprouse",
+         "id": "Sprouse, Geoff"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Pembroke Pines, FL",
+      "role": "CG"
+   },
+   "MaRogers": {
+      "player_code_id": {
+         "code": "MaRogers",
+         "id": "Rogers, Matt"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Knoxville, MD",
+      "role": "S-PF"
+   },
+   "ErMichaels": {
+      "player_code_id": {
+         "code": "ErMichaels",
+         "id": "Michaels, Eric"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Poughkeepsie, NY"
+   },
+   "MaMayock": {
+      "player_code_id": {
+         "code": "MaMayock",
+         "id": "Mayock, Matt"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Berwyn, PA",
+      "role": "WF"
+   },
+   "ShO'reilly": {
+      "player_code_id": {
+         "code": "ShO'reilly",
+         "id": "O'Reilly, Shane"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Moraga, CA"
+   },
+   "AdHolod": {
+      "player_code_id": {
+         "code": "AdHolod",
+         "id": "Holod, Adam"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "South St Paul, MN"
+   },
+   "JuIturbe": {
+      "player_code_id": {
+         "code": "JuIturbe",
+         "id": "Iturbe, Julen"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Greenville, SC"
+   },
+   "AdSamuels": {
+      "player_code_id": {
+         "code": "AdSamuels",
+         "id": "Samuels, Adrian"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Nashville, TN"
+   },
+   "LiBall": {
+      "player_code_id": {
+         "code": "LiBall",
+         "id": "Ball, Lincoln"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Williamsport, MD",
+      "role": "WG"
+   },
+   "WyNausadis": {
+      "player_code_id": {
+         "code": "WyNausadis",
+         "id": "Nausadis, Wyatt"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Traverse City, MI"
+   },
+   "GiColeman": {
+      "player_code_id": {
+         "code": "GiColeman",
+         "id": "Coleman, Gibraltar"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Lorton, VA"
+   },
+   "NoJones": {
+      "player_code_id": {
+         "code": "NoJones",
+         "id": "Jones, Noah"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Baltimore, MD"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Duane Simpkins"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "CoSmalls": {
+      "player_code_id": {
+         "code": "CoSmalls",
+         "id": "Smalls, Colin"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Upper Marlboro, MD",
+      "role": "WG"
+   },
+   "AlDaniels": {
+      "player_code_id": {
+         "code": "AlDaniels",
+         "id": "Daniels, Alex"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Duluth, GA"
+   },
+   "ElStephens": {
+      "player_code_id": {
+         "code": "ElStephens",
+         "id": "Stephens, Elijah"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Waco, TX",
+      "role": "PG"
+   },
+   "MaWhittaker": {
+      "player_code_id": {
+         "code": "MaWhittaker",
+         "id": "Whittaker, Mason"
+      },
+      "number": "45",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Cust, New Zealand"
+   },
+   "GrJones": {
+      "player_code_id": {
+         "code": "GrJones",
+         "id": "Jones, Greg"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Alexandria, VA",
+      "role": "WF"
+   }
+}

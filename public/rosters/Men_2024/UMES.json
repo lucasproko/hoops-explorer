@@ -1,1 +1,183 @@
-{"HaPerkins":{"player_code_id":{"code":"HaPerkins","id":"Perkins, Hassan"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Hockessin, DE"},"KeShaw":{"player_code_id":{"code":"KeShaw","id":"Shaw, Ketron"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Charlotte, NC"},"RaMartino":{"player_code_id":{"code":"RaMartino","id":"Martino Jr., Ralph"},"number":"1","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Lanham, MD"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Cleo Hill Jr."},"number":"","pos":"","height":"","year_class":"","gp":-1},"JaWare":{"player_code_id":{"code":"JaWare","id":"Ware, Jalen"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Winston Salem, NC"},"JoCuello":{"player_code_id":{"code":"JoCuello","id":"Cuello, Jose"},"number":"10","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":0,"origin":"Queens Village, NY"},"LaForeman":{"player_code_id":{"code":"LaForeman","id":"Foreman, Lawrence"},"number":"21","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Kingston, Jamaica"},"EvJohnson":{"player_code_id":{"code":"EvJohnson","id":"Johnson, Evan"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Durham, NC"},"CaBailey":{"player_code_id":{"code":"CaBailey","id":"Bailey, Cardell"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Detroit, MI"},"JaLee":{"player_code_id":{"code":"JaLee","id":"Lee, Jaiden"},"number":"11","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Chicago, IL"},"ChFlippin":{"player_code_id":{"code":"ChFlippin","id":"Flippin, Christopher"},"number":"35","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Metairie, LA"},"KyShaw":{"player_code_id":{"code":"KyShaw","id":"Shaw, Kyrell"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Charlotte, NC"},"MaVassel":{"player_code_id":{"code":"MaVassel","id":"Vassel, Maurice"},"number":"22","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Brooklyn, NY"},"TrHall":{"player_code_id":{"code":"TrHall","id":"Hall, Trey"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Willimantic, CT"}}
+{
+   "HaPerkins": {
+      "player_code_id": {
+         "code": "HaPerkins",
+         "id": "Perkins, Hassan"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Hockessin, DE"
+   },
+   "KeShaw": {
+      "player_code_id": {
+         "code": "KeShaw",
+         "id": "Shaw, Ketron"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Charlotte, NC"
+   },
+   "RaMartino": {
+      "player_code_id": {
+         "code": "RaMartino",
+         "id": "Martino Jr., Ralph"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Lanham, MD"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Cleo Hill Jr."
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JaWare": {
+      "player_code_id": {
+         "code": "JaWare",
+         "id": "Ware, Jalen"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Winston Salem, NC"
+   },
+   "JoCuello": {
+      "player_code_id": {
+         "code": "JoCuello",
+         "id": "Cuello, Jose"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Queens Village, NY"
+   },
+   "LaForeman": {
+      "player_code_id": {
+         "code": "LaForeman",
+         "id": "Foreman, Lawrence"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Kingston, Jamaica"
+   },
+   "EvJohnson": {
+      "player_code_id": {
+         "code": "EvJohnson",
+         "id": "Johnson, Evan"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Durham, NC",
+      "role": "s-PG"
+   },
+   "CaBailey": {
+      "player_code_id": {
+         "code": "CaBailey",
+         "id": "Bailey, Cardell"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Detroit, MI"
+   },
+   "JaLee": {
+      "player_code_id": {
+         "code": "JaLee",
+         "id": "Lee, Jaiden"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "ChFlippin": {
+      "player_code_id": {
+         "code": "ChFlippin",
+         "id": "Flippin, Christopher"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Metairie, LA"
+   },
+   "KyShaw": {
+      "player_code_id": {
+         "code": "KyShaw",
+         "id": "Shaw, Kyrell"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Charlotte, NC"
+   },
+   "MaVassel": {
+      "player_code_id": {
+         "code": "MaVassel",
+         "id": "Vassel, Maurice"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Brooklyn, NY"
+   },
+   "TrHall": {
+      "player_code_id": {
+         "code": "TrHall",
+         "id": "Hall, Trey"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Willimantic, CT"
+   }
+}

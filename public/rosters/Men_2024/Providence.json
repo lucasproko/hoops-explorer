@@ -1,1 +1,231 @@
-{"JuFernandez":{"player_code_id":{"code":"JuFernandez","id":"Fernandez, Justyn"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Richmond, VA"},"BrHopkins":{"player_code_id":{"code":"BrHopkins","id":"Hopkins, Bryce"},"number":"23","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Oak Park, IL"},"RiBarron":{"player_code_id":{"code":"RiBarron","id":"Barron, Rich"},"number":"10","pos":"F","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Chicago, IL"},"JaPierre":{"player_code_id":{"code":"JaPierre","id":"Pierre, Jayden"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Elizabeth, NJ"},"WeCardet":{"player_code_id":{"code":"WeCardet","id":"Cardet, Wesley"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Tallahassee, FL"},"AnBonke":{"player_code_id":{"code":"AnBonke","id":"Bonke, Anton"},"number":"5","pos":"C","height":"7-2","height_in":86,"year_class":"So.","gp":0,"origin":"Port Vila, Vanuatu"},"JaAbdur-rahi":{"player_code_id":{"code":"JaAbdur-rahi","id":"Abdur-Rahim, Jabri"},"number":"3","pos":"G","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"South Orange, NJ"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Kim English"},"number":"","pos":"","height":"","year_class":"","gp":-1},"BeJoseph":{"player_code_id":{"code":"BeJoseph","id":"Joseph, Bensley"},"number":"7","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Arlington, MA"},"ChEssandoko":{"player_code_id":{"code":"ChEssandoko","id":"Essandoko, Christ"},"number":"2","pos":"F","height":"7-0","height_in":84,"year_class":"So.","gp":0,"origin":"Clichy, France"},"CoFloyd":{"player_code_id":{"code":"CoFloyd","id":"Floyd, Jr., Corey"},"number":"14","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Franklin, NJ"},"ElDelaurier":{"player_code_id":{"code":"ElDelaurier","id":"DeLaurier, Eli"},"number":"12","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Shipman, VA"},"KiO'haire":{"player_code_id":{"code":"KiO'haire","id":"O'Haire, Kieran"},"number":"33","pos":"F","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Menands, NY"},"NiJoDaniels":{"player_code_id":{"code":"NiJoDaniels","id":"Jotham Daniels, Nilavan"},"number":"20","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Saint Louis, MO"},"RyMela":{"player_code_id":{"code":"RyMela","id":"Mela, Ryan"},"number":"11","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Natick, MA"},"OsErhunmwuns":{"player_code_id":{"code":"OsErhunmwuns","id":"Erhunmwunse, Oswin"},"number":"55","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Benin City, Nigeria"},"LuFonts":{"player_code_id":{"code":"LuFonts","id":"Fonts, Luke"},"number":"24","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":0,"origin":"Portsmouth, RI"}}
+{
+   "JuFernandez": {
+      "player_code_id": {
+         "code": "JuFernandez",
+         "id": "Fernandez, Justyn"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Richmond, VA",
+      "role": "WG"
+   },
+   "BrHopkins": {
+      "player_code_id": {
+         "code": "BrHopkins",
+         "id": "Hopkins, Bryce"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Oak Park, IL",
+      "role": "WF"
+   },
+   "RiBarron": {
+      "player_code_id": {
+         "code": "RiBarron",
+         "id": "Barron, Rich"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WF"
+   },
+   "JaPierre": {
+      "player_code_id": {
+         "code": "JaPierre",
+         "id": "Pierre, Jayden"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Elizabeth, NJ",
+      "role": "s-PG"
+   },
+   "WeCardet": {
+      "player_code_id": {
+         "code": "WeCardet",
+         "id": "Cardet, Wesley"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Tallahassee, FL",
+      "role": "WG"
+   },
+   "AnBonke": {
+      "player_code_id": {
+         "code": "AnBonke",
+         "id": "Bonke, Anton"
+      },
+      "number": "5",
+      "pos": "C",
+      "height": "7-2",
+      "height_in": 86,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Port Vila, Vanuatu"
+   },
+   "JaAbdur-rahi": {
+      "player_code_id": {
+         "code": "JaAbdur-rahi",
+         "id": "Abdur-Rahim, Jabri"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "South Orange, NJ",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Kim English"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "BeJoseph": {
+      "player_code_id": {
+         "code": "BeJoseph",
+         "id": "Joseph, Bensley"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Arlington, MA",
+      "role": "s-PG"
+   },
+   "ChEssandoko": {
+      "player_code_id": {
+         "code": "ChEssandoko",
+         "id": "Essandoko, Christ"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Clichy, France",
+      "role": "PF/C"
+   },
+   "CoFloyd": {
+      "player_code_id": {
+         "code": "CoFloyd",
+         "id": "Floyd, Jr., Corey"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Franklin, NJ",
+      "role": "WG"
+   },
+   "ElDelaurier": {
+      "player_code_id": {
+         "code": "ElDelaurier",
+         "id": "DeLaurier, Eli"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Shipman, VA"
+   },
+   "KiO'haire": {
+      "player_code_id": {
+         "code": "KiO'haire",
+         "id": "O'Haire, Kieran"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Menands, NY"
+   },
+   "NiJoDaniels": {
+      "player_code_id": {
+         "code": "NiJoDaniels",
+         "id": "Jotham Daniels, Nilavan"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "RyMela": {
+      "player_code_id": {
+         "code": "RyMela",
+         "id": "Mela, Ryan"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Natick, MA"
+   },
+   "OsErhunmwuns": {
+      "player_code_id": {
+         "code": "OsErhunmwuns",
+         "id": "Erhunmwunse, Oswin"
+      },
+      "number": "55",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Benin City, Nigeria",
+      "role": "C"
+   },
+   "LuFonts": {
+      "player_code_id": {
+         "code": "LuFonts",
+         "id": "Fonts, Luke"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Portsmouth, RI"
+   }
+}

@@ -1,1 +1,189 @@
-{"DoDouglass":{"player_code_id":{"code":"DoDouglass","id":"Douglass, Don"},"number":"34","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Spartanburg, SC"},"AnArrington":{"player_code_id":{"code":"AnArrington","id":"Arrington, Anthony"},"number":"30","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Atlanta, GA"},"DiBailey":{"player_code_id":{"code":"DiBailey","id":"Bailey, Dillon"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Bentonville, AR"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Dwight Perry"},"number":"","pos":"","height":"","year_class":"","gp":-1},"LuFlynn":{"player_code_id":{"code":"LuFlynn","id":"Flynn, Luke"},"number":"4","pos":"G","height":"6-1","height_in":73,"year_class":"Fr.","gp":0,"origin":"Marietta, GA"},"KyFilewich":{"player_code_id":{"code":"KyFilewich","id":"Filewich, Kyler"},"number":"14","pos":"C","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Winnipeg, Canada"},"JuBailey":{"player_code_id":{"code":"JuBailey","id":"Bailey, Justin"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Taylors, SC"},"JaSivills":{"player_code_id":{"code":"JaSivills","id":"Sivills, Jackson"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Paducah, KY"},"CaRichards":{"player_code_id":{"code":"CaRichards","id":"Richards, Cannon"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Atlanta, GA"},"KaHolmes":{"player_code_id":{"code":"KaHolmes","id":"Holmes, Kahmare"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Charlotte, NC"},"CoTripp":{"player_code_id":{"code":"CoTripp","id":"Tripp, Corey"},"number":"10","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Medina, OH"},"JeLorenz":{"player_code_id":{"code":"JeLorenz","id":"Lorenz, Jeremy"},"number":"32","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Brillion, WI"},"HaNease":{"player_code_id":{"code":"HaNease","id":"Nease, Hank"},"number":"15","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Huntersville, NC"},"BeElShakery":{"player_code_id":{"code":"BeElShakery","id":"El Shakery, Belal"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Alexandria, Egypt"}}
+{
+   "DoDouglass": {
+      "player_code_id": {
+         "code": "DoDouglass",
+         "id": "Douglass, Don"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Spartanburg, SC"
+   },
+   "AnArrington": {
+      "player_code_id": {
+         "code": "AnArrington",
+         "id": "Arrington, Anthony"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "WG"
+   },
+   "DiBailey": {
+      "player_code_id": {
+         "code": "DiBailey",
+         "id": "Bailey, Dillon"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Bentonville, AR",
+      "role": "CG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Dwight Perry"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "LuFlynn": {
+      "player_code_id": {
+         "code": "LuFlynn",
+         "id": "Flynn, Luke"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Marietta, GA"
+   },
+   "KyFilewich": {
+      "player_code_id": {
+         "code": "KyFilewich",
+         "id": "Filewich, Kyler"
+      },
+      "number": "14",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Winnipeg, Canada"
+   },
+   "JuBailey": {
+      "player_code_id": {
+         "code": "JuBailey",
+         "id": "Bailey, Justin"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Taylors, SC",
+      "role": "WG"
+   },
+   "JaSivills": {
+      "player_code_id": {
+         "code": "JaSivills",
+         "id": "Sivills, Jackson"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Paducah, KY",
+      "role": "WF"
+   },
+   "CaRichards": {
+      "player_code_id": {
+         "code": "CaRichards",
+         "id": "Richards, Cannon"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "KaHolmes": {
+      "player_code_id": {
+         "code": "KaHolmes",
+         "id": "Holmes, Kahmare"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Charlotte, NC"
+   },
+   "CoTripp": {
+      "player_code_id": {
+         "code": "CoTripp",
+         "id": "Tripp, Corey"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Medina, OH",
+      "role": "CG"
+   },
+   "JeLorenz": {
+      "player_code_id": {
+         "code": "JeLorenz",
+         "id": "Lorenz, Jeremy"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Brillion, WI",
+      "role": "S-PF"
+   },
+   "HaNease": {
+      "player_code_id": {
+         "code": "HaNease",
+         "id": "Nease, Hank"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Huntersville, NC"
+   },
+   "BeElShakery": {
+      "player_code_id": {
+         "code": "BeElShakery",
+         "id": "El Shakery, Belal"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Alexandria, Egypt",
+      "role": "PF/C"
+   }
+}

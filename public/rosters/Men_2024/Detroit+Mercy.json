@@ -1,1 +1,212 @@
-{"MaManciel":{"player_code_id":{"code":"MaManciel","id":"Manciel, Mak"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Sterling Heights, MI"},"ChKuiper":{"player_code_id":{"code":"ChKuiper","id":"Kuiper, Chase"},"number":"7","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Troy, MI"},"GrGondrezick":{"player_code_id":{"code":"GrGondrezick","id":"Gondrezick II, Grant"},"number":"8","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Benton Harbor, MI"},"JaLary":{"player_code_id":{"code":"JaLary","id":"Lary, Jared"},"number":"13","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Grand Rapids, MI"},"AlTchikou":{"player_code_id":{"code":"AlTchikou","id":"Tchikou, Alex"},"number":"15","pos":"F","height":"6-11","height_in":83,"year_class":"Sr.","gp":0,"origin":"Paris, France"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Mark Montgomery"},"number":"","pos":"","height":"","year_class":"","gp":-1},"TjNadeau":{"player_code_id":{"code":"TjNadeau","id":"Nadeau, TJ"},"number":"33","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"South Lyon, MI"},"LeGeeter":{"player_code_id":{"code":"LeGeeter","id":"Geeter, Legend"},"number":"4","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"River Rouge, MI"},"EmKuac":{"player_code_id":{"code":"EmKuac","id":"Kuac, Emmanuel"},"number":"6","pos":"G","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Calgary, Canada"},"NaJohnson":{"player_code_id":{"code":"NaJohnson","id":"Johnson, Nate"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Grand Rapids, MI"},"RyHurst":{"player_code_id":{"code":"RyHurst","id":"Hurst, Ryan"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Farmington, MI"},"PeFuchs":{"player_code_id":{"code":"PeFuchs","id":"Fuchs, Jr., Peter"},"number":"14","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Wausau, WI"},"StOkoro":{"player_code_id":{"code":"StOkoro","id":"Okoro, Stephen"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Imo State, Nigeria"},"OrLovejoy":{"player_code_id":{"code":"OrLovejoy","id":"Lovejoy, Orlando"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Detroit, MI"},"RyKalambay":{"player_code_id":{"code":"RyKalambay","id":"Kalambay, Ryan"},"number":"30","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Brampton, Canada"},"MiMitchell":{"player_code_id":{"code":"MiMitchell","id":"Mitchell, Miles"},"number":"2","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Detroit, MI"}}
+{
+   "MaManciel": {
+      "player_code_id": {
+         "code": "MaManciel",
+         "id": "Manciel, Mak"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Sterling Heights, MI",
+      "role": "WG"
+   },
+   "ChKuiper": {
+      "player_code_id": {
+         "code": "ChKuiper",
+         "id": "Kuiper, Chase"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Troy, MI"
+   },
+   "GrGondrezick": {
+      "player_code_id": {
+         "code": "GrGondrezick",
+         "id": "Gondrezick II, Grant"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Benton Harbor, MI"
+   },
+   "JaLary": {
+      "player_code_id": {
+         "code": "JaLary",
+         "id": "Lary, Jared"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Grand Rapids, MI"
+   },
+   "AlTchikou": {
+      "player_code_id": {
+         "code": "AlTchikou",
+         "id": "Tchikou, Alex"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Paris, France",
+      "role": "C"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Mark Montgomery"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "TjNadeau": {
+      "player_code_id": {
+         "code": "TjNadeau",
+         "id": "Nadeau, TJ"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "South Lyon, MI"
+   },
+   "LeGeeter": {
+      "player_code_id": {
+         "code": "LeGeeter",
+         "id": "Geeter, Legend"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "River Rouge, MI",
+      "role": "WF"
+   },
+   "EmKuac": {
+      "player_code_id": {
+         "code": "EmKuac",
+         "id": "Kuac, Emmanuel"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Calgary, Canada"
+   },
+   "NaJohnson": {
+      "player_code_id": {
+         "code": "NaJohnson",
+         "id": "Johnson, Nate"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Grand Rapids, MI"
+   },
+   "RyHurst": {
+      "player_code_id": {
+         "code": "RyHurst",
+         "id": "Hurst, Ryan"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Farmington, MI"
+   },
+   "PeFuchs": {
+      "player_code_id": {
+         "code": "PeFuchs",
+         "id": "Fuchs, Jr., Peter"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Wausau, WI"
+   },
+   "StOkoro": {
+      "player_code_id": {
+         "code": "StOkoro",
+         "id": "Okoro, Stephen"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Imo State, Nigeria"
+   },
+   "OrLovejoy": {
+      "player_code_id": {
+         "code": "OrLovejoy",
+         "id": "Lovejoy, Orlando"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "s-PG"
+   },
+   "RyKalambay": {
+      "player_code_id": {
+         "code": "RyKalambay",
+         "id": "Kalambay, Ryan"
+      },
+      "number": "30",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Brampton, Canada"
+   },
+   "MiMitchell": {
+      "player_code_id": {
+         "code": "MiMitchell",
+         "id": "Mitchell, Miles"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Detroit, MI"
+   }
+}

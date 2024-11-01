@@ -1,1 +1,217 @@
-{"IbSouare":{"player_code_id":{"code":"IbSouare","id":"Souare, Ibrahim"},"number":"30","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Conakry, Guinea"},"JaMccollum":{"player_code_id":{"code":"JaMccollum","id":"McCollum, Javian"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Fort Myers, FL"},"LaTerry":{"player_code_id":{"code":"LaTerry","id":"Terry, Lance"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"College Park, GA"},"LuO'brien":{"player_code_id":{"code":"LuO'brien","id":"O'Brien, Luke"},"number":"9","pos":"G","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Littleton, CO"},"EmNichols":{"player_code_id":{"code":"EmNichols","id":"Nichols, Emmer"},"number":"35","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Woodside, CA"},"KoReeves":{"player_code_id":{"code":"KoReeves","id":"Reeves Jr., Kowacie"},"number":"14","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Macon, GA"},"DuPowell":{"player_code_id":{"code":"DuPowell","id":"Powell, Duncan"},"number":"31","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Dallas, TX"},"BaNdongo":{"player_code_id":{"code":"BaNdongo","id":"Ndongo, Baye"},"number":"11","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":"Mboro, Senegal"},"DyThompson":{"player_code_id":{"code":"DyThompson","id":"Thompson, Dyllan"},"number":"32","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Sugar Land, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Damon Stoudamire"},"number":"","pos":"","height":"","year_class":"","gp":-1},"NaGeorge":{"player_code_id":{"code":"NaGeorge","id":"George, Naithan"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Toronto, Canada"},"RyMutombo":{"player_code_id":{"code":"RyMutombo","id":"Mutombo, Ryan"},"number":"12","pos":"C","height":"7-2","height_in":86,"year_class":"Sr.","gp":0,"origin":"Atlanta, GA"},"DoOnwuchekwa":{"player_code_id":{"code":"DoOnwuchekwa","id":"Onwuchekwa, Doryan"},"number":"45","pos":"C","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Desoto, TX"},"JaMustaf":{"player_code_id":{"code":"JaMustaf","id":"Mustaf, Jaeden"},"number":"3","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Bowie, MD"},"MaSaMiguel":{"player_code_id":{"code":"MaSaMiguel","id":"San Miguel, Marcos"},"number":"33","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Smyrna, GA"},"DaSutton":{"player_code_id":{"code":"DaSutton","id":"Sutton, Darrion"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Saint Louis, MO"}}
+{
+   "IbSouare": {
+      "player_code_id": {
+         "code": "IbSouare",
+         "id": "Souare, Ibrahim"
+      },
+      "number": "30",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Conakry, Guinea"
+   },
+   "JaMccollum": {
+      "player_code_id": {
+         "code": "JaMccollum",
+         "id": "McCollum, Javian"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Fort Myers, FL",
+      "role": "s-PG"
+   },
+   "LaTerry": {
+      "player_code_id": {
+         "code": "LaTerry",
+         "id": "Terry, Lance"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "College Park, GA",
+      "role": "WG"
+   },
+   "LuO'brien": {
+      "player_code_id": {
+         "code": "LuO'brien",
+         "id": "O'Brien, Luke"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Littleton, CO",
+      "role": "WG"
+   },
+   "EmNichols": {
+      "player_code_id": {
+         "code": "EmNichols",
+         "id": "Nichols, Emmer"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Woodside, CA"
+   },
+   "KoReeves": {
+      "player_code_id": {
+         "code": "KoReeves",
+         "id": "Reeves Jr., Kowacie"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Macon, GA",
+      "role": "WG"
+   },
+   "DuPowell": {
+      "player_code_id": {
+         "code": "DuPowell",
+         "id": "Powell, Duncan"
+      },
+      "number": "31",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "BaNdongo": {
+      "player_code_id": {
+         "code": "BaNdongo",
+         "id": "Ndongo, Baye"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Mboro, Senegal",
+      "role": "C"
+   },
+   "DyThompson": {
+      "player_code_id": {
+         "code": "DyThompson",
+         "id": "Thompson, Dyllan"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Sugar Land, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Damon Stoudamire"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "NaGeorge": {
+      "player_code_id": {
+         "code": "NaGeorge",
+         "id": "George, Naithan"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Toronto, Canada",
+      "role": "PG"
+   },
+   "RyMutombo": {
+      "player_code_id": {
+         "code": "RyMutombo",
+         "id": "Mutombo, Ryan"
+      },
+      "number": "12",
+      "pos": "C",
+      "height": "7-2",
+      "height_in": 86,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "DoOnwuchekwa": {
+      "player_code_id": {
+         "code": "DoOnwuchekwa",
+         "id": "Onwuchekwa, Doryan"
+      },
+      "number": "45",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Desoto, TX",
+      "role": "C"
+   },
+   "JaMustaf": {
+      "player_code_id": {
+         "code": "JaMustaf",
+         "id": "Mustaf, Jaeden"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Bowie, MD",
+      "role": "CG"
+   },
+   "MaSaMiguel": {
+      "player_code_id": {
+         "code": "MaSaMiguel",
+         "id": "San Miguel, Marcos"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Smyrna, GA"
+   },
+   "DaSutton": {
+      "player_code_id": {
+         "code": "DaSutton",
+         "id": "Sutton, Darrion"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Saint Louis, MO",
+      "role": "WF"
+   }
+}

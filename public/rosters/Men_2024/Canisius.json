@@ -1,1 +1,213 @@
-{"CaJackson":{"player_code_id":{"code":"CaJackson","id":"Jackson, Carter"},"number":"8","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Cleveland, OH"},"MaDavid-maji":{"player_code_id":{"code":"MaDavid-maji","id":"David-Maji, Maji"},"number":"15","pos":"F","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Kogi, Nigeria"},"TjPorter":{"player_code_id":{"code":"TjPorter","id":"Porter, TJ"},"number":"2","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Atlanta, GA"},"AnBenard":{"player_code_id":{"code":"AnBenard","id":"Benard, Anthony"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"So.","gp":0,"origin":"Detroit, MI"},"DyGodfrey":{"player_code_id":{"code":"DyGodfrey","id":"Godfrey, Dylan"},"number":"7","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Newport Beach, CA"},"CaPalesse":{"player_code_id":{"code":"CaPalesse","id":"Palesse, Cam"},"number":"1","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Waukesha, WI"},"JaSangha":{"player_code_id":{"code":"JaSangha","id":"Sangha, Jasman"},"number":"24","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Brampton, Canada"},"WiScott":{"player_code_id":{"code":"WiScott","id":"Scott Jr., William"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Toledo, OH"},"TaKopa":{"player_code_id":{"code":"TaKopa","id":"Kopa, Tana"},"number":"6","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Perth, Australia"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jim Christian"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AlEasterling":{"player_code_id":{"code":"AlEasterling","id":"Easterling, Alonso"},"number":"0","pos":"F","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Fayetteville, NC"},"PaMcmillan":{"player_code_id":{"code":"PaMcmillan","id":"McMillan IV, Paul"},"number":"34","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Cincinnati, OH"},"GiThompson":{"player_code_id":{"code":"GiThompson","id":"Thompson, Gianni"},"number":"33","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Dorchester, MA"},"NiDigiulio":{"player_code_id":{"code":"NiDigiulio","id":"DiGiulio, Nicco"},"number":"5","pos":"G","height":"5-10","height_in":70,"year_class":"Fr.","gp":0,"origin":"Williamsville, NY"},"EvDerPlas":{"player_code_id":{"code":"EvDerPlas","id":"van der Plas, Evan"},"number":"9","pos":"F","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Rosmalen, Netherlands"},"TyOghene":{"player_code_id":{"code":"TyOghene","id":"Oghene, Tyson"},"number":"11","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Malmo, Sweden"}}
+{
+   "CaJackson": {
+      "player_code_id": {
+         "code": "CaJackson",
+         "id": "Jackson, Carter"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Cleveland, OH"
+   },
+   "MaDavid-maji": {
+      "player_code_id": {
+         "code": "MaDavid-maji",
+         "id": "David-Maji, Maji"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Kogi, Nigeria"
+   },
+   "TjPorter": {
+      "player_code_id": {
+         "code": "TjPorter",
+         "id": "Porter, TJ"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Atlanta, GA"
+   },
+   "AnBenard": {
+      "player_code_id": {
+         "code": "AnBenard",
+         "id": "Benard, Anthony"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Detroit, MI",
+      "role": "s-PG"
+   },
+   "DyGodfrey": {
+      "player_code_id": {
+         "code": "DyGodfrey",
+         "id": "Godfrey, Dylan"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Newport Beach, CA"
+   },
+   "CaPalesse": {
+      "player_code_id": {
+         "code": "CaPalesse",
+         "id": "Palesse, Cam"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Waukesha, WI",
+      "role": "WG"
+   },
+   "JaSangha": {
+      "player_code_id": {
+         "code": "JaSangha",
+         "id": "Sangha, Jasman"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Brampton, Canada",
+      "role": "C"
+   },
+   "WiScott": {
+      "player_code_id": {
+         "code": "WiScott",
+         "id": "Scott Jr., William"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Toledo, OH"
+   },
+   "TaKopa": {
+      "player_code_id": {
+         "code": "TaKopa",
+         "id": "Kopa, Tana"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Perth, Australia",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jim Christian"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AlEasterling": {
+      "player_code_id": {
+         "code": "AlEasterling",
+         "id": "Easterling, Alonso"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Fayetteville, NC"
+   },
+   "PaMcmillan": {
+      "player_code_id": {
+         "code": "PaMcmillan",
+         "id": "McMillan IV, Paul"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "CG"
+   },
+   "GiThompson": {
+      "player_code_id": {
+         "code": "GiThompson",
+         "id": "Thompson, Gianni"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Dorchester, MA"
+   },
+   "NiDigiulio": {
+      "player_code_id": {
+         "code": "NiDigiulio",
+         "id": "DiGiulio, Nicco"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Williamsville, NY"
+   },
+   "EvDerPlas": {
+      "player_code_id": {
+         "code": "EvDerPlas",
+         "id": "van der Plas, Evan"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Rosmalen, Netherlands"
+   },
+   "TyOghene": {
+      "player_code_id": {
+         "code": "TyOghene",
+         "id": "Oghene, Tyson"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Malmo, Sweden"
+   }
+}

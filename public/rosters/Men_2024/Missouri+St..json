@@ -1,1 +1,238 @@
-{"JaHampton":{"player_code_id":{"code":"JaHampton","id":"Hampton, Jalen"},"number":"12","pos":"G","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Saint Louis, MO"},"ZaKing":{"player_code_id":{"code":"ZaKing","id":"King, Zaxton"},"number":"13","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Lawrence, KS"},"NiKramer":{"player_code_id":{"code":"NiKramer","id":"Kramer, Nick"},"number":"21","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Saint Louis, MO"},"ViBrady":{"player_code_id":{"code":"ViBrady","id":"Brady II, Vincent"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Indianapolis, IN"},"AlUdemadu":{"player_code_id":{"code":"AlUdemadu","id":"Udemadu, Allen"},"number":"24","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"Lagos, Nigeria"},"DeWhite":{"player_code_id":{"code":"DeWhite","id":"White, Dez"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Jefferson City, MO"},"IaStanback":{"player_code_id":{"code":"IaStanback","id":"Stanback, Iago"},"number":"10","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Naples, FL"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Cuonzo Martin"},"number":"","pos":"","height":"","year_class":"","gp":-1},"WeOba":{"player_code_id":{"code":"WeOba","id":"Oba, Wesley"},"number":"9","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Manchester, United Kingdom"},"JuBaldwin":{"player_code_id":{"code":"JuBaldwin","id":"Baldwin, Jurrell"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Chicago, IL"},"SaMurray":{"player_code_id":{"code":"SaMurray","id":"Murray II, Sam"},"number":"8","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Gulfport, MS"},"MaValentine":{"player_code_id":{"code":"MaValentine","id":"Valentine, Makhai"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Munhall, PA"},"LoEpes":{"player_code_id":{"code":"LoEpes","id":"Epes, Logan"},"number":"6","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Dallas, TX"},"ChMartin":{"player_code_id":{"code":"ChMartin","id":"Martin, Chase"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Columbia, MO"},"CjGaines":{"player_code_id":{"code":"CjGaines","id":"Gaines, CJ"},"number":"20","pos":"G","height":"5-8","height_in":68,"year_class":"Fr.","gp":0,"origin":"Garden City, GA"},"ToPinegar":{"player_code_id":{"code":"ToPinegar","id":"Pinegar, Tommy"},"number":"5","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Springfield, MO"},"MoDowning-ri":{"player_code_id":{"code":"MoDowning-ri","id":"Downing-Rivers, Mozae"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Lawrence, KS"},"MiOsei-bonsu":{"player_code_id":{"code":"MiOsei-bonsu","id":"Osei-Bonsu, Michael"},"number":"23","pos":"F","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Bolingbrook, IL"}}
+{
+   "JaHampton": {
+      "player_code_id": {
+         "code": "JaHampton",
+         "id": "Hampton, Jalen"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "ZaKing": {
+      "player_code_id": {
+         "code": "ZaKing",
+         "id": "King, Zaxton"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Lawrence, KS"
+   },
+   "NiKramer": {
+      "player_code_id": {
+         "code": "NiKramer",
+         "id": "Kramer, Nick"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "ViBrady": {
+      "player_code_id": {
+         "code": "ViBrady",
+         "id": "Brady II, Vincent"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "WG"
+   },
+   "AlUdemadu": {
+      "player_code_id": {
+         "code": "AlUdemadu",
+         "id": "Udemadu, Allen"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Lagos, Nigeria",
+      "role": "C"
+   },
+   "DeWhite": {
+      "player_code_id": {
+         "code": "DeWhite",
+         "id": "White, Dez"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Jefferson City, MO",
+      "role": "WG"
+   },
+   "IaStanback": {
+      "player_code_id": {
+         "code": "IaStanback",
+         "id": "Stanback, Iago"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Naples, FL"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Cuonzo Martin"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "WeOba": {
+      "player_code_id": {
+         "code": "WeOba",
+         "id": "Oba, Wesley"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Manchester, United Kingdom",
+      "role": "C"
+   },
+   "JuBaldwin": {
+      "player_code_id": {
+         "code": "JuBaldwin",
+         "id": "Baldwin, Jurrell"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Chicago, IL"
+   },
+   "SaMurray": {
+      "player_code_id": {
+         "code": "SaMurray",
+         "id": "Murray II, Sam"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Gulfport, MS"
+   },
+   "MaValentine": {
+      "player_code_id": {
+         "code": "MaValentine",
+         "id": "Valentine, Makhai"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Munhall, PA"
+   },
+   "LoEpes": {
+      "player_code_id": {
+         "code": "LoEpes",
+         "id": "Epes, Logan"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Dallas, TX"
+   },
+   "ChMartin": {
+      "player_code_id": {
+         "code": "ChMartin",
+         "id": "Martin, Chase"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Columbia, MO"
+   },
+   "CjGaines": {
+      "player_code_id": {
+         "code": "CjGaines",
+         "id": "Gaines, CJ"
+      },
+      "number": "20",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Garden City, GA"
+   },
+   "ToPinegar": {
+      "player_code_id": {
+         "code": "ToPinegar",
+         "id": "Pinegar, Tommy"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Springfield, MO"
+   },
+   "MoDowning-ri": {
+      "player_code_id": {
+         "code": "MoDowning-ri",
+         "id": "Downing-Rivers, Mozae"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Lawrence, KS"
+   },
+   "MiOsei-bonsu": {
+      "player_code_id": {
+         "code": "MiOsei-bonsu",
+         "id": "Osei-Bonsu, Michael"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Bolingbrook, IL"
+   }
+}

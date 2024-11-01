@@ -1,1 +1,227 @@
-{"ChDavis":{"player_code_id":{"code":"ChDavis","id":"Davis, Christian"},"number":"5","pos":"G","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Denver, CO"},"GuRugaard":{"player_code_id":{"code":"GuRugaard","id":"Rugaard, Gus"},"number":"23","pos":"G","height":"5-10","height_in":70,"year_class":"Fr.","gp":0,"origin":"Morton, IL"},"AlAtlason":{"player_code_id":{"code":"AlAtlason","id":"Atlason, Almar"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Reykjavik, Iceland"},"TiKnapp":{"player_code_id":{"code":"TiKnapp","id":"Knapp, Timoty"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Bassano del Grappa, Italy"},"CoLinke":{"player_code_id":{"code":"CoLinke","id":"Linke, Connor"},"number":"34","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"St Charles, IL"},"ZeMontgomery":{"player_code_id":{"code":"ZeMontgomery","id":"Montgomery, Zek"},"number":"3","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Louisville, KY"},"AhJonovic":{"player_code_id":{"code":"AhJonovic","id":"Jonovic, Ahmet"},"number":"14","pos":"F","height":"7-1","height_in":85,"year_class":"Jr.","gp":0,"origin":"Zlatibor, Serbia"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Brian Wardle"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DaHannah":{"player_code_id":{"code":"DaHannah","id":"Hannah, Darius"},"number":"35","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Milwaukee, WI"},"GoBiliew":{"player_code_id":{"code":"GoBiliew","id":"Biliew, Goanar"},"number":"25","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Denison, IA"},"CaHardtke":{"player_code_id":{"code":"CaHardtke","id":"Hardtke, Cade"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Lombard, IL"},"DeBurch":{"player_code_id":{"code":"DeBurch","id":"Burch, Demarion"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Milwaukee, WI"},"JaJohnson":{"player_code_id":{"code":"JaJohnson","id":"Johnson, Jaquan"},"number":"22","pos":"G","height":"5-9","height_in":69,"year_class":"Fr.","gp":0,"origin":"Milwaukee, WI"},"CoDillon":{"player_code_id":{"code":"CoDillon","id":"Dillon, Connor"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Peoria, IL"},"SaHennessy":{"player_code_id":{"code":"SaHennessy","id":"Hennessy, Sam"},"number":"13","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Naperville, IL"},"CoThomas":{"player_code_id":{"code":"CoThomas","id":"Thomas, Corey"},"number":"4","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Buford, GA"},"DuDeen":{"player_code_id":{"code":"DuDeen","id":"Deen, Duke"},"number":"21","pos":"G","height":"5-8","height_in":68,"year_class":"Sr.","gp":0,"origin":"Shreveport, LA"}}
+{
+   "ChDavis": {
+      "player_code_id": {
+         "code": "ChDavis",
+         "id": "Davis, Christian"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Denver, CO",
+      "role": "WG"
+   },
+   "GuRugaard": {
+      "player_code_id": {
+         "code": "GuRugaard",
+         "id": "Rugaard, Gus"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Morton, IL"
+   },
+   "AlAtlason": {
+      "player_code_id": {
+         "code": "AlAtlason",
+         "id": "Atlason, Almar"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Reykjavik, Iceland",
+      "role": "WF"
+   },
+   "TiKnapp": {
+      "player_code_id": {
+         "code": "TiKnapp",
+         "id": "Knapp, Timoty"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Bassano del Grappa, Italy"
+   },
+   "CoLinke": {
+      "player_code_id": {
+         "code": "CoLinke",
+         "id": "Linke, Connor"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "St Charles, IL"
+   },
+   "ZeMontgomery": {
+      "player_code_id": {
+         "code": "ZeMontgomery",
+         "id": "Montgomery, Zek"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Louisville, KY",
+      "role": "WG"
+   },
+   "AhJonovic": {
+      "player_code_id": {
+         "code": "AhJonovic",
+         "id": "Jonovic, Ahmet"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Zlatibor, Serbia"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Brian Wardle"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DaHannah": {
+      "player_code_id": {
+         "code": "DaHannah",
+         "id": "Hannah, Darius"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Milwaukee, WI",
+      "role": "C"
+   },
+   "GoBiliew": {
+      "player_code_id": {
+         "code": "GoBiliew",
+         "id": "Biliew, Goanar"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Denison, IA"
+   },
+   "CaHardtke": {
+      "player_code_id": {
+         "code": "CaHardtke",
+         "id": "Hardtke, Cade"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Lombard, IL"
+   },
+   "DeBurch": {
+      "player_code_id": {
+         "code": "DeBurch",
+         "id": "Burch, Demarion"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So.",
+      "gp": 0,
+      "origin": "Milwaukee, WI",
+      "role": "WG"
+   },
+   "JaJohnson": {
+      "player_code_id": {
+         "code": "JaJohnson",
+         "id": "Johnson, Jaquan"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Fr.",
+      "gp": 0,
+      "origin": "Milwaukee, WI"
+   },
+   "CoDillon": {
+      "player_code_id": {
+         "code": "CoDillon",
+         "id": "Dillon, Connor"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Peoria, IL"
+   },
+   "SaHennessy": {
+      "player_code_id": {
+         "code": "SaHennessy",
+         "id": "Hennessy, Sam"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Naperville, IL"
+   },
+   "CoThomas": {
+      "player_code_id": {
+         "code": "CoThomas",
+         "id": "Thomas, Corey"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr.",
+      "gp": 0,
+      "origin": "Buford, GA"
+   },
+   "DuDeen": {
+      "player_code_id": {
+         "code": "DuDeen",
+         "id": "Deen, Duke"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Sr.",
+      "gp": 0,
+      "origin": "Shreveport, LA",
+      "role": "s-PG"
+   }
+}
