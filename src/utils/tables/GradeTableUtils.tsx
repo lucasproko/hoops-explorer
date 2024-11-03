@@ -6,6 +6,8 @@ import fetch from "isomorphic-unfetch";
 
 import _ from "lodash";
 
+import styles from "../../components/GenericTable.module.css";
+
 // Bootstrap imports:
 import "bootstrap/dist/css/bootstrap.min.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -968,7 +970,7 @@ export class GradeTableUtils {
             <span>
               {node}
               <small>
-                <sup className="infoBadge"></sup>
+                <sup className={styles.infoBadge}></sup>
               </small>
             </span>
           </OverlayTrigger>
@@ -1218,34 +1220,6 @@ export class GradeTableUtils {
     //      ).toFixed(0)}%], ` +
     //      `treat all fields' ranks/percentiles as unreliable.`;
     //  }
-
-    const maybeSmall = (node: React.ReactNode) => {
-      return gradeFormat == "pct" ? <small>{node}</small> : node;
-    };
-    const maybeWithExtraInfo = (
-      node: React.ReactElement,
-      playerPercentiles: PureStatSet,
-      field: string
-    ) => {
-      const extraInfo = playerPercentiles[field]?.extraInfo;
-      if (extraInfo) {
-        const extraInfoTooltip = (
-          <Tooltip id={`extraInfo${field}${nameAsId}`}>{extraInfo}</Tooltip>
-        );
-        return (
-          <OverlayTrigger placement="auto" overlay={extraInfoTooltip}>
-            <span>
-              {node}
-              <small>
-                <sup className="infoBadge"></sup>
-              </small>
-            </span>
-          </OverlayTrigger>
-        );
-      } else {
-        return node;
-      }
-    };
 
     // Convert some fields
 

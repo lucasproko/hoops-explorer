@@ -18,7 +18,7 @@ import Badge from "react-bootstrap/Badge";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

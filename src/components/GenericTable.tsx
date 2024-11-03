@@ -7,7 +7,7 @@ import { NextPage } from "next";
 // Lodash:
 import _ from "lodash";
 
-import "./GenericTable.css";
+import styles from "./GenericTable.module.css";
 import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
 
 // Bootstrap imports:
@@ -584,7 +584,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             <div>
               {viewVal}
               <small>
-                <sup className="infoBadge"></sup>
+                <sup className={styles.infoBadge}></sup>
               </small>
             </div>
           ) : (

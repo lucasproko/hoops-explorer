@@ -12,7 +12,7 @@ import { CbbColors } from "../CbbColors";
 import { PositionUtils } from "../stats/PositionUtils";
 
 import { CommonTableDefs } from "../tables/CommonTableDefs";
-import "./TableDisplayUtils.css";
+import styles from "./TableDisplayUtils.module.css";
 import {
   TeamStatSet,
   LineupStatSet,
@@ -295,22 +295,30 @@ export class TableDisplayUtils {
       const assist = playerInfo.off_assist?.value;
       return (
         <span style={{}}>
-          {_3pr <= 0.05 ? <sup className="megaTwoPointBadge"></sup> : null}
+          {_3pr <= 0.05 ? (
+            <sup className={styles.megaTwoPointBadge}></sup>
+          ) : null}
           {_3pr >= 0.05 && _3pr < 0.2 ? (
-            <sup className="twoPointBadge"></sup>
+            <sup className={styles.twoPointBadge}></sup>
           ) : null}
           {_3pr >= 0.45 && _3pr < 0.6 ? (
-            <sup className="threePointBadge"></sup>
+            <sup className={styles.threePointBadge}></sup>
           ) : null}
-          {_3pr >= 0.6 ? <sup className="megaThreePointBadge"></sup> : null}
+          {_3pr >= 0.6 ? (
+            <sup className={styles.megaThreePointBadge}></sup>
+          ) : null}
           {ftr > 0.35 && ftr < 0.6 ? (
-            <sub className="freeThrowBadge"></sub>
+            <sub className={styles.freeThrowBadge}></sub>
           ) : null}
-          {ftr >= 0.6 ? <sub className="megaFreeThrowBadge"></sub> : null}
+          {ftr >= 0.6 ? (
+            <sub className={styles.megaFreeThrowBadge}></sub>
+          ) : null}
           {assist >= 0.18 && assist < 0.25 ? (
-            <sup className="assistBadge"></sup>
+            <sup className={styles.assistBadge}></sup>
           ) : null}
-          {assist >= 0.25 ? <sup className="megaAssistBadge"></sup> : null}
+          {assist >= 0.25 ? (
+            <sup className={styles.megaAssistBadge}></sup>
+          ) : null}
         </span>
       );
     };

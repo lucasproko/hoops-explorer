@@ -21,7 +21,7 @@ import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";

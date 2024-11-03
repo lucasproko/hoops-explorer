@@ -18,7 +18,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 
 // Component imports
 import GenericTable, { GenericTableOps } from "./GenericTable";

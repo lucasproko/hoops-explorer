@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 // Lodash:
 import _ from "lodash";
 
-import "./TeamLeaderboardTable.css";
+import styles from "./TeamLeaderboardTable.module.css";
 
 // mathjs
 // @ts-ignore
@@ -23,7 +23,8 @@ import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+// @ts-ignore
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
@@ -318,15 +319,15 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
             const bigResultThresh = 8.0;
             if (endLead >= 0) {
               if (avgLead > bigResultThresh && endLead > bigResultThresh) {
-                return "bigwin";
+                return styles.bigwin;
               } else {
-                return "win";
+                return styles.win;
               }
             } else {
               if (avgLead < -bigResultThresh && endLead < -bigResultThresh) {
-                return "bigloss";
+                return styles.bigloss;
               } else {
-                return "loss";
+                return styles.loss;
               }
             }
           });
@@ -1592,7 +1593,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
             value={stringToOption(gender)}
             options={["Men", "Women"].map((gender) => stringToOption(gender))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 setPinnedRankings({});
                 setLoadingOverride(true);
@@ -1608,7 +1609,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               (r) => stringToOption(r)
             )}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 setPinnedRankings({});
                 setLoadingOverride(true);

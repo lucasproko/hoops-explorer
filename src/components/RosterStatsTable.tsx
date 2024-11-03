@@ -22,7 +22,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import Select, { components } from "react-select";
 
 // Component imports

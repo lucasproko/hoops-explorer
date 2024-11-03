@@ -24,9 +24,10 @@ import Tooltip from "react-bootstrap/Tooltip";
 import Modal from "react-bootstrap/Modal";
 
 // Additional components:
+//@ts-ignore
 import Select, { components } from "react-select";
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { faHistory } from "@fortawesome/free-solid-svg-icons";
@@ -773,7 +774,7 @@ const CommonFilter: CommonFilterI = ({
                 )
               ).map((gender) => stringToOption(gender))}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 if ((option as any)?.value) setGender((option as any).value);
               }}
             />
@@ -781,7 +782,7 @@ const CommonFilter: CommonFilterI = ({
           <Col xs={6} sm={6} md={3} lg={2}>
             <Select
               isDisabled={majorParamsDisabled}
-              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={stringToOption(year)}
               options={Array.from(
                 new Set(
@@ -793,7 +794,7 @@ const CommonFilter: CommonFilterI = ({
                 .concat([AvailableTeams.extraTeamName])
                 .map((year) => stringToOption(year))}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 if ((option as any)?.value) setYear((option as any).value);
               }}
             />
@@ -804,10 +805,10 @@ const CommonFilter: CommonFilterI = ({
               isDisabled={majorParamsDisabled}
               components={maybeMenuList()}
               isClearable={false}
-              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={getCurrentTeamOrPlaceholder()}
               options={teamList.map((r) => stringToOption(r.team))}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 const selection = (option as any)?.value || "";
                 if (year == AvailableTeams.extraTeamName) {
                   const teamYear = selection.split(/ (?=[^ ]+$)/);
