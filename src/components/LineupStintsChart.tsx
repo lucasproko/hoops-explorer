@@ -10,6 +10,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+//@ts-ignore
 import Select from "react-select";
 
 import {
@@ -1080,7 +1081,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             isDisabled={!(showUsage || showPpp) || !showLabels}
             options={_.keys(labelOptions).map((l) => stringToOption(l))}
             isSearchable={true}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 setLabelToShow((option as any).value);
               }
