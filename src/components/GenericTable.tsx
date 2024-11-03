@@ -11,7 +11,6 @@ import styles from "./GenericTable.module.css";
 import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Tooltip from "react-bootstrap/Tooltip";

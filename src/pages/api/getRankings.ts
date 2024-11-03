@@ -4,6 +4,7 @@ import _ from "lodash";
 import LRUCache from "lru-cache";
 
 import queryString from "query-string";
+//@ts-ignore
 import { Tabletojson } from "tabletojson";
 import { DateUtils } from "../../utils/DateUtils";
 

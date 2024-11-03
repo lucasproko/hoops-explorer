@@ -9,7 +9,7 @@ import _ from "lodash";
 import styles from "../../components/GenericTable.module.css";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 

@@ -1,5 +1,5 @@
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Badge from "react-bootstrap/Badge";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";

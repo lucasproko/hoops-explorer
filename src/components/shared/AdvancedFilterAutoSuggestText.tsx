@@ -6,7 +6,6 @@ import Router from "next/router";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // Library imports:
 

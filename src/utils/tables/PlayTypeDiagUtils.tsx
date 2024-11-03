@@ -7,7 +7,6 @@ import { NextPage } from "next";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // Utils
 import {
