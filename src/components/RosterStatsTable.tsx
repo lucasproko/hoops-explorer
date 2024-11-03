@@ -543,7 +543,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
-        } catch (err) {
+        } catch (err: unknown) {
           //(data not ready, ignore for now)
           return {};
         }

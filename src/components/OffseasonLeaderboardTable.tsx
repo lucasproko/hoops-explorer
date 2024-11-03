@@ -494,7 +494,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                   JSON.stringify(currRosterJson, null, 3)
                 );
               }
-            } catch (err) {
+            } catch (err: unknown) {
               //(this can happen if the team rosters aren't available yet, so just skip)
               //(DEBUG)
               //console.log(`Roster filename [${filename}] doesn't exist`);
