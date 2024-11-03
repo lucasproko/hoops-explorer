@@ -30,6 +30,7 @@ import {
   faFilter,
 } from "@fortawesome/free-solid-svg-icons";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+//@ts-ignore
 import Select, { components } from "react-select";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 
@@ -482,7 +483,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                           )
                             .concat(supportedProfiles)
                             .map(profileToOption)}
-                          onChange={(option) => {
+                          onChange={(option: any) => {
                             const selection = (option as any)?.value || "";
                             setCurrProfile(selection as Profiles);
                           }}
@@ -544,7 +545,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                           options={_.keys(PositionUtils.idToPosition).map(
                             stringToOption
                           )}
-                          onChange={(option) => {
+                          onChange={(option: any) => {
                             const selection = (option as any)?.value || "";
                             setCurrPos(selection);
                           }}

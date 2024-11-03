@@ -17,6 +17,7 @@ import Button from "react-bootstrap/Button";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faPen, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -759,7 +760,7 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 /* currently only support Men */
               }
@@ -771,7 +772,7 @@ const TransferRapmComparisonChart: React.FunctionComponent<Props> = ({
             value={stringToOption(year)}
             options={[stringToOption("2021/22"), stringToOption("2022/23")]}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 setYear((option as any)?.value);
               }

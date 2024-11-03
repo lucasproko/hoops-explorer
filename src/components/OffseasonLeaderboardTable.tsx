@@ -17,6 +17,7 @@ import Button from "react-bootstrap/Button";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faPen, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -1137,7 +1138,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 /* currently only support Men */
               }
@@ -1155,7 +1156,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               ) //(can't eval year that hasn't happened yet)
               .map((r) => stringToOption(r))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 /* currently only support 2022/23 - but lets other years be specified to jump between off-season predictions and previous results */
                 setYear((option as any)?.value);
@@ -1263,11 +1264,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           {transferInOutMode ? (
             <Col xs={12} sm={12} md={4} lg={4}>
               <Select
-                styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+                styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                 value={sortByOptions[sortBy]}
                 options={_.values(sortByOptions)}
                 isSearchable={false}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newSortBy = (option as any)?.value || "net";
                     friendlyChange(

@@ -19,6 +19,7 @@ import Badge from "react-bootstrap/Badge";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -2771,7 +2772,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               value={stringToOption(gender)}
               options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 if ((option as any)?.value) {
                   const newGender = (option as any).value;
                   friendlyChange(() => {
@@ -2794,7 +2795,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 .concat(offSeasonMode ? [] : ["All"])
                 .map((r) => stringToOption(r))}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 if ((option as any)?.value) {
                   const newYear = (option as any).value;
                   friendlyChange(() => {
@@ -2823,10 +2824,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               isDisabled={false}
               components={maybeMenuList()}
               isClearable={false}
-              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={getCurrentTeamOrPlaceholder()}
               options={teamList.map((r) => stringToOption(r.team))}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 const selection = (option as any)?.value || "";
                 friendlyChange(() => {
                   setTeam(selection);

@@ -19,6 +19,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select, { components } from "react-select";
 
 // Component imports
@@ -985,7 +986,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 className="w-75"
                 value={stringToOption(sortBy)}
                 options={groupedOptions}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newSortBy = (option as any)?.value;
                     friendlyChange(

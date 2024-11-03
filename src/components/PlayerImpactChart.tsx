@@ -2,6 +2,7 @@
 import _ from "lodash";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+//@ts-ignore
 import Select, { components } from "react-select";
 import {
   ReferenceLine,
@@ -538,14 +539,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         <Col xs={12} md={12} lg={5} className="text-left mb-1">
           <Select
             isClearable={true}
-            styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+            styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
             isMulti
             components={{ MultiValueContainer: PositionValueContainer }}
             value={getCurrentPositionsOrPlaceholder()}
             options={(PositionUtils.positionClasses || []).map((r) =>
               stringToOption(r)
             )}
-            onChange={(optionsIn) => {
+            onChange={(optionsIn: any) => {
               const options = optionsIn as Array<any>;
               const selection = (options || []).map(
                 (option) => (option as any)?.value || ""
