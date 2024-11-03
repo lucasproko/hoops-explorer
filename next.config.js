@@ -1,9 +1,8 @@
 // next.config.js
-const compose = require("next-compose");
 
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
-const withCssConfig = {
+const baseConfig = {
   env: {
     GA_KEY: process.env.GA_KEY,
     MEN_CURR_UPDATE: process.env.MEN_CURR_UPDATE,
@@ -13,20 +12,19 @@ const withCssConfig = {
 
 module.exports = (phase, { defaultConfig }) => {
   // Start with the default configuration
-  const config = {
-    ...defaultConfig,
-    ...withCssConfig,
+  const phaseConfig = {
+    ...baseConfig,
   };
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     // Customize the Webpack config during development
-    config.webpack = (config, { isServer }) => {
-      if (isServer) {
+    phaseConfig.webpack = (config, { isServer }) => {
+      if (typeof window === "undefined") {
         return {
           ...config,
           entry() {
             return config.entry().then((entry) => {
               return Object.assign({}, entry, {
-                buildLeaderboards: "./src/bin/buildLeaderboards.ts",
+                //buildLeaderboards: "./src/bin/buildLeaderboards.ts",
               });
             });
           },
@@ -36,5 +34,5 @@ module.exports = (phase, { defaultConfig }) => {
     };
   }
 
-  return config;
+  return phaseConfig;
 };
