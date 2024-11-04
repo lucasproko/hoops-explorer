@@ -133,31 +133,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     }
   );
 
-  /** Keyboard listener - handles global page overrides while supporting individual components */
-  const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
-    const allowKeypress = () => {
-      //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
-      return inAutoSuggest || notFromFilterAutoSuggest(event);
-    };
-    if (
-      event.code === "Enter" ||
-      event.code === "NumpadEnter" ||
-      event.keyCode == 13 ||
-      event.keyCode == 14
-    ) {
-      if (allowKeypress() && queryFilters != tmpQueryFilters) {
-        friendlyChange(() => {
-          setQueryFilters(tmpQueryFilters);
-        }, true);
-      } else if (event && event.preventDefault) {
-        event.preventDefault();
-      }
-    } else if (event.code == "Escape" || event.keyCode == 27) {
-      if (allowKeypress()) {
-        document.body.click(); //closes any overlays (like history) that have rootClick
-      }
-    }
-  };
   const maybeFilterPromptTooltip = (
     <Tooltip id="maybeFilterPromptTooltip">
       Press Enter to apply this filter (current filter [{queryFilters}])
@@ -1254,8 +1229,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                       .map((s) => s + ";")}
                     value={tmpQueryFilters}
                     onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                    onSelectionChanged={(newStr: string) =>
+                      friendlyChange(() => {
+                        setQueryFilters(newStr);
+                      }, newStr != queryFilters)
+                    }
                     onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
-                    onKeyDown={submitListenerFactory(true)}
                   />
                 </div>
               </InputGroup>

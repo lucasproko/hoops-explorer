@@ -1,0 +1,31 @@
+/* Taken from https://github.com/yury-dymov/react-autocomplete-input/blob/v1.0.28/src/AutoCompleteTextField.css 
+ * because the latest version messes up the alignment (in React 17 at least)
+ * Slightly unclear what the licensing requirements are to duplicate the file, but I've attributed it
+ * so will leave it like that for now since I was using the library before anyway so nothing should have changed.
+*/
+
+.react-autocomplete-input {
+   background-clip: padding-box;
+   background-color: #fff;
+   border: 1px solid rgba(0,0,0,0.15);
+   bottom: auto;
+   box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+   display: block;
+   font-size: 14px;
+   list-style: none;
+   padding: 1px;
+   position: fixed;
+   text-align: left;
+   z-index: 20000;
+}
+
+.react-autocomplete-input > li {
+  cursor: pointer;
+  padding: 10px;
+  min-width: 100px;
+}
+
+.react-autocomplete-input > li.active {
+  background-color: #337ab7;
+  color: #fff;
+}
