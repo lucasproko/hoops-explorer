@@ -1,5 +1,10 @@
 // React imports:
-import React, { useState, useEffect, createRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  createRef,
+  ChangeEventHandler,
+} from "react";
 import Router from "next/router";
 
 // Lodash
@@ -13,7 +18,6 @@ import fetch from "isomorphic-unfetch";
 // Additional components:
 // @ts-ignore
 import TextInput from "react-autocomplete-input";
-import "react-autocomplete-input/dist/bundle.css";
 
 // Utils:
 import {
@@ -24,6 +28,7 @@ import {
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
 import { QueryUtils } from "../../utils/QueryUtils";
+import AutocompleteTextField from "react-autocomplete-input";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromAutoSuggest = (event: any) => {
@@ -88,7 +93,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
     "vs_3p:",
   ]);
 
-  const textRef = createRef();
+  const textRef = createRef<AutocompleteTextField>();
 
   // Utils
 
@@ -219,8 +224,11 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
       matchAny={true}
       maxOptions={18}
       spaceRemovers={[";", ")", ":", "]"]}
-      onChange={(eventText: string) =>
-        onChange({ target: { value: eventText } })
+      onChange={
+        ((eventText: string) => {
+          onChange({ target: { value: eventText } });
+        }) as ((value: string) => void) &
+          ChangeEventHandler<HTMLTextAreaElement>
       }
       onBlur={(ev: any) => {
         const currentTextRef = textRef.current as any;
@@ -228,7 +236,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
           //(give out of order events a chance!)
           try {
             currentTextRef.resetHelper();
-          } catch (e) {}
+          } catch (err: unknown) {}
         }, 100);
       }}
       onKeyUp={onKeyUp}

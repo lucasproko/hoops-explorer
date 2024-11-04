@@ -533,7 +533,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
       const valBuilder = (inVal: any) => {
         try {
           return colProp.formatter(inVal);
-        } catch (e) {
+        } catch (err: unknown) {
           //handle formatting errors by making it return blank
           return "";
         }

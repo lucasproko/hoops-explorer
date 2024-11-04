@@ -65,7 +65,7 @@ export default async function handler(
             res.send(resp.body);
           }
         }
-      } catch (e) {
+      } catch (err: unknown) {
         //console.log(e.message);
         res.status(500).json({ error: "Unknown error" });
       }

@@ -369,7 +369,7 @@ export class RapmUtils {
               ...(playersBaseline[playerId] || StatModels.emptyIndiv()),
               off_poss: p.on?.off_poss || {},
               def_poss: p.on?.def_poss || {},
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
           ];
         }
       }, {} as Record<string, [number, number, IndivStatSet]>)

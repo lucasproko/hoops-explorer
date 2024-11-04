@@ -1,5 +1,10 @@
 // React imports:
-import React, { useState, useEffect, createRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  createRef,
+  ChangeEventHandler,
+} from "react";
 import Router from "next/router";
 
 // Lodash
@@ -12,7 +17,7 @@ import _ from "lodash";
 // Additional components:
 // @ts-ignore
 import TextInput from "react-autocomplete-input";
-import "react-autocomplete-input/dist/bundle.css";
+import AutocompleteTextField from "react-autocomplete-input";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromFilterAutoSuggest = (event: any) => {
@@ -49,7 +54,7 @@ const TeamFilterAutoSuggestText: React.FunctionComponent<Props> = ({
 
   const isDebug = process.env.NODE_ENV !== "production";
 
-  const textRef = createRef();
+  const textRef = createRef<AutocompleteTextField>();
 
   // View
 
@@ -69,17 +74,20 @@ const TeamFilterAutoSuggestText: React.FunctionComponent<Props> = ({
       matchAny={true}
       maxOptions={18}
       spaceRemovers={[";", ")", ":", "]"]}
-      onChange={(eventText: string) => {
-        setCurrText(eventText);
-        onChange({ target: { value: eventText } });
-      }}
+      onChange={
+        ((eventText: string) => {
+          setCurrText(eventText);
+          onChange({ target: { value: eventText } });
+        }) as ((value: string) => void) &
+          ChangeEventHandler<HTMLTextAreaElement>
+      }
       onBlur={(ev: any) => {
         const currentTextRef = textRef.current as any;
         setTimeout(() => {
           //(give out of order events a chance!)
           try {
             currentTextRef.resetHelper();
-          } catch (e) {}
+          } catch (err: unknown) {}
         }, 100);
       }}
       onKeyUp={onKeyUp}

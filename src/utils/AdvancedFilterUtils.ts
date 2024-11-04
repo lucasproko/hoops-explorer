@@ -434,16 +434,24 @@ export class AdvancedFilterUtils {
               .thenBy((p: any) => p.p?.key) //(ensure player duplicates follow each other)
           : filteredData;
       return [sortedData.toArray().map((p: any) => p.p), undefined];
-    } catch (e) {
+    } catch (err: unknown) {
       if (_.isEmpty(extraParams)) {
-        return [inData, `${e.message} in ${wherePlusMaybeInsert}`];
+        return [
+          inData,
+          `${
+            err instanceof Error ? err.message : err
+          } in ${wherePlusMaybeInsert}`,
+        ];
       } else {
         //for error parsing purposes, try without the extra params
         const [filteredSortedData, errorMessage] =
           AdvancedFilterUtils.applyFilter(inData, filterStr, {}, multiYear);
         return [
           filteredSortedData,
-          errorMessage || `${e.message} in ${wherePlusMaybeInsert}`,
+          errorMessage ||
+            `${
+              err instanceof Error ? err.message : err
+            } in ${wherePlusMaybeInsert}`,
         ];
       }
     }

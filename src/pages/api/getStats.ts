@@ -63,8 +63,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             res.send(resp.body);
           }
         }
-      } catch (e) {
-        console.log(e);
+      } catch (err: unknown) {
+        console.log(err);
         res.status(500).json({ error: "Unknown error" });
       }
     } else {

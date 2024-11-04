@@ -7,8 +7,6 @@ import { NextPage } from "next";
 // Lodash:
 import _ from "lodash";
 
-// Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -21,7 +19,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 //@ts-ignore
 import Select, { components } from "react-select";
 
@@ -380,8 +378,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({
       }
       setTeamReport(tempTeamReport);
       setPlayersWithAdjEff(tempTeamReport?.players || []);
-    } catch (e) {
-      console.log("Error calling LineupUtils.lineupToTeamReport", e);
+    } catch (err: unknown) {
+      console.log("Error calling LineupUtils.lineupToTeamReport", err);
     }
   };
 
