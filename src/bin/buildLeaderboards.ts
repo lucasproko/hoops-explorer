@@ -113,9 +113,12 @@ export class MutableAsyncResponse {
 /** Have to disable RAPM in test mode */
 export const setTestModeOn = () => {
   ignoreRapm = true;
+  ignoreRosterEnrichment = true;
 };
 /** Have to disable RAPM in test mode */
 var ignoreRapm = false;
+/** Don't overwrite rosters in test mode */
+var ignoreRosterEnrichment = false;
 
 /** Exported for test only */
 export const savedLineups = [] as Array<any>;
@@ -604,10 +607,13 @@ export async function main() {
               console.log(
                 `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
               );
-              await fs.writeFile(
-                rosterInfoFile,
-                JSON.stringify(rosterInfoJsonToWrite)
-              );
+              if (!ignoreRosterEnrichment) {
+                //(outside of test mode)
+                await fs.writeFile(
+                  rosterInfoFile,
+                  JSON.stringify(rosterInfoJsonToWrite)
+                );
+              }
             }
           }
 
