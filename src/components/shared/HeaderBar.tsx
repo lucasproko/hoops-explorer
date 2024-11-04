@@ -381,7 +381,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   };
 
   const dropdownStyle = {
-    width: "40px",
     left: "50%",
     marginLeft: "-20px",
   };

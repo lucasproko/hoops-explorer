@@ -34,7 +34,7 @@
     "@types/lru-cache": "^5.1.1",
     "@types/query-string": "^6.3.0",
     "acorn": "^7.4.1",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^4.5.2",
     "chroma-js": "^2.1.2",
     "clipboard": "^2.0.8",
     "core-js": "^3.25.1",
