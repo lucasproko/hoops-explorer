@@ -12,7 +12,7 @@ export class DateUtils {
   //////////////////////////////////////
 
   /** Set this to true to show the off-season leaderboard as the site front page */
-  static readonly frontPageIsOffseasonLeaderboard: Boolean = true;
+  static readonly frontPageIsOffseasonLeaderboard: Boolean = false;
 
   /** During portal mania show the off-season leaderboard with extra in/out metrics */
   static readonly showOffseasonMetrics: Boolean = false;
@@ -78,7 +78,7 @@ export class DateUtils {
   static readonly offseasonPredictionYear: string = "2024/25";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
-  static readonly mostRecentYearWithLboardData: string = "2023/24";
+  static readonly mostRecentYearWithLboardData: string = "2024/25";
 
   /** Don't bother trying to display NET after this year */
   static readonly mostRecentYearWithNetAvailable: string = "2023/24";

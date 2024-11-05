@@ -516,14 +516,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               `${ParamPrefixes.player}_leaderboard`
             )}
           </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Transfer Portal",
-              playerLeaderboardTransferTooltip,
-              getPlayerLeaderboardTransferPortalUrl(),
-              `${ParamPrefixes.player}_leaderboard`
-            )}
-          </Dropdown.Item>
+          {DateUtils.showOffseasonMetrics ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Transfer Portal",
+                playerLeaderboardTransferTooltip,
+                getPlayerLeaderboardTransferPortalUrl(),
+                `${ParamPrefixes.player}_leaderboard`
+              )}
+            </Dropdown.Item>
+          ) : null}
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
