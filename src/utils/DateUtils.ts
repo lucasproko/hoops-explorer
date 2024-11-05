@@ -18,10 +18,10 @@ export class DateUtils {
   static readonly showOffseasonMetrics: Boolean = false;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
-  static readonly inSeasonYear: string = "2023/24";
+  static readonly inSeasonYear: string = "2024/25";
 
   /** During the season, this is the next off-season. During the off-season, this is the _current_ off-season (tbc: June 2023 offseason == 2022/23) */
-  static readonly offseasonYear: string = "2023/24";
+  static readonly offseasonYear: string = "2024/25";
 
   /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
   static readonly coreYears: string[] = [
@@ -31,6 +31,7 @@ export class DateUtils {
     "2021/22",
     "2022/23",
     "2023/24",
+    "2024/25",
   ];
 
   /** Note should include all 3 formats $date, Men_$date, Women_$date */
@@ -38,6 +39,9 @@ export class DateUtils {
     "2023/24": false,
     "Men_2023/24": false,
     "Women_2023/24": false,
+    "2024/25": true,
+    "Men_2024/25": true,
+    "Women_2024/25": true,
   };
 
   /** Up this once the portal gets active, even if it's before the season ends
@@ -64,7 +68,7 @@ export class DateUtils {
   static readonly firstYearWithData = DateUtils.coreYears[0];
 
   /** Used for defaults for everything but leaderboards (which get updated later) */
-  static readonly mostRecentYearWithData: string = "2023/24";
+  static readonly mostRecentYearWithData: string = "2024/25";
 
   /** The year to use if making off-season predictions
    * To update for the following year in-season: up this, and fix getPrevYear
@@ -209,14 +213,14 @@ export class DateUtils {
 
   /** Get the offseason of the current season */
   static readonly getOffseasonOfYear = (y: string) => {
-    if (y == "2023/24") {
+    if (y == "2024/25") {
       //TODO: can calculate programmatically
+      return "2025";
+    } else if (y == "2023/24") {
       return "2024";
     } else if (y == "2022/23") {
-      //TODO: can calculate programmatically
       return "2023";
     } else if (y == "2021/22") {
-      //TODO: can calculate programmatically
       return "2022";
     } else if (y == "2020/21") {
       return "2021";
