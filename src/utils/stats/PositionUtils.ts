@@ -567,7 +567,7 @@ export class PositionUtils {
       if (effectivePoss < 25.0) {
         // Too few possessions to make an accurate determination
         return [
-          posWithRoster,
+          player.roster?.role || posWithRoster,
           `${extraInfo}Too few used possessions [${effectivePoss.toFixed(
             1
           )}]=[${poss.toFixed(0)}]*[${(usage * 100).toFixed(1)}]% < [25.0]. ` +
