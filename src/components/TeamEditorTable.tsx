@@ -2042,6 +2042,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             teamStatsRowData,
             [
               "title",
+              "nil",
               "actual_mpg",
               "actual_net",
               "actual_off",

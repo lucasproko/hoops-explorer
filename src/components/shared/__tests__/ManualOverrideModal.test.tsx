@@ -1,11 +1,11 @@
-import React from 'react';
-import ManualOverrideModal from '../ManualOverrideModal';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import renderer from 'react-test-renderer';
-import { ParamPrefixes, ManualOverride } from '../../../utils/FilterModels';
-import { GenericTableOps } from '../../GenericTable';
-import { IndivStatSet } from '../../../utils/StatModels';
+import React from "react";
+import ManualOverrideModal from "../ManualOverrideModal";
+import { shallow } from "enzyme";
+import toJson from "enzyme-to-json";
+import renderer from "react-test-renderer";
+import { ParamPrefixes, ManualOverride } from "../../../utils/FilterModels";
+import { GenericTableOps } from "../../GenericTable";
+import { IndivStatSet } from "../../../utils/StatModels";
 
 describe("ManualOverride", () => {
   test("ManualOverride - should create snapshot (not initialized at all)", () => {
@@ -14,12 +14,8 @@ describe("ManualOverride", () => {
       <div>
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
-          inStats={[
-
-          ]}
-          statsAsTable={{
-
-          }}
+          inStats={[]}
+          statsAsTable={{}}
           overrides={[]}
           show={true}
           onHide={() => false}
@@ -37,16 +33,27 @@ describe("ManualOverride", () => {
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet
+            {
+              onOffKey: "Baseline",
+              key: "Player1",
+              off_3p: { value: 0.3 },
+            } as IndivStatSet,
+            {
+              onOffKey: "On",
+              key: "Player2",
+              off_3p: { value: 0.4 },
+            } as IndivStatSet,
           ]}
           statsAsTable={{
-            "Player1 / Baseline": [
-              GenericTableOps.buildTextRow(<p>Test</p>)
-            ]
+            "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test</p>)],
           }}
           overrides={[
-            { rowId: "Player1 / Baseline", newVal: 0.5, statName: "off_3p", use: true }
+            {
+              rowId: "Player1 / Baseline",
+              newVal: 0.5,
+              statName: "off_3p",
+              use: true,
+            },
           ]}
           show={true}
           onHide={() => false}
@@ -64,16 +71,27 @@ describe("ManualOverride", () => {
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet
+            {
+              onOffKey: "Baseline",
+              key: "Player1",
+              off_3p: { value: 0.3 },
+            } as IndivStatSet,
+            {
+              onOffKey: "On",
+              key: "Player2",
+              off_3p: { value: 0.4 },
+            } as IndivStatSet,
           ]}
           statsAsTable={{
-            "Player1 / Baseline": [
-              GenericTableOps.buildTextRow(<p>Test</p>)
-            ]
+            "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test</p>)],
           }}
           overrides={[
-            { rowId: "Player2 / On", newVal: 0.5, statName: "off_3p", use: true }
+            {
+              rowId: "Player2 / On",
+              newVal: 0.5,
+              statName: "off_3p",
+              use: true,
+            },
           ]}
           show={true}
           onHide={() => false}
@@ -91,29 +109,50 @@ describe("ManualOverride", () => {
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet,
-            { onOffKey: "Off", key: "Player3", off_3p: { value: 0.4 } } as IndivStatSet
+            {
+              onOffKey: "Baseline",
+              key: "Player1",
+              off_3p: { value: 0.3 },
+            } as IndivStatSet,
+            {
+              onOffKey: "On",
+              key: "Player2",
+              off_3p: { value: 0.4 },
+            } as IndivStatSet,
+            {
+              onOffKey: "Off",
+              key: "Player3",
+              off_3p: { value: 0.4 },
+            } as IndivStatSet,
           ]}
           statsAsTable={{
-            "Player1 / Baseline": [
-              GenericTableOps.buildTextRow(<p>Test1</p>)
-            ],
-            "Player3 / Off": [
-              GenericTableOps.buildTextRow(<p>Test3</p>)
-            ]
+            "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test1</p>)],
+            "Player3 / Off": [GenericTableOps.buildTextRow(<p>Test3</p>)],
           }}
           overrides={[
-            { rowId: "Player1 / Baseline", newVal: 0.5, statName: "off_3p", use: true  },
-            { rowId: "Player3 / Off", newVal: 0.5, statName: "off_3p", use: true  }
+            {
+              rowId: "Player1 / Baseline",
+              newVal: 0.5,
+              statName: "off_3p",
+              use: true,
+            },
+            {
+              rowId: "Player3 / Off",
+              newVal: 0.5,
+              statName: "off_3p",
+              use: true,
+            },
           ]}
           show={true}
           onHide={() => false}
           onSave={(overrides: ManualOverride[]) => false}
           showHelp={true}
-          startOverride={
-            { rowId: "Player1 / Baseline", newVal: 0.5, statName: "off_3p", use: true  }
-          }
+          startOverride={{
+            rowId: "Player1 / Baseline",
+            newVal: 0.5,
+            statName: "off_3p",
+            use: true,
+          }}
         />
       </div>
     );
@@ -127,21 +166,39 @@ describe("ManualOverride", () => {
           tableType={ParamPrefixes.player}
           filteredPlayers={new Set(["Player1"])}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet,
-            { onOffKey: "Off", key: "Player3", off_3p: { value: 0.4 } } as IndivStatSet
+            {
+              onOffKey: "Baseline",
+              key: "Player1",
+              off_3p: { value: 0.3 },
+            } as unknown as IndivStatSet,
+            {
+              onOffKey: "On",
+              key: "Player2",
+              off_3p: { value: 0.4 },
+            } as unknown as IndivStatSet,
+            {
+              onOffKey: "Off",
+              key: "Player3",
+              off_3p: { value: 0.4 },
+            } as unknown as IndivStatSet,
           ]}
           statsAsTable={{
-            "Player1 / Baseline": [
-              GenericTableOps.buildTextRow(<p>Test1</p>)
-            ],
-            "Player3 / Off": [
-              GenericTableOps.buildTextRow(<p>Test3</p>)
-            ]
+            "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test1</p>)],
+            "Player3 / Off": [GenericTableOps.buildTextRow(<p>Test3</p>)],
           }}
           overrides={[
-            { rowId: "Player1 / Baseline", newVal: 0.5, statName: "off_3p", use: true  },
-            { rowId: "Player3 / Off", newVal: 0.5, statName: "off_3p", use: true  }
+            {
+              rowId: "Player1 / Baseline",
+              newVal: 0.5,
+              statName: "off_3p",
+              use: true,
+            },
+            {
+              rowId: "Player3 / Off",
+              newVal: 0.5,
+              statName: "off_3p",
+              use: true,
+            },
           ]}
           show={true}
           onHide={() => false}

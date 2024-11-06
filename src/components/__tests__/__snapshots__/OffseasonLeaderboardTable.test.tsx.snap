@@ -4158,6 +4158,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "2023/24",
               "value": "2023/24",
             },
+            Object {
+              "label": "2024/25",
+              "value": "2024/25",
+            },
           ]
         }
         value={
