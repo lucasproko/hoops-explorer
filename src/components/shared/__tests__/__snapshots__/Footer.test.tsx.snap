@@ -26,7 +26,8 @@ exports[`Footer Footer - should create snapshot 1`] = `
       >
         <i>
           <small>
-            PbP events from 
+            PbP events from
+             
             <a
               href="https://stats.ncaa.org"
               target="_blank"
@@ -75,14 +76,16 @@ exports[`Footer Footer - should create snapshot 1`] = `
       >
         <i>
           <small>
-            SoS stats with kind permission from 
+            SoS stats with kind permission from
+             
             <a
               href="https://kenpom.com"
               target="_blank"
             >
               kenpom.com
             </a>
-             and 
+             
+            and 
             <a
               href="https://herhoopstats.com"
               target="_blank"

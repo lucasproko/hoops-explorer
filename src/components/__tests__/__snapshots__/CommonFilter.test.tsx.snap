@@ -185,8 +185,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           }
           value={
             Object {
-              "label": "2023/24",
-              "value": "2023/24",
+              "label": "2024/25",
+              "value": "2024/25",
             }
           }
         />
@@ -678,8 +678,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Howard",
               },
               Object {
-                "label": "IUPUI",
-                "value": "IUPUI",
+                "label": "IU Indy",
+                "value": "IU Indy",
               },
               Object {
                 "label": "Idaho",
@@ -868,6 +868,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Mercer",
                 "value": "Mercer",
+              },
+              Object {
+                "label": "Mercyhurst",
+                "value": "Mercyhurst",
               },
               Object {
                 "label": "Merrimack",
@@ -1602,6 +1606,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Weber St.",
               },
               Object {
+                "label": "West Ga.",
+                "value": "West Ga.",
+              },
+              Object {
                 "label": "West Virginia",
                 "value": "West Virginia",
               },
@@ -1856,7 +1864,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                   placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
                   readOnly={false}
                   team=""
-                  year="2023/24"
+                  year="2024/25"
                 />
               </div>
               <QueryFilterDropdown

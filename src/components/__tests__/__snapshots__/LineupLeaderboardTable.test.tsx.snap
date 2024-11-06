@@ -92,6 +92,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "2023/24",
               },
               Object {
+                "label": "2024/25",
+                "value": "2024/25",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -13413,6 +13417,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": "2023/24",
                 "value": "2023/24",
+              },
+              Object {
+                "label": "2024/25",
+                "value": "2024/25",
               },
               Object {
                 "label": "All",
@@ -32950,6 +32958,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": "2023/24",
                 "value": "2023/24",
+              },
+              Object {
+                "label": "2024/25",
+                "value": "2024/25",
               },
               Object {
                 "label": "All",
