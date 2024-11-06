@@ -7,4 +7,8 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import ClipboardJS from "clipboard";
 jest.mock("clipboard");
 
+jest.mock("recharts");
+
+jest.mock("isomorphic-unfetch");
+
 Enzyme.configure({ adapter: new Adapter() });

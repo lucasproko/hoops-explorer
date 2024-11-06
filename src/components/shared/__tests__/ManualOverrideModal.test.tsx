@@ -2,7 +2,6 @@ import React from "react";
 import ManualOverrideModal from "../ManualOverrideModal";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import renderer from "react-test-renderer";
 import { ParamPrefixes, ManualOverride } from "../../../utils/FilterModels";
 import { GenericTableOps } from "../../GenericTable";
 import { IndivStatSet } from "../../../utils/StatModels";
@@ -37,12 +36,12 @@ describe("ManualOverride", () => {
               onOffKey: "Baseline",
               key: "Player1",
               off_3p: { value: 0.3 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
             {
               onOffKey: "On",
               key: "Player2",
               off_3p: { value: 0.4 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
           ]}
           statsAsTable={{
             "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test</p>)],
@@ -75,12 +74,12 @@ describe("ManualOverride", () => {
               onOffKey: "Baseline",
               key: "Player1",
               off_3p: { value: 0.3 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
             {
               onOffKey: "On",
               key: "Player2",
               off_3p: { value: 0.4 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
           ]}
           statsAsTable={{
             "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test</p>)],
@@ -113,17 +112,17 @@ describe("ManualOverride", () => {
               onOffKey: "Baseline",
               key: "Player1",
               off_3p: { value: 0.3 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
             {
               onOffKey: "On",
               key: "Player2",
               off_3p: { value: 0.4 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
             {
               onOffKey: "Off",
               key: "Player3",
               off_3p: { value: 0.4 },
-            } as IndivStatSet,
+            } as unknown as IndivStatSet,
           ]}
           statsAsTable={{
             "Player1 / Baseline": [GenericTableOps.buildTextRow(<p>Test1</p>)],
