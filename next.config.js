@@ -1,5 +1,3 @@
-// next.config.js
-
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 const baseConfig = {
@@ -11,20 +9,23 @@ const baseConfig = {
 };
 
 module.exports = (phase, { defaultConfig }) => {
-  // Start with the default configuration
   const phaseConfig = {
     ...baseConfig,
   };
+
+  console.log(`phase: ${phase} (${Object.keys(defaultConfig)})`);
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     // Customize the Webpack config during development
-    phaseConfig.webpack = (config, { isServer }) => {
-      if (typeof window === "undefined") {
+    phaseConfig.webpack = (config, { isServer, nextRuntime }) => {
+      // From NextJS 13+, isServer appears to always return true, but nextRuntime can be used to determine if the server is nodejs
+      // this is client or server (client side it will be edge or browser - server side always nodejs)
+      if (isServer && nextRuntime == "nodejs") {
         return {
           ...config,
           entry() {
             return config.entry().then((entry) => {
               return Object.assign({}, entry, {
-                //buildLeaderboards: "./src/bin/buildLeaderboards.ts",
+                buildLeaderboards: "./src/bin/buildLeaderboards.ts",
               });
             });
           },
