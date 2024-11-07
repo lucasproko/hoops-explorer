@@ -10,14 +10,11 @@ import Router from "next/router";
 // Lodash
 import _ from "lodash";
 
-// Bootstrap imports:
-
 // Library imports:
 import fetch from "isomorphic-unfetch";
 
 // Additional components:
-// @ts-ignore
-import TextInput from "react-autocomplete-input";
+import TextAreaAutocomplete from "./TextAreaAutocomplete";
 
 // Utils:
 import {
@@ -93,7 +90,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
     "vs_3p:",
   ]);
 
-  const textRef = createRef<AutocompleteTextField>();
+  const textRef = createRef<HTMLTextAreaElement>();
 
   // Utils
 
@@ -204,7 +201,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
   // View
 
   return (
-    <TextInput
+    <TextAreaAutocomplete
       ref={textRef}
       Component={"textarea"}
       style={{ minHeight: "2.4rem", height: "2.4rem" }}
