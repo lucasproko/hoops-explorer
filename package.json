@@ -71,7 +71,7 @@
     "statistics.js": "^1.0.0",
     "styled-components": "^5.3.3",
     "svd-js": "^1.1.1",
-    "tabletojson": "^2.0.7",
+    "tabletojson": "^4.1.5",
     "textarea-caret": "^3.1.0",
     "tmpl": "^1.0.5",
     "use-mouse-leave": "^1.0.0",
