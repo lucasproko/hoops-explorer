@@ -407,12 +407,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
     noGutters={false}
   >
     <Col>
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Offseason Leaderboard..."
       >
         <GenericTable
@@ -1012,7 +1009,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
 </Container>
@@ -1273,12 +1270,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     noGutters={false}
   >
     <Col>
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Offseason Leaderboard..."
       >
         <GenericTable
@@ -4072,7 +4066,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
 </Container>
@@ -4333,12 +4327,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     noGutters={false}
   >
     <Col>
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Offseason Leaderboard..."
       >
         <GenericTable
@@ -18935,7 +18926,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
 </Container>
@@ -19196,12 +19187,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     noGutters={false}
   >
     <Col>
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Offseason Leaderboard..."
       >
         <GenericTable
@@ -34708,7 +34696,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
 </Container>
@@ -34969,12 +34957,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
     noGutters={false}
   >
     <Col>
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Offseason Leaderboard..."
       >
         <GenericTable
@@ -48619,7 +48604,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
 </Container>
@@ -49097,12 +49082,9 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
     noGutters={false}
   >
     <Col>
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Offseason Leaderboard..."
       >
         <GenericTable
@@ -49610,7 +49592,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
 </Container>

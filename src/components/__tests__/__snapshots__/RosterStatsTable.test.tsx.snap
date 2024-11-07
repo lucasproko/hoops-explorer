@@ -4,11 +4,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -7564,7 +7561,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -7572,11 +7569,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -10941,7 +10935,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -10949,11 +10943,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -14362,7 +14353,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -14370,11 +14361,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -21150,7 +21138,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -21158,11 +21146,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -30280,7 +30265,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -30288,11 +30273,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -41050,7 +41032,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -41058,11 +41040,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -49768,7 +49747,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -49776,11 +49755,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -62071,7 +62047,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;
 
@@ -62079,11 +62055,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 <Container
   fluid={false}
 >
-  <LoadingOverlayWrapper
+  <LoadingOverlay
     active={false}
-    classNamePrefix="_loading_overlay_"
-    fadeSpeed={500}
-    styles={Object {}}
     text="Press 'Submit' to view results"
   >
     <ManualOverrideModal
@@ -70630,6 +70603,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
         />
       </Col>
     </Row>
-  </LoadingOverlayWrapper>
+  </LoadingOverlay>
 </Container>
 `;

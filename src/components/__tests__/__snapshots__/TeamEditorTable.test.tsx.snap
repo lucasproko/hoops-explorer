@@ -1720,12 +1720,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -4519,7 +4516,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -7485,12 +7482,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -9961,7 +9955,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -12923,12 +12917,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -15825,7 +15816,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -19347,12 +19338,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -22471,7 +22459,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -25997,12 +25985,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -28899,7 +28884,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -32584,12 +32569,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -36140,7 +36122,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -38740,12 +38722,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -41600,7 +41579,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -43484,12 +43463,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -44780,7 +44756,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -47754,12 +47730,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -48141,7 +48114,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
@@ -51111,12 +51084,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
         }
       }
     >
-      <LoadingOverlayWrapper
+      <LoadingOverlay
         active={false}
-        classNamePrefix="_loading_overlay_"
-        fadeSpeed={500}
         spinner={true}
-        styles={Object {}}
         text="Loading Team Editor..."
       >
         <GenericTable
@@ -51498,7 +51468,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             }
           }
         />
-      </LoadingOverlayWrapper>
+      </LoadingOverlay>
     </Col>
   </Row>
   <Row
