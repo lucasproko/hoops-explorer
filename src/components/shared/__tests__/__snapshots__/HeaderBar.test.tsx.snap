@@ -12,7 +12,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -47,7 +46,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -82,7 +80,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -115,7 +112,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -171,7 +167,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -204,7 +199,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -237,7 +231,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -272,7 +265,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -328,7 +320,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -361,7 +352,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -396,7 +386,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""
@@ -429,7 +418,6 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
     >
       <div
         className="dropdown"
-        onKeyDown={[Function]}
       >
         <a
           href=""

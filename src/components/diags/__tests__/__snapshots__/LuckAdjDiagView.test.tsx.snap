@@ -167,7 +167,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                  / 
                 <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="name_0"
                       placement="right"
                     >
@@ -178,7 +178,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                       <br />
                       Off-dribble misses: 
                       31.7
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -211,7 +211,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                  / 
                 <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="name_1"
                       placement="right"
                     >
@@ -222,7 +222,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
                       <br />
                       Off-dribble misses: 
                       6.2
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -767,7 +767,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
                  / 
                 <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="name_0"
                       placement="right"
                     >
@@ -778,7 +778,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
                       <br />
                       Off-dribble misses: 
                       31.7
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -811,7 +811,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
                  / 
                 <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="name_1"
                       placement="right"
                     >
@@ -822,7 +822,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
                       <br />
                       Off-dribble misses: 
                       6.2
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >

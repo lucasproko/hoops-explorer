@@ -16,10 +16,10 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
             "cellMetaFn": [Function],
             "colSpanOverride": undefined,
             "dataObj": Object {
-              "c": <ForwardRef
+              "c": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -34,8 +34,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -48,7 +48,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="AnCowanc0_info"
                           placement="right"
                         >
@@ -80,7 +80,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 1%, DRB 9%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -93,7 +93,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -112,7 +112,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 AnCowan
                               </span>
-                            </ForwardRef>
+                            </Badge>
                             <span
                               style={Object {}}
                             >
@@ -131,12 +131,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "pf": <ForwardRef
+                </Col>
+              </Row>,
+              "pf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -151,8 +151,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     74
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -165,7 +165,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="ErAyalapf0_info"
                           placement="right"
                         >
@@ -197,7 +197,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -210,7 +210,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -229,18 +229,18 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 ErAyala
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "pg": <ForwardRef
+                </Col>
+              </Row>,
+              "pg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -255,8 +255,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -269,7 +269,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="AaWigginspg0_info"
                           placement="right"
                         >
@@ -301,7 +301,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 4%, DRB 15%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -314,7 +314,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -333,7 +333,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 AaWiggins
                               </span>
-                            </ForwardRef>
+                            </Badge>
                             <span
                               style={Object {}}
                             >
@@ -346,12 +346,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "sf": <ForwardRef
+                </Col>
+              </Row>,
+              "sf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -366,8 +366,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -380,7 +380,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="JaSmithsf0_info"
                           placement="right"
                         >
@@ -412,7 +412,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -425,7 +425,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -444,18 +444,18 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 JaSmith
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "sg": <ForwardRef
+                </Col>
+              </Row>,
+              "sg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -470,8 +470,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     76
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -484,7 +484,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DaMorsellsg0_info"
                           placement="right"
                         >
@@ -516,7 +516,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -529,7 +529,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -548,14 +548,14 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 DaMorsell
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             "kind": "data-row",
             "prefixFn": [Function],
@@ -566,10 +566,10 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
             "colSpanOverride": undefined,
             "dataObj": Object {
               "c": undefined,
-              "pf": <ForwardRef
+              "pf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -584,8 +584,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     26
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -598,7 +598,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DoScottpf0_info"
                           placement="right"
                         >
@@ -630,7 +630,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -643,7 +643,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -662,20 +662,20 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 DoScott
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
               "pg": undefined,
               "sf": undefined,
-              "sg": <ForwardRef
+              "sg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -690,8 +690,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                     24
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -704,7 +704,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DoScottsg0_info"
                           placement="right"
                         >
@@ -736,7 +736,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -749,7 +749,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -768,14 +768,14 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               >
                                 DoScott
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             "kind": "data-row",
             "prefixFn": [Function],
@@ -888,10 +888,10 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
             "cellMetaFn": [Function],
             "colSpanOverride": undefined,
             "dataObj": Object {
-              "c": <ForwardRef
+              "c": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -906,8 +906,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -920,7 +920,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="AnCowanc0_info"
                           placement="right"
                         >
@@ -952,7 +952,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 1%, DRB 9%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -965,7 +965,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -984,7 +984,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               >
                                 AnCowan
                               </span>
-                            </ForwardRef>
+                            </Badge>
                             <span
                               style={Object {}}
                             >
@@ -1003,12 +1003,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "pf": <ForwardRef
+                </Col>
+              </Row>,
+              "pf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1023,8 +1023,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1037,7 +1037,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="ErAyalapf0_info"
                           placement="right"
                         >
@@ -1069,7 +1069,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1082,7 +1082,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1101,18 +1101,18 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               >
                                 ErAyala
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "pg": <ForwardRef
+                </Col>
+              </Row>,
+              "pg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1127,8 +1127,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1141,7 +1141,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="AaWigginspg0_info"
                           placement="right"
                         >
@@ -1173,7 +1173,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 4%, DRB 15%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1186,7 +1186,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1205,7 +1205,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               >
                                 AaWiggins
                               </span>
-                            </ForwardRef>
+                            </Badge>
                             <span
                               style={Object {}}
                             >
@@ -1218,12 +1218,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "sf": <ForwardRef
+                </Col>
+              </Row>,
+              "sf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1238,8 +1238,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1252,7 +1252,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="JaSmithsf0_info"
                           placement="right"
                         >
@@ -1284,7 +1284,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1297,7 +1297,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1316,18 +1316,18 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               >
                                 JaSmith
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "sg": <ForwardRef
+                </Col>
+              </Row>,
+              "sg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1342,8 +1342,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1356,7 +1356,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DaMorsellsg0_info"
                           placement="right"
                         >
@@ -1388,7 +1388,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1401,7 +1401,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1420,14 +1420,14 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               >
                                 DaMorsell
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             "kind": "data-row",
             "prefixFn": [Function],
@@ -1540,10 +1540,10 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
             "cellMetaFn": [Function],
             "colSpanOverride": undefined,
             "dataObj": Object {
-              "c": <ForwardRef
+              "c": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1558,8 +1558,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1572,7 +1572,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="AnCowanc0_info"
                           placement="right"
                         >
@@ -1604,7 +1604,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 1%, DRB 9%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1617,7 +1617,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1636,7 +1636,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 AnCowan
                               </span>
-                            </ForwardRef>
+                            </Badge>
                             <span
                               style={Object {}}
                             >
@@ -1655,12 +1655,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "pf": <ForwardRef
+                </Col>
+              </Row>,
+              "pf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1675,8 +1675,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     74
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1689,7 +1689,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="ErAyalapf0_info"
                           placement="right"
                         >
@@ -1721,7 +1721,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1734,7 +1734,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1753,18 +1753,18 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 ErAyala
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "pg": <ForwardRef
+                </Col>
+              </Row>,
+              "pg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1779,8 +1779,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1793,7 +1793,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="AaWigginspg0_info"
                           placement="right"
                         >
@@ -1825,7 +1825,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 4%, DRB 15%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1838,7 +1838,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1857,7 +1857,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 AaWiggins
                               </span>
-                            </ForwardRef>
+                            </Badge>
                             <span
                               style={Object {}}
                             >
@@ -1870,12 +1870,12 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "sf": <ForwardRef
+                </Col>
+              </Row>,
+              "sf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1890,8 +1890,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     100
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -1904,7 +1904,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="JaSmithsf0_info"
                           placement="right"
                         >
@@ -1936,7 +1936,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -1949,7 +1949,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -1968,18 +1968,18 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 JaSmith
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
-              "sg": <ForwardRef
+                </Col>
+              </Row>,
+              "sg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -1994,8 +1994,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     76
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -2008,7 +2008,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DaMorsellsg0_info"
                           placement="right"
                         >
@@ -2040,7 +2040,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -2053,7 +2053,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -2072,14 +2072,14 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 DaMorsell
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             "kind": "data-row",
             "prefixFn": [Function],
@@ -2090,10 +2090,10 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
             "colSpanOverride": undefined,
             "dataObj": Object {
               "c": undefined,
-              "pf": <ForwardRef
+              "pf": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -2108,8 +2108,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     26
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -2122,7 +2122,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DoScottpf0_info"
                           placement="right"
                         >
@@ -2154,7 +2154,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -2167,7 +2167,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -2186,20 +2186,20 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 DoScott
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
               "pg": undefined,
               "sf": undefined,
-              "sg": <ForwardRef
+              "sg": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   className="pr-0 pl-0"
                   xs="3"
                 >
@@ -2214,8 +2214,8 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                     24
                     %
                   </div>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   xs="auto"
                 >
                   <div
@@ -2228,7 +2228,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                   >
                     <OverlayTrigger
                       overlay={
-                        <ForwardRef
+                        <Tooltip
                           id="DoScottsg0_info"
                           placement="right"
                         >
@@ -2260,7 +2260,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                        </ForwardRef>
+                        </Tooltip>
                       }
                       placement="auto"
                     >
@@ -2273,7 +2273,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               }
                             }
                           >
-                            <ForwardRef
+                            <Badge
                               pill={false}
                               style={
                                 Object {
@@ -2292,14 +2292,14 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               >
                                 DoScott
                               </span>
-                            </ForwardRef>
+                            </Badge>
                           </span>
                         </span>
                       </div>
                     </OverlayTrigger>
                   </div>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             "kind": "data-row",
             "prefixFn": [Function],

@@ -84,7 +84,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
     >
       <OverlayTrigger
         overlay={
-          <ForwardRef
+          <Tooltip
             id="playTypeDiagLegend"
             placement="right"
           >
@@ -108,7 +108,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                 Similarly to width vs height - the color of the bar chart can be green for inefficient play types, eg 0.75pts/play is very inefficient but is 50% percentile for Mid-Range!
               </p>
             </div>
-          </ForwardRef>
+          </Tooltip>
         }
         placement="auto"
       >
@@ -4702,7 +4702,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
     >
       <OverlayTrigger
         overlay={
-          <ForwardRef
+          <Tooltip
             id="playTypeDiagLegend"
             placement="right"
           >
@@ -4726,7 +4726,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                 Similarly to width vs height - the color of the bar chart can be green for inefficient play types, eg 0.75pts/play is very inefficient but is 50% percentile for Mid-Range!
               </p>
             </div>
-          </ForwardRef>
+          </Tooltip>
         }
         placement="auto"
       >

@@ -24,7 +24,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -53,7 +52,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -125,7 +123,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -152,7 +149,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -179,7 +175,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -931,7 +926,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -995,7 +990,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -1008,7 +1003,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1027,7 +1022,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1050,7 +1045,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1069,7 +1064,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1092,7 +1087,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1111,7 +1106,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1134,7 +1129,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1153,7 +1148,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1176,7 +1171,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1195,7 +1190,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1393,7 +1388,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -1457,7 +1452,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -1470,7 +1465,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1489,7 +1484,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1512,7 +1507,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1531,7 +1526,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1554,7 +1549,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1573,7 +1568,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1596,7 +1591,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1615,7 +1610,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1638,7 +1633,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1657,7 +1652,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1858,7 +1853,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -1922,7 +1917,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -1935,7 +1930,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1954,7 +1949,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -1977,7 +1972,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -1996,7 +1991,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2019,7 +2014,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2038,7 +2033,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2061,7 +2056,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2080,7 +2075,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2103,7 +2098,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2122,7 +2117,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2320,7 +2315,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -2384,7 +2379,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -2397,7 +2392,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2416,7 +2411,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2439,7 +2434,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2458,7 +2453,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2481,7 +2476,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2500,7 +2495,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2523,7 +2518,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2542,7 +2537,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2565,7 +2560,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2584,7 +2579,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2785,7 +2780,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -2849,7 +2844,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -2862,7 +2857,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2881,7 +2876,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2904,7 +2899,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2923,7 +2918,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2946,7 +2941,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -2965,7 +2960,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -2988,7 +2983,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3007,7 +3002,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3030,7 +3025,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3049,7 +3044,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3247,7 +3242,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -3311,7 +3306,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -3324,7 +3319,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3343,7 +3338,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3366,7 +3361,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3385,7 +3380,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3408,7 +3403,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3427,7 +3422,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3450,7 +3445,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3469,7 +3464,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3492,7 +3487,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -3511,7 +3506,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -3827,7 +3822,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -3856,7 +3850,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -3928,7 +3921,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -3955,7 +3947,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -3982,7 +3973,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -5173,7 +5163,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -5237,7 +5227,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -5250,7 +5240,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5269,7 +5259,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5292,7 +5282,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5311,7 +5301,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5334,7 +5324,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5353,7 +5343,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5376,7 +5366,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5395,7 +5385,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5418,7 +5408,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5437,7 +5427,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5635,7 +5625,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -5699,7 +5689,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -5712,7 +5702,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5731,7 +5721,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5754,7 +5744,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5773,7 +5763,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5796,7 +5786,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5815,7 +5805,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5838,7 +5828,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5857,7 +5847,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -5880,7 +5870,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -5899,7 +5889,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6100,7 +6090,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -6164,7 +6154,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -6177,7 +6167,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6196,7 +6186,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6219,7 +6209,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6238,7 +6228,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6261,7 +6251,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6280,7 +6270,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6303,7 +6293,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6322,7 +6312,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6345,7 +6335,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6364,7 +6354,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6562,7 +6552,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -6626,7 +6616,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -6639,7 +6629,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6658,7 +6648,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6681,7 +6671,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6700,7 +6690,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6723,7 +6713,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6742,7 +6732,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6765,7 +6755,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6784,7 +6774,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -6807,7 +6797,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -6826,7 +6816,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -7142,7 +7132,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -7171,7 +7160,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -7243,7 +7231,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -7270,7 +7257,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -7297,7 +7283,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -8103,7 +8088,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -8167,7 +8152,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -8421,7 +8406,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -8485,7 +8470,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -8777,7 +8762,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -8841,7 +8826,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -9095,7 +9080,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -9159,7 +9144,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -9451,7 +9436,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -9515,7 +9500,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -9769,7 +9754,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -9833,7 +9818,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -10174,7 +10159,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -10203,7 +10187,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -10275,7 +10258,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -10302,7 +10284,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -10329,7 +10310,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -11081,7 +11061,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -11145,7 +11125,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -11158,7 +11138,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11177,7 +11157,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -11210,7 +11190,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11229,7 +11209,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -11256,7 +11236,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11275,7 +11255,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -11298,7 +11278,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11317,7 +11297,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -11340,7 +11320,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11359,7 +11339,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -11557,7 +11537,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -11621,7 +11601,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -11634,7 +11614,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11653,7 +11633,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -11686,7 +11666,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11705,7 +11685,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -11732,7 +11712,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11751,7 +11731,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -11774,7 +11754,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11793,7 +11773,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -11816,7 +11796,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -11835,7 +11815,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12036,7 +12016,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -12100,7 +12080,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -12113,7 +12093,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12132,7 +12112,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -12165,7 +12145,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12184,7 +12164,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -12211,7 +12191,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12230,7 +12210,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12253,7 +12233,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12272,7 +12252,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12295,7 +12275,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12314,7 +12294,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12512,7 +12492,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -12576,7 +12556,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -12589,7 +12569,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12608,7 +12588,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -12641,7 +12621,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12660,7 +12640,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -12687,7 +12667,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12706,7 +12686,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12729,7 +12709,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12748,7 +12728,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12771,7 +12751,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -12790,7 +12770,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -12991,7 +12971,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -13055,7 +13035,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -13068,7 +13048,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13087,7 +13067,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -13120,7 +13100,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13139,7 +13119,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -13166,7 +13146,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13185,7 +13165,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -13208,7 +13188,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13227,7 +13207,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -13250,7 +13230,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13269,7 +13249,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -13467,7 +13447,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -13531,7 +13511,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -13544,7 +13524,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13563,7 +13543,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -13596,7 +13576,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13615,7 +13595,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -13642,7 +13622,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13661,7 +13641,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -13684,7 +13664,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13703,7 +13683,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -13726,7 +13706,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -13745,7 +13725,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -14061,7 +14041,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -14090,7 +14069,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -14162,7 +14140,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -14189,7 +14166,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -14216,7 +14192,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         as={
           Object {
             "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
             "render": [Function],
           }
         }
@@ -14968,7 +14943,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -15032,7 +15007,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -15045,7 +15020,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15064,7 +15039,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -15097,7 +15072,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15116,7 +15091,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -15143,7 +15118,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15162,7 +15137,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -15185,7 +15160,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15204,7 +15179,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -15227,7 +15202,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15246,7 +15221,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -15444,7 +15419,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="00_info"
                                         placement="right"
                                       >
@@ -15508,7 +15483,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -15521,7 +15496,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15540,7 +15515,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -15573,7 +15548,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15592,7 +15567,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -15619,7 +15594,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15638,7 +15613,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -15661,7 +15636,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15680,7 +15655,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -15703,7 +15678,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -15722,7 +15697,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -15923,7 +15898,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -15987,7 +15962,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -16000,7 +15975,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16019,7 +15994,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -16052,7 +16027,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16071,7 +16046,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -16098,7 +16073,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16117,7 +16092,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -16140,7 +16115,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16159,7 +16134,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -16182,7 +16157,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16201,7 +16176,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -16399,7 +16374,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="10_info"
                                         placement="right"
                                       >
@@ -16463,7 +16438,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -16476,7 +16451,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16495,7 +16470,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -16528,7 +16503,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16547,7 +16522,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -16574,7 +16549,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16593,7 +16568,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -16616,7 +16591,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16635,7 +16610,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -16658,7 +16633,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16677,7 +16652,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DaMorsell
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -16878,7 +16853,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -16942,7 +16917,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -16955,7 +16930,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -16974,7 +16949,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -17007,7 +16982,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17026,7 +17001,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -17053,7 +17028,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17072,7 +17047,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -17095,7 +17070,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17114,7 +17089,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -17137,7 +17112,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17156,7 +17131,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -17354,7 +17329,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_title: <OverlayTrigger
                                     overlay={
-                                      <ForwardRef
+                                      <Tooltip
                                         id="20_info"
                                         placement="right"
                                       >
@@ -17418,7 +17393,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
-                                      </ForwardRef>
+                                      </Tooltip>
                                     }
                                     placement="auto"
                                   >
@@ -17431,7 +17406,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17450,7 +17425,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AnCowan
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -17483,7 +17458,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17502,7 +17477,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               AaWiggins
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           >
@@ -17529,7 +17504,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17548,7 +17523,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               JaSmith
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -17571,7 +17546,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17590,7 +17565,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               ErAyala
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
@@ -17613,7 +17588,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             }
                                           }
                                         >
-                                          <ForwardRef
+                                          <Badge
                                             pill={false}
                                             style={
                                               Object {
@@ -17632,7 +17607,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             >
                                               DoScott
                                             </span>
-                                          </ForwardRef>
+                                          </Badge>
                                           <span
                                             style={Object {}}
                                           />
