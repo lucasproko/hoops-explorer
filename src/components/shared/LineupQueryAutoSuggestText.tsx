@@ -111,6 +111,8 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
 
   /** Makes an API call to elasticsearch to get the roster */
   const fetchRoster = () => {
+    /**/
+    console.log("HERE1");
     if (gender && year && team) {
       const genderYear = `${gender}_${year}`;
       const currentJsonEpoch = dataLastUpdated[genderYear] || -1;

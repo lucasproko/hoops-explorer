@@ -14,7 +14,6 @@ import type {
   RefObject,
 } from "react";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
-import { debounce } from "throttle-debounce";
 //@ts-ignore
 import getCaretCoordinates from "textarea-caret";
 //@ts-ignore
@@ -42,6 +41,7 @@ export type Props<C extends string | ForwardRefExoticComponent<any>> = {
   onChange?: (value: string) => void;
   onKeyDown?: (...args: any[]) => void;
   onRequestOptions?: (value: string) => void;
+  requestOnlyIfNoOptions?: boolean;
   onSelect?: (...args: any[]) => void;
   changeOnSelect?: (trigger: string | string[], slug: string) => string;
   options?: Record<string, string[]> | string[];
@@ -71,6 +71,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       onChange,
       onKeyDown,
       onRequestOptions,
+      requestOnlyIfNoOptions,
       onSelect,
       changeOnSelect = (trigger, slug) => trigger + slug,
       options = [],
@@ -112,16 +113,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     const handleResize = () => {
       setHelperVisible(false);
     };
-
-    const handleOnRequestOptionsDebounce = useCallback(
-      debounce(
-        100,
-        (...args: Parameters<NonNullable<typeof onRequestOptions>>) => {
-          onRequestOptions?.(...args);
-        }
-      ),
-      []
-    );
 
     const arrayTriggerMatch = (triggers: string[], re: RegExp) => {
       const triggersMatch = triggers.map((trigger) => ({
@@ -301,13 +292,16 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
           /* Ensure minimal width inside viewport */
           window.innerWidth - OPTION_LIST_MIN_WIDTH
         );
+        /**/
+        console.log(`ml[${slug.matchLength}] len[${slug.options.length}]`);
 
-        if (slug.matchLength >= minChars) {
-          if (makeRequest) {
-            handleOnRequestOptionsDebounce(
-              str.substr(slug.matchStart, slug.matchLength)
-            );
-          }
+        if (
+          slug.matchLength >= minChars &&
+          (slug.options.length > 1 ||
+            (slug.options.length === 1 &&
+              (slug.options[0].length !== slug.matchLength ||
+                slug.options[0].length === 1)))
+        ) {
           setTop(newTop);
           setLeft(isCloseToEnd ? newLeft - 175 : newLeft);
           setStateTrigger(slug.trigger);
@@ -316,6 +310,12 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
           setMatchStart(slug.matchStart);
           setHelperVisible(true);
         } else {
+          if (
+            onRequestOptions &&
+            (requestOnlyIfNoOptions != false || !slug.options.length)
+          ) {
+            onRequestOptions(str.substr(slug.matchStart, slug.matchLength));
+          }
           resetHelper();
         }
       } else {
