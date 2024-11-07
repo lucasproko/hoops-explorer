@@ -8,7 +8,7 @@ import { NextPage } from "next";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -22,7 +22,8 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select, { components } from "react-select";
 
 // Component imports
@@ -542,7 +543,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
-        } catch (err) {
+        } catch (err: unknown) {
           //(data not ready, ignore for now)
           return {};
         }
@@ -1636,7 +1637,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 className="w-75"
                 value={stringToOption(sortBy)}
                 options={groupedOptions}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) setSortBy((option as any)?.value);
                 }}
                 formatGroupLabel={formatGroupLabel}

@@ -362,7 +362,7 @@ export class QueryUtils {
             end: dateEnd,
           }
         : undefined;
-    } catch (e) {
+    } catch (err: unknown) {
       return undefined; //(invalid state)
     }
   }

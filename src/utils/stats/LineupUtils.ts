@@ -193,9 +193,9 @@ export class LineupUtils {
       .toPairs()
       .map((kv) => {
         const key = kv[0];
-        const startVal = kv[1];
+        const startVal = kv[1] as any;
         const toSub = statSet2[key];
-        if (_.isNil(toSub?.value) || _.isNil(startVal.value)) {
+        if (_.isNil(toSub?.value) || _.isNil(startVal?.value)) {
           return [key, undefined];
         } else {
           const diffStat = {
@@ -722,7 +722,7 @@ export class LineupUtils {
             num_off_poss: 0,
             num_def_poss: 0,
           };
-          const accGameInfo = mutableAcc.game_info || {};
+          const accGameInfo = mutableAcc.game_info || ({} as any);
           mutableAcc.game_info = accGameInfo;
 
           const newGameInfo = LineupUtils.getGameInfo(gameInfo || []);

@@ -279,8 +279,12 @@ export class CommonApiUtils {
             );
           }
           onResponse(esFetchStatus, esFetchJson, resHandle);
-        } catch (e) {
-          console.log(`Error parsing response [${e.message}]`);
+        } catch (err: unknown) {
+          console.log(
+            `Error parsing response [${
+              err instanceof Error ? err.message : err
+            }]`
+          );
           onRequestError(resHandle);
         }
       }

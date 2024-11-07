@@ -5,13 +5,14 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
+//@ts-ignore
 import Select from "react-select";
 
 // Component imports:
@@ -584,12 +585,12 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
               <Col xs={12} sm={12} md={12} lg={6}>
                 <Select
                   isClearable={false}
-                  styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+                  styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
                   options={opponentList.map((r) =>
                     stringToOption(buildMenuItem(r))
                   )}
-                  onChange={(option) => {
+                  onChange={(option: any) => {
                     setGame((option as any)?.value);
                   }}
                 />

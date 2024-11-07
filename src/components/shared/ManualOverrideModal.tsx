@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -17,6 +17,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Container from "react-bootstrap/Container";
 
 // Additional components
+//@ts-ignore
 import Select, { components } from "react-select";
 import GenericTable, { GenericTableOps } from "../GenericTable";
 
@@ -503,7 +504,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
                         className="w-75"
                         value={statToOption(valueToStatMap[currInStat])}
                         options={groupedOptions}
-                        onChange={(option) => {
+                        onChange={(option: any) => {
                           const val = (option as any)?.value;
                           if (val) {
                             setCurrInStat(val);
@@ -533,7 +534,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({
                           .toPairs()
                           .flatMap((stat) => metricToOption(stat))
                           .value()}
-                        onChange={(option) => {
+                        onChange={(option: any) => {
                           const val = (option as any)?.value;
                           if (val) {
                             setCurrStatName(val);

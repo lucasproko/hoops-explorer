@@ -96,12 +96,12 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                   "off_title": <OverlayTrigger
                     defaultShow={false}
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="scrambleDeftest"
                         placement="right"
                       >
                         Possessions finishing after an ORB, but not counting plays where the offense resets
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                     trigger={
@@ -208,12 +208,12 @@ exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 
                   "def_title": <OverlayTrigger
                     defaultShow={false}
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="scrambleDeftest"
                         placement="right"
                       >
                         Possessions finishing after an ORB, but not counting plays where the offense resets
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                     trigger={

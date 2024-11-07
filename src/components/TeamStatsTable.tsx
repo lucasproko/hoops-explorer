@@ -9,7 +9,7 @@ import fetch from "isomorphic-unfetch";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -18,7 +18,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 
 // Component imports
 import GenericTable, { GenericTableOps } from "./GenericTable";

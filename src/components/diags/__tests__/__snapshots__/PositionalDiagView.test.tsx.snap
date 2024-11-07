@@ -371,12 +371,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="totalScoreTooltip"
                         placement="right"
                       >
                         The average score per position/positional group, and the total score for this player/position group. (10x the actual -relative- value, to make it more readable.)
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -434,12 +434,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="calc_ast_tovTooltip"
                         placement="right"
                       >
                         Assist to Turnover ratio in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -506,12 +506,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_assistTooltip"
                         placement="right"
                       >
                         Assist % for player in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -578,12 +578,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_toTooltip"
                         placement="right"
                       >
                         Turnover % in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -650,12 +650,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="calc_assist_per_fgaTooltip"
                         placement="right"
                       >
                         The ratio of Assists to FG attempts, expressed as a %
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -731,12 +731,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_3prTooltip"
                         placement="right"
                       >
                         Percentage of 3 pointers taken against all field goals
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -803,12 +803,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_2pmidrTooltip"
                         placement="right"
                       >
                         Percentage of mid range 2 pointers taken against all field goals
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -875,12 +875,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_2primrTooltip"
                         placement="right"
                       >
                         Percentage of layup/dunk/etc 2 pointers taken against all field goals
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -947,12 +947,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_ftrTooltip"
                         placement="right"
                       >
                         Free throw rate in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1028,12 +1028,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="calc_three_relativeTooltip"
                         placement="right"
                       >
                         A measure of how good a player is at shooting 3s relative to their overall scoring efficiency (1.5*3P%/eFG)
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1100,12 +1100,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="calc_mid_relativeTooltip"
                         placement="right"
                       >
                         A measure of how good a player is at shooting mid-range 2s relative to their overall scoring efficiency (2P% mid/eFG)
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1172,12 +1172,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="calc_rim_relativeTooltip"
                         placement="right"
                       >
                         A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2P% rim/eFG)
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1244,12 +1244,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="calc_ft_relative_invTooltip"
                         placement="right"
                       >
                         (FG Comfort Zone) A very approximate measure of how easy/tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes.
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1325,12 +1325,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="def_toTooltip"
                         placement="right"
                       >
                         Steal % in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1397,12 +1397,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="off_orbTooltip"
                         placement="right"
                       >
                         Offensive rebounding % in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1469,12 +1469,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="def_orbTooltip"
                         placement="right"
                       >
                         Defensive rebounding % in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1541,12 +1541,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="def_2primTooltip"
                         placement="right"
                       >
                         Block % in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >
@@ -1613,12 +1613,12 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   },
                   "feature": <OverlayTrigger
                     overlay={
-                      <ForwardRef
+                      <Tooltip
                         id="def_ftrTooltip"
                         placement="right"
                       >
                         Fouls called/50 possessions in selected lineups
-                      </ForwardRef>
+                      </Tooltip>
                     }
                     placement="auto"
                   >

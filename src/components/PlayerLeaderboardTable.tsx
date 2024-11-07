@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -18,7 +17,8 @@ import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+// @ts-ignore
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -1708,7 +1708,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   stringToOption(gender)
                 )}
                 isSearchable={false}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newGender = (option as any).value;
                     friendlyChange(
@@ -1726,7 +1726,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   stringToOption(r)
                 )}
                 isSearchable={false}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newYear = (option as any).value;
                     friendlyChange(() => setYear(newYear), newYear != year);
@@ -1785,14 +1785,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           <Col xs={12} sm={12} md={4} lg={4}>
             <Select
               isClearable={true}
-              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               isMulti
               components={{ MultiValueContainer: PositionValueContainer }}
               value={getCurrentPositionsOrPlaceholder()}
               options={(PositionUtils.positionClasses || []).map((r) =>
                 stringToOption(r)
               )}
-              onChange={(optionsIn) => {
+              onChange={(optionsIn: any) => {
                 const options = optionsIn as Array<any>;
                 const selection = (options || []).map(
                   (option) => (option as any)?.value || ""
@@ -1835,7 +1835,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 className="w-75"
                 value={sortStringToOption(sortBy)}
                 options={groupedOptions}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newSortBy = (option as any)?.value;
                     friendlyChange(

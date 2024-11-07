@@ -5,12 +5,13 @@ import React, { useState } from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 // Library imports:
+//@ts-ignore
 import Select from "react-select";
 
 // Component imports:
@@ -491,12 +492,12 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
               <Col xs={12} sm={12} md={12} lg={6}>
                 <Select
                   isClearable={false}
-                  styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+                  styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
                   options={[stringToOption(AvailableTeams.noOpponent)].concat(
                     teamList.map((r) => stringToOption(r.team))
                   )}
-                  onChange={(option) => {
+                  onChange={(option: any) => {
                     setGame((option as any)?.value);
                   }}
                 />

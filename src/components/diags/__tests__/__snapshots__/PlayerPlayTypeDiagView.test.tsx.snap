@@ -26,13 +26,13 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             GenericTableTextRow {
               "className": "",
               "kind": "text-row",
-              "text": <ForwardRef
+              "text": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   xs={3}
                 />
-                <ForwardRef
+                <Col
                   className="d-flex justify-content-center"
                   xs={3}
                 >
@@ -41,8 +41,8 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       Scored / Assisted By:
                     </span>
                   </i>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   className="d-flex justify-content-center"
                   xs={6}
                 >
@@ -51,8 +51,8 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       Assists:
                     </span>
                   </i>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
@@ -121,12 +121,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="unassistTooltip"
                       placement="right"
                     >
                       All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -155,12 +155,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="assistTooltip"
                       placement="right"
                     >
                       All plays where the player was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -530,12 +530,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="transTooltip"
                       placement="right"
                     >
                       All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -567,12 +567,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="scrambleTooltip"
                       placement="right"
                     >
                       All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -833,13 +833,13 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             GenericTableTextRow {
               "className": "",
               "kind": "text-row",
-              "text": <ForwardRef
+              "text": <Row
                 noGutters={false}
               >
-                <ForwardRef
+                <Col
                   xs={3}
                 />
-                <ForwardRef
+                <Col
                   className="d-flex justify-content-center"
                   xs={3}
                 >
@@ -848,8 +848,8 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       Scored / Assisted By:
                     </span>
                   </i>
-                </ForwardRef>
-                <ForwardRef
+                </Col>
+                <Col
                   className="d-flex justify-content-center"
                   xs={6}
                 >
@@ -858,8 +858,8 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       Assists:
                     </span>
                   </i>
-                </ForwardRef>
-              </ForwardRef>,
+                </Col>
+              </Row>,
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
@@ -928,12 +928,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="unassistTooltip"
                       placement="right"
                     >
                       All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -962,12 +962,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="assistTooltip"
                       placement="right"
                     >
                       All plays where the player was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -1337,12 +1337,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="transTooltip"
                       placement="right"
                     >
                       All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >
@@ -1374,12 +1374,12 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 },
                 "title": <OverlayTrigger
                   overlay={
-                    <ForwardRef
+                    <Tooltip
                       id="scrambleTooltip"
                       placement="right"
                     >
                       All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
-                    </ForwardRef>
+                    </Tooltip>
                   }
                   placement="auto"
                 >

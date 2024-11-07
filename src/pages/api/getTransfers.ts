@@ -49,8 +49,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const respJson = await resp.json();
       res.setHeader("Cache-Control", "s-maxage=28800"); // requests that the CDN cache this for 12 hours or until the app redeploys
       res.status(200).json(respJson);
-    } catch (e) {
-      console.log(`Transfer error: [${e.message}]`);
+    } catch (err: unknown) {
+      console.log(
+        `Transfer error: [${err instanceof Error ? err.message : err}]`
+      );
       res.status(500).json({ error: "Unknown error" });
     }
   }

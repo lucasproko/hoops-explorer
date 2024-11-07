@@ -13,7 +13,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }
@@ -93,7 +92,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -1723,10 +1721,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -1743,14 +1745,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -1762,12 +1769,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         </div>
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Copies URL to clipboard (and saves state to history)
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -1780,10 +1787,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -1800,14 +1811,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -1824,7 +1840,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -1884,7 +1899,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -1950,12 +1964,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="garbageFilterTooltip"
               placement="right"
             >
               Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -2046,7 +2060,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }
@@ -2127,7 +2140,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -2727,10 +2739,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -2747,14 +2763,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -2766,12 +2787,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
         </div>
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Copies URL to clipboard (and saves state to history)
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -2784,10 +2805,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -2804,14 +2829,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -2828,7 +2858,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -2895,7 +2924,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               </small>
               <OverlayTrigger
                 overlay={
-                  <ForwardRef
+                  <Tooltip
                     id="qfHome"
                     placement="right"
                   >
@@ -2908,7 +2937,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
                       opponent.Home:*
                     </b>
                      directly in query fields(s).
-                  </ForwardRef>
+                  </Tooltip>
                 }
                 placement="auto"
               >
@@ -2925,7 +2954,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
             >
               <OverlayTrigger
                 overlay={
-                  <ForwardRef
+                  <Tooltip
                     id="qfAway"
                     placement="right"
                   >
@@ -2938,7 +2967,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
                       opponent.Away:*
                     </b>
                      directly in query fields(s).
-                  </ForwardRef>
+                  </Tooltip>
                 }
                 placement="auto"
               >
@@ -2961,7 +2990,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -3027,12 +3055,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="garbageFilterTooltip"
               placement="right"
             >
               Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -3084,12 +3112,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Clears and empties the page, preserving only gender / year / team settings
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -3103,10 +3131,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -3123,14 +3155,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -3154,7 +3191,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }
@@ -3235,7 +3271,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -3835,10 +3870,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -3855,14 +3894,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -3874,12 +3918,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         </div>
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Copies URL to clipboard (and saves state to history)
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -3892,10 +3936,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -3912,14 +3960,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -3936,7 +3989,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -3996,7 +4048,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -4062,12 +4113,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="garbageFilterTooltip"
               placement="right"
             >
               Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -4119,12 +4170,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Clears and empties the page, preserving only gender / year / team settings
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -4138,10 +4189,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -4158,14 +4213,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -4189,7 +4249,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }
@@ -4270,7 +4329,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -4870,10 +4928,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -4890,14 +4952,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -4909,12 +4976,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
         </div>
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Copies URL to clipboard (and saves state to history)
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -4927,10 +4994,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -4947,14 +5018,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>
@@ -4971,7 +5047,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -5037,7 +5112,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               </small>
               <OverlayTrigger
                 overlay={
-                  <ForwardRef
+                  <Tooltip
                     id="qfConf"
                     placement="right"
                   >
@@ -5046,7 +5121,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
                       in_conf:true
                     </b>
                      directly in query fields(s).
-                  </ForwardRef>
+                  </Tooltip>
                 }
                 placement="auto"
               >
@@ -5066,12 +5141,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               </small>
               <OverlayTrigger
                 overlay={
-                  <ForwardRef
+                  <Tooltip
                     id="invertedBase"
                     placement="right"
                   >
                     Inverted query generated via "auto-off" in On/Off pages - see there for more details
-                  </ForwardRef>
+                  </Tooltip>
                 }
                 placement="auto"
               >
@@ -5097,7 +5172,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           "defaultProps": Object {
             "noGutters": false,
           },
-          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -5163,12 +5237,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="garbageFilterTooltip"
               placement="right"
             >
               Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -5220,12 +5294,12 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
       >
         <OverlayTrigger
           overlay={
-            <ForwardRef
+            <Tooltip
               id="copyLinkTooltip"
               placement="right"
             >
               Clears and empties the page, preserving only gender / year / team settings
-            </ForwardRef>
+            </Tooltip>
           }
           placement="auto"
         >
@@ -5239,10 +5313,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
             variant="outline-secondary"
           >
             <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
               border={false}
+              bounce={false}
               className=""
+              fade={false}
               fixedWidth={false}
-              flip={null}
+              flip={false}
               icon={
                 Object {
                   "icon": Array [
@@ -5259,14 +5337,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               inverse={false}
               listItem={false}
               mask={null}
+              maskId={null}
               pull={null}
               pulse={false}
               rotation={null}
+              shake={false}
               size={null}
               spin={false}
+              spinPulse={false}
+              spinReverse={false}
               swapOpacity={false}
               symbol={false}
               title=""
+              titleId={null}
               transform={null}
             />
           </Button>

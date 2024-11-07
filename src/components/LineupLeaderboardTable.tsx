@@ -8,7 +8,7 @@ import { NextPage } from "next";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -21,7 +21,8 @@ import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select, { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
@@ -64,7 +65,6 @@ import {
   Power6Conferences,
 } from "../utils/public-data/ConferenceInfo";
 
-import ReactDOMServer from "react-dom/server";
 import { DateUtils } from "../utils/DateUtils";
 import { LineupStatSet, IndivPosInfo } from "../utils/StatModels";
 
@@ -761,7 +761,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
               value={stringToOption(gender)}
               options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 if ((option as any)?.value) setGender((option as any).value);
               }}
             />
@@ -773,7 +773,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 stringToOption(r)
               )}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 if ((option as any)?.value) setYear((option as any).value);
               }}
             />
@@ -782,7 +782,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           <Col xs={12} sm={12} md={6} lg={6}>
             <Select
               isClearable={true}
-              styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               isMulti
               components={{ MultiValueContainer: ConferenceValueContainer }}
               value={getCurrentConfsOrPlaceholder()}
@@ -797,7 +797,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 stringify: (option: any) =>
                   `${option.value} ${ConferenceToNickname[option.value]}`,
               })}
-              onChange={(optionsIn) => {
+              onChange={(optionsIn: any) => {
                 const options = optionsIn as Array<any>;
                 const selection = (options || []).map((option) =>
                   ((option as any)?.value || "").replace(/ *\[.*\]/, "")
@@ -904,7 +904,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 className="w-75"
                 value={sortStringToOption(sortBy)}
                 options={groupedOptions}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newSortBy = (option as any)?.value;
                     friendlyChange(

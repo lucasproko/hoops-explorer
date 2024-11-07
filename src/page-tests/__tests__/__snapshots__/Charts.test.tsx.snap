@@ -12,7 +12,8 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
       xs={12}
     >
       <h3>
-        CBB Analysis Tool - Interesting Charts 
+        CBB Analysis Tool - Interesting Charts
+         
         <span
           className="badge badge-pill badge-info"
         >
@@ -45,7 +46,6 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -87,7 +87,6 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                       "timeout": 300,
                       "unmountOnExit": false,
                     },
-                    "displayName": "Fade",
                     "render": [Function],
                   }
                 }
@@ -96,7 +95,8 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                 <em>
                   A 2-d visualization of the different positions (P6 2010-2020, all D1 2015-2020).
                   <span>
-                     A description of the fields and methodology used is 
+                     A description of the fields and methodology used is
+                     
                     <a
                       href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
                       target="_blank"
@@ -105,7 +105,8 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                     </a>
                     .
                   </span>
-                   The data came from 
+                   The data came from
+                   
                   <a
                     href="http://adamcwisports.blogspot.com/p/data.html"
                     target="_blank"
@@ -144,7 +145,6 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                       "timeout": 300,
                       "unmountOnExit": false,
                     },
-                    "displayName": "Fade",
                     "render": [Function],
                   }
                 }

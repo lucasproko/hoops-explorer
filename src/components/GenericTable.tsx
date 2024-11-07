@@ -7,11 +7,10 @@ import { NextPage } from "next";
 // Lodash:
 import _ from "lodash";
 
-import "./GenericTable.css";
+import styles from "./GenericTable.module.css";
 import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -534,7 +533,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
       const valBuilder = (inVal: any) => {
         try {
           return colProp.formatter(inVal);
-        } catch (e) {
+        } catch (err: unknown) {
           //handle formatting errors by making it return blank
           return "";
         }
@@ -584,7 +583,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             <div>
               {viewVal}
               <small>
-                <sup className="infoBadge"></sup>
+                <sup className={styles.infoBadge}></sup>
               </small>
             </div>
           ) : (

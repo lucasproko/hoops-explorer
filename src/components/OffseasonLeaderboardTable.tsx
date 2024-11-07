@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -16,7 +16,8 @@ import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faPen, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -132,31 +133,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     }
   );
 
-  /** Keyboard listener - handles global page overrides while supporting individual components */
-  const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
-    const allowKeypress = () => {
-      //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
-      return inAutoSuggest || notFromFilterAutoSuggest(event);
-    };
-    if (
-      event.code === "Enter" ||
-      event.code === "NumpadEnter" ||
-      event.keyCode == 13 ||
-      event.keyCode == 14
-    ) {
-      if (allowKeypress() && queryFilters != tmpQueryFilters) {
-        friendlyChange(() => {
-          setQueryFilters(tmpQueryFilters);
-        }, true);
-      } else if (event && event.preventDefault) {
-        event.preventDefault();
-      }
-    } else if (event.code == "Escape" || event.keyCode == 27) {
-      if (allowKeypress()) {
-        document.body.click(); //closes any overlays (like history) that have rootClick
-      }
-    }
-  };
   const maybeFilterPromptTooltip = (
     <Tooltip id="maybeFilterPromptTooltip">
       Press Enter to apply this filter (current filter [{queryFilters}])
@@ -493,7 +469,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                   JSON.stringify(currRosterJson, null, 3)
                 );
               }
-            } catch (err) {
+            } catch (err: unknown) {
               //(this can happen if the team rosters aren't available yet, so just skip)
               //(DEBUG)
               //console.log(`Roster filename [${filename}] doesn't exist`);
@@ -1137,7 +1113,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 /* currently only support Men */
               }
@@ -1155,7 +1131,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               ) //(can't eval year that hasn't happened yet)
               .map((r) => stringToOption(r))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 /* currently only support 2022/23 - but lets other years be specified to jump between off-season predictions and previous results */
                 setYear((option as any)?.value);
@@ -1253,8 +1229,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                       .map((s) => s + ";")}
                     value={tmpQueryFilters}
                     onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                    onSelectionChanged={(newStr: string) =>
+                      friendlyChange(() => {
+                        setQueryFilters(newStr);
+                      }, newStr != queryFilters)
+                    }
                     onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
-                    onKeyDown={submitListenerFactory(true)}
                   />
                 </div>
               </InputGroup>
@@ -1263,11 +1243,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           {transferInOutMode ? (
             <Col xs={12} sm={12} md={4} lg={4}>
               <Select
-                styles={{ menu: (base) => ({ ...base, zIndex: 1000 }) }}
+                styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                 value={sortByOptions[sortBy]}
                 options={_.values(sortByOptions)}
                 isSearchable={false}
-                onChange={(option) => {
+                onChange={(option: any) => {
                   if ((option as any)?.value) {
                     const newSortBy = (option as any)?.value || "net";
                     friendlyChange(

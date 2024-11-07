@@ -40,7 +40,8 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         </b>
         ]
         <span>
-           (hand-overwritten to 
+           
+          (hand-overwritten to 
           <b>
             0.50
           </b>

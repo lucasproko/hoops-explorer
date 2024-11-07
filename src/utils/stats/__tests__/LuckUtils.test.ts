@@ -102,13 +102,13 @@ describe("LuckUtils", () => {
       {
         ...samplePlayersOn[0],
         total_off_3p_attempts: { value: 0 },
-      } as TeamStatSet,
+      } as unknown as TeamStatSet,
       [samplePlayersOn[0]],
       basePlayers[0],
       { [basePlayers[0].key]: basePlayers[0] },
       100.0,
       samplePlayersOn[0].total_off_3p_attempts.value!
-    );
+    ) as unknown as TeamStatSet;
     expect(offPlayerLuckAdj.sample3PA).toEqual(
       offTeamLuckAdjWithOverride.sample3PA
     );

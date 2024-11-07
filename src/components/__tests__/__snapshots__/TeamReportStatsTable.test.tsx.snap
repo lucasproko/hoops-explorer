@@ -39,7 +39,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -66,7 +65,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -1266,7 +1264,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -1283,7 +1280,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               onSelect={[Function]}
               text={
                 <span>
-                  Show replacement On-Off 
+                  Show replacement On-Off
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -1298,7 +1296,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               onSelect={[Function]}
               text={
                 <span>
-                  Show RAPM 
+                  Show RAPM
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -1321,7 +1320,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               onSelect={[Function]}
               text={
                 <span>
-                  Adjust for Luck 
+                  Adjust for Luck
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -2279,12 +2279,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -2742,12 +2742,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -3634,12 +3634,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -4097,12 +4097,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -4989,12 +4989,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -5452,12 +5452,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -6363,12 +6363,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -6845,12 +6845,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -7756,12 +7756,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -8238,12 +8238,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -9149,12 +9149,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -9631,12 +9631,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -9961,7 +9961,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -9988,7 +9987,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -11572,7 +11570,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -11589,7 +11586,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show replacement On-Off 
+                  Show replacement On-Off
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -11604,7 +11602,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show RAPM 
+                  Show RAPM
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -11627,7 +11626,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Adjust for Luck 
+                  Adjust for Luck
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -12677,12 +12677,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -13140,12 +13140,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -14682,12 +14682,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -15145,12 +15145,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -16687,12 +16687,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -17150,12 +17150,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -18757,12 +18757,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -19285,12 +19285,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -21028,12 +21028,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -21556,12 +21556,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -23299,12 +23299,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -23827,12 +23827,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -24851,7 +24851,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -24878,7 +24877,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -26462,7 +26460,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -26479,7 +26476,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show replacement On-Off 
+                  Show replacement On-Off
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -26494,7 +26492,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show RAPM 
+                  Show RAPM
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -26517,7 +26516,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Adjust for Luck 
+                  Adjust for Luck
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -27475,12 +27475,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -27938,12 +27938,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -29388,12 +29388,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -29851,12 +29851,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -31301,12 +31301,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -31764,12 +31764,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -33233,12 +33233,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -33715,12 +33715,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -35216,12 +35216,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -35698,12 +35698,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -37199,12 +37199,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -37681,12 +37681,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -38601,7 +38601,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -38628,7 +38627,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -40212,7 +40210,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -40229,7 +40226,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show replacement On-Off 
+                  Show replacement On-Off
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -40244,7 +40242,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show RAPM 
+                  Show RAPM
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -40267,7 +40266,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Adjust for Luck 
+                  Adjust for Luck
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -41225,12 +41225,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -41688,12 +41688,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -43590,12 +43590,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -44053,12 +44053,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -45955,12 +45955,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -46418,12 +46418,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -48339,12 +48339,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -48821,12 +48821,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -51544,12 +51544,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -52026,12 +52026,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -54749,12 +54749,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -55231,12 +55231,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -57373,7 +57373,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -57400,7 +57399,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -58984,7 +58982,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -59001,7 +58998,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show replacement On-Off 
+                  Show replacement On-Off
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -59016,7 +59014,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show RAPM 
+                  Show RAPM
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -59039,7 +59038,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Adjust for Luck 
+                  Adjust for Luck
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -59997,12 +59997,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -60460,12 +60460,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -61497,10 +61497,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 GenericTableTextRow {
                   "className": "",
                   "kind": "text-row",
-                  "text": <ForwardRef
+                  "text": <Container
                     fluid={false}
                   >
-                    <ForwardRef
+                    <Row
                       noGutters={false}
                     >
                       <span>
@@ -61519,12 +61519,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           (?)
                         </a>
                       </span>
-                    </ForwardRef>
-                    <ForwardRef
+                    </Row>
+                    <Row
                       className="small"
                       noGutters={false}
                     >
-                      <ForwardRef>
+                      <Col>
                         Sort by:
                         <span>
                           <span>
@@ -61583,9 +61583,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                             Worst Def
                           </a>
                         </span>
-                      </ForwardRef>
-                    </ForwardRef>
-                  </ForwardRef>,
+                      </Col>
+                    </Row>
+                  </Container>,
                 },
                 GenericTableSeparator {
                   "kind": "separator",
@@ -61896,7 +61896,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -61923,7 +61922,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -63123,7 +63121,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "Col",
               "render": [Function],
             }
           }
@@ -63140,7 +63137,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show replacement On-Off 
+                  Show replacement On-Off
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -63155,7 +63153,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Show RAPM 
+                  Show RAPM
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -63178,7 +63177,8 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               onSelect={[Function]}
               text={
                 <span>
-                  Adjust for Luck 
+                  Adjust for Luck
+                   
                   <span
                     className="badge badge-pill badge-info"
                   >
@@ -64136,12 +64136,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -64599,12 +64599,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -65491,12 +65491,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -65954,12 +65954,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -66846,12 +66846,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -67309,12 +67309,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -68220,12 +68220,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -68702,12 +68702,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -69613,12 +69613,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -70095,12 +70095,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -71006,12 +71006,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >
@@ -71488,12 +71488,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         <br />
                                         <OverlayTrigger
                                           overlay={
-                                            <ForwardRef
+                                            <Tooltip
                                               id="playerOnOffTooltip"
                                               placement="right"
                                             >
                                               Open a tab with the on/off analysis for this player
-                                            </ForwardRef>
+                                            </Tooltip>
                                           }
                                           placement="auto"
                                         >

@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 import _, { isNumber, some, values } from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -16,7 +16,8 @@ import Button from "react-bootstrap/Button";
 
 // Additional components:
 // @ts-ignore
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
+//@ts-ignore
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -92,7 +93,6 @@ import {
 } from "../utils/public-data/ConferenceInfo";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
-import { SelectComponents } from "react-select/src/components";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { ScatterChartUtils } from "../utils/charts/ScatterChartUtils";
 import GenericCollapsibleCard from "./shared/GenericCollapsibleCard";
@@ -1617,7 +1617,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             value={stringToOption("Men")}
             options={["Men"].map((gender) => stringToOption(gender))}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               if ((option as any)?.value) {
                 /* currently only support Men */
               }
@@ -1631,7 +1631,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
               .concat(_.keys(multiYearScenarios))
               .map(stringToOption)}
             isSearchable={false}
-            onChange={(option) => {
+            onChange={(option: any) => {
               const maybeYear = (option as any)?.value;
               if (maybeYear) {
                 friendlyChange(() => setYear(maybeYear), maybeYear != year);
@@ -1859,13 +1859,13 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 { SingleValue: ColorMapSingleValue }
               }
               styles={{
-                singleValue: (provided, __) => ({
+                singleValue: (provided: any, __: any) => ({
                   ...provided,
                   width: "100%",
                 }),
               }}
               isSearchable={false}
-              onChange={(option) => {
+              onChange={(option: any) => {
                 const newColorMap = (option as any)?.value || "Black";
                 friendlyChange(() => {
                   setDotColorMap(newColorMap);

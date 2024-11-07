@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {
   Dropdown,
   Form,

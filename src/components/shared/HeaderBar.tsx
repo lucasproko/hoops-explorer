@@ -6,7 +6,6 @@ import Link from "next/link";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -382,7 +381,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   };
 
   const dropdownStyle = {
-    width: "40px",
     left: "50%",
     marginLeft: "-20px",
   };

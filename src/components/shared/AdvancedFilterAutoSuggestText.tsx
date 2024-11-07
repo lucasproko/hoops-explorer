@@ -1,19 +1,18 @@
 // React imports:
-import React, { useState, useEffect, createRef } from "react";
-import Router from "next/router";
+import React, {
+  useState,
+  useEffect,
+  createRef,
+  ChangeEventHandler,
+} from "react";
 
 // Lodash
 import _ from "lodash";
 
-// Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
-
 // Library imports:
 
 // Additional components:
-// @ts-ignore
-import TextInput from "react-autocomplete-input";
-import "react-autocomplete-input/dist/bundle.css";
+import TextAreaAutocomplete from "./TextAreaAutocomplete";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromFilterAutoSuggest = (event: any) => {
@@ -50,12 +49,12 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = ({
 
   const isDebug = process.env.NODE_ENV !== "production";
 
-  const textRef = createRef();
+  const textRef = createRef<HTMLTextAreaElement>();
 
   // View
 
   return (
-    <TextInput
+    <TextAreaAutocomplete
       ref={textRef}
       Component={"textarea"}
       style={{ minHeight: "2.4rem", height: "2.4rem" }}
@@ -69,37 +68,27 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = ({
       regex='^[A-Za-z0-9\\-_"]+$'
       matchAny={true}
       maxOptions={18}
-      spaceRemovers={[";", ")", ":", "]"]}
-      onChange={(eventText: string) => {
-        setCurrText(eventText);
-        onChange({ target: { value: eventText } });
-      }}
+      spaceRemovers={[";", ")", ":", "]", " "]}
+      passThroughEnter={true}
+      passThroughTab={false}
+      onChange={
+        ((eventText: string) => {
+          setCurrText(eventText);
+          onChange({ target: { value: eventText } });
+        }) as ((value: string) => void) &
+          ChangeEventHandler<HTMLTextAreaElement>
+      }
       onBlur={(ev: any) => {
         const currentTextRef = textRef.current as any;
         setTimeout(() => {
           //(give out of order events a chance!)
           try {
             currentTextRef.resetHelper();
-          } catch (e) {}
+          } catch (err: unknown) {}
         }, 100);
       }}
       onKeyUp={onKeyUp}
-      onKeyDown={(ev: any) => {
-        // Understanding this requires understanding of internals:
-        //https://github.com/yury-dymov/react-autocomplete-input/blob/master/src/AutoCompleteTextField.js
-        if (ev.keyCode == 9) {
-          const underlyingObj = textRef.current as any;
-          if (underlyingObj.state.helperVisible) {
-            ev.preventDefault();
-            ev.keyCode = 13;
-            (textRef.current as any).handleKeyDown(ev);
-          }
-          //(else will just get passed up)
-        } else {
-          //(doesn't work for enter/return because of the CommonFilter-specific handler)
-          onKeyDown(ev);
-        }
-      }}
+      onKeyDown={onKeyDown}
     />
   );
 };

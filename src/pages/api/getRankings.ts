@@ -4,7 +4,8 @@ import _ from "lodash";
 import LRUCache from "lru-cache";
 
 import queryString from "query-string";
-import { Tabletojson } from "tabletojson";
+//@ts-ignore
+import { tabletojson } from "tabletojson";
 import { DateUtils } from "../../utils/DateUtils";
 
 const rankingCache = new LRUCache<string, Record<string, any>>({
@@ -35,7 +36,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const getNetInfo = await fetch(url);
         const getNetInfoBody = await getNetInfo.text();
 
-        const netInfoJson = Tabletojson.convert(getNetInfoBody);
+        const netInfoJson = tabletojson.convert(getNetInfoBody);
         const parsedNetInfoJson = _.transform(
           netInfoJson?.[0] || [],
           (acc, teamObj: any, index: number) => {

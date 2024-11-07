@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -17,6 +17,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Container from "react-bootstrap/Container";
 
 // Additional components
+//@ts-ignore
 import Select, { components } from "react-select";
 import GenericTable, { GenericTableOps } from "../GenericTable";
 
@@ -26,6 +27,7 @@ import { CbbColors } from "../../utils/CbbColors";
 import { OnBallDefenseModel } from "../../utils/stats/RatingUtils";
 import { OnBallDefenseUtils } from "../../utils/stats/OnBallDefenseUtils";
 import { IndivStatSet, PureStatSet } from "../../utils/StatModels";
+//@ts-ignore
 import Input from "react-select/src/components/Input";
 
 // External Data Model

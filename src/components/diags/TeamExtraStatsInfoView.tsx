@@ -4,7 +4,6 @@ import React from "react";
 import _ from "lodash";
 
 // Bootstrap imports:
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";

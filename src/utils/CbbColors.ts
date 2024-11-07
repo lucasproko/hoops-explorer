@@ -1,4 +1,3 @@
-import { Color } from "chroma-js";
 import chroma from "chroma-js";
 import _ from "lodash";
 
