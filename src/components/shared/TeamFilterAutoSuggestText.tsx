@@ -13,7 +13,6 @@ import _ from "lodash";
 
 // Additional components:
 import TextAreaAutocomplete from "./TextAreaAutocomplete";
-import { on } from "events";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromFilterAutoSuggest = (event: any) => {

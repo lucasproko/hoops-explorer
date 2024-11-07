@@ -428,7 +428,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       onBlur?.(e);
     };
 
-    //TODO: with 0 triggers this duplicates the first char for re-autocompleting a string
     const handleSelection = (idx: number) => {
       const slug = stateOptions[idx];
       const value = recentValue.current!;
@@ -444,6 +443,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       const changedStr = changeOnSelect(stateTrigger!, slug);
 
       event.target.value = `${part1}${changedStr}${spacer}${part2}`;
+
       handleChange(event as any);
       onSelect?.(event.target.value);
 
@@ -488,7 +488,12 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
             if (!passThroughEnter) {
               event.preventDefault();
             }
-            handleSelection(selection);
+            // (sometimes the helper is visible but empty, in such cases treat enter as a normal key)
+            if (stateOptions[selection]) {
+              handleSelection(selection);
+            } else {
+              onKeyDown?.(event);
+            }
             break;
           case KEY_TAB:
             if (!passThroughTab) {

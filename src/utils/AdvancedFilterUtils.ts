@@ -83,7 +83,7 @@ export class AdvancedFilterUtils {
       "def_adj_rtg",
       "def_adj_prod",
       "def_adj_rapm",
-      "def_adj_prod",
+      "def_adj_prod_rapm",
       "def_adj_rtg_rank",
       "def_adj_prod_rank",
       "def_adj_rapm_rank",
