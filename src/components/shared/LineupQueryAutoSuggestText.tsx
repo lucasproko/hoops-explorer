@@ -25,7 +25,6 @@ import {
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
 import { QueryUtils } from "../../utils/QueryUtils";
-import AutocompleteTextField from "react-autocomplete-input";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromAutoSuggest = (event: any) => {
@@ -220,7 +219,9 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
       regex='^[A-Za-z0-9\\-_"]+$'
       matchAny={true}
       maxOptions={18}
-      spaceRemovers={[";", ")", ":", "]"]}
+      spaceRemovers={[";", ")", ":", "]", " "]}
+      passThroughEnter={true}
+      passThroughTab={false}
       onChange={
         ((eventText: string) => {
           onChange({ target: { value: eventText } });
@@ -237,22 +238,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
         }, 100);
       }}
       onKeyUp={onKeyUp}
-      onKeyDown={(ev: any) => {
-        // Understanding this requires understanding of internals:
-        //https://github.com/yury-dymov/react-autocomplete-input/blob/master/src/AutoCompleteTextField.js
-        if (ev.keyCode == 9) {
-          const underlyingObj = textRef.current as any;
-          if (underlyingObj.state.helperVisible) {
-            ev.preventDefault();
-            ev.keyCode = 13;
-            (textRef.current as any).handleKeyDown(ev);
-          }
-          //(else will just get passed up)
-        } else {
-          //(doesn't work for enter/return because of the CommonFilter-specific handler)
-          onKeyDown(ev);
-        }
-      }}
+      onKeyDown={onKeyDown}
     />
   );
 };

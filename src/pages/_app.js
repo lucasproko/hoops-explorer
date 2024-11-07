@@ -6,9 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Need this for FA to work with favicons
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
-// Auto-complete
-import "react-autocomplete-input/dist/bundle.css";
-
 const App = ({ Component, pageProps }) => (
   <>
     <Head>
