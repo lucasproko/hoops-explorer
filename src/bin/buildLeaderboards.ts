@@ -117,8 +117,11 @@ export const setTestModeOn = () => {
 };
 /** Have to disable RAPM in test mode */
 var ignoreRapm = false;
+
+//TODO: we're not using this right now so avoid changing the (GH managed) roster files
+// until we do
 /** Don't overwrite rosters in test mode */
-var ignoreRosterEnrichment = false;
+var ignoreRosterEnrichment = true;
 
 /** Exported for test only */
 export const savedLineups = [] as Array<any>;
