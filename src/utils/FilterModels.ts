@@ -11,6 +11,7 @@ export class ParamPrefixes {
   static readonly roster = "roster-";
   static readonly player = "player-";
   static readonly gameInfo = "gameInfo-";
+  static readonly shots = "shots-";
   static readonly team = "team-"; //(only used for HeaderBar)
   static readonly defensiveInfo = "defensiveInfo-"; //(only used for HeaderBar)
 }
@@ -22,6 +23,7 @@ export type ParamPrefixesType =
   | "roster-"
   | "player-"
   | "gameInfo-"
+  | "shots-"
   | "defensiveInfo-";
 
 /** The common luck config */
@@ -123,6 +125,7 @@ export type GameFilterParams = {
   showTeamPlayTypes?: boolean;
   showRoster?: boolean;
   showGameInfo?: boolean;
+  teamShotCharts?: boolean;
   // Manual override:
   manual?: ManualOverride[];
   showPlayerManual?: boolean;
@@ -320,12 +323,9 @@ export type TeamReportFilterParams = {
 /** Used to give compile errors if a field is omitted, for fw compat */
 export type RequiredTeamReportFilterParams = {
   [P in keyof TeamReportFilterParams]?: TeamReportFilterParams[P];
-} &
-  {
-    [P in keyof Required<CommonFilterParams>]:
-      | CommonFilterParams[P]
-      | undefined;
-  };
+} & {
+  [P in keyof Required<CommonFilterParams>]: CommonFilterParams[P] | undefined;
+};
 
 export class ParamDefaults {
   // Game

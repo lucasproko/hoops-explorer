@@ -220,6 +220,8 @@ export class RequestUtils {
     switch (context) {
       case ParamPrefixes.game:
         return `/api/calculateOnOffStats?${paramStr}`;
+      case ParamPrefixes.shots:
+        return `/api/calculateShotStats?${paramStr}`;
       case ParamPrefixes.lineup:
         return `/api/calculateLineupStats?${paramStr}`;
       case ParamPrefixes.lineupStints:

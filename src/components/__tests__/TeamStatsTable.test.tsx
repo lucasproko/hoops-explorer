@@ -76,6 +76,12 @@ describe("TeamStatsTable", () => {
         dataEvent={{
           teamStats: testData,
           rosterStats: { on: [], off: [], baseline: [], global: [] },
+          shotStats: {
+            hits: 0,
+            on: { off: {}, def: {} },
+            off: { off: {}, def: {} },
+            baseline: { off: {}, def: {} },
+          },
           lineupStats: [],
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
@@ -134,6 +140,12 @@ describe("TeamStatsTable", () => {
         dataEvent={{
           teamStats: testData,
           rosterStats: testRosterData,
+          shotStats: {
+            hits: 0,
+            on: { off: {}, def: {} },
+            off: { off: {}, def: {} },
+            baseline: { off: {}, def: {} },
+          },
           lineupStats: [], // empty table
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
@@ -196,6 +208,12 @@ describe("TeamStatsTable", () => {
         dataEvent={{
           teamStats: testData,
           rosterStats: testRosterData,
+          shotStats: {
+            hits: 0,
+            on: { off: {}, def: {} },
+            off: { off: {}, def: {} },
+            baseline: { off: {}, def: {} },
+          },
           lineupStats: [], //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
         }}
         onChangeState={(newParams: GameFilterParams) => {}}

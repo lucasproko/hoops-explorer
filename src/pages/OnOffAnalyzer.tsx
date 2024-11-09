@@ -1,44 +1,63 @@
 // Google analytics:
-import { initGA, logPageView } from '../utils/GoogleAnalytics';
+import { initGA, logPageView } from "../utils/GoogleAnalytics";
 
 // React imports:
-import React, { useState, useEffect, useRef } from 'react';
-import Router, { useRouter } from 'next/router';
-import Link from 'next/link';
+import React, { useState, useEffect, useRef } from "react";
+import Router, { useRouter } from "next/router";
+import Link from "next/link";
 
 // Next imports:
-import { NextPage } from 'next';
+import { NextPage } from "next";
 
 // Lodash:
 import _ from "lodash";
 
 // Bootstrap imports:
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // App components:
-import GameFilter from '../components/GameFilter';
-import { ParamDefaults, ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
-import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
-import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
-import { LineupStatsModel } from '../components/LineupStatsTable';
-import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
-import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
-import Footer from '../components/shared/Footer';
-import HeaderBar from '../components/shared/HeaderBar';
+import GameFilter from "../components/GameFilter";
+import {
+  ParamDefaults,
+  ParamPrefixes,
+  GameFilterParams,
+  LineupFilterParams,
+} from "../utils/FilterModels";
+import TeamStatsTable, { TeamStatsModel } from "../components/TeamStatsTable";
+import RosterStatsTable, {
+  RosterStatsModel,
+} from "../components/RosterStatsTable";
+import { LineupStatsModel } from "../components/LineupStatsTable";
+import RosterCompareTable, {
+  RosterCompareModel,
+} from "../components/RosterCompareTable";
+import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard";
+import Footer from "../components/shared/Footer";
+import HeaderBar from "../components/shared/HeaderBar";
 
 // Utils:
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import {
+  StatModels,
+  OnOffBaselineEnum,
+  OnOffBaselineGlobalEnum,
+  PlayerCode,
+  PlayerId,
+  Statistic,
+  IndivStatSet,
+  TeamStatSet,
+  LineupStatSet,
+  ShotStatsModel,
+} from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
-import { HistoryManager } from '../utils/HistoryManager';
-import { ClientRequestCache } from '../utils/ClientRequestCache';
+import { HistoryManager } from "../utils/HistoryManager";
+import { ClientRequestCache } from "../utils/ClientRequestCache";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
-
-  useEffect(() => { // Set up GA
-    if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
+  useEffect(() => {
+    // Set up GA
+    if (process.env.NODE_ENV === "production" && typeof window !== undefined) {
       if (!gaInited) {
         initGA();
         setGaInited(true);
@@ -49,28 +68,56 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   // Team Stats interface
 
-  const [ gaInited, setGaInited ] = useState(false);
-  const [ dataEvent, setDataEvent ] = useState({
-    teamStats: { on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam() } as TeamStatsModel,
-    rosterStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
-    lineupStats: [] as LineupStatsModel[]
+  const [gaInited, setGaInited] = useState(false);
+  const [dataEvent, setDataEvent] = useState({
+    teamStats: {
+      on: StatModels.emptyTeam(),
+      off: StatModels.emptyTeam(),
+      baseline: StatModels.emptyTeam(),
+      global: StatModels.emptyTeam(),
+    } as TeamStatsModel,
+    rosterStats: {
+      on: [],
+      off: [],
+      baseline: [],
+      global: [],
+    } as RosterStatsModel,
+    shotStats: {
+      hits: 0,
+      on: { off: {}, def: {} },
+      off: { off: {}, def: {} },
+      baseline: { off: {}, def: {} },
+    } as ShotStatsModel,
+    lineupStats: [] as LineupStatsModel[],
   });
-  const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
+  const [rosterCompareStats, setRosterCompareStats] = useState({
+    on: {},
+    off: {},
+    baseline: {},
+  } as RosterCompareModel);
 
   const injectStats = (
-    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]
+    teamStats: TeamStatsModel,
+    rosterCompareStats: RosterCompareModel,
+    rosterStats: RosterStatsModel,
+    shotStats: ShotStatsModel,
+    lineupStats: LineupStatsModel[]
   ) => {
-    setDataEvent({teamStats, rosterStats, lineupStats});
+    setDataEvent({ teamStats, rosterStats, shotStats, lineupStats });
     setRosterCompareStats(rosterCompareStats);
-  }
+  };
 
   // Game and Lineup filters
 
-  const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "" : window.location.search;
+  const allParams =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? ""
+      : window.location.search;
 
-  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname
+  const server =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? "server"
+      : window.location.hostname;
 
   // Some cache management easter eggs, for development:
   if (allParams.indexOf("__clear_cache__") >= 0) {
@@ -82,73 +129,123 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     HistoryManager.clearHistory();
   }
 
-  const [ gameFilterParams, setGameFilterParams ] = useState(
+  const [gameFilterParams, setGameFilterParams] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
-  )
+  );
   const gameFilterParamsRef = useRef<GameFilterParams>();
   gameFilterParamsRef.current = gameFilterParams;
 
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
   }
-  const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
+  const [shouldForceReload, setShouldForceReload] = useState(0 as number);
 
   const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
     /** We're going to want to remove the manual options if the year changes */
-    const yearTeamGenderChange = (rawParams: GameFilterParams, currParams: GameFilterParams) => {
-      return (rawParams.year != currParams.year) ||
-              (rawParams.gender != currParams.gender) ||
-              (rawParams.team != currParams.team);
-    }
+    const yearTeamGenderChange = (
+      rawParams: GameFilterParams,
+      currParams: GameFilterParams
+    ) => {
+      return (
+        rawParams.year != currParams.year ||
+        rawParams.gender != currParams.gender ||
+        rawParams.team != currParams.team
+      );
+    };
 
     // Omit all the defaults
-    const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      // TeamStatsTable
-      //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
-      yearTeamGenderChange(rawParams, gameFilterParamsRef.current || {}) ? [ 'manual' ] : [],
-      _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
-      !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
-      (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
-      (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
-      (rawParams.teamDiffs == false) ? [ 'teamDiffs' ] : [],
-      (rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes) ? [ 'showTeamPlayTypes' ] : [],
-      (rawParams.showExtraInfo == false) ? [ 'showExtraInfo' ] : [],
-      (rawParams.showRoster == ParamDefaults.defaultTeamShowRoster) ? [ 'showRoster' ] : [],
-      (rawParams.showGameInfo == ParamDefaults.defaultTeamShowGameInfo) ? [ 'showGameInfo' ] : [],
-      (rawParams.showGrades == "") ? [ 'showGrades' ] : [],
-      // RosterStatsTable
-      (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
-      (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
-      (rawParams.showBase == ParamDefaults.defaultPlayerShowBase) ? [ 'showBase' ] : [],
-      (rawParams.showExpanded == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
-      (rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
-      (rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
-      (rawParams.factorMins == ParamDefaults.defaultPlayerFactorMins) ? [ 'factorMins' ] : [],
-      (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
-      (rawParams.showPlayerPlayTypes == ParamDefaults.defaultPlayerShowPlayTypes) ? [ 'showPlayerPlayTypes' ] : [],
-      (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
-      (rawParams.showOnBallConfig == false) ? [ 'showOnBallConfig' ] : [],
-      (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
-      (rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode) ? [ 'rapmPriorMode' ] : [],
-      (rawParams.rapmRegressMode == ParamDefaults.defaultTeamReportRapmRegressMode) ? [ 'rapmRegressMode' ] : [],
-      (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
-    ]));
-    if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
+    const params = _.omit(
+      rawParams,
+      _.flatten([
+        // omit all defaults
+        // TeamStatsTable
+        //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
+        yearTeamGenderChange(rawParams, gameFilterParamsRef.current || {})
+          ? ["manual"]
+          : [],
+        _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig)
+          ? ["luck"]
+          : [],
+        !rawParams.onOffLuck ? ["onOffLuck"] : [],
+        rawParams.showPlayerOnOffLuckDiags ==
+        ParamDefaults.defaultOnOffLuckDiagMode
+          ? ["showPlayerOnOffLuckDiags"]
+          : [],
+        rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode
+          ? ["showOnOffLuckDiags"]
+          : [],
+        rawParams.teamDiffs == false ? ["teamDiffs"] : [],
+        rawParams.showTeamPlayTypes == ParamDefaults.defaultTeamShowPlayTypes
+          ? ["showTeamPlayTypes"]
+          : [],
+        rawParams.showExtraInfo == false ? ["showExtraInfo"] : [],
+        rawParams.showRoster == ParamDefaults.defaultTeamShowRoster
+          ? ["showRoster"]
+          : [],
+        rawParams.showGameInfo == ParamDefaults.defaultTeamShowGameInfo
+          ? ["showGameInfo"]
+          : [],
+        !rawParams.teamShotCharts ? ["teamShotCharts"] : [],
+        rawParams.showGrades == "" ? ["showGrades"] : [],
+        // RosterStatsTable
+        rawParams.sortBy == ParamDefaults.defaultPlayerSortBy ? ["sortBy"] : [],
+        rawParams.filter == ParamDefaults.defaultPlayerFilter ? ["filter"] : [],
+        rawParams.showBase == ParamDefaults.defaultPlayerShowBase
+          ? ["showBase"]
+          : [],
+        rawParams.showExpanded == ParamDefaults.defaultPlayerShowExpanded
+          ? ["showExpanded"]
+          : [],
+        rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode
+          ? ["showDiag"]
+          : [],
+        rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct
+          ? ["possAsPct"]
+          : [],
+        rawParams.factorMins == ParamDefaults.defaultPlayerFactorMins
+          ? ["factorMins"]
+          : [],
+        rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode
+          ? ["showPosDiag"]
+          : [],
+        rawParams.showPlayerPlayTypes ==
+        ParamDefaults.defaultPlayerShowPlayTypes
+          ? ["showPlayerPlayTypes"]
+          : [],
+        rawParams.showPlayerManual == false ? ["showPlayerManual"] : [],
+        rawParams.showOnBallConfig == false ? ["showOnBallConfig"] : [],
+        rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm
+          ? ["calcRapm"]
+          : [],
+        rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode
+          ? ["rapmPriorMode"]
+          : [],
+        rawParams.rapmRegressMode ==
+        ParamDefaults.defaultTeamReportRapmRegressMode
+          ? ["rapmRegressMode"]
+          : [],
+        !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+      ])
+    );
+    if (!_.isEqual(params, gameFilterParamsRef.current)) {
+      //(to avoid recursion)
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
-        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+        setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       if (params.showRoster != gameFilterParamsRef.current?.showRoster) {
-        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+        setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       if (params.showGameInfo != gameFilterParamsRef.current?.showGameInfo) {
-        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+        setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       // Because changing the params in one table merges that table's params with the last set
       // when the other table's memo was refreshed, currently we to always refresh the memo on both
       // tables whenever any memo changes
       // TODO: of course this can be done much more elegantly/efficiently
-      setDataEvent(d => { return  { ...d } }); //(leave data unchanged but fool the useMemo below)
+      setDataEvent((d) => {
+        return { ...d };
+      }); //(leave data unchanged but fool the useMemo below)
 
       const href = getRootUrl(params);
       const as = href;
@@ -160,7 +257,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       Router.replace(href, as, { shallow: true });
       setGameFilterParams(params); //(to ensure the new params are included in links)
     }
-  }
+  };
 
   // View
 
@@ -174,67 +271,85 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   /** Only rebuild the table if the data changes, or if luck changes (see above) */
   const teamStatsTable = React.useMemo(() => {
-    return <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
-      <TeamStatsTable
-        gameFilterParams={gameFilterParams}
-        dataEvent={dataEvent}
-        onChangeState={onGameFilterParamsChange}
-      />
-    </GenericCollapsibleCard>
-  }, [ dataEvent ]);
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Team Analysis"
+        helpLink={maybeShowDocs()}
+      >
+        <TeamStatsTable
+          gameFilterParams={gameFilterParams}
+          dataEvent={dataEvent}
+          onChangeState={onGameFilterParamsChange}
+        />
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent]);
 
   /** Only rebuild the table if the data changes, or if luck changes (see above) */
   const rosterStatsTable = React.useMemo(() => {
-    return  <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
-      <RosterStatsTable
-        gameFilterParams={gameFilterParams}
-        dataEvent={dataEvent}
-        onChangeState={onGameFilterParamsChange}
-      />
-    </GenericCollapsibleCard>
-  }, [ dataEvent ]);
-
-  return <Container>
-    <Row>
-      <Col xs={12} className="text-center">
-        <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
-      </Col>
-    </Row>
-    <Row>
-      <HeaderBar
-        common={gameFilterParams}
-        thisPage={ParamPrefixes.game}
-        />
-    </Row>
-    <Row>
+    return (
       <GenericCollapsibleCard
-        minimizeMargin={false}
-        title="Team and Game Filter"
-        summary={HistoryManager.gameFilterSummary(gameFilterParams)}
+        minimizeMargin={true}
+        title="Individual Analysis"
+        helpLink={maybeShowDocs()}
       >
-        <GameFilter
-          onStats={injectStats}
-          startingState={gameFilterParams}
-          onChangeState={onGameFilterParamsChange}
-          forceReload1Up={shouldForceReload}
-        />
-      </GenericCollapsibleCard>
-    </Row>
-    <Row>
-      {teamStatsTable}
-    </Row>
-    <Row>
-      {rosterStatsTable}
-    </Row>
-    <Row>
-      <GenericCollapsibleCard minimizeMargin={false} title="Lineup Comparison" helpLink={maybeShowDocs()}>
-        <RosterCompareTable
+        <RosterStatsTable
           gameFilterParams={gameFilterParams}
-          rosterCompareStats={rosterCompareStats}
+          dataEvent={dataEvent}
+          onChangeState={onGameFilterParamsChange}
         />
       </GenericCollapsibleCard>
-    </Row>
-    <Footer year={gameFilterParams.year} gender={gameFilterParams.gender} server={server}/>
-  </Container>;
-}
+    );
+  }, [dataEvent]);
+
+  return (
+    <Container>
+      <Row>
+        <Col xs={12} className="text-center">
+          <h3>
+            CBB On/Off Analysis Tool{" "}
+            <span className="badge badge-pill badge-info">BETA!</span>
+          </h3>
+        </Col>
+      </Row>
+      <Row>
+        <HeaderBar common={gameFilterParams} thisPage={ParamPrefixes.game} />
+      </Row>
+      <Row>
+        <GenericCollapsibleCard
+          minimizeMargin={false}
+          title="Team and Game Filter"
+          summary={HistoryManager.gameFilterSummary(gameFilterParams)}
+        >
+          <GameFilter
+            onStats={injectStats}
+            startingState={gameFilterParams}
+            onChangeState={onGameFilterParamsChange}
+            forceReload1Up={shouldForceReload}
+          />
+        </GenericCollapsibleCard>
+      </Row>
+      <Row>{teamStatsTable}</Row>
+      <Row>{rosterStatsTable}</Row>
+      <Row>
+        <GenericCollapsibleCard
+          minimizeMargin={false}
+          title="Lineup Comparison"
+          helpLink={maybeShowDocs()}
+        >
+          <RosterCompareTable
+            gameFilterParams={gameFilterParams}
+            rosterCompareStats={rosterCompareStats}
+          />
+        </GenericCollapsibleCard>
+      </Row>
+      <Footer
+        year={gameFilterParams.year}
+        gender={gameFilterParams.gender}
+        server={server}
+      />
+    </Container>
+  );
+};
 export default OnOffAnalyzerPage;

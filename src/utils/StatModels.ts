@@ -270,6 +270,27 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 //////////////////////////////////////
 
+export type ShotStatsModel = {
+  hits: number;
+  on: {
+    off: any;
+    def: any;
+  };
+  off: {
+    off: any;
+    def: any;
+  };
+  baseline: {
+    off: any;
+    def: any;
+  };
+} & {
+  onOffMode?: boolean;
+  error_code?: string;
+};
+
+//////////////////////////////////////
+
 /** For team leaderboard info */
 export type TeamInfo = {
   team_name: string;

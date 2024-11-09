@@ -161,6 +161,9 @@ interface HexMapProps {
 
 const redXxxGreen = chroma.scale(["red", "white", "green"]);
 
+//TODO: -5 -> 55 is X so say
+// -25 -> 25 is Y .. so (Y + 25)*12 gives 0->600
+
 const HexMap: React.FC<HexMapProps> = ({ data }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -170,7 +173,7 @@ const HexMap: React.FC<HexMapProps> = ({ data }) => {
     // 600 pixels is approx 60 ft
     // at precision 15, hexagon is 0.9ft2
 
-    const width = 800;
+    const width = 550;
     const height = 600;
     //const hexRadius = 9; // precision 15 Radius of a full-size hexagon
     //const hexRadius = Math.sqrt(63 / Math.PI); // precision 14 - area==6.267m2 Radius of a full-size hexagon
@@ -202,12 +205,12 @@ const HexMap: React.FC<HexMapProps> = ({ data }) => {
     // Define scales for x and y to map original coordinates to canvas
     const xScale = d3
       .scaleLinear()
-      .domain([-20, 60]) // Original x range
+      .domain([-5, 40]) // Original x range
       .range([0, width]); // Canvas width range
 
     const yScale = d3
       .scaleLinear()
-      .domain([-30, 30]) // Original y range
+      .domain([-26, 26]) // Original y range
       .range([height, 0]); // Invert y scale to make top of canvas 0
 
     // Set up the hexbin generator
@@ -331,16 +334,18 @@ const GeoExamples: NextPage<{}> = ({}) => {
       <h1>Hex chart</h1>
       <HexMap
         data={_.take(
-          hexData.map((h) => ({
-            ...h,
-            frequency: 100 * (h.frequency / total_freq),
-            tooltip: `[${h.frequency}] shots ([${(
-              100 *
-              (h.frequency / total_freq)
-            ).toFixed(2)}]%), [${(h.intensity * h.frequency).toFixed(
-              0
-            )}] pts (eFG=${h.intensity.toFixed(2)})`,
-          })),
+          hexData
+            .filter((h) => h.x < 35)
+            .map((h) => ({
+              ...h,
+              frequency: 100 * (h.frequency / total_freq),
+              tooltip: `[${h.frequency}] shots ([${(
+                100 *
+                (h.frequency / total_freq)
+              ).toFixed(2)}]%), [${(h.intensity * h.frequency).toFixed(
+                0
+              )}] pts (eFG=${h.intensity.toFixed(2)})`,
+            })),
           100000
         )}
       />

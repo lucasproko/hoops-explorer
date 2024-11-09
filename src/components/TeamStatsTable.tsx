@@ -30,7 +30,7 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 
 // Util imports
-import { TeamStatSet } from "../utils/StatModels";
+import { ShotStatsModel, TeamStatSet } from "../utils/StatModels";
 import {
   GameFilterParams,
   ParamDefaults,
@@ -62,6 +62,7 @@ type Props = {
   dataEvent: {
     teamStats: TeamStatsModel;
     rosterStats: RosterStatsModel;
+    shotStats: ShotStatsModel;
     lineupStats: LineupStatsModel[];
   };
   onChangeState: (newParams: GameFilterParams) => void;
@@ -124,6 +125,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(gameFilterParams.showGrades) ? "" : gameFilterParams.showGrades
+  );
+
+  /** Show team and individual grades */
+  const [showShotCharts, setShowShotCharts] = useState<boolean>(
+    _.isNil(gameFilterParams.teamShotCharts)
+      ? false
+      : gameFilterParams.teamShotCharts
   );
 
   /** (placeholder for positional info)*/
@@ -192,6 +200,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showRoster: showRoster,
       showGameInfo: showGameInfo,
       showGrades: showGrades,
+      teamShotCharts: showShotCharts,
     };
     onChangeState(newState);
   }, [
@@ -204,6 +213,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     showRoster,
     showGameInfo,
     showGrades,
+    showShotCharts,
   ]);
 
   const tableInfo = TeamStatsTableUtils.buildRows(
