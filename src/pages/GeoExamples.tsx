@@ -22,6 +22,128 @@ import Col from "react-bootstrap/Col";
 
 import chroma from "chroma-js";
 
+////////////////
+
+// 3D
+
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls } from "three-stdlib";
+import * as THREE from "three";
+
+const CustomOrbitControls: React.FC = () => {
+  const { camera, gl } = useThree();
+
+  useEffect(() => {
+    const controls = new OrbitControls(camera, gl.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+
+    return () => {
+      controls.dispose();
+    };
+  }, [camera, gl]);
+
+  return null;
+};
+
+interface GeohashBarProps {
+  position: [number, number, number];
+  frequency: number;
+  intensity: number;
+}
+
+const redYellowGreen = chroma.scale(["red", "yellow", "green"]);
+
+const GeohashBar: React.FC<GeohashBarProps> = ({
+  position,
+  frequency,
+  intensity,
+}) => {
+  const height = frequency;
+  const color = new THREE.Color(
+    `hsl(${Math.max(0, 240 - intensity * 240)}, 100%, 50%)`
+  );
+  const cbbColor = new THREE.Color(
+    redYellowGreen.domain([0.3, 0.5, 0.7])(intensity).hex()
+  );
+
+  return (
+    <mesh position={position}>
+      <boxGeometry args={[0.5, height, 0.5]} />
+      <meshStandardMaterial color={cbbColor} />
+    </mesh>
+  );
+};
+
+interface DataPoint {
+  x: number;
+  y: number;
+  frequency: number;
+  intensity: number;
+}
+
+interface ThreeDBarChartProps {
+  data: DataPoint[];
+}
+
+const ThreeDBarChart: React.FC<ThreeDBarChartProps> = ({ data }) => {
+  return (
+    <Canvas
+      style={{ width: "1200px", height: "800px" }}
+      camera={{ position: [10, 10, 10], fov: 50 }}
+    >
+      <ambientLight intensity={1.5} />
+      <pointLight position={[30, 30, 30]} />
+      <CustomOrbitControls />
+
+      {/* Map over data and create bars */}
+      {data.map((item, index) => {
+        const { x, y, frequency, intensity } = item;
+        return (
+          <GeohashBar
+            key={index}
+            position={[x, frequency / 2, y]} // Center bars on ground level
+            frequency={frequency}
+            intensity={intensity}
+          />
+        );
+      })}
+    </Canvas>
+  );
+};
+
+// const GeoExamples3D: NextPage<{}> = ({}) => {
+//   const plotData: DataPoint[] = (
+//     testData?.aggregations?.shot_chart?.buckets || []
+//   ).map((shotInfo) => {
+//     const x = shotInfo.center.location.x;
+//     const y = shotInfo.center.location.y;
+//     const frequency = Math.sqrt(
+//       shotInfo.doc_count * Math.log(shotInfo.doc_count)
+//     );
+//     const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
+
+//     return {
+//       x,
+//       y,
+//       frequency,
+//       intensity,
+//     };
+//   });
+
+//   return (
+//     <div className="App">
+//       <h1>3D Geohash Bar Chart</h1>
+//       <ThreeDBarChart data={plotData} />
+//     </div>
+//   );
+// };
+// export default GeoExamples3D;
+
+///////////////
+
+// 2D
+
 import * as d3 from "d3";
 import { hexbin } from "d3-hexbin";
 
