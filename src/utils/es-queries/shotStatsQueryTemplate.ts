@@ -31,7 +31,6 @@ export const shotStatsQuery = function (
   };
 
   return {
-    track_total_hits: true,
     ...commonRuntimeMappings(
       adjustedParams,
       lastDate,
@@ -48,13 +47,11 @@ export const shotStatsQuery = function (
         aggregations: {
           off_def: {
             filters: {
-              off: {
-                query: {
+              filters: {
+                off: {
                   term: { is_off: true },
                 },
-              },
-              def: {
-                query: {
+                def: {
                   term: { is_off: false },
                 },
               },
@@ -77,12 +74,14 @@ export const shotStatsQuery = function (
                   },
                   total_pts_ast: {
                     sum: {
-                      script: "doc['is_ast'].value ? doc['pts'].value : 0",
+                      script:
+                        "(doc['is_ast'].size() > 0 && doc['is_ast'].value) ? doc['pts'].value : 0",
                     },
                   },
                   total_pts_trans: {
                     sum: {
-                      script: "doc['is_trans'].value ? doc['pts'].value : 0",
+                      script:
+                        "(doc['is_trans'].size() > 0 && doc['is_trans'].value) ? doc['pts'].value : 0",
                     },
                   },
                 },

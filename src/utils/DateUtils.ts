@@ -86,6 +86,8 @@ export class DateUtils {
   /** Can't do team leaderboard predictions before here (per-team projections are fine because it's easy to edit them) */
   static readonly firstYearWithDecentRosterData: string = "2021/22";
 
+  static readonly firstYearWithShotChartData: string = "2023/24";
+
   // These are old years in which the normal rules don't apply:
 
   /** The final year in which a player/lineup/team might coem from the "Extra" bucket */

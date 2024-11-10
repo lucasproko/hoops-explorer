@@ -271,7 +271,7 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 //////////////////////////////////////
 
 export type ShotStatsModel = {
-  hits: number;
+  hits: number; //TODO: remove this, only actually care about doc count as doc_count under off/def
   on: {
     off: any;
     def: any;

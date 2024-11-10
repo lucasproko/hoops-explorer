@@ -239,6 +239,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       if (params.showGameInfo != gameFilterParamsRef.current?.showGameInfo) {
         setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
+      if (
+        params.teamShotCharts != gameFilterParamsRef.current?.teamShotCharts
+      ) {
+        setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+      }
       // Because changing the params in one table merges that table's params with the last set
       // when the other table's memo was refreshed, currently we to always refresh the memo on both
       // tables whenever any memo changes

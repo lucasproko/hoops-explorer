@@ -46,6 +46,8 @@ import {
   TeamStatsTableUtils,
   TeamStatsBreakdown,
 } from "../utils/tables/TeamStatsTableUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import { DateUtils } from "../utils/DateUtils";
 
 export type TeamStatsModel = {
   on: TeamStatSet;
@@ -353,7 +355,23 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                       toggled: showGameInfo,
                       onClick: () => setShowGameInfo(!showGameInfo),
                     },
-                  ]}
+                  ].concat(
+                    FeatureFlags.isActiveWindow(FeatureFlags.shotCharts) &&
+                      (gameFilterParams.year ||
+                        DateUtils.mostRecentYearWithData >=
+                          DateUtils.firstYearWithShotChartData)
+                      ? [
+                          {
+                            label: "Shots",
+                            tooltip: showGameInfo
+                              ? "Hide shot chart"
+                              : "Show shot charts",
+                            toggled: showShotCharts,
+                            onClick: () => setShowShotCharts(!showShotCharts),
+                          },
+                        ]
+                      : []
+                  )}
                 />
               </Col>
             </Form.Row>
@@ -403,6 +421,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                 text="Show Game Information"
                 truthVal={showGameInfo}
                 onSelect={() => setShowGameInfo(!showGameInfo)}
+              />
+              <GenericTogglingMenuItem
+                text="Show Shot Charts"
+                truthVal={showShotCharts}
+                onSelect={() => setShowShotCharts(!showShotCharts)}
               />
               <Dropdown.Divider />
               <GenericTogglingMenuItem

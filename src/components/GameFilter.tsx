@@ -397,6 +397,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
         },
       ]
         .concat(
+          startTeamShotCharts
+            ? [
+                {
+                  context: ParamPrefixes.shots as ParamPrefixesType,
+                  paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
+                },
+              ]
+            : []
+        )
+        .concat(
           makeGlobalRequest
             ? [
                 {
@@ -404,16 +414,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
                   context: ParamPrefixes.player as ParamPrefixesType,
                   paramsObj: entireSeasonRequest,
                   includeRoster: true,
-                },
-              ]
-            : []
-        )
-        .concat(
-          startTeamShotCharts
-            ? [
-                {
-                  context: ParamPrefixes.shots as ParamPrefixesType,
-                  paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
                 },
               ]
             : []
@@ -447,9 +447,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
       hasGlobalRosterStats,
       globalRosterStatsJson,
     } = _.thru(jsonResps, (__) => {
-      const hasShotChartStats =
-        jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter?.aggregations
-          ?.off_def;
+      const hasShotChartStats = !_.isNil(
+        jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter?.buckets
+          ?.baseline?.off_def
+      );
 
       const maybeGlobalRosterStatsIndex = hasShotChartStats ? 4 : 3;
       const hasGlobalRosterStats =
