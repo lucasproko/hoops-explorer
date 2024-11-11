@@ -26,40 +26,149 @@ interface HexData {
   tooltip: string;
 }
 
+interface HexZone {
+  minDist: number;
+  maxDist: number;
+  distCenter?: number; //(if not specified then take average)
+  minAngle: number;
+  maxAngle: number;
+  frequency: number;
+  intensity: number;
+}
+
 interface HexMapProps {
   data: HexData[];
+  width: number;
+  height: number;
+  showZones?: boolean;
+  zones?: HexZone[];
 }
-const HexMap: React.FC<HexMapProps> = ({ data }) => {
+
+/** 0 is horizontal axis pointing left, when averaging angle make >= 90 and <= 270 */
+const buildStartingZones = (): HexZone[] => {
+  return [
+    // Under the basket (1x)
+    {
+      minDist: -10,
+      maxDist: 5,
+      distCenter: 0,
+      minAngle: 0,
+      maxAngle: 360,
+      frequency: 0,
+      intensity: 0,
+    },
+    // Close to the basket (2x)
+    {
+      minDist: 5,
+      maxDist: 10,
+      minAngle: 0,
+      maxAngle: 180,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 5,
+      maxDist: 10,
+      minAngle: 180,
+      maxAngle: 360,
+      frequency: 0,
+      intensity: 0,
+    },
+    // Mid-range (3x)
+    {
+      minDist: 10,
+      maxDist: 21,
+      minAngle: 0,
+      maxAngle: 150,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 10,
+      maxDist: 21,
+      minAngle: 150,
+      maxAngle: 210,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 10,
+      maxDist: 21,
+      minAngle: 210,
+      maxAngle: 360,
+      frequency: 0,
+      intensity: 0,
+    },
+    // 3P (5x)
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 0,
+      maxAngle: 126,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 126,
+      maxAngle: 162,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 162,
+      maxAngle: 198,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 198,
+      maxAngle: 234,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 234,
+      maxAngle: 0,
+      frequency: 0,
+      intensity: 0,
+    },
+  ];
+};
+
+const MIN_X = -5;
+const MAX_X = 35;
+const MIN_Y = -26;
+const MAX_Y = 26;
+const HEX_HEIGHT = 520;
+const HEX_WIDTH = 400;
+
+const HexMap: React.FC<HexMapProps> = ({ data, width, height }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
 
-    // 600 pixels is approx 60 ft
+    // 500 pixels is approx 50 ft
     // at precision 15, hexagon is 0.9ft2
 
-    const width = 550;
-    const height = 600;
-    //const hexRadius = 9; // precision 15 Radius of a full-size hexagon
-    //const hexRadius = Math.sqrt(63 / Math.PI); // precision 14 - area==6.267m2 Radius of a full-size hexagon
-    const hexRadius = 15; //precision 15 empirically seems like radius is about 1.5
+    const hexRadius = 15 * (height / 520); //(precision 14 empirically seems like radius is about 1.5)
 
-    //const maxFreq = 3.0; //(precision 15)
-    //const maxFreq = 8.0; //(precision 14)
     const maxFreq = 5.0; //(precision 14)
 
     //https://h3geo.org/docs/core-library/restable/
 
     // Define a scale for frequency -> hex size
-    const sizeScale = d3
-      .scaleSqrt()
-      .domain([0, maxFreq]) // Frequency from 0% to 8%
-      .range([0.1, 1]); // Scale hex size from 20% to 100%
+    const sizeScale = d3.scaleSqrt().domain([0, maxFreq]).range([0.1, 1]); // Scale hex size from 10% to 100%
 
-    const opacityScale = d3
-      .scaleLinear()
-      .domain([0, maxFreq]) // Frequency from 0% to 8% TODO for lower precisions needs to be higher
-      .range([0.5, 1]); // Scale hex size from 20% to 100%
+    const opacityScale = d3.scaleLinear().domain([0, maxFreq]).range([0.5, 1]); // Scale opactiy from 50% to 100%
 
     // Define a color scale for intensity
     const colorScale = d3
@@ -70,12 +179,12 @@ const HexMap: React.FC<HexMapProps> = ({ data }) => {
     // Define scales for x and y to map original coordinates to canvas
     const xScale = d3
       .scaleLinear()
-      .domain([-5, 40]) // Original x range
+      .domain([MIN_X, MAX_X]) // Original x range
       .range([0, width]); // Canvas width range
 
     const yScale = d3
       .scaleLinear()
-      .domain([-26, 26]) // Original y range
+      .domain([MIN_Y, MAX_Y]) // Original y range
       .range([height, 0]); // Invert y scale to make top of canvas 0
 
     // Set up the hexbin generator
@@ -106,24 +215,21 @@ const HexMap: React.FC<HexMapProps> = ({ data }) => {
       .style("pointer-events", "none")
       .style("opacity", 0); // initially hidden
 
-    const debugMode = true;
-    // Add hexagons to the SVG
-    if (debugMode)
-      svg
-        .append("g")
-        .selectAll("path")
-        .data(hexes)
-        .enter()
-        .append("path")
-        .attr("d", (d) => {
-          return hexbinGenerator.hexagon(hexRadius);
-        })
-        .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
-        .attr("fill", (d) => {
-          return "#ffFFff";
-        })
-        .attr("stroke", "#ccc")
-        .attr("stroke-width", 0.5);
+    svg
+      .append("g")
+      .selectAll("path")
+      .data(hexes)
+      .enter()
+      .append("path")
+      .attr("d", (d) => {
+        return hexbinGenerator.hexagon(hexRadius);
+      })
+      .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
+      .attr("fill", (d) => {
+        return "#ffFFff";
+      })
+      .attr("stroke", "#ccc")
+      .attr("stroke-width", 0.5);
     svg
       .append("g")
       .selectAll("path")
@@ -135,20 +241,16 @@ const HexMap: React.FC<HexMapProps> = ({ data }) => {
         const hexFrequency = hexData ? hexData.frequency : 0;
         const hexPct = Math.min(sizeScale(hexFrequency), 1.0);
         const hexSize = hexRadius * hexPct;
-        //const hexSize = hexRadius;
         return hexbinGenerator.hexagon(hexSize);
       })
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       .attr("fill", (d) => {
         const hexData = dataMap.get(d[0]);
-
-        //return hexData ? colorScale(hexData.intensity) : "#ccc";
-        return hexData ? cbbColorScale(hexData.intensity) : "#ccc";
+        return hexData ? cbbColorScale(hexData.intensity * 0.5) : "#ccc";
       })
       .attr("opacity", (d) => {
         const hexData = dataMap.get(d[0]);
         return hexData ? opacityScale(hexData.frequency) : 1;
-        //return 1;
       })
       .on("mouseover", (event, d) => {
         const hexData = dataMap.get(d[0]);
@@ -164,15 +266,13 @@ const HexMap: React.FC<HexMapProps> = ({ data }) => {
       .on("mouseout", () => {
         tooltip.style("opacity", 0); // Hide tooltip on mouseout
       });
-    // .attr("stroke", "#333")
-    // .attr("stroke-width", 0.5);
 
     return () => {
       tooltip.remove(); // Clean up tooltip on unmount
     };
   }, [data]);
 
-  return <svg ref={svgRef} width="800" height="600"></svg>;
+  return <svg ref={svgRef} width={width} height={height}></svg>;
 };
 
 ///////////////////// Top Level Logic
@@ -201,7 +301,7 @@ const shotStatsToHexData = (stats: ShotStats): HexData[] => {
           (frequency / total_freq)
         ).toFixed(2)}]%), [${shotInfo.total_pts.value}] pts (eff=[${(
           100 * intensity
-        ).toFixed(2)}]%)`,
+        ).toFixed(2)}] pts/100)`,
       };
     })
     .filter((h) => h.x <= 35);
@@ -212,10 +312,26 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({ off, def }) => {
     <Container>
       <Row>
         <Col xs={6}>
-          <HexMap data={shotStatsToHexData(off)} />
+          <b>Team Shots</b>
         </Col>
         <Col xs={6}>
-          <HexMap data={shotStatsToHexData(def)} />
+          <b>Opponent Shots</b>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6}>
+          <HexMap
+            data={shotStatsToHexData(off)}
+            width={HEX_WIDTH}
+            height={HEX_HEIGHT}
+          />
+        </Col>
+        <Col xs={6}>
+          <HexMap
+            data={shotStatsToHexData(def)}
+            width={HEX_WIDTH}
+            height={HEX_HEIGHT}
+          />
         </Col>
       </Row>
     </Container>
