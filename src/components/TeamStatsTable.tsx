@@ -75,7 +75,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   dataEvent,
   onChangeState,
 }) => {
-  const { teamStats, rosterStats, lineupStats } = dataEvent;
+  const { teamStats, rosterStats, shotStats, lineupStats } = dataEvent;
   const server =
     typeof window === `undefined` //(ensures SSR code still compiles)
       ? "server"
@@ -222,6 +222,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     gameFilterParams,
     teamStats,
     rosterStats,
+    shotStats,
     lineupStats,
 
     // Page control
@@ -231,6 +232,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       adjustForLuck,
       showDiffs,
       showGameInfo,
+      showShotCharts,
       showExtraInfo,
       showGrades,
       showLuckAdjDiags,

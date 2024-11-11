@@ -270,19 +270,25 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 //////////////////////////////////////
 
+export type ShotStats = {
+  doc_count?: number;
+  shot_chart?: {
+    buckets: any[];
+  };
+};
+
 export type ShotStatsModel = {
-  hits: number; //TODO: remove this, only actually care about doc count as doc_count under off/def
   on: {
-    off: any;
-    def: any;
+    off: ShotStats;
+    def: ShotStats;
   };
   off: {
-    off: any;
-    def: any;
+    off: ShotStats;
+    def: ShotStats;
   };
   baseline: {
-    off: any;
-    def: any;
+    off: ShotStats;
+    def: ShotStats;
   };
 } & {
   onOffMode?: boolean;

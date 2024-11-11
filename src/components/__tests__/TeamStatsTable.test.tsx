@@ -77,7 +77,6 @@ describe("TeamStatsTable", () => {
           teamStats: testData,
           rosterStats: { on: [], off: [], baseline: [], global: [] },
           shotStats: {
-            hits: 0,
             on: { off: {}, def: {} },
             off: { off: {}, def: {} },
             baseline: { off: {}, def: {} },
@@ -141,7 +140,6 @@ describe("TeamStatsTable", () => {
           teamStats: testData,
           rosterStats: testRosterData,
           shotStats: {
-            hits: 0,
             on: { off: {}, def: {} },
             off: { off: {}, def: {} },
             baseline: { off: {}, def: {} },
@@ -209,7 +207,6 @@ describe("TeamStatsTable", () => {
           teamStats: testData,
           rosterStats: testRosterData,
           shotStats: {
-            hits: 0,
             on: { off: {}, def: {} },
             off: { off: {}, def: {} },
             baseline: { off: {}, def: {} },

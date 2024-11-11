@@ -543,18 +543,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
           : undefined,
       },
       {
-        hits: 0,
         on: {
-          off: {},
-          def: {},
+          off: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.on
+            ?.off_def?.buckets?.off,
+          def: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.on
+            ?.off_def?.buckets?.def,
         },
         off: {
-          off: {},
-          def: {},
+          off: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.off
+            ?.off_def?.buckets?.off,
+          def: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.off
+            ?.off_def?.buckets?.def,
         },
         baseline: {
-          off: {},
-          def: {},
+          off: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.baseline
+            ?.off_def?.buckets?.off,
+          def: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.baseline
+            ?.off_def?.buckets?.def,
         },
       },
       lineupResponses

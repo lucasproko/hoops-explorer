@@ -6,6 +6,7 @@ import LuckAdjDiagView from "../../components/diags/LuckAdjDiagView";
 import TeamExtraStatsInfoView from "../../components/diags/TeamExtraStatsInfoView";
 import TeamPlayTypeDiagView from "../../components/diags/TeamPlayTypeDiagView";
 import TeamRosterDiagView from "../../components/diags/TeamRosterDiagView";
+import ShotChartDiagView from "../../components/diags/ShotChartDiagView";
 import {
   GenericTableOps,
   GenericTableRow,
@@ -22,6 +23,7 @@ import {
   LineupStatSet,
   OnOffBaselineEnum,
   PlayerId,
+  ShotStatsModel,
   StatModels,
   TeamStatSet,
 } from "../StatModels";
@@ -59,6 +61,7 @@ export type TeamStatsReadOnlyState = {
   adjustForLuck: boolean;
   showDiffs: boolean;
   showGameInfo: boolean;
+  showShotCharts: boolean;
   showExtraInfo: boolean;
   showGrades: string;
   showLuckAdjDiags: boolean;
@@ -78,6 +81,7 @@ export class TeamStatsTableUtils {
     gameFilterParams: GameFilterParams,
     teamStats: TeamStatsModel,
     rosterStats: RosterStatsModel,
+    shotStats: ShotStatsModel,
     lineupStats: LineupStatsModel[],
 
     // Page control
@@ -96,6 +100,7 @@ export class TeamStatsTableUtils {
       showGameInfo,
       showExtraInfo,
       showGrades,
+      showShotCharts,
       showLuckAdjDiags,
       showHelp,
     } = readOnlyState;
@@ -206,28 +211,30 @@ export class TeamStatsTableUtils {
     // Luck calculations and manual overrides
 
     // The luck baseline can either be the user-selecteed baseline or the entire season
-    const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] =
-      () => {
-        if (adjustForLuck) {
-          switch (luckConfig.base) {
-            case "baseline":
-              return [
-                teamStats.baseline,
-                _.fromPairs(
-                  (rosterStats.baseline || []).map((p: any) => [p.key, p])
-                ),
-              ];
-            default:
-              //("season")
-              return [
-                teamStats.global,
-                _.fromPairs(
-                  (rosterStats.global || []).map((p: any) => [p.key, p])
-                ),
-              ];
-          }
-        } else return [StatModels.emptyTeam(), {}]; //(not used)
-      };
+    const baseLuckBuilder: () => [
+      TeamStatSet,
+      Record<PlayerId, IndivStatSet>
+    ] = () => {
+      if (adjustForLuck) {
+        switch (luckConfig.base) {
+          case "baseline":
+            return [
+              teamStats.baseline,
+              _.fromPairs(
+                (rosterStats.baseline || []).map((p: any) => [p.key, p])
+              ),
+            ];
+          default:
+            //("season")
+            return [
+              teamStats.global,
+              _.fromPairs(
+                (rosterStats.global || []).map((p: any) => [p.key, p])
+              ),
+            ];
+        }
+      } else return [StatModels.emptyTeam(), {}]; //(not used)
+    };
     const [baseOrSeasonTeamStats, baseOrSeason3PMap] = baseLuckBuilder();
 
     // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
@@ -507,6 +514,17 @@ export class TeamStatsTableUtils {
                 },
                 team: teamStats[queryKey],
               })
+            : [],
+          showShotCharts
+            ? [
+                GenericTableOps.buildTextRow(
+                  <ShotChartDiagView
+                    off={shotStats[queryKey].off}
+                    def={shotStats[queryKey].def}
+                  />,
+                  "small"
+                ),
+              ]
             : [],
           showPlayTypes
             ? [
