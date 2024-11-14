@@ -512,6 +512,7 @@ Array [
       "roster": Object {
         "height": "6-6",
         "number": "2",
+        "origin": undefined,
         "pos": "G",
         "year_class": "Jr",
       },

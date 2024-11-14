@@ -165,6 +165,9 @@ export const mutableDivisionStats: DivisionStatistics =
 export const mutablePlayerDivisionStats: DivisionStatistics =
   buildEmptyDivisionStats();
 
+/** Exported for test only */
+export var rosterGeoMap = {} as Record<string, { lat: number; lon: number }>;
+
 const positionGroups = [];
 
 /** Exported for test only */
@@ -316,7 +319,23 @@ export async function main() {
   eliteOffenseInfo = eliteRankInfo.map((o) => o["stats.adj_off.value"] || 0);
   eliteDefenseInfo = eliteRankInfo.map((o) => o["stats.adj_def.value"] || 0);
 
-  /** If any teams aren't in the conf then */
+  /** If roster geo information exists them load that up */
+  if (
+    inYear.startsWith("2") && //(eg not "Extra")
+    inYear >= DateUtils.firstYearWithRosterGeoData
+  ) {
+    console.log("Loading roster geo data...");
+    rosterGeoMap = await fs
+      .readFile(`./public/rosters/geo/roster_geos.json`)
+      .then((s: any) => JSON.parse(s))
+      .catch((err: any) => {
+        console.log(`Couldn't load roster geo data: [${err}]`);
+        return {};
+      });
+    console.log(`Loaded [${_.size(rosterGeoMap)}] geo entries`);
+  }
+
+  /** If any teams aren't in the conf then add them here for error reporting */
   const mutableIncompleteConfs = new Set() as Set<string>;
   const teams = teamListChain
     .filter(
@@ -594,7 +613,7 @@ export async function main() {
                   const roleHasChanged = currRoleFromStats != rosterEntry.role;
                   if (roleHasChanged) {
                     console.log(
-                      `Will update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`
+                      `Should update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`
                     );
                   }
                   return acc.push(playerCode);
@@ -607,11 +626,11 @@ export async function main() {
 
             if (!_.isEmpty(rosterChanges)) {
               // Write a new roster file
-              console.log(
-                `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
-              );
               if (!ignoreRosterEnrichment) {
-                //(outside of test mode)
+                console.log(
+                  `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
+                );
+                //(don't currently need this, the plan was to use it for positional info in PbP)
                 await fs.writeFile(
                   rosterInfoFile,
                   JSON.stringify(rosterInfoJsonToWrite)
@@ -890,7 +909,9 @@ export async function main() {
           );
           const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(
             rosterGlobalButActuallyBaseline,
-            teamSeasonLookup
+            teamSeasonLookup,
+            undefined,
+            rosterGeoMap
           );
 
           // Using positional info, get the %s the players have at each position:
@@ -986,8 +1007,7 @@ export async function main() {
                     (field) => {
                       //Note: also copied into RAPM below
                       if (!_.isNil(player[field]))
-                        player[field].extraInfo =
-                          "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages";
+                        player[field].extraInfo = "PREPROCESSING_WARNING"; //(used in PlayerLeaderboardTable)
                     }
                   );
                 }

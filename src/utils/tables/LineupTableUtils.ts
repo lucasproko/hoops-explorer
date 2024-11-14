@@ -248,7 +248,8 @@ export class LineupTableUtils {
   static buildPositionPlayerMap(
     players: IndivStatSet[] | undefined,
     teamSeasonLookup: string,
-    externalRoster?: Record<PlayerId, RosterEntry>
+    externalRoster?: Record<PlayerId, RosterEntry>,
+    rosterGeoLookup?: Record<string, { lat: number; lon: number }>
   ): Record<PlayerId, IndivPosInfo> {
     const positionFromPlayerKey = _.chain(players || [])
       .map((player: IndivStatSet) => {
@@ -273,6 +274,8 @@ export class LineupTableUtils {
                   height: rosterMeta.height,
                   year_class: rosterMeta.year_class,
                   pos: rosterMeta.pos,
+                  origin: rosterMeta.origin,
+                  ...rosterGeoLookup?.[rosterMeta.origin || "unknown"],
                 }
               : undefined,
           },
@@ -390,21 +393,23 @@ export class LineupTableUtils {
     droppedLineups?: LineupStatSet[]
   ): Array<LineupStatSet> {
     // The luck baseline can either be the user-selecteed baseline or the entire season
-    const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] =
-      () => {
-        if (adjustForLuck) {
-          switch (luckConfigBase) {
-            case "baseline":
-              return [baselineTeamStats, baselinePlayerInfo];
-            default:
-              //("season")
-              return [
-                globalTeamStats,
-                _.fromPairs((players || []).map((p) => [p.key, p])),
-              ];
-          }
-        } else return [StatModels.emptyTeam(), {}]; //(not used)
-      };
+    const baseLuckBuilder: () => [
+      TeamStatSet,
+      Record<PlayerId, IndivStatSet>
+    ] = () => {
+      if (adjustForLuck) {
+        switch (luckConfigBase) {
+          case "baseline":
+            return [baselineTeamStats, baselinePlayerInfo];
+          default:
+            //("season")
+            return [
+              globalTeamStats,
+              _.fromPairs((players || []).map((p) => [p.key, p])),
+            ];
+        }
+      } else return [StatModels.emptyTeam(), {}]; //(not used)
+    };
     const [baseOrSeasonTeamStats, baseOrSeason3PMap] = baseLuckBuilder();
 
     /** Perform enrichment on each lineup, including luck adjustment */

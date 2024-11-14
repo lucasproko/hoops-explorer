@@ -40,6 +40,7 @@ export class AdvancedFilterUtils {
       "roster.height",
       "roster.year_class",
       "roster.pos",
+      "roster.origin",
       "tier",
       "transfer_src",
       "transfer_dest",

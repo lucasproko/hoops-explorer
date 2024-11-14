@@ -935,6 +935,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
       const playerLboardTooltip = (
         <Tooltip id={`lboard_${playerIndex}_${nextYearState}`}>
+          {player.roster?.origin ? (
+            <span>
+              {player.roster?.origin}
+              <br />
+              <br />
+            </span>
+          ) : null}
           Open new tab showing all the player's seasons, in the multi-year
           version of the leaderboard
         </Tooltip>
@@ -1481,6 +1488,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         )}
         tableData={maybeSubheaderRow.concat(tableData)}
         cellTooltipMode="none"
+        extraInfoLookups={{
+          //(see buildLeaderboards)
+          PREPROCESSING_WARNING:
+            "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+        }}
       />
     );
   }, [

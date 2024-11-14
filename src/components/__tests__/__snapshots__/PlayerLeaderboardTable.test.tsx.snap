@@ -1196,6 +1196,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          extraInfoLookups={
+            Object {
+              "PREPROCESSING_WARNING": "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+            }
+          }
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -8920,6 +8925,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          extraInfoLookups={
+            Object {
+              "PREPROCESSING_WARNING": "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+            }
+          }
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -16648,6 +16658,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          extraInfoLookups={
+            Object {
+              "PREPROCESSING_WARNING": "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+            }
+          }
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -27576,6 +27591,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          extraInfoLookups={
+            Object {
+              "PREPROCESSING_WARNING": "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+            }
+          }
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [
@@ -35252,6 +35272,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          extraInfoLookups={
+            Object {
+              "PREPROCESSING_WARNING": "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+            }
+          }
           tableCopyId="playerLeaderboardTable"
           tableData={Array []}
           tableFields={
@@ -36785,6 +36810,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       >
         <GenericTable
           cellTooltipMode="none"
+          extraInfoLookups={
+            Object {
+              "PREPROCESSING_WARNING": "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+            }
+          }
           tableCopyId="playerLeaderboardTable"
           tableData={
             Array [

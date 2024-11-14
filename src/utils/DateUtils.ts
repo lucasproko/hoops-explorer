@@ -86,7 +86,11 @@ export class DateUtils {
   /** Can't do team leaderboard predictions before here (per-team projections are fine because it's easy to edit them) */
   static readonly firstYearWithDecentRosterData: string = "2021/22";
 
+  /** Can't display shot charts before here */
   static readonly firstYearWithShotChartData: string = "2023/24";
+
+  /** Don't have player geo before here */
+  static readonly firstYearWithRosterGeoData: string = "2023/24"; //"2023/24";
 
   // These are old years in which the normal rules don't apply:
 

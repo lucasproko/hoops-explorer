@@ -69,7 +69,6 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
                 "def": Object {},
                 "off": Object {},
               },
-              "hits": 0,
               "off": Object {
                 "def": Object {},
                 "off": Object {},
@@ -123,7 +122,6 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
                 "def": Object {},
                 "off": Object {},
               },
-              "hits": 0,
               "off": Object {
                 "def": Object {},
                 "off": Object {},

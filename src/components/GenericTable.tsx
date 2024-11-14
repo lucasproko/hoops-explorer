@@ -361,6 +361,7 @@ type Props = {
   cellTooltipMode?: LockModes;
   bordered?: boolean;
   rowStyleOverride?: Record<string, any>;
+  extraInfoLookups?: Record<string, string>; //(lets us use codes for common strings)
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
@@ -370,6 +371,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   cellTooltipMode,
   bordered,
   rowStyleOverride,
+  extraInfoLookups,
 }) => {
   const [lockMode, setLockMode] = useState(
     (cellTooltipMode || "missing") as LockModes
@@ -570,7 +572,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
               <br />
             </span>
           ) : null}
-          {tmpVal?.extraInfo ? <span>{tmpVal?.extraInfo}</span> : null}
+          {tmpVal?.extraInfo ? (
+            <span>
+              {extraInfoLookups?.[tmpVal?.extraInfo] || tmpVal?.extraInfo}
+            </span>
+          ) : null}
         </Tooltip>
       ) : null;
 

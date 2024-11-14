@@ -94,6 +94,8 @@ export type RosterEntry = {
   /** Fr/So/Jr/Sr */
   year_class?: string;
   gp?: number;
+  /** From NCAA roster - "town, ST" in USA or "city, country" if foreign */
+  origin?: string;
 };
 
 export type OnOffBaselineEnum = "on" | "off" | "baseline";
