@@ -305,6 +305,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
+  const [geoLoadingOverride, setGeoLoadingOverride] = useState(false);
 
   const startingMinPoss =
     startingState.minPoss || ParamDefaults.defaultPlayerLboardMinPos;
@@ -678,6 +679,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
   const { table, maybeMap } = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
+    setGeoLoadingOverride(false); //(rendering)
 
     const specialCases = {
       P6: Power6Conferences,
@@ -1557,14 +1559,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               players={players}
               center={geoCenterInfo}
               zoom={geoCenterInfo?.zoom}
+              onBoundsToChange={() => {
+                setGeoLoadingOverride(true);
+              }}
               onBoundsChange={(
                 boundsChecker: (lat: number, lon: number) => boolean,
                 info: { lat: number; lon: number; zoom: number }
               ) => {
-                friendlyChange(() => {
+                if (
+                  !geoBoundsChecker ||
+                  info.lat != geoCenterInfo?.lat ||
+                  info.lon != geoCenterInfo?.lon ||
+                  info.zoom != geoCenterInfo?.zoom
+                ) {
                   setGeoBoundsChecker(() => boundsChecker);
                   setGeoCenterInfo(info);
-                }, !geoBoundsChecker || info.lat != geoCenterInfo?.lat || info.lon != geoCenterInfo?.lon || info.zoom != geoCenterInfo?.zoom);
+                } else {
+                  setGeoLoadingOverride(false);
+                }
               }}
             />
           </Form.Group>
@@ -2214,7 +2226,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </Col>
         </Row>
         <Row className="mt-2">
-          <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>{table}</Col>
+          <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+            {geoMode ? (
+              <LoadingOverlay
+                active={geoLoadingOverride}
+                spinner
+                text={"Geo filter changing..."}
+              >
+                {table}
+              </LoadingOverlay>
+            ) : (
+              table
+            )}
+          </Col>
         </Row>
       </LoadingOverlay>
     </Container>

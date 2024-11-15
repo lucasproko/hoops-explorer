@@ -200,57 +200,67 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
 
     if (year == "All" || tier == "All" || transferModeUrlParam) {
       //(note the transferModeUrlParam means we use this slightly less efficient construct with single tier transfers)
+      if (
+        !dataSubEvent.players?.length ||
+        currYear != fullYear ||
+        currGender != gender ||
+        currTier != tier
+      ) {
+        setCurrYear(fullYear);
+        setCurrGender(gender);
+        setCurrTier(tier);
 
-      //TODO: tidy this up
-      setDataEvent(dataEventInit); //(clear saved sub-events)
+        //TODO: tidy this up
+        setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const transferYearStrSplit = (
-        paramObj.transferMode?.toString() || ""
-      ).split(":");
-      const transferYearStr =
-        transferYearStrSplit[0] == "true"
-          ? (
-              DateUtils.getOffseasonOfYear(DateUtils.offseasonYear) || ""
-            ).substring(0, 4) //(default, means most recent year)
-          : transferYearStrSplit[0] || nextYear.substring(0, 4); //(else whatever is specified)
+        const transferYearStrSplit = (
+          paramObj.transferMode?.toString() || ""
+        ).split(":");
+        const transferYearStr =
+          transferYearStrSplit[0] == "true"
+            ? (
+                DateUtils.getOffseasonOfYear(DateUtils.offseasonYear) || ""
+              ).substring(0, 4) //(default, means most recent year)
+            : transferYearStrSplit[0] || nextYear.substring(0, 4); //(else whatever is specified)
 
-      const transferYearIn =
-        transferMode && transferYearStr ? [transferYearStr] : [];
+        const transferYearIn =
+          transferMode && transferYearStr ? [transferYearStr] : [];
 
-      const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
-        dataSubEventKey,
-        gender,
-        fullYear,
-        tier,
-        transferYearIn,
-        []
-      );
+        const fetchAll = LeaderboardUtils.getMultiYearPlayerLboards(
+          dataSubEventKey,
+          gender,
+          fullYear,
+          tier,
+          transferYearIn,
+          []
+        );
 
-      fetchAll.then((jsonsIn: any[]) => {
-        const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
+        fetchAll.then((jsonsIn: any[]) => {
+          const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
 
-        setDataSubEvent({
-          players: _.chain(jsons)
-            .map(
-              (d) =>
-                (d.players || []).map((p: any) => {
-                  p.tier = d.tier;
-                  return p;
-                }) || []
-            )
-            .flatten()
-            .value(),
-          confs: _.chain(jsons)
-            .map((d) => d.confs || [])
-            .flatten()
-            .uniq()
-            .value(),
-          transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<
-            string,
-            Array<TransferModel>
-          >,
+          setDataSubEvent({
+            players: _.chain(jsons)
+              .map(
+                (d) =>
+                  (d.players || []).map((p: any) => {
+                    p.tier = d.tier;
+                    return p;
+                  }) || []
+              )
+              .flatten()
+              .value(),
+            confs: _.chain(jsons)
+              .map((d) => d.confs || [])
+              .flatten()
+              .uniq()
+              .value(),
+            transfers: (transferMode ? _.last(jsonsIn) : undefined) as Record<
+              string,
+              Array<TransferModel>
+            >,
+          });
         });
-      });
+      }
     } else {
       if (
         !dataEvent[dataSubEventKey]?.players?.length ||

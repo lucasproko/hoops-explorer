@@ -27,6 +27,7 @@ interface MapComponentProps {
   center?: { lat: number | undefined; lon: number | undefined };
   zoom?: number;
   players: IndivStatSet[];
+  onBoundsToChange?: () => void;
   onBoundsChange?: (
     latLongChecker: (lat: number, lon: number) => boolean,
     info: { lat: number; lon: number; zoom: number }
@@ -84,6 +85,7 @@ const MarkerCluster = ({ players }: { players: IndivStatSet[] }) => {
 const PlayerGeoMap: React.FC<MapComponentProps> = ({
   players,
   onBoundsChange,
+  onBoundsToChange,
   center,
   zoom,
 }) => {
@@ -102,6 +104,8 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
     });
   };
   const MapEventHandler = () => {
+    useMapEvent("movestart", (e) => onBoundsToChange?.());
+    useMapEvent("zoomstart", (e) => onBoundsToChange?.());
     useMapEvent("moveend", (e) => eventHandler(e.target));
     useMapEvent("zoomend", (e) => eventHandler(e.target));
 
