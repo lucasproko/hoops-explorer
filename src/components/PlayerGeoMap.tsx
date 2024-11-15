@@ -108,8 +108,8 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
   return (
     <MapContainer
       center={[
-        _.isNumber(center?.lat) ? center.lat : 20,
-        _.isNumber(center?.lon) ? center.lon : 10,
+        center && _.isNumber(center?.lat) ? center.lat : 20,
+        center && _.isNumber(center?.lon) ? center.lon : 10,
       ]}
       zoom={zoom || 2}
       style={{ height: "60vh", width: "100%" }}

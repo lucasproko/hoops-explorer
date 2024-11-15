@@ -544,7 +544,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     genderUnreliable,
     tier,
     geoCenterInfo,
-    geoBoundsChecker,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
