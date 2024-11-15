@@ -68,6 +68,12 @@ import { CbbColors } from "../utils/CbbColors";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
 
+// Geo:
+import dynamic from "next/dynamic";
+const PlayerGeoMapNoSsr = dynamic(() => import("../components/PlayerGeoMap"), {
+  ssr: false,
+});
+
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>;
   confs?: Array<string>;
@@ -81,6 +87,7 @@ type Props = {
   dataEvent: PlayerLeaderboardStatsModel;
   onChangeState: (newParams: PlayerLeaderboardParams) => void;
   teamEditorMode?: (p: IndivStatSet) => void;
+  geoMode?: boolean; //(if true display a map and have some basic filtering)
 };
 
 // Some static methods
@@ -220,6 +227,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   dataEvent,
   onChangeState,
   teamEditorMode,
+  geoMode,
 }) => {
   const server =
     typeof window === `undefined` //(ensures SSR code still compiles)
@@ -328,6 +336,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   const [isT100, setIsT100] = useState(startingState.t100 || false);
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
+
+  // Geo filtering
+  const [geoBoundsChecker, setGeoBoundsChecker] = useState<
+    ((lat: number, lon: number) => boolean) | undefined
+  >(undefined);
+  const [geoCenterInfo, setGeoCenterInfo] = useState<
+    { lat: number; lon: number; zoom: number } | undefined
+  >(undefined);
 
   /** If enabled we show a prediction for next year for the player */
   const transferInfoSplit = (
@@ -493,6 +509,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       advancedFilter: advancedFilterStr,
       // Misc display
       showInfoSubHeader: showInfoSubHeader,
+      // Geo info:
+      geoCenterLat: geoCenterInfo?.lat,
+      geoCenterLon: geoCenterInfo?.lon,
+      geoZoom: geoCenterInfo?.zoom,
     };
     onChangeState(newState);
   }, [
@@ -513,6 +533,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     yearUnreliable,
     genderUnreliable,
     tier,
+    geoCenterInfo,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -695,7 +716,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       sortBy == unsortedOpt.value;
     // Filter, sort, and limit players part 2/2
     const playersPhase1 = _.chain(confDataEventPlayers)
-      .filter((player) => {
+      .filter((player, playerIndex) => {
         const strToTestCase = buildFilterStringTest(player);
         const strToTest = caseInsensitiveSearch
           ? strToTestCase.toLowerCase()
@@ -725,7 +746,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           player.off_usage_pred = prediction.off_usage;
         }
 
+        const geoMatch = _.isFunction(geoBoundsChecker)
+          ? _.isNumber(player?.roster?.lat) && _.isNumber(player?.roster?.lon)
+            ? geoBoundsChecker(player.roster.lat, player.roster.lon)
+            : false
+          : true;
+
         return (
+          geoMatch &&
           (_.isEmpty(transferInfoSplit[0]) ||
             _.isEmpty(dataEvent.transfers) || //(if not specified, don't care about transfers)
             (maybeTxfer &&
@@ -1774,6 +1802,22 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             </Col>
           </Form.Group>
         )}
+        {geoMode ? (
+          <Form.Row>
+            <Form.Group as={Col} sm="12">
+              <PlayerGeoMapNoSsr
+                players={dataEvent?.players || []}
+                onBoundsChange={(
+                  boundsChecker: (lat: number, lon: number) => boolean,
+                  info: { lat: number; lon: number; zoom: number }
+                ) => {
+                  setGeoBoundsChecker(() => boundsChecker);
+                  setGeoCenterInfo(info);
+                }}
+              />
+            </Form.Group>
+          </Form.Row>
+        ) : null}
         <Form.Row>
           <Form.Group as={Col} sm="7">
             <InputGroup>

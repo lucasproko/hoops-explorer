@@ -255,6 +255,10 @@ export type PlayerLeaderboardParams = {
   // Transfer info
   transferMode?: string; //==true => show only available, vs ==$year show all, append ":predictions" show all but including predictions
   includePrevYear?: boolean; //(if available add an extra 2 rows with the player's prev year stats)
+  // Geo info
+  geoCenterLat?: number;
+  geoCenterLon?: number;
+  geoZoom?: number;
 };
 
 export type PlayerSeasonComparisonParams = {

@@ -92,6 +92,12 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params,
     })}`;
   }
+  /** The URL to use to view the "Player Leaderboard" page */
+  static getPlayerLeaderboardGeoUrl(params: PlayerLeaderboardParams) {
+    return `/PlayerLeaderboardGeo?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
   /** The URL to use to view the "Team Editor" page */
   static getTeamEditorUrl(params: TeamEditorParams) {
     return `/TeamEditor?${UrlRouting.getUrl({
