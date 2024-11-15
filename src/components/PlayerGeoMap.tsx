@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
 import {
@@ -22,6 +22,7 @@ import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 import _ from "lodash";
+import { zoom } from "d3";
 
 interface MapComponentProps {
   center?: { lat: number | undefined; lon: number | undefined };
@@ -43,11 +44,21 @@ const defaultIcon = L.icon({
   popupAnchor: [1, -34],
 });
 
-const MarkerCluster = ({ players }: { players: IndivStatSet[] }) => {
+const MarkerCluster = ({
+  players,
+  savePreZoom,
+}: {
+  savePreZoom: (latlon: L.LatLng, zoom: number) => void;
+  players: IndivStatSet[];
+}) => {
   const map = useMap();
 
   useEffect(() => {
     const markers = L.markerClusterGroup();
+    markers.on("clusterclick", function (a) {
+      savePreZoom(map.getCenter(), map.getZoom());
+    });
+
     var i = 0;
     players.forEach((player) => {
       const someInfo = (
@@ -82,6 +93,94 @@ const MarkerCluster = ({ players }: { players: IndivStatSet[] }) => {
   return null;
 };
 
+type CustomZoomControlProps = {
+  zoomHistory: { zoom: number; latlon: L.LatLng }[];
+  resetZoomHistory: () => void;
+};
+const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
+  zoomHistory,
+  resetZoomHistory,
+}) => {
+  const map = useMap();
+
+  useEffect(() => {
+    // Create a new custom control that extends L.Control.Zoom
+    const customZoomControl = L.Control.extend({
+      options: {
+        position: "topright", // Default position
+      },
+
+      onAdd: function (map: L.Map) {
+        // Create container for the zoom controls
+        const container = L.DomUtil.create(
+          "div",
+          "leaflet-bar leaflet-control leaflet-control-zoom"
+        );
+
+        // Default zoom in button
+        const zoomInButton = L.DomUtil.create(
+          "a",
+          "leaflet-control-zoom-in",
+          container
+        );
+        zoomInButton.innerHTML = "+";
+        zoomInButton.href = "#";
+        zoomInButton.title = "Zoom in";
+
+        // Default zoom out button
+        const zoomOutButton = L.DomUtil.create(
+          "a",
+          "leaflet-control-zoom-out",
+          container
+        );
+        zoomOutButton.innerHTML = "-";
+        zoomOutButton.href = "#";
+        zoomOutButton.title = "Zoom out";
+
+        // Add click handlers for the buttons
+        L.DomEvent.on(zoomInButton, "click", (e) => {
+          L.DomEvent.preventDefault(e);
+          map.zoomIn();
+        });
+
+        L.DomEvent.on(zoomOutButton, "click", (e) => {
+          L.DomEvent.preventDefault(e);
+          map.zoomOut();
+        });
+
+        if (zoomHistory.length > 0) {
+          // Custom "Zoom Out Further" button
+          const zoomUndoButton = L.DomUtil.create(
+            "a",
+            "leaflet-control-zoom-out",
+            container
+          );
+          zoomUndoButton.innerHTML = "<"; // Custom symbol for the button
+          zoomUndoButton.href = "#";
+          zoomUndoButton.title = "Back to previous view";
+
+          L.DomEvent.on(zoomUndoButton, "click", (e) => {
+            L.DomEvent.preventDefault(e);
+            map.setView(zoomHistory[0].latlon, zoomHistory[0].zoom);
+            resetZoomHistory();
+          });
+        }
+        return container;
+      },
+    });
+
+    // Add the new control to the map
+    const controlInstance = new customZoomControl();
+    map.addControl(controlInstance);
+
+    return () => {
+      map.removeControl(controlInstance);
+    };
+  }, [map, zoomHistory]);
+
+  return null;
+};
+
 const PlayerGeoMap: React.FC<MapComponentProps> = ({
   players,
   onBoundsChange,
@@ -89,6 +188,11 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
   center,
   zoom,
 }) => {
+  // Zoom logic
+  const [zoomHistory, setZoomHistory] = useState<
+    { zoom: number; latlon: L.LatLng }[]
+  >([]);
+
   // Custom hook to handle map events
   const eventHandler = (map: any) => {
     const bounds: L.LatLngBounds = map.getBounds(); // Get the new bounds after move or zoom
@@ -104,8 +208,12 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
     });
   };
   const MapEventHandler = () => {
+    //TODO: how to decide how to add to zoom history?
+
     useMapEvent("movestart", (e) => onBoundsToChange?.());
-    useMapEvent("zoomstart", (e) => onBoundsToChange?.());
+    useMapEvent("zoomstart", (e) => {
+      onBoundsToChange?.();
+    });
     useMapEvent("moveend", (e) => eventHandler(e.target));
     useMapEvent("zoomend", (e) => eventHandler(e.target));
 
@@ -123,13 +231,23 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
       whenCreated={(map) => {
         eventHandler(map);
       }}
+      zoomControl={false}
     >
+      <CustomZoomControl
+        zoomHistory={zoomHistory}
+        resetZoomHistory={() => setZoomHistory([])}
+      />
       <MapEventHandler />
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution={`© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>`}
       />
-      <MarkerCluster players={players} />{" "}
+      <MarkerCluster
+        players={players}
+        savePreZoom={(latlon: L.LatLng, zoom: number) => {
+          setZoomHistory([{ zoom, latlon }]);
+        }}
+      />{" "}
     </MapContainer>
   );
 };
