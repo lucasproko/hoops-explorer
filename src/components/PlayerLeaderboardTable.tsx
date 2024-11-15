@@ -341,9 +341,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [geoBoundsChecker, setGeoBoundsChecker] = useState<
     ((lat: number, lon: number) => boolean) | undefined
   >(undefined);
-  const [geoCenterInfo, setGeoCenterInfo] = useState<
-    { lat: number; lon: number; zoom: number } | undefined
-  >(undefined);
+  const [geoCenterInfo, setGeoCenterInfo] = useState<{
+    lat: number | undefined;
+    lon: number | undefined;
+    zoom: number | undefined;
+  }>({
+    lat: startingState.geoCenterLat
+      ? parseFloat(startingState.geoCenterLat)
+      : undefined,
+    lon: startingState.geoCenterLon
+      ? parseFloat(startingState.geoCenterLon)
+      : undefined,
+    zoom: startingState.geoZoom ? parseInt(startingState.geoZoom) : undefined,
+  });
 
   /** If enabled we show a prediction for next year for the player */
   const transferInfoSplit = (
@@ -510,9 +520,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       // Misc display
       showInfoSubHeader: showInfoSubHeader,
       // Geo info:
-      geoCenterLat: geoCenterInfo?.lat,
-      geoCenterLon: geoCenterInfo?.lon,
-      geoZoom: geoCenterInfo?.zoom,
+      geoCenterLat: geoCenterInfo?.lat?.toString(),
+      geoCenterLon: geoCenterInfo?.lon?.toString(),
+      geoZoom: geoCenterInfo?.zoom?.toString(),
     };
     onChangeState(newState);
   }, [
@@ -534,6 +544,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     genderUnreliable,
     tier,
     geoCenterInfo,
+    geoBoundsChecker,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -715,76 +726,82 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           )) ||
       sortBy == unsortedOpt.value;
     // Filter, sort, and limit players part 2/2
-    const playersPhase1 = _.chain(confDataEventPlayers)
-      .filter((player, playerIndex) => {
-        const strToTestCase = buildFilterStringTest(player);
-        const strToTest = caseInsensitiveSearch
-          ? strToTestCase.toLowerCase()
-          : strToTestCase;
+    const playersPhase1 =
+      geoMode && !geoBoundsChecker // In geo mode, don't render until we have a map!
+        ? []
+        : _.chain(confDataEventPlayers)
+            .filter((player, playerIndex) => {
+              const strToTestCase = buildFilterStringTest(player);
+              const strToTest = caseInsensitiveSearch
+                ? strToTestCase.toLowerCase()
+                : strToTestCase;
 
-        const maybeTxfer = _.find(
-          dataEvent?.transfers?.[player.code] || [],
-          (comp) => comp.f == player.team
-        );
-        if (maybeTxfer?.f) player.transfer_src = maybeTxfer?.f;
-        if (maybeTxfer?.t) player.transfer_dest = maybeTxfer?.t;
+              const maybeTxfer = _.find(
+                dataEvent?.transfers?.[player.code] || [],
+                (comp) => comp.f == player.team
+              );
+              if (maybeTxfer?.f) player.transfer_src = maybeTxfer?.f;
+              if (maybeTxfer?.t) player.transfer_dest = maybeTxfer?.t;
 
-        if (transferPredictionMode) {
-          const genderYearLookup = `${gender}_${player.year}`;
-          const avgEfficiency =
-            efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+              if (transferPredictionMode) {
+                const genderYearLookup = `${gender}_${player.year}`;
+                const avgEfficiency =
+                  efficiencyAverages[genderYearLookup] ||
+                  efficiencyAverages.fallback;
 
-          const prediction = TeamEditorUtils.approxTransferPrediction(
-            player,
-            player.transfer_dest,
-            player.year,
-            avgEfficiency
-          );
-          player.off_adj_rapm_pred = prediction.off_adj_rapm;
-          player.def_adj_rapm_pred = prediction.def_adj_rapm;
-          player.off_rtg_pred = prediction.off_rtg;
-          player.off_usage_pred = prediction.off_usage;
-        }
+                const prediction = TeamEditorUtils.approxTransferPrediction(
+                  player,
+                  player.transfer_dest,
+                  player.year,
+                  avgEfficiency
+                );
+                player.off_adj_rapm_pred = prediction.off_adj_rapm;
+                player.def_adj_rapm_pred = prediction.def_adj_rapm;
+                player.off_rtg_pred = prediction.off_rtg;
+                player.off_usage_pred = prediction.off_usage;
+              }
 
-        const geoMatch = _.isFunction(geoBoundsChecker)
-          ? _.isNumber(player?.roster?.lat) && _.isNumber(player?.roster?.lon)
-            ? geoBoundsChecker(player.roster.lat, player.roster.lon)
-            : false
-          : true;
+              const geoMatch = _.isFunction(geoBoundsChecker)
+                ? player?.roster &&
+                  _.isNumber(player?.roster?.lat) &&
+                  _.isNumber(player?.roster?.lon)
+                  ? geoBoundsChecker(player.roster.lat, player.roster.lon)
+                  : false
+                : true;
 
-        return (
-          geoMatch &&
-          (_.isEmpty(transferInfoSplit[0]) ||
-            _.isEmpty(dataEvent.transfers) || //(if not specified, don't care about transfers)
-            (maybeTxfer &&
-              (!maybeTxfer.t || transferInfoSplit[0] != "true"))) &&
-          //(transferred and either doesn't have a destination, or we don't care)
-          (filterFragmentsPve.length == 0 ||
-            (_.find(
-              filterFragmentsPve,
-              (fragment) => strToTest.indexOf(fragment) >= 0
+              return (
+                geoMatch &&
+                (_.isEmpty(transferInfoSplit[0]) ||
+                  _.isEmpty(dataEvent.transfers) || //(if not specified, don't care about transfers)
+                  (maybeTxfer &&
+                    (!maybeTxfer.t || transferInfoSplit[0] != "true"))) &&
+                //(transferred and either doesn't have a destination, or we don't care)
+                (filterFragmentsPve.length == 0 ||
+                  (_.find(
+                    filterFragmentsPve,
+                    (fragment) => strToTest.indexOf(fragment) >= 0
+                  )
+                    ? true
+                    : false)) &&
+                (filterFragmentsNve.length == 0 ||
+                  (_.find(
+                    filterFragmentsNve,
+                    (fragment) => strToTest.indexOf(fragment) >= 0
+                  )
+                    ? false
+                    : true))
+              );
+            })
+            .sortBy(
+              skipSort
+                ? [] //(can save on a sort if using the generated sort-order, or if sorting is disabled)
+                : [
+                    LineupTableUtils.sorter(sortBy),
+                    (p) => p.baseline?.off_team_poss?.value || 0,
+                    (p) => p.key,
+                  ]
             )
-              ? true
-              : false)) &&
-          (filterFragmentsNve.length == 0 ||
-            (_.find(
-              filterFragmentsNve,
-              (fragment) => strToTest.indexOf(fragment) >= 0
-            )
-              ? false
-              : true))
-        );
-      })
-      .sortBy(
-        skipSort
-          ? [] //(can save on a sort if using the generated sort-order, or if sorting is disabled)
-          : [
-              LineupTableUtils.sorter(sortBy),
-              (p) => p.baseline?.off_team_poss?.value || 0,
-              (p) => p.key,
-            ]
-      )
-      .value();
+            .value();
 
     const [players, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
@@ -1540,6 +1557,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     tier,
     advancedFilterStr,
     dataEvent,
+    geoBoundsChecker,
+    geoCenterInfo,
   ]);
 
   // 3.2] Sorting utils
@@ -1807,12 +1826,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             <Form.Group as={Col} sm="12">
               <PlayerGeoMapNoSsr
                 players={dataEvent?.players || []}
+                center={geoCenterInfo}
+                zoom={geoCenterInfo?.zoom}
                 onBoundsChange={(
                   boundsChecker: (lat: number, lon: number) => boolean,
                   info: { lat: number; lon: number; zoom: number }
                 ) => {
-                  setGeoBoundsChecker(() => boundsChecker);
-                  setGeoCenterInfo(info);
+                  friendlyChange(() => {
+                    setGeoBoundsChecker(() => boundsChecker);
+                    setGeoCenterInfo(info);
+                  }, !geoBoundsChecker || info.lat != geoCenterInfo?.lat || info.lon != geoCenterInfo?.lon || info.zoom != geoCenterInfo?.zoom);
                 }}
               />
             </Form.Group>

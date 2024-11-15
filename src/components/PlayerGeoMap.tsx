@@ -24,8 +24,9 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import _ from "lodash";
 
 interface MapComponentProps {
+  center?: { lat: number | undefined; lon: number | undefined };
+  zoom?: number;
   players: IndivStatSet[];
-  //TODO: also need to capture center/zoom and render back
   onBoundsChange?: (
     latLongChecker: (lat: number, lon: number) => boolean,
     info: { lat: number; lon: number; zoom: number }
@@ -55,7 +56,11 @@ const MarkerCluster = ({ players }: { players: IndivStatSet[] }) => {
           {player.team || "unknown"}
         </span>
       );
-      if (_.isNumber(player?.roster?.lat) && _.isNumber(player?.roster?.lon)) {
+      if (
+        player.roster &&
+        _.isNumber(player?.roster?.lat) &&
+        _.isNumber(player?.roster?.lon)
+      ) {
         const marker = L.marker([player.roster.lat, player.roster.lon], {
           icon: defaultIcon,
         }).bindPopup(ReactDOMServer.renderToString(someInfo));
@@ -76,44 +81,41 @@ const MarkerCluster = ({ players }: { players: IndivStatSet[] }) => {
 const PlayerGeoMap: React.FC<MapComponentProps> = ({
   players,
   onBoundsChange,
+  center,
+  zoom,
 }) => {
   // Custom hook to handle map events
+  const eventHandler = (map: any) => {
+    const bounds: L.LatLngBounds = map.getBounds(); // Get the new bounds after move or zoom
+    const center: L.LatLng = map.getCenter();
+    const zoom: number = map.getZoom();
+    const boundsChecker = (lat: number, lon: number) => {
+      return bounds.contains(new L.LatLng(lat, lon));
+    };
+    onBoundsChange?.(boundsChecker, {
+      lat: center.lat,
+      lon: center.lng,
+      zoom,
+    });
+  };
   const MapEventHandler = () => {
-    useMapEvent("moveend", (e) => {
-      const bounds: L.LatLngBounds = e.target.getBounds(); // Get the new bounds after move or zoom
-      const center: L.LatLng = e.target.getCenter();
-      const zoom: number = e.target.getZoom();
-      const boundsChecker = (lat: number, lon: number) => {
-        return bounds.contains(new L.LatLng(lat, lon));
-      };
-      onBoundsChange?.(boundsChecker, {
-        lat: center.lat,
-        lon: center.lng,
-        zoom,
-      });
-    });
-
-    useMapEvent("zoomend", (e) => {
-      const bounds: L.LatLngBounds = e.target.getBounds();
-      const center: L.LatLng = e.target.getCenter();
-      const zoom: number = e.target.getZoom();
-      const boundsChecker = (lat: number, lon: number) => {
-        return bounds.contains(new L.LatLng(lat, lon));
-      };
-      onBoundsChange?.(boundsChecker, {
-        lat: center.lat,
-        lon: center.lng,
-        zoom,
-      });
-    });
+    useMapEvent("moveend", (e) => eventHandler(e.target));
+    useMapEvent("zoomend", (e) => eventHandler(e.target));
 
     return null; // No rendering needed
   };
+
   return (
     <MapContainer
-      center={[20, 10]}
-      zoom={2}
+      center={[
+        _.isNumber(center?.lat) ? center.lat : 20,
+        _.isNumber(center?.lon) ? center.lon : 10,
+      ]}
+      zoom={zoom || 2}
       style={{ height: "60vh", width: "100%" }}
+      whenCreated={(map) => {
+        eventHandler(map);
+      }}
     >
       <MapEventHandler />
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
