@@ -44,6 +44,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "Men",
@@ -103,6 +108,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
@@ -7773,6 +7783,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "Men",
@@ -7832,6 +7847,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
@@ -15502,6 +15522,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "Men",
@@ -15561,6 +15586,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
@@ -26439,6 +26469,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "Men",
@@ -26498,6 +26533,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
@@ -34148,6 +34188,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "Men",
@@ -34207,6 +34252,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
@@ -35658,6 +35708,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
             ]
           }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
           value={
             Object {
               "label": "Men",
@@ -35717,6 +35772,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "value": "Extra",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {

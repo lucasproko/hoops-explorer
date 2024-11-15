@@ -676,7 +676,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   };
 
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
-  const table = React.useMemo(() => {
+  const { table, maybeMap } = React.useMemo(() => {
     setLoadingOverride(false); //(rendering)
 
     const specialCases = {
@@ -714,6 +714,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       );
       //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
     });
+
+    /** These hacks aren't too unpleasant since they are only used within this fn and for display */
+    var varNoGeoFilters = true;
 
     const skipSort =
       (year != DateUtils.AllYears &&
@@ -760,13 +763,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 player.off_usage_pred = prediction.off_usage;
               }
 
+              const playerHasLatLong =
+                player?.roster &&
+                _.isNumber(player?.roster?.lat) &&
+                _.isNumber(player?.roster?.lon);
               const geoMatch = _.isFunction(geoBoundsChecker)
-                ? player?.roster &&
-                  _.isNumber(player?.roster?.lat) &&
-                  _.isNumber(player?.roster?.lon)
+                ? playerHasLatLong
                   ? geoBoundsChecker(player.roster.lat, player.roster.lon)
                   : false
                 : true;
+
+              /** Keep track of this for display purposes */
+              varNoGeoFilters =
+                varNoGeoFilters && (!playerHasLatLong || geoMatch);
 
               return (
                 geoMatch &&
@@ -830,7 +839,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       (advancedFilterStr.length > 0 && !advancedFilterError) ||
       confDataEventPlayers.length < dataEventPlayers.length ||
       (filterStr || "") != "" ||
-      posClasses != "";
+      posClasses != "" ||
+      (geoMode && !varNoGeoFilters);
 
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter =
@@ -1521,24 +1531,46 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? RosterTableUtils.buildInformationalSubheader(true, true)
       : [];
 
-    return (
-      <GenericTable
-        tableCopyId="playerLeaderboardTable"
-        tableFields={CommonTableDefs.onOffIndividualTable(
-          true,
-          possAsPct,
-          factorMins,
-          true
-        )}
-        tableData={maybeSubheaderRow.concat(tableData)}
-        cellTooltipMode="none"
-        extraInfoLookups={{
-          //(see buildLeaderboards)
-          PREPROCESSING_WARNING:
-            "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
-        }}
-      />
-    );
+    return {
+      table: (
+        <GenericTable
+          tableCopyId="playerLeaderboardTable"
+          tableFields={CommonTableDefs.onOffIndividualTable(
+            true,
+            possAsPct,
+            factorMins,
+            true
+          )}
+          tableData={maybeSubheaderRow.concat(tableData)}
+          cellTooltipMode="none"
+          extraInfoLookups={{
+            //(see buildLeaderboards)
+            PREPROCESSING_WARNING:
+              "The leaderboard version of this stat has been improved with some pre-processing so may not be identical to the on-demand values eg in the On/Off pages",
+          }}
+        />
+      ),
+      maybeMap: geoMode ? (
+        <Form.Row>
+          <Form.Group as={Col} sm="12">
+            <PlayerGeoMapNoSsr
+              players={players}
+              center={geoCenterInfo}
+              zoom={geoCenterInfo?.zoom}
+              onBoundsChange={(
+                boundsChecker: (lat: number, lon: number) => boolean,
+                info: { lat: number; lon: number; zoom: number }
+              ) => {
+                friendlyChange(() => {
+                  setGeoBoundsChecker(() => boundsChecker);
+                  setGeoCenterInfo(info);
+                }, !geoBoundsChecker || info.lat != geoCenterInfo?.lat || info.lon != geoCenterInfo?.lon || info.zoom != geoCenterInfo?.zoom);
+              }}
+            />
+          </Form.Group>
+        </Form.Row>
+      ) : null,
+    };
   }, [
     minPoss,
     maxTableSize,
@@ -1761,6 +1793,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Row}>
             <Col xs={6} sm={6} md={3} lg={2}>
               <Select
+                styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(genderUnreliable)}
                 options={["Men", "Women"].map((gender) =>
                   stringToOption(gender)
@@ -1779,10 +1812,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             </Col>
             <Col xs={6} sm={6} md={3} lg={2}>
               <Select
+                styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(yearUnreliable)}
-                options={DateUtils.lboardYearList(tier).map((r) =>
-                  stringToOption(r)
-                )}
+                options={DateUtils.lboardYearList(tier)
+                  .filter((r) => {
+                    return geoMode
+                      ? r >= DateUtils.firstYearWithRosterGeoData &&
+                          r.startsWith("2")
+                      : true;
+                  })
+                  .map((r) => stringToOption(r))}
                 isSearchable={false}
                 onChange={(option: any) => {
                   if ((option as any)?.value) {
@@ -1820,26 +1859,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             </Col>
           </Form.Group>
         )}
-        {geoMode ? (
-          <Form.Row>
-            <Form.Group as={Col} sm="12">
-              <PlayerGeoMapNoSsr
-                players={dataEvent?.players || []}
-                center={geoCenterInfo}
-                zoom={geoCenterInfo?.zoom}
-                onBoundsChange={(
-                  boundsChecker: (lat: number, lon: number) => boolean,
-                  info: { lat: number; lon: number; zoom: number }
-                ) => {
-                  friendlyChange(() => {
-                    setGeoBoundsChecker(() => boundsChecker);
-                    setGeoCenterInfo(info);
-                  }, !geoBoundsChecker || info.lat != geoCenterInfo?.lat || info.lon != geoCenterInfo?.lon || info.zoom != geoCenterInfo?.zoom);
-                }}
-              />
-            </Form.Group>
-          </Form.Row>
-        ) : null}
+        {maybeMap}
         <Form.Row>
           <Form.Group as={Col} sm="7">
             <InputGroup>

@@ -51,9 +51,12 @@ const MarkerCluster = ({ players }: { players: IndivStatSet[] }) => {
     players.forEach((player) => {
       const someInfo = (
         <span>
-          {player.key || "unknown"}
+          {player?.key || "unknown"}
           <br />
-          {player.team || "unknown"}
+          {player?.team || "unknown"}
+          <br />
+          <br />
+          {player?.roster?.origin || "unknown"}
         </span>
       );
       if (
@@ -118,7 +121,10 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
       }}
     >
       <MapEventHandler />
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution={`© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>`}
+      />
       <MarkerCluster players={players} />{" "}
     </MapContainer>
   );
