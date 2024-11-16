@@ -59,6 +59,36 @@ const MarkerCluster = ({
       savePreZoom(map.getCenter(), map.getZoom());
     });
 
+    // Handle cluster mouseover
+    markers.on("clustermouseover", function (e: any) {
+      const cluster = e.layer;
+      const childMarkers = cluster.getAllChildMarkers();
+      const top10PlayersInfo = _.uniq(
+        childMarkers.slice(0, 20).map((marker: any, idx: number) => {
+          const popupContent = marker.getPopup()?.getContent();
+
+          const lines = popupContent.split("<br/>");
+          return `<div>${lines?.[0]} | ${lines?.[1]}</div>`;
+        })
+      )
+        .slice(0, 5)
+        .concat("<div>...</div>");
+
+      const clusterPopup = L.popup({
+        closeButton: false,
+        autoClose: true,
+        className: "cluster-popup",
+        offset: L.point(0, -10),
+      })
+        .setLatLng(cluster.getLatLng())
+        .setContent(`<div>${top10PlayersInfo.join("")}</div>`)
+        .openOn(map);
+
+      // Close the popup when mouse leaves the cluster
+      cluster.on("mouseout", () => {
+        map.closePopup(clusterPopup);
+      });
+    });
     var i = 0;
     players.forEach((player) => {
       const someInfo = (
@@ -78,7 +108,9 @@ const MarkerCluster = ({
       ) {
         const marker = L.marker([player.roster.lat, player.roster.lon], {
           icon: defaultIcon,
-        }).bindPopup(ReactDOMServer.renderToString(someInfo));
+        })
+          .bindPopup(ReactDOMServer.renderToString(someInfo))
+          .bindTooltip(ReactDOMServer.renderToString(someInfo));
         markers.addLayer(marker);
       }
     });
@@ -95,7 +127,7 @@ const MarkerCluster = ({
 
 type CustomZoomControlProps = {
   zoomHistory: { zoom: number; latlon: L.LatLng }[];
-  resetZoomHistory: () => void;
+  resetZoomHistory: (all: boolean) => void;
 };
 const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
   zoomHistory,
@@ -107,7 +139,7 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
     // Create a new custom control that extends L.Control.Zoom
     const customZoomControl = L.Control.extend({
       options: {
-        position: "topright", // Default position
+        position: "topleft", // Default position
       },
 
       onAdd: function (map: L.Map) {
@@ -137,6 +169,16 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
         zoomOutButton.href = "#";
         zoomOutButton.title = "Zoom out";
 
+        // Default zoom out button
+        const resetButton = L.DomUtil.create(
+          "a",
+          "leaflet-control-help",
+          container
+        );
+        resetButton.innerHTML = "<<";
+        resetButton.href = "#";
+        resetButton.title = "Reset map view";
+
         // Add click handlers for the buttons
         L.DomEvent.on(zoomInButton, "click", (e) => {
           L.DomEvent.preventDefault(e);
@@ -148,11 +190,17 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
           map.zoomOut();
         });
 
+        L.DomEvent.on(resetButton, "click", (e) => {
+          L.DomEvent.preventDefault(e);
+          map.setView([20, 10], 2);
+          resetZoomHistory(false);
+        });
+
         if (zoomHistory.length > 0) {
           // Custom "Zoom Out Further" button
           const zoomUndoButton = L.DomUtil.create(
             "a",
-            "leaflet-control-zoom-out",
+            "leaflet-control-help",
             container
           );
           zoomUndoButton.innerHTML = "<"; // Custom symbol for the button
@@ -162,9 +210,10 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
           L.DomEvent.on(zoomUndoButton, "click", (e) => {
             L.DomEvent.preventDefault(e);
             map.setView(zoomHistory[0].latlon, zoomHistory[0].zoom);
-            resetZoomHistory();
+            resetZoomHistory(false);
           });
         }
+
         return container;
       },
     });
@@ -208,8 +257,6 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
     });
   };
   const MapEventHandler = () => {
-    //TODO: how to decide how to add to zoom history?
-
     useMapEvent("movestart", (e) => onBoundsToChange?.());
     useMapEvent("zoomstart", (e) => {
       onBoundsToChange?.();
@@ -243,7 +290,10 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
     >
       <CustomZoomControl
         zoomHistory={zoomHistory}
-        resetZoomHistory={() => setZoomHistory(_.drop(zoomHistory, 1))}
+        resetZoomHistory={(all: boolean) => {
+          if (all) setZoomHistory([]);
+          else setZoomHistory(_.drop(zoomHistory, 1));
+        }}
       />
       <MapEventHandler />
       <TileLayer
