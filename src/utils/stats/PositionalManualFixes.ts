@@ -120,6 +120,11 @@ export const absolutePositionFixes: Record<
       position: "S-PF",
     },
   },
+  "Men_Maryland_2024/25": {
+    "Miguel, Selton": {
+      position: "WG",
+    },
+  },
   "Men_Michigan St._2020/21": {
     "Hauser, Joey": {
       position: "S-PF",
