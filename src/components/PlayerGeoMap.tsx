@@ -217,6 +217,14 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
     useMapEvent("moveend", (e) => eventHandler(e.target));
     useMapEvent("zoomend", (e) => eventHandler(e.target));
 
+    const map = useMap();
+    map.on("boxzoomend", (e) => {
+      setZoomHistory([
+        { zoom: map.getZoom(), latlon: map.getCenter() },
+        ...zoomHistory,
+      ]);
+    });
+
     return null; // No rendering needed
   };
 
@@ -235,7 +243,7 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
     >
       <CustomZoomControl
         zoomHistory={zoomHistory}
-        resetZoomHistory={() => setZoomHistory([])}
+        resetZoomHistory={() => setZoomHistory(_.drop(zoomHistory, 1))}
       />
       <MapEventHandler />
       <TileLayer
@@ -245,7 +253,7 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
       <MarkerCluster
         players={players}
         savePreZoom={(latlon: L.LatLng, zoom: number) => {
-          setZoomHistory([{ zoom, latlon }]);
+          setZoomHistory([{ zoom, latlon }, ...zoomHistory]);
         }}
       />{" "}
     </MapContainer>
