@@ -166,6 +166,7 @@ export type LineupFilterParams = {
   showTotal?: boolean;
   showOff?: boolean;
   minPoss?: string;
+  showRawPts?: boolean;
   maxTableSize?: string;
   sortBy?: string;
   // Filtering:

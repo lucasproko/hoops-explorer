@@ -84,7 +84,7 @@ type Props = {
 // Some static methods
 
 const sortOptions: Array<any> = _.flatten(
-  _.toPairs(CommonTableDefs.lineupTable)
+  _.toPairs(CommonTableDefs.lineupTable(false))
     .filter((keycol) => keycol[1].colName && keycol[1].colName != "")
     .map((keycol) => {
       return [
@@ -591,7 +591,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
     return (
       <GenericTable
         tableCopyId="lineupLeaderboardTable"
-        tableFields={CommonTableDefs.lineupTable}
+        tableFields={CommonTableDefs.lineupTable(false)}
         tableData={tableData}
         cellTooltipMode="none"
       />

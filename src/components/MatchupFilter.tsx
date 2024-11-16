@@ -517,6 +517,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     gender: params.gender,
     year: params.year,
     minPoss: "0",
+    showRawPts: true,
     baseQuery: subFor
       ? (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
       : params.baseQuery,

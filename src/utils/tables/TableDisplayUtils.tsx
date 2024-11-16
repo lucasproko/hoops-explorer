@@ -592,4 +592,63 @@ export class TableDisplayUtils {
     }
     return statSet;
   }
+
+  /** Mutates a lineup stat set in order to display raw pts (for smaller displays) */
+  static turnPppIntoRawPts = (
+    mutableLineup: LineupStatSet,
+    adjustForLuck: boolean
+  ) => {
+    const granularity = adjustForLuck ? 1 : 0;
+
+    const rawOffPts =
+      0.01 *
+      (mutableLineup.off_ppp?.value || 0) *
+      (mutableLineup.off_poss?.value || 0);
+    const rawDefPts =
+      0.01 *
+      (mutableLineup.def_ppp?.value || 0) *
+      (mutableLineup.def_poss?.value || 0);
+
+    (mutableLineup as any).off_raw_ppp = {
+      ...mutableLineup.off_ppp,
+      value: (
+        <text
+          style={CommonTableDefs.getTextShadow(
+            mutableLineup.off_ppp,
+            CbbColors.off_pp100
+          )}
+        >
+          <i>{rawOffPts.toFixed(granularity)}</i>
+        </text>
+      ),
+    };
+
+    (mutableLineup as any).def_raw_ppp = {
+      ...mutableLineup.def_ppp,
+      value: (
+        <text
+          style={CommonTableDefs.getTextShadow(
+            mutableLineup.def_ppp,
+            CbbColors.def_pp100
+          )}
+        >
+          <i>{rawDefPts.toFixed(granularity)}</i>
+        </text>
+      ),
+    };
+
+    mutableLineup.def_net = {
+      ...mutableLineup.off_raw_net,
+      value: (
+        <text
+          style={CommonTableDefs.getTextShadow(
+            mutableLineup.off_raw_net,
+            CbbColors.off_diff35_p100_redGreen
+          )}
+        >
+          <i>{(rawOffPts - rawDefPts).toFixed(granularity)}</i>
+        </text>
+      ),
+    };
+  };
 }

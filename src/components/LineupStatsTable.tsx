@@ -188,6 +188,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       : startingState.luck
   );
 
+  /** For smaller possession counts make sense to show pts rather than pts/100 */
+  const [showRawPts, setShowRawPts] = useState(
+    startingState.showRawPts || false
+  );
+
   /** Whether we are showing the luck config modal */
   const [showLuckConfig, setShowLuckConfig] = useState(false);
 
@@ -228,6 +233,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       decorate: decorateLineups,
       showTotal: showTotals,
       showOff: showDropped,
+      showRawPts,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
@@ -247,6 +253,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     showLuckAdjDiags,
     aggregateByPos,
     showGameInfo,
+    showRawPts,
   ]);
 
   // 3] Utils
@@ -344,6 +351,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           false,
           teamSeasonLookup
         ); //(inject assist numbers)
+
+        // Create (off_/def_)raw_net and raw_ppp if needed
+        if (showRawPts) {
+          TableDisplayUtils.turnPppIntoRawPts(lineup, adjustForLuck);
+        }
 
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         const sortedCodesAndIds =
@@ -460,7 +472,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       return (
         <GenericTable
           tableCopyId="lineupStatsTable"
-          tableFields={CommonTableDefs.lineupTable}
+          tableFields={CommonTableDefs.lineupTable(showRawPts)}
           tableData={tableData}
           cellTooltipMode="none"
         />
@@ -598,6 +610,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           );
 
           const maybeLineBreak = aggregateByPos.length > 2 ? <br /> : null;
+
           return key == LineupTableUtils.totalLineupId
             ? {
                 ...lineups[0],
@@ -651,6 +664,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             teamSeasonLookup
           ); //(inject assist numbers)
         }
+        if (showRawPts) {
+          TableDisplayUtils.turnPppIntoRawPts(stats, adjustForLuck);
+        }
 
         const showRepeatingHeaderThisLine =
           showRepeatingHeader && !showGameInfo && index > 0 && 0 == index % 5;
@@ -695,7 +711,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       return (
         <GenericTable
           tableCopyId="lineupStatsTable"
-          tableFields={CommonTableDefs.lineupTable}
+          tableFields={CommonTableDefs.lineupTable(showRawPts)}
           tableData={tableData}
           cellTooltipMode="none"
         />
@@ -705,6 +721,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     decorateLineups,
     showTotals,
     showDropped,
+    showRawPts,
     minPoss,
     maxTableSize,
     sortBy,
@@ -721,7 +738,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   // 3.2] Sorting utils
 
   const sortOptions: Array<any> = _.flatten(
-    _.toPairs(CommonTableDefs.lineupTable)
+    _.toPairs(CommonTableDefs.lineupTable(false))
       .filter((keycol) => keycol[1].colName && keycol[1].colName != "")
       .map((keycol) => {
         return [
@@ -887,6 +904,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 }
               />
               <GenericTogglingMenuItem
+                text="Show raw Off/Def/Net as Pts (vs P/100)"
+                truthVal={showRawPts}
+                onSelect={() =>
+                  friendlyChange(() => setShowRawPts(!showRawPts), true)
+                }
+              />
+              <GenericTogglingMenuItem
                 text="Show Weighted Combo of All Filtered-Out Lineups"
                 truthVal={showDropped}
                 onSelect={() =>
@@ -1033,6 +1057,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       () => setAdjustForLuck(!adjustForLuck),
                       true
                     ),
+                },
+                {
+                  label: "Pts",
+                  tooltip: showRawPts
+                    ? "Show raw pts stats as P/100"
+                    : "Show raw pts stats as Pts",
+                  toggled: showRawPts,
+                  onClick: () =>
+                    friendlyChange(() => setShowRawPts(!showRawPts), true),
                 },
                 {
                   label: "Games",
