@@ -99,6 +99,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       ) as PlayerLeaderboardParams
     );
   }
+  function getPlayerLeaderboardGeoUrl(tier: "High" | "Medium" | "Low" | "All") {
+    return UrlRouting.getPlayerLeaderboardGeoUrl(
+      getCommonLboardFilterParams(
+        commonWithCorrectedYearLboard,
+        tier
+      ) as PlayerLeaderboardParams
+    );
+  }
   function getPlayerLeaderboardTransferPortalUrl() {
     return UrlRouting.getPlayerLeaderboardUrl({
       ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
@@ -264,28 +272,33 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       returning super seniors
     </Tooltip>
   );
+  const playerLeaderboardTooltipGeo = (
+    <Tooltip id="playerLeaderboardTooltipGeo">
+      The Player Leaderboard overlaid on a map of their hometowns!
+    </Tooltip>
+  );
   const playerLeaderboardTooltipMdDmv2017 = (
     <Tooltip id="playerLeaderboardTooltipMdDmv2017">
       Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
-      Md/DMV-area players class of 2017+
+      Md/DMV-area players class of 2017-2023/24
     </Tooltip>
   );
   const playerLeaderboardTooltipNyNj2017 = (
     <Tooltip id="playerLeaderboardTooltipNyNj2017">
       Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
-      NY/NJ-area players class of 2017+ (h/t jules99b from reddit)
+      NY/NJ-area players class of 2017-2022/23 (h/t jules99b from reddit)
     </Tooltip>
   );
   const playerLeaderboardTooltipEuro2017 = (
     <Tooltip id="playerLeaderboardTooltipEuro2017">
       Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
-      European players class of 2017+
+      European players class of 2017-2022/23
     </Tooltip>
   );
   const playerLeaderboardTooltipCanada2017 = (
     <Tooltip id="playerLeaderboardTooltipCanada2017">
       Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
-      Canadian players class of 2017+
+      Canadian players class of 2017-2022/23
     </Tooltip>
   );
   const baseGameTooltip = (
@@ -555,7 +568,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
-              "Md/DMV-area players (HS 2017+)",
+              "Player hometowns! (HS 2023+)",
+              playerLeaderboardTooltipGeo,
+              getPlayerLeaderboardGeoUrl("All"),
+              `${ParamPrefixes.player}_leaderboard_geo`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Md/DMV-area players (HS 2017-2024)",
               playerLeaderboardTooltipMdDmv2017,
               getPlayerLeaderboardTrackingUrl("__DMV_2017__"),
               `${ParamPrefixes.player}_leaderboard`
