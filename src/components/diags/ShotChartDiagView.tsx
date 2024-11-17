@@ -9,6 +9,8 @@ import GenericTable, { GenericTableOps } from "../../components/GenericTable";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { ShotChartAvgs_Men_2024 } from "../../utils/internal-data/ShotChartAvgs_Men_2024";
+import { ShotChartAvgs_Women_2024 } from "../../utils/internal-data/ShotChartAvgs_Women_2024";
 
 /////////////////////// 2D Shot Chart
 
@@ -19,6 +21,7 @@ import { hexbin } from "d3-hexbin";
 import { ShotStats } from "../../utils/StatModels";
 
 interface HexData {
+  key: string;
   frequency: number;
   intensity: number;
   x: number;
@@ -34,14 +37,6 @@ interface HexZone {
   maxAngle: number;
   frequency: number;
   intensity: number;
-}
-
-interface HexMapProps {
-  data: HexData[];
-  width: number;
-  height: number;
-  showZones?: boolean;
-  zones?: HexZone[];
 }
 
 /** 0 is horizontal axis pointing left, when averaging angle make >= 90 and <= 270 */
@@ -150,7 +145,20 @@ const MAX_Y = 26;
 const HEX_HEIGHT = 520;
 const HEX_WIDTH = 400;
 
-const HexMap: React.FC<HexMapProps> = ({ data, width, height }) => {
+interface HexMapProps {
+  data: HexData[];
+  width: number;
+  height: number;
+  showZones?: boolean;
+  zones?: HexZone[];
+  diffDataSet?: Record<string, { avg_freq: number; avg_ppp: number }>;
+}
+const HexMap: React.FC<HexMapProps> = ({
+  data,
+  width,
+  height,
+  diffDataSet,
+}) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
@@ -174,7 +182,9 @@ const HexMap: React.FC<HexMapProps> = ({ data, width, height }) => {
     const colorScale = d3
       .scaleSequential(d3.interpolateBlues) // Adjust color scheme as needed
       .domain([0, 1]);
-    const cbbColorScale = CbbColors.off_eFgShotChart;
+    const cbbColorScale = diffDataSet
+      ? CbbColors.diff_eFgShotChart
+      : CbbColors.off_eFgShotChart;
 
     // Define scales for x and y to map original coordinates to canvas
     const xScale = d3
@@ -277,25 +287,32 @@ const HexMap: React.FC<HexMapProps> = ({ data, width, height }) => {
 
 ///////////////////// Top Level Logic
 
-type Props = {
-  off: ShotStats;
-  def: ShotStats;
-};
-
-const shotStatsToHexData = (stats: ShotStats): HexData[] => {
+const shotStatsToHexData = (
+  stats: ShotStats,
+  diffSet?: Record<string, { avg_freq: number; avg_ppp: number }>
+): HexData[] => {
   const total_freq = stats?.doc_count || 1;
   return (stats?.shot_chart?.buckets || [])
     .map((shotInfo) => {
+      const hexKey = shotInfo.key || "";
       const x = shotInfo.center.location.x;
       const y = shotInfo.center.location.y;
       const frequency = shotInfo.doc_count;
       const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
 
+      const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
+        return {
+          diffFreq: diff?.avg_freq || 0,
+          diffPpp: diff?.avg_ppp || (_.isNil(diffSet) ? 0.0 : 1.0), //(whether the key is missing or we're not diffing at all)
+        };
+      });
+
       return {
+        key: hexKey,
         x,
         y,
-        intensity,
-        frequency: 100 * (frequency / total_freq),
+        intensity: intensity - diffPpp,
+        frequency: 100 * (frequency / total_freq), //TODO we could try making it half the size if it's average freq?
         tooltip: `[${frequency}] shots ([${(
           100 *
           (frequency / total_freq)
@@ -307,7 +324,25 @@ const shotStatsToHexData = (stats: ShotStats): HexData[] => {
     .filter((h) => h.x <= 35);
 };
 
-const ShotChartDiagView: React.FunctionComponent<Props> = ({ off, def }) => {
+type Props = {
+  gender: "Men" | "Women";
+  off: ShotStats;
+  def: ShotStats;
+  absEff?: boolean; //(by default the efficiency is show vs D1 average)
+};
+
+const ShotChartDiagView: React.FunctionComponent<Props> = ({
+  gender,
+  off,
+  def,
+  absEff,
+}) => {
+  const diffDataSet = absEff
+    ? undefined
+    : gender == "Men"
+    ? ShotChartAvgs_Men_2024
+    : ShotChartAvgs_Women_2024;
+
   return (
     <Container>
       <Row>
@@ -321,14 +356,16 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({ off, def }) => {
       <Row>
         <Col xs={6}>
           <HexMap
-            data={shotStatsToHexData(off)}
+            data={shotStatsToHexData(off, diffDataSet)}
+            diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
           />
         </Col>
         <Col xs={6}>
           <HexMap
-            data={shotStatsToHexData(def)}
+            data={shotStatsToHexData(def, diffDataSet)}
+            diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
           />

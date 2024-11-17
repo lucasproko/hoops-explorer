@@ -521,6 +521,7 @@ export class TeamStatsTableUtils {
                   <ShotChartDiagView
                     off={shotStats[queryKey].off}
                     def={shotStats[queryKey].def}
+                    gender={gameFilterParams.gender as "Men" | "Women"}
                   />,
                   "small"
                 ),

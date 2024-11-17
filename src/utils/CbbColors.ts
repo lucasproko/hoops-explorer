@@ -165,6 +165,11 @@ export class CbbColors {
   private static readonly eFgShotChartDomain = [0.3, 0.5, 0.7];
   public static readonly off_eFgShotChart = (val: number) =>
     CbbColors.redGreyGreen.domain(CbbColors.eFgShotChartDomain)(val).toString();
+  private static readonly diffEfgShotChartDomain = [-0.2, 0, 0.2];
+  public static readonly diff_eFgShotChart = (val: number) =>
+    CbbColors.redGreyGreen
+      .domain(CbbColors.diffEfgShotChartDomain)(val)
+      .toString();
   // Assist rate:
   private static readonly astDomain = [0.35, 0.5, 0.65];
   public static readonly ast_offDef = (val: number) =>
