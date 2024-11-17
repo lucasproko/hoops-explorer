@@ -161,6 +161,139 @@ const HexMap: React.FC<HexMapProps> = ({
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
+  // Define scales for x and y to map original coordinates to canvas
+  const xScale = d3
+    .scaleLinear()
+    .domain([MIN_X, MAX_X]) // Original x range
+    .range([0, width]); // Canvas width range
+
+  const yScale = d3
+    .scaleLinear()
+    .domain([MIN_Y, MAX_Y]) // Original y range
+    .range([height, 0]); // Invert y scale to make top of canvas 0
+
+  const injectCourtLines = (
+    svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
+    phase: number
+  ) => {
+    const D = {
+      court_length_x_px: 940.0,
+      court_width_y_px: 500.0,
+      court_length_ft: 94.0,
+      court_width_ft: 50.0,
+      half_court_x_px: 470.0,
+      ft_per_px_x: 94.0 / 940.0,
+      ft_per_px_y: 50.0 / 500.0,
+      goal_left_x_px: 50.0,
+      goal_y_px: 250.0,
+    };
+    // Transform function
+    const transformCoords = (x: number, y: number) => ({
+      x: (x - D.goal_left_x_px) * D.ft_per_px_x,
+      y: (D.goal_y_px - y) * D.ft_per_px_y,
+    });
+    if (phase == 0) {
+      // Add rect
+      const rectCoords = transformCoords(0, 190.145752);
+      svg
+        .append("rect")
+        .attr("x", xScale(rectCoords.x))
+        .attr("y", yScale(rectCoords.y))
+        .attr("width", xScale(190 * D.ft_per_px_x) - xScale(0))
+        .attr("height", yScale(0) - yScale(120 * D.ft_per_px_y))
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("id", "left_freethow_lane");
+
+      // Add left free throw arc
+      const ftArcCoords = transformCoords(190, 250);
+      const arcPath = d3.arc()({
+        innerRadius: yScale(200 * D.ft_per_px_y), //(I don't understand where this comes from?!)
+        outerRadius: yScale(200 * D.ft_per_px_y),
+        startAngle: 0,
+        endAngle: Math.PI,
+      });
+      svg
+        .append("path")
+        .attr("d", arcPath)
+        .attr(
+          "transform",
+          `translate(${xScale(ftArcCoords.x)}, ${yScale(ftArcCoords.y)})`
+        )
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("id", "left_free_throw_arc");
+
+      // Add bottom 3pt line
+      const bottom3ptCoords = transformCoords(0, 450);
+      svg
+        .append("path")
+        .attr(
+          "d",
+          `M${xScale(bottom3ptCoords.x)},${yScale(bottom3ptCoords.y)}h${
+            xScale(94.5 * D.ft_per_px_x) - xScale(0)
+          }`
+        )
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("id", "3pt_line_bottom_left");
+
+      // Add top 3pt line
+      const top3ptCoords = transformCoords(0, 47);
+      svg
+        .append("path")
+        .attr(
+          "d",
+          `M${xScale(top3ptCoords.x)},${yScale(top3ptCoords.y)}h${
+            xScale(94.5 * D.ft_per_px_x) - xScale(0)
+          }`
+        )
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("id", "3pt_line_top_left");
+
+      // Add 3pt arc
+      const threePtArcCoords = transformCoords(93, 33.5 + 215);
+
+      const arcPath3pt = d3.arc()({
+        innerRadius: xScale(201.5 * D.ft_per_px_x) - xScale(0),
+        outerRadius: xScale(201.5 * D.ft_per_px_x) - xScale(0),
+        startAngle: 0,
+        endAngle: Math.PI,
+      });
+      svg
+        .append("path")
+        .attr("d", arcPath3pt)
+        .attr(
+          "transform",
+          `translate(${xScale(threePtArcCoords.x)}, ${yScale(
+            threePtArcCoords.y
+          )})`
+        )
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("id", "3pt_arc_left");
+    }
+    if (phase == 1) {
+      // Add goal left circle
+      const goalCoords = transformCoords(50, 250);
+      svg
+        .append("circle")
+        .attr("cx", xScale(goalCoords.x))
+        .attr("cy", yScale(goalCoords.y))
+        .attr("r", xScale(9 * D.ft_per_px_x) - xScale(0))
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none")
+        .attr("id", "goal_left");
+    }
+  };
+
   useEffect(() => {
     const svg = d3.select(svgRef.current);
 
@@ -185,17 +318,6 @@ const HexMap: React.FC<HexMapProps> = ({
     const cbbColorScale = diffDataSet
       ? CbbColors.diff_eFgShotChart
       : CbbColors.off_eFgShotChart;
-
-    // Define scales for x and y to map original coordinates to canvas
-    const xScale = d3
-      .scaleLinear()
-      .domain([MIN_X, MAX_X]) // Original x range
-      .range([0, width]); // Canvas width range
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([MIN_Y, MAX_Y]) // Original y range
-      .range([height, 0]); // Invert y scale to make top of canvas 0
 
     // Set up the hexbin generator
     const hexbinGenerator = hexbin<number[]>()
@@ -240,6 +362,9 @@ const HexMap: React.FC<HexMapProps> = ({
       })
       .attr("stroke", "#ccc")
       .attr("stroke-width", 0.5);
+
+    injectCourtLines(svg, 0);
+
     svg
       .append("g")
       .selectAll("path")
@@ -276,6 +401,8 @@ const HexMap: React.FC<HexMapProps> = ({
       .on("mouseout", () => {
         tooltip.style("opacity", 0); // Hide tooltip on mouseout
       });
+
+    injectCourtLines(svg, 1);
 
     return () => {
       tooltip.remove(); // Clean up tooltip on unmount
