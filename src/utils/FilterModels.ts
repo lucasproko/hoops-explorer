@@ -373,6 +373,7 @@ export class ParamDefaults {
   // Player leaderboard
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";
+  static readonly defaultPlayerLboardGeoMaxTableSize = "10"; // (otherwise it's too slow)
   static defaultPlayerLboardSortBy(useRapm: boolean, factorMins: boolean) {
     return useRapm
       ? factorMins

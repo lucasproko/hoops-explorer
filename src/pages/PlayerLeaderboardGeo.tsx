@@ -149,7 +149,8 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
         rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos
           ? ["minPoss"]
           : [],
-        rawParams.maxTableSize == ParamDefaults.defaultPlayerLboardMaxTableSize
+        rawParams.maxTableSize ==
+        ParamDefaults.defaultPlayerLboardGeoMaxTableSize
           ? ["maxTableSize"]
           : [],
         rawParams.sortBy ==

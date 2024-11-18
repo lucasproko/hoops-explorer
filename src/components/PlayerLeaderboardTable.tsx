@@ -311,7 +311,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     startingState.minPoss || ParamDefaults.defaultPlayerLboardMinPos;
   const [minPoss, setMinPoss] = useState(startingMinPoss);
   const startingMaxTableSize =
-    startingState.maxTableSize || ParamDefaults.defaultPlayerLboardMaxTableSize;
+    startingState.maxTableSize ||
+    (geoMode
+      ? ParamDefaults.defaultPlayerLboardGeoMaxTableSize
+      : ParamDefaults.defaultPlayerLboardMaxTableSize);
   const [maxTableSize, setMaxTableSize] = useState(startingMaxTableSize);
   const [sortBy, setSortBy] = useState(
     startingState.sortBy ||
