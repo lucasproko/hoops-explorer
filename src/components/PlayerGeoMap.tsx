@@ -24,6 +24,8 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import _ from "lodash";
 import { zoom } from "d3";
 
+const MAX_ZOOM_HISTORY = 20;
+
 interface MapComponentProps {
   center?: { lat: number | undefined; lon: number | undefined };
   zoom?: number;
@@ -215,7 +217,7 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
         );
         zoomInButton.innerHTML = "+";
         zoomInButton.href = "#";
-        zoomInButton.title = "Zoom in";
+        zoomInButton.title = "Zoom in (you can also shift+drag)";
 
         // Default zoom out button
         const zoomOutButton = L.DomUtil.create(
@@ -324,10 +326,12 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
 
     const map = useMap();
     map.on("boxzoomend", (e) => {
-      setZoomHistory([
-        { zoom: map.getZoom(), latlon: map.getCenter() },
-        ...zoomHistory,
-      ]);
+      setZoomHistory(
+        _.take(
+          [{ zoom: map.getZoom(), latlon: map.getCenter() }, ...zoomHistory],
+          MAX_ZOOM_HISTORY
+        )
+      );
     });
 
     return null; // No rendering needed
@@ -361,7 +365,9 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
       <MarkerCluster
         players={players}
         savePreZoom={(latlon: L.LatLng, zoom: number) => {
-          setZoomHistory([{ zoom, latlon }, ...zoomHistory]);
+          setZoomHistory(
+            _.take([{ zoom, latlon }, ...zoomHistory], MAX_ZOOM_HISTORY)
+          );
         }}
       />{" "}
     </MapContainer>

@@ -225,35 +225,82 @@ const apPollMen_2023_24: () => Record<string, number> = () =>
     })
     .value();
 
+/** From https://www.ncaa.com/rankings/basketball-men/d1/associated-press. Note you need to edit the names by hand */
+const apPollMen_2024_25: () => Record<string, number> = () =>
+  _.chain(
+    `
+1	Kansas (44)	2-0	1,525	1
+2	Alabama (6)	2-0	1,439	2
+3	UConn (7)	2-0	1,398	3
+4	Gonzaga (3)	2-0	1,371	6
+5	Auburn (2)	2-0	1,315	11
+6	Duke	2-0	1,222	7
+7	Iowa State	1-0	1,206	5
+8	Houston	1-1	1,070	4
+9	Arizona	2-0	1,004	10
+10	North Carolina	1-1	992	9
+11	Tennessee	2-0	930	12
+12	Baylor	1-1	806	8
+13	Purdue	2-0	795	14
+14	Creighton	2-0	752	15
+15	Marquette	2-0	603	18
+16	Indiana	2-0	600	17
+17	Cincinnati	2-0	454	20
+18	Arkansas	1-1	357	16
+19	Kentucky	2-0	353	23
+20	Florida	2-0	332	21
+21	Ohio State	1-0	273	NR
+22	St. John's	2-0	178	NR
+23	Texas A&M	1-1	169	13
+24	Rutgers	1-0	157	25
+25	Ole Miss	2-0	147	24
+`
+  )
+    .split("\n")
+    .map((l) => {
+      const ab = l.split("\t");
+      return [
+        fixName(
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+        ),
+        parseInt(ab[0].replace("T-", "")),
+      ];
+    })
+    .fromPairs()
+    .assign({
+      __week__: 2,
+    })
+    .value();
+
 /** From https://www.ncaa.com/rankings/basketball-women/d1/associated-press. Note you need to edit the names by hand */
 const apPollWomen_2021_22: () => Record<string, number> = () =>
   _.chain(
     `
-1	South Carolina	29-2	1	739
-2	Stanford	28-3	2	728
-3	NC State	29-3	3	693
-4	Louisville	25-4	5	624
-5	UConn	25-5	6	605
-6	Texas	26-6	7	599
-7	Baylor	27-6	4	597
-8	Iowa	23-7	8	541
-9	LSU	25-5	9	505
-10	Iowa State	26-6	10	473
-11	Indiana	22-8	11	455
-12	Michigan	22-6	12	413
-13	Maryland	21-8	13	383
-14	Ohio State	23-6	14	338
-15	Kentucky	19-11	16	301
-16	Virginia Tech	23-9	17	254
-17	North Carolina	23-6	18	236
-18	Tennessee	23-8	19	218
-19	Arizona	20-7	20	213
-20	BYU	26-3	15	201
-21	Notre Dame	22-8	22	159
-22	Oklahoma	24-8	21	156
-23	Florida Gulf Coast	29-2	23	132
-24	UCF	25-3	25	58
-25	Princeton	24-4	24	46
+1	Kansas (49)	4-0	1509	1
+2	UConn (7)	3-0	1416	3
+3	Gonzaga (2)	3-0	1397	4
+4	Auburn (3)	3-0	1370	5
+5	Iowa State	2-0	1184	7
+6	Purdue	4-0	1172	13
+7	Houston	2-1	1091	8
+8	Alabama	3-1	1084	2
+9	Kentucky	3-0	1009	19
+10	North Carolina	2-1	969	10
+11	Tennessee	4-0	942	11
+12	Duke	3-1	914	6
+13	Baylor	3-1	765	12
+14	Creighton	4-0	722	14
+15	Marquette	4-0	630	15
+16	Indiana	3-0	573	16
+17	Arizona	2-1	437	9
+18	Cincinnati	3-0	412	17
+19	Wisconsin	4-0	370	NR
+20	Arkansas	2-1	313	18
+21	Florida	4-0	302	20
+22	St. John's	4-0	270	22
+23	Texas A&M	3-1	233	23
+24	Rutgers	3-0	143	24
+25	Illinois	3-0	116	NR
 `
   )
     .split("\n")
@@ -372,6 +419,7 @@ export const apPolls: Record<string, () => Record<string, number>> = {
   "Men_2021/22": _.memoize(apPollMen_2021_22),
   "Men_2022/23": _.memoize(apPollMen_2022_23),
   "Men_2023/24": _.memoize(apPollMen_2023_24),
+  "Men_2024/25": _.memoize(apPollMen_2024_25),
 };
 
 ////////////////////////////////////////////////////////////////
