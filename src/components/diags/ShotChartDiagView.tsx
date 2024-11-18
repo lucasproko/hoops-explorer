@@ -390,7 +390,15 @@ const HexMap: React.FC<HexMapProps> = ({
       .on("mouseover", (event, d) => {
         const hexData = dataMap.get(d[0]);
         if (hexData) {
-          tooltip.style("opacity", 1).html(hexData.tooltip);
+          const d1Avg = diffDataSet?.[hexData.key];
+          const d1AvgStr = d1Avg
+            ? `D1 averages: [${(100 * d1Avg.avg_freq).toFixed(
+                1
+              )}]% of shots, [${(100 * d1Avg.avg_ppp).toFixed(1)}] pts/100`
+            : "(D1 averages not available)";
+          tooltip
+            .style("opacity", 1)
+            .html(`<span>${hexData.tooltip}<br/><br/>${d1AvgStr}</span>`);
         }
       })
       .on("mousemove", (event) => {

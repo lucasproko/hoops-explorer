@@ -149,6 +149,64 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = ({
           "leaflet-bar leaflet-control leaflet-control-zoom"
         );
 
+        // Open normal leaderboard with geo bounds
+        const openLinkButton = L.DomUtil.create(
+          "a",
+          "leaflet-control-help",
+          container
+        );
+        openLinkButton.innerHTML = "LL";
+        openLinkButton.href = "#"; //(will get overwritten on click, see below)
+        openLinkButton.target = "_blank";
+        openLinkButton.title =
+          "Open normal leaderboard with current geo bounds";
+
+        L.DomEvent.on(openLinkButton, "click", (e) => {
+          const currUrl = new URL(window.location.href);
+          const currParams = new URLSearchParams(currUrl.search);
+          const maybeCurrAdvancedFilter = currParams.get("advancedFilter");
+
+          const minLat = Math.min(
+            map.getBounds().getSouth(),
+            map.getBounds().getNorth()
+          );
+          const maxLat = Math.max(
+            map.getBounds().getSouth(),
+            map.getBounds().getNorth()
+          );
+          const minLon = Math.min(
+            map.getBounds().getEast(),
+            map.getBounds().getWest()
+          );
+          const maxLon = Math.max(
+            map.getBounds().getEast(),
+            map.getBounds().getWest()
+          );
+
+          const newAdvancedFilterFrag = `roster.lat >= ${minLat.toFixed(
+            4
+          )} AND roster.lat <= ${maxLat.toFixed(
+            4
+          )} AND roster.lon >= ${minLon.toFixed(
+            4
+          )} AND roster.lon <= ${maxLon.toFixed(4)}`;
+          const newAdvancedFilter = maybeCurrAdvancedFilter
+            ? `(${newAdvancedFilterFrag}) AND (${maybeCurrAdvancedFilter})`
+            : newAdvancedFilterFrag;
+
+          currParams.set("advancedFilter", newAdvancedFilter);
+          currParams.delete("geoCenterLat");
+          currParams.delete("geoCenterLon");
+          currParams.delete("geoZoom");
+
+          openLinkButton.href =
+            _.replace(
+              window.location.href.split("?")[0],
+              "PlayerLeaderboardGeo",
+              "PlayerLeaderboard"
+            ) + `?${currParams.toString()}`;
+        });
+
         // Default zoom in button
         const zoomInButton = L.DomUtil.create(
           "a",

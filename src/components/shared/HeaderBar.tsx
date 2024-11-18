@@ -568,7 +568,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
-              "Player hometowns! (HS 2023+)",
+              "Player Hometown Maps! (HS 2023+)",
               playerLeaderboardTooltipGeo,
               getPlayerLeaderboardGeoUrl("All"),
               `${ParamPrefixes.player}_leaderboard_geo`
