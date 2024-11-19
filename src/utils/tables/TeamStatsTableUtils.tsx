@@ -430,6 +430,27 @@ export class TeamStatsTableUtils {
     const showingOnOrOff =
       showingOn || (teamStats.off?.doc_count ? true : false);
 
+    const shotChartQuickSwitchOptions = [
+      {
+        title: "On ('A')",
+        off: shotStats.on.off,
+        def: shotStats.on.def,
+        gender: gameFilterParams.gender as "Men" | "Women",
+      },
+      {
+        title: "Off ('B')",
+        off: shotStats.off.off,
+        def: shotStats.off.def,
+        gender: gameFilterParams.gender as "Men" | "Women",
+      },
+      {
+        title: "Baseline",
+        off: shotStats.baseline.off,
+        def: shotStats.baseline.def,
+        gender: gameFilterParams.gender as "Men" | "Women",
+      },
+    ];
+
     const teamPlayTypeQuickSwitchOptions = [
       {
         title: "On ('A')",
@@ -519,9 +540,13 @@ export class TeamStatsTableUtils {
             ? [
                 GenericTableOps.buildTextRow(
                   <ShotChartDiagView
+                    title={displayKey}
                     off={shotStats[queryKey].off}
                     def={shotStats[queryKey].def}
                     gender={gameFilterParams.gender as "Men" | "Women"}
+                    quickSwitchOptions={shotChartQuickSwitchOptions.filter(
+                      (opt) => opt.title != displayKey
+                    )}
                   />,
                   "small"
                 ),

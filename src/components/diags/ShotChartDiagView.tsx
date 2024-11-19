@@ -1,7 +1,7 @@
 // React imports:
 import React, { useState, useRef, useEffect } from "react";
 
-import _ from "lodash";
+import _, { constant } from "lodash";
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";
@@ -11,6 +11,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { ShotChartAvgs_Men_2024 } from "../../utils/internal-data/ShotChartAvgs_Men_2024";
 import { ShotChartAvgs_Women_2024 } from "../../utils/internal-data/ShotChartAvgs_Women_2024";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 /////////////////////// 2D Shot Chart
 
@@ -149,6 +154,7 @@ interface HexMapProps {
   data: HexData[];
   width: number;
   height: number;
+  isDef?: boolean;
   showZones?: boolean;
   zones?: HexZone[];
   diffDataSet?: Record<string, { avg_freq: number; avg_ppp: number }>;
@@ -157,6 +163,7 @@ const HexMap: React.FC<HexMapProps> = ({
   data,
   width,
   height,
+  isDef,
   diffDataSet,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -316,7 +323,11 @@ const HexMap: React.FC<HexMapProps> = ({
       .scaleSequential(d3.interpolateBlues) // Adjust color scheme as needed
       .domain([0, 1]);
     const cbbColorScale = diffDataSet
-      ? CbbColors.diff_eFgShotChart
+      ? isDef
+        ? CbbColors.diff_def_eFgShotChart
+        : CbbColors.diff_eFgShotChart
+      : isDef
+      ? CbbColors.def_eFgShotChart
       : CbbColors.off_eFgShotChart;
 
     // Set up the hexbin generator
@@ -459,39 +470,163 @@ const shotStatsToHexData = (
     .filter((h) => h.x <= 35);
 };
 
+///////////////////// UI element + control
+
+/** Builds a handy element for scoring usage / play types to toggle between baseline/on/off views */
+const buildQuickSwitchOptions = (
+  title: string,
+  quickSwitch: string | undefined,
+  quickSwitchOptions: { title?: string }[] | undefined,
+  setQuickSwitch: React.Dispatch<React.SetStateAction<string | undefined>>,
+  quickSwitchTimer: NodeJS.Timer | undefined,
+  setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void
+) => {
+  const quickSwitchTimerLogic = (newQuickSwitch: string | undefined) => {
+    if (quickSwitchTimer) {
+      clearInterval(quickSwitchTimer);
+    }
+    if (quickSwitch) {
+      setQuickSwitch(undefined);
+    } else {
+      setQuickSwitch(newQuickSwitch);
+    }
+    if (newQuickSwitch) {
+      setQuickSwitchTimer(
+        setInterval(() => {
+          setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+        }, 4000)
+      );
+    } else {
+      setQuickSwitchTimer(undefined);
+    }
+  };
+  const timeTooltip = (
+    <Tooltip id="timerTooltip">
+      Sets off a 4s timer switching between the default breakdown and this one
+    </Tooltip>
+  );
+  const quickSwitchBuilder = _.map(
+    quickSwitchTimer
+      ? [{ title: `Cancel 4s timer` }]
+      : quickSwitchOptions || [],
+    (opt) => opt.title
+  ).map((t, index) => {
+    return (
+      <span key={`quickSwitch-${index}`} style={{ whiteSpace: "nowrap" }}>
+        [
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            if (!quickSwitchTimer) {
+              setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+            } else {
+              quickSwitchTimerLogic(undefined);
+            }
+          }}
+        >
+          {t}
+        </a>
+        {quickSwitchTimer ? undefined : (
+          <span>
+            &nbsp;
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                quickSwitchTimerLogic(t);
+              }}
+            >
+              <OverlayTrigger placement="auto" overlay={timeTooltip}>
+                <FontAwesomeIcon icon={faClock} />
+              </OverlayTrigger>
+              &nbsp;
+            </a>
+          </span>
+        )}
+        ]&nbsp;
+      </span>
+    );
+  });
+
+  return (
+    <div>
+      <span style={{ whiteSpace: "nowrap", display: "inline-block" }}>
+        <b>Shot Chart Analysis: [{quickSwitch || title}]</b>
+      </span>
+      {_.isEmpty(quickSwitchOptions) ? null : (
+        <span style={{ whiteSpace: "nowrap" }}>
+          &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;
+        </span>
+      )}
+      {_.isEmpty(quickSwitchOptions) ? null : quickSwitchBuilder}
+    </div>
+  );
+};
+
 type Props = {
+  title: string;
   gender: "Men" | "Women";
   off: ShotStats;
   def: ShotStats;
+  quickSwitchOptions?: Props[];
   absEff?: boolean; //(by default the efficiency is show vs D1 average)
 };
 
 const ShotChartDiagView: React.FunctionComponent<Props> = ({
+  title,
   gender,
   off,
   def,
+  quickSwitchOptions,
   absEff,
 }) => {
+  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
+  const [quickSwitchTimer, setQuickSwitchTimer] = useState<
+    NodeJS.Timer | undefined
+  >(undefined);
+
   const diffDataSet = absEff
     ? undefined
     : gender == "Men"
     ? ShotChartAvgs_Men_2024
     : ShotChartAvgs_Women_2024;
 
+  const selectedOff =
+    (quickSwitch
+      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.off
+      : off) || off;
+  const selectedDef =
+    (quickSwitch
+      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.off
+      : def) || def;
+
   return (
     <Container>
+      <Row className="pt-2 pb-2">
+        <Col xs={12}>
+          {buildQuickSwitchOptions(
+            title,
+            quickSwitch,
+            quickSwitchOptions,
+            setQuickSwitch,
+            quickSwitchTimer,
+            setQuickSwitchTimer
+          )}
+        </Col>
+      </Row>
       <Row>
         <Col xs={6}>
-          <b>Team Shots</b>
+          <b>Offense</b>
         </Col>
         <Col xs={6}>
-          <b>Opponent Shots</b>
+          <b>Defense</b>
         </Col>
       </Row>
       <Row>
         <Col xs={6}>
           <HexMap
-            data={shotStatsToHexData(off, diffDataSet)}
+            data={shotStatsToHexData(selectedOff, diffDataSet)}
             diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
@@ -499,7 +634,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         </Col>
         <Col xs={6}>
           <HexMap
-            data={shotStatsToHexData(def, diffDataSet)}
+            data={shotStatsToHexData(selectedDef, diffDataSet)}
+            isDef={true}
             diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
