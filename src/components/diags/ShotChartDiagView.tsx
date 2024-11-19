@@ -405,7 +405,7 @@ const HexMap: React.FC<HexMapProps> = ({
           const d1AvgStr = d1Avg
             ? `D1 averages: [${(100 * d1Avg.avg_freq).toFixed(
                 1
-              )}]% of shots, [${(100 * d1Avg.avg_ppp).toFixed(1)}] pts/100`
+              )}]% of shots, eFG=[${(50 * d1Avg.avg_ppp).toFixed(1)}]%`
             : "(D1 averages not available)";
           tooltip
             .style("opacity", 1)
@@ -459,12 +459,12 @@ const shotStatsToHexData = (
         y,
         intensity: intensity - diffPpp,
         frequency: 100 * (frequency / total_freq), //TODO we could try making it half the size if it's average freq?
-        tooltip: `[${frequency}] shots ([${(
+        tooltip: `[${frequency}] shots, [${(
           100 *
           (frequency / total_freq)
-        ).toFixed(2)}]%), [${shotInfo.total_pts.value}] pts (eff=[${(
-          100 * intensity
-        ).toFixed(2)}] pts/100)`,
+        ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
+          50 * intensity
+        ).toFixed(1)}]%`,
       };
     })
     .filter((h) => h.x <= 35);
