@@ -178,13 +178,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
 
   if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
     const fetchRosterJson = (teamName: string) => {
-      const rosterJsonUri = (encodeEncodePrefix: boolean) =>
+      const rosterJsonUri = () =>
         `/rosters/${gender}_${(year || "").substring(0, 4)}` +
-        `/${RequestUtils.fixLocalhostRosterUrl(
-          teamName,
-          encodeEncodePrefix
-        )}.json`;
-      return fetch(rosterJsonUri(true))
+        `/${RequestUtils.fixLocalhostRosterUrl(teamName, true)}.json`;
+      //(note unlike buildLeaderboards, we need an extra level of encoding here
+      // TODO: actually I think this just use fixRosterUrl since it's fetching via
+      //       URL not from from file - and then we can simplify fixLocalhostRosterUrl
+      //       by removing the second argument)
+      //       But for now we'll leave, and fix when we next need it
+      return fetch(rosterJsonUri())
         .then((resp: any) => resp.json())
         .then(
           (json: any) =>
@@ -195,7 +197,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       teamList.map((team) =>
         fetchRosterJson(team).catch(
           //(carry on error, eg if the file doesn't exist)
-          (err: any) => [team, {}]
+          (err: any) => {
+            return [team, {}];
+          }
         )
       );
 

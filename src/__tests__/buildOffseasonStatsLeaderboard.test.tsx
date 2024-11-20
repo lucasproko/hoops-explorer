@@ -23,6 +23,8 @@ describe("buildOffseasonStatsLeaderboards", () => {
       // For regenerating previous years:
       // const currYear = "2021/22";
       // const nextYear = "2022/23";
+      // const currYear = "2023/24";
+      // const nextYear = "2024/25";
 
       const olderYear = DateUtils.getPrevYear(currYear);
       const currYearStr = currYear.substring(0, 4);

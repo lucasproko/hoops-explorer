@@ -38,13 +38,18 @@ export class RequestUtils {
   /** Handles the rather ugly URL conversion needed to fetch URL encoded files
    * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
    */
-  static fixRosterUrl(str: string, encodeEncodePrefix: boolean): string {
+  static fixRosterUrl(str: string): string {
     const stage1 = encodeURIComponent(str)
+      .replace(/[%]/g, "%25")
+      // ^ some char like & are encoded, others like () aren't
+      //   apart from "." they are all encoded on file (" " is encoded on file as)
+      //   So first we pre-encode
       .replace(/[!'()*]/g, function (c) {
-        return "%" + c.charCodeAt(0).toString(16);
+        return "%25" + c.charCodeAt(0).toString(16); //(handles chars encoded on file but not encodeURIComponent)
       })
-      .replace(/[%]20/g, "%2B"); //(encoded as + on file, which needs to be URL encoded since + == " " in URL)
-    return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
+      .replace(/[%]2520/g, "%2B"); //(encoded as + in filename, which needs to be URL encoded since + == " " in URL)
+
+    return stage1;
   }
   /** Handles the rather ugly URL conversion needed to fetch URL encoded files
    * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
@@ -54,6 +59,7 @@ export class RequestUtils {
     encodeEncodePrefix: boolean
   ): string {
     const stage1 = encodeURIComponent(str)
+      // Handle characters that are not/mis-encoded by encodeURIComponent (note & is fine, . not encoded)
       .replace(/%20/g, "+")
       .replace(/[(]/g, "%28")
       .replace(/[)]/g, "%29")
@@ -130,33 +136,21 @@ export class RequestUtils {
         );
 
         // Fetch the JSON from the CDN if requested
-        const fetchRosterJson = (encodeEncodePrefix: boolean) => {
-          const rosterJsonUri = (encodeEncodePrefix: boolean) =>
+        const fetchRosterJson = () => {
+          const rosterJsonUri = () =>
             `/rosters/${req.paramsObj.gender}_${(
               req.paramsObj.year || ""
             ).substring(0, 4)}` +
-            `/${RequestUtils.fixRosterUrl(
-              req.paramsObj.team || "",
-              encodeEncodePrefix
-            )}.json`;
+            `/${RequestUtils.fixRosterUrl(req.paramsObj.team || "")}.json`;
 
           if (isDebug) {
-            console.log(
-              `Attaching roster from ${rosterJsonUri(encodeEncodePrefix)}`
-            );
+            console.log(`Attaching roster from ${rosterJsonUri()}`);
           }
 
-          return fetch(rosterJsonUri(encodeEncodePrefix)).then((resp: any) =>
-            resp.json()
-          );
+          return fetch(rosterJsonUri()).then((resp: any) => resp.json());
         };
         const rosterJsonPromise = req.includeRoster
-          ? fetchRosterJson(false)
-              .catch(
-                //(carry on error, eg if the file doesn't exist)
-                (err: any) => fetchRosterJson(true)
-              )
-              .catch((err: any) => undefined)
+          ? fetchRosterJson().catch((err: any) => undefined)
           : Promise.resolve(undefined);
         return rosterJsonPromise.then((rosterJson: any) => {
           return fetchPromise.then(function (
