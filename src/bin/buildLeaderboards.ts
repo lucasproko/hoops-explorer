@@ -52,6 +52,10 @@ import {
   AvailableTeams,
   AvailableTeamMeta,
 } from "../utils/internal-data/AvailableTeams";
+import {
+  effectivelyHighMajor,
+  excludeFromMidMajor,
+} from "../utils/public-data/ConferenceInfo";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { ncaaToEfficiencyLookup } from "../utils/public-data/ncaaToEfficiencyLookup";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
@@ -232,26 +236,6 @@ if (testTeamFilter) {
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
-
-const effectivelyHighMajor = new Set([
-  "Gonzaga",
-  "BYU",
-  "Saint Mary's (CA)",
-  "Memphis",
-  "Wichita St.",
-  "UConn",
-  "Cincinnati",
-  "Houston",
-  "Utah St.",
-  "Nevada",
-]);
-const excludeFromMidMajor = new Set([
-  "Gonzaga",
-  "Memphis",
-  "Wichita St.",
-  "UConn",
-  "Cincinnati",
-]);
 
 const lastUpdated = //(will be new now for curr year + "Extra")
   dataLastUpdated[`${inGender}_${inYear}`] || new Date().getTime();

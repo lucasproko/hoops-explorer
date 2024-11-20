@@ -11,7 +11,7 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet.markercluster";
-import { IndivStatSet, RosterEntry } from "../utils/StatModels";
+import { IndivStatSet, RosterEntry } from "../../utils/StatModels";
 
 //CSS
 import "leaflet/dist/leaflet.css";
@@ -29,7 +29,7 @@ const MAX_ZOOM_HISTORY = 20;
 interface MapComponentProps {
   center?: { lat: number | undefined; lon: number | undefined };
   zoom?: number;
-  players: IndivStatSet[];
+  players: _.CollectionChain<IndivStatSet>;
   onBoundsToChange?: () => void;
   onBoundsChange?: (
     latLongChecker: (lat: number, lon: number) => boolean,
@@ -363,7 +363,7 @@ const PlayerGeoMap: React.FC<MapComponentProps> = ({
         attribution={`© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>`}
       />
       <MarkerCluster
-        players={players}
+        players={players.value()}
         savePreZoom={(latlon: L.LatLng, zoom: number) => {
           setZoomHistory(
             _.take([{ zoom, latlon }, ...zoomHistory], MAX_ZOOM_HISTORY)

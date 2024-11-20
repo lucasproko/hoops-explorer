@@ -52,6 +52,26 @@ export const HighMajorConfs: Set<String> = new Set([
   "Southeastern Conference",
 ]);
 
+export const effectivelyHighMajor = new Set([
+  "Gonzaga",
+  "BYU",
+  "Saint Mary's (CA)",
+  "Memphis",
+  "Wichita St.",
+  "UConn",
+  "Cincinnati",
+  "Houston",
+  "Utah St.",
+  "Nevada",
+]);
+export const excludeFromMidMajor = new Set([
+  "Gonzaga",
+  "Memphis",
+  "Wichita St.",
+  "UConn",
+  "Cincinnati",
+]);
+
 export const NicknameToConference: Record<string, string> = _.chain(
   ConferenceToNickname
 )

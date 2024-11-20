@@ -36,9 +36,12 @@ import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 
-const PlayerGeoMapNoSsr = dynamic(() => import("../components/PlayerGeoMap"), {
-  ssr: false,
-});
+const PlayerGeoMapNoSsr = dynamic(
+  () => import("../components/diags/PlayerGeoMap"),
+  {
+    ssr: false,
+  }
+);
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below

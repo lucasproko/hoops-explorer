@@ -48,7 +48,9 @@ import {
   NicknameToConference,
   NonP6Conferences,
   Power6Conferences,
+  effectivelyHighMajor,
 } from "../utils/public-data/ConferenceInfo";
+
 import { PlayerLeaderboardTracking } from "../utils/internal-data/LeaderboardTrackingLists";
 
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
@@ -67,10 +69,11 @@ import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { CbbColors } from "../utils/CbbColors";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
+import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 
 // Geo:
 import dynamic from "next/dynamic";
-const PlayerGeoMapNoSsr = dynamic(() => import("../components/PlayerGeoMap"), {
+const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
 
@@ -1559,7 +1562,39 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         <Form.Row>
           <Form.Group as={Col} sm="12">
             <PlayerGeoMapNoSsr
-              players={players}
+              players={
+                tier != "All"
+                  ? _.chain(players)
+                  : _.chain(players).filter((player: any) => {
+                      // See buildLeaderboards.naturalTier for this logic
+                      //TODO: should fix this so we don't need AvailableTeams
+                      // and there is no code duplication
+                      // But for now this will do
+
+                      const teamMeta = AvailableTeams.getTeam(
+                        player.team || "???",
+                        player.year || ParamDefaults.defaultLeaderboardYear,
+                        gender
+                      );
+                      const isHigh = teamMeta?.category == "high";
+                      const isEffHigh = effectivelyHighMajor.has(
+                        player.team || "???"
+                      );
+                      const isLow =
+                        teamMeta?.category == "low" ||
+                        teamMeta?.category == "midlow";
+
+                      return (
+                        !teamMeta ||
+                        ((isHigh || isEffHigh) && player.tier == "High") ||
+                        (isLow && !isEffHigh && player.tier == "Low") ||
+                        (!isEffHigh &&
+                          !isHigh &&
+                          !isLow &&
+                          player.tier == "Medium")
+                      );
+                    })
+              }
               center={geoCenterInfo}
               zoom={geoCenterInfo?.zoom}
               onBoundsToChange={() => {
