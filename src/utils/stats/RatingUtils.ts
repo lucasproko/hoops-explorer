@@ -846,8 +846,8 @@ export class RatingUtils {
       ? RatingUtils.buildDefOverrides(statSet)
       : ({} as Record<string, any>);
     const statGet = (key: string) => {
-      return !_.isNil(overrides[key])
-        ? overrides[key].value
+      return !_.isNil((overrides as any)[key])
+        ? (overrides as any)[key].value
         : statSet?.[key]?.value || 0;
     };
 
