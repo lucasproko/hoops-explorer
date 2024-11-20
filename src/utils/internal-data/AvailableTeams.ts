@@ -15412,8 +15412,10 @@ export class AvailableTeams {
         index_template: "southland",
         category: "low",
       },
+    ],
+    "East Texas A&M": [
       {
-        team: "Tex. A&M-Commerce",
+        team: "East Texas A&M",
         year: "2024/25",
         gender: "Men",
         index_template: "southland",
