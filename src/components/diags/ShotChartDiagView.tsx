@@ -1,11 +1,10 @@
 // React imports:
 import React, { useState, useRef, useEffect } from "react";
 
-import _, { constant } from "lodash";
+import _ from "lodash";
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";
-import GenericTable, { GenericTableOps } from "../../components/GenericTable";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -143,13 +142,12 @@ const buildStartingZones = (): HexZone[] => {
   ];
 };
 
-const MIN_X = -5;
-const MAX_X = 35;
-const MIN_Y = -26;
-const MAX_Y = 26;
-const HEX_HEIGHT = 520;
-const HEX_WIDTH = 400;
-
+const MIN_Y = -5;
+const MAX_Y = 35;
+const MIN_X = -26;
+const MAX_X = 26;
+const HEX_HEIGHT = 400;
+const HEX_WIDTH = 520;
 interface HexMapProps {
   data: HexData[];
   width: number;
@@ -172,7 +170,7 @@ const HexMap: React.FC<HexMapProps> = ({
   const xScale = d3
     .scaleLinear()
     .domain([MIN_X, MAX_X]) // Original x range
-    .range([0, width]); // Canvas width range
+    .range([width, 0]); // Canvas width range
 
   const yScale = d3
     .scaleLinear()
@@ -183,121 +181,143 @@ const HexMap: React.FC<HexMapProps> = ({
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
     phase: number
   ) => {
+    const courtXScale = d3
+      .scaleLinear()
+      .domain([MIN_X, MAX_X]) // Original x range
+      .range([0, width]); // Canvas width range
+
+    const widthScale = d3
+      .scaleLinear()
+      .domain([0, MAX_X - MIN_X]) // Original x range
+      .range([0, width]); // Canvas width range
+
+    const heightScale = d3
+      .scaleLinear()
+      .domain([0, MAX_Y - MIN_Y]) // Original y range
+      .range([0, height]); // Invert y scale to make top of canvas 0
+
     const D = {
-      court_length_x_px: 940.0,
-      court_width_y_px: 500.0,
-      court_length_ft: 94.0,
-      court_width_ft: 50.0,
+      //(these x and y are flipped relative to the output svg)
       half_court_x_px: 470.0,
       ft_per_px_x: 94.0 / 940.0,
       ft_per_px_y: 50.0 / 500.0,
       goal_left_x_px: 50.0,
       goal_y_px: 250.0,
     };
-    // Transform function
-    const transformCoords = (x: number, y: number) => ({
-      x: (x - D.goal_left_x_px) * D.ft_per_px_x,
-      y: (D.goal_y_px - y) * D.ft_per_px_y,
+    const middleOfCourt = 250;
+    const hoopDistFromBack = 50;
+    // Transform function - includes flipping x and y
+    const transformCoords = (x_flip: number, y_flip: number) => ({
+      x: (D.goal_y_px - y_flip) * D.ft_per_px_y,
+      y: (x_flip - D.goal_left_x_px) * D.ft_per_px_x,
     });
     if (phase == 0) {
-      // Add rect
-      const rectCoords = transformCoords(0, 190.145752);
+      const halfPaintWidth = 60;
+      const topOfPaint = 190;
+      // Add paint:
+      const rectCoords = transformCoords(
+        topOfPaint,
+        middleOfCourt + halfPaintWidth
+      );
       svg
         .append("rect")
-        .attr("x", xScale(rectCoords.x))
+        .attr("x", courtXScale(rectCoords.x))
         .attr("y", yScale(rectCoords.y))
-        .attr("width", xScale(190 * D.ft_per_px_x) - xScale(0))
-        .attr("height", yScale(0) - yScale(120 * D.ft_per_px_y))
+        .attr("width", widthScale(2 * halfPaintWidth * D.ft_per_px_y))
+        .attr("height", heightScale(topOfPaint * D.ft_per_px_x))
         .style("stroke", "black")
         .style("stroke-width", "1px")
-        .style("fill", "none")
-        .attr("id", "left_freethow_lane");
+        .style("fill", "none");
 
-      // Add left free throw arc
-      const ftArcCoords = transformCoords(190, 250);
+      // Add free throw arc
+      const ftArcCoords = transformCoords(topOfPaint, middleOfCourt);
       const arcPath = d3.arc()({
-        innerRadius: yScale(200 * D.ft_per_px_y), //(I don't understand where this comes from?!)
-        outerRadius: yScale(200 * D.ft_per_px_y),
-        startAngle: 0,
-        endAngle: Math.PI,
+        innerRadius: widthScale(halfPaintWidth * D.ft_per_px_y),
+        outerRadius: widthScale(halfPaintWidth * D.ft_per_px_y),
+        startAngle: -Math.PI / 2,
+        endAngle: Math.PI / 2,
       });
       svg
         .append("path")
         .attr("d", arcPath)
         .attr(
           "transform",
-          `translate(${xScale(ftArcCoords.x)}, ${yScale(ftArcCoords.y)})`
+          `translate(${courtXScale(ftArcCoords.x)}, ${yScale(ftArcCoords.y)})`
         )
         .style("stroke", "black")
         .style("stroke-width", "1px")
-        .style("fill", "none")
-        .attr("id", "left_free_throw_arc");
+        .style("fill", "none");
 
-      // Add bottom 3pt line
-      const bottom3ptCoords = transformCoords(0, 450);
-      svg
-        .append("path")
-        .attr(
-          "d",
-          `M${xScale(bottom3ptCoords.x)},${yScale(bottom3ptCoords.y)}h${
-            xScale(94.5 * D.ft_per_px_x) - xScale(0)
-          }`
-        )
-        .style("stroke", "black")
-        .style("stroke-width", "1px")
-        .style("fill", "none")
-        .attr("id", "3pt_line_bottom_left");
+      const straightBitOf3ptHeight = 94.5 * D.ft_per_px_x;
 
-      // Add top 3pt line
-      const top3ptCoords = transformCoords(0, 47);
+      const left3PtLine = 455;
+      const right3PtLine = 45;
+      const threePtWidth = (left3PtLine - right3PtLine) * D.ft_per_px_y;
+
+      // Add left 3pt line
+      const left3ptCoords = transformCoords(0, left3PtLine);
       svg
-        .append("path")
+        .append("line")
+        .attr("x1", courtXScale(left3ptCoords.x))
+        .attr("y1", yScale(left3ptCoords.y))
+        .attr("x2", courtXScale(left3ptCoords.x))
         .attr(
-          "d",
-          `M${xScale(top3ptCoords.x)},${yScale(top3ptCoords.y)}h${
-            xScale(94.5 * D.ft_per_px_x) - xScale(0)
-          }`
+          "y2",
+          yScale(left3ptCoords.y) - heightScale(straightBitOf3ptHeight)
         )
         .style("stroke", "black")
         .style("stroke-width", "1px")
-        .style("fill", "none")
-        .attr("id", "3pt_line_top_left");
+        .style("fill", "none");
+
+      // Add right 3pt line
+      const right3ptCoords = transformCoords(0, right3PtLine);
+      svg
+        .append("line")
+        .attr("x1", courtXScale(right3ptCoords.x))
+        .attr("y1", yScale(right3ptCoords.y))
+        .attr("x2", courtXScale(right3ptCoords.x))
+        .attr(
+          "y2",
+          yScale(right3ptCoords.y) - heightScale(straightBitOf3ptHeight)
+        )
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("fill", "none");
 
       // Add 3pt arc
-      const threePtArcCoords = transformCoords(93, 33.5 + 215);
-
+      const threePtArcCoords = transformCoords(hoopDistFromBack, middleOfCourt);
+      const threePtArcRadius = 210 * D.ft_per_px_x;
+      const deltaAngle = Math.acos((0.5 * threePtWidth) / threePtArcRadius);
       const arcPath3pt = d3.arc()({
-        innerRadius: xScale(201.5 * D.ft_per_px_x) - xScale(0),
-        outerRadius: xScale(201.5 * D.ft_per_px_x) - xScale(0),
-        startAngle: 0,
-        endAngle: Math.PI,
+        innerRadius: widthScale(threePtArcRadius),
+        outerRadius: widthScale(threePtArcRadius),
+        startAngle: -0.5 * Math.PI + deltaAngle,
+        endAngle: 0.5 * Math.PI - deltaAngle,
       });
+
       svg
         .append("path")
         .attr("d", arcPath3pt)
         .attr(
           "transform",
-          `translate(${xScale(threePtArcCoords.x)}, ${yScale(
+          `translate(${courtXScale(threePtArcCoords.x)}, ${yScale(
             threePtArcCoords.y
           )})`
         )
         .style("stroke", "black")
         .style("stroke-width", "1px")
-        .style("fill", "none")
-        .attr("id", "3pt_arc_left");
+        .style("fill", "none");
     }
     if (phase == 1) {
-      // Add goal left circle
-      const goalCoords = transformCoords(50, 250);
+      const goalCoords = transformCoords(hoopDistFromBack, middleOfCourt);
       svg
         .append("circle")
-        .attr("cx", xScale(goalCoords.x))
+        .attr("cx", courtXScale(goalCoords.x))
         .attr("cy", yScale(goalCoords.y))
-        .attr("r", xScale(9 * D.ft_per_px_x) - xScale(0))
+        .attr("r", widthScale(9 * D.ft_per_px_x))
         .style("stroke", "black")
         .style("stroke-width", "1px")
-        .style("fill", "none")
-        .attr("id", "goal_left");
+        .style("fill", "none");
     }
   };
 
@@ -337,7 +357,7 @@ const HexMap: React.FC<HexMapProps> = ({
         [0, 0],
         [width, height],
       ]);
-    const points = data.map((d) => [xScale(d.x), yScale(d.y)]);
+    const points = data.map((d) => [xScale(d.y), yScale(d.x)]); // Flip x and y to match court orientation
     const dataMap = new Map(points.map((point, index) => [point, data[index]]));
 
     // Convert (x, y) positions to hexbin layout
@@ -420,6 +440,24 @@ const HexMap: React.FC<HexMapProps> = ({
       .on("mouseout", () => {
         tooltip.style("opacity", 0); // Hide tooltip on mouseout
       });
+
+    svg
+      .append("g")
+      .selectAll("path")
+      .data(hexes)
+      .enter()
+      .append("path")
+      .attr("d", (d) => {
+        const hexData = dataMap.get(d[0]); // Get the original HexData for this point
+        const hexFrequency = hexData ? hexData.frequency : 0;
+        const hexPct = Math.min(sizeScale(hexFrequency), 1.0);
+        const hexSize = hexRadius * hexPct;
+        return hexbinGenerator.hexagon(hexSize);
+      })
+      .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
+      .attr("fill", "none")
+      .attr("stroke", "#000")
+      .attr("stroke-width", 0.5);
 
     injectCourtLines(svg, 1);
 
@@ -616,15 +654,15 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         </Col>
       </Row>
       <Row>
-        <Col xs={6}>
+        <Col xs={6} className="text-center">
           <b>Offense</b>
         </Col>
-        <Col xs={6}>
+        <Col xs={6} className="text-center">
           <b>Defense</b>
         </Col>
       </Row>
       <Row>
-        <Col xs={6}>
+        <Col xs={6} className="text-center">
           <HexMap
             data={shotStatsToHexData(selectedOff, diffDataSet)}
             diffDataSet={diffDataSet}
@@ -632,7 +670,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             height={HEX_HEIGHT}
           />
         </Col>
-        <Col xs={6}>
+        <Col xs={6} className="text-center">
           <HexMap
             data={shotStatsToHexData(selectedDef, diffDataSet)}
             isDef={true}
