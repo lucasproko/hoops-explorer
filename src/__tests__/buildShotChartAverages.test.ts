@@ -20,6 +20,10 @@ describe("buildShotChartAverages", () => {
         );
 
         result[bucket.key] = {
+          loc: [
+            parseFloat(bucket.center.location.x.toFixed(1)),
+            parseFloat(bucket.center.location.y.toFixed(1)),
+          ],
           avg_freq: avgFreq,
           avg_ppp: avgPpp,
         };
@@ -81,6 +85,12 @@ interface InputData {
       buckets: Array<{
         key: string;
         doc_count: number;
+        center: {
+          location: {
+            x: number;
+            y: number;
+          };
+        };
         total_pts: {
           value: number;
         };
@@ -91,6 +101,7 @@ interface InputData {
 
 interface OutputData {
   [key: string]: {
+    loc: [number, number];
     avg_freq: number;
     avg_ppp: number;
   };
@@ -107,6 +118,9 @@ interface OutputData {
 //               "precision": 14
 //             },
 //             "aggs": {
+// "center": {
+//   "cartesian_centroid": { "field": "loc" }
+// },
 //             "total_pts": {
 //               "sum": {
 //                 "field": "pts"

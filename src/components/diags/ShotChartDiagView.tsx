@@ -10,6 +10,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { ShotChartAvgs_Men_2024 } from "../../utils/internal-data/ShotChartAvgs_Men_2024";
 import { ShotChartAvgs_Women_2024 } from "../../utils/internal-data/ShotChartAvgs_Women_2024";
+import { ShotChartZones_Men_2024 } from "../../utils/internal-data/ShotChartZones_Men_2024";
+import { ShotChartZones_Women_2024 } from "../../utils/internal-data/ShotChartZones_Women_2024";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
@@ -39,20 +41,23 @@ interface HexZone {
   distCenter?: number; //(if not specified then take average)
   minAngle: number;
   maxAngle: number;
+  angleOffset: number;
   frequency: number;
   intensity: number;
+  total_freq?: number;
 }
 
-/** 0 is horizontal axis pointing left, when averaging angle make >= 90 and <= 270 */
+/** 0 is vertical axis pointing up, when averaging angle make >= 90 and <= 270 */
 const buildStartingZones = (): HexZone[] => {
   return [
     // Under the basket (1x)
     {
-      minDist: -10,
+      minDist: 0,
       maxDist: 5,
       distCenter: 0,
       minAngle: 0,
       maxAngle: 360,
+      angleOffset: 90,
       frequency: 0,
       intensity: 0,
     },
@@ -61,15 +66,70 @@ const buildStartingZones = (): HexZone[] => {
       minDist: 5,
       maxDist: 10,
       minAngle: 0,
-      maxAngle: 180,
+      maxAngle: 90,
+      angleOffset: 70,
       frequency: 0,
       intensity: 0,
     },
     {
       minDist: 5,
       maxDist: 10,
-      minAngle: 180,
-      maxAngle: 360,
+      minAngle: 90,
+      maxAngle: 180,
+      angleOffset: 110,
+      frequency: 0,
+      intensity: 0,
+    },
+
+    // 3P (5x)
+    // (do these before mid-range so we can match on corner 3s first)
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 0,
+      maxAngle: 12,
+      distCenter: 23,
+      angleOffset: 45,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 12,
+      maxAngle: 65,
+      angleOffset: 70,
+      distCenter: 24,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 65,
+      maxAngle: 115,
+      distCenter: 24,
+      angleOffset: 90,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 115,
+      maxAngle: 168,
+      angleOffset: 110,
+      distCenter: 24,
+      frequency: 0,
+      intensity: 0,
+    },
+    {
+      minDist: 21,
+      maxDist: 100,
+      minAngle: 168,
+      maxAngle: 180,
+      distCenter: 23,
+      angleOffset: 135,
       frequency: 0,
       intensity: 0,
     },
@@ -78,64 +138,26 @@ const buildStartingZones = (): HexZone[] => {
       minDist: 10,
       maxDist: 21,
       minAngle: 0,
-      maxAngle: 150,
+      maxAngle: 45,
+      angleOffset: 50,
       frequency: 0,
       intensity: 0,
     },
     {
       minDist: 10,
       maxDist: 21,
-      minAngle: 150,
-      maxAngle: 210,
+      minAngle: 45,
+      maxAngle: 135,
+      angleOffset: 90,
       frequency: 0,
       intensity: 0,
     },
     {
       minDist: 10,
       maxDist: 21,
-      minAngle: 210,
-      maxAngle: 360,
-      frequency: 0,
-      intensity: 0,
-    },
-    // 3P (5x)
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 0,
-      maxAngle: 126,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 126,
-      maxAngle: 162,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 162,
-      maxAngle: 198,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 198,
-      maxAngle: 234,
-      frequency: 0,
-      intensity: 0,
-    },
-    {
-      minDist: 21,
-      maxDist: 100,
-      minAngle: 234,
-      maxAngle: 0,
+      minAngle: 135,
+      maxAngle: 180,
+      angleOffset: 130,
       frequency: 0,
       intensity: 0,
     },
@@ -155,7 +177,11 @@ interface HexMapProps {
   isDef?: boolean;
   showZones?: boolean;
   zones?: HexZone[];
-  diffDataSet?: Record<string, { avg_freq: number; avg_ppp: number }>;
+  d1Zones?: HexZone[];
+  diffDataSet?: Record<
+    string,
+    { avg_freq: number; avg_ppp: number; loc: number[] }
+  >;
 }
 const HexMap: React.FC<HexMapProps> = ({
   data,
@@ -163,6 +189,8 @@ const HexMap: React.FC<HexMapProps> = ({
   height,
   isDef,
   diffDataSet,
+  zones,
+  d1Zones,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -177,24 +205,24 @@ const HexMap: React.FC<HexMapProps> = ({
     .domain([MIN_Y, MAX_Y]) // Original y range
     .range([height, 0]); // Invert y scale to make top of canvas 0
 
+  const widthScale = d3
+    .scaleLinear()
+    .domain([0, MAX_X - MIN_X]) // Original x range
+    .range([0, width]); // Canvas width range
+
+  const heightScale = d3
+    .scaleLinear()
+    .domain([0, MAX_Y - MIN_Y]) // Original y range
+    .range([0, height]); // Invert y scale to make top of canvas 0
+
   const injectCourtLines = (
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
     phase: number
   ) => {
-    const courtXScale = d3
+    const courtXScale = d3 //(hacky - i used the wrong x when building the court lines so adjust back here)
       .scaleLinear()
       .domain([MIN_X, MAX_X]) // Original x range
       .range([0, width]); // Canvas width range
-
-    const widthScale = d3
-      .scaleLinear()
-      .domain([0, MAX_X - MIN_X]) // Original x range
-      .range([0, width]); // Canvas width range
-
-    const heightScale = d3
-      .scaleLinear()
-      .domain([0, MAX_Y - MIN_Y]) // Original y range
-      .range([0, height]); // Invert y scale to make top of canvas 0
 
     const D = {
       //(these x and y are flipped relative to the output svg)
@@ -378,6 +406,74 @@ const HexMap: React.FC<HexMapProps> = ({
       .style("pointer-events", "none")
       .style("opacity", 0); // initially hidden
 
+    const buildZones = true;
+
+    if (buildZones) {
+      (zones || []).forEach((zone, zoneIndex) => {
+        const d1Zone = d1Zones?.[zoneIndex] || zone;
+        const minAngle = zone.minAngle == 0 ? -90 : zone.minAngle;
+        const maxAngle = zone.maxAngle == 180 ? 270 : zone.maxAngle;
+        if (zone.maxDist > 20) {
+          // Only lines
+          const startInner = [
+            zone.minDist * Math.cos((minAngle * Math.PI) / 180),
+            zone.minDist * Math.sin((minAngle * Math.PI) / 180),
+          ];
+          const startOuter = [
+            zone.maxDist * Math.cos((minAngle * Math.PI) / 180),
+            zone.maxDist * Math.sin((minAngle * Math.PI) / 180),
+          ];
+          const endInner = [
+            zone.minDist * Math.cos((maxAngle * Math.PI) / 180),
+            zone.minDist * Math.sin((maxAngle * Math.PI) / 180),
+          ];
+          const endOuter = [
+            zone.maxDist * Math.cos((maxAngle * Math.PI) / 180),
+            zone.maxDist * Math.sin((maxAngle * Math.PI) / 180),
+          ];
+
+          svg
+            .append("line")
+            .attr("x1", xScale(startInner[0]))
+            .attr("y1", yScale(startInner[1]))
+            .attr("x2", xScale(startOuter[0]))
+            .attr("y2", yScale(startOuter[1]))
+            .style("stroke", "grey")
+            .style("stroke-width", "0.5px");
+
+          svg
+            .append("line")
+            .attr("x1", xScale(endInner[0]))
+            .attr("y1", yScale(endInner[1]))
+            .attr("x2", xScale(endOuter[0]))
+            .attr("y2", yScale(endOuter[1]))
+            .style("stroke", "grey")
+            .style("stroke-width", "0.5px");
+        }
+        if (zone.minDist < 20) {
+          const innerRadius = widthScale(zone.minDist);
+          const outerRadius = widthScale(zone.maxDist);
+          const startAngle = -(minAngle * Math.PI) / 180 + Math.PI / 2;
+          const endAngle = -(maxAngle * Math.PI) / 180 + Math.PI / 2;
+
+          const arcPath3pt = d3.arc()({
+            innerRadius,
+            outerRadius: zone.maxDist > 20 ? innerRadius : outerRadius,
+            startAngle,
+            endAngle,
+          });
+
+          svg
+            .append("path")
+            .attr("d", arcPath3pt)
+            .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
+            .style("stroke", "grey")
+            .style("stroke-width", "0.5px")
+            .style("fill", "none");
+        }
+      });
+    }
+
     svg
       .append("g")
       .selectAll("path")
@@ -461,6 +557,57 @@ const HexMap: React.FC<HexMapProps> = ({
 
     injectCourtLines(svg, 1);
 
+    if (buildZones) {
+      (zones || []).forEach((zone, zoneIndex) => {
+        const distToUse = _.isNil(zone.distCenter)
+          ? 0.5 * (zone.minDist + zone.maxDist)
+          : zone.distCenter;
+
+        const angle = (zone.angleOffset * Math.PI) / 90;
+
+        const d1Zone = d1Zones?.[zoneIndex];
+
+        svg
+          .append("circle")
+          .attr("cx", xScale(0) + widthScale(distToUse * Math.sin(angle)))
+          .attr("cy", yScale(0) + widthScale(distToUse * Math.cos(angle)))
+          .attr("r", 20)
+          .style("stroke", "black")
+          .style("stroke-width", "1px")
+          .style("fill", "green")
+          .style("opacity", 0.5)
+          .on("mouseover", (event, d) => {
+            const zoneTooltip = `[${zone.frequency}] shots, [${(
+              100 *
+              (zone.intensity / (zone.total_freq || 1))
+            ) //TODO total_shots
+              .toFixed(1)}]% of total, [${zone.intensity}]pts, eFG=[${(
+              (50 * zone.intensity) /
+              (zone.frequency || 1)
+            ).toFixed(1)}]%`;
+
+            const d1Tooltip = d1Zone
+              ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
+                  1
+                )}]% of shots, ` +
+                `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
+              : "(D1 averages no available)";
+
+            tooltip
+              .style("opacity", 1)
+              .html(`<span>${zoneTooltip}<br/><br/>${d1Tooltip}</span>`);
+          })
+          .on("mousemove", (event) => {
+            tooltip
+              .style("left", `${event.pageX + 10}px`)
+              .style("top", `${event.pageY - 20}px`);
+          })
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0); // Hide tooltip on mouseout
+          });
+      });
+    }
+
     return () => {
       tooltip.remove(); // Clean up tooltip on unmount
     };
@@ -471,41 +618,104 @@ const HexMap: React.FC<HexMapProps> = ({
 
 ///////////////////// Top Level Logic
 
+const findHexZone = (x: number, y: number, zones: HexZone[]) => {
+  const dist = Math.sqrt(x * x + y * y);
+  const angle =
+    180 - Math.min(180, Math.max(0, (Math.atan2(x, y) * 180) / Math.PI));
+  const zone = _.find(zones, (zone) => {
+    return (
+      dist >= zone.minDist &&
+      dist <= zone.maxDist &&
+      angle >= zone.minAngle &&
+      angle <= zone.maxAngle
+    );
+  });
+  //DEBUG
+  //   if (!zone) {
+  //     console.log(
+  //       `No zone found for ${x}, ${y} -> ${dist.toFixed(1)} ${angle.toFixed(1)}`
+  //     );
+  //   }
+  return zone;
+};
+
+/** Used to build the internal-data set */
+const buildAverageZones = (
+  diffSet: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>
+) => {
+  const mutableZones = buildStartingZones();
+  _.forEach(diffSet, (diff, hexKey) => {
+    const zone = findHexZone(diff.loc[0]!, diff.loc[1]!, mutableZones);
+    if (zone) {
+      zone.frequency += diff.avg_freq;
+      zone.intensity += diff.avg_ppp * diff.avg_freq;
+    } else {
+      console.log(`No zone found for ${hexKey}`, diff);
+    }
+  });
+  _.forEach(mutableZones, (zone) => {
+    zone.intensity /= zone.frequency;
+  });
+  //DEBUG
+  //   console.log(
+  //     `export const ShotChartZones_XXX = ${JSON.stringify(mutableZones, null, 3)}`
+  //   );
+
+  return mutableZones;
+};
+
 const shotStatsToHexData = (
   stats: ShotStats,
-  diffSet?: Record<string, { avg_freq: number; avg_ppp: number }>
-): HexData[] => {
+  diffSet?: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>
+): { data: HexData[]; zones: HexZone[] } => {
   const total_freq = stats?.doc_count || 1;
-  return (stats?.shot_chart?.buckets || [])
-    .map((shotInfo) => {
-      const hexKey = shotInfo.key || "";
-      const x = shotInfo.center.location.x;
-      const y = shotInfo.center.location.y;
-      const frequency = shotInfo.doc_count;
-      const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
 
-      const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
+  const mutableZones = buildStartingZones();
+
+  return {
+    zones: mutableZones,
+    data: (stats?.shot_chart?.buckets || [])
+      .map((shotInfo) => {
+        const hexKey = shotInfo.key || "";
+        const x = shotInfo.center.location.x;
+        const y = shotInfo.center.location.y;
+        const frequency = shotInfo.doc_count;
+        const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
+
+        const mutableZone = findHexZone(x, y, mutableZones);
+        if (mutableZone) {
+          mutableZone.frequency += shotInfo.doc_count;
+          mutableZone.intensity += shotInfo.total_pts.value;
+          mutableZone.total_freq = total_freq;
+        }
+
+        const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
+          return {
+            diffFreq: diff?.avg_freq || 0,
+            diffPpp: diff?.avg_ppp || (_.isNil(diffSet) ? 0.0 : 1.0), //(whether the key is missing or we're not diffing at all)
+          };
+        });
+
+        const angle = _.thru((Math.atan2(x, y) * 180) / Math.PI, (atan2) =>
+          atan2 < 0 ? atan2 + 360 : atan2
+        );
+
         return {
-          diffFreq: diff?.avg_freq || 0,
-          diffPpp: diff?.avg_ppp || (_.isNil(diffSet) ? 0.0 : 1.0), //(whether the key is missing or we're not diffing at all)
+          key: hexKey,
+          x,
+          y,
+          intensity: intensity - diffPpp,
+          frequency: 100 * (frequency / total_freq),
+          tooltip: `[${frequency}] shots, [${(
+            100 *
+            (frequency / total_freq)
+          ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
+            50 * intensity
+          ).toFixed(1)}]%`,
         };
-      });
-
-      return {
-        key: hexKey,
-        x,
-        y,
-        intensity: intensity - diffPpp,
-        frequency: 100 * (frequency / total_freq), //TODO we could try making it half the size if it's average freq?
-        tooltip: `[${frequency}] shots, [${(
-          100 *
-          (frequency / total_freq)
-        ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
-          50 * intensity
-        ).toFixed(1)}]%`,
-      };
-    })
-    .filter((h) => h.x <= 35);
+      })
+      .filter((h) => h.x <= 35),
+  };
 };
 
 ///////////////////// UI element + control
@@ -630,14 +840,26 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
     ? ShotChartAvgs_Men_2024
     : ShotChartAvgs_Women_2024;
 
+  const d1Zones =
+    gender == "Men" ? ShotChartZones_Men_2024 : ShotChartZones_Women_2024;
+
   const selectedOff =
     (quickSwitch
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.off
       : off) || off;
   const selectedDef =
     (quickSwitch
-      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.off
+      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.def
       : def) || def;
+
+  const { data: offData, zones: offZones } = shotStatsToHexData(
+    selectedOff,
+    diffDataSet
+  );
+  const { data: defData, zones: defZones } = shotStatsToHexData(
+    selectedDef,
+    diffDataSet
+  );
 
   return (
     <Container>
@@ -646,7 +868,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           {buildQuickSwitchOptions(
             title,
             quickSwitch,
-            quickSwitchOptions,
+            quickSwitchOptions?.filter(
+              //(remove any options that don't have data)
+              (opt) => opt.off.doc_count || opt.def.doc_count
+            ),
             setQuickSwitch,
             quickSwitchTimer,
             setQuickSwitchTimer
@@ -664,7 +889,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       <Row>
         <Col xs={6} className="text-center">
           <HexMap
-            data={shotStatsToHexData(selectedOff, diffDataSet)}
+            data={offData}
+            zones={offZones}
+            d1Zones={d1Zones}
             diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
@@ -672,7 +899,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         </Col>
         <Col xs={6} className="text-center">
           <HexMap
-            data={shotStatsToHexData(selectedDef, diffDataSet)}
+            data={defData}
+            zones={defZones}
+            d1Zones={d1Zones}
             isDef={true}
             diffDataSet={diffDataSet}
             width={HEX_WIDTH}
