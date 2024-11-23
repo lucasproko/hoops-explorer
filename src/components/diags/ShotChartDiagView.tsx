@@ -45,6 +45,7 @@ interface HexZone {
   frequency: number;
   intensity: number;
   total_freq?: number;
+  shots?: any[]; //(for debugging)
 }
 
 /** 0 is vertical axis pointing up, when averaging angle make >= 90 and <= 270 */
@@ -215,6 +216,7 @@ const HexMap: React.FC<HexMapProps> = ({
     .domain([0, MAX_Y - MIN_Y]) // Original y range
     .range([0, height]); // Invert y scale to make top of canvas 0
 
+  /** Add some court lines into the SVG */
   const injectCourtLines = (
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
     phase: number
@@ -349,7 +351,171 @@ const HexMap: React.FC<HexMapProps> = ({
     }
   };
 
+  const injectZoneAreas = (
+    phase: number,
+    svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
+    zones: HexZone[],
+    d1Zones: HexZone[]
+  ) => {
+    const numZones = d1Zones.length;
+    (zones || []).forEach((__, zoneIndex) => {
+      // Go backwards because that means we draw the 3P zones after the mid range ones
+      // and the overlap looks right
+      const zone = zones[numZones - zoneIndex - 1]!;
+      const d1Zone = d1Zones?.[numZones - zoneIndex - 1] || zone;
+
+      const minAngle = zone.minAngle == 0 ? -90 : zone.minAngle;
+      const maxAngle = zone.maxAngle == 180 ? 270 : zone.maxAngle;
+
+      const freqDelt = d1Zone
+        ? zone.frequency / (zone.total_freq || 1) - d1Zone.frequency
+        : 0;
+
+      const innerRadius = widthScale(zone.minDist);
+      const outerRadius = widthScale(Math.min(40, zone.maxDist));
+      const startAngle = -(minAngle * Math.PI) / 180 + Math.PI / 2;
+      const endAngle = -(maxAngle * Math.PI) / 180 + Math.PI / 2;
+
+      const arcPath3pt_Area = d3.arc()({
+        innerRadius,
+        outerRadius: outerRadius * 0.9999,
+        startAngle,
+        endAngle,
+      });
+
+      svg
+        .append("path")
+        .attr("d", arcPath3pt_Area)
+        .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
+        .style("opacity", 0.25)
+        .style("fill", CbbColors.diff10_blueOrange_offDef(freqDelt));
+
+      if (zone.maxDist > 20) {
+        // Only lines
+        const startInner = [
+          zone.minDist * Math.cos((minAngle * Math.PI) / 180),
+          zone.minDist * Math.sin((minAngle * Math.PI) / 180),
+        ];
+        const startOuter = [
+          zone.maxDist * Math.cos((minAngle * Math.PI) / 180),
+          zone.maxDist * Math.sin((minAngle * Math.PI) / 180),
+        ];
+        const endInner = [
+          zone.minDist * Math.cos((maxAngle * Math.PI) / 180),
+          zone.minDist * Math.sin((maxAngle * Math.PI) / 180),
+        ];
+        const endOuter = [
+          zone.maxDist * Math.cos((maxAngle * Math.PI) / 180),
+          zone.maxDist * Math.sin((maxAngle * Math.PI) / 180),
+        ];
+
+        svg
+          .append("line")
+          .attr("x1", xScale(startInner[0]))
+          .attr("y1", yScale(startInner[1]))
+          .attr("x2", xScale(startOuter[0]))
+          .attr("y2", yScale(startOuter[1]))
+          .style("stroke", "grey")
+          .style("stroke-width", "0.5px");
+
+        svg
+          .append("line")
+          .attr("x1", xScale(endInner[0]))
+          .attr("y1", yScale(endInner[1]))
+          .attr("x2", xScale(endOuter[0]))
+          .attr("y2", yScale(endOuter[1]))
+          .style("stroke", "grey")
+          .style("stroke-width", "0.5px");
+      }
+      if (zone.minDist < 20) {
+        const arcPath3pt_Lines = d3.arc()({
+          innerRadius,
+          outerRadius: zone.maxDist > 20 ? innerRadius : outerRadius,
+          startAngle,
+          endAngle,
+        });
+
+        svg
+          .append("path")
+          .attr("d", arcPath3pt_Lines)
+          .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
+          .style("stroke", "grey")
+          .style("stroke-width", "0.5px")
+          .style("fill", "none");
+      }
+    });
+  };
+
+  const injectZoneInfo = (
+    phase: number,
+    svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
+    zones: HexZone[],
+    d1Zones: HexZone[],
+    tooltip: d3.Selection<HTMLDivElement, unknown, HTMLElement, any>
+  ) => {
+    const cbbColorScale = isDef
+      ? CbbColors.diff_def_eFgShotChart
+      : CbbColors.diff_eFgShotChart;
+
+    (zones || []).forEach((zone, zoneIndex) => {
+      const distToUse = _.isNil(zone.distCenter)
+        ? 0.5 * (zone.minDist + zone.maxDist)
+        : zone.distCenter;
+
+      const angle = (zone.angleOffset * Math.PI) / 90;
+
+      const d1Zone = d1Zones?.[zoneIndex];
+
+      svg
+        .append("circle")
+        .attr("cx", xScale(0) + widthScale(distToUse * Math.sin(angle)))
+        .attr("cy", yScale(0) + widthScale(distToUse * Math.cos(angle)))
+        .attr("r", 20)
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style(
+          "fill",
+          d1Zone && zone.frequency > 0
+            ? cbbColorScale(
+                (zone.intensity / (zone.frequency || 1) - d1Zone.intensity) *
+                  0.5
+              )
+            : "white"
+        )
+        .style("opacity", phase == 0 ? 0.8 : 0.5)
+        .on("mouseover", (event, d) => {
+          const zoneTooltip = `[${zone.frequency}] shots, [${(
+            100 *
+            (zone.frequency / (zone.total_freq || 1))
+          ).toFixed(1)}]% of total, [${zone.intensity}]pts, eFG=[${(
+            (50 * zone.intensity) /
+            (zone.frequency || 1)
+          ).toFixed(1)}]%`;
+
+          const d1Tooltip = d1Zone
+            ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
+                1
+              )}]% of shots, ` + `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
+            : "(D1 averages no available)";
+
+          tooltip
+            .style("opacity", 1)
+            .html(`<span>${zoneTooltip}<br/><br/>${d1Tooltip}</span>`);
+        })
+        .on("mousemove", (event) => {
+          tooltip
+            .style("left", `${event.pageX + 10}px`)
+            .style("top", `${event.pageY - 20}px`);
+        })
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0); // Hide tooltip on mouseout
+        });
+    });
+  };
+
   useEffect(() => {
+    const buildZones = true;
+
     const svg = d3.select(svgRef.current);
 
     // 500 pixels is approx 50 ft
@@ -364,7 +530,10 @@ const HexMap: React.FC<HexMapProps> = ({
     // Define a scale for frequency -> hex size
     const sizeScale = d3.scaleSqrt().domain([0, maxFreq]).range([0.1, 1]); // Scale hex size from 10% to 100%
 
-    const opacityScale = d3.scaleLinear().domain([0, maxFreq]).range([0.5, 1]); // Scale opactiy from 50% to 100%
+    const opacityScale = d3
+      .scaleLinear()
+      .domain([0, maxFreq])
+      .range(buildZones ? [0.1, 0.2] : [0.5, 1]); // Scale opactiy from 50% to 100%
 
     // Define a color scale for intensity
     const colorScale = d3
@@ -406,74 +575,6 @@ const HexMap: React.FC<HexMapProps> = ({
       .style("pointer-events", "none")
       .style("opacity", 0); // initially hidden
 
-    const buildZones = true;
-
-    if (buildZones) {
-      (zones || []).forEach((zone, zoneIndex) => {
-        const d1Zone = d1Zones?.[zoneIndex] || zone;
-        const minAngle = zone.minAngle == 0 ? -90 : zone.minAngle;
-        const maxAngle = zone.maxAngle == 180 ? 270 : zone.maxAngle;
-        if (zone.maxDist > 20) {
-          // Only lines
-          const startInner = [
-            zone.minDist * Math.cos((minAngle * Math.PI) / 180),
-            zone.minDist * Math.sin((minAngle * Math.PI) / 180),
-          ];
-          const startOuter = [
-            zone.maxDist * Math.cos((minAngle * Math.PI) / 180),
-            zone.maxDist * Math.sin((minAngle * Math.PI) / 180),
-          ];
-          const endInner = [
-            zone.minDist * Math.cos((maxAngle * Math.PI) / 180),
-            zone.minDist * Math.sin((maxAngle * Math.PI) / 180),
-          ];
-          const endOuter = [
-            zone.maxDist * Math.cos((maxAngle * Math.PI) / 180),
-            zone.maxDist * Math.sin((maxAngle * Math.PI) / 180),
-          ];
-
-          svg
-            .append("line")
-            .attr("x1", xScale(startInner[0]))
-            .attr("y1", yScale(startInner[1]))
-            .attr("x2", xScale(startOuter[0]))
-            .attr("y2", yScale(startOuter[1]))
-            .style("stroke", "grey")
-            .style("stroke-width", "0.5px");
-
-          svg
-            .append("line")
-            .attr("x1", xScale(endInner[0]))
-            .attr("y1", yScale(endInner[1]))
-            .attr("x2", xScale(endOuter[0]))
-            .attr("y2", yScale(endOuter[1]))
-            .style("stroke", "grey")
-            .style("stroke-width", "0.5px");
-        }
-        if (zone.minDist < 20) {
-          const innerRadius = widthScale(zone.minDist);
-          const outerRadius = widthScale(zone.maxDist);
-          const startAngle = -(minAngle * Math.PI) / 180 + Math.PI / 2;
-          const endAngle = -(maxAngle * Math.PI) / 180 + Math.PI / 2;
-
-          const arcPath3pt = d3.arc()({
-            innerRadius,
-            outerRadius: zone.maxDist > 20 ? innerRadius : outerRadius,
-            startAngle,
-            endAngle,
-          });
-
-          svg
-            .append("path")
-            .attr("d", arcPath3pt)
-            .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
-            .style("stroke", "grey")
-            .style("stroke-width", "0.5px")
-            .style("fill", "none");
-        }
-      });
-    }
-
     svg
       .append("g")
       .selectAll("path")
@@ -491,6 +592,9 @@ const HexMap: React.FC<HexMapProps> = ({
       .attr("stroke-width", 0.5);
 
     injectCourtLines(svg, 0);
+    if (buildZones) {
+      injectZoneAreas(0, svg, zones || [], d1Zones || []);
+    }
 
     svg
       .append("g")
@@ -558,54 +662,7 @@ const HexMap: React.FC<HexMapProps> = ({
     injectCourtLines(svg, 1);
 
     if (buildZones) {
-      (zones || []).forEach((zone, zoneIndex) => {
-        const distToUse = _.isNil(zone.distCenter)
-          ? 0.5 * (zone.minDist + zone.maxDist)
-          : zone.distCenter;
-
-        const angle = (zone.angleOffset * Math.PI) / 90;
-
-        const d1Zone = d1Zones?.[zoneIndex];
-
-        svg
-          .append("circle")
-          .attr("cx", xScale(0) + widthScale(distToUse * Math.sin(angle)))
-          .attr("cy", yScale(0) + widthScale(distToUse * Math.cos(angle)))
-          .attr("r", 20)
-          .style("stroke", "black")
-          .style("stroke-width", "1px")
-          .style("fill", "green")
-          .style("opacity", 0.5)
-          .on("mouseover", (event, d) => {
-            const zoneTooltip = `[${zone.frequency}] shots, [${(
-              100 *
-              (zone.intensity / (zone.total_freq || 1))
-            ) //TODO total_shots
-              .toFixed(1)}]% of total, [${zone.intensity}]pts, eFG=[${(
-              (50 * zone.intensity) /
-              (zone.frequency || 1)
-            ).toFixed(1)}]%`;
-
-            const d1Tooltip = d1Zone
-              ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
-                  1
-                )}]% of shots, ` +
-                `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
-              : "(D1 averages no available)";
-
-            tooltip
-              .style("opacity", 1)
-              .html(`<span>${zoneTooltip}<br/><br/>${d1Tooltip}</span>`);
-          })
-          .on("mousemove", (event) => {
-            tooltip
-              .style("left", `${event.pageX + 10}px`)
-              .style("top", `${event.pageY - 20}px`);
-          })
-          .on("mouseout", () => {
-            tooltip.style("opacity", 0); // Hide tooltip on mouseout
-          });
-      });
+      injectZoneInfo(0, svg, zones || [], d1Zones || [], tooltip);
     }
 
     return () => {
@@ -618,10 +675,12 @@ const HexMap: React.FC<HexMapProps> = ({
 
 ///////////////////// Top Level Logic
 
+/** Finds the zone in which this shot resides */
 const findHexZone = (x: number, y: number, zones: HexZone[]) => {
   const dist = Math.sqrt(x * x + y * y);
-  const angle =
-    180 - Math.min(180, Math.max(0, (Math.atan2(x, y) * 180) / Math.PI));
+  const angle1 = 180 - (Math.atan2(x, y) * 180) / Math.PI; //(inverted because of how the zones are oriented)
+  const angle2 = angle1 > 270 ? angle1 - 360 : angle1; //left side: 90->270, right side: -90->90
+  const angle = Math.min(180, Math.max(0, angle2));
   const zone = _.find(zones, (zone) => {
     return (
       dist >= zone.minDist &&
@@ -630,6 +689,7 @@ const findHexZone = (x: number, y: number, zones: HexZone[]) => {
       angle <= zone.maxAngle
     );
   });
+
   //DEBUG
   //   if (!zone) {
   //     console.log(
@@ -641,7 +701,8 @@ const findHexZone = (x: number, y: number, zones: HexZone[]) => {
 
 /** Used to build the internal-data set */
 const buildAverageZones = (
-  diffSet: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>
+  diffSet: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>,
+  logInfo?: string
 ) => {
   const mutableZones = buildStartingZones();
   _.forEach(diffSet, (diff, hexKey) => {
@@ -650,20 +711,26 @@ const buildAverageZones = (
       zone.frequency += diff.avg_freq;
       zone.intensity += diff.avg_ppp * diff.avg_freq;
     } else {
-      console.log(`No zone found for ${hexKey}`, diff);
+      if (logInfo)
+        console.log(`[${logInfo}] No zone found for ${hexKey}`, diff);
     }
   });
   _.forEach(mutableZones, (zone) => {
     zone.intensity /= zone.frequency;
   });
-  //DEBUG
-  //   console.log(
-  //     `export const ShotChartZones_XXX = ${JSON.stringify(mutableZones, null, 3)}`
-  //   );
+  if (logInfo)
+    console.log(
+      `export const ShotChartZones_${logInfo}_2024 = ${JSON.stringify(
+        mutableZones,
+        null,
+        3
+      )}`
+    );
 
   return mutableZones;
 };
 
+/** Converts from the ES aggregation format into all the info we need to display the hex data */
 const shotStatsToHexData = (
   stats: ShotStats,
   diffSet?: Record<string, { avg_freq: number; avg_ppp: number; loc: number[] }>
@@ -687,6 +754,13 @@ const shotStatsToHexData = (
           mutableZone.frequency += shotInfo.doc_count;
           mutableZone.intensity += shotInfo.total_pts.value;
           mutableZone.total_freq = total_freq;
+
+          // DEBUG
+          //  if (mutableZone.shots) {
+          //    mutableZone.shots.push(shotInfo);
+          //  } else {
+          //    mutableZone.shots = [shotInfo];
+          //  }
         }
 
         const { diffFreq, diffPpp } = _.thru(diffSet?.[hexKey], (diff) => {
@@ -842,6 +916,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
 
   const d1Zones =
     gender == "Men" ? ShotChartZones_Men_2024 : ShotChartZones_Women_2024;
+
+  //ENABLE TO RE-CALCULATE
+  //   buildAverageZones(diffDataSet || {}, "Men");
+  //   buildAverageZones(diffDataSet || {}, "Women");
 
   const selectedOff =
     (quickSwitch
