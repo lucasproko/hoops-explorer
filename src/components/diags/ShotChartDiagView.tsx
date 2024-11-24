@@ -378,7 +378,7 @@ const HexMap: React.FC<HexMapProps> = ({
 
       const arcPath3pt_Area = d3.arc()({
         innerRadius,
-        outerRadius: outerRadius * 0.9999,
+        outerRadius: outerRadius * 0.9999, //(bizarrely without this some of the arc at the top is not filled!)
         startAngle,
         endAngle,
       });
@@ -466,41 +466,70 @@ const HexMap: React.FC<HexMapProps> = ({
 
       const d1Zone = d1Zones?.[zoneIndex];
 
+      const { cx, cy } = {
+        cx: xScale(0) + widthScale(distToUse * Math.sin(angle)),
+        cy: yScale(0) + widthScale(distToUse * Math.cos(angle)),
+      };
+
+      const ppp = zone.intensity / (zone.frequency || 1);
+
+      const tooltipHandler = () => {
+        const zoneTooltip = `[${zone.frequency}] shots, [${(
+          100 *
+          (zone.frequency / (zone.total_freq || 1))
+        ).toFixed(1)}]% of total, [${zone.intensity}]pts, eFG=[${(
+          (50 * zone.intensity) /
+          (zone.frequency || 1)
+        ).toFixed(1)}]%`;
+
+        const d1Tooltip = d1Zone
+          ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
+              1
+            )}]% of shots, ` + `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
+          : "(D1 averages no available)";
+
+        tooltip
+          .style("opacity", 1)
+          .html(`<span>${zoneTooltip}<br/><br/>${d1Tooltip}</span>`);
+      };
+
       svg
         .append("circle")
-        .attr("cx", xScale(0) + widthScale(distToUse * Math.sin(angle)))
-        .attr("cy", yScale(0) + widthScale(distToUse * Math.cos(angle)))
+        .attr("cx", cx)
+        .attr("cy", cy)
         .attr("r", 20)
         .style("stroke", "black")
         .style("stroke-width", "1px")
         .style(
           "fill",
           d1Zone && zone.frequency > 0
-            ? cbbColorScale(
-                (zone.intensity / (zone.frequency || 1) - d1Zone.intensity) *
-                  0.5
-              )
-            : "white"
+            ? cbbColorScale((ppp - d1Zone.intensity) * 0.5)
+            : "none"
         )
         .style("opacity", phase == 0 ? 0.8 : 0.5)
         .on("mouseover", (event, d) => {
-          const zoneTooltip = `[${zone.frequency}] shots, [${(
-            100 *
-            (zone.frequency / (zone.total_freq || 1))
-          ).toFixed(1)}]% of total, [${zone.intensity}]pts, eFG=[${(
-            (50 * zone.intensity) /
-            (zone.frequency || 1)
-          ).toFixed(1)}]%`;
-
-          const d1Tooltip = d1Zone
-            ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
-                1
-              )}]% of shots, ` + `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
-            : "(D1 averages no available)";
-
+          tooltipHandler();
+        })
+        .on("mousemove", (event) => {
           tooltip
-            .style("opacity", 1)
-            .html(`<span>${zoneTooltip}<br/><br/>${d1Tooltip}</span>`);
+            .style("left", `${event.pageX + 10}px`)
+            .style("top", `${event.pageY - 20}px`);
+        })
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0); // Hide tooltip on mouseout
+        });
+
+      svg
+        .append("text")
+        .attr("x", cx)
+        .attr("y", cy)
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "12px")
+        .style("fill", "black")
+        .text(zone.frequency > 0 ? `${(ppp * 50).toFixed(0)}%` : "-")
+        .on("mouseover", (event, d) => {
+          tooltipHandler();
         })
         .on("mousemove", (event) => {
           tooltip
