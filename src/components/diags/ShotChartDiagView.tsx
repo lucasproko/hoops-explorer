@@ -27,6 +27,7 @@ import { hexbin } from "d3-hexbin";
 import { ShotStats } from "../../utils/StatModels";
 import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 import { ParamDefaults } from "../../utils/FilterModels";
+import { absolutePositionFixes } from "../../utils/stats/PositionalManualFixes";
 
 interface HexData {
   key: string;
@@ -1012,40 +1013,72 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         </Col>
       </Row>
       <Row>
-        <Col xs={6} className="text-center">
-          <b>Offense</b>
+        <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center">
+                <b>Offense:</b>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <HexMap
+                  data={offData}
+                  zones={offZones}
+                  d1Zones={d1Zones}
+                  diffDataSet={diffDataSet}
+                  width={HEX_WIDTH}
+                  height={HEX_HEIGHT}
+                  buildZones={buildZones}
+                />
+              </Col>
+            </Row>
+          </Container>
         </Col>
-        <Col xs={6} className="text-center">
-          <b>Defense</b>
+        <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center">
+                <b>Defense:</b>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <HexMap
+                  data={defData}
+                  zones={defZones}
+                  d1Zones={d1Zones}
+                  isDef={true}
+                  diffDataSet={diffDataSet}
+                  width={HEX_WIDTH}
+                  height={HEX_HEIGHT}
+                  buildZones={buildZones}
+                />
+              </Col>
+            </Row>
+          </Container>
         </Col>
       </Row>
       <Row>
-        <Col xs={6} className="text-center">
-          <HexMap
-            data={offData}
-            zones={offZones}
-            d1Zones={d1Zones}
-            diffDataSet={diffDataSet}
-            width={HEX_WIDTH}
-            height={HEX_HEIGHT}
-            buildZones={buildZones}
-          />
-        </Col>
-        <Col xs={6} className="text-center">
-          <HexMap
-            data={defData}
-            zones={defZones}
-            d1Zones={d1Zones}
-            isDef={true}
-            diffDataSet={diffDataSet}
-            width={HEX_WIDTH}
-            height={HEX_HEIGHT}
-            buildZones={buildZones}
-          />
+        <Col xs={6} md={6} lg={6} xl={12} className="small text-center pt-1">
+          {buildZones ? (
+            <p>
+              Each circle shows the eFG% (FG% where 3pts shots count more),
+              colored by their efficiency relative to D1 average in that zone.
+              The color of the zone is the shot frequency relative to the D1
+              average.
+            </p>
+          ) : (
+            <p>
+              Each hex is a cluster of shots: the color is their efficiency
+              relative to the D1 average of shots taken there. The hex size
+              gives an idea of its frequency. Mouse over for more details!
+            </p>
+          )}
         </Col>
       </Row>
       <Row>
-        <Col xs={12} className="text-center pt-2">
+        <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
           <ToggleButtonGroup
             items={[
               {
@@ -1075,7 +1108,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             ]}
           />
         </Col>
-      </Row>{" "}
+      </Row>
     </Container>
   ) : (
     <span>Loading Data...</span>

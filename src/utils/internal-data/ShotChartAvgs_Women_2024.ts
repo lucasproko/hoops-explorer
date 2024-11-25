@@ -1,4 +1,4 @@
-export const ShotChartAvgs_Women_2024 = {
+export const ShotChartAvgs_Women_2024: any = {
   "8e2a100d2ca06c7": {
     loc: [2.1, 1.7],
     avg_freq: 0.076,

@@ -311,6 +311,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       Go back to the most recently submitted On/Off Analysis page
     </Tooltip>
   );
+  const shotChartsTooltip = (
+    <Tooltip id="shotChartsTooltip">
+      View on/off and season shot charts for a team
+    </Tooltip>
+  );
   const baseLineupTooltip = (
     <Tooltip id="baseLineupTooltip">
       Go to the Lineup Analysis page with the current baseline query
@@ -406,6 +411,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       calcRapm: true,
       showExtraInfo: true,
     };
+    const teamShotChartSettings: GameFilterParams = {
+      calcRapm: true,
+      teamShotCharts: true,
+    };
     return (
       <Dropdown>
         <Dropdown.Toggle
@@ -479,6 +488,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Analysis Last",
               lastGameTooltip,
               getLastGameUrl(teamAnalysisSettings),
+              `${ParamPrefixes.game}`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item>
+            {buildNavItem(
+              "Shot Charts",
+              shotChartsTooltip,
+              getBaseGameUrl(teamShotChartSettings),
               `${ParamPrefixes.game}`
             )}
           </Dropdown.Item>
