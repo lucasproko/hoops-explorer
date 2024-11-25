@@ -124,6 +124,9 @@ export const absolutePositionFixes: Record<
     "Miguel, Selton": {
       position: "WG",
     },
+    "Palmer, Miguel": {
+      position: "WF", //(not really but this ensures he gets put at the 4)
+    },
   },
   "Men_Michigan St._2020/21": {
     "Hauser, Joey": {
