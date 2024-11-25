@@ -124,7 +124,7 @@ export const absolutePositionFixes: Record<
     "Miguel, Selton": {
       position: "WG",
     },
-    "Palmer, Miguel": {
+    "Palmer, Malachi": {
       position: "WF", //(not really but this ensures he gets put at the 4)
     },
   },
