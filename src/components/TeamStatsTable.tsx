@@ -48,6 +48,7 @@ import {
 } from "../utils/tables/TeamStatsTableUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { DateUtils } from "../utils/DateUtils";
+import { UserChartOpts } from "./diags/ShotChartDiagView";
 
 export type TeamStatsModel = {
   on: TeamStatSet;
@@ -143,6 +144,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       : gameFilterParams.showTeamPlayTypes
   );
 
+  // Shot charts:
+  const [shotChartConfig, setShotChartConfig] = useState<
+    UserChartOpts | undefined
+  >(
+    _.isNil(gameFilterParams.teamShotChartsShowZones)
+      ? undefined
+      : { buildZones: gameFilterParams.teamShotChartsShowZones }
+  );
+
   /** Whether we are showing the luck config modal */
   const [showLuckConfig, setShowLuckConfig] = useState(false);
 
@@ -203,6 +213,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showGameInfo: showGameInfo,
       showGrades: showGrades,
       teamShotCharts: showShotCharts,
+      teamShotChartsShowZones: shotChartConfig?.buildZones,
     };
     onChangeState(newState);
   }, [
@@ -216,6 +227,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     showGameInfo,
     showGrades,
     showShotCharts,
+    shotChartConfig,
   ]);
 
   const tableInfo = TeamStatsTableUtils.buildRows(
@@ -233,6 +245,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       showDiffs,
       showGameInfo,
       showShotCharts,
+      shotChartConfig,
       showExtraInfo,
       showGrades,
       showLuckAdjDiags,
@@ -240,6 +253,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     },
     {
       setShowGrades: (showGrades: string) => setShowGrades(showGrades),
+      setShotChartConfig: (config: UserChartOpts) => setShotChartConfig(config),
     },
 
     luckConfig,
@@ -358,10 +372,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                       onClick: () => setShowGameInfo(!showGameInfo),
                     },
                   ].concat(
-                    FeatureFlags.isActiveWindow(FeatureFlags.shotCharts) &&
-                      (gameFilterParams.year ||
-                        DateUtils.mostRecentYearWithData >=
-                          DateUtils.firstYearWithShotChartData)
+                    gameFilterParams.year ||
+                      DateUtils.mostRecentYearWithData >=
+                        DateUtils.firstYearWithShotChartData
                       ? [
                           {
                             label: "Shots",

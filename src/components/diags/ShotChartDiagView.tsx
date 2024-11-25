@@ -25,6 +25,8 @@ import Tooltip from "react-bootstrap/Tooltip";
 import * as d3 from "d3";
 import { hexbin } from "d3-hexbin";
 import { ShotStats } from "../../utils/StatModels";
+import ToggleButtonGroup from "../shared/ToggleButtonGroup";
+import { ParamDefaults } from "../../utils/FilterModels";
 
 interface HexData {
   key: string;
@@ -183,6 +185,7 @@ interface HexMapProps {
     string,
     { avg_freq: number; avg_ppp: number; loc: number[] }
   >;
+  buildZones: boolean;
 }
 const HexMap: React.FC<HexMapProps> = ({
   data,
@@ -192,6 +195,7 @@ const HexMap: React.FC<HexMapProps> = ({
   diffDataSet,
   zones,
   d1Zones,
+  buildZones,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -543,8 +547,6 @@ const HexMap: React.FC<HexMapProps> = ({
   };
 
   useEffect(() => {
-    const buildZones = true;
-
     const svg = d3.select(svgRef.current);
 
     // 500 pixels is approx 50 ft
@@ -828,7 +830,10 @@ const buildQuickSwitchOptions = (
   title: string,
   quickSwitch: string | undefined,
   quickSwitchOptions: { title?: string }[] | undefined,
-  setQuickSwitch: React.Dispatch<React.SetStateAction<string | undefined>>,
+  updateQuickSwitch: (
+    newSetting: string | undefined,
+    fromTimer: boolean
+  ) => void,
   quickSwitchTimer: NodeJS.Timer | undefined,
   setQuickSwitchTimer: (newQuickSwitchTimer: NodeJS.Timer | undefined) => void
 ) => {
@@ -837,14 +842,14 @@ const buildQuickSwitchOptions = (
       clearInterval(quickSwitchTimer);
     }
     if (quickSwitch) {
-      setQuickSwitch(undefined);
+      updateQuickSwitch(undefined, false);
     } else {
-      setQuickSwitch(newQuickSwitch);
+      updateQuickSwitch(newQuickSwitch, false);
     }
     if (newQuickSwitch) {
       setQuickSwitchTimer(
         setInterval(() => {
-          setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
+          updateQuickSwitch(newQuickSwitch, true);
         }, 4000)
       );
     } else {
@@ -870,7 +875,7 @@ const buildQuickSwitchOptions = (
           onClick={(e) => {
             e.preventDefault();
             if (!quickSwitchTimer) {
-              setQuickSwitch(quickSwitch == t ? undefined : t); //(ie toggle)
+              updateQuickSwitch(quickSwitch == t ? undefined : t, false); //(ie toggle)
             } else {
               quickSwitchTimerLogic(undefined);
             }
@@ -915,13 +920,19 @@ const buildQuickSwitchOptions = (
   );
 };
 
+export type UserChartOpts = {
+  buildZones?: boolean;
+  quickSwitch?: string;
+};
+
 type Props = {
   title: string;
   gender: "Men" | "Women";
   off: ShotStats;
   def: ShotStats;
   quickSwitchOptions?: Props[];
-  absEff?: boolean; //(by default the efficiency is show vs D1 average)
+  onChangeChartOpts?: (opts: UserChartOpts) => void; //(needs to be optional for quick switch options)
+  chartOpts?: UserChartOpts;
 };
 
 const ShotChartDiagView: React.FunctionComponent<Props> = ({
@@ -930,18 +941,23 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   off,
   def,
   quickSwitchOptions,
-  absEff,
+  chartOpts,
+  onChangeChartOpts,
 }) => {
-  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
+  const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
+    chartOpts?.quickSwitch
+  );
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
+  const [buildZones, setBuildZones] = useState<boolean>(
+    !chartOpts || _.isNil(chartOpts?.buildZones)
+      ? ParamDefaults.defaultShotChartShowZones
+      : chartOpts.buildZones
+  );
 
-  const diffDataSet = absEff
-    ? undefined
-    : gender == "Men"
-    ? ShotChartAvgs_Men_2024
-    : ShotChartAvgs_Women_2024;
+  const diffDataSet =
+    gender == "Men" ? ShotChartAvgs_Men_2024 : ShotChartAvgs_Women_2024;
 
   const d1Zones =
     gender == "Men" ? ShotChartZones_Men_2024 : ShotChartZones_Women_2024;
@@ -968,7 +984,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
     diffDataSet
   );
 
-  return (
+  return off?.doc_count || def?.doc_count ? (
     <Container>
       <Row className="pt-2 pb-2">
         <Col xs={12}>
@@ -977,9 +993,19 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             quickSwitch,
             quickSwitchOptions?.filter(
               //(remove any options that don't have data)
-              (opt) => opt.off.doc_count || opt.def.doc_count
+              (opt) => opt.off?.doc_count || opt.def?.doc_count
             ),
-            setQuickSwitch,
+            (newSetting, fromTimer) => {
+              if (fromTimer) {
+                setQuickSwitch((curr) => (curr ? undefined : newSetting));
+              } else {
+                onChangeChartOpts?.({
+                  buildZones: !buildZones,
+                  quickSwitch: quickSwitch,
+                });
+                setQuickSwitch(newSetting);
+              }
+            },
             quickSwitchTimer,
             setQuickSwitchTimer
           )}
@@ -1002,6 +1028,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
+            buildZones={buildZones}
           />
         </Col>
         <Col xs={6} className="text-center">
@@ -1013,10 +1040,45 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             diffDataSet={diffDataSet}
             width={HEX_WIDTH}
             height={HEX_HEIGHT}
+            buildZones={buildZones}
           />
         </Col>
       </Row>
+      <Row>
+        <Col xs={12} className="text-center pt-2">
+          <ToggleButtonGroup
+            items={[
+              {
+                label: "Zones",
+                tooltip: "Show the shots grouped into large court zones",
+                toggled: buildZones,
+                onClick: () => {
+                  onChangeChartOpts?.({
+                    buildZones: !buildZones,
+                    quickSwitch: quickSwitch,
+                  });
+                  setBuildZones(!buildZones);
+                },
+              },
+              {
+                label: "Clusters",
+                tooltip: "Show the shots grouped into small clusters",
+                toggled: !buildZones,
+                onClick: () => {
+                  onChangeChartOpts?.({
+                    buildZones: !buildZones,
+                    quickSwitch: quickSwitch,
+                  });
+                  setBuildZones(!buildZones);
+                },
+              },
+            ]}
+          />
+        </Col>
+      </Row>{" "}
     </Container>
+  ) : (
+    <span>Loading Data...</span>
   );
 };
 export default ShotChartDiagView;

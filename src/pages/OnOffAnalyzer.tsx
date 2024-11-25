@@ -185,6 +185,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["showGameInfo"]
           : [],
         !rawParams.teamShotCharts ? ["teamShotCharts"] : [],
+        rawParams.teamShotChartsShowZones ==
+        ParamDefaults.defaultShotChartShowZones
+          ? ["teamShotChartsShowZones"]
+          : [],
         rawParams.showGrades == "" ? ["showGrades"] : [],
         // RosterStatsTable
         rawParams.sortBy == ParamDefaults.defaultPlayerSortBy ? ["sortBy"] : [],

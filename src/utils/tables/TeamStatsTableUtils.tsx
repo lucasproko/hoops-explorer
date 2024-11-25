@@ -6,7 +6,9 @@ import LuckAdjDiagView from "../../components/diags/LuckAdjDiagView";
 import TeamExtraStatsInfoView from "../../components/diags/TeamExtraStatsInfoView";
 import TeamPlayTypeDiagView from "../../components/diags/TeamPlayTypeDiagView";
 import TeamRosterDiagView from "../../components/diags/TeamRosterDiagView";
-import ShotChartDiagView from "../../components/diags/ShotChartDiagView";
+import ShotChartDiagView, {
+  UserChartOpts,
+} from "../../components/diags/ShotChartDiagView";
 import {
   GenericTableOps,
   GenericTableRow,
@@ -62,6 +64,7 @@ export type TeamStatsReadOnlyState = {
   showDiffs: boolean;
   showGameInfo: boolean;
   showShotCharts: boolean;
+  shotChartConfig: UserChartOpts | undefined;
   showExtraInfo: boolean;
   showGrades: string;
   showLuckAdjDiags: boolean;
@@ -70,6 +73,7 @@ export type TeamStatsReadOnlyState = {
 
 export type TeamStatsChangeState = {
   setShowGrades: (showGradesCfg: string) => void;
+  setShotChartConfig: (opts: UserChartOpts) => void;
 };
 
 // Business logic:
@@ -101,6 +105,7 @@ export class TeamStatsTableUtils {
       showExtraInfo,
       showGrades,
       showShotCharts,
+      shotChartConfig,
       showLuckAdjDiags,
       showHelp,
     } = readOnlyState;
@@ -547,6 +552,10 @@ export class TeamStatsTableUtils {
                     quickSwitchOptions={shotChartQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey
                     )}
+                    chartOpts={shotChartConfig}
+                    onChangeChartOpts={(newOpts) => {
+                      persistNewState.setShotChartConfig(newOpts);
+                    }}
                   />,
                   "small"
                 ),

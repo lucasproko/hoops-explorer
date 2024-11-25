@@ -125,7 +125,6 @@ export type GameFilterParams = {
   showTeamPlayTypes?: boolean;
   showRoster?: boolean;
   showGameInfo?: boolean;
-  teamShotCharts?: boolean;
   // Manual override:
   manual?: ManualOverride[];
   showPlayerManual?: boolean;
@@ -154,6 +153,9 @@ export type GameFilterParams = {
   rapmRegressMode?: string; //0-1 to force the regression, or -1 to auto-choose (default: -1)
   // For leaderboard building:
   getGames?: boolean;
+  // Shot chart params:
+  teamShotCharts?: boolean;
+  teamShotChartsShowZones?: boolean;
 };
 
 /** Params for lineup filtering */
@@ -350,6 +352,7 @@ export class ParamDefaults {
   static readonly defaultPlayerFactorMins = false;
   static readonly defaultPlayerPosDiagMode = false;
   static readonly defaultPlayerCalcRapm = false;
+  static readonly defaultShotChartShowZones = true;
   // Lineup
   static readonly defaultLineupShowTotal = false;
   static readonly defaultLineupShowDropped = false;
